@@ -44,10 +44,24 @@ $mq-tad-smaller-sm: 455px;
     font-weight: 500;
 
     > *:not(:last-child) {
-        margin-bottom: calc(#{$layout-xl} + #{$layout-xs});
+        --extra-spacing: #{$layout-xs};
+        margin-bottom: calc(#{$layout-xl} + var(--extra-spacing));
 
         @media #{$mq-md} {
-            margin-bottom: calc(#{$layout-xl} + #{$layout-md});
+            --extra-spacing: #{$layout-md};
+        }
+    }
+
+    // no stickers/gifs to fill space below
+    .c-privacy,
+    .c-features {
+        --extra-spacing: 0px;
+    }
+
+    // re-add spacing when fox gif displays
+    @media #{$mq-lg} {
+        .c-features {
+            --extra-spacing: #{$layout-md};
         }
     }
 
@@ -159,6 +173,10 @@ $mq-tad-smaller-sm: 455px;
 .c-grid {
     display: grid;
     gap: $spacing-md;
+
+    &.mzp-l-content::after {
+        display: none; // remove pseudo-element spacing
+    }
 
     @media #{$mq-md} {
         grid-template-columns: repeat(2, minmax(0, 1fr));
