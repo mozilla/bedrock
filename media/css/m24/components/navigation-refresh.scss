@@ -457,6 +457,28 @@
     }
 }
 
+.m24-c-menu-panel-content.multi-column {
+    @media #{$mq-md} {
+        display: flex;
+        padding: 0 $grid-margin;
+    }
+
+    .m24-mzp-l-content-container {
+        margin-top: $spacer-xl;
+
+        @media #{$mq-md} {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: $spacer-sm;
+            color: #6d6d6d;
+            font-size: $text-body-sm;
+            font-weight: 600;
+        }
+    }
+}
+
 .m24-c-menu-panel .m24-c-menu-panel-content > .m24-mzp-l-content {
     display: flex;
     flex-direction: column;
