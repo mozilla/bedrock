@@ -12,7 +12,7 @@ $image-path: '/media/protocol/img';
 $browser-background: #f8f6f4;
 $page-background: #333336;
 $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
-$border-black: 1.5px solid #333336;
+$border-black: 1.5px solid $page-background;
 $mq-tad-smaller-sm: 455px;
 
 @import './feature-box';
@@ -44,24 +44,28 @@ $mq-tad-smaller-sm: 455px;
     font-weight: 500;
 
     > *:not(:last-child) {
-        --extra-spacing: #{$layout-xs};
-        margin-bottom: calc(#{$layout-xl} + var(--extra-spacing));
+        margin-bottom: $layout-xl; // IE fallback
 
-        @media #{$mq-md} {
-            --extra-spacing: #{$layout-md};
-        }
-    }
+        @supports (--css: variables) {
+            --extra-spacing: #{$layout-xs};
+            margin-bottom: calc(#{$layout-xl} + var(--extra-spacing));
 
-    // no stickers/gifs to fill space below
-    .c-privacy,
-    .c-features {
-        --extra-spacing: 0px;
-    }
+            @media #{$mq-md} {
+                --extra-spacing: #{$layout-md};
+            }
 
-    // re-add spacing when fox gif displays
-    @media #{$mq-lg} {
-        .c-features {
-            --extra-spacing: #{$layout-md};
+            // no stickers/gifs to fill space below
+            .c-privacy,
+            .c-features {
+                --extra-spacing: 0px;
+            }
+
+            // re-add spacing when fox gif displays
+            @media #{$mq-lg} {
+                .c-features {
+                    --extra-spacing: #{$layout-md};
+                }
+            }
         }
     }
 
@@ -74,48 +78,37 @@ $mq-tad-smaller-sm: 455px;
     display: none;
 }
 
-// Add aside sidebar
 @media #{$mq-lg} {
-    .c-content-layout {
-        display: grid;
-        grid-template-columns: 1fr [main-start] auto [main-end aside-start] 1fr [aside-end];
-    }
-
-    .c-main {
-        grid-area: main;
-    }
-
+    // non-grid layout, under main section
     .c-aside {
-        grid-area: aside;
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing-xl;
+        text-align: center;
+    }
+
+    .c-aside-link {
+        color: $color-white;
         display: flex;
         flex-direction: column;
-        margin-left: -#{$layout-lg}; // shift over padding
-        justify-self: start;
-        position: relative;
-        text-align: center;
+        align-items: center;
+        padding: $spacing-sm;
+        text-decoration: none;
+        cursor: default;
 
-        a, .c-trash {
-            color: $color-white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: $spacing-2xl;
-            padding: $spacing-sm;
-            text-decoration: none;
-            cursor: default;
+        + * {
+            margin-left: $spacing-md;
         }
 
-        a {
-            &:hover,
-            &:active,
-            &:focus {
-                color: $color-white;
-            }
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-white;
+        }
 
-            &:active,
-            &:focus {
-                background-color: $color-blue-60;
-            }
+        &:active,
+        &:focus {
+            background-color: $color-blue-60;
         }
     }
 }
@@ -124,7 +117,53 @@ $mq-tad-smaller-sm: 455px;
     margin-bottom: $spacing-xl;
 
     * {
+        color: $color-white; // IE fallback
         color: var(--body-text-color-inverse);
+    }
+}
+
+@supports (display: grid) {
+    .c-grid {
+        display: grid;
+        gap: $spacing-md;
+
+        &.mzp-l-content::after {
+            display: none; // remove pseudo-element spacing
+        }
+
+        @media #{$mq-md} {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            &.mzp-t-content-md {
+                max-width: $screen-md;
+            }
+        }
+    }
+
+    // sidebar layout
+    @media #{$mq-lg} {
+        .c-content-layout {
+            display: grid;
+            grid-template-columns: 1fr [main-start] auto [main-end aside-start] 1fr [aside-end];
+        }
+
+        .c-main {
+            grid-area: main;
+        }
+
+        .c-aside {
+            grid-area: aside;
+            justify-content: unset;
+            margin-top: unset;
+            justify-self: start;
+            margin-left: -#{$layout-lg}; // shift over padding
+            flex-direction: column;
+        }
+
+        .c-aside-link {
+            margin-bottom: $spacing-2xl;
+            margin-left: unset;
+        }
     }
 }
 
@@ -170,25 +209,6 @@ $mq-tad-smaller-sm: 455px;
     }
 }
 
-.c-grid {
-    display: grid;
-    gap: $spacing-md;
-
-    &.mzp-l-content::after {
-        display: none; // remove pseudo-element spacing
-    }
-
-    @media #{$mq-md} {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        &.mzp-t-content-md {
-            max-width: $screen-md;
-        }
-    }
-}
-
-// TODO: fix dimensions/high-res
-// TODO: get proper default privacy image (centered & with shield)
 .c-privacy-image {
     display: block;
     width: 100%;

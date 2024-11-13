@@ -15,5 +15,8 @@
 .c-feature-box-title {
     align-items: center;
     display: flex;
-    gap: $spacing-md;
+}
+
+.c-feature-box-image {
+    margin-right: $spacing-md;
 }
