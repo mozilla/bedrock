@@ -58,7 +58,35 @@
         <div class="c-things-browser-fox-bush-container mzp-l-content mzp-t-content-md mzp-t-content-nospace">
           <!-- TODO: reduced motion static image -->
            <div data-animation="pop-in" class="c-things-fox-bush">
-            <img class="c-things-fox-bush-image" src="{{ static('img/firefox/nothing-personal/fox-bush.gif') }}" alt="Cartoon fox slides back into bush, disappearing from view">
+            {{ picture(
+              url='img/firefox/nothing-personal/thug-life.gif',
+              sources=[
+                {
+                  'media': '(prefers-reduced-motion: reduce)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/fox-bush.png': '1x',
+                    'img/firefox/nothing-personal/fox-bush-high-res.png': '2x'
+                  },
+                  'sizes': {
+                    'default': '138px'
+                  }
+                },
+                {
+                  'media': '(prefers-reduced-motion: no-preference)',
+                  'srcset': {
+                    'img/firefox/nothing-personal/fox-bush.gif': '200w'
+                  },
+                  'sizes': {
+                    'default': '138px'
+                  }
+                }
+              ],
+              optional_attributes={
+                  'height': '89',
+                  'width': '138',
+                  'class': 'c-things-fox-bush-image'
+              }
+            ) }}
            </div>
           {% call browser_border(class='c-things-browser', heading="What would Firefox do?") %}
             <img class="c-things-foxy-sticker" data-animation="dependent-pop-in" src="{{ static('img/firefox/nothing-personal/foxy-sticker.svg') }}" alt="">

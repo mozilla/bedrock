@@ -68,11 +68,15 @@ $fox-bush-height: 87px;
 .c-things-fox-bush-image {
     height: $fox-bush-height;
     width: $fox-bush-width;
-    object-fit: cover;
-    object-position: bottom; // cut off browser bar at top
     position: relative;
     z-index: 10;
-    border: 1px solid #333336;
+
+    // static image has baked-in border, but doesn't need any cropping
+    @media (prefers-reduced-motion: no-preference) {
+        border: 1px solid #333336;
+        object-fit: cover;
+        object-position: bottom; // crop out browser bar at top
+    }
 }
 
 .c-things-browser {
@@ -196,12 +200,6 @@ $fox-bush-height: 87px;
     margin-bottom: $spacing-sm;
     padding: $spacing-md;
     position: relative;
-    animation-name: shine, pulse;
-    animation-duration: 1s, 5s;
-    animation-delay: 3s, 4s;
-    animation-timing-function: linear, ease-in-out;
-    animation-iteration-count: 1, infinite;
-    transition: background-position 0.5s;
 
     @media #{$mq-md} {
         padding: $spacing-md $spacing-lg;
@@ -217,13 +215,25 @@ $fox-bush-height: 87px;
         transform: translate($push-depth, $push-depth);
         box-shadow: $push-depth $push-depth var(--background-color-inverse);
     }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation-name: shine, pulse;
+        animation-duration: 1s, 5s;
+        animation-delay: 3s, 4s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: 1, infinite;
+        transition: background-position 0.5s;
+    }
 }
 
-[class^="c-things-button-sparkle"] {
-    position: absolute;
-    width: 22px;
-    height: 22px;
-    opacity: 0;
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100%  {
+        opacity: 1;
+    }
 }
 
 @keyframes sparkle {
@@ -234,7 +244,7 @@ $fox-bush-height: 87px;
         scale:1;
     }
 
-    10%  {
+    10% {
         opacity: 1;
     }
 
@@ -252,25 +262,59 @@ $fox-bush-height: 87px;
     }
 }
 
+[class^="c-things-button-sparkle"] {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-name: fade-in;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+}
+
 // top right
 .c-things-button-sparkle-1 {
     top: -12px;
     right: 10px;
-    animation: 1s 2s sparkle forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 1s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 2s sparkle forwards;
+    }
 }
 
 // top left
 .c-things-button-sparkle-2 {
     left: -17px;
     top: 5px;
-    animation: 1s 3s sparkle forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 1.5s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 3s sparkle forwards;
+    }
 }
 
 // bottom right
 .c-things-button-sparkle-3 {
     right: -10px;
     bottom: -10px;
-    animation: 1s 3.5s sparkle forwards;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 2s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 3.5s sparkle forwards;
+    }
 }
 
 .c-things-note {
