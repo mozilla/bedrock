@@ -460,7 +460,7 @@
 .m24-c-menu-panel-content.multi-column {
     @media #{$mq-md} {
         display: flex;
-        padding: 0 var(--grid-margin);
+        padding: 0 $grid-margin;
     }
 
     .m24-mzp-l-content-container {
