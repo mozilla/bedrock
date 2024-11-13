@@ -40,8 +40,8 @@
     position: relative;
 }
 
-$fox-bush-width: 124px;
-$fox-bush-height: 79px;
+$fox-bush-width: 136px;
+$fox-bush-height: 87px;
 
 .c-things-fox-bush {
     display: none;
@@ -49,7 +49,7 @@ $fox-bush-height: 79px;
     @media #{$mq-lg} {
         display: block;
         position: absolute;
-        left: -#{$layout-xl};
+        left: calc(#{$layout-lg} * -2);
         top: $layout-lg;
 
         &::after {
@@ -60,6 +60,7 @@ $fox-bush-height: 79px;
             width: $fox-bush-width;
             left: 10px;
             top: 10px;
+            border: $border-black;
         }
     }
 }
@@ -71,6 +72,7 @@ $fox-bush-height: 79px;
     object-position: bottom; // cut off browser bar at top
     position: relative;
     z-index: 10;
+    border: 1px solid #333336;
 }
 
 .c-things-browser {
