@@ -20,13 +20,14 @@
     }
 
     .m24-pencil-banner-close {
-        background: transparent url('/media/img/m24/close.svg') center center no-repeat;
+        background: transparent url('/media/img/icons/m24-small/close.svg') center center no-repeat;
         border: none;
         cursor: pointer;
         height: 24px;
         position: absolute;
         top: $spacer-sm;
         width: 24px;
+        @include background-size(24px 24px);
         @include bidi(((right, $spacer-sm, auto), (left, auto, $spacer-sm)));
         @include image-replaced;
 
