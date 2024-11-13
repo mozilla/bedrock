@@ -105,7 +105,7 @@
     font-family: $primary-font;
     font-weight: 600;
     height: 32px;
-    margin: 0;
+    margin: 4px 0 0;
     padding: 0;
     position: relative;
     @include bidi(((float, right, left),));
@@ -137,11 +137,17 @@
     }
 }
 
+.m24-c-navigation-logo-link {
+    display: inline-block;
+}
+
 .m24-c-navigation-logo-image {
-    height: 21px;
+    height: 27px;
+    width: auto;
     padding-top: $spacing-xs;
 
     @media #{$mq-md} {
+        height: 24px;
         padding: 0 0 $spacing-sm;
     }
 }
@@ -153,8 +159,8 @@
     @media (max-width: $screen-md) {
         &.mzp-is-open {
             display: flex;
-            height: calc(100vh - 48px); // 48px margin top
-            margin-top: 48px;
+            height: calc(100vh - 45px); // 54px margin top
+            margin-top: 54px;
             overflow: hidden auto;
             padding-top: 0;
             position: fixed;
