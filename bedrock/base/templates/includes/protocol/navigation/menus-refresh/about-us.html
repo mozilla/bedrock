@@ -4,6 +4,8 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
+ {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=about-us' %}
+
  <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable">
    <a class="m24-c-menu-title" href="{{ url('mozorg.about.index') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-about" data-testid="m24-navigation-link-about-us">{{ ftl('navigation-refresh-about-us') }}</a>
    <div class="m24-c-menu-panel" id="m24-c-menu-panel-about" data-testid="m24-navigation-menu-about-us">
