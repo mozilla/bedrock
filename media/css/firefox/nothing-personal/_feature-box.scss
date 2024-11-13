@@ -20,3 +20,10 @@
 .c-feature-box-image {
     margin-right: $spacing-md;
 }
+
+.ios,
+.android {
+    .c-feature-box-desktop-only {
+        display: none;
+    }
+}
