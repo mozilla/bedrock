@@ -20,3 +20,12 @@
 .c-feature-box-image {
     margin-right: $spacing-md;
 }
+
+.c-feature-box-desktop-only {
+    display: none;
+
+    // add for grid layout on larger screens
+    @media #{$mq-md} {
+        display: block;
+    }
+}
