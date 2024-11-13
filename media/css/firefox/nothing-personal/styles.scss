@@ -12,7 +12,8 @@ $image-path: '/media/protocol/img';
 $browser-background: #f8f6f4;
 $page-background: #333336;
 $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
-$border-black: 1.5px solid $page-background;
+$border-width: 1.5px; // meant to match svg stroke widths too
+$border-black: $border-width solid $page-background;
 $mq-tad-smaller-sm: 455px;
 
 @import './feature-box';
@@ -215,15 +216,10 @@ $mq-tad-smaller-sm: 455px;
     margin-bottom: $spacing-md;
 }
 
-.c-slide-in-container {
-    overflow: hidden;
-}
-
 .c-newsletter-gif-container {
     position: relative;
 }
 
-// bit magic number-y :(
 .c-thug-life-gif {
     position: absolute;
     left: -170px;
@@ -271,30 +267,5 @@ $mq-tad-smaller-sm: 455px;
             padding-right: 20px;
             padding-left: 20px;
         }
-    }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    [data-animation="pop-in"],
-    [data-animation="dependent-pop-in"] {
-        opacity: 0;
-    }
-
-    [data-animation="slide-in"] {
-        position: relative;
-        opacity: 0;
-    }
-}
-
-// Make sure content is visible of JS fails
-html.no-js {
-    [data-animation="pop-in"],
-    [data-animation="dependent-pop-in"] {
-        opacity: 1;
-    }
-
-    [data-animation="slide-in"] {
-        position: static;
-        opacity: 1;
     }
 }

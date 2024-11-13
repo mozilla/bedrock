@@ -29,13 +29,13 @@
 
 .c-browser-bar-dot-container {
     position: absolute;
-    left: 16px;
+    left: $spacing-md;
 }
 
 // match $border-black styles
 .c-browser-bar-dot {
-    stroke: #333336;
-    stroke-width: 1.5px;
+    stroke: $page-background;
+    stroke-width: $border-width;
 }
 
 .c-browser-bar-title {

@@ -2,9 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// TODO: check mobile/tablet expectations for this asset
 .c-thug-life-gif {
-    $border-width: 1.5px;
     display: none;
 
     @media #{$mq-lg} {
@@ -13,7 +11,7 @@
         z-index: 10;
 
         img {
-            border: $border-width solid $color-black;
+            border: $border-black;
             display: block;
             width: 180px;
             height: 180px;
@@ -26,7 +24,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: $border-width solid $color-black;
+            border: $border-black;
             top: 10px;
             right: -10px;
             z-index: -1;
@@ -38,7 +36,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: $border-width solid $color-black;
+            border: $border-black;
             top: 20px;
             right: -20px;
             z-index: -5;

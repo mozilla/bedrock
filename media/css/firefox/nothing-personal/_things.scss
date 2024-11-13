@@ -15,12 +15,25 @@
         text-align: start;
 
         @media (min-width: $mq-tad-smaller-sm) {
-            text-align: center;
             padding: 0;
+            text-align: center;
         }
     }
 }
 
+// use details instead of button
+html.no-js {
+    .c-things-list-container {
+        display: block;
+    }
+
+    .c-things-output-container,
+    .c-things-button-container {
+        display: none;
+    }
+}
+
+// hide details if JS available
 .c-things-list-container {
     display: none;
 }
@@ -73,7 +86,7 @@ $fox-bush-height: 87px;
 
     // static image has baked-in border, but doesn't need any cropping
     @media (prefers-reduced-motion: no-preference) {
-        border: 1px solid #333336;
+        border: 1px solid $page-background;
         object-fit: cover;
         object-position: bottom; // crop out browser bar at top
     }
@@ -131,10 +144,7 @@ $fox-bush-height: 87px;
     border: $border-black;
     margin-bottom: $layout-sm; // match title margin
     padding: $spacing-md;
-
-    // progressive enhancement:
-    // always preserve space for longest line length responses
-    min-height: 3lh;
+    min-height: 3lh; // preserve space for longest line length responses
 
     @media #{$mq-sm} {
         min-height: 2lh;
@@ -324,17 +334,5 @@ $fox-bush-height: 87px;
 
     @media #{$mq-md} {
         @include text-body-sm;
-    }
-}
-
-// use details instead of button
-html.no-js {
-    .c-things-list-container {
-        display: block;
-    }
-
-    .c-things-output-container,
-    .c-things-button-container {
-        display: none;
     }
 }
