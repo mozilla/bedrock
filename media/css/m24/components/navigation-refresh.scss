@@ -2,6 +2,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+$margin-top: 54px; // top margin offset for mobile navigation menu
+
 @keyframes nav-slide-in {
     from {
         transform: translateX(100%);
@@ -84,7 +86,7 @@
     @include clearfix;
 
     @media #{$mq-md} {
-        align-items: center;
+        align-items: start;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -148,7 +150,7 @@
 
     @media #{$mq-md} {
         height: 24px;
-        padding: 0 0 $spacing-sm;
+        padding: 0;
     }
 }
 
@@ -159,8 +161,8 @@
     @media (max-width: $screen-md) {
         &.mzp-is-open {
             display: flex;
-            height: calc(100vh - 45px); // 54px margin top
-            margin-top: 54px;
+            height: calc(100vh - $margin-top);
+            margin-top: $margin-top;
             overflow: hidden auto;
             padding-top: 0;
             position: fixed;
