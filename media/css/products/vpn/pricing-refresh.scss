@@ -399,6 +399,7 @@ html.android {
     .vpn-monthly-price-display span {
         display: inline-block;
         font-weight: normal;
+        @include bidi(((margin-left, 0.2em, margin-right, 0),));
         @include text-body-md;
     }
 }
