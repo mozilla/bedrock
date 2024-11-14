@@ -455,6 +455,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-133-vpn.scss"
+      ],
+      "name": "firefox_whatsnew_133_vpn"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
@@ -1432,6 +1438,12 @@
         "js/firefox/whatsnew/whatsnew.es6.js"
       ],
       "name": "firefox_whatsnew"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-events.js"
+      ],
+      "name": "firefox_whatsnew_events"
     },
     {
       "files": [

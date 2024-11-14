@@ -1180,6 +1180,145 @@ class TestWhatsNew(TestCase):
 
     # end 132.0 whatsnew tests
 
+    # begin 133.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_el_gr(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for el locale in GR"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="GR")
+        req.locale = "el"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_en_ca_au(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for en-CA locale in AU"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="AU")
+        req.locale = "en-CA"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_en_gb_au(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for en-GB locale in AU"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="AU")
+        req.locale = "en-GB"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_en_us_au(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for en-US locale in AU"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="AU")
+        req.locale = "en-US"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_es_es_co(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for es-ES locale in CO"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="CO")
+        req.locale = "es-ES"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_es_cl_cl(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for es-CL locale in CL"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="CL")
+        req.locale = "es-CL"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_es_mx_mx(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for es-MX locale in MX"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="MX")
+        req.locale = "es-MX"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_fr_sn(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for fr locale in SN"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="SN")
+        req.locale = "fr"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_id_id(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for id locale in ID"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="ID")
+        req.locale = "id"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_ko_kr(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for ko locale in KR"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="KR")
+        req.locale = "ko"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_pt_br_br(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for pt-BR locale in BR"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="BR")
+        req.locale = "pt-BR"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_tr_tr(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for tr locale in TR"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="TR")
+        req.locale = "tr"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_uk_ua(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for uk locale in UA"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="UA")
+        req.locale = "uk"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_vi_vn(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for uk locale in VN"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="VN")
+        req.locale = "vi"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_133_0_0_vpn_zh_tw_tw(self, render_mock):
+        """Should use whatsnew-fx133-vpn.html template for zh-TW locale in TW"""
+        req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="TW")
+        req.locale = "zh-TW"
+        self.view(req, version="133.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-vpn.html"]
+
+    # end 133.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
