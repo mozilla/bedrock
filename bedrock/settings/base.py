@@ -2359,6 +2359,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         "ru": "ru-RU",
     },
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
+    "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
 }
 
 WAGTAIL_DRAFTSHARING_ADMIN_MENU_POSITION = 9000
