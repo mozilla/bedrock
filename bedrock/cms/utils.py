@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Subquery
 from django.http import Http404
 
 from wagtail.models import Locale, Page
@@ -40,7 +41,9 @@ def get_locales_for_cms_page(page):
             page.get_translations()
             .live()
             .exclude(
-                id__in=[x.id for x in page.aliases.all()],
+                id__in=Subquery(
+                    page.aliases.all().values_list("id", flat=True),
+                )
             )
         )
         locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
