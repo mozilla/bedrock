@@ -10,9 +10,8 @@ from django.views.decorators.cache import never_cache
 from wagtail.models import Page as WagtailBasePage
 from wagtail_localize.fields import SynchronizedField
 
+from bedrock.cms.utils import get_locales_for_cms_page
 from lib import l10n_utils
-
-from ..utils import get_locales_for_cms_page
 
 
 @method_decorator(never_cache, name="serve_password_required_response")
