@@ -2375,7 +2375,6 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "hr",
     "bold",
     "italic",
-    "strikethrough",
     "code",
     "blockquote",
     "link",
