@@ -461,6 +461,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-134beta.scss"
+      ],
+      "name": "firefox_whatsnew_134beta"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
