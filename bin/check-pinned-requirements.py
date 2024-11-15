@@ -25,8 +25,8 @@ def extract_pinned(requirements_file):
 
 
 def get_outdated_packages():
-    """Get a list of outdated packages and their latest versions using `pip list -o`."""
-    result = subprocess.run(["pip", "list", "-o"], capture_output=True, text=True)
+    """Get a list of outdated packages and their latest versions using `uv pip list`."""
+    result = subprocess.run(["uv", "pip", "list", "--no-cache", "--outdated"], capture_output=True, text=True)
     outdated = {}
     raw = result.stdout.splitlines()
     for line in raw[2:]:  # Skip header lines
