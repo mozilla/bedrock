@@ -231,7 +231,11 @@
 
     {{ download_firefox_thanks(alt_copy=cta_text, button_class='mzp-t-xl', dom_id='update-firefox') }}
 
-    <p class="c-main-cta" id="update-firefox-esr"><a href="{{ url('firefox.enterprise.index') + '#download' }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">{{ cta_text }}</a></p>
+    <p class="c-main-cta" id="update-firefox-esr">
+      <a href="{{ url('firefox.all.platforms', product_slug='desktop-esr') }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">
+        {{ cta_text }}
+      </a>
+    </p>
 
     <small>{{ update_time }}</small>
 
@@ -304,4 +308,3 @@
 {% block js %}
   {{ js_bundle('firefox_welcome_page19_to_24') }}
 {% endblock %}
-
