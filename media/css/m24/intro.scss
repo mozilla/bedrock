@@ -9,10 +9,19 @@
     margin-bottom: $spacer-xl;
     text-wrap: balance;
     text-wrap-style: balance;
+
+    &.m24-t-intro-snug {
+        margin-bottom: 0;
+    }
+
+    > :last-child{
+        margin-bottom: 0;
+    }
 }
 
 .m24-c-intro-title {
     font-size: $alias-text-title-h2;
+    line-height: 1;
     margin-bottom: $spacer-sm;
     text-wrap: balance;
     text-wrap-style: balance;
