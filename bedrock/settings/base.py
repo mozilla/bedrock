@@ -2434,3 +2434,11 @@ else:
 # doesn't exist, we get `None` back from `switch_is_active`.
 WAFFLE_SWITCH_DEFAULT = None
 WAFFLE_CREATE_MISSING_SWITCHES = False
+
+# Django-silk for performance profiling
+if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bool):
+    print("Django-Silk profiling enabled - go to http://localhost:8000/silk/ to view metrics")
+    INSTALLED_APPS.append("silk")
+    MIDDLEWARE.insert(0, "silk.middleware.SilkyMiddleware")
+    SUPPORTED_NONLOCALES.append("silk")
+    SILKY_PYTHON_PROFILER = config("SILKY_PYTHON_PROFILER", default="False", parser=bool)
