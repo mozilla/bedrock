@@ -2,12 +2,18 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+
+from django.core.cache import cache
+
 from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.tests import PositionFactory
 from bedrock.mozorg.tests import TestCase
 
 
 class PositionFilterFormTests(TestCase):
+    def setUp(self):
+        cache.clear()
+
     def test_dynamic_position_type_choices(self):
         """
         The choices for the position_type field should be dynamically
