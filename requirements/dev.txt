@@ -33,6 +33,10 @@ attrs==24.3.0 \
     #   outcome
     #   referencing
     #   trio
+autopep8==2.3.1 \
+    --hash=sha256:8d6c87eba648fdcfc83e29b788910b8643171c395d9c4bcf115ece035b9c9dda \
+    --hash=sha256:a203fe0fcad7939987422140ab17a930f684763bf7335bdb6709991dd7ef6c2d
+    # via django-silk
 babel==2.16.0 \
     --hash=sha256:368b5b98b37c06b7daf6696391c3240c938b37767d4584413e8438c5c435fa8b \
     --hash=sha256:d1f3554ca26605fe173f3de0c65f750f5a42f924499bf134de6423582298e316
@@ -493,6 +497,7 @@ django==4.2.17 \
     #   django-permissionedforms
     #   django-rq
     #   django-rq-email-backend
+    #   django-silk
     #   django-storages
     #   django-taggit
     #   django-treebeard
@@ -573,6 +578,10 @@ django-rq-email-backend==2.0.0 \
     --hash=sha256:402ced0d8078a856a684be37206fbfb0a6056c5bfe8a753dd7eec7fcaccca224 \
     --hash=sha256:4e8a6c6f492f9e78711e6b563c96f7b8feaf17c8737767a30fc68b9833e3b82f
     # via -r requirements/prod.txt
+django-silk==5.3.1 \
+    --hash=sha256:7834580fabea5d9e8a32eabb0d9cb061cc37f0ec057d2933b4da761a53ae1bed \
+    --hash=sha256:aa4ae73a90fcbd5159a810f81e15a0ec010619beab37c82957eb4012fd0016f0
+    # via -r requirements/dev.in
 django-storages[google]==1.14.4 \
     --hash=sha256:69aca94d26e6714d14ad63f33d13619e697508ee33ede184e462ed766dc2a73f \
     --hash=sha256:d61930acb4a25e3aebebc6addaf946a3b1df31c803a6bf1af2f31c9047febaa3
@@ -1596,6 +1605,10 @@ pyasn1-modules==0.4.1 \
     # via
     #   -r requirements/prod.txt
     #   google-auth
+pycodestyle==2.12.1 \
+    --hash=sha256:46f0fb92069a7c28ab7bb558f05bfc0110dac69a0cd23c61ea0040283a9d78b3 \
+    --hash=sha256:6838eae08bbce4f6accd5d5572075c63626a15ee3e6f842df996bf62f6d73521
+    # via autopep8
 pycparser==2.22 \
     --hash=sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6 \
     --hash=sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc
@@ -2139,6 +2152,7 @@ sqlparse==0.5.3 \
     # via
     #   -r requirements/prod.txt
     #   django
+    #   django-silk
 supervisor==4.2.5 \
     --hash=sha256:2ecaede32fc25af814696374b79e42644ecaba5c09494c51016ffda9602d0f08 \
     --hash=sha256:34761bae1a23c58192281a5115fb07fbf22c9b0133c08166beffc70fed3ebc12
