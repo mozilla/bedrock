@@ -86,7 +86,7 @@ if REDIS_URL:
         "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
 
-CACHE_TIME_SHORT = 60 * 10  # 10 mins
+CACHE_TIME_DEFAULT = 60 * 10  # 10 mins
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
 
@@ -95,7 +95,7 @@ CACHES = {
     "default": {
         "BACKEND": "bedrock.base.cache.SimpleDictCache",
         "LOCATION": "default",
-        "TIMEOUT": CACHE_TIME_SHORT,
+        "TIMEOUT": CACHE_TIME_DEFAULT,
         "OPTIONS": {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
