@@ -2,12 +2,17 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.cache import cache
+
 from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory
 from bedrock.mozorg.tests import TestCase
 
 
 class TestPositionModel(TestCase):
+    def setUp(self):
+        cache.clear()
+
     def test_location_list(self):
         PositionFactory(location="San Francisco,Portland")
         pos = Position.objects.get()
