@@ -3,12 +3,20 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.core.cache import cache
 
 from product_details import product_details
 
 
 def valid_country_code(country):
-    codes = product_details.get_regions("en-US").keys()
+    _key = f"valid_country_codes_for_{country}"
+
+    codes = cache.get(_key)
+
+    if not codes:
+        codes = product_details.get_regions("en-US").keys()
+        cache.set(_key, codes, timeout=settings.CACHE_TIME_MED)
+
     if country and country.lower() in codes:
         return country.upper()
 
