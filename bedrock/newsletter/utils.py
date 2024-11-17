@@ -2,6 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+from django.core.cache import cache
+
 import basket
 
 from bedrock.newsletter.models import Newsletter
@@ -12,7 +15,12 @@ def get_newsletters():
     Keys are the internal keys we use to designate newsletters to basket.
     Values are dictionaries with the remaining newsletter information.
     """
-    return Newsletter.objects.serialize()
+    _key = "serialized_newsletters"
+    serialized_newsletters = cache.get(_key)
+    if serialized_newsletters is None:
+        serialized_newsletters = Newsletter.objects.serialize()
+        cache.set(_key, serialized_newsletters, timeout=settings.CACHE_TIME_LONG)
+    return serialized_newsletters
 
 
 def get_languages_for_newsletters(newsletters=None):
