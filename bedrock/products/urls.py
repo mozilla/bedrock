@@ -35,12 +35,18 @@ urlpatterns = (
     # VPN Resource Center
     path(
         "vpn/resource-center/",
-        prefer_cms(views.resource_center_landing_view),
+        prefer_cms(
+            views.resource_center_landing_view,
+            fallback_lang_codes=["de", "en-US", "es-ES", "fr", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
+        ),
         name="products.vpn.resource-center.landing",
     ),
     path(
         "vpn/resource-center/<slug:slug>/",
-        prefer_cms(views.resource_center_article_view),
+        prefer_cms(
+            views.resource_center_article_view,
+            fallback_callable=views.resource_center_article_available_locales_lookup,
+        ),
         name="products.vpn.resource-center.article",
     ),
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),

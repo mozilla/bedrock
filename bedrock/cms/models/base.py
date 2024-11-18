@@ -10,6 +10,7 @@ from django.views.decorators.cache import never_cache
 from wagtail.models import Page as WagtailBasePage
 from wagtail_localize.fields import SynchronizedField
 
+from bedrock.cms.utils import get_locales_for_cms_page
 from lib import l10n_utils
 
 
@@ -57,14 +58,8 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         # Quick annotation to help us track the origin of the page
         request.is_cms_page = True
 
-        # Patch in a list of CMS-available locales for pages that are translations, not just aliases
-        request._locales_available_via_cms = [self.locale.language_code]
-        try:
-            _actual_translations = self.get_translations().exclude(id__in=[x.id for x in self.aliases.all()])
-            request._locales_available_via_cms += [x.locale.language_code for x in _actual_translations]
-        except ValueError:
-            # when there's no draft and no potential for aliases, etc, the above lookup will fail
-            pass
+        # Patch in a list of available locales for pages that are translations, not just aliases
+        request._locales_available_via_cms = get_locales_for_cms_page(self)
         return request
 
     def _render_with_fluent_string_support(self, request, *args, **kwargs):
