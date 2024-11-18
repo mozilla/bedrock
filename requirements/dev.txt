@@ -809,6 +809,10 @@ granian==1.6.3 \
     --hash=sha256:edf6a6cb8318b11bf1bb90c3c1ad5af426b283849b28749e80d26e3aba3f8ad8 \
     --hash=sha256:f4ea547a9cb850eaa6cd448374051c657eaa503bb720d2b0939945193da1f548
     # via -r requirements/prod.txt
+gprof2dot==2024.6.6 \
+    --hash=sha256:45b14ad7ce64e299c8f526881007b9eb2c6b75505d5613e96e66ee4d5ab33696 \
+    --hash=sha256:fa1420c60025a9eb7734f65225b4da02a10fc6dd741b37fa129bc6b41951e5ab
+    # via django-silk
 greenlet==3.1.1 \
     --hash=sha256:0153404a4bb921f0ff1abeb5ce8a5131da56b953eda6e14b88dc6bbc04d2049e \
     --hash=sha256:03a088b9de532cbfe2ba2034b2b85e82df37874681e8c470d6fb2f8c04d7e4b7 \
