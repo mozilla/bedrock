@@ -1301,7 +1301,7 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_133_0_0_vpn_vi_vn(self, render_mock):
-        """Should use whatsnew-fx133-vpn.html template for uk locale in VN"""
+        """Should use whatsnew-fx133-vpn.html template for vi locale in VN"""
         req = self.rf.get("/firefox/whatsnew/", HTTP_CF_IPCOUNTRY="VN")
         req.locale = "vi"
         self.view(req, version="133.0")

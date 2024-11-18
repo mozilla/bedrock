@@ -8,36 +8,18 @@
 Mozilla.Client.getFxaDetails((details) => {
     'use strict';
 
-    if (details.setup) {
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_signed_in: true
-        });
-    } else {
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_signed_in: false
-        });
-    }
+    window.dataLayer.push({
+        event: 'dimension_set',
+        firefox_is_signed_in: details.setup ? true : false
+    });
 });
 
 // Log default status
 Mozilla.UITour.getConfiguration('appinfo', (details) => {
     'use strict';
 
-    if (details.defaultBrowser) {
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_default: true
-        });
-    } else {
-        // GA4
-        window.dataLayer.push({
-            event: 'dimension_set',
-            firefox_is_default: false
-        });
-    }
+    window.dataLayer.push({
+        event: 'dimension_set',
+        firefox_is_default: details.defaultBrowser ? true : false
+    });
 });
