@@ -9,15 +9,15 @@
 }
 
 .m24-c-flag-title {
-    font-size: 48px;
+    font-size: $text-title-2xl;
     line-height: 1;
-    margin: 0;
+    margin: 0 0 16px;
     text-wrap: balance;
     text-wrap-style: balance;
 }
 
 .m24-c-flag-subtitle {
-    font-size: 18px;
+    font-size: $text-title-md;
     text-wrap: balance;
     text-wrap-style: balance;
     margin-bottom: $spacer-xl;
@@ -25,6 +25,7 @@
 
 .m24-c-flag-media {
     display: block;
+    margin-bottom: 16px;
 
     img {
         width: 100px;
@@ -34,10 +35,6 @@
 @media #{$mq-md} {
     .m24-c-flag {
         @include grid;
-    }
-
-    .m24-c-flag-title {
-        font-size: $text-title-2xl;
     }
 
     .m24-c-flag-subtitle {
@@ -51,6 +48,7 @@
 
     .m24-c-flag-media {
         grid-column: 1/3;
+        margin-bottom: 0;
 
         img {
             width: 100%;
@@ -61,7 +59,6 @@
 
 @media #{$mq-xl} {
     .m24-c-flag {
-        @include grid;
         padding-bottom: $spacer-2xl;
     }
 
