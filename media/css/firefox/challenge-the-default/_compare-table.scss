@@ -2,7 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
 .c-ctd-comparison {
     .mzp-l-content {
         padding-left: $spacing-sm;
@@ -13,7 +12,6 @@
         margin-bottom: $layout-lg;
         padding-left: $spacing-md;
         padding-right: $spacing-md;
-
 
         h2 {
             @include font-size(40px);
@@ -30,15 +28,11 @@
             width: 60%;
             min-width: 550px;
 
-
             h2 {
                 @include font-size(60px);
             }
-
-
         }
     }
-
 
     .mzp-u-data-table.comparison-table {
         width: 100%;
@@ -131,7 +125,6 @@
         tr {
             height: 100%;
         }
-
 
         @media #{$mq-md} {
             .safari,
