@@ -1,0 +1,98 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+<div class="m24-t-light-alt m24-t-dark">
+  <div class="m24-c-feature">
+    <div class="m24-c-feature-media">
+      {{ resp_img(
+        url='img/mozorg/about/m24/manifesto-27-1.jpg',
+        srcset={
+          'img/mozorg/about/m24/manifesto-27-1-high-res.jpg': '2x'
+        },
+        optional_attributes={
+          'width': '1440',
+          'height': '682'
+        }
+      ) }}
+    </div>
+    <div class="m24-c-feature-text">
+      <h2 class="m24-c-feature-title">Together, we can keep the internet easy, safe and free, for everyone</h2>
+      <p class="m24-c-feature-cta"><a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Manifesto">Read our manifesto</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="m24-t-light-alt">
+  <div class="m24-c-content">
+  <ul class="m24-t-columns-four">
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-small/icon-bell.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title="Advocate"
+    ) %}
+      <p>We advocate for better products, holding governments and tech corporations accountable for what they create.</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-small/icon-glasses.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title="Monitor"
+    ) %}
+      <p>We monitor developments, conduct research, and campaign to improve products and drive policies that will represent your interests.</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-small/icon-pencil.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title="Build"
+    ) %}
+      <p>We build products that put you in control — like Firefox, Fakespot and more.</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-small/icon-dollar.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title="Fund"
+    ) %}
+      <p>We fund and invest in the people and efforts taking technology, the internet, and AI in the right direction.</p>
+    {% endcall %}
+  </ul>
+  </div>
+</div>

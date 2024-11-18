@@ -3,13 +3,17 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 .m24-t-light-alt {
-    background-color: $m24-color-light-gray;
+    background-color: $m24-color-white-alt;
 }
 
 .m24-t-dark {
     @include invert-colors;
     background-color: $m24-color-white;
     color: $m24-color-black;
+
+    &.m24-t-light-alt {
+        background-color: $m24-color-white-alt;
+    }
 }
 
 .m24-t-green {
