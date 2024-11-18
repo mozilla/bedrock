@@ -1,0 +1,213 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-picto') }}
+  {{ css_bundle('firefox_whatsnew_133_vpn') }}
+{% endblock %}
+
+{% if LANG == 'el' %}
+  {% set main_title = 'Με το Mozilla VPN το απόρρητό σας είναι μόλις ένα κλικ μακριά'|safe %}
+  {% set main_tagline = 'Το <strong>Mozilla VPN</strong> (Εικονικό Ιδιωτικό Δίκτυο) προστατεύει πλήρως τη σύνδεσή σας στο διαδίκτυο στον υπολογιστή, το τηλέφωνο και το tablet σας.'|safe %}
+  {% set main_cta = 'Αποκτήστε το Mozilla VPN Τώρα'|safe %}
+  {% set picto_1_heading = 'Μην κάνετε συμβιβασμούς στην ταχύτητα'|safe %}
+  {% set picto_1_desc = 'Κάντε streaming, λήψεις και παίξτε online χωρίς επιβραδύνσεις, χάρη στους διακομιστές μας που υποστηρίζονται από <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'Απολαύστε τη διαδικτυακή ασφάλεια και ηρεμία'|safe %}
+  {% set picto_2_desc = 'Φτάστε εκεί που πρέπει χωρίς διαδικτυακά αποτυπώματα — δεν καταγράφουμε ποτέ, ούτε παρακολουθούμε τα δεδομένα του δικτύου σας.'|safe %}
+{% elif LANG.startswith('es-') %}
+  {% set main_title = 'La privacidad está a un clic de distancia con Mozilla VPN.'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong>, nuestra red virtual privada protege toda tu conectividad a Internet en tu computadora, teléfono y tableta.'|safe %}
+  {% set main_cta = '¿Qué esperas para conseguir Mozilla VPN?'|safe %}
+  {% set picto_1_heading = 'No pierdas velocidad'|safe %}
+  {% set picto_1_desc = 'Reproduce contenido multimedia en tiempo real, descarga archivos y juega con máxima rapidez gracias a nuestros servidores con <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'Navega con tranquilidad'|safe %}
+  {% set picto_2_desc = 'Llega a puerto seguro en línea sin dejar huella: nunca registramos ni rastreamos tus datos en la red.'|safe %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'La confidentialité est à portée de clic avec Mozilla VPN'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong> (« réseau privé virtuel ») protège l’ensemble de votre connexion internet sur votre ordinateur, votre téléphone et votre tablette.'|safe %}
+  {% set main_cta = 'Obtenir Mozilla VPN'|safe %}
+  {% set picto_1_heading = 'Ne choisissez pas entre vitesse et sécurité'|safe %}
+  {% set picto_1_desc = 'Regardez vos programmes préférés, téléchargez des fichiers et jouez sans ralentissement grâce à nos serveurs qui s’appuient sur le protocole <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'Découvrez la navigation en toute sérénité'|safe %}
+  {% set picto_2_desc = 'Explorez librement le Web sans laisser de trace. Nous ne collectons et ne pistons jamais les données de votre réseau.'|safe %}
+{% elif LANG == 'id' %}
+  {% set main_title = 'Privasi hanya dengan sekali klik dengan Mozilla VPN'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong> (Virtual Private Network) melindungi seluruh koneksi internet Anda di komputer, ponsel, dan tablet.'|safe %}
+  {% set main_cta = 'Dapatkan Mozilla VPN Sekarang'|safe %}
+  {% set picto_1_heading = 'Jangan korbankan kecepatan'|safe %}
+  {% set picto_1_desc = 'Streaming, unduh, dan mainkan game tanpa hambatan, berkat server yang didukung <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'Rasakan ketenangan'|safe %}
+  {% set picto_2_desc = 'Jelajahi internet tanpa meninggalkan jejak — kami tidak pernah mencatat atau melacak data jaringan Anda.'|safe %}
+{% elif LANG == 'ko' %}
+  {% set main_title = '클릭 한 번으로 경험하는 Mozilla VPN의 개인정보 보호기능'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong>(가상 사설 네트워크)이 컴퓨터, 모바일 기기, 태블릿에서 인터넷 연결 전체를 보호합니다.'|safe %}
+  {% set main_cta = '지금 Mozilla VPN 이용하기'|safe %}
+  {% set picto_1_heading = '속도, 양보하지 마세요'|safe %}
+  {% set picto_1_desc = '<strong>WireGuard®</strong> 서버로 스트리밍, 다운로드, 게이밍을 속도 저하 없이 즐기세요.'|safe %}
+  {% set picto_2_heading = '강력한 보안을 경험하세요'|safe %}
+  {% set picto_2_desc = '온라인 어디에도 흔적을 남기지 않는 철저한 개인정보 보호기능을 만나보세요. Mozilla는 사용자의 네트워크 데이터를 기록하거나 추적하지 않습니다.'|safe %}
+{% elif LANG == 'pt-BR' %}
+  {% set main_title = 'Sua privacidade está a um cliquecom o Mozilla VPN'|safe %}
+  {% set main_tagline = 'O <strong>Mozilla VPN</strong> (Rede Virtual Privada) protege sua conexão de internet, seja no computador, no celular ou no tablet.'|safe %}
+  {% set main_cta = 'Garanta o Mozilla VPN agora'|safe %}
+  {% set picto_1_heading = 'Desempenho sem limites'|safe %}
+  {% set picto_1_desc = 'Navegue, baixe e jogue sem perder velocidade, com nossos servidores otimizados pelo <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'Mais tranquilidade para você'|safe %}
+  {% set picto_2_desc = 'Acesse qualquer site sem deixar rastros — não registramos nem monitoramos seus dados de rede.'|safe %}
+{% elif LANG == 'tr' %}
+  {% set main_title = 'Mozilla VPN ile gizlilik yalnızca bir tık uzağınızda'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong> (Sanal Özel Ağ); bilgisayarınız, telefonunuz ve tabletinizdeki internet bağlantınızın tamamını korur.'|safe %}
+  {% set main_cta = 'Hemen Mozilla VPN alın'|safe %}
+  {% set picto_1_heading = 'Hızdan ödün vermeyin'|safe %}
+  {% set picto_1_desc = '<strong>WireGuard®</strong> destekli sunucularımız sayesinde yavaşlamadan yayın yapın, indirin ve oyun oynayın.'|safe %}
+  {% set picto_2_heading = 'Gönül rahatlığının keyfine varın'|safe %}
+  {% set picto_2_desc = 'Ayak izi bırakmadan istediğiniz çevrim içi adrese erişin. Ağ verilerinizi asla kaydetmiyor ya da izlemiyoruz.'|safe %}
+{% elif LANG == 'uk' %}
+  {% set main_title = 'Конфіденційність в один клік з Mozilla VPN'|safe %}
+  {% set main_tagline = "<strong>Mozilla VPN</strong> (Virtual Private Network) повністю захищає ваше інтернет-з'єднання на комп'ютері, телефоні та планшеті."|safe %}
+  {% set main_cta = 'Отримати Mozilla VPN зараз'|safe %}
+  {% set picto_1_heading = 'Не втрачайте швидкість'|safe %}
+  {% set picto_1_desc = 'Стримінг, завантаження та ігри без затримок завдяки нашим серверам із <strong>WireGuard®</strong>.'|safe %}
+  {% set picto_2_heading = 'На варті вашого спокою'|safe %}
+  {% set picto_2_desc = 'Користуйтесь інтернетом, на залишаючи цифрових слідів, адже ми ніколи не зберігаємо і не відстежуємо ваші мережеві дані.'|safe %}
+{% elif LANG == 'vi' %}
+  {% set main_title = 'Dễ dàng bảo vệ quyền riêng tư  với Mozilla VPN'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong> (Mạng Ảo Riêng Tư) bảo vệ toàn bộ kết nối mạng trên máy tính, điện thoại và máy tính bảng.'|safe %}
+  {% set main_cta = 'Dùng Mozilla VPN Ngay'|safe %}
+  {% set picto_1_heading = 'Tốc độ không suy giảm'|safe %}
+  {% set picto_1_desc = 'Phát, tải xuống và chơi game không gián đoạn nhờ hệ thống máy chủ <strong>WireGuard®</strong> mạnh mẽ của chúng tôi.'|safe %}
+  {% set picto_2_heading = 'An tâm tận hưởng'|safe %}
+  {% set picto_2_desc = 'Truy cập trực tuyến bất cứ đâu mà không để lại dấu vết — chúng tôi không bao giờ ghi lại hoặc theo dõi dữ liệu mạng của bạn.'|safe %}
+{% elif LANG == 'zh-TW' %}
+  {% set main_title = '有了 Mozilla VPN 隱私就在彈指之間'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong>（虛擬私人網路）可保護您在電腦、手機和平板上所有的網路流量。'|safe %}
+  {% set main_cta = '立即下載 Mozilla VPN'|safe %}
+  {% set picto_1_heading = '速度永不妥協'|safe %}
+  {% set picto_1_desc = '有了由 <strong>WireGuard®</strong> 提供動力的伺服器，您可以輕鬆地進行串流媒體播放、下載和玩遊戲，速度同樣超快。'|safe %}
+  {% set picto_2_heading = '讓您高枕無憂'|safe %}
+  {% set picto_2_desc = '輕鬆獲取您需要的線上資訊，卻不留下任何痕跡 — 我們從不記錄或追蹤您的網路資料。'|safe %}
+{% else %}
+  {% set main_title = '<span>Privacy</span> is just a click away with Mozilla VPN'|safe %}
+  {% set main_tagline = '<strong>Mozilla VPN</strong> (Virtual Private Network) protects your entire internet connection on your computer, phone and tablet.'|safe %}
+  {% set main_cta = 'Get Mozilla VPN Now'|safe %}
+  {% set picto_1_heading = 'Don’t compromise speed'|safe %}
+  {% set picto_1_desc = 'Stream, download and game without slowing down, thanks to our <strong>WireGuard®</strong> powered servers.'|safe %}
+  {% set picto_2_heading = 'Enjoy peace of mind'|safe %}
+  {% set picto_2_desc = 'Get where you need to go online without leaving a footprint — we never log or track your network data.'|safe %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    {{ picture(
+      url="img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-header-light.svg",
+      sources=[
+        {
+          "media": "(prefers-color-scheme: light)",
+          "srcset": {
+            "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-header-light.svg": "default",
+          }
+        },
+        {
+          "media": "(prefers-color-scheme: dark)",
+          "srcset": {
+            "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-header-dark.svg": "default",
+          }
+        }
+      ],
+      optional_attributes={
+        "class": "wnp-main-image",
+        "width": "450",
+        "height": "294",
+      }
+    ) }}
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <p class="wnp-main-tagline">{{ main_tagline }}</p>
+    <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.landing') }}" data-cta-text="Get Mozilla VPN Now" data-cta-name="wnp-fx133-vpn-{{LANG}}-get-mozilla-vpn">
+      {{ main_cta }}
+    </a>
+  </div>
+
+  <div class="mzp-l-content mzp-t-content-lg">
+    <ul class="mzp-l-columns mzp-t-columns-two">
+      {% call picto(
+        base_el='li',
+        title=picto_1_heading,
+        image=picture(
+          url="img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-fast-light.svg",
+          sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-fast-light.svg": "default",
+              }
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-fast-dark.svg": "default",
+              }
+            }
+          ],
+          optional_attributes={
+            "class": "mzp-c-picto-image",
+            "loading": "lazy",
+            "width": "292",
+            "height": "138",
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ picto_1_desc }}</p>
+      {% endcall %}
+
+      {% call picto(
+        base_el='li',
+        title=picto_2_heading,
+        image=picture(
+          url="img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-safe-light.svg",
+          sources=[
+            {
+              "media": "(prefers-color-scheme: light)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-safe-light.svg": "default",
+              }
+            },
+            {
+              "media": "(prefers-color-scheme: dark)",
+              "srcset": {
+                "img/firefox/whatsnew/whatsnew133-vpn/wnp-133-vpn-safe-dark.svg": "default",
+              }
+            }
+          ],
+          optional_attributes={
+            "class": "mzp-c-picto-image",
+            "loading": "lazy",
+            "width": "225",
+            "height": "177",
+          }
+        ),
+        body=True,
+      ) %}
+        <p>{{ picto_2_desc }}</p>
+      {% endcall %}
+    </ul>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}

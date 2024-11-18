@@ -505,6 +505,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx132-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx132-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-vpn.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -516,6 +517,26 @@ class WhatsnewView(L10nTemplateView):
 
     # Nimbus experiment variation expected values
     nimbus_variations = ["v1", "v2", "v3", "v4"]
+
+    # Language codes for WNP 133 Mozilla VPN page
+    wnp_133_vpn_langs = [
+        "el",
+        "en-CA",
+        "en-GB",
+        "en-US",
+        "es-AR",
+        "es-CL",
+        "es-ES",
+        "es-MX",
+        "fr",
+        "id",
+        "ko",
+        "pt-BR",
+        "tr",
+        "uk",
+        "vi",
+        "zh-TW",
+    ]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -603,6 +624,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("133."):
+            if locale in self.wnp_133_vpn_langs and country in settings.VPN_MOBILE_SUB_COUNTRY_CODES:
+                template = "firefox/whatsnew/whatsnew-fx133-vpn.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("132."):
