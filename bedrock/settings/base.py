@@ -1049,7 +1049,7 @@ CONTENTFUL_HOMEPAGE_LOOKUP = {
 
 CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE = config(
     "CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE",
-    default="1" if DEV is True else "60",
+    default="1" if DEV is True else "10",
     parser=float,
 )
 
