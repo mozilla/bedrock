@@ -9,6 +9,20 @@ from wagtail import models as wagtail_models
 from bedrock.cms import models
 
 
+class WagtailUserFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = "auth.User"  # Equivalent to ``model = myapp.models.User``
+        django_get_or_create = ("username",)
+
+    email = "testuser@example.com"
+    password = factory.PostGenerationMethodCall("set_password", "te5tus3r")
+    username = "testuser"
+
+    is_superuser = False
+    is_staff = True
+    is_active = True
+
+
 class SimpleRichTextPageFactory(wagtail_factories.PageFactory):
     title = "Test SimpleRichTextPage"
     live = True
