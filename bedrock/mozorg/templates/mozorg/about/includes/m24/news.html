@@ -1,0 +1,109 @@
+
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import gallery_tile with context %}
+
+<section class="m24-c-content">
+    <header class="m24-c-intro">
+      <h2 class="m24-c-intro-title">Read the latest Mozilla news &amp; articles</h2>
+    </header>
+
+    <div class="m24-c-gallery-container">
+      {{ gallery_tile(
+        class='m24-l-grid-three-quarters',
+        image_desktop=resp_img(
+          url="img/m24/todo-27-1.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "1440",
+            "height": "533",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/m24/todo-3-2.svg",
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        title='14 AI projects to watch: Mozilla’s first Builders Accelerator cohort kicks off',
+        link_url='#',
+        cta_text='Read more'
+      ) }}
+    </div>
+
+    <div class="m24-c-gallery-container">
+      {{ gallery_tile(
+        class='m24-l-grid-third',
+        image_desktop=resp_img(
+          url="img/m24/news-rise25-4-5.png",
+          srcset={'img/mozorg/about/m24/news-rise25-4-5-high-res.png': '2x'},
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "448",
+            "height": "560",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/mozorg/about/m24/rise25-mobile.jpg",
+          srcset={
+              "img/mozorg/about/m24/rise25-mobile.jpg": "318w",
+              "img/mozorg/about/m24/rise25-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        title='At our Rise25 Awards, the future of AI is trustworthy, inclusive and accountable',
+        link_url='#',
+        cta_text='Read more'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image_desktop=resp_img(
+          url="img/mozorg/about/m24/news-chicago-high-res.png",
+          srcset={'img/mozorg/about/m24/news-chicago-high-res.png': '2x'},
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "448",
+            "height": "448",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/mozorg/about/m24/chicago-mobile.jpg",
+          srcset={
+              "img/mozorg/about/m24/chicago-mobile.jpg": "318w",
+              "img/mozorg/about/m24/chicago-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        title='Empowering Chicago’s entrepreneurs for generational change',
+        link_url='#',
+        cta_text='Read more'
+      ) }}
+    </div>
+</section>

@@ -1,0 +1,286 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import gallery_tile with context %}
+
+<section class="m24-section-ai m24-t-dark m24-t-transition-01 m24-t-transition-next">
+  <div class="m24-c-content">
+    <header class="m24-c-intro">
+      <h2 class="m24-c-intro-title">Join the movement: <br>AI for the people</h2>
+      <p>Our mission is to make it easy to build with and collaborate on open-source, trustworthy AI.</p>
+    </header>
+
+<!-- TODO: Needs GA & UTMs -->
+
+    <div class="m24-c-gallery-container">
+      {{ gallery_tile(
+        class='m24-l-grid-half',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/llama-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/llama-desktop.jpg": "680w",
+              "img/home/2024/ai-gallery/llama-desktop-high-res.jpg": "1360w",
+          },
+          sizes={
+            "(min-width: 1440px)": "680px",
+            "default": "calc(100vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "680",
+            "height": "561",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/llama-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/llama-mobile.jpg": "316w",
+              "img/home/2024/ai-gallery/llama-mobile-high-res.jpg": "632w",
+          },
+          sizes={
+              "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Product',
+        tag_icon='product',
+        title='Llamafile',
+        desc='Run large language models (LLMs) easily on your computer with llamafile — no installation needed, and your data stays safe on your device.',
+        link_url='https://github.com/Mozilla-Ocho/llamafile',
+        cta_text='Get started',
+        link_attributes='data-cta-text="Get started (Llamafile)"'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/builders-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/builders-desktop.jpg": "334w",
+              "img/home/2024/ai-gallery/builders-desktop-high-res.jpg": "666w",
+          },
+          sizes={
+            "(min-width: 1440px)": "337px",
+            "default": "calc(25vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "332",
+            "height": "332",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/builders-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/builders-mobile.jpg": "318w",
+              "img/home/2024/ai-gallery/builders-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Program',
+        tag_icon='program',
+        title='Mozilla Builders',
+        desc='Turn your AI idea into reality with our 12-week accelerator. Get funding, mentorship and a chance to pitch your innovation to investors',
+        link_url='https://future.mozilla.org/builders/builders_overview/',
+        cta_text='Read more',
+        link_attributes='data-cta-text="Read more (Builders)"'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/trustworthy-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/trustworthy-desktop.jpg": "334w",
+              "img/home/2024/ai-gallery/trustworthy-desktop-high-res.jpg": "666w",
+          },
+          sizes={
+            "(min-width: 1440px)": "337px",
+            "default": "calc(25vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "332",
+            "height": "332",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/trustworthy-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/trustworthy-mobile.jpg": "318w",
+              "img/home/2024/ai-gallery/trustworthy-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Event',
+        tag_icon='event',
+        title='Can AI be trustworthy?',
+        desc='In a world where AI innovation is driven by a select few, we’re risking monopolization of this technology. Applying open-source concepts to AI could change that.',
+        link_url='https://www.youtube.com/watch?v=GOhibTSUTO0',
+        cta_text='Watch now',
+        link_attributes='data-cta-text="Watch now (Trustworthy AI)"'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/voice-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/voice-desktop.jpg": "334w",
+              "img/home/2024/ai-gallery/voice-desktop-high-res.jpg": "666w",
+          },
+          sizes={
+            "(min-width: 1440px)": "337px",
+            "default": "calc(25vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "332",
+            "height": "332",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/voice-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/voice-mobile.jpg": "318w",
+              "img/home/2024/ai-gallery/voice-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Product',
+        tag_icon='product',
+        title='Common Voice',
+        desc='Donate your voice to help make speech technology more inclusive and accessible for everyone.',
+        link_url='https://commonvoice.mozilla.org',
+        cta_text='Donate your voice',
+        link_attributes='data-cta-text="Donate your voice"'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-half',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/ventures-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/ventures-desktop.jpg": "680w",
+              "img/home/2024/ai-gallery/ventures-desktop-high-res.jpg": "1360w",
+          },
+          sizes={
+            "(min-width: 1440px)": "680px",
+            "default": "calc(100vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "680",
+            "height": "561",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/ventures-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/ventures-mobile.jpg": "316w",
+              "img/home/2024/ai-gallery/ventures-mobile-high-res.jpg": "632w",
+          },
+          sizes={
+              "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Program',
+        tag_icon='program',
+        title='Mozilla Ventures',
+        desc='Got an early-stage startup? Pitch your company to Mozilla Ventures and secure funding to drive positive change for the future of AI and the internet.',
+        link_url='https://mozilla.vc/',
+        cta_text='Read more',
+        link_attributes='data-cta-text="Read more (Ventures)"'
+      ) }}
+
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image_desktop=resp_img(
+          url="img/home/2024/ai-gallery/gator-desktop.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/gator-desktop.jpg": "334w",
+              "img/home/2024/ai-gallery/gator-desktop-high-res.jpg": "666w",
+          },
+          sizes={
+            "(min-width: 1440px)": "337px",
+            "default": "calc(25vw - 64px)"
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "332",
+            "height": "332",
+          }
+        ),
+        image_mobile=resp_img(
+          url="img/home/2024/ai-gallery/gator-mobile.jpg",
+          srcset={
+              "img/home/2024/ai-gallery/gator-mobile.jpg": "318w",
+              "img/home/2024/ai-gallery/gator-mobile-high-res.jpg": "634w",
+          },
+          sizes={
+            "default": "calc(100vw - 32px)",
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'alt': '',
+            "width": "318",
+            "height": "212",
+          }
+        ),
+        tag='Product',
+        tag_icon='product',
+        title='Lumigator',
+        desc='Find the “just right” LLM for your needs, use case and data — like Goldilocks, but with sharper teeth.',
+        link_url='https://blog.mozilla.ai/introducing-lumigator-2/',
+        cta_text='Get started',
+        link_attributes='data-cta-text="Get started (Lumigator)"'
+      ) }}
+    </div>
+
+    <p class="m24-c-section-cta"><a href="https://www.mozilla.ai/portfolio" class="m24-c-cta" data-cta-text="Explore Mozilla AI">Explore Mozilla AI</a></p>
+  </div>
+</section>
