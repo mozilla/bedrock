@@ -35,7 +35,7 @@ def _get_full_url_for_sharing_link(sharing_link: WagtaildraftsharingLink, page: 
     return f"{page.get_site().root_url}{sharing_link.url}"
 
 
-def visual_context(smartling_job: "Job") -> list[str, str]:
+def visual_context(smartling_job: "Job") -> tuple[str, str]:
     # Needs to return two strings:
     # 1. A URL where the page (possibly a draft) can be viewed without authentication
     # 2. The HTML of the state of the page at this point in time
