@@ -71,7 +71,7 @@ class VPNResourceCenterIndexPage(ArticleIndexPageBase):
         context = super().get_context(request)
         vpn_available_in_country = vpn_available(request)
         mobile_sub_only = vpn_available_mobile_sub_only(request)
-        article_data = VPNResourceCenterDetailPage.objects.filter(locale=self.locale).live().public()
+        article_data = VPNResourceCenterDetailPage.objects.filter(locale=self.locale).live().public().order_by("-first_published_at")
 
         first_article_group, second_article_group = (
             article_data[:ARTICLE_GROUP_SIZE],
