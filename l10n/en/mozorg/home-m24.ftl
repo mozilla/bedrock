@@ -13,6 +13,8 @@ m24-home-page-desc = Did you know? { -brand-name-mozilla } — the maker of { -b
 
 ## Intro
 
+m24-home-pause-animation = Pause animation
+m24-home-play-animation = Play animation
 m24-home-welcome-to-mozilla = Welcome to { -brand-name-mozilla }
 m24-home-from-trustworthy-tech = From trustworthy tech to policies that defend your digital rights, we put you first — always.
 m24-home-learn-about-us = Learn about us

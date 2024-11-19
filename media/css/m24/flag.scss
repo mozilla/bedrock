@@ -6,7 +6,7 @@
 
 .m24-c-flag {
     @include container;
-    padding-top: $spacer-2xl;
+    padding-top: $spacer-xl;
     padding-bottom: $spacer-xl;
 }
 
@@ -20,17 +20,78 @@
 
 .m24-c-flag-subtitle {
     font-size: $text-title-md;
-    text-wrap: balance;
-    text-wrap-style: balance;
     margin-bottom: $spacer-xl;
 }
 
-.m24-c-flag-media {
-    display: block;
-    margin-bottom: 16px;
+.m24-c-flag-cta {
+    margin-bottom: 0;
+}
 
-    img {
+.m24-c-flag-media {
+    --duration: 40s;
+    --delay: 1s; // leave some space to read before introducing movement
+    --bounce-h: 12px;
+    --wave-h: 8px;
+    display: block;
+
+    svg {
+        transform: translateZ(0);
         width: 100px;
+        height: auto;
+        fill: $m24-color-black; // inverts to white in dark theme section
+    }
+}
+
+.m24-c-flag-button {
+    all: unset;
+    background-color: $m24-color-medium-gray;
+    color: $m24-color-white;
+    font-family: $primary-font;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color $fast;
+
+    &:hover,
+    &:focus {
+        background-color: $m24-color-black; // inverts to white in dark theme section
+    }
+
+    &:active {
+        background-color: $m24-color-medium-gray;
+    }
+}
+
+.m24-c-flag-button-pause,
+.m24-c-flag-button-play {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+@media screen and (width < #{$screen-lg}) {
+    .m24-c-flag-cta {
+        margin-bottom: $spacer-xl;
+    }
+
+    .m24-c-flag-button {
+        border-radius: 50%;
+        display: block;
+        margin-bottom: $spacer-md;
+        margin-inline-start: auto;
+    }
+
+    .m24-c-flag-button-text {
+        @include visually-hidden;
+    }
+
+    .m24-c-flag-media {
+        svg {
+            display: block;
+            margin-inline-start: auto;
+        }
     }
 }
 
@@ -44,7 +105,14 @@
 @media #{$mq-lg} {
     .m24-c-flag {
         @include grid;
+        grid-template-rows: [button-row-start] auto [button-row-end] auto;
         padding-bottom: $spacer-2xl;
+    }
+
+    .m24-c-flag-button {
+        grid-column: 1 / -1;
+        grid-row: button-row;
+        justify-self: end;
     }
 
     .m24-c-flag-subtitle {
@@ -53,12 +121,12 @@
 
     .m24-c-flag-media {
         grid-column: 10/12;
-        grid-row: 1/2;
+        grid-row-start: button-row-end;
         display: flex;
         place-content: center center;
         margin-bottom: 0;
 
-        img {
+        svg {
             width: 100%;
             max-width: 216px;
         }
@@ -66,7 +134,7 @@
 
     .m24-c-flag-text {
         grid-column: 2/9;
-        grid-row: 1/2
+        grid-row-start: button-row-end;
     }
 
     .m24-c-flag-cta {
@@ -85,4 +153,233 @@
 // temporary until transition can be refactored
 .m24-c-products {
     background-color: $m24-color-white;
+}
+
+// static fallback
+.m24-c-flag-media-static {
+    display: none;
+}
+
+// When no JS
+// - hide animation SVG and button
+// - show static SVG
+.no-js {
+    .m24-c-flag-button {
+        display: none;
+    }
+
+    .m24-c-flag-media-animation {
+        display: none;
+    }
+
+    .m24-c-flag-media-static {
+        display: block;
+    }
+}
+
+/*
+Note from Inclusive Components, "Changing labels": https://inclusive-components.design/toggle-button/
+As a rule of thumb, you should never change pressed state and label together.
+If the label changes, the button has already changed state in a sense,
+just not via explicit WAI-ARIA state management.
+*/
+[data-animation-running="false"] {
+    .m24-c-flag-button-pause {
+        display: none;
+    }
+
+    .flag-one,
+    .flag-two,
+    .flag-three,
+    .flag-four,
+    .flag-five,
+    .pole,
+    .stationary,
+    .wave,
+    .blink-bounce,
+    .blink-bounce .head,
+    .blink-bounce .eye {
+        animation-play-state: paused;
+    }
+}
+
+[data-animation-running="true"] {
+    .m24-c-flag-button-play {
+        display: none;
+    }
+
+    .flag-one,
+    .flag-two,
+    .flag-three,
+    .flag-four,
+    .flag-five,
+    .pole,
+    .stationary,
+    .wave,
+    .blink-bounce,
+    .blink-bounce .head,
+    .blink-bounce .eye {
+        animation-play-state: running;
+    }
+}
+
+/* Common Element Styles */
+.flag,
+.flag-one,
+.flag-two,
+.flag-three,
+.flag-four,
+.flag-five,
+.pole,
+.head,
+.pole-one,
+.pole-two,
+.eye,
+.mouth {
+  shape-rendering: crispEdges;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+}
+
+/* Wave Animations Base */
+.flag-one,
+.flag-two,
+.flag-three,
+.flag-four,
+.flag-five,
+.pole {
+  animation: 1s linear infinite;
+  will-change: transform;
+  filter: url("#dilate");
+}
+
+/* Flag Animation Names */
+.flag-one { animation-name: flag-one; }
+.flag-two { animation-name: flag-two; }
+.flag-three { animation-name: flag-three; }
+.flag-four { animation-name: flag-four; }
+.flag-five { animation-name: flag-five; }
+
+/* Shared Animation Properties */
+.stationary,
+.wave,
+.blink-bounce {
+  animation: var(--duration) var(--delay) linear infinite;
+  will-change: opacity;
+}
+
+.wave,
+.blink-bounce {
+  opacity: 0;
+}
+
+/* Animation Names */
+.stationary { animation-name: switch-stationary; }
+.wave { animation-name: switch-animation-wave; }
+.blink-bounce { animation-name: switch-animation-blink-bounce; }
+
+/* Head & Eye Animations */
+.blink-bounce .head {
+  animation: bounce 10s linear infinite;
+  will-change: transform;
+}
+
+.blink-bounce .eye {
+  animation: blink-cycle var(--duration) var(--delay) cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  will-change: fill;
+}
+
+/* Flag Movement Keyframes */
+@keyframes flag-one {
+  0%, 15% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: ease-in;
+}
+  16%, 40% { transform: translate3d(0, var(--wave-h), 0); }
+  41%, 65% { transform: translate3d(0, 0, 0); }
+  66%, 91% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+  92%, 100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes flag-two {
+  0%, 24% { transform: translate3d(0, 0, 0); }
+  25%, 49% { transform: translate3d(0, var(--wave-h), 0); }
+  50%, 74% { transform: translate3d(0, 0, 0); }
+  75%, 99% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes flag-three {
+  0%, 7% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+  8%, 32% { transform: translate3d(0, 0, 0); }
+  33%, 57% { transform: translate3d(0, var(--wave-h), 0); }
+  58%, 82% { transform: translate3d(0, 0, 0); }
+  83%, 100% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+}
+
+@keyframes flag-four {
+  0%, 15% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+  16%, 49% { transform: translate3d(0, 0, 0); }
+  50%, 65% { transform: translate3d(0, var(--wave-h), 0); }
+  66%, 100% { transform: translate3d(0, 0, 0); }
+}
+
+@keyframes flag-five {
+  0%, 24% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
+  25%, 49% { transform: translate3d(0, 0, 0); }
+  50%, 74% { transform: translate3d(0, var(--wave-h), 0); }
+
+  75%, 100% {
+    transform: translate3d(0, 0, 0);
+    animation-timing-function: ease-out;
+  }
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+  0%, 76% { transform: translate3d(0, 0, 0); }
+  80% { transform: translate3d(0, var(--bounce-h), 0); }
+  84% { transform: translate3d(0, 0, 0); }
+  88% { transform: translate3d(0, var(--bounce-h), 0); }
+  92% { transform: translate3d(0, 0, 0); }
+  96% { transform: translate3d(0, var(--bounce-h), 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+/* Blink Animation */
+@keyframes blink-cycle {
+  0%, 49.9% { opacity: 1; }
+
+  /* First blink */
+  57.4% { opacity: 1; }
+  57.5% { opacity: 0; }
+  57.6% { opacity: 1; }
+
+  /* Pause */
+  57.61%, 58.2% { opacity: 1; }
+
+  /* Second blink */
+  58.25% { opacity: 1; }
+  58.35% { opacity: 0; }
+  58.45% { opacity: 1; }
+
+  /* Finish */
+  58.46%, 74.9%, 75%, 100% { opacity: 1; }
+}
+
+/* Opacity Transitions */
+@keyframes switch-animation-wave {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes switch-animation-blink-bounce {
+  0%, 49.9% { opacity: 0; }
+  50%, 74.9% { opacity: 1; }
+  75%, 100% { opacity: 0; }
+}
+
+@keyframes switch-stationary {
+  0%, 74.9% { opacity: 0; }
+  75%, 100% { opacity: 1; }
 }
