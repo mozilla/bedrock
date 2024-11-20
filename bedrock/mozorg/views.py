@@ -133,9 +133,19 @@ class HomeView(L10nTemplateView):
 
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
+    # place expected ?v= values in this list
+    variations = ["a", "b", "c"]
+
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
         ctx.update({"is_homepage": True})
+        variant = self.request.GET.get("v", None)
+
+        # ensure variant matches pre-defined value
+        if variant not in self.variations:
+            variant = None
+
+        ctx["variant"] = variant
         return ctx
 
     def get_template_names(self):
