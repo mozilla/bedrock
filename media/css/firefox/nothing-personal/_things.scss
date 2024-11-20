@@ -204,6 +204,7 @@ $fox-bush-height: 87px;
     background-size: 400% 100%;
     border: $border-black;
     box-shadow: $spacing-xs $spacing-xs var(--background-color-inverse);
+    cursor: pointer;
     display: flex; // center text within button
     margin-right: auto;
     margin-left: auto;
