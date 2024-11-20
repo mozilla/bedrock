@@ -133,6 +133,11 @@ class HomeView(L10nTemplateView):
 
     ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
 
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update({"is_homepage": True})
+        return ctx
+
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
