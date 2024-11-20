@@ -2,27 +2,32 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$logo-spacing: calc(32px + #{$spacer-md});
+$launchpad-logo-width: 32px;
+$launchpad-logo-spacing: calc($launchpad-logo-width + #{$spacer-lg});
 
 .m24-c-launchpad {
     margin: $spacer-xl 0;
-}
 
-.m24-c-launchpad-item {
-    border-bottom: $border-width solid $m24-color-light-gray;
-    margin-bottom: 0;
+    .m24-c-launchpad-item:first-child {
+        border-top: $border-width solid transparent; // accommodates negative margin needed for @include short-dividers();
+    }
+
+    .m24-c-content &:last-child {
+        margin-bottom: 0;
+    }
 }
 
 .m24-c-launchpad-link {
+    @include short-dividers($m24-color-light-gray);
     @include grid;
-    background-color: $m24-color-white;
     color: $m24-color-black;
-    display: grid;
     gap: $spacer-2xs $grid-gutter;
+    margin-left: calc($container-padding * -1);
+    margin-right: calc($container-padding * -1);
     padding: $spacer-sm $container-padding;
     position: relative;
     text-decoration: none;
-    transition: background-color 100ms ease-in-out;
+    transition: background-color $fast $bezier;
 
     &:hover,
     &:link:active, // override protocol
@@ -48,8 +53,8 @@ $logo-spacing: calc(32px + #{$spacer-md});
             (left, $container-padding, auto),
             (right, auto, $container-padding),
         ));
-        background-size: 32px auto;
-        width: 48px;
+        background-size: $launchpad-logo-width auto;
+        width: $launchpad-logo-width;
     }
 
     &::after {
@@ -62,8 +67,8 @@ $logo-spacing: calc(32px + #{$spacer-md});
         background-image: url('/media/img/icons/m24-small/arrow-right.svg');
         background-size: 18px auto;
         transition-duration: 100ms;
-        transition-timing-function: ease-in-out;
-        width: 32px;
+        transition-timing-function: $bezier;
+        width: $launchpad-logo-width;
     }
 
     &:focus-visible::after,
@@ -102,8 +107,8 @@ $logo-spacing: calc(32px + #{$spacer-md});
 
 .m24-c-launchpad-title {
     @include bidi((
-        (padding-left, $logo-spacing, 0),
-        (padding-right, 0, $logo-spacing),
+        (padding-left, $launchpad-logo-spacing, 0),
+        (padding-right, 0, $launchpad-logo-spacing),
     ));
     color: $m24-color-black;
     display: inline-block;
@@ -117,7 +122,7 @@ $logo-spacing: calc(32px + #{$spacer-md});
     color: $m24-color-dark-gray;
     font-size: $text-body-lg;
     grid-column: 1 / span 11;
-    padding-left: $logo-spacing;
+    padding-left: $launchpad-logo-spacing;
 }
 
 @media #{$mq-lg} {
@@ -127,7 +132,7 @@ $logo-spacing: calc(32px + #{$spacer-md});
     }
 
     .m24-c-launchpad-info {
-        grid-column: 4 / 11;
+        grid-column: 4 / 12;
         padding-left: 0;
         align-content: end;
     }

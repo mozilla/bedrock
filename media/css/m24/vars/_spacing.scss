@@ -17,3 +17,12 @@ $container-padding: var(--container-padding);
 
 // border
 $border-width: 2px;
+@mixin short-dividers($border-color) {
+    // the idea here is that all the items get a top and bottom border and the borders over lap, the ends of the border are transparent so a background color change shows through
+    border-image-source: linear-gradient(90deg, transparent $container-padding, $border-color $container-padding, $border-color calc(100% - $container-padding), transparent calc(100% - $container-padding));
+    border-image-slice: 2;
+    border-top-width: $border-width;
+    border-bottom-width: $border-width;
+    border-style: solid;
+    margin-top: $border-width * -1;
+}
