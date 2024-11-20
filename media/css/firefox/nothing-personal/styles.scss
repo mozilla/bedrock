@@ -12,9 +12,11 @@ $image-path: '/media/protocol/img';
 $browser-background: #f8f6f4;
 $page-background: #333336;
 $browser-cool-gradient: linear-gradient(to right,$color-blue-40, $color-violet-50);
-$border-black: 2px solid $color-black;
+$border-width: 1.5px; // meant to match svg stroke widths too
+$border-black: $border-width solid $page-background;
 $mq-tad-smaller-sm: 455px;
 
+@import './feature-box';
 @import './fonts';
 @import './animations';
 @import './header';
@@ -22,82 +24,221 @@ $mq-tad-smaller-sm: 455px;
 @import './browser';
 @import './fox-gif';
 @import './sticky-note';
+@import './things';
 
-.c-page-main-content {
-    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
+.u-text-uppercase {
+    text-transform: uppercase;
+    font-style: normal;
+}
+
+.c-content-layout {
     font-family: 'Fira Mono', 'Andale Mono', monospace;
-    position: relative;
-
-    section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        overflow-x: hidden;
-    }
-
-    aside {
-        display: none;
-    }
+    padding-top: $layout-lg;
+    padding-bottom: $layout-lg;
+    background: $page-background 60% 10% / cover no-repeat url('/media/img/firefox/nothing-personal/grid-background.svg');
 
     @media (prefers-reduced-motion: no-preference) and (#{$mq-sm}) {
         background-attachment: fixed;
     }
+}
 
-    @media #{$mq-lg} {
-        aside {
-            display: flex;
-            flex-direction: column;
-            position: absolute;
-            text-align: center;
-            top: 105px;
-            right: 0;
+.c-main {
+    font-weight: 500;
 
-            a, .c-trash {
-                color: $color-white;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                margin-bottom: $spacing-2xl;
-                padding: $spacing-sm;
-                text-decoration: none;
-                cursor: default;
+    > *:not(:last-child) {
+        margin-bottom: $layout-xl; // IE fallback
+
+        @supports (--css: variables) {
+            --extra-spacing: #{$layout-xs};
+            margin-bottom: calc(#{$layout-xl} + var(--extra-spacing));
+
+            @media #{$mq-md} {
+                --extra-spacing: #{$layout-md};
             }
 
-            a {
-                &:hover,
-                &:active,
-                &:focus {
-                    color: $color-white;
-                }
+            // no stickers/gifs to fill space below
+            .c-privacy,
+            .c-features {
+                --extra-spacing: 0px;
+            }
 
-                &:active,
-                &:focus {
-                    background-color: $color-blue-60;
+            // re-add spacing when fox gif displays
+            @media #{$mq-lg} {
+                .c-features {
+                    --extra-spacing: #{$layout-md};
                 }
             }
         }
     }
 
-    @media #{$mq-xl} {
-        aside {
-            right: 140px;
+    .mzp-t-content-md {
+        max-width: remify(510px);
+    }
+}
+
+.c-aside {
+    display: none;
+}
+
+@media #{$mq-lg} {
+    // non-grid layout, under main section
+    .c-aside {
+        display: flex;
+        justify-content: center;
+        margin-top: $spacing-xl;
+        text-align: center;
+    }
+
+    .c-aside-link {
+        color: $color-white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: $spacing-sm;
+        text-decoration: none;
+        cursor: default;
+
+        + * {
+            margin-left: $spacing-md;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $color-white;
+        }
+
+        &:active,
+        &:focus {
+            background-color: $color-blue-60;
         }
     }
 }
 
+.c-text-section {
+    margin-bottom: $spacing-xl;
+
+    * {
+        color: $color-white; // IE fallback
+        color: var(--body-text-color-inverse);
+    }
+}
+
+@supports (display: grid) {
+    .c-grid {
+        display: grid;
+        gap: $spacing-md;
+
+        &.mzp-l-content::after {
+            display: none; // remove pseudo-element spacing
+        }
+
+        @media #{$mq-md} {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            &.mzp-t-content-md {
+                max-width: $screen-md;
+            }
+        }
+    }
+
+    // sidebar layout
+    @media #{$mq-lg} {
+        .c-content-layout {
+            display: grid;
+            grid-template-columns: 1fr [main-start] auto [main-end aside-start] 1fr [aside-end];
+        }
+
+        .c-main {
+            grid-area: main;
+        }
+
+        .c-aside {
+            grid-area: aside;
+            justify-content: unset;
+            margin-top: unset;
+            justify-self: start;
+            margin-left: -#{$layout-lg}; // shift over padding
+            flex-direction: column;
+        }
+
+        .c-aside-link {
+            margin-bottom: $spacing-2xl;
+            margin-left: unset;
+        }
+    }
+}
+
+.c-text-title {
+    @include font-size(34px);
+    margin-bottom: $spacing-xl;
+
+    @media #{$mq-md} {
+        @include font-size(38px);
+    }
+}
+
+.c-text-body {
+    @include text-body-md;
+    font-weight: 500;
+
+    @media #{$mq-md} {
+        @include text-body-lg;
+    }
+}
+
+.c-mono-title {
+    @include text-body-md;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    font-weight: 700;
+}
+
+@media #{$mq-md} {
+    // sizing
+    .c-things,
+    .c-newsletter {
+        .c-mono-title {
+            @include text-body-lg;
+        }
+    }
+
+    // line breaking
+    .c-feature-fast,
+    .c-privacy-default {
+        .c-mono-title {
+            max-width: 25ch;
+        }
+    }
+}
+
+.c-privacy-image {
+    display: block;
+    width: 100%;
+    margin-bottom: $spacing-md;
+}
+
+.c-newsletter-gif-container {
+    position: relative;
+}
+
+.c-thug-life-gif {
+    position: absolute;
+    left: -170px;
+    top: -50px;
+}
+
 .c-sign-off {
-    margin: $layout-lg 0;
     @include text-title-xs;
 
     .c-nothing-personal {
-        padding: 12px;
-
         p {
             @include image-replaced;
             background: transparent url('/media/img/firefox/nothing-personal/tagline.svg') center center no-repeat;
             background-size: contain;
             width: 300px;
             height: 36px;
+            margin-right: auto;
+            margin-left: auto;
         }
 
         .c-sign-off-wordmark {
@@ -106,8 +247,6 @@ $mq-tad-smaller-sm: 455px;
     }
 
     @media #{$mq-md} {
-        margin-top: 0;
-
         .c-nothing-personal p {
             width: 415px;
             height: 51px;
@@ -115,10 +254,19 @@ $mq-tad-smaller-sm: 455px;
     }
 }
 
-// Make sure content is visible of JS fails
-html.no-js {
-    .c-browser,
-    .c-sticky-note.c-detached-sticky {
-        opacity: 1 !important; /* stylelint-disable-line declaration-no-important */
+// Special border padding overrides
+@media (max-width: #{$screen-sm}) {
+    .c-things {
+        .c-browser-content {
+            padding-right: $spacing-md;
+            padding-left: $spacing-md;
+        }
+    }
+
+    .c-newsletter {
+        .c-browser-content {
+            padding-right: 20px;
+            padding-left: 20px;
+        }
     }
 }

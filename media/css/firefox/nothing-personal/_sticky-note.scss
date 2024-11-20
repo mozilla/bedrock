@@ -8,26 +8,11 @@
     background-size: contain;
     width: 200px;
     height: 220px;
-    margin: 0 auto;
+    margin: $spacing-xl auto $layout-lg;
     padding: $spacing-xl;
-    transform: rotate(11deg);
+    transform: rotate(5deg);
     text-align: center;
     @include text-body-lg;
-
-    &.c-detached-sticky {
-        position: relative;
-        margin: 0 auto;
-        display: block;
-        opacity: 1;
-
-        @media (prefers-reduced-motion: no-preference) {
-            opacity: 0;
-        }
-    }
-
-    &.c-attached-sticky {
-        display: none;
-    }
 
     p,
     span,
@@ -41,25 +26,6 @@
 
     span {
         font-weight: bold;
-    }
-
-    @media #{$mq-lg} {
-        &.c-detached-sticky {
-            display: none;
-        }
-
-        &.c-attached-sticky {
-            display: block;
-            position: absolute;
-            bottom: -80px;
-            right: 0;
-            margin-right: -150px;
-            opacity: 1;
-
-            @media (prefers-reduced-motion: no-preference) {
-                opacity: 0;
-            }
-        }
     }
 }
 

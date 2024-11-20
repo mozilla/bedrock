@@ -5,31 +5,19 @@
  */
 
 let observer;
-let browser;
-let attachedStickyNote;
-let detachedStickyNote;
-let stickyGif;
 
 function createObserver() {
     return new IntersectionObserver(function (entries) {
         let chain = Promise.resolve();
         entries.forEach(function (entry) {
             if (entry.isIntersecting) {
-                if (entry.target.classList.contains('c-browser')) {
+                if (entry.target.dataset.animation === 'pop-in') {
                     // chain promises with a 200ms delay in between each one
                     chain = chain.then(() => popIn(entry.target));
                     // remove target observer after triggering animation
                     observer.unobserve(entry.target);
-                } else if (
-                    entry.target.classList.contains('c-attached-sticky')
-                ) {
+                } else if (entry.target.dataset.animation === 'slide-in') {
                     slideIn(entry.target);
-                } else if (
-                    entry.target.classList.contains('c-detached-sticky')
-                ) {
-                    slideInMobile(entry.target);
-                } else if (entry.target.classList.contains('c-thug-life-gif')) {
-                    popIn(entry.target);
                 }
             }
         });
@@ -41,30 +29,37 @@ function init() {
         window.MzpSupports.intersectionObserver &&
         window.Mozilla.Utils.allowsMotion()
     ) {
-        browser = document.querySelector('.c-browser');
-        attachedStickyNote = document.querySelector('.c-attached-sticky');
-        detachedStickyNote = document.querySelector('.c-detached-sticky');
-        stickyGif = document.querySelector('.c-thug-life-gif');
         observer = createObserver();
 
-        document.querySelectorAll('.c-browser').forEach(function (element) {
-            observer.observe(element);
-        });
-
         document
-            .querySelectorAll('.c-thug-life-gif')
+            .querySelectorAll("[data-animation='pop-in']")
             .forEach(function (element) {
                 observer.observe(element);
             });
 
-        observer.observe(browser);
-        observer.observe(attachedStickyNote);
-        observer.observe(detachedStickyNote);
-        observer.observe(stickyGif);
+        document
+            .querySelectorAll("[data-animation='slide-in']")
+            .forEach(function (element) {
+                observer.observe(element);
+            });
     }
 }
 
 function popIn(element) {
+    const dependents = element.querySelectorAll(
+        "[data-animation='dependent-pop-in']"
+    );
+
+    // After main pop-in finishes, add delayed dependent pop-ins
+    if (dependents.length !== 0) {
+        element.addEventListener('animationend', () => {
+            let chain = Promise.resolve();
+            dependents.forEach((dependent) => {
+                chain = chain.then(() => popIn(dependent));
+            });
+        });
+    }
+
     return new Promise((res) => {
         setTimeout(() => {
             element.classList.add('animate-pop-in');
@@ -77,15 +72,6 @@ function slideIn(element) {
     return new Promise((res) => {
         setTimeout(() => {
             element.classList.add('animate-slide-in');
-            res();
-        }, 800);
-    });
-}
-
-function slideInMobile(element) {
-    return new Promise((res) => {
-        setTimeout(() => {
-            element.classList.add('animate-slide-in-mobile');
             res();
         }, 800);
     });

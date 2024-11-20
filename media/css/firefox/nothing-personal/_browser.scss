@@ -4,226 +4,64 @@
 
 .c-browser {
     border-radius: $border-radius-md;
-    margin-bottom: $layout-lg;
+}
 
-    .c-browser-bar {
-        background: url('/media/img/firefox/nothing-personal/browser-dots.svg') left $spacing-md center no-repeat,
-        $browser-background $browser-cool-gradient;
-        background-size: 60px 16px, auto;
-        border-top: $border-black;
-        border-left: $border-black;
-        border-right: $border-black;
-        border-top-left-radius: $border-radius-lg;
-        border-top-right-radius: $border-radius-lg;
-        padding: $spacing-sm $spacing-md;
-
-        h3 {
-            @include font-size(18px);
-            color: $browser-background;
-            font-family: 'Fira Mono', 'Andale Mono', monospace;
-            font-weight: 500;
-            margin-bottom: 0;
-            padding-left: 80px;
-            text-align: end;
-            white-space: nowrap;
-
-            @media (min-width: $mq-tad-smaller-sm) {
-                text-align: center;
-                padding: 0;
-            }
-        }
-    }
-
-    .c-browser-content {
-        background-color: $browser-background;
-        border: $border-black;
-        border-bottom-left-radius: $border-radius-lg;
-        border-bottom-right-radius: $border-radius-lg;
-        padding: $layout-sm;
-
-        h4,
-        h5 {
-            font-family: 'Fira Mono', 'Andale Mono', monospace;
-        }
-
-        h4 {
-            margin-bottom: $layout-sm;
-        }
-
-        h4,
-        h5,
-        p {
-            @include font-size(20px);
-        }
-
-        h5 {
-            br {
-                display: none;
-            }
-        }
-    }
+.c-browser-bar {
+    --heading-size: var(--body-sm-size);
+    background: $browser-background $browser-cool-gradient;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-top: $border-black;
+    border-left: $border-black;
+    border-right: $border-black;
+    border-top-left-radius: $border-radius-md;
+    border-top-right-radius: $border-radius-md;
+    padding: $spacing-sm $spacing-md;
+    position: relative;
+    min-height: 1rem; // IE fallback
+    min-height: var(--heading-size); // reserve space for bars without text
 
     @media #{$mq-md} {
-        .c-browser-bar.c-bar-with-heading h3 {
-            white-space: nowrap;
-        }
-
-        .c-browser-content {
-            padding: $layout-xs $layout-md;
-
-            h4,
-            h5,
-            p {
-                @include font-size(22px);
-            }
-
-            h5 {
-                br {
-                    display: block;
-                }
-            }
-        }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        opacity: 0;
+        --heading-size: var(--title-3xs-size);
     }
 }
 
-.c-browser-window-top-wrapper {
-    position: relative;
-    z-index: 10;
-
-    .c-browser-bar {
-        min-height: 16px;
-        background: $browser-background url('/media/img/firefox/nothing-personal/browser-dots.svg') left $spacing-md center no-repeat;
-        background-size: 60px 16px;
-    }
-
-    .c-browser-window-top {
-        h2 {
-            line-height: 1;
-            margin: 0;
-            padding-right: $spacing-lg;
-            @include text-title-xl;
-        }
-
-        &::after {
-            position: absolute;
-            content: "";
-            background-image: url("/media/img/firefox/nothing-personal/heart-sticker.svg");
-            background-repeat: no-repeat;
-            background-size: contain;
-            filter: drop-shadow(5px 4px 13px rgba(0, 0, 0, 0.2));
-            height: 82px;
-            top: 10px;
-            right: 35px;
-            width: 90px;
-        }
-    }
-
-    @media #{$mq-md} {
-        margin-bottom: $layout-lg;
-
-        .c-browser-window-top {
-            &::after {
-                height: 95px;
-                bottom: 6px;
-                right: 205px;
-                top: auto;
-                width: 105px;
-            }
-        }
-    }
+.c-browser-bar-dot-container {
+    position: absolute;
+    left: $spacing-md;
 }
 
-// Layered background styles for first window
-.c-browser-windows {
-    padding-top: $layout-lg;
-
-    .c-layered-browser {
-        position: relative;
-        margin-bottom: $layout-lg;
-
-        .c-browser {
-            &::before {
-                content: "";
-                position: absolute;
-                width: 88%;
-                height: 99%;
-                background-color: $color-yellow-30;
-                border-radius: $border-radius-lg;
-                top: 15px;
-                right: 12px;
-                z-index: -1;
-            }
-        }
-
-        @media #{$mq-md} {
-            margin-bottom: $layout-xl + $layout-xs; // extra room for the layered windows
-            .c-browser {
-                &::before {
-                    content: none;
-                }
-            }
-        }
-
-        .c-hidden-browser {
-            display: none;
-
-            @media #{$mq-md} {
-                display: block;
-
-                &.yellow {
-                    position: absolute;
-                    right: -20px;
-                    top: 20px;
-                    z-index: 5;
-
-                    .c-browser-bar,
-                    .c-browser-content {
-                        background-color: $color-yellow-10;
-                    }
-                }
-
-                &.dark-yellow {
-                    position: absolute;
-                    top: 40px;
-                    right: -40px;
-                    z-index: 3;
-
-                    .c-browser-bar,
-                    .c-browser-content {
-                        background-color: $color-yellow-30;
-                    }
-                }
-
-                &.darker-yellow {
-                    position: absolute;
-                    top: 60px;
-                    right: -60px;
-                    z-index: 2;
-
-                    .c-browser-bar,
-                    .c-browser-content {
-                        background-color: $color-yellow-40;
-                    }
-                }
-
-                .c-browser-window-top {
-                    h2 {
-                        visibility: hidden;
-                    }
-
-                    &::after {
-                        content: none;
-                    }
-                }
-            }
-        }
-    }
+// match $border-black styles
+.c-browser-bar-dot {
+    stroke: $page-background;
+    stroke-width: $border-width;
 }
 
-.sticky-window {
-    position: relative;
+.c-browser-bar-title {
+    grid-area: full-width;
+    color: $browser-background;
+    font-family: 'Fira Mono', 'Andale Mono', monospace;
+    font-size: 1rem; // IE fallback
+    font-size: var(--heading-size);
+    font-weight: 500;
+    margin-bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.c-browser-content {
+    background-color: $browser-background;
+    border: $border-black;
+    border-bottom-left-radius: $border-radius-md;
+    border-bottom-right-radius: $border-radius-md;
+    padding: 40px $layout-sm;
+
+    h4 {
+        margin-bottom: $layout-sm;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
 }

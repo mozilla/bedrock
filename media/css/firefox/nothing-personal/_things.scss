@@ -1,0 +1,339 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-things {
+    @media screen and (max-width: #{$screen-md}) {
+        // no room on mobile for browser buttons and fox sticker
+        .c-browser-bar-dot-container {
+            display: none;
+        }
+    }
+
+    .c-browser-bar h3 {
+        padding-left: 0;
+        text-align: start;
+
+        @media (min-width: $mq-tad-smaller-sm) {
+            padding: 0;
+            text-align: center;
+        }
+    }
+}
+
+// use details instead of button
+html.no-js {
+    .c-things-list-container {
+        display: block;
+    }
+
+    .c-things-output-container,
+    .c-things-button-container {
+        display: none;
+    }
+}
+
+// hide details if JS available
+.c-things-list-container {
+    display: none;
+}
+
+.c-things-list {
+    background-color: var(--background-color);
+    border: $border-black;
+    padding: $spacing-md;
+
+    &.mzp-u-list-styled {
+        margin-left: 0;
+        padding-left: $spacing-xl;
+    }
+}
+
+.c-things-browser-fox-bush-container {
+    position: relative;
+}
+
+$fox-bush-width: 136px;
+$fox-bush-height: 87px;
+
+.c-things-fox-bush {
+    display: none;
+
+    @media #{$mq-lg} {
+        display: block;
+        position: absolute;
+        left: calc(#{$layout-lg} * -2);
+        top: $layout-lg;
+
+        &::after {
+            content: '';
+            position: absolute;
+            background-color: #0EBF45;
+            height: $fox-bush-height;
+            width: $fox-bush-width;
+            left: 10px;
+            top: 10px;
+            border: $border-black;
+        }
+    }
+}
+
+.c-things-fox-bush-image {
+    height: $fox-bush-height;
+    width: $fox-bush-width;
+    position: relative;
+    z-index: 10;
+
+    // static image has baked-in border, but doesn't need any cropping
+    @media (prefers-reduced-motion: no-preference) {
+        border: 1px solid $page-background;
+        object-fit: cover;
+        object-position: bottom; // crop out browser bar at top
+    }
+}
+
+.c-things-browser {
+    position: relative;
+}
+
+.c-things-foxy-sticker {
+    position: absolute;
+    right: -10px;
+    top: -50px;
+    width: 127px;
+    height: 119px;
+
+    @media #{$mq-md} {
+        right: -70px;
+        top: 30px;
+        height: 145px;
+        width: 155px;
+    }
+}
+
+.c-things-smiley-sticker {
+    position: absolute;
+    left: 50px;
+    bottom: -70px;
+    width: 91px;
+    height: 89px;
+
+    @media #{$mq-md} {
+        left: 75px;
+        width: 104px;
+        height: 102px;
+    }
+}
+
+.c-things-heart-sticker {
+    position: absolute;
+    left: 10px;
+    bottom: -70px;
+    width: 62px;
+    height: 57px;
+
+    @media #{$mq-md} {
+        left: 30px;
+        width: 72px;
+        height: 66px;
+    }
+}
+
+.c-things-output-container {
+    background-color: var(--background-color);
+    border: $border-black;
+    margin-bottom: $layout-sm; // match title margin
+    padding: $spacing-md;
+    min-height: 3lh; // preserve space for longest line length responses
+
+    @media #{$mq-sm} {
+        min-height: 2lh;
+    }
+}
+
+.c-things-output {
+    margin-bottom: 0;
+    text-wrap: pretty;
+}
+
+.c-things-button-container {
+    text-align: center;
+}
+
+@keyframes shine {
+    0%{
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100% 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        scale: 1;
+    }
+
+    5% {
+        scale: 1.05;
+    }
+
+    10% {
+        scale: 1;
+    }
+
+    15% {
+        scale: 1.025;
+    }
+
+    20% {
+        scale: 1;
+    }
+
+    100% {
+        scale: 1;
+    }
+}
+
+.c-things-button {
+    $push-depth: 2px;
+    background-color: $color-pink-10;
+    background-image: linear-gradient(to right,$color-pink-10, $color-pink-10, $color-pink-40, $color-pink-10, $color-pink-10);
+    background-position: 0 0;
+    background-size: 400% 100%;
+    border: $border-black;
+    box-shadow: $spacing-xs $spacing-xs var(--background-color-inverse);
+    cursor: pointer;
+    display: flex; // center text within button
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: $spacing-sm;
+    padding: $spacing-md;
+    position: relative;
+
+    @media #{$mq-md} {
+        padding: $spacing-md $spacing-lg;
+    }
+
+    &:hover,
+    &:focus {
+        background-position: 75% 0;
+        animation-play-state: paused;
+    }
+
+    &:active {
+        transform: translate($push-depth, $push-depth);
+        box-shadow: $push-depth $push-depth var(--background-color-inverse);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation-name: shine, pulse;
+        animation-duration: 1s, 5s;
+        animation-delay: 3s, 4s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: 1, infinite;
+        transition: background-position 0.5s;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100%  {
+        opacity: 1;
+    }
+}
+
+@keyframes sparkle {
+    0% {
+        opacity: 0;
+        translate: 0 0;
+        rotate: 0;
+        scale:1;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        translate: 0 -20%;
+        scale: 1.3;
+        opacity: 1;
+    }
+
+    100% {
+        translate: 0 0;
+        rotate: 360deg;
+        scale:1;
+        opacity: 1;
+    }
+}
+
+[class^="c-things-button-sparkle"] {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-name: fade-in;
+        animation-duration: 0.3s;
+        animation-fill-mode: forwards;
+    }
+}
+
+// top right
+.c-things-button-sparkle-1 {
+    top: -12px;
+    right: 10px;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 1s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 2s sparkle forwards;
+    }
+}
+
+// top left
+.c-things-button-sparkle-2 {
+    left: -17px;
+    top: 5px;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 1.5s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 3s sparkle forwards;
+    }
+}
+
+// bottom right
+.c-things-button-sparkle-3 {
+    right: -10px;
+    bottom: -10px;
+
+    @media (prefers-reduced-motion: reduce) {
+        animation-delay: 2s;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        animation: 1s 3.5s sparkle forwards;
+    }
+}
+
+.c-things-note {
+    @include text-body-xs;
+    /* stylelint-disable-next-line declaration-no-important */
+    margin-bottom: 0 !important; // override the extra specificity margin from c-browser
+
+    @media #{$mq-md} {
+        @include text-body-sm;
+    }
+}
