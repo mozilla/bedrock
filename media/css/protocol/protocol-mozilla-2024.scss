@@ -90,9 +90,9 @@ template {
 :root {
     // fonts
     /* stylelint-disable value-keyword-case  */
-    --body-font-family: "Mozilla Text", Inter, Arial, X-LocaleSpecific, sans-serif;
-    --button-font-family: "Mozilla Text", Inter, Arial, X-LocaleSpecific, sans-serif;
-    --title-font-family: "Mozilla Headline", Rockwell, "Roboto Slab", X-LocaleSpecific, serif;
+    --body-font-family: 'Mozilla Text', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
+    --button-font-family: 'Mozilla Text', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
+    --title-font-family: 'Mozilla Headline', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
     /* stylelint-enable */
 
     // colors
