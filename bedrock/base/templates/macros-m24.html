@@ -52,45 +52,42 @@
   Springboard Item
   HTML Import: {% from "macros-m24.html" import springboard_item with context %}
   CSS Import: @import '[path to]/m24/foo';
+  Description: The springboard component links off to media (i.e. articles, podcasts, and videos) on other sites. Each item is a row.
   Macro Parameters:
-    link_url (Required):
-    class: String providing modifier class(es) to the tile component.
-
+    author: Author of the media.
+    class: String providing modifier class(es) to the item.
+    image: Thumbnail image. Can pass an <img> element, resp_img or picture Python helpers.
+    link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
+    link_url (Required): String or url helper function provides href value for item.
+    preview: Blurb / summary of the media.
+    topic: One or two word topic of the item. Perhaps one of the things the item is "tagged" with if it's a blog post.
+    type: (Should be translated) Type of media the item links to. Probably one of podcast, article, video.
+    type_icon: (Do not translate) Last word of the icon class. Must be configured in the CSS. Currently supports: podcast, article, video.
 #}
 {% macro springboard_item(
   author=None,
-  category=None,
   class=None,
-  date=None,
   image=None,
   link_attributes=None,
   link_url=None,
   preview=None,
+  topic=None,
   type=None,
-  icon=''
+  type_icon=''
 ) -%}
 
 <li class="m24-c-springboard-item {{ class }}">
-  {% if link_url %}
-    <a href="{{ link_url }}" class="m24-c-springboard-link" {{ link_attributes }}>
-  {% else %}
-    <div class="m24-c-springboard-link">
-  {% endif %}
+  <a href="{{ link_url }}" class="m24-c-springboard-link" {{ link_attributes }}>
     <div class="m24-c-springboard-thumb">
       {{ image }}
     </div>
     <div class="m24-c-springboard-type">
-      {% if icon %}<span class="m24-c-springboard-icon m24-c-springboard-icon-{{ icon|lower }}"></span>{% endif %}
+      {% if type_icon %}<span class="m24-c-springboard-icon m24-c-springboard-icon-{{ type_icon|lower }}"></span>{% endif %}
       {{ type }}
     </div>
-    <!-- <div class="m24-c-springboard-date">{{ date }}</div> -->
     <div class="m24-c-springboard-author">{{ author }}</div>
-    <div class="m24-c-springboard-cat">{{ category }}</div>
+    <div class="m24-c-springboard-topic">{{ topic }}</div>
     <div class="m24-c-springboard-preview">{{ preview }}</div>
-  {% if link_url %}
-    </a>
-  {% else %}
-    </div>
-  {% endif %}
+  </a>
 </li>
 {%- endmacro %}

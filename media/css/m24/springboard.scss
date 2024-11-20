@@ -75,7 +75,7 @@ $springboard-thumb-width: 32px;
     width: 24px;
 }
 
-.m24-c-springboard-cat {
+.m24-c-springboard-topic {
     font-weight: bold;
     grid-area: cat;
     text-align: end;
@@ -95,23 +95,20 @@ $springboard-thumb-width: 32px;
 }
 
 // icons
-.m24-c-springboard-link,
-.m24-t-dark .m24-c-springboard-link:hover,
-.m24-t-dark .m24-c-springboard-link:focus-within {
-    .m24-c-springboard-icon-article {
-        background-image: url('/media/img/icons/m24-small/glasses.svg');
-    }
-
-    .m24-c-springboard-icon-podcast {
-        background-image: url('/media/img/icons/m24-small/headphones.svg');
-        background-size: 18px 18px;
-    }
-
-    .m24-c-springboard-icon-video {
-        background-image: url('/media/img/icons/m24-small/arrow-right.svg');
-        background-size: 16px 16px;
-    }
+.m24-c-springboard-icon-article {
+    background-image: url('/media/img/icons/m24-small/glasses.svg');
 }
+
+.m24-c-springboard-icon-podcast {
+    background-image: url('/media/img/icons/m24-small/headphones.svg');
+    background-size: 18px 18px;
+}
+
+.m24-c-springboard-icon-video {
+    background-image: url('/media/img/icons/m24-small/arrow-right.svg');
+    background-size: 16px 16px;
+}
+
 
 @media #{$mq-lg} {
     @supports (grid-template-columns: subgrid) {
@@ -158,7 +155,7 @@ $springboard-thumb-width: 32px;
         }
 
         .m24-c-springboard-author,
-        .m24-c-springboard-cat {
+        .m24-c-springboard-topic {
             text-align: start;
         }
     }

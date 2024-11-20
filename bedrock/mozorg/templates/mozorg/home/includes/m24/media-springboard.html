@@ -8,20 +8,22 @@
 
 <section class="m24-c-content m24-t-transition-01 m24-t-transition-next" id="media">
   <h3 class="m24-c-intro-title m24-t-lg">You, AI and the internet — what’s really going on?</h3>
-
   <ul class="m24-c-springboard" id="ai-media">
-    {{ springboard_item(
-      class='m24-c-springboard-headings',
-      type='Type',
-      category='Topic',
-      author='Author(s)',
-      preview='Intro'
-    ) }}
+    <li class="m24-c-springboard-item m24-c-springboard-headings">
+      <div class="m24-c-springboard-link">
+        <div class="m24-c-springboard-thumb">
+        </div>
+        <div class="m24-c-springboard-type">Type</div>
+        <div class="m24-c-springboard-author">Author</div>
+        <div class="m24-c-springboard-topic">Topic</div>
+        <div class="m24-c-springboard-preview">Intro</div>
+      </a>
+    </li>
     {{ springboard_item(
       link_url='https://blog.mozilla.org/en/mozilla/mozilla-anonym-raising-the-bar-for-privacy-preserving-digital-advertising/',
       type='Article',
-      icon='article',
-      category='Artificial Intelligence',
+      type_icon='article',
+      topic='Artificial Intelligence',
       author='Laura Chambers',
       preview='Introducing Anonym: Raising the bar for privacy-preserving digital advertising.',
       image=resp_img(
@@ -35,8 +37,8 @@
     {{ springboard_item(
       link_url='https://blog.mozilla.org/en/mozilla/keeping-genai-technologies-secure-is-a-shared-responsibility/',
       type='Article',
-      icon='article',
-      category='Privacy & Security',
+      type_icon='article',
+      topic='Privacy & Security',
       author='Saoud Khalifah',
       preview='Keeping GenAI technologies secure is a shared responsibility.',
       image=resp_img(
@@ -50,8 +52,8 @@
     {{ springboard_item(
       link_url="https://irlpodcast.org/season7/episode5/",
       type='Podcast',
-      icon='podcast',
-      category='Artificial Intelligence',
+      type_icon='podcast',
+      topic='Artificial Intelligence',
       author='IRL Podcast',
       preview='From Hollywood to Hip Hop, artists are negotiating consent for use of AI in the creative industries. Bridget Todd speaks to artists who are pushing the boundaries.',
       image=resp_img(
@@ -65,8 +67,8 @@
     {{ springboard_item(
       link_url="https://blog.mozilla.org/en/products/firefox/new-mozilla-docuseries-firefox-presents-launch/",
       type='Video',
-      icon='video',
-      category='News',
+      type_icon='video',
+      topic='News',
       author='Rebecca Smith',
       preview='Mozilla celebrates groundbreaking creators in new docuseries ‘Firefox Presents’.',
       image=resp_img(
@@ -80,8 +82,8 @@
     {{ springboard_item(
       link_url="https://irlpodcast.org/season7/episode4/",
       type='Podcast',
-      icon='podcast',
-      category='Artificial Intelligence',
+      type_icon='podcast',
+      topic='Artificial Intelligence',
       author='IRL Podcast',
       preview='Big tech’s power over language, means power over people. Bridget Todd talks to language community leaders paving the way for voice AI in their own languages and dialects.',
       image=resp_img(
@@ -95,8 +97,8 @@
     {{ springboard_item(
       link_url="https://irlpodcast.org/season7/episode3/",
       type='Podcast',
-      icon='podcast',
-      category='Artificial Intelligence',
+      type_icon='podcast',
+      topic='Artificial Intelligence',
       author='IRL Podcast',
       preview='Why does it so often feel like we’re part of a mass AI experiment? What is the responsible way to test new technologies? Bridget Todd explores what it means to live with unproven AI systems that impact millions of people as they roll out across public life.',
       image=resp_img(
@@ -110,8 +112,8 @@
     {{ springboard_item(
       link_url="https://blog.mozilla.org/en/internet-culture/kids-mental-health-screen-time-technology/",
       type='Article',
-      icon='article',
-      category='Privacy & Security',
+      type_icon='article',
+      topic='Privacy & Security',
       author='Kristina Bravo',
       preview='Kids are growing up in a very online world. What’s a concerned parent to do?',
       image=resp_img(
