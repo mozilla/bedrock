@@ -1,8 +1,8 @@
 APScheduler==3.10.4
 babis==0.2.4
-basket-client==1.1.0
+basket-client==1.2.0
 bleach[css]==6.1.0
-boto3==1.35.62
+boto3==1.35.66
 certifi>=2024.7.4  # to bring it up to a secure version
 chardet==5.2.0
 commonware==0.6.0
@@ -42,7 +42,7 @@ Markdown==3.7
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
-newrelic==10.2.0
+newrelic==10.3.0
 Pillow==10.4.0
 psycopg[binary]==3.1.19
 PyGithub==2.5.0
