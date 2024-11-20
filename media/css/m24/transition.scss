@@ -2,63 +2,72 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use 'vars/lib' as *;
 
-// Adds a pseudo-element at the top of a section with an SVG mask to produce
-// a decorative transition between sections.
-@mixin m24-transition {
-    position: relative;
-
-    &::before {
-        content: '';
-        display: block;
-        position: absolute;
+@supports (clip-path: polygon(50% 0%, 0% 100%, 100% 100%)) {
+    .m24-c-transition {
         height: 40px;
-        top: -40px;
-        left: 0;
-        right: 0;
-        background: inherit;
+        position: relative;
+
+        &::before {
+            bottom: 0;
+            clip-path: polygon(0% 60%, 25% 60%, 25% 100%, 60% 100%, 60% 50%, 80% 50%, 80% 0%, 0% 0%);
+            content: '';
+            display: block;
+            height: 41px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: -1px; // slight overlap to compensate for antialiasing
+        }
+
+        hr {
+            @include visually-hidden;
+        }
 
         @media #{$mq-md} {
             height: 90px;
-            top: -90px;
+
+            &::before {
+                height: 91px;
+            }
         }
-    }
-}
 
-@supports (clip-path: url('/media/img/m24/pixel-transition.svg#pixel01')) {
-    .m24-t-transition-01 {
-        @include m24-transition;
-
-        &::before {
-            clip-path: url('/media/img/m24/pixel-transition.svg#pixel01');
+        &.m24-t-top-light::before,
+        &.m24-t-bottom-light {
+            background-color: $m24-color-white;
         }
-    }
 
-    .m24-t-transition-02 {
-        @include m24-transition;
-
-        &::before {
-            clip-path: url('/media/img/m24/pixel-transition.svg#pixel02');
+        &.m24-t-top-light-alt::before,
+        &.m24-t-bottom-light-alt {
+            background-color: $m24-color-white-alt;
         }
-    }
 
-    .m24-t-transition-03 {
-        @include m24-transition;
-
-        &::before {
-            clip-path: url('/media/img/m24/pixel-transition.svg#pixel03');
+        &.m24-t-top-dark::before,
+        &.m24-t-bottom-dark {
+            background-color: $m24-color-black;
         }
-    }
 
-    // Adds sufficient bottom padding for the transition on the following section to overlap
-    .m24-t-transition-next::after {
-        content: '';
-        display: block;
-        padding-bottom: 50px;
-
-        @media #{$mq-md} {
-            padding-bottom: 100px;
+        &.m24-t-top-dark-alt::before,
+        &.m24-t-bottom-dark-alt {
+            background-color: $m24-color-black-alt;
         }
+
+        &.m24-t-top-green::before,
+        &.m24-t-bottom-green {
+            background-color: $m24-color-light-green;
+        }
+
+        &.m24-t-top-orange::before,
+        &.m24-t-bottom-orange {
+            background-color: $m24-color-light-orange;
+        }
+
+        &.m24-t-top-pink::before,
+        &.m24-t-bottom-pink {
+            background-color: $m24-color-light-pink;
+        }
+
     }
 }
