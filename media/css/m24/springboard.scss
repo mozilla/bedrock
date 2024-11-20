@@ -32,7 +32,8 @@ $springboard-thumb-width: 32px;
     padding: $spacer-md $container-padding;
     transition: background-color $fast $bezier;
 
-    &:link:hover {
+    &:link:hover,
+    &:link:focus {
         background-color: $m24-color-light-gray;
         text-decoration: none;
         cursor: pointer;
