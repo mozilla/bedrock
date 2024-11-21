@@ -1449,12 +1449,12 @@ class TestWhatsNew(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_133_0_0_newsletter_en_ca_ca_v1(self, render_mock):
-        """Should use firefox/whatsnew/index.html template for en_CA locale in CA and v=1"""
+        """Should use firefox/whatsnew/whatsnew-fx133-na-mobile.html template for en_CA locale in CA and v=1"""
         req = self.rf.get("/firefox/whatsnew/?v=1", HTTP_CF_IPCOUNTRY="CA")
         req.locale = "en-CA"
         self.view(req, version="133.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx133-na-mobile.html"]
 
     @override_settings(DEV=True)
     def test_fx_133_0_0_newsletter_en_ca_ca_v2(self, render_mock):

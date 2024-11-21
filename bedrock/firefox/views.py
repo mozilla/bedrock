@@ -509,6 +509,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx134beta.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-na-fakespot.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-na-mobile.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-donation.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html": ["firefox/whatsnew/whatsnew"],
     }
@@ -651,7 +652,7 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
             elif country == "CA" and locale in ["en-US", "en-CA"]:
                 if variant == "1":
-                    template = "firefox/whatsnew/index.html"
+                    template = "firefox/whatsnew/whatsnew-fx133-na-mobile.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
             elif locale in ["fr", "de", "it", "pl", "es-ES", "en-GB", "en-US", "en-CA"]:
