@@ -295,7 +295,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         position: static;
         display: flex;
         justify-content: space-between;
-        gap: 48px;
     }
 }
 
@@ -321,7 +320,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     @media #{$mq-md} {
         border-bottom: transparent;
-        padding: 0 0 $spacer-sm;
+        padding: 0 $spacer-md $spacer-sm;
         position: static;
         width: auto;
     }
