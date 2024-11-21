@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 $launchpad-logo-width: 32px;
-$launchpad-logo-spacing: calc($launchpad-logo-width + #{$spacer-lg});
+$launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
 
 .m24-c-launchpad {
     margin: $spacer-xl 0;
@@ -24,7 +24,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$spacer-lg});
     gap: $spacer-2xs $grid-gutter;
     margin-left: calc($container-padding * -1);
     margin-right: calc($container-padding * -1);
-    padding: $spacer-sm $container-padding;
+    padding: $spacer-md $container-padding;
     position: relative;
     text-decoration: none;
     transition: background-color $fast $bezier;
@@ -66,7 +66,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$spacer-lg});
         ));
         background-image: url('/media/img/icons/m24-small/arrow-right.svg');
         background-size: 18px auto;
-        transition-duration: 100ms;
+        transition-duration: $fast;
         transition-timing-function: $bezier;
         width: $launchpad-logo-width;
     }
@@ -75,8 +75,8 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$spacer-lg});
     &:active::after,
     &:hover::after {
         @include bidi((
-            (right, calc($container-padding - $spacing-sm), auto),
-            (left, auto, calc($container-padding - $spacing-sm)),
+            (right, $spacing-sm, auto),
+            (left, auto, $spacing-sm),
         ));
     }
 
