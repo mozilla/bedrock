@@ -30,14 +30,14 @@ const initTrafficCop = () => {
             window.dataLayer.push({
                 event: 'experiment_view',
                 id: 'MOFO-donation',
-                variant: 'mofo-donation-v2',
+                variant: 'mofo-donation-v2'
             });
         } else if (href.indexOf('v=3') !== -1) {
             // GA4
             window.dataLayer.push({
                 event: 'experiment_view',
                 id: 'MOFO-donation',
-                variant: 'mofo-donation-v3',
+                variant: 'mofo-donation-v3'
             });
         }
     }
