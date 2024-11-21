@@ -644,9 +644,14 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
-            elif country in ["US", "CA"] and locale in ["en-US", "en-CA"]:
+            elif country == "US" and locale in ["en-US", "en-CA"]:
                 if variant == "1":
                     template = "firefox/whatsnew/whatsnew-fx133-na-fakespot.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+            elif country == "CA" and locale in ["en-US", "en-CA"]:
+                if variant == "1":
+                    template = "firefox/whatsnew/index.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
             elif locale in ["fr", "de", "it", "pl", "es-ES", "en-GB", "en-US", "en-CA"]:
