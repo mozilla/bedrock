@@ -46,7 +46,7 @@
           {% for group in section.value.leadership_group %}
             <section>
               {% if group.title %}
-                <h3 class="group-title">{{ group.title }}</h3>
+                <h2 class="group-title">{{ group.title }}</h2>
               {% endif %}
               <div class="gallery mgmt-corp">
                 {% for leader in group.leaders %}
@@ -60,7 +60,7 @@
     </main>
   </div>
 
-  <div class="mzp-u-modal-content"></div>
+  <div id="leadership-modal" class="mzp-u-modal-content"></div>
 {% endblock %}
 
 {% block js %}
