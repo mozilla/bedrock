@@ -27,6 +27,29 @@ const initTrafficCop = () => {
             }
         });
         cop.init();
+
+        if (href.indexOf('v=1') !== -1) {
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'EU-newsletter',
+                variant: 'eu-newsletter-page',
+            });
+        } else if (href.indexOf('v=2') !== -1) {
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'EU-donation',
+                variant: 'eu-donation-v2',
+            });
+        } else if (href.indexOf('v=3') !== -1) {
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'EU-donation',
+                variant: 'eu-donation-v3',
+            });
+        }
     }
 };
 
