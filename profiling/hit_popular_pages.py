@@ -14,6 +14,7 @@ Usage:
 
 """
 
+import sys
 import time
 
 import requests
@@ -76,7 +77,7 @@ paths = [
 
 
 def _log(*args):
-    ("\n".join(args))
+    sys.stdout.write("\n".join(args))
 
 
 def hit_pages(paths, times=3):
