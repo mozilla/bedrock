@@ -4,6 +4,7 @@
 
 import pytest
 import wagtail_factories
+from wagtail.contrib.redirects.models import Redirect
 from wagtail.models import Locale, Site
 
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory
@@ -74,8 +75,14 @@ def tiny_localized_site():
     site = Site.objects.get(is_default_site=True)
 
     en_us_root_page = site.root_page
+
     fr_root_page = en_us_root_page.copy_for_translation(fr_locale)
+    rev = fr_root_page.save_revision()
+    fr_root_page.publish(rev)
+
     pt_br_root_page = en_us_root_page.copy_for_translation(pt_br_locale)
+    rev = pt_br_root_page.save_revision()
+    pt_br_root_page.publish(rev)
 
     en_us_homepage = SimpleRichTextPageFactory(
         title="Test Page",
@@ -148,3 +155,21 @@ def tiny_localized_site():
     assert fr_homepage.live is True
     assert fr_child.live is True
     assert fr_grandchild.live is True
+
+
+@pytest.fixture
+def tiny_localized_site_redirects():
+    """Some test redirects that complement the tiny_localized_site fixture.
+
+    Useful for things like the tests for the cache-based lookup
+    in bedrock.cms.tests.test_utils.test_path_exists_in_cms
+    """
+
+    Redirect.add_redirect(
+        old_path="/fr/moved-page/",
+        redirect_to="/fr/test-page/child-page/",
+    )
+    Redirect.add_redirect(
+        old_path="/en-US/deeper/nested/moved-page/",
+        redirect_to="/fr/test-page/",
+    )
