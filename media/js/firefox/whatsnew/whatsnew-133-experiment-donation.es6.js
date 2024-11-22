@@ -12,20 +12,6 @@ const href = window.location.href;
 const initTrafficCop = () => {
     if (href.indexOf('v=') !== -1) {
         if (href.indexOf('v=2') !== -1) {
-            return;
-        } else if (href.indexOf('v=3') !== -1) {
-            return;
-        }
-    } else if (TrafficCop) {
-        const cop = new TrafficCop({
-            variations: {
-                'v=2': 50, // MoFo donate (version 2)
-                'v=3': 50 // MoFo donate (version 3)
-            }
-        });
-        cop.init();
-
-        if (href.indexOf('v=2') !== -1) {
             // GA4
             window.dataLayer.push({
                 event: 'experiment_view',
@@ -40,6 +26,14 @@ const initTrafficCop = () => {
                 variant: 'mofo-donation-v3'
             });
         }
+    } else if (TrafficCop) {
+        const cop = new TrafficCop({
+            variations: {
+                'v=2': 50, // MoFo donate (version 2)
+                'v=3': 50 // MoFo donate (version 3)
+            }
+        });
+        cop.init();
     }
 };
 
