@@ -7,6 +7,10 @@
 import TrafficCop from '@mozmeao/trafficcop';
 import { isApprovedToRun } from '../../base/experiment-utils.es6.js';
 
+if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+}
+
 const href = window.location.href;
 
 const initTrafficCop = () => {
