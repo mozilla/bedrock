@@ -87,28 +87,10 @@
 
   {% if variant == '2' %}
     {% set main_title = "Donate to the Mozilla Foundation before our end-of-year deadline" %}
-
-    {% if LANG == 'en-GB' %}
-        {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov5" %}
-    {% elif LANG == 'en-CA' %}
-        {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov9" %}
-    {% elif LANG == 'en-US' %}
-        {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov7" %}
-    {% else %}
-      {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov17" %}
-    {% endif %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov17" %}
   {% else %}
     {% set main_title = "Donate to the Mozilla Foundation, the non-profit behind Firefox" %}
-
-    {% if LANG == 'en-GB' %}
-      {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov6" %}
-    {% elif LANG == 'en-CA' %}
-      {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov10" %}
-    {% elif LANG == 'en-US' %}
-      {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov8" %}
-    {% else %}
-      {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov18" %}
-    {% endif %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov18" %}
   {% endif %}
 {% endif %}
 
@@ -125,7 +107,7 @@
     ) %}
       <h1 class="wnp-main-title">{{ main_title }}</h1>
       <p class="wnp-main-body">{{ main_body_part_one }}</p>
-      <p class="wnp-main-body">{{ main_body_part_two }}</p>
+      <p class="wnp-main-body"><strong>{{ main_body_part_two }}</strong></p>
       <a class="mzp-c-button mzp-t-product" href="{{ cta_link }}" data-cta-text="Donate to the Mozilla Foundation">
         {{ page_cta }}
       </a>
