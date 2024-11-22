@@ -2,8 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 {%- for path in paths %}
   <url>
-    <loc>{{ path.get_absolute_url() }}</loc>{% if path.lastmod %}
-    <lastmod>{{ path.lastmod }}</lastmod>{% endif %}
+    <loc>{{ path.get_absolute_url() }}</loc>
   </url>
 {%- endfor %}
 </urlset>
