@@ -509,7 +509,10 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx134beta.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-na-fakespot.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx133-na-mobile.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-na-mobile.html": [
+            "firefox/whatsnew/whatsnew-s2d",
+            "firefox/whatsnew/whatsnew",
+        ],
         "firefox/whatsnew/whatsnew-fx133-donation.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html": ["firefox/whatsnew/whatsnew"],
     }
