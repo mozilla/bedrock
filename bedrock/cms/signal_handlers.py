@@ -10,7 +10,10 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
+from wagtail.signals import page_published, page_unpublished, post_page_move
 from wagtail_localize_smartling.signals import translation_imported
+
+from bedrock.cms.utils import warm_page_path_cache
 
 if TYPE_CHECKING:
     from wagtail_localize.models import Translation
@@ -71,3 +74,26 @@ def notify_of_imported_translation(
 
 
 translation_imported.connect(notify_of_imported_translation, weak=False)
+
+
+def trigger_cache_warming(sender, **kwargs):
+    # Run after the post-migrate signal is sent for the `cms` app
+    warm_page_path_cache()
+
+
+def rebuild_path_cache_after_page_move(sender, **kwargs):
+    # Check if a page has moved up or down within the tree
+    # (rather than just being reordered). If it has really moved
+    # then we should update the cache
+    if kwargs["url_path_before"] == kwargs["url_path_after"]:
+        # No URLs are changing - nothing to do here!
+        return
+
+    # The page is moving, so we need to rebuild the entire pre-empting-lookup cache
+    warm_page_path_cache()
+
+
+post_page_move.connect(rebuild_path_cache_after_page_move)
+
+page_published.connect(trigger_cache_warming)
+page_unpublished.connect(trigger_cache_warming)
