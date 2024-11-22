@@ -6,49 +6,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% from "macros.html" import google_play_button, apple_app_store_button with context %}
 
-{% extends "firefox/whatsnew/base.html" %}
-
-{% block page_title %}{{ ftl('whatsnew-s2d-download-firefox-for-android') }}{% endblock %}
-{% block body_class %}{% endblock %}
+{% extends "firefox/whatsnew/index.html" %}
 
 {% block experiments %}
   {{ js_bundle('firefox_whatsnew_133_experiment_na_mobile') }}
-{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('firefox_whatsnew') }}
-{% endblock %}
-
-{% set android_url = play_store_url('firefox', 'firefox-whatsnew') %}
-{% set ios_url = app_store_url('firefox', 'firefox-whatsnew') %}
-
-{% block wnp_content %}
-<section class="wnp-content-main">
-  <div class="mzp-l-content mzp-t-content-md">
-    <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-download-firefox-for-your') }}</h1>
-
-    <div class="qr-wrapper">
-      <img class="qr-code" src="{{ static('img/firefox/whatsnew/qrcode-firefox-whatsnew.png') }}" width="180" height="180" alt="{{ ftl('whatsnew-s2d-qr-code-alt') }}">
-    </div>
-
-    <ul class="mobile-download-buttons">
-      <li class="android">
-        {{ google_play_button(href=android_url, id='play-store-link') }}
-      </li>
-      <li class="ios">
-        {{ apple_app_store_button(href=ios_url, id='app-store-link') }}
-      </li>
-    </ul>
-  </div>
-</section>
-
-<div class="wnp-footer">
-  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
-
-  {% if LANG in ["en-US", "en-CA", "en-GB", "fr", "de", "es-ES", "it", "pl"] or ftl_has_messages('whatsnew-donate-to-mofo') %}
-    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
-  {% endif %}
-</div>
 {% endblock %}
 
 {% block js %}
