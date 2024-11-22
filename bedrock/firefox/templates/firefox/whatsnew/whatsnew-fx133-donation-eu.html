@@ -6,10 +6,15 @@
 
 {% from "macros-protocol.html" import split with context %}
 
-{% extends "firefox/whatsnew/whatsnew-fx133-donation.html" %}
+{% extends "firefox/whatsnew/base.html" %}
 
 {% block experiments %}
   {{ js_bundle('firefox_whatsnew_133_experiment_eu') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_133_donation') }}
 {% endblock %}
 
 {% if LANG == 'fr' %}
@@ -52,3 +57,11 @@
     {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov6" %}
   {% endif %}
 {% endif %}
+
+{% block wnp_content %}
+  {% include "firefox/whatsnew/includes/fx133/donation-common.html" %}
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}

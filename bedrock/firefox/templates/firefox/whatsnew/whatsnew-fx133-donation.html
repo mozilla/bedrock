@@ -99,24 +99,7 @@
 {% endif %}
 
 {% block wnp_content %}
-<section class="wnp-content-main">
-  {% call split(
-    image=resp_img('img/firefox/whatsnew/whatsnew133/mofo-heart.png',
-      srcset={ 'img/firefox/whatsnew/whatsnew133/mofo-heart-high-res.png': '2x' },
-      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
-    ),
-    media_after=False,
-    media_class='mzp-l-split-v-center mzp-l-split-h-start',
-    block_class='mzp-l-split-reversed mzp-l-split-body-wide'
-    ) %}
-      <h1 class="wnp-main-title">{{ main_title }}</h1>
-      <p class="wnp-main-body">{{ main_body_part_one }}</p>
-      <p class="wnp-main-body"><strong>{{ main_body_part_two }}</strong></p>
-      <a class="wnp-main-cta mzp-c-button mzp-t-product" href="{{ cta_link }}" data-cta-text="Donate to the Mozilla Foundation">
-        {{ page_cta }}
-      </a>
-  {% endcall %}
-</section>
+  {% include "firefox/whatsnew/includes/fx133/donation-common.html" %}
 {% endblock %}
 
 {% block js %}
