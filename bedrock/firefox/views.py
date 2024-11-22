@@ -514,7 +514,8 @@ class WhatsnewView(L10nTemplateView):
             "firefox/whatsnew/whatsnew",
         ],
         "firefox/whatsnew/whatsnew-fx133-donation.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-donation-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-donation-na.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -645,17 +646,17 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/whatsnew-fx133-vpn.html"
             elif country in ["GB", "FR", "DE"] and locale in ["en-GB", "de", "fr"]:
                 if variant == "2" or variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html"
             elif country == "US" and locale in ["en-US", "en-CA"]:
                 if variant == "2" or variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-na.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-na-fakespot.html"
             elif country == "CA" and locale in ["en-US", "en-CA"]:
                 if variant == "2" or variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-na.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx133-na-mobile.html"
             elif locale in ["fr", "de", "it", "pl", "es-ES", "en-GB", "en-US", "en-CA"]:

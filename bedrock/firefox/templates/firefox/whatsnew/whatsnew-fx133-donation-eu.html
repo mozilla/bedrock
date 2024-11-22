@@ -1,0 +1,54 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/whatsnew-fx133-donation.html" %}
+
+{% block experiments %}
+  {{ js_bundle('firefox_whatsnew_133_experiment_eu') }}
+{% endblock %}
+
+{% if LANG == 'fr' %}
+  {% set main_body_part_one = "Firefox vous est proposé par la Fondation Mozilla, un mouvement mondial d’individus qui oeuvre pour que l’Internet reste ouvert et accessible à tous. C’est à nous toutes et tous de nous opposer aux entreprises tech irresponsables et de protéger notre vie privée en ligne." %}
+  {% set main_body_part_two = "Vous avez choisi Firefox comme navigateur, et maintenant nous espérons que vous ferez le prochain pas pour reconquérir l’Internet. Faites un don de fin d’année à la Fondation Mozilla." %}
+  {% set page_cta = "Faire un don à la Fondation Mozilla" %}
+
+  {% if variant == '2' %}
+    {% set main_title = "Faites un don à la Fondation Mozilla avant la fin de l’année" %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov3" %}
+  {% else %}
+    {% set main_title = "Faites un don à la fondation à but non lucratif Mozilla, soutien de Firefox" %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov4" %}
+  {% endif %}
+
+{% elif LANG == 'de' %}
+  {% set page_cta = "Spende an die Mozilla Foundation" %}
+
+  {% if variant == '2' %}
+    {% set main_title = "Spende zum Jahresende an die Mozilla Foundation" %}
+    {% set main_body_part_one = "Alles, was dir an Firefox gefällt, wird von der Mozilla Foundation ermöglicht – einer globalen Bewegung, die sich gegen verantwortungslose Tech-Unternehmen einsetzt und unsere Privatsphäre online schützt. Es liegt an uns allen, verantwortungslosen Tech-Unternehmen entgegenzutreten und unsere Privatsphäre im Internet zu schützen." %}
+    {% set main_body_part_two = "Du hast Firefox als deinen Browser gewählt und wir hoffen, dass du jetzt den nächsten Schritt machst, um das Internet zurückzuerobern. Spende heute zum Jahresende an die Mozilla Foundation." %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov1" %}
+  {% else %}
+    {% set main_title = "Spende an die gemeinnützige Mozilla Foundation, die hinter Firefox steht" %}
+    {% set main_body_part_one = "Alles, was dir an Firefox gefällt, wird von der Mozilla Foundation ermöglicht – einer globalen Bewegung, die sich gegen verantwortungslose Tech-Unternehmen einsetzt und unsere Privatsphäre online schützt. Es liegt an uns allen, verantwortungslosen Tech-Unternehmen entgegenzutreten und unsere Privatsphäre im Internet zu schützen." %}
+    {% set main_body_part_two = "Du hast Firefox als deinen Browser gewählt und wir hoffen, dass du jetzt den nächsten Schritt machst, um das Internet zurückzuerobern. Spende heute zum Jahresende an die Mozilla Foundation." %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov2" %}
+  {% endif %}
+{% else %}
+  {% set main_body_part_one = "Firefox is backed by the Mozilla Foundation – a global community working to keep the internet open and accessible to all. It’s up to all of us to take on irresponsible tech companies and protect our privacy online." %}
+  {% set main_body_part_two = "You chose Firefox as your internet browser, and now we hope you’ll take the next step to reclaim the internet. Make an end-of-year donation to the Mozilla Foundation today." %}
+  {% set page_cta = "Donate to the Mozilla Foundation" %}
+
+  {% if variant == '2' %}
+    {% set main_title = "Donate to the Mozilla Foundation before our end-of-year deadline" %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov5" %}
+  {% else %}
+    {% set main_title = "Donate to the Mozilla Foundation, the non-profit behind Firefox" %}
+    {% set cta_link = "https://foundation.mozilla.org/?form=24-wnp-nov6" %}
+  {% endif %}
+{% endif %}
