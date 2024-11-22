@@ -644,20 +644,20 @@ class WhatsnewView(L10nTemplateView):
             if locale in self.wnp_133_vpn_langs and country in settings.VPN_MOBILE_SUB_COUNTRY_CODES:
                 template = "firefox/whatsnew/whatsnew-fx133-vpn.html"
             elif country in ["GB", "FR", "DE"] and locale in ["en-GB", "de", "fr"]:
-                if variant == "1":
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                else:
                     template = "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
             elif country == "US" and locale in ["en-US", "en-CA"]:
-                if variant == "1":
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                else:
                     template = "firefox/whatsnew/whatsnew-fx133-na-fakespot.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
             elif country == "CA" and locale in ["en-US", "en-CA"]:
-                if variant == "1":
-                    template = "firefox/whatsnew/whatsnew-fx133-na-mobile.html"
-                else:
+                if variant == "2" or variant == "3":
                     template = "firefox/whatsnew/whatsnew-fx133-donation-eu-na.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx133-na-mobile.html"
             elif locale in ["fr", "de", "it", "pl", "es-ES", "en-GB", "en-US", "en-CA"]:
                 template = "firefox/whatsnew/whatsnew-fx133-donation.html"
             else:
