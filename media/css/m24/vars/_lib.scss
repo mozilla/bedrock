@@ -2,8 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// global components
-@use 'components/footer-newsletter';
-@use 'components/footer-refresh';
-@use 'components/navigation-refresh';
-@use 'components/pencil-banner';
+@forward  '~@mozilla-protocol/core/protocol/css/includes/lib';
+@forward 'animation';
+@forward 'color';
+@forward 'fonts';
+@forward 'grid';
+@forward 'spacing';
+@forward 'text';
