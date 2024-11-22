@@ -2,29 +2,22 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 // variables
-@import 'vars/animation';
-@import 'vars/color';
-@import 'vars/fonts';
-@import 'vars/grid';
-@import 'vars/spacing';
-@import 'vars/text';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use 'vars/lib' as *;
 
 // components
-@import 'careers';
-@import 'intro';
-@import 'donate';
-@import 'feature';
-@import 'flag';
-@import 'gallery';
-@import 'showcase';
-@import 'launchpad';
-@import 'springboard';
-@import 'theme';
-@import 'transition';
+@use 'careers';
+@use 'intro';
+@use 'donate';
+@use 'feature';
+@use 'flag';
+@use 'gallery';
+@use 'showcase';
+@use 'launchpad';
+@use 'springboard';
+@use 'theme';
+@use 'transition';
 
 /* Protocol overrides ------------------------------------------------------------ */
 
