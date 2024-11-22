@@ -2439,6 +2439,8 @@ else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
 
 
+CMS_DO_PAGE_PATH_PRECHECK = config("CMS_DO_PAGE_PATH_PRECHECK", default="True", parser=bool)
+
 # Our use of django-waffle relies on the following 2 settings to be set this way so that if a switch
 # doesn't exist, we get `None` back from `switch_is_active`.
 WAFFLE_SWITCH_DEFAULT = None
