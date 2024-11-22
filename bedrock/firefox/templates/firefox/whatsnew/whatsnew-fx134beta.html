@@ -1,0 +1,49 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_134beta') }}
+{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      {{ resp_img(
+        url='img/firefox/whatsnew/whatsnew134beta/foxfood.png',
+        srcset={
+          'img/firefox/whatsnew/whatsnew134beta/foxfood-high-res.png': '2x'
+        },
+        optional_attributes={
+          'class': 'wnp-main-image',
+          'width': '300',
+          'height': '300',
+          'alt': 'Cartoon illustration of a swashbuckling fox, wearing black gloves and boots with a red sash, swinging from a rope and wielding a rapier like Robin Hood. A banner reads “Defend your fox!”'
+        }
+      ) }}
+
+      <h1>Join us to help test the new Firefox address bar</h1>
+
+      <p>The Firefox team has been working on a set of complementary features
+        designed to improve the discoverability and security of Firefox’s address
+        bar. With these features now available in Firefox Beta 134, we invite you
+        to test them out, share your feedback, and play a role in shaping the
+        future of Firefox.</p>
+
+      <p><a class="mzp-c-button mzp-t-product" href="https://community.mozilla.org/en/campaigns/test-the-new-firefox-address-bar" data-cta-text="Get involved">Get involved</a></p>
+    </div>
+  </section>
+
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}

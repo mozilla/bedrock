@@ -506,6 +506,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx132-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx132-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-vpn.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx134beta.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -610,7 +611,12 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif channel == "beta":
-            if version.startswith("126.") or version.startswith("127."):
+            if version.startswith("134."):
+                if locale.startswith("en-"):
+                    template = "firefox/whatsnew/whatsnew-fx134beta.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
+            elif version.startswith("126.") or version.startswith("127."):
                 if locale.startswith("en-"):
                     if locale == "en-GB" or country == "GB":
                         template = "firefox/whatsnew/whatsnew-fx126beta-en-GB.html"
