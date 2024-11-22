@@ -1555,12 +1555,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-133.js"
-      ],
-      "name": "firefox_whatsnew_133"
-    },
-    {
-      "files": [
         "js/firefox/whatsnew/whatsnew-133-experiment-eu.es6.js"
       ],
       "name": "firefox_whatsnew_133_experiment_eu"
