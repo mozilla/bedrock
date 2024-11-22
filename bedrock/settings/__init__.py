@@ -67,6 +67,10 @@ _csp_connect_src = [
 ]
 _csp_connect_extra_for_dev = []
 _csp_font_src = []
+_csp_media_src = [
+    csp.constants.SELF,
+    "assets.mozilla.net",
+]
 
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
@@ -106,6 +110,7 @@ CONTENT_SECURITY_POLICY = {
         "script-src": list(set(_csp_default_src + _csp_script_src)),
         "style-src": list(set(_csp_default_src + _csp_style_src)),
         "font-src": list(set(_csp_default_src + _csp_font_src)),
+        "media-src": _csp_media_src,
         "child-src": _csp_child_src,
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
