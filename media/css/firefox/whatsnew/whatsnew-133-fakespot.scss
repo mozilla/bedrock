@@ -1,0 +1,63 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/mofo-donate-cta';
+
+.wnp-content-main {
+    .wnp-main-title {
+        @include font-size(40px);
+
+        @media #{$mq-lg} {
+            @include font-size(56px);
+        }
+    }
+
+    .wnp-main-body {
+        @include text-body-md;
+        color: #757575;
+
+        .shopping-icon {
+            @include image-replaced;
+            @include background-size(2.25ex, 2.25ex);
+            background-image: url("/media/img/firefox/whatsnew/whatsnew133/icon-shopping.svg");
+            background-repeat: no-repeat;
+            display: inline-block;
+            height: 2.25ex;
+            margin-bottom: -0.5ex;
+            width: 2.25ex;
+        }
+    }
+
+    .mzp-c-split-media-asset {
+        margin: 0 auto;
+    }
+}
+
+.wnp-footer {
+    text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+    .wnp-content-main {
+        .wnp-main-title {
+            color: $color-white;
+        }
+
+        .wnp-main-body {
+            color: $color-moz-light-gray;
+
+            .shopping-icon {
+                background-image: url("/media/img/firefox/whatsnew/whatsnew133/icon-shopping-light.svg");
+            }
+
+            .wnp-body-cta:link {
+                color: $color-moz-light-gray;
+            }
+
+        }
+    }
+}

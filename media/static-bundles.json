@@ -461,6 +461,24 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-133-newsletter.scss"
+      ],
+      "name": "firefox_whatsnew_133_newsletter"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-133-fakespot.scss"
+      ],
+      "name": "firefox_whatsnew_133_fakespot"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-133-donation.scss"
+      ],
+      "name": "firefox_whatsnew_133_donation"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-134beta.scss"
       ],
       "name": "firefox_whatsnew_134beta"
@@ -1534,6 +1552,30 @@
         "js/firefox/whatsnew/whatsnew-132.js"
       ],
       "name": "firefox_whatsnew_132"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-133-experiment-eu.es6.js"
+      ],
+      "name": "firefox_whatsnew_133_experiment_eu"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-133-experiment-na.es6.js"
+      ],
+      "name": "firefox_whatsnew_133_experiment_na"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-133-experiment-na-mobile.es6.js"
+      ],
+      "name": "firefox_whatsnew_133_experiment_na_mobile"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-133-experiment-donation.es6.js"
+      ],
+      "name": "firefox_whatsnew_133_experiment_donation"
     },
     {
       "files": [
