@@ -357,6 +357,13 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     text-decoration: none;
     width: 100%;
 
+    // extra specificity to override link colors on some Firefox pages
+    &:link,
+    &:visited {
+        color: $color-black;
+        text-decoration: none;
+    }
+
     .m24-c-menu-title-icon {
         @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
     }
@@ -443,6 +450,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         text-decoration: none;
         width: 100%;
 
+        &:link,
         &:visited {
             text-decoration: none;
         }
@@ -457,6 +465,8 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 .m24-c-menu-item .m24-c-menu-item-link
 .m24-c-menu-item .m24-c-menu-item-link:link,
 .m24-c-menu-item .m24-c-menu-item-link:visited {
+    text-decoration: none;
+
     .m24-c-menu-item-title {
         border: none;
     }
@@ -605,6 +615,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         border: none;
         font-weight: 600;
         position: relative;
+        text-decoration: none;
     }
 }
 
@@ -612,6 +623,11 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited:hover {
     .m24-c-menu-item-title {
         border: none;
+        text-decoration: none;
+
+        &::after {
+            background: $m24-color-dark-green;
+        }
     }
 }
 
