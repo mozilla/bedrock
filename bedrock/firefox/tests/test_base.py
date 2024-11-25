@@ -393,27 +393,27 @@ class TestWhatsNew(TestCase):
 
     # end 127 beta whatsnew tests
 
-    # begin 134 beta whatsnew tests
+    # begin 135 beta whatsnew tests
 
     @override_settings(DEV=True)
-    def test_fx_134_0_0beta_en_US(self, render_mock):
-        """Should use whatsnew-fx134beta template for en-US locale"""
+    def test_fx_135_0_0beta_en_US(self, render_mock):
+        """Should use whatsnew-fx135beta template for en-US locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-US"
-        self.view(req, version="134.0beta")
+        self.view(req, version="135.0beta")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx134beta.html"]
+        assert template == ["firefox/whatsnew/whatsnew-fx135beta.html"]
 
     @override_settings(DEV=True)
-    def test_fx_134_0_0beta_pl(self, render_mock):
+    def test_fx_135_0_0beta_pl(self, render_mock):
         """Should use default template for pl locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "pl"
-        self.view(req, version="134.0beta")
+        self.view(req, version="135.0beta")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/index.html"]
 
-    # end 134 beta whatsnew tests
+    # end 135 beta whatsnew tests
 
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
