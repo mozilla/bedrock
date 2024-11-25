@@ -5,7 +5,7 @@
 
 .m24-c-intro {
     font-weight: 500;
-    font-size: $text-body-xl;
+    font-size: $text-body-lg;
     margin-bottom: $spacer-xl;
     text-wrap: balance;
     text-wrap-style: balance;
@@ -20,18 +20,22 @@
 }
 
 .m24-c-intro-title {
-    font-size: $alias-text-title-h2;
+    font-size: $text-title-xl;
     line-height: 1;
     margin-bottom: $spacer-sm;
     text-wrap: balance;
     text-wrap-style: balance;
 
+    &.m24-t-md {
+        font-size: 32px; // "subheading" size
+    }
+
     &.m24-t-lg {
-        font-size: $alias-text-title-h3;
+        font-size: $text-title-lg;
     }
 
     &.m24-t-2xl {
-        font-size: $alias-text-title-h1;
+        font-size: $text-title-2xl;
     }
 }
 

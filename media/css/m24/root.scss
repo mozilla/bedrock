@@ -56,13 +56,13 @@
     --text-title-sm: 16px;
 
     // body
-    --text-body-xl: 24px;
-    --text-body-lg: 18px;
-    --text-body-md: 16px;
+    --text-body-lg: 16px;
+    --text-body-md: 14px;
     --text-body-sm: 12px;
 
     // buttons
-    --text-button-lg: 24px;
+    --text-button-lg: 32px;
+    --text-button-md: 24px;
     --text-button-sm: 18px;
 }
 
@@ -93,10 +93,9 @@
         --text-title-sm: 16px;
 
         // body
-        --text-body-xl: 24px;
         --text-body-lg: 18px;
         --text-body-md: 16px;
-        --text-body-sm: 12px;
+        --text-body-sm: 14px;
 
         // buttons
         --text-button-lg: 32px;
@@ -128,13 +127,12 @@
         --text-title-xl: 80px;
         --text-title-lg: 48px;
         --text-title-md: 24px;
-        --text-title-sm: 16px;
+        --text-title-sm: 18px;
 
         // body
-        --text-body-xl: 24px;
-        --text-body-lg: 18px;
-        --text-body-md: 16px;
-        --text-body-sm: 12px;
+        --text-body-lg: 24px;
+        --text-body-md: 18px;
+        --text-body-sm: 16px;
 
         // buttons
         --text-button-lg: 48px;

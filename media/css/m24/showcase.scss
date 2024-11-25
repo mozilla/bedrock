@@ -4,13 +4,13 @@
 
 
 .m24-c-showcase-title {
-    font-size: $alias-text-title-h2;
+    font-size: $text-title-xl;
     margin-bottom: $spacer-sm;
 }
 
 .m24-c-showcase-body {
     font-weight: 500;
-    font-size: $text-body-xl;
+    font-size: $text-body-lg;
 
     @media #{$mq-xl} {
         max-width: grid(6);

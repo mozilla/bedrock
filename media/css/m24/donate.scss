@@ -9,7 +9,7 @@
 }
 
 .m24-c-donate-title {
-    font-size: $alias-text-title-h2;
+    font-size: $text-title-xl;
     margin-bottom: $spacer-xl;
     text-wrap-style: balance;
     font-weight: 600;
@@ -23,12 +23,7 @@
 
 .m24-c-donate-info {
     padding-top: $spacer-xl;
-    font-size: $alias-text-title-h5;
-}
-
-.m24-c-donate-info-title {
-    font-size: $alias-text-title-h4;
-    margin-bottom: $spacer-xs;
+    font-size: $text-title-sm;
 }
 
 .m24-c-donate-cta {
@@ -68,7 +63,6 @@
         padding-top: 0;
         text-wrap-style: balance;
         place-self: end start;
-        font-size: $text-body-lg;
 
         p:last-of-type {
             margin-bottom: 0;
