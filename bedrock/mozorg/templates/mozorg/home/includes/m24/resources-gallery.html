@@ -4,14 +4,15 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-m24.html" import grid_tile with context %}
+{% from "macros-m24.html" import gallery_tile with context %}
 
 <section class="m24-c-content m24-t-transition-next">
   <header class="m24-c-intro">
     <h2 class="m24-c-intro-title">Explore issues shaping the future of the internet</h2>
   </header>
   <div class="m24-c-gallery-container">
-    {{ grid_tile(
+
+    {{ gallery_tile(
       class='m24-l-grid-half',
       image=resp_img(
         url="img/home/2024/pni.jpg",
@@ -32,7 +33,7 @@
       link_attributes='rel="external" target="_blank" data-link-type="link" data-link-text="Search now"',
     ) }}
 
-    {{ grid_tile(
+    {{ gallery_tile(
       class='m24-l-grid-half',
       image=resp_img(
         url="img/home/2024/irl-podcast.jpg",
@@ -52,5 +53,6 @@
       cta_text='Listen',
       link_attributes='rel="external" data-link-type="link" data-link-text="Listen"',
     ) }}
+
   </div>
 </section>

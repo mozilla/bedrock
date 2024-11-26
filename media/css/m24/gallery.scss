@@ -5,14 +5,16 @@
 @use 'vars/lib' as *;
 
 .m24-c-gallery-container {
+    display: grid;
+    gap: $spacer-xl $grid-gutter;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: $spacer-xl;
+
     @media #{$mq-md} {
-        gap: $spacer-xl $grid-gutter;
-        display: grid;
         grid-template-columns: repeat(2, 1fr);
-        margin-top: $spacer-xl;
     }
 
-    @media #{$mq-lg} {
+    @media #{$mq-xl} {
         grid-template-columns: repeat(12, 1fr);
     }
 
@@ -22,32 +24,12 @@
 }
 
 .m24-c-gallery-tile {
-    margin-bottom: $spacer-xl;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
-    .m24-c-gallery-tile-content > :last-child {
-        margin-bottom: 0;
-    }
-
-    .m24-c-gallery-tile-image {
-        margin-bottom: $spacer-sm;
-    }
-
-    .m24-c-gallery-tile-title {
-        font-size: $text-title-md;
-        text-decoration: underline 0.075em transparent;
-        transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
-    }
-
-    .m24-c-gallery-tile-cta > span {
-        font-size: $text-body-lg;
-        font-weight: bold;
-        text-decoration: underline 0.075em transparent;
-        transition: text-decoration-color 150ms ease-in-out, color 150ms ease-in-out;
-    }
-
-    @media #{$mq-lg} {
+    @media #{$mq-xl} {
         grid-column: auto / span 3;
-        margin-bottom: 0;
 
         &.m24-l-grid-third {
             grid-column: auto / span 4;
@@ -61,40 +43,110 @@
             grid-column: auto / span 8;
         }
 
-        // Add the `.m24-l-grid-pair` class to the grid container for
-        // a minimal grid of two spaced out tiles.
-        .m24-l-grid-pair & {
-            &:nth-child(odd) {
-                grid-column: 2/6;
-            }
-
-            &:nth-child(even) {
-                grid-column: 8/-2;
-            }
+        &.m24-l-grid-three-quarters {
+            grid-column: 4 / span 9;
         }
     }
+}
+
+.m24-c-gallery-tile-title {
+    font-size: $text-title-md;
+    order: 2;
+    text-decoration: underline 0.075em transparent;
+    transition: text-decoration-color $fast $bezier, color $fast $bezier;
 }
 
 .m24-c-gallery-tile-link {
     text-decoration: none;
     color: inherit;
 
-    .m24-c-gallery-tile-image > * {
-        outline: $border-width solid transparent;
-        transition: outline-color 150ms ease-in-out;
+    span {
+        display: block;
     }
 
     &:hover,
     &:focus,
     &:active {
-        .m24-c-gallery-tile-image > * {
-            outline-color: $m24-color-dark-green;
-        }
+        color: $m24-color-dark-green;
+        text-decoration: underline;
+    }
 
-        .m24-c-gallery-tile-title,
-        .m24-c-gallery-tile-cta > span {
-            text-decoration-color: $m24-color-dark-green;
-            color: $m24-color-dark-green;
-        }
+    &[href]::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+}
+
+.m24-c-gallery-tile-image {
+    margin-bottom: 16px;
+    order: 1;
+
+    img {
+        display: block;
+    }
+}
+
+.m24-c-gallery-tile-image-desktop {
+    display: none;
+
+    @media #{$mq-xl} {
+        display: block;
+    }
+}
+
+.m24-c-gallery-tile-image-mobile {
+    @media #{$mq-xl} {
+        display: none;
+    }
+}
+
+.m24-c-gallery-tile-tag {
+    align-items: center;
+    background-color: $m24-color-white;
+    color: $m24-color-black;
+    display: flex;
+    font-size: 14px; // fixed size
+    font-weight: bold;
+    height: 32px;
+    order: 3;
+    padding: 0 8px;
+
+    .m24-c-gallery-tile-image + & {
+        left: 8px;
+        position: absolute;
+        top: 8px;
+    }
+}
+
+.m24-c-gallery-tile-content {
+    font-size: $text-body-sm;
+    order: 4;
+}
+
+.m24-c-gallery-tile-desc {
+    margin-bottom: 4px;
+}
+
+.m24-c-gallery-tile-cta {
+    display: none;
+}
+
+.m24-c-gallery-tile-cta > span {
+    align-items: center;
+    display: flex;
+    font-size: $text-button-sm;
+    font-weight: bold;
+    min-height: 48px;
+    text-decoration: underline;
+}
+
+@media #{$mq-lg} {
+    .m24-c-gallery-tile-cta {
+        display: block;
     }
 }
