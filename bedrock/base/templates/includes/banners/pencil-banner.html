@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if not hide_pencil_banner %}
+{% if not hide_pencil_banner and ftl_file_is_active('m24-pencil-banner') %}
 {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
 <aside class="m24-pencil-banner" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
   <div class="m24-pencil-banner-copy">
