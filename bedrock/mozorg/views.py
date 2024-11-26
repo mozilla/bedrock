@@ -152,12 +152,12 @@ class HomeView(L10nTemplateView):
 class AboutView(L10nTemplateView):
     m24_template_name = "mozorg/about/index-m24.html"
     template_name = "mozorg/about/index.html"
-    activation_files = ["mozorg/about"]
+    activation_files = ["mozorg/about", "mozorg/about-m24"]
 
-    ftl_files_map = {template_name: ["mozorg/about"]}
+    ftl_files_map = {template_name: ["mozorg/about"], m24_template_name: ["mozorg/about-m24"]}
 
     def get_template_names(self):
-        if switch("m24-website-refresh") and self.request.locale.startswith("en"):
+        if switch("m24-website-refresh") and ftl_file_is_active("mozorg/about-m24"):
             return [self.m24_template_name]
 
         return [self.template_name]

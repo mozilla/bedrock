@@ -21,8 +21,8 @@
       ) }}
     </div>
     <div class="m24-c-feature-text">
-      <h2 class="m24-c-feature-title">Together, we can keep the internet easy, safe and free, for everyone</h2>
-      <p class="m24-c-feature-cta"><a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Manifesto">Read our manifesto</a></p>
+      <h2 class="m24-c-feature-title">{{ ftl('m24-about-together-we-can') }}</h2>
+      <p class="m24-c-feature-cta"><a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Manifesto">{{ ftl('m24-about-read-our-manifesto') }}</a></p>
     </div>
   </div>
 </div>
@@ -41,9 +41,9 @@
       ),
       body=True,
       heading_level=3,
-      title="Advocate"
+      title=ftl('m24-about-advocate')
     ) %}
-      <p>We advocate for better products, holding governments and tech corporations accountable for what they create.</p>
+      <p>{{ ftl('m24-about-we-advocate-for') }}</p>
     {% endcall %}
 
     {% call picto(
@@ -57,9 +57,9 @@
       ),
       body=True,
       heading_level=3,
-      title="Monitor"
+      title=ftl('m24-about-monitor')
     ) %}
-      <p>We monitor developments, conduct research, and campaign to improve products and drive policies that will represent your interests.</p>
+      <p>{{ ftl('m24-about-we-monitor-developments') }}</p>
     {% endcall %}
 
     {% call picto(
@@ -73,9 +73,9 @@
       ),
       body=True,
       heading_level=3,
-      title="Build"
+      title=ftl('m24-about-build')
     ) %}
-      <p>We build products that put you in control — like Firefox, Fakespot and more.</p>
+      <p>{{ ftl('m24-about-we-build-products') }}</p>
     {% endcall %}
 
     {% call picto(
@@ -89,9 +89,9 @@
       ),
       body=True,
       heading_level=3,
-      title="Fund"
+      title=ftl('m24-about-fund')
     ) %}
-      <p>We fund and invest in the people and efforts taking technology, the internet, and AI in the right direction.</p>
+      <p>{{ ftl('m24-about-we-fund-and') }}</p>
     {% endcall %}
   </ul>
   </div>
