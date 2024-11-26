@@ -87,7 +87,7 @@ a:link {
     color: $m24-color-black;
     display: inline-block;
     font-family: var(--title-font-family);
-    font-size: $text-button-lg;
+    font-size: $text-button-xl;
     font-weight: 600;
 
     &:hover {
@@ -100,6 +100,15 @@ a:link {
 
     &:active {
         color: $m24-color-black;
+    }
+
+    &.m24-t-lg {
+        font-size: $text-button-lg;
+    }
+
+    &.m24-t-md {
+        font-family: var(--body-font-family);
+        font-size: $text-button-md;
     }
 
     &.m24-t-sm {

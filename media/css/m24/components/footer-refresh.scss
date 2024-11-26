@@ -27,6 +27,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-content {
     @include container;
     margin: 0 auto;
+    padding-bottom: $container-padding
 }
 
 // primary nav
@@ -87,7 +88,7 @@ $max-footer-content-width: $content-max;
     font-family: $primary-font;
     color: $m24-color-black;
     margin: 0;
-    font-size: $text-title-sm;
+    font-size: $text-body-sm;
     font-weight: 400;
 
     @media(min-width: $screen-md) {
@@ -184,8 +185,8 @@ $max-footer-content-width: $content-max;
 .moz24-footer-label {
     color: $m24-color-functional-gray;
     font-weight: 400;
-    font-size: $text-title-sm;
-    font-family: $secondary-font;
+    font-size: $text-body-sm;
+    font-family: $primary-font;
 }
 
 .moz24-footer-primary-list {
@@ -253,7 +254,6 @@ $max-footer-content-width: $content-max;
 .moz24-footer-donate {
     position: relative;
     border-radius: 0;
-    font-family: $secondary-font;
     font-weight: 500;
     background-color: transparent;
     color: $m24-color-black;
@@ -403,12 +403,12 @@ $max-footer-content-width: $content-max;
     display: flex;
     flex-direction: column;
     color: $m24-color-black;
-    font-weight: 600;
-    font-size: $text-body-sm;
+    font-size: 12px;
 
     @media(min-width: $screen-lg) {
         flex-direction: row;
         justify-content: space-between;
+        font-size: 14px;
     }
 }
 

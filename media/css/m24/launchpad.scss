@@ -5,7 +5,8 @@
 @use 'vars/lib' as *;
 
 $launchpad-logo-width: 32px;
-$launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
+$launchpad-logo-padding: 16px;
+$launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
 
 .m24-c-launchpad {
     margin: $spacer-xl 0;
@@ -114,7 +115,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
     ));
     color: $m24-color-black;
     display: inline-block;
-    font-size: $text-title-md;
+    font-size: $text-body-lg;
     font-weight: 600;
     grid-column: 1 / span 10;
     line-height: 1;
@@ -125,6 +126,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
     font-size: 12px; // custom mobile size
     grid-column: 1 / span 11;
     padding-left: $launchpad-logo-spacing;
+    padding-right: $launchpad-logo-padding; // give the arrow as much space from the text as the logo gets
 }
 
 @media #{$mq-md} {
@@ -142,6 +144,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
     .m24-c-launchpad-info {
         grid-column: 4 / 12;
         padding-left: 0;
+        padding-right: 0;
         align-content: end;
     }
 }
