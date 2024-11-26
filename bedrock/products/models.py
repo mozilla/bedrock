@@ -7,11 +7,13 @@ from django.db import models
 from wagtail.admin.panels import FieldPanel
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
+from wagtail_localize.fields import TranslatableField
 
 from bedrock.cms.models.pages import ArticleDetailPageBase, ArticleIndexPageBase
 from bedrock.products.views import vpn_available, vpn_available_mobile_sub_only
 
 
+@register_snippet
 class VPNCallToActionSnippet(TranslatableMixin):
     heading = models.CharField(
         max_length=255,
@@ -36,9 +38,6 @@ class VPNCallToActionSnippet(TranslatableMixin):
 
     def __str__(self):
         return f"{self.heading} – {self.locale}"
-
-
-register_snippet(VPNCallToActionSnippet)
 
 
 class VPNResourceCenterIndexPage(ArticleIndexPageBase):
@@ -102,6 +101,10 @@ class VPNResourceCenterDetailPage(ArticleDetailPageBase):
     ]
 
     template = "products/vpn/cms/resource-center/detail.html"
+
+    override_translatable_fields = ArticleDetailPageBase.override_translatable_fields + [
+        TranslatableField("call_to_action_bottom"),
+    ]
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request)
