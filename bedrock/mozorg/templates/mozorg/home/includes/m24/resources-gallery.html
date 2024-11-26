@@ -11,9 +11,10 @@
     <h2 class="m24-c-intro-title">Explore issues shaping the future of the internet</h2>
   </header>
   <div class="m24-c-gallery-container">
+
     {{ gallery_tile(
       class='m24-l-grid-half',
-      image_desktop=resp_img(
+      image=resp_img(
         url="img/home/2024/pni.jpg",
         srcset={
           'img/home/2024/pni-high-res.jpg': '1.5x'
@@ -34,7 +35,7 @@
 
     {{ gallery_tile(
       class='m24-l-grid-half',
-      image_desktop=resp_img(
+      image=resp_img(
         url="img/home/2024/irl-podcast.jpg",
         srcset={
           'img/home/2024/irl-podcast-high-res.jpg': '1.5x'
@@ -52,5 +53,6 @@
       cta_text='Listen',
       link_attributes='rel="external" data-link-type="link" data-link-text="Listen"',
     ) }}
+
   </div>
 </section>

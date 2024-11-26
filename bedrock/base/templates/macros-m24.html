@@ -26,8 +26,7 @@
   cta_text=None,
   desc=None,
   heading_level=3,
-  image_desktop=None,
-  image_mobile=None,
+  image=None,
   link_attributes=None,
   link_url=None,
   tag='',
@@ -40,14 +39,9 @@
         <span>{{ title }}</span>
       </a>
   </h{{ heading_level }}>
-  {% if image_desktop %}
+  {% if image %}
   <div class="m24-c-gallery-tile-image">
-    {% if image_mobile %}
-    <div class="m24-c-gallery-tile-image-desktop">{{ image_desktop|safe }}</div>
-    <div class="m24-c-gallery-tile-image-mobile">{{ image_mobile|safe }}</div>
-    {% else %}
-      {{ image_desktop|safe }}
-    {% endif %}
+    {{ image|safe }}
   </div>
   {% endif %}
   {% if tag %}
