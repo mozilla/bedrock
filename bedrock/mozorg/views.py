@@ -129,9 +129,9 @@ class HomeView(L10nTemplateView):
     m24_template_name = "mozorg/home/home-m24.html"
     template_name = "mozorg/home/home-new.html"
     old_template_name = "mozorg/home/home-old.html"
-    activation_files = ["mozorg/home-new", "mozorg/home"]
+    activation_files = ["mozorg/home-m24", "mozorg/home-new", "mozorg/home"]
 
-    ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"]}
+    ftl_files_map = {old_template_name: ["mozorg/home"], template_name: ["mozorg/home-new"], m24_template_name: ["mozorg/home-m24"]}
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
