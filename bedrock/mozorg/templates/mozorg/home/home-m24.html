@@ -13,12 +13,12 @@
   {%- elif LANG == 'en-GB' -%}
     Internet for people, not profit — Mozilla (UK)
   {%- else -%}
-    Internet for people, not profit
+    {{ ftl('m24-home-page-title') }}
   {%- endif -%}
 {%- endblock -%}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Did you know? Mozilla — the maker of Firefox — fights to keep the internet a global public resource, open and accessible to all.{% endblock %}
+{% block page_desc %}{{ ftl('m24-home-page-desc') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 

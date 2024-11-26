@@ -5,6 +5,12 @@
 
 ### URL: https://www-dev.allizom.org/
 
+# HTML Page title
+m24-home-page-title = Internet for people, not profit — { -brand-name-mozilla }
+
+# HTML page description
+m24-home-page-desc = Did you know? { -brand-name-mozilla } — the maker of { -brand-name-firefox } — fights to keep the internet a global public resource, open and accessible to all.
+
 ## Intro
 
 m24-home-welcome-to-mozilla = Welcome to { -brand-name-mozilla }
@@ -19,7 +25,7 @@ m24-home-explore-our-products = Explore our products
 m24-home-firefox = { -brand-name-firefox }
 m24-home-get-the-gold = Get the gold standard for browsing with speed, privacy and control.
 m24-home-thunderbird = { -brand-name-thunderbird }
-m24-home-go-chaosfree-with = Go chaos-free with one app for all your emails, calendars and contacts.
+m24-home-go-chaosfree-with = Simplify your life with one app for all your emails, calendars and contacts.
 m24-home-fakespot = { -brand-name-fakespot }
 # "fake laughs" is a joke and the ;) is a winking face to hint it's a joke. You can translate this in a away that keeps both the repetition and the joke: fake reviews, fake products, fake ___. Or leave the joke and winking face out
 m24-home-spot-fake-reviews = Spot fake reviews, products and maybe one day, even fake laughs ;)
@@ -39,21 +45,25 @@ m24-home-donate = Donate
 
 ## AI gallery
 
-m24-home-join-the-movement = Join the movement: AI for the people
-m24-home-our-mission-is = Our mission is to make it easy for people to build with, and collaborate on, open-source, trustworthy AI.
-m24-home-explore-mozilla-ai = Explore { -brand-name-mozilla } AI
-m24-home-llamafile = Llamafile
-m24-home-run-large-language = Run large language models (LLMs) easily on your computer with llamafile — no installation needed, and your data stays safe on your device.
-m24-home-get-started = Get started
-m24-home-turn-your-ai = Turn your AI idea into reality with our 12-week accelerator. Get funding, mentorship and a chance to pitch your innovation to investors.
+m24-home-tag-product = Product
+m24-home-tag-program = Program
+m24-home-tag-event = Event
 m24-home-read-more = Read more
-m24-home-lumigator = Lumigator
+m24-home-get-started = Get started
+m24-home-join-the-movement = Join the movement:<br> AI for the people
+m24-home-our-mission-is = Our mission is to make it easy for people to build with, and collaborate on, open-source, trustworthy AI.
+m24-home-explore-mozilla-ai = Explore { -brand-name-mozilla-ai }
+m24-home-llamafile = { -brand-name-llamafile }
+m24-home-run-large-language = Run large language models (LLMs) easily on your computer with { -brand-name-llamafile } — no installation needed, and your data stays safe on your device.
+m24-home-mozilla-builders= { -brand-name-mozilla } Builders
+m24-home-turn-your-ai = Turn your AI idea into reality with our 12-week accelerator. Get funding, mentorship and a chance to pitch your innovation to investors.
+m24-home-lumigator = { -brand-name-lumigator}
 m24-home-find-the-just = Find the “just right” LLM for your needs, use case and data — like Goldilocks, but with sharper teeth.
 m24-home-can-ai-be = Can AI be trustworthy?
 m24-home-in-a-world = In a world where AI innovation is driven by a select few, we’re risking monopolization of this technology. Applying open-source concepts to AI could change that.
 m24-home-watch-now = Watch now
-m24-home-mozilla-ventures = { -brand-name-mozilla } Ventures
-m24-home-got-an-earlystage = Got an early-stage startup? Pitch your company to { -brand-name-mozilla } Ventures and secure funding to drive positive change for the future of AI and the internet.
+m24-home-mozilla-ventures = { -brand-name-mozilla-ventures }
+m24-home-got-an-earlystage = Got an early-stage startup? Pitch your company to { -brand-name-mozilla-ventures } and secure funding to drive positive change for the future of AI and the internet.
 m24-home-common-voice = { -brand-name-common-voice }
 m24-home-donate-your-voice-to-make = Donate your voice to make speech technology more inclusive and accessible for everyone.
 m24-home-donate-your-voice = Donate your voice
@@ -69,7 +79,7 @@ m24-home-tag-podcast = Podcast
 m24-home-tag-video = Video
 m24-home-topic-news = News
 m24-home-topic-ai = Artificial Intelligence
-m24-home-topic-ps = Privacy &amp; Security
+m24-home-topic-ps = Privacy & Security
 m24-home-headline-you-ai = Headline: You, AI and the internet — what’s really going on?
 m24-home-introducing-anonym = Introducing { -brand-name-anonym }: Raising the bar for privacy-preserving digital advertising.
 m24-home-keeping-genai-technologies = Keeping GenAI technologies secure is a shared responsibility.
@@ -81,7 +91,7 @@ m24-home-kids-are-growing = Kids are growing up in a very online world. What’s
 
 ## Showcase
 
-m24-home-rise25-awards = Rise25 Awards
+m24-home-rise25-awards = { -brand-name-rise25 } Awards
 m24-home-get-to-know = Get to know the leaders championing trustworthy, inclusive and transparent AI development as they set a new standard and inspire the next generation of innovators.
 m24-home-watch-the-award = Watch the award show
 
@@ -91,6 +101,6 @@ m24-home-explore-issues-shaping = Explore issues shaping the future of the inter
 m24-home-privacy-not-included = *Privacy Not Included
 m24-home-search-our-reviews = Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.
 m24-home-pni-search-now = Search now
-m24-home-irl-podcast = IRL Podcast
+m24-home-irl-podcast = { -brand-name-irl-podcast }
 m24-home-our-multiaward-winning = Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.
 m24-home-irl-listen-now = Listen now
