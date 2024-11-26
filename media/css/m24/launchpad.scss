@@ -114,7 +114,7 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
     ));
     color: $m24-color-black;
     display: inline-block;
-    font-size: $alias-text-title-h4;
+    font-size: $text-title-md;
     font-weight: 600;
     grid-column: 1 / span 10;
     line-height: 1;
@@ -122,9 +122,15 @@ $launchpad-logo-spacing: calc($launchpad-logo-width + #{$grid-gutter});
 
 .m24-c-launchpad-info {
     color: $m24-color-dark-gray;
-    font-size: $text-body-lg;
+    font-size: 12px; // custom mobile size
     grid-column: 1 / span 11;
     padding-left: $launchpad-logo-spacing;
+}
+
+@media #{$mq-md} {
+    .m24-c-launchpad-info {
+        font-size: $text-body-md;
+    }
 }
 
 @media #{$mq-lg} {

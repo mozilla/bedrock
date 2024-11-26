@@ -17,7 +17,7 @@
 
 .m24-c-feature-title {
     margin-bottom: $spacer-xl;
-    font-size: $alias-text-title-h2;
+    font-size: $text-title-xl;
     line-height: 1;
     text-wrap: balance;
     text-wrap-style: balance;
@@ -55,7 +55,7 @@
 // picto
 
 .mzp-c-picto {
-    font-size: $text-body-md;
+    font-size: 16px;
     line-height: 1.2;
     margin-bottom: 0;
     text-wrap: balance;
@@ -72,7 +72,7 @@
 }
 
 .mzp-c-picto-heading {
-    font-size: $text-title-md;
+    font-size: 24px;
 }
 
 @media #{$mq-md} {
