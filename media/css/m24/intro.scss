@@ -28,7 +28,7 @@
     text-wrap-style: balance;
 
     &.m24-t-md {
-        font-size: 32px; // "subheading" size
+        font-size: $text-title-md;
     }
 
     &.m24-t-lg {

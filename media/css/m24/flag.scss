@@ -69,6 +69,12 @@
     }
 }
 
+@media #{$mq-max} {
+    .m24-c-flag-text {
+        grid-column: 1/9;
+    }
+}
+
 // temporary until transition can be refactored
 .m24-c-products {
     background-color: $m24-color-white;

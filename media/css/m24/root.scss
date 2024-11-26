@@ -60,9 +60,13 @@
     --text-body-sm: 12px;
 
     // buttons
-    --text-button-lg: 32px;
-    --text-button-md: 24px;
-    --text-button-sm: 18px;
+    --text-button-xl: 24px;
+    --text-button-lg: 18px;
+    --text-button-md: 16px;
+    --text-button-sm: 12px;
+
+    // labels
+    --text-label: 12px;
 }
 
 @media #{$mq-md} {
@@ -85,11 +89,11 @@
         --container-padding: 24px;
 
         // title
-        --text-title-2xl: 64px;
+        --text-title-2xl: 80px;
         --text-title-xl: 48px;
         --text-title-lg: 32px;
         --text-title-md: 24px;
-        --text-title-sm: 16px;
+        --text-title-sm: 18px;
 
         // body
         --text-body-lg: 18px;
@@ -97,8 +101,13 @@
         --text-body-sm: 14px;
 
         // buttons
-        --text-button-lg: 32px;
-        --text-button-sm: 18px;
+        --text-button-xl: 32px;
+        --text-button-lg: 24px;
+        --text-button-md: 18px;
+        --text-button-sm: 16px;
+
+        // labels
+        --text-label: 14px;
     }
 }
 
@@ -125,8 +134,8 @@
         --text-title-2xl: 128px;
         --text-title-xl: 80px;
         --text-title-lg: 48px;
-        --text-title-md: 24px;
-        --text-title-sm: 18px;
+        --text-title-md: 32px;
+        --text-title-sm: 24px;
 
         // body
         --text-body-lg: 24px;
@@ -134,8 +143,13 @@
         --text-body-sm: 16px;
 
         // buttons
-        --text-button-lg: 48px;
+        --text-button-xl: 48px;
+        --text-button-lg: 32px;
+        --text-button-md: 24px;
         --text-button-sm: 18px;
+
+        // labels
+        --text-label: 16px;
     }
 }
 
