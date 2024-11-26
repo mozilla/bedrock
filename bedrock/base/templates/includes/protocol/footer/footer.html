@@ -6,7 +6,7 @@
 
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer' %}
 
-{% if switch('m24-website-refresh') and ftl_file_is_active('footer-refresh') %}
+{% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
   {% include 'includes/protocol/footer/footer-refresh.html' %}
 {% else %}
 <footer class="mzp-c-footer {% if theme_class %}{{ theme_class }}{% endif %}" id="colophon" role="contentinfo">
