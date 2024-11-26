@@ -57,7 +57,7 @@ sentry-sdk==2.18.0
 supervisor==4.2.5
 timeago==1.0.16
 https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.1.3.tar.gz#egg=wagtaildraftsharing
-wagtail-localize-smartling==0.6.0
+wagtail-localize-smartling==0.6.1
 wagtail-localize==1.10
 Wand==0.6.13  # For animated GIF support
 Wagtail==6.1.3
