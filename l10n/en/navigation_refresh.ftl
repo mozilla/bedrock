@@ -22,7 +22,7 @@ navigation-refresh-our-work = Our Work
 navigation-refresh-mozilla-ai = { -brand-name-mozilla } AI
 navigation-refresh-mozilla-ai-v2 = { -brand-name-mozilla-ai }
 navigation-refresh-mozilla-ventures = { -brand-name-mozilla } Ventures
-navigation-refresh-mozilla-ventures-v2 = { -brand-name-mozilla-venture }
+navigation-refresh-mozilla-ventures-v2 = { -brand-name-mozilla-ventures }
 navigation-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
 
 ## Firefox
