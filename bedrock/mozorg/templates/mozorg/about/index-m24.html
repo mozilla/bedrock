@@ -6,11 +6,11 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}Learn About Mozilla{% endblock %}
+{% block page_title %}{{ ftl('m24-about-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.
+  {{ ftl('m24-about-page-desc') }}
 {% endblock %}
 
 {% block body_id %}about{% endblock %}
