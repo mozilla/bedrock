@@ -33,7 +33,7 @@ m24-about-we-fund-and = We fund and invest in the people and efforts taking tech
 m24-about-read-more = Read more
 m24-about-read-the-latest = Read the latest { -brand-name-mozilla } news & articles
 m24-about-14-ai-projects = 14 AI projects to watch: { -brand-name-mozilla }’s first Builders Accelerator cohort kicks off
-m24-about-at-our-rise25 = At our Rise25 Awards, the future of AI is trustworthy, inclusive and accountable
+m24-about-at-our-rise25 = At our { -brand-name-rise25 } Awards, the future of AI is trustworthy, inclusive and accountable
 m24-about-empowering-chicagos-entrepreneurs = Empowering Chicago’s entrepreneurs for generational change
 
 ## Showcase
