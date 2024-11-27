@@ -27,6 +27,10 @@
     text-wrap: balance;
     text-wrap-style: balance;
 
+    &.m24-t-sm {
+        font-size: $text-title-sm;
+    }
+
     &.m24-t-md {
         font-size: $text-title-md;
     }
