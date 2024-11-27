@@ -5,7 +5,7 @@
 ### URL: https://www-dev.allizom.org/about/
 
 # HTML Page title
-m24-about-page-title = Learn About { -brand-name-mozilla }
+m24-about-page-title = Learn about { -brand-name-mozilla }
 
 # HTML page description
 m24-about-page-desc = { -brand-name-mozilla } makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.
