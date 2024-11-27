@@ -22,11 +22,12 @@
 
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% set show_fundraising_banner = switch('fundraising-banner-giving2024') and LANG in ['en-US', 'en-GB', 'en-CA', 'de', 'fr'] %}
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'pl', 'pt-BR'] %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2024') and LANG in fundraising_banner_langs %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
 {% block experiments %}
-  {% if switch('fundraising-banner-giving2024') %}
+  {% if show_fundraising_banner %}
     {{ js_bundle('fundraising-banner-experiment') }}
   {% endif %}
 {% endblock %}
