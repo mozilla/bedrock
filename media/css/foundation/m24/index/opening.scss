@@ -1,0 +1,78 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+.m24-c-ar-opening-title {
+    font-size: $text-title-lg;
+    margin-bottom: $spacer-sm;
+}
+
+.m24-c-ar-opening-body,
+.m24-c-ar-opening-author {
+    font-weight: 500;
+    font-size: $text-body-md;
+}
+
+.m24-c-ar-opening {
+    @include grid;
+}
+
+.m24-c-ar-opening-header {
+    grid-column: 1/-1;
+    grid-row: 2/2;
+    margin-bottom: $spacer-md;
+    max-width: none;
+}
+
+.m24-c-ar-opening-media {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    a {
+        display: block;
+    }
+}
+
+@media #{$mq-md} {
+    .m24-c-ar-opening {
+        @include grid;
+    }
+
+    .m24-c-ar-opening-header {
+        display: flex;
+        flex-direction: column;
+        grid-column: 7/-1;
+        grid-row: 1/1;
+        justify-content: space-between;
+        margin-bottom: 0;
+    }
+
+    .m24-c-ar-opening-media {
+        grid-column: 1/7;
+        grid-row: 1/1;
+    }
+}
+
+@media #{$mq-lg} {
+    .m24-c-ar-opening-author {
+        align-items: flex-end;
+        column-gap: $grid-gutter;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        .m24-c-ar-opening-author-info {
+            margin-bottom: 0;
+        }
+
+        .m24-c-ar-opening-cta {
+            text-align: right;
+        }
+    }
+}

@@ -1,0 +1,145 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_2_3, article_2_5 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Backing bold ideas: Mozilla Ventures and responsible innovation - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Mohamed Nanabhay' %}
+{% set article_author_role = 'Managing Director, Mozilla Ventures' %}
+{% set article_hash = '#portfolio' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'Building a balanced portfolio' %}
+{% set article_title = 'Backing bold ideas: Mozilla Ventures and responsible innovation' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/mohamed.jpg') }}" width="100" height="100" alt="Mohamed Nanabhay">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/2-4-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/2-4-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/2-4-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/2-4-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Mozilla Ventures deeply believes enabling technology that can expand to other parts of the world makes everyone’s technology better. ' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          <a href="https://blog.mozilla.org/mozilla/mozilla-launches-first-of-its-kind-venture-fund-to-fuel-responsible-tech-companies-products/">Two years</a> ago we announced <a href="https://mozilla.vc/">Mozilla Ventures</a> and its core mission of investing in companies building technology designed to have a positive impact on people’s lives and society as a whole. Since then, adoption of AI has been both widespread and rapid, presenting vast opportunities alongside new challenges in terms of security, data privacy, and ethical usage and design.
+        </p>
+
+        <p>
+          Today, we’re at a critical juncture, much like we were 25 years ago when Mozilla played an important role in ensuring the growth and future of open source software. That’s why we are, now more than ever, driven to support an ecosystem of startups that are innovating in a responsible manner.
+        </p>
+
+        <p>
+          Unlike most Silicon Valley funds where the goal is to maximize investor profit, we believe that success is most meaningful when it balances positive impact and business growth. That’s why we are hyper-focused on three pillars: trustworthy AI, healthy communities and security and privacy.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Investing in a better AI future</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The companies we invest in are in the early and growth stages developing a wide range of technologies – and that spectrum is by design. Each one aims to push the industry in a more positive direction. So far, we’ve invested in over 45 startups across the world.
+        </p>
+
+        <p>
+          Trustworthy AI has been a <a href="https://foundation.mozilla.org/internet-health/trustworthy-artificial-intelligence/">key focus for Mozilla Foundation</a> since 2020. This perspective is the foundation for our thesis around AI, and we have since become one of the most active investors in founders who think deeply about what responsibility and trust means when deploying this technology.
+        </p>
+
+        <p>
+          We have invested in AI governance leaders such as <a href="https://www.credo.ai/?">Credo AI</a>, <a href="https://www.fiddler.ai/">Fiddler AI</a>, and <a href="https://www.holisticai.com/">Holistic AI</a>, and companies building the technical infrastructure for AI and machine learning (ML) training, deployment and management such as <a href="https://www.themisai.io/">Themis AI</a>, <a href="https://www.askvera.io/">Vera</a>, <a href="https://www.truepic.com/">TruePic</a>, and <a href="https://www.trail-ml.com/">Trail</a>. One portfolio company, <a href="https://www.armilla.ai/">Armilla AI</a>, is pioneering AI insurance offerings.
+        </p>
+
+        <p>
+          We're pushing back against the trend of big tech dominating with closed-source AI by supporting AI labs that are rethinking how we create and use technology in fresh, innovative ways. Like <a href="https://lelapa.ai/">Lelapa AI</a>, which is building resource-efficient language models in Africa; <a href="https://nousresearch.com/">Nous Research</a> who are working obsessively on open source AI development; <a href="https://flower.ai/">Flower AI</a> which has created the leading open source system that helps AI learn from data spread across different locations, keeping everything safe and private; <a href="https://probabl.ai/">Probabl</a> is a startup based on the ubiquitous scikit-learn open-source library; and <a href="http://Answer.AI">Answer.AI</a> is a new type of AI R&D lab that is building in public.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Fostering connections, collaboration and innovation</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We’ve also partnered with <a href="https://betaworks.com/">Betaworks</a> on their AI accelerators, bringing together startups that are creating tools to boost human creativity and collaboration. These programs not only help us discover innovative talent but also align with our mission to ensure technology works for people — not the other way around.
+        </p>
+
+        <p>
+          We don’t just fund startups — we build connections that grow the Mozilla ecosystem. For example, <a href="https://filament.dm/">Filament</a> worked with Mozilla Builders to expand the Uniffi toolkit for React Native. Now, startups can easily use Rust libraries with React Native, combining safety, speed, and cross-platform flexibility.
+        </p>
+
+        <p>
+          There are other examples of the seeds of our efforts sprouting in multiple ways:
+        </p>
+
+        <ul class="mzp-u-list-styled">
+          <li>We invested in <a href="https://www.pindo.io/">Pindo</a>, a company founded by former Mozilla Fellow, Remy Muhire. Remy is building products serving the communication needs of people in East Africa, as well as continuing his previous work at Mozilla on the <a href="https://commonvoice.mozilla.org">Common Voice</a> dataset.</li>
+          <li>Mozilla Ventures portfolio company <a href="https://www.germnetwork.com/">Germ Network</a>, which makes a privacy-preserving messaging app; the first consumer application to implement the <a href="https://blog.mozilla.org/mozilla/messaging-layer-security-is-now-an-internet-standard/">Message Layer Security protocol (MLS)</a>, a novel standard of communication created by the Internet Engineering Task Force (IETF). Mozilla was a core member of the working group that built this communications standard. </li>
+        </ul>
+
+        <p>All of these connections and collaborations are just the beginning of our work to bring more and more startups into the Mozilla ecosystem and share our mission with founders. By democratizing access to funding, we’re removing some of their biggest hurdles.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Exploring new ideas and markets</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We support visionary founders with bold ideas and a shared vision of impact, and work to help them scale responsibly. Mozilla Ventures deeply believes enabling technology that can expand to other parts of the world makes everyone’s technology better. This allows us to constantly learn and challenge ourselves, while bringing in fresh perspectives and helping ship more code.
+        </p>
+
+        <p>
+          While the future is uncertain, and vast challenges remain, we believe that the right investments today will shape a more inclusive and healthy online world for tomorrow.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_2_3('m24-l-grid-half m24-l-1-1') }}
+  {{ article_2_5('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

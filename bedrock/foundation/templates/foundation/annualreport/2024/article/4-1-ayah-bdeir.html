@@ -1,0 +1,151 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_3_2, article_4_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Shaping AI we can trust: Mozilla’s portfolio at work - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Ayah Bdeir' %}
+{% set article_author_role = 'Project Consultant' %}
+{% set article_hash = '#ai' %}
+{% set article_read_time = '5 min read' %}
+{% set article_tag_label = 'A Vision for AI and Data' %}
+{% set article_title = 'Shaping AI we can trust: Mozilla’s portfolio at work' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/ayah.jpg') }}" width="100" height="100" alt="Ayah Bdeir">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/4-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/4-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/4-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/4-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Working together, our community can build an ecosystem around open source AI technology that people can trust and which brings them joy and agency.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          People want a positive relationship with technology. A relationship we can be excited about, one where AI, phones and other devices delight us, make life easier and enrich our work lives. In the AI era, this is not how it feels. While the technology is unlocking profound societal benefits, ranging from productivity gains for individuals and small businesses, to AI-powered drug discovery, the harms from AI have also never been more pressing. We’re seeing AI being used in ways that make it easier to deceive and harass people on social media, perpetuate bias in the criminal justice system, and extract sensitive information from people’s online activity.
+        </p>
+
+        <p>
+          When Mozilla started, it felt like you could just hack your way to a different relationship with technology; You could bend it to your will. Today, it feels like the technology titans run the world. Six out of 10 of the world’s most valuable companies are U.S. west coast tech players (totaling <a href="https://www.statista.com/statistics/1350976/leading-tech-companies-worldwide-by-market-cap/">$14 trillion in market cap</a>) and they are defining the direction of AI. They are determining when and how AI shows up in our daily lives, and developing their AI models behind closed doors, often making it impossible to audit how these models work or too expensive or difficult to build your own.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          But there is a wave of pushback, and the open source ecosystem is gaining unprecedented momentum among AI practitioners. Consumers, small business, creators and governments are looking for someone to rally the people and build the tech that offers another bargain than the one the titans are offering: one pointed away from fear, and towards hope.
+        </p>
+
+        <p>
+          Mozilla has an opportunity to be this someone, to root in its open source history, and gather an alliance that will change the game, just as we did 25 years ago. Today, that means acting quickly to send AI in a new direction; a direction that puts people and communities in control of how AI shows up in their lives. That’s our North Star: a world where anyone and any community can shape, enjoy and trust AI.
+        </p>
+
+        <p>
+          Three core pillars guide this work towards this north star:
+        </p>
+
+        <p><strong>TODO - INSERT IMAGE HERE</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Making sure open source wins</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Open source AI is gaining traction: performance of open models is almost on par with the best closed models and Hugging Face reported an 880% increase in the number of generative AI model repositories in two years (<a href="https://blog.mozilla.org/en/mozilla/ai-openness-safety/">from 160,000 to 1.57 million</a>). In the private sector, according to a 2024 <a href="https://a16z.com/generative-ai-enterprise-2024/">study by the investment firm Andreessen Horowitz</a>, 46% of Fortune 500 company leaders say they strongly prefer to leverage open source models.
+        </p>
+
+        <p>
+          To ensure that the open source ecosystem continues to grow and thrive, Mozilla is investing in making sure open source tools and platforms can win on performance, safety and ease of use. Toward this end, our <a href="https://builders.mozilla.org/">Builders program</a> is accelerating and collaborating with ambitious open source developers by helping facilitate a Local AI LAMP stack and the <a href="https://foundation.mozilla.org/data-futures-lab/">Data Futures Lab</a> is supporting <a href="https://foundation.mozilla.org/data-futures-lab/projects/">new data governance models</a>.
+        </p>
+
+        <p>
+          At Mozilla.ai we’re working on a developer hub where builders can learn, create and collaborate on open source AI and we’re developing our own model evaluation tools to help developers move from concept to application with greater ease and confidence.
+        </p>
+
+        <p>
+          To support open source AI research, Mozilla will continue to invest in events and technical convenings — like the partnership with Columbia Institute of Global Policies to sponsor a <a href="https://blog.mozilla.org/mozilla/ai/introducing-columbia-convening-openness-and-ai/">meeting of scholars on Openness and AI</a>. The paper that came out of that “<a href="https://arxiv.org/pdf/2405.15802">Towards a Framework for Openness in Foundation Models</a>,” was followed closely by the <a href="https://opensource.org/blog/the-open-source-initiative-announces-the-release-of-the-industrys-first-open-source-ai-definition">Open Source Initiative (OSI)</a>’s release of the industry’s first Open Source AI definition as well as a convening focused <a href="https://blog.mozilla.org/mozilla/ai-openness-safety/">on AI openness and safety</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Promoting public interest AI</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          <a href="{{ url('mozorg.about.manifesto') }}">Mozilla’s Manifesto</a> calls upon us to build an internet that balances private and public interests. In the era of AI, this means building public goods, resources and orientation to ensure that AI is easy for communities to use for the public interest. Mozilla is helping by building tech, unlocking resources and talent, and pushing governments to create the foundation for “public interest AI.”
+        </p>
+
+        <p>
+          One of our biggest initiatives is <a href="https://commonvoice.mozilla.org">Common Voice</a>, the largest open source voice AI training dataset which is expanding from scripted speech to spontaneous speech, making it more inclusive to underserved languages around the globe. We’re deepening our focus on data through our collaboration with <a href="https://www.eleuther.ai/">EleutherAI</a> on creating the largest openly licensed dataset and model trained on an openly licensed dataset.
+        </p>
+
+        <p>
+          In 2025, we will expand our AI efforts to the creative community. Creative AI Futures grants will bring together underserved creative community organizations and professional academies, as well as government, to learn and prototype new AI programs. Meanwhile, our <a href="https://foundation.mozilla.org/responsible-computing-challenge/">Responsible Computing Challenge</a> will expand into Responsible AI in 2025, starting with South African schools, and ultimately becoming a global conference.
+        </p>
+
+        <p>
+          We are also moving forward with an ambitious public policy agenda on AI aimed at protecting and promoting the use of open source AI. This includes early work on the idea of a public alternative to commercial AI built by open source communities and nonprofit and government labs. We call this “public AI.”
+        </p>
+
+        <p>
+          In Europe, we’re engaging with the Information Commissioner’s Office (ICO) and the economic and labor communities to build a bridge between groups involved in policy and those that are technically proficient in AI. We also host various local <a href="https://www.mozillafestival.org/">MozFests</a> around the world throughout the year.
+        </p>
+
+        <p>
+          As a result of all these efforts, we are able to engage with people in a variety of meaningful ways — it’s our superpower. Working together, our community can build an ecosystem around open source AI technology that people can trust and which brings them joy and agency.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_3_2('m24-l-grid-half m24-l-4-5') }}
+  {{ article_4_2('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

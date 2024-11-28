@@ -1,0 +1,217 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_1_1, article_1_3 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Financing an Open Internet: Mozilla’s path forward - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Eric Muhlheim & Angela Plohman' %}
+{% set article_author_role = 'Chief Financial Officer & Chief Operating Officer' %}
+{% set article_hash = '#vision' %}
+{% set article_read_time = '6 min read' %}
+{% set article_tag_label = 'A Vision for Reinvention' %}
+{% set article_title = 'Financing an Open Internet: Mozilla’s path forward' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/eric.jpg') }}" width="100" height="100" alt="Eric Muhleim">
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/angela.jpg') }}" width="100" height="100" alt="Angela Plohman">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/1-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/1-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/1-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/1-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'We learned this when we built Firefox as an alternative to bigger, more dominant players in the web browser market.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla has shifted much of its philanthropic and advocacy work toward AI, experimenting with different approaches and learning what it takes to make a real impact. Early successes like the Common Voice project and the Responsible Computing Challenge proved that building more inclusive, values-driven AI is possible. This led Mozilla to launch new organizations and invest in startups aligned with its mission, all to shape the future of AI through diverse ideas, communities, and business models. We’re two years into a reinvention and focused on diversifying our offerings and revenue in the face of pressure in the browser market and potential revenue loss to Firefox.
+        </p>
+
+        <p>
+          In the past, Mozilla had two primary components: a nonprofit advocacy org and a browser company. More recently, we have become a portfolio of five organizations and companies under the Mozilla umbrella: Mozilla Foundation, Mozilla Corporation, Mozilla Ventures, Mozilla.ai, and <a href="https://www.thunderbird.net/">MZLA</a>. Each is committed to actualizing the values of the <a href="{{ url('mozorg.about.manifesto') }}">Mozilla Manifesto</a>, with a north star of ensuring that everyone can shape, enjoy, and trust AI. We’re reinventing Mozilla and making some big bets to stay relevant in the AI era and diversify our revenue. This is necessary for us to continue to be able to invest in and work with the open source community and guarantee that open source AI wins.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla’s novel financial model</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla has a unique financial model. The Mozilla Foundation, the sole owner of the Mozilla Corporation, enables us to prioritize internet users’ welfare over profit-driven motives. We were born from David and Goliath economics — and have had many sources of income over the years. Initially, Mozilla existed on the labor, code and goodwill of the developers collaborating on an open source alternative to Microsoft Internet Explorer. Firefox, Thunderbird, and the <a href="https://commonvoice.mozilla.org/">Common Voice</a> AI project are partly driven by <a href="{{ url('mozorg.contribute') }}">contributors and volunteers</a>. After Mozilla Foundation was formed, our work supporting open source efforts was funded by community donations.
+        </p>
+
+        <p>
+          As Mozilla has grown as a product organization, the requirement to fund our technical operations has meant an increased need for sources of revenue. Recently, the majority of this revenue has come in the form of commercial search partnerships. This money allowed us to sustain Firefox as a public benefit alternative to the major browsers.
+        </p>
+
+        <p>
+          This ability to combine different economic models is one of the things that makes Mozilla special, enabling us to collaborate with people and communities across a wide range of mission-oriented projects. But we need to diversify, not only to ensure a robust financial picture, but to be able to expand our ecosystem to support different markets and attract additional funding. As part of this diversification, we are making a number of big bets to bring fresh perspectives and help drive growth.
+        </p>
+
+        <p>
+          To make sense of our finances, it’s important to understand that we are a mission-driven organization. We are building sustainable products and supporting an open source ecosystem that is building technology designed to improve people’s lives and ensure a healthy internet. For us success isn’t just about balancing the books — it’s about ensuring that each piece of the portfolio progresses toward the collective goals. Here are business updates for each.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla Foundation</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          As a non-profit organization, Mozilla Foundation (MoFo) works with a broad movement of people, projects and organizations to protect and improve the internet as a public resource. In FY23, MoFo invested $26 million into three main program areas. $17.2 million went towards leadership development through grantmaking, supporting fellows and awardees working at the intersection of AI and climate justice, public policy, ethics, art and a range of other topics. We allocated $6.2 million towards movement building, investing in campaigns and our signature MozFest events. We also invested $2.6 million in agenda-setting, supporting research on issues at the intersection of technology and society, and propelling them into public conversation. All of this tied back to the Foundation’s overall focus on trustworthy AI.
+        </p>
+
+        <p>
+          In 2023, revenue included $7.8M in donations from the public, grants from foundations, and government funding, as well as $18.6 million in royalties from the Corporation and other Mozilla entities, which was reinvested into the Foundation’s charitable programs. The Foundation’s financial outlook under new Executive Director, Nabiha Syed, is strong, with grassroots fundraising growing and a new strategy for the future underway.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla Corporation</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla Corporation (MoCo) experienced a year-over-year decline in revenue, driven primarily by a decline in royalties from search partners tied to the non-renewal of distribution deals and a decline in display advertising related to over-reliance on certain industry verticals that experienced weakness in the second half of the year. Operating costs increased, driven by execution of its annual investment plan:
+        </p>
+
+        <ul class="mzp-u-list-styled">
+          <li>Increased product & engineering investment in Firefox aimed at increasing performance and compatibility across both desktop and mobile</li>
+          <li>Investments in product diversification beyond Firefox, including social apps (Mozilla Social), security products (VPN, Relay, and Monitor), and virtual reality (Hubs)</li>
+          <li>Significant investments to build Mozilla’s generative AI product portfolio, including the acquisition of shopping application Fakespot</li>
+        </ul>
+
+        <p>
+          These trends at Mozilla Corporation led to a substantial drop in EBITDA in 2023, which reinforced the need for a realignment of its long-term strategic plan.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">MoCo strategic realignment in 2024</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          This realignment began with a corporate restructuring in the first quarter of 2024 aimed primarily at exiting businesses unrelated to the future plan (Mozilla Social and Hubs); right-sizing investments in Firefox-adjacent businesses; and creating room to support early successes in generative AI products, such as Llamafile. Mozilla Corporation anticipates that its 2024 financial results will reflect another year of heavy investment as the company is set up for future growth of its diversified revenue streams. The revised strategic plan, adopted midyear in 2024 for 2025 and beyond, is focused on strategic growth and sustainability:
+        </p>
+
+        <ul class="mzp-u-list-styled">
+          <li><strong>Investing in Core Products</strong>: Firefox will continue to evolve and improve. We will focus on improvements, particularly in mobile while ensuring a seamless and empowering user experience across our ecosystem.</li>
+          <li><strong>Privacy-First Advertising</strong>: Driving innovation in privacy-preserving advertising through Anonym and Mozilla Ads to create a new and sustainable revenue source independent from search. </li>
+          <li><strong>AI Innovation</strong>: Scaling projects like Pulsar and Orbit that deliver responsible, user-centric AI solutions.</li>
+        </ul>
+
+        <p>
+          In short, Mozilla is strategically reorienting its operations, focusing on core product improvements, pioneering privacy-first advertising, and investing in responsible AI solutions, all to ensure sustainable growth and a more resilient future.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla Ventures</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We created Mozilla Ventures in 2022 with the goal of expanding our constellation by investing in the kind of companies creating technology and products aligned with the Mozilla Manifesto. Mozilla is the sole partner in this first fund, with a fund size of $35 million. To date, the fund has invested in 47 companies, deploying $12.7 million in capital for an average check size of ~$275k. It has invested across four continents in companies ranging from pre-seed stage to Series D.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">MZLA</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          MZLA achieved significant fundraising success, securing $8.6 million from Thunderbird users who support our mission to provide open source email and productivity apps that are secure, private and free for users around the world. 2023 was a year of significant investment into our team and our infrastructure, designed to ensure the long-term stability and continued sustainability of Thunderbird.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla.ai</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Launched in March 2023, we have committed $30M to create Mozilla.ai, a startup with a goal of making open source AI popular and successful with developers and hobbyists. The company is still in an early, pre-revenue stage of recruiting talent and developing exploratory projects.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Reserves management</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          At the end of 2022, Mozilla changed our strategy for managing our financial reserves. In prior years we took a purely defensive approach, investing solely in highly liquid fixed-income securities. Our revised approach is focused on delivering a total return to Mozilla after inflation, while maintaining sufficient liquid reserves to weather economic pressures and seize growth opportunities. Investment results from this revised strategy were a robust contributor to our bottom line in 2023, and we anticipate they will contribute strongly to our 2024 financials as well.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Growth and sustainability in 2025</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla’s financial story is one of deliberate investment and mission-driven strategy. While FY23 brought challenges, our thoughtful approach to managing resources and aligning investments has positioned us for sustainable growth. By broadening our focus to include all entities in the Mozilla ecosystem, we are ensuring a comprehensive approach to financial stability that supports our vision of a better internet.
+        </p>
+
+        <p>
+          The road ahead is complex, but with careful planning, bold investments, and the support of our community, Mozilla is ready to tackle the challenges of tomorrow while staying true to our mission of creating an internet that prioritizes people over profit.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_1_1('m24-l-grid-half m24-l-16-9') }}
+  {{ article_1_3('m24-l-grid-half m24-l-3-2') }}
+{% endset %}

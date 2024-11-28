@@ -1,0 +1,171 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_1_4, article_2_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Imagining, co-creating and translating our way to a better tech future - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Nabiha Syed' %}
+{% set article_author_role = 'Executive Director, Mozilla Foundation' %}
+{% set article_hash = '#portfolio' %}
+{% set article_read_time = '5 min read' %}
+{% set article_tag_label = 'Building a balanced portfolio' %}
+{% set article_title = 'Imagining, co-creating and translating our way to a better tech future' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/nabiha.jpg') }}" width="100" height="100" alt="Nabiha Syed">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/2-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/2-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/2-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/2-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'One of Mozilla’s superpowers is to be a convener, bringing together communities whose futures are intertwined to hash out what tomorrow’s tech should look like.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          I remember the first time I connected to the internet in the 1990s. That distinctive dial-up tone wasn't just noise – it was the sound of possibility. It was a time when we weren't “users” or “consumers;” we were creators, dreamers, and builders of digital worlds.
+        </p>
+
+        <p>
+          It's this spirit of wonder and possibility that <a href="https://foundation.mozilla.org/blog/why-im-joining-mozilla-as-executive-director/">drew me to the Mozilla Foundation</a> as its Executive Director, and it's what drives my vision for a future where technology serves the fullest sense of what it means to be human.
+        </p>
+
+        <p>
+          But let's be real. Today's internet is very different from the 90s dot com boomlet from which Mozilla itself emerged. Twenty-five years ago, we believed technology would transform our world for the better. (Spoiler alert: we still do!) But somewhere along the way, we morphed from a playground of creativity into a marketplace where our worth is measured in our level of distraction. Even as the internet has enhanced some social ties, it’s enforced other bubbles and barriers. We've (temporarily) stopped seeing each other on the internet.
+        </p>
+
+        <p>
+          Still, we remember what it used to be like, and we know which human needs matter. The author <a href="https://x.com/AuthorJMac/status/1773679197631701238">Joanna Maciejewska</a> said it perfectly:
+        </p>
+
+        <p>“I want AI to do my laundry and dishes so that I can do art and writing, not for AI to do my art and writing so that I can do my laundry and dishes.”</p>
+
+        <p>
+          Mozilla is a product company and a rights defender and a social movement, working at all times to center humanity, not just technology – and ensure that the future serves us. We want systems, software, networks and AI that are worthy of us. And our time. And our creativity.
+        </p>
+
+        <p>
+          The Foundation is on a journey to transform our current reality into this new vision. And to do it, we’re focused on three key concepts: Imagination, co-creation, and translation. These are the building blocks of a future with technology that centers humans, and not the machine. This aligns with many of the changes that are happening across the Mozilla portfolio.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">A new kind of ICT</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          First up: <strong>Imagining a radically better future</strong>. We need to dream bigger – way bigger.  The world we live in today emerged from the dreams of activists, doers, and makers decades ago.  If we want something different for our future, we have to first imagine the way out. I'm talking about an internet where we're not just pixel-watchers, but creative beings with unlimited potential. We need to imagine the path back to an open and free web that everyone can access … so we can then go about co-creating it.
+        </p>
+
+        <p>
+          Next: <strong>Co-creating like the digital citizens we are</strong>. Here's what makes the internet magical: You could be sitting in Nairobi, and I could be home in New York, and we could still build something amazing together. We’ve evolved the Foundation to meet you where you are – and end the difference between center and periphery. That's the future we need – one we shape hand-in-hand, across borders and cultures (including cultures of practice!). That’s why we’re starting to build in the open, sharing our change process transparently online. We know not all good ideas are invented here.
+        </p>
+
+        <p>
+          And finally: <strong>Translating the socio-technical divide</strong>. The only way we can make technology in the service of humanity is to put differently technical people in direct conversation with one another. We need engineers in the same room as social scientists. We need policymakers with marketmakers. And we need dancers and roboticists. We've got to help people understand how technology shapes their lives so they can make choices that actually work for them. And we need to get everyone talking about how we are impacted by both. One of Mozilla’s superpowers is to be a convener, bringing together communities whose futures are intertwined to hash out what tomorrow's tech should look like.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Being focused and bold</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          <strong>Strategic Operations</strong>. I want to make sure that Mozilla Foundation’s operations expertise isn’t just in service of our organization, but is shared with others. For instance, our technology platform is based on principles around lean data, developing products with privacy built-in, and thoughtful integration of AI — all core elements to an open organization. We’d like to share this institutional knowledge as a resource for people in our community and across the field.
+        </p>
+
+        <p>
+          <strong>Strategic Communications</strong>. Time to turn up the volume on Mozilla's story. We're going bold – think megaphone, not whisper. You'll see us lighting up public stages, diving into community conversations, and making sure our <a href="{{ url('mozorg.about.manifesto') }}">Mozilla Manifesto</a> isn't just words on a page, but a rallying cry that connects across our entire foundation.
+        </p>
+
+        <p>
+          <strong>Development</strong>. I want to flex our grassroots development muscles, because investing in and convening community is one of our unique strengths as a public foundation. We can scout early-stage talent in a way that no one else can. We see ideas before the market recognizes them. We have a voice with the powerful and the powerless – making us an attractive investment for impact.
+        </p>
+
+        <p>
+          <strong>Products and Programs</strong>. These are two incredible building blocks of our future. One of our big AI initiatives is investing in data sets, like <a href="https://commonvoice.mozilla.org/">Common Voice</a>, gathered in an ethical way and representing our values of diversity. And with our <a href="https://foundation.mozilla.org/responsible-computing-challenge/">Responsible Computing Challenge</a>, we invest in people who are building the technology of the future. Those programs, along with our partnerships with universities, activists, officials and others, are important elements in getting us to a better internet future.
+        </p>
+
+        <p>
+          <strong>Community and Campaigns</strong>. I call this our "people vertical" – the heartbeat of Mozilla where we organize our amazing fellows and campaigns. This is where we cultivate community – where we help people pool their power to make change in the world.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Targeting worthy AI</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          And as I said above, we’re also focused on making sure that AI is being built in service of humanity. We <a href="https://blog.mozilla.org/mozilla/ai/open-source-ai-definition/">laid some important groundwork</a> on safety and openness ahead of the <a href="https://opensource.org/ai">industry’s first Open Source AI definition</a>. But we're also asking bigger questions now. Like, is it worthy? Should we really be using precious resources — water, energy, time and brainpower — on AI applications that might not be worth their environmental cost?
+        </p>
+
+        <p>
+          That's why you'll see us doubling down on sustainability. We're founding members of the <a href="https://foundation.mozilla.org/what-we-fund/funding-collaboratives/">Green Screen Coalition</a>, and we're backing projects like <a href="https://codecarbon.io/">CodeCarbon</a>, an open source python library that helps developers track their code's carbon footprint. We're not just developing technology — we're crafting a future where innovation and responsibility are in sync.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">ICT for a better future</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          I joined Mozilla because I believe in the people’s power to change the world. I'm convinced that together we can imagine technology that's open, free, diverse and actually benefits society. And we can co-create it with a broad community of stakeholders, translating between the social and the technical.
+        </p>
+
+        <p>
+          And, in this wildly unpredictable moment in 2024, I know we can bring back that spark of joy and creativity that made us fall in love with the internet in the first place. But it’s up to us – we have to act now. Ready to join in?
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_1_4('m24-l-grid-half m24-l-1-1') }}
+  {{ article_2_2('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

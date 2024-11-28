@@ -1,0 +1,86 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+$toc-img-width-small: 32px;
+$toc-img-width-large: 40px;
+
+.m24-c-ar-toc {
+    margin-top: $spacer-3xl;
+}
+
+.m24-c-ar-toc-list-item {
+    border-bottom: 2px solid $m24-color-black;
+    display: block;
+
+    &:first-child {
+        border-top: 2px solid $m24-color-black;
+    }
+}
+
+.m24-c-ar-toc-list-item-link {
+    box-sizing: border-box;
+    color: $m24-color-black;
+    display: grid;
+    font-size: $text-body-lg;
+    font-weight: 600;
+    gap: $grid-gutter;
+    grid-template-columns: $toc-img-width-small 1fr;
+    padding: $spacer-md calc($toc-img-width-small + $spacer-lg) $spacer-md 0;
+    position: relative;
+    text-decoration: none;
+    width: 100%;
+
+    &::after {
+        background-image: url('/media/img/icons/m24-small/arrow-right-white.svg');
+        background-position: center left;
+        background-repeat: no-repeat;
+        background-size: 18px auto;
+        bottom: 0;
+        content: '';
+        display: block;
+        position: absolute;
+        right: $spacer-sm;
+        top: 0;
+        transition-duration: $fast;
+        transition-property: right;
+        transition-timing-function: $bezier;
+        width: 40px;
+    }
+
+    &:link,
+    &:visited {
+        color: $m24-color-black;
+    }
+
+    &:hover,
+    &:active,
+    &:focus {
+        &::after {
+            right: 0;
+        }
+    }
+}
+
+.m24-c-ar-toc-text {
+    align-items: center;
+    display: flex;
+}
+
+@media #{$mq-lg} {
+    .m24-c-ar-toc-list {
+        column-count: 2;
+        column-gap: $grid-gutter;
+    }
+
+    .m24-c-ar-toc-list-item:nth-child(5){
+        border-top: 2px solid $m24-color-black;
+    }
+
+    .m24-c-ar-toc-list-item-link {
+        grid-template-columns: $toc-img-width-large 1fr;
+        padding-right: calc($toc-img-width-small + $spacer-lg);
+    }
+}

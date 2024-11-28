@@ -1,0 +1,26 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+.m24-c-ar-hero {
+    @include grid;
+}
+
+.m24-c-ar-hero-title {
+    font-size: $text-title-2xl;
+    grid-column: 1/11;
+    margin-bottom: 0;
+}
+
+.m24-c-ar-hero-logo {
+    grid-column: 12/-1;
+    position: relative;
+
+    img {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+}
