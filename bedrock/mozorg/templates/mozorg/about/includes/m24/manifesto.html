@@ -10,13 +10,23 @@
   <div class="m24-c-feature">
     <div class="m24-c-feature-media">
       {{ resp_img(
-        url='img/mozorg/about/m24/manifesto-27-1.jpg',
+        url='img/mozorg/about/m24/manifesto-1440.jpg',
         srcset={
-          'img/mozorg/about/m24/manifesto-27-1-high-res.jpg': '2x'
+          "img/mozorg/about/m24/manifesto-375.jpg": "375w",
+          "img/mozorg/about/m24/manifesto-686.jpg": "686w",
+          "img/mozorg/about/m24/manifesto-1216.jpg": "1216w",
+          "img/mozorg/about/m24/manifesto-1440.jpg": "1440w",
+          "img/mozorg/about/m24/manifesto-2464.jpg": "2464w",
+          "img/mozorg/about/m24/manifesto-2752.jpg": "2752w",
+        },
+        sizes={
+          "(min-width: 1440px)": "1376w",
+          "default": "100vw",
         },
         optional_attributes={
-          'width': '1440',
-          'height': '682'
+          'width': '1376',
+          'height': '686',
+          'alt': 'A group of thinkers sitting in a circle on the floor sharing ideas.'
         }
       ) }}
     </div>
