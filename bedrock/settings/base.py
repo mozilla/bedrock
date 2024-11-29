@@ -2358,6 +2358,10 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         "pl": "pl-PL",
         "ru": "ru-RU",
     },
+    "JOB_NAME_PREFIX": config(
+        "WAGTAIL_LOCALIZE_JOB_NAME_PREFIX",
+        default="www.mozilla.org",
+    ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
 }

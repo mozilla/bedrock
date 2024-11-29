@@ -9,7 +9,7 @@ You can view the job at {{smartling_cms_dashboard_url}}
 
 From there, for each item listed under "Translations", please open it in a new tab, review and publish it.
 
-Please note that you may need to publish things in a particular order (e.g. Snippet before the Page that uses it; )
+Please note that you may need to publish things in a particular order (e.g. Snippet before the Page that uses it.)
 
 Many thanks
 
