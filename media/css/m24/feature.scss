@@ -13,6 +13,10 @@
 .m24-c-feature-media {
     padding-top: $container-padding;
     padding-bottom: $spacer-xl;
+
+    img {
+        display: block;
+    }
 }
 
 .m24-c-feature-title {
