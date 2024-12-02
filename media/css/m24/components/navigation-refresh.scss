@@ -102,17 +102,17 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .js .m24-c-navigation-menu-button {
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     color: $color-black;
     display: block;
+    float: right;
     font-family: $primary-font;
     font-weight: 600;
     height: 32px;
     margin: 4px 0 0;
     padding: 0;
     position: relative;
-    @include bidi(((float, right, left),));
 
     &::after {
         background: $color-black;
@@ -139,6 +139,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         display: none;
         margin: 24px 0;
     }
+}
+
+[dir='rtl'].js .m24-c-navigation-menu-button {
+    float: left;
 }
 
 .m24-c-navigation-logo-link {
@@ -228,12 +232,17 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         border-bottom: transparent;
 
         .m24-c-menu-title {
-            @include bidi(((padding-left, 48px, padding-right, 48px),));
+            @include bidi(((padding-left, $spacing-md, padding-right, $spacing-md),));
+
+            &::before {
+                content: '/';
+                padding: 0 $spacing-xs;
+            }
         }
 
         .m24-c-menu-panel {
             display: block;
-            @include bidi(((animation, nav-slide-in 0.45s ease, nav-slide-in-reverse 0.45s ease),));
+            @include bidi(((animation, nav-slide-in 450ms ease, nav-slide-in-reverse 450ms ease),));
 
             @media (prefers-reduced-motion: reduce) {
                 @include bidi(((animation, none, none),));
@@ -242,20 +251,22 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     }
 
     // Arrow styles for mobile menu items.
-    &::before {
-        background: url('/media/img/m24/arrow-dark-up.svg') top left repeat;
+    &::after {
+        background: url('/media/img/icons/m24-small/up-arrow.svg') center center no-repeat;
         content: '';
         height: 20px;
         position: absolute;
-        top: 10px;
+        top: 0;
         width: 20px;
+        padding: $spacing-xs 0;
         @include bidi((
             (transform, rotate(90deg), rotate(-90deg)),
             (right, 8px, left, auto),
         ));
+        @include background-size(14px, 14px);
     }
 
-    &.mzp-is-selected::before {
+    &.mzp-is-selected::after {
         @include bidi((
             (transform, rotate(-90deg), rotate(90deg)),
             (left, 8px, right, auto),
@@ -271,6 +282,11 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
             .m24-c-menu-title {
                 color: $m24-color-dark-green;
                 @include bidi(((padding-left, 0, padding-right, 0),));
+
+                &::before {
+                    content: none;
+                    display: none;
+                }
             }
 
             &::after {
@@ -282,7 +298,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
             }
         }
 
-        &::before {
+        &::after {
             display: none;
         }
     }
@@ -310,7 +326,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     .m24-c-menu-category-has-icon {
         .m24-c-menu-title-icon {
-            @include bidi(((margin-right, 8px, margin-right, 8px),));
+            @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
         }
 
         .m24-c-menu-title::after {
@@ -329,9 +345,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-menu-title {
+    align-items: center;
     border: none;
     color: $color-black;
-    display: block;
+    display: flex;
     font-family: $primary-font;
     font-size: $text-button-sm;
     font-weight: 600;
@@ -339,6 +356,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     position: relative;
     text-decoration: none;
     width: 100%;
+
+    .m24-c-menu-title-icon {
+        @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
+    }
 
     @media #{$mq-md} {
         &::after {
@@ -388,8 +409,14 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-menu-panel .m24-c-menu-panel-container {
+    margin: 0 auto;
+
     @media #{$mq-md} {
         padding: $spacer-lg 0;
+    }
+
+    @media #{$mq-lg} {
+        max-width: grid(8);
     }
 }
 
@@ -423,17 +450,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         .m24-c-menu-item-title {
             border: none;
             position: relative;
-
-            &::after {
-                background: $color-black;
-                bottom: 1px;
-                content: "";
-                display: block;
-                height: 1px;
-                left: 0;
-                position: absolute;
-                width: 100%;
-            }
         }
     }
 }
@@ -458,6 +474,13 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
         &::after {
             background: $m24-color-dark-green;
+            bottom: 1px;
+            content: "";
+            display: block;
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
         }
     }
 
@@ -534,16 +557,33 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     text-decoration: none;
     width: fit-content;
 
-    svg path {
-        fill: $color-black;
+    svg {
+        @include bidi((
+            (left, auto, 0),
+            (margin-left, $spacing-xs, 0),
+            (margin-right, 0, $spacing-xs),
+            (right, 0, auto),
+            (transition-property, right, left),
+            (transform, none, rotate(-180deg)),
+        ));
+        height: 0.8em;
+        position: relative;
+        top: 0.15em;
+        transition-duration: $fast;
+        transition-timing-function: $bezier;
+        width: auto;
     }
 }
 
-.m24-c-menu-panel .m24-c-menu-category-link a:hover {
+.m24-c-menu-panel .m24-c-menu-category-link a:hover,
+.m24-c-menu-panel .m24-c-menu-category-link a:focus {
     color: $m24-color-dark-green;
 
-    svg path {
-        fill: $m24-color-dark-green;
+    svg {
+        @include bidi((
+            (right, -$spacing-sm, auto),
+            (left, auto, -$spacing-sm),
+        ));
     }
 }
 
@@ -565,17 +605,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         border: none;
         font-weight: 600;
         position: relative;
-
-        &::after {
-            background: $color-black;
-            bottom: 1px;
-            content: "";
-            display: block;
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-        }
     }
 }
 
@@ -583,19 +612,16 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited:hover {
     .m24-c-menu-item-title {
         border: none;
-
-        &::after {
-            background: $m24-color-dark-green;
-        }
     }
 }
 
 // Menu panel close button shown on desktop sized view ports.
 .m24-c-menu-button-close {
+    @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
+    @include image-replaced;
     background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
-    border-radius: $border-radius-sm;
-    border: none;
-    box-shadow: $box-shadow-sm;
+    @include background-size(20px, 20px);
+    border: $border-width solid transparent;
     cursor: pointer;
     display: none;
     height: 24px;
@@ -603,9 +629,12 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     position: absolute;
     top: 15px;
     width: 24px;
-    @include background-size(20px, 20px);
-    @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
-    @include image-replaced;
+    transition: border-color $fast $bezier;
+
+    &:hover,
+    &:focus {
+        border-color: $m24-color-medium-gray;
+    }
 }
 
 // page content - hide all content except for the nav when mobile nav menu is open

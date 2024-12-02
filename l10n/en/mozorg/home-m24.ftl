@@ -34,6 +34,8 @@ m24-home-mozilla-vpn = { -brand-name-mozilla-vpn }
 m24-home-keep-your-location = Keep your location and online adventures private — stream like a local, anywhere.
 m24-home-mozilla-monitor = { -brand-name-mozilla-monitor }
 m24-home-get-a-headsup = Get a heads-up if your personal info is at risk and lock it down like a pro.
+m24-home-firefox-relay = { -brand-name-firefox-relay }
+m24-home-mask-your-email = Mask your email and phone number so you only get the messages you want.
 
 ## Donate
 
