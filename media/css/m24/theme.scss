@@ -4,8 +4,8 @@
 
 @use 'vars/lib' as *;
 
-.m24-t-light-alt {
-    background-color: $m24-color-white-alt;
+.m24-t-alt {
+    background-color: $m24-color-alt-white;
 }
 
 .m24-t-dark {
@@ -13,8 +13,8 @@
     background-color: $m24-color-white;
     color: $m24-color-black;
 
-    &.m24-t-light-alt {
-        background-color: $m24-color-white-alt;
+    &.m24-t-alt {
+        background-color: $m24-color-alt-white;
     }
 }
 

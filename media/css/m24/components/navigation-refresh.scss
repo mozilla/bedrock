@@ -28,7 +28,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
 .m24-navigation-refresh {
     background-color: $color-white;
-    border-bottom: $border-width solid $m24-color-medium-gray;
+    border-bottom: $border-width solid $m24-color-light-mid-gray;
     display: flex;
     width: 100%;
 
@@ -391,7 +391,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     @include border-box;
 
     @media #{$mq-md} {
-        border-bottom: $border-width solid $m24-color-medium-gray;
+        border-bottom: $border-width solid $m24-color-light-mid-gray;
         left: 0;
         overflow: auto;
         padding: 0;
@@ -648,7 +648,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     &:hover,
     &:focus {
-        border-color: $m24-color-medium-gray;
+        border-color: $m24-color-mid-gray;
     }
 }
 
