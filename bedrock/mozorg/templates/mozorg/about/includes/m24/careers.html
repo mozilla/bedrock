@@ -16,10 +16,126 @@
 <div class="m24-c-careers">
   <h2 class="m24-c-careers-title">{{ ftl('m24-about-join-us-and') }}</h2>
   <div class="m24-c-careers-media">
-    {{ career_pic('careers1-2-3', 'careers1-1-1') }}
-    {{ career_pic('careers2-2-3', 'careers2-1-1') }}
-    {{ career_pic('careers3-2-3', 'careers3-1-1') }}
-    {{ career_pic('careers4-2-3', 'careers4-1-1') }}
+
+    {{ picture(
+        url="img/mozorg/about/m24/careers/careers-1-desktop-432.jpg",
+        sources=[
+          {
+            'media': '(max-width: 767px)',
+            'srcset': {
+              "img/mozorg/about/m24/careers/careers-1-mobile-375.jpg": "375w",
+              "img/mozorg/about/m24/careers/careers-1-mobile-432.jpg": "432w",
+            },
+            'sizes': {
+              "default": "calc(50vw - 16px)",
+            },
+          },
+          {
+            'srcset': {
+              "img/mozorg/about/m24/careers/careers-1-desktop-230.jpg": "230w",
+              "img/mozorg/about/m24/careers/careers-1-desktop-432.jpg": "432w",
+            },
+            'sizes': {
+              "(min-width: 1440px)": "432px",
+              "default": "calc(100vw - 64px / 6)",
+            },
+          },
+        ],
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "",
+        }
+    ) }}
+    {{ picture(
+      url="img/mozorg/about/m24/careers/careers-2-desktop-432.jpg",
+      sources=[
+        {
+          'media': '(max-width: 767px)',
+          'srcset': {
+            "img/mozorg/about/m24/careers/careers-2-mobile-375.jpg": "375w",
+            "img/mozorg/about/m24/careers/careers-2-mobile-432.jpg": "432w",
+          },
+          'sizes': {
+            "default": "calc(50vw - 16px)",
+          },
+        },
+        {
+          'srcset': {
+            "img/mozorg/about/m24/careers/careers-2-desktop-230.jpg": "230w",
+            "img/mozorg/about/m24/careers/careers-2-desktop-432.jpg": "432w",
+          },
+          'sizes': {
+            "(min-width: 1440px)": "432px",
+            "default": "calc(100vw - 64px / 6)",
+          },
+        },
+      ],
+      optional_attributes={
+        "loading": "lazy",
+        "alt": "",
+      }
+  ) }}
+
+  {{ picture(
+    url="img/mozorg/about/m24/careers/careers-3-desktop-432.jpg",
+    sources=[
+      {
+        'media': '(max-width: 767px)',
+        'srcset': {
+          "img/mozorg/about/m24/careers/careers-3-mobile-375.jpg": "375w",
+          "img/mozorg/about/m24/careers/careers-3-mobile-432.jpg": "432w",
+        },
+        'sizes': {
+          "default": "calc(50vw - 16px)",
+        },
+      },
+      {
+        'srcset': {
+          "img/mozorg/about/m24/careers/careers-3-desktop-230.jpg": "230w",
+          "img/mozorg/about/m24/careers/careers-3-desktop-432.jpg": "432w",
+        },
+        'sizes': {
+          "(min-width: 1440px)": "432px",
+          "default": "calc(100vw - 64px / 6)",
+        },
+      },
+    ],
+    optional_attributes={
+      "loading": "lazy",
+      "alt": "",
+    }
+) }}
+
+{{ picture(
+  url="img/mozorg/about/m24/careers/careers-4-desktop-432.jpg",
+  sources=[
+    {
+      'media': '(max-width: 767px)',
+      'srcset': {
+        "img/mozorg/about/m24/careers/careers-4-mobile-375.jpg": "375w",
+        "img/mozorg/about/m24/careers/careers-4-mobile-432.jpg": "432w",
+      },
+      'sizes': {
+        "default": "calc(50vw - 16px)",
+      },
+    },
+    {
+      'srcset': {
+        "img/mozorg/about/m24/careers/careers-4-desktop-230.jpg": "230w",
+        "img/mozorg/about/m24/careers/careers-4-desktop-432.jpg": "432w",
+      },
+      'sizes': {
+        "(min-width: 1440px)": "432px",
+        "default": "calc(100vw - 64px / 6)",
+      },
+    },
+  ],
+  optional_attributes={
+    "loading": "lazy",
+    "alt": "",
+  }
+) }}
+
   </div>
   <p class="m24-consider-cta-info">{{ ftl('m24-about-join-our-team') }}</p>
   <div class="m24-c-careers-cta">
