@@ -106,6 +106,10 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     &.m24-t-product-thunderbird::before {
         background-image: url('/media/img/logos/thunderbird/logo-thunderbird.svg');
     }
+
+    &.m24-t-product-relay::before {
+        background-image: url('/media/protocol/img/logos/firefox/relay/logo.svg');
+    }
 }
 
 .m24-c-launchpad-title {

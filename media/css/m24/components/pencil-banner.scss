@@ -21,21 +21,22 @@
     }
 
     .m24-pencil-banner-close {
-        background: transparent url('/media/img/icons/m24-small/close.svg') center center no-repeat;
-        border: none;
-        cursor: pointer;
-        height: 24px;
-        position: absolute;
-        top: $spacer-sm;
-        width: 24px;
-        @include background-size(24px 24px);
         @include bidi(((right, $spacer-sm, auto), (left, auto, $spacer-sm)));
         @include image-replaced;
+        background: transparent url('/media/img/icons/m24-small/close.svg') center center no-repeat;
+        @include background-size(20px 20px);
+        border: $border-width solid transparent;
+        cursor: pointer;
+        height: 24px;
+        padding: var(--spacer-xs);
+        position: absolute;
+        top: $spacer-sm;
+        transition: border-color $fast $bezier;
+        width: 24px;
 
         &:hover,
         &:focus {
-            @include transition(transform 0.1s ease-in-out);
-            @include transform(scale(1.1));
+            border-color: $m24-color-green;
         }
     }
 }
