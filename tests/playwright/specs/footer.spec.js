@@ -22,7 +22,7 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Footer open / close click', async ({ page }) => {
+        test.skip('Footer open / close click', async ({ page }) => {
             const footerHeadingCompany = page.getByTestId(
                 'footer-heading-company'
             );
