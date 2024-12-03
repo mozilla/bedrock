@@ -35,7 +35,7 @@
         transform: translateZ(0);
         width: 100px;
         height: auto;
-        fill: $m24-color-black; // inverts to white in dark theme section
+        fill: $m24-color-green; // zilla green
     }
 }
 
@@ -158,9 +158,10 @@
 // When no JS
 // - hide animation SVG and button
 // - show static SVG
-.no-js {
+.no-js,
+[data-m24-hero-animation="false"] {
     .m24-c-flag-button {
-        display: none;
+        visibility: hidden; // reserve space
     }
 
     .m24-c-flag-media-animation {

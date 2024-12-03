@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="m24-t-dark m24-t-alt ">
+<div class="m24-t-dark m24-t-alt" data-m24-hero-animation="{{ switch('m24-hero-animation') | lower }}">
   <section class="m24-c-flag" data-animation-running="false">
     <button class="m24-c-flag-button js-animation-button" aria-live="assertive">
       <span class="m24-c-flag-button-pause"><img src="{{ static('img/m24/icon-pause.svg') }}" alt=""> <span class="m24-c-flag-button-text">{{ ftl('ui-pause-animation') }}</span></span>
@@ -16,7 +16,7 @@
       <p class="m24-c-flag-cta"><a href="{{ url('mozorg.about.index') }}" class="m24-c-cta m24-t-lg" data-cta-text="Learn about us">{{ ftl('m24-home-learn-about-us') }}</a></p>
     </div>
     <div class="m24-c-flag-media">
-      <svg class="m24-c-flag-media-static" xmlns="http://www.w3.org/2000/svg" width="216" height="243" fill="none" viewBox="0 0 216 243"><path d="M93.573 29v20.734h72.565v5.351l-61.196 22.238v18.728l61.196 22.237v5.352H72.172v20.734h115.367v-37.788l-49.826-17.224v-5.349l49.826-17.222V29H93.573ZM29.034 214.6h23.743V29H29.034v185.6ZM72.172 71.136h21.401V49.734H72.172v21.402Z" style="fill:#fff;fill-opacity:1"/></svg>
+      <svg class="m24-c-flag-media-static" xmlns="http://www.w3.org/2000/svg" width="216" height="243" fill="none" viewBox="0 0 216 243"><path d="M93.573 29v20.734h72.565v5.351l-61.196 22.238v18.728l61.196 22.237v5.352H72.172v20.734h115.367v-37.788l-49.826-17.224v-5.349l49.826-17.222V29H93.573ZM29.034 214.6h23.743V29H29.034v185.6ZM72.172 71.136h21.401V49.734H72.172v21.402Z" /></svg>
       <svg class="m24-c-flag-media-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176.26 200.19">
         <defs>
             <filter id="dilate" x="-10%" y="-10%" width="120%" height="120%">
