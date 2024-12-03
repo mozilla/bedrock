@@ -19,9 +19,6 @@
 @use 'theme';
 @use 'transition';
 
-$curve: cubic-bezier(0.5, 0, 0, 1);
-$slow: .8s;
-
 /* Protocol overrides ------------------------------------------------------------ */
 
 body {
@@ -96,7 +93,7 @@ a:link {
     linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
     background-repeat: no-repeat;
     background-position:
-        left var(--c, 100%) top 100%;
+        left var(--cta-bg-position, 100%) top 100%;
     background-size: 400% 2px;
 
     &:link {
@@ -105,8 +102,8 @@ a:link {
 
     &:link:hover,
     &:link:hover:visited {
-        --c: 0%;
-        transition: $slow $curve;
+        --cta-bg-position: 0%;
+        transition: $slow $bezier;
     }
 
     &:focus-visible {
