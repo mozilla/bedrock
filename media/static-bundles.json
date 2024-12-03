@@ -1638,7 +1638,6 @@
         "js/base/protocol/m24-menu.es6.js",
         "js/base/protocol/m24-navigation.es6.js",
         "js/base/protocol/init-m24-navigation.es6.js"
-
       ],
       "name": "m24-ui"
     },

@@ -198,7 +198,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-navigation-menu {
-    border-top: $border-width solid $m24-color-medium-gray;
     margin-bottom: 0;
     width: 100%;
 
@@ -398,7 +397,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         padding: 0;
         position: absolute;
         right: auto;
-        top: 58px;
+        top: calc(100% + #{$border-width});
         width: 100%;
     }
 }
