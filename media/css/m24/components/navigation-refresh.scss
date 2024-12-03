@@ -74,7 +74,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     @media #{$mq-md} {
         display: block;
-        padding: $spacer-sm $spacer-md 0;
+        padding: $spacer-sm 0 0;
         width: auto;
     }
 }
@@ -85,7 +85,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     padding: 0;
     position: relative;
     width: 100%;
-    @include clearfix;
 
     @media #{$mq-md} {
         align-items: start;
@@ -93,6 +92,8 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         flex-direction: row;
         justify-content: space-between;
         position: static;
+        padding: 0 $container-padding;
+        box-sizing: border-box;
     }
 }
 
@@ -158,6 +159,11 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         height: 24px;
         padding: 0;
     }
+}
+
+.spacer-gif {
+    display: inline-block;
+    width: 100px;
 }
 
 // Mobile navigation menu with JS enabled.
@@ -420,13 +426,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
 .m24-c-menu-panel .m24-c-menu-panel-container {
     margin: 0 auto;
+    max-width: $content-max;
 
     @media #{$mq-md} {
         padding: $spacer-lg 0;
-    }
-
-    @media #{$mq-lg} {
-        max-width: grid(8);
     }
 }
 
@@ -442,7 +445,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     padding: 0;
 
     @media #{$mq-md} {
-        min-width: 216px;
         width: auto;
     }
 
@@ -506,6 +508,9 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     @media #{$mq-md} {
         display: flex;
         padding: 0 $grid-margin;
+        column-gap: $spacer-lg;
+        max-width: grid(8);
+        margin: 0 auto;
     }
 
     .m24-mzp-l-content-container {
@@ -529,6 +534,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     flex-direction: column;
     margin: 0 auto;
     padding: $spacer-md $grid-margin;
+    max-width: $content-max;
 
     @media #{$mq-md} {
         padding: 0 $grid-margin;
@@ -606,7 +612,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     .m24-c-menu-item-icon {
         height: 16px;
         width: 16px;
-        @include bidi(((padding-right, 4px, 0), (padding-left, 0, 4px)));
+        @include bidi(((padding-right, 8px, 0), (padding-left, 0, 8px)));
     }
 }
 
