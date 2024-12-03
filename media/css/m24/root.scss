@@ -7,13 +7,16 @@
 :root {
     // black and white
     --m24-white: #{$token-color-white};
+    --m24-off-white: #{$token-color-off-white};
     --m24-black: #{$token-color-black};
+    --m24-off-black: #{$token-color-off-black};
 
     // gray
     --m24-light-gray: #{$token-color-light-gray};
-    --m24-medium-gray: #{$token-color-medium-gray};
+    --m24-light-mid-gray: #{$token-color-light-mid-gray};
+    --m24-mid-gray: #{$token-color-mid-gray};
+    --m24-dark-mid-gray: #{$token-color-dark-mid-gray};
     --m24-dark-gray: #{$token-color-dark-gray};
-    --m24-functional-gray: #{$token-color-functional-gray-on-white};
 
     // green
     --m24-green: #{$token-color-green};
