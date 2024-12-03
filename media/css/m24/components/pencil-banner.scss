@@ -18,6 +18,11 @@
             color: $m24-color-black;
             margin-bottom: 0;
         }
+
+        :link,
+        :visited {
+            color: $m24-color-black;
+        }
     }
 
     .m24-pencil-banner-close {
