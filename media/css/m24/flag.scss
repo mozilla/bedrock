@@ -42,7 +42,7 @@
 .m24-c-flag-button {
     $font-size: 0.75;
     all: unset;
-    background-color: $m24-color-medium-gray;
+    background-color: $m24-color-dark-mid-gray;
     color: $m24-color-white;
     font-family: $primary-font;
     font-size: calc(#{$font-size} * 1rem);
@@ -58,7 +58,7 @@
     }
 
     &:active {
-        background-color: $m24-color-medium-gray;
+        background-color: $m24-color-dark-mid-gray;
     }
 }
 
