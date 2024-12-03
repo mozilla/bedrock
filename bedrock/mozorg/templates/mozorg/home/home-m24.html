@@ -9,16 +9,16 @@
 {# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
 {%- block page_title_full -%}
   {%- if LANG == 'en-US' -%}
-    Internet for people, not profit — Mozilla (US)
+    Mozilla - Internet for people, not profit (US)
   {%- elif LANG == 'en-GB' -%}
-    Internet for people, not profit — Mozilla (UK)
+    Mozilla - Internet for people, not profit (UK)
   {%- else -%}
-    {{ ftl('m24-home-page-title') }}
+    {{ ftl('m24-home-page-title-v2', fallback='m24-home-page-title') }}
   {%- endif -%}
 {%- endblock -%}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}{{ ftl('m24-home-page-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('m24-home-page-desc-v2', fallback='m24-home-page-desc') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
