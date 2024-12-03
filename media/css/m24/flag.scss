@@ -40,13 +40,14 @@
 }
 
 .m24-c-flag-button {
+    $font-size: 0.75;
     all: unset;
     background-color: $m24-color-medium-gray;
     color: $m24-color-white;
     font-family: $primary-font;
-    font-size: 0.75rem;
+    font-size: calc(#{$font-size} * 1rem);
     font-weight: 600;
-    line-height: 1;
+    line-height: $font-size;
     padding: 8px;
     cursor: pointer;
     transition: background-color $fast;
@@ -66,6 +67,13 @@
     align-items: center;
     display: flex;
     gap: 8px;
+}
+
+.m24-c-flag-button-pause {
+    .m24-c-flag-button-text {
+        position: relative;
+        top: 0.0175rem; // flex alignment isn't totally centered, so we're manually adjusting
+    }
 }
 
 @media screen and (width < #{$screen-lg}) {
@@ -155,7 +163,7 @@
     display: none;
 }
 
-// When no JS
+// When no JS or M24_HERO_ANIMATION switch is off
 // - hide animation SVG and button
 // - show static SVG
 .no-js,
