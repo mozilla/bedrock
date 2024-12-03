@@ -29,7 +29,7 @@ env:
 jobs:
   build_and_publish_public_images:
     name: Build public Bedrock images and push to Docker hub
-    runs-on: [self-hosted, nonprod, us-central1, bedrock]
+    runs-on: [self-hosted, nonprod, prod, us-central1, bedrock]
     outputs:
       long_sha: ${{ steps.long-sha.outputs.LONG_SHA }}
 
@@ -68,7 +68,7 @@ jobs:
   push_image_to_gar:
     name: Push Image to GAR
     needs: build_and_publish_public_images
-    runs-on: [self-hosted, nonprod, us-central1, bedrock]
+    runs-on: [self-hosted, nonprod, prod, us-central1, bedrock]
     environment: build
     permissions:
       contents: read
