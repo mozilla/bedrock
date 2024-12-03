@@ -5,6 +5,8 @@
 @use '../vars/lib' as *;
 
 $margin-top: 54px; // top margin offset for mobile navigation menu
+$tablet-margin-top: 53px; // top margin offset for tablet navigation menu
+$desktop-margin-top: 56px; // top margin offset for desktop navigation menu
 
 @keyframes nav-slide-in {
     from {
@@ -198,7 +200,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-navigation-menu {
-    border-top: $border-width solid $m24-color-medium-gray;
     margin-bottom: 0;
     width: 100%;
 
@@ -398,8 +399,12 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         padding: 0;
         position: absolute;
         right: auto;
-        top: 58px;
+        top: $tablet-margin-top;
         width: 100%;
+    }
+
+    @media #{$mq-xl} {
+        top: $desktop-margin-top;
     }
 }
 
