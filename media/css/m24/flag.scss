@@ -32,7 +32,6 @@
     --delay: 1s; // leave some space to read before introducing movement
     --bounce-h: 12px;
     --wave-h: 8px;
-    display: block;
 
     svg {
         transform: translateZ(0);
@@ -88,10 +87,8 @@
     }
 
     .m24-c-flag-media {
-        svg {
-            display: block;
-            margin-inline-start: auto;
-        }
+        width: fit-content;
+        margin-inline-start: auto;
     }
 }
 
