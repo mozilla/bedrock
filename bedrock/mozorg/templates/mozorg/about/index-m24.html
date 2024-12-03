@@ -20,6 +20,8 @@
   {{ css_bundle('m24-base') }}
 {% endblock %}
 
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-about' %}
+
 {% block content %}
 <main>
   {% include 'mozorg/about/includes/m24/intro.html'%}

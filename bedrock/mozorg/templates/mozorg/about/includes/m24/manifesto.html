@@ -26,7 +26,7 @@
         optional_attributes={
           'width': '1376',
           'height': '686',
-          'alt': 'A group of thinkers sitting in a circle on the floor sharing ideas.'
+          'alt': ftl('m24-about-a-group-of')
         }
       ) }}
     </div>
@@ -62,14 +62,14 @@
         url='img/icons/m24-small/icon-glasses.svg',
         optional_attributes={
           'class': 'mzp-c-picto-image',
-          'loading': 'lazy'
+          'loading': 'lazy',
         }
       ),
       body=True,
       heading_level=3,
-      title=ftl('m24-about-monitor')
+      title=ftl('m24-about-research', fallback='m24-about-monitor')
     ) %}
-      <p>{{ ftl('m24-about-we-monitor-developments') }}</p>
+      <p>{{ ftl('m24-about-we-uncover-insights', fallback='m24-about-we-monitor-developments') }}</p>
     {% endcall %}
 
     {% call picto(

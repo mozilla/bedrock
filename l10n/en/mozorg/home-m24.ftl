@@ -7,9 +7,11 @@
 
 # HTML Page title
 m24-home-page-title = Internet for people, not profit — { -brand-name-mozilla }
+m24-home-page-title-v2 = { -brand-name-mozilla } — Internet for people, not profit
 
 # HTML page description
 m24-home-page-desc = Did you know? { -brand-name-mozilla } — the maker of { -brand-name-firefox } — fights to keep the internet a global public resource, open and accessible to all.
+m24-home-page-desc-v2 = We’re working to put control of the internet back in the hands of the people using it.
 
 ## Intro
 
@@ -53,16 +55,24 @@ m24-home-read-more = Read more
 m24-home-get-started = Get started
 m24-home-join-the-movement = Join the movement:<br> AI for the people
 m24-home-our-mission-is = Our mission is to make it easy for people to build with, and collaborate on, open-source, trustworthy AI.
-m24-home-explore-mozilla-ai = Explore { -brand-name-mozilla-ai }
+# Used as an accessible text alternative for an image
+m24-home-alt-llamafile-logo = { -brand-name-llamafile } logo.
 m24-home-llamafile = { -brand-name-llamafile }
 m24-home-run-large-language = Run large language models (LLMs) easily on your computer with { -brand-name-llamafile } — no installation needed, and your data stays safe on your device.
+m24-home-alt-builders = Builders
 m24-home-mozilla-builders= { -brand-name-mozilla } Builders
 m24-home-builders-helps-independent = Builders helps independent developers create transformative open-source AI projects through bespoke collaborations, programming, and community.
+# Used as an accessible text alternative for an image
+m24-home-alt-lumigator-logo = { -brand-name-lumigator} logo.
 m24-home-lumigator = { -brand-name-lumigator}
 m24-home-find-the-just = Find the right LLM for your needs, use case and data.
+# Used as an accessible text alternative for an image
+m24-home-alt-trustworthy =  Mark Surman, President of { -brand-name-mozilla }.
 m24-home-can-ai-be = Can AI be trustworthy?
 m24-home-in-a-world = In a world where AI innovation is driven by a select few, we’re risking monopolization of this technology. Applying open-source concepts to AI could change that.
 m24-home-watch-now = Watch now
+# Used as an accessible text alternative for an image
+m24-home-alt-ventures = Speaker on stage with multiple product logos.
 m24-home-mozilla-ventures = { -brand-name-mozilla-ventures }
 m24-home-got-an-earlystage = Got an early-stage startup? Pitch your company to { -brand-name-mozilla-ventures } and secure funding to drive positive change for the future of AI and the internet.
 m24-home-common-voice = { -brand-name-common-voice }
@@ -95,13 +105,23 @@ m24-home-kids-are-growing = Kids are growing up in a very online world. What’s
 m24-home-rise25-awards = { -brand-name-rise25 } Awards
 m24-home-get-to-know = Get to know the leaders championing trustworthy, inclusive and transparent AI development as they set a new standard and inspire the next generation of innovators.
 m24-home-watch-the-award = Watch the award show
+# Used as an accessible text alternative for an image
+m24-home-alt-rise25-proud = A proud honoree at { -brand-name-rise25 }.
+# Used as an accessible text alternative for an image
+m24-home-alt-rise25-smiling = A confident smiling speaker at { -brand-name-rise25 }.
+# Used as an accessible text alternative for an image
+m24-home-alt-rise25-joyous = A joyous honoree at { -brand-name-rise25 }.
 
 ## Issues
 
+# Used as an accessible text alternative for an image
+m24-home-alt-pni = Smart devices with caution icon.
 m24-home-explore-issues-shaping = Explore issues shaping the future of the internet
 m24-home-privacy-not-included = *Privacy Not Included
 m24-home-search-our-reviews = Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.
 m24-home-pni-search-now = Search now
+# Used as an accessible text alternative for an image
+m24-home-alt-irl-host = Bridget Todd, host of IRL Podcast.
 m24-home-irl-podcast = { -brand-name-irl-podcast }
 m24-home-our-multiaward-winning = Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.
 m24-home-irl-listen-now = Listen now

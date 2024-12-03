@@ -55,7 +55,7 @@
         desc=ftl('m24-home-donate-your-voice-to-make'),
         link_url='https://commonvoice.mozilla.org/'+ utm_params,
         cta_text=ftl('m24-home-donate-your-voice'),
-        link_attributes='data-cta-text="Donate your voice"'
+        link_attributes='rel="external" target="_blank" data-cta-text="Donate your voice"'
       ) }}
 
       {{ gallery_tile(
@@ -91,7 +91,7 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": "Mark Surman, President of Mozilla.",
+            "alt": ftl('m24-home-alt-trustworthy'),
           }
         ),
         tag=ftl('m24-home-tag-event'),
@@ -99,7 +99,7 @@
         desc=ftl('m24-home-in-a-world'),
         link_url='https://www.youtube.com/watch?v=GOhibTSUTO0',
         cta_text=ftl('m24-home-watch-now'),
-        link_attributes='data-cta-text="Watch now (Trustworthy AI)"'
+        link_attributes='rel="external" target="_blank" data-cta-text="Watch now (Trustworthy AI)"'
       ) }}
 
       {{ gallery_tile(
@@ -134,7 +134,7 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": "Lumigator logo.",
+            "alt": ftl('m24-home-alt-lumigator-logo'),
           }
         ),
         tag=ftl('m24-home-tag-product'),
@@ -142,7 +142,7 @@
         desc=ftl('m24-home-find-the-just'),
         link_url='https://blog.mozilla.ai/introducing-lumigator-2/' + utm_params,
         cta_text=ftl('m24-home-get-started'),
-        link_attributes='data-cta-text="Get started (Lumigator)"'
+        link_attributes='rel="external" target="_blank" data-cta-text="Get started (Lumigator)"'
       ) }}
 
       {{ gallery_tile(
@@ -178,7 +178,7 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": "Speaker on stage with multiple product logos.",
+            "alt": ftl('m24-home-alt-ventures'),
           }
         ),
         tag=ftl('m24-home-tag-program'),
@@ -186,7 +186,7 @@
         desc=ftl('m24-home-got-an-earlystage'),
         link_url='https://mozilla.vc/' + utm_params,
         cta_text=ftl('m24-home-read-more'),
-        link_attributes='data-cta-text="Read more (Ventures)"'
+        link_attributes='rel="external" target="_blank" data-link-text="Read more (Ventures)"'
       ) }}
 
       {{ gallery_tile(
@@ -221,7 +221,7 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": "Llamafile logo.",
+            "alt": ftl('m24-home-alt-llamafile-logo'),
           }
         ),
         tag=ftl('m24-home-tag-product'),
@@ -229,7 +229,7 @@
         desc=ftl('m24-home-run-large-language'),
         link_url='https://github.com/Mozilla-Ocho/llamafile',
         cta_text=ftl('m24-home-get-started'),
-        link_attributes='data-cta-text="Get started (Llamafile)"'
+        link_attributes='rel="external" target="_blank" data-link-text="Get started (Llamafile)"'
       ) }}
 
       {{ gallery_tile(
@@ -264,7 +264,7 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": "Builders.",
+            "alt": ftl('m24-home-alt-builders'),
           }
         ),
         tag=ftl('m24-home-tag-program'),
@@ -272,7 +272,7 @@
         desc=ftl('m24-home-builders-helps-independent'),
         link_url='https://builders.mozilla.org/' + utm_params,
         cta_text=ftl('m24-home-read-more'),
-        link_attributes='data-cta-text="Read more (Builders)"'
+        link_attributes='rel="external" target="_blank" data-link-text="Read more (Builders)"'
       ) }}
 
     </div>
