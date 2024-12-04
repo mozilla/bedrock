@@ -379,6 +379,10 @@ $max-footer-content-width: $content-max;
         @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
     }
 
+    a {
+        display: inline-block;
+    }
+
     a,
     a:link,
     a:visited {
@@ -394,7 +398,7 @@ $max-footer-content-width: $content-max;
         margin-bottom: $spacer-xs;
 
         @media #{$mq-md} {
-            display: inline;
+            display: inline-block;
         }
     }
 
