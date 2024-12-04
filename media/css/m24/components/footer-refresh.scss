@@ -263,19 +263,20 @@ $max-footer-content-width: $content-max;
         text-decoration: none;
     }
 
-    &:hover,
-    &:visited:hover,
-    &:focus,
-    &:focus-visible,
-    &:visited:focus-visible {
-        color: $m24-color-white;
-        background-color: $m24-color-black;
-    }
-
     &:active,
-    &:visited:active {
-        background-color: transparent;
-        box-shadow: none;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        background-color: $m24-color-alt-black;
+        color: $m24-color-white;
+
+        .mzp-c-button-icon-start path {
+            fill: $m24-color-white;
+        }
+
+        .mzp-c-button-icon-text {
+            color: $m24-color-white;
+        }
     }
 
     @media(min-width: $screen-md) {
@@ -327,7 +328,8 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        background: $m24-color-alt-white url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg') 95px 9px no-repeat;
+        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') 95px 0.75em no-repeat;
+        background-size: 16px 16px;
         border-radius: 0;
         border: $border-width solid transparent;
         color: $m24-color-black;
@@ -336,7 +338,6 @@ $max-footer-content-width: $content-max;
         min-width: unset;
         padding-left: 36px;
         width: 136px;
-        margin-top: 16px;
 
         &:hover,
         &:focus,
