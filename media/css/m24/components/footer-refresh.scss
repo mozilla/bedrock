@@ -109,21 +109,15 @@ $max-footer-content-width: $content-max;
         display: inline-block;
 
         a {
-            background-repeat: no-repeat;
-            border-bottom: 1px solid rgba(0,0,0,0);
-            direction: ltr;
-            display: block;
-            height: 16px;
-            overflow: hidden;
-            text-align: left;
-            text-indent: -9999px;
-            white-space: nowrap;
-            width: 16px;
             @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
-
-            @media(min-width: $screen-md) {
-                @include bidi(((margin-right, 16px, 0), (margin-left, 0, 16px)));
-            }
+            @include image-replaced;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            background-position: center center;
+            border-bottom: 1px solid rgba(0,0,0,0);
+            display: block;
+            height: 24px;
+            width: 24px;
 
             &:hover,
             &:focus {
@@ -254,7 +248,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-donate {
     position: relative;
     border-radius: 0;
-    font-weight: 500;
+    font-weight: 600;
     background-color: $m24-color-alt-white;
     color: $m24-color-black;
     padding: 6px 24px;
@@ -262,6 +256,7 @@ $max-footer-content-width: $content-max;
     text-decoration: none;
     text-align: center;
     max-width: 800px;
+    margin-bottom: $spacer-lg;
 
     &:link,
     &:visited {
@@ -269,43 +264,18 @@ $max-footer-content-width: $content-max;
     }
 
     &:hover,
-    &:visited:hover {
+    &:visited:hover,
+    &:focus,
+    &:focus-visible,
+    &:visited:focus-visible {
+        color: $m24-color-white;
         background-color: $m24-color-black;
-
-        span {
-            color: $m24-color-white;
-        }
-
-        .mzp-c-button-icon-start svg path {
-            fill: $m24-color-white;
-        }
     }
 
     &:active,
     &:visited:active {
         background-color: transparent;
         box-shadow: none;
-
-        span {
-            color: $m24-color-black;
-        }
-
-        .mzp-c-button-icon-start svg path {
-            fill: $m24-color-black;
-        }
-
-        .mzp-c-button-icon-text::after {
-            display: none;
-        }
-    }
-
-    &:focus-visible,
-    &:visited:focus-visible {
-        color: $m24-color-white;
-
-        .mzp-c-button-icon-start svg path {
-            fill: $m24-color-black;
-        }
     }
 
     @media(min-width: $screen-md) {
@@ -313,26 +283,9 @@ $max-footer-content-width: $content-max;
     }
 }
 
-.mzp-c-button-icon-start {
-    font-size: 1.7em;
-    vertical-align: middle;
-    margin-right: 0;
-
-    svg path {
-        fill: $m24-color-black;
-    }
-}
-
-.mzp-c-button-icon-text {
-    position: relative;
-    font-family: $secondary-font;
-    color: $m24-color-black;
-}
 
 // language form
 .moz24-footer-language {
-    margin-top: $spacer-lg;
-    margin-bottom: 0;
     position: relative;
 }
 
@@ -341,52 +294,52 @@ $max-footer-content-width: $content-max;
     border-color: transparent;
 
     &::before {
-        display: block;
-        content: "";
-        position: absolute;
-        width: 32px;
-        height: 32px;
         @include bidi(((left, 0, 0), (right, 0, 102px)));
-        bottom: 0;
+        background: transparent url('/media/img/icons/m24-small/globe-white.svg') center center no-repeat;
+        background-size: 18px 18px;
+        top: 50%;
+        margin-top: -16px;
         color: $m24-color-white;
-        background-repeat: no-repeat;
-        background-position-x: 8px;
-        background-position-y: -2px;
-        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-globe.svg');
+        content: "";
+        display: block;
+        height: 32px;
+        width: 32px;
+        position: absolute;
     }
 
     label {
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
+        @include visually-hidden;
     }
 
     .mzp-c-language-switcher-link {
         @include visually-hidden;
+
+        &:focus,
+        &:focus-visible {
+            clip: auto;
+            color: $m24-color-black;
+            height: auto;
+            overflow: visible;
+            text-indent: 0;
+            top: -1.5em;
+            width: auto;
+        }
     }
 
     .mzp-js-language-switcher-select {
-        border: $border-width solid transparent;
+        background: $m24-color-alt-white url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg') 95px 9px no-repeat;
         border-radius: 0;
-        font-family: $secondary-font;
-        font-weight: 600;
-        padding-left: 36px;
-        min-width: unset;
-        width: 136px;
-        background: $m24-color-alt-white;
+        border: $border-width solid transparent;
         color: $m24-color-black;
-        background-position-x: 95px;
-        background-position-y: 9px;
-        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
-        background-repeat: no-repeat;
+        font-weight: 600;
+        margin-top: 16px;
+        min-width: unset;
+        padding-left: 36px;
+        width: 136px;
         margin-top: 16px;
 
         &:hover,
+        &:focus,
         &:focus-visible {
             border-color: $m24-color-mid-gray;
         }

@@ -97,7 +97,6 @@ $max-footer-content-width: $content-max;
         .mzp-c-newsletter-thanks {
             h3 {
                 color: $m24-color-black;
-                font-family: $secondary-font;
             }
 
             p {
@@ -258,11 +257,10 @@ $max-footer-content-width: $content-max;
         button {
             border: $border-width solid $m24-color-black;
             border-radius: 0;
-            font-family: $secondary-font;
             position: relative;
             max-width: 800px;
             width: 100%;
-            font-weight: 500;
+            font-weight: 600;
 
             &:hover,
             &:focus-visible {
