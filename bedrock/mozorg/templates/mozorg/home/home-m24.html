@@ -54,3 +54,9 @@
     {% include 'includes/protocol/footer/footer.html' %}
   {% endwith %}
 {% endblock %}
+
+{% if switch('m24-hero-animation') %}
+  {% block js %}
+    {{ js_bundle('m24-animation') }}
+  {% endblock %}
+{% endif %}

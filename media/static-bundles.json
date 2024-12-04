@@ -1851,6 +1851,12 @@
     },
     {
       "files": [
+        "js/m24/animation-play-state.es6.js"
+      ],
+      "name": "m24-animation"
+    },
+    {
+      "files": [
         "js/mozorg/rise25/rise25.js"
       ],
       "name": "rise25-landing"
