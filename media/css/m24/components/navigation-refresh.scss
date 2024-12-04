@@ -359,7 +359,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     color: $color-black;
     display: flex;
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-button-md;
     font-weight: 600;
     padding: 0;
     position: relative;
@@ -435,7 +435,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
 .m24-c-menu-item-title {
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-button-md;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -558,7 +558,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     border: none;
     display: flex;
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-button-md;
     justify-content: flex-end;
     margin: $spacer-lg $spacer-lg 0;
     padding: 0;

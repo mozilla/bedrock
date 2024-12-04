@@ -127,7 +127,7 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
 
 .m24-c-launchpad-info {
     color: $m24-color-dark-gray;
-    font-size: 12px; // custom mobile size
+    font-size: $text-body-sm;
     grid-column: 1 / span 11;
     padding-left: $launchpad-logo-spacing;
     padding-right: $launchpad-logo-padding; // give the arrow as much space from the text as the logo gets
