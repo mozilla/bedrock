@@ -114,6 +114,7 @@ $max-footer-content-width: $content-max;
             background-repeat: no-repeat;
             background-size: 16px 16px;
             background-position: center center;
+            opacity: .45;
             border-bottom: 1px solid rgba(0,0,0,0);
             display: block;
             height: 24px;
@@ -121,56 +122,32 @@ $max-footer-content-width: $content-max;
 
             &:hover,
             &:focus {
+                opacity: 1;
                 border-bottom-color: transparent;
-                background-repeat: no-repeat;
-
-                &.linkedin {
-                    background-image: url('/media/protocol/img/icons/social/linkedin/white.svg');
-                }
-
-                &.tiktok {
-                    background-image: url('/media/protocol/img/icons/social/tiktok/white.svg');
-                }
-
-                &.spotify {
-                    background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
-                }
-
-                &.twitter {
-                    background-image: url('/media/protocol/img/icons/social/x/white.svg');
-                }
-
-                &.instagram {
-                    background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
-                }
-
-                &.youtube {
-                    background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
-                }
             }
 
             &.linkedin {
-                background-image: url('/media/img/icons/m24-small/social-linkedin-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/linkedin/white.svg');
             }
 
             &.tiktok {
-                background-image: url('/media/img/icons/m24-small/social-tiktok-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/tiktok/white.svg');
             }
 
             &.spotify {
-                background-image: url('/media/img/icons/m24-small/social-spotify-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
             }
 
             &.twitter {
-                background-image: url('/media/img/icons/m24-small/social-x-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/x/white.svg');
             }
 
             &.instagram {
-                background-image: url('/media/img/icons/m24-small/social-instagram-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/instagram/white.svg');
             }
 
             &.youtube {
-                background-image: url('/media/img/icons/m24-small/social-youtube-gray.svg');
+                background-image: url('/media/protocol/img/icons/social/youtube/white.svg');
             }
         }
     }
