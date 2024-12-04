@@ -7,7 +7,7 @@ from unittest.mock import call, patch
 
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test import TransactionTestCase
+from django.test import TestCase, TransactionTestCase
 
 import everett
 
@@ -175,3 +175,24 @@ class BootstrapDemoAdminsTests(TransactionTestCase):
                 call("User test3@mozilla.com already exists - not creating\n"),
             ],
         )
+
+
+class SmartlingSyncTests(TestCase):
+    @patch("bedrock.cms.management.commands.run_smartling_sync.call_command")
+    def test_sentry_logging_for_run_smartling_sync_command(self, mock_call_command):
+        test_exception = Exception("Boom!")
+        mock_call_command.side_effect = test_exception
+        with patch("bedrock.cms.management.commands.run_smartling_sync.capture_exception") as mock_capture_exception:
+            call_command("run_smartling_sync")
+        mock_capture_exception.assert_called_once_with(test_exception)
+
+    @patch("bedrock.cms.management.commands.bootstrap_local_admin.sys.stderr.write")
+    @patch("bedrock.cms.management.commands.run_smartling_sync.call_command")
+    def test_error_messaging_for_run_smartling_sync_command(self, mock_call_command, mock_stderr_write):
+        test_exception = Exception("Boom!")
+        mock_call_command.side_effect = test_exception
+        call_command("run_smartling_sync")
+
+        expected_output = "\nsync_smartling did not execute successfully: Boom!\n"
+        output = mock_stderr_write.call_args_list[0][0][0]
+        self.assertEqual(output, expected_output)
