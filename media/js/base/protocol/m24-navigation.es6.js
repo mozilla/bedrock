@@ -123,7 +123,7 @@ MzpNavigation.initSticky = () => {
  */
 MzpNavigation.checkScrollPosition = () => {
     // add styling for when scrolling the viewport and nav is already sticking
-    if (window.scrollY > 0 && _navElem.getBoundingClientRect().top == 0) {
+    if (window.scrollY > 0 && _navElem.getBoundingClientRect().top < 1) {
         _navElem.classList.add('mzp-is-scrolling');
     } else {
         _navElem.classList.remove('mzp-is-scrolling');
