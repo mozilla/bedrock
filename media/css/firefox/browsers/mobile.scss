@@ -161,7 +161,11 @@ $image-path: '/media/protocol/img';
     // and avoid the noodles background where the form was
     @media #{$mq-lg} {
         .c-page-header .mzp-c-split-body {
-            width: 65%;
+            width: 60%;
+        }
+
+        .mobile-android .c-page-header::before {
+            background-position: right 55% top;
         }
     }
 }
