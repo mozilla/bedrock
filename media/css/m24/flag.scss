@@ -79,8 +79,7 @@
     }
 }
 
-// less than $screen-lg
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: #{$screen-lg - 1}) {
     .m24-c-flag-cta {
         margin-bottom: $spacer-xl;
     }
