@@ -40,7 +40,7 @@ $max-footer-content-width: $content-max;
     flex-direction: column;
     gap: $grid-gutter;
 
-    @media(min-width: $screen-lg) {
+    @media #{$mq-lg} {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
@@ -50,7 +50,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-primary .moz24-footer-section-wrapper {
     width: 100%;
 
-    @media(min-width: $screen-lg) {
+    @media #{$mq-lg} {
         width: grid(2);
     }
 
@@ -60,7 +60,7 @@ $max-footer-content-width: $content-max;
         grid-template-columns: 1fr 1fr;
         place-items: stretch start;
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             width: grid(8);
             display: flex;
             flex-direction: row;
@@ -75,7 +75,7 @@ $max-footer-content-width: $content-max;
     align-items: center;
     margin-bottom: $spacer-lg;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
@@ -91,7 +91,7 @@ $max-footer-content-width: $content-max;
     font-size: $text-body-sm;
     font-weight: 400;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin-bottom: $spacer-sm;
     }
 }
@@ -100,7 +100,7 @@ $max-footer-content-width: $content-max;
     margin: 0 0 0 $spacer-lg;
     display: flex;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin: 0;
     }
 
@@ -180,7 +180,7 @@ $max-footer-content-width: $content-max;
     color: $m24-color-mid-gray;
     font-size: $text-body-sm;
     font-family: $primary-font;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .moz24-footer-primary-list {
@@ -236,7 +236,7 @@ $max-footer-content-width: $content-max;
     flex-direction: column;
     position: relative;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -279,7 +279,7 @@ $max-footer-content-width: $content-max;
         }
     }
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin-bottom: 0;
     }
 }
@@ -353,7 +353,7 @@ $max-footer-content-width: $content-max;
     margin-top: $grid-margin;
     line-height: 1.5;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         padding-top: $grid-margin;
     }
 }
@@ -364,7 +364,7 @@ $max-footer-content-width: $content-max;
     color: $m24-color-black;
     font-size: 12px;
 
-    @media(min-width: $screen-lg) {
+    @media #{$mq-lg} {
         flex-direction: row;
         justify-content: space-between;
         font-size: 14px;
@@ -374,7 +374,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-license {
     font-family: $primary-font;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         max-width: unset;
         @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
     }
@@ -393,7 +393,7 @@ $max-footer-content-width: $content-max;
         padding: 0 24px 0 0;
         margin-bottom: $spacer-xs;
 
-        @media(min-width: $screen-md) {
+        @media #{$mq-md} {
             display: inline;
         }
     }
