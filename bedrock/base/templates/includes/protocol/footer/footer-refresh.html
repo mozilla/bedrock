@@ -9,7 +9,7 @@
     {% include 'includes/protocol/footer/footer-newsletter.html' %}
   {% endif %}
   <div class="moz24-footer-content">
-    <nav class="moz24-footer-primary">
+    <nav class="moz24-footer-primary" aria-label="{{ ftl('footer-refresh-primary-nav-aria-label') }}">
       <div class="moz24-footer-sections-wrapper">
         <div class="moz24-footer-section-wrapper moz24-links-section">
           <section>
@@ -100,7 +100,7 @@
         {% include 'includes/protocol/lang-switcher-refresh.html' %}
        </div>
     </div>
-    <nav class="moz24-footer-secondary">
+    <nav class="moz24-footer-secondary" aria-label="{{ ftl('footer-refresh-secondary-nav-aria-label') }}">
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
