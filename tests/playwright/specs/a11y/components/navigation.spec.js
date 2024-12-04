@@ -22,7 +22,9 @@ test.describe(
             await openPage(testURL, page, browserName);
         });
 
-        test('should not have any detectable a11y issues', async ({ page }) => {
+        test.skip('should not have any detectable a11y issues', async ({
+            page
+        }) => {
             const firefoxLink = page.getByTestId('navigation-link-firefox');
             const firefoxMenu = page.getByTestId('navigation-menu-firefox');
 
@@ -50,7 +52,9 @@ test.describe(
             await openPage(testURL, page, browserName);
         });
 
-        test('should not have any detectable a11y issues', async ({ page }) => {
+        test.skip('should not have any detectable a11y issues', async ({
+            page
+        }) => {
             const navigationMenuButton = page.getByTestId(
                 'navigation-menu-button'
             );

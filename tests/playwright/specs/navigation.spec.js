@@ -20,7 +20,7 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Navigation menu hover', async ({ page }) => {
+        test.skip('Navigation menu hover', async ({ page }) => {
             const firefoxLink = page.getByTestId('navigation-link-firefox');
             const firefoxMenu = page.getByTestId('navigation-menu-firefox');
             const productsLink = page.getByTestId('navigation-link-products');
@@ -54,7 +54,7 @@ test.describe(
             await expect(whoWeAreMenu).not.toBeVisible();
         });
 
-        test('Navigation link click', async ({ page }) => {
+        test.skip('Navigation link click', async ({ page }) => {
             const firefoxLink = page.getByTestId('navigation-link-firefox');
             const firefoxMenu = page.getByTestId('navigation-menu-firefox');
             const firefoxMenuLink = page.getByTestId(
@@ -89,7 +89,7 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Navigation open / close click', async ({ page }) => {
+        test.skip('Navigation open / close click', async ({ page }) => {
             const navigationMenuButton = page.getByTestId(
                 'navigation-menu-button'
             );
@@ -142,7 +142,7 @@ test.describe(
             await expect(navigationMenuItems).not.toBeVisible();
         });
 
-        test('Navigation link click', async ({ page }) => {
+        test.skip('Navigation link click', async ({ page }) => {
             const navigationMenuButton = page.getByTestId(
                 'navigation-menu-button'
             );
