@@ -54,4 +54,4 @@ def test_visual_context__for_inviable_object(client):
     with pytest.raises(IncapableVisualContextCallback) as exc:
         url, html = visual_context(smartling_job=mock_job)
 
-    assert exc.value.args[0] == "Object was not visually previewable"
+    assert exc.value.args[0] == "Object was not visually previewable (i.e. not a Page)"
