@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
-const url = '/de/';
+const url = '/en-US/';
 
 test.describe(
     `${url} footer (mobile)`,
@@ -76,17 +76,19 @@ test.describe(
         test('Footer language change', async ({ page }) => {
             const languageSelect = page.getByTestId('footer-language-select');
 
-            // Assert default language is German
-            await expect(languageSelect).toHaveValue('de');
+            // Assert default language is English
+            await expect(languageSelect).toHaveValue('en-US');
 
-            // Change page language from /de/ to /fr/
-            await languageSelect.selectOption('fr');
+            // Change page language from /en-US/ to /de/
+            await languageSelect.selectOption('de');
             await page.waitForURL('**/de/?automation=true', {
                 waitUntil: 'commit'
             });
 
-            // Assert page language is now French
-            await expect(languageSelect).toHaveValue('fr');
+            // Assert page language is now German
+            await expect(
+                page.getByTestId('footer-language-select')
+            ).toHaveValue('de');
         });
     }
 );
