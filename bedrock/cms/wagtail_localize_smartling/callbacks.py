@@ -18,7 +18,7 @@ from wagtail_localize_smartling.exceptions import IncapableVisualContextCallback
 
 if TYPE_CHECKING:
     from wagtail_localize_smartling.models import Job
-
+from sentry_sdk import capture_exception, capture_message
 from wagtaildraftsharing.models import WagtaildraftsharingLink
 from wagtaildraftsharing.views import SharingLinkView
 
@@ -26,11 +26,16 @@ from wagtaildraftsharing.views import SharingLinkView
 def _get_html_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
     request = RequestFactory().get(sharing_link.url)
     view_func = SharingLinkView.as_view()
-    resp = view_func(
-        request=request,
-        key=sharing_link.key,
-    )
-    return resp.content.decode("utf-8")
+    try:
+        resp = view_func(
+            request=request,
+            key=sharing_link.key,
+        )
+        return resp.content.decode("utf-8")
+    except Exception as ex:
+        # Ensure Sentry gets any problem with turning the sharing link into HTML
+        capture_exception(ex)
+        raise IncapableVisualContextCallback("Was not able to get a HTML export from the sharing link")
 
 
 def _get_full_url_for_sharing_link(sharing_link: WagtaildraftsharingLink, page: "Page") -> str:
@@ -56,6 +61,7 @@ def visual_context(smartling_job: "Job") -> tuple[str, str]:
         # The only time we'll have a situation like this is when someone is using
         # a DB export from dev/stage/prod, which has all of its revision history
         # excluded from the export.
+        capture_message(f"Unable to get a latest_revision for {content_obj} so unable to send visual context.")
         raise IncapableVisualContextCallback(
             "Object was not visually previewable because it didn't have a saved revision. Are you a developer with a local export?"
         )
@@ -69,5 +75,4 @@ def visual_context(smartling_job: "Job") -> tuple[str, str]:
 
     url = _get_full_url_for_sharing_link(sharing_link=sharing_link, page=content_obj)
     html = _get_html_for_sharing_link(sharing_link=sharing_link)
-
     return (url, html)
