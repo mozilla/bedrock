@@ -350,12 +350,8 @@ $max-footer-content-width: $content-max;
 // secondary nav
 .moz24-footer-secondary {
     position: relative;
-    margin-top: $grid-margin;
+    margin: $spacer-lg 0;
     line-height: 1.5;
-
-    @media #{$mq-md} {
-        padding-top: $grid-margin;
-    }
 }
 
 .moz24-footer-legal {
@@ -379,6 +375,10 @@ $max-footer-content-width: $content-max;
         @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
     }
 
+    @media #{$mq-lg} {
+        margin-bottom: 0;
+    }
+
     a {
         display: inline-block;
     }
@@ -392,6 +392,8 @@ $max-footer-content-width: $content-max;
 }
 
 .moz24-footer-terms {
+    margin-bottom: 0;
+
     li {
         font-family: $primary-font;
         padding: 0 24px 0 0;
@@ -399,6 +401,10 @@ $max-footer-content-width: $content-max;
 
         @media #{$mq-md} {
             display: inline-block;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
         }
     }
 
