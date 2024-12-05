@@ -22,11 +22,9 @@ test.describe(
             await openPage(testURL, page, browserName);
         });
 
-        test.skip('should not have any detectable a11y issues', async ({
-            page
-        }) => {
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
+        test('should not have any detectable a11y issues', async ({ page }) => {
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
 
             // Hover over Firefox link to open menu
             await expect(firefoxMenu).not.toBeVisible();
@@ -52,17 +50,15 @@ test.describe(
             await openPage(testURL, page, browserName);
         });
 
-        test.skip('should not have any detectable a11y issues', async ({
-            page
-        }) => {
+        test('should not have any detectable a11y issues', async ({ page }) => {
             const navigationMenuButton = page.getByTestId(
-                'navigation-menu-button'
+                'm24-navigation-menu-button'
             );
             const navigationMenuItems = page.getByTestId(
-                'navigation-menu-items'
+                'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
 
             // Open navigation menu
             await expect(navigationMenuItems).not.toBeVisible();
