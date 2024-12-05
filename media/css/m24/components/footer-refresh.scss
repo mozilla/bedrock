@@ -108,6 +108,10 @@ $max-footer-content-width: $content-max;
         margin-right: $spacer-2xs;
         display: inline-block;
 
+        &:last-of-type {
+            @include bidi(((margin-right, 0, 0), (margin-left, 0, 0)));
+        }
+
         a {
             @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
             @include image-replaced;
@@ -118,6 +122,10 @@ $max-footer-content-width: $content-max;
             display: block;
             height: 24px;
             width: 24px;
+
+            &:last-of-type {
+                @include bidi(((margin-right, 0, 0), (margin-left, 0, 0)));
+            }
 
             &:hover,
             &:focus {
