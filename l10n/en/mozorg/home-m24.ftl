@@ -49,6 +49,7 @@ m24-home-donate = Donate
 ## AI gallery
 
 m24-home-tag-product = Product
+m24-home-tag-project = Project
 m24-home-tag-program = Program
 m24-home-tag-event = Event
 m24-home-read-more = Read more

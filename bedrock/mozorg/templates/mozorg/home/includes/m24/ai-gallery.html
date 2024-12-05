@@ -224,10 +224,10 @@
             "alt": ftl('m24-home-alt-llamafile-logo'),
           }
         ),
-        tag=ftl('m24-home-tag-product'),
+        tag=ftl('m24-home-tag-project', fallback='m24-home-tag-project'),
         title=ftl('m24-home-llamafile'),
         desc=ftl('m24-home-run-large-language'),
-        link_url='https://github.com/Mozilla-Ocho/llamafile',
+        link_url='https://builders.mozilla.org/project/llamafile/' + utm_params,
         cta_text=ftl('m24-home-get-started'),
         link_attributes='rel="external" target="_blank" data-link-text="Get started (Llamafile)"'
       ) }}
