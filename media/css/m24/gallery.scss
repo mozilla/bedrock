@@ -73,7 +73,12 @@
     }
 
     .m24-l-gallery-no-desc & {
-        font-size: $text-title-xs;
+        font-family: $primary-font;
+        font-size: $text-title-md;
+
+        @media #{$mq-md} {
+            font-family: $secondary-font;
+        }
     }
 }
 

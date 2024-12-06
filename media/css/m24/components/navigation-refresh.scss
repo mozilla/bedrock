@@ -257,18 +257,17 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     // Arrow styles for mobile menu items.
     &::after {
-        background: url('/media/img/icons/m24-small/up-arrow.svg') center center no-repeat;
+        background: transparent url('/media/img/icons/m24-small/up-arrow.svg') center center no-repeat;
         content: '';
         height: 20px;
         position: absolute;
-        top: 0;
+        top: 8px;
         width: 20px;
-        padding: $spacing-xs 0;
         @include bidi((
             (transform, rotate(90deg), rotate(-90deg)),
             (right, 8px, left, auto),
         ));
-        @include background-size(14px, 14px);
+        @include background-size(16px, 16px);
     }
 
     &.mzp-is-selected::after {
@@ -359,7 +358,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     color: $color-black;
     display: flex;
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-body-md;
     font-weight: 600;
     padding: 0;
     position: relative;
@@ -435,7 +434,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
 .m24-c-menu-item-title {
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-body-md;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -558,7 +557,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     border: none;
     display: flex;
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-body-md;
     justify-content: flex-end;
     margin: $spacer-lg $spacer-lg 0;
     padding: 0;
