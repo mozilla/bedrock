@@ -167,6 +167,10 @@ $image-path: '/media/protocol/img';
         .c-page-header::before {
             left: 15%;
         }
+
+        :dir(rtl) .c-page-header::before {
+            right: 15%;
+        }
     }
 }
 
