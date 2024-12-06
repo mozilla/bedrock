@@ -110,20 +110,25 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     float: right;
     font-family: $primary-font;
     font-weight: 600;
-    height: 32px;
+    height: auto;
     margin: 4px 0 0;
     padding: 0;
     position: relative;
 
     &::after {
         background: $color-black;
-        bottom: 4px;
+        bottom: 0;
         content: "";
         display: block;
         height: 1px;
         left: 0;
         position: absolute;
         width: 100%;
+    }
+
+    @media #{$mq-md} {
+        display: none;
+        margin: 24px 0;
     }
 
     &.mzp-is-active {
@@ -134,11 +139,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         &::after {
             content: none;
         }
-    }
-
-    @media #{$mq-md} {
-        display: none;
-        margin: 24px 0;
     }
 }
 

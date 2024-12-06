@@ -59,6 +59,7 @@ $max-footer-content-width: $content-max;
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
         place-items: stretch start;
+        gap: $spacer-lg;
 
         @media #{$mq-lg} {
             width: grid(8);
