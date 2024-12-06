@@ -16,6 +16,7 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
             '.icon-installer-help'
         );
         const downloadButtons = document.querySelectorAll('.download-link');
+        const partialTarget = document.getElementById('partial-target');
 
         function showHelpModal(modalContent, modalTitle, eventLabel) {
             MzpModal.createModal(this, modalContent, {
@@ -81,6 +82,60 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
                 );
             }
         }
+
+        // A fetch helper since we use this in both the on click and popstate.
+        // pushState is a boolean so we avoid pushing state if triggered from popstate.
+        function fetchContent(url, pushState = false) {
+            fetch(url, {
+                // Signifies to backend to return partial HTML.
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                // Ignore what's cached and also don't cache this response.
+                // This is so we don't get full html pages when we expect partial html, or vice versa.
+                cache: 'no-store'
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then((html) => {
+                    partialTarget.innerHTML = html;
+                    if (pushState) {
+                        history.pushState({ path: url }, '', url);
+                    }
+                })
+                .catch((error) => {
+                    throw new Error(
+                        'There was a problem with the fetch operation:',
+                        error
+                    );
+                });
+        }
+
+        // Override click events for drill-down links.
+        partialTarget.addEventListener('click', function (event) {
+            const anchor = event.target.closest('a');
+            if (anchor && anchor.matches('.load-content-partial')) {
+                event.preventDefault();
+                fetchContent(anchor.href, true);
+            }
+        });
+
+        // Add popstate listener so we return partial HTML with browser back button.
+        window.addEventListener('popstate', function (event) {
+            if (!event.state) {
+                return;
+            }
+
+            fetchContent(event.state.path, false);
+        });
+
+        // Ensure initial state is set up when the page loads so root page is in popstate.
+        window.addEventListener('DOMContentLoaded', () => {
+            const url = window.location.href;
+            history.replaceState({ path: url }, '', url);
+        });
     }
 
     Mozilla.run(onLoad);
