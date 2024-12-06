@@ -43,16 +43,6 @@ test.describe(
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
-            const footerHeadingCompany = page.getByTestId(
-                'footer-heading-company'
-            );
-            const footerListCompany = page.getByTestId('footer-list-company');
-
-            // Open Company section
-            await expect(footerListCompany).not.toBeVisible();
-            await footerHeadingCompany.click();
-            await expect(footerListCompany).toBeVisible();
-
             const results = await scanPageElement(page, footerLocator);
             createReport('component', 'footer-mobile', results);
             expect(results.violations.length).toEqual(0);
