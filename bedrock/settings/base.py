@@ -2325,7 +2325,7 @@ WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Don't automatically make a page for a non-default locale availble in the default locale
-WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False
+WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False  # note that WAGTAILLOCALIZE is correct without the _
 
 # Settings for https://github.com/mozilla/wagtail-localize-smartling
 WAGTAIL_LOCALIZE_SMARTLING = {
