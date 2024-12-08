@@ -68,7 +68,7 @@ $max-footer-content-width: $content-max;
 
     .moz24-newsletter-image {
         width: 40px;
-        @include bidi(((margin-right, $spacer-sm, 0), (margin-left, 0, $spacer-sm)));
+        @include bidi(((margin-right, $spacer-md, 0), (margin-left, 0, $spacer-md)));
         margin-bottom: $spacer-md;
 
         @media #{$mq-lg} {
