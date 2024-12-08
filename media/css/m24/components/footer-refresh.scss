@@ -58,6 +58,7 @@ $max-footer-content-width: $content-max;
         display: grid;
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+        column-gap: $grid-margin;
         place-items: stretch start;
 
         @media #{$mq-lg} {
