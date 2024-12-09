@@ -55,11 +55,13 @@ $max-footer-content-width: $content-max;
     }
 
     &.moz24-links-section {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-        column-gap: $grid-margin;
-        place-items: stretch start;
+        @media (min-width: #{$screen-xs * 1.25}) {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            column-gap: $grid-gutter;
+            place-items: stretch start;
+        }
 
         @media #{$mq-lg} {
             width: grid(8);
