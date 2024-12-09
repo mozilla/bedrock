@@ -109,7 +109,8 @@ sync down any images you don't already have.
   or ``AWS_DB_S3_BUCKET=bedrock-db-prod``.
 
   ``AWS_DB_S3_BUCKET=bedrock-db-stage make preflight``
-  ``AWS_DB_S3_BUCKET=bedrock-db-stage python manage.py download_media_to_local``
+
+  ``python manage.py download_media_to_local --environment=stage``
 
 Adding new content surfaces
 ===========================

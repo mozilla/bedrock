@@ -9,6 +9,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 import requests
+from sentry_sdk import capture_exception
 
 from bedrock.base.config_manager import config
 
@@ -32,3 +33,4 @@ class Command(BaseCommand):
                 sys.stdout.write("Snitch pinged\n")
         except Exception as ex:
             sys.stderr.write(f"\nsync_smartling did not execute successfully: {ex}\n")
+            capture_exception(ex)

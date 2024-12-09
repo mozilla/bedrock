@@ -2325,7 +2325,7 @@ WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Don't automatically make a page for a non-default locale availble in the default locale
-WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False
+WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False  # note that WAGTAILLOCALIZE is correct without the _
 
 # Settings for https://github.com/mozilla/wagtail-localize-smartling
 WAGTAIL_LOCALIZE_SMARTLING = {
@@ -2366,16 +2366,14 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
 }
 
-WAGTAIL_DRAFTSHARING_ADMIN_MENU_POSITION = 9000
-# WAGTAIL_DRAFTSHARING_VERBOSE_NAME = "Internal Share"
-# WAGTAIL_DRAFTSHARING_VERBOSE_NAME_PLURAL = "Internal Shares"
-# WAGTAIL_DRAFTSHARING_MENU_ITEM_LABEL = "Create internal sharing link"
+WAGTAILDRAFTSHARING = {
+    "ADMIN_MENU_POSITION": 9000,
+    # MAX_TTL: 14 * 24 * 60 * 60
+    # VERBOSE_NAME: "Internal Share"
+    # VERBOSE_NAME_PLURAL: "Internal Shares"
+    # MENU_ITEM_LABEL: "Create internal sharing link"
+}
 
-# At the moment, wagtaildraftsharing's expiry is only set via settings. We're using
-# 21 days here because the links are used to send a preview of the source page to
-# Smartling translators, and we want to give them plenty of time. In the future
-# we can bring this back down to 7 days and set a Smartling-specific one of 21
-WAGTAILDRAFTSHARING_MAX_AGE = 21 * 24 * 60 * 60
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
 WAGTAIL_RICHTEXT_FEATURES_FULL = [
