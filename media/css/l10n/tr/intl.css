@@ -1,6 +1,14 @@
-/* Bug 1174423 */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 
-* {
-    /* !important required for locale specific override */
-    font-variant: normal !important; /* stylelint-disable-line declaration-no-important */
+@import '../includes/font-inter.css';
+
+/* !important required for locale specific override */
+/* stylelint-disable declaration-no-important  */
+html[lang='tr'] body,
+html[lang='tr'] body * {
+    font-family: Inter, X-LocaleSpecific, sans-serif !important;
+    font-variant: normal !important; /* Bug 1174423 */
 }

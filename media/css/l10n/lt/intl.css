@@ -7,7 +7,7 @@
 
 /* !important required for locale specific override */
 /* stylelint-disable declaration-no-important  */
-html[lang='vi'] body,
-html[lang='vi'] body * {
+html[lang='lt'] body,
+html[lang='lt'] body * {
     font-family: Inter, X-LocaleSpecific, sans-serif !important;
 }

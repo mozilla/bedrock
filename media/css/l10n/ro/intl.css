@@ -1,91 +1,13 @@
-/* Bug 907793, 1263732 */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 
-@font-face {
-    font-family: X-LocaleSpecific-Light;
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-light-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-light-ro-subset.woff') format('woff');
-}
+@import '../includes/font-inter.css';
 
-@font-face {
-    font-family: X-LocaleSpecific-Light;
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-semibold-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-semibold-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific-Light;
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-lightitalic-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-lightitalic-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-regular-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-regular-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-bold-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-bold-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-italic-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-italic-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-bolditalic-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-bolditalic-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific-Extrabold;
-    font-weight: 800;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-extrabold-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-extrabold-ro-subset.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific-Extrabold;
-    font-weight: 800;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ro/opensans-extrabolditalic-ro-subset.woff2') format('woff2'),
-        url('/media/fonts/l10n/ro/opensans-extrabolditalic-ro-subset.woff') format('woff');
+/* !important required for locale specific override */
+/* stylelint-disable declaration-no-important  */
+html[lang='ro'] body,
+html[lang='ro'] body * {
+    font-family: Inter, X-LocaleSpecific, sans-serif !important;
 }
