@@ -554,7 +554,7 @@ If you have a DB from Stage you can pass the ``--environment=stage`` option
 to get the images from the Stage bucket instead. Same goes for Production.
 
 L10N and Translation Management
--------------------------------
+===============================
 
 .. important::
 
@@ -563,7 +563,7 @@ L10N and Translation Management
     currently all rock-solid. We're learning as we go.
 
 Page-tree concept
-=================
+-----------------
 
 Our Wagtail setup uses the official `wagtail-localize`_ package to manage
 localization of pages.
@@ -579,7 +579,7 @@ Basically, there is plenty of flexibility. The flipside of that flexibility is w
     It's worth investing 15 mins in watching the `Wagtail Localize original demo`_ to get a good feel of how it can work.
 
 Locale configuration within Wagtail
-===================================
+-----------------------------------
 
 While the list of available overall locales is defined in code in ``settings.base.WAGTAIL_CONTENT_LANGUAGES``, any locale also needs enabling via the Wagtail Admin UI before it can be used.
 
@@ -590,7 +590,7 @@ When you go to ``Settings > Locales`` in the Wagtail fly-out menu, you will see 
     When you add/edit a Locale in this part of the admin, you will see an option to enable syncronisation between locales. **Do not enable this**. If it is enabled, for every new page added in ``en-US``, it will auto-create page aliases in every other enabled locale and these will deliver the ``en-US`` content under locale-specific paths, which is not what we want.
 
 Localization process
-====================
+--------------------
 
 Manual updates
 --------------
@@ -602,14 +602,22 @@ Automated via Smartling
 
 However, we also have automation available to send source strings to translation vendor Smartling. This uses the ``wagtail-localize-smartling`` package.
 
-Here's the workflow:
+Here's the overall workflow:
 
 1. CMS page "MyPage" is created in the default lang (``en-US``)
 2. The "Translate this page" option is triggered for MyPage, and relevant langs are selected from the configured langs that Smartling supports. (We don't have to translate into all of them)
-3. A translation Job is created in Smartling, awaiting authorization by our L10N team
+3. A translation Job is created in Smartling, awaiting authorization by our L10N team.
 4. A L10N team colleague authorizes the Job and selects the relevant translation workflow(s) for the relevant lang(s)
-5. Once the jobs are completed, the localised strings flow back to Wagtail and populate a draft version of each language-specific page
+
+    * ⚠️ Note that one Wagtail Page (or one Wagtail Snippet) creates one single Job, so if you select mutiple target languages for that Job and submit it, you won't get it back from Smartling until `all` languages involved are submitted by translators. One way around this is to submit each language as a separate Job, but that creates more work for our L10N team to coordinate. (We are looking to refine that experience in the future and to make it better for everyone.)
+
+5. Once the job is completed, the localised strings flow back to Wagtail and populate a `draft` version of each language-specific page.
+
 6. A human reviews these draft pages and publishes them
+
+    * ⚠️ When a translation flows back, by default the relevant pages are `not` automatically published. At the moment, CMS admins are emailed for each language in a Job when it is synced back from Smartling, reminding them of this. (We may well move this to in-dashboard Wagtail ``Tasks`` for better UX.)
+
+    * The CMS admin sidebar has a link to ``Smartling Jobs``. You can use this to see what translations have landed, and also follow the link to the localized version of the page, which you can then Preview, visually check, then Publish like a regular page.
 
 **Notes:**
 
