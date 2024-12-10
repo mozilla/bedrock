@@ -315,16 +315,16 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') 95px 0.75em no-repeat;
+        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') calc(100% - 8px) 0.75em no-repeat;
         background-size: 16px 16px;
         border-radius: 0;
         border: $border-width solid transparent;
         color: $m24-color-black;
         font-weight: 600;
         margin-top: 16px;
-        min-width: unset;
         padding-left: 36px;
-        width: 136px;
+        max-width: 100%;
+        width: fit-content;
 
         &:hover,
         &:focus,
