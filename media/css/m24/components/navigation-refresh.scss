@@ -392,14 +392,22 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     @include border-box;
 
     @media #{$mq-md} {
-        border-bottom: $border-width solid $m24-color-light-mid-gray;
-        left: 0;
+        border: $border-width solid $m24-color-light-mid-gray;
+        border-top: $border-width solid $m24-color-white;
+        left: 50%;
+        margin: 0 auto;
         overflow: auto;
         padding: 0;
         position: absolute;
         right: auto;
-        top: calc(100% + #{$border-width});
-        width: 100%;
+        top: 100%;
+        width: calc(680px + $grid-gutter); // at 1440px this makes the width 6 columns plus 1/2 a gutter
+        transform: translateX(-50%);
+
+        .mzp-is-scrolling & {
+            // copied from the parent .mzp-is-scrolling definition, but edited to move it down so it doesn't appear to hover over top of the parent menu
+            box-shadow: 0 6px 6px 1px rgba(29, 17, 51, 0.04), 0 8px 8px $border-width rgba(9, 32, 77, 0.12), 0 5px 5px -3px rgba(29, 17, 51, 0.12);
+        }
     }
 }
 
@@ -500,7 +508,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         display: flex;
         padding: 0 $grid-margin;
         column-gap: $spacer-lg;
-        max-width: grid(8);
         margin: 0 auto;
     }
 
