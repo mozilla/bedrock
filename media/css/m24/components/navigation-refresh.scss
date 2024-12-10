@@ -114,17 +114,8 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     margin: 4px 0 0;
     padding: 0;
     position: relative;
-
-    &::after {
-        background: $color-black;
-        bottom: 4px;
-        content: "";
-        display: block;
-        height: 1px;
-        left: 0;
-        position: absolute;
-        width: 100%;
-    }
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
 
     &.mzp-is-active {
         background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
