@@ -1,0 +1,64 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    src:
+        url('/media/protocol/fonts/Inter-Regular.woff2') format('woff2'),
+        url('/media/protocol/fonts/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: normal;
+    src:
+        url('/media/protocol/fonts/Inter-Italic.woff2') format('woff2'),
+        url('/media/protocol/fonts/Inter-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    src:
+        url('/media/fonts/inter/Inter-SemiBold.woff2') format('woff2'),
+        url('/media/fonts/inter/Inter-SemiBold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: 600;
+    src:
+        url('/media/fonts/inter/Inter-SemiBoldItalic.woff2') format('woff2'),
+        url('/media/fonts/inter/Inter-SemiBoldItalic.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: normal;
+    font-weight: bold;
+    src:
+        url('/media/protocol/fonts/Inter-Bold.woff2') format('woff2'),
+        url('/media/protocol/fonts/Inter-Bold.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: Inter;
+    font-style: italic;
+    font-weight: bold;
+    src:
+        url('/media/protocol/fonts/Inter-BoldItalic.woff2') format('woff2'),
+        url('/media/protocol/fonts/Inter-BoldItalic.woff') format('woff');
+}
