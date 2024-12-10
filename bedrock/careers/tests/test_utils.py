@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.cache import cache
+
 from bedrock.careers.tests import PositionFactory
 from bedrock.careers.utils import generate_position_meta_description
 from bedrock.mozorg.tests import TestCase
@@ -9,6 +11,7 @@ from bedrock.mozorg.tests import TestCase
 
 class GeneratePositionMetaDescriptionTests(TestCase):
     def setUp(self):
+        cache.clear()
         self.position = PositionFactory(title="Bowler", position_type="Full time", location="Los Angeles,Ralphs")
 
     def test_position_type_consonant_beginning(self):
