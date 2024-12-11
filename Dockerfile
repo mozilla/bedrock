@@ -128,6 +128,9 @@ ENV GIT_SHA=${GIT_SHA}
 #
 FROM app-base AS release
 
+ARG DEMO_SERVER_ADMIN_USERS
+ENV DEMO_SERVER_ADMIN_USERS=${DEMO_SERVER_ADMIN_USERS}
+
 RUN bin/run-sync-all.sh
 
 COPY --from=assets /app/assets /app/assets

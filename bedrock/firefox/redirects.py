@@ -44,6 +44,8 @@ def mobile_app(request, *args, **kwargs):
         "fxshare3",
         "fxshare4",
         "fxshare5",
+        "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_a",
+        "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_b",
     ]
 
     for p in product_options:

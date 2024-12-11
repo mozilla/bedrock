@@ -1,0 +1,141 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/button';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@import '../../protocol/components/custom-menu-list';
+@import '../../protocol/components/sub-navigation';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import "../../protocol/components/video";
+
+.fx20-content-main {
+    background-color: $color-marketing-gray-10;
+    text-align: center;
+
+    .fx20-main-wrapper {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .fx20-main-image {
+        margin-bottom: $spacing-xl;
+    }
+
+    .fx20-main-title {
+        margin-top: $spacing-sm;
+
+        @media #{$mq-lg} {
+            @include font-size(56px);
+        }
+    }
+
+    .fx20-main-body {
+        @include font-firefox;
+        @include text-title-xs;
+
+        @media #{$mq-lg} {
+            padding-bottom: $layout-lg;
+        }
+    }
+
+    .mzp-c-video {
+        max-width: 800px;
+        margin: $layout-md auto $layout-sm;
+
+        @media #{$mq-lg} {
+            margin: $layout-lg auto $layout-md ;
+        }
+    }
+
+}
+
+.fx20-action-container {
+    background-color: $color-marketing-gray-10;
+    margin-bottom: $spacing-lg;
+    text-align: start;
+    padding: $spacing-lg;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media #{$mq-md} {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        @include text-title-sm;
+    }
+
+    .mzp-c-cta-link {
+        text-decoration: none;
+    }
+}
+
+.fx20-content-fanart {
+    background-color: $color-marketing-gray-10;
+    text-align: start;
+
+    .fx20-fanart-title {
+        @include text-title-lg;
+
+        @media #{$mq-xl} {
+            @include text-title-xl;
+            max-width: 60%;
+        }
+    }
+
+    .fx20-fanart-body {
+        @include font-firefox;
+        @include text-title-xs;
+    }
+
+}
+
+.fx20-content-community,
+.fx20-content-cta {
+    text-align: center;
+
+    .fx20-cta-wrapper {
+        background-color: $color-marketing-gray-10;
+        padding: $spacing-lg;
+    }
+
+    h2 {
+        @include text-title-sm;
+    }
+}
+
+.fx20-cta-wrapper {
+    .mzp-c-button-download-container {
+        margin-bottom: 0;
+
+        .mzp-c-button-download-privacy-link {
+            margin: $spacing-sm auto 0;
+        }
+    }
+
+    a.mzp-c-button.mzp-t-product.set-as-default {
+        display: none;
+    }
+
+    .mzp-c-cta-link {
+        text-decoration: none;
+    }
+}
+
+.is-firefox {
+    #firefox20-download-firefox {
+        display:none;
+    }
+
+    a.mzp-c-button.mzp-t-product.set-as-default {
+        display: block;
+        max-width: fit-content;
+        margin: 0 auto;
+    }
+}

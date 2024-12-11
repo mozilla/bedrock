@@ -1,0 +1,110 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/basic.html' %}
+
+{% block banner_id %}fundraising-banner{% endblock %}
+
+{% block banner_class %}c-banner-fundraising{% endblock %}
+
+{% if LANG =="de" %}
+  {% set banner_title = 'Giving Tuesday: Spende jetzt an Mozilla' %}
+  {% set banner_tagline = 'Gemeinsam können wir das Internet von Tech-Riesen zurückerobern. Jetzt spenden.' %}
+  {% set banner_button_a = 'Spenden' %}
+  {% set banner_button_b = 'Jetzt spenden' %}
+  {% set banner_button_c = 'Beitragen' %}
+{% elif LANG.startswith('es-') %}
+  {% set banner_title = 'Dona a Mozilla este Día para Dar' %}
+  {% set banner_tagline = 'Juntos rescatemos Internet de las grandes tecnológicas. Dona.' %}
+  {% set banner_button_a = 'Donar' %}
+  {% set banner_button_b = 'Dar ahora' %}
+  {% set banner_button_c = 'Contribuir' %}
+{% elif LANG == "fr" %}
+  {% set banner_title = 'Soutenez Mozilla pour le Giving Tuesday' %}
+  {% set banner_tagline = 'Ensemble, nous pouvons empêcher les géants de la tech de s’accaparer Internet.' %}
+  {% set banner_button_a = 'Je fais un don' %}
+  {% set banner_button_b = 'Je fais un geste' %}
+  {% set banner_button_c = 'Je fais une contribution' %}
+{% elif LANG == "it" %}
+  {% set banner_title = 'Festeggia la giornata mondiale del dono con un’offerta a Mozilla' %}
+  {% set banner_tagline = 'Insieme, liberiamo internet dal controllo di Big Tech. Dona ora.' %}
+  {% set banner_button_a = 'Dona' %}
+  {% set banner_button_b = 'Fai un’offerta' %}
+  {% set banner_button_c = 'Offri il tuo contributo' %}
+{% elif LANG == "pl" %}
+  {% set banner_title = 'Przekaż datek Mozilli na Giving Tuesday' %}
+  {% set banner_tagline = 'Razem możemy odzyskać Internet z rąk gigantów technologicznych. Wpłać teraz.' %}
+  {% set banner_button_a = 'Wpłać datek' %}
+  {% set banner_button_b = 'Wpłać teraz' %}
+  {% set banner_button_c = 'Wspomóż nas' %}
+{% elif LANG == "pt-BR" %}
+  {% set banner_title = 'Doe para a Mozilla no Dia de Doar' %}
+  {% set banner_tagline = 'Juntos, podemos retomar a internet das big techs. Doe hoje mesmo.' %}
+  {% set banner_button_a = 'Doe agora' %}
+  {% set banner_button_b = 'Doe já' %}
+  {% set banner_button_c = 'Contribua' %}
+{% else %}
+  {% set banner_title = 'Donate to Mozilla for Giving Tuesday' %}
+  {% set banner_tagline = 'Together we can reclaim the internet from Big Tech. Donate now.' %}
+  {% set banner_button_a = 'Donate' %}
+  {% set banner_button_b = 'Give now' %}
+  {% set banner_button_c = 'Contribute' %}
+{% endif %}
+
+{% if variant == "a" %}
+  {% set banner_link = 'https://foundation.mozilla.org/?form=gt-banner-a' %}
+  {% set banner_button = banner_button_a %}
+  {% set banner_ga_label = 'Donate' %}
+{% elif variant == "b" %}
+  {% set banner_link = 'https://foundation.mozilla.org/?form=gt-banner-b' %}
+  {% set banner_button = banner_button_b %}
+  {% set banner_ga_label = 'Give now' %}
+{% elif variant == "c" %}
+  {% set banner_link = 'https://foundation.mozilla.org/?form=gt-banner-c' %}
+  {% set banner_button = banner_button_c %}
+  {% set banner_ga_label = 'Contribute' %}
+{% else %}
+  {% set banner_button = banner_button_a %}
+  {% set banner_ga_label = 'Donate' %}
+  {% set banner_link = 'https://foundation.mozilla.org/?form=gt-banner-d' %}
+{% endif %}
+
+{% block banner_content %}
+  <div class="mzp-l-content mzp-t-content-xl">
+    <div class="c-banner-inner">
+      <div class="c-banner-copy">
+        <h2 class="c-banner-title">{{ banner_title }}</h2>
+        <p class="c-banner-tagline">{{ banner_tagline }}</p>
+        <a class="c-banner-button mzp-c-button mzp-t-lg" href="{{ banner_link }}" data-cta-text="{{ banner_ga_label }}">
+          {{ banner_button }}
+        </a>
+      </div>
+      {{ picture(
+        url='img/banners/fundraiser/eoy-2024-photo-200.png',
+        sources=[
+          {
+            'media': '(min-width: 688px)',
+            'srcset': {
+              'img/banners/fundraiser/eoy-2024-photo-200.png': '200w',
+              'img/banners/fundraiser/eoy-2024-photo-200.png': '400w',
+            }
+          },
+          {
+            'media': '(max-width: 687px)',
+            'srcset': {
+              'img/placeholder.png': 'default'
+            }
+          }
+        ],
+        optional_attributes={
+          'height': '200',
+          'width': '200',
+          'class': 'c-banner-media'
+        }
+      ) }}
+    </div>
+  </div>
+{% endblock %}

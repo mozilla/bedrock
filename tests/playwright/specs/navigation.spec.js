@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
-const url = '/de/';
+const url = '/en-US/';
 
 test.describe(
     `${url} navigation (desktop)`,
@@ -21,17 +21,19 @@ test.describe(
         });
 
         test('Navigation menu hover', async ({ page }) => {
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
-            const productsLink = page.getByTestId('navigation-link-products');
-            const productsMenu = page.getByTestId('navigation-menu-products');
-            const whoWeAreLink = page.getByTestId('navigation-link-who-we-are');
-            const whoWeAreMenu = page.getByTestId('navigation-menu-who-we-are');
-            const innovationLink = page.getByTestId(
-                'navigation-link-innovation'
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
             );
-            const innovationMenu = page.getByTestId(
-                'navigation-menu-innovation'
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
+            const aboutUsLink = page.getByTestId(
+                'm24-navigation-link-about-us'
+            );
+            const aboutUsMenu = page.getByTestId(
+                'm24-navigation-menu-about-us'
             );
 
             // Hover over Firefox link
@@ -43,22 +45,17 @@ test.describe(
             await expect(productsMenu).toBeVisible();
             await expect(firefoxMenu).not.toBeVisible();
 
-            // Hover over who we are link
-            await whoWeAreLink.hover();
-            await expect(whoWeAreMenu).toBeVisible();
+            // Hover over about us link
+            await aboutUsLink.hover();
+            await expect(aboutUsMenu).toBeVisible();
             await expect(productsMenu).not.toBeVisible();
-
-            // Hover over innovation link
-            await innovationLink.hover();
-            await expect(innovationMenu).toBeVisible();
-            await expect(whoWeAreMenu).not.toBeVisible();
         });
 
         test('Navigation link click', async ({ page }) => {
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
             const firefoxMenuLink = page.getByTestId(
-                'navigation-menu-link-firefox-desktop'
+                'm24-navigation-menu-link-firefox-desktop'
             );
 
             // Hover over Firefox link
@@ -91,22 +88,24 @@ test.describe(
 
         test('Navigation open / close click', async ({ page }) => {
             const navigationMenuButton = page.getByTestId(
-                'navigation-menu-button'
+                'm24-navigation-menu-button'
             );
             const navigationMenuItems = page.getByTestId(
-                'navigation-menu-items'
+                'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
-            const productsLink = page.getByTestId('navigation-link-products');
-            const productsMenu = page.getByTestId('navigation-menu-products');
-            const whoWeAreLink = page.getByTestId('navigation-link-who-we-are');
-            const whoWeAreMenu = page.getByTestId('navigation-menu-who-we-are');
-            const innovationLink = page.getByTestId(
-                'navigation-link-innovation'
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
             );
-            const innovationMenu = page.getByTestId(
-                'navigation-menu-innovation'
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
+            const aboutUsLink = page.getByTestId(
+                'm24-navigation-link-about-us'
+            );
+            const aboutUsMenu = page.getByTestId(
+                'm24-navigation-menu-about-us'
             );
 
             // Open navigation menu
@@ -125,17 +124,11 @@ test.describe(
             await productsLink.click();
             await expect(productsMenu).not.toBeVisible();
 
-            // Open and close who we are menu
-            await whoWeAreLink.click();
-            await expect(whoWeAreMenu).toBeVisible();
-            await whoWeAreLink.click();
-            await expect(whoWeAreMenu).not.toBeVisible();
-
-            // Open and close innovation menu
-            await innovationLink.click();
-            await expect(innovationMenu).toBeVisible();
-            await innovationLink.click();
-            await expect(innovationMenu).not.toBeVisible();
+            // Open and close about us menu
+            await aboutUsLink.click();
+            await expect(aboutUsMenu).toBeVisible();
+            await aboutUsLink.click();
+            await expect(aboutUsMenu).not.toBeVisible();
 
             // Close navigation menu
             await navigationMenuButton.click();
@@ -144,15 +137,15 @@ test.describe(
 
         test('Navigation link click', async ({ page }) => {
             const navigationMenuButton = page.getByTestId(
-                'navigation-menu-button'
+                'm24-navigation-menu-button'
             );
             const navigationMenuItems = page.getByTestId(
-                'navigation-menu-items'
+                'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('navigation-menu-firefox');
+            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
+            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
             const firefoxMenuLink = page.getByTestId(
-                'navigation-menu-link-firefox-desktop'
+                'm24-navigation-menu-link-firefox-desktop'
             );
 
             // Open navigation menu

@@ -2,6 +2,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '../vars/lib' as *;
+
+$margin-top: 54px; // top margin offset for mobile navigation menu
+
 @keyframes nav-slide-in {
     from {
         transform: translateX(100%);
@@ -12,19 +16,21 @@
     }
 }
 
+@keyframes nav-slide-in-reverse {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
 .m24-navigation-refresh {
     background-color: $color-white;
-    border-bottom: 2px solid $m24-color-medium-gray;
+    border-bottom: $border-width solid $m24-color-light-mid-gray;
     display: flex;
     width: 100%;
-    position: sticky;
-    z-index: 100;
-    top: 0;
-    left: 0;
-
-    @media (prefers-reduced-motion: reduce) {
-        position: static;
-    }
 
     @media #{$mq-md} {
         display: block;
@@ -36,18 +42,24 @@
 @supports (position: sticky) {
     html.mzp-has-sticky-navigation {
         .m24-navigation-refresh.m24-mzp-is-sticky {
-            @include transition(transform 300ms ease-in-out);
             position: sticky;
             z-index: 1000;
+            left: 0;
+            top: 0;
+            @include transition(transform 300ms ease-in-out);
 
             &.mzp-is-scrolling {
                 // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
                 // We can't use a $box-shadow token here because it needs a different size and offset
-                box-shadow: 0 0 6px 1px rgba(29, 17, 51, 0.04), 0 0 8px 2px rgba(9, 32, 77, 0.12), 0 0 5px -3px rgba(29, 17, 51, 0.12);
+                box-shadow: 0 0 6px 1px rgba(29, 17, 51, 0.04), 0 0 8px $border-width rgba(9, 32, 77, 0.12), 0 0 5px -3px rgba(29, 17, 51, 0.12);
             }
 
             &.mzp-is-hidden {
                 @include transform(translate(0, -110%));
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                position: static;
             }
         }
     }
@@ -55,57 +67,56 @@
 
 // Common navigation styles
 .m24-c-navigation-l-content {
-    position: relative;
-    padding: $spacer-xs $spacer-md;
-    width: 100%;
     display: flex;
+    padding: $spacer-xs $spacer-md;
+    position: relative;
+    width: 100%;
 
     @media #{$mq-md} {
-        padding: $spacer-sm $spacer-md;
-        width: auto;
         display: block;
+        padding: $spacer-sm 0 0;
+        width: auto;
     }
 }
 
 .m24-c-navigation-container {
-    @include clearfix;
-    width: 100%;
-    padding: 0;
-    max-width: $content-max;
     margin: 0 auto;
+    max-width: $content-max;
+    padding: 0;
     position: relative;
+    width: 100%;
 
     @media #{$mq-md} {
+        align-items: start;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
         position: static;
+        padding: 0 $container-padding;
+        box-sizing: border-box;
     }
 }
 
+// Mobile navigation menu button.
 .m24-c-navigation-menu-button {
-    background-color: inherit;
-    margin: 0;
-    padding: 0;
+    display: none;
+}
+
+.js .m24-c-navigation-menu-button {
+    background-color: transparent;
+    border: none;
     color: $color-black;
-    position: relative;
+    display: block;
+    float: right;
     font-family: $primary-font;
     font-weight: 600;
-    border: none;
     height: 32px;
-    @include bidi(((float, right, left),));
-
-    &::after {
-        display: block;
-        background: $color-black;
-        bottom: 4px;
-        content: "";
-        height: 1px;
-        left: 0;
-        position: absolute;
-        width: 100%
-    }
+    margin: 4px 0 0;
+    padding: 0;
+    position: relative;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
 
     &.mzp-is-active {
         background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
@@ -123,32 +134,50 @@
     }
 }
 
-.m24-c-navigation-logo-image {
-    height: 21px;
-    padding: 0;
+[dir='rtl'].js .m24-c-navigation-menu-button {
+    float: left;
 }
 
-.m24-c-navigation-items {
-    // mobile specfic styles
-    @media (max-width: $screen-md) {
-        display: none;
+.m24-c-navigation-logo-link {
+    display: inline-block;
+}
 
+.m24-c-navigation-logo-image {
+    height: 27px;
+    width: auto;
+    padding-top: $spacing-xs;
+
+    @media #{$mq-md} {
+        height: 24px;
+        padding: 0;
+    }
+}
+
+.spacer-gif {
+    display: inline-block;
+    width: 100px;
+}
+
+// Mobile navigation menu with JS enabled.
+.js .m24-c-navigation-items {
+    display: none;
+
+    @media (max-width: $screen-md) {
         &.mzp-is-open {
             display: flex;
-            position: fixed;
-            z-index: 100;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: calc(100vh - 48px); // 48px margin top
-            transition: 0.45s;
-            margin-top: 48px;
-            padding-top: 0;
+            height: calc(100vh - $margin-top);
+            margin-top: $margin-top;
             overflow: hidden auto;
-            animation: nav-slide-in 0.45s ease;
+            padding-top: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            @include bidi(((animation, nav-slide-in 0.45s ease, nav-slide-in-reverse 0.45s ease),));
 
             @media (prefers-reduced-motion: reduce) {
-                animation: none;
+                @include bidi(((animation, none, none),));
             }
 
             .m24-c-menu-category-list:has(.m24-c-menu-category.mzp-is-selected) {
@@ -160,122 +189,114 @@
             }
         }
     }
+
+    @media #{$mq-md} {
+        display: block;
+    }
 }
 
 .m24-c-navigation-menu {
-    width: 100%;
     margin-bottom: 0;
-    border-top: 2px solid $m24-color-medium-gray;
+    width: 100%;
 
     @media #{$mq-md} {
-        width: auto;
         border-top: transparent;
+        width: auto;
     }
 }
 
 // Basic hover interactions with JavaScript disabled or not supported.
-.m24-c-menu.m24-mzp-is-basic .m24-c-menu-panel {
-    display: block;
-
+.m24-c-menu.m24-mzp-is-basic .m24-c-menu-category {
     @media #{$mq-md} {
-        display: none;
+        &.mzp-has-drop-down:hover,
+        &.mzp-has-drop-down:focus {
+            .m24-c-menu-panel {
+                display: block;
+            }
+        }
+
+        &.mzp-has-drop-down:focus-within {
+            .m24-c-menu-panel {
+                display: block;
+            }
+        }
     }
 }
 
 // Enhanced hover interactions with JavaScript enabled.
 .m24-c-menu.m24-mzp-is-enhanced .m24-c-menu-category {
-    border-top: none;
-    border-bottom: 2px solid $token-color-light-gray;
-    padding: 8px 16px;
-    position: relative;
-
-    @media #{$mq-md} {
-        padding: 0;
-        border-bottom: transparent;
-    }
-
     &.mzp-is-selected {
-        z-index: 1000;
-        width: calc(100% - 32px);
         border-bottom: transparent;
-        position: static;
-
-        @media #{$mq-md} {
-            width: auto;
-        }
-
-        &::before {
-            left: 0;
-            @include bidi(((left, 8px, right, auto), (right, 8px, left, auto)));
-            transform: rotate(-90deg);
-        }
 
         .m24-c-menu-title {
-            padding: 0 0 0 48px;
+            @include bidi(((padding-left, $spacing-md, padding-right, $spacing-md),));
 
-            @media #{$mq-md} {
-                color: $m24-color-dark-green;
-                padding: 0;
-            }
-
-            &::after {
-                @media #{$mq-md} {
-                    background: $m24-color-dark-green;
-                }
+            &::before {
+                content: '/';
+                padding: 0 $spacing-xs;
             }
         }
 
         .m24-c-menu-panel {
             display: block;
-            z-index: 100;
-            width: 100%;
-            height: auto;
-            background-color: #fff;
-            overflow: hidden auto;
-            animation: nav-slide-in 0.45s ease;
+            @include bidi(((animation, nav-slide-in 450ms ease, nav-slide-in-reverse 450ms ease),));
 
             @media (prefers-reduced-motion: reduce) {
-                animation: none;
-            }
-
-            @media #{$mq-md} {
-                position: absolute;
-                display: block;
-                animation: none;
-                max-height: calc(100vh - 64px);
-                overflow: auto;
-                top: 61px;
-                left: 0;
-                right: 0;
+                @include bidi(((animation, none, none),));
             }
         }
     }
 
-    &::before {
-        background: url('/media/img/m24/arrow-dark-up.svg') top left repeat;
-        transform: rotate(90deg);
+    // Arrow styles for mobile menu items.
+    &::after {
+        background: transparent url('/media/img/icons/m24-small/up-arrow.svg') center center no-repeat;
         content: '';
         height: 20px;
         position: absolute;
-        top: 10px;
+        top: 8px;
         width: 20px;
-        @include bidi(((right, 8px, left, auto),));
+        @include bidi((
+            (transform, rotate(90deg), rotate(-90deg)),
+            (right, 8px, left, auto),
+        ));
+        @include background-size(16px, 16px);
+    }
 
-        @media #{$mq-md} {
+    &.mzp-is-selected::after {
+        @include bidi((
+            (transform, rotate(-90deg), rotate(90deg)),
+            (left, 8px, right, auto),
+        ));
+    }
+
+    @media #{$mq-md} {
+        &.mzp-is-selected {
+            .m24-c-menu-button-close {
+                display: block;
+            }
+
+            .m24-c-menu-title {
+                color: $m24-color-dark-green;
+                @include bidi(((padding-left, 0, padding-right, 0),));
+
+                &::before {
+                    content: none;
+                    display: none;
+                }
+            }
+
+            &::after {
+                background: $m24-color-dark-green;
+            }
+
+            .m24-c-menu-panel {
+                @include bidi(((animation, none, none),));
+            }
+        }
+
+        &::after {
             display: none;
         }
-    }
-}
-
-.m24-c-menu.m24-mzp-is-enhanced .m24-c-menu-category.m24-c-menu-category-has-icon {
-    .m24-c-menu-title-icon {
-        @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
-    }
-
-    .m24-c-menu-title::after {
-        bottom: 1px;
-        @include bidi(((left, 24px, right, auto), (right, auto, left, 24px)));
-        width: calc(100% - 24px);
     }
 }
 
@@ -288,46 +309,71 @@
         position: static;
         display: flex;
         justify-content: space-between;
-        gap: 48px;
     }
 }
 
-.m24-c-menu-category.mzp-has-drop-down {
-    .m24-c-menu-panel {
-        background-color: $color-white;
-        color: $color-black;
-        @include border-box;
-        display: none;
+.m24-c-menu-category {
+    border-bottom: $border-width solid $token-color-light-gray;
+    border-top: none;
+    padding: 8px 16px;
+    position: relative;
+    width: calc(100% - 32px);
+    z-index: 1000;
 
-        @media #{$mq-md} {
-            left: 0;
-            right: auto;
-            top: 64px;
-            width: 100%;
-            padding: 0;
-            border-bottom: 4px solid $m24-color-medium-gray;
+    @media #{$mq-md} {
+        border-bottom: transparent;
+        padding: 0 $spacer-md $spacer-sm;
+        position: static;
+        width: auto;
+    }
+
+    &.m24-c-menu-category-has-icon {
+        .m24-c-menu-title-icon {
+            @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
+        }
+
+        .m24-c-menu-title {
+            @media #{$mq-md} {
+                &:hover::after {
+                    bottom: 1px;
+                    width: calc(100% - 24px);
+                    @include bidi(((left, 24px, right, auto),));
+                }
+            }
         }
     }
 }
 
-.m24-c-menu-category > .m24-c-menu-title {
-    position: relative;
+.m24-c-menu-title {
+    align-items: center;
+    border: none;
+    color: $color-black;
+    display: flex;
     font-family: $primary-font;
-    font-size: $text-button-sm;
+    font-size: $text-body-md;
     font-weight: 600;
     padding: 0;
-    color: $color-black;
+    position: relative;
     text-decoration: none;
-    border: none;
     width: 100%;
-    display: block;
+
+    // extra specificity to override link colors on some Firefox pages
+    &:link,
+    &:visited {
+        color: $color-black;
+        text-decoration: none;
+    }
+
+    .m24-c-menu-title-icon {
+        @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
+    }
 
     @media #{$mq-md} {
-        &::after {
-            display: block;
+        &:hover::after {
             background: $color-black;
             bottom: 1px;
             content: "";
+            display: block;
             height: 1px;
             left: 0;
             position: absolute;
@@ -337,25 +383,58 @@
 }
 
 .m24-c-menu-panel {
-    // mobile specfic styles
-    @media (max-width: $screen-md) {
-        display: none;
-    }
+    background-color: $color-white;
+    color: $color-black;
+    height: auto;
+    overflow: hidden auto;
+    width: 100%;
+    z-index: 1000;
+    @include border-box;
 
     @media #{$mq-md} {
+        border: $border-width solid $m24-color-light-mid-gray;
+        border-top: $border-width solid $m24-color-white;
+        left: 50%;
+        margin: 0 auto;
+        overflow: auto;
         padding: 0;
+        position: absolute;
+        right: auto;
+        top: 100%;
+        width: calc(680px + $grid-gutter); // at 1440px this makes the width 6 columns plus 1/2 a gutter
+        transform: translateX(-50%);
+
+        .mzp-is-scrolling & {
+            // copied from the parent .mzp-is-scrolling definition, but edited to move it down so it doesn't appear to hover over top of the parent menu
+            box-shadow: 0 6px 6px 1px rgba(29, 17, 51, 0.04), 0 8px 8px $border-width rgba(9, 32, 77, 0.12), 0 5px 5px -3px rgba(29, 17, 51, 0.12);
+        }
     }
 }
 
+.m24-mzp-is-basic .m24-c-menu-panel {
+    display: block;
+
+    @media #{$mq-md} {
+        display: none;
+    }
+}
+
+.m24-mzp-is-enhanced .m24-c-menu-panel {
+    display: none;
+}
+
 .m24-c-menu-panel .m24-c-menu-panel-container {
+    margin: 0 auto;
+    max-width: $content-max;
+
     @media #{$mq-md} {
         padding: $spacer-lg 0;
     }
 }
 
 .m24-c-menu-item-title {
-    font-size: $text-button-sm;
     font-family: $primary-font;
+    font-size: $text-body-md;
     font-weight: 600;
     margin-bottom: 0;
 }
@@ -365,17 +444,17 @@
     padding: 0;
 
     @media #{$mq-md} {
-        min-width: 216px;
         width: auto;
     }
 
     .m24-c-menu-item-link {
-        display: flex;
         align-items: center;
+        display: flex;
         padding: 8px 0;
-        width: 100%;
         text-decoration: none;
+        width: 100%;
 
+        &:link,
         &:visited {
             text-decoration: none;
         }
@@ -383,17 +462,6 @@
         .m24-c-menu-item-title {
             border: none;
             position: relative;
-
-            &::after {
-                display: block;
-                background: $color-black;
-                bottom: 1px;
-                content: "";
-                height: 1px;
-                left: 0;
-                position: absolute;
-                width: 100%;
-            }
         }
     }
 }
@@ -401,6 +469,8 @@
 .m24-c-menu-item .m24-c-menu-item-link
 .m24-c-menu-item .m24-c-menu-item-link:link,
 .m24-c-menu-item .m24-c-menu-item-link:visited {
+    text-decoration: none;
+
     .m24-c-menu-item-title {
         border: none;
     }
@@ -418,6 +488,13 @@
 
         &::after {
             background: $m24-color-dark-green;
+            bottom: 1px;
+            content: "";
+            display: block;
+            height: 1px;
+            left: 0;
+            position: absolute;
+            width: 100%;
         }
     }
 
@@ -426,22 +503,47 @@
     }
 }
 
+.m24-c-menu-panel-content.multi-column {
+    @media #{$mq-md} {
+        display: flex;
+        padding: 0 $grid-margin;
+        column-gap: $spacer-lg;
+        margin: 0 auto;
+    }
+
+    .m24-mzp-l-content-container {
+        margin-top: $spacer-xl;
+
+        @media #{$mq-md} {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: $spacer-sm;
+            color: #6d6d6d;
+            font-size: $text-body-sm;
+            font-weight: 600;
+        }
+    }
+}
+
 .m24-c-menu-panel .m24-c-menu-panel-content > .m24-mzp-l-content {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
     padding: $spacer-md $grid-margin;
+    max-width: $content-max;
 
     @media #{$mq-md} {
         padding: 0 $grid-margin;
     }
 
     & > li {
-        border-bottom: 2px solid transparent;
+        border-bottom: $border-width solid transparent;
         width: 100%;
 
         @media #{$mq-md} {
-            border-bottom: 2px solid $token-color-light-gray;
+            border-bottom: $border-width solid $token-color-light-gray;
         }
 
         .m24-c-menu-item {
@@ -451,37 +553,54 @@
 }
 
 .m24-c-menu-panel .m24-c-menu-category-link {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0;
-    margin: $spacer-lg $spacer-lg 0;
-    font-family: $primary-font;
-    font-size: $text-button-sm;
     border: none;
+    display: flex;
+    font-family: $primary-font;
+    font-size: $text-body-md;
+    justify-content: flex-end;
+    margin: $spacer-lg $spacer-lg 0;
+    padding: 0;
 }
 
 .m24-c-menu-panel .m24-c-menu-category-link a,
 .m24-c-menu-panel .m24-c-menu-category-link a:visited,
 .m24-c-menu-panel .m24-c-menu-category-link a:link {
-    position: relative;
-    display: flex;
-    width: fit-content;
     border: none;
-    text-decoration: none;
-    font-weight: 600;
-    font-family: $primary-font;
     color: $color-black;
+    display: flex;
+    font-family: $primary-font;
+    font-weight: 600;
+    position: relative;
+    text-decoration: none;
+    width: fit-content;
 
-    svg path {
-        fill: $color-black;
+    svg {
+        @include bidi((
+            (left, auto, 0),
+            (margin-left, $spacing-xs, 0),
+            (margin-right, 0, $spacing-xs),
+            (right, 0, auto),
+            (transition-property, right, left),
+            (transform, none, rotate(-180deg)),
+        ));
+        height: 0.8em;
+        position: relative;
+        top: 0.15em;
+        transition-duration: $fast;
+        transition-timing-function: $bezier;
+        width: auto;
     }
 }
 
-.m24-c-menu-panel .m24-c-menu-category-link a:hover {
+.m24-c-menu-panel .m24-c-menu-category-link a:hover,
+.m24-c-menu-panel .m24-c-menu-category-link a:focus {
     color: $m24-color-dark-green;
 
-    svg path {
-        fill: $m24-color-dark-green;
+    svg {
+        @include bidi((
+            (right, -$spacing-sm, auto),
+            (left, auto, -$spacing-sm),
+        ));
     }
 }
 
@@ -491,7 +610,7 @@
     .m24-c-menu-item-icon {
         height: 16px;
         width: 16px;
-        @include bidi(((padding-right, 4px, 0), (padding-left, 0, 4px)));
+        @include bidi(((padding-right, 8px, 0), (padding-left, 0, 8px)));
     }
 }
 
@@ -500,20 +619,10 @@
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:active,
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited {
     .m24-c-menu-item-title {
-        font-weight: 600;
         border: none;
+        font-weight: 600;
         position: relative;
-
-        &::after {
-            display: block;
-            background: $color-black;
-            bottom: 1px;
-            content: "";
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-        }
+        text-decoration: none;
     }
 }
 
@@ -521,6 +630,7 @@
 .mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited:hover {
     .m24-c-menu-item-title {
         border: none;
+        text-decoration: none;
 
         &::after {
             background: $m24-color-dark-green;
@@ -528,24 +638,25 @@
     }
 }
 
+// Menu panel close button shown on desktop sized view ports.
 .m24-c-menu-button-close {
+    @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
+    @include image-replaced;
+    background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
+    @include background-size(20px, 20px);
+    border: $border-width solid transparent;
+    cursor: pointer;
     display: none;
+    height: 24px;
+    padding: var(--spacer-xs);
+    position: absolute;
+    top: 15px;
+    width: 24px;
+    transition: border-color $fast $bezier;
 
-    @media #{$mq-md} {
-        position: absolute;
-        display: block;
-        cursor: pointer;
-        @include image-replaced;
-        background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
-        @include background-size(20px, 20px);
-        border-radius: $border-radius-sm;
-        border: none;
-        box-shadow: $box-shadow-sm;
-        padding: var(--spacer-xs);
-        height: 24px;
-        width: 24px;
-        top: 15px;
-        @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
+    &:hover,
+    &:focus {
+        border-color: $m24-color-mid-gray;
     }
 }
 

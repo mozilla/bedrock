@@ -2,17 +2,52 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '../vars/lib' as *;
+
 .m24-pencil-banner {
     background-color: $m24-color-light-green;
-    border-bottom: 2px solid $m24-color-green;
     padding: $spacer-sm;
+    position: relative;
 
     .m24-pencil-banner-copy {
         text-align: center;
+        max-width: 80%;
+        margin: 0 auto;
 
         p {
             color: $m24-color-black;
             margin-bottom: 0;
         }
+
+        :link,
+        :visited {
+            color: $m24-color-black;
+        }
+    }
+
+    .m24-pencil-banner-close {
+        @include bidi(((right, $spacer-sm, auto), (left, auto, $spacer-sm)));
+        @include image-replaced;
+        background: transparent url('/media/img/icons/m24-small/close.svg') center center no-repeat;
+        @include background-size(20px 20px);
+        border: $border-width solid transparent;
+        cursor: pointer;
+        height: 24px;
+        padding: var(--spacer-xs);
+        position: absolute;
+        top: $spacer-sm;
+        transition: border-color $fast $bezier;
+        width: 24px;
+
+        &:hover,
+        &:focus {
+            border-color: $m24-color-green;
+        }
+    }
+}
+
+html[data-pencil-banner-closed="true"] {
+    .m24-pencil-banner {
+        display: none;
     }
 }

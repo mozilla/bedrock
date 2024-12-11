@@ -1,0 +1,56 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block experiments %}
+  {{ js_bundle('firefox_whatsnew_133_experiment_eu') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_133_newsletter') }}
+{% endblock %}
+
+{% if LANG == 'fr' %}
+  {% set main_title = "Tirez le maximum de Firefox" %}
+  {% set main_body = "Rejoignez une communauté de millions de personnes qui reçoivent des conseils pour améliorer leur expérience de Firefox. Soyez le premier à connaître les nouvelles fonctionnalités, recevez des astuces pour mieux naviguer, et restez informé des évolutions d’Internet." %}
+{% elif LANG == 'de' %}
+  {% set main_title = "Hol das Beste aus Firefox heraus" %}
+  {% set main_body = "Werde Teil einer Community von Millionen von Menschen, die Tipps erhalten, um ihr Firefox-Erlebnis zu verbessern. Erfahre zuerst von neuen Funktionen, lerne Tricks und bleib über die schnelllebige Welt des Internets informiert." %}
+{% else %}
+  {% set main_title = "Make the most out of Firefox" %}
+  {% set main_body = "Join a community of millions of people who already get tips to make their Firefox experience better. Be the first to know about new features, learn tricks to help you navigate, and get news on a fast changing internet world." %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-xl">
+    <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew133/fox-mailbox.png') }}" width="170" height="100" alt="">
+    <div class="mzp-l-columns mzp-t-columns-two">
+      <div class="wnp-main-content">
+        <h1 class="wnp-main-title">{{ main_title }}</h1>
+        <p class="wnp-main-body">{{ main_body }}</p>
+      </div>
+
+      <div class="wnp-action-container">
+        {{ email_newsletter_form(
+          newsletters='mozilla-and-you',
+          title=None
+          )}}
+      </div>
+    </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+  {{ js_bundle('newsletter') }}
+{% endblock %}

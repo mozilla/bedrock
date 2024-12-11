@@ -4,8 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if switch('m24-website-refresh', ['en']) %}
-  {% include 'includes/protocol/navigation/pencil-banner.html' %}
+{% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+  {% if switch('show-pencil-banner') %}
+    {% include 'includes/banners/pencil-banner.html' %}
+  {% endif %}
   {% include 'includes/protocol/navigation/navigation-refresh.html' %}
 {% else %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}

@@ -476,8 +476,8 @@ redirectpatterns = (
     redirect(r"^styleguide/identity/firefox(.+)", "https://mozilla.design/firefox/"),
     redirect(r"^styleguide/identity/mozilla(.+)", "https://mozilla.design/mozilla/"),
     redirect(r"^styleguide(/.*)?", "https://mozilla.design/"),
-    # Issue 8644, 8932
-    redirect(r"^builders/?$", "https://future.mozilla.org/builders/"),
+    # Issue 8644, 8932, 15613
+    redirect(r"^builders/?$", "https://builders.mozilla.org/"),
     # Issue 6824, 14364
     redirect(r"^technology/?$", "https://future.mozilla.org/"),
     # Issue 8668

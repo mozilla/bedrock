@@ -257,6 +257,9 @@ locales = [
     reference = "en/mozorg/home.ftl"
     l10n = "{locale}/mozorg/home.ftl"
 [[paths]]
+    reference = "en/mozorg/home-m24.ftl"
+    l10n = "{locale}/mozorg/home-m24.ftl"
+[[paths]]
     reference = "en/mozorg/home-new.ftl"
     l10n = "{locale}/mozorg/home-new.ftl"
 [[paths]]
@@ -265,6 +268,9 @@ locales = [
 [[paths]]
     reference = "en/mozorg/about.ftl"
     l10n = "{locale}/mozorg/about.ftl"
+[[paths]]
+    reference = "en/mozorg/about-m24.ftl"
+    l10n = "{locale}/mozorg/about-m24.ftl"
 [[paths]]
     reference = "en/mozorg/about/governance/policies/*.ftl"
     l10n = "{locale}/mozorg/about/governance/policies/*.ftl"
@@ -350,6 +356,9 @@ locales = [
 [[paths]]
     reference = "en/products/vpn/platform-post-download.ftl"
     l10n = "{locale}/products/vpn/platform-post-download.ftl"
+[[paths]]
+    reference = "en/products/vpn/landing.ftl"
+    l10n = "{locale}/products/vpn/landing.ftl"
 [[paths]]
     reference = "en/products/vpn/landing-2023.ftl"
     l10n = "{locale}/products/vpn/landing-2023.ftl"

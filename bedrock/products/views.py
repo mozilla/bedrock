@@ -83,7 +83,7 @@ def active_locale_available(slug, locale):
 
 @require_safe
 def vpn_landing_page(request):
-    ftl_files = ["products/vpn/landing", "products/vpn/landing-2023", "products/vpn/shared", "products/vpn/pricing-2023"]
+    ftl_files = ["products/vpn/landing-2023", "products/vpn/shared", "products/vpn/pricing-2023"]
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     mobile_sub_only = vpn_available_mobile_sub_only(request)
@@ -122,7 +122,7 @@ def vpn_landing_page(request):
 
 @require_safe
 def vpn_pricing_page(request):
-    ftl_files = ["products/vpn/landing", "products/vpn/shared", "products/vpn/pricing-2023"]
+    ftl_files = ["products/vpn/pricing-2023", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
     country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
@@ -374,6 +374,17 @@ def resource_center_article_view(request, slug):
             "products/vpn/resource-center",
             "products/vpn/shared",
         ],
+    )
+
+
+def resource_center_article_available_locales_lookup(*, slug: str) -> list[str]:
+    # Helper func to get a list of language codes available for the given
+    # Contentful-powered VPN RC slug
+    return list(
+        ContentfulEntry.objects.filter(
+            localisation_complete=True,
+            slug=slug,
+        ).values_list("locale", flat=True)
     )
 
 

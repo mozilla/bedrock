@@ -1,0 +1,20 @@
+# See the code-owners Github docs:
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Mostly backend-y directories
+/bedrock @mozilla/bedrock-codeowners-backend
+/docker @mozilla/bedrock-codeowners-backend
+/lib @mozilla/bedrock-codeowners-backend
+/requirements @mozilla/bedrock-codeowners-backend
+/wsgi @mozilla/bedrock-codeowners-backend
+*.py @mozilla/bedrock-codeowners-backend
+
+# Mostly frontend-y directories
+/media @mozilla/bedrock-codeowners-frontend
+/package.json @mozilla/bedrock-codeowners-frontend
+*.html @mozilla/bedrock-codeowners-frontend
+*.js @mozilla/bedrock-codeowners-frontend
+*.scss @mozilla/bedrock-codeowners-frontend
+
+# Top-level /tests are mostly frontend-y
+/tests @mozilla/bedrock-codeowners-frontend

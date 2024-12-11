@@ -109,7 +109,8 @@ sync down any images you don't already have.
   or ``AWS_DB_S3_BUCKET=bedrock-db-prod``.
 
   ``AWS_DB_S3_BUCKET=bedrock-db-stage make preflight``
-  ``AWS_DB_S3_BUCKET=bedrock-db-stage python manage.py download_media_to_local``
+
+  ``python manage.py download_media_to_local --environment=stage``
 
 Adding new content surfaces
 ===========================
@@ -407,6 +408,11 @@ page-serving logic comes last in all URLConfs). **BUT...** how can you enter con
 into the CMS fast enough replace the just-removed Django page? (Note: we could use a
 data migraiton here, but that gets complicated when there are images involved)
 
+Equally, you may have a situation where the content for certain paths needs to be
+managed in the CMS for certain locales, while other locales (with rarely changing
+'evergreen' content) may only exist as Django-rendered views drawing strings from
+Fluent.
+
 The answer here is to use the ``bedrock.cms.decorators.prefer_cms`` decorator/helper.
 
 A Django view decorated with ``prefer_cms`` will check if a live CMS page has been
@@ -415,14 +421,16 @@ one, it will show the user `that` CMS page instead. If there is no match in the 
 then the original Django view will be used.
 
 The result is a graceful handover flow that allows us to switch to the CMS page
-without needing to remove the Django view from the URLconf. It doesn't affect
+without needing to remove the Django view from the URLconf, or to maintain a
+hybrid approach to page management. It doesn't affect
 previews, so the review of draft pages before publishing can continue with no changes.
 Once the CMS is populated with a live version of the replacement page, that's when a
-later changeset can remove the deprecated Django view.
+later changeset can remove the deprecated Django view if it's no longer needed.
 
 The ``prefer_cms`` decorator can be used directly on function-based views, or can wrap
-views in the URLconf. It can also be passed to our very handy
-``bedrock.mozorg.util.page`` as one of the list of ``decorator`` arguments.
+views in the URLconf. It should not used with ``bedrock.mozorg.util.page`` due to
+the complexity of passing through what locales are involved, but instead the relevant
+URL route should be refactored as a regular Django view, and then decorated with ``prefer_cms``
 
 For more details, please see the docstring on ``bedrock.cms.decorators.prefer_cms``.
 

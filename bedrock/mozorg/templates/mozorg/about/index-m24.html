@@ -6,11 +6,11 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}Learn About Mozilla{% endblock %}
+{% block page_title %}{{ ftl('m24-about-page-title') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
 {% block page_desc %}
-  Mozilla makes browsers, apps, code and tools that put people before profit. Our mission: Keep the internet open and accessible to all.
+  {{ ftl('m24-about-page-desc') }}
 {% endblock %}
 
 {% block body_id %}about{% endblock %}
@@ -20,10 +20,13 @@
   {{ css_bundle('m24-base') }}
 {% endblock %}
 
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-about' %}
+
 {% block content %}
 <main>
-  {% include 'mozorg/about/includes/m24/hero.html'%}
-  {% include 'mozorg/about/includes/m24/amplify.html'%}
+  {% include 'mozorg/about/includes/m24/intro.html'%}
+  {% include 'mozorg/about/includes/m24/manifesto.html'%}
+  {% include 'mozorg/about/includes/m24/news.html'%}
   {% include 'mozorg/about/includes/m24/impact.html'%}
   {% include 'mozorg/about/includes/m24/careers.html'%}
   {% include 'mozorg/about/includes/m24/community.html'%}

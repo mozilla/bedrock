@@ -6,6 +6,16 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
+{% block site_css %}
+  {% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+    {{ css_bundle('m24-root') }}
+    {{ css_bundle('m24-navigation-and-footer') }}
+  {% else %}
+    {{ css_bundle('legacy-navigation-and-footer') }}
+  {% endif %}
+  {{ css_bundle('protocol-firefox') }}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('protocol-card') }}
   {{ css_bundle('firefox-family') }}

@@ -2,27 +2,22 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 // variables
-@import 'vars/animation';
-@import 'vars/color';
-@import 'vars/fonts';
-@import 'vars/grid';
-@import 'vars/spacing';
-@import 'vars/text';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use 'vars/lib' as *;
 
 // components
-@import 'consider';
-@import 'copy';
-@import 'donate';
-@import 'grid';
-@import 'hero';
-@import 'showcase';
-@import 'spring';
-@import 'theme';
-@import 'transition';
+@use 'careers';
+@use 'intro';
+@use 'donate';
+@use 'feature';
+@use 'flag';
+@use 'gallery';
+@use 'showcase';
+@use 'launchpad';
+@use 'springboard';
+@use 'theme';
+@use 'transition';
 
 /* Protocol overrides ------------------------------------------------------------ */
 
@@ -31,14 +26,15 @@ body {
     color: $m24-color-black;
     font-family: var(--body-font-family);
     font-variant-ligatures: none;
-    line-height: var(--body-line-height);
+    line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5 {
     color: $m24-color-black;
     font-family: var(--title-font-family);
     font-variant-ligatures: none;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: -0.01em;
     line-height: 1.1;
 }
 
@@ -84,17 +80,30 @@ a:link {
 .m24-c-section-cta {
     margin-bottom: 0;
     padding: $spacer-xs 0;
-    text-align: right;
+    text-align: end;
 }
 
 .m24-c-cta {
     color: $m24-color-black;
     display: inline-block;
     font-family: var(--title-font-family);
-    font-size: $text-button-lg;
+    font-size: $text-button-xl;
+    font-weight: 600;
+    background-image:
+    linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
+    background-repeat: no-repeat;
+    background-position:
+        left var(--cta-bg-position, 100%) top 100%;
+    background-size: 400% 2px;
 
-    &:hover {
-        color: $m24-color-dark-green;
+    &:link {
+        text-decoration: none;
+    }
+
+    &:link:hover,
+    &:link:hover:visited {
+        --cta-bg-position: 0%;
+        transition: $slow $bezier;
     }
 
     &:focus-visible {
@@ -105,7 +114,16 @@ a:link {
         color: $m24-color-black;
     }
 
-    &.m24-t-small {
+    &.m24-t-lg {
+        font-size: $text-button-lg;
+    }
+
+    &.m24-t-md {
+        font-family: var(--body-font-family);
+        font-size: $text-button-md;
+    }
+
+    &.m24-t-sm {
         font-family: var(--body-font-family);
         font-size: $text-button-sm;
     }

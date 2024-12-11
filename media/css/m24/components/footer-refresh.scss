@@ -2,16 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '../vars/lib' as *;
+
 $max-footer-content-width: $content-max;
 
 @mixin divider-line {
-    border-bottom: 4px solid $m24-color-light-gray;
+    border-bottom: $border-width solid $m24-color-light-gray;
 }
 
 // whole footer
 .moz24-footer {
     @include invert-colors;
-    background-color: $m24-color-white;
+    background-color: $m24-color-alt-white;
     color: $m24-color-black;
     padding-top: $spacer-xl;
 
@@ -25,6 +27,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-content {
     @include container;
     margin: 0 auto;
+    padding-bottom: $container-padding
 }
 
 // primary nav
@@ -34,10 +37,10 @@ $max-footer-content-width: $content-max;
 
 .moz24-footer-sections-wrapper {
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction: column;
     gap: $grid-gutter;
 
-    @media(min-width: $screen-lg) {
+    @media #{$mq-lg} {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
@@ -47,17 +50,20 @@ $max-footer-content-width: $content-max;
 .moz24-footer-primary .moz24-footer-section-wrapper {
     width: 100%;
 
-    @media(min-width: $screen-lg) {
-        width: grid(4);
+    @media #{$mq-lg} {
+        width: grid(2);
     }
 
     &.moz24-links-section {
-        display: grid;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-        place-items: stretch start;
+        @media (min-width: #{$screen-xs * 1.25}) {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
+            column-gap: $grid-gutter;
+            place-items: stretch start;
+        }
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             width: grid(8);
             display: flex;
             flex-direction: row;
@@ -72,7 +78,7 @@ $max-footer-content-width: $content-max;
     align-items: center;
     margin-bottom: $spacer-lg;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
@@ -83,11 +89,12 @@ $max-footer-content-width: $content-max;
 .moz24-footer-heading-social {
     padding: 0;
     font-family: $primary-font;
-    color: $m24-color-functional-gray;
+    color: $m24-color-black;
     margin: 0;
-    font-size: $text-title-sm;
+    font-size: $text-body-sm;
+    font-weight: 400;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin-bottom: $spacer-sm;
     }
 }
@@ -96,7 +103,7 @@ $max-footer-content-width: $content-max;
     margin: 0 0 0 $spacer-lg;
     display: flex;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin: 0;
     }
 
@@ -104,27 +111,30 @@ $max-footer-content-width: $content-max;
         margin-right: $spacer-2xs;
         display: inline-block;
 
-        a {
-            background-repeat: no-repeat;
-            border-bottom: 1px solid rgba(0,0,0,0);
-            direction: ltr;
-            display: block;
-            height: 16px;
-            overflow: hidden;
-            text-align: left;
-            text-indent: -9999px;
-            white-space: nowrap;
-            width: 16px;
-            @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
+        &:last-of-type {
+            @include bidi(((margin-right, 0, 0), (margin-left, 0, 0)));
+        }
 
-            @media(min-width: $screen-md) {
-                @include bidi(((margin-right, 16px, 0), (margin-left, 0, 16px)));
+        a {
+            @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
+            @include image-replaced;
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+            background-position: center center;
+            opacity: .45;
+            border-bottom: 1px solid rgba(0,0,0,0);
+            display: block;
+            height: 24px;
+            width: 24px;
+
+            &:last-of-type {
+                @include bidi(((margin-right, 0, 0), (margin-left, 0, 0)));
             }
 
-            &:hover {
-                outline: 1px dotted $m24-color-black;
+            &:hover,
+            &:focus {
+                opacity: 1;
                 border-bottom-color: transparent;
-                background-repeat: no-repeat;
             }
 
             &.linkedin {
@@ -137,11 +147,6 @@ $max-footer-content-width: $content-max;
 
             &.spotify {
                 background-image: url('/media/protocol/img/icons/social/spotify/white.svg');
-            }
-
-            &.mastodon {
-                background-image: url('/media/protocol/img/icons/social/mastodon/white.svg');
-                background-size: contain;
             }
 
             &.twitter {
@@ -160,10 +165,10 @@ $max-footer-content-width: $content-max;
 }
 
 .moz24-footer-label {
-    color: $m24-color-functional-gray;
+    color: $m24-color-mid-gray;
+    font-size: $text-body-sm;
+    font-family: $primary-font;
     font-weight: 600;
-    font-size: $text-title-md;
-    font-family: $secondary-font;
 }
 
 .moz24-footer-primary-list {
@@ -178,7 +183,7 @@ $max-footer-content-width: $content-max;
         text-decoration: none;
         position: relative;
         color: $m24-color-black;
-        font-weight: normal;
+        font-weight: 400;
     }
 
     a:hover,
@@ -219,7 +224,7 @@ $max-footer-content-width: $content-max;
     flex-direction: column;
     position: relative;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
@@ -231,71 +236,45 @@ $max-footer-content-width: $content-max;
 .moz24-footer-donate {
     position: relative;
     border-radius: 0;
-    font-family: $secondary-font;
     font-weight: 600;
-    background-color: transparent;
+    background-color: $m24-color-alt-white;
     color: $m24-color-black;
     padding: 6px 24px;
-    border: 2px solid $m24-color-green;
+    border: $border-width solid $m24-color-black;
     text-decoration: none;
     text-align: center;
     max-width: 800px;
+    margin-bottom: $spacer-lg;
 
-    &:hover,
-    &:visited:hover {
-        box-shadow: 4px 4px 0 0 $m24-color-green;
-        background-color: transparent;
-        color: $m24-color-black;
+    &:link,
+    &:visited {
+        text-decoration: none;
     }
 
     &:active,
-    &:visited:active {
-        background-color: transparent;
-        box-shadow: none;
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        background-color: $m24-color-alt-black;
+        color: $m24-color-white;
 
-        .mzp-c-button-icon-text::after {
-            display: none;
+        .mzp-c-button-icon-start path {
+            fill: $m24-color-white;
+        }
+
+        .mzp-c-button-icon-text {
+            color: $m24-color-white;
         }
     }
 
-    &:focus-visible,
-    &:visited:focus-visible {
-        color: $m24-color-green;
-
-        .mzp-c-button-icon-start svg path {
-            fill: $m24-color-green;
-        }
-
-       .mzp-c-button-icon-text::after {
-            background: $m24-color-green;
-        }
-    }
-
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         margin-bottom: 0;
     }
 }
 
-.mzp-c-button-icon-start {
-    font-size: 1.7em;
-    vertical-align: middle;
-    margin-right: 0;
-
-    svg path {
-        fill: $m24-color-black;
-    }
-}
-
-.mzp-c-button-icon-text {
-    position: relative;
-    font-family: $secondary-font;
-    color: $m24-color-black;
-}
 
 // language form
 .moz24-footer-language {
-    margin-top: $spacer-lg;
-    margin-bottom: 0;
     position: relative;
 }
 
@@ -304,54 +283,54 @@ $max-footer-content-width: $content-max;
     border-color: transparent;
 
     &::before {
-        display: block;
-        content: "";
-        position: absolute;
-        width: 32px;
-        height: 32px;
         @include bidi(((left, 0, 0), (right, 0, 102px)));
-        bottom: 0;
+        background: transparent url('/media/img/icons/m24-small/globe-white.svg') center center no-repeat;
+        background-size: 18px 18px;
+        top: 50%;
+        margin-top: -16px;
         color: $m24-color-white;
-        background-repeat: no-repeat;
-        background-position-x: 8px;
-        background-position-y: -2px;
-        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-globe.svg');
+        content: "";
+        display: block;
+        height: 32px;
+        width: 32px;
+        position: absolute;
     }
 
     label {
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
+        @include visually-hidden;
     }
 
     .mzp-c-language-switcher-link {
         @include visually-hidden;
+
+        &:focus,
+        &:focus-visible {
+            clip: auto;
+            color: $m24-color-black;
+            height: auto;
+            overflow: visible;
+            text-indent: 0;
+            top: -1.5em;
+            width: auto;
+        }
     }
 
     .mzp-js-language-switcher-select {
-        border: 2px solid transparent;
+        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') 95px 0.75em no-repeat;
+        background-size: 16px 16px;
         border-radius: 0;
-        font-family: $secondary-font;
-        font-weight: 600;
-        padding-left: 36px;
-        min-width: unset;
-        width: 136px;
-        background: $m24-color-white;
+        border: $border-width solid transparent;
         color: $m24-color-black;
-        background-position-x: 95px;
-        background-position-y: 9px;
-        background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
-        background-repeat: no-repeat;
+        font-weight: 600;
         margin-top: 16px;
+        min-width: unset;
+        padding-left: 36px;
+        width: 136px;
 
         &:hover,
+        &:focus,
         &:focus-visible {
-            border-color: $m24-color-black;
+            border-color: $m24-color-mid-gray;
         }
     }
 }
@@ -359,33 +338,37 @@ $max-footer-content-width: $content-max;
 // secondary nav
 .moz24-footer-secondary {
     position: relative;
-    margin-top: $grid-margin;
+    margin: $spacer-lg 0;
     line-height: 1.5;
-
-    @media(min-width: $screen-md) {
-        padding-top: $grid-margin;
-    }
 }
 
 .moz24-footer-legal {
     display: flex;
     flex-direction: column;
     color: $m24-color-black;
-    font-weight: 600;
-    font-size: $text-body-sm;
+    font-size: 12px;
 
-    @media(min-width: $screen-lg) {
+    @media #{$mq-lg} {
         flex-direction: row;
         justify-content: space-between;
+        font-size: 14px;
     }
 }
 
 .moz24-footer-license {
     font-family: $primary-font;
 
-    @media(min-width: $screen-md) {
+    @media #{$mq-md} {
         max-width: unset;
         @include bidi(((margin-right, 10%, 0), (margin-left, 0, 10%)));
+    }
+
+    @media #{$mq-lg} {
+        margin-bottom: 0;
+    }
+
+    a {
+        display: inline-block;
     }
 
     a,
@@ -397,13 +380,19 @@ $max-footer-content-width: $content-max;
 }
 
 .moz24-footer-terms {
+    margin-bottom: 0;
+
     li {
         font-family: $primary-font;
         padding: 0 24px 0 0;
         margin-bottom: $spacer-xs;
 
-        @media(min-width: $screen-md) {
-            display: inline;
+        @media #{$mq-md} {
+            display: inline-block;
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
         }
     }
 

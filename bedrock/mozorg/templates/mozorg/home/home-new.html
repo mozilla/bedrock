@@ -22,8 +22,15 @@
 
 {% block page_desc %}{{ ftl('home-did-you-know-mozilla-the-maker') }}{% endblock %}
 
-{% set show_fundraising_nav_cta = switch('fundraising-nav-cta-july2024', ["en"]) %}
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'pl', 'pt-BR'] %}
+{% set show_fundraising_banner = switch('fundraising-banner-giving2024') and LANG in fundraising_banner_langs %}
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
+{% block experiments %}
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner-experiment') }}
+  {% endif %}
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -39,51 +46,18 @@
     {{ css_bundle('ctd-promo') }}
   {% endif %}
 
-  {% if show_firefox_app_store_banner %}
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}
 
-<!-- Custom donate button macro for the MoFo donation nav CTA experiment -->
-{% macro donate_button() -%}
-<a class='mzp-c-button mzp-t-secondary c-fx-users' href='https://foundation.mozilla.org/?form=cta-donate-nav-fx'>
-  <span class='mzp-c-button-icon-start'>
-    <svg width='16' height='16' viewBox='0 0 16 16'>
-      <path fill='#ff0000' d='M1.2,2.2c-1.5,1.5-1.5,4.2,0,5.7L8,15c2.3-2.4,4.5-4.7,6.9-7c1.5-1.5,1.5-4.2,0-5.7c-1.5-1.5-4-1.5-5.6,0L8,3.5 L6.7,2.3C5.1,0.6,2.7,0.6,1.2,2.2'/>
-    </svg>
-  </span>
-  Donate
-</a>
-
-<a class='mzp-c-button mzp-t-secondary c-non-fx-users' href='https://foundation.mozilla.org/?form=cta-donate-nav'>
-  <span class='mzp-c-button-icon-start'>
-    <svg width='16' height='16' viewBox='0 0 16 16'>
-      <path fill='#ff0000' d='M1.2,2.2c-1.5,1.5-1.5,4.2,0,5.7L8,15c2.3-2.4,4.5-4.7,6.9-7c1.5-1.5,1.5-4.2,0-5.7c-1.5-1.5-4-1.5-5.6,0L8,3.5 L6.7,2.3C5.1,0.6,2.7,0.6,1.2,2.2'/>
-    </svg>
-  </span>
-  Donate
-</a>
-{%- endmacro %}
-
-{% block site_header %}
-  {% if show_fundraising_nav_cta and variation == '1' %}
-    {% with custom_nav_cta=donate_button() %}
-      {% include 'includes/protocol/navigation/navigation.html' %}
-    {% endwith %}
-  {% else %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endif %}
-{% endblock %}
-
 {% block page_banner %}
-  {% if show_firefox_app_store_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% elif show_firefox_app_store_banner %}
     {% include 'includes/banners/mobile/firefox-app-store.html' %}
-  {% endif %}
-{% endblock %}
-
-{% block experiments %}
-  {% if show_fundraising_nav_cta %}
-    {{ js_bundle('fundraising-nav-cta')}}
   {% endif %}
 {% endblock %}
 
@@ -283,7 +257,7 @@
         media_after=False
     ) %}
     <h2>{{ ftl('home-so-what-is-mozilla') }}</h2>
-    <p>{{ ftl('home-at-its-core', ventures=moz_ventures, mozai=moz_ai) }}</p>
+    <p>{{ ftl('home-at-its-core-v2', fallback='home-at-its-core', ventures=moz_ventures, mozai=moz_ai) }}</p>
     <a href="https://foundation.mozilla.org/{{ utm_params }}" rel="external noopener" class="mzp-c-button">
       {{ ftl('home-learn-about-mofo') }}
     </a>
@@ -354,7 +328,9 @@
 {% block js %}
   {{ js_bundle('newsletter') }}
 
-  {% if show_firefox_app_store_banner %}
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner') }}
+  {% elif show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}
   {% endif %}
 {% endblock %}

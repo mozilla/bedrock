@@ -1231,7 +1231,7 @@ class TestVPNMonthlyPrice(TestCase):
 
     def _render(self, plan, country_code, lang):
         req = self.rf.get("/")
-        req.locale = "en-US"
+        req.locale = lang
         return render(f"{{{{ vpn_monthly_price('{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_monthly_price_usd_en_us(self):
@@ -1385,6 +1385,315 @@ class TestVPNMonthlyPrice(TestCase):
         self.assertEqual(markup, expected)
 
 
+class TestVPNMobileMonthlyPrice(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, plan, country_code, lang):
+        req = self.rf.get("/")
+        req.locale = "en-US"
+        return render(f"{{{{ vpn_mobile_monthly_price('{plan}', '{country_code}', '{lang}') }}}}", {"request": req})
+
+    def test_vpn_monthly_price_au_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="AU", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">A$14.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_au_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="AU", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">A$7.50<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_bd_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="BD", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">BDT1,200.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_bd_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="BD", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">BDT583.33<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_br_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="BR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">R$56.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_br_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="BR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">R$27.50<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_cl_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="CL", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">CLP9,300<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_cl_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="CL", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">CLP4,582<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_co_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="CO", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">COP41,900.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_co_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="CO", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">COP20,825.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_eg_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="EG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">EGP479.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_eg_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="EG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">EGP241.67<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_gr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="GR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">€9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_gr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="GR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">€4.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_id_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="ID", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">IDR155,000.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_id_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="ID", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">IDR75,000.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_in_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="IN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₹839.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_in_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="IN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₹416.58<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_ke_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="KE", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_ke_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="KE", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$5.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_kr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="KR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₩13,500<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_kr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="KR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₩6,658<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_ma_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="MA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">MAD99.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_ma_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="MA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">MAD50.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_mx_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="MX", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">MX$189.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_mx_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="MX", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">MX$95.75<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_ng_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="NG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NGN15,900.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_ng_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="NG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NGN8,325.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_no_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="NO", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NOK110.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_no_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="NO", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NOK54.17<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_sa_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="SA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">SAR36.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_sa_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="SA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">SAR18.75<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_sn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="SN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_sn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="SN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$4.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_th_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="TH", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">THB330.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_th_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="TH", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">THB165.83<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_tr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="TR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">TRY339.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_tr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="TR", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">TRY166.67<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_tw_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="TW", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NT$320.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_tw_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="TW", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">NT$158.33<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_ua_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="UA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_ua_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="UA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$5.00<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_ug_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="UG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_ug_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="UG", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$4.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_vn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="VN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₫249,000<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_vn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="VN", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">₫124,917<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_za_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="ZA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">ZAR169.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_za_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="ZA", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">ZAR83.33<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_monthly_price_unknown_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="monthly", country_code="", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$9.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_price_unknown_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(plan="12-month", country_code="", lang="en-US")
+        expected = '<span class="vpn-monthly-price-display">$4.99<span>/month</span></span>'
+        self.assertEqual(markup, expected)
+
+
 @override_settings(
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
@@ -1393,7 +1702,7 @@ class TestVPNTotalPrice(TestCase):
 
     def _render(self, country_code, lang):
         req = self.rf.get("/")
-        req.locale = "en-US"
+        req.locale = lang
         return render(f"{{{{ vpn_total_price('{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_12_month_total_price_usd_en_us(self):
@@ -1481,6 +1790,165 @@ class TestVPNTotalPrice(TestCase):
         self.assertEqual(markup, expected)
 
 
+class TestVPNMobileTotalPrice(TestCase):
+    rf = RequestFactory()
+
+    def _render(self, country_code, lang):
+        req = self.rf.get("/")
+        req.locale = lang
+        return render(f"{{{{ vpn_mobile_total_price('{country_code}', '{lang}') }}}}", {"request": req})
+
+    def test_vpn_12_month_total_price_au_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="AU", lang="en-US")
+        expected = "A$89.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_bd_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="BD", lang="en-US")
+        expected = "BDT7,000.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_br_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="BR", lang="en-US")
+        expected = "R$330.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_cl_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="CL", lang="en-US")
+        expected = "CLP54,990 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_co_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="CO", lang="en-US")
+        expected = "COP249,900.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_eg_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="EG", lang="en-US")
+        expected = "EGP2,899.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_gr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="GR", lang="en-US")
+        expected = "€59.88 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_id_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="ID", lang="en-US")
+        expected = "IDR900,000.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_in_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="IN", lang="en-US")
+        expected = "₹4,999.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_ke_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="KE", lang="en-US")
+        expected = "$59.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_kr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="KR", lang="en-US")
+        expected = "₩79,900 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_ma_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="MA", lang="en-US")
+        expected = "MAD600.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_mx_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="MX", lang="en-US")
+        expected = "MX$1,149.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_ng_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="NG", lang="en-US")
+        expected = "NGN99,900.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_no_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="NO", lang="en-US")
+        expected = "NOK650.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_sa_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="SA", lang="en-US")
+        expected = "SAR224.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_sn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="SN", lang="en-US")
+        expected = "$59.88 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_th_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="TH", lang="en-US")
+        expected = "THB1,990.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_tr_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="TR", lang="en-US")
+        expected = "TRY1,999.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_tw_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="TW", lang="en-US")
+        expected = "NT$1,900.00 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_ua_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="UA", lang="en-US")
+        expected = "$59.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_ug_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="UG", lang="en-US")
+        expected = "$59.88 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_vn_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="VN", lang="en-US")
+        expected = "₫1,499,000 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_za_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="ZA", lang="en-US")
+        expected = "ZAR999.99 total"
+        self.assertEqual(markup, expected)
+
+    def test_vpn_12_month_total_price_unknown_en_us(self):
+        """Should return expected markup"""
+        markup = self._render(country_code="", lang="en-US")
+        expected = "$59.88 total"
+        self.assertEqual(markup, expected)
+
+
 @override_settings(
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
@@ -1489,7 +1957,7 @@ class TestVPNSaving(TestCase):
 
     def _render(self, country_code, lang):
         req = self.rf.get("/")
-        req.locale = "en-US"
+        req.locale = lang
         return render(f"{{{{ vpn_saving('{country_code}', '{lang}') }}}}", {"request": req})
 
     def test_vpn_12_month_saving_usd(self):

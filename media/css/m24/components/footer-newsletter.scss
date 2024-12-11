@@ -2,10 +2,18 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '../vars/lib' as *;
+
 $max-footer-content-width: $content-max;
 
 @mixin divider-line {
-    border-bottom: 4px solid $m24-color-light-gray;
+    border-bottom: $border-width solid $m24-color-light-gray;
+}
+
+// hide details for JS users
+// (displayed when email field is focused)
+.js .mzp-c-newsletter-details {
+    @include hidden;
 }
 
 // newsletter form
@@ -27,7 +35,7 @@ $max-footer-content-width: $content-max;
         padding-bottom: $spacer-lg;
         position: relative;
 
-        @media(min-width: $screen-md) {
+        @media #{$mq-md} {
             align-items: flex-start;
             flex-direction: row;
         }
@@ -40,11 +48,11 @@ $max-footer-content-width: $content-max;
         align-items: flex-start;
         margin-bottom: $grid-margin;
 
-        @media(min-width: $screen-md) {
+        @media #{$mq-md} {
             width: grid(5);
         }
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             width: grid(4);
             flex-wrap: nowrap;
         }
@@ -60,10 +68,10 @@ $max-footer-content-width: $content-max;
 
     .moz24-newsletter-image {
         width: 40px;
-        @include bidi(((margin-right, $spacer-sm, 0), (margin-left, 0, $spacer-sm)));
+        @include bidi(((margin-right, $spacer-md, 0), (margin-left, 0, $spacer-md)));
         margin-bottom: $spacer-md;
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             @include bidi(((margin-right, $spacer-xl, 0), (margin-left, 0, $spacer-xl)));
         }
 
@@ -74,11 +82,11 @@ $max-footer-content-width: $content-max;
     .moz24-newsletter {
         width: 100%;
 
-        @media(min-width: $screen-md) {
+        @media #{$mq-md} {
             width: grid(6);
         }
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             width: grid(8);
         }
 
@@ -89,7 +97,6 @@ $max-footer-content-width: $content-max;
         .mzp-c-newsletter-thanks {
             h3 {
                 color: $m24-color-black;
-                font-family: $secondary-font;
             }
 
             p {
@@ -119,7 +126,7 @@ $max-footer-content-width: $content-max;
             font-family: $primary-font;
             text-align: start;
 
-            @media(min-width: $screen-lg) {
+            @media #{$mq-lg} {
                 display: inline-grid;
 
                 &:first-of-type {
@@ -137,7 +144,7 @@ $max-footer-content-width: $content-max;
 
         input[type="email"],
         select {
-            border: 2px solid $m24-color-black;
+            border: $border-width solid $m24-color-black;
             border-radius: 0;
             background-color: $m24-color-light-gray;
             color: $m24-color-black;
@@ -146,8 +153,12 @@ $max-footer-content-width: $content-max;
             &:focus,
             &:focus-visible,
             &:focus-within {
-                border-color: $m24-color-green;
-                background-color: $m24-color-white;
+                color: $m24-color-white;
+                background-color: $m24-color-black;
+
+                &::placeholder {
+                    color: $m24-color-white;
+                }
             }
         }
 
@@ -156,7 +167,7 @@ $max-footer-content-width: $content-max;
             width: 100%;
             font-family: $primary-font;
 
-            @media(min-width: $screen-md) {
+            @media #{$mq-md} {
                 min-width: 100%;
             }
 
@@ -173,20 +184,37 @@ $max-footer-content-width: $content-max;
             background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
             background-repeat: no-repeat;
 
-            @media(min-width: $screen-lg) {
+            @media #{$mq-lg} {
                 min-width: 100%;
             }
         }
     }
 
-    .mzp-c-newsletter-details {
+    .mzp-c-newsletter-details-inner {
         max-width: 100%;
 
-        @media(min-width: $screen-lg) {
+        @media #{$mq-lg} {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 30px 45px 75px;
+            grid-template-columns: [full-width-start] 1fr 1fr [full-width-end];
             column-gap: $spacer-lg;
+
+            > * {
+                grid-column: full-width;
+            }
+
+            // country input
+            label:first-of-type,
+            p:first-of-type {
+                grid-column-start: 1;
+                grid-column-end: 2;
+            }
+
+            // lang input
+            label:nth-of-type(2),
+            p:nth-of-type(2) {
+                grid-column-start: 2;
+                grid-column-end: 3;
+            }
         }
 
         p {
@@ -196,27 +224,12 @@ $max-footer-content-width: $content-max;
             font-family: $primary-font;
             text-align: start;
 
-            @media(min-width: $screen-lg) {
+            @media #{$mq-lg} {
                 display: inline-grid;
-
-                &:first-of-type {
-                    grid-column-start: 1;
-                    grid-column-end: 2;
-                }
-
-                &:nth-of-type(2) {
-                    grid-column-start: 2;
-                    grid-column-end: 3;
-                }
             }
 
             &:has(> label.mzp-u-inline) {
-                margin: $spacer-lg 0 $spacer-md;
-
-                @media(min-width: $screen-lg) {
-                    grid-column-start: 1;
-                    grid-column-end: 3;
-                }
+                margin-bottom: $spacer-lg;
 
                 input {
                     margin: 0;
@@ -225,7 +238,9 @@ $max-footer-content-width: $content-max;
         }
 
         .mzp-u-inline {
-            display: inline;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: $spacer-2xs;
 
             input {
                 height: 20px;
@@ -242,27 +257,25 @@ $max-footer-content-width: $content-max;
         margin-bottom: 0;
 
         button {
-            border: 2px solid $m24-color-green;
+            border: $border-width solid $m24-color-black;
             border-radius: 0;
-            font-family: $secondary-font;
             position: relative;
             max-width: 800px;
             width: 100%;
+            font-weight: 600;
 
             &:hover,
             &:focus-visible {
-                box-shadow: 4px 4px 0 0 $m24-color-green;
+                background-color: $m24-color-black;
+                color: $m24-color-white;
+            }
+
+            &:active {
                 background-color: $m24-color-white;
                 color: $m24-color-black;
             }
 
-            &:active {
-                background-color: $m24-color-black;
-                color: $m24-color-green;
-                box-shadow: none;
-            }
-
-            @media(min-width: $screen-md) {
+            @media #{$mq-md} {
                 width: fit-content;
                 display: flex;
                 justify-content: flex-start;

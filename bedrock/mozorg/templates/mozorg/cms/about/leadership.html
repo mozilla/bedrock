@@ -23,15 +23,6 @@
   {{ css_bundle('about-leadership') }}
 {% endblock %}
 
-{% block sub_navigation %}
-  {{ sub_nav(
-    title={
-      'text': page.title,
-      'href': fullpageurl(page)
-    }
-  ) }}
-{% endblock %}
-
 {% block content %}
   <div id="main-content" class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
     <aside class="mzp-l-sidebar">
@@ -46,6 +37,7 @@
     </aside>
 
     <main class="mzp-l-main">
+      <h1 class="visually-hidden">{{ page.title }}</h1>
       {% for section in page.leadership_sections %}
         <section class="leadership-section" id="{{ section.value.id }}">
           {% set first_group = section.value.leadership_group[0] %}
@@ -68,7 +60,7 @@
     </main>
   </div>
 
-  <div class="mzp-u-modal-content"></div>
+  <div id="leadership-modal" class="mzp-u-modal-content"></div>
 {% endblock %}
 
 {% block js %}

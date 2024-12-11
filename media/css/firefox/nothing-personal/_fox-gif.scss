@@ -2,69 +2,20 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-.c-thug-life-gif-wrapper {
-    text-align: center;
-    padding-bottom: 0;
-    display: block;
-    margin-bottom: $layout-lg;
-
-    @media #{$mq-lg} {
-        display: none;
-    }
-}
-
 .c-thug-life-gif {
-    display: inline-block;
-    z-index: 10;
-
-    .c-gif {
-        display: none;
-    }
-
-    .c-image {
-        display: block;
-    }
-
-    img {
-        border: 3px solid $color-black;
-        max-height: 200px;
-        display: block;
-    }
-
-    &.c-attached-gif {
-        display: none;
-    }
-
-
-
-    @media (prefers-reduced-motion: no-preference) {
-        .c-gif {
-            display: block;
-        }
-
-        .c-image {
-            display: none;
-        }
-
-    }
+    display: none;
 
     @media #{$mq-lg} {
-        &.c-attached-gif {
+        display: inline-block;
+        position: relative;
+        z-index: 10;
+
+        img {
+            border: $border-black;
             display: block;
-            position: absolute;
-            top: 350px;
-            left: -105px;
-
-            img {
-                width: 180px;
-                height: 180px;
-                object-fit: cover;
-            }
-
-        }
-
-        @media (prefers-reduced-motion: no-preference) {
-            opacity: 0;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
         }
 
         &::before {
@@ -73,7 +24,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: 3px solid $color-black;
+            border: $border-black;
             top: 10px;
             right: -10px;
             z-index: -1;
@@ -85,7 +36,7 @@
             min-height: 180px;
             width: 180px;
             background: $color-white;
-            border: 3px solid $color-black;
+            border: $border-black;
             top: 20px;
             right: -20px;
             z-index: -5;

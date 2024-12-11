@@ -15,7 +15,7 @@ default_language_version:
 repos:
   # Note: hooks that add content must run before ones which check formatting, lint, etc
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
     -   id: check-shebang-scripts-are-executable
     -   id: check-yaml
@@ -69,7 +69,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.9
+    rev: v0.7.4
     hooks:
       - id: ruff
       - id: ruff-format
@@ -84,18 +84,18 @@ repos:
     hooks:
       - id: prettier
         additional_dependencies:
-        - prettier@3.3.0
+        - prettier@3.3.3
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@16.6.1"
+          - "stylelint@16.10.0"
           - "stylelint-config-standard-scss@13.1.0"
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v9.4.0
+    rev: v9.13.0
     hooks:
       - id: eslint
         additional_dependencies:

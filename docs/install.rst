@@ -435,7 +435,83 @@ Managing Switches
 
 Switches are managed through the Django Admin interface, where you can add, edit, or remove switches
 from the database directly. This interface allows for easy management of feature toggles without
-modifying environment variables or code.
+modifying environment variables or code. There is also a Django management command to toggle
+switches from the command line, as detailed below.
+
+Deploy switches with code
+-------------------------
+
+You can deploy switches directly through code by creating a data migration. This approach ensures
+switches are consistently created or updated during deployment, rather than requiring manual
+configuration through the Django Admin interface.
+
+To implement a switch via data migration, create an empty migration file:
+
+.. code-block:: bash
+
+    ./manage.py makemigrations base --empty
+
+Then add the following code to the generated migration file, which can be found in the
+``bedrock/base/migrations`` directory:
+
+.. code-block:: python
+
+    from django.db import migrations
+
+    from waffle.models import Switch
+
+    # The name of the switch must be unique.
+    SWITCH_NAME = "RELEASE_THE_KRAKEN"
+
+
+    def create_switch(apps, schema_editor):
+        Switch.objects.get_or_create(
+            name=SWITCH_NAME,
+            defaults={"active": True},  # Set initial state, True or False.
+        )
+
+
+    def remove_switch(apps, schema_editor):
+        Switch.objects.filter(name=SWITCH_NAME).delete()
+
+
+    class Migration(migrations.Migration):
+        dependencies = [
+            (
+                "base",
+                "0001_initial",
+            ),  # Keep whatever the makemigrations command generated here.
+        ]
+
+        operations = [
+            migrations.RunPython(create_switch, remove_switch),
+        ]
+
+
+The migration will run during deployment and ensure the switch exists in the database. The
+``remove_switch`` function allows the migration to be reversed if needed.
+
+To test this locally, run the following command:
+
+.. code-block:: bash
+
+    ./manage.py migrate base
+
+Verify the switch exists in the database by running:
+
+.. code-block:: bash
+
+    ./manage.py waffle_switch -l
+
+You should see the switch listed in the output.
+
+To test reversing the migration, run the following command but replace ``0001`` with whatever the
+previous migration number is:
+
+.. code-block:: bash
+
+    ./manage.py migrate base 0001
+
 
 Example Usage in Templates
 --------------------------

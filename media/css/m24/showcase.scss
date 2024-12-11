@@ -2,96 +2,148 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-
-
-.m24-c-showcase {
-    @include container;
-    padding-top: $spacer-xl;
-    padding-bottom: $spacer-xl;
-
-    * {
-        margin-bottom: 0;
-    }
-}
-
-.m24-c-showcase-text {
-    grid-column: 1 / -1;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-}
+@use 'vars/lib' as *;
 
 .m24-c-showcase-title {
-    font-size: $alias-text-title-h2;
+    font-size: $text-title-xl;
+    margin-bottom: $spacer-sm;
 }
 
-.m24-c-showcase-subtitle {
-    font-size: $alias-text-title-h4;
-    text-wrap-style: balance;
-    padding-top: $spacer-sm;
+.m24-c-showcase-body {
+    font-weight: 500;
+    font-size: $text-body-lg;
+
+    @media #{$mq-xl} {
+        max-width: grid(6);
+    }
 }
 
 .m24-c-showcase-media {
     text-align: center;
     padding: $spacer-xl 0;
     position: relative;
+
+    &.m24-t-media-two .m24-c-showcase-image {
+        margin: 0 calc($grid-gutter / 2) calc($grid-gutter / 2);
+    }
+
+    &.m24-t-media-three {
+        height: 180px;
+        margin-bottom: $spacer-lg;
+
+        .m24-c-showcase-image {
+            width: 180px;
+            position: absolute;
+            left: 50%;
+            margin-left: -90px;
+
+            &.image-one {
+                transform: translate(60px, 30px);
+            }
+
+            &.image-two {
+                transform: translate(-60px, 0);
+            }
+
+            &.image-three {
+                transform: translate(0, -30px);
+            }
+        }
+    }
 }
 
-.m24-c-showcase-info {
-    padding-bottom: $spacer-xl;
-    font-size: $alias-text-title-h3;
-}
+@media #{$mq-sm} {
+    .m24-c-showcase-media.m24-t-media-three {
+        height: 240px;
 
-.m24-c-showcase-cta {
-    text-align: right;
+        .m24-c-showcase-image {
+            width: 240px;
+            position: absolute;
+            left: 50%;
+            margin-left: -120px;
+
+            &.image-one {
+                transform: translate(80px, $spacer-xl);
+            }
+
+            &.image-two {
+                transform: translate(-80px, 0);
+            }
+
+            &.image-three {
+                transform: translate(0, calc($spacer-xl * -1));
+            }
+        }
+    }
 }
 
 @media #{$mq-md} {
-    .m24-c-showcase-text {
-        flex-direction: row;
-        justify-content: space-between;
-        gap: 5%;
-    }
+    .m24-c-showcase-media.m24-t-media-three {
+        height: 360px;
 
-    .m24-c-showcase-title {
-        width: 45%;
-    }
+        .m24-c-showcase-image {
+            width: 360px;
+            position: absolute;
+            left: 50%;
+            margin-left: -180px;
 
-    .m24-c-showcase-subtitle-containter {
-        width: 45%;
-    }
+            &.image-one {
+                transform: translate(160px, $spacer-xl);
+            }
 
-    .m24-c-showcase-subtitle:first-of-type {
-        padding-top: 0;
+            &.image-two {
+                transform: translate(-160px, 0);
+            }
+
+            &.image-three {
+                transform: translate(0, calc($spacer-xl * -1));
+            }
+        }
     }
 }
 
 @media #{$mq-lg} {
-    .m24-c-showcase {
+    .m24-c-showcase-text.m24-l-two-columns {
         @include grid;
-        grid-template-rows: min-content min-content auto min-content;
+
+        .m24-c-showcase-title {
+            grid-column: 1/7;
+        }
+
+        .m24-c-showcase-body {
+            grid-column: 7/-1;
+            max-width: none;
+        }
     }
+}
 
-    .m24-c-showcase-title {
-        grid-column: 1/-1;
-    }
+@media #{$mq-lg} and (prefers-reduced-motion: no-preference) {
+    .m24-c-showcase-media.m24-t-media-three {
+        .m24-c-showcase-image {
+            transition:
+                transform 300ms 500ms cubic-bezier(.5,0,0,1),
+                left 300ms 500ms cubic-bezier(.5,0,0,1),
+                margin-left 300ms 500ms cubic-bezier(.5,0,0,1);
+        }
 
-    .m24-c-showcase-subtitle {
-        grid-column: 1/10;
-    }
+        &:hover {
+            .m24-c-showcase-image {
+                &.image-one {
+                    transform: translate(0, -60px);
+                    left: 100%;
+                    margin-left: -360px;
+                }
 
-    .m24-c-showcase-media {
-        grid-column: 1/-1;
-        align-self: center;
-    }
+                &.image-two {
+                    transform: translate(0, -60px);
+                    left: 0;
+                    margin-left: 0;
+                }
 
-    .m24-c-showcase-info {
-        grid-column: 1/7;
-        padding-bottom: 0;
-    }
-
-    .m24-c-showcase-cta {
-        grid-column: 7/-1;
-
+                &.image-three {
+                    transform: translate(0, 60px);
+                }
+            }
+        }
     }
 }

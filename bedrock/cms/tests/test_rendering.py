@@ -98,7 +98,8 @@ def test_locales_are_drawn_from_page_translations(minimal_site, rf, serving_meth
     page = Page.objects.last().specific
     fr_page = page.copy_for_translation(fr_locale)
     fr_page.title = "FR test page"
-    fr_page.save()
+    rev = fr_page.save_revision()
+    fr_page.publish(rev)
     assert fr_page.locale.language_code == "fr"
 
     _relative_url = page.relative_url(minimal_site)

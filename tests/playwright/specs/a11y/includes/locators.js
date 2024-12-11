@@ -11,7 +11,13 @@
  * inclusion / exclusion in a11y scans.
  */
 const footerLocator = '#colophon';
-const navigationLocator = '.c-navigation';
+const navigationLocator = '.m24-navigation-refresh';
 const subNavigationLocator = '.c-sub-navigation';
+const sideMenuLocator = '.mzp-c-sidemenu';
 
-module.exports = { navigationLocator, footerLocator, subNavigationLocator };
+module.exports = {
+    navigationLocator,
+    footerLocator,
+    sideMenuLocator,
+    subNavigationLocator
+};

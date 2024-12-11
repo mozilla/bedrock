@@ -1,0 +1,51 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block experiments %}
+  {{ js_bundle('firefox_whatsnew_133_experiment_na') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_133_fakespot') }}
+{% endblock %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp133-fakespot' %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  {% call split(
+    image=resp_img('img/firefox/whatsnew/whatsnew133/review-checker.png',
+      srcset={ 'img/firefox/whatsnew/whatsnew133/review-checker-high-res.png': '2x' },
+      optional_attributes={ 'class': 'mzp-c-split-media-asset'}
+    ),
+    media_after=True,
+    media_class='mzp-l-split-h-center'
+    ) %}
+      <h1 class="wnp-main-title">Enjoy cyber sales with confidence</h1>
+      <p class="wnp-main-body">Whether you’re shopping on Amazon, Best Buy or Walmart, Review Checker helps flag products with unreliable reviews so you can confidently vet potential gifts before spending your money online this holiday season.</p>
+      <p class="wnp-main-body">
+        Click on the <span class="shopping-icon"></span> price tag icon in the search bar while visiting a product page and find out if you can trust the reviews you’re reading. <a class="wnp-body-cta" href="https://support.mozilla.org/kb/review-checker-review-quality/?{{ utm_params }}&utm_content=support" data-cta-text="Learn more">Learn more</a>
+      </p>
+      <a class="mzp-c-button mzp-t-product" href="https://www.amazon.com/dp/B01N22BMJB?th=1/" target="_blank" rel="noopener noreferrer" data-cta-text="Try it out">
+        Try it on Amazon
+      </a>
+  {% endcall %}
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}

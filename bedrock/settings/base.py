@@ -17,7 +17,7 @@ from django.utils.functional import lazy
 import dj_database_url
 import markus
 import sentry_sdk
-from everett.manager import ListOf
+from everett.manager import ChoiceOf, ListOf
 from sentry_processor import DesensitizationProcessor
 from sentry_sdk.integrations.django import DjangoIntegration
 from sentry_sdk.integrations.logging import ignore_logger
@@ -58,7 +58,7 @@ DEBUG = config("DEBUG", parser=bool, default="false")
 
 
 db_connection_max_age_secs = config("DB_CONN_MAX_AGE", default="0", parser=int)
-db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="False", parser=bool)
+db_conn_health_checks = config("DB_CONN_HEALTH_CHECKS", default="false", parser=bool)
 db_default_url = config(
     "DATABASE_URL",
     default=f"sqlite:////{data_path('bedrock.db')}",
@@ -99,7 +99,14 @@ CACHES = {
 }
 
 # Logging
-LOG_LEVEL = config("LOG_LEVEL", default="INFO")
+LOG_LEVEL = config(
+    "LOG_LEVEL",
+    default="INFO",
+    parser=ChoiceOf(
+        str,
+        ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+    ),
+)
 HAS_SYSLOG = True
 SYSLOG_TAG = "http_app_bedrock"
 LOGGING_CONFIG = None
@@ -527,8 +534,16 @@ SITEMAPS_PATH = DATA_PATH / "sitemaps"
 #   },
 ALT_CANONICAL_PATHS = {}
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", parser=ListOf(str), default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org")
-ALLOWED_CIDR_NETS = config("ALLOWED_CIDR_NETS", default="", parser=ListOf(str))
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    parser=ListOf(str, allow_empty=False),
+    default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+)
+ALLOWED_CIDR_NETS = config(
+    "ALLOWED_CIDR_NETS",
+    parser=ListOf(str, allow_empty=False),
+    default="",
+)
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = "https://www.mozilla.org"
@@ -539,8 +554,8 @@ SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
 # If config is available, we use Google Cloud Storage, else (for local dev)
 # fall back to filesytem storage
 
-GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="", parser=str)
-GS_PROJECT_ID = config("GS_PROJECT_ID", default="", parser=str)
+GS_BUCKET_NAME = config("GS_BUCKET_NAME", default="")
+GS_PROJECT_ID = config("GS_PROJECT_ID", default="")
 
 STORAGES = {
     # In production only the CMS/Editing deployment has write access
@@ -881,7 +896,7 @@ GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
-BASKET_SUBSCRIBE_URL = BASKET_URL + "/news/subscribe/"
+BASKET_SUBSCRIBE_URL = f"{BASKET_URL}/news/subscribe/"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 
@@ -1034,22 +1049,13 @@ CONTENTFUL_HOMEPAGE_LOOKUP = {
 
 CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE = config(
     "CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE",
-    default="1" if DEV is True else "60",
+    default="1" if DEV is True else "10",
     parser=float,
 )
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
-
-WWW_CONFIG_PATH = config("WWW_CONFIG_PATH", default=data_path("www_config"))
-WWW_CONFIG_REPO = config("WWW_CONFIG_REPO", default="https://github.com/mozmeao/www-config.git")
-WWW_CONFIG_BRANCH = config("WWW_CONFIG_BRANCH", default="main")
-
-MONITOR_SWITCH_WAITLIST = "SWITCH_MONITOR_WAITLIST"
-MONITOR_SWITCH_WAITLIST_DEFAULT = "off"
-MONITOR_ENDPOINT = config("MONITOR_ENDPOINT", default="https://monitor.mozilla.org/api/v1/stats")
-MONITOR_TOKEN = config("MONITOR_TOKEN", default="")
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
@@ -1179,13 +1185,10 @@ if SENTRY_DSN:
 
 # Frontend uses the same DSN as backend by default, but we'll
 # specify a separate one for FE use in Production only
-SENTRY_FRONTEND_DSN = config(
-    "SENTRY_FRONTEND_DSN",
-    default=SENTRY_DSN,
-)
+SENTRY_FRONTEND_DSN = config("SENTRY_FRONTEND_DSN", default=SENTRY_DSN)
 
 # Statsd metrics via markus
-if DEBUG and not config("DISABLE_LOCAL_MARKUS", default="False", parser=bool):
+if DEBUG or config("DISABLE_LOCAL_MARKUS", default="false", parser=bool):
     MARKUS_BACKENDS = [
         {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
     ]
@@ -1733,6 +1736,286 @@ VPN_VARIABLE_PRICING = {
     },
 }
 
+# Simplified pricing matrix for countries that can
+# only purchase a subscription through the app store.
+VPN_MOBILE_SUB_PRICING = {
+    "AU": {  # Australia
+        "12-month": {
+            "price": "7.5",
+            "total": "89.99",
+            "currency": "AUD",
+        },
+        "monthly": {
+            "price": "14.99",
+            "currency": "AUD",
+        },
+    },
+    "BD": {  # Bangladesh
+        "12-month": {
+            "price": "583.33",
+            "total": "7000",
+            "currency": "BDT",
+        },
+        "monthly": {
+            "price": "1200",
+            "currency": "BDT",
+        },
+    },
+    "BR": {  # Brazil
+        "12-month": {
+            "price": "27.50",
+            "total": "330",
+            "currency": "BRL",
+        },
+        "monthly": {
+            "price": "56",
+            "currency": "BRL",
+        },
+    },
+    "CL": {  # Chile
+        "12-month": {
+            "price": "4582.50",
+            "total": "54990",
+            "currency": "CLP",
+        },
+        "monthly": {
+            "price": "9300",
+            "currency": "CLP",
+        },
+    },
+    "CO": {  # Colombia
+        "12-month": {
+            "price": "20825",
+            "total": "249900",
+            "currency": "COP",
+        },
+        "monthly": {
+            "price": "41900",
+            "currency": "COP",
+        },
+    },
+    "EG": {  # Egypt
+        "12-month": {
+            "price": "241.67",
+            "total": "2899.99",
+            "currency": "EGP",
+        },
+        "monthly": {
+            "price": "479.99",
+            "currency": "EGP",
+        },
+    },
+    "GR": {  # Greece
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "EUR",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "EUR",
+        },
+    },
+    "ID": {  # Indonesia
+        "12-month": {
+            "price": "75000",
+            "total": "900000",
+            "currency": "IDR",
+        },
+        "monthly": {
+            "price": "155000",
+            "currency": "IDR",
+        },
+    },
+    "IN": {  # India
+        "12-month": {
+            "price": "416.58",
+            "total": "4999",
+            "currency": "INR",
+        },
+        "monthly": {
+            "price": "839",
+            "currency": "INR",
+        },
+    },
+    "KE": {  # Kenya
+        "12-month": {
+            "price": "5.00",
+            "total": "59.99",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "KR": {  # South Korea
+        "12-month": {
+            "price": "6658.33",
+            "total": "79900",
+            "currency": "KRW",
+        },
+        "monthly": {
+            "price": "13500",
+            "currency": "KRW",
+        },
+    },
+    "MA": {  # Morocco
+        "12-month": {
+            "price": "50",
+            "total": "600",
+            "currency": "MAD",
+        },
+        "monthly": {
+            "price": "99",
+            "currency": "MAD",
+        },
+    },
+    "MX": {  # Mexico
+        "12-month": {
+            "price": "95.75",
+            "total": "1149",
+            "currency": "MXN",
+        },
+        "monthly": {
+            "price": "189",
+            "currency": "MXN",
+        },
+    },
+    "NG": {  # Nigeria
+        "12-month": {
+            "price": "8325",
+            "total": "99900",
+            "currency": "NGN",
+        },
+        "monthly": {
+            "price": "15900",
+            "currency": "NGN",
+        },
+    },
+    "NO": {  # Norway
+        "12-month": {
+            "price": "54.17",
+            "total": "650",
+            "currency": "NOK",
+        },
+        "monthly": {
+            "price": "110",
+            "currency": "NOK",
+        },
+    },
+    "SA": {  # Saudi Arabia
+        "12-month": {
+            "price": "18.75",
+            "total": "224.99",
+            "currency": "SAR",
+        },
+        "monthly": {
+            "price": "36.99",
+            "currency": "SAR",
+        },
+    },
+    "SN": {  # Senegal
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "TH": {  # Thailand
+        "12-month": {
+            "price": "165.83",
+            "total": "1990",
+            "currency": "THB",
+        },
+        "monthly": {
+            "price": "330",
+            "currency": "THB",
+        },
+    },
+    "TR": {  # Turkey
+        "12-month": {
+            "price": "166.67",
+            "total": "1999.99",
+            "currency": "TRY",
+        },
+        "monthly": {
+            "price": "339.99",
+            "currency": "TRY",
+        },
+    },
+    "TW": {  # Taiwan
+        "12-month": {
+            "price": "158.33",
+            "total": "1900",
+            "currency": "TWD",
+        },
+        "monthly": {
+            "price": "320",
+            "currency": "TWD",
+        },
+    },
+    "UA": {  # Ukraine
+        "12-month": {
+            "price": "5.00",
+            "total": "59.99",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "UG": {  # Uganda
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "US": {  # United States (only used as a fallback should a country match not be found).
+        "12-month": {
+            "price": "4.99",
+            "total": "59.88",
+            "currency": "USD",
+        },
+        "monthly": {
+            "price": "9.99",
+            "currency": "USD",
+        },
+    },
+    "VN": {  # Vietnam
+        "12-month": {
+            "price": "124917",
+            "total": "1499000",
+            "currency": "VND",
+        },
+        "monthly": {
+            "price": "249000",
+            "currency": "VND",
+        },
+    },
+    "ZA": {  # South Africa
+        "12-month": {
+            "price": "83.33",
+            "total": "999.99",
+            "currency": "ZAR",
+        },
+        "monthly": {
+            "price": "169.99",
+            "currency": "ZAR",
+        },
+    },
+}
+
 # Mozilla VPN Geo restrictions
 # https://github.com/mozilla-services/guardian-website/blob/master/server/constants.ts
 
@@ -1922,8 +2205,8 @@ OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = config(
 
 OIDC_CREATE_USER = False  # We don't want drive-by signups
 
-OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default="", parser=str)
-OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default="", parser=str)
+OIDC_RP_CLIENT_ID = config("OIDC_RP_CLIENT_ID", default="")
+OIDC_RP_CLIENT_SECRET = config("OIDC_RP_CLIENT_SECRET", default="")
 
 OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.mozilla.auth0.com/authorize"
 OIDC_OP_TOKEN_ENDPOINT = "https://auth.mozilla.auth0.com/oauth/token"
@@ -1933,7 +2216,7 @@ OIDC_OP_JWKS_ENDPOINT = "https://auth.mozilla.auth0.com/.well-known/jwks.json"
 
 # If True (which should only be for local work in your .env), then show
 # username and password fields when signing up, not the SSO button
-USE_SSO_AUTH = config("USE_SSO_AUTH", default="True", parser=bool)
+USE_SSO_AUTH = config("USE_SSO_AUTH", default="true", parser=bool)
 
 if USE_SSO_AUTH:
     AUTHENTICATION_BACKENDS = (
@@ -1966,30 +2249,20 @@ CSRF_FAILURE_VIEW = "bedrock.base.views.csrf_failure"
 
 # WAGTAIL =======================================================================================
 
-WAGTAIL_SITE_NAME = config(
-    "WAGTAIL_SITE_NAME",
-    default="Mozilla.org",
-)
+WAGTAIL_SITE_NAME = config("WAGTAIL_SITE_NAME", default="Mozilla.org")
 
 # Disable use of Gravatar URLs.
 # Important: if this is enabled in the future, make sure you redact the
 # `wagtailusers_profile.avatar` column when exporting the DB to sqlite
 WAGTAIL_GRAVATAR_PROVIDER_URL = None
 
-WAGTAILADMIN_BASE_URL = config(
-    "WAGTAILADMIN_BASE_URL",
-    default="",
-)
+WAGTAILADMIN_BASE_URL = config("WAGTAILADMIN_BASE_URL", default="")
 
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 # Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
-WAGTAIL_ENABLE_ADMIN = config(
-    "WAGTAIL_ENABLE_ADMIN",
-    default="False",
-    parser=bool,
-)
+WAGTAIL_ENABLE_ADMIN = config("WAGTAIL_ENABLE_ADMIN", default="false", parser=bool)
 
 if WAGTAIL_ENABLE_ADMIN:
     # Enable Middleware essential for admin
@@ -2052,7 +2325,7 @@ WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
 # Don't automatically make a page for a non-default locale availble in the default locale
-WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False
+WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False  # note that WAGTAILLOCALIZE is correct without the _
 
 # Settings for https://github.com/mozilla/wagtail-localize-smartling
 WAGTAIL_LOCALIZE_SMARTLING = {
@@ -2063,12 +2336,13 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     # Optional settings and their default values
     "REQUIRED": config(
         "WAGTAIL_LOCALIZE_SMARTLING_ALWAYS_SEND",
-        default="False",
+        default="false",
         parser=bool,
     ),  # Set this to True to always send translations to Smartling
     "ENVIRONMENT": config(
         "WAGTAIL_LOCALIZE_SMARTLING_ENVIRONMENT",
         default="production",
+        parser=ChoiceOf(str, ["production", "staging"]),
     ),  # Set this to "staging" to use Smartling's staging API
     "API_TIMEOUT_SECONDS": config(
         "WAGTAIL_LOCALIZE_SMARTLING_API_TIMEOUT_SECONDS",
@@ -2084,13 +2358,22 @@ WAGTAIL_LOCALIZE_SMARTLING = {
         "pl": "pl-PL",
         "ru": "ru-RU",
     },
+    "JOB_NAME_PREFIX": config(
+        "WAGTAIL_LOCALIZE_JOB_NAME_PREFIX",
+        default="www.mozilla.org",
+    ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
+    "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
 }
 
-WAGTAIL_DRAFTSHARING_ADMIN_MENU_POSITION = 9000
-# WAGTAIL_DRAFTSHARING_VERBOSE_NAME = "Internal Share"
-# WAGTAIL_DRAFTSHARING_VERBOSE_NAME_PLURAL = "Internal Shares"
-# WAGTAIL_DRAFTSHARING_MENU_ITEM_LABEL = "Create internal sharing link"
+WAGTAILDRAFTSHARING = {
+    "ADMIN_MENU_POSITION": 9000,
+    # MAX_TTL: 14 * 24 * 60 * 60
+    # VERBOSE_NAME: "Internal Share"
+    # VERBOSE_NAME_PLURAL: "Internal Shares"
+    # MENU_ITEM_LABEL: "Create internal sharing link"
+}
+
 
 # Custom settings, not a core Wagtail ones, to scope out RichText options
 WAGTAIL_RICHTEXT_FEATURES_FULL = [
@@ -2101,7 +2384,6 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "hr",
     "bold",
     "italic",
-    "strikethrough",
     "code",
     "blockquote",
     "link",

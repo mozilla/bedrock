@@ -9,6 +9,16 @@
 {# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
 
+{% block site_css %}
+  {% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+    {{ css_bundle('m24-root') }}
+    {{ css_bundle('m24-navigation-and-footer') }}
+  {% else %}
+    {{ css_bundle('legacy-navigation-and-footer') }}
+  {% endif %}
+  {{ css_bundle('protocol-firefox') }}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('protocol-callout') }}
@@ -62,7 +72,7 @@
 
       <p>{{ ftl('nightly-whatsnew-this-is-a-good') }}</p>
 
-      <p>{{ ftl('nightly-whatsnew-if-you-want-to-v3', blog='href="https://blog.nightly.mozilla.org/"', twitter='href="https://twitter.com/FirefoxNightly"', mastodon='href="https://mozilla.social/@FirefoxNightly"') }}</p>
+      <p>{{ ftl('nightly-whatsnew-if-you-want-to-v3', blog='href="https://blog.nightly.mozilla.org/"', twitter='href="https://twitter.com/FirefoxNightly"', mastodon='href="https://mastodon.social/@FirefoxNightly"') }}</p>
 
       <p>
           {% set attrs = 'href="#" class="nightly-experiments-link"' %}

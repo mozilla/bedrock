@@ -7,12 +7,31 @@ navigation-refresh-mozilla = { -brand-name-mozilla }
 ## About us
 
 navigation-refresh-about-us = About us
+navigation-refresh-about-mozilla = About { -brand-name-mozilla }
 navigation-refresh-close-about-us-menu = Close About us menu
 navigation-refresh-mozilla-manifesto = { -brand-name-mozilla } manifesto
+navigation-refresh-mozilla-manifesto-v2 = The { -brand-name-mozilla } Manifesto
 navigation-refresh-mozilla-foundation = { -brand-name-mozilla-foundation }
 navigation-refresh-get-involved = Get involved
+navigation-refresh-get-involved-v2 = Get Involved
 navigation-refresh-innovation-projects = Innovation projects
+navigation-refresh-innovation-projects-v2 = Innovation Projects
 navigation-refresh-blog = Blog
+navigation-refresh-our-mission = Our Mission
+navigation-refresh-our-work = Our Work
+
+# Obsolete string (expires: 2025-01-05)
+navigation-refresh-mozilla-ai = { -brand-name-mozilla } AI
+
+# Obsolete string (expires: 2025-01-05)
+navigation-refresh-mozilla-ai-v2 = { -brand-name-mozilla-ai }
+
+navigation-refresh-mozilla-ai-v3 = { -brand-name-mozilla-ai-v2 }
+
+# Obsolete string (expires: 2025-01-05)
+navigation-refresh-mozilla-ventures = { -brand-name-mozilla } Ventures
+navigation-refresh-mozilla-ventures-v2 = { -brand-name-mozilla-ventures }
+navigation-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
 
 ## Firefox
 
@@ -30,9 +49,9 @@ navigation-refresh-firefox-blog = { -brand-name-firefox } blog
 
 navigation-refresh-products = Products
 navigation-refresh-close-products-menu = Close Products menu
-navigation-refresh-mozilla-monitor = { -brand-name-monitor }
+navigation-refresh-mozilla-monitor-v2 = { -brand-name-mozilla-monitor }
 navigation-refresh-pocket = { -brand-name-pocket }
-navigation-refresh-mozilla-vpn = { -brand-name-vpn }
+navigation-refresh-mozilla-vpn-v2 = { -brand-name-mozilla-vpn }
 navigation-refresh-mdn-plus = { -brand-name-mdn-plus }
 navigation-refresh-fakespot = { -brand-name-fakespot }
 navigation-refresh-thunderbird = { -brand-name-thunderbird }

@@ -337,6 +337,19 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         context.update(
             download_url=download_url,
         )
+        try:
+            if product_slug == "desktop-esr":
+                download_esr_115_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr115")))[0][
+                    "platforms"
+                ][platform]["download_url"]
+                # ESR115 builds do not exist for "sat" ans "skr" languages (see issue #15437).
+                if locale in ["sat", "skr"]:
+                    download_esr_115_url = None
+                context.update(
+                    download_esr_115_url=download_esr_115_url,
+                )
+        except IndexError:
+            pass
         if product_slug == "desktop-esr" and esr_next_version:
             try:
                 download_esr_next_url = list(filter(lambda b: b["locale"] == locale, firefox_desktop.get_filtered_full_builds("esr_next")))[0][
@@ -490,6 +503,19 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx132-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx132-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-vpn.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-na-fakespot.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-na-mobile.html": [
+            "firefox/whatsnew/whatsnew-s2d",
+            "firefox/whatsnew/whatsnew",
+        ],
+        "firefox/whatsnew/whatsnew-fx133-donation.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-donation-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx133-donation-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx135beta.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -501,6 +527,26 @@ class WhatsnewView(L10nTemplateView):
 
     # Nimbus experiment variation expected values
     nimbus_variations = ["v1", "v2", "v3", "v4"]
+
+    # Language codes for WNP 133 Mozilla VPN page
+    wnp_133_vpn_langs = [
+        "el",
+        "en-CA",
+        "en-GB",
+        "en-US",
+        "es-AR",
+        "es-CL",
+        "es-ES",
+        "es-MX",
+        "fr",
+        "id",
+        "ko",
+        "pt-BR",
+        "tr",
+        "uk",
+        "vi",
+        "zh-TW",
+    ]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -574,7 +620,12 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif channel == "beta":
-            if version.startswith("126.") or version.startswith("127."):
+            if version.startswith("135."):
+                if locale.startswith("en-"):
+                    template = "firefox/whatsnew/whatsnew-fx135beta.html"
+                else:
+                    template = "firefox/whatsnew/index.html"
+            elif version.startswith("126.") or version.startswith("127."):
                 if locale.startswith("en-"):
                     if locale == "en-GB" or country == "GB":
                         template = "firefox/whatsnew/whatsnew-fx126beta-en-GB.html"
@@ -588,6 +639,35 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("133."):
+            if locale in self.wnp_133_vpn_langs and country in settings.VPN_MOBILE_SUB_COUNTRY_CODES:
+                template = "firefox/whatsnew/whatsnew-fx133-vpn.html"
+            elif country in ["GB", "FR", "DE"] and locale in ["en-GB", "de", "fr"]:
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-eu.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx133-eu-newsletter.html"
+            elif country == "US" and locale in ["en-US", "en-CA"]:
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-na.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx133-na-fakespot.html"
+            elif country == "CA" and locale in ["en-US", "en-CA"]:
+                if variant == "2" or variant == "3":
+                    template = "firefox/whatsnew/whatsnew-fx133-donation-na.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx133-na-mobile.html"
+            elif locale in ["fr", "de", "it", "pl", "es-ES", "en-GB", "en-US", "en-CA"]:
+                template = "firefox/whatsnew/whatsnew-fx133-donation.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("132."):
+            if locale in ["en-US", "en-CA", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx132-na.html"
+            elif locale in ["de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx132-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("131."):

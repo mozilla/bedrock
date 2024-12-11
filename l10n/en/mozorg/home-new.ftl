@@ -42,10 +42,14 @@ home-read-more = Read more
 
 home-so-what-is-mozilla = So, what is { -brand-name-mozilla }?
 
+# Obsolete string (expires: 2025-01-05)
+home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
+
 # Variables
 #   $ventures - link to https://mozilla.vc/
 #   $mozai - link to https://mozilla.ai/
-home-at-its-core = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
+home-at-its-core-v2 = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai-v2 }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
+
 
 home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
 

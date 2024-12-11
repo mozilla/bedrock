@@ -1086,8 +1086,8 @@ URLS = flatten(
         url_test("/styleguide/websites/sandstone/buttons/", "https://mozilla.design/"),
         # Issue 8418
         url_test("/styleguide/", "https://mozilla.design/"),
-        # Issue 8644, 8932
-        url_test("/builders{,/}", "https://future.mozilla.org/builders/"),
+        # Issue 8644, 8932, 15613
+        url_test("/builders{,/}", "https://builders.mozilla.org/"),
         # Issue 6824, 14364
         url_test("/technology/", "https://future.mozilla.org/"),
         # Issue 8419
@@ -1327,5 +1327,7 @@ URLS = flatten(
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
+        # Issue 15386
+        url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
     )
 )
