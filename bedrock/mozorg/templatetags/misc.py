@@ -246,6 +246,8 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
         source_srcset = source.pop("srcset", False)
         source_type = source.pop("type", False)
         source_sizes = source.pop("sizes", False)
+        source_width = source.pop("width", False)
+        source_height = source.pop("height", False)
 
         # srcset
         if source_srcset:
@@ -274,7 +276,9 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
         type_markup = f' type="{source_type}"' if source_type else ""
         srcset_markup = f' srcset="{final_srcset}"' if final_srcset != "" else ""
         sizes_markup = f' sizes="{final_sizes}"' if final_sizes != "" else ""
-        source_markup = f"<source{media_markup}{type_markup}{srcset_markup}{sizes_markup}>"
+        width_markup = f' width="{source_width}"' if source_width else ""
+        height_markup = f' height="{source_height}"' if source_height else ""
+        source_markup = f"<source{media_markup}{type_markup}{srcset_markup}{sizes_markup}{width_markup}{height_markup}>"
         final_sources.append(source_markup)
 
     markup = f'<picture>{"".join(final_sources)}<img {loading}src="{url}" alt="{alt}"{attrs}></picture>'
