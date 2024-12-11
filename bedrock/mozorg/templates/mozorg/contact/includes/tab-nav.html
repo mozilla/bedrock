@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<nav>
+<nav aria-label="Category">
   <ul class="category-tabs">
     <li {% if current == 'contact' %}class="current"{% endif %} data-id="contact">
       <a href="{{ url('mozorg.contact.contact-landing') }}">Contact us</a>
