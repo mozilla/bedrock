@@ -273,20 +273,22 @@ $max-footer-content-width: $content-max;
 
 
 // language form
-.moz24-footer-language {
-    position: relative;
-}
-
 .moz24-c-language-switcher {
     position: relative;
 
+    &:has(.mzp-js-language-switcher-select:hover)::before,
+    &:has(.mzp-js-language-switcher-select:focus)::before,
+    &:has(.mzp-js-language-switcher-select:focus-within)::before {
+        background: $m24-color-alt-black url('/media/img/icons/m24-small/globe.svg') center center no-repeat;
+        background-size: 18px 18px;
+    }
+
     &::before {
-        @include bidi(((left, 0, auto), (right, auto, 0)));
+        @include bidi(((left, 4px, auto), (right, auto, 4px)));
         background: transparent url('/media/img/icons/m24-small/globe-white.svg') center center no-repeat;
         background-size: 18px 18px;
         top: 50%;
         margin-top: -16px;
-        color: $m24-color-white;
         content: "";
         display: block;
         height: 32px;
@@ -314,12 +316,12 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        background: $m24-color-white url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
-        @include bidi(((background-position, calc(100% - 8px) 0.75em, 8px 0.75em),));
+        @include bidi(((background-position, right 8px center, 8px center),));
+        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
         background-size: 16px 16px;
         border-radius: 0;
-        border: $border-width solid $m24-color-black;
-        color: $m24-color-black;
+        border: $border-width solid $m24-color-alt-black;
+        color: $m24-color-alt-black;
         font-weight: 600;
         margin-top: 16px;
         padding-left: 36px;
@@ -330,7 +332,8 @@ $max-footer-content-width: $content-max;
         &:focus,
         &:focus-visible {
             color: $m24-color-white;
-            background: $m24-color-black url('/media/img/icons/m24-small/up-caret.svg') calc(100% - 8px) 0.75em no-repeat;
+            background: $m24-color-alt-black url('/media/img/icons/m24-small/up-caret.svg') no-repeat;
+            @include bidi(((background-position, right 8px center, 8px center),));
             background-size: 16px 16px;
         }
     }
