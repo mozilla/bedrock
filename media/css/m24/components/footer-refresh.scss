@@ -281,7 +281,7 @@ $max-footer-content-width: $content-max;
     position: relative;
 
     &::before {
-        @include bidi(((left, 0, 0), (right, 0, 102px)));
+        @include bidi(((left, 0, auto), (right, auto, 0)));
         background: transparent url('/media/img/icons/m24-small/globe-white.svg') center center no-repeat;
         background-size: 18px 18px;
         top: 50%;
@@ -314,7 +314,8 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        background: $m24-color-white url('/media/img/icons/m24-small/down-caret-white.svg') calc(100% - 8px) 0.75em no-repeat;
+        background: $m24-color-white url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
+        @include bidi(((background-position, calc(100% - 8px) 0.75em, 8px 0.75em),));
         background-size: 16px 16px;
         border-radius: 0;
         border: $border-width solid $m24-color-black;
