@@ -18,6 +18,8 @@ m24-home-page-desc-v2 = We’re working to put control of the internet back in t
 m24-home-welcome-to-mozilla = Welcome to { -brand-name-mozilla }
 m24-home-from-trustworthy-tech = From trustworthy tech to policies that defend your digital rights, we put you first — always.
 m24-home-learn-about-us = Learn about us
+# Used as accessible text alternative for image
+m24-home-alt-flag = A stylized green flag on a black background, built from the ‘M’ for { -brand-name-mozilla } and a pixel that is displaced to reference its original dinosaur logo.
 
 ## Products
 
