@@ -17,20 +17,20 @@ const init = () => {
     if (href.indexOf('v=a') !== -1) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'home-fundraiser-giving-tues-2024',
-            variant: 'home-fundraiser-giving-tues-2024-va'
+            id: 'home-fundraiser-eoy-2024',
+            variant: 'home-fundraiser-eoy-2024-va'
         });
     } else if (href.indexOf('v=b') !== -1) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'home-fundraiser-giving-tues-2024',
-            variant: 'home-fundraiser-giving-tues-2024-vb'
+            id: 'home-fundraiser-eoy-2024',
+            variant: 'home-fundraiser-eoy-2024-vb'
         });
     } else if (href.indexOf('v=c') !== -1) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: 'home-fundraiser-giving-tues-2024',
-            variant: 'home-fundraiser-giving-tues-2024-vc'
+            id: 'home-fundraiser-eoy-2024',
+            variant: 'home-fundraiser-eoy-2024-vc'
         });
     } else if (TrafficCop) {
         if (isApprovedToRun()) {
