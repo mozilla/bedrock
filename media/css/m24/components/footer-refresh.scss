@@ -238,7 +238,6 @@ $max-footer-content-width: $content-max;
     border-radius: 0;
     font-weight: 600;
     background-color: $m24-color-alt-white;
-    color: $m24-color-black;
     padding: 6px 24px;
     border: $border-width solid $m24-color-black;
     text-decoration: none;
@@ -248,6 +247,7 @@ $max-footer-content-width: $content-max;
 
     &:link,
     &:visited {
+        color: $m24-color-black;
         text-decoration: none;
     }
 
