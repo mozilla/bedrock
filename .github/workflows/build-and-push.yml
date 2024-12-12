@@ -48,7 +48,7 @@ jobs:
 
       - id: long-sha
         run: |-
-          cd src && echo "LONG_SHA=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "LONG_SHA=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
 
       - id: docker-login
         name: Docker login
@@ -81,6 +81,12 @@ jobs:
 
 
     steps:
+      - id: checkout-application-repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          ref: ${{ env.REF_ID }}
 
       - id: dev_image_tag
         name: Set Docker dev image tag for updates of the main branch
