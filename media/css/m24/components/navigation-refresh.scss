@@ -46,7 +46,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
             z-index: 1000;
             left: 0;
             top: 0;
-            @include transition(transform 300ms ease-in-out);
+            @include transition(transform 300ms ease-in-out, box-shadow 300ms ease-in-out);
 
             &.mzp-is-scrolling {
                 // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
