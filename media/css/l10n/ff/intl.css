@@ -1,61 +1,13 @@
-/* Bug 776967, 1360812 */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
 
-@font-face {
-    font-family: X-LocaleSpecific-Light;
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/mplus-2c-light-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/mplus-2c-light-ff-sub.woff') format('woff');
-}
+ @import '../includes/font-inter.css';
 
-@font-face {
-    font-family: X-LocaleSpecific-Light;
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/mplus-2c-medium-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/mplus-2c-medium-ff-sub.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/mplus-2c-regular-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/mplus-2c-regular-ff-sub.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/notosans-italic-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/notosans-italic-ff-sub.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/notosans-bold-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/notosans-bold-ff-sub.woff') format('woff');
-}
-
-@font-face {
-    font-family: X-LocaleSpecific;
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-    src:
-        url('/media/fonts/l10n/ff/notosans-bolditalic-ff-sub.woff2') format('woff2'),
-        url('/media/fonts/l10n/ff/notosans-bolditalic-ff-sub.woff') format('woff');
-}
+ /* !important required for locale specific override */
+ /* stylelint-disable declaration-no-important  */
+ html[lang='ff'] body,
+ html[lang='ff'] body * {
+     font-family: Inter, X-LocaleSpecific, sans-serif !important;
+ }
