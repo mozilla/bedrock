@@ -182,7 +182,7 @@ $max-footer-content-width: $content-max;
             background-image: url('/media/img/icons/m24-small/down-caret-white.svg');
             background-repeat: no-repeat;
             background-size: 16px 16px;
-            @include bidi(((background-position, center right 8px, center left 8px),));
+            @include bidi(((background-position, right 8px center, 8px center),));
 
             @media #{$mq-lg} {
                 min-width: 100%;
