@@ -186,6 +186,13 @@ $max-footer-content-width: $content-max;
             @media #{$mq-lg} {
                 min-width: 100%;
             }
+
+            &:hover,
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                background-image: url('/media/img/icons/m24-small/down-caret.svg');
+            }
         }
     }
 
