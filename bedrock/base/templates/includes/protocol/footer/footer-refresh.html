@@ -4,36 +4,13 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- <div class="m24-c-transition m24-t-black"><hr></div>
  <footer class="moz24-footer" id="colophon" role="contentinfo">
   {% if show_newsletter %}
     {% include 'includes/protocol/footer/footer-newsletter.html' %}
   {% endif %}
   <div class="moz24-footer-content">
-    <nav class="moz24-footer-primary">
+    <nav class="moz24-footer-primary" aria-label="{{ ftl('footer-refresh-primary-nav-aria-label') }}">
       <div class="moz24-footer-sections-wrapper">
-        <div class="moz24-footer-section-wrapper">
-          <section>
-            <div class="moz24-footer-refresh-social-wrapper">
-              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-mozilla') }}</h2>
-              <ul class="moz24-footer-links-social">
-                <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-twitter') }}<span> (@mozilla)</span></a></li>
-                <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-position="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-position="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
-                <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-position="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
-                <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-position="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
-              </ul>
-            </div>
-            <div class="moz24-footer-refresh-social-wrapper">
-              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-firefox') }}</h2>
-              <ul class="moz24-footer-links-social">
-                <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-refresh-twitter') }}<span> (@firefox)</span></a></li>
-                <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-position="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
-                <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-position="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
-              </ul>
-            </div>
-          </section>
-        </div>
         <div class="moz24-footer-section-wrapper moz24-links-section">
           <section>
             <h2 class="moz24-footer-label" data-testid="footer-heading-company">
@@ -88,12 +65,37 @@
             </ul>
           </section>
         </div>
+        <div class="moz24-footer-section-wrapper">
+          <section>
+            <div class="moz24-footer-refresh-social-wrapper">
+              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-mozilla') }}</h2>
+              <ul class="moz24-footer-links-social">
+                <li><a class="twitter" href="{{ mozilla_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@mozilla)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-twitter') }}<span> (@mozilla)</span></a></li>
+                <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-position="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
+                <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-position="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
+                <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-position="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
+                <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-position="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
+              </ul>
+            </div>
+            <div class="moz24-footer-refresh-social-wrapper">
+              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-firefox') }}</h2>
+              <ul class="moz24-footer-links-social">
+                <li><a class="twitter" href="{{ firefox_twitter_url() }}" data-link-position="footer" data-link-text="Twitter (@firefox)">{{ ftl('footer-refresh-x-formerly-twitter', fallback='footer-refresh-twitter') }}<span> (@firefox)</span></a></li>
+                <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-position="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
+                <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-position="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
+                <li><a class="tiktok" href="https://www.tiktok.com/@firefox" data-link-position="footer" data-link-text="TikTok (@firefox)">{{ ftl('footer-refresh-tiktok') }}<span> (@firefox)</span></a></li>
+              </ul>
+            </div>
+          </section>
+        </div>
       </div>
     </nav>
     <div class="moz24-footer-actions">
       <a class="moz24-footer-donate" href="{{ donate_url(location='moco-donate-footer') }}" data-link-type="button" data-link-text="Donate">
         <span class="mzp-c-button-icon-start">
-          <svg height="640" viewBox="0 0 896.173 896.173" width="640" xmlns="http://www.w3.org/2000/svg"><switch><path d="m415.586 381.044v-65.006h65.001v65.006zm151.61-179.868c-34.105 0-63.39 12.422-86.609 27.824v87.038c4.788-5.861 12.53-14.509 22.611-22.98 21.228-17.838 42.76-26.882 63.998-26.882 47.765 0 86.625 40.383 86.625 90.02 0 72.488-58.765 143.314-108.062 189.965-37.953 35.915-76.426 63.436-97.672 77.68-21.246-14.244-59.72-41.765-97.673-77.68-49.297-46.651-108.062-117.477-108.062-189.964 0-49.638 38.86-90.021 86.625-90.021 21.239 0 42.77 9.044 63.998 26.882 10.082 8.472 17.823 17.119 22.611 22.98v-87.038c-23.218-15.402-52.503-27.824-86.609-27.824-83.606 0-151.625 69.542-151.625 155.02 0 43.355 14.14 88.366 42.027 133.784 21.258 34.62 50.627 69.704 87.29 104.273 61.41 57.902 122.133 94.58 124.688 96.112l7.735 4.632h17.989l7.735-4.632c2.555-1.533 63.278-38.21 124.687-96.112 36.664-34.57 66.033-69.652 87.29-104.273 27.888-45.418 42.028-90.429 42.028-133.783 0-85.479-68.019-155.021-151.625-155.021"/></switch></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path fill="currentColor" d="M16.34 2.93c-1.26 0-2.34.46-3.2 1.03-.11.09-.57.43-.84.82h-.71c-.28-.4-.75-.75-.85-.81s-.02-.01-.03-.02h-.01c-.85-.56-1.92-1-3.16-1-3.09 0-5.6 2.57-5.6 5.73 0 1.6.52 3.26 1.55 4.94.79 1.28 1.87 2.57 3.22 3.85 2.27 2.14 4.51 3.49 4.61 3.55l.29.17h.66l.29-.17c.09-.06 2.34-1.41 4.61-3.55 1.35-1.28 2.44-2.57 3.22-3.85 1.03-1.68 1.55-3.34 1.55-4.94 0-3.16-2.51-5.73-5.6-5.73Zm-.8 12.74c-1.4 1.33-2.82 2.34-3.61 2.87-.78-.53-2.21-1.54-3.61-2.87-1.82-1.72-3.99-4.34-3.99-7.02 0-1.83 1.44-3.33 3.2-3.33.78 0 1.58.33 2.36.99.37.31.66.63.83.85s0 .01 0 .01v2.39h2.4V7.15c.18-.22.46-.53.83-.84.78-.66 1.58-.99 2.36-.99 1.76 0 3.2 1.49 3.2 3.33 0 2.68-2.17 5.29-3.99 7.02Z"/>
+          </svg>
         </span>
         <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-donate') }}</span>
       </a>
@@ -101,7 +103,7 @@
         {% include 'includes/protocol/lang-switcher-refresh.html' %}
        </div>
     </div>
-    <nav class="moz24-footer-secondary">
+    <nav class="moz24-footer-secondary" aria-label="{{ ftl('footer-refresh-secondary-nav-aria-label') }}">
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}

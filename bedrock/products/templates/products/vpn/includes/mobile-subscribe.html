@@ -9,6 +9,7 @@
 {% set android_url = play_store_url('vpn', campaign) %}
 {% set ios_url = app_store_url('vpn', campaign) %}
 {% set redirect_url = 'http://www.mozilla.org/products/vpn/mobile/app/?product=vpn&campaign=' + campaign %}
+{% set local_currency_notice = country_code in ["UG", "SN", "UA", "KE"] and ftl_has_messages('vpn-pricing-transaction-may-be-in') %}
 
 <section class="mzp-c-split vpn-pricing-mobile-subscription mzp-l-split-center-on-sm-md mzp-t-content-xl">
   <div class="mzp-c-split-container">
@@ -16,13 +17,50 @@
       {% if heading %}
         <h2 class="u-title-lg">{{ heading }}</h2>
       {% endif %}
-      <p class="vpn-pricing-desktop-instruction u-body-lg">
-        {% if android_sub_only %}
-          {{ ftl('vpn-pricing-scan-qrcode-to-download-android', fallback='vpn-pricing-scan-qrcode-to-download') }}
-        {% else %}
-          {{ ftl('vpn-pricing-scan-qrcode-to-download') }}
-        {% endif %}
-      </p>
+
+      {% if switch('vpn-wave-vii-pricing') %}
+      <div class="c-pricing-block-mobile-wrapper">
+        <div class="c-pricing-block-mobile">
+          <p class="c-pricing-block-mobile-tag">
+            {{ ftl('vpn-shared-pricing-recommended-offer') }}
+          </p>
+
+          <h2 class="c-pricing-block-mobile-heading">
+            {{ ftl('vpn-pricing-annual') }}
+          </h2>
+
+          <h3 class="c-pricing-block-mobile-sub-heading">
+            {{ vpn_mobile_monthly_price(plan='12-month', country_code=country_code, lang=LANG) }}
+          </h3>
+
+          {% if local_currency_notice %}
+            <p class="c-pricing-block-mobile-currency-info">
+              {{ ftl('vpn-pricing-transaction-may-be-in') }}
+            </p>
+          {% endif %}
+
+          <p class="c-pricing-block-mobile-total">
+            {{ vpn_mobile_total_price(country_code=country_code, lang=LANG) }}
+          </p>
+        </div>
+
+        <div class="c-pricing-block-mobile">
+          <h2 class="c-pricing-block-mobile-heading">
+            {{ ftl('vpn-pricing-monthly') }}
+          </h2>
+
+          <h3 class="c-pricing-block-mobile-sub-heading">
+            {{ vpn_mobile_monthly_price(plan='monthly', country_code=country_code, lang=LANG) }}
+          </h3>
+
+          {% if local_currency_notice %}
+            <p class="c-pricing-block-mobile-currency-info">
+              {{ ftl('vpn-pricing-transaction-may-be-in') }}
+            </p>
+          {% endif %}
+        </div>
+      </div>
+      {% endif %}
 
       <ol class="vpn-pricing-mobile-steps u-body-lg">
         {% if android_sub_only %}
@@ -33,6 +71,14 @@
         <li><span>{{ ftl('vpn-pricing-connect-up-to-platforms', fallback='vpn-pricing-connect-up-to', devices=connect_devices) }}</span></li>
         <li><span>{{ ftl('vpn-pricing-access', servers=connect_servers, countries=connect_countries) }}</span></li>
       </ol>
+
+      <p class="vpn-pricing-desktop-instruction u-body-lg">
+        {% if android_sub_only %}
+          {{ ftl('vpn-pricing-scan-qrcode-to-download-android', fallback='vpn-pricing-scan-qrcode-to-download') }}
+        {% else %}
+          {{ ftl('vpn-pricing-scan-qrcode-to-download') }}
+        {% endif %}
+      </p>
 
       {{ picture(
         url='img/products/vpn/landing-refresh/devices.svg',

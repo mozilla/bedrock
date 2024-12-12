@@ -32,19 +32,21 @@ urlpatterns = (
         views.vpn_resource_center_redirect,
         name="products.vpn.more.redirect",
     ),
-    # VPN pages for Product team (issue #10388)
-    page("vpn/more/why-mozilla-vpn/", "products/vpn/more/why-mozilla-vpn.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
-    page("vpn/more/do-i-need-a-vpn/", "products/vpn/more/do-i-need.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
-    page("vpn/more/what-is-a-vpn-v2/", "products/vpn/more/what-is-a-vpn-v2.html", ftl_files=["products/vpn/shared"], active_locales=["en-US"]),
     # VPN Resource Center
     path(
         "vpn/resource-center/",
-        prefer_cms(views.resource_center_landing_view),
+        prefer_cms(
+            views.resource_center_landing_view,
+            fallback_lang_codes=["de", "en-US", "es-ES", "fr", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
+        ),
         name="products.vpn.resource-center.landing",
     ),
     path(
         "vpn/resource-center/<slug:slug>/",
-        prefer_cms(views.resource_center_article_view),
+        prefer_cms(
+            views.resource_center_article_view,
+            fallback_callable=views.resource_center_article_available_locales_lookup,
+        ),
         name="products.vpn.resource-center.article",
     ),
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),

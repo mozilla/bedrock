@@ -5,54 +5,72 @@
 /* ------------------------------------------------------------------------------- */
 // hex code colors
 // do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
+
+// black and white
 $token-color-black: #000;
-$token-color-light-gray: #f4f4f4;
-$token-color-medium-gray: #e8e8e8;
-$token-color-dark-gray: #181818;
-$token-color-functional-gray-on-white: #707070;
-$token-color-functional-gray-on-black: #828282;
+$token-color-off-black: #161616;
 $token-color-white: #fff;
+$token-color-off-white: #fafafa;
+
+// grays
+$token-color-light-gray: #f4f4f4; // gray 1
+$token-color-light-mid-gray: #E8E8E8; // gray 2
+$token-color-mid-gray: #B3B3B3; // gray 3
+$token-color-dark-mid-gray: #6D6D6D; // gray 4
+$token-color-dark-gray: #414141; // gray 5
+
+// greens
 $token-color-green: #00D230;
 $token-color-light-green: #D6FFCD;
-$token-color-dark-green: #28733F;
+$token-color-dark-green: #022611;
+$token-color-mid-green: #28733F;
+
+// oranges
 $token-color-orange: #FF9456;
 $token-color-light-orange: #FAF0E6;
-$token-color-dark-orange: #FF453F;
+$token-color-dark-orange: #330505;
+$token-color-red: #FF453F;
+
+// pinks
 $token-color-pink: #FF97E2;
 $token-color-light-pink: #FFF1F8;
-$token-color-dark-pink: #AE49EC;
-$token-color-feedback-success: $token-color-green;
-$token-color-feedback-caution: $token-color-dark-orange;
-$token-color-feedback-error: $token-color-orange;
+$token-color-dark-pink: #210340;
+$token-color-purple: #AE49EC;
 
 /* ------------------------------------------------------------------------------- */
 // define sass variables to hold CSS variables
 // reference these!
 
 // black and white
-$m24-color-white: var(--m24-white);
 $m24-color-black: var(--m24-black);
+$m24-color-alt-black: var(--m24-off-black);
+$m24-color-white: var(--m24-white);
+$m24-color-alt-white: var(--m24-off-white);
 
-// gray
+// grays
 $m24-color-light-gray: var(--m24-light-gray);
-$m24-color-medium-gray: var(--m24-medium-gray);
+$m24-color-light-mid-gray: var(--m24-light-mid-gray) ;
+$m24-color-mid-gray: var(--m24-mid-gray) ;
+$m24-color-dark-mid-gray: var(--m24-dark-mid-gray) ;
 $m24-color-dark-gray: var(--m24-dark-gray);
-$m24-color-functional-gray: var(--m24-functional-gray);
 
-// green
+// greens
 $m24-color-green: var(--m24-green);
 $m24-color-light-green: var(--m24-light-green);
 $m24-color-dark-green: var(--m24-dark-green);
+$m24-color-mid-green: var(--m24-mid-green);
 
-// orange
+// oranges
 $m24-color-orange: var(--m24-orange);
 $m24-color-light-orange: var(--m24-light-orange);
 $m24-color-dark-orange: var(--m24-dark-orange);
+$m24-color-red: var(--m24-red);
 
-// pink
+// pinks
 $m24-color-pink: var(--m24-pink);
 $m24-color-light-pink: var(--m24-light-pink);
 $m24-color-dark-pink: var(--m24-dark-pink);
+$m24-color-purple: var(--m24-purple);
 
 
 /* ------------------------------------------------------------------------------- */
@@ -61,12 +79,15 @@ $m24-color-dark-pink: var(--m24-dark-pink);
 @mixin invert-colors {
     // black and white
     --m24-white: #{$token-color-black};
+    --m24-off-white: #{$token-color-off-black};
     --m24-black: #{$token-color-white};
+    --m24-off-black: #{$token-color-off-white};
 
     // gray
     --m24-light-gray: #{$token-color-dark-gray};
     --m24-dark-gray: #{$token-color-light-gray};
-    --m24-functional-gray: #{$token-color-functional-gray-on-black};
+    --m24-light-mid-gray: #{$token-color-dark-mid-gray};
+    --m24-dark-mid-gray: #{$token-color-light-mid-gray};
 
     // green
     --m24-green: #{$token-color-green};

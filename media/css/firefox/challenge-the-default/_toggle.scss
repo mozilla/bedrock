@@ -2,8 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-
 .toggle {
     display: inline-flex;
     align-items: center;
@@ -16,8 +14,6 @@
         animation: animate-toggle 400ms 1 linear forwards;
     }
 }
-
-
 
 @keyframes animate-toggle {
     0% {
@@ -44,7 +40,6 @@
 @keyframes animate-toggle-rotate {
     0% {
         transform: translate(0, -50%) rotate(0deg);
-
     }
 
     25% {
@@ -142,7 +137,6 @@
 .toggle-input:focus:not(:focus-visible)+.toggle-display {
     outline: 0;
 }
-
 
 .toggle-input:checked+.toggle-display {
     background-color: $color-white;

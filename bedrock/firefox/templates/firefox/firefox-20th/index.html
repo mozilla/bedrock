@@ -1,0 +1,145 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/base/base-protocol.html" %}
+
+{% from "macros-protocol.html" import split with context %}
+{% from "macros.html" import video_inline_embed with context %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_20th') }}
+{% endblock %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox20' %}
+
+{% block body_id %}firefox20{% endblock %}
+
+{% block site_header %}
+  {% with hide_nav_download_button=True %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
+{% if LANG == "fr" %}
+  {% set page_title = 'Firefox a 20 ans - Célébrez avec nous' %}
+  {% set page_desc = 'Célébrez les 20 ans de Firefox, plongez dans notre parcours, explorez les créations de fans, rencontrez les meilleurs contributeurs et rejoignez-nous pour un futur palpitant.' %}
+  {% set main_title = 'Firefox fête ses 20 ans' %}
+  {% set main_body = 'Que vous veniez de télécharger Firefox, ou que vous soyez à nos côtés depuis le début, vous contribuez grandement à notre mission de créer une meilleure version d’Internet. Nous avons hâte de vous dévoiler la suite.' %}
+  {% set cta_title = 'Mettez du peps dans votre navigation' %}
+  {% set cta_body = 'Découvrez notre édition spéciale de fonds d’écran. Ouvrez un nouvel onglet et cliquez sur la roulette en haut à droite.' %}
+  {% set cta_default = 'Faites de Firefox votre navigateur par défaut' %}
+  {% set cta_download = 'Télécharger Firefox' %}
+  {% set fan_title = 'Les fans de Firefox ont du talent' %}
+  {% set fan_body = 'On ne se lassera jamais de votre fan art.' %}
+{% elif LANG == "de" %}
+  {% set page_title = 'Firefox wird 20 - Feiere mit uns' %}
+  {% set page_desc = 'Feiere 20 Jahre Firefox — komm mit auf unsere Reise, entdecke Werke von Fans, triff die wichtigsten Mitwirkenden und begleite uns auf dem Weg in eine spannende Zukunft.' %}
+  {% set main_title = 'Feiere 20 Jahre Firefox mit uns' %}
+  {% set main_body = 'Ob du Firefox gerade erst runtergeladen hast, oder von Anfang an dabei bist – du spielst eine wichtige Rolle dabei, das Internet zu einem besseren Ort zu machen. Wir freuen uns schon darauf, dir zu zeigen, was als Nächstes kommt.' %}
+  {% set cta_title = 'Mach deinen Browser bunter' %}
+  {% set cta_body = 'Schau dir unsere speziellen Hintergrundbilder an – öffne einen neuen Tab und klicke oben rechts auf das Zahnrad-Symbol.' %}
+  {% set cta_default = 'Firefox als Standardbrowser festlegen' %}
+  {% set cta_download = 'Firefox herunterladen' %}
+  {% set fan_title = 'Firefox-Fans haben Talent' %}
+  {% set fan_body = 'Wir können uns an eurer Fan-Art einfach nicht sattsehen.' %}
+{% else %}
+  {% set page_title = 'Firefox Turns 20 - Celebrate with Us' %}
+  {% set page_desc = 'Celebrate 20 years of Firefox — dive into our journey, explore fan creations, meet top contributors and join us as we look forward to an exciting future.' %}
+  {% set main_title = 'Celebrating 20 years of Firefox' %}
+  {% set main_body = 'Whether you just downloaded Firefox, or you’ve been with us since the beginning, you are a vital part of helping us make the internet a better place. We can’t wait to show you what’s coming next.' %}
+  {% set fan_title = 'Firefox fans are talented' %}
+  {% set fan_body = 'We’ll never get tired of your fan art.' %}
+{% endif %}
+
+{% block page_title_full %}{{ page_title }}{% endblock %}
+{% block page_desc %}{{ page_desc }}{% endblock %}
+{% block page_image %}{{ static('img/firefox/firefox-20th/firefox-20th-social-share.png') }}{% endblock %}
+
+{% block content %}
+<section class="fx20-content-main">
+  <div class="mzp-l-content mzp-t-content-2xl">
+    <div class="fx20-main-wrapper">
+      <img class="fx20-main-image" src="{{ static('img/firefox/firefox-20th/firefox-20th-dark.png') }}" width="321" height="129" alt="">
+      <h1 class="fx20-main-title">{{ main_title }}</h1>
+      <p class="fx20-main-body">{{ main_body }}</p>
+    </div>
+    {% include 'firefox/whatsnew/includes/fx132/video.html' %}
+  </div>
+</section>
+
+{% if LANG in ['fr', 'de'] %}
+  <section class="fx20-content-cta">
+    <div class="mzp-l-content mzp-t-content-2xl">
+      <div class="fx20-cta-wrapper">
+        <h2>{{ cta_title }}</h2>
+        <p>{{ cta_body }}</p>
+        {{ download_firefox_thanks(alt_copy=ftl('download-button-download-firefox'), dom_id='firefox20-download-firefox', button_class='download-firefox mzp-t-secondary mzp-t-md', download_location='firefox20') }}
+        <a class="mzp-c-button mzp-t-product set-as-default" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-text="Set Firefox as your default browser" >
+          {{ cta_default }}
+        </a>
+      </div>
+    </div>
+  </section>
+{% else %}
+  <section>
+    <div class="mzp-l-content mzp-t-content-2xl">
+      <div class="mzp-l-columns mzp-t-columns-two">
+        <div class="fx20-action-container">
+          <h2>Features you fell in love with</h2>
+          <p>It’s official — tabbed browsing, popping videos out of your window and tab containers made the list.</p>
+          <a class="mzp-c-cta-link" href="https://blog.mozilla.org/en/products/firefox/firefox-features-fan-favorites/?{{ utm_params }}" data-link-text="View blog Features">
+            View blog
+          </a>
+        </div>
+
+        <div class="fx20-action-container">
+          <h2>Cheers to SUMO’s top contributors</h2>
+          <p>We’re spotlighting the incredible contributions of our SUMO community, some of whom have been with us since the very beginning.</p>
+          <a class="mzp-c-cta-link" href="https://blog.mozilla.org/sumo/2024/11/07/celebrating-our-top-contributors-on-firefoxs-20th-anniversary/?{{ utm_params }}" data-link-text="View blog Contributors">
+            View blog
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% call split(
+    block_class='fx20-content-fanart mzp-l-split-center-on-sm-md',
+    media_class='mzp-l-split-h-center',
+    media_include='firefox/firefox-20th/video-fanart.html',
+    media_after=True
+  ) %}
+    <h2 class="fx20-fanart-title">{{ fan_title }}</h2>
+    <p class="fx20-fanart-body">{{ fan_body }}</p>
+{% endcall %}
+
+{% if LANG.startswith('en-') %}
+  <section class="fx20-content-community">
+    <div class="mzp-l-content mzp-t-content-2xl">
+      <div class="fx20-cta-wrapper">
+        <h2>Be a part of Firefox’s future</h2>
+        <p>Help us come up with our next big feature by joining the
+          Mozilla Connect community.</p>
+        <a class="mzp-c-cta-link" href="https://connect.mozilla.org/?{{ utm_params }}" data-cta-text="Join now">
+          Join now
+        </a>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_20th') }}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}

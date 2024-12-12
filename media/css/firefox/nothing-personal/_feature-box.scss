@@ -1,0 +1,29 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-feature-box {
+    background-color: $browser-background;
+    border-radius: $border-radius-md;
+    padding: $layout-sm; // match browser components
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.c-feature-box-title {
+    align-items: center;
+    display: flex;
+}
+
+.c-feature-box-image {
+    margin-right: $spacing-md;
+}
+
+.ios,
+.android {
+    .c-feature-box-desktop-only {
+        display: none;
+    }
+}

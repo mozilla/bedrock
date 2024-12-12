@@ -1,0 +1,104 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+.m24-c-careers {
+    @include container;
+    color: $m24-color-black;
+    background-color: $m24-color-white;
+    padding: $spacer-xl $container-padding;
+
+    * {
+        margin-bottom: 0;
+    }
+}
+
+.m24-c-careers-title {
+    font-size: $text-title-xl;
+    padding-bottom: $spacer-xl;
+    text-wrap-style: balance;
+}
+
+.m24-c-careers-media {
+    @include grid;
+    margin: 0 auto;
+    max-width: 480px;
+    padding-bottom: $spacer-xl;
+
+    picture {
+        display: grid; // removes line height so there's no extra space underneath
+        grid-column: auto / span 6;
+    }
+
+    picture:nth-child(1),
+    picture:nth-child(3) {
+        justify-self: end;
+    }
+}
+
+.m24-consider-cta-info {
+    font-size: $text-body-lg;
+    margin: 0 auto;
+    max-width: 480px;
+}
+
+.m24-c-careers-cta {
+    margin-top: $spacer-lg;
+    text-align: right;
+}
+
+@media #{$mq-md} {
+    .m24-c-careers-media {
+        max-width: 100%;
+
+        picture {
+            grid-column: auto / span 3;
+        }
+    }
+
+    .m24-consider-cta-info {
+        grid-column: 1/-1;
+        max-width: 100%;
+    }
+
+    .m24-c-careers-cta {
+        grid-column: 1/-1;
+    }
+}
+
+@media #{$mq-lg} {
+    .m24-c-careers {
+        @include grid;
+        grid-row-gap: 0;
+    }
+
+    .m24-c-careers-title {
+        grid-column: 1/-1;
+        padding-bottom: $spacer-2xl;
+    }
+
+    .m24-c-careers-media {
+        grid-column: 1/-1;
+        grid-row: 2/4;
+        padding: 0;
+
+        picture {
+            grid-column: auto / span 2;
+        }
+    }
+
+    .m24-consider-cta-info {
+        grid-column: 1/9;
+        margin-top: 16px;
+    }
+
+    .m24-c-careers-cta {
+        grid-column: 9/-1;
+        margin-top: 16px;
+        padding: 0;
+        place-self: end;
+        text-align: end;
+    }
+}

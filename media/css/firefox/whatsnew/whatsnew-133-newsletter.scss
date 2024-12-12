@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '~@mozilla-protocol/core/protocol/css/components/newsletter-form';
+@import 'includes/mofo-donate-cta';
+
+.wnp-main-content,
+.wnp-action-container {
+    @media #{$mq-md} {
+        max-width: 510px;
+    }
+}
+
+.wnp-main-image {
+    margin-bottom: $spacing-md;
+}
+
+.wnp-main-content {
+    .wnp-main-title {
+        @include font-size(40px);
+
+        @media #{$mq-lg} {
+            @include font-size(50px);
+        }
+    }
+
+    .wnp-main-body {
+        @include text-body-md;
+    }
+}
+
+.wnp-action-container {
+    header {
+        display: none;
+    }
+
+    .mzp-js-email-field,
+    select,
+    .mzp-c-button {
+        min-width: 100%;
+    }
+
+    #newsletter-submit + .mzp-c-fieldnote {
+        margin-top: $spacing-sm;
+    }
+}
+
+.wnp-footer {
+    text-align: center;
+}
+
+.wnp-sign-off  {
+    margin-top: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+    .mzp-l-columns {
+        background-color: $color-dark-gray-60;
+        color: $color-white;
+    }
+
+    .wnp-main-title {
+        color: $color-white;
+    }
+
+    .mzp-c-newsletter-form {
+        a,
+        a:hover,
+        a:visited {
+            color: $color-white;
+        }
+    }
+
+    .mzp-c-newsletter-thanks h3 {
+        color: $color-white;
+    }
+}

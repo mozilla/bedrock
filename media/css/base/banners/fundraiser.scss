@@ -1,0 +1,90 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import 'includes/basic';
+
+.c-banner-fundraising {
+    background: $color-green-20;
+    color: $color-black;
+
+    .mzp-l-content {
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+    }
+
+    .c-banner-title {
+        color: $color-black;
+        display: block;
+        width: auto;
+        margin-bottom: $spacing-sm;
+        @include text-display-md;
+    }
+
+    .c-banner-tagline {
+        margin-bottom: $spacing-md;
+        @include text-body-md;
+    }
+
+    .c-banner-media {
+        display: none;
+    }
+
+    .c-banner-button {
+        background-color: $color-green-80;
+        border-color: $color-green-80;
+        margin: 0;
+        width: 100%;
+        @include text-body-lg;
+
+        &::after {
+            @include bidi(((content, ' ♥', '♥ '),));
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $color-green-90;
+            border-color: $color-green-90;
+            color: $color-white;
+        }
+    }
+
+    .c-banner-close {
+        background-image: url('#{$image-path}/icons/close.svg');
+    }
+
+    @media #{$mq-md} {
+        .c-banner-inner {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 48px;
+            justify-content: space-between;
+        }
+
+        .c-banner-copy {
+            flex: 1 1 auto;
+        }
+
+        .c-banner-tagline {
+            @include text-body-lg;
+        }
+
+        picture {
+            display: block;
+            flex: 0 0 200px;
+        }
+
+        .c-banner-media {
+            display: block;
+        }
+
+        .c-banner-button {
+            width: auto;
+        }
+    }
+}

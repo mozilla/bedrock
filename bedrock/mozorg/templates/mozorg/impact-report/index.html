@@ -33,28 +33,26 @@
       </div>
     </header>
 
-    {% if switch('impact-report-active') %}
-      <section class="c-report">
-        {% call split(
-          block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed c-foundation',
-          image=resp_img(
-            url='img/mozorg/impact/report-cover.jpg',
-            srcset={
-              'img/mozorg/impact/report-cover-high-res.jpg': '1.5x'
-            },
-            optional_attributes={
-              'class': 'mzp-c-split-media-asset',
-              'loading': 'lazy'
-            }
-          ),
-          media_after=False
-        ) %}
-          <h3>Our 2024 report</h3>
-          <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
-          <p><a href="https://assets.mozilla.net/pdf/Impact_Report_2024.pdf" class="mzp-c-button">View the report</a></p>
-        {% endcall %}
-      </section>
-    {% endif %}
+    <section class="c-report">
+      {% call split(
+        block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed c-foundation',
+        image=resp_img(
+          url='img/mozorg/impact/report-cover.jpg',
+          srcset={
+            'img/mozorg/impact/report-cover-high-res.jpg': '1.5x'
+          },
+          optional_attributes={
+            'class': 'mzp-c-split-media-asset',
+            'loading': 'lazy'
+          }
+        ),
+        media_after=False
+      ) %}
+        <h3>Our 2024 report</h3>
+        <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
+        <p><a href="https://assets.mozilla.net/pdf/Impact_Report_2024.pdf" class="mzp-c-button">View the report</a></p>
+      {% endcall %}
+    </section>
 
     <section class="c-cards mzp-l-content">
       <h3>Join us in making an impact!</h3>

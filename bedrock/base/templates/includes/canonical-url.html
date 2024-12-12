@@ -4,10 +4,12 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{%- set available_languages = get_locale_options(request, translations) -%}
+
     <link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
-    <link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL }}{{ canonical_path }}">
-    {% if translations -%}
-      {%- for code, label in translations|dictsort -%}
+    {% if is_homepage %}<link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL }}{{ canonical_path }}">{% endif %}
+    {% if available_languages -%}
+      {%- for code, label in available_languages|dictsort -%}
         {%- set alt_url = alternate_url(canonical_path, code) -%}
         {%- if alt_url -%}
           {%- set loop_canonical_path = alt_url -%}

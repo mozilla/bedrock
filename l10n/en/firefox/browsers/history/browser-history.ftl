@@ -39,7 +39,7 @@ browser-history-the-browser-wars = The Browser Wars
 browser-history-by-1995-netscape = By 1995, { -brand-name-netscape } Navigator wasn’t the only way to get online. Computer software giant { -brand-name-microsoft } licensed the old Mosaic code and built its own window to the web, <a href="{ $ie }">{ -brand-name-ie }</a>. The release sparked a war. { -brand-name-netscape } and { -brand-name-microsoft } worked feverishly to make new versions of their programs, each attempting to outdo the other with faster, better products.
 
 # Variables:
-#   $blink (url) - https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blink
+#   $blink (url) - https://developer.mozilla.org/en-US/docs/Glossary/blink_element
 browser-history-netscape-created = { -brand-name-netscape } created and released JavaScript, which gave websites powerful computing capabilities they never had before. (They also made the infamous <a href="{ $blink }">&lt;blink&gt; tag</a>.) { -brand-name-microsoft } countered with Cascading Style Sheets (CSS), which became the standard for web page design.
 
 # Variables:

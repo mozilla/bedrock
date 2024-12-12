@@ -28,16 +28,13 @@ _csp_default_src = [
 ]
 _csp_img_src = [
     "data:",
-    "mozilla.org",
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
 ]
 _csp_script_src = [
-    # TODO fix things so that we don't need this
+    # TODO change settings so we don't need unsafes even in dev
     csp.constants.UNSAFE_INLINE,
-    # TODO snap.svg.js passes a string to Function() which is
-    # blocked without unsafe-eval. Find a way to remove that.
     csp.constants.UNSAFE_EVAL,
     "www.googletagmanager.com",
     "www.google-analytics.com",
@@ -87,14 +84,14 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
 
 # 3. DJANGO-CSP SETTINGS
-extra_csp_default_src = config("CSP_DEFAULT_SRC", default="", parser=ListOf(str))
+extra_csp_default_src = config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False))
 if extra_csp_default_src:
     _csp_default_src = list(set(_csp_default_src + extra_csp_default_src))
 if DEV:
     if _csp_connect_extra_for_dev:
         _csp_connect_src = list(set(_csp_connect_src + _csp_connect_extra_for_dev))
 _csp_child_src = list(set(_csp_default_src + _csp_child_src))
-csp_extra_frame_src = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str))
+csp_extra_frame_src = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False))
 if csp_extra_frame_src:
     _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
@@ -125,8 +122,13 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = [csp.constants.SELF]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["media-src"] = [csp.constants.SELF, "assets.mozilla.net", "videos.cdn.mozilla.net"]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["upgrade-insecure-requests"] = True
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings

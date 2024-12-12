@@ -20,16 +20,29 @@ if (typeof window.Mozilla === 'undefined') {
 
     for (var i = 0; i < bios.length; i++) {
         var bio = bios[i];
-        bio.setAttribute('aria-role', 'button');
+
+        // set aria roles on opening bio link and make focusable.
+        bio.setAttribute('role', 'button');
+        bio.setAttribute('aria-controls', 'leadership-modal');
+        bio.setAttribute('aria-expanded', 'false');
         bio.setAttribute('tabindex', '0');
 
         bio.addEventListener('click', function (e) {
             e.preventDefault();
-            var modalContent = this.cloneNode(true);
-            modalContent.removeAttribute('id');
-            modalContent.setAttribute('aria-role', 'article');
+            var openingLink = this;
+            var modalContent = openingLink.cloneNode(true);
 
-            MzpModal.createModal(e.target, content, {
+            // remove superfluous attributes from cloned node when in modal.
+            modalContent.removeAttribute('id');
+            modalContent.removeAttribute('role');
+            modalContent.removeAttribute('aria-controls');
+            modalContent.removeAttribute('aria-expanded');
+            modalContent.removeAttribute('tabindex');
+
+            // set opening button expanded state to true
+            openingLink.setAttribute('aria-expanded', 'true');
+
+            MzpModal.createModal(openingLink, content, {
                 closeText: window.Mozilla.Utils.trans('global-close'),
                 onCreate: function () {
                     content.appendChild(modalContent);
@@ -37,6 +50,7 @@ if (typeof window.Mozilla === 'undefined') {
                 },
                 onDestroy: function () {
                     modalContent.parentNode.removeChild(modalContent);
+                    openingLink.setAttribute('aria-expanded', 'false');
                 }
             });
         });

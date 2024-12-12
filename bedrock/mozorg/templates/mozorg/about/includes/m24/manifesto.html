@@ -1,0 +1,108 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import picto with context %}
+
+<div class="m24-t-dark m24-t-alt">
+  <div class="m24-c-feature">
+    <div class="m24-c-feature-media">
+      {{ resp_img(
+        url='img/mozorg/about/m24/manifesto-1440.jpg',
+        srcset={
+          "img/mozorg/about/m24/manifesto-375.jpg": "375w",
+          "img/mozorg/about/m24/manifesto-686.jpg": "686w",
+          "img/mozorg/about/m24/manifesto-1216.jpg": "1216w",
+          "img/mozorg/about/m24/manifesto-1440.jpg": "1440w",
+          "img/mozorg/about/m24/manifesto-2464.jpg": "2464w",
+          "img/mozorg/about/m24/manifesto-2752.jpg": "2752w",
+        },
+        sizes={
+          "(min-width: 1440px)": "1376w",
+          "default": "100vw",
+        },
+        optional_attributes={
+          'width': '1376',
+          'height': '686',
+          'alt': ftl('m24-about-a-group-of')
+        }
+      ) }}
+    </div>
+    <div class="m24-c-feature-text">
+      <h2 class="m24-c-feature-title">{{ ftl('m24-about-together-we-can') }}</h2>
+      <p class="m24-c-feature-cta"><a href="{{ url('mozorg.about.manifesto') }}" class="m24-c-cta" data-cta-text="Manifesto">{{ ftl('m24-about-read-our-manifesto') }}</a></p>
+    </div>
+  </div>
+</div>
+
+<div class="m24-t-alt">
+  <div class="m24-c-content">
+  <ul class="m24-t-columns-four">
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-large/bell.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title=ftl('m24-about-advocate')
+    ) %}
+      <p>{{ ftl('m24-about-we-advocate-for') }}</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-large/glasses.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy',
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title=ftl('m24-about-research', fallback='m24-about-monitor')
+    ) %}
+      <p>{{ ftl('m24-about-we-uncover-insights', fallback='m24-about-we-monitor-developments') }}</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-large/pencil.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title=ftl('m24-about-build')
+    ) %}
+      <p>{{ ftl('m24-about-we-build-products') }}</p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      image=resp_img(
+        url='img/icons/m24-large/dollar.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+      heading_level=3,
+      title=ftl('m24-about-fund')
+    ) %}
+      <p>{{ ftl('m24-about-we-fund-and') }}</p>
+    {% endcall %}
+  </ul>
+  </div>
+</div>

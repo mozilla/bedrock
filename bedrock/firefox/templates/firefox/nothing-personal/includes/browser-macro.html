@@ -10,12 +10,17 @@
   heading=None,
   aria_label=None
 ) -%}
-<div {% if id %}id="{{ id }}" {% endif %}class="c-browser{% if class %} {{ class }}{% endif %}">
+<div {% if id %}id="{{ id }}" {% endif %} data-animation="pop-in" class="c-browser{% if class %} {{ class }}{% endif %}">
   <div class="c-browser-bar {% if heading %} c-bar-with-heading{% endif %}">
+      <svg class="c-browser-bar-dot-container" width="62" height="15" viewBox="0 0 62 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse class="c-browser-bar-dot" cx="7.821" cy="7.559" rx="6.155" ry="6.074" />
+        <ellipse class="c-browser-bar-dot" cx="31.204" cy="7.559" rx="6.155" ry="6.074" />
+        <ellipse class="c-browser-bar-dot" cx="54.595" cy="7.559" rx="6.155" ry="6.074" />
+      </svg>
     {% if heading and aria_label %}
-      <h3 aria-label="{{ aria_label }}">{{ heading }}</h3>
+      <h3 aria-label="{{ aria_label }}" class="c-browser-bar-title">{{ heading }}</h3>
     {% elif heading %}
-      <h3>{{ heading }}</h3>
+      <h3 class="c-browser-bar-title">{{ heading }}</h3>
     {% endif %}
   </div>
   <div class="c-browser-content">

@@ -11,12 +11,16 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
 
 .firefox-developer-whatsnew-mdnplus {
-    h1,
-    h2,
-    h3,
-    h4 {
-        @include font-base;
-        color: $color-black;
+    .c-mdn-header,
+    .c-mdn-body,
+    .c-mdn-footer {
+        h1,
+        h2,
+        h3,
+        h4 {
+            @include font-base;
+            color: $color-black;
+        }
     }
 }
 

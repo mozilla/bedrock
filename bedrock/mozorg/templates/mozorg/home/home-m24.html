@@ -9,16 +9,16 @@
 {# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
 {%- block page_title_full -%}
   {%- if LANG == 'en-US' -%}
-    Internet for people, not profit — Mozilla (US)
+    Mozilla - Internet for people, not profit (US)
   {%- elif LANG == 'en-GB' -%}
-    Internet for people, not profit — Mozilla (UK)
+    Mozilla - Internet for people, not profit (UK)
   {%- else -%}
-    Internet for people, not profit
+    {{ ftl('m24-home-page-title-v2', fallback='m24-home-page-title') }}
   {%- endif -%}
 {%- endblock -%}
 {% block page_title_suffix %}{% endblock %}
 
-{% block page_desc %}Did you know? Mozilla — the maker of Firefox — fights to keep the internet a global public resource, open and accessible to all.{% endblock %}
+{% block page_desc %}{{ ftl('m24-home-page-desc-v2', fallback='m24-home-page-desc') }}{% endblock %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
@@ -31,7 +31,7 @@
     {% include 'includes/protocol/navigation/navigation.html' %}
 {% endblock %}
 
-{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=homepage' %}
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-homepage' %}
 
 {% block content %}
 
@@ -40,9 +40,10 @@
   {% include 'mozorg/home/includes/m24/hero.html'%}
   {% include 'mozorg/home/includes/m24/products.html'%}
   {% include 'mozorg/home/includes/m24/donate.html'%}
-  {% include 'mozorg/home/includes/m24/ai-grid.html'%}
+  {% include 'mozorg/home/includes/m24/ai-gallery.html'%}
+  {% include 'mozorg/home/includes/m24/media-springboard.html'%}
   {% include 'mozorg/home/includes/m24/showcase.html'%}
-  {% include 'mozorg/home/includes/m24/resources-grid.html'%}
+  {% include 'mozorg/home/includes/m24/issues-gallery.html'%}
 
 </main>
 
@@ -53,3 +54,9 @@
     {% include 'includes/protocol/footer/footer.html' %}
   {% endwith %}
 {% endblock %}
+
+{% if switch('m24-hero-animation') %}
+  {% block js %}
+    {{ js_bundle('m24-animation') }}
+  {% endblock %}
+{% endif %}

@@ -149,6 +149,29 @@ $image-path: '/media/protocol/img';
     .header-product-ctas {
         display: none;
     }
+
+    // and also revert the grid to 1col
+    @media #{$mq-md} {
+        .c-page-header .mzp-c-split-container {
+            display: revert;
+            grid: revert;
+        }
+    }
+
+    // and avoid the noodles background where the form was
+    @media #{$mq-lg} {
+        .c-page-header .mzp-c-split-body {
+            width: 70%;
+        }
+
+        .c-page-header::before {
+            left: 15%;
+        }
+
+        :dir(rtl) .c-page-header::before {
+            right: 15%;
+        }
+    }
 }
 
 // hide download links for one platform from the other

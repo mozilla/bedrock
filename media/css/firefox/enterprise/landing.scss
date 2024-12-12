@@ -84,7 +84,7 @@ $image-path: '/media/protocol/img';
         position: relative;
 
         .mzp-c-split-title {
-            @include text-title-xl;
+            @include text-title-lg;
             margin-bottom: $spacing-md;
 
             @media #{$mq-md} {

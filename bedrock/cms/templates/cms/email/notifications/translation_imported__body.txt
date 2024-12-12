@@ -1,0 +1,19 @@
+Hi there
+
+ACTION REQUIRED: A new translation has been synced back from Smartling
+and needs to be published.
+
+It is Job '{{job_name}}' for '{{translation_source_name}}' into {{translation_target_language_code}}.
+
+You can view the job at {{smartling_cms_dashboard_url}}
+
+From there, for each item listed under "Translations", please open it in a new tab, review and publish it.
+
+Please note that you may need to publish things in a particular order (e.g. Snippet before the Page that uses it.)
+
+Many thanks
+
+Bedrock-bot
+
+
+P.S. If you find this process painful, please come and tell us about it in #www!

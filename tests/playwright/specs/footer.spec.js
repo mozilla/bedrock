@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
-const url = '/de/';
+const url = '/en-US/';
 
 test.describe(
     `${url} footer (mobile)`,
@@ -22,71 +22,66 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Footer open / close click', async ({ page }) => {
-            const footerHeadingCompany = page.getByTestId(
-                'footer-heading-company'
+        test('Footer newsletter submit success', async ({ page }) => {
+            const form = page.getByTestId('newsletter-form');
+            const emailField = page.getByTestId('newsletter-email-input');
+            const countryField = page.getByTestId('newsletter-country-select');
+            const privacyCheckbox = page.getByTestId(
+                'newsletter-privacy-checkbox'
             );
-            const footerListCompany = page.getByTestId('footer-list-company');
-            const footerHeadingResources = page.getByTestId(
-                'footer-heading-resources'
-            );
-            const footerListResources = page.getByTestId(
-                'footer-list-resources'
-            );
-            const footerHeadingSupport = page.getByTestId(
-                'footer-heading-support'
-            );
-            const footerListSupport = page.getByTestId('footer-list-support');
-            const footerHeadingDevelopers = page.getByTestId(
-                'footer-heading-developers'
-            );
-            const footerListDevelopers = page.getByTestId(
-                'footer-list-developers'
-            );
+            const submitButton = page.getByTestId('newsletter-submit-button');
+            const thanksMessage = page.getByTestId('newsletter-thanks-message');
 
-            // Open and close Company section
-            await expect(footerListCompany).not.toBeVisible();
-            await footerHeadingCompany.click();
-            await expect(footerListCompany).toBeVisible();
-            await footerHeadingCompany.click();
-            await expect(footerListCompany).not.toBeVisible();
+            // expand form before running test
+            await submitButton.click();
 
-            // Open and close Resources section
-            await expect(footerListResources).not.toBeVisible();
-            await footerHeadingResources.click();
-            await expect(footerListResources).toBeVisible();
-            await footerHeadingResources.click();
-            await expect(footerListResources).not.toBeVisible();
+            await expect(thanksMessage).not.toBeVisible();
+            await emailField.fill('success@example.com');
+            await countryField.selectOption('us');
+            await privacyCheckbox.click();
+            await submitButton.click();
+            await expect(form).not.toBeVisible();
+            await expect(thanksMessage).toBeVisible();
+        });
 
-            // Open and close Support section
-            await expect(footerListSupport).not.toBeVisible();
-            await footerHeadingSupport.click();
-            await expect(footerListSupport).toBeVisible();
-            await footerHeadingSupport.click();
-            await expect(footerListSupport).not.toBeVisible();
+        test('Footer newsletter submit failure', async ({ page }) => {
+            const emailField = page.getByTestId('newsletter-email-input');
+            const countryField = page.getByTestId('newsletter-country-select');
+            const privacyCheckbox = page.getByTestId(
+                'newsletter-privacy-checkbox'
+            );
+            const submitButton = page.getByTestId('newsletter-submit-button');
+            const thanksMessage = page.getByTestId('newsletter-thanks-message');
+            const errorMessage = page.getByTestId('newsletter-error-message');
 
-            // Open and close Developers section
-            await expect(footerListDevelopers).not.toBeVisible();
-            await footerHeadingDevelopers.click();
-            await expect(footerListDevelopers).toBeVisible();
-            await footerHeadingDevelopers.click();
-            await expect(footerListDevelopers).not.toBeVisible();
+            // expand form before running test
+            await page.getByTestId('newsletter-submit-button').click();
+
+            await expect(errorMessage).not.toBeVisible();
+            await emailField.fill('failure@example.com');
+            await countryField.selectOption('us');
+            await privacyCheckbox.click();
+            await submitButton.click();
+            await expect(errorMessage).toBeVisible();
+            await expect(thanksMessage).not.toBeVisible();
         });
 
         test('Footer language change', async ({ page }) => {
             const languageSelect = page.getByTestId('footer-language-select');
 
-            // Assert default language is German
-            await expect(languageSelect).toHaveValue('de');
+            // Assert default language is English
+            await expect(languageSelect).toHaveValue('en-US');
 
-            // Change page language from /de/ to /fr/
-            await languageSelect.selectOption('fr');
+            // Change page language from /en-US/ to /de/
+            await languageSelect.selectOption('de');
             await page.waitForURL('**/de/?automation=true', {
                 waitUntil: 'commit'
             });
 
-            // Assert page language is now French
-            await expect(languageSelect).toHaveValue('fr');
+            // Assert page language is now German
+            await expect(
+                page.getByTestId('footer-language-select')
+            ).toHaveValue('de');
         });
     }
 );

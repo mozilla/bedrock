@@ -8,20 +8,19 @@ $text-title-xl: var(--text-title-xl);
 $text-title-lg: var(--text-title-lg);
 $text-title-md: var(--text-title-md);
 $text-title-sm: var(--text-title-sm);
+$text-title-xs: var(--text-title-xs);
 
 // body
+$text-body-xl: var(--text-body-xl);
 $text-body-lg: var(--text-body-lg);
 $text-body-md: var(--text-body-md);
 $text-body-sm: var(--text-body-sm);
 
 // buttons
+$text-button-xl: var(--text-button-xl);
 $text-button-lg: var(--text-button-lg);
+$text-button-md: var(--text-button-md);
 $text-button-sm: var(--text-button-sm);
 
-// aliases are to help with copying styles from the Basic Figma files
-// these should be find/replaced out at some point in the future
-$alias-text-title-h1: $text-title-2xl;
-$alias-text-title-h2: $text-title-xl;
-$alias-text-title-h3: $text-title-lg;
-$alias-text-title-h4: $text-title-md;
-$alias-text-title-h5: $text-title-sm;
+// label
+$text-label: var(--text-label);

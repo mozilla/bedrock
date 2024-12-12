@@ -48,18 +48,6 @@
                 right: 0;
             }
         }
-
-        @keyframes slide-in-mobile {
-            0% {
-                left: 100%;
-                opacity: 0;
-            }
-
-            100% {
-                left: 0;
-                opacity: 1;
-            }
-        }
     }
 
     .animate-pop-in {
@@ -69,8 +57,33 @@
     .animate-slide-in {
         animation: 0.5s ease-out 0s 1 normal forwards running slide-in;
     }
+}
 
-    .animate-slide-in-mobile {
-        animation: 0.5s ease-out 0s 1 normal forwards running slide-in-mobile;
+.c-slide-in-container {
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-animation="pop-in"],
+    [data-animation="dependent-pop-in"] {
+        opacity: 0;
+    }
+
+    [data-animation="slide-in"] {
+        position: relative;
+        opacity: 0;
+    }
+}
+
+// Make sure content is visible of JS fails
+html.no-js {
+    [data-animation="pop-in"],
+    [data-animation="dependent-pop-in"] {
+        opacity: 1;
+    }
+
+    [data-animation="slide-in"] {
+        position: static;
+        opacity: 1;
     }
 }
