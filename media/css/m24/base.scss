@@ -87,7 +87,7 @@ a:link {
     color: $m24-color-black;
     display: inline-block;
     font-family: var(--title-font-family);
-    font-size: $text-button-xl;
+    font-size: $text-button-lg;
     font-weight: 600;
     background-image:
     linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
@@ -114,8 +114,8 @@ a:link {
         color: $m24-color-black;
     }
 
-    &.m24-t-lg {
-        font-size: $text-button-lg;
+    &.m24-t-xl {
+        font-size: $text-button-xl;
     }
 
     &.m24-t-md {
