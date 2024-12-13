@@ -8,6 +8,15 @@
 Localization
 ============
 
+
+.. note::
+
+    This document focuses on localization of hard-coded content.  For localization of
+    CMS-based content please see the `CMS-specific L10N docs`_.
+
+.. _CMS-specific L10N docs: cms.html#l10n-and-translation-management
+
+
 The site is fully localizable. Localization files are not shipped with the code distribution, but
 are available in separate GitHub repositories. The proper repos can be cloned and kept up-to-date
 using the ``l10n_update`` management command:
