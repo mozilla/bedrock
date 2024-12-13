@@ -69,7 +69,6 @@ jobs:
     name: Push Image to GAR
     needs: build_and_publish_public_images
     runs-on: ubuntu-latest
-    environment: build
     permissions:
       contents: read
       id-token: write
@@ -140,7 +139,8 @@ jobs:
             service_account:  artifact-writer@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com
             workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
 
-      - uses: docker/login-action@v3
+      - id: docker_login
+        uses: docker/login-action@v3
         name: Docker login
         with:
            registry: ${{ env.GAR_LOCATION }}-docker.pkg.dev
@@ -154,8 +154,6 @@ jobs:
              docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ env.TAG }}
 
 
-
-
   upload_static_assets:
     name: Upload static assets
     runs-on: ubuntu-latest
@@ -166,13 +164,6 @@ jobs:
       id-token: write
 
     steps:
-      - id: checkout-application-repo
-        uses: actions/checkout@v4
-        with:
-          path: src
-          repository: ${{ env.APPLICATION_REPOSITORY }}
-          ref: ${{ env.REF }}
-
       - id: gcp_auth
         name: gcp auth
         uses: google-github-actions/auth@v2
@@ -194,13 +185,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           version: 413.0.0
-
-      - uses: docker/login-action@v3
-        name: Docker login
-        with:
-           registry: ${{ env.GAR_LOCATION }}-docker.pkg.dev
-           username: oauth2accesstoken
-           password: ${{ steps.gcp-auth.outputs.access_token }}
 
       - id: upload-assets
         name: upload static assets
