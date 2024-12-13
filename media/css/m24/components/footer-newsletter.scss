@@ -179,13 +179,20 @@ $max-footer-content-width: $content-max;
         select {
             font-family: $primary-font;
             width: 100%;
-            background-position-x: 100%;
-            background-position-y: 9px;
-            background-image: url('/media/img/logos/mozilla/footer-refresh/icon-arrow-down.svg');
+            background-image: url('/media/img/icons/m24-small/down-caret-white.svg');
             background-repeat: no-repeat;
+            background-size: 16px 16px;
+            @include bidi(((background-position, right 8px center, 8px center),));
 
             @media #{$mq-lg} {
                 min-width: 100%;
+            }
+
+            &:hover,
+            &:focus,
+            &:focus-visible,
+            &:focus-within {
+                background-image: url('/media/img/icons/m24-small/down-caret.svg');
             }
         }
     }
@@ -257,6 +264,7 @@ $max-footer-content-width: $content-max;
         margin-bottom: 0;
 
         button {
+            background-color: $m24-color-alt-white;
             border: $border-width solid $m24-color-black;
             border-radius: 0;
             position: relative;
