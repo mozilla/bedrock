@@ -9,6 +9,12 @@
     margin-bottom: $spacer-sm;
 }
 
+.m24-c-showcase-subtitle {
+    font-size: $text-button-xl;
+    padding: $spacer-xs 0;
+    text-align: end;
+}
+
 .m24-c-showcase-body {
     font-weight: 500;
     font-size: $text-body-lg;
@@ -106,13 +112,27 @@
     .m24-c-showcase-text.m24-l-two-columns {
         @include grid;
 
-        .m24-c-showcase-title {
+        .m24-c-showcase-title,
+        .m24-c-showcase-subtitle {
             grid-column: 1/7;
+            text-align: start;
         }
 
         .m24-c-showcase-body {
             grid-column: 7/-1;
             max-width: none;
+        }
+    }
+
+    .m24-c-showcase-foot {
+        @include grid;
+
+        .m24-c-showcase-foot-content {
+            grid-column: 1/7;
+        }
+
+        .m24-c-section-cta {
+            grid-column: 7/-1;
         }
     }
 }
