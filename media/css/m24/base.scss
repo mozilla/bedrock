@@ -84,6 +84,7 @@ a:link {
 }
 
 .m24-c-cta {
+    @include bidi(((background-position, left var(--cta-bg-position, 100%) top 100%, right var(--cta-bg-position, 100%) top 100%),));
     color: $m24-color-black;
     display: inline-block;
     font-family: var(--title-font-family);
@@ -92,8 +93,6 @@ a:link {
     background-image:
     linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
     background-repeat: no-repeat;
-    background-position:
-        left var(--cta-bg-position, 100%) top 100%;
     background-size: 400% 2px;
 
     &:link {
