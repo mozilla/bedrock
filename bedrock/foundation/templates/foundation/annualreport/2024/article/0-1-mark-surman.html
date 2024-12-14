@@ -21,6 +21,36 @@
   <img src="{{ static('img/foundation/annualreport/2024/headshots/mark.jpg') }}" width="100" height="100" alt="Mark Surman">
 {% endset %}
 
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      }
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
 {% set blockquote_1_text = 'Like the original mozilla.org, today’s Mozilla can only succeed if we see our efforts as a small part of a bigger constellation — a collective force that is building something truly different than what the big tech players have created.' %}
 
 {% block article_content %}
