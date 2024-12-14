@@ -63,26 +63,40 @@
           The rebrand positions Mozilla as a beacon for digital rights, emphasizing that Mozilla is here to put people over profits. The new visual identity, including the flag symbol, serves as a rallying cry for users to reclaim their internet. This symbol — built from the 'M' of Mozilla and a pixel that references our iconic Tyrannosaurus rex — embodies belief, peace, unity and activism. It’s a modern design that pays homage to Mozilla's history while driving our mission into the future.
         </p>
 
-        {{ resp_img(
-          url='img/foundation/annualreport/2024/articles/1-3-brand-logo-800.png',
-          srcset={
-          'img/foundation/annualreport/2024/articles/1-3-brand-logo-600.png': '600w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-logo-800.png': '800w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-logo-1000.png': '1000w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-logo-1200.png': '1200w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-logo-1500.png': '1500w',
-          },
-          sizes={
-            '(min-width: 1440px)': '680px',
-            '(min-width: 586px)': '66vw',
-            'default': 'calc(100vw - 48px)'
-          },
+        {{ picture(
+          url='img/foundation/annualreport/2024/articles/1-3-brand-logo.gif',
+          sources=[
+            {
+              'media': '(prefers-reduced-motion: reduce)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-600.png': '600w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-800.png': '800w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1000.png': '1000w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1200.png': '1200w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1500.png': '1500w',
+              },
+              'sizes': {
+                '(min-width: 1440px)': '680px',
+                '(min-width: 586px)': '66vw',
+                'default': 'calc(100vw - 48px)'
+              }
+            },
+            {
+              'media': '(prefers-reduced-motion: no-preference)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo.gif': '796w'
+              },
+              'sizes': {
+                'default': '796px'
+              }
+            }
+          ],
           optional_attributes={
             'class': 'm24-c-ar-article-inline-image',
             'height': '468',
             'loading': 'lazy',
             'width': '680',
-          },
+          }
         ) }}
 
         <p>
@@ -90,16 +104,30 @@
         </p>
 
         <div class="m24-c-ar-article-image-block">
-          {{ resp_img(
-            url='img/foundation/annualreport/2024/articles/1-3-dino-300.png',
-            srcset={
-              'img/foundation/annualreport/2024/articles/1-3-dino-600.png': '2x',
-            },
+          {{ picture(
+            url='img/foundation/annualreport/2024/articles/1-3-dino.gif',
+            sources=[
+              {
+                'media': '(prefers-reduced-motion: reduce)',
+                'srcset': {
+                  'img/foundation/annualreport/2024/articles/1-3-dino-600.png': '2x',
+                }
+              },
+              {
+                'media': '(prefers-reduced-motion: no-preference)',
+                'srcset': {
+                  'img/foundation/annualreport/2024/articles/1-3-dino.gif': '215w'
+                },
+                'sizes': {
+                  'default': '215px'
+                }
+              }
+            ],
             optional_attributes={
-              'height': '222',
+               'height': '222',
               'loading': 'lazy',
               'width': '158',
-            },
+            }
           ) }}
 
           {{ resp_img(
@@ -139,26 +167,40 @@
           ) }}
         </div>
 
-        {{ resp_img(
-          url='img/foundation/annualreport/2024/articles/1-3-brand-font-800.png',
-          srcset={
-          'img/foundation/annualreport/2024/articles/1-3-brand-font-600.png': '600w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-font-800.png': '800w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-font-1000.png': '1000w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-font-1200.png': '1200w',
-          'img/foundation/annualreport/2024/articles/1-3-brand-font-1500.png': '1500w',
-          },
-          sizes={
-            '(min-width: 1440px)': '680px',
-            '(min-width: 586px)': '66vw',
-            'default': 'calc(100vw - 48px)'
-          },
+        {{ picture(
+          url='img/foundation/annualreport/2024/articles/1-3-brand-font.gif',
+          sources=[
+            {
+              'media': '(prefers-reduced-motion: reduce)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-600.png': '600w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-800.png': '800w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1000.png': '1000w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1200.png': '1200w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1500.png': '1500w',
+              },
+              'sizes': {
+                '(min-width: 1440px)': '680px',
+                '(min-width: 586px)': '66vw',
+                'default': 'calc(100vw - 48px)'
+              }
+            },
+            {
+              'media': '(prefers-reduced-motion: no-preference)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-font.gif': '796w'
+              },
+              'sizes': {
+                'default': '796px'
+              }
+            }
+          ],
           optional_attributes={
             'class': 'm24-c-ar-article-inline-image',
             'height': '468',
             'loading': 'lazy',
             'width': '680',
-          },
+          }
         ) }}
 
         <p>
