@@ -5,6 +5,7 @@
 @use '../m24/vars/lib' as *;
 
 // components
+@use 'm24/article/ai-strategy';
 @use 'm24/article/article';
 @use 'm24/article/header';
 @use 'm24/article/image-block';
