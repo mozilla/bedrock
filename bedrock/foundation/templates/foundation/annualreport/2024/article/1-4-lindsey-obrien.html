@@ -12,10 +12,12 @@
 
 {% set article_author_name = 'Lindsey O’Brien' %}
 {% set article_author_role = 'Chief Marketing Officer' %}
-{% set article_hash = '#vision' %}
+{% set article_hash = '#mozilla' %}
 {% set article_read_time = '4 min read' %}
-{% set article_tag_label = 'A Vision for Reinvention' %}
+{% set article_tag_label = 'Reinventing Mozilla' %}
 {% set article_title = 'A rebrand and a call to action: Reclaim the internet' %}
+
+{% set blockquote_1_text = 'As Mozilla evolves, this refreshed brand will help us better communicate the breadth of our ambitions—from ensuring privacy and transparency in everything we do, to building technologies that empower people rather than exploit them.' %}
 
 {% set article_author_image %}
   <img src="{{ static('img/foundation/annualreport/2024/headshots/lindsey.jpg') }}" width="100" height="100" alt="Lindsey O’Brien">
@@ -209,6 +211,8 @@
       </div>
     </div>
   </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
 
   <div class="m24-c-content">
     <div class="m24-c-ar-article-section">

@@ -62,7 +62,7 @@ urlpatterns = (
     page(
         "annualreport/2024/article/evolving-together-redefining-mozilla-in-the-ai-era/", "foundation/annualreport/2024/article/0-1-mark-surman.html"
     ),
-    # Section 1: A Vision for Reinvention
+    # Section 1: Reinventing Mozilla
     page(
         "annualreport/2024/article/for-the-sake-of-our-digital-future-open-source-must-win/",
         "foundation/annualreport/2024/article/1-1-mitchell-baker.html",
