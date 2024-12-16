@@ -1,0 +1,21 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "foundation/annualreport/2024/base.html" %}
+
+{% block main_content %}
+  {% include 'foundation/annualreport/2024/article/includes/header.html'%}
+
+  <article>
+    {% block article_content %}{% endblock %}
+  </article>
+
+  {% include 'foundation/annualreport/2024/article/includes/related.html'%}
+{% endblock %}
+
+{% block transition %}
+  <div class="m24-c-transition m24-t-top-light m24-t-bottom-dark-alt"><hr></div>
+{% endblock %}

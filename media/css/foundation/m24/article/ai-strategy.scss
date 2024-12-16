@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+.m24-ar-ai-strategy-step-1,
+.m24-ar-ai-strategy-step-2,
+.m24-ar-ai-strategy-step-3 {
+    padding: $spacer-lg $spacer-xl;
+}
+
+.m24-ar-ai-strategy-header,
+.m24-ar-ai-strategy-pillars {
+    padding: $spacer-xl;
+}
+
+.m24-ar-ai-strategy-header,
+.m24-ar-ai-strategy-step-1 {
+    background-color: $m24-color-alt-black;
+    color: $m24-color-white;
+}
+
+.m24-ar-ai-strategy-title {
+    margin-bottom: 0;
+    color: $m24-color-white;
+    font-size: $text-title-lg;
+}
+
+.m24-ar-ai-strategy-tag {
+    text-transform: uppercase;
+    font-size: $text-body-lg;
+}
+
+.m24-ar-ai-strategy-step-body {
+    font-size: $text-title-sm;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.m24-ar-ai-strategy-step-2 {
+    background-color: $m24-color-dark-green;
+    color: $m24-color-white;
+}
+
+.m24-ar-ai-strategy-step-3 {
+    background-color: $m24-color-green;
+}
+
+.m24-ar-ai-strategy-pillars {
+    background-color: $m24-color-light-green;
+}
+
+.m24-ar-ai-strategy-pillars-title {
+    font-size: $text-body-lg;
+    font-family: $primary-font;
+    font-weight: normal;
+}
+
+@media #{$mq-lg} {
+    .m24-ar-ai-strategy-pillars {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: calc($grid-gutter * 2);
+    }
+
+    .m24-ar-ai-strategy-pillars-desc {
+        margin-bottom: 0;
+    }
+}

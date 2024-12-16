@@ -1,0 +1,1141 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{#
+  Modified version of gallery_tile with additional fields that are custom to State of Mozilla
+  HTML Import: {% from "foundation/annualreport/2024/includes/macros.html" import ar_gallery_tile with context %}
+  CSS Import: @import 'm24/index/article-gallery';
+  Macro Parameters:
+    class: String providing modifier class(es) to the tile component.
+    cta_text: String indicating CTA text (usually a translation id wrapped in an ftl function).
+    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+    image_desktop: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
+    image_mobile: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
+    link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
+    link_url (Required): String or url helper function provides href value for the tile link.
+    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+#}
+{% macro ar_gallery_tile(
+  author_name=None,
+  author_role=None,
+  class=None,
+  cta_text=None,
+  desc=None,
+  heading_level=3,
+  image=None,
+  link_attributes=None,
+  link_url=None,
+  read_time=None,
+  tile_number=None,
+  title=''
+) -%}
+<div class="m24-c-ar-gallery-tile {% if class %} {{ class }}{% endif %}">
+  {% if tile_number or read_time %}
+    <div class="m24-c-ar-gallery-tile-meta">
+      {% if tile_number %}<span>{{ tile_number }}</span>{% endif %} {% if read_time %}<span>{{ read_time }}</span>{% endif %}
+    </div>
+  {% endif %}
+  <h{{ heading_level }} class="m24-c-ar-gallery-tile-title">
+    <a href="{{ link_url }}" class="m24-c-ar-gallery-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
+      <span>{{ title }}</span>
+    </a>
+  </h{{ heading_level }}>
+  {% if image %}
+    <div class="m24-c-ar-gallery-tile-image">
+      {{ image|safe }}
+    </div>
+  {% endif %}
+  <div class="m24-c-ar-gallery-tile-content">
+    {% if author_name %}
+      <div class="m24-c-ar-gallery-tile-author">
+        {{ author_name }}{% if author_role %} <br>{{ author_role }}{% endif %}
+      </div>
+    {% endif %}
+    {% if desc %}
+      <p class="m24-c-ar-gallery-tile-desc">{{ desc }}</p>
+    {% endif %}
+    {% if cta_text %}
+      <p class="m24-c-ar-gallery-tile-cta">
+        <span>{{ cta_text }}</span>
+      </p>
+    {% endif %}
+    </div>
+</div>
+{%- endmacro %}
+
+{% macro article_0_1(
+  class='m24-l-grid-half m24-l-3-2'
+) -%}
+  {{ ar_gallery_tile(
+    class='m24-l-grid-half m24-l-3-2',
+    image=picture(
+      url='img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/opening/0-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/opening/0-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/opening/0-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/opening/0-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/opening/0-1-desktop-3-2-1800.png': '1800w',
+            'img/foundation/annualreport/2024/opening/0-1-desktop-3-2-1600.png': '1600w',
+            'img/foundation/annualreport/2024/opening/0-1-desktop-3-2-1400.png': '1400w',
+            'img/foundation/annualreport/2024/opening/0-1-desktop-3-2-1200.png': '1200w',
+            'img/foundation/annualreport/2024/opening/0-1-desktop-3-2-1000.png': '1000w',
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Evolving Together: Redefining Mozilla in the AI Era',
+    desc='Mozilla stands for putting people and communities in control of how technology shows up in their lives. In 1998, that meant taking the web in a better direction. In 2024, it means doing the same for AI, and making sure that open source wins again in the AI era.',
+    link_url=url('foundation.annualreport.2024.article.0-1-mark-surman'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Evolving Together: Redefining Mozilla in the AI Era"',
+    tile_number='Opening article',
+    read_time='8 min read',
+    author_name='Mark Surman',
+    author_role='President'
+  ) }}
+{%- endmacro %}
+
+{% macro article_1_1(
+  class='m24-l-grid-quarter m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-1000.png': '1000w',
+              'img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-800.png': '800w',
+              'img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-600.png': '600w',
+              'img/foundation/annualreport/2024/section-1/1-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-1-desktop-16-9-700.png': '700w',
+              'img/foundation/annualreport/2024/section-1/1-1-desktop-16-9-500.png': '500w',
+              'img/foundation/annualreport/2024/section-1/1-1-desktop-16-9-400.png': '400w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='For the sake of our digital future, open source must win',
+    desc='As part of Mozilla’s 25-year-long dedication to ensuring a healthy, safe and trustworthy internet for all, we have learned that when you’re part of a technology movement designed to change society for the better, results don’t happen overnight.',
+    link_url=url('foundation.annualreport.2024.article.1-1-mitchell-baker'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="For the sake of our digital future, open source must win"',
+    tile_number='1.1',
+    read_time='3 min read',
+    author_name='Mitchell Baker',
+    author_role='Executive Chair of the Board'
+  ) }}
+{%- endmacro %}
+
+{% macro article_1_2(
+  class='m24-l-grid-three-quarters m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-1/1-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-2-mobile-21-9-1000.png': '1000w',
+              'img/foundation/annualreport/2024/section-1/1-2-mobile-21-9-800.png': '800w',
+              'img/foundation/annualreport/2024/section-1/1-2-mobile-21-9-600.png': '600w',
+              'img/foundation/annualreport/2024/section-1/1-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-2-desktop-16-9-2000.png': '2000w',
+              'img/foundation/annualreport/2024/section-1/1-2-desktop-16-9-1500.png': '1500w',
+              'img/foundation/annualreport/2024/section-1/1-2-desktop-16-9-1000.png': '1000w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Financing an Open Internet: Mozilla’s path forward',
+    desc='Mozilla has shifted much of its philanthropic and advocacy work toward AI, experimenting with different approaches and learning what it takes to make a real impact. Early successes like the Common Voice project and the Responsible Computing Challenge proved that building more inclusive, values-driven AI is possible.',
+    link_url=url('foundation.annualreport.2024.article.1-2-eric-angela'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Financing an Open Internet: Mozilla’s path forward"',
+    tile_number='1.2',
+    read_time='6 min read',
+    author_name='Eric Muhlheim & Angela Plohman',
+    author_role='Chief Financial Officer / Chief Operating Officer'
+  ) }}
+{%- endmacro %}
+
+{% macro article_1_3(
+  class='m24-l-grid-half m24-l-3-2'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-1/1-3-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-3-mobile-21-9-1000.png': '1000w',
+              'img/foundation/annualreport/2024/section-1/1-3-mobile-21-9-800.png': '800w',
+              'img/foundation/annualreport/2024/section-1/1-3-mobile-21-9-600.png': '600w',
+              'img/foundation/annualreport/2024/section-1/1-3-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-3-desktop-3-2-1800.png': '1800w',
+              'img/foundation/annualreport/2024/section-1/1-3-desktop-3-2-1350.png': '1350w',
+              'img/foundation/annualreport/2024/section-1/1-3-desktop-3-2-900.png': '900w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '680px',
+            'default': 'calc((100vw - 64px) / 2)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='How Mozilla is meeting the challenge of transformation on the internet',
+    desc='The tech landscape has changed significantly since Mozilla’s founding. What the world needs from us today is different from back then, but no less important. People deserve choice and agency over the way they engage with the internet, even more so now with AI in the picture. ',
+    link_url=url('foundation.annualreport.2024.article.1-3-suba-vasudevan'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="How Mozilla is meeting the challenge of transformation on the internet"',
+    tile_number='1.3',
+    read_time='4 min read',
+    author_name='Suba Vasudevan',
+    author_role='SVP of Strategy and Operations'
+  ) }}
+{%- endmacro %}
+
+{% macro article_1_4(
+  class='m24-l-grid-quarter m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-1/1-5-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-4-mobile-21-9-1000.png': '1000w',
+              'img/foundation/annualreport/2024/section-1/1-4-mobile-21-9-800.png': '800w',
+              'img/foundation/annualreport/2024/section-1/1-4-mobile-21-9-600.png': '600w',
+              'img/foundation/annualreport/2024/section-1/1-4-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+              'img/foundation/annualreport/2024/section-1/1-4-desktop-1-1-700.png': '700w',
+              'img/foundation/annualreport/2024/section-1/1-4-desktop-1-1-500.png': '500w',
+              'img/foundation/annualreport/2024/section-1/1-4-desktop-1-1-400.png': '400w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='A rebrand and a call to action: Reclaim the internet',
+    desc='For years Mozilla has been incorrectly thought of by many as "the Firefox company." This perception left too much of our great work in the shadows. To bring some more light, we’ve started the process of reinvigorating and elevating the Mozilla brand itself.',
+    link_url=url('foundation.annualreport.2024.article.1-4-lindsey-obrien'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="A rebrand and a call to action: Reclaim the internet"',
+    tile_number='1.4',
+    read_time='4 min read',
+    author_name='Lindsey O’Brien',
+    author_role='Chief Marketing Officer'
+  ) }}
+{%- endmacro %}
+
+{% macro article_2_1(
+  class='m24-l-grid-half m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-2/2-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-2/2-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-2/2-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-2/2-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-1-desktop-16-9-1800.png': '1800w',
+            'img/foundation/annualreport/2024/section-2/2-1-desktop-16-9-1350.png': '1350w',
+            'img/foundation/annualreport/2024/section-2/2-1-desktop-16-9-900.png': '900w',
+          },
+          'sizes': {
+            '(min-width: 1440px)': '680px',
+            'default': 'calc((100vw - 64px) / 2)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Imagining, co-creating and translating our way to a better tech future',
+    desc='I remember the first time I connected to the internet in the 1990s. That distinctive dial-up tone wasn’t just noise – it was the sound of possibility. It was a time when we weren’t “users” or “consumers;” we were creators, dreamers, and builders of digital worlds.',
+    link_url=url('foundation.annualreport.2024.article.2-1-nabiha-syed'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Imagining, co-creating and translating our way to a better tech future"',
+    tile_number='2.1',
+    read_time='5 min read',
+    author_name='Nabiha Syed',
+    author_role='Executive Director, Mozilla Foundation'
+  ) }}
+{%- endmacro %}
+
+{% macro article_2_2(
+  class='m24-l-grid-quarter m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-2/2-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-2/2-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-2/2-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-2/2-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-2-desktop-16-9-700.png': '700w',
+            'img/foundation/annualreport/2024/section-2/2-2-desktop-16-9-500.png': '500w',
+            'img/foundation/annualreport/2024/section-2/2-2-desktop-16-9-300.png': '300w',
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Strategic innovation: A 25-year mission',
+    desc='At the heart of everything we do lies our commitment to improving the internet — not just for today, but for future generations. This core commitment shapes every decision we make, as we navigate and lead through an ever-changing technological and regulatory landscape.',
+    link_url=url('foundation.annualreport.2024.article.2-2-laura-chambers'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Strategic innovation: A 25-year mission"',
+    tile_number='2.2',
+    read_time='4 min read',
+    author_name='Laura Chambers',
+    author_role='Chief Executive Officer, Mozilla Corporation'
+  ) }}
+{%- endmacro %}
+
+{% macro article_2_3(
+  class='m24-l-grid-quarter m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-2/2-3-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-3-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-2/2-3-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-2/2-3-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-2/2-3-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-3-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-2/2-3-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-2/2-3-desktop-1-1-300.png': '300w',
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Empowering developers with open AI tools for a trustworthy future',
+    desc='The artificial intelligence landscape is evolving rapidly, with a growing number of tools and large language models (LLMs) to choose from. This can be both exciting and overwhelming, for developers who are working on AI projects. ',
+    link_url=url('foundation.annualreport.2024.article.2-3-jane-silber'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Empowering developers with open AI tools for a trustworthy future"',
+    tile_number='2.3',
+    read_time='3 min read',
+    author_name='Jane Silber',
+    author_role='Interim Chief Executive Officer, Mozilla.ai'
+  ) }}
+{%- endmacro %}
+
+{% macro article_2_4(
+  class='m24-l-grid-quarter m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-2/2-4-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-4-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-2/2-4-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-2/2-4-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-2/2-4-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-4-desktop-16-9-700.png': '700w',
+            'img/foundation/annualreport/2024/section-2/2-4-desktop-16-9-500.png': '500w',
+            'img/foundation/annualreport/2024/section-2/2-4-desktop-16-9-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Backing bold ideas: Mozilla Ventures and responsible innovation',
+    desc='Two years ago we announced Mozilla Ventures and its core mission of investing in companies building technology designed to have a positive impact on people’s lives and society as a whole.',
+    link_url=url('foundation.annualreport.2024.article.2-4-mohamed-nanabhay'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Backing bold ideas: Mozilla Ventures and responsible innovation"',
+    tile_number='2.4',
+    read_time='3 min read',
+    author_name='Mohamed Nanabhay',
+    author_role='Managing Director, Mozilla Ventures'
+  ) }}
+{%- endmacro %}
+
+{% macro article_2_5(
+  class='m24-l-grid-half m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-2/2-5-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-5-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-2/2-5-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-2/2-5-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-2/2-5-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-2/2-5-desktop-16-9-1800.png': '1800w',
+            'img/foundation/annualreport/2024/section-2/2-5-desktop-16-9-1350.png': '1350w',
+            'img/foundation/annualreport/2024/section-2/2-5-desktop-16-9-900.png': '900w',
+          },
+          'sizes': {
+            '(min-width: 1440px)': '680px',
+            'default': 'calc((100vw - 64px) / 2)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Success through two-way conversations with our community',
+    desc='When I first joined the Thunderbird team in 2017, my focus was on keeping it alive. In the early days, it was governed solely by the Thunderbird Council, which is an elected group of contributors dedicated to the project.',
+    link_url=url('foundation.annualreport.2024.article.2-5-ryan-sipes'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Success through two-way conversations with our community"',
+    tile_number='2.5',
+    read_time='4 min read',
+    author_name='Ryan Sipes',
+    author_role='Managing Director, Product (MZLA/Thunderbird)'
+  ) }}
+{%- endmacro %}
+
+{% macro article_3_1(
+  class='m24-l-grid-half m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-3/3-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-3/3-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-3/3-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-3/3-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-3/3-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-3/3-1-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-3/3-1-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-3/3-1-desktop-1-1-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Products built for people: A vision for internet safety and privacy',
+    desc='I’m uniquely positioned as the top person overseeing new product strategy and execution at the Mozilla Corporation. As a product builder in this area, I don’t have to focus on what’s happening tomorrow; I get to lock in on the long game.',
+    link_url=url('foundation.annualreport.2024.article.3-1-adam-fishman'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Products built for people: A vision for internet safety and privacy"',
+    tile_number='3.1',
+    read_time='4 min read',
+    author_name='Adam Fishman',
+    author_role='Product Strategy & Execution'
+  ) }}
+{%- endmacro %}
+
+{% macro article_3_2(
+  class='m24-l-grid-half m24-l-4-5'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-3/3-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-3/3-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-3/3-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-3/3-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-3/3-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-3/3-2-desktop-4-5-700.png': '700w',
+            'img/foundation/annualreport/2024/section-3/3-2-desktop-4-5-500.png': '500w',
+            'img/foundation/annualreport/2024/section-3/3-2-desktop-4-5-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Leading browsing innovation for a complex web',
+    desc='Even as it turns 20 years old, Firefox remains an essential option for experiencing a better internet. Firefox has always been about giving users choice and real user control over their online experience, and this vision is more relevant than ever. ',
+    link_url=url('foundation.annualreport.2024.article.3-2-vicky-chin'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Leading browsing innovation for a complex web"',
+    tile_number='3.2',
+    read_time='4 min read',
+    author_name='Vicky Chin',
+    author_role='VP of Engineering'
+  ) }}
+{%- endmacro %}
+
+{% macro article_4_1(
+  class='m24-l-grid-half m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-4/4-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-4/4-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-4/4-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-4/4-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-4/4-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-4/4-1-desktop-16-9-700.png': '700w',
+            'img/foundation/annualreport/2024/section-4/4-1-desktop-16-9-500.png': '500w',
+            'img/foundation/annualreport/2024/section-4/4-1-desktop-16-9-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Shaping AI we can trust: Mozilla’s portfolio at work',
+    desc='People want a positive relationship with technology. A relationship we can be excited about, one where AI, phones and other devices delight us, make life easier and enrich our work lives. In the AI era, this is not how it feels.',
+    link_url=url('foundation.annualreport.2024.article.4-1-ayah-bdeir'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Shaping AI we can trust: Mozilla’s portfolio at work"',
+    tile_number='4.1',
+    read_time='5 min read',
+    author_name='Ayah Bdeir',
+    author_role='Project Consultant'
+  ) }}
+{%- endmacro %}
+
+{% macro article_4_2(
+  class='m24-l-grid-half m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-4/4-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-4/4-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-4/4-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-4/4-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-4/4-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-4/4-2-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-4/4-2-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-4/4-2-desktop-1-1-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Scaling local AI innovation for real-world impact',
+    desc='At Mozilla, we’re always looking for ways to make technology that empowers people and solves real world problems. We’re excited about the technology shift being created by AI, but need to make sure it benefits more people than just those with the most resources.',
+    link_url=url('foundation.annualreport.2024.article.4-2-imo-udom'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Scaling local AI innovation for real-world impact"',
+    tile_number='4.2',
+    read_time='3 min read',
+    author_name='Imo Udom',
+    author_role='SVP of Innovation Ecosystems'
+  ) }}
+{%- endmacro %}
+
+{% macro article_5_1(
+  class='m24-l-grid-half m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-5/5-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-5/5-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-5/5-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-5/5-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-5/5-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-5/5-1-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-5/5-1-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-5/5-1-desktop-1-1-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy',
+        'width': '322'
+      }
+    ),
+    title='Reimagining the ad ecosystem: Balancing privacy and relevance',
+    desc='Can online advertising thrive without exploiting your personal data? At Mozilla, we believe it not only can, but must. ',
+    link_url=url('foundation.annualreport.2024.article.5-1-orville-mcdonald'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Reimagining the ad ecosystem: Balancing privacy and relevance"',
+    tile_number='5.1',
+    read_time='3 min read',
+    author_name='Orville McDonald',
+    author_role='Sr. Director, Ads - Product Manager'
+  ) }}
+{%- endmacro %}
+
+{% macro article_5_2(
+  class='m24-l-grid-half m24-l-4-5'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-5/5-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-5/5-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-5/5-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-5/5-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-5/5-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-5/5-2-desktop-4-5-700.png': '700w',
+            'img/foundation/annualreport/2024/section-5/5-2-desktop-4-5-500.png': '500w',
+            'img/foundation/annualreport/2024/section-5/5-2-desktop-4-5-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='A privacy-first solution that meets advertisers’ needs',
+    desc='Whenever the topic of online privacy arises, the common refrain from Big Tech is that targeted ads are an essential mechanism for funding the online services we all enjoy, so there’s no choice but to let them vacuum up our personal data.',
+    link_url=url('foundation.annualreport.2024.article.5-2-brad-graham'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="A privacy-first solution that meets advertisers’ needs"',
+    tile_number='5.2',
+    read_time='3 min read',
+    author_name='Brad Smallwood & Graham Mudd',
+    author_role='SVP of Anonym & SVP of Product'
+  ) }}
+{%- endmacro %}
+
+{% macro article_6_1(
+  class='m24-l-grid-half m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-6/6-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-6/6-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-6/6-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-6/6-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-6/6-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-6/6-1-desktop-16-9-700.png': '700w',
+            'img/foundation/annualreport/2024/section-6/6-1-desktop-16-9-500.png': '500w',
+            'img/foundation/annualreport/2024/section-6/6-1-desktop-16-9-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Building in public with community and openness',
+    desc='Innovation at Mozilla isn’t just about creating better tools — it’s about reimagining how we interact with the internet and putting the power back into people’s hands. We have a long history of building in public, learning through building, and iterating in community to achieve that goal.',
+    link_url=url('foundation.annualreport.2024.article.6-1-monica-chambers'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Building in public with community and openness"',
+    tile_number='6.1',
+    read_time='3 min read',
+    author_name='Monica Chambers',
+    author_role='Director, Mozilla Accelerator'
+  ) }}
+{%- endmacro %}
+
+{% macro article_6_2(
+  class='m24-l-grid-half m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-6/6-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-6/6-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-6/6-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-6/6-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-6/6-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-6/6-2-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-6/6-2-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-6/6-2-desktop-1-1-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Global collaboration for a fairer, healthier internet',
+    desc='Humans are innate toolmakers, and the tools we create have always shaped who we become and how we adapt. Information technology is one expression of this legacy which has become essential to how we connect and live our lives.',
+    link_url=url('foundation.annualreport.2024.article.6-2-zeina-abi-assy'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Global collaboration for a fairer, healthier internet"',
+    tile_number='6.2',
+    read_time='3 min read',
+    author_name='Zeina Abi Assy',
+    author_role='Principal Curator'
+  ) }}
+{%- endmacro %}
+
+{% macro article_7_1(
+  class='m24-l-grid-quarter m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-7/7-1-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-1-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-7/7-1-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-7/7-1-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-7/7-1-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-1-desktop-16-9-700.png': '700w',
+            'img/foundation/annualreport/2024/section-7/7-1-desktop-16-9-500.png': '500w',
+            'img/foundation/annualreport/2024/section-7/7-1-desktop-16-9-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Mozilla Venture Companies',
+    desc='Building Mozilla is a balance of philanthropic vision and commercial strategy, united under a mission to serve the public good. Mozilla Ventures embodies this commitment, investing in startups aligned with our values and the Mozilla Manifesto. In doing so, we help foster a generation of tech companies that prioritize public benefit alongside profit, ultimately strengthening the internet’s health.',
+    link_url=url('foundation.annualreport.2024.article.7-1-mozilla-venture-companies'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Mozilla Venture Companies"',
+    tile_number='7.1',
+    read_time='2 min read'
+  ) }}
+{%- endmacro %}
+
+{% macro article_7_2(
+  class='m24-l-grid-three-quarters m24-l-16-9'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-7/7-2-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-2-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-7/7-2-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-7/7-2-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-7/7-2-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-2-desktop-16-9-2000.png': '2000w',
+            'img/foundation/annualreport/2024/section-7/7-2-desktop-16-9-1500.png': '1500w',
+            'img/foundation/annualreport/2024/section-7/7-2-desktop-16-9-1000.png': '1000w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '680px',
+            'default': 'calc((100vw - 64px) / 2)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Why I Joined Mozilla',
+    desc='At Mozilla, we have big ambitions for the future, we want to build impactful products that are different — that are built with more respect for the people using them and help us explore new forms of openness. It’s going to take hard work that Mozilla is uniquely suited to take on. It’s why we’re here. It’s who we are. And it’s our future.',
+    link_url=url('foundation.annualreport.2024.article.7-2-why-i-joined-mozilla'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Why I Joined Mozilla"',
+    tile_number='7.2',
+    read_time='5 min read'
+  ) }}
+{%- endmacro %}
+
+{% macro article_7_3(
+  class='m24-l-grid-half m24-l-3-2'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-7/7-3-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-3-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-7/7-3-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-7/7-3-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-7/7-3-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-3-desktop-3-2-1800.png': '1800w',
+            'img/foundation/annualreport/2024/section-7/7-3-desktop-3-2-1350.png': '1350w',
+            'img/foundation/annualreport/2024/section-7/7-3-desktop-3-2-900.png': '900w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '680px',
+            'default': 'calc((100vw - 64px) / 2)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Mozilla Fellows',
+    desc='The Mozilla Fellowship program invests in people who champion a free and open internet—those who challenge the status quo, defend digital rights, and shape policies that promote online privacy and transparency. ',
+    link_url=url('foundation.annualreport.2024.article.7-3-mozilla-fellows'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Mozilla Fellows"',
+    tile_number='7.3',
+    read_time='2 min read'
+  ) }}
+{%- endmacro %}
+
+{% macro article_7_4(
+  class='m24-l-grid-quarter m24-l-1-1'
+) -%}
+  {{ ar_gallery_tile(
+    class=class,
+    image=picture(
+      url='img/foundation/annualreport/2024/section-7/7-4-mobile-21-9-800.png',
+      sources=[
+        {
+          'media': '(max-width: 1311px)',
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-4-mobile-21-9-1000.png': '1000w',
+            'img/foundation/annualreport/2024/section-7/7-4-mobile-21-9-800.png': '800w',
+            'img/foundation/annualreport/2024/section-7/7-4-mobile-21-9-600.png': '600w',
+            'img/foundation/annualreport/2024/section-7/7-4-mobile-21-9-400.png': '400w',
+          },
+          'sizes': {
+            '(min-width: 768px)': 'calc((100vw - 32px) / 2)',
+            'default': 'calc(100vw - 32px)',
+          },
+        },
+        {
+          'srcset': {
+            'img/foundation/annualreport/2024/section-7/7-4-desktop-1-1-700.png': '700w',
+            'img/foundation/annualreport/2024/section-7/7-4-desktop-1-1-500.png': '500w',
+            'img/foundation/annualreport/2024/section-7/7-4-desktop-1-1-300.png': '300w'
+          },
+          'sizes': {
+            '(min-width: 1440px)': '332px',
+            'default': 'calc((100vw - 64px) / 4)',
+          },
+        },
+      ],
+      optional_attributes={
+        'loading': 'lazy'
+      }
+    ),
+    title='Rise25 Winners',
+    desc='Launched as part of Mozilla’s 25th anniversary celebrations, Rise 25 honors a remarkable cohort of visionaries working to improve the internet’s future. These leaders—spanning continents and disciplines—bring fresh perspectives to pressing challenges like digital inclusion, algorithmic transparency, data ethics, and community-driven innovation.',
+    link_url=url('foundation.annualreport.2024.article.7-4-rise25-winners'),
+    cta_text='Read more',
+    link_attributes='data-cta-text="Rise25 Winners"',
+    tile_number='7.4',
+    read_time='2 min read'
+  ) }}
+{%- endmacro %}

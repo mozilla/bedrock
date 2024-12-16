@@ -1,0 +1,143 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_3_1, article_4_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Leading browsing innovation for a complex web - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Vicky Chin' %}
+{% set article_author_role = 'VP of Engineering' %}
+{% set article_hash = '#products' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Products Built for People, Trust & Privacy' %}
+{% set article_title = 'Leading browsing innovation for a complex web' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/vicky.jpg') }}" width="100" height="100" alt="Vicky Chin">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/3-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/3-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/3-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/3-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'We want Firefox to be the browser you trust—the one that prioritizes your needs, respects your privacy, and puts you in control of your digital life.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Even as it turns 20 years old, Firefox remains an essential option for experiencing a better internet. Firefox has always been about giving users choice and real user control over their online experience, and this vision is more relevant than ever. We aim to be the browser that evolves alongside the internet, empowering people to navigate a digital world that is increasingly more complex.
+        </p>
+
+        <p>
+          For two decades, Firefox has remained true to its original mission — to provide a browser that serves the interests of people first, not corporations. This is continually demonstrated by keeping user choice at the heart of our design and development philosophy. Today, choice means more than just selecting a browser; it means deciding how your data is used, choosing tools that align with your values, and ensuring that privacy is not compromised for convenience.
+        </p>
+
+        <p>
+          Firefox is continually evolving to offer users meaningful choices. For example, the launch of Firefox Labs allows users to opt-in to new features that we're building to give us early feedback. We are creating local models like translations and alt-text generation in PDFs that respect user privacy. And we continue to support MV2 technology to ensure that ad-blockers continue to work well in Firefox. This effort ensures that personal data remains on the device, giving users full control of their experience.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+    <h2 class="m24-c-ar-article-section-title">Community-driven development</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          One of the defining elements of Firefox has always been its commitment to open source. This is not merely a technical decision but a fundamental value that underscores everything we do. Inviting the global community to build Firefox results in a more robust, innovative product.
+        </p>
+
+        <p>
+          We regularly celebrate the contributions of developers worldwide who help us improve Firefox. These contributions go beyond code submissions; they represent the diverse perspectives and needs of millions of people who rely on Firefox to navigate the web. Whether it’s improving core features, reporting bugs or expanding language support, our community ensures Firefox remains inclusive and accessible to all.
+        </p>
+
+        <p>
+          This openness also extends to building platforms for others. We invite the community and developers to innovate on Firefox through initiatives like web extensions and to create tools to enrich the browsing experience. Firefox is not just a product of Mozilla; it is a product of everyone who believes in an open, user-centric web.
+        </p>
+
+        <p>
+          The challenges we face today are significant. The issue of default browsers and the complexities surrounding <a href="https://research.mozilla.org/browser-competition/choicescreen/">user choice</a> are hurdles we continue to fight against. Despite these barriers, we believe that providing an alternative — one that respects privacy, embraces transparency and champions user choice — is more critical than ever.
+        </p>
+
+        <p>
+          Moreover, Firefox is committed to tackling the web compatibility challenges arising from Chromium-based browsers' dominance. Many websites are optimized solely for these browsers, leading to a less inclusive web experience. Our focus is on collaborating with web developers to ensure their sites work seamlessly across all browsers, thus maintaining an open and accessible internet for everyone. We advocate for a diverse ecosystem where users can freely choose their preferred browser without encountering compatibility issues.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">A focus on mobile</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          As the way people access the internet evolves, Firefox is evolving, too. Mobile devices have become the primary gateway to the digital world, and we are fully committed to making Firefox a leader in mobile browsing. Mobile use cases are distinct from desktops, and our goal is to create a product that is tailor-made for these scenarios, offering a browsing experience that feels natural and powerful on mobile devices.
+        </p>
+
+        <p>
+          We will invest in enhancing Firefox's mobile capabilities. This means making it easier for users to sync their data across devices, access features that work seamlessly regardless of the platform, and enjoy a consistent experience on a phone, tablet, or desktop.
+        </p>
+
+        <p>
+          Our vision is for Firefox to feel intuitive on mobile—not as a smaller desktop browser version, but as a uniquely optimized tool for mobile users. We are committed to delivering the best experience across all devices, ensuring that people can access what they need wherever they are.
+        </p>
+
+        <p>
+          In addition, we will continue to provide new and innovative features for our world-class desktop browser. Firefox desktop is the destination for users that want privacy and choice without sacrificing speed and usability. Our desktop browser will continue to innovate by responding to user needs and advancing AI features to adapt to the new way that the web is being used.
+        </p>
+
+        <p>
+          Our vision for Firefox is bold: a browser that not only adapts to changes in technology but also shapes those changes in ways that are good for everyone. We are building a product that provides users with powerful tools while ensuring their data is protected. We are playing a leading role in ensuring that the web remains open and accessible through advocacy and public standards. We want Firefox to be the browser you trust — the one that prioritizes your needs, respects your privacy, and puts you in control of your digital life.
+        </p>
+
+        <p>
+          Looking ahead, we are excited for what is to come. Firefox will continue to evolve, incorporating assistive technologies and local AI to help users stay productive and in control. We will strengthen our community bonds, ensuring that Firefox remains a product built by and for the people. And we will double down on our commitment to mobile, making Firefox the best choice for browsing on the go.
+        </p>
+
+        <p>
+          As we push forward, we understand that we cannot do it alone. We invite everyone who believes in a better internet to join us. Whether you are a developer, a privacy advocate, or simply a user who values choice, your contributions strengthen Firefox. We need web developers to test their websites on Firefox to maintain compatibility, users to spread the word about the importance of an open internet, and advocates to support policies that foster genuine competition and innovation.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_3_1('m24-l-grid-half m24-l-1-1') }}
+  {{ article_4_1('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

@@ -1,0 +1,152 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_2_5, article_3_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Products built for people: A vision for internet safety and privacy - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Adam Fishman' %}
+{% set article_author_role = 'Product Strategy & Execution' %}
+{% set article_hash = '#products' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Products Built for People, Trust & Privacy' %}
+{% set article_title = 'Products built for people: A vision for internet safety and privacy' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/adam.jpg') }}" width="100" height="100" alt="Adam Fishman">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/3-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/3-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/3-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/3-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Mozilla’s vision of winning isn’t about beating competitors; it’s about creating technology that helps people win back control of their digital lives.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          I’m uniquely positioned as the top person overseeing new product strategy and execution at the Mozilla Corporation. As a product builder in this area, I don’t have to focus on what’s happening tomorrow; I get to lock in on the long game.
+        </p>
+
+        <p>
+          Many of the larger tech companies running the ecosystem today use product strategies to drive revenue for shareholders, take over market share, and win against competitors in various categories.
+        </p>
+
+        <p>
+          They want to win in a fashion that takes advantage of users’ privacy and personal data. That’s the currency that so many of these larger companies partake in.
+        </p>
+
+        <p>
+          Mozilla’s vision of winning isn’t about beating competitors; it’s about creating technology that helps people win back control of their digital lives. That’s not at the expense of stealing your data, or the demands of shareholders that don’t care about that, either. For us, growing our products and building sustainable revenue are important, but that’s in service of our end goal, not the goal itself. This unique mission of building for better versus building for revenue is why I joined Mozilla this year.
+        </p>
+
+        <p>
+          Taking this approach allows us to be different. By not having those business conflicts, we can make decisions and draft innovative ideas based on good and the core values of our <a href="{{ url('mozorg.about.manifesto')}}">Mozilla Manifesto</a>, not just dollars. Mozilla is a non-profit-owned company, and we’re not public — we don’t have a quarterly earnings target to hit, nor do we face public market pressure. We get to set the pace and make choices that maximize the success of humans using the internet and what keeps them safe, not scrape to find where our next dollar is going to come from. Our shareholders are the users of our products. This unconventional approach also allows us to be the voice of the people when approaching and working with regulators about what’s possible with our technology.
+        </p>
+
+        <p>
+          Success for us is not making another dollar, it’s building and supporting technology that empowers people. We build to push the industry forward and challenge the status quo.
+        </p>
+
+        <p>
+          There are various teams working diligently on new ideas and emerging products to help execute this, such as <a href="https://www.fakespot.com/">Fakespot</a>, <a href="https://monitor.mozilla.org/s">Mozilla Monitor</a> and <a href="https://soloist.ai/">Solo</a>. We want these products to be a model of what’s possible and to influence other companies. We’re developing products designed to inspire consumers to demand better — to question the status quo and push for technology that prioritizes their needs. We're also learning from every misstep and success, knowing that innovation is rarely linear, but always worth pursuing.
+        </p>
+
+        <p>
+          Ultimately, we’re in this for people to win, not to win it for ourselves. If Mozilla builds something that is fundamentally better for the people — our competitors will probably copy it — that’s a win for people, the internet and Mozilla. With us leading by example, it makes the ecosystem of the internet better. That’s how we view success.
+        </p>
+
+        <p>
+          We have a rich history of doing exactly this. We saw a wave of ad blockers introduced after we were the first browser to bring that concept to market. The same can be said about Fakespot, our fake review-detection tool, or <a href="{{ url('products.vpn.landing') }}">Mozilla VPN</a> and <a href="https://relay.firefox.com/">Relay</a> email-masking products. Those products set the standard. Now, you’re seeing other companies replicate those tools we built while we focused on people, not shareholders.
+        </p>
+
+        <p>We have even more product areas we’re excited to work on in 2025 and beyond:</p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Open source AI</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We will continue pushing for the open source movement in the world of AI. The first part of that is of course defining it — the Open Source Initiative (OSI) released a new draft <a href="https://opensource.org/open-source-ai-definition-draft-v-0-0-9">definition of open source AI</a> in August that we endorse, but there still remains an opportunity to bring clarity to the open source discussion. We’re taking a stance in that area and building products that democratize access to AI.
+        </p>
+
+        <p>
+          If we collectively do nothing, this new era of AI will be dominated by a handful of powerful tech companies. The same way Mozilla fights for a free and open web is the same way we’re fighting for AI by making sure that anyone and any community can shape, personalize, enjoy and trust AI. We’re going to continue building products that champion that.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">AI safety</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          It’s critically important to safeguard the future of AI through collaborative global efforts. We took a step in that direction when we launched the first ever AI bounty program, <a href="https://0din.ai/">0din</a>. It takes submissions from researchers who find vulnerabilities in big large language models (LLMs) and reports those vulnerabilities to the companies directly so they can correct them before any harm occurs. We’re excited to keep growing in that area while also jumping into deepfake detection — text, imagery, video, etc. — to keep people informed about what’s real and not.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Advertising</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The internet and much of the content we consume is powered by advertising. That’s OK. What’s not OK: Taking all the data about people that comes from their usage of the internet and using that to fuel the machine. We’ve already been working for years to protect Firefox users from invasive data collection used in ads, but across other surfaces outside of Mozilla’s control, personal data is regularly collected, shared and compiled to power digital ads. That’s why Anonym’s efforts, which are totally separate from Firefox, are so important. Anonym is creating an alternative ad tech infrastructure that improves privacy measures for data commonly shared between advertisers and ad networks when it has been collected.
+        </p>
+
+        <p>
+          We’re building better ways for companies to advertise products without compromising user privacy. The tradeoffs users have to make online are too significant, and they deserve better. Advancing the technology to enable privacy-preserving advertising is extremely critical for us, and we hope to set the standard for what that means as a beacon for others. Our product strategy is focused on our core principles of privacy, openness and choice. We hear from brands who want to support this and from people who appreciate there’s a way to receive helpful ads while protecting and preserving their privacy.
+        </p>
+
+        <p>
+          These are the areas we’re ready to get to work on in 2025 and beyond. As Mozilla evolves, our product suite does, too. There is tons of product-building happening across dozens of industries to address these same subjects, but no one can shape their products for users as uniquely as we do. And no one puts a core set of human values at the center like us.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_2_5('m24-l-grid-half m24-l-16-9') }}
+  {{ article_3_2('m24-l-grid-half m24-l-4-5') }}
+{% endset %}

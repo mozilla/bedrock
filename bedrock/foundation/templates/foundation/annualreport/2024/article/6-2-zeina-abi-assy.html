@@ -1,0 +1,127 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_6_1, article_7_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Global collaboration for a fairer, healthier internet - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Zeina Abi Assy' %}
+{% set article_author_role = 'Principal Curator' %}
+{% set article_hash = '#community' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'Community at our Core' %}
+{% set article_title = 'Global collaboration for a fairer, healthier internet' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/zeina.jpg') }}" width="100" height="100" alt="Zeina Abi Assy">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/6-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/6-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/6-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/6-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+
+{% set blockquote_1_text = 'At the Mozilla Foundation, our work with global partners aims to change the balance of power in a tech world where the most important technologies used by so many are controlled by so few. ' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Humans are innate toolmakers, and the tools we create have always shaped who we become and how we adapt. Information technology is one expression of this legacy which has become essential to how we connect and live our lives. In more recent years, it has increasingly dictated the way we live our lives, whether we have access to it, or we don’t. What has become undeniable is that the benefits of technological advancement disproportionately favor a small, elite group. The tech platforms that dominate the world are concentrated in the global majority, controlled by a privileged few.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Addressing challenges in AI</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          And with new technologies, we’re entering an unprecedented era of our tools shaping us.  Artificial intelligence, for example, is upending the fabric of society, blurring the boundaries between human capability and machine-driven processes. It is intervening in industries, ethics, and the ways we connect and communicate. The Mozilla Foundation is dedicated to cutting through this noise, fostering communities around shared objectives, and funding projects that promote a healthier internet for all.
+        </p>
+
+        <p>
+          At the Mozilla Foundation, our work with global partners aims to change the balance of power in a tech world where the most important technologies used by so many are controlled by so few. Our programs have directed resources towards technology solutions and products that are built to benefit communities on a local level.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Global vision for MozFest</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          A big focus for us going ahead will be expanding the reach of <a href="https://www.mozillafestival.org/">MozFest</a>, our flagship event which engages people doing the most cutting-edge thinking and building around technology and society. Post-pandemic, we concentrated on creating smaller, intimate gatherings across key regions, in cities such as Amsterdam, the Netherlands and Lusaka, Zambia.
+        </p>
+
+        <p>
+          In 2025, we will reintroduce our global model. Through the imaginative powers that decentralized the internet, we will bring participants together from across the world. Our  “federated design” approach brings together community “wranglers” who work collaboratively with others to co-create events, highlighting diverse perspectives to address critical technological challenges. MozFest will also play a key role in translating between the different stakeholders who make up its attendees: artists talking to engineers and policymakers talking to product managers. Together, they will share solutions, develop toolkits and methodologies, and celebrate tools and products that prioritize people over profit. This model cultivates coalitions that span both issues and geographic boundaries.
+        </p>
+
+        <p>
+          For example, during our regional events in 2024, we emphasized interdisciplinary collaboration to demonstrate how to build ethical technology. We partnered with media organizations to establish a journalism corner, providing journalists with the tools they need to hold big tech accountable in this critical moment. We also developed builder-focused programming to explore open source AI — its benefits, applications, and regional challenges. And, we curated a larger exhibition space for artists who are creatively examining the impact of technology, offering alternatives rooted in the generosity of their imaginations.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Strengthening community-driven solutions</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          In addition to MozFest, we will deepen our community connectivity in 2025 with additional investment in our Mozilla Fellows and programs like <a href="https://foundation.mozilla.org/responsible-computing-challenge/">Responsible Computing Challenge</a> (RCC). The Challenge will roll out in Ghana and Columbia and kick off its second round in Kenya, India and South Africa. Through the <a href="https://commonvoice.mozilla.org">Common Voice Initiative</a> which is centered around the site of experience for internet and AI users, we are building data sets for applications to be used by people whose languages are ignored by mainstream technologies. For instance, we engaged Kiswahili speakers in rural areas who are women and gender-nonconforming people building technology with and for their community.
+        </p>
+
+        <p>
+          For Mozilla, it’s important to support projects that are relevant and important to people in their own context. The people doing the work are from the places that will benefit most, ensuring solutions are grounded in local realities and driven by those with deep community insight and lived experience.
+        </p>
+
+        <p>
+          Mozilla is leaning into its strengths of building relationships on the ground with developers, activists, policymakers and academics. Our role is to fuel grassroots movements while also connecting with influential leaders. With our renewed focus in the coming year, we will be even more effective in driving significant change and supporting a technology ecosystem that benefits the most vulnerable communities in the world.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_6_1('m24-l-grid-half m24-l-16-9') }}
+  {{ article_7_1('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

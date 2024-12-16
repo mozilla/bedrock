@@ -287,6 +287,12 @@
     },
     {
       "files": [
+        "css/foundation/annual-report-2024.scss"
+      ],
+      "name": "m24-annual-report-2024"
+    },
+    {
+      "files": [
         "css/foundation/annual-report-2021.scss"
       ],
       "name": "annual-report-2021"

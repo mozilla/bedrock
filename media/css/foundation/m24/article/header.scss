@@ -1,0 +1,171 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+.m24-c-ar-article-header {
+    border-top: 2px solid $m24-color-black;
+    padding: $spacer-md 0;
+}
+
+.m24-c-ar-article-header-image {
+    display: none;
+}
+
+.m24-c-ar-article-header-meta {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    font-size: $text-body-md;
+    gap: $spacer-xl;
+    justify-content: space-between;
+}
+
+.m24-c-ar-article-header-author {
+    border-bottom: 2px solid $m24-color-black;
+    font-size: $text-body-md;
+    margin-bottom: $spacer-md;
+    padding-bottom: $spacer-md;
+}
+
+.m24-c-ar-article-header-author-info {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: $grid-gutter;
+    justify-content: flex-end;
+}
+
+.m24-c-ar-article-header-author-image {
+    margin-bottom: $spacer-md;
+
+    img {
+        vertical-align: bottom;
+    }
+
+    img:nth-child(2) {
+        margin-left: $spacer-xs;
+    }
+}
+
+@media #{$mq-sm} {
+    .m24-c-ar-article-header-author {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: $grid-gutter;
+    }
+
+    .m24-c-ar-article-header-author-image {
+        margin-bottom: 0;
+    }
+}
+
+.m24-c-ar-article-header-author-name {
+    display: inline-block;
+}
+
+.m24-c-ar-article-header-back-link,
+.m24-c-ar-article-header-tag {
+    display: inline-block;
+}
+
+.m24-c-ar-article-header-back-link {
+    margin-bottom: $spacer-sm;
+    padding-left: 24px;
+    position: relative;
+
+    &::before {
+        background-image: url('/media/img/icons/m24-small/arrow-left.svg');
+        background-position: center left;
+        background-repeat: no-repeat;
+        background-size: 18px auto;
+        bottom: 0;
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition-duration: $fast;
+        transition-property: right;
+        transition-timing-function: $bezier;
+        width: 24px;
+    }
+}
+
+.m24-c-ar-article-header-tag {
+    position: relative;
+    padding-left: $spacer-md;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: calc($spacer-md / 2 - 2px);
+        content: "";
+        border-left: 2px solid #E8E8E8;
+        width: 2px;
+        height: 100%;
+    }
+}
+
+.m24-c-ar-article-header-title {
+    font-size: $text-title-xl;
+    margin: $spacer-xl 0;
+}
+
+@media #{$mq-lg} {
+    .m24-c-ar-article-header {
+        border-bottom: 2px solid $m24-color-black;
+    }
+
+    .m24-c-ar-article-header-title {
+        max-width: 15em;
+    }
+
+    .m24-c-ar-article-header-meta {
+        flex-direction: row;
+        gap: $spacer-sm;
+    }
+
+    .m24-c-ar-article-header-read-time,
+    .m24-c-ar-article-header-author-role {
+        text-align: right;
+    }
+
+    .m24-c-ar-article-header-author {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .m24-c-ar-article-header-author-info {
+        align-items: flex-end;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .m24-c-ar-article-header.m24-has-header-image {
+        @include grid;
+
+        .m24-c-ar-article-header-info {
+            display: flex;
+            flex-direction: column;
+            grid-column: 1/8;
+            justify-content: space-between;
+        }
+
+        .m24-c-ar-article-header-image {
+            grid-column: 8/-1;
+        }
+    }
+
+    .m24-c-ar-article-header-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        img {
+            display: block;
+        }
+    }
+}

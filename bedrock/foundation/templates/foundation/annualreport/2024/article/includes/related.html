@@ -1,0 +1,26 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import ar_gallery_tile with context %}
+
+<div class="m24-c-content">
+  <div class="m24-c-ar-article-related">
+    <div class="m24-c-ar-article-related-back-link">
+      <a href="{{ url('foundation.annualreport.2024.index') }}{{ article_hash }}" data-link-text="Back to State of Mozilla">
+        Back to State of Mozilla
+      </a>
+    </div>
+    {% if related_article_links %}
+      <div class="m24-c-ar-article-related-articles">
+        <h2 class="m24-c-ar-article-related-title">Related articles</h2>
+
+        <div class="m24-c-gallery-container">
+          {{ related_article_links }}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,115 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_7_2, article_7_4 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Mozilla Fellows - State of Mozilla 2024{% endblock %}
+
+{% set article_hash = '#ecosystem' %}
+{% set article_read_time = '2 min read' %}
+{% set article_tag_label = 'An Expanding Ecosystem' %}
+{% set article_title = 'Mozilla Fellows' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-3-abeba-300.jpg',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-3-abeba-600.jpg': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Abeba Birhane</h2>
+        <p>Senior Fellow, Trustworthy AI <br>2022-2023 <br>Ireland</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Dr. Abeba Birhane is a cognitive scientist researching human behavior, social systems, and responsible and ethical artificial intelligence (AI). Her interdisciplinary research explores broad themes in cognitive science, AI, complexity science, and theories of decoloniality. More specifically, Dr. Birhane examines the challenges and pitfalls of computational models (and datasets) from a conceptual, empirical, and critical perspective.
+        </p>
+
+        <h3>Fellowship Project</h3>
+
+        <p>
+          Abeba conducted a comparative audit of datasets used by large generative models, specifically LAION-400M and LAION-2B-en. She discovered the presence of hateful content within these datasets, which contributed to the associated models producing societal biases and negative stereotypes. Abeba also assessed <a href="https://openaccess.thecvf.com/content/WACV2022/papers/Birhane_Auditing_Saliency_Cropping_Algorithms_WACV_2022_paper.pdf">aliency cropping algorithms</a>, the AI tool that automatically crops photos in social media feeds. This work was inspired by a Twitter user who experimented with the algorithm, witnessing it crop a Black man out of a photo and prioritize a white man. To investigate further, Abeba and her collaborators examined the cropping tools used by Twitter, Apple, and Google. She and her collaborators discovered the cropping tools consistently favored white individuals over Black individuals. In addition, they observed a tendency to objectify women by emphasizing their bodies rather than their faces, reflecting the "male gaze."
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-3-tarcizio-300.jpg',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-3-tarcizio-600.jpg': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'loading': 'lazy',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Tarcizio Silva</h2>
+        <p>Senior Fellow, Tech Policy <br>2023-2025 <br>Brazil</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Tarcizio Silva is a Brazilian researcher and technologist based in São Paulo. Previously, he was a Mozilla Tech and Society fellow embedded at Ação Educativa, developing educational awareness projects about technology, the internet, and racism. He is a PhD researcher (UFABC) and UFBA alumni, author of the book "Algorithmic Racism: artificial intelligence and discrimination in digital media," and creator of the curatorial project Desvelar on decolonial thinking about technology and media.
+        </p>
+
+        <h3>Fellowship Project</h3>
+
+        <p>
+          Tarcizio contributes to AI-related policy and regulatory developments and debates in Brazil. He pays particular attention to the replication of existing discriminatory practices in the country, such as structural racism against Black populations by AI systems. More specifically, his project will explore the impact of AI systems on human rights online and the promotion of various social justice issues. It will engage with diverse stakeholders in Brazil who work with impacted communities and influence the adoption of accountable and transparent AI policies.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-3-julia-300.jpg',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-3-julia-600.jpg': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'loading': 'lazy',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Julia Keserű</h2>
+        <p>Senior Fellow, Tech Policy <br>2023-2025 <br>Hungary</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Julia Keserű is an activist and writer working at the intersection of technology and justice. Over the past 15 years she has advised numerous organizations on their data and technology strategies, written extensively about the challenges and opportunities of data-driven systems, and led diverse global teams to create a healthier and safer online world. Julia is the Executive Director of The Engine Room, a globally distributed team that helps social justice activists use data in strategic, responsible, and safe ways.
+        </p>
+
+        <h3>Fellowship Project</h3>
+
+        <p>
+          Julia’s fellowship will explore the role that bodily integrity could play in tech industry regulation. This will be done through mixed-method research into how the inviolability of the physical body has become a key concept in other, more heavily regulated fields such as health care, and draw potential parallels for the tech policy agenda. This will most notably focus on pending AI regulation and data protection regimes in the EU and the U.S. Her project will culminate in recommendations to increase the protection of integrity and dignity.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_7_2('m24-l-grid-half m24-l-16-9') }}
+  {{ article_7_4('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

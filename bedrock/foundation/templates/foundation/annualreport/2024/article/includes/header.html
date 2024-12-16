@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="m24-c-content">
+  <div class="m24-c-ar-article-header {% if article_header_image %}m24-has-header-image{% endif %}">
+    <header class="m24-c-ar-article-header-info">
+      <div class="m24-c-ar-article-header-meta">
+        <div class="m24-c-ar-article-header-meta-nav"><a class="m24-c-ar-article-header-back-link" href="{{ url('foundation.annualreport.2024.index') }}{{ article_hash }}" data-link-text="Back">Back</a><span class="m24-c-ar-article-header-tag">{{ article_tag_label }}</span></div>
+
+        <time class="m24-c-ar-article-header-read-time">{{ article_read_time }}</time>
+      </div>
+
+      <h1 class="m24-c-ar-article-header-title">{{ article_title }}</h1>
+
+      <div class="m24-c-ar-article-header-author">
+        {% if article_author_name and article_author_image %}
+        <div class="m24-c-ar-article-header-author-image">{{ article_author_image }}</div>
+        <div class="m24-c-ar-article-header-author-info">
+          <span class="m24-c-ar-article-header-author-name">{{ article_author_name }}</span>
+          <span class="m24-c-ar-article-header-author-role">{{ article_author_role }}</span>
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    {% if article_header_image %}
+      <div class="m24-c-ar-article-header-image">
+        {{ article_header_image }}
+      </div>
+    {% endif %}
+  </div>
+</div>
