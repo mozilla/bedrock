@@ -334,7 +334,8 @@ $max-footer-content-width: $content-max;
 
         &:hover,
         &:focus,
-        &:focus-visible {
+        &:focus-visible,
+        &:focus-within {
             color: $m24-color-white;
             background: $m24-color-alt-black url('/media/img/icons/m24-small/up-caret.svg') no-repeat;
             @include bidi(((background-position, right 8px center, 8px center),));
