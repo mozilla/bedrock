@@ -179,10 +179,9 @@ $max-footer-content-width: $content-max;
         select {
             font-family: $primary-font;
             width: 100%;
-            background-image: url('/media/img/icons/m24-small/down-caret-white.svg');
-            background-repeat: no-repeat;
-            background-size: 16px 16px;
             @include bidi(((background-position, right 8px center, 8px center),));
+            background: $m24-color-light-gray url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
+            background-size: 16px 16px;
 
             @media #{$mq-lg} {
                 min-width: 100%;
@@ -192,7 +191,10 @@ $max-footer-content-width: $content-max;
             &:focus,
             &:focus-visible,
             &:focus-within {
-                background-image: url('/media/img/icons/m24-small/down-caret.svg');
+                color: $m24-color-alt-white;
+                @include bidi(((background-position, right 8px center, 8px center),));
+                background: $m24-color-alt-black url('/media/img/icons/m24-small/up-caret.svg') no-repeat;
+                background-size: 16px 16px;
             }
         }
     }
