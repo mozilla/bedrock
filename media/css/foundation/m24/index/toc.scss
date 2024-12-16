@@ -24,7 +24,7 @@ $toc-img-width-large: 40px;
     box-sizing: border-box;
     color: $m24-color-black;
     display: grid;
-    font-size: $text-body-lg;
+    font-size: 18px;
     font-weight: 600;
     gap: $grid-gutter;
     grid-template-columns: $toc-img-width-small 1fr;
@@ -82,5 +82,11 @@ $toc-img-width-large: 40px;
     .m24-c-ar-toc-list-item-link {
         grid-template-columns: $toc-img-width-large 1fr;
         padding-right: calc($toc-img-width-small + $spacer-lg);
+    }
+}
+
+@media #{$mq-xl} {
+    .m24-c-ar-toc-list-item-link {
+        font-size: 24px;
     }
 }
