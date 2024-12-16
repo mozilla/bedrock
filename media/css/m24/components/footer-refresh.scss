@@ -83,6 +83,10 @@ $max-footer-content-width: $content-max;
         justify-content: center;
         align-items: flex-start;
     }
+
+    @media #{$mq-lg} {
+        align-items: flex-end;
+    }
 }
 
 
