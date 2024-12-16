@@ -90,8 +90,9 @@ a:link {
     font-family: var(--title-font-family);
     font-size: $text-button-xl;
     font-weight: 600;
+    line-height: 1.1;
     background-image:
-    linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
+        linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
     background-repeat: no-repeat;
     background-position:
         left var(--cta-bg-position, 100%) top 100%;
