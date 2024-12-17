@@ -83,6 +83,10 @@ $max-footer-content-width: $content-max;
         justify-content: center;
         align-items: flex-start;
     }
+
+    @media #{$mq-lg} {
+        align-items: flex-end;
+    }
 }
 
 
@@ -273,21 +277,22 @@ $max-footer-content-width: $content-max;
 
 
 // language form
-.moz24-footer-language {
-    position: relative;
-}
-
 .moz24-c-language-switcher {
     position: relative;
-    border-color: transparent;
+
+    &:has(.mzp-js-language-switcher-select:hover)::before,
+    &:has(.mzp-js-language-switcher-select:focus)::before,
+    &:has(.mzp-js-language-switcher-select:focus-within)::before {
+        background: $m24-color-alt-black url('/media/img/icons/m24-small/globe.svg') center center no-repeat;
+        background-size: 18px 18px;
+    }
 
     &::before {
-        @include bidi(((left, 0, 0), (right, 0, 102px)));
+        @include bidi(((left, 4px, auto), (right, auto, 4px)));
         background: transparent url('/media/img/icons/m24-small/globe-white.svg') center center no-repeat;
         background-size: 18px 18px;
         top: 50%;
         margin-top: -16px;
-        color: $m24-color-white;
         content: "";
         display: block;
         height: 32px;
@@ -315,21 +320,26 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-js-language-switcher-select {
-        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') 95px 0.75em no-repeat;
+        @include bidi(((background-position, right 8px center, 8px center),));
+        background: $m24-color-alt-white url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
         background-size: 16px 16px;
         border-radius: 0;
-        border: $border-width solid transparent;
-        color: $m24-color-black;
+        border: $border-width solid $m24-color-alt-black;
+        color: $m24-color-alt-black;
         font-weight: 600;
         margin-top: 16px;
-        min-width: unset;
         padding-left: 36px;
-        width: 136px;
+        max-width: 100%;
+        width: fit-content;
 
         &:hover,
         &:focus,
-        &:focus-visible {
-            border-color: $m24-color-mid-gray;
+        &:focus-visible,
+        &:focus-within {
+            color: $m24-color-white;
+            background: $m24-color-alt-black url('/media/img/icons/m24-small/down-caret.svg') no-repeat;
+            @include bidi(((background-position, right 8px center, 8px center),));
+            background-size: 16px 16px;
         }
     }
 }
