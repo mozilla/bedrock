@@ -193,7 +193,7 @@ $max-footer-content-width: $content-max;
             &:focus-within {
                 color: $m24-color-alt-white;
                 @include bidi(((background-position, right 8px center, 8px center),));
-                background: $m24-color-alt-black url('/media/img/icons/m24-small/up-caret.svg') no-repeat;
+                background: $m24-color-alt-black url('/media/img/icons/m24-small/down-caret.svg') no-repeat;
                 background-size: 16px 16px;
             }
         }
