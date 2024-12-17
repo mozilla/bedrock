@@ -22,19 +22,32 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'pl', 'pt-BR'] %}
+{% set show_fundraising_banner = switch('fundraising-banner-2024eoy') and LANG in fundraising_banner_langs %}
+
 {% block page_css %}
   {{ css_bundle('m24-root') }}
   {{ css_bundle('m24-base') }}
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block site_header %}
+  {% with hide_pencil_banner=show_fundraising_banner %}
     {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-homepage' %}
 
-{% block content %}
+{% block page_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% endif %}
+{% endblock %}
 
+{% block content %}
 <main>
 
   {% include 'mozorg/home/includes/m24/hero.html'%}
@@ -59,8 +72,13 @@
   {% endwith %}
 {% endblock %}
 
-{% if switch('m24-hero-animation') %}
-  {% block js %}
+
+{% block js %}
+  {% if switch('m24-hero-animation') %}
     {{ js_bundle('m24-animation') }}
-  {% endblock %}
-{% endif %}
+  {% endif %}
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising-banner-experiment') }}
+    {{ js_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
