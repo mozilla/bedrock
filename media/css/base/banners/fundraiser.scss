@@ -9,12 +9,13 @@
     color: $color-black;
 
 
-    .c-banner-outter {
+    .c-banner-outer {
         @include container;
         padding: $spacer-lg $container-padding;
     }
 
     .c-banner-title {
+        @include bidi(((padding-right, calc(20px + $spacer-sm * 2), padding-left, 0),));
         color: $color-black;
         display: block;
         font-size: 24px;
@@ -56,16 +57,16 @@
     // Close button
     .c-banner-close {
         @include image-replaced;
-        @include bidi(((right, $spacing-sm, left, auto),));
+        @include bidi(((right, $spacer-sm, left, auto),));
         background: transparent url('/media/img/icons/m24-small/close.svg') center center / 20px 20px no-repeat;
         border: $border-width solid transparent;
         cursor: pointer;
-        height: calc(20px + $spacing-sm * 2);
-        padding: var(--spacer-xs);
+        height: calc(20px + $spacer-sm * 2);
+        padding: $spacer-xs;
         position: absolute;
         top: $spacer-sm;
         transition: border-color $fast $bezier;
-        width: calc(20px + $spacing-sm * 2);
+        width: calc(20px + $spacer-sm * 2);
         z-index: 1;
 
         &:hover,
@@ -84,6 +85,10 @@
             justify-content: space-between;
             max-width: grid(10);
             margin: 0 auto;
+        }
+
+        .c-banner-title {
+            @include bidi(((padding-right, 0, padding-left, 0),));
         }
 
         .c-banner-copy {
