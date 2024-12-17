@@ -562,6 +562,24 @@ class TestPicture(TestCase):
         )
         self.assertEqual(markup, expected)
 
+    def test_picture_with_optional_height_and_width(self):
+        """Should return expected markup with optional attributes"""
+        expected = (
+            "<picture>"
+            '<source media="(max-width: 799px)" srcset="/media/img/panda-mobile.png" width="200" height="100">'
+            '<source media="(min-width: 800px)" srcset="/media/img/panda-desktop.png" width="300">'
+            '<img src="/media/img/panda-mobile.png" alt="">'
+            "</picture>"
+        )
+        markup = self._render(
+            "img/panda-mobile.png",
+            [
+                {"media": "(max-width: 799px)", "srcset": {"img/panda-mobile.png": "default"}, "width": "200", "height": "100"},
+                {"media": "(min-width: 800px)", "srcset": {"img/panda-desktop.png": "default"}, "width": "300"},
+            ],
+        )
+        self.assertEqual(markup, expected)
+
     def test_picture_with_optional_attributes(self):
         """Should return expected markup with optional attributes"""
         expected = (
