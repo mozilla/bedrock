@@ -476,13 +476,13 @@ This would output:
         <img src="/media/img/panda-mobile.png" alt="">
     </picture>
 
-In the above example, the default image ``src`` is what we specifed using the ``url`` param. This is also what older
+In the above example, the default image ``src`` is what we specified using the ``url`` param. This is also what older
 browsers will fall back to using. We then used the ``sources`` parameter to specify one or more alternate image
 ``<source>`` elements, which modern browsers can take advantage of. For each ``<source>``, ``media`` lets us specify
 a media query as a condition for when to load an image, and ``srcset`` lets us specify one or more sizes for each image.
 Each ``srcset`` also takes optional parameters for ``height`` and ``width``. Defining height and width helps the Browser
-reserve space of the image where it  will load, and avoid content shifting around on the page. If the image will not
-change dimensions, these can be defined in the ``optional_attributes`` for the entire element instead of seperately like this.
+reserve space for the image and avoid content shifting around on the page. If the image will not change dimensions, these
+can be defined in the ``optional_attributes`` for the entire element instead of separately like this.
 
 
 .. note::
