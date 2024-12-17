@@ -130,7 +130,7 @@
     padding: 0 8px;
 
     .m24-c-gallery-tile-image + & {
-        left: 8px;
+        @include bidi(((left, 8px, right, auto),));
         position: absolute;
         top: 8px;
     }
