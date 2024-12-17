@@ -197,6 +197,10 @@ $border: 2px solid $color-marketing-gray-20;
     margin-top: $spacing-2xl;
     padding: $spacing-2xl 0;
 
+    h2 {
+        @include text-title-sm;
+    }
+
     h3 {
         @include visually-hidden;
     }
