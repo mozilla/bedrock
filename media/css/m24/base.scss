@@ -89,7 +89,7 @@ a:link {
     color: $m24-color-black;
     display: inline-block;
     font-family: var(--title-font-family);
-    font-size: $text-button-xl;
+    font-size: $text-button-lg;
     font-weight: 600;
     line-height: 1.1;
     background-image:
@@ -115,8 +115,8 @@ a:link {
         color: $m24-color-black;
     }
 
-    &.m24-t-lg {
-        font-size: $text-button-lg;
+    &.m24-t-xl {
+        font-size: $text-button-xl;
     }
 
     &.m24-t-md {
