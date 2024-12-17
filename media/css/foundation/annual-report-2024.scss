@@ -25,6 +25,8 @@
 .m24-c-ar-intro-title {
     font-size: $text-title-xl;
     margin-bottom: $spacer-sm;
+    text-wrap: balance;
+    text-wrap-style: balance;
 }
 
 .m24-c-ar-intro-body {
@@ -57,6 +59,10 @@
 
         & > .m24-c-content:first-of-type {
             padding-right: 0;
+
+            .m24-c-ar-intro-title {
+                padding-right: $spacer-lg
+            }
         }
 
         & > .m24-c-content:last-of-type {
