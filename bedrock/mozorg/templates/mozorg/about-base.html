@@ -25,19 +25,19 @@
   {{ sidemenu_lists([navigation_bar], body_id) }}
 
   <div class="side-reference">
-    <h4 class="side-reference-title">{{ ftl('about-shared-our-products') }}</h4>
+    <h2 class="side-reference-title">{{ ftl('about-shared-our-products') }}</h2>
     <p>{{ ftl('about-shared-software-innovations') }}</p>
     <a class="more" href="{{ url('products.landing') }}">{{ ftl('ui-learn-more') }}</a>
   </div>
 
   <div class="side-reference">
-    <h4 class="side-reference-title">{{ ftl('about-shared-get-involved') }}</h4>
+    <h2 class="side-reference-title">{{ ftl('about-shared-get-involved') }}</h2>
     <p>{{ ftl('about-shared-volunteer') }}</p>
     <a class="more" href="{{ url('mozorg.contribute') }}">{{ ftl('ui-learn-more') }}</a>
   </div>
 
    <div class="side-reference">
-    <h4 class="side-reference-title">{{ ftl('vision-for-the-web') }}</h4>
+    <h2 class="side-reference-title">{{ ftl('vision-for-the-web') }}</h2>
     <p>{{ ftl('read-about-our-vision') }}</p>
     <a class="more" href="{{ url('mozorg.about.webvision.summary') }}">{{ ftl('ui-learn-more') }}</a>
   </div>
@@ -47,7 +47,7 @@
 
 {% block email_form %}
 <div class="mzp-l-content">
-  <aside class="mzp-c-newsletter t-love">
+  <div class="mzp-c-newsletter t-love">
     <div class="mzp-c-newsletter-image">
       <img src="{{ static('img/newsletter/love-news.svg') }}" alt="" height="172" width="200">
     </div>
@@ -59,6 +59,6 @@
         {{ email_newsletter_form(button_class='button-hollow button-light', spinner_color='#fff') }}
       {% endif %}
     </div>
-  </aside>
+  </div>
 </div>
 {% endblock %}
