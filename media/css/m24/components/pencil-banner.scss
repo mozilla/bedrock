@@ -35,7 +35,8 @@
         height: 24px;
         padding: var(--spacer-xs);
         position: absolute;
-        top: $spacer-sm;
+        top: 50%;
+        margin-top: -12px;
         transition: border-color $fast $bezier;
         width: 24px;
 
