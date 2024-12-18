@@ -85,14 +85,9 @@
     }
 
     .m24-c-flag-button {
-        border-radius: 50%;
         display: block;
         margin-bottom: $spacer-md;
         margin-inline-start: auto;
-    }
-
-    .m24-c-flag-button-text {
-        @include visually-hidden;
     }
 
     .m24-c-flag-media {
