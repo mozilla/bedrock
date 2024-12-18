@@ -1,0 +1,52 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_134') }}
+{% endblock %}
+
+{% block experiments %}
+  {{ js_bundle('firefox_whatsnew_134_experiment') }}
+{% endblock %}
+
+{% if variant == '2' %}
+  {% set title = 'Stay productive on the go' %}
+  {% set desc = 'Syncing your Firefox tabs across your devices means you can work, <br>read and shop whenever and wherever.'|safe %}
+{% else %}
+  {% set title = 'Privacy in your pocket' %}
+  {% set desc = 'You deserve privacy even when you’re in public. With Firefox on your phone, <br>you can trust you won’t be followed around online wherever you go.'|safe %}
+{% endif %}
+
+{% if variant == '1' %}
+  {% set qrcode = 'en-gb-a' %}
+{% elif variant == '2' %}
+  {% set qrcode = 'en-gb-b' %}
+{% else %}
+  {% set qrcode = 'en-gb-c' %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    <h1 class="wnp-main-title">{{ title }}</h1>
+    <p class="wnp-main-tagline">{{ desc }}</p>
+
+    {% with qrcode=qrcode, caption='Scan to get Firefox on your phone or tablet' %}
+      {% include "firefox/whatsnew/includes/fx134/qrcode.html" %}
+    {% endwith %}
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}
