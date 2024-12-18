@@ -1,0 +1,431 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+
+@keyframes pop-in-v1-foxy {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-13.9deg);;
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(-13.9deg);;
+    }
+
+    50% {
+        transform: scale(0.5) rotate(-13.9deg);;
+    }
+
+    65% {
+        transform: scale(0.7) rotate(-13.9deg);;
+    }
+
+    80% {
+        transform: scale(0.9) rotate(-13.9deg);;
+    }
+
+    90% {
+        transform: scale(1.1) rotate(-13.9deg);;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-13.9deg);;
+    }
+}
+
+@keyframes pop-in-v1-padlock {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(21.1deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(21.1deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(21.1deg);
+    }
+
+    65% {
+        transform: scale(0.7) rotate(21.1deg);
+    }
+
+    80% {
+        transform: scale(0.9) rotate(21.1deg);
+    }
+
+    90% {
+        transform: scale(1.1) rotate(21.1deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(21.1deg);
+    }
+}
+
+@keyframes pop-in-v1-eye {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+
+    50% {
+        transform: scale(0.5);
+    }
+
+    65% {
+        transform: scale(0.7);
+    }
+
+    80% {
+        transform: scale(0.9);
+    }
+
+    90% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop-in-v2-foxy {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(-15deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(-15deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    65% {
+        transform: scale(0.7) rotate(-15deg);
+    }
+
+    80% {
+        transform: scale(0.9) rotate(-15deg);
+    }
+
+    90% {
+        transform: scale(1.1) rotate(-15deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(-15deg);
+    }
+}
+
+@keyframes pop-in-v2-heart {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(21deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(21deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(21deg);
+    }
+
+    65% {
+        transform: scale(0.7) rotate(21deg);
+    }
+
+    80% {
+        transform: scale(0.9) rotate(21deg);
+    }
+
+    90% {
+        transform: scale(1.1) rotate(21deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(21deg);
+    }
+}
+
+@keyframes pop-in-v2-laptop {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(7.2deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(7.2deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(7.2deg);
+    }
+
+    65% {
+        transform: scale(0.7) rotate(7.2deg);
+    }
+
+    80% {
+        transform: scale(0.9) rotate(7.2deg);
+    }
+
+    90% {
+        transform: scale(1.1) rotate(7.2deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(7.2deg);
+    }
+}
+
+@keyframes pop-in-v2-phone {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2);
+    }
+
+    50% {
+        transform: scale(0.5);
+    }
+
+    65% {
+        transform: scale(0.7);
+    }
+
+    80% {
+        transform: scale(0.9);
+    }
+
+    90% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop-in-v2-sync {
+    0% {
+        opacity: 0;
+        transform: scale(0) rotate(0deg);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(0.2) rotate(63deg);
+    }
+
+    50% {
+        transform: scale(0.5) rotate(90deg);
+    }
+
+    65% {
+        transform: scale(0.7) rotate(117deg);
+    }
+
+    80% {
+        transform: scale(0.9) rotate(144deg);
+    }
+
+    90% {
+        transform: scale(1.1) rotate(162deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(180deg);
+    }
+}
+
+.wnp-content-main {
+    text-align: center;
+
+    & > .mzp-l-content {
+        padding-top: $layout-sm;
+        padding-bottom: $layout-sm;
+    }
+
+    @media #{$mq-tall} {
+        & > .mzp-l-content {
+            padding-top: $layout-lg;
+            padding-bottom: $layout-lg;
+        }
+    }
+}
+
+.wnp-main-tagline br {
+    display: none;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+.wnp-qr-code {
+    display: inline-block;
+    max-width: 325px;
+}
+
+.wnp-qr-code-wrapper {
+    display: inline-block;
+    position: relative;
+}
+
+.wnp-main-image {
+    margin: $spacing-lg 0 $spacing-md;
+    transform: rotate(-3.4deg);
+}
+
+.wnp-sticker-v1-foxy,
+.wnp-sticker-v1-padlock,
+.wnp-sticker-v1-eye,
+.wnp-sticker-v2-foxy,
+.wnp-sticker-v2-heart,
+.wnp-sticker-v2-laptop,
+.wnp-sticker-v2-phone,
+.wnp-sticker-v2-sync {
+    display: none;
+}
+
+@media #{$mq-md} {
+    .wnp-sticker-v1-foxy,
+    .wnp-sticker-v1-padlock,
+    .wnp-sticker-v1-eye,
+    .wnp-sticker-v2-foxy,
+    .wnp-sticker-v2-heart,
+    .wnp-sticker-v2-laptop,
+    .wnp-sticker-v2-phone,
+    .wnp-sticker-v2-sync {
+        display: block;
+        position: absolute;
+    }
+
+    // variant A
+
+    .wnp-sticker-v1-foxy {
+        top: 0;
+        left: -122px;
+        transform: rotate(-13.9deg);
+    }
+
+    .wnp-sticker-v1-padlock {
+        transform: rotate(21.1deg);
+        bottom: 70px;
+        right: -115px;
+    }
+
+    .wnp-sticker-v1-eye {
+        bottom: 5px;
+        right: -120px;
+    }
+
+    // variant B
+
+    .wnp-sticker-v2-foxy {
+        bottom: 20px;
+        left: -122px;
+        transform: rotate(-15deg);
+    }
+
+    .wnp-sticker-v2-heart {
+        top: 15px;
+        right: -60px;
+        transform: rotate(21deg);
+    }
+
+    .wnp-sticker-v2-laptop {
+        top: 35px;
+        right: -165px;
+        transform: rotate(7.2deg);
+    }
+
+    .wnp-sticker-v2-phone {
+        top: 85px;
+        right: -165px;
+    }
+
+    .wnp-sticker-v2-sync {
+        top: 70px;
+        right: -130px;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .loaded {
+        .animate-pop-in-v1-foxy {
+            animation: 0.3s ease-out 0s 1 normal forwards pop-in-v1-foxy;
+        }
+
+        .animate-pop-in-v1-padlock {
+            animation: 0.3s ease-out 0.2s 1 normal forwards pop-in-v1-padlock;
+        }
+
+        .animate-pop-in-v1-eye {
+            animation: 0.3s ease-out 0.45s 1 normal forwards pop-in-v1-eye;
+        }
+
+        .animate-pop-in-v2-foxy {
+            animation: 0.3s ease-out 0s 1 normal forwards pop-in-v2-foxy;
+        }
+
+        .animate-pop-in-v2-heart {
+            animation: 0.3s ease-out 0.2s 1 normal forwards pop-in-v2-heart;
+        }
+
+        .animate-pop-in-v2-laptop {
+            animation: 0.3s ease-out 0.45s 1 normal forwards pop-in-v2-laptop;
+        }
+
+        .animate-pop-in-v2-phone {
+            animation: 0.3s ease-out 0.6s 1 normal forwards pop-in-v2-phone;
+        }
+
+        .animate-pop-in-v2-sync {
+            animation: 0.3s ease-out 0.8s 1 normal forwards pop-in-v2-sync;
+        }
+    }
+
+    .wnp-sticker-v1-foxy,
+    .wnp-sticker-v1-padlock,
+    .wnp-sticker-v1-eye,
+    .wnp-sticker-v2-foxy,
+    .wnp-sticker-v2-heart,
+    .wnp-sticker-v2-laptop,
+    .wnp-sticker-v2-phone,
+    .wnp-sticker-v2-sync {
+        opacity: 0;
+    }
+}
