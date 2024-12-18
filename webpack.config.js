@@ -45,6 +45,7 @@ module.exports = {
         path: path.resolve(__dirname, 'assets/'),
         publicPath: '/media/'
     },
+    devtool: 'source-map',
     optimization: {
         minimizer: [
             new TerserPlugin({

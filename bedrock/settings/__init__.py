@@ -129,6 +129,8 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["upgrade-insecure-requests"] = True
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["script-src"].remove(csp.constants.UNSAFE_EVAL)
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["script-src"].remove(csp.constants.UNSAFE_INLINE)
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
@@ -163,7 +165,11 @@ CSP_PATH_OVERRIDES = {
 
 if csp_ro_report_uri:
     # Path based overrides for report-only CSP.
-    CMS_ADMIN_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": [csp.constants.SELF]})
+    CMS_ADMIN_CSP_RO = _override_csp(
+        CONTENT_SECURITY_POLICY_REPORT_ONLY,
+        append={"script-src": [csp.constants.UNSAFE_INLINE]},
+        replace={"frame-ancestors": [csp.constants.SELF]},
+    )
     CMS_ADMIN_IMAGES_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": ["blob:"]})
 
     CSP_PATH_OVERRIDES_REPORT_ONLY = {
