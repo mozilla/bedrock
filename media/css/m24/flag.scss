@@ -44,7 +44,7 @@
 .m24-c-flag-button {
     $font-size: 0.75;
     background-color: $m24-color-dark-mid-gray;
-    border: none;
+    border-color: transparent; // High Contrast Mode support
     box-shadow: none;
     color: $m24-color-white;
     font-family: $primary-font;
@@ -62,6 +62,16 @@
 
     &:active {
         background-color: $m24-color-dark-mid-gray;
+    }
+
+    // High Contrast Mode Support: https://bugzilla.mozilla.org/show_bug.cgi?id=1936865
+    @media (forced-colors) {
+        background-color: ButtonFace;
+        color: ButtonText;
+
+        &:focus {
+            outline-color: CanvasText;
+        }
     }
 }
 
