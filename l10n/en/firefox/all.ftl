@@ -6,13 +6,10 @@
 
 # HTML page title. Replace "English (US)" with your local language.
 firefox-all-download-the-firefox-v2 = Download { -brand-name-firefox } in English (US) and more than 90 other languages
-# Obsolete string (expires 2024-10-30)
-firefox-all-download-the-firefox = Download the { -brand-name-firefox-browser } in English (US) and more than 90 other languages
+
 
 # HTML page description, also used as the introductory text.
 firefox-all-everyone-deserves-access-v2 = Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make { -brand-name-firefox } available in more than 90 languages.
-# Obsolete string (expires 2024-10-30)
-firefox-all-everyone-deserves-access = Everyone deserves access to the internet — your language should never be a barrier. That’s why — with the help of dedicated volunteers around the world — we make the { -brand-name-firefox-browser } available in more than 90 languages.
 
 # Variables:
 #   $product_label (string) e.g. Firefox, Firefox Nightly
@@ -29,14 +26,8 @@ firefox-all-down-arrow = Choose from the list below
 
 # Used as an accessible label for a help button. The text is replaced with a "?" icon.
 firefox-all-get-help = Get help
-# Obsolete string (expires 2024-10-30)
-firefox-all-browser = Browser:
 firefox-all-browser-v2 = 1. Browser:
-# Obsolete string (expires 2024-10-30)
-firefox-all-platform = Platform:
 firefox-all-platform-v2 = 2. Platform:
-# Obsolete string (expires 2024-10-30)
-firefox-all-language = Language:
 firefox-all-language-v2 = 3. Language:
 firefox-all-download = 4. Download:
 firefox-all-desktop = Desktop
