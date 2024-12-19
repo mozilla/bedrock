@@ -110,6 +110,7 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
+        "upgrade-insecure-requests": True,
         "report-uri": csp_report_uri,
     },
 }
@@ -127,7 +128,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["upgrade-insecure-requests"] = True
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
 
 
