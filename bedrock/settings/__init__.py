@@ -129,6 +129,8 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["upgrade-insecure-requests"] = True
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
+    # For `form-action`, include a trailing slash to avoid CSP's "exact match" path-part rules, unless exact matching is intended.
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["form-action"] = [csp.constants.SELF, f"{BASKET_URL}/news/", FXA_ENDPOINT]
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
