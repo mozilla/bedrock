@@ -134,6 +134,10 @@ USE_TZ = True
 
 USE_ETAGS = config("USE_ETAGS", default=str(not DEBUG), parser=bool)
 
+# Use the "X-Forwarded-Host" header from the CDN to set the Hostname
+# https://mozilla-hub.atlassian.net/browse/SE-4263
+USE_X_FORWARDED_HOST = config("USE_X_FORWARDED_HOST", default="False", parser=bool)
+
 # just here so Django doesn't complain
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
