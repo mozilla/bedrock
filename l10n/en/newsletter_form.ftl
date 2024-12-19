@@ -25,13 +25,7 @@ newsletter-form-im-okay-with-mozilla = I’m okay with { -brand-name-mozilla } h
 
 newsletter-form-we-will-only-send-v2 = We will only send you { -brand-name-mozilla }-related information. You can unsubscribe at any time.
 
-# Obsolete string (expires: 2024-11-01)
-newsletter-form-we-will-only-send = We will only send you { -brand-name-mozilla }-related information.
-
 newsletter-form-we-will-only-send-firefox-v2 = We will only send you { -brand-name-firefox }-related information. You can unsubscribe at any time.
-
-# Obsolete string (expires: 2024-11-01)
-newsletter-form-we-will-only-send-firefox = We will only send you { -brand-name-firefox }-related information.
 
 newsletter-form-if-you-havent-previously = If you haven’t previously confirmed a subscription to a { -brand-name-mozilla }-related newsletter, you may have to do so. Please check your inbox or your spam filter for an email from us.
 newsletter-form-firefox-and-you = <span>{ -brand-name-firefox }</span> + You

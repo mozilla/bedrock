@@ -19,12 +19,6 @@
 
 <h2>{{ ftl('features-adblocker-find-the-right-ad-blocker') }}</h2>
 
-{% if ftl_has_messages(
-    'features-adblocker-there-are-scores-of-content',
-    'features-adblocker-considered-by-many-to-be-the',
-    'features-adblocker-adguard-adblocker-blunts',
-    'features-adblocker-ghostery-is-another-great',
-    'features-adblocker-these-extensions-work-beautifully') %}
 <p>{{ ftl('features-adblocker-there-are-scores-of-content') }}</p>
 <p>{{ ftl('features-adblocker-considered-by-many-to-be-the', attrs='href="https://addons.mozilla.org/firefox/addon/ublock-origin/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
 <p>{{ ftl('features-adblocker-adguard-adblocker-blunts', attrs1='href="https://addons.mozilla.org/firefox/addon/adguard-adblocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe', attrs2='href="https://addons.mozilla.org/firefox/addon/popup-blocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
@@ -32,11 +26,6 @@
 {% set desktop_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.new')) %}
 {% set android_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.browsers.mobile.android')) %}
 <p>{{ ftl('features-adblocker-these-extensions-work-beautifully', attrs1=desktop_link, attrs2=android_link) }}</p>
-{% else %}
-<p>{{ ftl('features-adblocker-theres-adblocker-ultimate', url='https://addons.mozilla.org/firefox/addon/adblocker-ultimate/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
-<p>{{ ftl('features-adblocker-popup-ads-are-the-worst', url='https://addons.mozilla.org/firefox/addon/popup-blocker/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
-<p>{{ ftl('features-adblocker-one-of-the-most-popular', url='https://addons.mozilla.org/firefox/addon/adblock-for-firefox/?src=collection&collection_id=314d7111-6e17-485e-9946-315cb2f477e7&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
-{% endif %}
 
 <h2>{{ftl('features-adblocker-create-a-tracker-free') }}</h2>
 <p>{{ ftl('features-adblocker-on-firefox-you-can-use', privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/kb/content-blocking?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
