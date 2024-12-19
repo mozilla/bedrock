@@ -115,9 +115,9 @@
             <span class="mzp-c-fieldnote">
               {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
               {% if id == 'mozilla-and-you' %}
-                {{ ftl('newsletter-form-we-will-only-send-firefox-v2', fallback='newsletter-form-we-will-only-send-firefox') }}
+                {{ ftl('newsletter-form-we-will-only-send-firefox-v2') }}
               {% else %}
-                {{ ftl('newsletter-form-we-will-only-send-v2', fallback='newsletter-form-we-will-only-send') }}
+                {{ ftl('newsletter-form-we-will-only-send-v2') }}
               {% endif %}
             </span>
         {% endif %}

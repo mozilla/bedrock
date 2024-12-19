@@ -6,7 +6,7 @@
 
 {# Choose language #}
 <h2 {% if not (product and platform) %} class="c-step-name t-step-disabled" aria-disabled="true" {% else %} class="c-step-name" aria-disabled="false" {% endif %}>
-  {{ ftl('firefox-all-language-v2', fallback='firefox-all-language') }}
+  {{ ftl('firefox-all-language-v2') }}
   {% if product and platform and locale %}
     <span class="c-step-choice">{{ locale_name }}</span>
     {% if product.slug.startswith('desktop') and platform != "win-store" %}
