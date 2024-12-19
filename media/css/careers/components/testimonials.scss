@@ -5,10 +5,8 @@
 @use '../utils' as cp;
 @use 'sass:color';
 
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
 
 .c-careers-testimonials {
     // Hide pull quotes section if JS is disabled
