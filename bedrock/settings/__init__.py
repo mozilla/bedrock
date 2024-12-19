@@ -110,6 +110,7 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
+        "frame-ancestors": [csp.constants.NONE],
         "upgrade-insecure-requests": True,
         "report-uri": csp_report_uri,
     },
@@ -126,7 +127,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = [csp.constants.SELF]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["media-src"] = [csp.constants.SELF, "assets.mozilla.net", "videos.cdn.mozilla.net"]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["frame-ancestors"] = [csp.constants.NONE]
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
 
@@ -152,20 +152,25 @@ def _override_csp(csp, append: dict[str, list[str]] = None, replace: dict[str, l
     return csp
 
 
+#
 # Path based overrides.
+#
+
 # /cms-admin/images/ loads just-uploaded images as blobs.
 CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": ["blob:"]})
+CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": ["blob:"]})
+# The CMS admin frames itself for page previews.
+CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": [csp.constants.SELF]})
+CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": [csp.constants.SELF]})
 
 CSP_PATH_OVERRIDES = {
     # Order them from most specific to least.
     "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP,
+    "/cms-admin/": CMS_ADMIN_CSP,
 }
 
+# Path based overrides for report-only CSP.
 if csp_ro_report_uri:
-    # Path based overrides for report-only CSP.
-    CMS_ADMIN_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": [csp.constants.SELF]})
-    CMS_ADMIN_IMAGES_CSP_RO = _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": ["blob:"]})
-
     CSP_PATH_OVERRIDES_REPORT_ONLY = {
         # Order them from most specific to least.
         "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP_RO,
