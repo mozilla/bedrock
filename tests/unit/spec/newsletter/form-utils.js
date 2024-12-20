@@ -229,6 +229,42 @@ describe('serialize', function () {
     });
 });
 
+describe('serializeToJson', function () {
+    afterEach(function () {
+        const form = document.querySelector('.send-to-device-form');
+        form.parentNode.removeChild(form);
+    });
+
+    it('should return a JSON object as expected', function () {
+        const form = `<form class="send-to-device-form" action="https://basket.mozilla.org/news/subscribe/" method="post">
+            <div class="send-to-device-form-fields">
+                <div class="platform-container">
+                    <input type="hidden" name="newsletters" value="download-firefox-mobile-reco">
+                    <input type="hidden" name="source-url" value="https://www.mozilla.org/en-US/firefox/browsers/mobile/ios/">
+                </div>
+                <div class="mzp-c-field mzp-l-stretch">
+                    <label class="mzp-c-field-label" for="s2d-hero-input">Enter your email</label>
+                    <input id="s2d-hero-input" class="mzp-c-field-control send-to-device-input" name="email" type="text" required="" value="example@example.com">
+                </div>
+                <div class="mzp-c-button-container mzp-l-stretch">
+                    <button type="submit" class="button mzp-c-button  mzp-t-product ">Send</button>
+                </div>
+            </div>
+        </form>`;
+        document.body.insertAdjacentHTML('beforeend', form);
+        expect(
+            FormUtils.serializeToJson(
+                document.querySelector('.send-to-device-form')
+            )
+        ).toEqual({
+            newsletters: 'download-firefox-mobile-reco',
+            'source-url':
+                'https://www.mozilla.org/en-US/firefox/browsers/mobile/ios/',
+            email: 'example@example.com'
+        });
+    });
+});
+
 describe('stripHTML', function () {
     it('should strip HTML tags from strings as expected', function () {
         expect(

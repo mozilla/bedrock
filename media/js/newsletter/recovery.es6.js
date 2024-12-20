@@ -62,7 +62,7 @@ const RecoveryEmailForm = {
         e.preventDefault();
 
         const email = document.getElementById('id_email').value;
-        const params = 'email=' + encodeURIComponent(email);
+        const params = FormUtils.serializeToJson(_recoveryForm);
         const url = _recoveryForm.getAttribute('action');
 
         // Disable form fields until POST has completed.
@@ -76,7 +76,7 @@ const RecoveryEmailForm = {
             return;
         }
 
-        FormUtils.postToBasket(
+        FormUtils.postJsonToBasket(
             email,
             params,
             url,

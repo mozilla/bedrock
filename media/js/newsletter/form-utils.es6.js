@@ -224,6 +224,61 @@ const FormUtils = {
     },
 
     /**
+     * Perform an AJAX POST to Basket as JSON
+     * @param {String} email
+     * @param {Object} params (JSON object)
+     * @param {String} url (Basket API endpoint)
+     * @param {Function} successCallback
+     * @param {Function} errorCallback
+     */
+    postJsonToBasket: (email, params, url, successCallback, errorCallback) => {
+        const xhr = new XMLHttpRequest();
+
+        // Emails used in automation for page-level integration tests
+        // should avoid hitting basket directly.
+        if (email === 'success@example.com') {
+            successCallback();
+            return;
+        } else if (email === 'failure@example.com') {
+            errorCallback();
+            return;
+        }
+
+        xhr.onload = function (e) {
+            let response = e.target.response || e.target.responseText;
+
+            if (typeof response !== 'object') {
+                response = JSON.parse(response);
+            }
+
+            if (response) {
+                if (
+                    response.status === 'ok' &&
+                    e.target.status >= 200 &&
+                    e.target.status < 300
+                ) {
+                    successCallback();
+                } else if (response.status === 'error' && response.desc) {
+                    errorCallback(response.desc);
+                } else {
+                    errorCallback();
+                }
+            } else {
+                errorCallback();
+            }
+        };
+
+        xhr.onerror = errorCallback;
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-type', 'application/json');
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.timeout = 5000;
+        xhr.ontimeout = errorCallback;
+        xhr.responseType = 'json';
+        xhr.send(JSON.stringify(params));
+    },
+
+    /**
      * Removes Basket UUID token from page URL path and updates browser history.
      * Note: this function will remove *everything* from the path *after* the token.
      * Only query parameters will be preserved.
@@ -297,6 +352,22 @@ const FormUtils = {
             }
         }
         return q.join('&');
+    },
+
+    /**
+     * Helper function to serialize form data for XHR request.
+     * @param {HTMLElement} form
+     * @returns {Object} JSON object
+     */
+    serializeToJson: (form) => {
+        const json = {};
+        for (let i = 0; i < form.elements.length; i++) {
+            const elem = form.elements[i];
+            if (elem.name) {
+                json[elem.name] = elem.value;
+            }
+        }
+        return json;
     },
 
     /**

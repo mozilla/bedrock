@@ -8,7 +8,7 @@ import RecoveryEmailForm from '../../../../media/js/newsletter/recovery.es6';
 
 describe('RecoveryEmailForm', function () {
     beforeEach(async function () {
-        const form = `<form method="post" action="https://basket.mozilla.org/news/recover/" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
+        const form = `<form method="post" action="https://basket.mozilla.org/api/v1/users/recover/" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
         <header class="mzp-c-newsletter-header">
           <p>Enter your email address and we’ll send you a link to your email preference center.</p>
         </header>
