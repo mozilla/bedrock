@@ -473,6 +473,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-134.scss"
+      ],
+      "name": "firefox_whatsnew_134"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-133-newsletter.scss"
       ],
       "name": "firefox_whatsnew_133_newsletter"
@@ -1588,6 +1594,12 @@
         "js/firefox/whatsnew/whatsnew-133-experiment-donation.es6.js"
       ],
       "name": "firefox_whatsnew_133_experiment_donation"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-134-experiment.es6.js"
+      ],
+      "name": "firefox_whatsnew_134_experiment"
     },
     {
       "files": [
