@@ -30,6 +30,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     background-color: $color-white;
     border-bottom: $border-width solid $m24-color-light-mid-gray;
     display: flex;
+    line-height: var(--body-line-height);
     width: 100%;
 
     @media #{$mq-md} {
