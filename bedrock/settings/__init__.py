@@ -111,7 +111,7 @@ CONTENT_SECURITY_POLICY = {
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
         "frame-ancestors": [csp.constants.NONE],
-        "upgrade-insecure-requests": True,
+        "upgrade-insecure-requests": False if DEBUG else True,
         "report-uri": csp_report_uri,
     },
 }
