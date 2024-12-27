@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 
 #firefox-app-store-banner {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    overflow: hidden;
     position: relative;
     z-index: 1000; // banner shares same z-index as sticky nav.
 
