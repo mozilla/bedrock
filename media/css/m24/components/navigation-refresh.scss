@@ -115,8 +115,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     padding: 0;
     position: relative;
     text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-thickness: 1px;
+    text-underline-offset: 0.1em;
 
     &.mzp-is-active {
         background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
@@ -357,7 +356,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     text-decoration: none;
     width: 100%;
 
-    // extra specificity to override link colors on some Firefox pages
     &:link,
     &:visited {
         color: $color-black;
@@ -451,55 +449,30 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         align-items: center;
         display: flex;
         padding: 8px 0;
-        text-decoration: none;
         width: 100%;
 
         &:link,
         &:visited {
             text-decoration: none;
+
+            svg path {
+                fill: $color-black;
+            }
         }
 
-        .m24-c-menu-item-title {
-            border: none;
-            position: relative;
+        &:link:hover,
+        &:visited:hover {
+            .m24-c-menu-item-title {
+                color: $m24-color-dark-green;
+                text-decoration: underline;
+                text-decoration-thickness: 1px;
+                text-underline-offset: 0.1em;
+            }
+
+            svg path {
+                fill: $m24-color-dark-green;
+            }
         }
-    }
-}
-
-.m24-c-menu-item .m24-c-menu-item-link
-.m24-c-menu-item .m24-c-menu-item-link:link,
-.m24-c-menu-item .m24-c-menu-item-link:visited {
-    text-decoration: none;
-
-    .m24-c-menu-item-title {
-        border: none;
-    }
-
-    svg path {
-        fill: $color-black;
-    }
-}
-
-.m24-c-menu-item .m24-c-menu-item-link:hover,
-.m24-c-menu-item .m24-c-menu-item-link:visited:hover {
-    .m24-c-menu-item-title {
-        color: $m24-color-dark-green;
-        border: none;
-
-        &::after {
-            background: $m24-color-dark-green;
-            bottom: 1px;
-            content: "";
-            display: block;
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 100%;
-        }
-    }
-
-    svg path {
-        fill: $m24-color-dark-green;
     }
 }
 
@@ -553,24 +526,17 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-menu-panel .m24-c-menu-category-link {
-    border: none;
     display: flex;
     font-family: $primary-font;
     font-size: $text-body-md;
     justify-content: flex-end;
     margin: $spacer-lg $spacer-lg 0;
-    padding: 0;
 }
 
-.m24-c-menu-panel .m24-c-menu-category-link a,
-.m24-c-menu-panel .m24-c-menu-category-link a:visited,
-.m24-c-menu-panel .m24-c-menu-category-link a:link {
-    border: none;
+.m24-c-menu-panel .m24-c-menu-category-link a:link,
+.m24-c-menu-panel .m24-c-menu-category-link a:visited {
     color: $color-black;
     display: flex;
-    font-family: $primary-font;
-    font-weight: 600;
-    position: relative;
     text-decoration: none;
     width: fit-content;
 
@@ -614,31 +580,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     }
 }
 
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link,
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:link,
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:active,
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited {
-    .m24-c-menu-item-title {
-        border: none;
-        font-weight: 600;
-        position: relative;
-        text-decoration: none;
-    }
-}
-
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:hover,
-.mzp-has-icon.m24-c-menu-item .m24-c-menu-item-link:visited:hover {
-    .m24-c-menu-item-title {
-        border: none;
-        text-decoration: none;
-
-        &::after {
-            background: $m24-color-dark-green;
-        }
-    }
-}
-
-// Menu panel close button shown on desktop sized view ports.
 .m24-c-menu-button-close {
     @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
     @include image-replaced;
