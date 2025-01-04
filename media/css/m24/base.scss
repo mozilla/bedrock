@@ -55,7 +55,7 @@ a:link:focus {
 
 *:focus,
 *:focus-visible {
-    outline-offset: 6px;
+    outline-offset: $spacer-2xs;
 }
 
 /* ------------------------------------------------------------------------------- */
