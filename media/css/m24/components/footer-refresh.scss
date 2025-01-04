@@ -305,16 +305,20 @@ $max-footer-content-width: $content-max;
     }
 
     .mzp-c-language-switcher-link {
-        @include visually-hidden;
+        color: $m24-color-black;
+        position: absolute;
+        top: -1.5em;
+
+        .js & {
+            @include visually-hidden;
+        }
 
         &:focus,
         &:focus-visible {
             clip: auto;
-            color: $m24-color-black;
             height: auto;
             overflow: visible;
             text-indent: 0;
-            top: -1.5em;
             width: auto;
         }
     }
