@@ -43,19 +43,13 @@ strong {
     font-weight: 900;
 }
 
-a:link {
+a:link,
+a:link:hover,
+a:link:focus {
     color: $m24-color-black;
 
-    &:hover,
-    &:focus {
+    &:visited {
         color: $m24-color-black;
-    }
-
-    &:visited{
-        &:hover,
-        &:focus {
-            color: $m24-color-black;
-        }
     }
 }
 
