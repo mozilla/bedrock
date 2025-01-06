@@ -188,6 +188,17 @@ def get_contentful_urls():
     return urls
 
 
+def _path_for_cms_url(page_url, lang_code):
+    # If possible, drop the leading slash + lang code from the URL
+    # so that we get a locale-agnostic path that we can include in the
+    # sitemap.
+
+    _path = page_url
+    if _path.startswith(f"/{lang_code}/"):  # be sure we only clip out the first locale (ie, /fr/ not the first part of /france)
+        _path = _path.replace(f"/{lang_code}", "", 1)  # we want to leave a leading slash before the rest of the path
+    return _path
+
+
 def get_wagtail_urls():
     urls = defaultdict(list)
 
@@ -210,7 +221,7 @@ def get_wagtail_urls():
         _url = cms_page.get_url()
         if _url:
             lang_code = cms_page.locale.language_code
-            _path = _url.lstrip("/").replace(lang_code, "")
+            _path = _path_for_cms_url(page_url=_url, lang_code=lang_code)
             urls[_path].append(lang_code)
 
     return urls
