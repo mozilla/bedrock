@@ -15,6 +15,7 @@ from bedrock.contentful.constants import (
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.sitemaps.utils import (
     _get_vrc_urls,
+    _path_for_cms_url,
     get_contentful_urls,
     get_wagtail_urls,
     update_sitemaps,
@@ -204,6 +205,67 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
         "/test-page/": ["en-US", "fr", "pt-BR"],
         "/test-page/child-page/": ["fr"],
     }
+
+
+@pytest.mark.parametrize(
+    "page_url, lang_code, expected",
+    (
+        (
+            # expected behaviour: strip the locale and leading slash
+            "/fr/some/path/here/fr/",
+            "fr",
+            "/some/path/here/fr/",
+        ),
+        (
+            # only strip the locale and leading slash if it's for the given lang code
+            "/some/path/here/fr/",
+            "fr",
+            "/some/path/here/fr/",
+        ),
+        (
+            # confirm region-based locales also work
+            "/en-US/some/path/here/en-US/",
+            "en-US",
+            "/some/path/here/en-US/",
+        ),
+        (
+            # show we definitely only replace one, the first
+            # 6 in input; 5 output
+            "/de/de/de/de/de/de/",
+            "de",
+            "/de/de/de/de/de/",
+        ),
+        (
+            # root path for a locale
+            "/it/",
+            "it",
+            "/",
+        ),
+        (
+            # unrealistic, but proves the point that we only replace the locale code if the given lang code matches
+            "/fr/some/path/here/fr/",
+            "de",
+            "/fr/some/path/here/fr/",
+        ),
+    ),
+)
+def test_path_for_cms_url(page_url, lang_code, expected):
+    # General test for Issue #15805
+    assert _path_for_cms_url(page_url, lang_code) == expected
+
+
+def test_get_wagtail_urls__ensure_locale_codes_not_stripped(dummy_wagtail_pages):
+    # Focused test for Issue #15805
+    fr_test_child_page = Page.objects.get(slug="child-page", locale__language_code="fr")
+    fr_test_child_page.slug = f"fr-{fr_test_child_page.slug}fr"
+    fr_test_child_page.save()
+
+    fr_test_child_page.refresh_from_db()
+    assert fr_test_child_page.slug == "fr-child-pagefr"
+    assert fr_test_child_page.url == "/fr/test-page/fr-child-pagefr/"
+
+    urls = get_wagtail_urls()
+    assert urls["/test-page/fr-child-pagefr/"] == ["fr"]
 
 
 @patch("bedrock.sitemaps.utils.get_static_urls")
