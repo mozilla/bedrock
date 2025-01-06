@@ -30,6 +30,7 @@ jobs:
   build_and_publish_public_images:
     name: Build public Bedrock images and push to Docker hub
     runs-on: ubuntu-latest
+    if: github.repository == ${{ env.APPLICATION_REPOSITORY }}
     outputs:
       long_sha: ${{ steps.long-sha.outputs.LONG_SHA }}
 
