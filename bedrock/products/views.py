@@ -33,10 +33,7 @@ def vpn_available(request):
     On mobile, users can subscribe via the Google Play Store or the Apple App Store.
     """
     country = get_country_from_request(request)
-    country_list = settings.VPN_COUNTRY_CODES
-
-    if switch("vpn-wave-vii"):
-        country_list = settings.VPN_COUNTRY_CODES + settings.VPN_MOBILE_SUB_COUNTRY_CODES
+    country_list = settings.VPN_COUNTRY_CODES + settings.VPN_MOBILE_SUB_COUNTRY_CODES
 
     return country in country_list
 
@@ -51,9 +48,6 @@ def vpn_available_mobile_sub_only(request):
     country = get_country_from_request(request)
     country_list = settings.VPN_MOBILE_SUB_COUNTRY_CODES
 
-    if not switch("vpn-wave-vii"):
-        return False
-
     return country in country_list
 
 
@@ -65,9 +59,6 @@ def vpn_available_android_sub_only(request):
     """
     country = get_country_from_request(request)
     country_list = settings.VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES
-
-    if not switch("vpn-wave-vii"):
-        return False
 
     return country in country_list
 
@@ -107,7 +98,7 @@ def vpn_landing_page(request):
         "vpn_available": vpn_available_in_country,
         "mobile_sub_only": mobile_sub_only,
         "android_sub_only": android_sub_only,
-        "available_countries": settings.VPN_AVAILABLE_COUNTRIES_WAVE_VII if switch("vpn-wave-vii") else settings.VPN_AVAILABLE_COUNTRIES,
+        "available_countries": settings.VPN_AVAILABLE_COUNTRIES,
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
