@@ -484,22 +484,6 @@ class WhatsnewView(L10nTemplateView):
             "firefox/whatsnew/whatsnew",
         ],
         "firefox/whatsnew/index-thanks.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx125-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx125-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126beta-de.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126beta-en-US.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126beta-en-CA.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126beta-en-GB.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126beta-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx126-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx127-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx127-eu.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx128-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx128-eu-addons.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx128-eu-donate.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx129-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx129-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
@@ -630,20 +614,6 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx135beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
-            elif version.startswith("126.") or version.startswith("127."):
-                if locale.startswith("en-"):
-                    if locale == "en-GB" or country == "GB":
-                        template = "firefox/whatsnew/whatsnew-fx126beta-en-GB.html"
-                    elif locale == "en-CA" or country == "CA":
-                        template = "firefox/whatsnew/whatsnew-fx126beta-en-CA.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx126beta-en-US.html"
-                elif locale == "de":
-                    template = "firefox/whatsnew/whatsnew-fx126beta-de.html"
-                elif locale == "fr":
-                    template = "firefox/whatsnew/whatsnew-fx126beta-fr.html"
-                else:
-                    template = "firefox/whatsnew/index.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("134."):
@@ -710,67 +680,6 @@ class WhatsnewView(L10nTemplateView):
                         template = "firefox/whatsnew/whatsnew-fx130.html"
                 else:
                     template = "firefox/whatsnew/whatsnew-fx130.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("129."):
-            if locale in ["en-US", "en-CA"]:
-                template = "firefox/whatsnew/whatsnew-fx129-na.html"
-            elif locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx129-eu.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("128."):
-            if locale in ["de", "fr", "en-GB"]:
-                if variant == "2" or variant == "3":
-                    template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
-            elif locale in ["es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
-            elif locale.startswith("en-"):
-                if country == "GB":
-                    if variant == "2" or variant == "3":
-                        template = "firefox/whatsnew/whatsnew-fx128-eu-donate.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx128-eu-addons.html"
-                else:
-                    if nimbus_branch == "experiment-wnp-128-na-pip":
-                        if nimbus_variant == "v1":
-                            template = "firefox/whatsnew/index-thanks.html"
-                        else:
-                            template = "firefox/whatsnew/whatsnew-fx128-na.html"
-                    else:
-                        template = "firefox/whatsnew/whatsnew-fx128-na.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("127."):
-            if locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx127-eu.html"
-            elif locale in ["en-US", "en-CA"]:
-                if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx127-eu.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx127-na.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("126."):
-            if locale in ["de", "fr", "en-GB", "es-ES", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx126-eu.html"
-            elif locale in ["en-US", "en-CA"]:
-                if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx126-eu.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx126-na.html"
-            else:
-                template = "firefox/whatsnew/index.html"
-        elif version.startswith("125."):
-            if locale in ["de", "en-GB", "es-ES", "fr", "it", "pl"]:
-                template = "firefox/whatsnew/whatsnew-fx125-eu.html"
-            elif locale in ["en-US", "en-CA"]:
-                if country == "GB":
-                    template = "firefox/whatsnew/whatsnew-fx125-eu.html"
-                else:
-                    template = "firefox/whatsnew/whatsnew-fx125-na.html"
             else:
                 template = "firefox/whatsnew/index.html"
         else:
