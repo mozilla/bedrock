@@ -30,11 +30,7 @@
 }
 
 .m24-c-flag-media {
-    --delay: 1s; // leave some space to read before introducing movement
-    --wave-h: 8px;
-
     svg {
-        transform: translateZ(0);
         width: 100px;
         height: auto;
         fill: $m24-color-green; // zilla green
@@ -206,12 +202,14 @@ just not via explicit WAI-ARIA state management.
         display: none;
     }
 
-    .flag-one,
-    .flag-two,
-    .flag-three,
-    .flag-four,
-    .flag-five {
-        animation-play-state: paused;
+    // only show the static path
+    .m24-c-flag-media-animation-paused{
+        opacity: 1;
+    }
+
+    // reset animation
+    .m24-c-flag-media-animation-frame {
+        animation: none;
     }
 }
 
@@ -220,94 +218,32 @@ just not via explicit WAI-ARIA state management.
         display: none;
     }
 
-    .flag-one,
-    .flag-two,
-    .flag-three,
-    .flag-four,
-    .flag-five {
-        animation-play-state: running;
+    // don't show the static path
+    .m24-c-flag-media-animation-paused {
+        opacity: 0;
     }
 }
 
-/* Common Element Styles */
-.flag,
-.flag-one,
-.flag-two,
-.flag-three,
-.flag-four,
-.flag-five,
-.pole,
-.head,
-.pole-one,
-.pole-two,
-.eye,
-.mouth {
-  shape-rendering: crispEdges;
-  -webkit-font-smoothing: none;
-  -moz-osx-font-smoothing: none;
+.m24-c-flag-media-animation-frame {
+  --base-delay: 0.1s;
+  animation: 1.2s linear infinite wave;
+  opacity: 0;
 }
 
-/* Wave Animations Base */
-.flag-one,
-.flag-two,
-.flag-three,
-.flag-four,
-.flag-five {
-  animation: 1s var(--delay) $bezier infinite;
-  will-change: transform;
-  filter: url("#dilate");
+
+// stagger frame visibility
+@for $i from 1 through 12 {
+    .m24-c-flag-media-animation svg:nth-of-type(#{$i}) {
+        animation-delay: calc(var(--base-delay) * #{$i - 1});
+    }
 }
 
-/* Flag Animation Names */
-.flag-one { animation-name: flag-one; }
-.flag-two { animation-name: flag-two; }
-.flag-three { animation-name: flag-three; }
-.flag-four { animation-name: flag-four; }
-.flag-five { animation-name: flag-five; }
+@keyframes wave {
+  0%, 8.333% {
+    opacity: 1;
+  }
 
-
-/* Flag Movement Keyframes */
-@keyframes flag-one {
-  0%, 15% {
-    transform: translate3d(0, 0, 0);
-    animation-timing-function: ease-in;
-}
-  16%, 40% { transform: translate3d(0, var(--wave-h), 0); }
-  41%, 65% { transform: translate3d(0, 0, 0); }
-  66%, 91% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-  92%, 100% { transform: translate3d(0, 0, 0); }
-}
-
-@keyframes flag-two {
-  0%, 24% { transform: translate3d(0, 0, 0); }
-  25%, 49% { transform: translate3d(0, var(--wave-h), 0); }
-  50%, 74% { transform: translate3d(0, 0, 0); }
-  75%, 99% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-@keyframes flag-three {
-  0%, 7% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-  8%, 32% { transform: translate3d(0, 0, 0); }
-  33%, 57% { transform: translate3d(0, var(--wave-h), 0); }
-  58%, 82% { transform: translate3d(0, 0, 0); }
-  83%, 100% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-}
-
-@keyframes flag-four {
-  0%, 15% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-  16%, 49% { transform: translate3d(0, 0, 0); }
-  50%, 65% { transform: translate3d(0, var(--wave-h), 0); }
-  66%, 100% { transform: translate3d(0, 0, 0); }
-}
-
-@keyframes flag-five {
-  0%, 24% { transform: translate3d(0, calc(-1 * var(--wave-h)), 0); }
-  25%, 49% { transform: translate3d(0, 0, 0); }
-  50%, 74% { transform: translate3d(0, var(--wave-h), 0); }
-
-  75%, 100% {
-    transform: translate3d(0, 0, 0);
-    animation-timing-function: ease-out;
+  8.4%, 100% {
+    opacity: 0;
   }
 }
