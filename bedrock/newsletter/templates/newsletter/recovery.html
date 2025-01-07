@@ -24,6 +24,14 @@
     {% endif %}
 
   <div class="mzp-l-content mzp-t-content-sm">
+
+    {# noscript warning to enable JavaScript #}
+    <noscript>
+      <div class="mzp-c-notification-bar mzp-t-error">
+        <p><strong>{{ ftl('ui-please-turn-on-javascript') }}</strong></p>
+      </div>
+    </noscript>
+
     <h1 class="mzp-u-title-sm">{{ ftl('newsletters-manage-your-newsletter') }}</h1>
 
     <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
