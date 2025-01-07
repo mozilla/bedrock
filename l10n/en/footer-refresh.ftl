@@ -41,5 +41,3 @@ footer-refresh-community-participation-guidelines = Community Participation Guid
 footer-refresh-about-this-site = About this site
 footer-refresh-all-languages = All languages
 footer-refresh-language = Language
-footer-refresh-primary-nav-aria-label = Footer primary
-footer-refresh-secondary-nav-aria-label = Footer secondary

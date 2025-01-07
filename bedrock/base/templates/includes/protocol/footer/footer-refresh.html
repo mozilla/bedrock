@@ -9,7 +9,7 @@
     {% include 'includes/protocol/footer/footer-newsletter.html' %}
   {% endif %}
   <div class="moz24-footer-content">
-    <nav class="moz24-footer-primary" aria-label="{{ ftl('footer-refresh-primary-nav-aria-label') }}">
+    <div class="moz24-footer-primary">
       <div class="moz24-footer-sections-wrapper">
         <div class="moz24-footer-section-wrapper moz24-links-section">
           <section>
@@ -88,7 +88,7 @@
           </section>
         </div>
       </div>
-    </nav>
+    </div>
     <div class="moz24-footer-actions">
       <a class="moz24-footer-donate" href="{{ donate_url(location='moco-donate-footer') }}" data-link-type="button" data-link-text="Donate">
         <span class="mzp-c-button-icon-start">
@@ -102,7 +102,7 @@
         {% include 'includes/protocol/lang-switcher-refresh.html' %}
        </div>
     </div>
-    <nav class="moz24-footer-secondary" aria-label="{{ ftl('footer-refresh-secondary-nav-aria-label') }}">
+    <div class="moz24-footer-secondary">
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
@@ -123,7 +123,7 @@
           {% endif %}
         </ul>
       </div>
-    </nav>
+    </div>
     <img loading="lazy" class="moz24-footer-logo-image-bottom" src="{{ static('img/logos/m24/wordmark-white.svg') }}" alt="" width="1376" height="285">
   </div>
 </footer>
