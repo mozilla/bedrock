@@ -7,16 +7,20 @@
 import re
 import subprocess
 
+# Allow `print` statements.
+# ruff: noqa: T201
+
 
 def extract_pinned(requirements_file):
     """Extract pinned dependencies from a requirements file."""
     pinned_deps = {}
     with open(requirements_file) as file:
         for line in file:
+            line = line.strip().lower()
             # Skip comments and empty lines
-            if line.strip() and not line.startswith("#"):
+            if line and not line.startswith("#"):
                 # Match lines with version constraints (pinned dependencies) using non-capturing groups for the operator
-                pinned_match = re.match(r"^(\S+)(?:==|>=)(\S+)", line.strip())
+                pinned_match = re.match(r"^(\S+)(?:==|>=)(\S+)", line)
                 if pinned_match:
                     pkg_name = pinned_match.group(1)
                     version = pinned_match.group(2)
@@ -25,7 +29,7 @@ def extract_pinned(requirements_file):
 
 
 def get_outdated_packages():
-    """Get a list of outdated packages and their latest versions using `uv pip list`."""
+    """Get a list of outdated packages and their latest versions using `uv`."""
     result = subprocess.run(["uv", "pip", "list", "--no-cache", "--outdated"], capture_output=True, text=True)
     outdated = {}
     raw = result.stdout.splitlines()
@@ -33,7 +37,7 @@ def get_outdated_packages():
         if line:
             parts = line.split()
             if len(parts) >= 3:
-                package_name = parts[0]
+                package_name = parts[0].lower()
                 latest_version = parts[2]
                 outdated[package_name] = latest_version
     return raw, outdated
@@ -62,7 +66,7 @@ def check_outdated_for_requirements(requirements_files):
 
 
 def main():
-    requirements_files = [f"requirements/{f}" for f in ("prod.in", "dev.in", "docs.in")]
+    requirements_files = [f"requirements/{f}" for f in ("prod.in", "dev.in")]
     check_outdated_for_requirements(requirements_files)
 
 
