@@ -32,22 +32,10 @@ def test_vpn_available(country_code):
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("country_code", settings.VPN_MOBILE_SUB_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=False)
-@override_settings(DEV=False)
-def test_vpn_available_switch_disabled(country_code):
-    """Should return False for VPN_MOBILE_SUB_COUNTRY_CODES country codes when switch is disabled"""
-    req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
-    req.locale = "en-US"
-    assert views.vpn_available(req) is False
-
-
-@pytest.mark.django_db
 @pytest.mark.parametrize("country_code", settings.VPN_COUNTRY_CODES + settings.VPN_MOBILE_SUB_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=True)
 @override_settings(DEV=False)
 def test_vpn_available_switch_active(country_code):
-    """Should return True for VPN_COUNTRY_CODES plus VPN_MOBILE_SUB_COUNTRY_CODES countries when switch is active"""
+    """Should return True for VPN_COUNTRY_CODES plus VPN_MOBILE_SUB_COUNTRY_CODES countries"""
     req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
     req.locale = "en-US"
     assert views.vpn_available(req) is True
@@ -73,46 +61,22 @@ def test_vpn_blocked_download_country_codes(country_code):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize("country_code", settings.VPN_MOBILE_SUB_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=True)
 @override_settings(DEV=False)
 def test_vpn_available_mobile_sub_only_switch_active(country_code):
-    """Should return True for VPN_MOBILE_SUB_COUNTRY_CODES country codes when switch is active"""
+    """Should return True for VPN_MOBILE_SUB_COUNTRY_CODES country codes"""
     req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
     req.locale = "en-US"
     assert views.vpn_available_mobile_sub_only(req) is True
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("country_code", settings.VPN_MOBILE_SUB_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=False)
-@override_settings(DEV=False)
-def test_vpn_available_mobile_sub_only_switch_disabled(country_code):
-    """Should return False for VPN_MOBILE_SUB_COUNTRY_CODES country codes when switch is disabled"""
-    req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
-    req.locale = "en-US"
-    assert views.vpn_available_mobile_sub_only(req) is False
-
-
-@pytest.mark.django_db
 @pytest.mark.parametrize("country_code", settings.VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=True)
 @override_settings(DEV=False)
 def test_vpn_available_android_sub_only_switch_active(country_code):
-    """Should return True for VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES country codes when switch is active"""
+    """Should return True for VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES country codes"""
     req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
     req.locale = "en-US"
     assert views.vpn_available_android_sub_only(req) is True
-
-
-@pytest.mark.django_db
-@pytest.mark.parametrize("country_code", settings.VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES)
-@override_switch("VPN_WAVE_VII", active=False)
-@override_settings(DEV=False)
-def test_vpn_available_android_sub_only_switch_disabled(country_code):
-    """Should return False for VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES country codes when switch is disabled"""
-    req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY=country_code)
-    req.locale = "en-US"
-    assert views.vpn_available_android_sub_only(req) is False
 
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
