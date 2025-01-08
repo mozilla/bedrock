@@ -393,7 +393,7 @@ $max-footer-content-width: $content-max;
 
     li {
         font-family: $primary-font;
-        padding: 0 24px 0 0;
+        padding-inline-end: $spacer-md;
         margin-bottom: $spacer-xs;
 
         @media #{$mq-md} {
