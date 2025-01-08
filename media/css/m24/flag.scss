@@ -39,10 +39,10 @@
 
 .m24-c-flag-button {
     $font-size: 0.75;
-    background-color: $m24-color-dark-mid-gray;
-    border-color: transparent; // High Contrast Mode support
+    background-color: $m24-color-alt-white;
+    border: 1px solid $m24-color-light-gray;
     box-shadow: none;
-    color: $m24-color-white;
+    color: $m24-color-black;
     font-family: $primary-font;
     font-size: calc(#{$font-size} * 1rem);
     font-weight: 600;
@@ -58,18 +58,21 @@
     }
 
     &:hover,
-    &:focus {
+    &:focus-visible {
         background-color: $m24-color-black; // inverts to white in dark theme section
+        color: $m24-color-white; // inverts to white in dark theme section
     }
 
     &:active {
         background-color: $m24-color-dark-mid-gray;
+        color: $m24-color-white;
     }
 
     // High Contrast Mode Support: https://bugzilla.mozilla.org/show_bug.cgi?id=1936865
     @media (forced-colors) {
         background-color: ButtonFace;
         color: ButtonText;
+        border-color: transparent;
 
         &:focus {
             outline-color: CanvasText;
@@ -84,11 +87,9 @@
     gap: 8px;
 }
 
-.m24-c-flag-button-pause {
-    .m24-c-flag-button-text {
-        position: relative;
-        top: 0.0175rem; // flex alignment isn't totally centered, so we're manually adjusting
-    }
+.m24-c-flag-button-text {
+    position: relative;
+    top: 0.0175rem; // flex alignment isn't totally centered, so we're manually adjusting
 }
 
 @media screen and (max-width: #{$screen-lg - 1}) {

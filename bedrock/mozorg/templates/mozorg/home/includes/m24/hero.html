@@ -7,8 +7,12 @@
 <div class="m24-t-dark m24-t-alt" data-m24-hero-animation="{{ switch('m24-hero-animation') | lower }}">
   <section class="m24-c-flag" data-animation-running="false">
     <button class="m24-c-flag-button js-animation-button" aria-live="assertive">
-      <span class="m24-c-flag-button-pause"><img src="{{ static('img/m24/icon-pause.svg') }}" alt=""> <span class="m24-c-flag-button-text">{{ ftl('ui-pause-animation') }}</span></span>
-      <span class="m24-c-flag-button-play"><img src="{{ static('img/m24/icon-play.svg') }}" alt=""> <span class="m24-c-flag-button-text">{{ ftl('ui-play-animation') }}</span></span>
+      <span class="m24-c-flag-button-pause">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M4 1v12M10 1v12" stroke="currentColor" stroke-width="2"/></svg>
+        <span class="m24-c-flag-button-text">{{ ftl('ui-pause-animation') }}</span></span>
+      <span class="m24-c-flag-button-play">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#a)"><path d="M12 7 4 0v6.121h1.69V3.776L9.374 7 5.69 10.224V7.879H4V14l8-7Z" /></g><defs><clipPath id="a"><path d="M0 0h14v14H0z"/></clipPath></defs></svg>
+        <span class="m24-c-flag-button-text">{{ ftl('ui-play-animation') }}</span></span>
     </button>
     <div class="m24-c-flag-text">
       <h1 class="m24-c-flag-title">{{ ftl('m24-home-welcome-to-mozilla') }}</h1>
