@@ -1,0 +1,41 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+
+.c-hero {
+    h2 {
+        margin-bottom: 16px;
+    }
+
+    .c-subhead {
+        font-size: 32px;
+        margin-bottom: 40px; // should be 48, make it a big smaller because the line height makes 48 look too big
+        line-height: 1.1;
+    }
+
+    ul {
+        margin-bottom: 48px;
+    }
+}
+
+.c-manage {
+    background-color: $color-pink-05;
+    text-align: center;
+}
+
+.c-more {
+    // .mzp-c-picto {
+    //     background-color: $color-light-gray-10;
+    //     padding: 24px;
+    // }
+}
+
+.c-protect {
+    background-color: $color-pink-05;
+}

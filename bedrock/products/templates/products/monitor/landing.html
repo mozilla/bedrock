@@ -1,0 +1,205 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import picto, split with context %}
+
+{% extends "products/monitor/base.html" %}
+
+{% block page_title %}Title TKTK {% endblock %}
+
+{% block page_desc %}TKTK{% endblock %}
+
+{% block body_id %}mozilla-monitor-landing{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-monitor-product-page' %}
+{% set _utm_campaign = 'monitor-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto')}}
+  {{ css_bundle('monitor-landing')}}
+{% endblock %}
+
+
+{% block content %}
+<main>
+  {% call split(
+    block_class='c-hero mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    image=resp_img(
+      url='img/products/vpn/landing-refresh/vpn-hero-400.png',
+      srcset={
+        'img/products/vpn/landing-refresh/vpn-hero-400.png': '400w',
+        'img/products/vpn/landing-refresh/vpn-hero-600.png': '600w',
+        'img/products/vpn/landing-refresh/vpn-hero-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '396',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+
+  <h2>Find and remove your personal information from the internet</h2>
+  <p class="c-subhead">Protect your privacy with Mozilla Monitor</p>
+  <ul class="mzp-u-list-styled">
+    <li>Automated Data Removal: Take back your personal information and stay in control</li>
+    <li>Breach Alerts: Get notified instantly if your data is exposed.</li>
+  </ul>
+  <p><a href="#" class="mzp-c-button">Scan for Exposures</a></p>
+  {% endcall %}
+
+<div class="c-manage">
+  <section class="mzp-l-content mzp-t-content-md">
+    <h2 class="mzp-c-section-heading">Managing Your Digital Footprint in a Data-Driven World</h2>
+    <p>Uncover the ways your personal information is tracked and shared, and take steps to protect your identity and digital footprint.</p>
+  </section>
+</div>
+
+
+<section class="c-more mzp-l-content mzp-t-content-xl">
+  <ul class="mzp-l-columns mzp-t-columns-three">
+    {% call picto(
+      base_el='li',
+      title='What Is a Data Broker?',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        A data broker collects and sells, licenses, or otherwise makes available personal information about consumers they don’t directly interact with.
+      </p>
+    {% endcall %}
+
+    {% call picto(
+      base_el='li',
+      title='Digital Footprint: What It Is and How To Manage It',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        Your digital footprint is the trail of data you leave behind online—learn what a digital footprint contains and how to manage it in our guide.</p>
+      </p>
+    {% endcall %}
+    {% call picto(
+      base_el='li',
+      title='Social Security Number Data Breaches Affect Millions',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        Social Security number data breaches in recent years include National Public Data, T Mobile, Equifax, Anthem, and the U.S. Office of Personnel Management.
+      </p>
+    {% endcall %}
+    {% call picto(
+      base_el='li',
+      title='Equifax Data Breach: A Look at How It Happened',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        Nearly 148 million Americans had their information stolen in the Equifax data breach of 2017, which germinated with a software vulnerability.
+      </p>
+    {% endcall %}
+    {% call picto(
+      base_el='li',
+      title='How To Remove Your Information From the Internet',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        You can remove your information from the internet by deleting a search result, opting out of data broker sites, or using a service like Monitor.
+      </p>
+    {% endcall %}
+    {% call picto(
+      base_el='li',
+      title='History of T-Mobile Data Breaches & How To Protect Yourself From Identity Theft',
+      image=resp_img(
+        url='img/tktk.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'loading': 'lazy'
+        }
+      ),
+      body=True,
+    ) %}
+      <p>
+        Learn about T-Mobile’s data breach history and how you can safeguard your personal information to protect against identity theft.
+      </p>
+    {% endcall %}
+</section>
+
+<section class="c-protect">
+  {% call split(
+    block_class=' mzp-l-split-center-on-sm-md mzp-t-content-xl',
+    image=resp_img(
+      url='img/products/vpn/landing-refresh/vpn-hero-400.png',
+      srcset={
+        'img/products/vpn/landing-refresh/vpn-hero-400.png': '400w',
+        'img/products/vpn/landing-refresh/vpn-hero-600.png': '600w',
+        'img/products/vpn/landing-refresh/vpn-hero-800.png': '800w',
+      },
+      sizes={
+        '(min-width: 1312px)': '400px',
+        '(min-width: 768px)': '50vw',
+        'default': '100vw'
+      },
+      optional_attributes={
+        'height': '396',
+        'width': '400',
+        'class': 'mzp-c-split-media-asset',
+      }
+    ),
+    media_class='mzp-l-split-h-center',
+    media_after=True
+  ) %}
+    <h2>Protect your digital footprint</h2>
+    <p>Take back control of your data</p>
+    <p><a href="#" class="mzp-c-button">Scan for Exposures</a></p>
+  {% endcall %}
+</section>
+
+
+</main>
+{% endblock %}
+
