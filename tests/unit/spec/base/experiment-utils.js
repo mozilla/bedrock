@@ -61,5 +61,14 @@ describe('experiment-utils.es6.js', function () {
                 isApprovedToRun('?utm_source=test&utm_campaign=test')
             ).toBeFalse();
         });
+
+        it('should return false if the user agent is Googlebot', function () {
+            window.Mozilla.gpcEnabled = sinon.stub().returns(false);
+            window.Mozilla.dntEnabled = sinon.stub().returns(false);
+            const ua =
+                'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z Safari/537.36';
+
+            expect(isApprovedToRun(null, ua)).toBeFalse();
+        });
     });
 });
