@@ -66,7 +66,7 @@ def check_outdated_for_requirements(requirements_files):
 
 
 def main():
-    requirements_files = [f"requirements/{f}" for f in ("prod.in", "dev.in")]
+    requirements_files = [f"requirements/{f}" for f in ("prod.in", "dev.in", "docs.in")]
     check_outdated_for_requirements(requirements_files)
 
 
