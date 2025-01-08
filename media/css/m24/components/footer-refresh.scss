@@ -32,7 +32,7 @@ $max-footer-content-width: $content-max;
 
 // primary nav
 .moz24-footer-primary {
-    margin-bottom: $spacer-lg;
+    margin: 32px 0;
 }
 
 .moz24-footer-sections-wrapper {
@@ -76,7 +76,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-refresh-social-wrapper {
     display: flex;
     align-items: center;
-    margin-bottom: $spacer-lg;
+    margin-bottom: 32px;
 
     @media #{$mq-md} {
         flex-direction: column;
@@ -106,6 +106,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-links-social {
     margin: 0 0 0 $spacer-lg;
     display: flex;
+    background-color: #161616;
 
     @media #{$mq-md} {
         margin: 0;
@@ -173,6 +174,7 @@ $max-footer-content-width: $content-max;
     font-size: $text-body-sm;
     font-family: $primary-font;
     font-weight: 600;
+    @include bidi(((margin-right, 8px, 0), (margin-left, 0, 8px)));
 }
 
 .moz24-footer-primary-list {
