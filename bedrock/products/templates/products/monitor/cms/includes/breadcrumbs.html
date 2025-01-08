@@ -1,0 +1,22 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<nav class="mzp-c-breadcrumb">
+  <ol class="mzp-c-breadcrumb-list">
+    <li class="mzp-c-breadcrumb-item">
+      <a href="{{ url('mozorg.home') }}">Mozilla</a>
+    </li>
+    <li class="mzp-c-breadcrumb-item">
+      <a href="{{ url('products.landing') }}">Products</a>
+    </li>
+    <li class="mzp-c-breadcrumb-item">
+      <a href="{{ url('products.monitor.landing') }}">Monitor</a>
+    </li>
+    <li class="mzp-c-breadcrumb-item">
+      {{ page.title }}
+    </li>
+  </ol>
+</nav>

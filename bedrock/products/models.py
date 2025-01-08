@@ -4,10 +4,12 @@
 
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, FieldRowPanel, HelpPanel, MultiFieldPanel
+from wagtail.fields import RichTextField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
+from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.cms.models.pages import ArticleDetailPageBase, ArticleIndexPageBase
 from bedrock.products.views import vpn_available, vpn_available_mobile_sub_only
 
@@ -109,3 +111,205 @@ class VPNResourceCenterDetailPage(ArticleDetailPageBase):
         context["ftl_files"] = ["products/vpn/resource-center", "products/vpn/shared"]
         context["vpn_available"] = vpn_available_in_country
         return context
+
+
+@register_snippet
+class MonitorCallToActionSnippet(TranslatableMixin):
+    split_heading = models.CharField(
+        max_length=60,
+        blank=False,
+    )
+    split_subheading = models.CharField(
+        max_length=60,
+        blank=True,
+    )
+    split_content = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    split_button_text = models.CharField(
+        verbose_name="Link Text",
+        max_length=40,
+        blank=False,
+    )
+    split_button_link = models.URLField(
+        verbose_name="Link URL",
+        blank=False,
+    )
+    split_image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "split_heading",
+                    heading="Intro Heading",
+                ),
+                FieldPanel(
+                    "split_subheading",
+                    heading="Intro Subheading (optional)",
+                ),
+                FieldPanel(
+                    "split_content",
+                    heading="Intro Content (optional)",
+                ),
+                FieldRowPanel(
+                    [
+                        FieldPanel("split_button_text", heading="Intro Button text"),
+                        FieldPanel("split_button_link", heading="Intro Button link"),
+                    ]
+                ),
+                FieldPanel("split_image", heading="Intro Image"),
+            ],
+            heading="Intro Block",
+        ),
+    ]
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "Monitor Call To Action Snippet"
+        verbose_name_plural = "Monitor Call To Action Snippets"
+
+    def __str__(self):
+        return f"{self.split_heading} - CTA Snippet"
+
+
+class MonitorArticleIndexPage(AbstractBedrockCMSPage):
+    split_heading = models.CharField(
+        max_length=60,
+        blank=False,
+    )
+    split_subheading = models.CharField(
+        max_length=60,
+        blank=True,
+    )
+    split_content = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    split_button_text = models.CharField(
+        verbose_name="Link Text",
+        max_length=40,
+        blank=False,
+    )
+    split_button_link = models.URLField(
+        verbose_name="Link URL",
+        blank=False,
+    )
+    split_image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    articles_heading = models.CharField(
+        max_length=100,
+        blank=False,
+    )
+    articles_subheading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+    call_to_action_bottom = models.ForeignKey(
+        "products.MonitorCallToActionSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "split_heading",
+                    heading="Intro Heading",
+                ),
+                FieldPanel(
+                    "split_subheading",
+                    heading="Intro Subheading (optional)",
+                ),
+                FieldPanel(
+                    "split_content",
+                    heading="Intro Content (optional)",
+                ),
+                FieldRowPanel(
+                    [
+                        FieldPanel("split_button_text", heading="Intro Button text"),
+                        FieldPanel("split_button_link", heading="Intro Button link"),
+                    ]
+                ),
+                FieldPanel("split_image", heading="Intro Image"),
+            ],
+            heading="Intro Split Block",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("articles_heading"),
+                FieldPanel("articles_subheading"),
+            ],
+            heading="Article Section Heading",
+        ),
+        HelpPanel(content="The articles will be linked to here"),
+        FieldPanel("call_to_action_bottom"),
+    ]
+
+    template = "products/monitor/cms/index.html"
+    AbstractBedrockCMSPage._meta.get_field("title").help_text = "Heading (use sentence case)"
+
+    def get_context(self, request):
+        context = super().get_context(request)
+        context["articlepages"] = MonitorArticlePage.objects.live().public()  # live() and public() are wagtail filters
+        return context
+
+
+class MonitorArticlePage(AbstractBedrockCMSPage):
+    # promote panels
+    icon = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    promote_panels = AbstractBedrockCMSPage.promote_panels + [
+        FieldPanel("icon"),
+    ]
+
+    # content panels
+    subheading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+    summary = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    call_to_action_middle = models.ForeignKey(
+        "products.MonitorCallToActionSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    content = RichTextField(null=True, blank=False, features=["bold", "italic", "link", "ul", "ol", "h2", "h3"])
+    call_to_action_bottom = models.ForeignKey(
+        "products.MonitorCallToActionSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("subheading"),
+        FieldPanel("summary"),
+        FieldPanel("call_to_action_middle"),
+        FieldPanel("content"),
+        FieldPanel("call_to_action_bottom"),
+    ]
+
+    template = "products/monitor/cms/article.html"
+
+    parent_page_types = ["MonitorArticleIndexPage"]  # must be child of MonitorArticleIndexPage
+
+    AbstractBedrockCMSPage._meta.get_field("title").verbose_name = "Heading"
+    AbstractBedrockCMSPage._meta.get_field("title").help_text = "Heading (use sentence case)"
