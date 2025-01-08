@@ -37,7 +37,7 @@
 
   {% if value.biography %}
     <div class="person-bio w-rich-text">
-      {{ value.biography|richtext }}
+      {{ value.biography|wagtail_richtext|safe }}
     </div>
   {% endif %}
 </div>

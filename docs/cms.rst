@@ -248,12 +248,12 @@ The data can be rendered in ``mozorg/test_page.html`` as follows:
         <header>
         <h1>{{ page.heading }}</h1>
         <div class="w-rich-text">
-            {{ page.body|richtext }}
+            {{ page.bodywagtail_richtext|safe }}
         </div>
         </header>
     {% endblock %}
 
-Note the ``|richtext`` filter applied to the ``page.body`` field. This is a
+Note the ``wagtail_richtext|safe`` filter applied to the ``page.body`` field. This is a
 Wagtail-provided Jinja2 filter that will render the rich text field as HTML.
 
 Previewing pages in the CMS admin

@@ -1,0 +1,27 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import sub_nav with context %}
+
+{{ sub_nav(
+  title={
+    'text':  'Mozilla Monitor',
+    'href':  url('products.monitor.landing'),
+    'cta_name': 'Monitor'
+  },
+  links=[
+    {
+      'text':  'Learn about Mozilla Monitor',
+      'href':  url('products.monitor.landing'),
+      'cta_name': 'Learn about Mozilla Monitor'
+    },
+    {
+      'text': 'Sign up',
+      'href': 'https://monitor.mozilla.org/' + _params,
+      'cta_name': 'Sign up (Monitor)'
+    }
+  ]
+) }}
