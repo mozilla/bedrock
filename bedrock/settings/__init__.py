@@ -96,6 +96,11 @@ if csp_extra_frame_src:
     _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
 csp_ro_report_uri = config("CSP_RO_REPORT_URI", default="") or None
+# On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
+if WAGTAIL_ENABLE_ADMIN:
+    _csp_frame_ancestors = [csp.constants.SELF]
+else:
+    _csp_frame_ancestors = [csp.constants.NONE]
 
 CONTENT_SECURITY_POLICY = {
     # Default report percentage to 1% just in case the env var isn't set, we don't want to bombard Sentry.
@@ -110,7 +115,7 @@ CONTENT_SECURITY_POLICY = {
         "connect-src": list(set(_csp_default_src + _csp_connect_src)),
         # support older browsers (mainly Safari)
         "frame-src": _csp_child_src,
-        "frame-ancestors": [csp.constants.NONE],
+        "frame-ancestors": _csp_frame_ancestors,
         "upgrade-insecure-requests": False if DEBUG else True,
         "report-uri": csp_report_uri,
     },
