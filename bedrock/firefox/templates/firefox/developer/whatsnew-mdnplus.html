@@ -35,8 +35,8 @@
     </div>
 
     <div class="mandala-wrapper">
-      <div id="mandala" class="mandala-container animate-colors" aria-hidden="true">
-        <div class="mandala-translate mandala-rotate">
+      <div id="mandala" class="mandala-container" aria-hidden="true">
+        <div>
           <svg width="675" height="675" viewBox="0 0 675 675" fill="none" xmlns="http://www.w3.org/2000/svg" class="mandala">
             <defs>
               <path d="M337.5,337.5 m-320,0 a320,320 0 1,1 640,0 a320,320 0 1,1 -640,0" id="circle1"></path>
@@ -103,7 +103,3 @@
 
 {# Exclude stub attribution for in-product pages: issue 9620 #}
 {% block stub_attribution %}{% endblock %}
-
-{% block js %}
-  {{ js_bundle('firefox_developer_whatsnew_mdnplus') }}
-{% endblock %}
