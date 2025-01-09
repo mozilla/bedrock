@@ -44,11 +44,11 @@ strong {
 }
 
 a:link,
-a:link:hover,
-a:link:focus {
+a:visited {
     color: $m24-color-black;
 
-    &:visited {
+    &:hover,
+    &:focus {
         color: $m24-color-black;
     }
 }
@@ -101,11 +101,8 @@ a:link:focus {
         transition: $slow $bezier;
     }
 
+    &:active,
     &:focus-visible {
-        color: $m24-color-black;
-    }
-
-    &:active {
         color: $m24-color-black;
     }
 
