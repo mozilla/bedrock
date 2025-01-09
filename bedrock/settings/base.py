@@ -2275,6 +2275,8 @@ if WAGTAIL_ENABLE_ADMIN:
         # django.contrib.admin needs SessionMiddleware and AuthenticationMiddleware to be specced, and fails
         # hard if it's in INSTALLED_APPS when they are not, so we have to defer adding it till here
         "django.contrib.admin",
+        # wagtail_localize_smartling > 0.10 needs django.contrib.humanize
+        "django.contrib.humanize",
     ]
 
     for midddleware_spec in [
