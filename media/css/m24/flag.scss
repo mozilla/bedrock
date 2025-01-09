@@ -49,7 +49,7 @@
     line-height: $font-size;
     padding: 8px;
     cursor: pointer;
-    transition: background-color $fast;
+    transition: background-color $fast, border-color $fast;
 
     // Focused button is always visible: https://bugzilla.mozilla.org/show_bug.cgi?id=1936862
     &:focus {
@@ -60,11 +60,13 @@
     &:hover,
     &:focus-visible {
         background-color: $m24-color-black; // inverts to white in dark theme section
+        border-color: $m24-color-black;
         color: $m24-color-white; // inverts to white in dark theme section
     }
 
     &:active {
         background-color: $m24-color-dark-mid-gray;
+        border-color: $m24-color-dark-mid-gray;
         color: $m24-color-white;
     }
 
