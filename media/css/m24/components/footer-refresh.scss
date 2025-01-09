@@ -106,7 +106,7 @@ $max-footer-content-width: $content-max;
 .moz24-footer-links-social {
     margin: 0 0 0 $spacer-lg;
     display: flex;
-    background-color: #161616;
+    background-color: #161616; // hard-coded value as a fallback for readability on older browsers
 
     @media #{$mq-md} {
         margin: 0;
