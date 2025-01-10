@@ -30,8 +30,11 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     background-color: $color-white;
     border-bottom: $border-width solid $m24-color-light-mid-gray;
     display: flex;
-    line-height: 1.1;
     width: 100%;
+
+    * {
+        line-height: 1.1;
+    }
 
     @media #{$mq-md} {
         display: block;
