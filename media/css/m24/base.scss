@@ -48,7 +48,8 @@ a:visited {
     color: $m24-color-black;
 
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
         color: $m24-color-black;
     }
 }
