@@ -1385,12 +1385,6 @@
     },
     {
       "files": [
-        "js/firefox/developer/whatsnew-mdnplus.js"
-      ],
-      "name": "firefox_developer_whatsnew_mdnplus"
-    },
-    {
-      "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/fxa-form-init.es6.js"

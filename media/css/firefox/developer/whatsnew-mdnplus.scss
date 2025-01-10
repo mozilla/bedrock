@@ -2,18 +2,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$image-path: '/media/protocol/img';
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
 
-.firefox-developer-whatsnew-mdnplus {
-    .c-mdn-header,
-    .c-mdn-body,
-    .c-mdn-footer {
+.firefox-developer-whatsnew-mdnplus main {
+    //.c-mdn-header,
+    //.c-mdn-body,
+    //.c-mdn-footer {
         h1,
         h2,
         h3,
@@ -21,7 +17,7 @@ $image-path: '/media/protocol/img';
             @include font-base;
             color: $color-black;
         }
-    }
+    //}
 }
 
 // Header
@@ -75,7 +71,6 @@ $image-path: '/media/protocol/img';
 .mandala-container {
     display: flex;
     justify-content: center;
-    -webkit-transform: translate(12rem, -8rem);
     transform: translate(12rem, -8rem);
 
     --mandala-primary: #{$color-dark-gray-10};
@@ -148,33 +143,32 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    &.animated {
+    body:hover & {
         .mandala-rotate > svg {
             .mandala-accent-1 {
-                animation: rotation 505s linear infinite;
+                animation: rotation 505s linear 0.15 both;
             }
 
             .mandala-accent-2 {
-                animation: rotation 480s linear infinite reverse;
+                animation: rotation 480s linear 0.15 reverse both;
             }
 
             .mandala-accent-3 {
-                animation: rotation 515s linear infinite;
+                animation: rotation 515s linear 0.15 both;
             }
 
             .mandala-accent-4 {
-                animation: rotation 425s linear infinite reverse;
+                animation: rotation 425s linear 0.15 reverse both;
             }
 
             .mandala-accent-5 {
-                animation: rotation 415s linear infinite;
+                animation: rotation 415s linear 0.15 both;
             }
         }
 
-        &.animate-colors {
+        .mandala-translate {
             svg > text > textPath > tspan {
-                animation: mandala-color-change 50s infinite;
-                animation-timing-function: ease-in-out;
+                animation: mandala-color-change 50s ease-in-out 1.6 alternate both;
                 fill: var(--mandala-primary);
             }
 
