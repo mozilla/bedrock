@@ -7,17 +7,13 @@
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
 .firefox-developer-whatsnew-mdnplus main {
-    //.c-mdn-header,
-    //.c-mdn-body,
-    //.c-mdn-footer {
-        h1,
-        h2,
-        h3,
-        h4 {
-            @include font-base;
-            color: $color-black;
-        }
-    //}
+    h1,
+    h2,
+    h3,
+    h4 {
+        @include font-base;
+        color: $color-black;
+    }
 }
 
 // Header
@@ -86,61 +82,20 @@
     }
 
     @keyframes mandala-color-change {
-        0% {
-            fill: var(--mandala-primary);
-        }
-
-        10% {
-            fill: var(--mandala-primary);
-        }
-
-        15% {
-            fill: var(--mandala-accent-1);
-        }
-
-        20% {
-            fill: var(--mandala-primary);
-        }
-
-        25% {
-            fill: var(--mandala-primary);
-        }
-
-        30% {
-            fill: var(--mandala-accent-2);
-        }
-
-        35% {
-            fill: var(--mandala-primary);
-        }
-
-        40% {
-            fill: var(--mandala-primary);
-        }
-
-        50% {
-            fill: var(--mandala-accent-3);
-        }
-
-        55% {
-            fill: var(--mandala-primary);
-        }
-
-        60% {
-            fill: var(--mandala-primary);
-        }
-
-        65% {
-            fill: var(--mandala-accent-4);
-        }
-
-        70% {
-            fill: var(--mandala-primary);
-        }
-
-        100% {
-            fill: var(--mandala-primary);
-        }
+        0% { fill: var(--mandala-primary); }
+        10% { fill: var(--mandala-primary); }
+        15% { fill: var(--mandala-accent-1); }
+        20% { fill: var(--mandala-primary); }
+        25% { fill: var(--mandala-primary); }
+        30% { fill: var(--mandala-accent-2); }
+        35% { fill: var(--mandala-primary); }
+        40% { fill: var(--mandala-primary); }
+        50% { fill: var(--mandala-accent-3); }
+        55% { fill: var(--mandala-primary); }
+        60% { fill: var(--mandala-primary); }
+        65% { fill: var(--mandala-accent-4); }
+        70% { fill: var(--mandala-primary); }
+        100% { fill: var(--mandala-primary); }
     }
 
     @media not (prefers-reduced-motion: reduce) {
