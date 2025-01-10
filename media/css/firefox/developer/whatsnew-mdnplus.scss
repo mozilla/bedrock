@@ -143,8 +143,9 @@
         }
     }
 
-    body:hover & {
-        .mandala-rotate > svg {
+    @media not (prefers-reduced-motion: reduce) {
+        body:hover & {
+            // motion
             .mandala-accent-1 {
                 animation: rotation 505s linear 0.15 both;
             }
@@ -164,9 +165,8 @@
             .mandala-accent-5 {
                 animation: rotation 415s linear 0.15 both;
             }
-        }
 
-        .mandala-translate {
+            // colors
             svg > text > textPath > tspan {
                 animation: mandala-color-change 50s ease-in-out 1.6 alternate both;
                 fill: var(--mandala-primary);
