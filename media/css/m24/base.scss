@@ -81,8 +81,9 @@ a:visited {
 
 .m24-c-cta {
     @include bidi(((background-position, left var(--cta-bg-position, 100%) top 100%, right var(--cta-bg-position, 100%) top 100%),));
+    box-decoration-break: clone;
     color: $m24-color-black;
-    display: inline-block;
+    display: inline; // required for box cloning
     font-family: var(--title-font-family);
     font-size: $text-button-lg;
     font-weight: 600;
