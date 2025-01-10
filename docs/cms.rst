@@ -112,6 +112,17 @@ sync down any images you don't already have.
 
   ``python manage.py download_media_to_local --environment=stage``
 
+Editing current content surfaces
+================================
+
+In terms of managing the content of an existing surface, please see the general
+`Wagtail Editor Guide`_ for now.
+
+If you want to change the code-defined behaviour of an existing surface,
+that's similar to adding a new content surface, covered below. You may also find
+the `Wagtail Docs`_ and `The Ultimate Wagtail Developers Course`_ useful if you
+don't have experience of building with Wagtail yet.
+
 Adding new content surfaces
 ===========================
 
@@ -362,23 +373,15 @@ The script is ``bin/export-db-to-sqlite.sh`` and you need to add your new model
 to the list of models being exported. Search for ``MAIN LIST OF MODELS BEING EXPORTED``
 and add your model (in the format ``appname.ModelName``) there.
 
-Editing current content surfaces
-================================
-
-`Wagtail Editor Guide`_.
-
-.. note::
-    This is initial documentation, noting relevant things that exist already, but much fuller recommendations will follow
-
 The ``CMS_ALLOWED_PAGE_MODELS`` setting
-=======================================
+---------------------------------------
 
 When you add a new page to the CMS, it will be available to add as a new child page immediately if ``DEV=True``. This means it'll be on Dev (www-dev), but not in Staging or Prod.
 
 So if you ship a page that needs to be used immediately in Production (which will generally be most cases), you must remember to add it to ``CMS_ALLOWED_PAGE_MODELS`` in Bedrock's settings. If you do not, it will not be selectable as a new Child Page in the CMS.
 
 Why do we have this behaviour?
-------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Two reasons:
 
@@ -387,14 +390,19 @@ Two reasons:
 2. This approach allows us to gracefully deprecate pages: if a page is removed in ``settings.CMS_ALLOWED_PAGE_MODELS``, that doesn't mean it disappears from Prod or can't be edited - it just stops a NEW one being added in Prod.
 
 Migrating Django pages to the CMS
-=================================
+---------------------------------
 
 .. note::
     This is initial documentation, noting relevant things that exist already, but
     much fuller recommendations will follow
 
+
+Migrating a surface to Wagtail is very similar to adding a new one, but some extra
+thought needs to be given to the switchover between old hardcoded content and
+new CMS-backed content.
+
 The ``@prefer_cms`` decorator
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have an existing Django-based page that you want to move to be a CMS-driven
 page, you are faced with a quandry.
