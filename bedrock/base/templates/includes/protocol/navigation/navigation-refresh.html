@@ -4,7 +4,8 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- <nav class="m24-navigation-refresh m24-mzp-is-sticky" role="navigation">
+ {% include 'includes/banners/pencil-banner.html' %}
+ <nav class="m24-navigation-refresh m24-mzp-is-sticky" aria-label="{{ ftl('navigation-refresh-landmark-label') }}">
   <div class="m24-c-navigation-l-content">
     <div class="m24-c-navigation-container">
       <button class="m24-c-navigation-menu-button" type="button" aria-controls="m24-c-navigation-items" data-testid="m24-navigation-menu-button">{{ ftl('ui-menu') }}</button>

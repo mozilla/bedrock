@@ -4,8 +4,6 @@
 
 from django.apps import AppConfig
 
-from bedrock.cms.signal_handlers import *  # noqa: F403 F406
-
 
 class CmsConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"

@@ -48,6 +48,21 @@ def mobile_app(request, *args, **kwargs):
         "fxshare7",
         "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_a",
         "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_b",
+        "wnp134-de-a",
+        "wnp134-de-b",
+        "wnp134-de-c",
+        "wnp134-en-ca-a",
+        "wnp134-en-ca-b",
+        "wnp134-en-ca-c",
+        "wnp134-en-na-a",
+        "wnp134-en-na-b",
+        "wnp134-en-na-c",
+        "wnp134-en-uk-a",
+        "wnp134-en-uk-b",
+        "wnp134-en-uk-c",
+        "wnp134-fr-a",
+        "wnp134-fr-b",
+        "wnp134-fr-c",
     ]
 
     for p in product_options:

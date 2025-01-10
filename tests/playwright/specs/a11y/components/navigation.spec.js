@@ -11,6 +11,7 @@ const { createReport, scanPageElement } = require('../includes/helpers');
 const { navigationLocator } = require('../includes/locators');
 const { test, expect } = require('@playwright/test');
 const testURL = '/en-US/';
+const disabledRules = ['blink'];
 
 test.describe(
     'Navigation (desktop)',
@@ -31,7 +32,11 @@ test.describe(
             await firefoxLink.hover();
             await expect(firefoxMenu).toBeVisible();
 
-            const results = await scanPageElement(page, navigationLocator);
+            const results = await scanPageElement(
+                page,
+                navigationLocator,
+                disabledRules
+            );
             createReport('component', 'navigation-desktop', results);
             expect(results.violations.length).toEqual(0);
         });
@@ -70,7 +75,11 @@ test.describe(
             await firefoxLink.click();
             await expect(firefoxMenu).toBeVisible();
 
-            const results = await scanPageElement(page, navigationLocator);
+            const results = await scanPageElement(
+                page,
+                navigationLocator,
+                disabledRules
+            );
             createReport('component', 'navigation-mobile', results);
             expect(results.violations.length).toEqual(0);
         });

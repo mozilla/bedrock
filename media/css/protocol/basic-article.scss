@@ -8,6 +8,10 @@
 @import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
 @import 'components/newsletter-form';
 
+.c-article-meta-updated {
+    @include text-display-xs;
+}
+
 .side-reference {
     border-bottom: 2px solid #ddd;
     margin: 2em 0;

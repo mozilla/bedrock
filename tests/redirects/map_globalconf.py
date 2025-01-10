@@ -1217,7 +1217,7 @@ URLS = flatten(
         url_test("/contact/spaces/san-francisco/", "/contact/spaces/"),
         url_test("/contact/spaces/toronto/", "/contact/spaces/"),
         # Issue 13924
-        url_test("/foundation/annualreport/{,2022/}", "https://stateof.mozilla.org/"),
+        url_test("/foundation/annualreport/2022/", "https://stateof.mozilla.org/"),
         # Issue 14186
         url_test("/privacy/firefox-monitor/", "/privacy/subscription-services/"),
         # Issue 14172

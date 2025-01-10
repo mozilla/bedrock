@@ -4,7 +4,7 @@
 
 @use '../utils' as cp;
 @use 'sass:color';
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 
 .c-careers-intro {
     background-color: $color-black;

@@ -61,7 +61,13 @@ async function scanPage(page) {
  * @param {Object} page
  * @returns {Promise} results
  */
-async function scanPageElement(page, locator) {
+async function scanPageElement(page, locator, disabledRules) {
+    if (disabledRules) {
+        return new AxeBuilder({ page })
+            .include(locator)
+            .disableRules(disabledRules)
+            .analyze();
+    }
     return new AxeBuilder({ page }).include(locator).analyze();
 }
 

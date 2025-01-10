@@ -7,10 +7,7 @@
 // mozorg, firefox, etc, and so can use the CSS and JS bundles for those areas
 // of the site.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
-@import './rich-text';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@use './rich-text';

@@ -44,7 +44,7 @@
 .m24-c-flag-button {
     $font-size: 0.75;
     background-color: $m24-color-dark-mid-gray;
-    border: none;
+    border-color: transparent; // High Contrast Mode support
     box-shadow: none;
     color: $m24-color-white;
     font-family: $primary-font;
@@ -55,6 +55,12 @@
     cursor: pointer;
     transition: background-color $fast;
 
+    // Focused button is always visible: https://bugzilla.mozilla.org/show_bug.cgi?id=1936862
+    &:focus {
+        position: relative;
+        z-index: 1001; // must be above .m24-navigation-refresh.m24-mzp-is-sticky
+    }
+
     &:hover,
     &:focus {
         background-color: $m24-color-black; // inverts to white in dark theme section
@@ -62,6 +68,16 @@
 
     &:active {
         background-color: $m24-color-dark-mid-gray;
+    }
+
+    // High Contrast Mode Support: https://bugzilla.mozilla.org/show_bug.cgi?id=1936865
+    @media (forced-colors) {
+        background-color: ButtonFace;
+        color: ButtonText;
+
+        &:focus {
+            outline-color: CanvasText;
+        }
     }
 }
 
@@ -85,14 +101,9 @@
     }
 
     .m24-c-flag-button {
-        border-radius: 50%;
         display: block;
         margin-bottom: $spacer-md;
         margin-inline-start: auto;
-    }
-
-    .m24-c-flag-button-text {
-        @include visually-hidden;
     }
 
     .m24-c-flag-media {

@@ -1,0 +1,119 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_2_4, article_3_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Success through two-way conversations with our community - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Ryan Sipes' %}
+{% set article_author_role = 'Managing Director, Product (MZLA/Thunderbird)' %}
+{% set article_hash = '#portfolio' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Building a balanced portfolio' %}
+{% set article_title = 'Success through two-way conversations with our community' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/ryan.jpg') }}" width="100" height="100" alt="Ryan Sipes">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/2-5-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/2-5-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/2-5-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/2-5-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Ultimately, our goal is to create a powerful suite of communication tools for people instilled with our values.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          When I first joined the Thunderbird team in 2017, my focus was on keeping it alive. In the early days, it was governed solely by the Thunderbird Council, which is an elected group of contributors dedicated to the project. The team was small at the time — a staff of three — so right after being hired, I joined the Thunderbird Council and took on a role as its treasurer.
+        </p>
+
+        <p>
+          We struggled, and quite frankly, that period of time definitely took a toll. We were understaffed and there wasn’t a real vision for where we were trying to go with the product. There were jabs from friends telling me to move on from it. Ultimately, it wasn’t on a sustainable path, and it was only a matter of time before it needed to sunset.
+        </p>
+
+        <p>
+          But one thing we were so fortunate to have at the time (and obviously have now) was our committed and dedicated community of users: Thunderbird had a user count of 20 million when I first joined. We didn’t just see that as a big number of users — we saw that as a massive amount of insights, information, and perspectives we could use to make changes and build something great. It is our users and contributors that allow Thunderbird to stand apart. It doesn't mean that we always agree with everyone in our community. What it does mean is that we are making decisions and changes and moving forward in a way that is collaborative and reflects the will of our users.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Building community through open dialogue</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We opened a door to conversation with our users, asking them for help and support. That began by adding updates to our start page and eventually added a note when people downloaded the software letting them know that donations support Thunderbird, and for them to consider donating to keep it alive. It was important for us to be very honest about our needs and how we positioned it. We also worked to figure out a way to reach out to our users directly, dive deep and discover what resonated so well with them — what kept them there, what they are interested in, what improvements could be made.
+        </p>
+
+        <p>
+          By starting that conversation and opening up a two-way dialogue between us and our users, it gave us everything we needed to get on the right roadmap to where we are today. Our users began donating and as a result, we were able to expand our team and get organized. The expansion and investment from our community helped us to finally be able to fix many of the challenges that made developing Thunderbird hard. It’s why we’re still here today, and why we couldn’t be prouder of the progress we’ve made since then.
+        </p>
+
+        <p>
+          That said, there have been challenges to this sort of two-way, co-creating community partnership. For example, sometimes we may not see eye-to-eye on a product decision. But, as in many business relationships, you’re able to maneuver through those challenges when you have a common goal. Ours was creating a decentralized, privacy-respecting email experience rooted in open standards, and that common goal often helped us stay on track. It’s different, but co-creating has helped us become stronger and stick to these principles. We make decisions together, with our users in the room, and I think that’s what makes the work we’re doing at Thunderbird so unique and special.
+        </p>
+
+        <p>
+          Those two-way conversations are still going strong today and are a large part of the success we’ve had. In 2024, we’re on track to receive $10 million or more in donations from our community, an increase from $9 million in 2023. The Thunderbird team has grown exponentially to 41 employees, compared to when I started with three part-time contractors working 10 to 20 hours a week. Today, we feel a lot of confidence in the work we do now and aren’t opposed to taking risks and trying new things because we've come from the bottom — “What is dead may never die,” as I like to quote from Game of Thrones. We don’t forget that, and it’s a special part of our DNA now with any new projects we’re taking on.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Thunderbird’s vision for the future</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          That confident mentality is what’s going to propel our focus in 2025 and beyond. Thunderbird can’t just be a desktop email client anymore — it’ll remain that and stay a core part, but there’s more. We’re excited to continue testing and developing experiences in the product that add value for our users, like our calendar-scheduling tool <a href="https://blog.thunderbird.net/2024/08/plan-less-do-more-introducing-appointment-by-thunderbird/">Thunderbird Appointment</a>, for example, which is in beta. In October, we <a href="https://blog.thunderbird.net/2024/10/thunderbird-for-android-8-0-takes-flight/">announced</a> Thunderbird for Android users. These new experiences are a testament to our long-lasting two-way communication with our community. When we’re able to try these things, it’s because our users know we’re protecting their data, and that’s why they’re willing to use it and engage with it and help us experiment.
+        </p>
+
+        <p>
+          That’s just the start. Ultimately, our goal is to create a powerful suite of communication tools for people instilled with our values. We’re going to have more users, more products and grow Thunderbird to make a dent in the communication space on the internet. And we’re going to do it with the same community that’s always been there with us.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_2_4('m24-l-grid-half m24-l-16-9') }}
+  {{ article_3_1('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

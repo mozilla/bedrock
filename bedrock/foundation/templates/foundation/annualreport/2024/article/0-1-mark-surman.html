@@ -1,0 +1,193 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_1_1, article_1_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Evolving Together: Redefining Mozilla in the AI Era - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Mark Surman' %}
+{% set article_author_role = 'President' %}
+{% set article_hash = '#together' %}
+{% set article_read_time = '8 min read' %}
+{% set article_tag_label = 'Evolving Together: Redefining Mozilla' %}
+{% set article_title = 'Evolving Together: Redefining Mozilla in the AI Era' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/mark.jpg') }}" width="100" height="100" alt="Mark Surman">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/0-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      }
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Like the original mozilla.org, today’s Mozilla can only succeed if we see our efforts as a small part of a bigger constellation — a collective force that is building something truly different than what the big tech players have created.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Over the last few years, many people have said to me: “I don’t understand what Mozilla is today. What do you stand for? What are you working on?” It’s clear that people really care about Mozilla — and that they’re feeling confused about where we’re headed.
+        </p>
+
+        <p>
+          This confusion is understandable. Mozilla is in the midst of reinventing itself, and reinvention is messy. That’s why I want to use this report to slow down and explain why we’re doing this, what we’re building, and how it’s in service of the same core mission we’ve had since day one.
+        </p>
+
+        <p>
+          The TLDR: Mozilla stands for putting people and communities in control of how technology shows up in their lives. In 1998, that meant taking the web in a better direction. In 2024, it means doing the same for AI, and <a href="{{ url('foundation.annualreport.2024.article.1-1-mitchell-baker') }}">making sure that open source wins again in the AI era</a>.
+        </p>
+
+        <p>
+          Why? Because data and AI have become fundamental building blocks with which we create the digital tools we all use everyday. And, as it was with the web 25 years ago, whoever controls these building blocks — and how they work — has a tremendous impact on our agency, our relationships, and our lives.
+        </p>
+
+        <p>
+          <a href="{{ url('foundation.annualreport.2021.index') }}">Two years ago, we outlined a vision for Mozilla’s next chapter</a>. You’ll see many of the themes we’ve been talking about since then appear again here. A focus on open and trustworthy AI. Diversification of our revenue streams. Improving Firefox and Thunderbird. And rejuvenating leadership teams and boards. As I hope you’ll see in this report, we’re making progress — and we’re looking openly at the challenges we need to work through to succeed.
+        </p>
+
+        <p>
+          One key challenge: delivering on the promise of existing products while also moving into new spaces like open source AI. <a href="https://web.archive.org/web/20000815052751/http://mozilla.org/projects/">The original Mozilla Project offers a model for tackling a challenge like this</a>: organize yourself as a loose constellation of projects with a common goal. We’ve begun to expand Mozilla from being a movement organization that runs a browser company into a powerful collection of responsible tech companies, public interest organizations, and community projects. This evolving constellation is bound by a shared commitment to making the values of the <a href="{{ url('mozorg.about.manifesto') }}">Mozilla Manifesto</a> work in the AI era.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">The first constellation: The web</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          In the late 1990s, the seeds of what we today call big tech were being sown. Microsoft had set itself up to monopolize how people accessed the web — and how the web worked. Mozilla was founded as a counterpoint: to create a browser based on open source and open standards.
+        </p>
+
+        <p>
+          In this setting, the original Mozilla.org team saw its mission as one of “coordinating and integrating the work of others.” The idea was that 1+1 could equal 3 — and that many people, many projects and many angles of approach would be necessary to create a successful open source browser.
+        </p>
+
+        <p>
+          Eventually, a number of pieces from across the Mozilla Project <a href="https://web.archive.org/web/20160126211225/https://www.wired.com/2005/02/firefox/">came together</a> to become Firefox (this took 5 years!). And the Project helped to build a <a href="https://web.archive.org/web/20160126211204im_/http://www.wired.com/wp-content/uploads/archive/wired/archive/13.02/images/FF_92_firefox3_f.gif">rebel alliance</a> of open source projects that aimed to break Microsoft’s grip on the web. As Firefox, Linux, and other projects gathered steam, open source won. The dynamics of who controlled the web shifted, at least for a time.
+        </p>
+
+        <p>
+          This original constellation remains today, but it is evolving as we explore how Mozilla can play a role in shaping the future of technology. Practically, this means striking a balance between stability and evolution in <a href="{{ url('foundation.annualreport.2024.article.2-2-laura-chambers') }}">Firefox</a> and <a href="{{ url('foundation.annualreport.2024.article.2-5-ryan-sipes') }}">Thunderbird</a>. This includes doubling down on what people already love in these products, with a stronger emphasis on mobile. With Firefox, it also means wrestling with tough and important questions at the core of making and funding a browser project in the current era. <a href="{{ url('foundation.annualreport.2024.article.4-2-imo-udom') }}">How do we use data to create rich online experiences (which we’ve all come to love) in ways that hold true to our values</a>? <a href="{{ url('foundation.annualreport.2024.article.5-2-brad-graham') }}">How do we change digital advertising — which directly or indirectly funds most browsers and much of the web — so that it works in a way that respects us and our data</a>? <a href="{{ url('foundation.annualreport.2024.article.3-2-vicky-chin') }}">How do we build AI into the browser in a way that balances privacy, trust and choice</a>? These are tough questions, but we don’t get a seat at the table of the future if we can’t work with our partners and communities to answer them.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Evolving the constellation: AI</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          As we continue this work, we’re also asking ourselves: can Mozilla build a similar constellation for the AI era? To find out, we’ve taken a number of big steps in the last few years to explore AI while also continuing to invest in our core work on Firefox and Thunderbird.
+        </p>
+
+        <p>
+          In 2019, we <a href="https://foundation.mozilla.org/blog/update-digging-deeper-on-trustworthy-ai/">shifted</a> most of the Mozilla Foundation's philanthropic and advocacy work to focus on <a href="https://foundation.mozilla.org/internet-health/trustworthy-artificial-intelligence/">trustworthy AI</a>, and ramped it up <a href="{{ url('foundation.annualreport.2021.index') }}">two years ago</a>. Some of the things we tried didn’t go anywhere. But a few have legs. For example, the <a href="https://commonvoice.mozilla.org/">Common Voice</a> project has shown that a global community can build training data sets that make AI more inclusive and reflective of the people who use it. And, the <a href="https://foundation.mozilla.org/responsible-computing-challenge-playbook/">Responsible Computing Challenge</a> has gathered over 36,000 faculty members, professors and students across three continents to demonstrate that human values and computer science can be taught side-by-side in the same classroom. More importantly: We learned that tackling AI with a Mozilla mindset was possible — <a href="{{ url('foundation.annualreport.2024.article.2-1-nabiha-syed') }}">and that the Foundation has a chance to continually evolve itself as a vanguard for this work</a>.
+        </p>
+
+        <p>
+          Based on this early learning, we decided to add two brand new organizations to the Mozilla portfolio that could focus on trustworthy AI from the ground up — <a href="{{ url('foundation.annualreport.2024.article.2-4-mohamed-nanabhay') }}">a venture firm to back startups building products aligned with the Mozilla Manifesto</a>, and <a href="{{ url('foundation.annualreport.2024.article.2-3-jane-silber') }}">our own startup aimed at helping the open source AI community reach a larger audience of developers</a>. These new organizations are important in their own right, with Mozilla Ventures having already invested in 45 companies that are building products that could one day become the next Firefox or the next Linux. But these efforts are also part of our overall reinvention thesis: We need a diversity of projects, organizations, leaders, communities, cultures, and business models if we want to succeed in shaping the direction of AI. Big companies tend to reinvent themselves by consolidating. Our approach is to fan out, find allies, and look for cracks in the system.
+        </p>
+
+        <p>
+          What are the results of this work so far? We’ve started to become something closer to a Mozilla.org for the current era — grounded in our roots, but with a growing mosaic of companies, programs, and projects doing for AI what we did for the web. We’ve faced challenges. We don’t yet have a real product — or a meaningful enough foothold — in the AI space. There are tensions between how we’ve always done things (e.g., minimize the use of data) and the things we urgently need to do now (e.g., work with data as a building block of new tech and new products). And, there is not yet a clear path to an economic model for this next era.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Evolving economics of Mozilla</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla has always had a unique economic model — one that combines the economics of movements with the economics of markets.
+        </p>
+
+        <p>
+          The seeds of this model began with open source code from a commercial browser (markets) and a community of people around the world who turned that code into something that challenged the world’s biggest software company (movements). And, from early on, it included donations from tens of thousands of supporters (movements) and, then, royalties from search agreements with companies like Google, Yahoo, and Microsoft (markets).
+        </p>
+
+        <p>
+          This odd combination of economic models still exists today. Firefox, Thunderbird, and Common Voice are still driven in part by <a href="{{ url('mozorg.contribute') }}">contributors and volunteers</a>. Last year, Mozilla Corporation generated more than $500 million in revenue which allows us to sustain Firefox and invest in community projects like Llamafile and the Responsible Computing Challenge. This year, over 400,000 people will donate more than $14 million to the Mozilla Foundation and Thunderbird. The combined scale and diversity of this revenue is what allows Mozilla to play the long game of building technology in the public interest.
+        </p>
+
+        <p>
+          As we look to the future, it’s clear that we need to continue to further diversify this economic model — both to create new revenue sources and new kinds of impact, especially around AI and associated data-driven technologies. With this in mind we’re exploring privacy-respecting advertising technology — ads in Firefox and an industry platform that enables advertisers to show relevant ads while keeping user data completely private. If we can succeed here, we can not only supplement our search revenue, but also have a chance to reshape how digital advertising works. Similarly, we’re exploring venture investing with the aim of helping startups build successful responsible AI and tech businesses — and with the hope that we can generate returns that can support Mozilla’s mission over the long term.
+        </p>
+
+        <p>
+          Evolving our economics is one of the hardest parts of becoming a new version of ourselves — and also one of the most critical.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Mozilla — next</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The next step in this process is … to take another step. And another. There is no magic switch to flip. Reinventing yourself is step-by-step work.
+        </p>
+
+        <p>
+          An essential step is describing what winning looks like in this era. For Mozilla, it goes back to our fundamental mission of putting people and communities in control of how technology shows up in their lives. <a href="{{ url('foundation.annualreport.2024.article.4-1-ayah-bdeir') }}">Today, this means creating a world where anyone and any community can shape, enjoy and trust AI</a>. After much deliberation, we’ve agreed that this is the north star for the work we need to do over the next few years.
+        </p>
+
+        <p>
+          Another step is mapping out the work to be done. Part of this work is reinventing how we want to interact with the internet — and each other — in the AI era. Asking questions like: what comes after the browser? How do we want that to work? Another is <a href="https://foundation.mozilla.org/research/library/public-ai/">creating public interest alternatives to the AI being built by the big commercial players</a>, just like public broadcasting was an alternative to the major networks in the television era. A third — and possibly the most important — part of this work is making sure that open source wins. Open source and open standards played a central role in shifting power dynamics on the web 20 years ago. While the power map is much more complex today with AI, <a href="{{ url('foundation.annualreport.2024.article.1-1-mitchell-baker') }}">it is critical that open source wins again</a>.
+        </p>
+
+        <p>
+          Finally, we need to make sure we have the right team in place — and that the roles of each player on the team are clear. The role of Firefox and Thunderbird is to keep us stable and grounded in our roots, thoughtfully exploring the technologies of today while keeping the promises we’ve made over the last 25 years. The role of <a href="https://mozilla.ai">Mozilla.ai</a>, <a href="https://mozilla.vc/">Mozilla Ventures</a> and the <a href="https://foundation.mozilla.org/">Mozilla Foundation</a> is to move fast and experiment vigorously with ways to bend the trajectory of AI towards the vision outlined in the Mozilla Manifesto. And, the role of all of us in the organizations that make up Mozilla’s core portfolio is to find, connect, support and integrate the work of others who share our cause.
+        </p>
+
+        <p>
+          <a href="https://web.archive.org/web/20000815052751/http://mozilla.org/projects/">Like the original mozilla.org</a>, today’s Mozilla can only succeed if we see our efforts as a small part of a bigger constellation — a collective force that is building something truly different than what the big tech players have created. Something that all of us can shape and have ownership over. Getting back to seeing ourselves in this way isn’t easy. Yet, it is exactly what we need to do.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_1_1('m24-l-grid-half m24-l-16-9') }}
+  {{ article_1_2('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

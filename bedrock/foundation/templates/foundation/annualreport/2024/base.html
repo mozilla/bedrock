@@ -1,0 +1,32 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/home/base.html" %}
+
+{% block page_title_full %}State of Mozilla 2024{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('m24-root') }}
+  {{ css_bundle('m24-base') }}
+  {{ css_bundle('m24-annual-report-2024') }}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=som2024' %}
+
+{% block content %}
+  <main>
+    {% block main_content %}{% endblock %}
+  </main>
+
+  {% block transition %}{% endblock %}
+{% endblock %}
+
+{% block site_footer %}
+  {% with show_newsletter=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
+{% endblock %}

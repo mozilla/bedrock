@@ -74,10 +74,11 @@
 
     .m24-l-gallery-no-desc & {
         font-family: $primary-font;
-        font-size: $text-title-md;
+        font-size: 16px;
 
-        @media #{$mq-md} {
+        @media #{$mq-lg} {
             font-family: $secondary-font;
+            font-size: 32px;
         }
     }
 }
@@ -120,7 +121,7 @@
 
 .m24-c-gallery-tile-tag {
     align-items: center;
-    background-color: $m24-color-white;
+    background-color: $m24-color-alt-white;
     color: $m24-color-black;
     display: flex;
     font-size: 14px; // fixed size
@@ -130,7 +131,7 @@
     padding: 0 8px;
 
     .m24-c-gallery-tile-image + & {
-        left: 8px;
+        @include bidi(((left, 8px, right, auto),));
         position: absolute;
         top: 8px;
     }
@@ -152,6 +153,6 @@
 
 .m24-c-gallery-tile-cta > span {
     font-size: $text-button-sm;
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: underline;
 }

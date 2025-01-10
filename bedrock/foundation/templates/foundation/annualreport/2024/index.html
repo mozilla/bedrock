@@ -1,0 +1,33 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "foundation/annualreport/2024/base.html" %}
+
+{% block main_content %}
+  {% include 'foundation/annualreport/2024/includes/hero.html'%}
+  {% include 'foundation/annualreport/2024/includes/opening.html'%}
+  {% include 'foundation/annualreport/2024/includes/documents.html'%}
+  {% include 'foundation/annualreport/2024/includes/mozilla.html'%}
+  {% include 'foundation/annualreport/2024/includes/blockquote-1.html'%}
+  {% include 'foundation/annualreport/2024/includes/portfolio.html'%}
+  <div class="m24-t-alt">
+    <div class="m24-c-ar-report-split m24-l-grid-half">
+      {% include 'foundation/annualreport/2024/includes/products.html'%}
+      {% include 'foundation/annualreport/2024/includes/ai.html'%}
+    </div>
+  </div>
+  {% include 'foundation/annualreport/2024/includes/blockquote-2.html'%}
+  <div class="m24-c-ar-report-split m24-l-grid-half">
+    {% include 'foundation/annualreport/2024/includes/advertising.html'%}
+    {% include 'foundation/annualreport/2024/includes/community.html'%}
+  </div>
+  {% include 'foundation/annualreport/2024/includes/ecosystem.html'%}
+  {% include 'foundation/annualreport/2024/includes/better-internet.html'%}
+{% endblock %}
+
+{% block transition %}
+  <div class="m24-c-transition m24-t-top-light m24-t-bottom-dark-alt"><hr></div>
+{% endblock %}

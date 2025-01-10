@@ -1,0 +1,37 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="wnp-qr-code">
+  <figure>
+    <div class="wnp-qr-code-wrapper">
+      {{ resp_img(
+        url='img/firefox/whatsnew/whatsnew134/' + qrcode + '-200.png',
+        srcset={
+          'img/firefox/whatsnew/whatsnew134/' + qrcode + '-400.png': '2x'
+        },
+        optional_attributes={
+          'class': 'wnp-main-image',
+          'width': '200',
+          'height': '200'
+        }
+      ) }}
+
+      {% if variant == '2' %}
+        <img class="wnp-sticker-v2-foxy animate-pop-in-v2-foxy" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-b-foxy.svg') }}" width="141" height="101" alt="">
+        <img class="wnp-sticker-v2-laptop animate-pop-in-v2-laptop" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-b-laptop.svg') }}" width="179" height="132" alt="">
+        <img class="wnp-sticker-v2-heart animate-pop-in-v2-heart" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-b-heart.svg') }}" width="86" height="77" alt="">
+        <img class="wnp-sticker-v2-phone animate-pop-in-v2-phone" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-b-phone.svg') }}" width="77" height="121" alt="">
+        <img class="wnp-sticker-v2-sync animate-pop-in-v2-sync" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-b-sync.svg') }}" width="82" height="81" alt="">
+      {% else %}
+        <img class="wnp-sticker-v1-foxy animate-pop-in-v1-foxy" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-a-foxy.svg') }}" width="132" height="112" alt="">
+        <img class="wnp-sticker-v1-eye animate-pop-in-v1-eye" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-a-eye.svg') }}" width="105" height="105" alt="">
+        <img class="wnp-sticker-v1-padlock animate-pop-in-v1-padlock" src="{{ static('img/firefox/whatsnew/whatsnew134/wnp-134-a-padlock.svg') }}" width="119" height="115" alt="">
+      {% endif %}
+    </div>
+
+    <figcaption>{{ caption }}</figcaption>
+  </figure>
+</div>

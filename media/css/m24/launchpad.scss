@@ -67,7 +67,6 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
             (transition-property, right, left),
             (background-image, url('/media/img/icons/m24-small/arrow-right.svg'), url('/media/img/icons/m24-small/arrow-left.svg'))
         ));
-        background-image: url('/media/img/icons/m24-small/arrow-right.svg');
         background-size: 18px auto;
         transition-duration: $fast;
         transition-timing-function: $bezier;
@@ -129,8 +128,10 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     color: $m24-color-dark-gray;
     font-size: $text-body-sm;
     grid-column: 1 / span 11;
-    padding-left: $launchpad-logo-spacing;
-    padding-right: $launchpad-logo-padding; // give the arrow as much space from the text as the logo gets
+    @include bidi((
+        (padding-left, $launchpad-logo-spacing, $launchpad-logo-padding),
+        (padding-right, $launchpad-logo-padding, $launchpad-logo-spacing),
+    ));
 }
 
 @media #{$mq-md} {

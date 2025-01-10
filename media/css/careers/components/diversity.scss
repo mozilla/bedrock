@@ -4,9 +4,7 @@
 
 @use '../utils' as cp;
 
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 
 .c-careers-diversity-numbers {
     .mzp-c-picto-heading {

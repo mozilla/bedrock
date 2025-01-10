@@ -1,0 +1,107 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_4_1, article_5_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Scaling local AI innovation for real-world impact - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Imo Udom' %}
+{% set article_author_role = 'SVP of Innovation Ecosystems' %}
+{% set article_hash = '#ai' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'A Vision for AI and Data' %}
+{% set article_title = 'Scaling local AI innovation for real-world impact' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/imo.jpg') }}" width="100" height="100" alt="Imo Udom">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/4-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/4-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/4-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/4-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Our main goal at Mozilla is to ensure that the technology we build and support through our various programs, partnerships and ecosystem is based on open principles, accessible to all—and benefits communities, rather than harms them.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          At Mozilla, we’re always looking for ways to make technology that empowers people and solves real world problems. We’re excited about the technology shift being created by AI, but need to make sure it benefits more people than just those with the most resources. Genius is evenly distributed globally, but opportunity is not. That’s why we’re focused on being a trusted partner empowering people in the ever-changing AI landscape by providing products and tools, and supporting the shared know-how necessary to navigate this transition.
+        </p>
+
+        <p>
+          We’ve found that the best way to do that and foster innovation is to co-create an ecosystem with outside developers, entrepreneurs and others. Our <a href="https://future.mozilla.org/builders/builders_overview/">Mozilla Builders</a> program taps into the broader open source community and provides funding, expertise and other support to help open-source creators drive meaningful progress in technology and society.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Investing in on-device AI innovation</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Advances in hardware, software, and neural network designs are enabling models to become smaller and more powerful. This means we’ll see them used on laptops and smartphones, and not just cloud-based services run by big companies. Local AI will provide significant benefits in privacy, cost efficiency and system reliability. It also will make AI capabilities more accessible to individual developers and small communities, giving them the means to solve problems relevant to them. We’ve been asking ourselves, how do people take advantage of AI-powered systems while still having agency over some of their personal data and privacy? The on-device approach might be part of the answer. If we can move more of the value created by these systems to “the edge”, more people can benefit. To spur development in this area, our theme for the 2024 Builder's program was <a href="https://future.mozilla.org/builders/news_insights/announcing-mozilla-builders/">Local AI</a>. Projects such as <a href="https://builders.mozilla.org/project/llamafile/">Llamafile</a> and <a href="https://builders.mozilla.org/project/sqlite-vec/">SQlite-vec</a> make it easier for developers to incorporate on-device capabilities into their AI-powered applications.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Exploring human-AI interfaces</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We also have a new products team that is building AI products that solve real-world problems for entrepreneurs and solopreneurs. Many people lack the skills to build websites or money to pay others to do it. Our free <a href="https://soloist.ai/">Solo</a> product helps individuals and small businesses easily create online presences and get their businesses operational quickly.
+        </p>
+
+        <p>
+          At Mozilla, we’re thinking about other areas for development too, such as voice-based interfaces for hands-free internet use, and collaborative spaces for groups of agents and users to interact. The advances in AI systems are happening so rapidly, bringing more opportunities for innovation all the time.
+        </p>
+
+        <p>
+          Our main goal at Mozilla is to ensure that the technology we build and support through our various programs, partnerships and ecosystem is based on open principles, accessible to all — and benefits communities, rather than harms them.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_4_1('m24-l-grid-half m24-l-16-9') }}
+  {{ article_5_1('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

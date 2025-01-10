@@ -75,4 +75,5 @@
 * {
     /* !important required for locale specific override */
     font-style: normal !important; /* stylelint-disable-line declaration-no-important */
+    word-break: keep-all;
 }

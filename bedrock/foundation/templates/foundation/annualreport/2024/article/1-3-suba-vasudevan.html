@@ -1,0 +1,138 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_1_2, article_1_4 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}How Mozilla is meeting the challenge of transformation on the internet - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Suba Vasudevan' %}
+{% set article_author_role = 'SVP of Strategy and Operations' %}
+{% set article_hash = '#mozilla' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Reinventing Mozilla' %}
+{% set article_title = 'How Mozilla is meeting the challenge of transformation on the internet' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/suba.jpg') }}" width="100" height="100" alt="Suba Vasudevan">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/1-3-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/1-3-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/1-3-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/1-3-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'By rising to the new challenges across the tech industry, Mozilla can inspire a path forward and continue to show that technology can serve good without sacrificing users’ personal data.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The tech landscape has changed significantly since Mozilla’s founding. What the world needs from us today is different from back then, but no less important. People deserve choice and agency over the way they engage with the internet, even more so now with AI in the picture.
+        </p>
+
+        <p>
+          The current moment is an opportunity and a challenge for us. Our legacy is focused on building an open internet and prioritizing user privacy and safety. That work continues. But to stay relevant in the age of AI we need to evolve. We embarked on a journey of transformation two years ago and while we’ve made progress, we have much more to do. This includes making our organization about more than our browser Firefox. While it remains a critical driver of our success, we have also built a portfolio of organizations including Mozilla.ai and Mozilla Ventures.
+        </p>
+
+        <p>
+          Every reinvention has growing pains. We’ve experimented with new approaches and have had to make some tough calls, but we’re making operational changes designed to help us grow the organization and diversify our portfolio of products, projects and programs, and our revenue stream. To accomplish that, we’re shifting priorities, restructuring, and taking smart bets, while remaining grounded in <a href="{{ url('mozorg.about.manifesto') }}">our core values</a>. Here are our primary initiatives that we see driving growth and opportunity:
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Building AI based on principles of trust, safety & security, with the community</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla is positioned to be an effective force in shaping the AI future, but our vision isn’t just about competing with other tech companies. We want to nurture an AI ecosystem that amplifies creativity, enhances safety, and respects users and their choices. This involves collaborating with and supporting open source and local AI communities to create viable alternatives to existing proprietary software. We’re doing this in several ways: Mozilla Ventures is investing in startups creating the AI applications of the future, and Mozilla.ai is building tools that open source developers are using to create new AI technology.
+        </p>
+
+        <p>
+          Creating this open community will also enable AI safety and security solutions, plus exploring future ideas for us at Mozilla. Our goal is to partner with communities to address future waves of vulnerabilities and trust issues created by generative AI, and promote accountability and safety in AI systems. We are building AI features for Firefox and helping users build websites from scratch with Solo.
+        </p>
+
+        <p>
+          We are taking deliberate steps to ensure generative AI evolves safely, equitably, and transparently. Through initiatives like <a href="https://0din.ai/">Project 0din</a>, we’re working to identify and fix vulnerabilities within AI models, bolstering their security and reliability.
+        </p>
+
+        <p>
+          We’re also working to address trust & safety and security issues that can arise with the use of generative AI, more broadly across Mozilla.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Enabling ads that protect user privacy</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          One emerging area of focus for us will be in the advertising space. The global digital advertising market, <a href="https://www.emarketer.com/content/digital-ad-spend-worldwide-pass-600-billion-this-year">forecast to exceed $670 billion annually</a> in 2024, is currently not driven by user choice and transparency. Mozilla is uniquely equipped to challenge this system with a model that respects privacy while proving commercial viability. People deserve a better model. There are better ways for companies to advertise products effectively without conceding privacy. We plan to set the standard for that. Disrupting an entire industry like advertising will take years, but that's a bet we're comfortable taking.
+        </p>
+
+        <p>
+          Mozilla acquired <a href="https://www.anonymco.com/">Anonym</a>, which is a platform that enables advertisers and ad platforms to serve ads that are effective and relevant while maintaining the privacy of individuals who are using the internet. Mozilla is also experimenting with ad technology that preserves user privacy and prevents ad tracking while allowing advertisers to see aggregated data that shows how effective an ad is. Online advertising isn’t going anywhere; by providing privacy-protecting alternatives to the current models, Mozilla can help change the industry for the better.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Shaping The Future With Responsible Data Practices</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          For us to shift any of these industries, we need responsible data practices. Mozilla has been restrictive in this area in the past, but if we’re going to continue to prove to the industry that responsible data use is possible — especially in data-hungry innovations like advertising and AI — we need to collect and do more with data, in a way that upholds Mozilla’s unwavering privacy principles. There is a better way, so we’ll continue to evolve our approach with transparency and choice at the forefront as we set a new standard for the industry.
+        </p>
+
+        <p>
+          Additionally, we are trying to help people protect against abusive data collection practices in general. Mozilla released a tool that empowers people to take back some control from the data brokers. <a href="https://blog.mozilla.org/mozilla/introducing-mozilla-monitor-plus-a-new-tool-to-automatically-remove-your-personal-information-from-data-broker-sites/">Mozilla Monitor Plus</a> makes it easy to automatically remove personal information from sites that make money off selling your data. And we researched the <a href="https://foundation.mozilla.org/privacynotincluded/articles/its-official-cars-are-the-worst-product-category-we-have-ever-reviewed-for-privacy/">data practices of the major car companies</a> and found they also are collecting a lot of user data and selling or sharing it with other companies.
+        </p>
+
+        <p>
+          Mozilla has long been a champion of protecting users’ privacy online and giving people control over their data. By rising to the new challenges across the tech industry, Mozilla can inspire a path forward and continue to show that technology can serve good without sacrificing users' personal data. In doing so, we can continue to lead as a beacon of what a responsible, user-centered internet can and should be.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_1_2('m24-l-grid-half m24-l-16-9') }}
+  {{ article_1_4('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

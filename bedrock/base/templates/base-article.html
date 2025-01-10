@@ -21,7 +21,7 @@
   {% block main_feature %}{% endblock %}
   <div id="main-content" class="mzp-l-content{% if self.side_nav()|trim|length or self.side_extra()|trim|length %} mzp-has-sidebar mzp-l-sidebar-left{% endif %}">
     {% block sidebar %}
-      <aside class="mzp-l-sidebar">
+      <aside class="mzp-l-sidebar" aria-label="{{ ftl('ui-menu') }}">
         {% block side_nav %}
         {% endblock %}
         {% block side_extra %}
@@ -37,7 +37,7 @@
   </div>
 
   {% block newsletter %}
-    <aside class="section section-newsletter" id="newsletter-subscribe">
+    <aside class="section section-newsletter" id="newsletter-subscribe" aria-label="{{ ftl('newsletter-form-label') }}">
       <div class="content">
         {% block email_form %}
         {% endblock %}

@@ -60,8 +60,9 @@
     text-wrap-style: balance;
 
     .mzp-c-picto-image {
-        height: 48px;
-        width: 48px;
+        height: 30px;
+        width: auto;
+        margin: $spacer-sm 0 $spacer-md;
     }
 
     p {
@@ -71,12 +72,6 @@
 
 .mzp-c-picto-heading {
     font-size: 24px;
-}
-
-@media #{$mq-md} {
-    .mzp-c-picto-image {
-        margin-bottom: $spacer-sm;
-    }
 }
 
 @media #{$mq-lg} {

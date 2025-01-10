@@ -31,8 +31,8 @@
   {% set page_title_copy = 'Wyciśnij z Firefoksa, ile się da' %}
   {% set page_desc_copy = 'Zarejestruj się, aby co miesiąc otrzymywać nowości od Firefoksa i zawsze wiedzieć, co słychać w internecie.' %}
 {% else %}
-  {% set page_title_copy = ftl('newsletters-make-the-most', fallback='newsletters-put-more-fox-in-your-inbox') %}
-  {% set page_desc_copy = ftl('newsletters-sign-up-to-receive-monthly', fallback='newsletters-see-where-the-web-can-take') %}
+  {% set page_title_copy = ftl('newsletters-make-the-most') %}
+  {% set page_desc_copy = ftl('newsletters-sign-up-to-receive-monthly') %}
 {% endif %}
 
 {% block page_title %}{{ page_title_copy }}{% endblock page_title %}
@@ -90,12 +90,17 @@
     <div class="section-newsletter-form mzp-l-content mzp-t-content-sm">
       {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
         {{ email_newsletter_form(
-          newsletters='mozilla-foundation, mozilla-and-you',
+          newsletters='mozilla-and-you',
           include_title=False,
           button_class='button-dark'
         )}}
       {% else %}
-        {{ email_newsletter_form(include_title=False, spinner_color='#3a304b', button_class='mzp-t-product mzp-t-lg') }}
+        {{ email_newsletter_form(
+          newsletters='mozilla-and-you',
+          include_title=False,
+          spinner_color='#3a304b',
+          button_class='mzp-t-product mzp-t-lg'
+        )}}
       {% endif %}
     </div>
   </section>

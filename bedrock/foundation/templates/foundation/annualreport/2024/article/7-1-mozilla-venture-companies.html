@@ -1,0 +1,109 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_6_2, article_7_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Mozilla Venture Companies - State of Mozilla 2024{% endblock %}
+
+{% set article_hash = '#ecosystem' %}
+{% set article_read_time = '2 min read' %}
+{% set article_tag_label = 'An Expanding Ecosystem' %}
+{% set article_title = 'Mozilla Venture Companies' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-1-truepic-300.png',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-1-truepic-600.png': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Truepic:</h2>
+        <p>Authenticating Digital <br>Media at Capture</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Truepic develops secure camera technology and image verification solutions that authenticate digital content at the moment of capture. By embedding cryptographic proofs and detailed metadata into each photo and video, Truepic certifies the origin, date, and integrity of digital media. This technology is invaluable across industries—from insurance companies verifying claims with tamper-proof photos to news organizations confirming the authenticity of user-generated content. By providing a verifiable chain of custody for visual media, Truepic combats deepfakes and image manipulation, fostering trust in digital interactions.
+        </p>
+
+        <p>
+          Truepic’s solutions empower businesses and individuals alike to ensure the authenticity of visual media. By supporting transparency and accountability, the company plays a crucial role in sectors like finance, insurance, journalism, and human rights documentation. Truepic is paving the way toward a more trustworthy digital ecosystem where seeing is believing.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-1-flower-300.png',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-1-flower-600.png': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'loading': 'lazy',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Flower:</h2>
+        <p>Open-Source Framework <br>for Federated Learning</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Flower is an open-source framework that enables federated learning, allowing developers to train machine learning models across distributed devices and servers without centralizing data. Addressing concerns over data privacy and security, Flower lets data remain on local devices while facilitating collaborative model training. This approach enhances privacy and reduces risks associated with data breaches and compliance issues. Designed to be flexible and interoperable, Flower supports a range of machine learning libraries and platforms, making it accessible for organizations aiming to implement federated learning in their AI projects.
+        </p>
+
+        <p>
+          By promoting a decentralized approach to AI development, Flower addresses key ethical concerns such as data ownership and user consent. Their technology fosters a more inclusive and privacy-conscious AI ecosystem, ensuring that advancements in machine learning do not come at the expense of user trust and data security.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-title">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/7-1-nous-300.png',
+          srcset={
+            'img/foundation/annualreport/2024/articles/7-1-nous-600.png': '2x',
+          },
+          optional_attributes={
+            'height': '300',
+            'loading': 'lazy',
+            'width': '300',
+          },
+        ) }}
+        <h2 class="m24-t-sm">Nous:</h2>
+        <p>Open-Source AI Models <br>for Accessible Innovation</p>
+      </div>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Nous develops advanced, open-source AI models and tools to make artificial intelligence accessible to a wider audience. By creating large language models (LLMs) and AI technologies that anyone can use, modify, and build upon, Nous aims to democratize AI development. Their open-source approach breaks down barriers to entry in AI, fostering a community-driven ecosystem where innovation thrives.
+        </p>
+
+        <p>
+          Developers and organizations can leverage Nous’s AI models to create customized solutions tailored to their unique needs without being locked into proprietary systems. By promoting transparency and collaboration, Nous addresses ethical concerns surrounding AI, such as bias, accountability, and the concentration of technological power. Nous contributes to a more equitable and innovative AI landscape, empowering users worldwide to participate in shaping the technology that increasingly influences our lives.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_6_2('m24-l-grid-half m24-l-1-1') }}
+  {{ article_7_2('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

@@ -1,0 +1,160 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+.m24-c-ar-gallery-container {
+    display: grid;
+    gap: $spacer-xl $grid-gutter;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: $spacer-xl;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media #{$mq-xl} {
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
+
+.m24-c-ar-gallery-tile {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    @media #{$mq-xl} {
+        grid-column: auto / span 3;
+
+        &.m24-l-grid-third {
+            grid-column: auto / span 4;
+        }
+
+        &.m24-l-grid-five {
+            grid-column: auto / span 5;
+        }
+
+        &.m24-l-grid-half {
+            grid-column: auto / span 6;
+        }
+
+        &.m24-l-grid-two-thirds {
+            grid-column: auto / span 8;
+        }
+
+        &.m24-l-grid-three-quarters {
+            grid-column: 4 / span 9;
+            margin-left: 0
+        }
+
+        &.m24-l-grid-full {
+            grid-column: auto / span 12;
+        }
+    }
+}
+
+.m24-c-ar-gallery-tile-meta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: $spacer-sm;
+    border-bottom: 2px solid $m24-color-black;
+    margin-bottom: $spacer-md;
+
+    span {
+        padding-bottom: $spacer-sm;
+    }
+}
+
+.m24-c-ar-gallery-tile-title {
+    font-size: 24px;
+    margin-bottom: 4px;
+    order: 2;
+    text-decoration: underline 0.075em transparent;
+    transition: text-decoration-color $fast $bezier, color $fast $bezier;
+
+    @media #{$mq-lg} {
+        font-size: 32px;
+    }
+}
+
+.m24-c-ar-gallery-tile-link {
+    text-decoration: none;
+    color: inherit;
+
+    span {
+        display: block;
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &:visited:hover {
+        color: inherit;
+        text-decoration: underline;
+    }
+
+    &[href]::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+}
+
+.m24-c-ar-gallery-tile-image {
+    margin-bottom: 16px;
+    order: 1;
+
+    img {
+        aspect-ratio: auto 250 / 119;
+        display: block;
+        width: 100%;
+    }
+}
+
+@media #{$mq-xl} {
+    .m24-l-1-1 .m24-c-ar-gallery-tile-image img {
+        aspect-ratio: auto 1 / 1;
+    }
+
+    .m24-l-4-5 .m24-c-ar-gallery-tile-image img {
+        aspect-ratio: auto 4 / 5;
+    }
+
+    .m24-l-16-9 .m24-c-ar-gallery-tile-image img {
+        aspect-ratio: auto 16 / 9;
+    }
+
+    .m24-l-3-2 .m24-c-ar-gallery-tile-image img {
+        aspect-ratio: auto 3 / 2;
+    }
+}
+
+.m24-c-ar-gallery-tile-content {
+    font-size: $text-body-sm;
+    order: 4;
+}
+
+.m24-c-ar-gallery-tile-author {
+    margin-bottom: $spacer-sm;
+}
+
+.m24-c-ar-gallery-tile-desc {
+    margin-bottom: 4px;
+}
+
+.m24-c-ar-gallery-tile-cta {
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.m24-c-ar-gallery-tile-cta > span {
+    font-size: $text-button-sm;
+    font-weight: bold;
+    text-decoration: underline;
+}

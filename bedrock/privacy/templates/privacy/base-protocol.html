@@ -41,7 +41,7 @@
 
 {% block content %}
 <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
-  <article class="mzp-l-main" itemtype="http://schema.org/Article">
+  <main class="mzp-l-main">
     {% block article %}
     <header>
       {% if self.article_header_logo()|trim|length %}
@@ -58,10 +58,10 @@
       </div>
       {% endif %}
     </header>
-    <main class="privacy-body" itemprop="articleBody">
+    <section class="privacy-body" itemprop="articleBody">
       {% block sections %}
       {% endblock %}
-    </main>
+    </section>
     {% if self.footnote()|trim|length %}
     <footer class="privacy-footnote">
       <div>
@@ -70,7 +70,7 @@
     </footer>
     {% endif %}
     {% endblock %}
-  </article>
+  </main>
   <aside class="mzp-l-sidebar">
     {{ sidemenu_lists([navigation_bar], body_id) }}
     {% block side_extra %}{% endblock %}

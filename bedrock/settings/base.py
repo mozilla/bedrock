@@ -134,6 +134,10 @@ USE_TZ = True
 
 USE_ETAGS = config("USE_ETAGS", default=str(not DEBUG), parser=bool)
 
+# Use the "X-Forwarded-Host" header from the CDN to set the Hostname
+# https://mozilla-hub.atlassian.net/browse/SE-4263
+USE_X_FORWARDED_HOST = config("USE_X_FORWARDED_HOST", default="False", parser=bool)
+
 # just here so Django doesn't complain
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
@@ -167,6 +171,7 @@ LOCALES_BY_REGION = {
         "kk",
         "km",
         "ko",
+        "lo",
         "ml",
         "mr",
         "ms",
@@ -2105,8 +2110,7 @@ VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES = [
 ]
 
 VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
-VPN_AVAILABLE_COUNTRIES = 33
-VPN_AVAILABLE_COUNTRIES_WAVE_VII = 57
+VPN_AVAILABLE_COUNTRIES = 57
 VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
 VPN_CONNECT_DEVICES = 5
@@ -2271,6 +2275,8 @@ if WAGTAIL_ENABLE_ADMIN:
         # django.contrib.admin needs SessionMiddleware and AuthenticationMiddleware to be specced, and fails
         # hard if it's in INSTALLED_APPS when they are not, so we have to defer adding it till here
         "django.contrib.admin",
+        # wagtail_localize_smartling > 0.10 needs django.contrib.humanize
+        "django.contrib.humanize",
     ]
 
     for midddleware_spec in [
@@ -2432,3 +2438,8 @@ else:
 # doesn't exist, we get `None` back from `switch_is_active`.
 WAFFLE_SWITCH_DEFAULT = None
 WAFFLE_CREATE_MISSING_SWITCHES = False
+
+if config("ENABLE_WAGTAIL_STYLEGUIDE", parser=bool, default="False"):
+    # Useful when customising the Wagtail admin
+    # when enabled, will be visible on cms-admin/styleguide
+    INSTALLED_APPS.append("wagtail.contrib.styleguide")

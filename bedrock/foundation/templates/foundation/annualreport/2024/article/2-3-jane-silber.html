@@ -1,0 +1,115 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_2_2, article_2_4 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Empowering developers with open AI tools for a trustworthy future - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Jane Silber' %}
+{% set article_author_role = 'Interim Chief Executive Officer, Mozilla.ai' %}
+{% set article_hash = '#portfolio' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'Building a balanced portfolio' %}
+{% set article_title = 'Empowering developers with open AI tools for a trustworthy future' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/jane.jpg') }}" width="100" height="100" alt="Jane Silber">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/2-3-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/2-3-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/2-3-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/2-3-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'At Mozilla.ai, our mission is twofold: to become a foundational support and mainstay for developers by providing them AI-driven solutions and crucial components of open-source AI stacks and building community for collaboration.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The artificial intelligence landscape is evolving rapidly, with a growing number of tools and large language models (LLMs) to choose from. This can be both exciting and overwhelming for developers who are working on AI projects.
+        </p>
+
+        <p>
+          At <a href="https://Mozilla.ai">Mozilla.ai</a>, our mission is twofold: to become a foundational support and mainstay for developers by providing them with AI-driven solutions and crucial components of open source AI stacks and building community for collaboration. We aim to help developers on their AI journey and offer an open source alternative to the closed AI models and tools that many developers are shut out of due to lack of resources and expertise. As an AI startup, research lab and community builder for developers, we’re working to address this by fostering an open, trustworthy, and safe AI ecosystem. To realize that vision, we are making it easier for developers to choose open source AI in several ways.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Building tools for open source AI development</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          First, we are developing open source components and tools to help developers address one of the most frustrating parts of the building process — evaluating hundreds of LLM options to determine which is the best fit for a specific project. There’s a broad range of LLMs, with varying capabilities, limitations and specializations. When selecting an AI model, many developers immediately default to ChatGPT because it's well-known and has easy-to-use APIs, even though open source models are more transparent and better in most use cases.
+        </p>
+
+        <p>
+          Mozilla.ai has developed a new tool, <a href="https://www.mozilla.ai/lumigator">Lumigator</a>, that provides a way for developers to easily assess the features of the various LLMs, open and closed, so they can determine which would be best for their specific use case. The evaluation stage is quite complex, as developers need to make sure the model will work with their dataset, among other things. Lumigator will evaluate multiple models against a user’s data set, providing insights and recommendations for the specific use case. The goal is to make the process as easy and frictionless as possible, so developers can focus on building their applications.
+        </p>
+
+        <p>
+          We won’t stop there. Future iterations of Lumigator will support developers through the entire LLM workflow, from fine tuning to deploying it, as well as managing the infrastructure requirements and running it in the cloud or on local servers.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Developer hub and open source model partnerships</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We are also working on ways to foster community among developers. We envision creating a hub where they can share their knowledge and best practices. In order to make open source AI solutions widespread and easy to use, we feature Blueprints of adaptable starter code, each integrating open-source tools and tailored for real-world AI use cases. They provide developers with a flexible foundation to quickly customize and build AI applications and solutions. Over time, the form could become a rich repository for information on how to build safe, ethical AI.
+        </p>
+
+        <p>
+          In 2025, we’re also going to be expanding our partnerships with the people and developer organizations building open source foundational models. Strong open source models are coming from academia and research organizations but many haven’t gained much traction with developers. Our vision also includes a comprehensive ecosystem where developers from all over can aggregate components that work together in a frictionless way. Sometimes there are gaps in a workflow, but often what is missing is the glue between components, which is the value and cohesion we aim to provide.
+        </p>
+
+        <p>
+          We can’t democratize open source AI alone, but we can bring our product mindset and community connections to surface the best of the open source AI world to developers. It’s still early days for AI broadly, but we at Mozilla.ai don’t want to waste any time getting developers the tools and support they need to build open source AI technology that is trustworthy and accessible to all.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_2_2('m24-l-grid-half m24-l-16-9') }}
+  {{ article_2_4('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

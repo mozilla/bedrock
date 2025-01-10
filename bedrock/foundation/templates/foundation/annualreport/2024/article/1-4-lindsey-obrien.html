@@ -1,0 +1,290 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_1_3, article_2_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}A rebrand and a call to action: Reclaim the internet - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Lindsey O’Brien' %}
+{% set article_author_role = 'Chief Marketing Officer' %}
+{% set article_hash = '#mozilla' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Reinventing Mozilla' %}
+{% set article_title = 'A rebrand and a call to action: Reclaim the internet' %}
+
+{% set blockquote_1_text = 'As Mozilla evolves, this refreshed brand will help us better communicate the breadth of our ambitions—from ensuring privacy and transparency in everything we do, to building technologies that empower people rather than exploit them.' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/lindsey.jpg') }}" width="100" height="100" alt="Lindsey O’Brien">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/1-4-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/1-4-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/1-4-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/1-4-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          For years Mozilla has been incorrectly thought of by many as "the Firefox company." This perception left too much of our great work in the shadows. To bring some more light, we've started the process of reinvigorating and elevating the Mozilla brand itself. The core message of Mozilla's rebrand is encapsulated in the phrase "reclaim the internet." We want to inspire individuals and communities to take control over their digital experiences in an era dominated by Big Tech and privacy concerns.
+        </p>
+
+        <p>
+          The rebrand positions Mozilla as a beacon for digital rights, emphasizing that Mozilla is here to put people over profits. The new visual identity, including the flag symbol, serves as a rallying cry for users to reclaim their internet. This symbol — built from the 'M' of Mozilla and a pixel that references our iconic Tyrannosaurus rex — embodies belief, peace, unity and activism. It’s a modern design that pays homage to Mozilla's history while driving our mission into the future.
+        </p>
+
+        {{ picture(
+          url='img/foundation/annualreport/2024/articles/1-3-brand-logo.gif',
+          sources=[
+            {
+              'media': '(prefers-reduced-motion: reduce)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-600.png': '600w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-800.png': '800w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1000.png': '1000w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1200.png': '1200w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo-1500.png': '1500w',
+              },
+              'sizes': {
+                '(min-width: 1440px)': '680px',
+                '(min-width: 586px)': '66vw',
+                'default': 'calc(100vw - 48px)'
+              }
+            },
+            {
+              'media': '(prefers-reduced-motion: no-preference)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-logo.gif': '796w'
+              },
+              'sizes': {
+                'default': '796px'
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'm24-c-ar-article-inline-image',
+            'height': '468',
+            'loading': 'lazy',
+            'width': '680',
+          }
+        ) }}
+
+        <p>
+          The visual elements of the new brand were carefully chosen to emphasize Mozilla's mission. The color palette begins with black and white as a strong foundation, complemented by a fresh green hue that represents growth, renewal, and our mission to make the internet better for everyone. Our new bespoke typeface inspired by the Zilla typeface, is more contemporary, with its own custom characters. It informs our wordmark, complements our symbol and is completely true to us! Oh and it’s open source of course. We are not precious. We want our toolkit to be available to everyone so it can be leveraged in different places.
+        </p>
+
+        <div class="m24-c-ar-article-image-block">
+          {{ picture(
+            url='img/foundation/annualreport/2024/articles/1-3-dino.gif',
+            sources=[
+              {
+                'media': '(prefers-reduced-motion: reduce)',
+                'srcset': {
+                  'img/foundation/annualreport/2024/articles/1-3-dino-600.png': '2x',
+                }
+              },
+              {
+                'media': '(prefers-reduced-motion: no-preference)',
+                'srcset': {
+                  'img/foundation/annualreport/2024/articles/1-3-dino.gif': '215w'
+                },
+                'sizes': {
+                  'default': '215px'
+                }
+              }
+            ],
+            optional_attributes={
+               'height': '222',
+              'loading': 'lazy',
+              'width': '158',
+            }
+          ) }}
+
+          {{ resp_img(
+            url='img/foundation/annualreport/2024/articles/1-3-waterbottle-300.png',
+            srcset={
+              'img/foundation/annualreport/2024/articles/1-3-waterbottle-600.png': '2x',
+            },
+            optional_attributes={
+              'height': '222',
+              'loading': 'lazy',
+              'width': '158',
+            },
+          ) }}
+
+          {{ resp_img(
+            url='img/foundation/annualreport/2024/articles/1-3-hoodie-300.png',
+            srcset={
+              'img/foundation/annualreport/2024/articles/1-3-hoodie-600.png': '2x',
+            },
+            optional_attributes={
+              'height': '222',
+              'loading': 'lazy',
+              'width': '158',
+            },
+          ) }}
+
+          {{ resp_img(
+            url='img/foundation/annualreport/2024/articles/1-3-lanyard-300.png',
+            srcset={
+              'img/foundation/annualreport/2024/articles/1-3-lanyard-600.png': '2x',
+            },
+            optional_attributes={
+              'height': '222',
+              'loading': 'lazy',
+              'width': '158',
+            },
+          ) }}
+        </div>
+
+        {{ picture(
+          url='img/foundation/annualreport/2024/articles/1-3-brand-font.gif',
+          sources=[
+            {
+              'media': '(prefers-reduced-motion: reduce)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-600.png': '600w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-800.png': '800w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1000.png': '1000w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1200.png': '1200w',
+                'img/foundation/annualreport/2024/articles/1-3-brand-font-1500.png': '1500w',
+              },
+              'sizes': {
+                '(min-width: 1440px)': '680px',
+                '(min-width: 586px)': '66vw',
+                'default': 'calc(100vw - 48px)'
+              }
+            },
+            {
+              'media': '(prefers-reduced-motion: no-preference)',
+              'srcset': {
+                'img/foundation/annualreport/2024/articles/1-3-brand-font.gif': '796w'
+              },
+              'sizes': {
+                'default': '796px'
+              }
+            }
+          ],
+          optional_attributes={
+            'class': 'm24-c-ar-article-inline-image',
+            'height': '468',
+            'loading': 'lazy',
+            'width': '680',
+          }
+        ) }}
+
+        <p>
+          One major goal of this rebrand is to shift perceptions of Mozilla from being "the Firefox company" to being a broader advocate for a healthier internet. Our new brand architecture allows us to amplify our marketing efforts and cross promote effectively. This new brand framework is also about breaking down internal silos. We want to reflect the way our audiences think, simplifying the pathways for people to find and adopt our offerings. By organizing our products and initiatives more intuitively, we’re creating a more impactful brand experience that’s easier to navigate.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">New structure for a diverse portfolio</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Mozilla isn't just another tech company — it is a global community of builders and activists. We are users and creators dedicated to keeping the internet dynamic and accessible, empowering people worldwide to contribute and create. For over 25 years, Mozilla has been a leading advocate for an open, accessible and supportive internet. No matter who you are or where you’re from, Mozilla believes everyone should have the opportunity to experience the web as they want it to be.
+        </p>
+
+        <p>
+          Mozilla's diverse offerings needed a structure that brings coherence to our portfolio. We want all parts of Mozilla to be related and have a feeling of cohesion. Historically, our products and initiatives often appeared as standalone efforts, creating a fragmented experience for our audience. This fragmented perception has made it challenging for people to grasp the full breadth of Mozilla’s impact and how all the different parts fit together.
+        </p>
+
+        <p>
+          Our new brand architecture aims to fix that by unifying our offerings under a cohesive umbrella. "One Mozilla" is our guiding principle. It is about ensuring that when you see the Mozilla name, it stands for something broader than just one product or initiative. This vision helps our audience understand who we are and what we represent without being overwhelmed by a disjointed mix of logos and projects.
+        </p>
+
+        <p>
+          Our past experiments with a combination of brands across a variety of products demonstrated that positioning these offerings under Firefox often created confusion, as Firefox was so closely associated with browsing. By aligning these initiatives directly with Mozilla, we’re simplifying the message. This approach also gives us more flexibility: Each product can better communicate its unique value without the baggage of misaligned expectations.
+        </p>
+
+        <p>
+          This change ensures we can present new offerings strategically while maintaining a consistent and recognizable Mozilla presence. We’re concentrating our brand equity — building on the Mozilla awareness and understanding by providing consistency and creativity in a unified way.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-t-green">
+    <div class="m24-c-content">
+      <div class="m24-c-ar-media-block">
+        {{ resp_img(
+          url='img/foundation/annualreport/2024/articles/1-3-brand-collage-1500.png',
+          srcset={
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-500.png': '500w',
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-1000.png': '1000w',
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-1500.png': '1500w',
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-2000.png': '2000w',
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-2500.png': '2500w',
+            'img/foundation/annualreport/2024/articles/1-3-brand-collage-3000.png': '3000w',
+          },
+          sizes={
+            'default': '100vw',
+          },
+          optional_attributes={
+            'class': 'm24-c-ar-media-block-asset',
+            'height': '1376',
+            'loading': 'lazy',
+            'width': '518',
+          },
+        ) }}
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">The future of Mozilla’s brand</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          This rebranding marks a significant moment for Mozilla. It’s a visual and strategic reset, setting us up for reinvention and growth and ensuring that our products and initiatives speak with a consistent, clear voice. The new architecture is designed to be flexible—whether supporting emerging products or showcasing flagship initiatives, we’re ready to grow while staying true to our mission.
+        </p>
+
+        <p>
+          As Mozilla evolves, this refreshed brand will help us better communicate the breadth of our ambitions — from ensuring privacy and transparency in everything we do, to building technologies that empower people rather than exploit them. It’s a brand for everyone who believes in the richness of the internet and supports our mission to make it free, accessible and more open.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_1_3('m24-l-grid-half m24-l-3-2') }}
+  {{ article_2_1('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

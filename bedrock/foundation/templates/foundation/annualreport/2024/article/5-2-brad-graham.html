@@ -1,0 +1,135 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_5_1, article_6_1 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}A privacy-first solution that meets advertisers’ needs - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Brad Smallwood & Graham Mudd' %}
+{% set article_author_role = 'SVP of Anonym & SVP of Product' %}
+{% set article_hash = '#advertising' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'A New Way for Advertising' %}
+{% set article_title = 'A privacy-first solution that meets advertisers’ needs' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/brad.jpg') }}" width="100" height="100" alt="Brad Smallwood">
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/graham.jpg') }}" width="100" height="100" alt="Graham Mudd">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/5-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/5-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/5-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/5-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'Anonym solves a big problem in the ad industry: It enables a system where ads are relevant and measurable, but don’t compromise people’s privacy.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Whenever the topic of online privacy arises, the common refrain from Big Tech is that targeted ads are an essential mechanism for funding the online services we all enjoy, so there’s no choice but to let them vacuum up our personal data.
+        </p>
+
+        <p>
+          We couldn’t disagree more. Technology options have advanced to the point where respecting user privacy online, while enabling publishers to still deliver relevant content and advertisements — and enabling advertisers to see how those ads perform — is not only possible, but it doesn’t require bending over backwards to make it happen.
+        </p>
+
+        <p>
+          Our company, Anonym, developed the technology that makes this possible, and this year we <a href="https://blog.mozilla.org/en/mozilla/mozilla-anonym-raising-the-bar-for-privacy-preserving-digital-advertising/">joined forces with Mozilla</a> to enable even more publishers and advertisers to keep user privacy at their core. Our plan is to work with these partners to show it’s possible to operate a healthy advertising business without sharing users’ information all around the Internet.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Disrupting the ad industry </h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          There have been some improvements to online privacy in recent years, through regulations like the European Union’s General Data Protection Regulation (GDPR) and the depreciation of cookies by some web browsers. But these changes merely make data collection more difficult, and determined industry players are finding ways around them through server-to-server connections and direct data transfers.
+        </p>
+
+        <p>
+          Today, nearly every click, location, search and view is collected, shared with ad networks and compiled into vast online profiles that are used in digital ads. Instead of plugging the holes in online privacy, Anonym’s technology provides a business-ready offering that fully addresses the issue.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Enabling effective, relevant ads and user privacy</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Protecting user privacy is nothing new to Mozilla: For years, we’ve been working to prevent data collection in Firefox. Anonym’s technology, which is completely separate from Firefox, tackles user privacy in advertising in a very different way — at the ad tech infrastructure layer.
+        </p>
+
+        <p>
+          Anonym solves a big problem in the ad industry: It enables a system where ads are relevant and measurable, but don’t compromise people’s privacy. We know that most websites, apps and platforms are collecting volumes of “first-party” user data, and that is unlikely to stop anytime soon. Anonym’s technology provides an alternative to sharing that data while still enabling an effective and measurable ad experience, in contrast to the vast sharing that is common in today’s digital ad industry.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Encrypting and anonymizing data </h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          We have a novel way of doing this. We securely combine encrypted data sets from online service providers and advertisers in a trusted execution environment that no one has access to, not even us. The system enables advertisers to measure and optimize campaigns without connecting the analytics to specific, identified individuals using differential privacy algorithms — strong mathematical frameworks that provide statistical information while obscuring the identity of individuals. Basically, it adds noise to the data, helping to prevent it from being traced back to individual users.
+        </p>
+
+        <p>
+          Anonym is transparent about the code and algorithms that make the system work, and eventually, we hope to allow regulators and civil society organizations to verify the protections provided. That would mean that no single organization — not even Mozilla — will be entrusted with guarding users’ privacy.
+        </p>
+
+        <p>
+          We have already proven that Anonym’s privacy-respecting technology is effective for ad measurement and attribution, but we’re not stopping there. We know that some of the most egregious privacy concerns and creepy experiences come from the data used in ad targeting and delivery, which is when ad systems follow people around the web showing them ads based on their activities. In the future, we want to create additional new methods for strengthening user privacy while enabling effective and meaningful advertising.
+        </p>
+
+        <p>
+          In an age where every move we make online feels like it’s being shadowed by advertisers, the quest for online privacy can seem like a game of cat-and-mouse. Now, Anonym offers the technology and drive to tip the scales back in favor of users. Our solution meets the needs of advertisers while ensuring everyone's privacy is protected online.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_5_1('m24-l-grid-half m24-l-1-1') }}
+  {{ article_6_1('m24-l-grid-half m24-l-16-9') }}
+{% endset %}

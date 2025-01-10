@@ -1,0 +1,172 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_2_1, article_2_3 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Strategic innovation: A 25-year mission - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Laura Chambers' %}
+{% set article_author_role = 'Chief Executive Officer, Mozilla Corporation' %}
+{% set article_hash = '#portfolio' %}
+{% set article_read_time = '4 min read' %}
+{% set article_tag_label = 'Building a balanced portfolio' %}
+{% set article_title = 'Strategic innovation: A 25-year mission' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/laura.jpg') }}" width="100" height="100" alt="Laura Chambers">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/2-2-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/2-2-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/2-2-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/2-2-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+{% set blockquote_1_text = 'We believe in a future where the internet remains open, accessible, and fundamentally sound. And with our progress this year, we’re confident that we’re on the right path, building a future that serves everyone, everywhere.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          At the heart of everything we do lies our commitment to improving the internet — not just for today, but for future generations. This core commitment shapes every decision we make, as we navigate and lead through an ever-changing technological and regulatory landscape. With this in mind, we have pursued two high-level priorities this year: building ground-breaking technologies that improve the internet, and building a robust business that ensures we can sustain our work for the next 25 years and beyond.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Revitalizing Firefox</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          For years, Firefox has symbolized Mozilla’s values, and brought them to life: privacy, security, and an unwavering commitment to user empowerment. However, recent years have brought challenges, with Firefox experiencing a steady decline in user engagement. We knew we had to act. We started with the core — focusing our engineering efforts on driving real improvements in the functionalities that users care about most: speed, privacy, security, and compatibility. We have done this work across both desktop and mobile, leading to a strong acceleration of growth in the number of Mobile Firefox users.
+        </p>
+
+        <p>
+          The result? A Firefox that is leaner, faster, and better suited to the modern internet. Our work is paying off. We’re surpassing all of the key performance and financial goals that we set for the Firefox team this year, and it feels like Firefox is turning a corner. We are focused on putting the best browser possible in the hands of the most people and we’re proud of our progress.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Expanding our product portfolio</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          To truly shape the future of the internet, we knew we couldn’t just rest on the laurels of Firefox. The internet is evolving rapidly, and with that comes new opportunities, and an increased sense of mission to make a meaningful and positive impact. That’s why we’ve expanded our focus, launching products that address some of the most pressing challenges of our time — in particular, artificial intelligence and privacy-preserving advertising.
+        </p>
+
+        <h3>Artificial Intelligence Initiatives</h3>
+
+        <p>
+          Generative AI is reshaping our lives — how we work, interact, and navigate the world. For Mozilla, the question wasn’t whether to engage in generative AI, but how to do so in a way that puts people first. We have chosen to take an active role, not just critiquing from the sidelines, but building a better version of and infrastructure for this transformative technology.
+        </p>
+
+        <p>
+          Our programs and partnerships, such as co-development and investment in the  llamafile project and our Builders Program, have been instrumental in fostering a community that’s committed to developing generative AI for the common good — a shared vision that makes AI work better for everyone. Additionally, we have integrated (optional) generative AI features directly into Firefox, enhancing the browsing experience with intelligent sidebar suggestions, context-aware tools, and personalized recommendations to ensure users get the most out of their time online.
+        </p>
+
+        <h3>Building Better Advertising for the Web</h3>
+
+        <p>
+          Advertising is an integral part of the modern internet — it helps keep content freely accessible to all. But let’s be clear: Traditional online advertising, with its disregard for privacy, has fallen short of what users deserve. Our goal is to change that. We want to reimagine how advertising can work … while respecting user privacy.
+        </p>
+
+        <p>
+          The acquisition of Anonym this year was a pivotal step. Anonym’s innovative approach to privacy aligns deeply with our mission, and its technology offers a foundation for building advertising solutions that protect user data.
+        </p>
+
+        <p>
+          Across our advertising work, we want to make sure that our changes and innovations aimed at improving the advertising system on the internet are in line with our mission and clear for our community. This is a big change and one we will do with input and consideration from our community.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Aligning our internal foundations</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Innovation requires a solid foundation. Internally, this meant reassessing where we allocate resources, and making tough decisions. We had to carefully evaluate each project, identifying those that did not serve our core mission and determining how best to reallocate resources.
+        </p>
+
+        <p>
+          As part of this process, we discontinued some projects. But this wasn’t just about cutting back — it was about reinvesting. We redeployed both talent and funding to Firefox, and to new initiatives that promise a more significant impact and greater alignment with our long-term vision.
+        </p>
+
+        <p>
+          This renewed focus on efficiency and strategic alignment has allowed us to strengthen our core operations, giving us the flexibility to explore new opportunities, innovate more effectively, and take thoughtful risks that will ultimately push us closer to achieving our mission. We believe that through this reassessment and strategic reallocation, we have laid a much stronger foundation for future growth, ensuring that every part of the organization contributes meaningfully towards building a better internet.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Financial stewardship and community accountability</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          This year has also been about embracing a new level of financial agility. Our financial health is strong, and we are on track to exceed our revenue and EBITDA targets. But what’s more important is how we think about this financial stability.
+        </p>
+
+        <p>
+          Mozilla doesn’t answer to shareholders in the traditional sense. Our shareholders are the people of the internet, and our return on investment is measured in the difference we make to their experience online. Our commitment is to deploy our resources towards building a better internet, which may mean making more aggressive financial decisions and taking more risk. This approach ensures that every dollar spent pushes us closer to our mission — whether it’s making Firefox a better, faster browser, launching new generative AI initiatives, or creating privacy innovations that benefit everyone.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">The path forward</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          As we look to the future, Mozilla’s path is clear. We will continue to enhance Firefox, reinforcing its position as a browser built with the user at its core. We will help lead the development of generative AI that is not only advanced, but also ethical, transparent and people-centered. We will pioneer privacy-preserving technologies that push the industry forward and prove that privacy and innovation can coexist. We will do all this within a framework of a considered strategy, disciplined investment and execution, to ensure our advancements are working and having meaningful positive impact for our community.
+        </p>
+
+        <p>
+          And we will do all of this while keeping our community — our true stakeholders — at the center of our mission. We believe in a future where the internet remains open, accessible, and fundamentally sound. And with our progress this year, we’re confident that we’re on the right path, building a future that serves everyone, everywhere.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_2_1('m24-l-grid-half m24-l-16-9') }}
+  {{ article_2_3('m24-l-grid-half m24-l-1-1') }}
+{% endset %}

@@ -192,10 +192,10 @@
 {% else %}
   {% set current_page = request.path %}
 {% endif %}
-<nav class="c-sub-navigation">
+<nav class="c-sub-navigation" aria-labelledby="c-sub-navigation-title">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
-      <h2 class="c-sub-navigation-title">
+      <h2 id="c-sub-navigation-title" class="c-sub-navigation-title">
         {% if title.href %}
           <a href="{{ title.href }}" data-link-position="subnav" {% if title.cta_name %}data-link-text="{{ title.cta_name }}"{% endif %}>
             {% if title.icon %}<img class="c-sub-navigation-icon" src="{{ title.icon }}" width="24" height="24" alt="">{% endif %}

@@ -5,8 +5,8 @@
 @use '../utils' as cp;
 @use 'sass:color';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '../../protocol/components/video';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../../protocol/components/video';
 
 // Header with video
 .c-careers-video-hero {

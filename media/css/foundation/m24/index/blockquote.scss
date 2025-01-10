@@ -1,0 +1,89 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../../m24/vars/lib' as *;
+
+$quote-width: 56px;
+$quote-height: 45px;
+
+.m24-c-ar-blockquote {
+    blockquote {
+        border: none;
+        color: $m24-color-black;
+        font-weight: 600;
+        margin: 0;
+        padding: 0;
+        position: relative;
+
+        &::before {
+            background-image: url('/media/img/foundation/annualreport/2024/blockquotes/open-quote-green.svg');
+            background-position: top left;
+            background-repeat: no-repeat;
+            background-size: $quote-width $quote-height;
+            content: open-quote;
+            display: inline-block;
+            width: $quote-width;
+            height: $quote-height;
+            top: 0;
+            left: 0;
+            position: absolute;
+
+            // protocol override
+            &::after {
+                content: none;
+            }
+        }
+    }
+}
+
+// Large blockquote for landing page
+.m24-c-ar-blockquote.m24-t-large {
+    blockquote {
+        padding: calc($quote-height + $spacer-md) 0 0;
+
+        p {
+            font-weight: 600;
+            font-size: $text-title-md;
+            margin-bottom: $spacer-lg;
+        }
+
+        cite {
+            color: $m24-color-dark-green;
+            font-family: $primary-font;
+            font-size: $text-body-md;
+            font-style: normal;
+            text-transform: uppercase;
+
+            // protocol override
+            &::before {
+                content: '';
+            }
+        }
+    }
+}
+
+// Smaller blockquote for articles
+.m24-c-ar-blockquote.m24-l-inline-article {
+    @include grid;
+
+    blockquote {
+        font-size: $text-title-md;
+        grid-column: 4/-1;
+
+        &::before {
+            left: calc(-1 * (#{$quote-width} + #{$spacer-md}));
+            top: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        blockquote {
+            grid-column: 3/12;
+
+            &::before {
+                left: calc(-1 * (#{$quote-width} + #{$spacer-md}));
+            }
+        }
+    }
+}

@@ -1,0 +1,112 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "foundation/annualreport/2024/includes/macros.html" import article_5_2, article_6_2 with context %}
+
+{% extends "foundation/annualreport/2024/article/base.html" %}
+
+{% block page_title_full %}Building in public with community and openness - State of Mozilla 2024{% endblock %}
+
+{% set article_author_name = 'Monica Chambers' %}
+{% set article_author_role = 'Director, Mozilla Accelerator' %}
+{% set article_hash = '#community' %}
+{% set article_read_time = '3 min read' %}
+{% set article_tag_label = 'Community at our Core' %}
+{% set article_title = 'Building in public with community and openness' %}
+
+{% set article_author_image %}
+  <img src="{{ static('img/foundation/annualreport/2024/headshots/monica.jpg') }}" width="100" height="100" alt="Monica Chambers">
+{% endset %}
+
+{% set article_header_image %}
+  {{ picture(
+    url='img/placeholder.png',
+    sources=[
+      {
+        'media': '(max-width: 1023px)',
+        'srcset': {
+          'img/placeholder.png': 'default'
+        }
+      },
+      {
+        'srcset': {
+          'img/foundation/annualreport/2024/articles/6-1-desktop-1-1-1100.png': '1100w',
+          'img/foundation/annualreport/2024/articles/6-1-desktop-1-1-900.png': '900w',
+          'img/foundation/annualreport/2024/articles/6-1-desktop-1-1-700.png': '700w',
+          'img/foundation/annualreport/2024/articles/6-1-desktop-1-1-500.png': '500w',
+        },
+        'sizes': {
+          '(min-width: 1440px)': '564px',
+          'default': 'calc((100vw - 64px) / 2)',
+        },
+      },
+    ],
+    optional_attributes={
+      'width': '564',
+      'height': '564'
+    }
+  ) }}
+{% endset %}
+
+
+{% set blockquote_1_text = 'We’re identifying, orchestrating and connecting some of the best minds around the world to advance our collective vision of an open AI landscape that works better for everyone.' %}
+
+{% block article_content %}
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Innovation at Mozilla isn’t just about creating better tools — it’s about reimagining how we interact with the internet and putting the power back into people’s hands. We have a long history of building in public, learning through building, and iterating in community to achieve that goal. At the dawn of the commercial internet, we used this approach to stand up to tech monopolies and empower both developers and everyday users to prioritize privacy and the public good. Now, as we enter the latest era of technological disruption, Mozilla is bringing our values of openness, user choice and community to AI.
+        </p>
+
+        <p>
+          With billions of dollars flowing to a few large, fully-integrated AI players racing to maximize profits, it has never been more important for the developer community to build alternatives that serve the people. That’s why our Innovation Ecosystems team is focusing on making it easier for AI developers – and eventually consumers – to choose the open route.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Breaking down barriers with open source tools and funding</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          Many solo developers and small teams are working on common problems, but can’t match the financial or technical resources of the biggest companies on their own. To democratize access to AI and its benefits, we must work together to make open tools a viable option to compete with, or complement, the most popular closed models. Mozilla is bringing down barriers to entry by co-building useful open source AI tools like <a href="https://future.mozilla.org/builders/news_insights/introducing-llamafile/">llamafile</a>, funding other open source AI projects, and sharing knowledge with a broader community of technologists, researchers, and nonprofits. By engaging with like-minded, values-driven developers and organizations, we’re working to break down the barriers that keep better AI products out of reach for many. Building these alternatives isn’t just a technical problem; it’s a cultural and structural one that we’re tackling alongside our community.
+        </p>
+
+        <p>
+          Over the last year, we have experimented with a range of ways to connect and collaborate with this community. One is <a href="https://future.mozilla.org/builders/">Mozilla Builders</a>, which funds and supports impactful projects with a 12-week program to advance key elements of a healthy open source AI ecosystem. Selected projects receive up to $100,000 in non-dilutive funding, without the expectation of outsized returns demanded by traditional startup accelerators.
+        </p>
+
+        <p>
+          Our focus on the public interest frees us from the intense hunt for profits, allowing program alumni to evolve their work into open source projects, Firefox features, startups or new products. By partnering with a mix of contributors, we go beyond the one-size-fits-all accelerator model and create foundational, open technologies that can raise the bar for the entire AI industry.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {% include 'foundation/annualreport/2024/article/includes/blockquote-1.html'%}
+
+  <div class="m24-c-content">
+    <div class="m24-c-ar-article-section">
+      <h2 class="m24-c-ar-article-section-title">Fostering emerging AI tech</h2>
+      <div class="m24-c-ar-article-section-text">
+        <p>
+          The theme for this year’s Mozilla Builders cohort was local AI, meaning AI that can run on a phone or computer with a CPU instead of GPUs in a server farm. These on-device systems run smaller models that preserve privacy, cost less and inspire more creative approaches to solving problems. They are more sustainable than large models because they use existing infrastructure and require less computing power for each query. And they increase accessibility because more people have phones than computers with access to expensive GPU power. Local AI is available to everyone who needs it, not just the bleeding edge, regardless of resources and cost.
+        </p>
+
+        <p>
+          We’re identifying, orchestrating and connecting some of the best minds around the world to advance our collective vision of an open AI landscape that works better for everyone. We borrow strength from our past to shape the future and look forward to the journey ahead in 2025 and beyond.
+        </p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% set related_article_links %}
+  {{ article_5_2('m24-l-grid-half m24-l-4-5') }}
+  {{ article_6_2('m24-l-grid-half m24-l-1-1') }}
+{% endset %}
