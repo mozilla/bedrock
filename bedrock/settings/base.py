@@ -2275,6 +2275,8 @@ if WAGTAIL_ENABLE_ADMIN:
         # django.contrib.admin needs SessionMiddleware and AuthenticationMiddleware to be specced, and fails
         # hard if it's in INSTALLED_APPS when they are not, so we have to defer adding it till here
         "django.contrib.admin",
+        # wagtail_localize_smartling > 0.10 needs django.contrib.humanize
+        "django.contrib.humanize",
     ]
 
     for midddleware_spec in [
@@ -2436,3 +2438,8 @@ else:
 # doesn't exist, we get `None` back from `switch_is_active`.
 WAFFLE_SWITCH_DEFAULT = None
 WAFFLE_CREATE_MISSING_SWITCHES = False
+
+if config("ENABLE_WAGTAIL_STYLEGUIDE", parser=bool, default="False"):
+    # Useful when customising the Wagtail admin
+    # when enabled, will be visible on cms-admin/styleguide
+    INSTALLED_APPS.append("wagtail.contrib.styleguide")

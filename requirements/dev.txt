@@ -2292,9 +2292,9 @@ wagtail-localize==1.11.1 \
     # via
     #   -r requirements/prod.txt
     #   wagtail-localize-smartling
-wagtail-localize-smartling==0.9.0 \
-    --hash=sha256:349b12f4d027214048d7032df84d19e185516a4f1222211b15bc9225406623e0 \
-    --hash=sha256:aa41bfcff01b258cd5e3bb9a384ca3ba2d5a265196a9bed53cb67306c4f16659
+wagtail-localize-smartling==0.10.2 \
+    --hash=sha256:2d9434d9b3300dc06a9ab0728d49d1e81ead35d2e8536313a800664147dd3a2d \
+    --hash=sha256:76e5b36e2acd6a7d1eaa5b954cb4c7182e4be0e5a12172cf9e54e2d2ba42890c
     # via -r requirements/prod.txt
 wagtaildraftsharing @ https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.2.0.tar.gz#egg=wagtaildraftsharing \
     --hash=sha256:7a3399c4d621628e6458f1ee3236b7d1d5fdd9577ee385d52e69edf7379f7562
