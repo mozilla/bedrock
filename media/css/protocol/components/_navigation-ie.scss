@@ -25,10 +25,10 @@ $image-path: '/media/protocol/img';
 
     .c-navigation-logo a {
         @include image-replaced;
-        background: transparent url('/media/img/nav/logo-black.png') center center no-repeat;
+        background: transparent url('/media/img/logos/m24/lockup-black-on-white.png') center center no-repeat;
         display: block;
-        height: 32px;
-        width: 112px;
+        height: 48px;
+        width: 160px;
 
         .c-navigation-logo-image {
             display: none;
