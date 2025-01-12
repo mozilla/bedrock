@@ -115,6 +115,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     padding: 0;
     position: relative;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
     text-underline-offset: 0.1em;
 
     &.mzp-is-active {
@@ -284,10 +285,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
                 }
             }
 
-            &::after {
-                background: $m24-color-dark-green;
-            }
-
             .m24-c-menu-panel {
                 @include bidi(((animation, none, none),));
             }
@@ -330,30 +327,18 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         .m24-c-menu-title-icon {
             @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
         }
-
-        .m24-c-menu-title {
-            @media #{$mq-md} {
-                &:hover::after {
-                    bottom: 1px;
-                    width: calc(100% - 24px);
-                    @include bidi(((left, 24px, right, auto),));
-                }
-            }
-        }
     }
 }
 
 .m24-c-menu-title {
     align-items: center;
     border: none;
-    color: $color-black;
     display: flex;
     font-family: $primary-font;
     font-size: $text-body-md;
     font-weight: 600;
     padding: 0;
     position: relative;
-    text-decoration: none;
     width: 100%;
 
     &:link,
@@ -367,15 +352,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     }
 
     @media #{$mq-md} {
-        &:hover::after {
-            background: $color-black;
-            bottom: 1px;
-            content: "";
-            display: block;
-            height: 1px;
-            left: 0;
-            position: absolute;
-            width: 100%;
+        &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.15em;
         }
     }
 }
