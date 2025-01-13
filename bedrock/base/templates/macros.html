@@ -180,13 +180,14 @@
   links
 ) -%}
 {% if 'releasenotes' in request.path %}
-  <!-- remove 'releasenotes' and version number -->
+  {# Map notes permalink to nav items for highlighting as current. #}
+  {# Remove 'releasenotes' and version number: #}
   {% set root_path = ("/").join(request.path.split("/")[0:-3]) %}
-  <!-- Firefox Desktop, Android, and iOS include channel in request path -->
   {% if release.channel == 'Release' %}
+    {# Firefox Desktop, Android, and iOS omit channel in request path: #}
     {% set current_page = ("{}/notes/").format(root_path) %}
   {% else %}
-  <!-- Beta/Developer and Nightly need the channel added -->
+    {# Beta/Developer and Nightly need the channel added: #}
     {% set current_page = ("{}/{}/notes/").format(root_path, release.channel.lower()) %}
   {% endif %}
 {% else %}
