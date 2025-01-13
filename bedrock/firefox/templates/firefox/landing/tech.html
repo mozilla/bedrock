@@ -1,0 +1,34 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/new/desktop/download.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% set win_smi_download_id = 'partner-firefox-release-smi-smi-001-stub' %}
+{% set mac_smi_download_id = 'partner-firefox-release-smi-smi-001' %}
+
+{% block string_data %}
+  data-win-smi-id="{{ win_smi_download_id }}"
+  data-mac-smi-id="{{ mac_smi_download_id }}"
+{% endblock %}
+
+{% block primary_cta %}
+  {{ download_firefox(dom_id='download-primary', force_direct=True, download_location='primary cta') }}
+{% endblock %}
+
+{% block features_cta %}
+  {{ download_firefox(dom_id='download-features', force_direct=True, download_location='features cta') }}
+{% endblock %}
+
+{% block discover_cta %}
+  {{ download_firefox(dom_id='download-discover', force_direct=True, download_location='discover cta') }}
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox_smi_download') }}
+{% endblock %}
