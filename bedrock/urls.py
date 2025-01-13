@@ -72,6 +72,9 @@ if settings.WAGTAIL_ENABLE_ADMIN:
         path("_internal_draft_preview/", include(wagtaildraftsharing_urls)),  # ONLY available in CMS mode
     )
 
+if settings.ENABLE_DJANGO_SILK:
+    urlpatterns += [path("silk/", include("silk.urls", namespace="silk"))]
+
 if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage":
     # Serve media files from Django itself - production won't use this
     from django.urls import re_path

@@ -86,11 +86,16 @@ if REDIS_URL:
         "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
 
+CACHE_TIME_SHORT = 60 * 10  # 10 mins
+CACHE_TIME_MED = 60 * 60  # 1 hour
+CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
+
+
 CACHES = {
     "default": {
         "BACKEND": "bedrock.base.cache.SimpleDictCache",
         "LOCATION": "default",
-        "TIMEOUT": 600,
+        "TIMEOUT": CACHE_TIME_SHORT,
         "OPTIONS": {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
@@ -2443,3 +2448,11 @@ if config("ENABLE_WAGTAIL_STYLEGUIDE", parser=bool, default="False"):
     # Useful when customising the Wagtail admin
     # when enabled, will be visible on cms-admin/styleguide
     INSTALLED_APPS.append("wagtail.contrib.styleguide")
+
+# Django-silk for performance profiling
+if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bool):
+    print("Django-Silk profiling enabled - go to http://localhost:8000/silk/ to view metrics")
+    INSTALLED_APPS.append("silk")
+    MIDDLEWARE.insert(0, "silk.middleware.SilkyMiddleware")
+    SUPPORTED_NONLOCALES.append("silk")
+    SILKY_PYTHON_PROFILER = config("SILKY_PYTHON_PROFILER", default="False", parser=bool)

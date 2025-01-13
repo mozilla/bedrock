@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+from django.core.cache import cache
 from django.http.response import Http404
 from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView, ListView
@@ -62,9 +64,16 @@ class BenefitsView(L10nTemplateView):
 
 
 class PositionListView(LangFilesMixin, RequireSafeMixin, ListView):
-    queryset = Position.objects.exclude(job_locations="Remote")
     template_name = "careers/listings.html"
     context_object_name = "positions"
+
+    def get_queryset(self):
+        _key = "careers_position_listing_qs"
+        qs = cache.get(_key)
+        if qs is None:
+            qs = Position.objects.exclude(job_locations="Remote")
+            cache.set(_key, qs, settings.CACHE_TIME_SHORT)
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
