@@ -25,17 +25,30 @@ $image-path: '/media/protocol/img';
 }
 
 .c-manage {
-    background-color: $color-pink-05;
+    background: radial-gradient(124.5% 124.5% at 50% 50%, rgba(184, 51, 225, 0.1) 0%, rgba(0, 144, 237, 0.1) 100%);
     text-align: center;
+    font-size: 24px;
 }
 
 .c-more {
-    // .mzp-c-picto {
-    //     background-color: $color-light-gray-10;
-    //     padding: 24px;
-    // }
+    .mzp-c-card {
+        margin-bottom: 0;
+
+        .mzp-c-card-desc {
+            margin-top: 8px;
+        }
+    }
+
+    .has-aspect-icon  .mzp-c-card-media-wrapper {
+        background-color: transparent;
+        padding: 8px 8px 16px 8px;
+
+        img {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .c-protect {
-    background-color: $color-pink-05;
+    background: radial-gradient(124.5% 124.5% at 50% 50%, rgba(184, 51, 225, 0.1) 0%, rgba(0, 144, 237, 0.1) 100%);
 }
