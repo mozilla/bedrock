@@ -89,7 +89,9 @@
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
           <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
-          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% block primary_cta %}
+            {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% endblock %}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
@@ -279,14 +281,16 @@
           <h3 class="mzp-u-title-sm">{{ ftl('firefox-desktop-download-all-your-devices') }}</h3>
           <p>{{ ftl('firefox-desktop-download-take-your-privacy') }}</p>
           <div class="mobile-download-buttons-wrapper">
-            <ul class="mobile-download-buttons">
-              <li class="android">
-                {{ google_play_button() }}
-              </li>
-              <li class="ios">
-                {{ apple_app_store_button(href=ios_url) }}
-              </li>
-            </ul>
+            {% block mobile_secondary_cta %}
+              <ul class="mobile-download-buttons">
+                <li class="android">
+                  {{ google_play_button() }}
+                </li>
+                <li class="ios">
+                  {{ apple_app_store_button(href=ios_url) }}
+                </li>
+              </ul>
+            {% endblock %}
           </div>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
@@ -384,8 +388,9 @@
           </ul>
         </div>
       </div>
-      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
-
+      {% block features_cta %}
+        {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+      {% endblock %}
     </div>
   </section>
 
@@ -545,7 +550,9 @@
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
     </div>
-    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% block discover_cta %}
+      {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% endblock %}
   </section>
 
   <section class="c-support">
@@ -563,12 +570,14 @@
 
           <p>{{ ftl('firefox-desktop-download-download-the-mobile') }}</p>
 
-          <div class="show-android">
-            {{ google_play_button() }}
-          </div>
-          <div class="show-ios">
-            {{ apple_app_store_button(href=ios_url) }}
-          </div>
+          {% block mobile_primary_cat %}
+            <div class="show-android">
+              {{ google_play_button() }}
+            </div>
+            <div class="show-ios">
+              {{ apple_app_store_button(href=ios_url) }}
+            </div>
+          {% endblock %}
         </div>
       </div>
     </div>

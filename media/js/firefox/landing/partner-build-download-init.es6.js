@@ -4,12 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const MozAllowList = [
-    '/firefox/built-for-you/',
-    '/firefox/challenge-the-default/',
-    '/firefox/landing/*',
-    '/newsletter/firefox/',
-    '/products/vpn/*'
-];
+import PartnerBuildDownload from './partner-build-download.es6';
 
-export default MozAllowList;
+PartnerBuildDownload.init();

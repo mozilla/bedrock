@@ -1776,6 +1776,12 @@
         "js/base/banners/fundraiser-experiment.es6.js"
       ],
       "name": "fundraising-banner-experiment"
+    },
+    {
+      "files": [
+        "js/firefox/landing/partner-build-download-init.es6.js"
+      ],
+      "name": "firefox_partner_build_download"
     }
   ]
 }

@@ -1328,5 +1328,7 @@ URLS = flatten(
         ),
         # Issue 15386
         url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
+        # Issue 15841
+        url_test("/firefox/tech/", "/firefox/landing/tech/"),
     )
 )
