@@ -182,16 +182,14 @@
     a:link,
     a:visited {
         text-decoration: none;
-        position: relative;
         color: $m24-color-black;
-        font-weight: 400;
-    }
 
-    a:link:hover,
-    a:visited:hover {
-        text-decoration: underline;
-        text-underline-offset: 0.1em;
-        color: $m24-color-black;
+        &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.1em;
+            color: $m24-color-black;
+        }
     }
 }
 
@@ -356,15 +354,11 @@
         margin-bottom: 0;
     }
 
-    a {
-        display: inline-block;
-    }
-
-    a,
     a:link,
     a:visited {
         color: $m24-color-black;
         font-weight: 600;
+        display: inline-block;
     }
 }
 
@@ -385,7 +379,6 @@
         }
     }
 
-    a,
     a:link,
     a:visited {
         color: $m24-color-black;
