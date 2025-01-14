@@ -36,6 +36,16 @@
   {% set email_subject = "Rejoins la team Firefox !" %}
   {% set sign_off = "<strong>Conçu par Mozilla.</strong> <br> Pensé pour vous depuis 1998."|safe %}
 
+{% else %}
+
+  {% set main_title = "Invite your friends to <br> <strong>Team Firefox</strong>"|safe %}
+  {% set page_description = "We think, as a good friend, you should invite them to the sunny side of the internet. We have a little something prepared." %}
+  {% set main_tagline = "We have prepared a little message that you can share with your loved ones so that you don't have to think of something yourself. Nobody will notice – promise!" %}
+  {% set share_message = "Experience the internet the way you want — without the data tradeoffs. Have you heard of Firefox? It’s a private, super reliable browser. Actually really good, here's a link if you want to take a look: <a href='https://mzl.la/nothing-personal'>mzl.la/nothing-personal</a>."|safe%}
+  {% set share_cta = "Copy and share" %}
+  {% set text_copied = "Text copied!" %}
+  {% set sign_off = "<strong>Powered by Mozilla.</strong> <br> Putting people before profits since 1998."|safe %}
+
 {% endif %}
 
 {% block content %}
