@@ -190,7 +190,7 @@ urlpatterns = (
     page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
-    page("firefox/share/", "firefox/share.html", active_locales=["de", "fr"]),
+    page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
     page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
     # Issue 6604, SEO firefox/new pages
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
