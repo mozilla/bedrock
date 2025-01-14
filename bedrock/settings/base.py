@@ -90,7 +90,6 @@ CACHE_TIME_SHORT = 60 * 10  # 10 mins
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
 
-
 CACHES = {
     "default": {
         "BACKEND": "bedrock.base.cache.SimpleDictCache",
@@ -100,6 +99,12 @@ CACHES = {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
         },
+    },
+    "db": {
+        # Intended for use as a slower – but distributed - cache
+        # See bedrock.base.cache.get_from_hybrid_cache and set_in_hybrid_cache
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "TIMEOUT": None,  # cached items will not expire
     },
 }
 

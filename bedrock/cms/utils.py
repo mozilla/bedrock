@@ -111,7 +111,7 @@ def path_exists_in_cms(path: str) -> bool:
     return False
 
 
-def warm_page_path_cache() -> set():
+def warm_page_path_cache() -> set:
     paths = _get_all_cms_paths()
     logger.info(f"Warming the cache '{BEDROCK_ALL_CMS_PATHS_CACHE_KEY}' with {len(paths)} paths ")
 
