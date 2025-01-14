@@ -449,6 +449,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-135-pdf.scss"
+      ],
+      "name": "firefox_whatsnew_135_pdf"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
@@ -1486,6 +1492,12 @@
         "js/firefox/whatsnew/whatsnew-134-experiment.es6.js"
       ],
       "name": "firefox_whatsnew_134_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-135-pdf.es6.js"
+      ],
+      "name": "firefox_whatsnew_135_pdf"
     },
     {
       "files": [
