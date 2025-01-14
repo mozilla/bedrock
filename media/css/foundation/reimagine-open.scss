@@ -4,10 +4,7 @@
 
 @use 'sass:color';
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core//protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 
 .mzp-c-callout.mzp-t-hero {
     background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
