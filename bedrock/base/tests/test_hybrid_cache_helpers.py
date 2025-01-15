@@ -19,7 +19,6 @@ db_cache = caches["db"]
 
 @pytest.fixture(autouse=True)
 def clear_caches():
-    print("REMOVE PRINT STATEMENT")
     local_cache.clear()
     db_cache.clear()
 
