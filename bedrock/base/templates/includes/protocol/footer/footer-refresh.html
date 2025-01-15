@@ -130,6 +130,8 @@
 
 {% block footer_js %}
   {% if show_newsletter %}
-    {{ js_bundle('newsletter') }}
+    <!--[if !IE]><!-->
+      {{ js_bundle('newsletter') }}
+    <!--<![endif]-->
   {% endif %}
 {% endblock %}
