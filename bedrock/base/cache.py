@@ -132,9 +132,9 @@ def set_in_hybrid_cache(key, value, timeout=None):
     Writes to both the local cache and the DB cache.
 
     IMPORTANT: this should only be called from somewhere with DB-write access -
-    i.e. the CMS deployment pod – if it is called from a Web deployment pod, it
+    i.e. the CMS deployment pod - if it is called from a Web deployment pod, it
     will only set the local-memory cache and also log an exception, because
-    there will be unpredictable results if you're tryint to cache cache
+    there will be unpredictable results if you're trying to cache
     something that should be available across pods -- and if you're not you
     should just use the regular 'default' local-memory cache directly.
 
