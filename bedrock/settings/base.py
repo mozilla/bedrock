@@ -89,6 +89,7 @@ if REDIS_URL:
 CACHE_TIME_SHORT = 60 * 10  # 10 mins
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
+CACHE_TIME_VERY_VERY_LONG = 60 * 60 * 24 * 365  # 1 year
 
 CACHES = {
     "default": {
@@ -103,9 +104,9 @@ CACHES = {
     "db": {
         # Intended for use as a slower – but distributed - cache
         # See bedrock.base.cache.get_from_hybrid_cache and set_in_hybrid_cache
-        "LOCATION": "hybrid_cache_db_table",  # name of DB table to be used
+        "LOCATION": "hybrid_cache_db_table",  # name of DB table to be used - must be pre-created once with manage.py createcachetable
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
-        "TIMEOUT": None,  # cached items will not expire
+        "TIMEOUT": CACHE_TIME_VERY_VERY_LONG,
     },
 }
 
