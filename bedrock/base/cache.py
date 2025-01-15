@@ -125,7 +125,12 @@ def get_from_hybrid_cache(key, default=None):
     return default
 
 
-def set_in_hybrid_cache(key, value, timeout=None):
+def set_in_hybrid_cache(
+    key,
+    value,
+    db_cache_timeout=None,
+    locmem_cache_timeout=settings.CACHE_TIME_SHORT,
+):
     """
     Set a value in the hybrid cache.
 
@@ -150,7 +155,7 @@ def set_in_hybrid_cache(key, value, timeout=None):
         db_cache.set(
             key,
             value,
-            timeout=timeout,
+            timeout=db_cache_timeout,
         )
     except Exception as ex:
         # Cope with the DB cache not being available - eg
@@ -160,5 +165,5 @@ def set_in_hybrid_cache(key, value, timeout=None):
     local_cache.set(
         key,
         value,
-        timeout=settings.CACHE_TIME_SHORT,
+        timeout=locmem_cache_timeout,
     )

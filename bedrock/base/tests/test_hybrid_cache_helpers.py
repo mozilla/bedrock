@@ -95,3 +95,43 @@ def test_set_in_hybrid_cache_db_cache_failure(caplog, mocker):
     assert db_cache.get(key) is None
 
     assert caplog.records[0].msg == "Could not set value in DB-backed cache: Faked DB cache failure"
+
+
+def test_set_in_hybrid_cache_default_timeouts(mocker):
+    key = "test_key"
+    value = "test_value"
+
+    mock_db_set = mocker.patch.object(caches["db"], "set")
+    mock_local_set = mocker.patch.object(caches["default"], "set")
+
+    set_in_hybrid_cache(key, value)
+
+    mock_db_set.assert_called_once_with(key, value, timeout=None)
+    mock_local_set.assert_called_once_with(key, value, timeout=settings.CACHE_TIME_SHORT)
+
+
+def test_set_in_hybrid_cache_custom_db_cache_timeout(mocker):
+    key = "test_key"
+    value = "test_value"
+    custom_db_cache_timeout = 120
+
+    mock_db_set = mocker.patch.object(caches["db"], "set")
+    mock_local_set = mocker.patch.object(caches["default"], "set")
+    set_in_hybrid_cache(key, value, db_cache_timeout=custom_db_cache_timeout)
+
+    mock_db_set.assert_called_once_with(key, value, timeout=custom_db_cache_timeout)
+    mock_local_set.assert_called_once_with(key, value, timeout=settings.CACHE_TIME_SHORT)
+
+
+def test_set_in_hybrid_cache_custom_locmem_cache_timeout(mocker):
+    key = "test_key"
+    value = "test_value"
+    custom_locmem_cache_timeout = 42
+
+    mock_db_set = mocker.patch.object(caches["db"], "set")
+    mock_local_set = mocker.patch.object(caches["default"], "set")
+
+    set_in_hybrid_cache(key, value, locmem_cache_timeout=custom_locmem_cache_timeout)
+
+    mock_db_set.assert_called_once_with(key, value, timeout=None)
+    mock_local_set.assert_called_once_with(key, value, timeout=custom_locmem_cache_timeout)
