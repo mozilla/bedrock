@@ -149,7 +149,7 @@ def l10n_css(ctx):
     locale = getattr(ctx["request"], "locale", "en-US")
 
     if _l10n_media_exists("css", locale, "intl.css"):
-        markup = '<link rel="stylesheet" media="screen,projection,tv" href=' '"%s">' % static(path.join("css", "l10n", locale, "intl.css"))
+        markup = '<link rel="stylesheet" media="screen,projection,tv" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
     else:
         markup = ""
 
@@ -708,7 +708,7 @@ def _fxa_product_button(
     if class_name:
         css_class += f" {class_name}"
 
-    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{button_text}" f"</a>"
+    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>{button_text}</a>'
 
     return Markup(markup)
 

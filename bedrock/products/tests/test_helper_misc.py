@@ -512,7 +512,8 @@ def test_vpn_supported_locale(locale):
 @pytest.mark.parametrize(
     "locale",
     [
-        "ach" "br",
+        "ach",
+        "br",
         "sco",
         "xh",
     ],

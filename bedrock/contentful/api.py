@@ -136,7 +136,7 @@ def _get_card_image_url(image, width, aspect):
 
 
 def _get_product_class(product):
-    return f'mzp-t-product-{PRODUCT_THEMES.get(product, "")}'
+    return f"mzp-t-product-{PRODUCT_THEMES.get(product, '')}"
 
 
 def _get_layout_class(layout):
@@ -148,11 +148,11 @@ def _get_abbr_from_width(width):
 
 
 def _get_aspect_ratio_class(aspect_ratio):
-    return f'mzp-has-aspect-{ASPECT_RATIOS.get(aspect_ratio, "")}'
+    return f"mzp-has-aspect-{ASPECT_RATIOS.get(aspect_ratio, '')}"
 
 
 def _get_width_class(width):
-    return f'mzp-t-content-{WIDTHS.get(width, "")}' if width else ""
+    return f"mzp-t-content-{WIDTHS.get(width, '')}" if width else ""
 
 
 def _get_theme_class(theme):
@@ -208,7 +208,7 @@ def _make_cta_button(entry):
         # TODO, only add on Firefox themed pages
         "mzp-t-product" if action != "Get Mozilla VPN" and action != "Get MDN Plus" else "",
         "mzp-t-secondary" if fields.get("theme") == "Secondary" else "",
-        f'mzp-t-{WIDTHS.get(fields.get("size"), "")}' if fields.get("size") else "",
+        f"mzp-t-{WIDTHS.get(fields.get('size'), '')}" if fields.get("size") else "",
     ]
     data = {
         "action": action,

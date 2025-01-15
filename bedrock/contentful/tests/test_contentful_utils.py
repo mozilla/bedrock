@@ -64,7 +64,7 @@ def test_locales_with_available_content(
         for i in range(count):
             ContentfulEntry.objects.create(
                 content_type=content_type,
-                contentful_id=f"entry_{i+1}",
+                contentful_id=f"entry_{i + 1}",
                 classification=classification,
                 locale=locale,
                 localisation_complete=True,
@@ -72,7 +72,7 @@ def test_locales_with_available_content(
             # Add some with incomplete localisation as control
             ContentfulEntry.objects.create(
                 content_type=content_type,
-                contentful_id=f"entry_{i+100}",
+                contentful_id=f"entry_{i + 100}",
                 classification=classification,
                 locale=locale,
                 localisation_complete=False,
