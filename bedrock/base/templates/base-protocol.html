@@ -94,7 +94,9 @@
 
     {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
     {% block google_analytics %}
-      {% include 'includes/google-analytics.html' %}
+      <!--[if IE 9]><!-->
+        {% include 'includes/google-analytics.html' %}
+      <!--<![endif]-->
     {% endblock %}
   </head>
 
