@@ -388,10 +388,10 @@ class TestVPNResourceListingView(TestCase):
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
                     localisation_complete=True,
-                    contentful_id=f"entry_{i+1}",
-                    slug=f"slug-{i+1}",
+                    contentful_id=f"entry_{i + 1}",
+                    slug=f"slug-{i + 1}",
                     # We only get back the .data field, so let's put something useful in here to look for
-                    data={"slug_for_test": f"slug-{i+1}-{locale}"},
+                    data={"slug_for_test": f"slug-{i + 1}-{locale}"},
                 )
 
     def _request(
@@ -501,10 +501,10 @@ class TestVPNResourceArticleView(TestCase):
                     classification=CONTENT_CLASSIFICATION_VPN,
                     locale=locale,
                     localisation_complete=True,
-                    contentful_id=f"entry_{i+1}",
-                    slug=f"slug-{i+1}",
+                    contentful_id=f"entry_{i + 1}",
+                    slug=f"slug-{i + 1}",
                     # We only get back the .data field, so let's put something useful in here to look for
-                    data={"slug_for_test": f"slug-{i+1}-{locale}"},
+                    data={"slug_for_test": f"slug-{i + 1}-{locale}"},
                 )
 
     @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())

@@ -39,24 +39,15 @@ def _vpn_get_ga_data(selected_plan):
     analytics = selected_plan.get("analytics")
 
     ga_data = (
-        "{"
-        "'id' : '%s',"
-        "'brand' : '%s',"
-        "'plan' : '%s',"
-        "'period' : '%s',"
-        "'price' : '%s',"
-        "'discount' : '%s',"
-        "'currency' : '%s'"
-        "}"
-        % (
-            id,
-            analytics.get("brand"),
-            analytics.get("plan"),
-            analytics.get("period"),
-            analytics.get("price"),
-            analytics.get("discount"),
-            analytics.get("currency"),
-        )
+        f"{{"
+        f"'id' : '{id}',"
+        f"'brand' : '{analytics.get('brand')}',"
+        f"'plan' : '{analytics.get('plan')}',"
+        f"'period' : '{analytics.get('period')}',"
+        f"'price' : '{analytics.get('price')}',"
+        f"'discount' : '{analytics.get('discount')}',"
+        f"'currency' : '{analytics.get('currency')}'"
+        f"}}"
     )
 
     return ga_data
@@ -107,7 +98,7 @@ def _vpn_product_link(product_url, entrypoint, link_text, class_name=None, optio
     if class_name:
         css_class += f" {class_name}"
 
-    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{link_text}" f"</a>"
+    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>{link_text}</a>'
 
     return Markup(markup)
 

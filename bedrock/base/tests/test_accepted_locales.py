@@ -40,9 +40,7 @@ class AcceptedLocalesTest(TestCase):
         """
         if os.path.exists(cls.locale_bkp):
             raise Exception(
-                "A backup of locale/ exists at %s which might "
-                "mean that previous tests didn't end cleanly. "
-                "Skipping the test suite." % cls.locale_bkp
+                "A backup of locale/ exists at %s which might mean that previous tests didn't end cleanly. Skipping the test suite." % cls.locale_bkp
             )
         cls.DEV = settings.DEV
         cls.PROD_LANGUAGES = settings.PROD_LANGUAGES

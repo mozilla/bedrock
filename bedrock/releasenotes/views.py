@@ -109,7 +109,7 @@ def release_notes(request, version, product="Firefox"):
                 "sort_num": 1,
                 "note": f'<a class="mdn-icon" rel="external" '
                 f'href="https://developer.mozilla.org/docs/Mozilla/Firefox/Releases/'
-                f'{ release.major_version }">Developer Information</a>',
+                f'{release.major_version}">Developer Information</a>',
             },
         )
 
