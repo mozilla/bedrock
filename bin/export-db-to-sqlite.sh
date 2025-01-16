@@ -196,11 +196,6 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
 
 check_status_and_handle_failure "Running Django migrations"
 
-PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage \
-    python manage.py createcachetable || all_well=false
-
-check_status_and_handle_failure "Creating cache table migrations"
-
 # We want to use all the data from the JSON, so let's drop the rows
 # that have been automatically populated during migrate, including all the Wagtail
 # ones, except for wagtailsearch's tables because there's a virtual table that
