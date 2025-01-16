@@ -39,6 +39,10 @@ label {
     display: block;
 }
 
+hr {
+    margin: $layout-xs 0;
+}
+
 .visually-hidden {
     @include visually-hidden;
 }

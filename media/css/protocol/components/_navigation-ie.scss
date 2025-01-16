@@ -145,7 +145,7 @@
 }
 
 .m24-pencil-banner {
-    float: right;
+    @include bidi(((float, right, left),));
     
     button {
         display: none;
