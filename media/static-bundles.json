@@ -1373,12 +1373,6 @@
     },
     {
       "files": [
-        "js/base/protocol/init-sidemenu.es6.js"
-      ],
-      "name": "protocol-sidemenu"
-    },
-    {
-      "files": [
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
