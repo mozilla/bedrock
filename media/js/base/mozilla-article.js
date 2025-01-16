@@ -4,7 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+// temporary a11y patch needs to be pack ported to protocol: https://github.com/mozilla/protocol/issues/999
+var MzpSideMenu = require('./protocol/sidemenu.es6');
 
 (function () {
     'use strict';

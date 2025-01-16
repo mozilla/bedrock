@@ -329,7 +329,7 @@
 {% macro sidemenu_lists(arr, body_id='') -%}
   <nav class="mzp-c-sidemenu">
 
-    <section class="mzp-c-sidemenu-summary mzp-js-toggle" aria-controls="sidebar-menu" data-testid="side-menu-toggle">
+    <div class="mzp-c-sidemenu-summary mzp-js-toggle" data-testid="sidebar-menu-toggle">
       <h2 class="mzp-c-sidemenu-label">{{ ftl('ui-menu') }}</h2>
       <ul>
         <li>{{ arr[0][0][2]|e }}</li>
@@ -341,8 +341,8 @@
           {% endfor %}
         {% endfor %}
       </ul>
-    </section>
-    <section class="mzp-c-sidemenu-main" id="sidebar-menu" data-testid="side-menu-main">
+    </div>
+    <section class="mzp-c-sidemenu-main" id="sidebar-menu" data-testid="sidebar-menu-main">
       {% for menu in arr %}
 
         <h2 class="mzp-c-sidemenu-title {% if menu[0][1] == body_id and body_id != '' %}mzp-is-current{% endif %}">

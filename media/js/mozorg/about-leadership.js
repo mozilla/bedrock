@@ -5,7 +5,9 @@
  */
 
 var MzpModal = require('@mozilla-protocol/core/protocol/js/modal');
-var MzpSideMenu = require('@mozilla-protocol/core/protocol/js/sidemenu');
+
+// temporary a11y patch needs to be pack ported to protocol: https://github.com/mozilla/protocol/issues/999
+var MzpSideMenu = require('../base/protocol/sidemenu.es6');
 
 // create namespace
 if (typeof window.Mozilla === 'undefined') {
