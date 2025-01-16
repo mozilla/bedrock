@@ -121,8 +121,7 @@
 
 // only show top-level menu items
 .m24-c-menu {
-    .m24-c-menu-panel,
-    .m24-c-menu-title-icon {
+    .m24-c-menu-panel {
         display: none;
     }
 
@@ -135,6 +134,15 @@
         font-weight: bold;
         margin-top: $spacing-sm;
         zoom: 1;
+    }
+
+    .m24-c-menu-title-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline-block;
+        }
     }
 }
 
