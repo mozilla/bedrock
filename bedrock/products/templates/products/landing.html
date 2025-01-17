@@ -197,7 +197,7 @@
         }
       ),
     ) %}
-      <h2 class="mzp-c-picto-heading"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-text="Fakespot" data-cta-position="heading">{{ ftl('firefox-products-fakespot') }}</a></h2>
+      <h2 class="mzp-c-picto-heading" aria-labelledby="fakespot-aria-hint"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-text="Fakespot" data-cta-position="heading" aria-labelledby="fakespot-aria-hint">{{ ftl('firefox-products-fakespot') }}<span id="fakespot-aria-hint" aria-label="fake spot"></span></a></h2>
       <p>{{ ftl('firefox-products-fakespot-has-your') }}</p>
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.fakespot.com/analyzer{{ referrals }}" rel="external noopener" data-cta-text="Analyze a url with Fakespot">{{ ftl('firefox-products-analyze') }} {{ icon_external|safe }}</a></p>
     {% endcall %}
