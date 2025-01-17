@@ -37,7 +37,6 @@ Desktop.ini
 docs/_build
 docs/_gh-pages
 james.ini
-media/js/libs/glean
 node_modules
 npm-debug.log
 pip-log.txt

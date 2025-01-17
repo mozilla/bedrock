@@ -27,7 +27,7 @@ FROM node:20.14.0-slim AS assets
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
 
-# Required for required glean_parser dependencies
+# Required for required glean_parser dependencies (keeping for now incase we add Glean back to www.firefox.com)
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install python3 python3-venv
 RUN python3 -m venv /.venv
@@ -44,7 +44,6 @@ RUN npm ci --verbose
 COPY eslint.config.js .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
-COPY ./glean ./glean
 
 RUN npm run build --verbose
 

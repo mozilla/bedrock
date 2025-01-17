@@ -248,37 +248,6 @@ TrackProductDownload.sendEventFromURL = (downloadURL) => {
 };
 
 /**
- * Send product_download event to glean.js
- * @param {Object} - product details formatted into a product_download event
- */
-TrackProductDownload.sendGleanEvent = (eventObject) => {
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        /**
-         * Glean is more limited when it comes to the number of
-         * default click event fields, so we need to combine
-         * some meta data into the label.
-         */
-        let label = eventObject.method;
-
-        // release_channel is optional
-        if (eventObject.release_channel) {
-            label += `,${eventObject.release_channel}`;
-        }
-
-        // download_language is optional
-        if (eventObject.download_language) {
-            label += `,${eventObject.download_language}`;
-        }
-
-        window.Mozilla.Glean.clickEvent({
-            id: eventObject.event,
-            type: `${eventObject.platform}`,
-            label: label
-        });
-    }
-};
-
-/**
  * Sends an event to the data layer
  * @param {Object} - product details formatted into a product_download event
  */
@@ -287,9 +256,6 @@ TrackProductDownload.sendEvent = (eventObject) => {
     // we also want to keep the old event name around for a few months to help with the transition
     // this can be deleted as part of the UA cleanup
     TrackProductDownload.sendOldEvent(eventObject);
-
-    // track event in glean.js
-    TrackProductDownload.sendGleanEvent(eventObject);
 };
 
 /**
