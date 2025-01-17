@@ -677,6 +677,12 @@
     },
     {
       "files": [
+        "css/privacy/privacy-firefox-tos.scss"
+      ],
+      "name": "privacy_firefox_tos"
+    },
+    {
+      "files": [
         "css/firefox/facebook-container.scss"
       ],
       "name": "firefox_facebook_container"
