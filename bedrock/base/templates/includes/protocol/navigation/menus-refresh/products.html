@@ -55,10 +55,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="https://fakespot.com/?{{ utm_params }}" data-link-text="Fakespot" data-link-position="topnav - products" aria-labelledby="fakespot">
+              <a class="m24-c-menu-item-link" href="https://fakespot.com/?{{ utm_params }}" data-link-text="Fakespot" data-link-position="topnav - products" aria-labelledby="fakespot-aria-hint">
                 <img loading="lazy" src="{{ static('img/logos/fakespot/logo-blue.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
-                <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-fakespot') }}</h2>
-                <span id="fakespot" aria-label="fake spot"></span>
+                <h2 class="m24-c-menu-item-title" aria-labelledby="fakespot-aria-hint">{{ ftl('navigation-refresh-fakespot') }}</h2>
+                <span id="fakespot-aria-hint" aria-label="fake spot"></span>
               </a>
             </section>
           </li>
