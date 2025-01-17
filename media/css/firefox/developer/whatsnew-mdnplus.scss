@@ -2,25 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$image-path: '/media/protocol/img';
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-developer';
 
-.firefox-developer-whatsnew-mdnplus {
-    .c-mdn-header,
-    .c-mdn-body,
-    .c-mdn-footer {
-        h1,
-        h2,
-        h3,
-        h4 {
-            @include font-base;
-            color: $color-black;
-        }
+.firefox-developer-whatsnew-mdnplus main {
+    h1,
+    h2,
+    h3,
+    h4 {
+        @include font-base;
+        color: $color-black;
     }
 }
 
@@ -75,7 +67,6 @@ $image-path: '/media/protocol/img';
 .mandala-container {
     display: flex;
     justify-content: center;
-    -webkit-transform: translate(12rem, -8rem);
     transform: translate(12rem, -8rem);
 
     --mandala-primary: #{$color-dark-gray-10};
@@ -91,90 +82,48 @@ $image-path: '/media/protocol/img';
     }
 
     @keyframes mandala-color-change {
-        0% {
-            fill: var(--mandala-primary);
-        }
-
-        10% {
-            fill: var(--mandala-primary);
-        }
-
-        15% {
-            fill: var(--mandala-accent-1);
-        }
-
-        20% {
-            fill: var(--mandala-primary);
-        }
-
-        25% {
-            fill: var(--mandala-primary);
-        }
-
-        30% {
-            fill: var(--mandala-accent-2);
-        }
-
-        35% {
-            fill: var(--mandala-primary);
-        }
-
-        40% {
-            fill: var(--mandala-primary);
-        }
-
-        50% {
-            fill: var(--mandala-accent-3);
-        }
-
-        55% {
-            fill: var(--mandala-primary);
-        }
-
-        60% {
-            fill: var(--mandala-primary);
-        }
-
-        65% {
-            fill: var(--mandala-accent-4);
-        }
-
-        70% {
-            fill: var(--mandala-primary);
-        }
-
-        100% {
-            fill: var(--mandala-primary);
-        }
+        0% { fill: var(--mandala-primary); }
+        10% { fill: var(--mandala-primary); }
+        15% { fill: var(--mandala-accent-1); }
+        20% { fill: var(--mandala-primary); }
+        25% { fill: var(--mandala-primary); }
+        30% { fill: var(--mandala-accent-2); }
+        35% { fill: var(--mandala-primary); }
+        40% { fill: var(--mandala-primary); }
+        50% { fill: var(--mandala-accent-3); }
+        55% { fill: var(--mandala-primary); }
+        60% { fill: var(--mandala-primary); }
+        65% { fill: var(--mandala-accent-4); }
+        70% { fill: var(--mandala-primary); }
+        100% { fill: var(--mandala-primary); }
     }
 
-    &.animated {
-        .mandala-rotate > svg {
+    @media not (prefers-reduced-motion: reduce) {
+        body:hover & {
+            // motion
             .mandala-accent-1 {
-                animation: rotation 505s linear infinite;
+                animation: rotation 505s linear 0.15 both;
             }
 
             .mandala-accent-2 {
-                animation: rotation 480s linear infinite reverse;
+                animation: rotation 480s linear 0.15 reverse both;
             }
 
             .mandala-accent-3 {
-                animation: rotation 515s linear infinite;
+                animation: rotation 515s linear 0.15 both;
             }
 
             .mandala-accent-4 {
-                animation: rotation 425s linear infinite reverse;
+                animation: rotation 425s linear 0.15 reverse both;
             }
 
             .mandala-accent-5 {
-                animation: rotation 415s linear infinite;
+                animation: rotation 415s linear 0.15 both;
             }
-        }
 
-        &.animate-colors {
+            // colors
             svg > text > textPath > tspan {
-                animation: mandala-color-change 50s infinite;
-                animation-timing-function: ease-in-out;
+                animation: mandala-color-change 50s ease-in-out 1.6 alternate both;
                 fill: var(--mandala-primary);
             }
 
