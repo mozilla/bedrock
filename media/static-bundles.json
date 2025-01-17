@@ -269,6 +269,12 @@
     },
     {
       "files": [
+        "css/legal/legal-terms-firefox-tos.scss"
+      ],
+      "name": "legal-terms-firefox-tos"
+    },
+    {
+      "files": [
         "css/legal/builders-challenge.scss"
       ],
       "name": "builders-challenge"
@@ -674,6 +680,12 @@
         "css/privacy/privacy-protocol.scss"
       ],
       "name": "privacy_protocol"
+    },
+    {
+      "files": [
+        "css/privacy/privacy-firefox-tos.scss"
+      ],
+      "name": "privacy_firefox_tos"
     },
     {
       "files": [

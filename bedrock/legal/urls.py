@@ -28,7 +28,7 @@ urlpatterns = (
     page("terms/builders-challenge/", "legal/terms/builders-challenge.html"),
     path(
         "terms/firefox/",
-        LegalDocView.as_view(template_name="legal/terms/firefox.html", legal_doc_name="firefox_about_rights"),
+        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name="firefox_about_rights"),
         name="legal.terms.firefox",
     ),
     path(

@@ -40,10 +40,13 @@ class PrivacyDocView(LegalDocView):
 class FirefoxPrivacyDocView(PrivacyDocView):
     def get_legal_doc(self):
         doc = super().get_legal_doc()
-        if len(doc["content"].select(".privacy-header-firefox")) > 0:
-            self.template_name = "privacy/notices/firefox.html"
+        variant = self.request.GET.get("v", None)
+
+        if variant == "product":
+            self.template_name = "privacy/notices/firefox-tos.html"
         else:
-            self.template_name = "privacy/notices/firefox-old-style-notice.html"
+            self.template_name = "privacy/notices/firefox.html"
+
         return doc
 
 

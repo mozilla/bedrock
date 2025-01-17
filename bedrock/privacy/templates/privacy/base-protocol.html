@@ -71,10 +71,12 @@
     {% endif %}
     {% endblock %}
   </main>
-  <aside class="mzp-l-sidebar">
-    {{ sidemenu_lists([navigation_bar], body_id) }}
-    {% block side_extra %}{% endblock %}
-  </aside>
+  {% block sidemenu %}
+    <aside class="mzp-l-sidebar">
+      {{ sidemenu_lists([navigation_bar], body_id) }}
+      {% block side_extra %}{% endblock %}
+    </aside>
+  {% endblock %}
 </div>
 {% endblock %}
 
