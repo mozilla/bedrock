@@ -30,11 +30,10 @@ envcat==0.1.1
 everett==3.4.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
-glean-parser==14.5.0  # Must match the required version in the Glean NPM package.
 granian==1.7.5
 honcho==2.0.0
 html5lib==1.1
-jinja2==3.1.5  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
+jinja2==3.1.5  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it (keeping for now incase we add Glean back to www.firefox.com)
 jq==1.8.0
 lxml==5.3.0  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
 Markdown==3.7

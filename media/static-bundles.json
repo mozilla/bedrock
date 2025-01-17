@@ -1201,12 +1201,6 @@
     },
     {
       "files": [
-        "js/glean/init.es6.js"
-      ],
-      "name": "glean"
-    },
-    {
-      "files": [
         "js/base/send-to-device.es6.js",
         "js/firefox/welcome/welcome4.es6.js"
       ],
