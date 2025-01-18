@@ -25,22 +25,4 @@
 {#- This will appear as <meta property="og:description"> which can be used for social share -#}
 {% block page_og_desc %}{{ ftl('firefox-desktop-download-og-desc') }}{% endblock %}
 
-{% block old_ie_styles %}{% endblock %}
-{% block site_css %}{% endblock %}
-{% block page_css %}{% endblock %}
-
-{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
-{% block extrahead %}
-  {% if switch('m24-website-refresh') %}
-    {{ css_bundle('protocol-mozilla-2024') }}
-    {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-      {{ css_bundle('m24-navigation-and-footer') }}
-    {% else %}
-      {{ css_bundle('legacy-navigation-and-footer') }}
-    {% endif %}
-  {% else %}
-    {{ css_bundle('protocol-firefox') }}
-  {% endif %}
-{% endblock %}
-
 {% block body_class %}mzp-t-firefox{% endblock %}

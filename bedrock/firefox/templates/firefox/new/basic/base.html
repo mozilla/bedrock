@@ -13,40 +13,21 @@
 {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
 {%- block page_title_suffix -%}
   {% if LANG == 'en-CA' %}
-    — from Mozilla (CA)
+    from Mozilla (CA)
   {% elif LANG == 'en-GB' %}
-    — from Mozilla (UK)
+    from Mozilla (UK)
   {% else %}
-    - {{ ftl('firefox-new-from-mozilla', fallback='firefox-new-mozilla') }}
+    {{ ftl('firefox-new-from-mozilla', fallback='firefox-new-mozilla') }}
   {% endif %}
 {%- endblock -%}
 
 {% block page_desc %}{{ ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') }}{% endblock %}
 
-{#- This will appear as <meta property="og:title"> which can be used for social share -#}
+{#- This sets <meta property="og:title"> for social sharing to differ from page_title -#}
 {% block page_og_title %}{{ ftl('firefox-new-download-firefox') }}{% endblock %}
 
-{#- This will appear as <meta property="og:description"> which can be used for social share -#}
-{% block page_og_desc %}{{ ftl('firefox-new-desc', fallback='firefox-new-faster-page-loading-less-memory') }}{% endblock %}
-
-{# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
-  {% if switch('m24-website-refresh') %}
-    {{ css_bundle('protocol-mozilla-2024') }}
-    {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-      {{ css_bundle('m24-navigation-and-footer') }}
-    {% else %}
-      {{ css_bundle('legacy-navigation-and-footer') }}
-    {% endif %}
-  {% else %}
-    {{ css_bundle('protocol-firefox') }}
-  {% endif %}
-
   <!--[if IE]>
     {{ css_bundle('firefox_new_ie') }}
   <![endif]-->
 {% endblock %}
-
-{% block old_ie_styles %}{% endblock %}
-{% block site_css %}{% endblock %}
-{% block page_css %}{% endblock %}
