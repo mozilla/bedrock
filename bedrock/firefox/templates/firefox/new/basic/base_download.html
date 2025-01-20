@@ -11,7 +11,7 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
-{% set referrals = link_referrals or '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
+{% set referrals = link_referrals or '?utm_source=www.firefox.com&utm_medium=referral&utm_campaign=firefox-desktop' %}
 
 {# meta #}
 {% set meta_title_prefix = meta_title_prefix or ftl('firefox-new-download-browser', fallback='firefox-new-download-firefox') %}
@@ -71,10 +71,10 @@
       {% block small_links %}
       <ul class="small-links">
         {% if ftl_has_messages('firefox-new-download-a-different') %}
-        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-new-download-a-different') }}</a></li>
+        <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/all/desktop-release/">{{ ftl('firefox-new-download-a-different') }}</a></li>
         {% else %}
-        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ small_advanced }}</a></li>
-        <li><a href="{{ firefox_url('desktop', 'all') }}">{{ small_lang }}</a></li>
+        <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/all/desktop-release/">{{ small_advanced }}</a></li>
+        <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/all/desktop-release/">{{ small_lang }}</a></li>
         {% endif %}
         <li><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=need-help-link">{{ small_help }}</a></li>
       </ul>

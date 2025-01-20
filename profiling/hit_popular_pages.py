@@ -22,7 +22,6 @@ import requests
 paths = [
     "/en-US/firefox/126.0/whatsnew/",
     "/en-US/firefox/",
-    "/en-US/firefox/windows/",
     "/en-US/firefox/new/?reason=manual-update",
     "/en-US/firefox/download/thanks/",
     "/en-US/firefox/new/?reason=outdated",
@@ -36,7 +35,6 @@ paths = [
     "/en-US/firefox/enterprise/?reason=manual-update",
     "/en-US/products/vpn/",
     "/en-US/firefox/browsers/windows-64-bit/",
-    "/en-US/firefox/mac/",
     "/en-US/about/",
     "/en-US/firefox/android/124.0/releasenotes/",
     "/en-US/firefox/browsers/mobile/get-app/",
@@ -66,7 +64,6 @@ paths = [
     "/en-US/firefox/nothing-personal/",
     "/en-US/newsletter/existing/",
     "/en-US/about/legal/terms/firefox/",
-    "/en-US/firefox/linux/",
     "/en-US/firefox/browsers/mobile/focus/",
     "/en-US/products/vpn/download/",
     "/en-US/about/manifesto/",
