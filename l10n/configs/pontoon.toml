@@ -130,9 +130,6 @@ locales = [
     reference = "en/firefox/nightly/**/*.ftl"
     l10n = "{locale}/firefox/nightly/**/*.ftl"
 [[paths]]
-    reference = "en/firefox/products/**/*.ftl"
-    l10n = "{locale}/firefox/products/**/*.ftl"
-[[paths]]
     reference = "en/firefox/set-as-default/**/*.ftl"
     l10n = "{locale}/firefox/set-as-default/**/*.ftl"
 [[paths]]

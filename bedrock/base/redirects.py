@@ -8,5 +8,5 @@ redirectpatterns = (
     # Issue 11875
     # Placed redirect here instead of products/redirects.py because of a conflicting redirect to `/firefox/new` happening in map_globalconf.py,
     # and this file would be placed before the file with the conflicting redirect
-    redirect(r"^vpn/download/?$", "products.vpn.download"),
+    redirect(r"^vpn/download/?$", "https://www.mozilla.org/products/vpn/download/"),
 )
