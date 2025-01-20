@@ -15,7 +15,7 @@
 # urlconf is only use with reverse(), never resolve()
 
 
-from django.urls import path
+# from django.urls import path
 
 
 def dummy_view(*args, **kwargs):
@@ -26,5 +26,4 @@ def dummy_view(*args, **kwargs):
 urlpatterns = (
     # pattern is:
     # path("url/path/here/", dummy_view, name="route.name.here"),
-    path("about/leadership/", dummy_view, name="mozorg.about.leadership.index"),
 )
