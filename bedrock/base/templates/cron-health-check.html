@@ -89,16 +89,6 @@
         <td>{{ most_recent_data_change_ts }}</td>
       </tr>
       {% endif %}
-      <tr>
-        <td><b>Latest Contentful sync</b></td>
-        <td{% if contentful_info.latest_sync %} title="{{contentful_info.latest_sync|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
-          {% if contentful_info.time_since_latest_sync %}
-            {{ contentful_info.time_since_latest_sync }}
-          {% else %}
-            No data!
-          {% endif %}
-        </td>
-      </tr>
     </tbody>
   </table>
 

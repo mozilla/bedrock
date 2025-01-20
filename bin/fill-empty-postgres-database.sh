@@ -24,11 +24,3 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage ./manage.py migrate
 
 # 2. Run db update scripts to pull down the usual data sources
 ./bin/run-db-update.sh
-
-# 3. Port the Contentful data (for the VPN Resource Center pages) from sqlite
-# (Contentful sync is not enabled and doesn't work any more, but
-# we can get the data from the sqlite db in the bedrock install)
-DATABASE_URL=sqlite://./data/bedrock.db ./manage.py dumpdata contentful.contentfulentry -o /tmp/contentful_data.json
-
-# ...and then load it in to postgres
-./manage.py loaddata /tmp/contentful_data.json
