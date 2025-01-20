@@ -2395,7 +2395,6 @@ WAGTAILIMAGES_EXTENSIONS = [
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
-    "mozorg.LeadershipPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
 ]
