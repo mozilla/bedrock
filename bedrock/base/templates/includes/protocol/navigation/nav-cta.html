@@ -4,6 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% set utm_params = 'utm_source=www.firefox.com&utm_medium=referral&utm_campaign=nav&utm_content=cta' %}
+
 {% if not hide_nav_cta %}
   <div class="c-navigation-shoulder">
     {% if not custom_nav_cta %}
@@ -22,7 +24,6 @@
         >
           {{ ftl('navigation-v2-get-mozilla-vpn') }}
         </a>
-
       </div>
       {% endif %}
     {% else %}
