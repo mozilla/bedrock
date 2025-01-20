@@ -172,7 +172,6 @@ python manage.py dumpdata \
     security.MitreCVE \
     releasenotes.ProductRelease \
     contentcards.ContentCard \
-    contentful.ContentfulEntry \
     utils.GitRepoState \
     wordpress.BlogPost \
     sitemaps.SitemapURL \

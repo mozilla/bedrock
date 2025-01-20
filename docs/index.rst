@@ -30,7 +30,6 @@ Contents
    testing
    redirects
    newsletters
-   contentful
    cms
    sitemap
    legal-docs

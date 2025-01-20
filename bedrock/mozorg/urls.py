@@ -12,11 +12,9 @@ it must go in mozorg.nonlocale_urls, not this file
 
 """
 
-from django.conf import settings
 from django.urls import path
 
 from . import views
-from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = [
@@ -145,6 +143,3 @@ urlpatterns = [
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
 ]
-
-if settings.DEV:
-    urlpatterns += dev_only_urlpatterns
