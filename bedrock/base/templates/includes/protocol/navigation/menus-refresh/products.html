@@ -4,7 +4,7 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=products' %}
+{% set utm_params = 'utm_source=www.firefox.com&utm_medium=referral&utm_campaign=nav&utm_content=products' %}
 
 <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable">
   <a class="m24-c-menu-title" href="https://www.mozilla.org/{{ LANG }}/products/?{{ utm_params }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-products" data-testid="m24-navigation-link-products">{{ ftl('navigation-refresh-products') }}</a>
@@ -64,7 +64,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="https://www.thunderbird.net/{{ referrals }}" data-link-text="Thunderbird" data-link-position="topnav - products">
+              <a class="m24-c-menu-item-link" href="https://www.thunderbird.net/{{ utm_params }}" data-link-text="Thunderbird" data-link-position="topnav - products">
                 <img loading="lazy" src="{{ static('img/logos/thunderbird/logo-thunderbird.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-thunderbird') }}</h2>
               </a>
