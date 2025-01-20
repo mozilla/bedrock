@@ -5,7 +5,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 # CRITICAL: Assumes that Django's DATABASE_URL is set to point to *Postgres*
-# CRITICAL: Assumes that the bedrock deployment has a copy of the sqlite database downloaded
 
 # Usage ./bin/fill-empty-postgres-database.sh
 

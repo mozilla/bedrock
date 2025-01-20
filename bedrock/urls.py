@@ -29,7 +29,6 @@ urlpatterns = bedrock_i18n_patterns(
     path("about/legal/", include("bedrock.legal.urls")),
     path("press/", include("bedrock.press.urls")),
     path("privacy/", include("bedrock.privacy.urls")),
-    path("products/", include("bedrock.products.urls")),
     path("security/", include("bedrock.security.urls")),
     path("", include("bedrock.firefox.urls")),
     path("", include("bedrock.mozorg.urls")),  # these are locale-needing URLs, vs mozorg.nonlocale_urls

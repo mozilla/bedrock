@@ -160,11 +160,7 @@ python manage.py dumpdata \
     cms.BedrockImage \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
-    mozorg.LeadershipPage \
     newsletter.Newsletter \
-    products.VPNCallToActionSnippet \
-    products.VPNResourceCenterIndexPage \
-    products.VPNResourceCenterDetailPage \
     externalfiles.ExternalFile \
     security.Product \
     security.SecurityAdvisory \

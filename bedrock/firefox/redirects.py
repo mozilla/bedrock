@@ -470,7 +470,7 @@ redirectpatterns = (
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r"^products/firefox/start/?$", "http://start.mozilla.org"),
     # issue 9008
-    redirect(r"^products/firefox(/.*)?$", "products.landing"),
+    redirect(r"^products/firefox(/.*)?$", "https://www.mozilla.org/products/"),
     # bug 1260423
     redirect(r"^firefox/choose/?$", "firefox.new"),
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
@@ -628,7 +628,7 @@ redirectpatterns = (
     redirect(r"^firefox/browsers/?$", "firefox"),
     # issue 14248
     redirect(r"^firefox/privacy/?$", "privacy"),
-    redirect(r"^firefox/privacy/products/?$", "products.landing"),
+    redirect(r"^firefox/privacy/products/?$", "https://www.mozilla.org/products/"),
     redirect(r"^firefox/privacy/safe-passwords/?$", "firefox.features.password-manager"),
     redirect(r"^firefox/privacy/book/?$", "https://support.mozilla.org/kb/how-stay-safe-web"),
     redirect(r"^firefox/nothingpersonal/?$", "firefox.nothing-personal.index"),
