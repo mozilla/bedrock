@@ -27,6 +27,6 @@ urlpatterns = (
     # pattern is:
     # path("url/path/here/", dummy_view, name="route.name.here"),
     path("about/leadership/", dummy_view, name="mozorg.about.leadership.index"),
-    path("vpn/resource-center/", dummy_view, name="products.vpn.resource-center.landing"),
-    path("vpn/resource-center/<slug:slug>/", dummy_view, name="products.vpn.resource-center.article"),
+    path("products/vpn/resource-center/", dummy_view, name="products.vpn.resource-center.landing"),
+    path("products/vpn/resource-center/<slug:slug>/", dummy_view, name="products.vpn.resource-center.article"),
 )
