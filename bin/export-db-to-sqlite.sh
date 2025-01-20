@@ -161,9 +161,6 @@ python manage.py dumpdata \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
     newsletter.Newsletter \
-    products.VPNCallToActionSnippet \
-    products.VPNResourceCenterIndexPage \
-    products.VPNResourceCenterDetailPage \
     externalfiles.ExternalFile \
     security.Product \
     security.SecurityAdvisory \
