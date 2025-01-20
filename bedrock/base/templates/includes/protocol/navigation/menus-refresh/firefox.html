@@ -4,7 +4,7 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox' %}
+ {% set utm_params = 'utm_source=www.firefox.com&utm_medium=referral&utm_campaign=nav&utm_content=firefox' %}
 
  <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable m24-c-menu-category-has-icon">
   <a class="m24-c-menu-title" href="{{ url('firefox') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-firefox" data-testid="m24-navigation-link-firefox">
@@ -26,7 +26,7 @@
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="{{ url('firefox.browsers.mobile.ios') }}" data-link-text="Firefox for iOS" data-link-position="topnav - firefox">
+              <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/firefox/browsers/mobile/ios/?{{ utm_params }}" data-link-text="Firefox for iOS" data-link-position="topnav - firefox">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-firefox-for-ios') }}</h2>
               </a>
@@ -34,7 +34,7 @@
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="{{ url('firefox.browsers.mobile.android') }}" data-link-text="Firefox for Android" data-link-position="topnav - firefox">
+              <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/firefox/browsers/mobile/android/?{{ utm_params }}" data-link-text="Firefox for Android" data-link-position="topnav - firefox">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-firefox-for-android') }}</h2>
               </a>
@@ -42,7 +42,7 @@
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="{{ url('firefox.browsers.mobile.focus') }}" data-link-text="Firefox Focus" data-link-position="topnav - firefox">
+              <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/firefox/browsers/mobile/focus/?{{ utm_params }}" data-link-text="Firefox Focus" data-link-position="topnav - firefox">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/focus/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-firefox-focus') }}</h2>
               </a>
