@@ -104,12 +104,6 @@
     },
     {
       "files": [
-        "css/firefox/new/basic/platform.scss"
-      ],
-      "name": "firefox_new_platform"
-    },
-    {
-      "files": [
         "css/firefox/new/desktop/download.scss"
       ],
       "name": "firefox_desktop_download"
