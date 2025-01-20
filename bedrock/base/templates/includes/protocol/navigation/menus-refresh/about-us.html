@@ -4,10 +4,10 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
- {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=about-us' %}
+ {% set utm_params = 'utm_source=www.firefox.com&utm_medium=referral&utm_campaign=nav&utm_content=about-us' %}
 
  <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable">
-   <a class="m24-c-menu-title" href="{{ url('mozorg.about.index') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-about" data-testid="m24-navigation-link-about-us">{{ ftl('navigation-refresh-about-us') }}</a>
+   <a class="m24-c-menu-title" href="https://www.mozilla.org/{{ LANG }}/about/?{{ utm_params }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-about" data-testid="m24-navigation-link-about-us">{{ ftl('navigation-refresh-about-us') }}</a>
    <div class="m24-c-menu-panel" id="m24-c-menu-panel-about" data-testid="m24-navigation-menu-about-us">
      <div class="m24-c-menu-panel-container">
        <button class="m24-c-menu-button-close" type="button" aria-controls="m24-c-menu-panel-about">{{ ftl('navigation-refresh-close-about-us-menu') }}</button>
@@ -17,21 +17,21 @@
           <ul class="m24-mzp-l-content">
             <li>
               <section class="m24-c-menu-item">
-                <a class="m24-c-menu-item-link" href="{{ url('mozorg.about.index') }}" data-link-text="About Mozilla" data-link-position="topnav - about">
+                <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/about/?{{ utm_params }}" data-link-text="About Mozilla" data-link-position="topnav - about">
                   <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-about-mozilla') }}</h2>
                 </a>
               </section>
             </li>
             <li>
               <section class="m24-c-menu-item">
-                <a class="m24-c-menu-item-link" href="{{ url('mozorg.about.manifesto') }}" data-link-text="The Mozilla manifesto" data-link-position="topnav - about">
+                <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/about/manifesto/?{{ utm_params }}" data-link-text="The Mozilla manifesto" data-link-position="topnav - about">
                   <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-mozilla-manifesto-v2', fallback='navigation-refresh-mozilla-manifesto') }}</h2>
                 </a>
               </section>
             </li>
             <li>
               <section class="m24-c-menu-item">
-                <a class="m24-c-menu-item-link" href="{{ url('mozorg.contribute') }}" data-link-text="Get Involved" data-link-position="topnav - about">
+                <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/contribute/?{{ utm_params }}" data-link-text="Get Involved" data-link-position="topnav - about">
                   <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-get-involved-v2', fallback='navigation-refresh-get-involved') }}</h2>
                 </a>
               </section>
@@ -78,7 +78,7 @@
             </li>
             <li>
               <section class="m24-c-menu-item">
-                <a class="m24-c-menu-item-link" href="{{ url('mozorg.advertising.landing') }}" data-link-text="Mozilla Advertising" data-link-position="topnav - about">
+                <a class="m24-c-menu-item-link" href="https://www.mozilla.org/{{ LANG }}/advertising/?{{ utm_params }}" data-link-text="Mozilla Advertising" data-link-position="topnav - about">
                   <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-mozilla-advertising') }}</h2>
                 </a>
               </section>
