@@ -767,7 +767,6 @@ INSTALLED_APPS = [
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
-    "bedrock.careers",
     # last so that redirects here will be last
     "bedrock.redirects",
     # libs
@@ -889,14 +888,7 @@ WP_BLOGS = {
     #     uncomment and change this to get more
     #     'num_posts': 20,
     # },
-    "careers": {
-        "url": "https://blog.mozilla.org/careers/",
-        "name": "Life@Mozilla",
-        "num_posts": 20,
-    },
 }
-
-GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
 
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
