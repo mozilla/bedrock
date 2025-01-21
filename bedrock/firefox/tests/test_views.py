@@ -450,37 +450,6 @@ class TestFirefoxNewNoIndex(TestCase):
         assert "follow" in robots.attr("content")
 
 
-@override_settings(DEV=False)
-@patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
-class TestFirefoxPlatform(TestCase):
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_linux_download_template(self, render_mock):
-        req = RequestFactory().get("/firefox/linux/")
-        req.locale = "en-US"
-        view = views.PlatformViewLinux.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/basic/download_linux.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_mac_download_template(self, render_mock):
-        req = RequestFactory().get("/firefox/mac/")
-        req.locale = "en-US"
-        view = views.PlatformViewMac.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/basic/download_mac.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_windows_download_template(self, render_mock):
-        req = RequestFactory().get("/firefox/windows/")
-        req.locale = "en-US"
-        view = views.PlatformViewWindows.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/basic/download_windows.html"]
-
-
 class TestFirefoxGA(TestCase):
     def assert_ga_attr(self, response):
         doc = pq(response.content)
