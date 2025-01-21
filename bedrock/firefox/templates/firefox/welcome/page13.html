@@ -70,16 +70,16 @@
     </div>
 
     <div class="c-main-cta">
-      {{ vpn_product_referral_link(
-            referral_id='welcome-page13',
-            link_text=ftl('welcome-page13-get-mozilla-vpn'),
-            class_name='mzp-t-product mzp-t-xl',
-            optional_attributes= {
-                'data-cta-text' : 'Get Mozilla VPN',
-                'data-cta-type' : 'vpn',
-                'data-cta-position' : 'primary-cta',
-            }
-        ) }}
+      <a
+        href="https://www.mozilla.org/products/vpn/"
+        class="mzp-c-button js-fxa-product-referral-link mzp-t-product mzp-t-xl"
+        data-referral-id="welcome-page13"
+        data-cta-text='Get Mozilla VPN'
+        data-cta-type='vpn'
+        data-cta-position='primary-cta'
+      >
+        {{ ftl('welcome-page13-get-mozilla-vpn') }}
+      </a>
     </div>
   </div>
 </section>

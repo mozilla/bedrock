@@ -41,17 +41,16 @@
       <h1 class="c-main-title"> {% if show_coupon %}{{ ftl('welcome-page14-page-title') }}{% else %}{{ ftl('welcome-page14-page-title-alt') }}{% endif %}</h1>
       <p class="c-main-tagline">{{ ftl('welcome-page14-main-description-v2', fallback='welcome-page14-main-description') }}</p>
       <div class="c-main-cta">
-        {{ vpn_product_referral_link(
-          referral_id='welcome-page14',
-          link_text=ftl('welcome-page14-get-mozilla-vpn'),
-          class_name='mzp-t-product mzp-t-xl',
-          page_anchor="#pricing",
-          optional_attributes= {
-                'data-cta-text' : 'Get Mozilla VPN',
-                'data-cta-type' : 'vpn',
-                'data-cta-position' : 'primary-cta',
-          }
-        )}}
+        <a
+          href="https://www.mozilla.org/products/vpn/#pricing"
+          class="mzp-c-button js-fxa-product-referral-link mzp-t-product mzp-t-xl"
+          data-referral-id="welcome-page14"
+          data-cta-text='Get Mozilla VPN'
+          data-cta-type='vpn'
+          data-cta-position='primary-cta'
+        >
+          {{ ftl('welcome-page14-get-mozilla-vpn') }}
+        </a>
       </div>
       {% if show_coupon %}
         <div class="c-coupon-container">
