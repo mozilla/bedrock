@@ -41,7 +41,6 @@ _csp_script_src = [
     "tagmanager.google.com",
     "www.youtube.com",
     "s.ytimg.com",
-    "js.stripe.com",
 ]
 _csp_style_src = [
     # TODO fix things so that we don't need this
@@ -52,7 +51,6 @@ _csp_child_src = [
     "www.google-analytics.com",
     "accounts.firefox.com",
     "www.youtube.com",
-    "js.stripe.com",
 ]
 _csp_connect_src = [
     "www.googletagmanager.com",
@@ -62,8 +60,6 @@ _csp_connect_src = [
     "o1069899.sentry.io",
     "o1069899.ingest.sentry.io",
     FXA_ENDPOINT,
-    "stage.cjms.nonprod.cloudops.mozgcp.net",
-    "cjms.services.mozilla.com",
 ]
 _csp_connect_extra_for_dev = []
 _csp_font_src = []
