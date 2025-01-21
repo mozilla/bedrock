@@ -6,7 +6,7 @@
 
 <!doctype html>
 {# Note the "windows" class, without javascript platform-specific assets default to windows #}
-<html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}"{% endif %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}"{% endif %} {% block html_attrs %}{% endblock %}>
+<html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}"{% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}"{% endif %} {% block html_attrs %}{% endblock %}>
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
@@ -90,13 +90,6 @@
 
     {% block extrahead %}
       {# Extra header stuff (scripts, styles, metadata, etc) seen by all browsers. Use the 'page_css' block for CSS you want to hide from IE9 and lower. #}
-    {% endblock %}
-
-    {% block js_pretrack %}{# include JavaScript that must be run pre GA tracking here #}{% endblock %}
-    {% block google_analytics %}
-      <!--[if IE 9]><!-->
-        {% include 'includes/google-analytics.html' %}
-      <!--<![endif]-->
     {% endblock %}
   </head>
 

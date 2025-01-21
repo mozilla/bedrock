@@ -1091,8 +1091,6 @@ ignore_logger("django.security.DisallowedHost")
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
-GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
-
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
 STUB_ATTRIBUTION_RATE = config("STUB_ATTRIBUTION_RATE", default=str(1 if DEV else 0), parser=float)

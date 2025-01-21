@@ -1271,12 +1271,6 @@
     },
     {
       "files": [
-        "js/base/gtm/gtm-snippet-init.es6.js"
-      ],
-      "name": "gtm-snippet"
-    },
-    {
-      "files": [
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
