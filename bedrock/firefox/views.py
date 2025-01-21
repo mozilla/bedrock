@@ -505,7 +505,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx134-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx135.html": ["firefox/whatsnew/whatsnew-shortcuts", "firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx135.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in

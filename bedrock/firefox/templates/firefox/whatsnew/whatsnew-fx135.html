@@ -20,7 +20,7 @@
   {% set main_title = 'Zoomez sur les fonctionnalités de Firefox' %}
   {% set main_tagline = 'Naviguez sur Firefox rapidement avec <strong>cmd/ctrl +</strong> et <strong>cmd/ctrl -</strong> pour facilement redimensionner le contenu d’une page web.' %}
   {% set main_cta = 'Découvrir plus de raccourcis' %}
-{% elif LANG.startswith('en-') %}
+{% else %}
   {% set main_title = 'Zoom in to Firefox functions' %}
   {% set main_tagline = 'Navigate Firefox quickly and use <strong>cmd/ctrl +</strong> and <strong>cmd/ctrl -</strong> to easily resize content, making it larger or smaller.' %}
   {% set main_cta = 'Find more shortcuts' %}
@@ -32,27 +32,9 @@
 <section class="wnp-content-main">
   <div class="mzp-l-content mzp-t-content-sm">
     <img width="182" height="69" class="wnp-main-image" src="{{ l10n_img('firefox/wnp-135/shortcuts.svg') }}" alt="">
-    <h1 class="wnp-main-title">
-      {% if main_title %}
-        {{ main_title }}
-      {% else %}
-        {{ ftl('whatsnew-shortcuts-title')}}
-      {% endif %}
-    </h1>
-    <p class="wnp-main-tagline">
-      {% if main_tagline %}
-        {{ main_tagline | safe }}
-      {% else %}
-        {{ ftl('whatsnew-shortcuts-tagline')}}
-      {% endif %}
-    </p>
-    <a class="mzp-c-button mzp-t-product" data-cta-text="Find more shortcuts" href="{{ main_cta_link }}">
-      {% if main_cta %}
-        {{ main_cta }}
-      {% else %}
-        {{ ftl('whatsnew-shortcuts-cta')}}
-      {% endif %}
-    </a>
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <p class="wnp-main-tagline">{{ main_tagline | safe }}</p>
+    <a class="mzp-c-button mzp-t-product" data-cta-text="Find more shortcuts" href="{{ main_cta_link }}">{{ main_cta }}</a>
   </div>
 </section>
 
