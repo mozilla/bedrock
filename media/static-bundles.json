@@ -571,13 +571,6 @@
     },
     {
       "files": [
-        "css/mozorg/mozilla-account-promo.scss",
-        "css/products/landing.scss"
-      ],
-      "name": "products"
-    },
-    {
-      "files": [
         "css/mozorg/book.scss"
       ],
       "name": "book"
@@ -894,72 +887,6 @@
     },
     {
       "files": [
-        "css/products/vpn/common-refresh.scss"
-      ],
-      "name": "mozilla-vpn-common-refresh"
-    },
-    {
-      "files": [
-        "css/products/vpn/landing-refresh.scss"
-      ],
-      "name": "mozilla-vpn-landing-refresh"
-    },
-    {
-      "files": [
-        "css/products/vpn/features.scss"
-      ],
-      "name": "mozilla-vpn-features"
-    },
-    {
-      "files": [
-        "css/products/vpn/pricing-refresh.scss"
-      ],
-      "name": "mozilla-vpn-pricing-refresh"
-    },
-    {
-      "files": [
-        "css/products/vpn/common.scss",
-        "css/products/vpn/download.scss"
-      ],
-      "name": "mozilla-vpn-download"
-    },
-    {
-      "files": [
-        "css/products/vpn/common.scss",
-        "css/products/vpn/platform-download.scss"
-      ],
-      "name": "mozilla-vpn-platform-download"
-    },
-    {
-      "files": [
-        "css/products/vpn/components/hero.scss",
-        "css/products/vpn/common.scss"
-      ],
-      "name": "mozilla-vpn-platforms"
-    },
-    {
-      "files": [
-        "css/products/vpn/invite.scss"
-      ],
-      "name": "mozilla-vpn-invite"
-    },
-    {
-      "files": [
-        "css/products/vpn/components/hero.scss",
-        "css/products/vpn/components/block.scss",
-        "css/products/vpn/common.scss",
-        "css/products/vpn/article.scss"
-      ],
-      "name": "mozilla-vpn-article"
-    },
-    {
-      "files": [
-        "css/products/vpn/resource-center.scss"
-      ],
-      "name": "vpn-resource-center"
-    },
-    {
-      "files": [
         "css/careers/styles.scss"
       ],
       "name": "careers"
@@ -1014,7 +941,7 @@
     },
     {
       "files": [
-        "css/products/monitor/waitlist.scss"
+        "css/newsletter/monitor-waitlist.scss"
       ],
       "name": "monitor-waitlist"
     },
@@ -1539,37 +1466,6 @@
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"
-    },
-    {
-      "files": [
-        "js/products/shared/stripe-init.es6.js"
-      ],
-      "name": "stripe"
-    },
-    {
-      "files": [
-        "js/products/shared/affiliate-init.es6.js"
-      ],
-      "name": "mozilla-vpn-affiliate"
-    },
-    {
-      "files": [
-        "js/products/vpn/invite.es6.js",
-        "js/products/vpn/invite-init.es6.js"
-      ],
-      "name": "mozilla-vpn-invite"
-    },
-    {
-      "files": [
-        "js/products/vpn/thanks.js"
-      ],
-      "name": "vpn_platform_download"
-    },
-    {
-      "files": [
-        "js/products/vpn/resource-center-article.es6.js"
-      ],
-      "name": "vpn-resource-center-article"
     },
     {
       "files": [

@@ -16,7 +16,6 @@ const desktopTestURLs = [
     '/en-US/',
     '/en-US/about/',
     '/en-US/about/governance/policies/participation/',
-    '/en-US/about/leadership/',
     '/en-US/about/manifesto/',
     '/en-US/advertising/',
     '/en-US/careers/',
@@ -42,12 +41,7 @@ const desktopTestURLs = [
     '/en-US/firefox/nothing-personal/',
     '/en-US/firefox/releasenotes/',
     '/en-US/privacy/',
-    '/en-US/privacy/websites/cookie-settings/',
-    '/en-US/products/',
-    '/en-US/products/vpn/',
-    '/en-US/products/vpn/download/',
-    '/en-US/products/vpn/features/',
-    '/en-US/products/vpn/pricing/'
+    '/en-US/privacy/websites/cookie-settings/'
 ];
 
 const mobileTestURLs = [
