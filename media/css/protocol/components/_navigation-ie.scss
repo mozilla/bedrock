@@ -104,6 +104,50 @@
     }
 }
 
+.c-sub-navigation {
+    .c-sub-navigation-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline-block;
+            float: none;
+        }    
+    }
+}
+
+.c-product-info {
+    .c-steps img.c-step-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline;
+        }
+    }
+
+    .c-steps a.c-step-icon {
+        img {
+            display: none;
+        }
+        
+        &:after {
+            content: ' (×)';
+        }
+
+        // revert for IE9 which supports SVG
+        :root & {
+            img {
+                display: inline;
+            }
+
+            &:after {
+                content: '';
+            }
+        }
+    }
+}
+
 // * -------------------------------------------------------------------------- */
 // Redesigned header
 
@@ -146,9 +190,10 @@
     }
 }
 
-// hide JS-dependent interaction from IE visitors
+// hide SVG or JS-dependent interaction from IE visitors
 .m24-c-navigation-menu-button,
-.m24-c-flag {
+.m24-c-flag,
+.moz24-footer-logo-image-bottom {
     display: none;
 }
 
