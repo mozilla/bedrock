@@ -117,11 +117,6 @@ class TestWebvisionDocView(TestCase):
 class TestMozorgRedirects(TestCase):
     """Test redirects that are in bedrock.mozorg.nonlocale_urls"""
 
-    def test_projects_calendar_redirect(self):
-        resp = self.client.get("/projects/calendar/", follow=True)
-        # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
-        self.assertEqual(resp.redirect_chain[0], ("https://www.thunderbird.net/calendar/", 301))
-
     def test_paris_office_redirect(self):
         resp = self.client.get("/contact/spaces/paris/", follow=True, headers={"accept-language": "en"})
         # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect

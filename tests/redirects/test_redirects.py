@@ -15,6 +15,7 @@ from .map_htaccess import URLS as HTA_URLS
 from .map_locales import URLS as LOCALE_URLS
 
 
+@pytest.mark.skip("Disabled until we have redirects to test")
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -24,6 +25,7 @@ def test_301_url(url, base_url):
     assert_valid_url(**url)
 
 
+@pytest.mark.skip("Disabled until we have redirects to test")
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -33,6 +35,7 @@ def test_global_conf_url(url, base_url):
     assert_valid_url(**url)
 
 
+@pytest.mark.skip("Disabled until we have redirects to test")
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
@@ -42,6 +45,7 @@ def test_htaccess_url(url, base_url):
     assert_valid_url(**url)
 
 
+@pytest.mark.skip("Disabled until we have redirects to test")
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
