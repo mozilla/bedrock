@@ -1,0 +1,25 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
+
+.mzp-l-content.mzp-t-content-sm {
+    max-width: 450px; // protocol is 432px, we need slightly bigger
+}
+
+.wnp-content-main {
+    text-align: center;
+}
+
+.wnp-main-title {
+    line-height: 1.01;
+}
+
+.wnp-main-image {
+    margin-bottom: $spacing-lg;
+}

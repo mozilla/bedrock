@@ -443,6 +443,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-135.scss"
+      ],
+      "name": "firefox_whatsnew_135"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
