@@ -833,12 +833,6 @@
     },
     {
       "files": [
-        "css/mozorg/diversity/diversity.scss"
-      ],
-      "name": "diversity"
-    },
-    {
-      "files": [
         "css/mozorg/sustainability.scss"
       ],
       "name": "sustainability"
@@ -1406,12 +1400,6 @@
         "js/base/video-modal-embed.es6.js"
       ],
       "name": "video-modal-embed"
-    },
-    {
-      "files": [
-        "js/mozorg/diversity/2021/diversity-2021.es6.js"
-      ],
-      "name": "diversity-2021"
     },
     {
       "files": [
