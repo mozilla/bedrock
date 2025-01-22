@@ -348,7 +348,6 @@ describe('isURLPermitted()', function () {
             isURLPermitted('/en-US/privacy/websites/cookie-settings/')
         ).toBeFalse();
         expect(isURLPermitted('/en-US/about/')).toBeFalse();
-        expect(isURLPermitted('/en-US/careers/')).toBeFalse();
     });
 });
 

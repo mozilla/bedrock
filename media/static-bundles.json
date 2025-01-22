@@ -881,12 +881,6 @@
     },
     {
       "files": [
-        "css/careers/styles.scss"
-      ],
-      "name": "careers"
-    },
-    {
-      "files": [
         "css/mozorg/diversity/diversity.scss"
       ],
       "name": "diversity"
@@ -1454,24 +1448,6 @@
         "js/firefox/browsers/chromebook.js"
       ],
       "name": "chromebook"
-    },
-    {
-      "files": [
-        "js/careers/listings/listings.es6.js"
-      ],
-      "name": "careers-listings"
-    },
-    {
-      "files": [
-        "js/careers/testimonials-modal.es6.js"
-      ],
-      "name": "careers-testimonials"
-    },
-    {
-      "files": [
-        "js/careers/position/position.js"
-      ],
-      "name": "careers-position"
     },
     {
       "files": [

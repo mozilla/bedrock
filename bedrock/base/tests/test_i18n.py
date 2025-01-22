@@ -185,14 +185,14 @@ def test_check_for_bedrock_language(lang_code, expected_result):
 
 @pytest.mark.parametrize("use_i18n", (True, False))
 def test_bedrock_i18n_patterns(use_i18n):
-    from bedrock.careers import urls as career_urls
+    from bedrock.firefox import urls as firefox_urls
 
     with override_settings(USE_I18N=use_i18n):
-        patterns = bedrock_i18n_patterns(career_urls)
+        patterns = bedrock_i18n_patterns(firefox_urls)
     if use_i18n:
         assert isinstance(patterns[0], URLResolver)
     else:
-        assert patterns[0] == career_urls
+        assert patterns[0] == firefox_urls
 
 
 @pytest.mark.parametrize(

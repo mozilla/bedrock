@@ -33,7 +33,6 @@ urlpatterns = bedrock_i18n_patterns(
     path("", include("bedrock.firefox.urls")),
     path("", include("bedrock.mozorg.urls")),  # these are locale-needing URLs, vs mozorg.nonlocale_urls
     path("", include("bedrock.newsletter.urls")),
-    path("careers/", include("bedrock.careers.urls")),
 )
 
 # Paths that must not have a locale prefix
