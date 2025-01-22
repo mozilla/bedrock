@@ -77,8 +77,6 @@ redirectpatterns = (
     redirect(r"^projects/?$", "firefox"),
     # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418
     redirect(r"^firefox/brand(/.*)?", "https://mozilla.design/firefox/"),
-    # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418
-    redirect(r"^foundation/identity-guidelines(/.*)?", "https://mozilla.design/mozilla/"),
     # Bug 945474 - delete Marketplace marketing product page
     # and redirect
     redirect(r"^apps/?$", "https://marketplace.firefox.com/"),
@@ -123,11 +121,6 @@ redirectpatterns = (
     redirect(r"^legal/eula/firefox-3/?$", "/about/legal/eula/firefox-3/"),
     # bug 1405436
     redirect(r"^legal/eula/firefox", "/about/legal/terms/firefox/"),
-    # Bug 1209643
-    redirect(r"^legal/bylaws_amendment_(?P<n>[12])(\.html|/)?", "/foundation/documents/bylaws-amendment-{n}/"),
-    redirect(r"^legal/articles(\.html|/)?", "foundation.documents.articles-of-incorporation"),
-    redirect(r"^legal/amendment(\.html|/)?", "foundation.documents.articles-of-incorporation-amendment"),
-    redirect(r"^legal/bylaws(\.html|/)?", "foundation.documents.bylaws"),
     # bug 960689, 896474
     redirect(r"^about/legal\.html", "legal.index"),
     # Bug 1073269
@@ -308,36 +301,7 @@ redirectpatterns = (
     # bug 876233
     redirect(r"^about/participate/?$", "mozorg.contribute"),
     # bug 790784
-    # NB: The /foundation/privacy-policy.html redirect must appear before the
-    # foundation redirects added with bug 724633. Otherwise, the address will first
-    # be prefixed with a locale, and this redirect will not work.
-    redirect(r"^(about/policies/|foundation/)?privacy-policy(/|\.html)?$", "/privacy/websites/"),
     redirect(r"^privacy-policy\.pdf$", "https://static.mozilla.com/moco/en-US/pdf/mozilla_privacypolicy.pdf"),
-    # bug 724633 - Porting foundation pages
-    # Add redirects for the pdfs that were under /foundation/documents/
-    # that will now be served from static.mozilla.com/foundation/documents/
-    # (The links within the foundation pages have been updated, but there are
-    # probably many links to them from other pages and sites that need to keep
-    # working.)
-    redirect(r"^foundation/documents/(?P<pdf>[^/]+)\.pdf$", "https://static.mozilla.com/foundation/documents/{pdf}.pdf", re_flags="i"),
-    redirect(r"^foundation/donate_form\.pdf$", "https://static.mozilla.com/foundation/documents/donate_form.pdf", re_flags="i"),
-    # openwebfund/ and openwebfund/index.html redirect to another site.  Careful because
-    # there are other pages under openwebfund that still need to be served from Bedrock.
-    redirect(r"^foundation/openwebfund/(index\.html)?$", "https://foundation.mozilla.org/donate/", re_flags="i"),
-    redirect(r"^foundation/donate\.html$", "https://foundation.mozilla.org/donate/", re_flags="i"),
-    # FIXUPs for changing foo/bar.html to foo/bar/
-    # Redirect foundation/foo.html to foundation/foo/, with a redirect for the nice search engines
-    redirect(r"^foundation/(?P<page>about|careers|licensing|moco|mocosc)\.html$", "/foundation/{page}/", re_flags="i"),
-    # Redirect foundation/anything/foo.html to foundation/anything/foo/,
-    # with a redirect for the nice search engines
-    redirect(r"^foundation/documents/(?P<page>index|mozilla-200.-financial-faq)\.html$", "/foundation/{page}/", re_flags="i"),
-    redirect(
-        r"^foundation/(?P<page>(?:annualreport|documents|feed-icon-guidelines|" r"licensing|openwebfund|trademarks)/.*)\.html$",
-        "/foundation/{page}/",
-        re_flags="i",
-    ),
-    # bug 442671
-    redirect(r"^foundation/trademarks/l10n-policy/?$", "/foundation/trademarks/", re_flags="i"),
     # bug 1074354
     redirect(r"^legal/?$", "/about/legal/"),
     # bug 963816
