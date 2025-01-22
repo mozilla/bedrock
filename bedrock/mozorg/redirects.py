@@ -143,8 +143,6 @@ redirectpatterns = (
     # issue 851727
     redirect(r"^projects/powered-by(\.html|/)?", "mozorg.home"),
     redirect(r"^about/powered-by/?", "mozorg.home"),
-    # bug 957664
-    redirect(r"^press/awards(?:/|\.html)?$", "https://blog.mozilla.org/press/awards/"),
     # bug 876810
     redirect(r"^hacking/commit-access-policy/?$", "mozorg.about.governance.policies.commit.access-policy"),
     redirect(r"^hacking/committer(/|/faq\.html)?$", "mozorg.about.governance.policies.commit"),

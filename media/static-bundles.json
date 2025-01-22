@@ -74,12 +74,6 @@
     },
     {
       "files": [
-        "css/press/press.scss"
-      ],
-      "name": "press"
-    },
-    {
-      "files": [
         "css/mozorg/mpl-1-1-annotated.scss"
       ],
       "name": "mpl-1-1-annotated"
