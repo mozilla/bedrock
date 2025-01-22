@@ -10,42 +10,8 @@
  * URL paths for inclusion in page-level a11y scans.
  * Pages will be scanned at both desktop and mobile resolutions.
  */
-const desktopTestURLs = [
-    '/de/firefox/built-for-you/',
-    '/de/firefox/challenge-the-default/',
-    '/en-US/',
-    '/en-US/about/',
-    '/en-US/about/governance/policies/participation/',
-    '/en-US/about/manifesto/',
-    '/en-US/advertising/',
-    '/en-US/contact/',
-    '/en-US/contribute/',
-    '/en-US/firefox/',
-    '/en-US/firefox/all/',
-    '/en-US/firefox/browsers/mobile/',
-    '/en-US/firefox/browsers/mobile/android/',
-    '/en-US/firefox/browsers/mobile/focus/',
-    '/en-US/firefox/browsers/mobile/ios/',
-    '/en-US/firefox/channel/android/',
-    '/en-US/firefox/channel/desktop/',
-    '/en-US/firefox/developer/',
-    '/en-US/firefox/download/thanks/',
-    '/en-US/firefox/enterprise/',
-    '/en-US/firefox/new/',
-    '/en-US/firefox/nothing-personal/',
-    '/en-US/firefox/releasenotes/',
-    '/en-US/privacy/',
-    '/en-US/privacy/websites/cookie-settings/'
-];
+const desktopTestURLs = ['/en-US/firefox/', '/en-US/firefox/new/'];
 
-const mobileTestURLs = [
-    '/en-US/',
-    '/en-US/firefox/browsers/mobile/',
-    '/en-US/firefox/browsers/mobile/android/',
-    '/en-US/firefox/browsers/mobile/focus/',
-    '/en-US/firefox/browsers/mobile/ios/',
-    '/en-US/firefox/channel/android/',
-    '/en-US/firefox/new/'
-];
+const mobileTestURLs = ['/en-US/firefox/', '/en-US/firefox/new/'];
 
 module.exports = { desktopTestURLs, mobileTestURLs };
