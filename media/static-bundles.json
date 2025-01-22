@@ -1495,12 +1495,6 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-135-pdf.es6.js"
-      ],
-      "name": "firefox_whatsnew_135_pdf"
-    },
-    {
-      "files": [
         "js/firefox/firefox-20th/firefox-20th.js"
       ],
       "name": "firefox_20th"

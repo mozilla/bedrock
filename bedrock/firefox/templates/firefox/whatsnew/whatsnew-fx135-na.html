@@ -37,8 +37,6 @@
     ) }}
     </h1>
 
-    <div class="wnp-loading"></div>
-
     <div class="wnp-editor">
       <p class="wnp-main-tagline">
         Say goodbye to the hassle of printing or filling out PDFs in other apps. Quickly and easily edit documents right in your browser.
@@ -52,25 +50,9 @@
       </p>
     </div>
 
-    <div class="wnp-default">
-      <p class="wnp-main-tagline">
-        Say goodbye to the hassle of printing or filling out PDFs in other apps. With Firefox as your default browser, quickly and easily edit documents right in your browser.
-      </p>
-
-      <p class="wnp-main-cta is-not-default">
-        <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.set-as-default.thanks') }}" data-cta-type="button" data-cta-text="Set Firefox to default" target="_blank" rel="noopener">
-          Set Firefox to default
-        </a>
-      </p>
-    </div>
-
     <p class="wnp-sign-off">
       <strong>Powered by Mozilla.</strong> Putting people before profits since 1998.
     </p>
   </section>
 
-{% endblock %}
-
-{% block js %}
-  {{ js_bundle('firefox_whatsnew_135_pdf') }}
 {% endblock %}
