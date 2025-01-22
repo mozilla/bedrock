@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - stage
-      - run-integration-test
+      - run-integration-tests
     tags:
       - '*'
 
