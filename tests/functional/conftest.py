@@ -89,26 +89,6 @@ def pytest_generate_tests(metafunc):
             assert urls
             metafunc.parametrize("download_path", urls)
 
-        elif "download_path_l10n" in metafunc.fixturenames:
-            urls = []
-            doc = get_web_page(f"{base_url}/en-US/firefox/all/")
-            product_urls = [a.attrib["href"] for a in doc("ul.c-product-list a")]
-            # If product url links outside of /firefox/all/ ignore it. (e.g. testflight)
-            product_urls = [url for url in product_urls if url.startswith("/en-US/firefox/all/")]
-            for url in product_urls:
-                doc = get_web_page(f"{base_url}{url}")
-                platform_urls = [a.attrib["href"] for a in doc("ul.c-platform-list a")]
-                for url in platform_urls:
-                    doc = get_web_page(f"{base_url}{url}")
-                    lang_urls = [a.attrib["href"] for a in doc("ul.c-lang-list a")]
-                    for url in lang_urls:
-                        doc = get_web_page(f"{base_url}{url}")
-                        download_urls = [a.attrib["href"] for a in doc("a.download-link")]
-                        for url in download_urls:
-                            urls.append(url)
-            assert urls
-            metafunc.parametrize("download_path_l10n", urls)
-
 
 def get_web_page(url):
     try:
