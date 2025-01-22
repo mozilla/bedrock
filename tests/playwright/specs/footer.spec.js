@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
-const url = '/en-US/';
+const url = '/en-US/firefox/';
 
 test.describe(
     `${url} footer (mobile)`,
@@ -22,50 +22,6 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Footer newsletter submit success', async ({ page }) => {
-            const form = page.getByTestId('newsletter-form');
-            const emailField = page.getByTestId('newsletter-email-input');
-            const countryField = page.getByTestId('newsletter-country-select');
-            const privacyCheckbox = page.getByTestId(
-                'newsletter-privacy-checkbox'
-            );
-            const submitButton = page.getByTestId('newsletter-submit-button');
-            const thanksMessage = page.getByTestId('newsletter-thanks-message');
-
-            // expand form before running test
-            await submitButton.click();
-
-            await expect(thanksMessage).not.toBeVisible();
-            await emailField.fill('success@example.com');
-            await countryField.selectOption('us');
-            await privacyCheckbox.click();
-            await submitButton.click();
-            await expect(form).not.toBeVisible();
-            await expect(thanksMessage).toBeVisible();
-        });
-
-        test('Footer newsletter submit failure', async ({ page }) => {
-            const emailField = page.getByTestId('newsletter-email-input');
-            const countryField = page.getByTestId('newsletter-country-select');
-            const privacyCheckbox = page.getByTestId(
-                'newsletter-privacy-checkbox'
-            );
-            const submitButton = page.getByTestId('newsletter-submit-button');
-            const thanksMessage = page.getByTestId('newsletter-thanks-message');
-            const errorMessage = page.getByTestId('newsletter-error-message');
-
-            // expand form before running test
-            await page.getByTestId('newsletter-submit-button').click();
-
-            await expect(errorMessage).not.toBeVisible();
-            await emailField.fill('failure@example.com');
-            await countryField.selectOption('us');
-            await privacyCheckbox.click();
-            await submitButton.click();
-            await expect(errorMessage).toBeVisible();
-            await expect(thanksMessage).not.toBeVisible();
-        });
-
         test('Footer language change', async ({ page }) => {
             const languageSelect = page.getByTestId('footer-language-select');
 
@@ -74,7 +30,7 @@ test.describe(
 
             // Change page language from /en-US/ to /de/
             await languageSelect.selectOption('de');
-            await page.waitForURL('**/de/?automation=true', {
+            await page.waitForURL('**/de/firefox/?automation=true', {
                 waitUntil: 'commit'
             });
 

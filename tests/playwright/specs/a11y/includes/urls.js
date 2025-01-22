@@ -10,8 +10,23 @@
  * URL paths for inclusion in page-level a11y scans.
  * Pages will be scanned at both desktop and mobile resolutions.
  */
-const desktopTestURLs = ['/en-US/firefox/', '/en-US/firefox/new/'];
+const desktopTestURLs = [
+    '/en-US/firefox/',
+    '/en-US/firefox/all/',
+    '/en-US/firefox/channel/android/',
+    '/en-US/firefox/channel/desktop/',
+    '/en-US/firefox/developer/',
+    '/en-US/firefox/download/thanks/',
+    '/en-US/firefox/enterprise/',
+    '/en-US/firefox/new/',
+    '/en-US/firefox/releasenotes/',
+    '/en-US/privacy/websites/cookie-settings/'
+];
 
-const mobileTestURLs = ['/en-US/firefox/', '/en-US/firefox/new/'];
+const mobileTestURLs = [
+    '/en-US/firefox/',
+    '/en-US/firefox/channel/android/',
+    '/en-US/firefox/new/'
+];
 
 module.exports = { desktopTestURLs, mobileTestURLs };
