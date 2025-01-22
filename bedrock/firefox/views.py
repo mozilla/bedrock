@@ -618,7 +618,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("135."):
-            if locale in ["de", "fr"] or country == "GB" and locale.startswith("en-"):
+            if locale in ["de", "fr", "en-GB"]:
                 template = "firefox/whatsnew/whatsnew-fx135-eu.html"
             else:
                 template = "firefox/whatsnew/index.html"
