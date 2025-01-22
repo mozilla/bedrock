@@ -38,7 +38,7 @@
         *display: inline;
         margin: 0;
         position: absolute;
-        right: 0;
+        @include bidi(((right, 0, left, auto),));
         text-align: center;
         top: $spacing-md;
         top: 0\0;
