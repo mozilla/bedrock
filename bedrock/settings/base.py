@@ -517,7 +517,6 @@ NOINDEX_URLS = [
     r"^country-code\.json$",
     r"^firefox/browsers/mobile/get-ios/",
     # exclude redirects
-    r"^foundation/annualreport/$",
     r"^firefox/notes/$",
     r"^teach/$",
     r"^about/legal/impressum/$",
@@ -753,12 +752,10 @@ INSTALLED_APPS = [
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
-    "bedrock.foundation",
     "bedrock.legal",
     "bedrock.legal_docs",
     "bedrock.mozorg",
     "bedrock.newsletter",
-    "bedrock.press",
     "bedrock.privacy",
     "bedrock.externalfiles",
     "bedrock.security",
@@ -787,7 +784,6 @@ VARY_NOCACHE_EXEMPT_URL_PREFIXES = (
     "/contact/",
     "/newsletter/",
     "/privacy/",
-    "/foundation/",
 )
 
 # Sessions

@@ -25,9 +25,7 @@ locale404 = "lib.l10n_utils.locale_selection"
 # Paths that should have a locale prefix
 urlpatterns = bedrock_i18n_patterns(
     # Main pages
-    path("foundation/", include("bedrock.foundation.urls")),
     path("about/legal/", include("bedrock.legal.urls")),
-    path("press/", include("bedrock.press.urls")),
     path("privacy/", include("bedrock.privacy.urls")),
     path("security/", include("bedrock.security.urls")),
     path("", include("bedrock.firefox.urls")),
