@@ -37,7 +37,6 @@ python manage.py update_security_advisories --quiet || failure_detected=true
 python manage.py update_release_notes --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_legal_docs --quiet || failure_detected=true
-python manage.py update_webvision_docs --quiet || failure_detected=true
 python manage.py update_sitemaps_data --quiet || failure_detected=true
 
 # if [[ "$AUTH" == true ]]; then

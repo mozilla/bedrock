@@ -6,7 +6,6 @@ import json
 
 from django.conf import settings
 from django.core.mail import EmailMessage
-from django.http import Http404
 from django.shortcuts import render as django_render
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_safe
@@ -17,7 +16,6 @@ from product_details import product_details
 
 from bedrock.base.waffle import switch
 from bedrock.mozorg.forms import MiecoEmailForm
-from bedrock.mozorg.models import WebvisionDoc
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
@@ -157,35 +155,6 @@ class AboutView(L10nTemplateView):
             return [self.m24_template_name]
 
         return [self.template_name]
-
-
-class WebvisionDocView(RequireSafeMixin, TemplateView):
-    """
-    Generic view for loading a webvision doc and displaying it with a template.
-
-    Class attributes in addition to standard Django TemplateView:
-
-    * doc_name: The name of the file in the webvision repo.
-    * doc_context_name: (default 'doc') template variable name for doc.
-
-    """
-
-    doc_name = None
-    doc_context_name = "doc"
-
-    def render_to_response(self, context, **response_kwargs):
-        response_kwargs.setdefault("content_type", self.content_type)
-        return l10n_utils.render(self.request, self.get_template_names()[0], context, **response_kwargs)
-
-    def get_context_data(self, **kwargs):
-        try:
-            doc = WebvisionDoc.objects.get(name=self.doc_name)
-        except WebvisionDoc.DoesNotExist:
-            raise Http404("Webvision doc not found")
-
-        context = super().get_context_data(**kwargs)
-        context[self.doc_context_name] = doc.content
-        return context
 
 
 MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
