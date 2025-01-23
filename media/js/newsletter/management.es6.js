@@ -6,11 +6,7 @@
 
 import FormUtils from './form-utils.es6';
 
-const FXA_NEWSLETTERS = [
-    'firefox-accounts-journey',
-    'test-pilot',
-    'take-action-for-the-internet'
-];
+const FXA_NEWSLETTERS = ['firefox-accounts-journey', 'test-pilot'];
 
 const FXA_NEWSLETTERS_LOCALES = ['en', 'de', 'fr'];
 
