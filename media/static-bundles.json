@@ -845,12 +845,6 @@
     },
     {
       "files": [
-        "css/mozorg/webvision.scss"
-      ],
-      "name": "webvision"
-    },
-    {
-      "files": [
         "css/firefox/family/styles.scss"
       ],
       "name": "firefox-family"

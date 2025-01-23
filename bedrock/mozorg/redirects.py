@@ -507,8 +507,6 @@ redirectpatterns = (
     # Issue 14351
     redirect(r"^research/?$", "https://foundation.mozilla.org/research/"),
     redirect(r"^research/cc/?$", "https://foundation.mozilla.org/research/library/?topics=187"),
-    # redirects that don't need a lang code prefix
-    redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
     # issue 14944
     redirect(r"^nothing-?personal/?$", "firefox.nothing-personal.index"),
     # Issue 15008

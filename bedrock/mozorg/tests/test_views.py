@@ -12,7 +12,6 @@ from django.test.client import RequestFactory
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
-from bedrock.mozorg.models import WebvisionDoc
 from bedrock.mozorg.tests import TestCase
 
 
@@ -102,18 +101,6 @@ class TestHomePageLocales(TestCase):
         self.assertEqual(resp.status_code, 405)
 
 
-class TestWebvisionDocView(TestCase):
-    def test_doc(self):
-        WebvisionDoc.objects.create(name="summary", content={"title": "<h1>Summary</h1>"})
-        resp = self.client.get(reverse("mozorg.about.webvision.summary"), follow=True)
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(resp.context["doc"], {"title": "<h1>Summary</h1>"})
-
-    def test_missing_doc_is_404(self):
-        resp = self.client.get(reverse("mozorg.about.webvision.full"), follow=True)
-        self.assertEqual(resp.status_code, 404)
-
-
 class TestMozorgRedirects(TestCase):
     """Test redirects that are in bedrock.mozorg.nonlocale_urls"""
 
@@ -122,17 +109,6 @@ class TestMozorgRedirects(TestCase):
         # Note that we now 301 straight to the lang-prefixed version of the destination of the redirect
         self.assertEqual(resp.redirect_chain[0], ("/contact/spaces/", 301))
         self.assertEqual(resp.redirect_chain[1], ("/en-US/contact/spaces/", 302))
-
-    def test_webvision_redirect(self):
-        # Since the webvision URL requires a WebvisionDoc to exist, we test this
-        # here instead of in the redirects tests.
-        WebvisionDoc.objects.create(name="summary", content="")
-
-        for path in ("/webvision/", "/webvision"):
-            with self.subTest(path):
-                resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
-                self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
-                self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
 
 
 class TestMiecoEmail(TestCase):

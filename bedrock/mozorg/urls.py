@@ -7,7 +7,7 @@
 These are included in the main URLConf via i18n_patterns,
 which will take care of the prefixing an appropriate language code
 
-IMPORTANT: if a redirect is needed for a non-localed URL (eg /webvision/)
+IMPORTANT: if a redirect is needed for a non-localed URL
 it must go in mozorg.nonlocale_urls, not this file
 
 """
@@ -111,18 +111,6 @@ urlpatterns = [
     page("sustainability/emissions-data/", "mozorg/sustainability/emissions-data.html"),
     # SEI page
     page("impact/", "mozorg/impact-report/index.html"),
-    # Webvision
-    # there's also a redirect in mozorg.nonlocale_urls
-    path(
-        "about/webvision/",
-        views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/summary.html", doc_name="summary"),
-        name="mozorg.about.webvision.summary",
-    ),
-    path(
-        "about/webvision/full/",
-        views.WebvisionDocView.as_view(template_name="mozorg/about/webvision/full.html", doc_name="full"),
-        name="mozorg.about.webvision.full",
-    ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     page("advertising/", "mozorg/advertising/landing.html"),

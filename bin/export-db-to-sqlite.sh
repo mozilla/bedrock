@@ -159,14 +159,12 @@ python manage.py dumpdata \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
     legal_docs.LegalDoc \
-    mozorg.WebvisionDoc \
     newsletter.Newsletter \
     security.Product \
     security.SecurityAdvisory \
     security.HallOfFamer \
     security.MitreCVE \
     releasenotes.ProductRelease \
-    contentcards.ContentCard \
     utils.GitRepoState \
     sitemaps.SitemapURL \
     --indent 2 \
