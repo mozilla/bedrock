@@ -2,15 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '../../../protocol/components/fx-unsupported-ie';
-
-.c-menu-item .c-menu-item-desc {
-    display: none;
-}
 
 .c-noodles {
     @include at2x('/media/img/firefox/new/desktop/ie9/browser-mr1.jpg', contain);
@@ -19,12 +11,4 @@ $image-path: '/media/protocol/img';
 
 .c-screenshot {
     position: static !important; /* stylelint-disable-line declaration-no-important */
-}
-
-.c-compare-table caption {
-    display: none;
-}
-
-.hide-from-legacy-ie {
-    display: none !important; /* stylelint-disable-line declaration-no-important */
 }
