@@ -123,8 +123,8 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     grid-column: 1 / span 10;
     line-height: 1;
     
-    & + b {
-        @include visually-hidden;
+    b {
+        color: transparent;
     }
 }
 
