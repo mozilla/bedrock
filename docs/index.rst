@@ -40,7 +40,6 @@ Contents
    download-buttons
    mozilla-accounts
    abtest
-   vpn-subscriptions
    attribution
    architectural-decisions
    browser-support
