@@ -762,7 +762,6 @@ INSTALLED_APPS = [
     "bedrock.releasenotes",
     "bedrock.contentcards",
     "bedrock.utils",
-    "bedrock.wordpress",
     "bedrock.sitemaps",
     # last so that redirects here will be last
     "bedrock.redirects",
@@ -874,17 +873,6 @@ TEMPLATES = [
         },
     },
 ]
-
-# use the Wordpress JSON REST API to get blog data
-WP_BLOGS = {
-    # 'firefox': {
-    #     'url': 'https://blog.mozilla.org/firefox/',
-    #     'name': 'The Firefox Frontier',
-    #     default num_posts is 20
-    #     uncomment and change this to get more
-    #     'num_posts': 20,
-    # },
-}
 
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")

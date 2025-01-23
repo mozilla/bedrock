@@ -169,7 +169,6 @@ python manage.py dumpdata \
     releasenotes.ProductRelease \
     contentcards.ContentCard \
     utils.GitRepoState \
-    wordpress.BlogPost \
     sitemaps.SitemapURL \
     --indent 2 \
     --output /tmp/export_remainder.json || all_well=false
