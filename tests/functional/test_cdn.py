@@ -80,7 +80,7 @@ def test_locale_redirect(url, base_url):
     "url",
     (
         # only in the GCS bucket
-        "/media/contentcards/img/home-en/card_2/card_2.73be009fe44e.jpg",
+        "/media/img/firefox/favicon-notice-196.d4686cdb823e.png",
         # comes from bedrock
         "/media/protocol/img/logos/mozilla/black.40d1af88c248.svg",
     ),
