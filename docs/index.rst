@@ -33,7 +33,6 @@ Contents
    cms
    sitemap
    legal-docs
-   content-cards
    banners
    uitour
    task-queue

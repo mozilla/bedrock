@@ -8,7 +8,6 @@
   "stack": "container",
   "env": {
     "ALLOWED_HOSTS": "*",
-    "CONTENT_CARDS_URL": "https://www-dev.allizom.org/media/",
     "CSP_DEFAULT_SRC": "*.allizom.org",
     "CSP_EXTRA_FRAME_SRC": "*.mozaws.net",
     "CSP_REPORT_ENABLE": "True",
