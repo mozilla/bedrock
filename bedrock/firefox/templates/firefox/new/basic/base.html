@@ -25,9 +25,3 @@
 
 {#- This sets <meta property="og:title"> for social sharing to differ from page_title -#}
 {% block page_og_title %}{{ ftl('firefox-new-download-firefox') }}{% endblock %}
-
-{% block extrahead %}
-  <!--[if IE]>
-    {{ css_bundle('firefox_new_ie') }}
-  <![endif]-->
-{% endblock %}
