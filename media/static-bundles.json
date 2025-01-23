@@ -281,12 +281,6 @@
     },
     {
       "files": [
-        "css/mozorg/credits.scss"
-      ],
-      "name": "credits"
-    },
-    {
-      "files": [
         "css/mozorg/about-patents.scss"
       ],
       "name": "about-patents"

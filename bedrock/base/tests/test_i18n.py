@@ -74,7 +74,6 @@ def test_normalize_language_mozorg_mode(lang_code, expected):
         ("static", False),
         ("certs", False),
         ("images", False),
-        ("credits", False),
         ("robots.txt", False),
         (".well-known", False),
         ("telemetry", False),

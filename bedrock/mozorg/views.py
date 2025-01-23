@@ -16,23 +16,12 @@ from jsonview.decorators import json_view
 from product_details import product_details
 
 from bedrock.base.waffle import switch
-from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils
 from lib.l10n_utils import L10nTemplateView, RequireSafeMixin
 from lib.l10n_utils.fluent import ftl_file_is_active
-
-credits_file = CreditsFile("credits")
-
-
-@require_safe
-def credits_view(request):
-    """Display the names of our contributors."""
-    ctx = {"credits": credits_file}
-    # not translated
-    return django_render(request, "mozorg/credits.html", ctx)
 
 
 @require_safe

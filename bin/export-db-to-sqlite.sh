@@ -161,7 +161,6 @@ python manage.py dumpdata \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
     newsletter.Newsletter \
-    externalfiles.ExternalFile \
     security.Product \
     security.SecurityAdvisory \
     security.HallOfFamer \

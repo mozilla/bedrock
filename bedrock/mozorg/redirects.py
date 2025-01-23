@@ -258,8 +258,6 @@ redirectpatterns = (
     redirect(r"^projects/mathml/authoring\.html$", "https://developer.mozilla.org/en/Mozilla_MathML_Project/Authoring"),
     redirect(r"^projects/mathml/update\.html$", "https://developer.mozilla.org/en/Mozilla_MathML_Project/Status"),
     redirect(r"^projects/mathml(/.*)?$", "https://developer.mozilla.org/en-US/docs/Mozilla/MathML_Project"),
-    # bug 961010
-    redirect(r"^mobile/credits/?", "/credits/"),
     # bug 897082
     redirect(r"^about/mozilla-spaces.*$", "/contact/spaces/"),
     redirect(r"^about/contact.*$", "/contact/spaces/"),
