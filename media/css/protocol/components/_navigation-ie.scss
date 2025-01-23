@@ -131,7 +131,7 @@
             display: none;
         }
         
-        &:after {
+        &:after { /* stylelint-disable-line selector-pseudo-element-colon-notation */
             content: ' (×)';
         }
 
@@ -141,7 +141,7 @@
                 display: inline;
             }
 
-            &:after {
+            &:after { /* stylelint-disable-line selector-pseudo-element-colon-notation */
                 content: '';
             }
         }
