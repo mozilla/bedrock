@@ -24,7 +24,6 @@ __pycache__/
 */settings/local.py
 *~
 *$py.class
-/bedrock/externalfiles/files_cache
 /git-repos
 /locale
 /results

@@ -19,11 +19,8 @@ don't get miss a lookup if they lack a locale code at the start of their path
 from django.urls import path
 
 from . import views
-from .util import page
 
 urlpatterns = (
-    path("credits/", views.credits_view, name="mozorg.credits"),
-    page("credits/faq/", "mozorg/credits-faq.html"),
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),
     path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
     path(".well-known/gpc.json", views.GpcDotJson.as_view(), name="gpc.json"),

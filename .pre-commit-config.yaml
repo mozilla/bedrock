@@ -5,7 +5,6 @@ exclude: >
     | node_modules
     | assets
     | static
-    | bedrock/externalfiles/files_cache
     | git-repos
   )
 

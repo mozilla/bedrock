@@ -224,16 +224,6 @@ CACHES["release-notes"] = {
     },
 }
 
-# cache for externalfiles
-CACHES["externalfiles"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "externalfiles",
-    "OPTIONS": {
-        "MAX_ENTRIES": 10,  # currently 2 files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
 # cache for generated QR codes
 CACHES["qrcode"] = {
     "BACKEND": "bedrock.base.cache.SimpleDictCache",

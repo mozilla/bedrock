@@ -84,7 +84,6 @@ class TestRender(TestCase):
         self._test("/de/firefox/new/", template, "", "", 302, "/en-US/firefox/new/", active_locales=locales)
 
         # Test that a path in the `SUPPORTED_NONLOCALES` doesn't 404.
-        self._test("/credits/", template, "", "", 200, active_locales=locales)
         self._test("/robots.txt", template, "", "", 200, active_locales=locales)
         self._test("/sitemap_none.xml", template, "", "", 200, active_locales=locales)
 

@@ -316,7 +316,6 @@ EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/release-notes.html",
     "firefox/releases/notes.html",
     "firefox/releases/system_requirements.html",
-    "mozorg/credits.html",
     "mozorg/about/forums.html",
     "security/advisory.html",
     "security/advisories.html",
@@ -450,14 +449,13 @@ LANGUAGES = lazy(lazy_langs, list)()
 DEV_GEO_COUNTRY_CODE = config("DEV_GEO_COUNTRY_CODE", default="US")
 
 # Paths that don't require a locale code in the URL.
-# matches the first url component (e.g. mozilla.org/credits)
+# matches the first url component (e.g. mozilla.org/robots.txt)
 SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
     "static",
     "certs",
     "images",  # root_files
-    "credits",
     "robots.txt",
     ".well-known",
     "telemetry",  # redirect only
@@ -757,7 +755,6 @@ INSTALLED_APPS = [
     "bedrock.mozorg",
     "bedrock.newsletter",
     "bedrock.privacy",
-    "bedrock.externalfiles",
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
@@ -900,17 +897,6 @@ EMAIL_USE_TLS = config("EMAIL_USE_TLS", default="false", parser=bool)
 EMAIL_SUBJECT_PREFIX = config("EMAIL_SUBJECT_PREFIX", default="[bedrock] ")
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
-
-
-EXTERNAL_FILES_PATH = config("EXTERNAL_FILES_PATH", default=data_path("community_data"))
-EXTERNAL_FILES_BRANCH = config("EXTERNAL_FILES_BRANCH", default="master")
-EXTERNAL_FILES_REPO = config("EXTERNAL_FILES_REPO", default="https://github.com/mozilla/community-data.git")
-EXTERNAL_FILES = {
-    "credits": {
-        "type": "bedrock.mozorg.credits.CreditsFile",
-        "name": "credits/names.csv",
-    },
-}
 
 # Prefix for media. No trailing slash.
 # e.g. '//mozorg.cdn.mozilla.net'
