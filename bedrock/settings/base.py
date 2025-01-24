@@ -743,8 +743,6 @@ INSTALLED_APPS = [
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
-    "bedrock.legal",
-    "bedrock.legal_docs",
     "bedrock.mozorg",
     "bedrock.newsletter",
     "bedrock.privacy",
@@ -973,11 +971,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
-
-LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
-LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
-LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
-LEGAL_DOCS_DMS_URL = config("LEGAL_DOCS_DMS_URL", default="")
 
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
 MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")

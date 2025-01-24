@@ -244,7 +244,7 @@ deactivate it when you exit the directory, you can do so with::
         python3-dev libxslt-dev
 
 **Download a fresh copy of the sqlite database that Bedrock uses locally** This contains product-details, security-advisories,
-release notes, localizations, legal-docs etc. We also download the latest translations of site content in many languages::
+release notes, localizations etc. We also download the latest translations of site content in many languages::
 
     $ bin/bootstrap.sh
 

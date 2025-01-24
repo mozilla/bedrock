@@ -158,7 +158,6 @@ python manage.py dumpdata \
     cms.StructuralPage \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
-    legal_docs.LegalDoc \
     newsletter.Newsletter \
     security.Product \
     security.SecurityAdvisory \
