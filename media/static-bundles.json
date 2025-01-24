@@ -221,12 +221,6 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter-management.scss"
-      ],
-      "name": "newsletter-management"
-    },
-    {
-      "files": [
         "css/mozorg/mpl-1-1.scss"
       ],
       "name": "mpl-1-1"
@@ -290,30 +284,6 @@
         "css/mozorg/about.scss"
       ],
       "name": "about"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-mozilla.scss"
-      ],
-      "name": "newsletter-mozilla"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-security-privacy-news.scss"
-      ],
-      "name": "newsletter-security-privacy-news"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-monitor-waitlist.scss"
-      ],
-      "name": "newsletter-monitor-waitlist"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-family.scss"
-      ],
-      "name": "newsletter-family"
     },
     {
       "files": [
@@ -413,49 +383,6 @@
     },
     {
       "files": [
-        "css/newsletter/newsletter-developer.scss"
-      ],
-      "name": "newsletter-developer"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-recovery.scss"
-      ],
-      "name": "newsletter-recovery"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-country.scss"
-      ],
-      "name": "newsletter-country"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-confirm.scss"
-      ],
-      "name": "newsletter-confirm"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-updated.scss"
-      ],
-      "name": "newsletter-updated"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-recovery.scss",
-        "css/newsletter/newsletter-opt-out-confirmation.scss"
-      ],
-      "name": "newsletter-opt-out-confirmation"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-online-harassment.scss"
-      ],
-      "name": "newsletter-online-harassment"
-    },
-    {
-      "files": [
         "css/firefox/all.scss"
       ],
       "name": "firefox_all"
@@ -544,12 +471,6 @@
         "css/newsletter/newsletter-firefox.scss"
       ],
       "name": "newsletter-firefox"
-    },
-    {
-      "files": [
-        "css/newsletter/newsletter-firefox-confirm.scss"
-      ],
-      "name": "newsletter-firefox-confirm"
     },
     {
       "files": [
@@ -863,12 +784,6 @@
     },
     {
       "files": [
-        "css/newsletter/monitor-waitlist.scss"
-      ],
-      "name": "monitor-waitlist"
-    },
-    {
-      "files": [
         "css/mozorg/antiharassment-tool.scss"
       ],
       "name": "antiharassment-tool"
@@ -1040,12 +955,6 @@
         "js/newsletter/newsletter-firefox-experiment.es6.js"
       ],
       "name": "newsletter-firefox-experiment"
-    },
-    {
-      "files": [
-        "js/newsletter/confirm-init.es6.js"
-      ],
-      "name": "newsletter-firefox-confirm"
     },
     {
       "files": [
@@ -1330,40 +1239,6 @@
         "js/firefox/enterprise/landing.js"
       ],
       "name": "firefox-enterprise"
-    },
-    {
-      "files": [
-        "js/newsletter/management.es6.js",
-        "js/newsletter/management-init.es6.js"
-      ],
-      "name": "newsletter-management"
-    },
-    {
-      "files": [
-        "js/newsletter/updated.es6.js"
-      ],
-      "name": "newsletter-updated"
-    },
-    {
-      "files": [
-        "js/newsletter/unsubscribed.es6.js",
-        "js/newsletter/unsubscribed-init.es6.js"
-      ],
-      "name": "newsletter-unsubscribed"
-    },
-    {
-      "files": [
-        "js/newsletter/recovery.es6.js",
-        "js/newsletter/recovery-init.es6.js"
-      ],
-      "name": "newsletter-recovery"
-    },
-    {
-      "files": [
-        "js/newsletter/country.es6.js",
-        "js/newsletter/country-init.es6.js"
-      ],
-      "name": "newsletter-country"
     },
     {
       "files": [

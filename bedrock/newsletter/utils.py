@@ -5,8 +5,6 @@
 from django.conf import settings
 from django.core.cache import cache
 
-import basket
-
 from bedrock.newsletter.models import Newsletter
 
 
@@ -42,15 +40,3 @@ def get_languages_for_newsletters(newsletters=None):
         langs.update(newsletter.get("languages", []))
 
     return langs
-
-
-def custom_unsub_reason(token, reason):
-    """Call basket. Pass along their reason for unsubscribing.
-
-    This is calling a basket API that's custom to Mozilla, that's
-    why there's not a helper in the basket-client package."""
-    data = {
-        "token": token,
-        "reason": reason,
-    }
-    return basket.request("post", "custom_unsub_reason", data=data)

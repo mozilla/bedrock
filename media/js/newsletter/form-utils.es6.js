@@ -4,11 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const BASKET_COOKIE_ID = 'nl-token';
-
-const UUID_REGEX =
-    /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
-
 const errorList = {
     COUNTRY_ERROR: 'Country not selected',
     EMAIL_INVALID_ERROR: 'Invalid email address',
@@ -52,37 +47,6 @@ const FormUtils = {
     },
 
     /**
-     * Looks for UUID token in the page URL. If found, removes token
-     * from the URL and stores in a cookie. If not found, look for an
-     * existing cookie with a token. If still not found, reject.
-     * @returns {Promise}
-     */
-    checkForUserToken: () => {
-        return new window.Promise((resolve, reject) => {
-            const urlToken = FormUtils.getURLToken(window.location);
-
-            // If the page URL contains a token, grab it and replace history.
-            if (urlToken) {
-                FormUtils.setUserToken(urlToken);
-                FormUtils.removeTokenFromURL(window.location, urlToken);
-            }
-
-            const token = FormUtils.getUserToken();
-
-            if (!token) {
-                reject();
-            } else {
-                // always store token as a local variable in memory, so the
-                // form still works if left open long enough for cookie to
-                // expire: see issue 13324.
-                FormUtils.userToken = token;
-
-                resolve();
-            }
-        });
-    },
-
-    /**
      * Add disabled property to all form fields.
      * @param {HTMLFormElement} form
      */
@@ -104,65 +68,6 @@ const FormUtils = {
         for (let i = 0; i < formFields.length; i++) {
             formFields[i].disabled = false;
         }
-    },
-
-    getURLToken: (location) => {
-        const token = location.pathname.match(UUID_REGEX);
-
-        if (token && token.length) {
-            return token[0];
-        }
-
-        return '';
-    },
-
-    /**
-     * Gets the user's UUID token.
-     * Looks to cookie first, falling back to local variable.
-     * Will return an empty string if token is not a valid format.
-     * @returns {String}
-     */
-    getUserToken: () => {
-        let token;
-
-        const cookiesEnabled =
-            typeof Mozilla.Cookies !== 'undefined' && Mozilla.Cookies.enabled();
-
-        if (cookiesEnabled && Mozilla.Cookies.hasItem(BASKET_COOKIE_ID)) {
-            token = Mozilla.Cookies.getItem(BASKET_COOKIE_ID);
-        } else {
-            token = FormUtils.userToken;
-        }
-
-        if (FormUtils.isValidToken(token)) {
-            return token;
-        } else {
-            return '';
-        }
-    },
-
-    /**
-     * Validates the supplied token matches the expected UUID format.
-     * @param {String} token
-     * @returns {Boolean}
-     */
-    isValidToken: (token) => {
-        if (typeof token !== 'string') {
-            return false;
-        }
-
-        return UUID_REGEX.test(token);
-    },
-
-    /**
-     * Returns true if URL string starts with http(s) or a relative path.
-     * @param {String} url
-     * @returns {Boolean}
-     */
-    isWellFormedURL: (url) => {
-        const absolute = /^https?:\/\//;
-        const relative = /^\//;
-        return absolute.test(url) || relative.test(url);
     },
 
     /**
@@ -279,66 +184,6 @@ const FormUtils = {
     },
 
     /**
-     * Removes Basket UUID token from page URL path and updates browser history.
-     * Note: this function will remove *everything* from the path *after* the token.
-     * Only query parameters will be preserved.
-     * @param {Object} location (e.g. window.location)
-     * @param {String} token
-     */
-    removeTokenFromURL: (location, token) => {
-        if (
-            typeof token === 'string' &&
-            location.pathname.lastIndexOf(token) !== -1
-        ) {
-            const url =
-                location.pathname.substring(
-                    0,
-                    location.pathname.lastIndexOf(token)
-                ) + location.search;
-
-            try {
-                window.history.replaceState(null, null, url);
-            } catch (e) {
-                // do nothing
-            }
-        }
-    },
-
-    /**
-     * Sets a cookie with the user's UUID token. If cookies are disabled,
-     * then falls back to storing the token to a variable in memory.
-     * @param {String} token
-     */
-    setUserToken: (token) => {
-        if (FormUtils.isValidToken(token)) {
-            const cookiesEnabled =
-                typeof Mozilla.Cookies !== 'undefined' &&
-                Mozilla.Cookies.enabled();
-
-            if (cookiesEnabled) {
-                const date = new Date();
-                date.setTime(date.getTime() + 1 * 3600 * 1000); // expiry in 1 hour.
-                const expires = date.toUTCString();
-
-                Mozilla.Cookies.setItem(
-                    BASKET_COOKIE_ID,
-                    token,
-                    expires,
-                    '/',
-                    undefined,
-                    false,
-                    'lax'
-                );
-            }
-
-            // always store token as a local variable in memory, so the
-            // form still works if left open long enough for cookie to
-            // expire: see issue 13324.
-            FormUtils.userToken = token;
-        }
-    },
-
-    /**
      * Helper function to serialize form data for XHR request.
      * @param {HTMLElement} form
      * @returns {String} query string
@@ -368,17 +213,6 @@ const FormUtils = {
             }
         }
         return json;
-    },
-
-    /**
-     * Helper function that strips HTML tags from text form input.
-     * @param {String} text
-     * @returns {String}
-     */
-    stripHTML: (text) => {
-        const div = document.createElement('div');
-        div.innerHTML = decodeURIComponent(text);
-        return div.textContent;
     }
 };
 

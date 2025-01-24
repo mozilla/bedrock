@@ -53,14 +53,6 @@ def get_lang_choices(newsletters=None):
     return sorted(lang_choices, key=itemgetter(1))
 
 
-class SimpleRadioSelect(widgets.RadioSelect):
-    """
-    Render radio buttons as just labels with no <ul> chrome.
-    """
-
-    template_name = "newsletter/forms/simple_radio_select.html"
-
-
 class BooleanTabularRadioSelect(widgets.RadioSelect):
     """
     A Select Widget intended to be used with BooleanField.
@@ -100,50 +92,6 @@ class BooleanTabularRadioSelect(widgets.RadioSelect):
         context = super().get_context(name, value, attrs)
         context["wrap_label"] = False
         return context
-
-
-class CountrySelectForm(forms.Form):
-    """
-    Form used on a page dedicated to allowing an existing subscriber to provide
-    us with their country so that we can include them in mailings relevant to
-    their area of the world.
-    """
-
-    country = forms.ChoiceField(choices=[])  # will set choices based on locale
-
-    def __init__(self, locale, *args, **kwargs):
-        regions = product_details.get_regions(locale)
-        regions = sorted(iter(regions.items()), key=itemgetter(1))
-        super().__init__(*args, **kwargs)
-        self.fields["country"].choices = regions
-
-
-class ManageSubscriptionsForm(forms.Form):
-    """
-    Form used on manage subscriptions page for the user's information,
-    like email address and language preference.
-
-    @param locale: locale string, e.g. "en-US".  Will be used to set
-    country and lang defaults if not otherwise provided in initial
-    or bound data.
-    @param args: Other standard form args
-    @param kwargs: Other standard form kwargs
-    """
-
-    remove_all = forms.BooleanField(required=False)
-
-    country = forms.ChoiceField(choices=[], required=False)  # will set choices based on locale
-    lang = forms.ChoiceField(choices=[], required=False)  # will set choices based on newsletter languages
-
-    def __init__(self, locale, *args, **kwargs):
-        regions_dict = product_details.get_regions(locale)
-        regions = [("", ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country"))] + sorted(
-            iter(regions_dict.items()), key=itemgetter(1)
-        )
-        lang_choices = [("", ftl_lazy("newsletter-form-available-languages"))] + get_lang_choices()
-        super().__init__(*args, **kwargs)
-        self.fields["country"].choices = regions
-        self.fields["lang"].choices = lang_choices
 
 
 class NewsletterForm(forms.Form):
@@ -250,11 +198,3 @@ class NewsletterFooterForm(forms.Form):
             return su[:255]
 
         return su
-
-
-class EmailForm(forms.Form):
-    """
-    Form to enter email, e.g. to be sent a recovery message
-    """
-
-    email = forms.EmailField(widget=EmailInput(attrs={"required": "required"}))
