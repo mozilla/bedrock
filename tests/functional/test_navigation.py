@@ -4,7 +4,7 @@
 
 import pytest
 
-from pages.home import HomePage
+from pages.firefox.home import HomePage
 
 
 @pytest.mark.smoke
