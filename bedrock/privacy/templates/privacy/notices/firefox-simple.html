@@ -20,6 +20,10 @@
 
 {% block article_header_logo %}{% endblock %}
 
+{% block site_js %}
+  {{ js_bundle('privacy_firefox_simple') }}
+{% endblock %}
+
 {% block js %}
   {{ super() }}
   {{ js_bundle('privacy_firefox') }}
@@ -28,6 +32,9 @@
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
 {% block google_analytics %}{% endblock %}
 {% block glean %}{% endblock %}
+
+{# Avoid loading unnecessary JS bundles for performance boost #}
+{% block sentry_client %}{% endblock %}
 {% block consent_banner_js %}{% endblock %}
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
