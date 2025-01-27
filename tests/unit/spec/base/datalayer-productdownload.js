@@ -227,6 +227,12 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['release_channel']).toBe('release');
     });
+    it('should identify release_channel for Firefox partner builds', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://bouncer-bouncer.stage.mozaws.net/?product=partner-firefox-release-smi-smi-001-latest&os=osx&lang=en-GB&_gl=1&234*_ga*ABC'
+        );
+        expect(testEvent['release_channel']).toBe('partner');
+    });
     it('should identify release_channel for Firefox Beta', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-beta-latest-ssl&os=osx&lang=en-US'
