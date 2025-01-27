@@ -112,7 +112,9 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         const productParam = params.product;
         const productSplit = productParam.split('-');
         // product is first word of product param
-        const product = productSplit[0];
+        let product = productSplit[0];
+        // partner builds are labelled as ?product=partner-firefox so class these as regular 'firefox' download events.
+        product = product === 'partner' ? 'firefox' : product;
         let platform = params.os;
         // change platform to macos if it's osx
         platform = platform === 'osx' ? 'macos' : platform;
