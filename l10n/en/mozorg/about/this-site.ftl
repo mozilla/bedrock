@@ -13,7 +13,7 @@ about-this-site-desc = About the website www.mozilla.org and the open source too
 about-this-site-this-website = The website www.mozilla.org has been online for over two decades. That’s since <a href="{ $archive }">dinosaur times</a> in internet years. As such, www.mozilla.org is a corner stone of the web, with roots embedded in the open source movement that saw the <a href="{ $coderush }">creation of { -brand-name-mozilla }</a>.
 
 # Variables:
-#   $firefox (url) link to https://www.mozilla.org/firefox/new/
+#   $firefox (url) link to https://www.mozilla.org/firefox/download/
 #   $vpn (url) link to https://www.mozilla.org/products/vpn/
 #   $mozilla (url) link to https://www.mozilla.org/about/
 #   $book (url) link to https://www.mozilla.org/book/

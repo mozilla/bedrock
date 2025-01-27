@@ -93,7 +93,7 @@ The ``redirect()`` function has several options. Its signature is as follows:
             redirect(r'projects/$', 'mozorg.product'),
             redirect(r'^projects/seamonkey$', 'mozorg.product', locale_prefix=False),
             redirect(r'apps/$', 'https://marketplace.firefox.com'),
-            redirect(r'firefox/$', 'firefox.new', name='firefox'),
+            redirect(r'firefox/$', 'firefox.download', name='firefox'),
             redirect(r'the/dude$', 'abides', query={'aggression': 'not_stand'}),
         ]
         """
@@ -167,7 +167,7 @@ of the header:
     redirectpatterns = [
         redirect(
             r"^rubble/barny/$",
-            header_redirector("cookie", "been-here", "/firefox/", "/firefox/new/"),
+            header_redirector("cookie", "been-here", "/firefox/", "/firefox/download/"),
             vary="cookie",
         ),
     ]

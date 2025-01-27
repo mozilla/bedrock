@@ -217,7 +217,7 @@ testing guide. This guide assumes demo1, make sure you're testing on the right U
 Other places on the site you may want to check:
 
 - `firefox/all`_ (inspect the network request to check that the attribution params were added on click)
-- `firefox/new`_
+- `firefox/download`_
 - `firefox/enterprise`_
 
 
@@ -230,5 +230,5 @@ Other places on the site you may want to check:
 .. _Do Not Track (DNT): https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature
 .. _DNT helper: https://github.com/mozmeao/dnt-helper
 .. _firefox/all: https://www-demo1.allizom.org/en-US/firefox/all/
-.. _firefox/new: https://www-demo1.allizom.org/en-US/firefox/new/
+.. _firefox/download: https://www-demo1.allizom.org/en-US/firefox/download/
 .. _firefox/enterprise: https://www-demo1.allizom.org/en-US/firefox/enterprise/

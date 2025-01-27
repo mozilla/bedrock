@@ -34,7 +34,7 @@ misinformation-how-firefox-helps-heading = How { -brand-name-firefox } helps you
 misinformation-firefox-keeps-trackers-heading = { -brand-name-firefox } keeps trackers in check:
 
 # Variables:
-#   $firefox (url) - link to https://www.mozilla.org/firefox/new/
+#   $firefox (url) - link to https://www.mozilla.org/firefox/download/
 #   $protection (url) - link to https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop
 misinformation-firefox-keeps-trackers-desc = As mentioned before, tracking plays a big role in the spread of misinformation. <a href="{ $firefox }">Using { -brand-name-firefox }</a> with <a href="{ $protection }">Enhanced Tracking Protection</a> helps by blocking third-party trackers from many advertisers and other players by default when you browse the web, so that you gain back control over your online data.
 

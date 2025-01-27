@@ -18,7 +18,7 @@ const desktopTestURLs = [
     '/en-US/firefox/developer/',
     '/en-US/firefox/download/thanks/',
     '/en-US/firefox/enterprise/',
-    '/en-US/firefox/new/',
+    '/en-US/firefox/download/',
     '/en-US/firefox/releasenotes/',
     '/en-US/privacy/websites/cookie-settings/'
 ];
@@ -26,7 +26,7 @@ const desktopTestURLs = [
 const mobileTestURLs = [
     '/en-US/firefox/',
     '/en-US/firefox/channel/android/',
-    '/en-US/firefox/new/'
+    '/en-US/firefox/download/'
 ];
 
 module.exports = { desktopTestURLs, mobileTestURLs };

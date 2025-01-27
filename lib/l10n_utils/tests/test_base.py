@@ -64,7 +64,7 @@ class TestRender(TestCase):
                     self.assertEqual(response["Vary"], "Accept-Language")
 
     def test_no_accept_language_header(self):
-        template = "firefox/new.html"
+        template = "firefox/download.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # Test no accept language header and locale-less root path returns 200.
@@ -72,16 +72,16 @@ class TestRender(TestCase):
         self._test("/", template, "", "", 200, active_locales=locales)
 
         # Test no accept language header and locale-less path returns 302.
-        self._test("/firefox/new/", template, "", "", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test("/firefox/download/", template, "", "", 302, "/en-US/firefox/download/", active_locales=locales)
 
         # Test that a locale+path and no accept language header returns 200 as long as the locales are supported.
         self._test("/en-US", template, "", "", 302, "/en-US/", active_locales=locales)
         self._test("/en-US/", template, "", "", 200, active_locales=locales)
-        self._test("/en-US/firefox/new/", template, "", "", 200, active_locales=locales)
-        self._test("/en-GB/firefox/new/", template, "", "", 200, active_locales=locales)
-        self._test("/fr/firefox/new/", template, "", "", 200, active_locales=locales)
-        self._test("/es-ES/firefox/new/", template, "", "", 200, active_locales=locales)
-        self._test("/de/firefox/new/", template, "", "", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test("/en-US/firefox/download/", template, "", "", 200, active_locales=locales)
+        self._test("/en-GB/firefox/download/", template, "", "", 200, active_locales=locales)
+        self._test("/fr/firefox/download/", template, "", "", 200, active_locales=locales)
+        self._test("/es-ES/firefox/download/", template, "", "", 200, active_locales=locales)
+        self._test("/de/firefox/download/", template, "", "", 302, "/en-US/firefox/download/", active_locales=locales)
 
         # Test that a path in the `SUPPORTED_NONLOCALES` doesn't 404.
         self._test("/robots.txt", template, "", "", 200, active_locales=locales)
@@ -93,7 +93,7 @@ class TestRender(TestCase):
         self._test("/fr/sitemap.xml", template, "", "", 200, active_locales=locales)
 
     def test_with_accept_language_header(self):
-        template = "firefox/new.html"
+        template = "firefox/download.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # Test with accept language header and locale-less root path returns 302.
@@ -101,59 +101,59 @@ class TestRender(TestCase):
         # Test with accept language header of unsupported locale and locale-less root path returns 302.
         self._test("/", template, "", "ach", 302, "/en-US/", active_locales=locales)
         # Test with accept language header and locale-less path returns 302.
-        self._test("/firefox/new/", template, "", "en-us", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test("/firefox/download/", template, "", "en-us", 302, "/en-US/firefox/download/", active_locales=locales)
         # Test with accept language header of unsupported locale and locale-less path returns 302.
-        self._test("/firefox/new/", template, "", "ach", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test("/firefox/download/", template, "", "ach", 302, "/en-US/firefox/download/", active_locales=locales)
 
     def test_firefox(self):
-        path = "/firefox/new/"
-        template = "firefox/new.html"
+        path = "/firefox/download/"
+        template = "firefox/download.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # No locale changes needed when we're given a valid locale
-        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/download/", active_locales=locales)
 
-        # en-GB is activated on /firefox/new/
-        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/new/", active_locales=locales)
+        # en-GB is activated on /firefox/download/
+        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/download/", active_locales=locales)
 
         # fr-FR should be treated as fr
-        self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/new/", active_locales=locales)
+        self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/download/", active_locales=locales)
 
         # Should fallback to the user's second preferred language
-        self._test(path, template, "zu", "zu,fr;q=0.7,en;q=0.3", 302, "/fr/firefox/new/", active_locales=locales)
+        self._test(path, template, "zu", "zu,fr;q=0.7,en;q=0.3", 302, "/fr/firefox/download/", active_locales=locales)
 
         # Should fallback to one of the site's fallback languages
-        self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/new/", active_locales=locales)
+        self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/download/", active_locales=locales)
 
         # Should use the user's base language (en-CA -> en) if no exact matches
-        self._test(path, template, "en-CA", "en-CA,fr", 302, "/en-US/firefox/new/", active_locales=locales)
+        self._test(path, template, "en-CA", "en-CA,fr", 302, "/en-US/firefox/download/", active_locales=locales)
 
     def test_add_active_locales(self):
         # expect same results as above, but with locales from `add_active_locales`
-        path = "/firefox/new/"
-        template = "firefox/new.html"
+        path = "/firefox/download/"
+        template = "firefox/download.html"
         locales = ["en-US", "en-GB", "fr", "es-ES"]
 
         # No locale changes needed when we're given a valid locale
-        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/new/", add_active_locales=locales)
+        self._test(path, template, "en-US", "en-us,en;q=0.5", 302, "/en-US/firefox/download/", add_active_locales=locales)
 
-        # en-GB is activated on /firefox/new/
-        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/new/", add_active_locales=locales)
+        # en-GB is activated on /firefox/download/
+        self._test(path, template, "en-GB", "en-gb,en;q=0.5", 302, "/en-GB/firefox/download/", add_active_locales=locales)
 
         # fr-FR should be treated as fr
-        self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/new/", add_active_locales=locales)
+        self._test(path, template, "fr-FR", "fr-fr", 302, "/fr/firefox/download/", add_active_locales=locales)
 
         # Should fallback to the user's second preferred language
-        self._test(path, template, "zu", "zu,fr;q=0.7,en;q=0.3", 302, "/fr/firefox/new/", add_active_locales=locales)
+        self._test(path, template, "zu", "zu,fr;q=0.7,en;q=0.3", 302, "/fr/firefox/download/", add_active_locales=locales)
 
         # Should fallback to one of the site's fallback languages
-        self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/new/", add_active_locales=locales)
+        self._test(path, template, "es-CL", "es-CL,es;q=0.7,en;q=0.3", 302, "/es-ES/firefox/download/", add_active_locales=locales)
 
     def test_ftl_files_unmodified(self):
         """A list passed to the ftl_files parameter should not be modified in place"""
         ftl_files = ["dude", "walter"]
-        path = "/firefox/new/"
-        template = "firefox/new.html"
+        path = "/firefox/download/"
+        template = "firefox/download.html"
         req = RequestFactory().get(path)
         l10n_utils.render(req, template, ftl_files=ftl_files)
         assert ftl_files == ["dude", "walter"]
@@ -162,8 +162,8 @@ class TestRender(TestCase):
     @patch.object(l10n_utils, "ftl_active_locales")
     def test_activation_files(self, fal_mock, dr_mock):
         ftl_files = ["dude", "walter"]
-        path = "/firefox/new/"
-        template = "firefox/new.html"
+        path = "/firefox/download/"
+        template = "firefox/download.html"
         activation_files = ftl_files + [template]
         req = RequestFactory().get(path)
         l10n_utils.render(req, template, activation_files=activation_files)

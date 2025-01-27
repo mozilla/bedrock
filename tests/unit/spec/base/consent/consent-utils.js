@@ -276,16 +276,18 @@ describe('isFirefoxDownloadThanks()', function () {
     it('should return false if URL is not /thanks/', function () {
         expect(
             isFirefoxDownloadThanks(
-                'https://www.mozilla.org/en-US/firefox/new/'
+                'https://www.mozilla.org/en-US/firefox/download/'
             )
         ).toBeFalse();
         expect(
             isFirefoxDownloadThanks(
-                'https://www.allizom.org/en-US/firefox/new/'
+                'https://www.allizom.org/en-US/firefox/download/'
             )
         ).toBeFalse();
         expect(
-            isFirefoxDownloadThanks('https://localhost:8000/en-US/firefox/new/')
+            isFirefoxDownloadThanks(
+                'https://localhost:8000/en-US/firefox/download/'
+            )
         ).toBeFalse();
         expect(isFirefoxDownloadThanks('')).toBeFalse();
         expect(isFirefoxDownloadThanks(null)).toBeFalse();
@@ -338,7 +340,7 @@ describe('isURLPermitted()', function () {
 
     it('should return false for pathnames not in the allow-list', function () {
         expect(isURLPermitted('/en-US/firefox/')).toBeFalse();
-        expect(isURLPermitted('/en-US/firefox/new/')).toBeFalse();
+        expect(isURLPermitted('/en-US/firefox/download/')).toBeFalse();
         expect(isURLPermitted('/en-US/firefox/all/')).toBeFalse();
         expect(isURLPermitted('/en-US/firefox/whatsnew/')).toBeFalse();
         expect(

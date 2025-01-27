@@ -107,9 +107,9 @@ templates. For example, a CSS bundle can be defined as:
     "css": [
         {
             "files": [
-                "css/firefox/new/basic/download.scss"
+                "css/firefox/download/basic/download.scss"
             ],
-            "name": "firefox_new_download"
+            "name": "firefox_download"
         }
     ]
 
@@ -117,7 +117,7 @@ Which can then be referenced in a page template using:
 
 .. code-block:: jinja
 
-    {{ css_bundle('firefox_new_download') }}
+    {{ css_bundle('firefox_download') }}
 
 A JS bundle can be defied as:
 
@@ -127,9 +127,9 @@ A JS bundle can be defied as:
         {
             "files": [
                 "protocol/js/protocol-modal.js",
-                "js/firefox/new/basic/download.js"
+                "js/firefox/download/basic/download.js"
             ],
-            "name": "firefox_new_download"
+            "name": "firefox_download"
         }
     ]
 
@@ -137,7 +137,7 @@ Which can then be referenced in a page template using:
 
 .. code-block:: jinja
 
-    {{ js_bundle('firefox_new_download') }}
+    {{ js_bundle('firefox_download') }}
 
 Once you define a bundle in ``static-bundles.json``, the ``webpack.config.js``
 file will use these as entrypoints for compiling JS and CSS and watching for
@@ -325,13 +325,13 @@ For a simple image, the ``static()`` function is used to generate the image URL.
 
 .. code-block:: html
 
-    <img src="{{ static('img/firefox/new/firefox-wordmark-logo.svg') }}" alt="Firefox">
+    <img src="{{ static('img/firefox/download/firefox-wordmark-logo.svg') }}" alt="Firefox">
 
 will output an image:
 
 .. code-block:: html
 
-    <img src="/media/img/firefox/new/firefox-wordmark-logo.svg" alt="Firefox">
+    <img src="/media/img/firefox/download/firefox-wordmark-logo.svg" alt="Firefox">
 
 resp_img()
 ^^^^^^^^^^
@@ -1059,7 +1059,7 @@ To use these macros in files, we simply import a macro to the page's HTML code a
         ga_title='This is Firefox',
         desc='Firefox is an awesome web browser.',
         link_cta='Click here to install',
-        link_url=url('firefox.new')
+        link_url=url('firefox.download')
       )}}
 
 Because not all component styles are global, we still have to import the page-specific Protocol styles in SCSS:

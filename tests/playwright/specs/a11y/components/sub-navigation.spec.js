@@ -10,7 +10,7 @@ const openPage = require('../../../scripts/open-page');
 const { createReport, scanPageElement } = require('../includes/helpers');
 const { subNavigationLocator } = require('../includes/locators');
 const { test, expect } = require('@playwright/test');
-const testURL = '/en-US/firefox/new/';
+const testURL = '/en-US/firefox/download/';
 
 test.describe(
     'Sub-navigation (desktop)',

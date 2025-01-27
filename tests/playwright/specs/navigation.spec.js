@@ -64,7 +64,7 @@ test.describe(
 
             // Click Firefox desktop link
             await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/', {
+            await page.waitForURL('**/firefox/download/', {
                 waitUntil: 'commit'
             });
 
@@ -158,7 +158,7 @@ test.describe(
 
             // Click Firefox desktop link
             await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/', {
+            await page.waitForURL('**/firefox/download/', {
                 waitUntil: 'commit'
             });
 

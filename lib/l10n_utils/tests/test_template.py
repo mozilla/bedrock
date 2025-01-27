@@ -61,8 +61,8 @@ class TestLocaleTemplates(TestCase):
         django_render.side_effect = [TemplateDoesNotExist(""), True]
         request = self.rf.get("/en-US/")
         request.locale = "en-US"
-        render(request, "firefox/new.html", {"active_locales": ["en-US"]})
-        django_render.assert_called_with(request, "firefox/new.html", ANY)
+        render(request, "firefox/download.html", {"active_locales": ["en-US"]})
+        django_render.assert_called_with(request, "firefox/download.html", ANY)
 
     def test_bedrock_enUS_render(self, django_render):
         """
@@ -72,8 +72,8 @@ class TestLocaleTemplates(TestCase):
         django_render.side_effect = [True]
         request = self.rf.get("/en-US/")
         request.locale = "en-US"
-        render(request, "firefox/new.html", {"active_locales": ["en-US"]})
-        django_render.assert_called_with(request, "firefox/new.en-US.html", ANY)
+        render(request, "firefox/download.html", {"active_locales": ["en-US"]})
+        django_render.assert_called_with(request, "firefox/download.en-US.html", ANY)
 
     def test_default_render(self, django_render):
         """
@@ -83,8 +83,8 @@ class TestLocaleTemplates(TestCase):
         django_render.side_effect = [TemplateDoesNotExist(""), True]
         request = self.rf.get("/de/")
         request.locale = "de"
-        render(request, "firefox/new.html", {"active_locales": ["de"]})
-        django_render.assert_called_with(request, "firefox/new.html", ANY)
+        render(request, "firefox/download.html", {"active_locales": ["de"]})
+        django_render.assert_called_with(request, "firefox/download.html", ANY)
 
     def test_bedrock_locale_render(self, django_render):
         """
@@ -94,5 +94,5 @@ class TestLocaleTemplates(TestCase):
         django_render.side_effect = [True]
         request = self.rf.get("/es-ES/")
         request.locale = "es-ES"
-        render(request, "firefox/new.html", {"active_locales": ["es-ES"]})
-        django_render.assert_called_with(request, "firefox/new.es-ES.html", ANY)
+        render(request, "firefox/download.html", {"active_locales": ["es-ES"]})
+        django_render.assert_called_with(request, "firefox/download.es-ES.html", ANY)

@@ -183,12 +183,12 @@ only one group of tests, instead of the whole suite, you can use ``--grep``:
 
     $ npx playwright test --grep @firefox
 
-To run only a specific test file, such as ``firefox-new.spec.js``,
+To run only a specific test file, such as ``firefox-download.spec.js``,
 you can pass the filename:
 
 .. code-block:: bash
 
-    $ npx playwright test firefox-new
+    $ npx playwright test firefox-download
 
 See the `Playwright CLI docs`_ for more options when running and debugging tests.
 
@@ -234,7 +234,7 @@ in each test file:
 .. code-block:: javascript
 
     const openPage = require('../scripts/open-page');
-    const url = '/en-US/firefox/new/';
+    const url = '/en-US/firefox/download/';
 
     test.beforeEach(async ({ page, browserName }) => {
         await openPage(url, page, browserName);
@@ -339,14 +339,14 @@ e.g. ``tests/functional/test_newsletter.py``:
 
 .. code-block:: bash
 
-    $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py
+    $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/download/test_download.py
 
 To run a single test you can filter using the ``-k`` argument supplied with a keyword
 e.g. ``-k test_download_button_displayed``:
 
 .. code-block:: bash
 
-  $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py -k test_download_button_displayed
+  $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/download/test_download.py -k test_download_button_displayed
 
 You can also easily run the tests against any bedrock environment by specifying the
 ``--base-url`` argument. For example, to run all Selenium integration tests against

@@ -6,20 +6,20 @@
 
 {% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
 
-{% extends "firefox/new/desktop/base.html" %}
+{% extends "firefox/download/desktop/base.html" %}
 
 {% set referrals = '?utm_source=www.firefox.com&utm_medium=referral&utm_campaign=firefox-desktop' %}
-{% set ios_url = app_store_url('firefox', 'mozilla-org-firefox-new') %}
+{% set ios_url = app_store_url('firefox', 'firefox-com-download') %}
 
 {% block string_data %}{% endblock %}
 
 {% block page_image %}
   {% if LANG.startswith('en-') %}
-    {{ static('img/firefox/new/desktop/meta-img-en.png') }}
+    {{ static('img/firefox/download/desktop/meta-img-en.png') }}
   {% elif LANG.startswith('es-') %}
-    {{ static('img/firefox/new/desktop/meta-img-es.png') }}
+    {{ static('img/firefox/download/desktop/meta-img-es.png') }}
   {% else %}
-    {{ static('img/firefox/new/desktop/meta-img-global.png') }}
+    {{ static('img/firefox/download/desktop/meta-img-global.png') }}
   {% endif %}
 {% endblock %}
 
@@ -41,12 +41,12 @@
 
 {% macro download_picture(src, width, height, alt='', class_name='') -%}
   {{ picture(
-    url='img/firefox/new/desktop/ie8/' + src + '.png',
+    url='img/firefox/download/desktop/ie8/' + src + '.png',
     sources=[
       {
         'type': 'image/svg+xml',
         'srcset': {
-          'img/firefox/new/desktop/' + src + '.svg': 'default'
+          'img/firefox/download/desktop/' + src + '.svg': 'default'
         }
       }
     ],
@@ -115,13 +115,13 @@
             <div class="noodle-pill t-outline-pink"></div>
             <div class="noodle-browser">
               {{ picture(
-                url='img/firefox/new/desktop/firefox-browser-light-600.png',
+                url='img/firefox/download/desktop/firefox-browser-light-600.png',
                 sources=[
                   {
                     'media': '(min-width: 688px)',
                     'srcset': {
-                      'img/firefox/new/desktop/firefox-browser-light-1200.png': '2x',
-                      'img/firefox/new/desktop/firefox-browser-light-600.png': 'default'
+                      'img/firefox/download/desktop/firefox-browser-light-1200.png': '2x',
+                      'img/firefox/download/desktop/firefox-browser-light-600.png': 'default'
                     }
                   },
                   {
@@ -245,9 +245,9 @@
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
           {{ resp_img(
-            url='img/firefox/new/desktop/block-mr1.jpg',
+            url='img/firefox/download/desktop/block-mr1.jpg',
             srcset={
-              'img/firefox/new/desktop/block-mr1-high-res.jpg': '2x'
+              'img/firefox/download/desktop/block-mr1-high-res.jpg': '2x'
             },
             optional_attributes={
               'width': '504',
@@ -291,9 +291,9 @@
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
           {{ resp_img(
-            url='img/firefox/new/desktop/devices.jpg',
+            url='img/firefox/download/desktop/devices.jpg',
             srcset={
-              'img/firefox/new/desktop/devices-high-res.jpg': '2x'
+              'img/firefox/download/desktop/devices-high-res.jpg': '2x'
             },
             optional_attributes={
               'width': '483',
@@ -417,15 +417,15 @@
       <!--<![endif]-->
       <div class="c-screenshot">
         {{ resp_img(
-          url='img/firefox/new/desktop/firefox-new-tab-1000.png',
+          url='img/firefox/download/desktop/firefox-new-tab-1000.png',
           srcset={
-            'img/firefox/new/desktop/firefox-new-tab-2000.png': '2000w',
-            'img/firefox/new/desktop/firefox-new-tab-1800.png': '1800w',
-            'img/firefox/new/desktop/firefox-new-tab-1600.png': '1600w',
-            'img/firefox/new/desktop/firefox-new-tab-1400.png': '1400w',
-            'img/firefox/new/desktop/firefox-new-tab-1200.png': '1200w',
-            'img/firefox/new/desktop/firefox-new-tab-1000.png': '1000w',
-            'img/firefox/new/desktop/firefox-new-tab-800.png': '800w',
+            'img/firefox/download/desktop/firefox-new-tab-2000.png': '2000w',
+            'img/firefox/download/desktop/firefox-new-tab-1800.png': '1800w',
+            'img/firefox/download/desktop/firefox-new-tab-1600.png': '1600w',
+            'img/firefox/download/desktop/firefox-new-tab-1400.png': '1400w',
+            'img/firefox/download/desktop/firefox-new-tab-1200.png': '1200w',
+            'img/firefox/download/desktop/firefox-new-tab-1000.png': '1000w',
+            'img/firefox/download/desktop/firefox-new-tab-800.png': '800w',
           },
           sizes={
             '(min-width: 1200px)': '930px',
@@ -465,9 +465,9 @@
     <div class="mzp-l-card-half">
       <div class="mzp-c-card">
         {{ resp_img(
-          url='img/firefox/new/desktop/person-mozilla.jpg',
+          url='img/firefox/download/desktop/person-mozilla.jpg',
           srcset={
-            'img/firefox/new/desktop/person-mozilla-high-res.jpg': '2x'
+            'img/firefox/download/desktop/person-mozilla-high-res.jpg': '2x'
           },
           optional_attributes={
             'width': '436',
@@ -483,9 +483,9 @@
 
       <div class="mzp-c-card">
         {{ resp_img(
-          url='img/firefox/new/desktop/person-privacy.jpg',
+          url='img/firefox/download/desktop/person-privacy.jpg',
           srcset={
-            'img/firefox/new/desktop/person-privacy-high-res.jpg': '2x'
+            'img/firefox/download/desktop/person-privacy-high-res.jpg': '2x'
           },
           optional_attributes={
             'width': '436',

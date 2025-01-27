@@ -15,13 +15,13 @@ def to_uppercase(url):
 
 redirectpatterns = (
     # bug 874913, 681572
-    redirect(r"^(products/)?download\.html", "firefox.new", query=""),
+    redirect(r"^(products/)?download\.html", "firefox.download", query=""),
     # bug 845580
-    redirect(r"^home/?$", "firefox.new"),
+    redirect(r"^home/?$", "firefox.download"),
     # bug 948605
-    redirect(r"^firefox/xp", "firefox.new"),
+    redirect(r"^firefox/xp", "firefox.download"),
     # bug 875052
-    redirect(r"^start/", ua_redirector("seamonkey", "http://www.seamonkey-project.org/start/", "firefox.new"), cache_timeout=0),
+    redirect(r"^start/", ua_redirector("seamonkey", "http://www.seamonkey-project.org/start/", "firefox.download"), cache_timeout=0),
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     redirect(r"^about/drivers(\.html|/)?$", "https://wiki.mozilla.org/Firefox/Drivers"),
     # community
@@ -55,7 +55,7 @@ redirectpatterns = (
     # bug 975476
     redirect(r"^projects/security/pki/python-nss/doc/api/current/html(?P<path>.*)$", "https://mozilla.github.io/python-nss-docs{path}"),
     # bug 780672
-    redirect(r"^firefox/webhero", "firefox.new"),
+    redirect(r"^firefox/webhero", "firefox.download"),
     # bug 964107
     redirect(r"^firefox/video", "https://www.youtube.com/firefoxchannel"),
     # bug 948520
@@ -326,7 +326,7 @@ redirectpatterns = (
     # bug 1236910
     redirect(r"^support(/.*)?$", "https://support.mozilla.org/"),
     # Bug 1235853
-    redirect(r"^facebookapps(/.*)?$", "firefox.new"),
+    redirect(r"^facebookapps(/.*)?$", "firefox.download"),
     # Bug 1255882
     redirect(r"^firefox/about/?$", "mozorg.about.index"),
     # bug 453506, 1255882
@@ -479,7 +479,7 @@ redirectpatterns = (
     redirect(r"^landing/firefox/fx100/?$", "firefox"),
     # Issue 12563
     redirect(r"^/exp/firefox/?$", "firefox"),
-    redirect(r"^/exp/firefox/new/?$", "firefox.new"),
+    redirect(r"^/exp/firefox/new/?$", "firefox.download"),
     redirect(r"^accounts/?$", "mozorg.account"),
     # redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
     redirect(r"^/exp/opt-out/?$", "https://www.convert.com/opt-out/"),

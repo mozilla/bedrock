@@ -70,8 +70,8 @@
 
 <h2>{{ ftl('features-translate-firefox-speaks-your-language') }}</h2>
 {% if ftl_has_messages('features-translate-the-firefox-translations-feature-v2') %}
-<p>{{ ftl('features-translate-the-firefox-translations-feature-v2', download='href="%s" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.new'))) }}</p>
+<p>{{ ftl('features-translate-the-firefox-translations-feature-v2', download='href="%s" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.download'))) }}</p>
 {% else %}
-<p>{{ ftl('features-translate-the-firefox-translations-feature', download='href="%s" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.new'))) }}</p>
+<p>{{ ftl('features-translate-the-firefox-translations-feature', download='href="%s" data-cta-text="Get started in your preferred language"'|safe|format(url('firefox.download'))) }}</p>
 {% endif %}
 {% endblock %}
