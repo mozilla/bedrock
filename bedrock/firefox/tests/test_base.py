@@ -335,6 +335,28 @@ class TestWhatsNew(TestCase):
 
     # end 135 beta whatsnew tests
 
+    # begin 135 na whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_135_0_0_en_US(self, render_mock):
+        """Should use whatsnew-fx135-na template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="135.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx135-na.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_135_0_0_en_CA(self, render_mock):
+        """Should use whatsnew-fx135-na template for en-CA locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-CA"
+        self.view(req, version="135.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx135-na.html"]
+
+    # end 135 na whatsnew tests
+
     @override_settings(DEV=True)
     def test_rv_prefix(self, render_mock):
         """Prefixed oldversion shouldn't impact version sniffing."""
