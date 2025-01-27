@@ -4,28 +4,31 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "legal/docs-base.html" %}
-
-{% block page_title %}{{ ftl('legal-firefox-rights') }}{% endblock %}
+{% extends "privacy/notices/base-notice-headings.html" %}
 
 {% block site_css %}
-  {% if switch('m24-website-refresh') %}
-    {{ css_bundle('m24-root') }}
-  {% endif %}
   {{ css_bundle('protocol-firefox') }}
 {% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('legal-terms-firefox-tos') }}
+  {{ css_bundle('privacy_firefox_simple') }}
 {% endblock %}
 
 {% block site_header %}{% endblock %}
 
-{% block side_nav %}{% endblock %}
+{% block sidemenu %}{% endblock %}
+
+{% block article_header_logo %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('privacy_firefox') }}
+{% endblock %}
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
 {% block google_analytics %}{% endblock %}
 {% block glean %}{% endblock %}
+{% block consent_banner_js %}{% endblock %}
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}

@@ -24,7 +24,7 @@ class FirefoxTermsOfServiceDocView(LegalDocView):
         template_name = "legal/terms/firefox.html"
 
         if variant == "product":
-            template_name = "legal/terms/firefox-tos.html"
+            template_name = "legal/terms/firefox-simple.html"
 
         return [template_name]
 

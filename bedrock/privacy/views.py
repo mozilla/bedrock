@@ -43,7 +43,7 @@ class FirefoxPrivacyDocView(PrivacyDocView):
         variant = self.request.GET.get("v", None)
 
         if variant == "product":
-            self.template_name = "privacy/notices/firefox-tos.html"
+            self.template_name = "privacy/notices/firefox-simple.html"
         else:
             self.template_name = "privacy/notices/firefox.html"
 

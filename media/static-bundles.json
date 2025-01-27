@@ -269,9 +269,9 @@
     },
     {
       "files": [
-        "css/legal/legal-terms-firefox-tos.scss"
+        "css/legal/legal-terms-firefox-simple.scss"
       ],
-      "name": "legal-terms-firefox-tos"
+      "name": "legal-terms-firefox-simple"
     },
     {
       "files": [
@@ -683,9 +683,9 @@
     },
     {
       "files": [
-        "css/privacy/privacy-firefox-tos.scss"
+        "css/privacy/privacy-firefox-simple.scss"
       ],
-      "name": "privacy_firefox_tos"
+      "name": "privacy_firefox_simple"
     },
     {
       "files": [
