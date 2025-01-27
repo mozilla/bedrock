@@ -102,7 +102,7 @@ CACHES = {
     },
     "db": {
         # Intended for use as a slower – but distributed - cache
-        # See bedrock.base.cache.get_from_hybrid_cache and set_in_hybrid_cache
+        # See bedrock.base.cache.get_from_cache_wrapped_kv_store and set_in_cached_wrapped_kv_store
         "BACKEND": "django.core.cache.backends.db.DatabaseCache",
         "TIMEOUT": None,  # cached items will not expire
     },
