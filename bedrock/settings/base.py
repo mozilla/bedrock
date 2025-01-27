@@ -317,10 +317,6 @@ EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/notes.html",
     "firefox/releases/system_requirements.html",
     "mozorg/about/forums.html",
-    "security/advisory.html",
-    "security/advisories.html",
-    "security/product-advisories.html",
-    "security/known-vulnerabilities.html",
 ]
 # Also allow entire directories to be skipped
 EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
@@ -746,7 +742,6 @@ INSTALLED_APPS = [
     "bedrock.mozorg",
     "bedrock.newsletter",
     "bedrock.privacy",
-    "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.utils",
     "bedrock.sitemaps",
@@ -971,10 +966,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
 RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
-
-MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
-MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")
-MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="master")
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r"^/([a-zA-Z-]+/)?(newsletter)/"

@@ -15,50 +15,6 @@ from django.urls import resolvers
 from wagtail.models import Page
 
 from bedrock.releasenotes.models import ProductRelease
-from bedrock.security.models import SecurityAdvisory
-
-SEC_KNOWN_VULNS = [
-    "/security/known-vulnerabilities/firefox/",
-    "/security/known-vulnerabilities/firefox-esr/",
-    "/security/known-vulnerabilities/firefox-for-ios/",
-    "/security/known-vulnerabilities/firefox-os/",
-    "/security/known-vulnerabilities/mozilla-vpn/",
-    "/security/known-vulnerabilities/thunderbird/",
-    "/security/known-vulnerabilities/thunderbird-esr/",
-    "/security/known-vulnerabilities/seamonkey/",
-    "/security/known-vulnerabilities/firefox-3.6/",
-    "/security/known-vulnerabilities/firefox-3.5/",
-    "/security/known-vulnerabilities/firefox-3.0/",
-    "/security/known-vulnerabilities/firefox-2.0/",
-    "/security/known-vulnerabilities/firefox-1.5/",
-    "/security/known-vulnerabilities/firefox-1.0/",
-    "/security/known-vulnerabilities/thunderbird-3.1/",
-    "/security/known-vulnerabilities/thunderbird-3.0/",
-    "/security/known-vulnerabilities/thunderbird-2.0/",
-    "/security/known-vulnerabilities/thunderbird-1.5/",
-    "/security/known-vulnerabilities/thunderbird-1.0/",
-    "/security/known-vulnerabilities/seamonkey-2.0/",
-    "/security/known-vulnerabilities/seamonkey-1.1/",
-    "/security/known-vulnerabilities/seamonkey-1.0/",
-    "/security/known-vulnerabilities/mozilla-suite/",
-]
-
-
-def get_security_urls():
-    urls = {url: ["en-US"] for url in SEC_KNOWN_VULNS}
-    for advisory in SecurityAdvisory.objects.all():
-        try:
-            adv_url = advisory.get_absolute_url()
-        except resolvers.NoReverseMatch:
-            continue
-
-        # strip "/en-US" off the front
-        if adv_url.startswith("/en-US"):
-            adv_url = adv_url[6:]
-
-        urls[adv_url] = ["en-US"]
-
-    return urls
 
 
 def get_release_notes_urls():
@@ -201,7 +157,6 @@ def get_wagtail_urls():
 def update_sitemaps():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
-    urls.update(get_security_urls())
     urls.update(get_wagtail_urls())
 
     # Output static files

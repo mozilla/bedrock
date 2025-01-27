@@ -220,27 +220,23 @@ def test_get_wagtail_urls__ensure_locale_codes_not_stripped(dummy_wagtail_pages)
 
 @patch("bedrock.sitemaps.utils.get_static_urls")
 @patch("bedrock.sitemaps.utils.get_release_notes_urls")
-@patch("bedrock.sitemaps.utils.get_security_urls")
 @patch("bedrock.sitemaps.utils.get_wagtail_urls")
 @patch("bedrock.sitemaps.utils.output_json")
 def test_update_sitemaps(
     mock_output_json,
     mock_get_wagtail_urls,
-    mock_get_security_urls,
     mock_get_release_notes_urls,
     mock_get_static_urls,
 ):
     "Light check to ensure we've not added _new_ things we haven't added tests for"
 
     mock_get_wagtail_urls.return_value = {"wagtail": "dummy1"}
-    mock_get_security_urls.return_value = {"security": "dummy3"}
     mock_get_release_notes_urls.return_value = {"release_notes": "dummy4"}
     mock_get_static_urls.return_value = {"static_urls": "dummy5"}
 
     update_sitemaps()
     expected = {
         "wagtail": "dummy1",
-        "security": "dummy3",
         "release_notes": "dummy4",
         "static_urls": "dummy5",
     }

@@ -33,7 +33,6 @@ failure_detected=false
 # Please ensure all new command calls are suffixed with || failure_detected=true
 
 python manage.py update_product_details_files || failure_detected=true
-python manage.py update_security_advisories --quiet || failure_detected=true
 python manage.py update_release_notes --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_sitemaps_data --quiet || failure_detected=true

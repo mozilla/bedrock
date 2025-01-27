@@ -142,12 +142,6 @@
     },
     {
       "files": [
-        "css/security/security.scss"
-      ],
-      "name": "security"
-    },
-    {
-      "files": [
         "css/firefox/testflight.scss"
       ],
       "name": "firefox_ios_testflight"
@@ -157,18 +151,6 @@
         "css/mozorg/contribute.scss"
       ],
       "name": "contribute"
-    },
-    {
-      "files": [
-        "css/security/client-bug-bounty.scss"
-      ],
-      "name": "client-bug-bounty"
-    },
-    {
-      "files": [
-        "css/security/hall-of-fame.scss"
-      ],
-      "name": "security-bug-bounty-hall-of-fame"
     },
     {
       "files": [
