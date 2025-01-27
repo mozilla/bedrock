@@ -32,7 +32,6 @@ Contents
    newsletters
    cms
    sitemap
-   legal-docs
    banners
    uitour
    task-queue

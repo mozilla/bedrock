@@ -245,18 +245,6 @@
     },
     {
       "files": [
-        "css/legal/legal.scss"
-      ],
-      "name": "legal"
-    },
-    {
-      "files": [
-        "css/legal/builders-challenge.scss"
-      ],
-      "name": "builders-challenge"
-    },
-    {
-      "files": [
         "css/mozorg/about-transparency.scss"
       ],
       "name": "about-transparency"
@@ -362,12 +350,6 @@
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
-    },
-    {
-      "files": [
-        "css/privacy/privacy-email.scss"
-      ],
-      "name": "privacy_email"
     },
     {
       "files": [
@@ -528,12 +510,6 @@
         "css/mozorg/account.scss"
       ],
       "name": "mozilla_account"
-    },
-    {
-      "files": [
-        "css/privacy/privacy-protocol.scss"
-      ],
-      "name": "privacy_protocol"
     },
     {
       "files": [
@@ -970,13 +946,6 @@
     },
     {
       "files": [
-        "js/base/mozilla-article.js",
-        "js/privacy/privacy-protocol.js"
-      ],
-      "name": "privacy_protocol"
-    },
-    {
-      "files": [
         "js/base/send-to-device.es6.js",
         "js/firefox/browsers/mobile.es6.js"
       ],
@@ -988,12 +957,6 @@
         "js/firefox/browsers/get-app.es6.js"
       ],
       "name": "firefox-browsers-get-app"
-    },
-    {
-      "files": [
-        "js/privacy/privacy-firefox.js"
-      ],
-      "name": "privacy_firefox"
     },
     {
       "files": [
@@ -1263,13 +1226,6 @@
         "js/base/video-modal-embed.es6.js"
       ],
       "name": "video-modal-embed"
-    },
-    {
-      "files": [
-        "js/privacy/data-preferences-cookie.es6.js",
-        "js/privacy/data-preferences-init.es6.js"
-      ],
-      "name": "privacy-data-preferences"
     },
     {
       "files": [
