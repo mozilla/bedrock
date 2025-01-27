@@ -7,7 +7,11 @@
 features-adblocker-the-ad-blocker-a-tool = The ad blocker – a tool for a personalized & focused browsing experience.
 features-adblocker-in-todays-digital-world = In today’s digital world, the web can be busy and cluttered. Ad blockers are powerful tools that put you in control of your browsing experience, letting you decide what appears on your screen.
 features-adblocker-ad-blockers-work = Ad blockers work in two key ways: by preventing content, such as ads, from loading and by blocking sections of websites that host those elements. This can include video ads, personalized ads that follow you across the web, and even third-party trackers.
-features-adblocker-using-an-adblocker = Using an ad blocker is straightforward. Many trusted options are available as browser add-ons, making it easy to find a solution that works for your needs. For instance, { -brand-name-firefox } offers a list of approved extensions designed to improve your browsing experience while respecting your privacy.
+
+# Variables:
+#   $firefox (url) - link to https://www.mozilla.org/firefox/new/
+#   $addons (url) - link to https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/
+features-adblocker-using-an-adblocker = Using an ad blocker is straightforward. Many trusted options are available as browser add-ons, making it easy to find a solution that works for your needs. For instance, <a href="{ $firefox }">{ -brand-name-firefox }</a> offers <a href="{ $addons }">a list of approved extensions</a> designed to improve your browsing experience while respecting your privacy.
 features-adblocker-finding-the-right = Finding the Right Ad Blocker for You
 features-adblocker-there-are-many = There are many ad-blocking tools to explore, each offering features to suit different preferences. Finding the right one for you depends on your desires and browsing habits. Here are a few tips to consider:
 features-adblocker-tip-1 = <strong>Blocking Ads:</strong> If you only want to block ads, choose a simple and lightweight option.
