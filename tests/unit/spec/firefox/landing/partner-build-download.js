@@ -142,7 +142,7 @@ describe('partner-build-download.es6.js', function () {
             button2.parentNode.removeChild(button2);
         });
 
-        it('should should update Windows and macOS download URLs with a custom build link', function () {
+        it('should update Windows and macOS download URLs with a custom build link', function () {
             PartnerBuildDownload.init();
 
             const downloadLinksWin = Array.from(
@@ -168,7 +168,7 @@ describe('partner-build-download.es6.js', function () {
             );
         });
 
-        it('should should not update Windows URLs that are not visible on landing page', function () {
+        it('should not update Windows URLs that are not visible on landing page', function () {
             PartnerBuildDownload.init();
 
             const downloadLinksWin64 = Array.from(
@@ -204,7 +204,7 @@ describe('partner-build-download.es6.js', function () {
             );
         });
 
-        it('should should not update Linux download URLs with a custom build link', function () {
+        it('should not update Linux download URLs with a custom build link', function () {
             PartnerBuildDownload.init();
 
             const downloadLinksLinux = Array.from(
@@ -230,7 +230,7 @@ describe('partner-build-download.es6.js', function () {
             );
         });
 
-        it('should should not update iOS download URLs with a custom build link', function () {
+        it('should not update iOS download URLs with a custom build link', function () {
             PartnerBuildDownload.init();
 
             const downloadLinksIOS = Array.from(
@@ -246,7 +246,7 @@ describe('partner-build-download.es6.js', function () {
             );
         });
 
-        it('should should not update Android download URLs with a custom build link', function () {
+        it('should not update Android download URLs with a custom build link', function () {
             PartnerBuildDownload.init();
 
             const downloadLinksAndroid = Array.from(
