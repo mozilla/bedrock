@@ -25,4 +25,7 @@ features-adblocker-tool-3 = <strong>Custom Mode:</strong> For those who want ful
 features-adblocker-to-adjust = To adjust these settings, click the shield icon to the left of the address bar on any webpage and select “Protection Settings.” This will open a menu where you can choose the right level of protection for you.
 features-adblocker-why-use = Why Use an Ad Blocker?
 features-adblocker-ad-blockers-do-more = Ad blockers do more than manage ads—they can enhance your browsing speed and security by reducing unnecessary content. They empower you to create a tailored, distraction-free web experience, letting you focus on what matters most.
-features-adblocker-explore-hundreds = Explore hundreds of privacy-focused add-ons available for { -brand-name-firefox } and find the right tools for you. Download { -brand-name-firefox } today to experience a browser designed with your privacy and performance in mind.
+
+# Variables:
+#   $url (url) - link to https://www.mozilla.org/firefox/new/
+features-adblocker-explore-hundreds = Explore hundreds of privacy-focused add-ons available for { -brand-name-firefox } and find the right tools for you. <a href="{ $url }">Download { -brand-name-firefox }</a> today to experience a browser designed with your privacy and performance in mind.
