@@ -125,6 +125,61 @@ class SyncGreenhouseTests(TestCase):
         self.assertEqual(Position.objects.all().count(), 1)
         self.assertEqual(Position.objects.all()[0].is_mofo, True)
 
+    def test_position_is_moco(self):
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "departments": [{"name": "Mozilla Foundation"}],
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)
+        self.assertEqual(Position.objects.all()[0].is_moco, False)
+
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "departments": [{"name": "Marketing"}],
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)
+        self.assertEqual(Position.objects.all()[0].is_moco, True)
+
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "departments": [{"name": "MZLA/Thunderbird"}],
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertEqual(Position.objects.all().count(), 1)
+        self.assertEqual(Position.objects.all()[0].is_moco, False)
+
     def test_repeat_job_ids(self):
         jobs_response = {
             "jobs": [
