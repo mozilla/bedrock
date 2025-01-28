@@ -3,11 +3,11 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
-@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import '~@mozilla-protocol/core/protocol/css/components/forms/form';
-@import '~@mozilla-protocol/core/protocol/css/components/forms/field';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo';
-@import '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
+@use '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@use '~@mozilla-protocol/core/protocol/css/components/forms/form';
+@use '~@mozilla-protocol/core/protocol/css/components/forms/field';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 /* -------------------------------------------------------------------------- */
 // Article
