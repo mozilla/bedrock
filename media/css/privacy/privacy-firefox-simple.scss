@@ -158,29 +158,3 @@ $border: 2px solid $color-marketing-gray-20;
         }
     }
 }
-
-.format-paragraphs .privacy-body {
-    @include details;
-
-    .is-summary {
-        button {
-            padding: 0;
-
-            &::after {
-                color: $color-link;
-                content: attr(data-open);
-                margin-left: 0.5ex;
-                text-decoration: underline;
-            }
-        }
-
-        button[aria-expanded='true']::after {
-            content: attr(data-close);
-        }
-
-        + div {
-            margin-top: $spacing-sm * -1;
-            margin-bottom: $spacing-xl;
-        }
-    }
-}
