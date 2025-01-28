@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import logging
+from collections import defaultdict
 from http import HTTPStatus
 
 from django.conf import settings
@@ -68,23 +69,34 @@ class CMSLocaleFallbackMiddleware:
                 _url_path += "/"
 
             # Now try to get hold of all the pages that exist in the CMS for the extracted path
-            cms_pages = Page.objects.filter(url_path__endswith=_url_path)
+            # that are also in a locale that is acceptable to the user + maybe the fallback locale
+            cms_pages_with_viable_locales = Page.objects.filter(
+                url_path__endswith=_url_path,
+                locale__language_code__in=ranked_locales,
+            )
 
-            if cms_pages:
-                # OK, we have some candidate pages that desired path
-                # locales. Let's try to send the user to their most preferred one.
+            if cms_pages_with_viable_locales:
+                # OK, we have some candidate pages with that desired path and at least one of
+                # viable locale. Let's try to send the user to their most preferred one.
 
-                # Note: This is not optimal right now, but we can make it one-DB-hit
-                # once the work to pre-cache the page tree lands
+                # Evaluate the queryset once and explore the results in memory
+                lookup = defaultdict(list)
+                for page in cms_pages_with_viable_locales:
+                    lookup[page.locale.language_code].append(page)
+
                 for locale_code in ranked_locales:
-                    qs = cms_pages.filter(locale__language_code=locale_code)
-                    if qs.exists():
-                        # There _should_ only be one matching for this locale
-                        if qs.count() > 1:
-                            logger.warning(f"CMS 404-fallback problem: multiple pages with same path found {qs}")
-                        return HttpResponseRedirect(qs.first().url)
+                    if locale_code in lookup:
+                        page_list = lookup[locale_code]
+                        # There _should_ only be one matching for this locale, but let's not assume
+                        if len(page_list) > 1:
+                            logger.warning(f"CMS 404-fallback problem - multiple pages with same path found: {page_list}")
+                        page = page_list[0]  # page_list should be a list of 1 item
+                        return HttpResponseRedirect(page.url)
+
+                # Note: we can make this more efficient by leveraging the cached page tree
+                # (once the work to pre-cache the page tree lands)
 
                 # Fallback: send the user to the first one
-                return HttpResponseRedirect(cms_pages.first().url)
+                return HttpResponseRedirect(cms_pages_with_viable_locales.first().url)
 
         return response
