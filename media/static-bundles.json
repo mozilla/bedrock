@@ -269,6 +269,12 @@
     },
     {
       "files": [
+        "css/legal/legal-terms-firefox-simple.scss"
+      ],
+      "name": "legal-terms-firefox-simple"
+    },
+    {
+      "files": [
         "css/legal/builders-challenge.scss"
       ],
       "name": "builders-challenge"
@@ -686,6 +692,12 @@
         "css/privacy/privacy-protocol.scss"
       ],
       "name": "privacy_protocol"
+    },
+    {
+      "files": [
+        "css/privacy/privacy-firefox-simple.scss"
+      ],
+      "name": "privacy_firefox_simple"
     },
     {
       "files": [
@@ -1344,6 +1356,15 @@
         "js/privacy/privacy-firefox.js"
       ],
       "name": "privacy_firefox"
+    },
+    {
+      "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-client.js",
+        "js/base/protocol/utils.es6.js",
+        "js/base/protocol/init-details.es6.js"
+      ],
+      "name": "privacy_firefox_simple"
     },
     {
       "files": [

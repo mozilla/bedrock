@@ -10,11 +10,23 @@ from django.views.decorators.csrf import csrf_protect
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.legal.forms import FraudReportForm
+from bedrock.legal_docs.views import LegalDocView
 from lib import l10n_utils
 
 FRAUD_REPORT_EMAIL_FROM = settings.DEFAULT_FROM_EMAIL
 FRAUD_REPORT_EMAIL_SUBJECT = "New trademark infringement report: %s; %s"
 FRAUD_REPORT_EMAIL_TO = ["trademarks@mozilla.com"]
+
+
+class FirefoxTermsOfServiceDocView(LegalDocView):
+    def get_template_names(self):
+        variant = self.request.GET.get("v", None)
+        template_name = "legal/terms/firefox.html"
+
+        if variant == "product":
+            template_name = "legal/terms/firefox-simple.html"
+
+        return [template_name]
 
 
 def submit_form(request, form):
