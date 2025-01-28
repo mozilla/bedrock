@@ -12,6 +12,9 @@ let macDownloadID;
 PartnerBuildDownload.createCustomDownloadURL = (link, id) => {
     const url = new URL(link.href);
 
+    // partner builds are 404 on staging, so make sure we point to prod.
+    url.hostname = 'download.mozilla.org';
+
     // update product to custom build ID.
     url.searchParams.set('product', id);
 
