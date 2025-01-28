@@ -298,13 +298,13 @@
   sidemenu_lists() takes an array of lists and makes nav menus
   The list has the link, a body_id, and a the text to display
   {% set navigation_bar_client_bounty = [
-      (url('security.client-bug-bounty'),'client-bug-bounty', 'Client Bug Bounty'),
-      (url('security.bug-bounty.faq'), 'faq', 'Frequently Asked Questions'),
+      ('https://www.mozilla.org/en-US/security/bug-bounty/','client-bug-bounty', 'Client Bug Bounty'),
+      ('https://www.mozilla.org/en-US/security/bug-bounty/faq/', 'faq', 'Frequently Asked Questions'),
   ] %}
 
   {% set navigation_bar_web_bounty = [
-      (url('security.web-bug-bounty'), 'web-bug-bounty', 'Web Bug Bounty'),
-      (url('security.bug-bounty.web-eligible-sites'), 'web-eligible-sites', 'Eligible Websites'),
+      ('https://www.mozilla.org/en-US/security/bug-bounty/', 'web-bug-bounty', 'Web Bug Bounty'),
+      ('https://www.mozilla.org/en-US/security/bug-bounty/web-eligible-sites/', 'web-eligible-sites', 'Eligible Websites'),
   ] %}
 
   {{ sidemenu_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}

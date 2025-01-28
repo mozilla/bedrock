@@ -26,7 +26,6 @@ locale404 = "lib.l10n_utils.locale_selection"
 urlpatterns = bedrock_i18n_patterns(
     # Main pages
     path("privacy/", include("bedrock.privacy.urls")),
-    path("security/", include("bedrock.security.urls")),
     path("", include("bedrock.firefox.urls")),
     path("", include("bedrock.mozorg.urls")),  # these are locale-needing URLs, vs mozorg.nonlocale_urls
     path("", include("bedrock.newsletter.urls")),
