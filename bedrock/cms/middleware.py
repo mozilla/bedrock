@@ -43,8 +43,8 @@ class CMSLocaleFallbackMiddleware:
             # fall back to that (which is consistent with what we do with
             # Fluent-based hard-coded pages).
 
-            path_ = request.path.lstrip("/")
-            extracted_lang, _, _sub_path = path_.partition("/")
+            _path = request.path.lstrip("/")
+            lang_prefix, _, sub_path = _path.partition("/")
             # (There will be a language-code prefix, thanks to earlier i18n middleware)
 
             # Is the requested path available in other languages, checked in
@@ -69,7 +69,7 @@ class CMSLocaleFallbackMiddleware:
             if settings.LANGUAGE_CODE not in ranked_locales:
                 ranked_locales.append(settings.LANGUAGE_CODE)
 
-            _url_path = _sub_path.lstrip("/")
+            _url_path = sub_path.lstrip("/")
             if not _url_path.endswith("/"):
                 _url_path += "/"
 
@@ -82,18 +82,18 @@ class CMSLocaleFallbackMiddleware:
             # * /home/test-path/to/a/page for en-US
             # * /home-fr/test-path/to/a/page for French
 
-            _possible_url_path_patterns = []
+            possible_url_path_patterns = []
             for locale_code in ranked_locales:
                 if locale_code == settings.LANGUAGE_CODE:
                     root = "/home"
                 else:
                     root = f"/home-{locale_code}"
 
-                _full_url_path = f"{root}/{_url_path}"
-                _possible_url_path_patterns.append(_full_url_path)
+                full_url_path = f"{root}/{_url_path}"
+                possible_url_path_patterns.append(full_url_path)
 
             cms_pages_with_viable_locales = Page.objects.filter(
-                url_path__in=_possible_url_path_patterns,
+                url_path__in=possible_url_path_patterns,
                 # There's no extra value in filtering with locale__language_code__in=ranked_locales
                 # due to the locale code being embedded in the url_path strings
             )
