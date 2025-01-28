@@ -53,7 +53,11 @@ class CMSLocaleFallbackMiddleware:
             # We only want the language codes from parse_accept_lang_header,
             # not their weighting, and we want them to be formatted the way
             # we expect them to be
-            ranked_locales = [normalize_language(x[0]) for x in parse_accept_lang_header(accept_lang_header)]
+
+            if accept_lang_header:
+                ranked_locales = [normalize_language(x[0]) for x in parse_accept_lang_header(accept_lang_header)]
+            else:
+                ranked_locales = []
 
             # Ensure the default locale is also included, as a last-ditch option.
             # NOTE: remove if controversial in terms of user intent but then
