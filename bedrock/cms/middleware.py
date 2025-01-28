@@ -44,7 +44,7 @@ class CMSLocaleFallbackMiddleware:
             # Fluent-based hard-coded pages).
 
             path_ = request.path.lstrip("/")
-            extracted_lang, _, _path = path_.partition("/")
+            extracted_lang, _, _sub_path = path_.partition("/")
 
             # Is the requested path available in other languages, checked in
             # order of user preference?
@@ -68,7 +68,9 @@ class CMSLocaleFallbackMiddleware:
             if settings.LANGUAGE_CODE not in ranked_locales:
                 ranked_locales.append(settings.LANGUAGE_CODE)
 
-            _url_path = f"{_path}"
+            # Make sure the locale-less _url_path we're trying to match starts
+            # with / to avoid partial matches
+            _url_path = f"/{_sub_path.lstrip('/')}"
             if not _url_path.endswith("/"):
                 _url_path += "/"
 
