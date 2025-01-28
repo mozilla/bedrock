@@ -10,8 +10,6 @@ from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationTemplateView
 
 latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
-firstrun_re = latest_re % (version_re, "firstrun")
-whatsnew_re = latest_re % (version_re, "whatsnew")
 platform_re = "(?P<platform>android|ios)"
 channel_re = "(?P<channel>beta|aurora|developer|nightly|organizations)"
 releasenotes_re = latest_re % (version_re, r"(aurora|release)notes")
@@ -112,10 +110,7 @@ urlpatterns = (
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/download/", views.DownloadView.as_view(), name="firefox.download"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
-    page("firefox/nightly/firstrun/", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
     path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
-    re_path(firstrun_re, views.FirstrunView.as_view(), name="firefox.firstrun"),
-    re_path(whatsnew_re, views.WhatsnewView.as_view(), name="firefox.whatsnew"),
     # Release notes
     re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$", bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
     path("firefox/nightly/notes/feed/", bedrock.releasenotes.views.nightly_feed, name="firefox.nightly.notes.feed"),
@@ -143,50 +138,6 @@ urlpatterns = (
     re_path(ios_sysreq_re, bedrock.releasenotes.views.system_requirements, {"product": "Firefox for iOS"}, name="firefox.ios.system_requirements"),
     path("firefox/releases/", bedrock.releasenotes.views.releases_index, {"product": "Firefox"}, name="firefox.releases.index"),
     path("firefox/stub_attribution_code/", views.stub_attribution_code, name="firefox.stub_attribution_code"),
-    path("firefox/welcome/1/", views.firefox_welcome_page1, name="firefox.welcome.page1"),
-    page("firefox/welcome/2/", "firefox/welcome/page2.html", ftl_files=["firefox/welcome/page2"]),
-    page("firefox/welcome/4/", "firefox/welcome/page4.html", ftl_files=["firefox/welcome/page4"]),
-    page("firefox/welcome/6/", "firefox/welcome/page6.html", ftl_files=["firefox/welcome/page6"]),
-    page("firefox/welcome/7/", "firefox/welcome/page7.html", ftl_files=["firefox/welcome/page7"]),
-    page("firefox/welcome/8/", "firefox/welcome/page8.html", ftl_files=["firefox/welcome/page8"]),
-    page("firefox/welcome/9/", "firefox/welcome/page9.html", active_locales=["de", "fr"]),
-    page("firefox/welcome/10/", "firefox/welcome/page10.html", ftl_files=["firefox/welcome/page10"]),
-    page("firefox/welcome/11/", "firefox/welcome/page11.html", ftl_files=["firefox/welcome/page11"]),
-    page("firefox/welcome/12/", "firefox/welcome/page12.html", active_locales=["en-US", "en-CA", "en-GB"]),
-    page("firefox/welcome/13/", "firefox/welcome/page13.html", ftl_files=["firefox/welcome/page13"]),
-    page("firefox/welcome/14/", "firefox/welcome/page14.html", ftl_files=["firefox/welcome/page14"]),
-    page("firefox/welcome/15/", "firefox/welcome/page15.html", active_locales=["en-US", "en-CA", "en-GB", "fr", "de"]),
-    page("firefox/welcome/16/", "firefox/welcome/page16.html"),
-    page("firefox/welcome/17a/", "firefox/welcome/page17/page17-a.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
-    page("firefox/welcome/17b/", "firefox/welcome/page17/page17-b.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
-    page("firefox/welcome/17c/", "firefox/welcome/page17/page17-c.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
-    page("firefox/welcome/18/", "firefox/welcome/page18.html"),
-    page(
-        "firefox/welcome/19/",
-        "firefox/welcome/page19.html",
-        active_locales=[
-            "en-US",
-            "ar",
-            "cs",
-            "de",
-            "el",
-            "es-ES",
-            "fr",
-            "hu",
-            "id",
-            "it",
-            "ja",
-            "pl",
-            "pt-BR",
-            "ru",
-            "zh-CN",
-        ],
-    ),
-    page("firefox/welcome/20/", "firefox/welcome/page20.html", ftl_files=["firefox/welcome/page20-21"]),
-    page("firefox/welcome/21/", "firefox/welcome/page21.html", ftl_files=["firefox/welcome/page20-21"]),
-    page("firefox/welcome/22/", "firefox/welcome/page22.html", ftl_files=["firefox/welcome/page22"]),
-    page("firefox/welcome/23/", "firefox/welcome/page23.html", ftl_files=["firefox/welcome/page23"]),
-    page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
@@ -258,11 +209,5 @@ urlpatterns = (
             variation_locales=["de", "fr"],
             template_context_variations=["1", "2", "3", "4", "5"],
         ),
-    ),
-    # Issue 15383 - Firefox 20th landing page
-    page(
-        "firefox/firefox20/",
-        "firefox/firefox-20th/index.html",
-        active_locales=["de", "fr", "en-US", "en-CA", "en-GB"],
     ),
 )

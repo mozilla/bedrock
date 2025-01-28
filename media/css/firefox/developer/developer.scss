@@ -67,24 +67,3 @@ $image-path: '/media/protocol/img';
     margin: $spacing-sm auto 0;
     max-width: $content-xs;
 }
-
-
-// whats new
-
-.c-docs svg {
-    vertical-align: middle;
-    height: 18px;
-
-    [dir='rtl'] & {
-        transform: rotate(180deg);
-    }
-}
-
-
-// first run
-
-.firefox-developer-firstrun .t-features {
-    .mzp-l-content {
-        padding-top: 0;
-    }
-}

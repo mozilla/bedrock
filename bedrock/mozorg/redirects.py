@@ -62,7 +62,6 @@ redirectpatterns = (
     redirect(r"^firefox/livebookmarks", "https://support.mozilla.org/kb/Live%20Bookmarks"),
     # bug 782333
     redirect(r"^firefox/backtoschool/?$", "https://addons.mozilla.org/firefox/collections/mozilla/back-to-school/"),
-    redirect(r"^firefox/backtoschool/firstrun/?$", "firefox.firstrun"),
     # bug 824126, 837942
     redirect(r"^ports/qtmozilla(?:/|/index\.html)?$", "https://wiki.mozilla.org/Qt"),
     redirect(r"^ports/os2/?$", "https://wiki.mozilla.org/Ports/os2"),

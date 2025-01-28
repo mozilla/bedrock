@@ -2,12 +2,6 @@
   "css": [
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-nightly.scss"
-      ],
-      "name": "nightly_whatsnew"
-    },
-    {
-      "files": [
         "css/mozorg/locales.scss"
       ],
       "name": "locales"
@@ -83,12 +77,6 @@
         "css/firefox/developer/developer.scss"
       ],
       "name": "firefox_developer"
-    },
-    {
-      "files": [
-        "css/firefox/developer/whatsnew-mdnplus.scss"
-      ],
-      "name": "firefox_developer_whatsnew_mdnplus"
     },
     {
       "files": [
@@ -254,84 +242,6 @@
         "css/mozorg/about.scss"
       ],
       "name": "about"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew.scss"
-      ],
-      "name": "firefox_whatsnew"
-    },
-    {
-      "files": [
-        "css/firefox/firstrun/nightly.scss"
-      ],
-      "name": "nightly_firstrun"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-130.scss"
-      ],
-      "name": "firefox_whatsnew_130"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-131-na.scss"
-      ],
-      "name": "firefox_whatsnew_131_na"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-131-eu.scss"
-      ],
-      "name": "firefox_whatsnew_131_eu"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-132.scss"
-      ],
-      "name": "firefox_whatsnew_132"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-133-vpn.scss"
-      ],
-      "name": "firefox_whatsnew_133_vpn"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-134.scss"
-      ],
-      "name": "firefox_whatsnew_134"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-133-newsletter.scss"
-      ],
-      "name": "firefox_whatsnew_133_newsletter"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-133-fakespot.scss"
-      ],
-      "name": "firefox_whatsnew_133_fakespot"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-133-donation.scss"
-      ],
-      "name": "firefox_whatsnew_133_donation"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-135beta.scss"
-      ],
-      "name": "firefox_whatsnew_135beta"
-    },
-    {
-      "files": [
-        "css/firefox/firefox-20th/firefox-20th.scss"
-      ],
-      "name": "firefox_20th"
     },
     {
       "files": [
@@ -573,13 +483,6 @@
     },
     {
       "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/welcome.scss"
-      ],
-      "name": "firefox_welcome"
-    },
-    {
-      "files": [
         "css/protocol/components/split.scss"
       ],
       "name": "protocol-split"
@@ -619,66 +522,6 @@
         "css/protocol/components/emphasis-box.scss"
       ],
       "name": "protocol-emphasis-box"
-    },
-    {
-      "files": [
-        "css/firefox/welcome10.scss"
-      ],
-      "name": "firefox_welcome_page10"
-    },
-    {
-      "files": [
-        "css/firefox/welcome11.scss"
-      ],
-      "name": "firefox_welcome_page11"
-    },
-    {
-      "files": [
-        "css/firefox/welcome12.scss"
-      ],
-      "name": "firefox_welcome_page12"
-    },
-    {
-      "files": [
-        "css/firefox/welcome13.scss"
-      ],
-      "name": "firefox_welcome_page13"
-    },
-    {
-      "files": [
-        "css/firefox/welcome14.scss"
-      ],
-      "name": "firefox_welcome_page14"
-    },
-    {
-      "files": [
-        "css/firefox/welcome15.scss"
-      ],
-      "name": "firefox_welcome_page15"
-    },
-    {
-      "files": [
-        "css/firefox/welcome16.scss"
-      ],
-      "name": "firefox_welcome_page16"
-    },
-    {
-      "files": [
-        "css/firefox/welcome17.scss"
-      ],
-      "name": "firefox_welcome_page17"
-    },
-    {
-      "files": [
-        "css/firefox/welcome18.scss"
-      ],
-      "name": "firefox_welcome_page18"
-    },
-    {
-      "files": [
-        "css/firefox/welcome19-to-24.scss"
-      ],
-      "name": "firefox_welcome_page19_to_24"
     },
     {
       "files": [
@@ -833,44 +676,6 @@
     },
     {
       "files": [
-        "js/base/send-to-device.es6.js",
-        "js/firefox/welcome/welcome4.es6.js"
-      ],
-      "name": "firefox_welcome_page4"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
-        "js/firefox/welcome/welcome6.es6.js"
-      ],
-      "name": "firefox_welcome_page6"
-    },
-    {
-      "files": [
-        "js/firefox/welcome/welcome8.js"
-      ],
-      "name": "firefox_welcome_page8"
-    },
-    {
-      "files": [
-        "js/firefox/welcome/welcome14.js"
-      ],
-      "name": "firefox_welcome_page14"
-    },
-    {
-      "files": [
-        "js/firefox/welcome/welcome16.js"
-      ],
-      "name": "firefox_welcome_page16"
-    },
-    {
-      "files": [
-        "js/firefox/welcome/welcome19-to-24.js"
-      ],
-      "name": "firefox_welcome_page19_to_24"
-    },
-    {
-      "files": [
         "js/firefox/download/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
@@ -980,12 +785,6 @@
     },
     {
       "files": [
-        "js/firefox/developer/whatsnew-mdnplus.js"
-      ],
-      "name": "firefox_developer_whatsnew_mdnplus"
-    },
-    {
-      "files": [
         "js/base/mozilla-fxa.js",
         "js/base/mozilla-fxa-init.js",
         "js/base/fxa-form-init.es6.js"
@@ -1009,84 +808,6 @@
         "js/firefox/all/all-init.es6.js"
       ],
       "name": "firefox_all"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew.es6.js"
-      ],
-      "name": "firefox_whatsnew"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-events.js"
-      ],
-      "name": "firefox_whatsnew_events"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/nightly.js"
-      ],
-      "name": "firefox_whatsnew_nightly"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-130.js"
-      ],
-      "name": "firefox_whatsnew_130"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-131.js"
-      ],
-      "name": "firefox_whatsnew_131"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-131-protections-dashboard.js"
-      ],
-      "name": "firefox_whatsnew_131_protections_dashboard"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-132.js"
-      ],
-      "name": "firefox_whatsnew_132"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-133-experiment-eu.es6.js"
-      ],
-      "name": "firefox_whatsnew_133_experiment_eu"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-133-experiment-na.es6.js"
-      ],
-      "name": "firefox_whatsnew_133_experiment_na"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-133-experiment-na-mobile.es6.js"
-      ],
-      "name": "firefox_whatsnew_133_experiment_na_mobile"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-133-experiment-donation.es6.js"
-      ],
-      "name": "firefox_whatsnew_133_experiment_donation"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-134-experiment.es6.js"
-      ],
-      "name": "firefox_whatsnew_134_experiment"
-    },
-    {
-      "files": [
-        "js/firefox/firefox-20th/firefox-20th.js"
-      ],
-      "name": "firefox_20th"
     },
     {
       "files": [
