@@ -45,6 +45,7 @@ class CMSLocaleFallbackMiddleware:
 
             path_ = request.path.lstrip("/")
             extracted_lang, _, _sub_path = path_.partition("/")
+            # (There will be a language-code prefix, thanks to earlier i18n middleware)
 
             # Is the requested path available in other languages, checked in
             # order of user preference?
@@ -68,24 +69,40 @@ class CMSLocaleFallbackMiddleware:
             if settings.LANGUAGE_CODE not in ranked_locales:
                 ranked_locales.append(settings.LANGUAGE_CODE)
 
-            # Make sure the locale-less _url_path we're trying to match starts
-            # with / to avoid partial matches
-            _url_path = f"/{_sub_path.lstrip('/')}"
+            _url_path = _sub_path.lstrip("/")
             if not _url_path.endswith("/"):
                 _url_path += "/"
 
             # Now try to get hold of all the pages that exist in the CMS for the extracted path
-            # that are also in a locale that is acceptable to the user + maybe the fallback locale
+            # that are also in a locale that is acceptable to the user or maybe the fallback locale.
+
+            # We do this by seeking full url_paths that are prefixed with /home/ (for the
+            # default loacle) or home-<locale_code> - Wagtail sort of 'denorms' the
+            # language code into the root of the page tree for each separate locale - eg:
+            # * /home/test-path/to/a/page for en-US
+            # * /home-fr/test-path/to/a/page for French
+
+            _possible_url_path_patterns = []
+            for locale_code in ranked_locales:
+                if locale_code == settings.LANGUAGE_CODE:
+                    root = "/home"
+                else:
+                    root = f"/home-{locale_code}"
+
+                _full_url_path = f"{root}/{_url_path}"
+                _possible_url_path_patterns.append(_full_url_path)
+
             cms_pages_with_viable_locales = Page.objects.filter(
-                url_path__endswith=_url_path,
-                locale__language_code__in=ranked_locales,
+                url_path__in=_possible_url_path_patterns,
+                # There's no extra value in filtering with locale__language_code__in=ranked_locales
+                # due to the locale code being embedded in the url_path strings
             )
 
             if cms_pages_with_viable_locales:
-                # OK, we have some candidate pages with that desired path and at least one of
+                # OK, we have some candidate pages with that desired path and at least one
                 # viable locale. Let's try to send the user to their most preferred one.
 
-                # Evaluate the queryset once and explore the results in memory
+                # Evaluate the queryset just once, then explore the results in memory
                 lookup = defaultdict(list)
                 for page in cms_pages_with_viable_locales:
                     lookup[page.locale.language_code].append(page)
@@ -101,8 +118,5 @@ class CMSLocaleFallbackMiddleware:
 
                 # Note: we can make this more efficient by leveraging the cached page tree
                 # (once the work to pre-cache the page tree lands)
-
-                # Fallback: send the user to the first one
-                return HttpResponseRedirect(cms_pages_with_viable_locales.first().url)
 
         return response

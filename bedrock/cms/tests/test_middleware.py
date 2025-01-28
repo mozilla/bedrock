@@ -23,7 +23,7 @@ def get_404_response(*args, **kwargs):
 def test_CMSLocaleFallbackMiddleware_200_response_means_middleware_does_not_fire(
     rf,
 ):
-    request = rf.get("/some/page/path/")
+    request = rf.get("/en-US/some/page/path/")
     middleware = CMSLocaleFallbackMiddleware(get_response=get_200_response)
     response = middleware(request)
     assert response.status_code == 200
@@ -33,7 +33,7 @@ def test_CMSLocaleFallbackMiddleware__no_accept_language_header(
     rf,
     tiny_localized_site,
 ):
-    request = rf.get("/test-page/child-page/")
+    request = rf.get("/es-MX/test-page/child-page/")  # page does not exist in es-MX
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
     response = middleware(request)
     assert response.status_code == 302
@@ -46,7 +46,7 @@ def test_CMSLocaleFallbackMiddleware_fallback_to_most_preferred_and_existing_loc
 ):
     # tiny_localized_site supports en-US, fr and pt-BR, but not de
     request = rf.get(
-        "/test-page/child-page/",
+        "/pl/test-page/child-page/",
         HTTP_ACCEPT_LANGUAGE="de-DE,pt-BR;q=0.8,sco;q=0.6",
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
@@ -61,7 +61,7 @@ def test_CMSLocaleFallbackMiddleware_en_US_selected_because_is_in_accept_languag
 ):
     # tiny_localized_site supports en-US, fr and pt-BR, but not de, so en-US should get picked
     request = rf.get(
-        "/test-page/child-page/",
+        "/pl/test-page/child-page/",
         HTTP_ACCEPT_LANGUAGE="de-DE,en-US;q=0.9,fr;q=0.8,sco;q=0.6",
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
@@ -78,7 +78,7 @@ def test_CMSLocaleFallbackMiddleware_en_US_is_selected_as_fallback_locale(
     # so we should fall back to en-US
     assert settings.LANGUAGE_CODE == "en-US"
     request = rf.get(
-        "/test-page/child-page/",
+        "/fr-CA//test-page/child-page/",
         HTTP_ACCEPT_LANGUAGE="de-DE,es-MX;q=0.8,sco;q=0.6",
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
@@ -96,7 +96,7 @@ def test_CMSLocaleFallbackMiddleware_url_path_without_trailing_slash(
 
     # tiny_localized_site supports en-US, fr and pt-BR, but not de
     request = rf.get(
-        "/test-page/child-page",
+        "/sv/test-page/child-page",
         HTTP_ACCEPT_LANGUAGE="de-DE,fr;q=0.8,sco;q=0.6",
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
@@ -110,7 +110,20 @@ def test_CMSLocaleFallbackMiddleware_404_when_no_page_exists_in_any_locale(
     tiny_localized_site,
 ):
     request = rf.get(
-        "/non-existent/page/",
+        "/en-GB/non-existent/page/",
+        HTTP_ACCEPT_LANGUAGE="de-DE,fr;q=0.8,sco;q=0.6",
+    )
+    middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
+    response = middleware(request)
+    assert response.status_code == 404
+
+
+def test_CMSLocaleFallbackMiddleware_404_when_no_page_exists_in_any_locale__more_exacting(
+    rf,
+    tiny_localized_site,
+):
+    request = rf.get(
+        "/en-GB/child-page/grandchild-page/",  # this doesn't match as a full path, only a sub-path
         HTTP_ACCEPT_LANGUAGE="de-DE,fr;q=0.8,sco;q=0.6",
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
@@ -123,7 +136,7 @@ def test_CMSLocaleFallbackMiddleware_accept_language_header_lang_codes_are_conve
     tiny_localized_site,
 ):
     request = rf.get(
-        "/test-page/child-page/",
+        "/en-GB/test-page/child-page/",
         HTTP_ACCEPT_LANGUAGE="de-DE,Pt-bR;q=0.8,sco;q=0.6",  # note misformatted pt-BR
     )
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
