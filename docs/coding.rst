@@ -173,12 +173,6 @@ you want to write modern syntax but still support older browsers.
     pages would benefit from. But please pick and choose wisely, and be
     concious of performance.
 
-For pages that are served to Firefox browsers only, such as ``/whatsnew``, it is
-also possible to write native modern JS syntax and serve that directly in production.
-Here there is no need to include the ``.es6.js`` file extension. Instead, you can
-simply use ``.js``. The rules that define which files can do this can be
-found in our `ESLint config <https://github.com/mozilla/bedrock/blob/main/eslint.config.js>`_.
-
 Writing URL Patterns
 --------------------
 
@@ -234,50 +228,6 @@ To get from URL to template path:
 .. note::
 
     ``mozorg`` is the app name for the home page and child pages related to Mozilla Corporation (i.e. About, Contact, Diversity).
-
-Whatsnew and Firstrun
-~~~~~~~~~~~~~~~~~~~~~
-
-These pages are specific to Firefox browsers, and only appear when a user updates or installs and runs a Firefox browser for the first time.
-The URL and template depend on what Firefox browser and version are in use.
-
-.. note::
-
-    There may be extra logic in the app's ``views.py`` file to change the template based on locale or geographic location as well.
-
-Firefox release
-^^^^^^^^^^^^^^^
-
-Version number is digits only.
-
-| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0/whatsnew/
-| Template path:  https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/whatsnew
-
-| Firstrun URL: https://www.mozilla.org/en-US/firefox/99.0/firstrun/
-| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/firstrun/firstrun.html
-
-Firefox Nightly
-^^^^^^^^^^^^^^^
-
-Version number is digits and **a1**.
-
-| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0a1/whatsnew/
-| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/nightly/whatsnew.html
-
-| Firstrun URL: https://www.mozilla.org/en-US/firefox/nightly/firstrun/
-| Template path:  https://github.com/mozilla/bedrock/tree/main/bedrock/firefox/templates/firefox/nightly
-
-Firefox Developer
-^^^^^^^^^^^^^^^^^
-
-Version number is digits and **a2**.
-
-| Whatsnew URL: https://www.mozilla.org/en-US/firefox/99.0a2/whatsnew/
-| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/whatsnew.html
-
-| Firstrun URL: https://www.mozilla.org/en-US/firefox/99.0a2/firstrun/
-| Template path:  https://github.com/mozilla/bedrock/blob/main/bedrock/firefox/templates/firefox/developer/firstrun.html
-
 
 Release Notes
 ~~~~~~~~~~~~~

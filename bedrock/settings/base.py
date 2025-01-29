@@ -495,10 +495,8 @@ NOINDEX_URLS = [
     r"^firefox/this-browser-comes-highly-recommended/",
     r"^firefox/nightly/notes/feed/$",
     r"^firefox.*/all/$",
-    r"^.+/(firstrun|whatsnew)/$",
     r"^m/",
     r"/system-requirements/$",
-    r".*/(firstrun|thanks)/$",
     r"^readiness/$",
     r"^healthz(-cron)?/$",
     r"^country-code\.json$",
@@ -1144,53 +1142,6 @@ DATA_CONSENT_COUNTRIES = [
     "SE",  # Sweden
     "CH",  # Switzerland
     "GB",  # United Kingdom
-]
-
-# VPN ==========================================================================================
-
-# Countries where VPN is available but subscriptions are only available through mobile app stores.
-VPN_MOBILE_SUB_COUNTRY_CODES = [
-    "AU",  # Australia
-    "BD",  # Bangladesh
-    "BR",  # Brazil
-    "CL",  # Chile
-    "CO",  # Colombia
-    "EG",  # Egypt
-    "GR",  # Greece
-    "ID",  # Indonesia
-    "IN",  # India
-    "KE",  # Kenya
-    "KR",  # South Korea
-    "MA",  # Morocco
-    "MX",  # Mexico
-    "NG",  # Nigeria
-    "NO",  # Norway
-    "SA",  # Saudi Arabia
-    "SN",  # Senegal
-    "TH",  # Thailand
-    "TR",  # Turkey
-    "TW",  # Taiwan
-    "UA",  # Ukraine
-    "UG",  # Uganda
-    "VN",  # Viet Nam
-    "ZA",  # South Africa
-]
-
-# Countries where we can't legally sell or advertise Mozilla VPN (e.g via /whatsnew)
-# See: https://github.com/mozilla/bedrock/issues/11572
-VPN_EXCLUDED_COUNTRY_CODES = [
-    "AE",  # United Arab Emirates
-    "BY",  # Belarus
-    "CN",  # China
-    "CU",  # Cuba
-    "IQ",  # Iraq
-    "IR",  # Iran
-    "KP",  # North Korea
-    "OM",  # Oman
-    "RU",  # Russia
-    "SD",  # Sudan
-    "SY",  # Syria
-    "TM",  # Turkmenistan
 ]
 
 

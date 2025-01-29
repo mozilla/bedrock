@@ -120,22 +120,6 @@ module.exports = [
         }
     },
     {
-        // JS files where we support native modern JS.
-        files: [
-            'media/js/firefox/welcome/**/*.js',
-            'media/js/firefox/whatsnew/**/*.js',
-            'media/js/firefox/firstrun/**/*.js'
-        ],
-        languageOptions: {
-            ecmaVersion: 'latest',
-            globals: customGlobals
-        },
-        rules: {
-            ...baseRules,
-            ...extendedRules
-        }
-    },
-    {
         // JS Jasmine test files.
         files: ['tests/unit/**/*.js'],
         languageOptions: {

@@ -91,18 +91,6 @@ redirectpatterns = (
     redirect(r"^firefox/android/nightly/all/?$", "firefox.all.platforms", to_args=["android-nightly"]),
     # bug 831810 & 1142583 & 1239960, 1329931
     redirect(r"^mwc/?$", "https://support.mozilla.org/products/firefox-os", re_flags="i"),
-    # bug 748503
-    redirect(r"^projects/firefox/[^/]+a[0-9]+/firstrun(?P<p>.*)$", "/firefox/nightly/firstrun{p}"),
-    # bug 1275483
-    redirect(r"^firefox/nightly/whatsnew/?", "firefox.nightly.firstrun"),
-    # bug 840814
-    redirect(
-        r"^projects/firefox"
-        r"(?P<version>/(?:\d+\.\d+\.?(?:\d+)?\.?(?:\d+)?(?:[a|b]?)(?:\d*)(?:pre)?(?:\d)?))"
-        r"(?P<page>/(?:firstrun|whatsnew))"
-        r"(?P<rest>/.*)?$",
-        "/firefox{version}{page}{rest}",
-    ),
     # bug 877165
     redirect(r"^firefox/connect", "mozorg.home"),
     # bug 657049, 1238851
@@ -143,8 +131,6 @@ redirectpatterns = (
     redirect(r"^mobile/sync", "firefox.features.sync"),
     # bug 882845
     redirect(r"^firefox/toolkit/download-to-your-devices", "firefox.download"),
-    # bug 1014823
-    redirect(r"^(products/)?firefox/releases/whatsnew/?$", "firefox.whatsnew"),
     # bug 929775
     redirect(
         r"^firefox/update",
@@ -171,7 +157,6 @@ redirectpatterns = (
     redirect(r"^firefox/hello/feedbacksurvey/?$", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", permanent=False),
     # Bug 1110927
     redirect(r"^(products/)?firefox/start/central\.html$", "firefox.download"),
-    redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
     # Bug 920212
     redirect(r"^firefox/fx(/.*)?", "firefox"),
     # Bug 979531, 1003727, 979664, 979654, 979660
@@ -212,8 +197,6 @@ redirectpatterns = (
     redirect(r"^firefox/vpat(?:\.html)?", "http://website-archive.mozilla.org/www.mozilla.org/firefox_vpat/firefox-vpat-3.html"),
     # bug 1017564
     redirect(r"^mobile/.+/system-requirements/?$", "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"),
-    # bug 858315
-    redirect(r"^projects/devpreview/firstrun(?:/(?:index\.html)?)?$", "/firefox/firstrun/"),
     redirect(
         r"^projects/devpreview/(?P<page>[\/\w\.-]+)?$",
         "http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/{page}",
@@ -252,17 +235,6 @@ redirectpatterns = (
     redirect(r"^firefox/personal/?$", "firefox.download"),
     # bug 845983
     redirect(r"^metrofirefox(?P<path>/.*)?$", "/firefox{path}"),
-    # bug 1003703, 1009630
-    redirect(
-        r"^firefox(?P<vers>/.+)/firstrun/eu/?$",
-        "/firefox{vers}/firstrun/",
-        query={
-            "utm_source": "direct",
-            "utm_medium": "none",
-            "utm_campaign": "redirect",
-            "utm_content": "eu-firstrun-redirect",
-        },
-    ),
     # bug 960543
     redirect(r"^firefox/(?P<vers>[23])\.0/eula", "/legal/eula/firefox-{vers}/"),
     # bug 1150713
@@ -479,17 +451,6 @@ redirectpatterns = (
     redirect(r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/hello/start/?$", "https://support.mozilla.org/kb/hello-status"),
     # bug 1299947, 1326383
     redirect(r"^firefox/channel/?$", firefox_channel(), cache_timeout=0),
-    # Bug 1277196
-    redirect(
-        r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/firstrun/learnmore/?$",
-        "firefox.features.index",
-        query={
-            "utm_source": "firefox-browser",
-            "utm_medium": "firefox-browser",
-            "utm_campaign": "redirect",
-            "utm_content": "learnmore-tab",
-        },
-    ),
     redirect(
         r"^firefox/windows-10/welcome/?$",
         "https://support.mozilla.org/kb/how-change-your-default-browser-windows-10",
@@ -599,9 +560,6 @@ redirectpatterns = (
     # issue 10182
     redirect(r"^/firefox/mobile/?$", "firefox.browsers.mobile.index"),
     redirect(r"^/exp/firefox/mobile/?$", "firefox.browsers.mobile.index"),
-    # issue 10292, 10590
-    redirect(r"^firefox/(?P<version>[^/]+)/whatsnew/(india|africa|france|en|all|china)/?$", "/firefox/{version}/whatsnew/"),
-    redirect(r"^firefox/whatsnew/(india|africa|france|en|all|china)/?$", "firefox.whatsnew"),
     # issue 10703
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
     # issue 10879

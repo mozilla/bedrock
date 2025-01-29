@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import json
-from unittest.mock import ANY, patch
+from unittest.mock import patch
 from urllib.parse import parse_qs
 
 from django.http import HttpResponse
@@ -474,15 +474,6 @@ class TestFirefoxGA(TestCase):
         view = views.DownloadView.as_view()
         response = view(req)
         self.assert_ga_attr(response)
-
-
-class TestFirefoxWelcomePage1(TestCase):
-    @patch("bedrock.firefox.views.l10n_utils.render")
-    def test_firefox_welcome_page1(self, render_mock):
-        req = RequestFactory().get("/firefox/welcome/1/")
-        req.locale = "en-US"
-        views.firefox_welcome_page1(req)
-        render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
 
 
 # Issue 13253: Ensure that Firefox can continue to refer to this URL.

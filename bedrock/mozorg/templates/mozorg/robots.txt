@@ -2,9 +2,6 @@ user-agent: *
 {% if disallow_all -%}
 disallow: /
 {% else -%}
-disallow: /*/firstrun/
-disallow: /*/newsletter/existing/
-disallow: /*/whatsnew/
 disallow: /*/etc/
 {% endif -%}
 Sitemap: {{ request.scheme }}://{{ request.get_host() }}/sitemap.xml
