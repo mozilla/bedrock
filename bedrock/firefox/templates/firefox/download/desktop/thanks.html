@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "firefox/new/desktop/base.html" %}
+{% extends "firefox/download/desktop/base.html" %}
 
 {# FxA automated tests use this attribute to verify the page #}
 {% block html_attrs %}data-test-fxa-template="firefox-download-thanks"{% endblock %}
@@ -102,5 +102,5 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_new_thanks') }}
+  {{ js_bundle('firefox_download_thanks') }}
 {% endblock %}

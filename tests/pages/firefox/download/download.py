@@ -8,7 +8,7 @@ from pages.base import BasePage
 
 
 class DownloadPage(BasePage):
-    _URL_TEMPLATE = "/{locale}/firefox/new/"
+    _URL_TEMPLATE = "/{locale}/firefox/download/"
 
     _download_button_locator = (By.CSS_SELECTOR, "#download-button-thanks > .download-link")
 

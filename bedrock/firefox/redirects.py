@@ -128,16 +128,12 @@ redirectpatterns = (
     redirect(r"^firefoxos", "/firefox/os/"),
     # bug 1438302
     no_redirect(r"^firefox/download/thanks/?$"),
-    # Bug 1006616
-    redirect(r"^download/?$", "firefox.new"),
-    # Bug 1409554
-    redirect(r"^(firefox|mobile)/download", "firefox.new"),
     # bug 837883
     redirect(r"^firefox/firefox\.exe$", "mozorg.home", re_flags="i"),
     # bug 821006
     redirect(r"^firefox/all(\.html)?$", "firefox.all"),
     # bug 727561
-    redirect(r"^firefox/search(?:\.html)?$", "firefox.new"),
+    redirect(r"^firefox/search(?:\.html)?$", "firefox.download"),
     # bug 860865, 1101220, issue 8096
     redirect(r"^firefox/all-(?:beta|rc)(?:/|\.html)?$", "firefox.all.platforms", to_args=["desktop-beta"]),
     redirect(r"^firefox/all-aurora(?:/|\.html)?$", "firefox.all.platforms", to_args=["desktop-developer"]),
@@ -146,13 +142,13 @@ redirectpatterns = (
     # bug 729329
     redirect(r"^mobile/sync", "firefox.features.sync"),
     # bug 882845
-    redirect(r"^firefox/toolkit/download-to-your-devices", "firefox.new"),
+    redirect(r"^firefox/toolkit/download-to-your-devices", "firefox.download"),
     # bug 1014823
     redirect(r"^(products/)?firefox/releases/whatsnew/?$", "firefox.whatsnew"),
     # bug 929775
     redirect(
         r"^firefox/update",
-        "firefox.new",
+        "firefox.download",
         query={
             "utm_source": "firefox-browser",
             "utm_medium": "firefox-browser",
@@ -164,9 +160,9 @@ redirectpatterns = (
     redirect(r"^(m|(firefox/)?mobile)/faq/?$", firefox_mobile_faq, query=False),
     # bug 884933
     redirect(r"^(m|(firefox/)?mobile)/platforms/?$", "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"),
-    redirect(r"^m/?$", "firefox.new"),
+    redirect(r"^m/?$", "firefox.download"),
     # Bug 730488 deprecate /firefox/all-older.html
-    redirect(r"^firefox/all-older\.html$", "firefox.new"),
+    redirect(r"^firefox/all-older\.html$", "firefox.download"),
     # bug 1120658
     redirect(r"^seamonkey-transition\.html$", "http://www-archive.mozilla.org/seamonkey-transition.html"),
     # Bug 1186373
@@ -174,7 +170,7 @@ redirectpatterns = (
     # Bug 1221739
     redirect(r"^firefox/hello/feedbacksurvey/?$", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", permanent=False),
     # Bug 1110927
-    redirect(r"^(products/)?firefox/start/central\.html$", "firefox.new"),
+    redirect(r"^(products/)?firefox/start/central\.html$", "firefox.download"),
     redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
     # Bug 920212
     redirect(r"^firefox/fx(/.*)?", "firefox"),
@@ -252,8 +248,8 @@ redirectpatterns = (
     # bug 876668
     redirect(r"^mobile/customize(?:/.*)?$", "firefox.browsers.mobile.index"),
     # bug 1211907
-    redirect(r"^firefox/independent/?$", "firefox.new"),
-    redirect(r"^firefox/personal/?$", "firefox.new"),
+    redirect(r"^firefox/independent/?$", "firefox.download"),
+    redirect(r"^firefox/personal/?$", "firefox.download"),
     # bug 845983
     redirect(r"^metrofirefox(?P<path>/.*)?$", "/firefox{path}"),
     # bug 1003703, 1009630
@@ -303,9 +299,9 @@ redirectpatterns = (
     redirect(r"^firefox/help/?$", "https://support.mozilla.org/"),
     redirect(r"^fxandroid/?$", "firefox.browsers.mobile.android"),
     # Bug 1255882
-    redirect(r"^firefox/personal", "firefox.new"),
-    redirect(r"^firefox/upgrade", "firefox.new"),
-    redirect(r"^firefox/ie", "firefox.new"),
+    redirect(r"^firefox/personal", "firefox.download"),
+    redirect(r"^firefox/upgrade", "firefox.download"),
+    redirect(r"^firefox/ie", "firefox.download"),
     # must go above the bug 1255882 stuff below
     redirect(r"^projects/xul/joy-of-xul\.html$", "https://developer.mozilla.org/docs/Mozilla/Tech/XUL/The_Joy_of_XUL"),
     redirect(r"^projects/xul/xre(old)?\.html$", "https://developer.mozilla.org/docs/Archive/Mozilla/XULRunner"),
@@ -433,16 +429,16 @@ redirectpatterns = (
     redirect(r"^quality(/.*)?$", "http://quality.mozilla.org/"),
     # Bug 654614 /blocklist -> addons.m.o/blocked
     redirect(r"^blocklist(/.*)?$", "https://addons.mozilla.org/blocked/"),
-    redirect(r"^products/firebird/compare/?$", "firefox.new"),
+    redirect(r"^products/firebird/compare/?$", "firefox.download"),
     redirect(r"^products/firebird/?$", "firefox"),
-    redirect(r"^products/firebird/download/$", "firefox.new"),
+    redirect(r"^products/firebird/download/$", "firefox.download"),
     redirect(r"^products/firefox/add-engines\.html$", "https://addons.mozilla.org/search-engines.php"),
     redirect(r"^products/firefox/all$", "/firefox/all/"),
     redirect(r"^products/firefox/all\.html$", "/firefox/all/"),
     redirect(r"^products/firefox/banners\.html$", "/contribute/friends/"),
     redirect(r"^products/firefox/buttons\.html$", "/contribute/friends/"),
-    redirect(r"^products/firefox/download", "firefox.new"),
-    redirect(r"^products/firefox/get$", "firefox.new"),
+    redirect(r"^products/firefox/download", "firefox.download"),
+    redirect(r"^products/firefox/get$", "firefox.download"),
     redirect(r"^products/firefox/live-bookmarks", "/firefox/features/"),
     redirect(r"^products/firefox/mirrors\.html$", "http://www-archive.mozilla.org/mirrors.html"),
     redirect(r"^products/firefox/releases/$", "/firefox/releases/"),
@@ -458,21 +454,21 @@ redirectpatterns = (
     redirect(r"^products/firefox/shelf\.html$", "https://blog.mozilla.org/press/awards/"),
     redirect(r"^products/firefox/smart-keywords\.html$", "https://support.mozilla.org/en-US/kb/Smart+keywords"),
     redirect(r"^products/firefox/support/$", "https://support.mozilla.org/"),
-    redirect(r"^products/firefox/switch", "firefox.new"),
+    redirect(r"^products/firefox/switch", "firefox.download"),
     redirect(r"^products/firefox/system-requirements", "/firefox/system-requirements/"),
     redirect(r"^products/firefox/tabbed-browsing", "firefox"),
     redirect(r"^products/firefox/text-zoom\.html$", "https://support.mozilla.org/kb/font-size-and-zoom-increase-size-of-web-pages"),
     redirect(r"^products/firefox/themes$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/themes\.html$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/ui-customize\.html$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
-    redirect(r"^products/firefox/upgrade", "firefox.new"),
+    redirect(r"^products/firefox/upgrade", "firefox.download"),
     redirect(r"^products/firefox/why/$", "firefox"),
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r"^products/firefox/start/?$", "http://start.mozilla.org"),
     # issue 9008
     redirect(r"^products/firefox(/.*)?$", "https://www.mozilla.org/products/"),
     # bug 1260423
-    redirect(r"^firefox/choose/?$", "firefox.new"),
+    redirect(r"^firefox/choose/?$", "firefox.download"),
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?", "firefox.browsers.mobile.index", query=False),
     # bug 1293539
@@ -519,13 +515,12 @@ redirectpatterns = (
     redirect(r"^firefox/landing/better", "/firefox/"),
     redirect(r"^firefox/(new/)?addon", "https://addons.mozilla.org"),
     redirect(r"^firefox/tips", "firefox.features.tips"),
-    redirect(r"^firefox/new/.+", "/firefox/new/"),
     redirect(r"^firefox/38\.0\.3/releasenotes/$", "/firefox/38.0.5/releasenotes/"),
     redirect(r"^firefox/default\.htm", "/firefox/"),
     redirect(r"^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$", "/firefox/android/{version}/releasenotes/"),
     redirect(r"^firefox/stats/", "/firefox/"),
     # bug 1416706
-    redirect(r"^firefox/desktop/?", "firefox.new"),
+    redirect(r"^firefox/desktop/?", "firefox.download"),
     # bug 1418500
     redirect(r"^firefox/android/?$", "firefox.browsers.mobile.android"),
     redirect(r"^firefox/focus/?$", "firefox.browsers.mobile.focus"),
@@ -562,7 +557,7 @@ redirectpatterns = (
     # bug 1577449
     redirect(r"^firefox/features/send-tabs/?", "https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices"),
     # issue 6512
-    redirect(r"^firefox/firefox\.html$", "firefox.new"),
+    redirect(r"^firefox/firefox\.html$", "firefox.download"),
     # issue 6979
     redirect(r"^firefoxfightsforyou/?", "firefox"),
     # issue 14240
@@ -596,7 +591,7 @@ redirectpatterns = (
     redirect(r"^firefox/rendonslenetplusnet/?$", "firefox"),
     redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox"),
     # issue 9148
-    redirect(r"^/firefox/campaign/?$", "firefox.new"),
+    redirect(r"^/firefox/campaign/?$", "firefox.download"),
     # issue 9788
     redirect(r"^/firefox/enterprise/signup(/.*)?$", "firefox.enterprise.index"),
     # issue 9953

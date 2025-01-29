@@ -804,7 +804,7 @@ button.mzp-c-cta-link {
     max-width: $content-xl + $layout-xl * 2;
 
     &::before {
-        background-image: url('/media/img/firefox/new/desktop/release-noodles.svg');
+        background-image: url('/media/img/firefox/download/desktop/release-noodles.svg');
         content: '';
         display: block;
         height: 212px;
@@ -871,7 +871,7 @@ button.mzp-c-cta-link {
 
 .t-compare .c-block-media-img {
     @include bidi(((background-position, top left, top right),));
-    background-image: url('/media/img/firefox/new/desktop/comparison-noodles-mr1.svg');
+    background-image: url('/media/img/firefox/download/desktop/comparison-noodles-mr1.svg');
     background-repeat: no-repeat;
     background-size: contain;
 
@@ -1061,12 +1061,12 @@ button.mzp-c-cta-link {
 
     .loaded & {
         background-image:
-            url('/media/img/firefox/new/desktop/features/one.svg'),
-            url('/media/img/firefox/new/desktop/features/two.svg'),
-            url('/media/img/firefox/new/desktop/features/oval-one.svg'),
-            url('/media/img/firefox/new/desktop/features/oval-two.svg'),
-            url('/media/img/firefox/new/desktop/features/rect-one.svg'),
-            url('/media/img/firefox/new/desktop/features/rect-two.svg');
+            url('/media/img/firefox/download/desktop/features/one.svg'),
+            url('/media/img/firefox/download/desktop/features/two.svg'),
+            url('/media/img/firefox/download/desktop/features/oval-one.svg'),
+            url('/media/img/firefox/download/desktop/features/oval-two.svg'),
+            url('/media/img/firefox/download/desktop/features/rect-one.svg'),
+            url('/media/img/firefox/download/desktop/features/rect-two.svg');
     }
 
     img {
@@ -1254,11 +1254,11 @@ button.mzp-c-cta-link {
 
             &,
             .android & {
-                @include at2x('/media/img/firefox/new/desktop/android.png', contain);
+                @include at2x('/media/img/firefox/download/desktop/android.png', contain);
             }
 
             .ios & {
-                @include at2x('/media/img/firefox/new/desktop/ios.png', contain);
+                @include at2x('/media/img/firefox/download/desktop/ios.png', contain);
             }
         }
 
@@ -1296,7 +1296,7 @@ button.mzp-c-cta-link {
 
 .c-desktop a {
     @include text-title-xs;
-    background-image: url('/media/img/firefox/new/desktop/mobile-arrow.svg');
+    background-image: url('/media/img/firefox/download/desktop/mobile-arrow.svg');
     background-position: bottom center;
     background-repeat: no-repeat;
     color: $color-purple-50;

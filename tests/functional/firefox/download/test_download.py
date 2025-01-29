@@ -4,7 +4,7 @@
 
 import pytest
 
-from pages.firefox.new.download import DownloadPage
+from pages.firefox.download.download import DownloadPage
 
 
 @pytest.mark.smoke

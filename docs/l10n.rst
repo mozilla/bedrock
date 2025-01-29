@@ -122,9 +122,9 @@ Our convention for string ID creation is the following:
 
 1. String IDs should be all lower-case alphanumeric characters.
 2. Words should be separated with hyphens.
-3. IDs should be prefixed with the name of the template file (e.g. ``firefox-new-skyline`` for ``firefox-new-skyline.html``)
+3. IDs should be prefixed with the name of the template file (e.g. ``firefox-download`` for ``firefox-download.html``)
 4. If you need to create a new string for the same place on a page and to transition to it as it is translated, you can
-   add a version suffix to the string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
+   add a version suffix to the string ID: e.g. ``firefox-download-main-page-title-v2``.
 5. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
    to the rules above.
 
@@ -236,7 +236,7 @@ Fallback
 ********
 
 If you need to create a new string for the same place on a page and would like to keep the old one as a fallback, you can add a version
-suffix to the new string ID: e.g. ``firefox-new-skyline-main-page-title-v2``.
+suffix to the new string ID: e.g. ``firefox-download-main-page-title-v2``.
 
 .. code-block:: fluent
 
@@ -841,9 +841,9 @@ when a template has messaging targeting one particular locale, creating a
 locale-specific template may be a good choice.
 
 Locale-specific templates function simply by naming convention. For example, to
-create a version of ``/firefox/new.html`` specifically for the ``de`` locale,
-you would create a new template named ``/firefox/new.de.html``. This template
-can either extend ``/firefox/new.html`` and override only certain blocks, or be
+create a version of ``/firefox/download.html`` specifically for the ``de`` locale,
+you would create a new template named ``/firefox/download.de.html``. This template
+can either extend ``/firefox/download.html`` and override only certain blocks, or be
 entirely unique.
 
 When a request is made for a particular page, bedrock's rendering function

@@ -22,9 +22,9 @@ import requests
 paths = [
     "/en-US/firefox/126.0/whatsnew/",
     "/en-US/firefox/",
-    "/en-US/firefox/new/?reason=manual-update",
+    "/en-US/firefox/download/?reason=manual-update",
     "/en-US/firefox/download/thanks/",
-    "/en-US/firefox/new/?reason=outdated",
+    "/en-US/firefox/download/?reason=outdated",
     "/en-US/firefox/features/",
     "/en-US/firefox/all/",
     "/en-US/firefox/welcome/18/",

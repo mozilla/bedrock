@@ -216,7 +216,7 @@ pages.
 **The following pages get enhanced experiences for a longer list of user agents:**
 
   * ``/firefox/``
-  * ``/firefox/new/``
+  * ``/firefox/download/``
   * ``/firefox/download/thanks/``
 
 .. Note::

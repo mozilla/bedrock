@@ -7,7 +7,7 @@
 {% from "macros.html" import google_play_button with context %}
 {% from "macros-protocol.html" import split with context %}
 
-{% extends "firefox/new/basic/base.html" %}
+{% extends "firefox/download/basic/base.html" %}
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
@@ -29,7 +29,7 @@
 
 {# hero #}
 {% set hero_title = hero_title or ftl('firefox-new-get-the-latest-firefox') %}
-{% set hero_img = hero_img or 'img/firefox/new/basic/browser-window.svg' %}
+{% set hero_img = hero_img or 'img/firefox/download/basic/browser-window.svg' %}
 
 {# small links #}
 {% set small_advanced = small_advanced or ftl('firefox-new-advanced-install-options') %}
@@ -40,7 +40,7 @@
 
 {% block extrahead %}
   {{ super() }}
-  {{ css_bundle('firefox_new_download') }}
+  {{ css_bundle('firefox_download') }}
   {{ css_bundle('protocol-split') }}
 
   {% if show_firefox_app_store_banner %}

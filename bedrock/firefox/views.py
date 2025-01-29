@@ -444,10 +444,10 @@ class FirstrunView(L10nTemplateView):
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
-        new_page_url = urlparams(reverse("firefox.new"), reason="outdated")
+        new_page_url = urlparams(reverse("firefox.download"), reason="outdated")
         channel = detect_channel(version)
 
-        # redirect legacy /firstrun URLs to /firefox/new/
+        # redirect legacy /firstrun URLs to /firefox/download/
         if channel != "developer":
             return HttpResponsePermanentRedirect(new_page_url)
         elif channel == "developer" and not show_57_dev_firstrun(version):
@@ -694,10 +694,10 @@ class WhatsnewView(L10nTemplateView):
 
 class DownloadThanksView(L10nTemplateView):
     ftl_files_map = {
-        "firefox/new/basic/thanks.html": ["firefox/new/download"],
-        "firefox/new/basic/thanks_direct.html": ["firefox/new/download"],
-        "firefox/new/desktop/thanks.html": ["firefox/new/desktop"],
-        "firefox/new/desktop/thanks_direct.html": ["firefox/new/desktop"],
+        "firefox/download/basic/thanks.html": ["firefox/new/download"],
+        "firefox/download/basic/thanks_direct.html": ["firefox/new/download"],
+        "firefox/download/desktop/thanks.html": ["firefox/new/desktop"],
+        "firefox/download/desktop/thanks_direct.html": ["firefox/new/desktop"],
     }
     activation_files = [
         "firefox/new/download",
@@ -725,22 +725,22 @@ class DownloadThanksView(L10nTemplateView):
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
             if source == "direct":
-                template = "firefox/new/desktop/thanks_direct.html"
+                template = "firefox/download/desktop/thanks_direct.html"
             else:
-                template = "firefox/new/desktop/thanks.html"
+                template = "firefox/download/desktop/thanks.html"
         else:
             if source == "direct":
-                template = "firefox/new/basic/thanks_direct.html"
+                template = "firefox/download/basic/thanks_direct.html"
             else:
-                template = "firefox/new/basic/thanks.html"
+                template = "firefox/download/basic/thanks.html"
 
         return [template]
 
 
-class NewView(L10nTemplateView):
+class DownloadView(L10nTemplateView):
     ftl_files_map = {
-        "firefox/new/basic/base_download.html": ["firefox/new/download"],
-        "firefox/new/desktop/download.html": ["firefox/new/desktop"],
+        "firefox/download/basic/base_download.html": ["firefox/new/download"],
+        "firefox/download/desktop/download.html": ["firefox/new/desktop"],
     }
     activation_files = [
         "firefox/new/download",
@@ -753,7 +753,7 @@ class NewView(L10nTemplateView):
     def get(self, *args, **kwargs):
         # Remove legacy query parameters (Bug 1236791)
         if self.request.GET.get("product", None) or self.request.GET.get("os", None):
-            return HttpResponsePermanentRedirect(reverse("firefox.new"))
+            return HttpResponsePermanentRedirect(reverse("firefox.download"))
 
         scene = self.request.GET.get("scene", None)
         if scene == "2":
@@ -795,56 +795,11 @@ class NewView(L10nTemplateView):
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            template = "firefox/new/desktop/download.html"
+            template = "firefox/download/desktop/download.html"
         else:
-            template = "firefox/new/basic/base_download.html"
+            template = "firefox/download/basic/base_download.html"
 
         return [template]
-
-
-class PlatformViewLinux(L10nTemplateView):
-    # the base_platform template works with either platform.ftl or download.ftl active
-    template_name = "firefox/new/basic/download_linux.html"
-
-    ftl_files_map = {
-        "firefox/new/basic/download_linux.html": [
-            "firefox/new/platform",
-            "firefox/new/download",
-        ],
-    }
-
-    # all active locales, this will make the lang switcher work properly
-    activation_files = ["firefox/new/download", "firefox/new/platform"]
-
-
-class PlatformViewMac(L10nTemplateView):
-    # the base_platform template works with either platform.ftl or download.ftl active
-    template_name = "firefox/new/basic/download_mac.html"
-
-    ftl_files_map = {
-        "firefox/new/basic/download_mac.html": [
-            "firefox/new/platform",
-            "firefox/new/download",
-        ],
-    }
-
-    # all active locales, this will make the lang switcher work properly
-    activation_files = ["firefox/new/download", "firefox/new/platform"]
-
-
-class PlatformViewWindows(L10nTemplateView):
-    # the base_platform template works with either platform.ftl or download.ftl active
-    template_name = "firefox/new/basic/download_windows.html"
-
-    ftl_files_map = {
-        "firefox/new/basic/download_windows.html": [
-            "firefox/new/platform",
-            "firefox/new/download",
-        ],
-    }
-
-    # all active locales, this will make the lang switcher work properly
-    activation_files = ["firefox/new/download", "firefox/new/platform"]
 
 
 @require_safe

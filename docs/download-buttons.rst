@@ -28,7 +28,7 @@ Which button should I use?
 --------------------------
 
 A good rule of thumb is to always use ``download_firefox_thanks()`` for regular landing pages (such as
-``/firefox/new/``) where the main release version of Firefox is the product being offered. For pages pages
+``/firefox/download/``) where the main release version of Firefox is the product being offered. For pages pages
 that require direct download links, or promote pre-release products (such as ``/firefox/channel/``)
 then ``download_firefox()`` should be used instead.
 

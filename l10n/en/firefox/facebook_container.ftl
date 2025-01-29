@@ -13,8 +13,8 @@ facebook-container-only-available-for-desktop = The { -brand-name-facebook-conta
 facebook-container-brand-name-firefox-browser = { -brand-name-firefox-browser }
 
 # Variables:
-#   $link_copy (string) - www.mozilla.org/firefox/new/
-#   $url (url) - link to https://www.mozilla.org/firefox/new/
+#   $link_copy (string) - www.mozilla.org/firefox/download/
+#   $url (url) - link to https://www.mozilla.org/firefox/download/
 facebook-container-visit-to-get-for-desktop = Visit <a href="{ $url }">{ $link_copy }</a> to get { -brand-name-firefox } for Desktop.
 
 facebook-container-get-firefox-android-ios = Get { -brand-name-firefox } for { -brand-name-android } and { -brand-name-ios } now.

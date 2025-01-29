@@ -75,13 +75,13 @@
           'height': '233'
         }
       ) }}
-      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.download') }}" data-cta-text="Desktop">{{ ftl('firefox-browsers-desktop') }}</a></h2>
       <p>{{ ftl('firefox-browsers-seriously-private-browsing') }}</p>
 
       <p id="desktop-download">
         {# Old IE users need to click a download button, the JS on the thank you page doesn't get them the right download if we send them there directly #}
         <!--[if IE]>
-          <a href="{{ url('firefox.new') }}" data-cta-text="Firefox Desktop">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
+          <a href="{{ url('firefox.download') }}" data-cta-text="Firefox Desktop">{{ ftl('firefox-browsers-download-for-desktop') }}</a>
         <![endif]-->
         <!--[if !IE]><!-->
           {# Download link should be locale neutral see issue 7982 #}
@@ -89,7 +89,7 @@
         <!--<![endif]-->
       </p>
 
-      <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}" data-cta-text="Desktop Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.download') }}" data-cta-text="Desktop Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
 
     <div class="c-landing-grid-item">

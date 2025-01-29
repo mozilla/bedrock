@@ -92,53 +92,53 @@
     },
     {
       "files": [
-        "css/firefox/new/basic/download.scss"
+        "css/firefox/download/basic/download.scss"
       ],
-      "name": "firefox_new_download"
+      "name": "firefox_download"
     },
     {
       "files": [
-        "css/firefox/new/desktop/download.scss"
+        "css/firefox/download/desktop/download.scss"
       ],
       "name": "firefox_desktop_download"
     },
     {
       "files": [
-        "css/firefox/new/desktop/ie9.scss"
+        "css/firefox/download/desktop/ie9.scss"
       ],
       "name": "firefox_desktop_download_ie9"
     },
     {
       "files": [
-        "css/firefox/new/desktop/ie8.scss"
+        "css/firefox/download/desktop/ie8.scss"
       ],
       "name": "firefox_desktop_download_ie8"
     },
     {
       "files": [
-        "css/firefox/new/common/thanks-messaging.scss",
-        "css/firefox/new/desktop/thanks.scss"
+        "css/firefox/download/common/thanks-messaging.scss",
+        "css/firefox/download/desktop/thanks.scss"
       ],
       "name": "firefox_desktop_download_thanks"
     },
     {
       "files": [
-        "css/firefox/new/desktop/thanks-ie.scss"
+        "css/firefox/download/desktop/thanks-ie.scss"
       ],
       "name": "firefox_desktop_download_thanks_ie"
     },
     {
       "files": [
-        "css/firefox/new/common/thanks-messaging.scss",
-        "css/firefox/new/basic/thanks.scss"
+        "css/firefox/download/common/thanks-messaging.scss",
+        "css/firefox/download/basic/thanks.scss"
       ],
-      "name": "firefox_new_thanks"
+      "name": "firefox_download_thanks"
     },
     {
       "files": [
-        "css/firefox/new/basic/ie.scss"
+        "css/firefox/download/basic/ie.scss"
       ],
-      "name": "firefox_new_ie"
+      "name": "firefox_download_ie"
     },
     {
       "files": [
@@ -871,23 +871,23 @@
     },
     {
       "files": [
-        "js/firefox/new/desktop/download.js"
+        "js/firefox/download/desktop/download.js"
       ],
       "name": "firefox_desktop_download"
     },
     {
       "files": [
-        "js/firefox/new/common/thanks.js",
-        "js/firefox/new/common/thanks-init.js"
+        "js/firefox/download/common/thanks.js",
+        "js/firefox/download/common/thanks-init.js"
       ],
-      "name": "firefox_new_thanks"
+      "name": "firefox_download_thanks"
     },
     {
       "files": [
-        "js/firefox/new/common/thanks.js",
-        "js/firefox/new/common/thanks-direct.es6.js"
+        "js/firefox/download/common/thanks.js",
+        "js/firefox/download/common/thanks-direct.es6.js"
       ],
-      "name": "firefox_new_thanks_direct"
+      "name": "firefox_download_thanks_direct"
     },
     {
       "files": [

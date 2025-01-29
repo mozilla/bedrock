@@ -21,7 +21,7 @@ the-firefox-browser = The { -brand-name-firefox-browser } is the only major brow
 how-do-i = How do I get the { -brand-name-firefox-browser }?
 
 # Variables:
-# $url (url) - link to https://www.mozilla.org/firefox/new/
+# $url (url) - link to https://www.mozilla.org/firefox/download/
 # $url2 (url) - link to https://www.mozilla.org/firefox/windows/
 # $url3 (url) - link to https://www.mozilla.org/firefox/mac/
 # $url4 (url) - link to https://www.mozilla.org/firefox/linux/
@@ -45,7 +45,7 @@ related-questions-better = Related questions: is { -brand-name-firefox } better 
 is-firefox-safe-download = Is { -brand-name-firefox } safe to download?
 
 # Variables:
-# $url (url) - link to https://www.mozilla.org/firefox/new/
+# $url (url) - link to https://www.mozilla.org/firefox/download/
 
 protecting-your-privacy = Protecting your privacy is our number one priority, and we ensure that installing { -brand-name-firefox } on your devices is completely safe — but always make sure you are downloading from a trusted { -brand-name-mozilla }/{ -brand-name-firefox } site, like <a href="{ $url }">our download page.</a>
 

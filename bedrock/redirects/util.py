@@ -187,7 +187,7 @@ def redirect(
         redirect(r'projects/$', 'mozorg.product'),
         redirect(r'^projects/seamonkey$', 'mozorg.product', locale_prefix=False),
         redirect(r'apps/$', 'https://marketplace.firefox.com'),
-        redirect(r'firefox/$', 'firefox.new', name='firefox'),
+        redirect(r'firefox/$', 'firefox.download', name='firefox'),
         redirect(r'the/dude$', 'abides', query={'aggression': 'not_stand'}),
     ]
     """

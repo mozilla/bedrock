@@ -8,7 +8,6 @@ from random import randrange
 
 from django import forms
 from django.forms import widgets
-from django.urls import reverse
 from django.utils.safestring import mark_safe
 
 from lib.l10n_utils.fluent import ftl
@@ -32,7 +31,7 @@ class PrivacyWidget(widgets.CheckboxInput):
         attrs["required"] = "required"
         input_txt = super().render(name, value, attrs)
 
-        policy_txt = ftl("newsletter-form-im-okay-with-mozilla", url=reverse("privacy.notices.websites"))
+        policy_txt = ftl("newsletter-form-im-okay-with-mozilla", url="https://www.mozilla.org/privacy/websites/")
 
         return mark_safe(f"""<label for="{attrs["id"]}" class="privacy-check-label">{input_txt}<span class="title">{policy_txt}</span></label>""")
 

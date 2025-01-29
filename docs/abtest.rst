@@ -77,7 +77,7 @@ extra js include in a `switch <http://bedrock.readthedocs.io/en/latest/install.h
 
     {% block experiments %}
       {% if switch('experiment-berlin-video', ['de']) %}
-        {{ js_bundle('firefox_new_berlin_experiment') }}
+        {{ js_bundle('firefox_download_berlin_experiment') }}
       {% endif %}
     {% endblock %}
 

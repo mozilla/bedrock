@@ -14,7 +14,7 @@ $image-path: '/media/protocol/img';
 }
 
 main {
-    @include at2x('/media/img/firefox/new/basic/thanks-bg.png', 492px, 433px);
+    @include at2x('/media/img/firefox/download/basic/thanks-bg.png', 492px, 433px);
     @include bidi(((background-position, top left -400px, top right -400px),));
     background-repeat: no-repeat;
     min-height: 50vh;
@@ -32,7 +32,7 @@ main {
     }
 
     html[dir='rtl'] & {
-        @include at2x('/media/img/firefox/new/basic/thanks-bg-rtl.png', 492px, 433px);
+        @include at2x('/media/img/firefox/download/basic/thanks-bg-rtl.png', 492px, 433px);
     }
 }
 

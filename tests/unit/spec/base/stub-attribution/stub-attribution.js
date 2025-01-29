@@ -633,7 +633,7 @@ describe('stub-attribution.js', function () {
             const data = {
                 referrer: '',
                 ua: 'chrome',
-                experiment: 'firefox-new',
+                experiment: 'firefox-download',
                 variation: 1,
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
@@ -645,7 +645,7 @@ describe('stub-attribution.js', function () {
             );
             spyOn(window._SearchParams.prototype, 'get').and.callFake(
                 function (key) {
-                    return key === 'experiment' ? 'firefox-new' : 1;
+                    return key === 'experiment' ? 'firefox-download' : 1;
                 }
             );
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue(
@@ -680,7 +680,7 @@ describe('stub-attribution.js', function () {
             );
             spyOn(window._SearchParams.prototype, 'get').and.callFake(
                 function (key) {
-                    return key === 'experiment' ? 'firefox-new' : 1;
+                    return key === 'experiment' ? 'firefox-download' : 1;
                 }
             );
             spyOn(Mozilla.StubAttribution, 'getUserAgent').and.returnValue(

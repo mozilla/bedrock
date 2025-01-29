@@ -45,7 +45,7 @@ best-browser-one-easy-way-to-check = One easy way to check is to visit a browser
 best-browser-choosing-the-best-browser = Choosing the best browser for you is a lot like choosing a home. You want to explore your options, do some research and make a decision based on what’s important to you.
 
 # Variables:
-# $privacy (url) - link to https://www.mozilla.org/firefox/new/
+# $privacy (url) - link to https://www.mozilla.org/firefox/download/
 best-browser-at-firefox-weve-worked = At <a href="{ $firefox }">{ -brand-name-firefox }</a>, we’ve worked hard to build a browser that is twice as fast as before and gives users more control over their online life.
 
 best-browser-take-control-of-your = Take control of your browser.
