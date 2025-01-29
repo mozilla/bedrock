@@ -4,7 +4,13 @@
 
 ### URL: https://www-dev.allizom.org/firefox/features/adblocker/
 
+# Breadcrumb navigation
+features-adblocker-ad-blocking = Ad Blocking
+
+# Page Title
 features-adblocker-meta-title = About Ad Blockers - { -brand-name-firefox }
+
+# HTML page description
 features-adblocker-meta-desc = Find out how ad blockers work, what they can do for you, and how { -brand-name-firefox } protects you from trackers and cookies.
 features-adblocker-the-ad-blocker-a-tool = The ad blocker – a tool for a personalized & focused browsing experience.
 features-adblocker-in-todays-digital-world = In today’s digital world, the web can be busy and cluttered. Ad blockers are powerful tools that put you in control of your browsing experience, letting you decide what appears on your screen.
