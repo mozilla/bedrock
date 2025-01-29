@@ -17,6 +17,7 @@ class Position(models.Model):
     department = models.CharField(max_length=100)
     location = models.CharField(max_length=500)
     job_locations = models.CharField(max_length=500, default="")
+    # TODO remove this as there is more than just mofo
     is_mofo = models.BooleanField(default=False)
     description = models.TextField()
     apply_url = models.URLField()
@@ -26,6 +27,11 @@ class Position(models.Model):
     # Store the Greenhouse internal ID for grouping the same jobs with multiple
     # listings per location.
     internal_job_id = models.PositiveIntegerField()
+
+    NON_MOCO_DEPTS = [
+        "Mozilla Foundation",
+        "MZLA/Thunderbird",
+    ]
 
     class Meta:
         ordering = (
@@ -42,6 +48,10 @@ class Position(models.Model):
     @classmethod
     def _get_cache_key(cls, name):
         return f"careers_position__{name}"
+
+    @property
+    def is_moco(self):
+        return self.department not in self.NON_MOCO_DEPTS
 
     @property
     def location_list(self):
