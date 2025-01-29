@@ -3,10 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import re
-from datetime import datetime
-from random import randrange
 
-from django import forms
 from django.forms import widgets
 from django.utils.safestring import mark_safe
 
@@ -36,58 +33,5 @@ class PrivacyWidget(widgets.CheckboxInput):
         return mark_safe(f"""<label for="{attrs["id"]}" class="privacy-check-label">{input_txt}<span class="title">{policy_txt}</span></label>""")
 
 
-class HoneyPotWidget(widgets.TextInput):
-    """Render a text field to (hopefully) trick bots. Will be used on many pages."""
-
-    def render(self, name, value, attrs=None, renderer=None):
-        honeypot_txt = ftl("newsletter-form-leave-this-field-empty")
-        # semi-randomized in case we have more than one per page.
-        # this is maybe/probably overthought
-        honeypot_id = "office-fax-" + str(randrange(1001)) + "-" + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
-        return mark_safe(
-            '<div class="super-priority-field">'
-            '<label for="%s">%s</label>'
-            '<input type="text" name="office_fax" id="%s">'
-            "</div>" % (honeypot_id, honeypot_txt, honeypot_id)
-        )
-
-
-class URLInput(widgets.TextInput):
-    input_type = "url"
-
-
 class EmailInput(widgets.TextInput):
     input_type = "email"
-
-
-class DateInput(widgets.DateInput):
-    input_type = "date"
-
-
-class TimeInput(widgets.TimeInput):
-    input_type = "time"
-
-
-class TelInput(widgets.TextInput):
-    input_type = "tel"
-
-
-class NumberInput(widgets.TextInput):
-    input_type = "number"
-
-
-class MiecoEmailForm(forms.Form):
-    """
-    A form class used to validate the data coming from the MIECO site.
-    """
-
-    MESSAGE_ID_CHOICES = (
-        ("innovations", "innovations"),
-        ("mieco", "mieco"),
-    )
-
-    name = forms.CharField(required=False, max_length=100)
-    email = forms.EmailField()
-    interests = forms.CharField(required=False, max_length=100)
-    description = forms.CharField(required=False, max_length=750)
-    message_id = forms.ChoiceField(required=False, choices=MESSAGE_ID_CHOICES)

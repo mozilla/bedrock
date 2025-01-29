@@ -12,7 +12,7 @@
 {% block article_content %}
 <p>{{ ftl('features-sync-with-firefox-you-can-pick-up-where') }}</p>
 
-{% set fxa = 'href="%s"'|safe|format(url('mozorg.account')) %}
+{% set fxa = 'href="%s"'|safe|format("https://www.mozilla.org/" + LANG + "/account/") %}
 <p>{{ ftl('features-sync-sign-up-for-a-free-mozilla-account-v3', fxa=fxa) }}</p>
 
 <figure class="c-article-figure">

@@ -9,7 +9,7 @@ from django.core.management.base import BaseCommand
 from bedrock.utils.git import GitRepo
 
 FLUENT_L10N_UPDATE_PARAMS = {
-    "Mozorg": dict(
+    "Firefox.com": dict(
         path=settings.FLUENT_REPO_PATH,
         remote_url=settings.FLUENT_REPO_URL,
         branch_name=settings.FLUENT_REPO_BRANCH,
