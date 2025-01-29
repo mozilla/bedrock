@@ -122,7 +122,7 @@ Our convention for string ID creation is the following:
 
 1. String IDs should be all lower-case alphanumeric characters.
 2. Words should be separated with hyphens.
-3. IDs should be prefixed with the name of the template file (e.g. ``firefox-downloade`` for ``firefox-download.html``)
+3. IDs should be prefixed with the name of the template file (e.g. ``firefox-download`` for ``firefox-download.html``)
 4. If you need to create a new string for the same place on a page and to transition to it as it is translated, you can
    add a version suffix to the string ID: e.g. ``firefox-download-main-page-title-v2``.
 5. The ID should be as descriptive as possible to make sense to the developer, but could be anything as long as it adheres
