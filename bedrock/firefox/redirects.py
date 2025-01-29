@@ -92,7 +92,7 @@ redirectpatterns = (
     # bug 831810 & 1142583 & 1239960, 1329931
     redirect(r"^mwc/?$", "https://support.mozilla.org/products/firefox-os", re_flags="i"),
     # bug 877165
-    redirect(r"^firefox/connect", "mozorg.home"),
+    redirect(r"^firefox/connect", "https://www.mozilla.org/"),
     # bug 657049, 1238851
     redirect(r"^firefox/accountmanager/?$", "https://developer.mozilla.org/Persona"),
     # Bug 1009247, 1101220, 1299947, 1314603, 1328409
@@ -117,7 +117,7 @@ redirectpatterns = (
     # bug 1438302
     no_redirect(r"^firefox/download/thanks/?$"),
     # bug 837883
-    redirect(r"^firefox/firefox\.exe$", "mozorg.home", re_flags="i"),
+    redirect(r"^firefox/firefox\.exe$", "https://www.mozilla.org/", re_flags="i"),
     # bug 821006
     redirect(r"^firefox/all(\.html)?$", "firefox.all"),
     # bug 727561
@@ -514,7 +514,7 @@ redirectpatterns = (
     # issue 9391
     redirect(r"^/firefox/election/?$", "firefox"),
     # fxa
-    redirect(r"^firefox/accounts/features/?", "mozorg.account"),
+    redirect(r"^firefox/accounts/features/?", "https://www.mozilla.org/account/"),
     # bug 1577449
     redirect(r"^firefox/features/send-tabs/?", "https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices"),
     # issue 6512
@@ -522,10 +522,10 @@ redirectpatterns = (
     # issue 6979
     redirect(r"^firefoxfightsforyou/?", "firefox"),
     # issue 14240
-    redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
-    redirect(r"^firefox/accounts/?$", "mozorg.account"),
+    redirect(r"^/exp/firefox/accounts/?$", "https://www.mozilla.org/account/"),
+    redirect(r"^firefox/accounts/?$", "https://www.mozilla.org/account/"),
     # issue 7210
-    redirect(r"^firefox/account/?$", "mozorg.account"),
+    redirect(r"^firefox/account/?$", "https://www.mozilla.org/account/"),
     # issue 7436
     redirect(r"^firefox/feedback/?$", "https://support.mozilla.org/questions/new/desktop"),
     # issue 7491
@@ -563,7 +563,7 @@ redirectpatterns = (
     # issue 10703
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
     # issue 10879
-    redirect(r"^/exp/?$", "mozorg.home"),
+    redirect(r"^/exp/?$", "https://www.mozilla.org/"),
     # issue 12107
     redirect(r"^/firefox/families/?$", "firefox.family.index"),
     redirect(r"^firefox/features/memory/?$", "firefox.features.fast"),
@@ -571,7 +571,7 @@ redirectpatterns = (
     redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
     redirect(r"^firefox/sync/?$", "firefox.features.sync"),
     # issue 13732
-    redirect(r"^firefox/welcome/3/?$", "mozorg.account"),
+    redirect(r"^firefox/welcome/3/?$", "https://www.mozilla.org/account/"),
     redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
     # issue 14172
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),

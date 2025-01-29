@@ -4,7 +4,7 @@
 
 // IMPORTANT: This CSS is only for the test/temporary simple_rich_text_page.html
 // template. When we use CMS-based pages in future, they'll be interwoven into
-// mozorg, firefox, etc, and so can use the CSS and JS bundles for those areas
+// app-specific code, and so can use the CSS and JS bundles for those areas
 // of the site.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
