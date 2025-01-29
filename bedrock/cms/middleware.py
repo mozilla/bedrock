@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 class CMSLocaleFallbackMiddleware:
     """Middleware to seek a viable translation in the CMS of a request that
     404ed, based on the user's Accept-Language headers, ultimately
-    trying settings.LANGAUGE_CODE as the last effort
+    trying settings.LANGUAGE_CODE as the last effort
 
     This has to exist because Wagtail doesn't fail over to the default/any
     other locale if a request to /some-locale/some/path/ 404s
@@ -77,7 +77,7 @@ class CMSLocaleFallbackMiddleware:
             # that are also in a locale that is acceptable to the user or maybe the fallback locale.
 
             # We do this by seeking full url_paths that are prefixed with /home/ (for the
-            # default loacle) or home-<locale_code> - Wagtail sort of 'denorms' the
+            # default locale) or home-<locale_code> - Wagtail sort of 'denorms' the
             # language code into the root of the page tree for each separate locale - eg:
             # * /home/test-path/to/a/page for en-US
             # * /home-fr/test-path/to/a/page for French
