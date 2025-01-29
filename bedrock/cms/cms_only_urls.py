@@ -7,8 +7,11 @@
 # They are named so that they can be looked up via our url() jinja
 # helper, even though the actual page exists in the CMS only.
 #
-# These URLs will/must have matching routes set up in the CMS pages
-# else they will lead to a 404 from the CMS.
+# These URLs must have matching routes set up in the CMS pages
+# else they can lead to a 404 from the CMS. If the CMS has a translated
+# version of that page available in a locale that the user prefers
+# (via their Accept-Language header) or in the default
+# settings.LANGUAGE_CODE locale, the user will be redirected to that.
 #
 # Note that all URL routes defined here should point to the
 # dummy_view function, which never gets called because this
@@ -17,13 +20,15 @@
 
 from django.urls import path
 
+from bedrock.base.i18n import bedrock_i18n_patterns
+
 
 def dummy_view(*args, **kwargs):
     # This view will never get called
     pass
 
 
-urlpatterns = (
+urlpatterns = bedrock_i18n_patterns(
     # pattern is:
     # path("url/path/here/", dummy_view, name="route.name.here"),
     path("about/leadership/", dummy_view, name="mozorg.about.leadership.index"),

@@ -713,6 +713,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "bedrock.cms.middleware.CMSLocaleFallbackMiddleware",
 ]
 
 ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=bool)
