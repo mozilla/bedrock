@@ -45,6 +45,11 @@ CAMPAIGN_OPTIONS = [
     "wnp134-fr-a",
     "wnp134-fr-b",
     "wnp134-fr-c",
+    "smi-marvintsp",
+    "smi-koschtaaa",
+    "smi-itsmanjuu",
+    "smi-domiip",
+    "smi-shessdly",
 ]
 
 
