@@ -4,8 +4,6 @@
 
 @use '../vars/lib' as *;
 
-$max-footer-content-width: $content-max;
-
 @mixin divider-line {
     border-bottom: $border-width solid $m24-color-light-gray;
 }
