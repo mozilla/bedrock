@@ -91,7 +91,7 @@
         <div class="c-intro-download">
           {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
 
-          <div class="c-intro-download-alt"><a href="https://www.mozilla.org/{{ LANG }}/firefox/all/">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
+          <div class="c-intro-download-alt"><a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
           <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
         </div>
@@ -195,7 +195,7 @@
       </ul>
 
     {% if LANG.startswith('en-') %}
-      <p class="c-notes"><a class="mzp-c-cta-link" href="https://www.mozilla.org/{{ LANG }}/firefox/releasenotes/{{ referrals }}" data-cta-text="See Release Notes">See Release Notes</a></p>
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">See Release Notes</a></p>
     {% endif %}
     </div>
   </section>
@@ -228,7 +228,7 @@
         </li>
       </ul>
 
-      <p class="c-notes"><a class="mzp-c-cta-link" href="https://www.mozilla.org/{{ LANG }}/firefox/releasenotes/{{ referrals }}" data-cta-text="See Release Notes">See Release Notes</a></p>
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">See Release Notes</a></p>
     </div>
   </section>
 {% endif %}
@@ -265,7 +265,7 @@
         <div class="c-block-body l-v-center l-h-end">
           <h3 class="mzp-u-title-sm">{{ ftl('firefox-desktop-download-for-everyone') }}</h3>
           <p>{{ ftl('firefox-desktop-download-available-in-over') }}</p>
-          <p><a id="system-requirements" href="https://www.mozilla.org/{{ LANG }}/firefox/system-requirements/{{ referrals }}" class="mzp-c-cta-link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
+          <p><a id="system-requirements" href="{{ url('firefox.sysreq') }}" class="mzp-c-cta-link" data-cta-text="Review system requirements">{{ ftl('firefox-desktop-download-review-system-req') }}</a></p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
           {{ download_picture('everyone', 367, 302, '', 'mzp-c-block-media-img') }}
@@ -353,7 +353,7 @@
           <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-protect-your-privacy') }}</h3>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('firefox-desktop-download-third-party-cookie') }}</li>
-            <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/features/block-fingerprinting/{{ referrals }}">{{ ftl('firefox-desktop-download-fingerprinter-blocking') }}</a></li>
+            <li><a href="{{ url('firefox.features.fingerprinting') }}">{{ ftl('firefox-desktop-download-fingerprinter-blocking') }}</a></li>
             <li>{{ ftl('firefox-desktop-download-cryptominer-blocking') }}</li>
             <li>{{ ftl('firefox-desktop-download-private-browsing-mode') }}</li>
             <li>{{ ftl('firefox-desktop-download-individual-protections-report') }}</li>

@@ -5,48 +5,6 @@
 #}
 
 {#
-  Billboard: https://protocol.mozilla.org/components/detail/billboard.html
-  HTML Import: {% from "macros-protocol.html" import billboard with context %}
-  CSS Import: @import '~@mozilla-protocol/core/protocol/css/components/billboard';
-  Macro Parameters:
-    desc (Required): String indicating paragraph text (usually a translation id wrapped in ftl function).
-    ga_title (Required): String providing value for data-link-text attribute on cta.
-    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
-    link_cta: String indicating link text (usually a translation id wrapped in an ftl function).
-    link_url: String or url helper function provides href value for cta link.
-    reverse: Uses default layout: mzp-l-billboard-right. Reverse will switch to billboard (text) left.
-    title: String indicating heading text (usually a translation id wrapped in ftl function).
-    image (Required): Image to be used in the Billboard element. Can pass an <img> element, resp_img or picture Python helpers.
-#}
-{% macro billboard(
-  desc='',
-  ga_title='',
-  heading_level=2,
-  link_cta=None,
-  link_url=None,
-  reverse=False,
-  title='',
-  image=None
-) -%}
-<section class="mzp-c-billboard {% if reverse %}mzp-l-billboard-left{% else %}mzp-l-billboard-right{% endif %}">
-  <div class="mzp-c-billboard-image-container">
-    {{ image }}
-  </div>
-  <div class="mzp-c-billboard-content">
-    <div class="mzp-c-billboard-content-container">
-      <div class="mzp-c-billboard-content-inner">
-        <h{{ heading_level }} class="mzp-c-billboard-title">{{ title }}</h{{ heading_level }}>
-        <p class="mzp-c-billboard-desc">{{ desc }}</p>
-        {% if link_url and link_cta %}
-          <a class="mzp-c-cta-link" href="{{ link_url }}" data-link-text="{{ ga_title }}">{{ link_cta }}</a>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</section>
-{%- endmacro %}
-
-{#
   Split: https://protocol.mozilla.org/components/detail/split--default.html
   HTML import: {% from "macros-protocol.html" import split with context %}
   CSS Bundle: {% block page_css %} { css_bundle('protocol-split') }} {% endblock %}
@@ -290,58 +248,4 @@
   </div>
   {% endif %}
 </{{ base_el }}>
-{%- endmacro %}
-
-
-{#
-  Sidemenu: https://protocol.mozilla.org/components/detail/sidebar-menu.html
-  sidemenu_lists() takes an array of lists and makes nav menus
-  The list has the link, a body_id, and a the text to display
-  {% set navigation_bar_client_bounty = [
-      ('https://www.mozilla.org/en-US/security/bug-bounty/','client-bug-bounty', 'Client Bug Bounty'),
-      ('https://www.mozilla.org/en-US/security/bug-bounty/faq/', 'faq', 'Frequently Asked Questions'),
-  ] %}
-
-  {% set navigation_bar_web_bounty = [
-      ('https://www.mozilla.org/en-US/security/bug-bounty/', 'web-bug-bounty', 'Web Bug Bounty'),
-      ('https://www.mozilla.org/en-US/security/bug-bounty/web-eligible-sites/', 'web-eligible-sites', 'Eligible Websites'),
-  ] %}
-
-  {{ sidemenu_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}
-#}
-{% macro sidemenu_lists(arr, body_id='') -%}
-  <nav class="mzp-c-sidemenu">
-
-    <div class="mzp-c-sidemenu-summary mzp-js-toggle" data-testid="sidebar-menu-toggle">
-      <h2 class="mzp-c-sidemenu-label">{{ ftl('ui-menu') }}</h2>
-      <ul>
-        <li>{{ arr[0][0][2]|e }}</li>
-        {% for menu in arr %}
-          {% for href, id, caption in menu %}
-            {% if id == body_id and body_id != '' %}
-              <li class="mzp-is-current">{{ caption|e }}</li>
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
-      </ul>
-    </div>
-    <section class="mzp-c-sidemenu-main" id="sidebar-menu" data-testid="sidebar-menu-main">
-      {% for menu in arr %}
-
-        <h2 class="mzp-c-sidemenu-title {% if menu[0][1] == body_id and body_id != '' %}mzp-is-current{% endif %}">
-          <a href="{{ menu[0][0]|e }}">{{ menu[0][2]|e }}</a>
-        </h2>
-
-        <ul>
-        {% for href, id, caption in menu %}
-          {% if loop.index > 1 %}
-          <li {% if id == body_id and body_id != '' %}class="mzp-is-current"{% endif %}>
-            <a href="{{ href|e }}">{{ caption|e }}</a>
-          </li>
-          {% endif %}
-        {% endfor %}
-        </ul>
-      {% endfor %}
-    </section>
-  </nav>
 {%- endmacro %}

@@ -22,16 +22,6 @@ ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 urlpatterns = (
     path("firefox/", views.FirefoxHomeView.as_view(), name="firefox"),
-    path(
-        "firefox/challenge-the-default/",
-        VariationTemplateView.as_view(
-            template_name="firefox/challenge-the-default/landing-switch.html",
-            active_locales=["de", "es-ES", "fr", "it", "pl"],
-            variation_locales=["de", "fr"],
-            ftl_files=["firefox/home"],
-            template_context_variations=["1", "2", "3", "4", "5", "6"],
-        ),
-    ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),
     path("firefox/all/<slug:product_slug>/", views.firefox_all, name="firefox.all.platforms"),
     path("firefox/all/<slug:product_slug>/<str:platform>/", views.firefox_all, name="firefox.all.locales"),
@@ -41,7 +31,6 @@ urlpatterns = (
     page("firefox/channel/ios/", "firefox/channel/ios.html", ftl_files=["firefox/channel"]),
     page("firefox/developer/", "firefox/developer/index.html", ftl_files=["firefox/developer"]),
     page("firefox/enterprise/", "firefox/enterprise/index.html", ftl_files=["firefox/enterprise"]),
-    page("firefox/facebookcontainer/", "firefox/facebookcontainer/index.html", ftl_files=["firefox/facebook_container"]),
     page("firefox/features/", "firefox/features/index.html", ftl_files=["firefox/features/index-2023", "firefox/features/shared"]),
     page("firefox/features/customize/", "firefox/features/customize.html", ftl_files=["firefox/features/customize-2023", "firefox/features/shared"]),
     page("firefox/features/add-ons/", "firefox/features/add-ons.html", ftl_files=["firefox/features/add-ons-2023", "firefox/features/shared"]),
@@ -107,7 +96,6 @@ urlpatterns = (
         name="firefox.features.pdf-free",
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
-    page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/download/", views.DownloadView.as_view(), name="firefox.download"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
     path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
@@ -138,76 +126,9 @@ urlpatterns = (
     re_path(ios_sysreq_re, bedrock.releasenotes.views.system_requirements, {"product": "Firefox for iOS"}, name="firefox.ios.system_requirements"),
     path("firefox/releases/", bedrock.releasenotes.views.releases_index, {"product": "Firefox"}, name="firefox.releases.index"),
     path("firefox/stub_attribution_code/", views.stub_attribution_code, name="firefox.stub_attribution_code"),
-    page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
-    page("firefox/pocket/", "firefox/pocket.html"),
-    page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
-    page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
-    # Issue 10182
-    page("firefox/browsers/mobile/", "firefox/browsers/mobile/index.html", ftl_files=["firefox/browsers/mobile/index"]),
-    page("firefox/browsers/mobile/android/", "firefox/browsers/mobile/android.html", ftl_files=["firefox/browsers/mobile/android"]),
-    page("firefox/browsers/mobile/ios/", "firefox/browsers/mobile/ios.html", ftl_files=["firefox/browsers/mobile/ios"]),
-    page("firefox/browsers/mobile/get-ios/", "firefox/browsers/mobile/get-ios.html", ftl_files=["firefox/browsers/mobile/get-ios"]),
-    page("firefox/browsers/mobile/focus/", "firefox/browsers/mobile/focus.html", ftl_files=["firefox/browsers/mobile/focus"]),
-    page("firefox/browsers/mobile/get-app/", "firefox/browsers/mobile/get-app.html", ftl_files=["firefox/mobile"]),
-    # Issue 8641
-    page("firefox/browsers/best-browser/", "firefox/browsers/best-browser.html", ftl_files=["firefox/browsers/best-browser"]),
-    page("firefox/browsers/browser-history/", "firefox/browsers/browser-history.html", ftl_files=["firefox/browsers/history/browser-history"]),
-    page("firefox/browsers/incognito-browser/", "firefox/browsers/incognito-browser.html"),
-    page("firefox/browsers/update-your-browser/", "firefox/browsers/update-browser.html"),
-    page("firefox/browsers/what-is-a-browser/", "firefox/browsers/what-is-a-browser.html", ftl_files=["firefox/browsers/history/what-is-a-browser"]),
-    page("firefox/browsers/windows-64-bit/", "firefox/browsers/windows-64-bit.html", ftl_files=["firefox/browsers/windows-64-bit"]),
-    page(
-        "firefox/browsers/compare/",
-        "firefox/browsers/compare/index.html",
-        ftl_files=["firefox/browsers/compare/index", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/brave/",
-        "firefox/browsers/compare/brave.html",
-        ftl_files=["firefox/browsers/compare/brave", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/chrome/",
-        "firefox/browsers/compare/chrome.html",
-        ftl_files=["firefox/browsers/compare/chrome", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/edge/",
-        "firefox/browsers/compare/edge.html",
-        ftl_files=["firefox/browsers/compare/edge", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/opera/",
-        "firefox/browsers/compare/opera.html",
-        ftl_files=["firefox/browsers/compare/opera", "firefox/browsers/compare/shared"],
-    ),
-    page(
-        "firefox/browsers/compare/safari/",
-        "firefox/browsers/compare/safari.html",
-        ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
-    ),
     # Issue 8432
     # Issue 13253: Ensure that Firefox can continue to refer to this URL.
     page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
     # Default browser campaign
     page("firefox/set-as-default/", "firefox/set-as-default/landing.html", ftl_files="firefox/set-as-default/landing"),
-    # Issue #9490 - Evergreen Content for SEO
-    page("firefox/more/", "firefox/more.html", ftl_files="firefox/more"),
-    page("firefox/browsers/quantum/", "firefox/browsers/quantum.html", ftl_files="firefox/browsers/quantum"),
-    page("firefox/faq/", "firefox/faq.html", ftl_files="firefox/faq"),
-    page("firefox/browsers/chromebook/", "firefox/browsers/chromebook.html", ftl_files="firefox/browsers/chromebook"),
-    # Issue 9957
-    page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
-    # Firefox for Families evergreen page, Issue #12004
-    page("firefox/family/", "firefox/family/index.html"),
-    # Issue 14985 - "Built For You" campaign landing page
-    path(
-        "firefox/built-for-you/",
-        VariationTemplateView.as_view(
-            template_name="firefox/built-for-you/landing.html",
-            active_locales=["de", "fr"],
-            variation_locales=["de", "fr"],
-            template_context_variations=["1", "2", "3", "4", "5"],
-        ),
-    ),
 )

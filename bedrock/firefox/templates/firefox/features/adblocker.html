@@ -24,7 +24,7 @@
 <p>{{ ftl('features-adblocker-adguard-adblocker-blunts', attrs1='href="https://addons.mozilla.org/firefox/addon/adguard-adblocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe', attrs2='href="https://addons.mozilla.org/firefox/addon/popup-blocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
 <p>{{ ftl('features-adblocker-ghostery-is-another-great', attrs='href="https://addons.mozilla.org/firefox/addon/ghostery/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
 {% set desktop_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.download')) %}
-{% set android_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.browsers.mobile.android')) %}
+{% set android_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format('https://www.mozilla.org/' + LANG + '/firefox/browsers/mobile/android/') %}
 <p>{{ ftl('features-adblocker-these-extensions-work-beautifully', attrs1=desktop_link, attrs2=android_link) }}</p>
 
 <h2>{{ftl('features-adblocker-create-a-tracker-free') }}</h2>

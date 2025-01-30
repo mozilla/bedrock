@@ -4,47 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{# side_nav_lists() takes a list of lists and makes nav menus
-  The list has the link, a body_id, and a the text to display
-  {% set navigation_bar_client_bounty = [
-      ('https://www.mozilla.org/en-US/security/bug-bounty/','client-bug-bounty', 'Client Bug Bounty'),
-      ('https://www.mozilla.org/en-US/security/bug-bounty/faq/', 'faq', 'Frequently Asked Questions'),
-  ] %}
-
-  {% set navigation_bar_web_bounty = [
-      ('https://www.mozilla.org/en-US/security/bug-bounty/', 'web-bug-bounty', 'Web Bug Bounty'),
-      ('https://www.mozilla.org/en-US/security/bug-bounty/web-eligible-sites/', 'web-eligible-sites', 'Eligible Websites'),
-  ] %}
-
-  {{ side_nav_lists([navigation_bar_client_bounty, navigation_bar_web_bounty]) }}
-#}
-
-{% macro side_nav_lists(arr, body_id='') -%}
-  {% for menu in arr %}
-    <nav class="side-nav">
-      <ul>
-      {% for href, id, caption in menu %}
-        <li>
-        {% if id == body_id and body_id != '' %}
-          <b>{{ caption|e }}</b>
-        {% else %}
-          <a href="{{ href|e }}">{{ caption|e }}</a>
-        {% endif %}
-        </li>
-      {% endfor %}
-      </ul>
-    </nav>
-  {% endfor %}
-{%- endmacro %}
-
-{% macro facebook_share_url(url) -%}
-  {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
-{%- endmacro %}
-
-{% macro twitter_share_url(url, tweet_text) -%}
-  {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
-{%- endmacro %}
-
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
 {% set optional_img_attributes = {'alt': ftl('download-button-google-play'), 'width': '152', 'height': '45', 'l10n': True} %}
 {% do optional_img_attributes.update(extra_img_attributes) %}

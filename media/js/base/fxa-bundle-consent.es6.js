@@ -6,7 +6,6 @@
 
 import FxaLink from './fxa-link.es6.js';
 import FxaAttribution from './fxa-attribution.es6.js';
-import FxaCoupon from './fxa-coupon.es6.js';
 import { consentRequired, getConsentCookie } from './consent/utils.es6.js';
 
 const FxaBundleConsent = {
@@ -66,9 +65,6 @@ const FxaBundleConsent = {
      * Initialize FxA bundle.
      */
     init: () => {
-        // Pass coupon URL query parameters through to Mozilla account subscription links.
-        FxaCoupon.init(window.location.href);
-
         // Handle data consent for EU/EAA countries.
         FxaBundleConsent.initConsent();
 

@@ -4,11 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const MozAllowList = [
-    '/firefox/built-for-you/',
-    '/firefox/challenge-the-default/',
-    '/newsletter/firefox/',
-    '/products/vpn/*'
-];
+const MozAllowList = ['/newsletter/'];
 
 export default MozAllowList;

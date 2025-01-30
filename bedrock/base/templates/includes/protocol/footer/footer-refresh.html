@@ -45,7 +45,7 @@
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-resources">
               <li><a href="https://www.mozilla.org/{{ LANG }}/advertising/?{{ utm_params }}" data-link-position="footer" data-link-text="Advertise with Mozilla">{{ ftl('footer-refresh-advertise') }}</a></li>
-              <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/{{ latest_firefox_version }}/releasenotes/?{{ utm_params }}" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
+              <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
             </ul>
           </section>
 
@@ -54,8 +54,8 @@
               {{ ftl('footer-refresh-developers') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-developers">
-              <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/developer/?{{ utm_params }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
-              <li><a href="https://www.mozilla.org/{{ LANG }}/firefox/enterprise/?{{ utm_params }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
+              <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
+              <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
               <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-position="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
               <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn') }}</a></li>
             </ul>

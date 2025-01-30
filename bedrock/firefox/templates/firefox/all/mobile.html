@@ -16,7 +16,7 @@
   {% set qr_url = android_nightly_url %}
   {% set android_url = android_nightly_url %}
 {% else %}
-  {% set qr_url ="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-all" %}
+  {% set qr_url ="https://www.firefox.com/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-all" %}
 {% endif %}
 
 <div class="c-mobile">
@@ -47,7 +47,7 @@
   {% endif %}
 
   {% if product.slug.startswith('mobile') %}
-    <p><a href="{{ url('firefox.browsers.mobile.get-app') }}" class="c-get-app" data-cta-text="Send a link">{{ ftl('firefox-all-product-send-link') }}</a></p>
+    <p><a href="https://www.mozilla.org/{{ LANG }}/firefox/browsers/mobile/get-app/" class="c-get-app" data-cta-text="Send a link">{{ ftl('firefox-all-product-send-link') }}</a></p>
   {% endif %}
 
 </div>

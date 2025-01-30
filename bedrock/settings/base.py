@@ -277,7 +277,6 @@ FLUENT_DEFAULT_FILES = [
     "navigation_v2",
     "navigation_refresh",
     "newsletter_form",
-    "send_to_device",
     "sub_navigation",
     "ui",
     "mozilla-account-promo",
@@ -481,31 +480,19 @@ SUPPORTED_LOCALE_IGNORE = [
 # specific URLs, add them to mozorg/templates/mozorg/robots.txt.
 NOINDEX_URLS = [
     r"^(404|500)/",
-    r"^firefox/welcome/",
     r"^contribute/(embed|event)/",
     r"^cms-admin/",
     r"^django-admin/",
     r"^firefox/set-as-default/thanks/",
-    r"^firefox/unsupported/",
-    r"^firefox/(sms-)?send-to-device-post",
-    r"^firefox/feedback",
     r"^firefox/stub_attribution_code/",
-    r"^firefox/dedicated-profiles/",
     r"^firefox/installer-help/",
-    r"^firefox/this-browser-comes-highly-recommended/",
     r"^firefox/nightly/notes/feed/$",
     r"^firefox.*/all/$",
-    r"^m/",
     r"/system-requirements/$",
     r"^readiness/$",
     r"^healthz(-cron)?/$",
-    r"^country-code\.json$",
-    r"^firefox/browsers/mobile/get-ios/",
     # exclude redirects
     r"^firefox/notes/$",
-    r"^teach/$",
-    r"^about/legal/impressum/$",
-    r"^security/announce/",
 ]
 
 # Pages we do want indexed but don't show up in automated URL discovery

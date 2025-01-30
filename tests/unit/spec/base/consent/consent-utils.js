@@ -318,38 +318,28 @@ describe('isURLExceptionAllowed()', function () {
 
 describe('isURLPermitted()', function () {
     it('should return true for pathnames in the allow-list', function () {
-        expect(
-            isURLPermitted('/en-US/firefox/challenge-the-default/')
-        ).toBeTrue();
-        expect(isURLPermitted('/en-US/products/vpn/')).toBeTrue();
-        expect(
-            isURLPermitted('/en-US/products/vpn/resource-center/')
-        ).toBeTrue();
+        expect(isURLPermitted('/en-US/newsletter/')).toBeTrue();
     });
 
     it('should true for pathnames in the allow list irrespective of page locale', function () {
-        expect(isURLPermitted('/de/firefox/challenge-the-default/')).toBeTrue();
-        expect(isURLPermitted('/it/products/vpn/')).toBeTrue();
-        expect(isURLPermitted('/lij/products/vpn/resource-center/')).toBeTrue();
+        expect(isURLPermitted('/en-US/newsletter/')).toBeTrue();
+        expect(isURLPermitted('/de/newsletter/')).toBeTrue();
     });
 
     it('should still true for allowed pathnames when locale is omitted', function () {
-        expect(isURLPermitted('/firefox/challenge-the-default/')).toBeTrue();
-        expect(isURLPermitted('/products/vpn/')).toBeTrue();
+        expect(isURLPermitted('/newsletter/')).toBeTrue();
     });
 
     it('should return false for pathnames not in the allow-list', function () {
         expect(isURLPermitted('/en-US/firefox/')).toBeFalse();
         expect(isURLPermitted('/en-US/firefox/download/')).toBeFalse();
         expect(isURLPermitted('/en-US/firefox/all/')).toBeFalse();
-        expect(isURLPermitted('/en-US/firefox/whatsnew/')).toBeFalse();
         expect(
             isURLPermitted('/en-US/firefox/124.0.2/releasenotes/')
         ).toBeFalse();
         expect(
             isURLPermitted('/en-US/privacy/websites/cookie-settings/')
         ).toBeFalse();
-        expect(isURLPermitted('/en-US/about/')).toBeFalse();
     });
 });
 

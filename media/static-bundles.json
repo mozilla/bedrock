@@ -100,12 +100,6 @@
     },
     {
       "files": [
-        "css/base/banners/fundraiser.scss"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
         "css/base/banners/firefox-app-store.scss"
       ],
       "name": "firefox-app-store-banner"
@@ -130,21 +124,9 @@
     },
     {
       "files": [
-        "css/protocol/basic-article.scss"
-      ],
-      "name": "basic-article"
-    },
-    {
-      "files": [
         "css/firefox/set-as-default/thanks.scss"
       ],
       "name": "firefox-default-thanks"
-    },
-    {
-      "files": [
-        "css/firefox/switch.scss"
-      ],
-      "name": "firefox-switch"
     },
     {
       "files": [
@@ -163,24 +145,6 @@
         "css/firefox/features/article.scss"
       ],
       "name": "firefox-features-article"
-    },
-    {
-      "files": [
-        "css/firefox/compare/index.scss"
-      ],
-      "name": "firefox-compare-index"
-    },
-    {
-      "files": [
-        "css/firefox/compare/article.scss"
-      ],
-      "name": "firefox-compare-article"
-    },
-    {
-      "files": [
-        "css/firefox/unsupported-systems.scss"
-      ],
-      "name": "firefox_unsupported_systems"
     },
     {
       "files": [
@@ -220,53 +184,9 @@
     },
     {
       "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/browsers/mobile.scss"
-      ],
-      "name": "firefox-browsers-mobile"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/get-ios.scss"
-      ],
-      "name": "get-ios-attr"
-    },
-    {
-      "files": [
-        "css/protocol/components/send-to-device.scss",
-        "css/firefox/browsers/get-app.scss"
-      ],
-      "name": "firefox-browsers-get-app"
-    },
-    {
-      "files": [
-        "css/firefox/facebook-container.scss"
-      ],
-      "name": "firefox_facebook_container"
-    },
-    {
-      "files": [
         "css/firefox/channel.scss"
       ],
       "name": "firefox_channel"
-    },
-    {
-      "files": [
-        "css/firefox/pocket.scss"
-      ],
-      "name": "product_pocket"
-    },
-    {
-      "files": [
-        "css/firefox/share.scss"
-      ],
-      "name": "firefox_share"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/what-is-a-browser.scss"
-      ],
-      "name": "what-is-a-browser"
     },
     {
       "files": [
@@ -276,46 +196,10 @@
     },
     {
       "files": [
-        "css/firefox/browsers/update-browser.scss"
-      ],
-      "name": "update-browser"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/incognito-browser.scss"
-      ],
-      "name": "incognito-browser"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/browser-history.scss"
-      ],
-      "name": "browser-history"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/windows-64-bit.scss"
-      ],
-      "name": "windows-64-bit"
-    },
-    {
-      "files": [
-        "css/firefox/more/misinformation.scss"
-      ],
-      "name": "misinformation"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/best-browser.scss"
-      ],
-      "name": "best-browser"
-    },
-    {
-      "files": [
         "css/firefox/mozilla-account-promo.scss",
-        "css/firefox/browsers-products.scss"
+        "css/firefox/home.scss"
       ],
-      "name": "firefox-browsers-products"
+      "name": "firefox-home"
     },
     {
       "files": [
@@ -361,48 +245,6 @@
     },
     {
       "files": [
-        "css/firefox/faq.scss"
-      ],
-      "name": "firefox-faq"
-    },
-    {
-      "files": [
-        "css/firefox/more.scss"
-      ],
-      "name": "more"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/quantum.scss"
-      ],
-      "name": "quantum"
-    },
-    {
-      "files": [
-        "css/firefox/browsers/chromebook.scss"
-      ],
-      "name": "chromebook"
-    },
-    {
-      "files": [
-        "css/firefox/family/styles.scss"
-      ],
-      "name": "firefox-family"
-    },
-    {
-      "files": [
-        "css/firefox/challenge-the-default/index.scss"
-      ],
-      "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "css/firefox/nothing-personal/styles.scss"
-      ],
-      "name": "firefox-nothing-personal"
-    },
-    {
-      "files": [
         "css/cms/base.scss"
       ],
       "name": "cms-base"
@@ -412,12 +254,6 @@
         "css/privacy/cookie-settings-form.scss"
       ],
       "name": "cookie-settings-form"
-    },
-    {
-      "files": [
-        "css/firefox/built-for-you/landing.scss"
-      ],
-      "name": "firefox-built-for-you"
     },
     {
       "files": [
@@ -452,12 +288,6 @@
     }
   ],
   "js": [
-    {
-      "files": [
-        "js/firefox/facebook-container-video.js"
-      ],
-      "name": "firefox_facebook_container_video"
-    },
     {
       "files": [
         "js/base/sentry-init.es6.js"
@@ -533,26 +363,6 @@
     },
     {
       "files": [
-        "js/firefox/browsers/compare-article.es6.js"
-      ],
-      "name": "firefox_compare_article"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
-        "js/firefox/browsers/mobile.es6.js"
-      ],
-      "name": "firefox-browsers-mobile"
-    },
-    {
-      "files": [
-        "js/base/send-to-device.es6.js",
-        "js/firefox/browsers/get-app.es6.js"
-      ],
-      "name": "firefox-browsers-get-app"
-    },
-    {
-      "files": [
         "js/firefox/set-as-default/thanks.js"
       ],
       "name": "firefox-default-thanks"
@@ -565,19 +375,9 @@
     },
     {
       "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/firefox/browsers-products.js"
+        "js/firefox/home.js"
       ],
-      "name": "firefox-browsers-products"
-    },
-    {
-      "files": [
-        "js/base/mozilla-fxa.js",
-        "js/base/mozilla-fxa-init.js",
-        "js/base/fxa-form-init.es6.js"
-      ],
-      "name": "mozilla_account"
+      "name": "firefox-home"
     },
     {
       "files": [
@@ -672,18 +472,6 @@
     },
     {
       "files": [
-        "js/base/datalayer-begincheckout-init.es6.js"
-      ],
-      "name": "data_begincheckout"
-    },
-    {
-      "files": [
-        "js/base/mozilla-article.js"
-      ],
-      "name": "basic-article"
-    },
-    {
-      "files": [
         "js/firefox/enterprise/landing.js"
       ],
       "name": "firefox-enterprise"
@@ -696,12 +484,6 @@
     },
     {
       "files": [
-        "js/firefox/browsers/chromebook.js"
-      ],
-      "name": "chromebook"
-    },
-    {
-      "files": [
         "js/base/video-inline-embed.es6.js"
       ],
       "name": "video-inline-embed"
@@ -711,61 +493,6 @@
         "js/base/video-modal-embed.es6.js"
       ],
       "name": "video-modal-embed"
-    },
-    {
-      "files": [
-        "js/firefox/family/banner.es6.js",
-        "js/firefox/family/banner-init.es6.js",
-        "js/firefox/family/fx-is-default-init.es6.js",
-        "js/firefox/family/copy-to-clipboard.js",
-        "js/firefox/family/animate-pop-in.es6.js",
-        "js/firefox/family/animate-pop-in-init.es6.js",
-        "js/firefox/family/animate-checkmark.es6.js",
-        "js/firefox/family/animate-checkmark-init.es6.js",
-        "js/firefox/family/default-open-first-detail.es6.js",
-        "js/firefox/family/default-open-first-detail-init.es6.js"
-      ],
-      "name": "firefox-family"
-    },
-    {
-      "files": [
-        "js/firefox/challenge-the-default/challenge-the-default.es6.js",
-        "js/firefox/challenge-the-default/animate-pop-in.es6.js",
-        "js/firefox/challenge-the-default/device-detect.es6.js"
-      ],
-      "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "js/firefox/nothing-personal/fx-is-default-init.es6.js",
-        "js/firefox/nothing-personal/animations.es6.js",
-        "js/firefox/nothing-personal/random-answers.es6.js"
-      ],
-      "name": "firefox-nothing-personal"
-    },
-    {
-      "files": [
-        "js/m24/animation-play-state.es6.js"
-      ],
-      "name": "m24-animation"
-    },
-    {
-      "files": [
-        "js/firefox/share-page.es6.js"
-      ],
-      "name": "firefox_share"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser.es6.js"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser-experiment.es6.js"
-      ],
-      "name": "fundraising-banner-experiment"
     }
   ]
 }

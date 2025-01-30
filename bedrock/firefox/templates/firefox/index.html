@@ -24,7 +24,7 @@
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box')}}
-  {{ css_bundle('firefox-browsers-products') }}
+  {{ css_bundle('firefox-home') }}
 
   {% if show_firefox_app_store_banner %}
     {{ css_bundle('firefox-app-store-banner') }}
@@ -65,9 +65,9 @@
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
       {{ resp_img(
-        url='img/firefox/browsers/desktop.jpg',
+        url='img/firefox/home/desktop.jpg',
         srcset={
-          'img/firefox/browsers/desktop-high-res.jpg': '2x'
+          'img/firefox/home/desktop-high-res.jpg': '2x'
         },
         optional_attributes={
           'class': 'c-landing-grid-img',
@@ -94,9 +94,9 @@
 
     <div class="c-landing-grid-item">
       {{ resp_img(
-        url='img/firefox/browsers/mobile.jpg',
+        url='img/firefox/home/mobile.jpg',
         srcset={
-          'img/firefox/browsers/mobile-high-res.jpg': '2x'
+          'img/firefox/home/mobile-high-res.jpg': '2x'
         },
         optional_attributes={
           'class': 'c-landing-grid-img',
@@ -126,9 +126,9 @@
 
     <div class="c-landing-grid-item">
       {{ resp_img(
-        url='img/firefox/browsers/enterprise.jpg',
+        url='img/firefox/home/enterprise.jpg',
         srcset={
-          'img/firefox/browsers/enterprise-high-res.jpg': '2x'
+          'img/firefox/home/enterprise-high-res.jpg': '2x'
         },
         optional_attributes={
           'class': 'c-landing-grid-img',
@@ -136,10 +136,10 @@
           'height': '233'
         }
       ) }}
-      <h2 class="c-landing-grid-title"><a href="https://www.mozilla.org/{{ LANG }}/firefox/enterprise/" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
+      <h2 class="c-landing-grid-title"><a href="{{ url('firefox.enterprise.index') }}" data-cta-text="Enterprise">{{ ftl('firefox-browsers-enterprise') }}</a></h2>
       <p>{{ ftl('firefox-browsers-get-unmatched-data-protection') }}</p>
-      <p><a class="mzp-c-cta-link" href="https://www.mozilla.org/{{ LANG }}/firefox/enterprise/#download" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
-      <p><a class="mzp-c-cta-link" href="https://www.mozilla.org/{{ LANG }}/firefox/enterprise/" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}#download" data-cta-text="Enterprise packages">{{ ftl('firefox-browsers-enterprise-packages') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="{{ url('firefox.enterprise.index') }}" data-cta-text="Enterprise Learn More">{{ ftl('ui-learn-more') }}</a></p>
     </div>
   </div>
 
@@ -149,7 +149,7 @@
 
 {% block js %}
   {{ js_bundle('fxa_form') }}
-  {{ js_bundle('firefox-browsers-products') }}
+  {{ js_bundle('firefox-home') }}
 
   {% if show_firefox_app_store_banner %}
     {{ js_bundle('firefox-app-store-banner') }}

@@ -27,7 +27,7 @@
 
 <p>
   {{ ftl('features-add-ons-there-are-firefox-add-ons-that',
-    fbcontainer='href="%s"'|safe|format(url('firefox.facebookcontainer.index')),
+    fbcontainer='href="%s"'|safe|format('https://www.mozilla.org/' + LANG + '/firefox/facebookcontainer/'),
     translate='href="https://addons.mozilla.org/firefox/addon/simple-translate/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
     language='href="https://addons.mozilla.org/firefox/addon/languagetool/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features" rel="external noopener"',
     customize='href="%s"'|safe|format(url('firefox.features.customize')),

@@ -35,7 +35,6 @@ Contents
    banners
    uitour
    task-queue
-   send-to-device
    download-buttons
    mozilla-accounts
    abtest

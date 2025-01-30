@@ -36,7 +36,7 @@
     {# fallback_url is replaced by the platform download link via JS, but if
         something fails the user should still get a link to a working download path. #}
     <p>
-      {% set fallback_href = 'https://www.mozilla.org/' + LANG + '/firefox/all/' %}
+      {% set fallback_href = firefox_url('desktop', 'all') %}
       {{ ftl('firefox-desktop-download-your-firefox-new-should-begin', id='direct-download-link', fallback_url=fallback_href)}}
     </p>
   </div>
@@ -87,7 +87,7 @@
 
       {# Edge-case platform support messaging #}
       <p class="show-unknown">
-        {% set unsupported_href = 'https://www.mozilla.org/' + LANG + '/firefox/all/desktop-release/' %}
+        {% set unsupported_href = firefox_url('desktop', 'all') %}
         {{ ftl('firefox-desktop-download-your-system-may-not', url=unsupported_href)}}
       </p>
     </div>
@@ -96,7 +96,7 @@
 
   </div>
   <div class="c-support-lang">
-    <a href="https://www.mozilla.org/{{ LANG }}/firefox/all/desktop-release/">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
+    <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
   </div>
 </main>
 {% endblock %}
