@@ -215,6 +215,12 @@
     },
     {
       "files": [
+        "css/base/banners/firefox-newsletter.scss"
+      ],
+      "name": "firefox-newsletter-banner"
+    },
+    {
+      "files": [
         "css/mozorg/home/includes/mofo-donate-promo.scss"
       ],
       "name": "mofo-donate-promo"
@@ -1565,6 +1571,13 @@
         "js/base/protocol/init-m24-navigation.es6.js"
       ],
       "name": "m24-ui"
+    },
+    {
+      "files": [
+        "js/base/banners/firefox-newsletter-banner-init.es6.js",
+        "js/base/banners/firefox-newsletter-banner-check.js"
+      ],
+      "name": "firefox-newsletter-banner"
     },
     {
       "files": [

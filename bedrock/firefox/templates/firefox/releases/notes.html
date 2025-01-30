@@ -47,7 +47,13 @@
   {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-article') }}
   {{ css_bundle('firefox_releasenotes') }}
+
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {{ css_bundle('firefox-newsletter-banner') }}
+  {% endif %}
 {% endblock %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-release-notes' %}
 
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
@@ -388,6 +394,11 @@
     {% endblock %}
 </article>
 </main>
+
+{% if switch('release-notes-newsletter-banner', ['en']) %}
+  {% include 'includes/banners/firefox-newsletter.html' %}
+{% endif %}
+
 {% endblock %}
 
 {% block email_form %}{% endblock %}
@@ -419,3 +430,9 @@
     {% endif %}
   </li>
 {% endmacro %}
+
+{% block js %}
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {{ js_bundle('firefox-newsletter-banner') }}
+  {% endif %}
+{% endblock %}
