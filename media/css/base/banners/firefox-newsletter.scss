@@ -18,13 +18,13 @@
 
     .c-banner-title {
         @include text-title-2xs;
-        @include bidi(((padding-right, $spacing-md, padding-left, $spacing-md),));
+        @include bidi(((padding-right, 0, padding-left, $spacing-md), (padding-right, $spacing-md, padding-left, 0)));
         color: $color-white;
         margin-bottom: .5em;
     }
 
     .c-banner-copy {
-        padding-left: 80px;
+        @include bidi(((padding-left, 80px, padding-right, auto),));
         position: relative;
 
         &::before {
@@ -109,7 +109,7 @@
 
             &::before {
                 top: 50%;
-                margin-top: -30px;
+                transform: translateY(-50%);
             }
         }
 
@@ -137,7 +137,7 @@
     }
 }
 
-html[data-firefox-newsletter-banner-closed="true"] {
+html[data-firefox-newsletter-banner-closed="true"], html.no-js {
     .c-banner-fx-newsletter {
         position: relative;
     }
