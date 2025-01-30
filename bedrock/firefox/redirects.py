@@ -4,6 +4,49 @@
 
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
+PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
+CAMPAIGN_OPTIONS = [
+    "firefox-whatsnew",
+    "firefox-welcome-4",
+    "firefox-welcome-6",
+    "firefox-welcome-17-en",
+    "firefox-welcome-17-de",
+    "firefox-welcome-17-fr",
+    "firefox-browsers-mobile-get-app",
+    "firefox-browsers-mobile-focus",
+    "mzaonboardingemail-de",
+    "mzaonboardingemail-fr",
+    "mzaonboardingemail-es",
+    "mzaonboardingemail-it",
+    "mzaonboardingemail-nl",
+    "mzaonboardingemail-pl",
+    "firefox-all",
+    "fxshare1",
+    "fxshare2",
+    "fxshare3",
+    "fxshare4",
+    "fxshare5",
+    "fxshare6",
+    "fxshare7",
+    "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_a",
+    "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_b",
+    "wnp134-de-a",
+    "wnp134-de-b",
+    "wnp134-de-c",
+    "wnp134-en-ca-a",
+    "wnp134-en-ca-b",
+    "wnp134-en-ca-c",
+    "wnp134-en-na-a",
+    "wnp134-en-na-b",
+    "wnp134-en-na-c",
+    "wnp134-en-uk-a",
+    "wnp134-en-uk-b",
+    "wnp134-en-uk-c",
+    "wnp134-fr-a",
+    "wnp134-fr-b",
+    "wnp134-fr-c",
+]
+
 
 def firefox_mobile_faq(request, *args, **kwargs):
     qs = request.META.get("QUERY_STRING", "")
@@ -18,63 +61,10 @@ def firefox_channel(*args, **kwargs):
 
 
 def mobile_app(request, *args, **kwargs):
-    campaign = None
-    product = "firefox"
-
-    product_options = ["firefox", "focus", "klar"]
-
-    campaign_options = [
-        "firefox-whatsnew",
-        "firefox-welcome-4",
-        "firefox-welcome-6",
-        "firefox-welcome-17-en",
-        "firefox-welcome-17-de",
-        "firefox-welcome-17-fr",
-        "firefox-browsers-mobile-get-app",
-        "firefox-browsers-mobile-focus",
-        "mzaonboardingemail-de",
-        "mzaonboardingemail-fr",
-        "mzaonboardingemail-es",
-        "mzaonboardingemail-it",
-        "mzaonboardingemail-nl",
-        "mzaonboardingemail-pl",
-        "firefox-all",
-        "fxshare1",
-        "fxshare2",
-        "fxshare3",
-        "fxshare4",
-        "fxshare5",
-        "fxshare6",
-        "fxshare7",
-        "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_a",
-        "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_b",
-        "wnp134-de-a",
-        "wnp134-de-b",
-        "wnp134-de-c",
-        "wnp134-en-ca-a",
-        "wnp134-en-ca-b",
-        "wnp134-en-ca-c",
-        "wnp134-en-na-a",
-        "wnp134-en-na-b",
-        "wnp134-en-na-c",
-        "wnp134-en-uk-a",
-        "wnp134-en-uk-b",
-        "wnp134-en-uk-c",
-        "wnp134-fr-a",
-        "wnp134-fr-b",
-        "wnp134-fr-c",
-    ]
-
-    for p in product_options:
-        if p == request.GET.get("product"):
-            product = p
-            break
-
-    for c in campaign_options:
-        if c == request.GET.get("campaign"):
-            campaign = c
-            break
-
+    c = request.GET.get("campaign")
+    p = request.GET.get("product")
+    campaign = c if c in CAMPAIGN_OPTIONS else None
+    product = p if p in PRODUCT_OPTIONS else "firefox"
     return mobile_app_redirector(request, product, campaign)
 
 
