@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/firefox/features/adblocker/
+### URL: https://www-dev.springfield.moz.works/features/adblocker/
 
 features-adblocker-how-to-block-annoying = How to block annoying ads using an ad blocker
 features-adblocker-how-to-stop-seeing-too = How to stop seeing too many ads and keep companies from following you around online. An ad blocker guide from the { -brand-name-firefox } web browser.
@@ -12,7 +12,7 @@ features-adblocker-the-average-person-sees = The average person sees an average 
 features-adblocker-an-ad-blocker-is-a-piece = An ad blocker is a piece of software that can be used to block ads, and they work in two ways. The first way is when an ad blocker blocks the signal from an advertiser’s server, so the ad never shows up on your page. Another way ad blockers work is by blocking out sections of a website that could be ads.
 
 # Variables:
-#   $firefox (url) - link to https://www.mozilla.org/firefox/download/
+#   $firefox (url) - link to https://www.firefox.com/download/
 #   $addons (url) - link to https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/
 features-adblocker-these-ads-might-be-loud = These ads might be loud video ads, ads that follow you around the web, trackers, third-party cookies, and more. To use an ad blocker, you can search for ad blocker add-ons that are available in your browser. <a href="{ $firefox }">{ -brand-name-firefox }</a>, for example, has <a href="{ $addons }">this list of approved ad blocker add-ons</a>. Click on this list (or ad blockers that are approved for your browser) and see which fits your needs.
 
@@ -34,8 +34,8 @@ features-adblocker-adguard-adblocker-blunts = <a { $attrs1 }>AdGuard AdBlocker</
 features-adblocker-ghostery-is-another-great = <a { $attrs }>Ghostery</a> is another great choice that not only blocks ads but provides additional anti-tracking benefits.
 
 # Variables:
-#   $attrs1 (string) - link to /firefox/download/ with other attributes
-#   $attsr2 (string) - link to /firefox/mobile/android/ with other attributes
+#   $attrs1 (string) - link to https://www.firefox.com/download/ with other attributes
+#   $attsr2 (string) - link to https://www.mozilla.org/firefox/mobile/android/ with other attributes
 features-adblocker-these-extensions-work-beautifully = These extensions work beautifully on both <a { $attrs1 }>{ -brand-name-firefox } for desktop</a> and <a { $attrs2 }>Android</a>.
 
 features-adblocker-create-a-tracker-free = Create a tracker-free zone with Content Blocking
@@ -51,7 +51,7 @@ features-adblocker-to-start-click-on-the-v2 = To start, click the shield to the 
 features-adblocker-go-easy-with-standard = Go easy with Standard mode
 
 # Variables:
-#   $url (url) - link to https://www.mozilla.org/firefox/features/private-browsing/
+#   $url (url) - link to https://www.firefox.com/features/private-browsing/
 features-adblocker-if-ads-dont-bother-you = If ads don’t bother you and you don’t mind being followed by trackers and third-party cookies, then the Standard setting should work for you. To get trackers off your tail in Standard mode, use a <a href="{ $url }">Private Browsing</a> window.
 
 features-adblocker-get-tough-with-strict = Get tough with Strict mode
@@ -77,5 +77,5 @@ features-adblocker-speed-up-thanks-to-ad = Speed up thanks to ad blockers
 features-adblocker-in-some-cases-an-ad-blocker = In some cases, an ad blocker can help your browser go faster. When an ad is loading, it can slow down a website. At the same time, it takes longer to find what you’re looking for if you’re too busy closing yet another ad.
 
 # Variables:
-#   $url (url) - link to https://www.mozilla.org/firefox/download/
+#   $url (url) - link to https://www.firefox.com/download/
 features-adblocker-if-you-want-to-learn-more-v2 = If you want to learn more about ad blocking, there are hundreds of ad blocker extensions available for { -brand-name-firefox } and other browsers. If you want to try out the ad blockers { -brand-name-firefox } uses, <a href="{ $url }">click here to download</a> a browser that puts privacy first.

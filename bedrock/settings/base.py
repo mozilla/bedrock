@@ -272,7 +272,6 @@ FLUENT_DEFAULT_FILES = [
     "footer",
     "footer-refresh",
     "fxa_form",
-    "mozorg/about/shared",
     "navigation",
     "navigation_v2",
     "navigation_refresh",

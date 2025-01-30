@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/firefox/set-as-default/
+### URL: https://www-dev.springfield.moz.works/set-as-default/
 
 # HTML page title
 set-as-default-landing-make-firefox-your-default = Make { -brand-name-firefox } your default browser

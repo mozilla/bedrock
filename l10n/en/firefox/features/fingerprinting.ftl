@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/firefox/features/block-fingerprinting/
+### URL: https://www-dev.springfield.moz.works/features/block-fingerprinting/
 
 # page title
 features-fingerprinting-what-is-fingerprinting-title = What is fingerprinting and why you should block it
@@ -39,6 +39,6 @@ features-fingerprinting-the-latest-firefox = The latest { -brand-name-firefox } 
 # $url_protections (string) - https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_protections-dashboard
 features-fingerprinting-and-its-not = And it’s not a deep setting you need to dig around to find. In the latest { -brand-name-firefox } browser, fingerprint blocking is the standard, default setting. Visit your <a { $url_protections }>privacy protections dashboard</a> to see how you’re being tracked behind the scenes and how { -brand-name-firefox } prevents it.
 
-# $url_download (string) - link to firefox/download
+# $url_download (string) - link to https://www.firefox.com/download/
 features-fingerprinting-you-probably-wouldnt = You probably wouldn’t appreciate someone tracking your moves in real life. There’s no reason to accept it online. If you don’t already have { -brand-name-firefox }, <a { $url_download }>download and protect yourself</a> from digital fingerprinting.
 features-fingerprinting-protect = Protect your privacy

@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-### URL: https://www-dev.allizom.org/firefox/download/
+### URL: https://www-dev.springfield.moz.works/download/
 
 # meta title, this shows as the link in search results
 # the em dash is used in English to show a change of thought and
@@ -134,7 +134,7 @@ firefox-desktop-download-from-security-to = From security to news to gaming, the
 firefox-desktop-download-firefox-was-created = { -brand-name-firefox } was created by <a {$attrs }>{ -brand-name-mozilla }</a> as a faster, more private alternative to browsers like { -brand-name-ie }, and now { -brand-name-chrome }. Today, our mission-driven company and volunteer community continue to put your privacy above all else.
 
 # Variables:
-#   $attrs (attrs) - link to https://www.mozilla.org/firefox/privacy/
+#   $attrs (attrs) - link to https://www.mozilla.org/privacy/
 firefox-desktop-download-as-the-internet = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy  — we call it the <a { $attrs }>Personal Data Promise</a>: Take less. Keep it safe. No secrets. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
 
 # Variables:
@@ -155,7 +155,7 @@ firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozi
 
 firefox-desktop-download-watch-for-hackers-with-v3 = Watch for hackers with { -brand-name-mozilla-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
 
-## URL: https://www-dev.allizom.org/firefox/download/thanks/
+## URL: https://www-dev.springfield.moz.works/download/thanks/
 
 firefox-desktop-download-almost-there = Almost there!
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
@@ -183,7 +183,7 @@ firefox-desktop-download-mozilla-no-longer-provides = { -brand-name-mozilla } <a
 
 # Variables:
 #   $id (string) - HTML ID for the download link.
-#   $fallback_url (url) - link to https://www.mozilla.org/firefox/all/
+#   $fallback_url (url) - link to https://www.firefox.com/download/all/
 firefox-desktop-download-your-firefox-new-should-begin = Your download should begin automatically. Didn’t work? <a id="{ $id }" href="{ $fallback_url }">Try downloading again.</a>
 
 firefox-new-firefox-is-more-than-a-browser = { -brand-name-firefox } is more than a browser.
@@ -195,5 +195,5 @@ firefox-desktop-download-interrupted = Your download was interrupted. But all is
 firefox-desktop-download-please-follow = Please follow <a href="{ $url }">these instructions</a> to install { -brand-name-firefox }.
 
 # Variables:
-#   $url (url) - link to https://www.mozilla.org/firefox/all/
+#   $url (url) - link to https://www.firefox.com/download/all/
 firefox-desktop-download-your-system-may-not = Your system may not meet the requirements for { -brand-name-firefox }, but you can try one of <a href="{ $url }">these versions</a>.

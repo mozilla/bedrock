@@ -115,65 +115,14 @@ locales = [
     reference = "en/firefox/*.ftl"
     l10n = "{locale}/firefox/*.ftl"
 [[paths]]
-    reference = "en/firefox/browsers/**/*.ftl"
-    l10n = "{locale}/firefox/browsers/**/*.ftl"
-[[paths]]
     reference = "en/firefox/features/**/*.ftl"
     l10n = "{locale}/firefox/features/**/*.ftl"
-[[paths]]
-    reference = "en/firefox/more/**/*.ftl"
-    l10n = "{locale}/firefox/more/**/*.ftl"
 [[paths]]
     reference = "en/firefox/new/**/*.ftl"
     l10n = "{locale}/firefox/new/**/*.ftl"
 [[paths]]
-    reference = "en/firefox/nightly/**/*.ftl"
-    l10n = "{locale}/firefox/nightly/**/*.ftl"
-[[paths]]
     reference = "en/firefox/set-as-default/**/*.ftl"
     l10n = "{locale}/firefox/set-as-default/**/*.ftl"
 [[paths]]
-    reference = "en/newsletter/opt-out-confirmation.ftl"
-    l10n = "{locale}/newsletter/opt-out-confirmation.ftl"
-    locales = [
-        "de",
-        "es-ES",
-        "fr",
-        "id",
-        "pl",
-        "pt-BR",
-        "ru"
-    ]
-[[paths]]
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
-[[paths]]
-    reference = "en/products/vpn/download.ftl"
-    l10n = "{locale}/products/vpn/download.ftl"
-[[paths]]
-    reference = "en/products/vpn/shared.ftl"
-    l10n = "{locale}/products/vpn/shared.ftl"
-[[paths]]
-    reference = "en/products/vpn/more/*.ftl"
-    l10n = "{locale}/products/vpn/more/*.ftl"
-[[paths]]
-    reference = "en/products/vpn/platforms/*.ftl"
-    l10n = "{locale}/products/vpn/platforms/*.ftl"
-[[paths]]
-    reference = "en/products/vpn/resource-center.ftl"
-    l10n = "{locale}/products/vpn/resource-center.ftl"
-[[paths]]
-    reference = "en/products/vpn/platform-post-download.ftl"
-    l10n = "{locale}/products/vpn/platform-post-download.ftl"
-[[paths]]
-    reference = "en/products/vpn/landing.ftl"
-    l10n = "{locale}/products/vpn/landing.ftl"
-[[paths]]
-    reference = "en/products/vpn/landing-2023.ftl"
-    l10n = "{locale}/products/vpn/landing-2023.ftl"
-[[paths]]
-    reference = "en/products/vpn/pricing-2023.ftl"
-    l10n = "{locale}/products/vpn/pricing-2023.ftl"
-[[paths]]
-    reference = "en/products/vpn/features.ftl"
-    l10n = "{locale}/products/vpn/features.ftl"
