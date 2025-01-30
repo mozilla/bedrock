@@ -33,8 +33,7 @@ build
 build.py
 db.sql
 Desktop.ini
-docs/_build
-docs/_gh-pages
+docs/site
 james.ini
 node_modules
 npm-debug.log

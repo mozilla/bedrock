@@ -1,0 +1,74 @@
+site_name: Springfield documentation
+
+copyright: "© Copyright 2011-2025, Mozilla"
+dev_addr: 127.0.0.1:8765
+
+# Documentation links
+repo_url: https://github.com/mozmeao/springfield/
+site_url: https://mozmeao.github.io/springfield/
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+      title: What's on this page?
+
+nav:
+  - Home: index.md
+
+plugins:
+  - search
+
+theme:
+  name: material
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - content.code.annotation
+    - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - navigation.path
+    - navigation.sections
+    - navigation.expand
+    - navigation.tabs
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - toc.integrate
+
+  icon:
+    admonition:
+      note: material/lightbulb
+
+  language: en
+
+extra:
+  social:
+    - icon: fontawesome/solid/bug
+      link: https://github.com/mozmeao/springfield/issues/
+      name: Report a problem with this documentation
