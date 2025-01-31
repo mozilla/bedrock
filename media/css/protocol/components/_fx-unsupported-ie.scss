@@ -48,10 +48,21 @@
     display: block !important;
 }
 
-// Hide Firefox download button in the navigation as there's
-// too little space to display messaging.
+// Simplify Firefox download button in main nav as there's
+// too little space to display all the ESR messaging.
 .c-navigation .c-navigation-shoulder .c-button-download-thanks {
-    display: none !important;
+    p {
+        margin: 0 0 0.25em !important;
+        font-size: 80%;
+
+        .mzp-c-button {
+            font-size: 125%;
+        }
+    }
+
+    small {
+        display: none !important;
+    }
 }
 
 // Hide Firefox Win64 ESR download button by default.
