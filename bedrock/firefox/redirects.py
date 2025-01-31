@@ -50,6 +50,7 @@ CAMPAIGN_OPTIONS = [
     "smi-itsmanjuu",
     "smi-domiip",
     "smi-shessdly",
+    "smi-bytereview",
 ]
 
 
