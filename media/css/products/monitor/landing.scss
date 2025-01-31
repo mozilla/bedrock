@@ -8,6 +8,10 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 
+.c-subhead {
+    font-size: 24px;
+}
+
 .c-hero {
     h2 {
         margin-bottom: 16px;
@@ -15,7 +19,7 @@ $image-path: '/media/protocol/img';
 
     .c-subhead {
         font-size: 32px;
-        margin-bottom: 40px; // should be 48, make it a big smaller because the line height makes 48 look too big
+        margin-bottom: 40px; // should be 48 but we make it a bit smaller because the line height makes 48 look too big
         line-height: 1.1;
     }
 
@@ -28,6 +32,11 @@ $image-path: '/media/protocol/img';
     background: radial-gradient(124.5% 124.5% at 50% 50%, rgba(184, 51, 225, 0.1) 0%, rgba(0, 144, 237, 0.1) 100%);
     text-align: center;
     font-size: 24px;
+
+    h3,
+    p {
+        text-wrap: balance;
+    }
 }
 
 .c-more {
@@ -41,7 +50,7 @@ $image-path: '/media/protocol/img';
 
     .has-aspect-icon  .mzp-c-card-media-wrapper {
         background-color: transparent;
-        padding: 8px 8px 16px 8px;
+        padding: 8px 8px 16px;
 
         img {
             margin-bottom: 0;
