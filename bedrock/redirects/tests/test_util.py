@@ -389,7 +389,7 @@ class TestRedirectUrlPattern(TestCase):
 
         This is from errors that happened in prod. The following URL caused a 500:
 
-        https://www.mozilla.org/editor/midasdemo/securityprefs.html%3C/span%3E%3C/a%3E%C2%A0
+        https://www.firefox.com/editor/midasdemo/securityprefs.html%3C/span%3E%3C/a%3E%C2%A0
 
         https://sentry.prod.mozaws.net/marketing/bedrock-prod-eu-west/issues/349078/
         """

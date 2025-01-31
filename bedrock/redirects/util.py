@@ -94,7 +94,7 @@ def mobile_app_redirector(request, product, campaign):
 
     if android_re.search(value):
         base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
-        params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+        params = "&referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
     else:
         base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK").replace("/{country}/", "/")
         params = "?pt=373246&ct={cmp}&mt=8"

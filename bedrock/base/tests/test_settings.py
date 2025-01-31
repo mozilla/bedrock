@@ -24,10 +24,10 @@ def test_lang_groups():
 @pytest.mark.parametrize(
     "media_url, expected_hostname",
     (
-        ("https://www-dev.allizom.org/media/cms/", "https://www-dev.allizom.org"),
-        ("https://www-dev.allizom.org/some/future/assets/path/", "https://www-dev.allizom.org"),
-        ("https://www.allizom.org/media/cms/", "https://www.allizom.org"),
-        ("https://www.mozilla.org/media/cms/", "https://www.mozilla.org"),
+        ("https://www-dev.springfield.moz.works/media/cms/", "https://www-dev.springfield.moz.works"),
+        ("https://www-dev.springfield.moz.works/some/future/assets/path/", "https://www-dev.springfield.moz.works"),
+        ("https://www.springfield.moz.works/media/cms/", "https://www.springfield.moz.works"),
+        ("https://www.firefox.com/media/cms/", "https://www.firefox.com"),
         ("/custom-media/", "/custom-media/"),  # this one is the default, used in local dev
     ),
 )

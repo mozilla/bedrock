@@ -437,13 +437,13 @@ describe('stub-attribution.js', function () {
     describe('isFirefoxDownloadThanks', function () {
         it('should return true if the page is firefox/download/thanks/', function () {
             const url =
-                'https://www.mozilla.org/en-US/firefox/download/thanks/';
+                'https://www.firefox.com/en-US/firefox/download/thanks/';
             expect(
                 Mozilla.StubAttribution.isFirefoxDownloadThanks(url)
             ).toBeTruthy();
 
             const url2 =
-                'https://www.mozilla.org/en-US/firefox/download/thanks/?foo=bar';
+                'https://www.firefox.com/en-US/firefox/download/thanks/?foo=bar';
             expect(
                 Mozilla.StubAttribution.isFirefoxDownloadThanks(url2)
             ).toBeTruthy();
@@ -565,7 +565,7 @@ describe('stub-attribution.js', function () {
         });
 
         it('should return attribution data if referrer is present', function () {
-            const referrer = 'https://www.mozilla.org/en-US/';
+            const referrer = 'https://www.firefox.com/en-US/';
 
             const utms = {
                 utm_source: undefined,
@@ -575,7 +575,7 @@ describe('stub-attribution.js', function () {
             };
 
             const data = {
-                referrer: 'https://www.mozilla.org/en-US/',
+                referrer: 'https://www.firefox.com/en-US/',
                 ua: 'chrome',
                 client_id_ga4: GA4_CLIENT_ID,
                 session_id: jasmine.any(String),
@@ -820,7 +820,7 @@ describe('stub-attribution.js', function () {
         const win64Url =
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const transitionalUrl =
-            'https://www.mozilla.org/firefox/download/thanks/';
+            'https://www.firefox.com/firefox/download/thanks/';
         const winStageUrl =
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64StageUrl =
@@ -872,7 +872,7 @@ describe('stub-attribution.js', function () {
             );
             Mozilla.StubAttribution.updateBouncerLinks(data);
             expect(document.getElementById('link-transitional').href).toEqual(
-                'https://www.mozilla.org/firefox/download/thanks/'
+                'https://www.firefox.com/firefox/download/thanks/'
             );
 
             // prod download links

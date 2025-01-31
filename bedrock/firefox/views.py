@@ -122,7 +122,7 @@ def stub_attribution_code(request):
             pass
 
     if not has_value:
-        codes["source"] = "www.mozilla.org"
+        codes["source"] = "www.firefox.com"
         codes["medium"] = "(none)"
 
     code_data = sign_attribution_codes(codes)

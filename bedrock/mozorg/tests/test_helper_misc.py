@@ -854,60 +854,60 @@ class TestPlayStoreURL(TestCase):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("firefox", "firefox-home", "en-US")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
         )
         assert (
             self._render("firefox", "firefox-home", "es-ES")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
         )
         assert (
             self._render("firefox", "firefox-home", "de")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
         )
 
     def test_focus_play_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("focus", "firefox-home", "en-US")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
         )
         assert (
             self._render("focus", "firefox-home", "es-ES")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.focus&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
         )
         assert (
             self._render("focus", "firefox-home", "de")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.klar&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.klar&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
         )
 
     def test_pocket_play_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("pocket", "firefox-home", "en-US")
-            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=en"
         )
         assert (
             self._render("pocket", "firefox-home", "es-ES")
-            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=es"
         )
         assert (
             self._render("pocket", "firefox-home", "de")
-            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
+            == "https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dfirefox-home&amp;hl=de"
         )
 
     def test_vpn_play_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("vpn", "vpn-landing-page", "en-US")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=en"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=en"
         )
         assert (
             self._render("vpn", "vpn-landing-page", "es-ES")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=es"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=es"
         )
         assert (
             self._render("vpn", "vpn-landing-page", "de")
-            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=de"
+            == "https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&amp;referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&amp;hl=de"
         )
 
 

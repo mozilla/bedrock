@@ -42,7 +42,7 @@ class TestStubAttributionCode(TestCase):
 
     def test_no_valid_param_names(self):
         final_params = {
-            "source": "www.mozilla.org",
+            "source": "www.firefox.com",
             "medium": "(none)",
             "campaign": "(not set)",
             "content": "(not set)",
@@ -65,7 +65,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "8bc0a52a7f6e9ffbe0620969cf0862274c2ece328edb966383ed1001bd471886",
+            "0180e18d6be618eff051b623dc35f57f4a09c46befdd593f5d7649d80751f981",
         )
 
     def test_no_valid_param_data(self):
@@ -79,7 +79,7 @@ class TestStubAttributionCode(TestCase):
             "dlsource": "fs<a>44fn</a>",
         }
         final_params = {
-            "source": "www.mozilla.org",
+            "source": "www.firefox.com",
             "medium": "(none)",
             "campaign": "(not set)",
             "content": "(not set)",
@@ -102,7 +102,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "8bc0a52a7f6e9ffbe0620969cf0862274c2ece328edb966383ed1001bd471886",
+            "0180e18d6be618eff051b623dc35f57f4a09c46befdd593f5d7649d80751f981",
         )
 
     def test_some_valid_param_data(self):
@@ -304,7 +304,7 @@ class TestStubAttributionCode(TestCase):
         """
         params = {"referrer": "http://youtubê.com/sorry/"}
         final_params = {
-            "source": "www.mozilla.org",
+            "source": "www.firefox.com",
             "medium": "(none)",
             "campaign": "(not set)",
             "content": "(not set)",
@@ -327,7 +327,7 @@ class TestStubAttributionCode(TestCase):
         self.assertDictEqual(attrs, final_params)
         self.assertEqual(
             data["attribution_sig"],
-            "8bc0a52a7f6e9ffbe0620969cf0862274c2ece328edb966383ed1001bd471886",
+            "0180e18d6be618eff051b623dc35f57f4a09c46befdd593f5d7649d80751f981",
         )
 
     @override_settings(STUB_ATTRIBUTION_RATE=0.2)

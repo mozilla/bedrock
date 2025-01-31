@@ -154,7 +154,7 @@ class TestReleaseViews(TestCase):
                     "id": 789794,
                     "is_public": True,
                     "modified": "2023-11-14T03:22:58.386974+00:00",
-                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.mozilla.org/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
+                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.firefox.com/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
                     "sort_num": 0,
                     "tag": "New",
                     "progressive_rollout": True,
@@ -226,7 +226,7 @@ class TestReleaseViews(TestCase):
                     "id": 789794,
                     "is_public": True,
                     "modified": "2023-11-14T03:22:58.386974+00:00",
-                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.mozilla.org/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
+                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.firefox.com/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
                     "sort_num": 0,
                     "tag": "New",
                     "progressive_rollout": True,
@@ -255,7 +255,7 @@ class TestReleaseViews(TestCase):
                     "id": 789794,
                     "is_public": True,
                     "modified": "2023-11-14T03:22:58.386974+00:00",
-                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.mozilla.org/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
+                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.firefox.com/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
                     "sort_num": 0,
                     "tag": "New",
                     "progressive_rollout": True,
@@ -270,7 +270,7 @@ class TestReleaseViews(TestCase):
                     "id": 789794,
                     "is_public": True,
                     "modified": "2023-11-14T03:22:58.386974+00:00",
-                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.mozilla.org/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
+                    "note": "Gradually rolling out in Fx119, Firefox now allows you to edit PDFs by adding images and alt text, in addition to text and drawings.\r\n\r\n![screenshot of a photo of a red fox being added to a PDF. The alt text tool is open to the left of the photo, ready for a description to be added.][1]\r\n\r\n[1]: https://www.firefox.com/media/img/firefox/releasenotes/note-images/119_pdf_alt_text.png",  # noqa
                     "sort_num": 0,
                     "tag": "New",
                     "progressive_rollout": False,

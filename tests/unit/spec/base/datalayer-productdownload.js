@@ -362,7 +362,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     });
     it('should identify Mozilla VPN for Android', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
-            'https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&hl=en'
+            'https://play.google.com/store/apps/details?id=org.mozilla.firefox.vpn&referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3Dvpn-landing-page&hl=en'
         );
         expect(testEvent['product']).toBe('vpn');
         expect(testEvent['platform']).toBe('android');

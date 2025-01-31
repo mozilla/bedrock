@@ -22,7 +22,7 @@ def valid_country_code(country):
 
 
 def get_country_from_param(request):
-    is_prod = request.get_host() == "www.mozilla.org"
+    is_prod = request.get_host() == "www.firefox.com"
     country_code = valid_country_code(request.GET.get("geo"))
     return country_code if not is_prod else None
 

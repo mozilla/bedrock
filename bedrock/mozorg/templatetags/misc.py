@@ -616,7 +616,7 @@ def play_store_url(ctx, product, campaign=None):
     """Returns a localised play store URL for a given product"""
     locale = lang_short(ctx)
     base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
-    params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
+    params = "&referrer=utm_source%3Dwww.firefox.com%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
 
     if product == "focus" and locale == "de":
         base_url = getattr(settings, "GOOGLE_PLAY_KLAR_LINK")
