@@ -22,7 +22,7 @@
       "id": 787108,
       "is_public": true,
       "modified": "2017-08-08T13:08:09.659000+00:00",
-      "note": "Simplified installation process with a streamlined Windows stub installer\r\n\r\n  - Firefox for Windows 64-bit is now installed by default on 64-bit systems with at least 2GB of RAM\r\n  - [Full installers][1] with advanced installation options are still available \r\n\r\n[1]: https://www.mozilla.org/firefox/all/",
+      "note": "Simplified installation process with a streamlined Windows stub installer\r\n\r\n  - Firefox for Windows 64-bit is now installed by default on 64-bit systems with at least 2GB of RAM\r\n  - [Full installers][1] with advanced installation options are still available \r\n\r\n[1]: https://www.firefox.com/download/all/",
       "sort_num": 999,
       "tag": "New"
     },

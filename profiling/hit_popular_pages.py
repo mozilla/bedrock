@@ -22,7 +22,7 @@ import requests
 paths = [
     "/en-US/firefox/",
     "/en-US/firefox/121.0/system-requirements/",
-    "/en-US/firefox/all/",
+    "/en-US/firefox/download/all/",
     "/en-US/firefox/android/124.0/releasenotes/",
     "/en-US/firefox/channel/desktop/",
     "/en-US/firefox/channel/desktop/?reason=manual-update",

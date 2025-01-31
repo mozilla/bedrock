@@ -12,13 +12,13 @@
  */
 const desktopTestURLs = [
     '/en-US/firefox/',
-    '/en-US/firefox/all/',
     '/en-US/firefox/channel/android/',
     '/en-US/firefox/channel/desktop/',
     '/en-US/firefox/developer/',
+    '/en-US/firefox/download/',
+    '/en-US/firefox/download/all/',
     '/en-US/firefox/download/thanks/',
     '/en-US/firefox/enterprise/',
-    '/en-US/firefox/download/',
     '/en-US/firefox/releasenotes/',
     '/en-US/privacy/websites/cookie-settings/'
 ];

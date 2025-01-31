@@ -22,10 +22,10 @@ ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 urlpatterns = (
     path("firefox/", views.FirefoxHomeView.as_view(), name="firefox"),
-    path("firefox/all/", views.firefox_all, name="firefox.all"),
-    path("firefox/all/<slug:product_slug>/", views.firefox_all, name="firefox.all.platforms"),
-    path("firefox/all/<slug:product_slug>/<str:platform>/", views.firefox_all, name="firefox.all.locales"),
-    path("firefox/all/<slug:product_slug>/<str:platform>/<str:locale>/", views.firefox_all, name="firefox.all.download"),
+    path("firefox/download/all/", views.firefox_all, name="firefox.all"),
+    path("firefox/download/all/<slug:product_slug>/", views.firefox_all, name="firefox.all.platforms"),
+    path("firefox/download/all/<slug:product_slug>/<str:platform>/", views.firefox_all, name="firefox.all.locales"),
+    path("firefox/download/all/<slug:product_slug>/<str:platform>/<str:locale>/", views.firefox_all, name="firefox.all.download"),
     page("firefox/channel/desktop/", "firefox/channel/desktop.html", ftl_files=["firefox/channel"]),
     page("firefox/channel/android/", "firefox/channel/android.html", ftl_files=["firefox/channel"]),
     page("firefox/channel/ios/", "firefox/channel/ios.html", ftl_files=["firefox/channel"]),

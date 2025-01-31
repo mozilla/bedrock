@@ -60,9 +60,9 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testMsStoreURL).toBe(true);
     });
-    it('should not accept a random link to mozilla.org as a valid URL', function () {
+    it('should not accept a random link to firefox.com as a valid URL', function () {
         const testRandomURL = TrackProductDownload.isValidDownloadURL(
-            'https://www.mozilla.org/en-US/firefox/all/'
+            'https://www.firefox.com/en-US/firefox/download/all/'
         );
         expect(testRandomURL).toBe(false);
     });

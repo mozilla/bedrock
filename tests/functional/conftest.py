@@ -91,10 +91,10 @@ def pytest_generate_tests(metafunc):
 
         elif "download_path_l10n" in metafunc.fixturenames:
             urls = []
-            doc = get_web_page(f"{base_url}/en-US/firefox/all/")
+            doc = get_web_page(f"{base_url}/en-US/firefox/download/all/")
             product_urls = [a.attrib["href"] for a in doc("ul.c-product-list a")]
-            # If product url links outside of /firefox/all/ ignore it. (e.g. testflight)
-            product_urls = [url for url in product_urls if url.startswith("/en-US/firefox/all/")]
+            # If product url links outside of /firefox/download/all/ ignore it. (e.g. testflight)
+            product_urls = [url for url in product_urls if url.startswith("/en-US/firefox/download/all/")]
             for url in product_urls:
                 doc = get_web_page(f"{base_url}{url}")
                 platform_urls = [a.attrib["href"] for a in doc("ul.c-platform-list a")]

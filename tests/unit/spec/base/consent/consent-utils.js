@@ -333,7 +333,7 @@ describe('isURLPermitted()', function () {
     it('should return false for pathnames not in the allow-list', function () {
         expect(isURLPermitted('/en-US/firefox/')).toBeFalse();
         expect(isURLPermitted('/en-US/firefox/download/')).toBeFalse();
-        expect(isURLPermitted('/en-US/firefox/all/')).toBeFalse();
+        expect(isURLPermitted('/en-US/firefox/download/all/')).toBeFalse();
         expect(
             isURLPermitted('/en-US/firefox/124.0.2/releasenotes/')
         ).toBeFalse();

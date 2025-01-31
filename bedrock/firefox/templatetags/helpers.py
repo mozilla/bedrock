@@ -231,7 +231,7 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
 @library.global_function
 def firefox_url(platform, page, channel=None):
     """
-    Return a product-related URL like /firefox/all/ or /mobile/beta/notes/.
+    Return a product-related URL like /firefox/download/all/ or /mobile/beta/notes/.
 
     Examples
     ========

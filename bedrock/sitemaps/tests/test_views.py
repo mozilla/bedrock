@@ -11,7 +11,7 @@ from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 class TestSitemapView(TestCase):
     def setUp(self):
         data = [
-            {"path": "/firefox/all/", "locale": "de"},
+            {"path": "/firefox/download/all/", "locale": "de"},
             {"path": "/firefox/", "locale": "de"},
             {
                 "path": "/privacy/",
@@ -70,7 +70,7 @@ class TestSitemapView(TestCase):
                 <loc>https://www.mozilla.org/de/firefox/</loc>
               </url>
               <url>
-                <loc>https://www.mozilla.org/de/firefox/all/</loc>
+                <loc>https://www.mozilla.org/de/firefox/download/all/</loc>
               </url>
             </urlset>"""
         )
