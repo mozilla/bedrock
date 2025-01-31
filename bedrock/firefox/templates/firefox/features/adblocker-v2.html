@@ -1,0 +1,68 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/features/base-article.html" %}
+
+{% block page_title %}{{ ftl('features-adblocker-meta-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-adblocker-meta-desc') }}{% endblock %}
+
+{% block article_title_short %}{{ ftl('features-adblocker-ad-blocking') }}{% endblock %}
+{% block article_title %}{{ ftl('features-adblocker-the-ad-blocker-a-tool') }}{% endblock %}
+
+{% block article_content %}
+<p>{{ ftl('features-adblocker-in-todays-digital-world') }}</p>
+<p>{{ ftl('features-adblocker-ad-blockers-work') }}</p>
+<p>{{ ftl('features-adblocker-using-an-adblocker', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+
+<h2>{{ ftl('features-adblocker-finding-the-right') }}</h2>
+<p>{{ ftl('features-adblocker-there-are-many') }}</p>
+<ul class="mzp-u-list-styled">
+  <li>{{ ftl('features-adblocker-tip-1') }}</li>
+  <li>{{ ftl('features-adblocker-tip-2') }}</li>
+  <li>{{ ftl('features-adblocker-tip-3') }}</li>
+  <li>{{ ftl('features-adblocker-tip-4') }}</li>
+  <li>{{ ftl('features-adblocker-tip-5') }}</li>
+  <li>{{ ftl('features-adblocker-tip-6') }}</li>
+</ul>
+<p>{{ ftl('features-adblocker-its-important-to-note') }}</p>
+
+<h2>{{ftl('features-adblocker-enhanced-privacy') }}</h2>
+<p>{{ ftl('features-adblocker-beyond-ad-blockers') }}</p>
+<ul class="mzp-u-list-styled">
+  <li>{{ ftl('features-adblocker-tool-1') }}</li>
+  <li>{{ ftl('features-adblocker-tool-2') }}</li>
+  <li>{{ ftl('features-adblocker-tool-3') }}</li>
+</ul>
+<p>{{ ftl('features-adblocker-to-adjust') }}</p>
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/content-blocking.png",
+    srcset={
+        "img/firefox/features/adblocker/content-blocking-high-res.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/content-blocking-custom.png",
+    srcset={
+        "img/firefox/features/adblocker/content-blocking-custom-high-res.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ftl('features-adblocker-why-use') }}</h2>
+<p>{{ ftl('features-adblocker-ad-blockers-do-more') }}</p>
+<p>{{ ftl('features-adblocker-explore-hundreds', url=url('firefox.new')) }}</p>
+{% endblock %}
