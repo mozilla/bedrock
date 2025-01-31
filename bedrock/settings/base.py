@@ -514,7 +514,7 @@ ALT_CANONICAL_PATHS = {}
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     parser=ListOf(str, allow_empty=False),
-    default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+    default="www.firefox.com,www.ipv6.firefox.com,www.springfield.moz.works",
 )
 ALLOWED_CIDR_NETS = config(
     "ALLOWED_CIDR_NETS",
@@ -523,7 +523,7 @@ ALLOWED_CIDR_NETS = config(
 )
 
 # The canonical, production URL without a trailing slash
-CANONICAL_URL = "https://www.mozilla.org"
+CANONICAL_URL = "https://www.firefox.com"
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = config("SECRET_KEY", default="ssssshhhhh")
@@ -1313,7 +1313,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     },
     "JOB_NAME_PREFIX": config(
         "WAGTAIL_LOCALIZE_JOB_NAME_PREFIX",
-        default="www.mozilla.org",
+        default="www.firefox.com",
     ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",

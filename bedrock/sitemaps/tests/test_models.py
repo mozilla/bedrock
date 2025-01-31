@@ -9,10 +9,10 @@ from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 class TestSitemapsModel(TestCase):
     def test_absolute_url(self):
         obj = SitemapURL(path="/firefox/", locale="de")
-        assert obj.get_absolute_url() == "https://www.mozilla.org/de/firefox/"
+        assert obj.get_absolute_url() == "https://www.firefox.com/de/firefox/"
         # none locale
         obj = SitemapURL(path="/firefox/", locale=NO_LOCALE)
-        assert obj.get_absolute_url() == "https://www.mozilla.org/firefox/"
+        assert obj.get_absolute_url() == "https://www.firefox.com/firefox/"
 
     def test_all_for_locale(self):
         SitemapURL.objects.create(path="/firefox/", locale="de")

@@ -629,10 +629,10 @@ class TestAbsoluteURLFilter(TestCase):
     @override_settings(DEV=False)
     def test_urls(self):
         """Should return a fully qualified URL including a protocol"""
-        expected = "https://www.mozilla.org/en-US/firefox/download/"
+        expected = "https://www.firefox.com/en-US/firefox/download/"
         assert misc.absolute_url("/en-US/firefox/download/") == expected
-        assert misc.absolute_url("//www.mozilla.org/en-US/firefox/download/") == expected
-        assert misc.absolute_url("https://www.mozilla.org/en-US/firefox/download/") == expected
+        assert misc.absolute_url("//www.firefox.com/en-US/firefox/download/") == expected
+        assert misc.absolute_url("https://www.firefox.com/en-US/firefox/download/") == expected
 
 
 @pytest.mark.parametrize(

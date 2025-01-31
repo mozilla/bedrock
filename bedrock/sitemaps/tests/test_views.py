@@ -32,13 +32,13 @@ class TestSitemapView(TestCase):
             <?xml version="1.0" encoding="UTF-8"?>
             <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <sitemap>
-                <loc>https://www.mozilla.org/sitemap_none.xml</loc>
+                <loc>https://www.firefox.com/sitemap_none.xml</loc>
               </sitemap>
               <sitemap>
-                <loc>https://www.mozilla.org/de/sitemap.xml</loc>
+                <loc>https://www.firefox.com/de/sitemap.xml</loc>
               </sitemap>
               <sitemap>
-                <loc>https://www.mozilla.org/fr/sitemap.xml</loc>
+                <loc>https://www.firefox.com/fr/sitemap.xml</loc>
               </sitemap>
             </sitemapindex>"""
         )
@@ -51,10 +51,10 @@ class TestSitemapView(TestCase):
             <?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
-                <loc>https://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul</loc>
+                <loc>https://www.firefox.com/keymaster/gatekeeper/there.is.only.xul</loc>
               </url>
               <url>
-                <loc>https://www.mozilla.org/locales/</loc>
+                <loc>https://www.firefox.com/locales/</loc>
               </url>
             </urlset>"""
         )
@@ -67,10 +67,10 @@ class TestSitemapView(TestCase):
             <?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
-                <loc>https://www.mozilla.org/de/firefox/</loc>
+                <loc>https://www.firefox.com/de/firefox/</loc>
               </url>
               <url>
-                <loc>https://www.mozilla.org/de/firefox/download/all/</loc>
+                <loc>https://www.firefox.com/de/firefox/download/all/</loc>
               </url>
             </urlset>"""
         )
@@ -82,10 +82,10 @@ class TestSitemapView(TestCase):
             <?xml version="1.0" encoding="UTF-8"?>
             <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
               <url>
-                <loc>https://www.mozilla.org/fr/firefox/</loc>
+                <loc>https://www.firefox.com/fr/firefox/</loc>
               </url>
               <url>
-                <loc>https://www.mozilla.org/fr/privacy/</loc>
+                <loc>https://www.firefox.com/fr/privacy/</loc>
               </url>
             </urlset>"""
         )

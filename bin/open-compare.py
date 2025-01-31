@@ -13,11 +13,11 @@ import urllib.request
 import webbrowser
 
 ENV_URLS = {
-    "demo1": "https://www-demo1.allizom.org",
-    "demo2": "https://www-demo2.allizom.org",
-    "demo3": "https://www-demo3.allizom.org",
-    "stage": "https://www.allizom.org",
-    "prod": "https://www.mozilla.org",
+    "demo1": "https://www-demo1.springfield.moz.works",
+    "demo2": "https://www-demo2.springfield.moz.works",
+    "demo3": "https://www-demo3.springfield.moz.works",
+    "stage": "https://www.springfield.moz.works",
+    "prod": "https://www.firefox.com",
 }
 REV_PATH = "/revision.txt"
 DEFAULT_REPO = "mozilla/bedrock"

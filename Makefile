@@ -1,7 +1,7 @@
 DC_CI = "bin/docker-compose.sh"
 DC = $(shell which docker) compose
 DOCKER = $(shell which docker)
-TEST_DOMAIN = www.mozilla.org
+TEST_DOMAIN = www.firefox.com
 
 # Check if 'uv' exists and set the command accordingly
 ifneq (, $(shell which uv 2>/dev/null))
