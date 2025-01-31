@@ -26,7 +26,7 @@ def driver_log():
 def session_capabilities(pytestconfig, session_capabilities):
     driver = pytestconfig.getoption("driver")
     if driver == "SauceLabs":
-        session_capabilities.setdefault("tags", []).append("bedrock")
+        session_capabilities.setdefault("tags", []).append("springfield")
 
         if session_capabilities.get("browserName", driver).lower() == "internet explorer":
             # Avoid default SauceLabs proxy for IE.

@@ -18,7 +18,7 @@ on:
         default: refs/heads/main
 env:
   APP: bedrock
-  APPLICATION_REPOSITORY: mozilla/bedrock
+  APPLICATION_REPOSITORY: mozmeao/springfield
   IMAGE: bedrock
   GAR_LOCATION: us
   GCP_PROJECT_ID: moz-fx-bedrock-prod
@@ -28,9 +28,9 @@ env:
 
 jobs:
   build_and_publish_public_images:
-    name: Build public Bedrock images and push to Docker hub
+    name: Build public Springfield images and push to Docker hub
     runs-on: ubuntu-latest
-    if: github.repository == 'mozilla/bedrock'
+    if: github.repository == 'mozmeao/springfield'
     outputs:
       long_sha: ${{ steps.long-sha.outputs.LONG_SHA }}
 
@@ -212,4 +212,3 @@ jobs:
             rm -rf ./$TMP_DIR/ ./$TMP_DIR_HASHED/
             docker kill assets-tmp
             docker rm assets-tmp
-

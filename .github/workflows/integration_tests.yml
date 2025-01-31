@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: The branch of mozilla/bedrock we're testing against - main|stage|prod|run-integration-tests
+        description: The branch of mozmeao/springfield we're testing against - main|stage|prod|run-integration-tests
         required: true
       git_sha:
         description: The git SHA just deployed to the service we want to test

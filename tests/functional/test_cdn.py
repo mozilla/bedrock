@@ -81,7 +81,7 @@ def test_locale_redirect(url, base_url):
     (
         # only in the GCS bucket
         "/media/img/firefox/favicon-notice-196.d4686cdb823e.png",
-        # comes from bedrock
+        # comes from springfield
         "/media/protocol/img/logos/mozilla/black.40d1af88c248.svg",
     ),
 )
@@ -99,7 +99,7 @@ def test_media(url, base_url):
 @pytest.mark.cdn
 @pytest.mark.nondestructive
 def test_query_params(base_url):
-    """Query params should be respected in the cache and bedrock should respond appropriately
+    """Query params should be respected in the cache and springfield should respond appropriately
     Based on the `firefox_mobile_faq` function in `bedrock/firefox/redirects.py`.
     """
     url = f"{base_url}/mobile/faq/"

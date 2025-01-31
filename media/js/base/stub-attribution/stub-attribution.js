@@ -264,7 +264,7 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
-     * AJAX request to bedrock service to authenticate stub attribution request.
+     * AJAX request to springfield service to authenticate stub attribution request.
      * @param {Object} data - utm params and referrer.
      */
     StubAttribution.requestAuthentication = function (data) {

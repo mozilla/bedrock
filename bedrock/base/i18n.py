@@ -15,7 +15,7 @@ from lib.l10n_utils import translation
 class LocalePrefixPattern(django.urls.LocalePrefixPattern):
     """
     A sub-class of Django's "LocalePrefixPattern" that simply normalizes the language
-    prefix for Bedrock (e.g., upper-case country codes).
+    prefix for Springfield (e.g., upper-case country codes).
 
     This is an essential piece, since it controls the resolution of the
     language-code prefix of incoming URLs as well as the language code prefix
@@ -57,9 +57,9 @@ def bedrock_i18n_patterns(*urls, prefix_default_language=True):
 
 def normalize_language(language):
     """
-    Given a language code, returns the language code supported by Bedrock
+    Given a language code, returns the language code supported by Springfield
     in the proper case, for example "eN-us" --> "en-US" - or None if
-    Bedrock doesn't support the language code.
+    Springfield doesn't support the language code.
 
     We also convert it to a specified fallback language if the actual
     presented code is not available _and_ we have a fallback specced in

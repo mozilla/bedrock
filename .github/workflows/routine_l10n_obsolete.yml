@@ -40,7 +40,7 @@ jobs:
           BODY: |
             ### Remove obsolete strings
 
-            Search the code base for [strings marked `obsolete`](https://github.com/search?q=repo%3Amozilla%2Fbedrock+obsolete+language%3AFluent&type=code&l=Fluent) that are more than 2 months old.
+            Search the code base for [strings marked `obsolete`](https://github.com/search?q=repo%3Amozmeao%2Fspringfield+obsolete+language%3AFluent&type=code&l=Fluent) that are more than 2 months old.
             If you find strings that have no date, either find the date by looking at git history
             or add an expiry date and leave it to be removed in 2 months.
 
@@ -49,10 +49,10 @@ jobs:
             ### Remove obsolete ftl files
 
             Compare the files in /l10n/en-US/ to the /en/ folder in the www-l10n repo and remove
-            files from www-l10n that no longer exist in bedrock.
+            files from www-l10n that no longer exist in springfield.
 
             If you have both repos installed and up to date you can run this command:
-            `diff -r www-l10n/en bedrock/l10n/en | grep ".ftl"`
+            `diff -r www-l10n/en springfield/l10n/en | grep ".ftl"`
 
             - [ ] Remove files
             - [ ] Remove references in www-l10n/configs/pontoon.toml

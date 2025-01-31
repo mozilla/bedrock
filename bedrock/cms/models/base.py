@@ -16,7 +16,7 @@ from lib import l10n_utils
 
 @method_decorator(never_cache, name="serve_password_required_response")
 class AbstractBedrockCMSPage(WagtailBasePage):
-    """Base page class for all Wagtail pages within Bedrock
+    """Base page class for all Wagtail pages within Springfield
 
     Things we do to in particular are:
 
@@ -53,7 +53,7 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         return False
 
     def _patch_request_for_bedrock(self, request):
-        "Add hints that help us integrate CMS pages with core Bedrock logic"
+        "Add hints that help us integrate CMS pages with core Springfield logic"
 
         # Quick annotation to help us track the origin of the page
         request.is_cms_page = True

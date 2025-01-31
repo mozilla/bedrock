@@ -10,7 +10,7 @@ from lib.l10n_utils import translation
 
 
 class TestCase(DjTestCase):
-    """Base class for Bedrock test cases."""
+    """Base class for Springfield test cases."""
 
     @contextmanager
     def activate_locale(self, locale):

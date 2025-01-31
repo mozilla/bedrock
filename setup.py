@@ -5,7 +5,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="bedrock",
+    name="springfield",
     version="1.0",
     description="Django application.",
     long_description="",

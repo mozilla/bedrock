@@ -4,7 +4,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 # Note from 2024 CMS work:
-# This script is still valid and is used to keep Bedrock's primary database up to date.
+# This script is still valid and is used to keep Springfield's primary database up to date.
 
 # We deliberately don't set -e here because we don't want a failure to block subsequent tasks
 set -x

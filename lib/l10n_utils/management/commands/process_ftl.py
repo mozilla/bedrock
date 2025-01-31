@@ -33,7 +33,7 @@ class NoisyFluentParser(FluentParser):
 
 
 class Command(FTLRepoCommand):
-    help = "Processes .ftl files from l10n team for use in bedrock"
+    help = "Processes .ftl files from l10n team for use in springfield"
     parser = None
 
     def add_arguments(self, parser):

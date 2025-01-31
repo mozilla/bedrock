@@ -1,8 +1,8 @@
 {
-  "name": "Mozilla Bedrock Demos",
-  "description": "Demo deployments for changes to Mozilla Bedrock.",
-  "website": "https://www.mozilla.org",
-  "repository": "https://github.com/mozilla/bedrock",
+  "name": "www.firefox.com Demos",
+  "description": "Demo deployments for changes to www.firefox.com",
+  "website": "https://www.firefox.com",
+  "repository": "https://github.com/mozmeao/springfield",
   "success_url": "/healthz-cron/",
   "stack": "container",
   "env": {

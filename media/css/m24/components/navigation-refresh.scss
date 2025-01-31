@@ -661,7 +661,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 // page content - hide all content except for the nav when mobile nav menu is open
-// This is not part of Protocol, it is specifc to Bedrock; should be documented in future
+// This is not part of Protocol, it is specific to Springfield; should be documented in future
 body:has(.m24-c-navigation-items.mzp-is-open) {
     & > .m24-pencil-banner,
     & > .c-sub-navigation,

@@ -28,7 +28,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--environment",
             default="dev",
-            help="Which Bedrock environment are you downloading from? Values are dev | stage | prod (default is dev)",
+            help="Which Springfield environment are you downloading from? Values are dev | stage | prod (default is dev)",
         )
         parser.add_argument(
             "--redownload",

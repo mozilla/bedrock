@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       mozorg_service_hostname:
-        description: The root URL of the Mozorg service to run tests against. eg 'https://www.mozilla.org'
+        description: The root URL of the Mozorg service to run tests against. eg 'https://www.firefox.com'
         required: true
 
 concurrency:
@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   notify-of-test-run-start:
-    if: github.repository == 'mozilla/bedrock'
+    if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -48,7 +48,7 @@ jobs:
             SHARD_LABEL: "prod-only-cdn-tests"
             MARK_EXPRESSION: cdnprod
     env:
-      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org' }} # Mozorg base URL
+      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.firefox.com' }} # Firefox.com base URL
       BROWSER_NAME: firefox
       CI_JOB_ID: ${{ github.run_id }}
       DRIVER: ""
@@ -84,7 +84,7 @@ jobs:
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   notify-of-test-run-completion:
-    if: github.repository == 'mozilla/bedrock' && always()
+    if: github.repository == 'mozmeao/springfield' && always()
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, cdn-tests]
     steps:

@@ -1,7 +1,7 @@
 {
-  "name": "bedrock",
-  "version": "0.1.0",
-  "description": "Making mozilla.org awesome, one pebble at a time",
+  "name": "springfield",
+  "version": "0.0.1",
+  "description": "You can have all the money in the world, but there’s one thing you will never have — a dinosaur.",
   "private": true,
   "dependencies": {
     "@axe-core/playwright": "^4.10.1",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mozilla/bedrock.git"
+    "url": "https://github.com/mozmeao/springfield.git"
   },
   "author": "Mozilla",
   "license": "MPL",

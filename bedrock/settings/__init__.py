@@ -11,7 +11,7 @@ import csp.constants
 from .base import *  # noqa: F403, F405
 
 # This file:
-# 1. Handles setting specific settings based on the site Bedrock is serving - currently Mozorg
+# 1. Handles setting specific settings based on the site Springfield is serving - currently Firefox.com
 # 2. Tweaks some settings if Django can detect we're running tests
 # 3. django_csp settings
 # 4. Sets a number of general settings applicable to all site modes

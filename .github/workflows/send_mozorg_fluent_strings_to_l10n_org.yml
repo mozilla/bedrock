@@ -1,7 +1,7 @@
 # Workflow to open a PR on mozilla-l10n/www-l10n with
-# new strings that exist in Bedrock and need localising
+# new strings that exist in Springfield and need localising
 
-name: Open Fluent PR for Mozorg
+name: Open Fluent PR for Firefox.com
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
 
 jobs:
   open_l10n_pr:
-    if: github.repository == 'mozilla/bedrock'
+    if: github.repository == 'mozmeao/springfield'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

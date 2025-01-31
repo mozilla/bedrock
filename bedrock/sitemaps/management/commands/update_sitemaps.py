@@ -8,7 +8,7 @@ from bedrock.sitemaps.utils import update_sitemaps
 
 
 # Note that this command is only called by www-sitemap-generator, which uses the Docker image
-# of Bedrock to regenerate sitemap data
+# of Springfield to regenerate sitemap data
 class Command(BaseCommand):
     args = ""
     help = "Update XML sitemaps based on the list of localized pages."

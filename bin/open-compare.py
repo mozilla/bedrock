@@ -20,7 +20,7 @@ ENV_URLS = {
     "prod": "https://www.firefox.com",
 }
 REV_PATH = "/revision.txt"
-DEFAULT_REPO = "mozilla/bedrock"
+DEFAULT_REPO = "mozmeao/springfield"
 DEFAULT_BRANCH = "main"
 URL_TEMPLATE = "https://github.com/{repo}/compare/{rev}...{branch}"
 GITHUB_API_TEMPLATE = "https://api.github.com/repos/{repo}/branches/{branch}"

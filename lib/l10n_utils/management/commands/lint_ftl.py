@@ -41,7 +41,7 @@ class Command(BaseCommand):
             dest="repo",
             const=settings.FLUENT_REPO_PATH,
             default=settings.FLUENT_LOCAL_PATH,
-            help="Check files in the external Fluent Repo instead of the bedrock files.",
+            help="Check files in the external Fluent Repo instead of the springfield files.",
         )
         parser.add_argument("-q", "--quiet", action="store_true", dest="quiet", default=False, help="If no error occurs, swallow all output.")
 

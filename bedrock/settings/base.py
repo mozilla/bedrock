@@ -260,7 +260,7 @@ def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
 # Our accepted production locales are the values from the above, plus an exception.
 PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), [])) + ["ja-JP-mac"])
 
-GITHUB_REPO = "https://github.com/mozilla/bedrock"
+GITHUB_REPO = "https://github.com/mozmeao/springfield"
 
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [

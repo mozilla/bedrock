@@ -54,7 +54,7 @@
 
         for (var i = 0; i < current.length; i++) {
             // The following classes must be removed in the correct order
-            // to work around a bug in bedrock's classList polyfill for IE9.
+            // to work around a bug in springfield's classList polyfill for IE9.
             // https://github.com/mozilla/bedrock/issues/6221 :/
             current[i].classList.remove('mzp-is-selected');
             current[i].classList.remove('mzp-is-animated');
@@ -104,7 +104,7 @@
             MzpMenu.open(el);
         } else {
             // The following classes must be removed in the correct order
-            // to work around a bug in bedrock's classList polyfill for IE9.
+            // to work around a bug in springfield's classList polyfill for IE9.
             // https://github.com/mozilla/bedrock/issues/6221 :/
             el.classList.remove('mzp-is-selected');
             el.classList.remove('mzp-is-animated');

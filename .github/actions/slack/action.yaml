@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #
 name: Slack notifications
-description: Slack notifications for Bedrock GHA events
+description: Slack notifications for Springfield GHA events
 
 inputs:
   env_name:
@@ -65,13 +65,13 @@ runs:
             "attachments": [
               {
                 "color": "${{ env.STATUS_COLOR }}",
-                "fallback": "Bedrock ${{ inputs.env_name }} / ${{ inputs.ref }}: ${{ inputs.message }}",
+                "fallback": "Springfield ${{ inputs.env_name }} / ${{ inputs.ref }}: ${{ inputs.message }}",
                 "blocks": [
                   {
                     "type": "section",
                     "text": {
                       "type": "mrkdwn",
-                      "text": "Bedrock ${{ inputs.env_name }} / ${{ inputs.ref }}:\n${{ inputs.message }}"
+                      "text": "Springfield ${{ inputs.env_name }} / ${{ inputs.ref }}:\n${{ inputs.message }}"
                     },
                     "accessory": {
                       "type": "button",
