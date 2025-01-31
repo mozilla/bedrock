@@ -445,7 +445,7 @@
     },
     {
       "files": [
-        "js/base/fxa-bundle-init.es6.js"
+        "js/base/fxa-link-init.es6.js"
       ],
       "name": "fxa"
     },

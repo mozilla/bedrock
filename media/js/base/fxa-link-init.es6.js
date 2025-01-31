@@ -4,6 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import FxaBundleConsent from './fxa-bundle-consent.es6';
+import FxaLink from './fxa-link.es6.js';
 
-FxaBundleConsent.init();
+FxaLink.init();
