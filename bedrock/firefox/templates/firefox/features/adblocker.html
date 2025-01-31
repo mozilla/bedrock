@@ -6,37 +6,49 @@
 
 {% extends "firefox/features/base-article.html" %}
 
-{% block page_title %}{{ ftl('features-adblocker-meta-title') }}{% endblock %}
-{% block page_desc %}{{ ftl('features-adblocker-meta-desc') }}{% endblock %}
+{% block page_desc %}{{ ftl('features-adblocker-how-to-stop-seeing-too') }}{% endblock %}
 
-{% block article_title_short %}{{ ftl('features-adblocker-ad-blocking') }}{% endblock %}
-{% block article_title %}{{ ftl('features-adblocker-the-ad-blocker-a-tool') }}{% endblock %}
+{% block article_title_short %}Ad blocking{% endblock %}
+{% block article_title %}{{ ftl('features-adblocker-the-ad-blocker-a-secret') }}{% endblock %}
 
 {% block article_content %}
-<p>{{ ftl('features-adblocker-in-todays-digital-world') }}</p>
-<p>{{ ftl('features-adblocker-ad-blockers-work') }}</p>
-<p>{{ ftl('features-adblocker-using-an-adblocker', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+<h2>{{ ftl('features-adblocker-so-many-ads-so-little') }}</h2>
+<p>{{ ftl('features-adblocker-the-average-person-sees') }}</p>
+<p>{{ ftl('features-adblocker-an-ad-blocker-is-a-piece') }}</p>
+<p>{{ ftl('features-adblocker-these-ads-might-be-loud', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
 
-<h2>{{ ftl('features-adblocker-finding-the-right') }}</h2>
-<p>{{ ftl('features-adblocker-there-are-many') }}</p>
-<ul class="mzp-u-list-styled">
-  <li>{{ ftl('features-adblocker-tip-1') }}</li>
-  <li>{{ ftl('features-adblocker-tip-2') }}</li>
-  <li>{{ ftl('features-adblocker-tip-3') }}</li>
-  <li>{{ ftl('features-adblocker-tip-4') }}</li>
-  <li>{{ ftl('features-adblocker-tip-5') }}</li>
-  <li>{{ ftl('features-adblocker-tip-6') }}</li>
-</ul>
-<p>{{ ftl('features-adblocker-its-important-to-note') }}</p>
+<h2>{{ ftl('features-adblocker-find-the-right-ad-blocker') }}</h2>
 
-<h2>{{ftl('features-adblocker-enhanced-privacy') }}</h2>
-<p>{{ ftl('features-adblocker-beyond-ad-blockers') }}</p>
-<ul class="mzp-u-list-styled">
-  <li>{{ ftl('features-adblocker-tool-1') }}</li>
-  <li>{{ ftl('features-adblocker-tool-2') }}</li>
-  <li>{{ ftl('features-adblocker-tool-3') }}</li>
-</ul>
-<p>{{ ftl('features-adblocker-to-adjust') }}</p>
+<p>{{ ftl('features-adblocker-there-are-scores-of-content') }}</p>
+<p>{{ ftl('features-adblocker-considered-by-many-to-be-the', attrs='href="https://addons.mozilla.org/firefox/addon/ublock-origin/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
+<p>{{ ftl('features-adblocker-adguard-adblocker-blunts', attrs1='href="https://addons.mozilla.org/firefox/addon/adguard-adblocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe', attrs2='href="https://addons.mozilla.org/firefox/addon/popup-blocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
+<p>{{ ftl('features-adblocker-ghostery-is-another-great', attrs='href="https://addons.mozilla.org/firefox/addon/ghostery/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
+{% set desktop_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.new')) %}
+{% set android_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.browsers.mobile.android')) %}
+<p>{{ ftl('features-adblocker-these-extensions-work-beautifully', attrs1=desktop_link, attrs2=android_link) }}</p>
+
+<h2>{{ftl('features-adblocker-create-a-tracker-free') }}</h2>
+<p>{{ ftl('features-adblocker-on-firefox-you-can-use', privacy='https://restoreprivacy.com/firefox-privacy/', blocking='https://support.mozilla.org/kb/content-blocking?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/content-blocking-title.png",
+    srcset={
+        "img/firefox/features/adblocker/content-blocking-title-high-res.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ftl('features-adblocker-choose-your-level-of-protection') }}</h2>
+<p>{{ ftl('features-adblocker-to-start-click-on-the-v2') }}</p>
+
+<h2>{{ftl('features-adblocker-go-easy-with-standard') }}</h2>
+<p>{{ ftl('features-adblocker-if-ads-dont-bother-you', url=url('firefox.features.private-browsing')) }}</p>
+
 <figure class="c-article-figure">
   {{ resp_img(
     url="img/firefox/features/adblocker/content-blocking.png",
@@ -49,6 +61,13 @@
     }
   ) }}
 </figure>
+
+<h2>{{ftl('features-adblocker-get-tough-with-strict') }}</h2>
+<p>{{ ftl('features-adblocker-if-seeing-too-many-ads') }}</p>
+
+<h2>{{ftl('features-adblocker-do-it-yourself-custom') }}</h2>
+<p>{{ ftl('features-adblocker-the-custom-setting-gives') }}</p>
+
 <figure class="c-article-figure">
   {{ resp_img(
     url="img/firefox/features/adblocker/content-blocking-custom.png",
@@ -62,7 +81,56 @@
   ) }}
 </figure>
 
-<h2>{{ftl('features-adblocker-why-use') }}</h2>
-<p>{{ ftl('features-adblocker-ad-blockers-do-more') }}</p>
-<p>{{ ftl('features-adblocker-explore-hundreds', url=url('firefox.new')) }}</p>
+<h2>{{ftl('features-adblocker-cover-your-trail-block') }}</h2>
+<p>{{ ftl('features-adblocker-click-on-the-trackers') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/custom-trackers.png",
+    srcset={
+        "img/firefox/features/adblocker/custom-trackers-high-res.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ftl('features-adblocker-take-a-bite-out-of-cookies') }}</h2>
+<p>{{ ftl('features-adblocker-cookies-are-sent-by-websites', url='https://support.mozilla.org/kb/storage?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+<p>{{ ftl('features-adblocker-in-firefox-you-can-block') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/third-party-cookies.png",
+    srcset={
+        "img/firefox/features/adblocker/third-party-cookies-high-res.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ftl('features-adblocker-send-a-do-not-track-signal') }}</h2>
+<p>{{ ftl('features-adblocker-if-you-dont-want-your', url='https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+
+<figure class="c-article-figure">
+  {{ resp_img(
+    url="img/firefox/features/adblocker/dnt_screenshot.png",
+    srcset={
+        "img/firefox/features/adblocker/dnt_screenshot.png": "2x"
+    },
+    optional_attributes={
+      "alt": "",
+      "width": "600"
+    }
+  ) }}
+</figure>
+
+<h2>{{ ftl('features-adblocker-speed-up-thanks-to-ad') }}</h2>
+<p>{{ ftl('features-adblocker-in-some-cases-an-ad-blocker') }}</p>
+<p>{{ ftl('features-adblocker-if-you-want-to-learn-more-v2', url=url('firefox.new')) }}</p>
 {% endblock %}
