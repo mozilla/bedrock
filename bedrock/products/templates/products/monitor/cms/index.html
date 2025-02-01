@@ -1,0 +1,102 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% from "macros-protocol.html" import card, picto, split with context %}
+{% from "products/monitor/cms/includes/macros.html" import picto_icon, split_media with context %}
+
+{% extends "products/monitor/base.html" %}
+
+{% block page_title %}{{ page.title }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+
+{% block body_id %}mozilla-monitor-landing{% endblock %}
+
+{% set _utm_source = 'www.mozilla.org-monitor-product-page' %}
+{% set _utm_campaign = 'monitor-product-page' %}
+{% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('protocol-picto')}}
+  {{ css_bundle('protocol-card')}}
+  {{ css_bundle('monitor-landing')}}
+{% endblock %}
+
+
+{% block content %}
+<main>
+    {% call split(
+      block_class='c-hero mzp-l-split-center-on-sm-md mzp-t-content-xl',
+      image=split_media(page.split_image),
+      media_class='mzp-l-split-h-center',
+      media_after=True
+    ) %}
+
+    <h2>{{ page.split_heading }}</h2>
+    <p class="c-subhead">{{ page.split_subheading }}</p>
+    {{ page.split_content|richtext }}
+    <!-- <p class="c-subhead">Protect your privacy with Mozilla Monitor</p>
+    <ul class="mzp-u-list-styled">
+      <li>Automated Data Removal: Take back your personal information and stay in control</li>
+      <li>Breach Alerts: Get notified instantly if your data is exposed.</li>
+    </ul> -->
+
+    <p><a href="{{ page.split_button_url }}{{ _params }}" class="mzp-c-button">{{ page.split_button_text }}</a></p>
+    {% endcall %}
+
+<div class="c-manage">
+  <section class="mzp-l-content mzp-t-content-lg">
+    <h2 class="mzp-u-title-md">{{ page.articles_heading }}</h2>
+    <p class="c-subhead">{{ page.articles_subheading }}</p>
+  </section>
+</div>
+
+{% if articlepages.count() in [1,2,4]  %}
+  {% set col_class = "mzp-t-columns-two" %}
+{% else %}
+  {% set col_class = "mzp-t-columns-three" %}
+{% endif %}
+
+<section class="c-more mzp-l-content mzp-t-content-xl">
+  <div class="mzp-l-columns {{ col_class }}">
+
+    {% for article in articlepages %}
+
+      {{ card(
+        link_url=article.url,
+        ga_title="TKTK",
+        aspect_ratio="has-aspect-icon",
+        image=picto_icon(article.icon),
+        heading_level=4,
+        title=article.title,
+        desc=article.search_description
+      ) }}
+
+    {% endfor %}
+</div>
+</section>
+
+{% if page.call_to_action_bottom %}
+  <section class="c-protect">
+    {% call split(
+      block_class=' mzp-l-split-center-on-sm-md mzp-t-content-xl',
+
+      image=split_media(page.call_to_action_bottom.split_image),
+      media_class='mzp-l-split-h-center',
+      media_after=True
+    ) %}
+      <h2>{{ page.call_to_action_bottom.split_heading }}</h2>
+      <p class="c-subhead">{{ page.call_to_action_bottom.split_subheading }}</p>
+      {{ page.call_to_action_bottom.split_content|richtext }}
+      <p><a href="{{ page.call_to_action_bottom.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_bottom.split_button_text }}</a></p>
+    {% endcall %}
+  </section>
+{% endif %}
+
+</main>
+{% endblock %}

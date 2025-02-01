@@ -1,0 +1,81 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "products/monitor/base.html" %}
+{% from "macros-protocol.html" import split with context %}
+{% from "products/monitor/cms/includes/macros.html" import split_media with context %}
+
+{% if page.seo_description %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('monitor-landing')}}
+  {{ css_bundle('monitor-article') }}
+{% endblock %}
+
+{% block content %}
+<div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+
+  <aside class="mzp-l-sidebar">
+    <p>Sidebar content.</p>
+  </aside>
+
+  <main class="mzp-l-main">
+  <article class="mzp-c-article">
+    <h1 class="mzp-c-article-title">{{ page.title }}</h1>
+    <p class="c-subhead">{{ page.subheading }}</p>
+
+    {{ page.summary|richtext }}
+
+    {% if page.call_to_action_middle %}
+      <section class="c-protect">
+        {% call split(
+          block_class=' mzp-l-split-center-on-sm-md mzp-t-content-xl ',
+          image=split_media(page.call_to_action_middle.split_image),
+          media_class='mzp-l-split-h-center',
+          media_after=True
+        ) %}
+          <h2>{{ page.call_to_action_middle.split_heading }}</h2>
+          <p class="c-subhead">{{ page.call_to_action_middle.split_subheading }}</p>
+          {{ page.call_to_action_middle.split_content|richtext }}
+          <p><a href="{{ page.call_to_action_middle.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_middle.split_button_text }}</a></p>
+        {% endcall %}
+      </section>
+    {% endif %}
+
+    {{ page.content|richtext }}
+
+  </article>
+</div>
+
+
+{% if page.call_to_action_bottom %}
+  <section class="c-protect">
+    {% call split(
+      block_class=' mzp-l-split-center-on-sm-md mzp-t-content-xl',
+
+      image=split_media(page.call_to_action_bottom.split_image),
+      media_class='mzp-l-split-h-center',
+      media_after=True
+    ) %}
+      <h2>{{ page.call_to_action_bottom.split_heading }}</h2>
+      <p class="c-subhead">{{ page.call_to_action_bottom.split_subheading }}</p>
+      {{ page.call_to_action_bottom.split_content|richtext }}
+      <p><a href="{{ page.call_to_action_bottom.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_bottom.split_button_text }}</a></p>
+    {% endcall %}
+  </section>
+{% endif %}
+
+
+
+{% endblock %}
