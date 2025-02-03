@@ -53,8 +53,6 @@
   {% endif %}
 {% endblock %}
 
-{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-release-notes' %}
-
 {% set channel_name = '' if release.channel == 'Release' else release.channel %}
 
 {% set download_title = download_title|default('Get the most recent version') %}
