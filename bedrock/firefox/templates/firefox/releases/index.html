@@ -20,8 +20,6 @@
 
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
-{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-releases' %}
-
 {% block content %}
   <main id="main-content" class="mzp-l-content">
     <a href="{{ url('firefox.new') }}">
