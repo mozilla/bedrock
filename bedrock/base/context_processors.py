@@ -30,10 +30,6 @@ def globals(request):
     }
 
 
-# match 1 - 4 digits only
-FC_RE = re.compile(r"^\d{1,4}$")
-
-
 def canonical_path(request):
     """
     The canonical path can be overridden with a template variable like
