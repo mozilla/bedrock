@@ -13,8 +13,8 @@ from django.test.client import RequestFactory
 import querystringsafe_base64
 from pyquery import PyQuery as pq
 
+from bedrock.base.tests import TestCase
 from bedrock.firefox import views
-from bedrock.mozorg.tests import TestCase
 
 
 @override_settings(

@@ -5,7 +5,7 @@
 from django.http.response import HttpResponse
 from django.test import RequestFactory
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.redirects.middleware import RedirectsMiddleware
 from bedrock.redirects.util import get_resolver, redirect
 

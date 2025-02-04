@@ -5,7 +5,7 @@ from unittest.mock import patch
 
 from babel.core import Locale, UnknownLocaleError
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from lib.l10n_utils.templatetags import helpers
 
 

@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 from unittest import mock
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.newsletter.forms import (
     BooleanTabularRadioSelect,
     NewsletterFooterForm,

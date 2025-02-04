@@ -18,8 +18,8 @@ from django_jinja.backend import Jinja2
 from markupsafe import Markup
 
 from bedrock.base.templatetags.helpers import static
+from bedrock.base.tests import TestCase
 from bedrock.mozorg.templatetags import misc
-from bedrock.mozorg.tests import TestCase
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")

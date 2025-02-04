@@ -9,7 +9,7 @@ from django.core.management import call_command
 from django.test import TestCase as DjangoTestCase, override_settings
 
 from bedrock.base.management.commands import update_product_details_files
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 
 
 class CheckEmailDeliverabilityTestCase(DjangoTestCase):

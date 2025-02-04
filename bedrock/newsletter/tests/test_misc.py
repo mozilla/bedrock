@@ -4,7 +4,7 @@
 
 from unittest import mock
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.newsletter import utils
 from bedrock.newsletter.models import Newsletter
 from bedrock.newsletter.tests import newsletters

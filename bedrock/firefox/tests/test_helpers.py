@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 from django_jinja.backend import Jinja2
 from pyquery import PyQuery as pq
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from lib.l10n_utils.fluent import fluent_l10n
 
 jinja_env = Jinja2.get_default()

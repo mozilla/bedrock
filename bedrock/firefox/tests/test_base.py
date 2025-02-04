@@ -7,8 +7,8 @@ from unittest.mock import Mock, call, patch
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
 
+from bedrock.base.tests import TestCase
 from bedrock.base.urlresolvers import reverse
-from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")

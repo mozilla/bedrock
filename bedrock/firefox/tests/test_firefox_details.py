@@ -7,8 +7,8 @@ from urllib.parse import parse_qsl, urlparse
 
 from django.core.cache import caches
 
+from bedrock.base.tests import TestCase
 from bedrock.firefox.firefox_details import FirefoxAndroid, FirefoxDesktop, FirefoxIOS
-from bedrock.mozorg.tests import TestCase
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")

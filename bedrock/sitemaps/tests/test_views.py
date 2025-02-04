@@ -4,7 +4,7 @@
 
 from textwrap import dedent
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 
 

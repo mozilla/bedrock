@@ -12,7 +12,7 @@ from django.test.utils import override_settings
 
 import markdown
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.releasenotes import models
 
 RELEASES_PATH = str(Path(__file__).parent)

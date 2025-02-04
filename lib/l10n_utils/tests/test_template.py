@@ -10,7 +10,7 @@ from django.test import RequestFactory, override_settings
 
 from django_jinja.backend import Jinja2
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from lib.l10n_utils import render, render_to_string
 
 ROOT_PATH = Path(__file__).with_name("test_files")

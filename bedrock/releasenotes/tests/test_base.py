@@ -11,9 +11,9 @@ from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+from bedrock.base.tests import TestCase
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import FirefoxDesktop
-from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import views
 from bedrock.releasenotes.models import Note, ProductRelease
 from lib.l10n_utils import render_to_string

@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 
 from django.core.cache import caches
 
-from bedrock.mozorg.tests import TestCase
+from bedrock.base.tests import TestCase
 from bedrock.releasenotes import utils
 
 release_cache = caches["release-notes"]
