@@ -36,7 +36,7 @@ features-adblocker-tool-2 = <strong>Strict Mode:</strong> Ideal for users who wa
 features-adblocker-tool-3 = <strong>Custom Mode:</strong> For those who want full control, Custom mode lets you select what to block, from cookies to trackers and more.
 features-adblocker-to-adjust = To adjust these settings, click the shield icon to the left of the address bar on any webpage and select “Protection Settings.” This will open a menu where you can choose the right level of protection for you.
 features-adblocker-why-use = Why Use an Ad Blocker?
-features-adblocker-ad-blockers-do-more = Ad blockers do more than manage ads—they can enhance your browsing speed and security by reducing unnecessary content. They empower you to create a tailored, distraction-free web experience, letting you focus on what matters most.
+features-adblocker-ad-blockers-do-more = Ad blockers do more than manage ads – they can enhance your browsing speed and security by reducing unnecessary content. They empower you to create a tailored, distraction-free web experience, letting you focus on what matters most.
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/new/
