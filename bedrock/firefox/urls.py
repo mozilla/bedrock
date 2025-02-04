@@ -4,8 +4,8 @@
 from django.urls import path, re_path
 
 import bedrock.releasenotes.views
+from bedrock.base.util import page
 from bedrock.firefox import views
-from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationTemplateView
 

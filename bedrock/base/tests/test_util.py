@@ -8,13 +8,13 @@ from unittest.mock import ANY, patch
 from django.conf import settings
 from django.test import RequestFactory
 
-from bedrock.mozorg.tests import TestCase
-from bedrock.mozorg.util import page
+from bedrock.base.tests import TestCase
+from bedrock.base.util import page
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 
 
-@patch("bedrock.mozorg.util.l10n_utils")
+@patch("bedrock.base.util.l10n_utils")
 class TestPageUtil(TestCase):
     def setUp(self):
         self.rf = RequestFactory()

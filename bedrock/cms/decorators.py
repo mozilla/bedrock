@@ -89,7 +89,7 @@ def prefer_cms(
 
         ...
 
-    IMPORTANT: there's no support for bedrock.mozorg.util.page(), deliberately.
+    IMPORTANT: there's no support for bedrock.base.util.page(), deliberately.
 
         Making prefer_cms work with our page() helper would have made that function
         more complex. Given that it's straightforward to convert a page()-based view to

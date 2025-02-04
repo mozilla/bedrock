@@ -6,7 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.urls import include, path
 
-from bedrock.mozorg.util import page
+from bedrock.base.util import page
 
 
 def mock_view(request):
