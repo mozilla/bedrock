@@ -803,8 +803,8 @@ TEMPLATES = [
                 "bedrock.base.context_processors.i18n",
                 "bedrock.base.context_processors.globals",
                 "bedrock.base.context_processors.geo",
-                "bedrock.mozorg.context_processors.canonical_path",
-                "bedrock.mozorg.context_processors.current_year",
+                "bedrock.base.context_processors.canonical_path",
+                "bedrock.base.context_processors.current_year",
                 "bedrock.firefox.context_processors.latest_firefox_versions",
             ],
             "extensions": [
