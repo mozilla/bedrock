@@ -5,7 +5,7 @@
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView
 
-from bedrock.mozorg.decorators import cache_control_expires
+from bedrock.base.decorators import cache_control_expires
 from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 from lib.l10n_utils import RequireSafeMixin
 

@@ -19,7 +19,7 @@ from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
 
-from bedrock.mozorg.decorators import cache_control_expires
+from bedrock.base.decorators import cache_control_expires
 
 log = commonware.log.getLogger("redirects.util")
 LOCALE_RE = r"^(?P<locale>\w{2,3}(?:-\w{2})?/)?"

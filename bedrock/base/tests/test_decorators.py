@@ -8,7 +8,7 @@ from math import floor
 from django.test import RequestFactory
 from django.utils.http import parse_http_date
 
-from bedrock.mozorg.tests import TestCase, views
+from bedrock.base.tests import TestCase, views
 
 
 class ViewDecoratorTests(TestCase):
