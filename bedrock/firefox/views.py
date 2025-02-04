@@ -987,8 +987,8 @@ class firefox_features_pdf(L10nTemplateView):
 
 class firefox_features_adblocker(L10nTemplateView):
     ftl_files_map = {
-        "firefox/features/adblocker-v2.html": [
-            "firefox/features/adblocker-v2",
+        "firefox/features/adblocker-2025.html": [
+            "firefox/features/adblocker-2025",
             "firefox/features/shared",
         ],
         "firefox/features/adblocker.html": [
@@ -998,8 +998,8 @@ class firefox_features_adblocker(L10nTemplateView):
     }
 
     def get_template_names(self):
-        if ftl_file_is_active("firefox/features/adblocker-v2"):
-            template_name = "firefox/features/adblocker-v2.html"
+        if ftl_file_is_active("firefox/features/adblocker-2025"):
+            template_name = "firefox/features/adblocker-2025.html"
         else:
             template_name = "firefox/features/adblocker.html"
 
