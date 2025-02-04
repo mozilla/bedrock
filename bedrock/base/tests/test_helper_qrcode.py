@@ -6,12 +6,12 @@ from unittest.mock import patch
 
 from qrcode.image.svg import SvgPathImage
 
+from bedrock.base.templatetags.qrcode import qrcode
 from bedrock.base.tests import TestCase
-from bedrock.mozorg.templatetags.qrcode import qrcode
 
 
-@patch("bedrock.mozorg.templatetags.qrcode.cache")
-@patch("bedrock.mozorg.templatetags.qrcode.qr")
+@patch("bedrock.base.templatetags.qrcode.cache")
+@patch("bedrock.base.templatetags.qrcode.qr")
 class TestQRCode(TestCase):
     def test_qrcode_cache_cold(self, qr_mock, cache_mock):
         cache_mock.get.return_value = None
