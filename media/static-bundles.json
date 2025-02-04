@@ -112,12 +112,6 @@
     },
     {
       "files": [
-        "css/m24/base-navigation-and-footer.scss"
-      ],
-      "name": "m24-navigation-and-footer"
-    },
-    {
-      "files": [
         "css/csrf-failure.scss"
       ],
       "name": "csrf-failure"
@@ -242,18 +236,6 @@
         "css/privacy/cookie-settings-form.scss"
       ],
       "name": "cookie-settings-form"
-    },
-    {
-      "files": [
-        "css/m24/root.scss"
-      ],
-      "name": "m24-root"
-    },
-    {
-      "files": [
-        "css/m24/base.scss"
-      ],
-      "name": "m24-base"
     },
     {
       "files": [
