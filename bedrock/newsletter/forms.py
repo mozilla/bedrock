@@ -10,7 +10,7 @@ from django.forms import widgets
 
 from product_details import product_details
 
-from bedrock.mozorg.forms import EmailInput, PrivacyWidget, strip_parenthetical
+from bedrock.base.forms import EmailInput, PrivacyWidget, strip_parenthetical
 from bedrock.newsletter import utils
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
