@@ -18,7 +18,7 @@ don't get miss a lookup if they lack a locale code at the start of their path
 
 from django.urls import path
 
-from . import views
+from bedrock.base import views
 
 urlpatterns = (
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),

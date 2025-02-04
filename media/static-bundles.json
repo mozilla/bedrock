@@ -2,7 +2,7 @@
   "css": [
     {
       "files": [
-        "css/mozorg/locales.scss"
+        "css/base/locales.scss"
       ],
       "name": "locales"
     },
