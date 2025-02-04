@@ -148,18 +148,6 @@
     },
     {
       "files": [
-        "css/protocol/protocol-mozilla.scss"
-      ],
-      "name": "protocol-mozilla"
-    },
-    {
-      "files": [
-        "css/protocol/protocol-firefox.scss"
-      ],
-      "name": "protocol-firefox"
-    },
-    {
-      "files": [
         "css/firefox/set-as-default/landing.scss"
       ],
       "name": "firefox-default-landing"

@@ -28,32 +28,30 @@
     {% block extra_meta %}{% endblock %}
 
     {% block shared_meta %}
-    <title>{% filter striptags %}{% block page_title_full %}{% block page_title_prefix %}{% endblock %}{% block page_title %}{% endblock %}{% endblock page_title_full %}{% block page_title_suffix %} — Mozilla{% endblock %}{% endfilter %}</title>
+    <title>{% filter striptags %}{% block page_title %}{% endblock %}{% endfilter %}</title>
     <meta name="description" content="{% filter striptags %}{% block page_desc %}{% endblock %}{% endfilter %}">
     <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Mozilla">
+    <meta property="og:site_name" content="Firefox">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
-    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{% if switch('m24-website-refresh') %}{{ static('img/m24/og.png') }}{% else %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endif %}{% endblock %}{% endfilter %}">
-    <meta property="og:title" content="{% filter striptags %}{% block page_og_title %}{{ self.page_title_full() }}{% endblock %}{% endfilter %}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('protocol/img/logos/firefox/browser/og.png') }}{% endblock %}{% endfilter %}">
+    <meta property="og:title" content="{% filter striptags %}{% block page_og_title %}{{ self.page_title() }}{% endblock %}{% endfilter %}">
     <meta property="og:description" content="{% filter striptags %}{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}{% endfilter %}">
-    <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
-    <meta name="twitter:card" content="{% block twitter_card %}summary{% endblock %}">
-    <meta name="twitter:site" content="@{% block twitter_id %}mozilla{% endblock %}">
-    <meta name="twitter:domain" content="mozilla.org">
+    <meta property="fb:page_id" content="{% block facebook_id %}14696440021{# facebook.com/firefox #}{% endblock %}">
+    <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+    <meta name="twitter:site" content="@{% block twitter_id %}firefox{% endblock %}">
+    <meta name="twitter:domain" content="firefox.com">
     <meta name="twitter:app:name:googleplay" content="{% block android_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:googleplay" content="{% block android_app_id %}org.mozilla.firefox{% endblock %}">
     <meta name="twitter:app:name:iphone" content="{% block iphone_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:iphone" content="{% block iphone_app_id %}989804926{% endblock %}">
     <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:ipad" content="{% block ipad_app_id %}989804926{% endblock %}">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/apple-touch-icon.png') }}{% else %}{{ static('img/favicons/mozilla/apple-touch-icon.png') }}{% endif %}{% endblock %}">
-    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/favicon-196x196.png') }}{% else %}{{ static('img/favicons/mozilla/favicon-196x196.png') }}{% endif %}{% endblock %}">
-    <link rel="shortcut icon" href="{% block page_favicon %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/favicon.ico') }}{% else %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endif %}{% endblock %}">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicons/firefox/browser/apple-touch-icon.png') }}{% endblock %}">
+    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/firefox/browser/favicon-196x196.png') }}{% endblock %}">
+    <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/firefox/browser/favicon.ico') }}{% endblock %}">
     {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
     {% endblock shared_meta %}
-    {# keep the verification for the previous official mastodon profile #}
-    <link href="https://mastodon.social/@mozilla" rel="me">
 
     {{ l10n_css() }}
 
@@ -72,15 +70,11 @@
     <!--[if !IE]><!-->
     {# Global styles, hidden from IE9 and lower #}
     {% block site_css %}
-      {% if switch('m24-website-refresh') %}
-        {{ css_bundle('protocol-mozilla-2024') }}
-        {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-          {{ css_bundle('m24-navigation-and-footer') }}
-        {% else %}
-          {{ css_bundle('legacy-navigation-and-footer') }}
-        {% endif %}
+      {{ css_bundle('protocol-mozilla-2024') }}
+      {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+        {{ css_bundle('m24-navigation-and-footer') }}
       {% else %}
-        {{ css_bundle('protocol-firefox') }}
+        {{ css_bundle('legacy-navigation-and-footer') }}
       {% endif %}
     {% endblock %}
 
@@ -93,7 +87,7 @@
     {% endblock %}
   </head>
 
-  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
+  <body {% if self.body_id() %}id="{% block body_id %}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %} mzp-t-firefox" {% block body_attrs %}{% endblock %}>
     <div id="strings"
       data-global-close="{{ ftl('ui-close') }}"
       data-global-next="{{ ftl('ui-next') }}"
@@ -137,7 +131,7 @@
         {{ js_bundle('lib') }}
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
-        {% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+        {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
           {{ js_bundle('m24-ui') }}
         {% else %}
           {{ js_bundle('ui') }}

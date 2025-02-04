@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% extends "base-protocol.html" %}
 
 {% block page_title_prefix %}{{ ftl('firefox-new-download-browser', fallback='firefox-new-download-firefox') }} — {% endblock %}
 
@@ -31,15 +31,11 @@
 
 {# All stylesheets are loaded in extrahead to serve legacy IE basic styles #}
 {% block extrahead %}
-  {% if switch('m24-website-refresh') %}
-    {{ css_bundle('protocol-mozilla-2024') }}
-    {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-      {{ css_bundle('m24-navigation-and-footer') }}
-    {% else %}
-      {{ css_bundle('legacy-navigation-and-footer') }}
-    {% endif %}
+  {{ css_bundle('protocol-mozilla-2024') }}
+  {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+    {{ css_bundle('m24-navigation-and-footer') }}
   {% else %}
-    {{ css_bundle('protocol-firefox') }}
+    {{ css_bundle('legacy-navigation-and-footer') }}
   {% endif %}
 
   <!--[if IE]>

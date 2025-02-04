@@ -4,11 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "firefox/base/base-protocol.html" %}
+{% extends "base-protocol.html" %}
 {% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
 
 {# Issue 13019: Avoid duplicate content for English pages. #}
-{%- block page_title_full -%}
+{%- block page_title -%}
   {%- if LANG == 'en-US' -%}
     Get Firefox browser — Mozilla (US)
   {%- elif LANG == 'en-GB' -%}
