@@ -661,23 +661,23 @@ MIDDLEWARE = [
     "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
-    "bedrock.mozorg.middleware.HostnameMiddleware",
+    "bedrock.base.middleware.HostnameMiddleware",
     "django.middleware.http.ConditionalGetMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     # VaryNoCacheMiddleware must be above LocaleMiddleware"
     # so that it can see the response has a vary on accept-language.
-    "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
+    "bedrock.base.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
     "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLocaleMiddleware
     "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come after RedirectsMiddleware
     "bedrock.base.middleware.BedrockLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
-    "bedrock.mozorg.middleware.ClacksOverheadMiddleware",
+    "bedrock.base.middleware.ClacksOverheadMiddleware",
     "bedrock.base.middleware.MetricsStatusMiddleware",
     "bedrock.base.middleware.MetricsViewTimingMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "bedrock.mozorg.middleware.CacheMiddleware",
+    "bedrock.base.middleware.CacheMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
