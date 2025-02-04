@@ -16,12 +16,10 @@ import pytest
 from bs4 import BeautifulSoup
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
-from pyquery import PyQuery as pq
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.mozorg.templatetags import misc
 from bedrock.mozorg.tests import TestCase
-from lib.l10n_utils.fluent import fluent_l10n
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")
@@ -142,58 +140,6 @@ class TestL10nCSS(TestCase):
         media_exists_mock.return_value = False
         assert self._render("en-US") == ""
         assert self._render("fr") == ""
-
-
-class TestVideoTag(TestCase):
-    rf = RequestFactory()
-    # Video stubs
-    moz_video = "http://videos.mozilla.org/serv/flux/example.%s"
-    nomoz_video = "http://example.org/example.%s"
-
-    def get_l10n(self, locale):
-        return fluent_l10n([locale, "en"], settings.FLUENT_DEFAULT_FILES)
-
-    def _render(self, template):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(template, {"request": req, "fluent_l10n": self.get_l10n(req.locale)})
-
-    def test_empty(self):
-        # No video, no output.
-        assert render("{{ video() }}") == ""
-        assert render("{{ video('missing-ext') }}") == ""
-
-    def test_video(self):
-        # A few common variations
-        videos = [self.nomoz_video % ext for ext in ("ogv", "mp4", "webm")]
-        doc = pq(self._render("{{ video%s }}" % str(tuple(videos))))
-
-        # Tags generated?
-        assert doc("video").length == 1
-        assert doc("video source").length == 3
-
-        # Extensions in the right order?
-        extensions = [os.path.splitext(el.attrib["src"])[1] for el in doc("video source")]
-        assert extensions == [".webm", ".ogv", ".mp4"]
-
-    def test_prefix(self):
-        # Prefix should be applied to all videos.
-        doc = pq(self._render("{{ video('meh.mp4', 'meh.ogv', prefix='http://example.com/blah/') }}"))
-        assert [el.attrib["src"] for el in doc("video source")] == [
-            "http://example.com/blah/meh.ogv",
-            "http://example.com/blah/meh.mp4",
-        ]
-
-    def test_fileformats(self):
-        # URLs ending in strange extensions are ignored.
-        videos = [self.nomoz_video % ext for ext in ("ogv", "exe", "webm", "txt")]
-        videos.append("http://example.net/noextension")
-        doc = pq(self._render("{{ video%s }}" % (str(tuple(videos)))))
-
-        assert doc("video source").length == 2
-
-        extensions = [os.path.splitext(el.attrib["src"])[1] for el in doc("video source")]
-        assert extensions == [".webm", ".ogv"]
 
 
 class TestDonateUrl(TestCase):

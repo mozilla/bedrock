@@ -5,7 +5,6 @@
 # coding: utf-8
 
 import re
-import urllib.parse
 from os import path
 from os.path import splitext
 
@@ -13,7 +12,6 @@ from django.conf import settings
 from django.contrib.staticfiles.finders import find as find_static
 from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
-from django.template.loader import render_to_string
 from django.utils.encoding import smart_str
 
 import bleach
@@ -284,62 +282,6 @@ def picture(ctx={}, url=None, sources=[], optional_attributes=None):
     markup = f'<picture>{"".join(final_sources)}<img {loading}src="{url}" alt="{alt}"{attrs}></picture>'
 
     return Markup(markup)
-
-
-@library.global_function
-@jinja2.pass_context
-def video(ctx, *args, **kwargs):
-    """
-    HTML5 Video tag helper.
-
-    Accepted kwargs:
-    prefix, w, h, autoplay, poster, preload, id
-
-    Use like this:
-    {{ video('http://example.com/myvid.mp4', 'http://example.com/myvid.webm',
-             poster='http://example.com/myvid.jpg',
-             w=640, h=360) }}
-
-    You can also use a prefix like:
-    {{ video('myvid.mp4', 'myvid.webm', prefix='http://example.com') }}
-
-    The prefix does not apply to the poster attribute.
-
-    Finally, MIME type detection happens by file extension. Supported: webm,
-    mp4, ogv. If you want anything else, patches welcome.
-    """
-
-    filetypes = ("webm", "ogv", "mp4")
-    mime = {"webm": "video/webm", "ogv": 'video/ogg; codecs="theora, vorbis"', "mp4": "video/mp4"}
-
-    videos = {}
-    for v in args:
-        try:
-            ext = v.rsplit(".", 1)[1].lower()
-        except IndexError:
-            # TODO: Perhaps we don't want to swallow this quietly in the future
-            continue
-        if ext not in filetypes:
-            continue
-        videos[ext] = v if "prefix" not in kwargs else urllib.parse.urljoin(kwargs["prefix"], v)
-
-    if not videos:
-        return ""
-
-    # defaults
-    data = {
-        "w": 640,
-        "h": 360,
-        "autoplay": False,
-        "preload": False,
-        "id": "htmlPlayer",
-        "fluent_l10n": ctx["fluent_l10n"],
-    }
-
-    data.update(**kwargs)
-    data.update(filetypes=filetypes, mime=mime, videos=videos)
-
-    return Markup(render_to_string("mozorg/videotag.html", data, request=ctx["request"]))
 
 
 @library.global_function
