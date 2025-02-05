@@ -34,7 +34,7 @@
     <meta property="og:site_name" content="Mozilla">
     <meta property="og:locale" content="{{ LANG|replace("-", "_") }}">
     <meta property="og:url" content="{% filter trim|absolute_url %}{% block page_og_url %}{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}{% endblock %}{% endfilter %}">
-    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{% if switch('m24-website-refresh') %}{{ static('img/m24/og.png') }}{% else %}{{ static('img/mozorg/mozilla-256.jpg') }}{% endif %}{% endblock %}{% endfilter %}">
+    <meta property="og:image" content="{% filter trim|absolute_url %}{% block page_image %}{{ static('img/m24/og.png') }}{% endblock %}{% endfilter %}">
     <meta property="og:title" content="{% filter striptags %}{% block page_og_title %}{{ self.page_title_full() }}{% endblock %}{% endfilter %}">
     <meta property="og:description" content="{% filter striptags %}{% block page_og_desc %}{{ self.page_desc() }}{% endblock %}{% endfilter %}">
     <meta property="fb:page_id" content="{% block facebook_id %}262134952380{# facebook.com/mozilla #}{% endblock %}">
@@ -47,9 +47,9 @@
     <meta name="twitter:app:id:iphone" content="{% block iphone_app_id %}989804926{% endblock %}">
     <meta name="twitter:app:name:ipad" content="{% block ipad_app_name %}Firefox{% endblock %}">
     <meta name="twitter:app:id:ipad" content="{% block ipad_app_id %}989804926{% endblock %}">
-    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/apple-touch-icon.png') }}{% else %}{{ static('img/favicons/mozilla/apple-touch-icon.png') }}{% endif %}{% endblock %}">
-    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/favicon-196x196.png') }}{% else %}{{ static('img/favicons/mozilla/favicon-196x196.png') }}{% endif %}{% endblock %}">
-    <link rel="shortcut icon" href="{% block page_favicon %}{% if switch('m24-website-refresh') %}{{ static('img/favicons/mozilla/m24/favicon.ico') }}{% else %}{{ static('img/favicons/mozilla/favicon.ico') }}{% endif %}{% endblock %}">
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="{% block page_ios_icon %}{{ static('img/favicons/mozilla/m24/apple-touch-icon.png') }}{% endblock %}">
+    <link rel="icon" type="image/png" sizes="196x196" href="{% block page_favicon_large %}{{ static('img/favicons/mozilla/m24/favicon-196x196.png') }}{% endblock %}">
+    <link rel="shortcut icon" href="{% block page_favicon %}{{ static('img/favicons/mozilla/m24/favicon.ico') }}{% endblock %}">
     {% block canonical_urls %}{% include 'includes/canonical-url.html' %}{% endblock %}
     {% endblock shared_meta %}
     {# keep the verification for the previous official mastodon profile #}
