@@ -394,7 +394,10 @@
 </main>
 
 {% if switch('release-notes-newsletter-banner', ['en']) %}
-  {% include 'includes/banners/firefox-newsletter.html' %}
+  {# Give newsletter landmark a separate aria identifier to the pencil banner: https://github.com/mozilla/bedrock/issues/15958 #}
+  {% with aria_label = 'Newsletter' %}
+    {% include 'includes/banners/firefox-newsletter.html' %}
+  {% endwith %}
 {% endif %}
 
 {% endblock %}
