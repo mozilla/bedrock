@@ -19,7 +19,7 @@ from markupsafe import Markup
 
 from bedrock.base.templatetags.helpers import static
 from bedrock.base.tests import TestCase
-from bedrock.mozorg.templatetags import misc
+from bedrock.firefox.templatetags import misc
 
 TEST_FILES_ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "test_files")
 TEST_L10N_MEDIA_PATH = os.path.join(TEST_FILES_ROOT, "media", "%s", "l10n")
@@ -40,7 +40,7 @@ def test_convert_to_high_res():
     assert misc.convert_to_high_res("/media/thats-a-bummer-man.jpg") == "/media/thats-a-bummer-man-high-res.jpg"
 
 
-@patch("bedrock.mozorg.templatetags.misc._l10n_media_exists")
+@patch("bedrock.firefox.templatetags.misc._l10n_media_exists")
 @patch("django.conf.settings.LANGUAGE_CODE", "en-US")
 class TestImgL10n(TestCase):
     rf = RequestFactory()
@@ -98,7 +98,7 @@ class TestImgL10n(TestCase):
 
 
 @override_settings(DEBUG=False)
-@patch("bedrock.mozorg.templatetags.misc._l10n_media_exists")
+@patch("bedrock.firefox.templatetags.misc._l10n_media_exists")
 class TestL10nCSS(TestCase):
     rf = RequestFactory()
     static_url_dev = "/static/"
