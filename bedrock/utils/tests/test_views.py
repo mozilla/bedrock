@@ -9,21 +9,21 @@ from bedrock.utils import views
 
 def test_variation_template_view():
     rf = RequestFactory()
-    view = views.VariationTemplateView(template_context_variations=["b"], template_name_variations=["b", "c"], template_name="mozorg/book.html")
+    view = views.VariationTemplateView(template_context_variations=["b"], template_name_variations=["b", "c"], template_name="base/book.html")
     req = rf.get("/", data={"v": "b"})
     view.request = req
     assert view.get_context_data()["variation"] == "b"
-    assert view.get_template_names() == ["mozorg/book-b.html"]
+    assert view.get_template_names() == ["base/book-b.html"]
 
     req = rf.get("/", data={"v": "dude"})
     view.request = req
     assert view.get_context_data()["variation"] == ""
-    assert view.get_template_names() == ["mozorg/book.html"]
+    assert view.get_template_names() == ["base/book.html"]
 
     req = rf.get("/", data={"v": "c"})
     view.request = req
     assert view.get_context_data()["variation"] == ""
-    assert view.get_template_names() == ["mozorg/book-c.html"]
+    assert view.get_template_names() == ["base/book-c.html"]
 
     view = views.VariationTemplateView(template_name_variations=["1"], template_name="about.index.html")
     req = rf.get("/", data={"v": "1"})
@@ -36,29 +36,29 @@ def test_variation_template_view():
 def test_variation_template_view_locales():
     rf = RequestFactory()
     view = views.VariationTemplateView(
-        template_context_variations=["b"], template_name_variations=["b", "c"], template_name="mozorg/book.html", variation_locales=["de", "fr", "en"]
+        template_context_variations=["b"], template_name_variations=["b", "c"], template_name="base/book.html", variation_locales=["de", "fr", "en"]
     )
     req = rf.get("/", data={"v": "b"})
     req.locale = "fr"
     view.request = req
     assert view.get_context_data()["variation"] == "b"
-    assert view.get_template_names() == ["mozorg/book-b.html"]
+    assert view.get_template_names() == ["base/book-b.html"]
 
     # locale groups
     req = rf.get("/", data={"v": "b"})
     req.locale = "en-GB"
     view.request = req
     assert view.get_context_data()["variation"] == "b"
-    assert view.get_template_names() == ["mozorg/book-b.html"]
+    assert view.get_template_names() == ["base/book-b.html"]
 
     req = rf.get("/", data={"v": "b"})
     req.locale = "pt-BR"
     view.request = req
     assert view.get_context_data()["variation"] == ""
-    assert view.get_template_names() == ["mozorg/book.html"]
+    assert view.get_template_names() == ["base/book.html"]
 
     req = rf.get("/", data={"v": "c"})
     req.locale = "de"
     view.request = req
     assert view.get_context_data()["variation"] == ""
-    assert view.get_template_names() == ["mozorg/book-c.html"]
+    assert view.get_template_names() == ["base/book-c.html"]
