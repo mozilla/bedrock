@@ -1,0 +1,30 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+.marketing-opt-out-checkbox-label {
+    max-width: 40em;
+    margin: 0 auto $spacing-lg;
+    font-weight: normal;
+
+    &.hidden {
+        display: none;
+    }
+
+    input[type="checkbox"] {
+        @include bidi(((margin-right, $spacing-sm, margin-left, 0),));
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .marketing-opt-out-text {
+        display: inline-block;
+        width: calc(100% - 40px);
+    }
+
+    .c-intro-download & {
+        max-width: none;
+    }
+}

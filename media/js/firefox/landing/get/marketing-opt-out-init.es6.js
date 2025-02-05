@@ -4,12 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-const MozAllowList = [
-    '/firefox/built-for-you/',
-    '/firefox/challenge-the-default/',
-    '/firefox/landing/tech/',
-    '/newsletter/firefox/',
-    '/products/vpn/*'
-];
+import MarketingOptOut from './marketing-opt-out.es6.js';
 
-export default MozAllowList;
+MarketingOptOut.init();
