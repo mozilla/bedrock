@@ -153,9 +153,9 @@
                 }
               },
               {
-                "abs_path": "/Users/testharness/Code/bedrock/bedrock/mozorg/management/commands/update_product_details_files.py",
+                "abs_path": "/Users/testharness/Code/bedrock/bedrock/base/management/commands/update_product_details_files.py",
                 "context_line": "        self.load_changes(options, self.file_storage.all_json_files())",
-                "filename": "bedrock/mozorg/management/commands/update_product_details_files.py",
+                "filename": "bedrock/base/management/commands/update_product_details_files.py",
                 "function": "handle",
                 "in_app": true,
                 "lineno": 64,

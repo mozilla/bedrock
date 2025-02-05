@@ -63,7 +63,7 @@ from lib.l10n_utils import translation
         ("dq", None),
     ),
 )
-def test_normalize_language_mozorg_mode(lang_code, expected):
+def test_normalize_language(lang_code, expected):
     assert normalize_language(lang_code) == expected
 
 

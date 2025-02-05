@@ -11,7 +11,7 @@ from wagtail.rich_text import RichText
 from bedrock.base.i18n import bedrock_i18n_patterns
 from bedrock.cms.decorators import prefer_cms
 from bedrock.cms.tests import decorator_test_views
-from bedrock.urls import urlpatterns as mozorg_urlpatterns
+from bedrock.urls import urlpatterns as springfield_urlpatterns
 
 from .factories import SimpleRichTextPageFactory
 
@@ -74,7 +74,7 @@ urlpatterns = (
             name="url_wrapped_dummy_view",
         ),
     )
-    + mozorg_urlpatterns  # we need to extend these so Jinja2 can call url() in the templates
+    + springfield_urlpatterns  # we need to extend these so Jinja2 can call url() in the templates
 )
 
 pytestmark = [pytest.mark.django_db]

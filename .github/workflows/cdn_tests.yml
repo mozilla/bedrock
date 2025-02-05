@@ -10,8 +10,8 @@ on:
     - cron: "0 11 * * *" # 11am daily
   workflow_dispatch:
     inputs:
-      mozorg_service_hostname:
-        description: The root URL of the Mozorg service to run tests against. eg 'https://www.firefox.com'
+      springfield_service_hostname:
+        description: The root URL of the service to run tests against. eg 'https://www.firefox.com'
         required: true
 
 concurrency:
@@ -48,7 +48,7 @@ jobs:
             SHARD_LABEL: "prod-only-cdn-tests"
             MARK_EXPRESSION: cdnprod
     env:
-      BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.firefox.com' }} # Firefox.com base URL
+      BASE_URL: ${{ github.event.inputs.springfield_service_hostname || 'https://www.firefox.com' }} # Firefox.com base URL
       BROWSER_NAME: firefox
       CI_JOB_ID: ${{ github.run_id }}
       DRIVER: ""

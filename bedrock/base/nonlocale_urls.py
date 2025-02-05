@@ -12,8 +12,6 @@ SUPPORTED_LOCALE_IGNORE that were used in our former i18n machinery, and
 which (currently) remain in use, so these two sources need to be kept in
 sync with the urlpatterns below
 
-Also, redirects from mozorg.urls were moved into here, so that they
-don't get miss a lookup if they lack a locale code at the start of their path
 """
 
 from django.urls import path
@@ -24,5 +22,5 @@ urlpatterns = (
     path("robots.txt", views.Robots.as_view(), name="robots.txt"),
     path(".well-known/security.txt", views.SecurityDotTxt.as_view(), name="security.txt"),
     path(".well-known/gpc.json", views.GpcDotJson.as_view(), name="gpc.json"),
-    path("locales/", views.locales, name="mozorg.locales"),
+    path("locales/", views.locales, name="base.locales"),
 )

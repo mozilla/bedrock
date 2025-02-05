@@ -80,13 +80,13 @@ def test_StructuralPage_serve_methods(
     "config, page_class, success_expected",
     (
         ("__all__", SimpleRichTextPage, True),  # same as default
-        ("mozorg.SomeOtherPageClass,cms.StructuralPage,cms.SimpleRichTextPage", StructuralPage, True),
+        ("firefox.SomeOtherPageClass,cms.StructuralPage,cms.SimpleRichTextPage", StructuralPage, True),
         ("cms.SimpleRichTextPage", SimpleRichTextPage, True),
-        ("cms.SimpleRichTextPage,mozorg.SomeOtherPageClass", SimpleRichTextPage, True),
-        ("mozorg.SomeOtherPageClass,cms.SimpleRichTextPage", SimpleRichTextPage, True),
-        ("mozorg.SomeOtherPageClass,mozorg.SomeOtherPageClass", SimpleRichTextPage, False),
-        ("mozorg.SomeOtherPageClass", SimpleRichTextPage, False),
-        ("mozorg.SomeOtherPageClass,legal.SomeLegalPageClass", StructuralPage, False),
+        ("cms.SimpleRichTextPage,firefox.SomeOtherPageClass", SimpleRichTextPage, True),
+        ("firefox.SomeOtherPageClass,cms.SimpleRichTextPage", SimpleRichTextPage, True),
+        ("firefox.SomeOtherPageClass,firefox.SomeOtherPageClass", SimpleRichTextPage, False),
+        ("firefox.SomeOtherPageClass", SimpleRichTextPage, False),
+        ("firefox.SomeOtherPageClass,legal.SomeLegalPageClass", StructuralPage, False),
     ),
 )
 def test_CMS_ALLOWED_PAGE_MODELS_controls_Page_can_create_at(

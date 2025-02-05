@@ -12,7 +12,7 @@ import commonware.log
 
 from lib import l10n_utils
 
-log = commonware.log.getLogger("mozorg.util")
+log = commonware.log.getLogger("base.util")
 
 
 def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
