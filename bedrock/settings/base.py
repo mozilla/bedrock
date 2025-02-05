@@ -722,7 +722,6 @@ INSTALLED_APPS = [
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
-    "bedrock.mozorg",
     "bedrock.newsletter",
     "bedrock.privacy",
     "bedrock.releasenotes",
