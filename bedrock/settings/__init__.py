@@ -19,7 +19,7 @@ from .base import *  # noqa: F403, F405
 
 ROOT_URLCONF = "bedrock.urls"
 
-# CSP settings for MOZORG, expanded upon later:
+# CSP settings, expanded upon later:
 _csp_default_src = [
     csp.constants.SELF,
     "*.mozilla.net",

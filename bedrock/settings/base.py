@@ -314,7 +314,6 @@ EXCLUDE_EDIT_TEMPLATES = [
     "firefox/releases/release-notes.html",
     "firefox/releases/notes.html",
     "firefox/releases/system_requirements.html",
-    "mozorg/about/forums.html",
 ]
 # Also allow entire directories to be skipped
 EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
@@ -476,7 +475,7 @@ SUPPORTED_LOCALE_IGNORE = [
 ]
 # Pages that we don't want to be indexed by search engines.
 # Only impacts sitemap generator. If you need to disallow indexing of
-# specific URLs, add them to mozorg/templates/mozorg/robots.txt.
+# specific URLs, add them to base/templates/base/robots.txt.
 NOINDEX_URLS = [
     r"^(404|500)/",
     r"^contribute/(embed|event)/",
@@ -868,7 +867,7 @@ EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
 
 # Prefix for media. No trailing slash.
-# e.g. '//mozorg.cdn.mozilla.net'
+# e.g. '//springfield.cdn.mozilla.net'
 CDN_BASE_URL = config("CDN_BASE_URL", default="")
 
 DONATE_LINK = "https://foundation.mozilla.org/{location}"

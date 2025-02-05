@@ -8,7 +8,7 @@ These are included in the main URLConf via i18n_patterns,
 which will take care of the prefixing an appropriate language code
 
 IMPORTANT: if a redirect is needed for a non-localed URL
-it must go in mozorg.nonlocale_urls, not this file
+it must go in base.nonlocale_urls, not this file
 
 """
 

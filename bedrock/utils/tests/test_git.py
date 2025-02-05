@@ -119,15 +119,15 @@ def test_git_diff():
         git_mock.assert_called_with("diff", "--name-status", "abcd", "ef12")
 
     assert modified == {
-        "media/css/mozorg/home/home.scss",
+        "media/css/base/home/home.scss",
         "lib/l10n_utils/tests/test_template.py",
         "docs/mozilla-traffic-cop.rst",
         "lib/l10n_utils/management/commands/l10n_update.py",
-        "media/css/mozorg/home/home-variant.scss",
+        "media/css/base/home/home-variant.scss",
         "media/css/pebbles/base/_elements.scss",
         "media/css/newsletter/newsletter-mozilla.scss",
         "media/css/pebbles/components/_buttons-download.scss",
-        "media/css/mozorg/technology.less",
+        "media/css/base/technology.less",
         "lib/l10n_utils/tests/test_commands.py",
         "media/css/pebbles/base/elements/_document.scss",
         "media/css/pebbles/base/elements/_typography.scss",
@@ -139,7 +139,7 @@ def test_git_diff():
         "media/css/pebbles/components/_modal.scss",
         "media/css/pebbles/base/oldIE.scss",
         "etc/supervisor_available/cron_db.conf",
-        "media/css/mozorg/leadership.scss",
+        "media/css/base/leadership.scss",
         "media/css/pebbles/components/_buttons.scss",
         "media/css/pebbles/base/elements/_lists.scss",
         "etc/supervisor_available/cron_l10n.conf",
@@ -153,13 +153,13 @@ def test_git_diff():
         "media/css/newsletter/newsletter-firefox.scss",
     }
     assert deleted == {
-        "media/css/mozorg/leadership.less",
+        "media/css/base/leadership.less",
         "media/css/pebbles/base.less",
         "media/css/pebbles/reset.less",
         "media/css/newsletter/newsletter-mozilla.less",
         "media/css/pebbles/components/footer.less",
         "media/css/pebbles/components/modal.less",
-        "media/css/mozorg/home/home.less",
+        "media/css/base/home/home.less",
         "etc/supervisor_available/cron.conf",
         "media/css/newsletter/newsletter-firefox.less",
         "media/css/pebbles/oldIE.less",
@@ -177,10 +177,10 @@ M       lib/l10n_utils/management/commands/l10n_update.py
 M       lib/l10n_utils/tests/test_commands.py
 M       lib/l10n_utils/tests/test_template.py
 A       media/css/firefox/firstrun/ravioli.less
-A       media/css/mozorg/home/home-variant.scss
-R059    media/css/mozorg/home/home.less media/css/mozorg/home/home.scss
-R081    media/css/mozorg/leadership.less        media/css/mozorg/leadership.scss
-A       media/css/mozorg/technology.less
+A       media/css/base/home/home-variant.scss
+R059    media/css/base/home/home.less media/css/base/home/home.scss
+R081    media/css/base/leadership.less        media/css/base/leadership.scss
+A       media/css/base/technology.less
 R059    media/css/newsletter/newsletter-firefox.less    media/css/newsletter/newsletter-firefox.scss
 R063    media/css/newsletter/newsletter-mozilla.less    media/css/newsletter/newsletter-mozilla.scss
 D       media/css/pebbles/base.less
