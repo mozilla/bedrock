@@ -143,7 +143,7 @@
                 ],
                 "vars": {
                   "args": [],
-                  "cls": "<bedrock.mozorg.management.commands.update_product_details_files.Command object at 0x110b55bb0>",
+                  "cls": "<bedrock.base.management.commands.update_product_details_files.Command object at 0x110b55bb0>",
                   "ex": "Exception('broke yo')",
                   "kwargs": {
                     "database": "'default'",
@@ -159,7 +159,7 @@
                 "function": "handle",
                 "in_app": true,
                 "lineno": 64,
-                "module": "bedrock.mozorg.management.commands.update_product_details_files",
+                "module": "bedrock.base.management.commands.update_product_details_files",
                 "post_context": [
                   "        self.repo.set_db_latest()",
                   "",
@@ -181,7 +181,7 @@
                     "force": "False",
                     "quiet": "False"
                   },
-                  "self": "<bedrock.mozorg.management.commands.update_product_details_files.Command object at 0x110b55bb0>"
+                  "self": "<bedrock.base.management.commands.update_product_details_files.Command object at 0x110b55bb0>"
                 }
               },
               {
