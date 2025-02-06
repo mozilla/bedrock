@@ -288,12 +288,12 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": ftl('m24-home-alt-builders'),
+            "alt": ftl('m24-home-alt-builders-v2', fallback='m24-home-alt-builders'),
           }
         ),
         tag=ftl('m24-home-tag-program'),
-        title=ftl('m24-home-mozilla-builders'),
-        desc=ftl('m24-home-builders-helps-independent'),
+        title=ftl('m24-home-mozilla-builders-v2', fallback='m24-home-mozilla-builders'),
+        desc=ftl('m24-home-builders-helps-independent-v2', fallback='m24-home-builders-helps-independent'),
         link_url='https://builders.mozilla.org/' + utm_params,
         cta_text=ftl('m24-home-read-more'),
         link_attributes='rel="external" target="_blank" data-link-text="Read more (Builders)"'
