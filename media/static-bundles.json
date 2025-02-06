@@ -1128,6 +1128,18 @@
     },
     {
       "files": [
+        "css/products/monitor/landing.scss"
+      ],
+      "name": "monitor-landing"
+    },
+    {
+      "files": [
+        "css/products/monitor/article.scss"
+      ],
+      "name": "monitor-article"
+    },
+    {
+      "files": [
         "css/products/monitor/waitlist.scss"
       ],
       "name": "monitor-waitlist"
