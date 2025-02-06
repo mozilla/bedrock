@@ -2,16 +2,22 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import logging
 from functools import wraps
 
+from django.conf import settings
 from django.http import Http404
 
 from wagtail.views import serve as wagtail_serve
 
 from bedrock.base.i18n import remove_lang_prefix
+from bedrock.cms.utils import path_exists_in_cms
 from lib.l10n_utils.fluent import get_active_locales
 
 from .utils import get_cms_locales_for_path
+
+logger = logging.getLogger(__name__)
+
 
 HTTP_200_OK = 200
 
@@ -176,3 +182,27 @@ def prefer_cms(
     else:
         # Otherwise, apply the decorator directly to view_func
         return decorator(view_func)
+
+
+def pre_check_for_cms_404(view):
+    """
+    Decorator intended to avoid going through the Wagtail's serve view
+    for a route that we know will be a 404. How do we know? We have a
+    pre-warmed cache of all the pages of _live_ pages known to Wagtail
+    - see bedrock.cms.utils for that.
+
+    This decorator can be skipped if settings.CMS_DO_PAGE_PATH_PRECHECK is
+    set to False via env vars.
+    """
+
+    def wrapped_view(request, *args, **kwargs):
+        _path_to_check = request.path
+        if settings.CMS_DO_PAGE_PATH_PRECHECK:
+            if not path_exists_in_cms(_path_to_check):
+                logger.info(f"Raising early 404 for {_path_to_check} because it doesn't exist in the CMS")
+                raise Http404
+
+        # Proceed to the original view
+        return view(request, *args, **kwargs)
+
+    return wrapped_view

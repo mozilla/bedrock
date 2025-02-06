@@ -8,13 +8,13 @@ from django.urls import include, path
 from django.utils.module_loading import import_string
 
 import wagtaildraftsharing.urls as wagtaildraftsharing_urls
-from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
 from bedrock.base.i18n import bedrock_i18n_patterns
+from bedrock.cms.bedrock_wagtail_urls import custom_wagtail_urls
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
@@ -90,7 +90,8 @@ if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage
     # Note that statics are handled via Whitenoise's middleware
 
 # Wagtail is the catch-all route, and it will raise a 404 if needed.
-# Note that we're also using localised URLs here
+# We have customised wagtail_urls in order to decorate wagtail_serve
+# to 'get ahead' of that 404 raising, to avoid hitting the database.
 urlpatterns += bedrock_i18n_patterns(
-    path("", include(wagtail_urls)),
+    path("", include(custom_wagtail_urls)),
 )
