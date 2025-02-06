@@ -13,7 +13,7 @@ __pycache__/
 .noseids
 .python-version
 .vscode/*
-.venv/*
+.venv
 *-all.css
 *-all.js
 *-min.css
