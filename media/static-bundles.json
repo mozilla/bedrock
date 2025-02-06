@@ -154,6 +154,12 @@
     },
     {
       "files": [
+        "css/firefox/landing/index.scss"
+      ],
+      "name": "firefox_landing"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -1286,6 +1292,12 @@
         "js/firefox/new/common/thanks-direct.es6.js"
       ],
       "name": "firefox_new_thanks_direct"
+    },
+    {
+      "files": [
+        "js/firefox/landing/init.es6.js"
+      ],
+      "name": "firefox_landing"
     },
     {
       "files": [
