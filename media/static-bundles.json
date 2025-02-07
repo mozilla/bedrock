@@ -1175,6 +1175,18 @@
       "name": "m24-base"
     },
     {
+      "files":  [
+        "css/m24/home.scss"
+      ],
+      "name": "m24-home"
+    },
+    {
+      "files":  [
+        "css/m24/about.scss"
+      ],
+      "name": "m24-about"
+    },
+    {
       "files": [
         "css/m24/root.scss",
         "css/protocol/protocol-mozilla-2024.scss"
