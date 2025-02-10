@@ -122,6 +122,10 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     font-weight: 600;
     grid-column: 1 / span 10;
     line-height: 1;
+    
+    b { // punctuation for screen readers
+        color: transparent;
+    }
 }
 
 .m24-c-launchpad-info {
