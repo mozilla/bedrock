@@ -10,6 +10,7 @@ footer-refresh-mdn = MDN
 footer-refresh-follow-mozilla = Follow @{ -brand-name-mozilla }
 footer-refresh-x = X
 footer-refresh-x-formerly-twitter = X (formerly Twitter)
+footer-refresh-bluesky = Bluesky
 footer-refresh-mastodon = Mastodon
 footer-refresh-instagram = Instagram
 footer-refresh-linkedin = LinkedIn

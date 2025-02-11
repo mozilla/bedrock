@@ -26,6 +26,7 @@
 -brand-name-tiktok = TikTok
 -brand-name-spotify = Spotify
 -brand-name-mastodon = Mastodon
+-brand-name-bluesky = Bluesky
 
 ## Firefox browsers
 
