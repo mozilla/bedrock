@@ -8,7 +8,6 @@ footer-refresh-advertise = Advertise with { -brand-name-mozilla }
 footer-refresh-firefox-release-notes = { -brand-name-firefox } Release Notes
 footer-refresh-mdn = MDN
 footer-refresh-follow-mozilla = Follow @{ -brand-name-mozilla }
-footer-refresh-bluesky = Bluesky
 footer-refresh-mastodon = Mastodon
 footer-refresh-instagram = Instagram
 footer-refresh-linkedin = LinkedIn
