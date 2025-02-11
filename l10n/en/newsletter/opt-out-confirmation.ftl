@@ -41,3 +41,6 @@ opt-out-confirmation-facebook = { -brand-name-facebook }
 
 # Link to https://twitter.com/firefox
 opt-out-confirmation-x-formerly-twitter = X (formerly Twitter)
+
+# Link to https://bsky.app/profile/firefox.com
+opt-out-confirmation-bluesky = { -brand-name-bluesky }
