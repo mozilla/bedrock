@@ -21,9 +21,13 @@
 {% block content %}
 
 {% call split(
-    image=resp_img('img/firefox/browsers/quantum/browser.jpg',
-      srcset={ 'img/firefox/browsers/quantum/browser-high-res.jpg': '2x' },
-      optional_attributes={ 'class': 'mzp-c-split-media-asset' }
+    image=resp_img('img/firefox/browsers/quantum/browser-v2.jpg',
+      srcset={ 'img/firefox/browsers/quantum/browser-high-res-v2.jpg': '2x' },
+      optional_attributes={
+        'class': 'mzp-c-split-media-asset',
+        'width': '537',
+        'height': '467'
+      }
     ),
     media_after=True,
     media_class='mzp-l-split-h-center',
