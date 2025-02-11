@@ -40,8 +40,6 @@ footer-language = Language
 footer-go = Go
 footer-donate = Donate
 
-footer-x = X
-footer-x-formerly-twitter = X (formerly Twitter)
 footer-bluesky = { -brand-name-bluesky }
 footer-mastodon = { -brand-name-mastodon }
 footer-instagram = { -brand-name-instagram }

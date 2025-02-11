@@ -137,6 +137,8 @@ newsletters-fxa-error-retry = We are sorry, but there was a problem directing yo
 #   $url (url) - link to https://www.mozilla.org/newsletter/
 newsletters-this-email-address-is-not = This email address is not in our system. Please double check your address or <a href="{ $url }">subscribe to our newsletters.</a>
 
+newsletters-im-keeping-in-touch-v3 = I’m keeping in touch with { -brand-name-mozilla } on { -brand-name-bluesky } instead.
+# Obsolete, remove after 2025-05-11
 newsletters-im-keeping-in-touch-v2 = I’m keeping in touch with { -brand-name-mozilla } on { -brand-name-twitter } instead.
 
 # Headline for https://www.mozilla.org/newsletter/mozilla/
