@@ -1,0 +1,39 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/about/policy/transparency/report-base.html" %}
+
+{% block page_title %}2024 Transparency Reports{% endblock %}
+
+{% block report_title %}
+<h1>2024 Transparency Reports</h1>
+{% endblock %}
+
+{% block report_body %}
+<div class="c-2024-back-link">
+  <img src="{{ static('img/icons/m24-small/left-arrow.svg') }}" alt="">
+  <a href="{{ url('mozorg.about.policy.transparency.index') }}">Mozilla Transparency</a>
+</div>
+<section>
+  <p>Mozilla has traditionally published transparency reports bi-annually. For 2024, in order to comply with the EU Digital Services Act (DSA), Mozilla is including all DSA-required data for the year in a single report. This report will not include information we have traditionally published, such as details about our advertising campaigns and policy advocacy.</p>
+  <p>We made significant improvements to our content moderation systems in 2024, which impacted our data management processes and procedures. In order to ensure the accuracy and completeness of our report, we have omitted certain categories of DSA-related data from the initial version of the report, and made a note of the omitted categories.</p>
+  <p>Mozilla will publish additional information—including the omitted DSA-related data categories and details about our advertising and policy activities, as well as details about requests from and disclosures to governments outside the EU—by March 2025.</p>
+  <ul class="c-2024-reports">
+    <li>
+      <a download class="mzp-c-button" href="https://assets.mozilla.net/pdf/transparency-report/2024-dsa.pdf">2024 DSA Transparency Report <span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <title>Download</title>
+        <path fill="currentColor" d="M19.5 17.31v2.13H4.72v-2.13h-2.6v4.73H22.1v-4.73h-2.6z"/>
+        <path fill="currentColor" d="M21.44 7.09h-8.03V2.06h-2.6v5.03H2.78l9.33 11.09 9.33-11.09Zm-5.59 2.59-3.74 4.46-3.74-4.46h7.48Z"/>
+      </svg></span></a>
+    </li>
+    <li>
+      <a class="mzp-c-button mzp-t-secondary" href="{{ url('mozorg.about.policy.transparency.jan-jun-2024') }}">January 1, 2024 to June 30, 2024</a>
+    </li>
+  </ul>
+</section>
+{% endblock%}
+
+{% block report_nav %}{% endblock%}

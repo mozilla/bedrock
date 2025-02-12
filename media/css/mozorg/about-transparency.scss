@@ -132,3 +132,46 @@ h3 {
 .c-collapsible-section .is-closed[aria-hidden='true'] {
     display: none;
 }
+
+// * -------------------------------------------------------------------------- */
+// Custom 2024 page
+$mzp-v-spacing: var(--v-grid-md);
+
+.c-2024-back-link {
+    display: flex;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-xl;
+
+    @media #{$mq-md} {
+        margin-bottom: $spacing-2xl;
+    }
+
+    img {
+        padding: $spacing-xs;
+        box-sizing: border-box;
+        height: 1.5rem;
+    }
+}
+
+.c-2024-reports {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-top: $spacing-2xl;
+
+    a {
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        flex-flow: row wrap;
+
+        > * {
+            flex-shrink: 0;
+        }
+
+        a {
+            width: auto;
+        }
+    }
+}
