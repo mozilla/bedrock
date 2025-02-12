@@ -882,9 +882,9 @@
     },
     {
       "files": [
-        "css/firefox/welcome19-to-24.scss"
+        "css/firefox/welcome19-to-25.scss"
       ],
-      "name": "firefox_welcome_page19_to_24"
+      "name": "firefox_welcome_page19_to_25"
     },
     {
       "files": [
@@ -1263,9 +1263,9 @@
     },
         {
       "files": [
-        "js/firefox/welcome/welcome19-to-24.js"
+        "js/firefox/welcome/welcome19-to-25.js"
       ],
-      "name": "firefox_welcome_page19_to_24"
+      "name": "firefox_welcome_page19_to_25"
     },
     {
       "files": [
