@@ -38,19 +38,27 @@ class PrivacyDocView(LegalDocView):
 
 
 class FirefoxPrivacyDocView(PrivacyDocView):
+    ftl_files = ["privacy/firefox"]
+
     def get_legal_doc(self):
         doc = super().get_legal_doc()
         variant = self.request.GET.get("v", None)
 
         if variant == "product":
-            self.template_name = "privacy/notices/firefox-simple.html"
+            if doc["content"].select("h1"):
+                self.template_name = "privacy/notices/firefox-simple-2025.html"
+            else:
+                self.template_name = "privacy/notices/firefox-simple.html"
         else:
-            self.template_name = "privacy/notices/firefox.html"
+            if doc["content"].select("h1"):
+                self.template_name = "privacy/notices/firefox-2025.html"
+            else:
+                self.template_name = "privacy/notices/firefox.html"
 
         return doc
 
 
-firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice")
+firefox_notices = FirefoxPrivacyDocView.as_view(template_name="privacy/notices/firefox.html", legal_doc_name="firefox_privacy_notice")
 
 firefox_focus_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-focus.html", legal_doc_name="focus_privacy_notice")
 

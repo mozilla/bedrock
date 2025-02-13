@@ -1,0 +1,280 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+@use '~@mozilla-protocol/core/protocol/css/components/split';
+@use '~@mozilla-protocol/core/protocol/css/components/picto';
+@use '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+$mq-max: '(min-width: 1440px)';
+
+// Privacy Basics
+
+.mzp-c-split-media img {
+    display: block;
+}
+
+.c-back {
+    position: relative;
+    top: $layout-xs;
+    z-index: 1;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    @media #{$mq-md} {
+        padding-top: $layout-xs;
+        padding-bottom: $layout-xs;
+    }
+
+    @media #{$mq-xl} {
+        padding-bottom: 0;
+        margin-bottom: $layout-xs * -1;
+    }
+
+    @media #{$mq-max} {
+        margin-bottom: $layout-md * -1;
+    }
+}
+
+.c-subtitle {
+    @include text-title-sm;
+    margin-bottom: 0.5em;
+}
+
+.t-alt {
+    background-color: $color-light-gray-10;
+}
+
+.mzp-c-section-heading {
+    @include text-body-lg;
+    max-width: 100%;
+    text-wrap: balance;
+}
+
+$icon-width: 124px;
+$icon-padding: $icon-width + $layout-sm;
+
+@media #{$mq-xl} {
+    .mzp-t-picto-side {
+        .mzp-c-picto {
+            @include bidi(((padding-left, $icon-padding, padding-right, 0),));
+        }
+
+        .mzp-c-picto-image {
+            width: $icon-width;
+        }
+    }
+}
+
+.c-settings-manage {
+    margin-bottom: 0;
+}
+
+.c-settings-buttons {
+    .mzp-c-button {
+        @include bidi((
+            (margin-right, $spacing-sm, margin-left, 0),
+        ));
+        margin-top: 1rem;
+    }
+}
+
+// Privacy Notice
+
+.c-legal {
+    padding-bottom: $spacing-md;
+    padding-top: $spacing-md;
+
+    .c-legal-heading {
+        border-bottom: 1px solid $color-light-gray-30;
+        margin-bottom: $spacing-md;
+        padding-bottom: $spacing-sm;
+    }
+
+    h1 {
+        margin-bottom: $spacing-xs;
+        @include text-title-xs;
+    }
+
+    time {
+        justify-self: end;
+    }
+
+    @media #{$mq-md} {
+        scroll-margin-top: $layout-lg;
+
+        .c-legal-heading {
+            align-items: end;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 0;
+            padding-bottom: 0;
+            padding-top: $spacing-sm;
+        }
+
+        .c-legal-back {
+            display: none;
+        }
+    }
+}
+
+// @media #{$mq-sm} and (min-height: 800px) {
+//     .mzp-l-sidebar {
+//         position: sticky;
+//         top: $layout-md;
+//     }
+// }
+
+.c-toc {
+    margin-bottom: $layout-lg;
+
+    h3 {
+        margin-bottom: $layout-xs;
+    }
+
+    ul {
+        border-top: 1px solid $color-light-gray-30;
+
+        @media #{$mq-md} {
+            border-top: none;
+        }
+    }
+
+    li a {
+        display: block;
+        padding: $spacing-md $layout-sm $spacing-md 0;
+        border-bottom: 1px solid $color-light-gray-30;
+        text-decoration: none;
+        font-weight: 600;
+        background-image: url('/media/img/icons/m24-small/curve-arrow3.svg');
+        background-size: $layout-xs auto;
+        background-position: center right;
+        background-repeat: no-repeat;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media #{$mq-md} {
+            background: none;
+            padding: $spacing-sm 0;
+            border: none;
+        }
+    }
+ }
+
+.c-extra {
+    display: none;
+    margin-top: $layout-sm;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+.mzp-c-article {
+    width: auto;
+
+    > section:first-child {
+        h2 {
+            border-top: 0;
+            margin-bottom: $layout-xs;
+            margin-top: 0;
+            padding-top: 0;
+        }
+    }
+
+    h2 {
+        border-top: 1px solid $color-light-gray-30;
+        margin-bottom: $layout-sm;
+        margin-top: $layout-sm;
+        padding-top: $layout-sm;
+    }
+
+    h3 {
+        margin-bottom: $layout-xs;
+        margin-top: $layout-sm;
+    }
+
+    h4 {
+        @include text-body-lg;
+        font-family: var(--body-font-family);
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-md} {
+        h2 {
+            margin-bottom: $layout-md;
+            margin-top: $layout-md;
+            padding-top: $layout-md;
+        }
+
+        h3 {
+            margin-top: $layout-md;
+        }
+    }
+
+    @media #{$mq-xl} {
+        h2 {
+            margin-bottom: $layout-lg;
+            margin-top: $layout-lg;
+            padding-top: $layout-lg;
+        }
+
+        h3 {
+            margin-top: $layout-lg;
+        }
+    }
+}
+
+.mzp-u-data-table td {
+    border-color: $color-light-gray-30;
+    vertical-align: top;
+
+    .mzp-u-list-styled {
+        margin-left: $spacing-md;
+        margin-bottom: 0;
+    }
+}
+
+#lawful-bases + table td:nth-child(2){
+    min-width: 20ch;
+}
+
+
+@media (max-width: #{$content-xl}) {
+    .mzp-u-data-table {
+        thead {
+            display: none;
+        }
+
+        tr, th, td {
+            display: block;
+        }
+
+        td {
+            border: none;
+            padding: $spacing-sm 0;
+
+            &:first-child {
+                @include text-title-2xs;
+                font-weight: bold;
+            }
+        }
+
+        tr {
+        border-top: 1px solid $color-light-gray-50;
+        padding: $layout-2xs 0;
+
+        &:first-child {
+            border-top: none;
+        }
+        }
+    }
+}
+
+// TKTK RTL

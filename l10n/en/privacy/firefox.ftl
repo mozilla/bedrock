@@ -30,6 +30,8 @@ privacy-firefox-manage-your-privacy = Manage your privacy settings:
 privacy-firefox-firefox-for-desktop = { -brand-name-firefox } for Desktop
 privacy-firefox-firefox-for-mobile = { -brand-name-firefox } for Mobile
 
+# heading for the table of contents, a shorter heading is better
+privacy-firefox-contents = Contents
 # Variables:
 #   $attrs (string) - in-page link to the start of the legal portion of the privacy notice
 privacy-firefox-take-me-back = Take me <a { $attrs }>back to the top</a> of the Privacy Notice

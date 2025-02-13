@@ -24,10 +24,19 @@
         @include text-title-sm;
     }
 
-    h2,
-    h3,
-    h4 {
+    h2 {
         @include text-title-xs;
+        margin-bottom: $layout-sm;
+    }
+
+    h3 {
+        @include text-body-lg;
+        margin: $layout-sm 0;
+    }
+
+    h4 {
+        @include text-body-md;
+        margin: $layout-sm 0 0;
     }
 
     blockquote {

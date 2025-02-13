@@ -1,0 +1,86 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-article.html" %}
+
+
+{% block page_css %}
+  {{ super() }}
+    {{ css_bundle('terms-firefox')}}
+{% endblock %}
+
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
+
+{% set header = doc.body.section %}
+{% set title = doc.h1.extract() %}
+{% set time = doc.select('[datetime]')[0].extract() %}
+
+
+{% block page_title %}{{ ftl('legal-firefox-rights') }}{% endblock %}
+
+
+{% block main_feature %}
+
+<div class="mzp-l-content c-back">
+  <a href="{{ url('legal.index') }}">
+    <span class="mzp-c-button-icon-start" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
+        <path d="M14.3 24V13.5h9.1v-3h-9.1V0L0 12l14.3 12zm-3-13.5v7L4.7 12l6.6-5.5v4z"/>
+      </svg>
+    </span><!-- no white space between icon and string
+    -->{{ ftl('legal-back-to-legal') }}
+  </a>
+</div>
+
+  <div class="mzp-l-content c-legal" id="notice">
+    <div class="c-legal-heading">
+      <h1>{{ title|join|safe }}</h1>
+      <time datetime="{{ time['datetime'] }}" itemprop="dateModified">{{ time.string }}</time>
+    </div>
+    <a class="c-legal-back" href="{{ url('legal.index') }}">
+      <span class="mzp-c-button-icon-start" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
+          <path d="M14.3 24V13.5h9.1v-3h-9.1V0L0 12l14.3 12zm-3-13.5v7L4.7 12l6.6-5.5v4z"/>
+        </svg>
+      </span><!-- no white space between icon and string
+      -->{{ ftl('legal-back-to-legal') }}
+    </a>
+  </div>
+
+{% endblock %}
+
+{% block side_nav %}
+  <div class="c-toc">
+    <h3>{{ ftl('privacy-firefox-contents') }}</h3>
+    <ul>
+      {% for heading in doc.select('h2') %}
+        <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <aside class="c-extra">
+    <p>
+      <a href="{{ url('legal.index') }}">
+        <span class="mzp-c-button-icon-start" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
+            <path d="M14.3 24V13.5h9.1v-3h-9.1V0L0 12l14.3 12zm-3-13.5v7L4.7 12l6.6-5.5v4z"/>
+          </svg>
+        </span><!-- no white space between icon and string
+        -->{{ ftl('legal-back-to-legal') }}
+      </a>
+    </p>
+  </aside>
+
+{% endblock %}
+
+
+{% block article %}
+    {{ title|safe }}
+    {{ doc|safe }}
+{% endblock %}

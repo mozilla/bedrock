@@ -8,7 +8,10 @@ from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_protect
 
+from bs4 import BeautifulSoup
+
 from bedrock.base.urlresolvers import reverse
+from bedrock.base.waffle import switch
 from bedrock.legal.forms import FraudReportForm
 from bedrock.legal_docs.views import LegalDocView
 from lib import l10n_utils
@@ -18,15 +21,41 @@ FRAUD_REPORT_EMAIL_SUBJECT = "New trademark infringement report: %s; %s"
 FRAUD_REPORT_EMAIL_TO = ["trademarks@mozilla.com"]
 
 
-class FirefoxTermsOfServiceDocView(LegalDocView):
-    def get_template_names(self):
+def process_legal_doc(content):
+    """
+    Load a static Markdown file and return the document as a BeautifulSoup
+    object for easier manipulation.
+
+    :param content: HTML Content of the legal doc.
+    """
+    soup = BeautifulSoup(content, "lxml")
+
+    # Return the HTML fragment as a BeautifulSoup object
+    return soup
+
+
+class TermsDocView(LegalDocView):
+    def get_legal_doc(self):
+        doc = super().get_legal_doc()
+        if doc is not None:
+            doc["content"] = process_legal_doc(doc["content"])
+        return doc
+
+
+class FirefoxTermsOfServiceDocView(TermsDocView):
+    def get_legal_doc(self):
+        doc = super().get_legal_doc()
         variant = self.request.GET.get("v", None)
-        template_name = "legal/terms/firefox.html"
 
         if variant == "product":
-            template_name = "legal/terms/firefox-simple.html"
+            self.template_name = "legal/terms/firefox-simple.html"
+        else:
+            if switch("firefox-tou"):
+                self.template_name = "legal/terms/firefox-2025.html"
+            else:
+                self.template_name = "legal/terms/firefox.html"
 
-        return [template_name]
+        return doc
 
 
 def submit_form(request, form):
