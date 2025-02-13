@@ -543,7 +543,7 @@ class TestAbsoluteURLFilter(TestCase):
     static_url_dev = "/static/"
     static_url_prod = "//mozorg.cdn.mozilla.net/static/"
     static_url_full = "https://mozorg.cdn.mozilla.net/static/"
-    image_path = "img/mozorg/mozilla-256.jpg"
+    image_path = "img/m24/og.png"
     inline_template = "{{ static('%s')|absolute_url }}" % image_path
     block_template = "{% filter absolute_url %}{% block page_image %}" + "{{ static('%s') }}" % image_path + "{% endblock %}{% endfilter %}"
 
