@@ -186,6 +186,7 @@ LOCALES_BY_REGION = {
         "si",
         "ta",
         "te",
+        "tg",
         "th",
         "tl",
         "ur",
