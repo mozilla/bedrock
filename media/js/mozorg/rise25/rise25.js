@@ -10,25 +10,22 @@
     var facebookShare = document.querySelectorAll(
         '.r25-c-social-share .facebook'
     );
-    var twitterShare = document.querySelectorAll(
-        '.r25-c-social-share .twitter'
+    var blueskyShare = document.querySelectorAll(
+        '.r25-c-social-share .bluesky'
     );
     var emailShare = document.querySelectorAll('.r25-c-social-share .email');
     var copyLinks = document.querySelectorAll('.r25-c-social-share .copy-text');
     var timeout;
 
-    function generateTweet() {
-        var tweetUrl = encodeURIComponent(
-            'https://www.mozilla.org/rise25/nominate/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=twitter&utm_content=rise25-share'
+    function generateBlueskyShare() {
+        var shareUrl = encodeURIComponent(
+            'https://www.mozilla.org/rise25/nominate/?utm_campaign=rise25&utm_medium=organicsocial&utm_source=bluesky&utm_content=rise25-share'
         );
-        var tweetText = encodeURIComponent(
+        var shareText = encodeURIComponent(
             'Mozilla is on the hunt for 25 visionaries making AI better for the people — not big corporations. \n\nWinners will be honored at the upcoming Rise25 awards in Dublin, Ireland. Submit your nomination today! \n\n'
         );
         return (
-            'https://www.twitter.com/intent/tweet?url=' +
-            tweetUrl +
-            '&text=' +
-            tweetText
+            'https://bsky.app/intent/compose?text=' + shareText + '+' + shareUrl
         );
     }
 
@@ -76,9 +73,9 @@
     })();
 
     (function () {
-        for (var index = 0; index < twitterShare.length; index++) {
-            var element = twitterShare[index];
-            element.href = generateTweet();
+        for (var index = 0; index < blueskyShare.length; index++) {
+            var element = blueskyShare[index];
+            element.href = generateBlueskyShare();
         }
     })();
 

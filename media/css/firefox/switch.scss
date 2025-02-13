@@ -129,8 +129,8 @@ $image-path: '/media/protocol/img';
         width: 20px;
     }
 
-    &.twitter::before {
-        background-image: url('#{$image-path}/icons/social/x/black.svg');
+    &.bluesky::before {
+        background-image: url('/media/img/icons/social/bluesky/black.svg');
     }
 
     &.facebook {
