@@ -29,7 +29,7 @@ particular locale for a short while* -- but those will be exceptions and rare.
 Browser Support Matrix
 ----------------------
 
-*Last updated: Updated July 19, 2023*
+*Last updated: January 20, 2025*
 
 Firefox
 ~~~~~~~
@@ -55,7 +55,7 @@ user agents in our browser support matrix below.
 
   macOS 10.15 and above
     - All evergreen browsers
-    - Safari
+    - Safari 15.6
 
   Linux
     - All evergreen browsers
@@ -70,13 +70,13 @@ CSS layout or JS features.
     - Internet Explorer 11
 
   Windows 8.1 and below
-    - Firefox 115
+    - Firefox 115 ESR
     - Chrome 109
     - Internet Explorer 10
 
   macOS 10.14 and below
-    - Firefox 115
-    - Chrome 114
+    - Firefox 115 ESR
+    - Chrome 116
     - Safari 12.1
 
 .. Note::
@@ -131,7 +131,7 @@ consists of no page-specific CSS or JS. Instead, we deliver well formed semantic
 and a universal CSS stylesheet that gets applied to all pages. We do not serve these
 older browsers any JS, with the exception of the following scripts:
 
-  * Google Analytics / :abbr:`GTM (Google Tag Manager)` snippet.
+  * Google Analytics / :abbr:`GTM (Google Tag Manager)` snippet (IE9).
   * HTML5shiv for parsing modern HTML semantic elements.
   * Stub Attribution script (IE8 / IE9).
 
