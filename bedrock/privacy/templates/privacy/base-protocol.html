@@ -40,8 +40,9 @@
 ] -%}
 
 {% block content %}
+{% block intro %}{% endblock %}
 <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
-  <main class="mzp-l-main">
+  <main class="mzp-l-main" id="notice">
     {% block article %}
     <header>
       {% if self.article_header_logo()|trim|length %}
