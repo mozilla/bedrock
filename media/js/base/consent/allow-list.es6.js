@@ -7,7 +7,8 @@
 const MozAllowList = [
     '/firefox/built-for-you/',
     '/firefox/challenge-the-default/',
-    '/firefox/landing/*',
+    '/firefox/landing/education/',
+    '/firefox/landing/tech/',
     '/newsletter/firefox/',
     '/products/vpn/*'
 ];
