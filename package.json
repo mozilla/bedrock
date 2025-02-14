@@ -11,7 +11,7 @@
     "@mozmeao/consent-banner": "^1.1.0",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
-    "@mozmeao/trafficcop": "^3.0.0",
+    "@mozmeao/trafficcop": "^3.1.0",
     "@sentry/browser": "^8.53.0",
     "babel-loader": "^9.2.1",
     "caniuse-lite": "^1.0.30001696",
