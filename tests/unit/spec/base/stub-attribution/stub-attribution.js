@@ -1205,37 +1205,174 @@ describe('stub-attribution.js', function () {
                 GA4_CLIENT_ID
             );
         });
-    });
 
-    it('should return null if GA4 client ID is not found', function () {
-        const dataLayer = [
-            {
-                event: 'page-id-loaded',
-                pageId: 'Homepage',
-                'gtm.uniqueEventId': 1
-            },
-            {
-                'gtm.start': 1678700450438,
-                event: 'gtm.js',
-                'gtm.uniqueEventId': 2
-            },
-            {
-                event: 'gtm.dom',
-                'gtm.uniqueEventId': 12
-            },
-            {
-                event: 'gtm.load',
-                'gtm.uniqueEventId': 13
-            }
-        ];
+        it('should return null if GA4 client ID is not found', function () {
+            const dataLayer = [
+                {
+                    event: 'page-id-loaded',
+                    pageId: 'Homepage',
+                    'gtm.uniqueEventId': 1
+                },
+                {
+                    'gtm.start': 1678700450438,
+                    event: 'gtm.js',
+                    'gtm.uniqueEventId': 2
+                },
+                {
+                    event: 'gtm.dom',
+                    'gtm.uniqueEventId': 12
+                },
+                {
+                    event: 'gtm.load',
+                    'gtm.uniqueEventId': 13
+                }
+            ];
 
-        expect(Mozilla.StubAttribution.getGtagClientID(dataLayer)).toBeNull();
-    });
-
-    it('should return a null if accessing GTAG API throws an error', function () {
-        window.dataLayer = sinon.stub().throws(function () {
-            return new Error();
+            expect(
+                Mozilla.StubAttribution.getGtagClientID(dataLayer)
+            ).toBeNull();
         });
-        expect(Mozilla.StubAttribution.getGtagClientID()).toBeNull();
+
+        it('should return a null if accessing GTAG API throws an error', function () {
+            window.dataLayer = sinon.stub().throws(function () {
+                return new Error();
+            });
+            expect(Mozilla.StubAttribution.getGtagClientID()).toBeNull();
+        });
+    });
+
+    describe('removeAttributionData', function () {
+        beforeEach(function () {
+            const winUrl =
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const win64Url =
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const transitionalUrl =
+                'https://www.mozilla.org/firefox/download/thanks/';
+            const winStageUrl =
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const win64StageUrl =
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const winDevUrl =
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const win64DevUrl =
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const macOSNightlyUrl =
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const macOSBetaUrl =
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const macOSDevUrl =
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const macOSEsrUrl =
+                'https://download.mozilla.org/?product=firefox-esr-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+            const macOSUrl =
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+
+            const downloadMarkup = `<ul class="download-list">
+                    <li><a id="link-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winUrl}">Download</a></li>
+                    <li><a id="link-direct-win" class="download-link" data-download-version="win" href="${winUrl}">Download</a></li>
+                    <li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="${win64Url}">Download</a></li>
+                    <li><a id="link-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win" class="download-link" data-download-version="win" href="${winStageUrl}">Download</a></li>
+                    <li><a id="link-stage-direct-win64" class="download-link" data-download-version="win64" href="${win64StageUrl}">Download</a></li>
+                    <li><a id="link-dev-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winDevUrl}">Download</a></li>
+                    <li><a id="link-dev-direct-win" class="download-link" data-download-version="win" href="${winDevUrl}">Download</a></li>
+                    <li><a id="link-dev-direct-win64" class="download-link" data-download-version="win64" href="${win64DevUrl}">Download</a></li>
+                    <li><a id="link-macos-nightly" class="download-link" data-download-version="osx" href="${macOSNightlyUrl}">Download</a></li>
+                    <li><a id="link-macos-beta" class="download-link" data-download-version="osx" href="${macOSBetaUrl}">Download</a></li>
+                    <li><a id="link-macos-dev" class="download-link" data-download-version="osx" href="${macOSDevUrl}">Download</a></li>
+                    <li><a id="link-macos-esr" class="download-link" data-download-version="osx" href="${macOSEsrUrl}">Download</a></li>
+                    <li><a id="link-macos" class="download-link" data-download-version="osx" href="${macOSUrl}">Download</a></li>
+                </ul>`;
+            document.body.insertAdjacentHTML('beforeend', downloadMarkup);
+        });
+
+        afterEach(function () {
+            const content = document.querySelector('.download-list');
+            content.parentNode.removeChild(content);
+        });
+
+        it('should existing attribution cookies', function () {
+            const data = {
+                attribution_code: 'foo',
+                attribution_sig: 'bar'
+            };
+
+            Mozilla.StubAttribution.setCookie(data);
+            expect(Mozilla.StubAttribution.hasCookie()).toBeTrue();
+
+            Mozilla.StubAttribution.removeAttributionData();
+
+            // attribution cookies should be removed
+            expect(Mozilla.StubAttribution.hasCookie()).toBeFalse();
+
+            // prod download links cleaned
+            expect(
+                document
+                    .getElementById('link-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(document.getElementById('link-direct-win').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(document.getElementById('link-direct-win64').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US'
+            );
+
+            // stage download links cleaned
+            expect(
+                document
+                    .getElementById('link-stage-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(
+                document.getElementById('link-stage-direct-win64').href
+            ).toEqual(
+                'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US'
+            );
+
+            // dev download links cleaned
+            expect(
+                document
+                    .getElementById('link-dev-transitional')
+                    .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(document.getElementById('link-dev-direct-win').href).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+            );
+            expect(
+                document.getElementById('link-dev-direct-win64').href
+            ).toEqual(
+                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US'
+            );
+
+            // macOS links cleaned
+            expect(document.getElementById('link-macos-nightly').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US'
+            );
+            expect(document.getElementById('link-macos-beta').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-beta-latest&os=osx&lang=en-US'
+            );
+            expect(document.getElementById('link-macos-dev').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-devedition-latest&os=osx&lang=en-US'
+            );
+            expect(document.getElementById('link-macos-esr').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-esr-latest&os=osx&lang=en-US'
+            );
+            expect(document.getElementById('link-macos').href).toEqual(
+                'https://download.mozilla.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
+            );
+        });
     });
 });

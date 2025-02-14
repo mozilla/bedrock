@@ -112,6 +112,27 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     /**
+     * Removes stub attribution cookie.
+     */
+    StubAttribution.removeCookie = function () {
+        window.Mozilla.Cookies.removeItem(
+            StubAttribution.COOKIE_CODE_ID,
+            '/',
+            undefined,
+            false,
+            'lax'
+        );
+
+        window.Mozilla.Cookies.removeItem(
+            StubAttribution.COOKIE_SIGNATURE_ID,
+            '/',
+            undefined,
+            false,
+            'lax'
+        );
+    };
+
+    /**
      * Gets stub attribution data from cookie.
      * @return {Object} - attribution_code, attribution_sig.
      */
@@ -200,6 +221,49 @@ if (typeof window.Mozilla === 'undefined') {
                 }
             }
         }
+    };
+
+    StubAttribution.removeLinkAttributionParams = function (href) {
+        if (href.indexOf('?') > 0) {
+            var params = new window._SearchParams(href.split('?')[1]);
+            var origin = href.split('?')[0];
+
+            if (
+                params.has('attribution_code') &&
+                params.has('attribution_sig')
+            ) {
+                params.remove('attribution_code');
+                params.remove('attribution_sig');
+                return (
+                    origin + '?' + window.decodeURIComponent(params.toString())
+                );
+            }
+        }
+
+        return href;
+    };
+
+    StubAttribution.cleanBouncerLinks = function () {
+        var downloadLinks = document.querySelectorAll('.download-link');
+
+        for (var i = 0; i < downloadLinks.length; i++) {
+            downloadLinks[i].href = StubAttribution.removeLinkAttributionParams(
+                downloadLinks[i].href
+            );
+
+            if (downloadLinks[i].hasAttribute('data-direct-link')) {
+                var attribute = StubAttribution.removeLinkAttributionParams(
+                    downloadLinks[i].getAttribute('data-direct-link')
+                );
+                downloadLinks[i].setAttribute('data-direct-link', attribute);
+            }
+        }
+    };
+
+    StubAttribution.removeAttributionData = function () {
+        StubAttribution.removeCookie();
+        StubAttribution.cleanBouncerLinks();
+        StubAttribution.requestComplete = false;
     };
 
     /**
