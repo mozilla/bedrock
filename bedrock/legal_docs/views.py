@@ -57,7 +57,7 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
         _ftl_files = [
             "mozorg/about/legal",
             "privacy/index",
-            "privacy/firefox",
+            "privacy/firefox",  # TKTK move this to the right place
         ]
         return l10n_utils.render(
             self.request,

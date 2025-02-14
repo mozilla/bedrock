@@ -4,8 +4,8 @@
 
 ### URL: https://www-dev.allizom.org/privacy/firefox
 
-privacy-firefox-mozilla-privacy = { -brand-name-mozilla } Privacy
-
+# hidden heading for the sections at the top of the page
+privacy-firefox-basics = Privacy basics
 privacy-firefox-youre-in-control = You’re in control
 privacy-firefox-privacy-isnt-just = Privacy isn’t just a setting — it’s your right. The { -brand-name-firefox } Privacy Notice is built on clarity, control and responsible defaults. We believe you should always be in charge of what happens with your data. You can count on us to clearly explain what { -brand-name-firefox } does by default and adjust your settings so you can browse the way you want.
 privacy-firefox-read-our-privacy = Read our Privacy Notice
@@ -20,7 +20,7 @@ privacy-firefox-were-clear-about = We’re clear about what data we use and why.
 privacy-firefox-how-we-use = How we use data
 privacy-firefox-we-use-data = We use data to keep { -brand-name-firefox } running smoothly, improve features and help sustain our business — all while respecting your privacy. Some optional features may require additional data to function, and we make it easy to manage your preferences.
 privacy-firefox-builtin-control = Built-in control
-privacy-firefox-firefox-gives-you = { -brand-name-firefox } gives you simple, yet powerful tools to manage your data the way you want. { -brand-name-firefox } gives you simple, yet powerful tools to manage your data the way you want. You can fine-tune your settings, separate work from your personal life or erase unwanted history with just a few clicks.
+privacy-firefox-firefox-gives-you = { -brand-name-firefox } gives you simple, yet powerful tools to manage your data the way you want. You can fine-tune your settings, separate work from your personal life or erase unwanted history with just a few clicks.
 privacy-firefox-always-protected = Always protected
 privacy-firefox-firefox-protects-you = { -brand-name-firefox } protects you from known third-party trackers, social media trackers, cryptominers, cookies and fingerprinting technologies that try to follow you around the web.
 
@@ -36,3 +36,5 @@ privacy-firefox-take-me-back = Take me <a { $attrs }>back to the top</a> of the 
 # Variables:
 #   $attrs (string) - in-page link to the top of the page
 privacy-firefox-lost-in-the = Lost in the details? Get back to the <a { $attrs }>{ -brand-name-firefox } privacy basics</a>.
+# links to Mozilla privacy policy
+privacy-firefox-mozilla-privacy = { -brand-name-mozilla } Privacy

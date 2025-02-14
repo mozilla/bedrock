@@ -344,13 +344,9 @@ locales = [
     l10n = "{locale}/privacy/firefox.ftl"
     locales = [
         "cs",
-        "de",
         "es-ES",
-        "fr",
         "hu",
-        "id",
         "it",
-        "ja",
         "nl",
         "pl",
         "pt-BR",
