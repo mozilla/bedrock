@@ -147,6 +147,19 @@
 
         <!-- Secondary list -->
         <ul class="vpn-download-secondary-list">
+          <!-- Windows Firefox Extension -->
+          <li class="secondary-platform windows firefox-extension">
+            <div class="platform-image">
+              <img src="{{ static('img/products/vpn/download/platform-firefox-extension.svg') }}" alt="">
+            </div>
+            <div class="platform-body">
+              <h2>{{ ftl('vpn-download-for-firefox-extension') }}</h2>
+              <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
+            </div>
+            <a class="platform-download-link" href="https://addons.mozilla.org/firefox/addon/mozilla-vpn-extension/?utm_medium=referral&utm_source=mozilla-vpn-website&utm_campaign=evergreen&utm_content=downloads-page" data-cta-text="Install Firefox Extension">
+              <span class="visually-hidden">{{ ftl('vpn-download-for-firefox-extension') }}</span>
+            </a>
+          </li>
           <!-- Windows -->
           <li class="secondary-platform windows">
             <div class="platform-image">
@@ -157,7 +170,7 @@
               <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
             </div>
             <a href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" class="platform-download-link" data-testid="vpn-download-link-secondary-windows">
-              <span class="">{{ ftl('vpn-download-for-windows-long') }}</span>
+              <span class="visually-hidden">{{ ftl('vpn-download-for-windows-long') }}</span>
             </a>
           </li>
           <!-- Mac OS -->
