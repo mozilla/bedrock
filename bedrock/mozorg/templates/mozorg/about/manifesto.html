@@ -8,7 +8,7 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% from 'macros.html' import twitter_share_url with context %}
+{% from 'macros.html' import bluesky_share_url with context %}
 
 {% block page_title %}{{ ftl('manifesto-details-the-mozilla-manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
@@ -22,8 +22,8 @@
   {{ css_bundle('manifesto') }}
 {% endblock %}
 
-{% macro twitter_link(content_id, text) -%}
-  {{ twitter_share_url('https://mzl.la/manifesto', text|truncate(102, False, '…')) }}
+{% macro bluesky_link(content_id, text) -%}
+  {{ bluesky_share_url('https://mzl.la/manifesto', text) }}
 {%- endmacro %}
 
 {% set principle_text_01 = ftl('manifesto-the-internet-is-an-integral') %}
@@ -77,8 +77,8 @@
       include_cta=True,
     ) %}
       <p>
-        <a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-text="X (formerly Twitter)" aria-label="{{ ftl('manifesto-share-on-x-aria-label') }}">
-          {{ ftl('manifesto-share-on-x') }}
+        <a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ bluesky_link('custom', ftl('manifesto-i-support-the-vision-of-v2', fallback='manifesto-i-support-the-vision-of')) }}" data-link-text="Bluesky">
+          {{ ftl('manifesto-share-on-bluesky') }}
         </a>
       </p>
     {% endcall %}
@@ -131,7 +131,7 @@
           </li>
         </ol>
         <footer class="content principles-foot">
-          <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ twitter_link('custom', ftl('manifesto-i-support-the-vision-of')) }}" data-link-text="Twitter" aria-label="{{ ftl('manifesto-share-on-x-aria-label') }}">{{ ftl('manifesto-share-on-x') }}</a></p>
+          <p><a class="mzp-c-button button-manifesto js-manifesto-share" target="_blank" rel="noopener noreferrer" href="{{ bluesky_link('custom', ftl('manifesto-i-support-the-vision-of-v2', fallback='manifesto-i-support-the-vision-of')) }}" data-link-text="Bluesky">{{ ftl('manifesto-share-on-bluesky') }}</a></p>
           <p><a class="mzp-c-cta-link" href="{{ url('mozorg.about.manifesto-details') }}">{{ ftl('manifesto-read-the-entire-manifesto') }}</a></p>
         </footer>
       </section>
