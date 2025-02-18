@@ -14,6 +14,8 @@
 {% set android_campaign_url = play_store_url('firefox', 'smi-001') %}
 {% set ios_campaign_url = app_store_url('firefox', 'smi-001') %}
 
+{% block experiments %}{% endblock %}
+
 {% block string_data %}
   data-win-custom-id="{{ win_custom_download_id }}"
   data-mac-custom-id="{{ mac_custom_download_id }}"

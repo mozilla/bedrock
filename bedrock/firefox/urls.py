@@ -273,6 +273,7 @@ urlpatterns = (
     ),
     # Issue 15841 - UK influencer campaign
     page("firefox/landing/tech/", "firefox/landing/tech.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
+    page("firefox/landing/get/", "firefox/landing/get.html", ftl_files="firefox/new/desktop"),
 )
 
 # Contentful
