@@ -11,13 +11,16 @@
 
 import MarketingOptOut from '../../../../../media/js/firefox/landing/get/marketing-opt-out.es6';
 
+const labelSelector = '.marketing-opt-out-checkbox-label.hidden';
+const checkboxSelector = '.marketing-opt-out-checkbox-input:checked';
+
 describe('marketing-opt-out.es6.js', function () {
     beforeEach(function () {
         const optOut = `<div id="opt-out">
-            <label for="marketing-opt-out-primary" class="marketing-opt-out-checkbox-label">
+            <label for="marketing-opt-out-primary" class="marketing-opt-out-checkbox-label hidden">
                 <input type="checkbox" id="marketing-opt-out-primary" class="marketing-opt-out-checkbox-input">.
             </label>
-            <label for="marketing-opt-out-secondary" class="marketing-opt-out-checkbox-label">
+            <label for="marketing-opt-out-secondary" class="marketing-opt-out-checkbox-label hidden">
                 <input type="checkbox" id="marketing-opt-out-secondary" class="marketing-opt-out-checkbox-input">.
             </label>
         </div>`;
@@ -44,9 +47,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeFalse();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(2);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -61,9 +65,10 @@ describe('marketing-opt-out.es6.js', function () {
             expect(result).toBeFalse();
             delete window.Mozilla.gpcEnabled;
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(2);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -78,9 +83,10 @@ describe('marketing-opt-out.es6.js', function () {
             expect(result).toBeFalse();
             delete window.Mozilla.dntEnabled;
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(2);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -96,9 +102,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
         });
 
@@ -123,9 +130,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
         });
 
@@ -150,9 +158,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeFalse();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(2);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -173,9 +182,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeFalse();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(2);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -196,9 +206,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            const checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            const checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
         });
 
@@ -214,9 +225,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            let checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            let checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
 
             document.getElementById('marketing-opt-out-primary').click();
@@ -233,9 +245,7 @@ describe('marketing-opt-out.es6.js', function () {
                 'lax'
             );
 
-            checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
 
@@ -251,9 +261,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            let checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            let checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
 
             // Opt out
@@ -277,9 +288,7 @@ describe('marketing-opt-out.es6.js', function () {
                 'lax'
             );
 
-            checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
         });
 
@@ -307,9 +316,10 @@ describe('marketing-opt-out.es6.js', function () {
             const result = MarketingOptOut.init();
             expect(result).toBeTrue();
 
-            let checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            const labels = document.querySelectorAll(labelSelector);
+            expect(labels.length).toEqual(0);
+
+            let checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(2);
 
             document.getElementById('marketing-opt-out-primary').click();
@@ -326,9 +336,7 @@ describe('marketing-opt-out.es6.js', function () {
                 'lax'
             );
 
-            checkboxes = document.querySelectorAll(
-                '.marketing-opt-out-checkbox-input:checked'
-            );
+            checkboxes = document.querySelectorAll(checkboxSelector);
             expect(checkboxes.length).toEqual(0);
         });
     });
