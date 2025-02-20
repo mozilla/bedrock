@@ -6,6 +6,8 @@
 
 {% from "macros-protocol.html" import picto with context %}
 
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew' %}
+
 <section>
   <div class="mzp-l-content mzp-t-content-lg">
     <div class="mzp-c-section-heading">
@@ -14,16 +16,31 @@
     </div>
     <div class="mzp-l-columns mzp-t-columns-three">
       <div>
-        <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/docs/Web?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew" rel="external">{{ ftl('firefox-developer-mdn-references') }}</a></h3>
-        <p>{{ ftl('firefox-developer-mdn-is-a') }}</p>
+        {% if ftl_has_messages('firefox-developer-mdn-playground', 'firefox-developer-mdn-write-test-and-share') %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/en-US/play/{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-playground') }}</a></h3>
+          <p>{{ ftl('firefox-developer-mdn-write-test-and-share') }}</p>
+        {% else %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/docs/Web{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-references') }}</a></h3>
+          <p>{{ ftl('firefox-developer-mdn-is-a') }}</p>
+        {% endif %}
       </div>
       <div>
-        <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/curriculum/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew" rel="external">{{ ftl('firefox-developer-mdn-curriculum') }}</a></h3>
-        <p>{{ ftl('firefox-developer-a-structured-guide') }}</p>
+        {% if ftl_has_messages('firefox-developer-mdn-blog', 'firefox-developer-mdn-unlock-the-world') %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/en-US/blog/{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-blog') }}</a></h3>
+          <p>{{ ftl('firefox-developer-mdn-unlock-the-world') }}</p>
+        {% else %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/curriculum/{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-curriculum') }}</a></h3>
+          <p>{{ ftl('firefox-developer-a-structured-guide') }}</p>
+        {% endif %}
       </div>
       <div>
-        <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/plus/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=fxdev-whatsnew" rel="external">{{ ftl('firefox-developer-mdn-plus') }}</a></h3>
-        <p>{{ ftl('firefox-developer-support-mdn-and') }}</p>
+        {% if ftl_has_messages('firefox-developer-mdn-updates', 'firefox-developer-mdn-the-web-doesnt-have') %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/en-US/plus/updates/{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-updates') }}</a></h3>
+          <p>{{ ftl('firefox-developer-mdn-the-web-doesnt-have') }}</p>
+        {% else %}
+          <h3 class="mzp-u-title-xs"><a href="https://developer.mozilla.org/plus/{{ utm_params }}" rel="external">{{ ftl('firefox-developer-mdn-plus') }}</a></h3>
+          <p>{{ ftl('firefox-developer-support-mdn-and') }}</p>
+        {% endif %}
       </div>
     </div>
   </div>

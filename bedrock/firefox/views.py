@@ -20,7 +20,6 @@ from product_details.version_compare import Version
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
 from bedrock.firefox.firefox_details import (
     firefox_android,
@@ -474,7 +473,6 @@ class FirstrunView(L10nTemplateView):
 class WhatsnewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/developer/whatsnew.html": ["firefox/developer"],
-        "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
         "firefox/nightly/whatsnew.html": [
             "firefox/nightly/whatsnew",
             "firefox/whatsnew/whatsnew",
@@ -601,12 +599,7 @@ class WhatsnewView(L10nTemplateView):
         if channel == "nightly":
             template = "firefox/nightly/whatsnew.html"
         elif channel == "developer":
-            if show_102_dev_whatsnew(version):
-                if switch("firefox-developer-whatsnew-mdnplus") and ftl_file_is_active("firefox/whatsnew/whatsnew-developer-mdnplus"):
-                    template = "firefox/developer/whatsnew-mdnplus.html"
-                else:
-                    template = "firefox/developer/whatsnew.html"
-            elif show_57_dev_whatsnew(version):
+            if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"

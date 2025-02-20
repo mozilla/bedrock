@@ -10,7 +10,6 @@ from django.test.utils import override_settings
 
 from django_jinja.backend import Jinja2
 from markupsafe import Markup
-from waffle.testutils import override_switch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox import views as fx_views
@@ -292,24 +291,6 @@ class TestWhatsNew(TestCase):
         self.view(req, version="57.0a2")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/developer/whatsnew.html"]
-
-    @override_settings(DEV=True)
-    @override_switch("FIREFOX_DEVELOPER_WHATSNEW_MDNPLUS", active=False)
-    def test_fx_dev_browser_102_0_a2_whatsnew_off(self, render_mock):
-        """Should show regular dev browser whatsnew template"""
-        req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="102.0a2")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/developer/whatsnew.html"]
-
-    @override_settings(DEV=True)
-    @override_switch("FIREFOX_DEVELOPER_WHATSNEW_MDNPLUS", active=True)
-    def test_fx_dev_browser_102_0_a2_whatsnew_mdnplus(self, render_mock):
-        """Should show MDN Plus dev browser whatsnew template when switch is on"""
-        req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="102.0a2")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/developer/whatsnew-mdnplus.html"]
 
     # end dev edition whatsnew tests
 
