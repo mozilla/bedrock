@@ -1,0 +1,54 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_136_pip') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <div class="c-video-wrapper">
+      <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew136-pip/multi-browser-cool-colors.png') }}" alt="" />
+      {{ video_inline_embed(
+        id='AQybEhWZ8YA',
+        title='Watch more basketball with Firefox Multi Picture-in-Picture',
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew136-pip/basketball-poster.png',
+          srcset={"img/firefox/whatsnew/whatsnew136-pip/basketball-poster-high-res.png": "2x"},
+          optional_attributes={
+            'width': '1024',
+            'height': '576'
+          }
+        ),
+      ) }}
+    </div>
+    <h1 class="wnp-main-title">Watch the highlights <strong class="u-uppercase">live</strong></h1>
+    <div class="wnp-main-tagline">
+      <p>You have to work, but there’s no way you’re missing the big game? </p>
+      <p>With Firefox Picture-in-Picture, you can catch every big moment <em>while</em> working, writing, or procrastinating.</p>
+    </div>
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-type="button" data-cta-text="Try Picture-in-Picture now">
+        Learn more
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}

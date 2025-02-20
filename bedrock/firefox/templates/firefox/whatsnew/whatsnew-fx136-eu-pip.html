@@ -1,0 +1,69 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_136_pip') }}
+{% endblock %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp136-eu-pip' %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Multitasking leicht gemacht' %}
+  {% set main_tagline = '<p>Du weißt es, wir wissen es – dein Chef vermutlich auch: Manchmal guckst du Videos während der Arbeit.</p><p>Mit dem Bild-im-Bild-Modus von Firefox kannst du den Videoplayer einfach von einem Tab lösen und gucken, während du in einem anderen Fenster arbeitest.</p>' %}
+  {% set main_cta = 'Probiers aus' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Le multitâche en toute simplicité' %}
+  {% set main_tagline = '<p>Vous le savez, nous le savons, votre patron le sait problement aussi. Parfois, vous regardez des vidéos pendant le travail.</p><p>Avec l’incrustation vidéo de Firefox, vous pouvez extraire le lecteur vidéo tout en continuant à travailler dans une autre fenêtre du navigateur.</p>' %}
+  {% set main_cta = 'Essayer l’incrustation vidéo' %}
+{% else %}
+  {% set main_title = 'Multitasking made easy' %}
+  {% set main_tagline = '<p>You know it, we know it—your boss probably does too. Sometimes, you watch videos during your workday.</p><p>With Firefox Picture-in-Picture, you can pop out the player and watch while still working on another browser window.</p>' %}
+  {% set main_cta = 'Try Picture-in-Picture now' %}
+{% endif %}
+
+{% set main_cta_link = 'https://support.mozilla.org/kb/keyboard-shortcuts-perform-firefox-tasks-quickly?'  + utm_params %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+     <div class="c-video-wrapper">
+      <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew136-pip/multi-browser-warm-colors.png') }}" alt="" />
+      {{ video_inline_embed(
+        id='F-nFQryDB0s',
+        title='Introducing the new Firefox… jk. It’s red pandas.',
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew136-pip/red-panda-poster.png',
+          srcset={"img/firefox/whatsnew/whatsnew136-pip/red-panda-poster-high-res.png": "2x"},
+          optional_attributes={
+            'width': '1024',
+            'height': '576'
+          }
+        ),
+      ) }}
+     </div>
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <div class="wnp-main-tagline">{{ main_tagline | safe }}</div>
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-type="button" data-cta-text="Try Picture-in-Picture now">
+        {{ main_cta }}
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}
