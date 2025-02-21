@@ -11,8 +11,7 @@
 
 $mq-max: '(min-width: 1440px)';
 
-
-.c-back {
+.l-top {
     display: none;
     padding-top: $layout-sm;
     padding-bottom: 0;
@@ -51,10 +50,6 @@ $mq-max: '(min-width: 1440px)';
             margin-bottom: 0;
             padding-bottom: 0;
             padding-top: $spacing-sm;
-        }
-
-        .c-legal-back {
-            display: none;
         }
     }
 }
