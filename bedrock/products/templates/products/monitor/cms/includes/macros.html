@@ -1,0 +1,37 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% macro picto_icon(image) -%}
+  {# TKTK: To do: this is SVG, input should only accept SVG, this is one size #}
+  {{ srcset_image(
+    image,
+    "width-{200,400,600,800,1000,1200}",
+    class="",
+    sizes="(min-width: 1024px) 33vw', (min-width: 480px) 50vw', 100vw",
+    width="40",
+    height="40",
+    alt="TKTK fix sizing, should only be SVG",
+    loading="lazy"
+  ) }}
+{%- endmacro %}
+
+
+{% macro split_media(image) %}
+  {# TKTK: To do: available widths should include max needed size - 1360 #}
+  {{ srcset_image(
+    image,
+    "width-{200,400,600,800,1000,1200}",
+    class="mzp-c-split-media-asset",
+    sizes="
+      (min-width: 768px) 50vw,
+      (min-width: 1440px) 680px,
+      100vw
+    ",
+    width=(image.width / 2)|round|int,
+    alt="",
+    loading="lazy"
+  ) }}
+{%- endmacro %}
