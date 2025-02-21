@@ -20,8 +20,6 @@ body {
     background-color: $m24-color-white;
     color: $m24-color-black;
     font-family: var(--body-font-family);
-    font-variant-ligatures: none;
-    line-height: 1.2;
 }
 
 h1, h2, h3, h4, h5 {
@@ -29,8 +27,11 @@ h1, h2, h3, h4, h5 {
     font-family: var(--title-font-family);
     font-variant-ligatures: none;
     font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.1;
+    line-height: 1;
+    
+    main & {
+        letter-spacing: -0.01em;
+    }
 }
 
 strong {
@@ -76,7 +77,7 @@ a:visited {
     font-family: var(--title-font-family);
     font-size: $text-button-lg;
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 1;
     background-image:
         linear-gradient(to right, $m24-color-black 0, $m24-color-black 33%,transparent 33%, transparent 66%, $m24-color-black 66%, $m24-color-black 100%);
     background-repeat: no-repeat;
