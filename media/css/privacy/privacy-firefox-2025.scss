@@ -121,13 +121,6 @@ $icon-padding: $icon-width + $layout-sm;
     }
 }
 
-// @media #{$mq-sm} and (min-height: 800px) {
-//     .mzp-l-sidebar {
-//         position: sticky;
-//         top: $layout-md;
-//     }
-// }
-
 .c-toc {
     margin-bottom: $layout-lg;
 
@@ -144,6 +137,9 @@ $icon-padding: $icon-width + $layout-sm;
     }
 
     li a {
+        @include bidi((
+            (background-position, center right, center left),
+        ));
         display: block;
         padding: $spacing-md $layout-sm $spacing-md 0;
         border-bottom: 1px solid $color-light-gray-30;
@@ -151,7 +147,6 @@ $icon-padding: $icon-width + $layout-sm;
         font-weight: 600;
         background-image: url('/media/img/icons/m24-small/curve-arrow3.svg');
         background-size: $layout-xs auto;
-        background-position: center right;
         background-repeat: no-repeat;
 
         &:hover,
@@ -236,7 +231,9 @@ $icon-padding: $icon-width + $layout-sm;
     vertical-align: top;
 
     .mzp-u-list-styled {
-        margin-left: $spacing-md;
+        @include bidi((
+            (margin-left, $spacing-sm, margin-right, 0),
+        ));
         margin-bottom: 0;
     }
 }
@@ -244,7 +241,6 @@ $icon-padding: $icon-width + $layout-sm;
 #lawful-bases + table td:nth-child(2){
     min-width: 20ch;
 }
-
 
 @media (max-width: #{$content-xl}) {
     .mzp-u-data-table {
@@ -276,5 +272,3 @@ $icon-padding: $icon-width + $layout-sm;
         }
     }
 }
-
-// TKTK RTL
