@@ -898,6 +898,7 @@ def firefox_features_translate(request):
     translate_langs = [
         "bg",
         "ca",
+        "zh-CN",
         "hr",
         "cs",
         "da",
@@ -911,6 +912,8 @@ def firefox_features_translate(request):
         "hu",
         "id",
         "it",
+        "ja",
+        "ko",
         "lv",
         "lt",
         "pl",
