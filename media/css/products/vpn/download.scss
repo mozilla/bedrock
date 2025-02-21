@@ -198,6 +198,17 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         }
     }
 
+    .secondary-platform-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .extension-link {
+        margin-top: $spacing-sm;
+    }
+
     @media #{$mq-xs} {
         .secondary-platform {
             display: flex;
@@ -220,10 +231,20 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
     @media #{$mq-sm} {
         .secondary-platform {
             flex-direction: row;
-            height: 165px;
+            min-height: 190px;
             width: 350px;
             padding: 0 $spacing-lg;
             text-align: left;
+
+            &.windows {
+                flex-direction: column;
+                align-items: center;
+                min-height: unset;
+
+                .extension-link {
+                    margin-top: 0;
+                }
+            }
 
             .platform-body {
                 margin: $spacing-md;
@@ -232,6 +253,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
             .platform-download-link {
                 margin-left: auto;
             }
+        }
+
+        .secondary-platform-wrapper{
+            flex-direction: row;
         }
     }
 
