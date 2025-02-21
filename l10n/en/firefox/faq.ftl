@@ -57,12 +57,6 @@ is-firefox-safe = Is { -brand-name-firefox } safe?
 not-only-is = Not only is { -brand-name-firefox } safe to use, it also helps keep your data and private information safe. The { -brand-name-firefox-browser } automatically blocks known third party trackers, social media trackers, cryptominers and fingerprinters from collecting your data. <a href="{ $url }">Learn more about the privacy in our products.</a>
 
 related-questions-safe = Related questions: is { -brand-name-firefox } good for privacy, is { -brand-name-firefox } secure, is { -brand-name-firefox } better for privacy
-does-firefox-sell = Does { -brand-name-firefox } sell your personal data?
-
-# Variables:
-# $url (url) - link to https://www.mozilla.org/firefox/privacy/
-
-nope-never-have = Nope. Never have, never will. And we protect you from many of the advertisers who do. { -brand-name-firefox } products are designed to protect your privacy. <a href="{ $url }">That’s a promise.</a>
 
 why-is-firefox = Why is { -brand-name-firefox } so slow?
 firefox-isnt-slow = { -brand-name-firefox } isn’t slow… now. In 2017, we completely rebuilt our browser engine (called Quantum), to ensure { -brand-name-firefox } could compete with other major browsers. And, our tracker blockers help pages load even faster. So { -brand-name-firefox } is lightning fast without sacrificing any of your privacy.
