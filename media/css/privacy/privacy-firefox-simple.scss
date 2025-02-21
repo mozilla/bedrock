@@ -73,7 +73,7 @@ $border: 2px solid $color-marketing-gray-20;
 
     h4 {
         @include text-body-md;
-        margin: $layout-sm 0;
+        margin: $layout-sm 0 0;
     }
 
     hr {
@@ -156,5 +156,23 @@ $border: 2px solid $color-marketing-gray-20;
             margin-top: $spacing-sm * -1;
             margin-bottom: $spacing-xl;
         }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Tables
+
+.mzp-u-data-table  {
+    th {
+        vertical-align: bottom;
+    }
+
+    td {
+        border-color: $color-light-gray-30;
+        vertical-align: top;
+    }
+
+    .mzp-u-list-styled {
+        margin-left: $spacing-md;
     }
 }

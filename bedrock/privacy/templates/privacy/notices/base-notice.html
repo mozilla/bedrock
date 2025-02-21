@@ -6,8 +6,9 @@
 
 {% extends "privacy/base-protocol.html" %}
 
-{% do doc.select('body > section > section ul')|htmlattr(class="mzp-u-list-styled") %}
-{% do doc.select('body > section > section ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
 
 {% block page_title %}{{ doc.h1.string|join|safe }}{% endblock %}
 

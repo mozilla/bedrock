@@ -9,16 +9,6 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/components/modal';
 @import '~@mozilla-protocol/core/protocol/css/components/inline-list';
 
-// * -------------------------------------------------------------------------- */
-// Smooth Scroll
-
-html {
-    scroll-behavior: smooth;
-
-    @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
-    }
-}
 
 // * -------------------------------------------------------------------------- */
 // Page header

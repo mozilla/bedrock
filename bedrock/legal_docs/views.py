@@ -47,6 +47,7 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
 
     legal_doc_name = None
     legal_doc_context_name = "doc"
+    ftl_files = None
 
     def get_legal_doc(self):
         locale = l10n_utils.get_locale(self.request)
@@ -55,10 +56,12 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
         _ftl_files = [
-            "mozorg/about/legal",
-            "privacy/index",
-            "privacy/firefox",  # TKTK move this to the right place
-        ]
+                "mozorg/about/legal",
+                "privacy/index",
+            ]
+        if self.ftl_files:
+            _ftl_files += self.ftl_files
+
         return l10n_utils.render(
             self.request,
             self.get_template_names()[0],

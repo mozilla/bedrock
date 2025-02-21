@@ -1,0 +1,52 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-article.html" %}
+
+{% block site_css %}
+  {{ css_bundle('protocol-firefox') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('privacy_firefox_simple') }}
+{% endblock %}
+
+{% set title = doc.h1 %}
+{% block page_title %}{{ title|join|safe }}{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block sidemenu %}{% endblock %}
+
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
+
+{% block article %}
+  <div class="privacy-body">
+    {{ doc|safe }}
+  </div>
+{% endblock %}
+
+{% block site_js %}
+  {{ js_bundle('privacy_firefox_simple') }}
+{% endblock %}
+
+{% block js %}
+{% endblock %}
+
+{# disable GA on Fx Privacy Notice. Bug 1576673 #}
+{% block google_analytics %}{% endblock %}
+{% block glean %}{% endblock %}
+
+{# Avoid loading unnecessary JS bundles for performance boost #}
+{% block sentry_client %}{% endblock %}
+{% block consent_banner_js %}{% endblock %}
+
+{# Exclude stub attribution for in-product pages: issus 9620 #}
+{% block stub_attribution %}{% endblock %}
+
+{% block site_footer %}{% endblock %}

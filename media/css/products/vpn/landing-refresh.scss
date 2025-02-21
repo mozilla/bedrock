@@ -7,17 +7,6 @@
 @use 'includes/lib' as *;
 
 // * -------------------------------------------------------------------------- */
-// Smooth Scroll
-
-html {
-    scroll-behavior: smooth;
-
-    @media (prefers-reduced-motion: reduce) {
-        scroll-behavior: auto;
-    }
-}
-
-// * -------------------------------------------------------------------------- */
 // Hero section
 
 .c-main-cta {
