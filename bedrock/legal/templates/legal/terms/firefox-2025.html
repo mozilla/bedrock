@@ -8,7 +8,7 @@
 
 {% block page_css %}
   {{ super() }}
-    {{ css_bundle('terms-firefox')}}
+  {{ css_bundle('terms-firefox')}}
 {% endblock %}
 
 {% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
@@ -80,6 +80,6 @@
 
 
 {% block article %}
-    {{ title|safe }}
-    {{ doc|safe }}
+  {{ title|safe }}
+  {{ doc|safe }}
 {% endblock %}
