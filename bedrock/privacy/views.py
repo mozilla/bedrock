@@ -58,7 +58,7 @@ class FirefoxPrivacyDocView(PrivacyDocView):
         return doc
 
 
-firefox_notices = FirefoxPrivacyDocView.as_view(template_name="privacy/notices/firefox.html", legal_doc_name="firefox_privacy_notice")
+firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice")
 
 firefox_focus_notices = PrivacyDocView.as_view(template_name="privacy/notices/firefox-focus.html", legal_doc_name="focus_privacy_notice")
 
