@@ -102,6 +102,12 @@
         <p>{{ ftl('not-only-is', url=url('firefox.features.private')) }}</p>
         <small>{{ ftl('related-questions-safe') }}</small>
       </li>
+      {% if not switch('firefox-tou') %}
+        <li>
+          <h2>{{ ftl('does-firefox-sell') }}</h2>
+          <p>{{ ftl('nope-never-have', url=url('privacy')) }}</p>
+        </li>
+      {% endif %}
       <li>
         <h2>{{ ftl('why-is-firefox') }}</h2>
         <p>{{ ftl('firefox-isnt-slow') }}</p>
