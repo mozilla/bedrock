@@ -3,13 +3,14 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from django.http import Http404, HttpResponse
 from django.urls import path
 
 import pytest
 from wagtail.rich_text import RichText
 
 from bedrock.base.i18n import bedrock_i18n_patterns
-from bedrock.cms.decorators import prefer_cms
+from bedrock.cms.decorators import pre_check_for_cms_404, prefer_cms
 from bedrock.cms.tests import decorator_test_views
 from bedrock.urls import urlpatterns as mozorg_urlpatterns
 
@@ -448,3 +449,58 @@ def test_prefer_cms_rejects_invalid_setup(mocker, config, expect_exeption):
             prefer_cms(view_func=fake_view, **config)
     else:
         prefer_cms(view_func=fake_view, **config)
+
+
+def dummy_view(request, *args, **kwargs):
+    return HttpResponse("Hello, world!")
+
+
+@pytest.mark.parametrize("pretend_that_path_exists", [True, False])
+def test_pre_check_for_cms_404(
+    pretend_that_path_exists,
+    mocker,
+    rf,
+    settings,
+    client,
+    tiny_localized_site,
+):
+    settings.CMS_DO_PAGE_PATH_PRECHECK = True
+    mocked_view = mocker.spy(dummy_view, "__call__")  # Spy on the test view
+    mocked_path_exists_in_cms = mocker.patch("bedrock.cms.decorators.path_exists_in_cms")
+    mocked_path_exists_in_cms.return_value = pretend_that_path_exists
+
+    decorated_view = pre_check_for_cms_404(mocked_view)
+    request = rf.get("/path/is/irrelevant/because/we/are/mocking/path_exists_in_cms")
+
+    if pretend_that_path_exists:
+        response = decorated_view(request)
+        # Assert: Verify the original view was called
+        mocked_view.assert_called_once_with(request)
+        assert response.content == b"Hello, world!"
+    else:
+        with pytest.raises(Http404):  # Expect an Http404 since path_exists_in_cms returns False
+            decorated_view(request)
+        mocked_view.assert_not_called()
+
+
+@pytest.mark.parametrize("pretend_that_path_exists", [True, False])
+def test_pre_check_for_cms_404__show_can_be_disabled_with_settings(
+    pretend_that_path_exists,
+    mocker,
+    rf,
+    settings,
+    client,
+    tiny_localized_site,
+):
+    settings.CMS_DO_PAGE_PATH_PRECHECK = False
+    mocked_view = mocker.spy(dummy_view, "__call__")  # Spy on the test view
+    mocked_path_exists_in_cms = mocker.patch("bedrock.cms.decorators.path_exists_in_cms")
+    mocked_path_exists_in_cms.return_value = pretend_that_path_exists
+
+    decorated_view = pre_check_for_cms_404(mocked_view)
+    request = rf.get("/path/is/irrelevant/because/we/are/mocking/path_exists_in_cms")
+
+    # The fake view will always be called because the pre-check isn't being used
+    response = decorated_view(request)
+    mocked_view.assert_called_once_with(request)
+    assert response.content == b"Hello, world!"
