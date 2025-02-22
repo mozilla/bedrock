@@ -57,7 +57,7 @@
               <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
               <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
               <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-position="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
-              <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn') }}</a></li>
+              <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn-v2', fallback="footer-refresh-mdn") }}</a></li>
             </ul>
           </section>
         </div>
