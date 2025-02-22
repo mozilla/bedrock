@@ -22,9 +22,11 @@ CO01:
   brands:
     - Fakespot
     - Firefox
+    - MDN
     - Mozilla
     - Pocket
     - "{ -brand-name-mozilla } account"
   exclusions:
     files: []
-    messages: []
+    messages:
+      - footer-refresh-mdn
