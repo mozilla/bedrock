@@ -71,11 +71,6 @@ urlpatterns = (
         ftl_files=["firefox/features/password-manager-2023", "firefox/features/shared"],
     ),
     page(
-        "firefox/features/private/",
-        "firefox/features/private.html",
-        ftl_files=["firefox/features/private-2023", "firefox/features/shared"],
-    ),
-    page(
         "firefox/features/private-browsing/",
         "firefox/features/private-browsing.html",
         ftl_files=["firefox/features/private-browsing-2023", "firefox/features/shared"],
