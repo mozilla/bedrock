@@ -44,12 +44,12 @@ class TermsDocView(LegalDocView):
 
 class FirefoxTermsOfServiceDocView(TermsDocView):
     def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
         if switch("firefox-tou"):
             self.legal_doc_name = "firefox_terms_of_use"
         else:
             self.legal_doc_name = "firefox_about_rights"
-
-        super().__init__(*args, **kwargs)
 
     def get_legal_doc(self):
         doc = super().get_legal_doc()
