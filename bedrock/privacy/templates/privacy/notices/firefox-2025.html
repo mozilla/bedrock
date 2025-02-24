@@ -28,11 +28,6 @@
 {% block body_id %}{% endblock %}
 {% block body_class %}{% endblock %}
 
-{% block string_data %}
-  data-choices-copy="Choose how you want to share this data in Firefox."
-  data-choices-button="Choose…"
-{% endblock %}
-
 {% block main_feature %}
 
   {% if switch('firefox-tou') and ftl_file_is_active('privacy/firefox')  %}
