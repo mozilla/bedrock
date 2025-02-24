@@ -4,7 +4,6 @@
 
 from django.urls import path
 
-from bedrock.base.waffle import switch
 from bedrock.legal import views
 from bedrock.legal_docs.views import LegalDocView
 from bedrock.mozorg.util import page
@@ -68,17 +67,10 @@ urlpatterns = (
         name="legal.amo-policies",
     ),
     path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
-)
-
-if switch("firefox-tou"):
-    terms_doc = "firefox_terms_of_use"
-else:
-    terms_doc = "firefox_about_rights"
-
-urlpatterns += (
     path(
         "terms/firefox/",
-        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name=terms_doc),
+        # Note that the legal_doc_name is decided by a waffle switch - see the view
+        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name="firefox_about_rights"),
         name="legal.terms.firefox",
     ),
 )
