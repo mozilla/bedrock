@@ -24,7 +24,12 @@ def process_md_file(file_path):
         md.markdownFromFile(
             input=str(file_path),
             output=output,
-            extensions=["markdown.extensions.attr_list", "markdown.extensions.toc", OutlineExtension((("wrapper_cls", ""),))],
+            extensions=[
+                "markdown.extensions.attr_list",
+                "markdown.extensions.toc",
+                "markdown.extensions.tables",
+                OutlineExtension((("wrapper_cls", ""),)),
+            ],
         )
         content = output.getvalue().decode("utf-8")
     except OSError:

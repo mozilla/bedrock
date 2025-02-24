@@ -269,6 +269,12 @@
     },
     {
       "files": [
+        "css/legal/terms-firefox-2025.scss"
+      ],
+      "name": "terms-firefox"
+    },
+    {
+      "files": [
         "css/legal/legal-terms-firefox-simple.scss"
       ],
       "name": "legal-terms-firefox-simple"
@@ -701,7 +707,7 @@
     },
     {
       "files": [
-        "css/privacy/privacy-firefox.scss"
+        "css/privacy/privacy-firefox-2025.scss"
       ],
       "name": "privacy_firefox"
     },

@@ -86,7 +86,7 @@ if REDIS_URL:
         "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
 
-CACHE_TIME_SHORT = 60 * 10  # 10 mins
+CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}")  # 10 mins
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
 

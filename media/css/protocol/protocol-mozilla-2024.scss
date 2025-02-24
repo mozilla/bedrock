@@ -34,6 +34,14 @@
 @import '../m24/vars/fonts';
 @import '../m24/vars/text';
 
+// smooth scroll
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
 
 // Temporary styling until the newsletter component is updated in Protocol
 // https://github.com/mozilla/protocol/issues/578
