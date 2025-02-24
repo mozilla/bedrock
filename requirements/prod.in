@@ -12,7 +12,7 @@ dj-database-url==2.3.0
 django-allow-cidr==0.7.1
 django-cors-headers==4.7.0
 django-crum==0.7.9
-django-csp==4.0b2
+django-csp==4.0b4
 django-extensions==3.2.3
 django-jinja-markdown==1.1
 django-jinja==2.11.0
