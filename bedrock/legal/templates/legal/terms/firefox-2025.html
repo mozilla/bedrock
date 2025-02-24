@@ -35,7 +35,7 @@
 
 {% block side_nav %}
   <div class="c-toc">
-    <h3>{{ ftl('privacy-firefox-contents') }}</h3>
+    <h3>{{ ftl('legal-firefox-contents') }}</h3>
     <ul>
       {% for heading in doc.select('h2') %}
         <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
