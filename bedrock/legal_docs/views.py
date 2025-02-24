@@ -56,9 +56,9 @@ class LegalDocView(l10n_utils.RequireSafeMixin, TemplateView):
     def render_to_response(self, context, **response_kwargs):
         response_kwargs.setdefault("content_type", self.content_type)
         _ftl_files = [
-                "mozorg/about/legal",
-                "privacy/index",
-            ]
+            "mozorg/about/legal",
+            "privacy/index",
+        ]
         if self.ftl_files:
             _ftl_files += self.ftl_files
 
