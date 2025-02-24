@@ -69,6 +69,11 @@ $icon-padding: $icon-width + $layout-sm;
     }
 }
 
+.c-settings .mzp-c-split-media {
+    display: grid;
+    justify-content: end;
+}
+
 .c-settings-manage {
     margin-bottom: 0;
 }

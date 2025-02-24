@@ -7,20 +7,43 @@
 
 <section id="basics" aria-label="{{ ftl('privacy-firefox-basics') }}">
   {% call split(
-    media_class="mzp-l-split-media-overflow",
-    image=resp_img(
-      url="img/privacy/firefox/hero.jpg",
-      srcset={
-          "img/privacy/firefox/hero-high-res.jpg": "2x"
-      },
+    image=picture(
+      url='img/privacy/firefox/hero-wide-high-res.jpg',
+      sources=[
+        {
+          'media': '(max-width: 767px)',
+          "srcset" : {
+            "img/privacy/firefox/hero-wide.jpg": "600w",
+            "img/privacy/firefox/hero-wide-high-res.jpg": "1200w",
+          },
+          'width' : '600',
+          'height' : '337'
+        },
+        {
+          'media': '(min-width: 767px) and (max-width: 1200px)',
+          'srcset': {
+            "img/privacy/firefox/hero-tall.jpg": "600w",
+            "img/privacy/firefox/hero-tall-high-res.jpg": "1200w",
+          },
+          'width' : '415',
+          'height' : '233'
+        },
+        {
+          'media': '(min-width: 1200px)',
+          "srcset" : {
+            "img/privacy/firefox/hero-wide.jpg": "600w",
+            "img/privacy/firefox/hero-wide-high-res.jpg": "1200w",
+          },
+          'width' : '600',
+          'height' : '337'
+        },
+      ],
       optional_attributes={
-        'width': 680,
-        'height': 383,
+        "loading": "lazy",
         "alt": "",
-        "aria-hidden": 'true',
-        "class": "mzp-c-split-media-asset"
-        }
-      )
+        "aria-hidden": "true"
+      }
+    ),
     ) %}
       {{ title|safe }}
       <p class="c-subtitle">{{ ftl('privacy-firefox-youre-in-control') }}</p>
@@ -125,18 +148,40 @@
 
   {% call split(
     block_class='mzp-l-split-reversed c-settings',
-    media_class="mzp-l-split-media-overflow",
-    image=resp_img(
-          url='img/privacy/firefox/settings-desktop.svg',
-          optional_attributes={
-            'loading': 'lazy',
-            'width': 680,
-            'height': 383,
-            'alt': '',
-            'aria-hidden': 'true',
-            "class": "mzp-c-split-media-asset"
-          }
-        ),
+    image=picture(
+      url='img/privacy/firefox/settings-wide.svg',
+      sources=[
+        {
+          'media': '(max-width: 767px)',
+          "srcset" : {
+            "img/privacy/firefox/settings-wide.svg": "680w",
+          },
+          'width' : '680',
+          'height' : '383'
+        },
+        {
+          'media': '(min-width: 767px) and (max-width: 1200px)',
+          'srcset': {
+            "img/privacy/firefox/settings-tall.svg": "680w",
+          },
+          'width' : '415',
+          'height' : '233'
+        },
+        {
+          'media': '(min-width: 1200px)',
+          "srcset" : {
+            "img/privacy/firefox/settings-wide.svg": "680w",
+          },
+          'width' : '680',
+          'height' : '383'
+        },
+      ],
+      optional_attributes={
+        "loading": "lazy",
+        "alt": "",
+        "aria-hidden": "true"
+      }
+    ),
     ) %}
       <h2>{{ ftl('privacy-firefox-privacy-that-works') }}</h2>
       <p>{{ ftl('privacy-firefox-firefox-makes-it') }}</p>
