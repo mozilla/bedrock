@@ -5,7 +5,6 @@
 import pytest
 
 from pages.contribute.contribute import ContributePage
-from pages.firefox.whatsnew.whatsnew_developer_70 import FirefoxWhatsNewDeveloper70Page
 from pages.mission import MissionPage
 from pages.newsletter.developer import DeveloperNewsletterPage
 from pages.newsletter.firefox import FirefoxNewsletterPage
@@ -20,7 +19,6 @@ from pages.newsletter.security_privacy_news import SecurityPrivacyNewsletterPage
     "page_class",
     [
         MissionPage,
-        pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
         NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
@@ -44,7 +42,6 @@ def test_newsletter_default_values(page_class, base_url, selenium):
     [
         MissionPage,
         ContributePage,
-        pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
         NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
@@ -70,7 +67,6 @@ def test_newsletter_sign_up_success(page_class, base_url, selenium):
     [
         MissionPage,
         ContributePage,
-        pytest.mark.skip_if_not_firefox(FirefoxWhatsNewDeveloper70Page),
         NewsletterPage,
         DeveloperNewsletterPage,
         FirefoxNewsletterPage,
