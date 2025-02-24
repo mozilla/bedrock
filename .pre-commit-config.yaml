@@ -69,7 +69,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.1
+    rev: v0.9.7
     hooks:
       - id: ruff
       - id: ruff-format
