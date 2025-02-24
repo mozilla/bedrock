@@ -623,9 +623,15 @@ class WhatsnewView(L10nTemplateView):
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("136."):
             if locale in ["de", "fr", "en-GB"]:
-                template = "firefox/whatsnew/whatsnew-fx136-eu-pip.html"
+                if nimbus_branch == "experiment-wnp-136-vpn":
+                    template = "firefox/whatsnew/whatsnew-fx136-vpn.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx136-eu-pip.html"
             elif locale in ["en-US", "en-CA"]:
-                template = "firefox/whatsnew/whatsnew-fx136-na-pip.html"
+                if nimbus_branch == "experiment-wnp-136-vpn":
+                    template = "firefox/whatsnew/whatsnew-fx136-vpn.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx136-na-pip.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("135."):

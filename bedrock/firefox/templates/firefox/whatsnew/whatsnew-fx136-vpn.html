@@ -1,0 +1,60 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_136_vpn') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Ganz privat das Web erkunden' %}
+  {% set main_tagline = 'Verstecke deine Internetaktivität und deinen Standort mit Mozilla VPN. Und für mehr Kontrolle über die Art und Weise, wie du browst, gibt es sogar eine Erweiterung auf Windows.' %}
+  {% set main_cta = 'Hol dir Mozilla VPN' %}
+  {% set secondary_cta = 'Du nutzt unseren VPN bereits? Dann hol dir die Erweiterung!' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Naviguez en toute confidentialité' %}
+  {% set main_tagline = 'Masquez votre activité de navigation et votre localisation avec Mozilla VPN. Sur Windows, une extension vous permet même de personnaliser votre expérience de navigation privée site par site.' %}
+  {% set main_cta = 'Installer Mozilla VPN ' %}
+  {% set secondary_cta = 'Vous l’avez déjà ? Téléchargez l’extension !' %}
+{% else %}
+  {% set main_title = 'Browse the web privately' %}
+  {% set main_tagline = 'Hide your browsing activity and location with Mozilla’s VPN.
+  It even comes with an extension on Windows, that lets you customize your private browsing experience.' %}
+  {% set main_cta = 'Get Mozilla VPN' %}
+  {% set secondary_cta = 'Already subscribed? Get the extension!' %}
+{% endif %}
+
+<!-- External links only -->
+{% set utm_params = 'utm_medium=referral&utm_source=www.mozilla.org-whatsnew&utm_campaign=whatsnew136&utm_content=get-the-extension' %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-md">
+    <img class="wnp-main-image" src="{{ static('img/firefox/whatsnew/whatsnew136-vpn/vpn.svg') }}" alt="">
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <div class="wnp-main-tagline">{{ main_tagline }}</div>
+    <p class="wnp-main-cta">
+      {{ vpn_product_referral_link(
+        referral_id='whatsnew136',
+        link_text=main_cta,
+        class_name="mzp-t-product",
+        optional_attributes= {
+            'data-cta-text' : 'Get Mozilla VPN',
+            'data-cta-type' : 'button',
+            'data-cta-position' : 'primary',
+        }
+    ) }}
+    </p>
+    <p><a href="https://addons.mozilla.org/firefox/addon/mozilla-vpn-extension?{{ utm_params }}" class="wnp-main-secondary-cta" >{{ secondary_cta }}</a></p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
