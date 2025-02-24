@@ -88,10 +88,10 @@ firefox-developer-mdn-web-docs = { -brand-name-mdn-web-docs }
 firefox-developer-resources-for-developers = Resources for Developers, by Developers
 firefox-developer-mdn-playground = Playground
 firefox-developer-mdn-write-test-and-share = Write, test and share your code. Your playground to learn and share your amazing work with the world.
-firefox-developer-mdn-blog = MDN Blog
-firefox-developer-mdn-unlock-the-world = Unlock the world of web development with the MDN Blog - your go-to hub for expert insights, latest web standards, and coding tips.
+firefox-developer-mdn-blog = { -brand-name-mdn } Blog
+firefox-developer-mdn-unlock-the-world = Unlock the world of web development with the { -brand-name-mdn } Blog — your go-to hub for expert insights, latest web standards, and coding tips.
 firefox-developer-mdn-updates = Updates
-firefox-developer-mdn-the-web-doesnt-have = The Web doesn’t have a changelog, but MDN can help. You can personalize and filter compatibility changes based on browsers or the tech category you are interested in whether that is JavaScript, CSS, etc.
+firefox-developer-mdn-the-web-doesnt-have = The web doesn’t have a changelog, but { -brand-name-mdn } can help. You can personalize and filter compatibility changes based on browsers or the tech category you are interested in whether that is JavaScript, CSS, etc.
 # Obsolete string (expires 18-04-2025)
 firefox-developer-mdn-references = { -brand-name-mdn } References
 # Obsolete string (expires 18-04-2025)
