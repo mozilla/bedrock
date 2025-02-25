@@ -505,6 +505,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx134-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx135-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx135-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx136-eu-pip.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx136-na-pip.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx136-vpn.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -609,6 +612,19 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx135beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("136."):
+            if locale in ["de", "fr", "en-GB"]:
+                if nimbus_branch == "experiment-wnp-136-vpn":
+                    template = "firefox/whatsnew/whatsnew-fx136-vpn.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx136-eu-pip.html"
+            elif locale in ["en-US", "en-CA"]:
+                if nimbus_branch == "experiment-wnp-136-vpn":
+                    template = "firefox/whatsnew/whatsnew-fx136-vpn.html"
+                else:
+                    template = "firefox/whatsnew/whatsnew-fx136-na-pip.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("135."):
