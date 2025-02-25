@@ -204,6 +204,38 @@
 
   <h2 class="c-section-title">{{ ftl('vpn-features-flexible') }}</h2>
 
+  {% if ftl_has_messages('vpn-features-webste-specific-vpn', 'vpn-features-with-the-mozilla-vpn-extention') %}
+    {% call split(
+      block_class='c-tab-locations t-content-body mzp-l-split-center-on-sm-md mzp-t-content-xl',
+      image=resp_img(
+        url='img/products/vpn/features/extension-400.png',
+        srcset={
+          'img/products/vpn/features/extension-400.png': '400w',
+          'img/products/vpn/features/extension-600.png': '600w',
+          'img/products/vpn/features/extension-800.png': '800w',
+        },
+        sizes={
+          '(min-width: 1312px)': '400px',
+          '(min-width: 768px)': '50vw',
+          'default': '100vw'
+        },
+        optional_attributes={
+          'height': '401',
+          'width': '400',
+          'class': 'mzp-c-split-media-asset',
+        }
+      ),
+      media_class='mzp-l-split-h-center',
+      media_after=True
+    ) %}
+      <h2>{{ ftl('vpn-features-webste-specific-vpn') }}</h2>
+
+      <p>
+        {{ ftl('vpn-features-with-the-mozilla-vpn-extention') }}
+      </p>
+    {% endcall %}
+  {% endif %}
+
   {% call split(
     block_class='c-server-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
     image=resp_img(
@@ -261,39 +293,6 @@
 
     <p>
       {{ ftl('vpn-features-easily-exclude-apps') }}
-    </p>
-  {% endcall %}
-
-  {% call split(
-    block_class='c-tab-locations t-content-body mzp-l-split-reversed mzp-l-split-center-on-sm-md mzp-t-content-xl',
-    image=resp_img(
-      url='img/products/vpn/features/containers-400.png',
-      srcset={
-        'img/products/vpn/features/containers-400.png': '400w',
-        'img/products/vpn/features/containers-600.png': '600w',
-        'img/products/vpn/features/containers-800.png': '800w',
-      },
-      sizes={
-        '(min-width: 1312px)': '400px',
-        '(min-width: 768px)': '50vw',
-        'default': '100vw'
-      },
-      optional_attributes={
-        'height': '401',
-        'width': '400',
-        'class': 'mzp-c-split-media-asset',
-      }
-    ),
-    media_class='mzp-l-split-h-center',
-    media_after=True
-  ) %}
-
-    {% set containers_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://support.mozilla.org/kb/use-multi-account-containers-mozilla-vpn' + _params)) %}
-
-    <h2>{{ ftl('vpn-features-set-different-locations') }}</h2>
-
-    <p>
-      {{ ftl('vpn-features-combine-mozilla-vpn-with-containers', containers=containers_url) }}
     </p>
   {% endcall %}
 
