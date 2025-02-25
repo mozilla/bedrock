@@ -22,7 +22,8 @@
 }
 
 .wnp-main-tagline {
-    max-width: 31.875rem; // 500px
+    @include text-body-lg;
+    max-width: 31.875rem; // 510px
     margin-inline: auto;
     margin-bottom: $spacing-xl;
 }
@@ -34,5 +35,3 @@
 .wnp-main-secondary-cta:any-link {
     color: inherit;
 }
-
-// 36, 20

@@ -9,10 +9,6 @@
 @import 'includes/mofo-donate-cta';
 @import "../../protocol/components/video";
 
-.u-uppercase {
-    text-transform: uppercase;
-}
-
 @media (prefers-color-scheme: light) {
     // en is en-US
     :is([lang="en"], [lang="en-CA"]) .wnp-content-main {
@@ -24,11 +20,25 @@
     }
 }
 
+:root {
+    --block-end-spacing: #{$spacing-xl};
+}
+
+.t-wrapper-na {
+    max-width: 30.75rem; // 500px
+    margin-inline: auto;
+}
+
+.t-wrapper-eu {
+    max-width: 33.75rem; // 540px
+    margin-inline: auto;
+}
+
 .wnp-content-main {
     text-align: center;
 
     .mzp-t-content-lg {
-        max-width: 33.75rem; // 540px
+        padding-block: $layout-lg;
     }
 }
 
@@ -38,7 +48,7 @@
 
 .c-video-wrapper {
     position: relative;
-    margin-bottom: calc(#{$spacing-xl} + 5%)
+    margin-block-end: calc(var(--block-end-spacing) + 5%);
 }
 
 .c-video-background {
@@ -49,10 +59,16 @@
 }
 
 .wnp-main-title {
-    @include text-title-sm;
-    line-height: 1.01;
+    font-size: 2rem;
+    line-height: 1.33;
+    margin-block-end: var(--block-end-spacing);
+}
+
+.c-main-title-feature {
+    display: block;
 }
 
 .wnp-main-tagline {
-    margin-inline: auto;
+    @include text-body-lg;
+    margin-block-end: var(--block-end-spacing);
 }

@@ -33,7 +33,7 @@
 {% block wnp_content %}
 <section class="wnp-content-main">
   <div class="mzp-l-content mzp-t-content-lg">
-     <div class="c-video-wrapper">
+     <div class="c-video-wrapper t-wrapper-eu">
       <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew136-pip/multi-browser-warm-colors.png') }}" alt="" />
       {{ video_inline_embed(
         id='F-nFQryDB0s',
@@ -49,7 +49,7 @@
       ) }}
      </div>
     <h1 class="wnp-main-title">{{ main_title }}</h1>
-    <div class="wnp-main-tagline">{{ main_tagline | safe }}</div>
+    <div class="wnp-main-tagline t-wrapper-eu">{{ main_tagline | safe }}</div>
     <p class="wnp-main-cta">
       <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-type="button" data-cta-text="Try Picture-in-Picture now">
         {{ main_cta }}
