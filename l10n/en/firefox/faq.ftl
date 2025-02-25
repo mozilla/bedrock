@@ -16,7 +16,9 @@ what-is-firefox = What is { -brand-name-firefox }?
 # $url (url) - link to https://www.mozilla.org/firefox/browsers/
 # $url2 (url) - link to https://www.mozilla.org/products/
 
+# Obsolete string (expires 25-04-2025)
 the-firefox-browser = The { -brand-name-firefox-browser } is the only major browser backed by a not-for-profit that doesn’t sell your personal data to advertisers while helping you protect your personal information. Learn more about the <a href="{ $url }">{ -brand-name-firefox-browsers }</a> and <a href="{ $url2 }">other products.</a>
+the-firefox-browser-the-only = The { -brand-name-firefox-browser }, the only major browser backed by a not-for-profit, helps you protect your personal information. Learn more about the <a href="{ $url }">{ -brand-name-firefox-browsers }</a> and <a href="{ $url2 }">other products.</a>
 
 how-do-i = How do I get the { -brand-name-firefox-browser }?
 
@@ -30,7 +32,9 @@ how-do-i = How do I get the { -brand-name-firefox-browser }?
 you-can-easily = You can easily download the { -brand-name-firefox } desktop browser <a href="{ $url }">here.</a> { -brand-name-firefox } works on <a href="{ $url2 }">{ -brand-name-windows },</a> <a href="{ $url3 }">{ -brand-name-mac-short }</a> and <a href="{ $url4 }">{ -brand-name-linux}</a> devices, and is also available for <a href="{ $url5 }">{ -brand-name-android } and { -brand-name-ios }.</a> Make sure you’re downloading our browser from one of our trusted { -brand-name-mozilla }/{ -brand-name-firefox } pages.
 
 is-firefox-free = Is { -brand-name-firefox } free?
+# Obsolete string (expires 25-04-2025)
 yep-the-firefox = Yep! The { -brand-name-firefox-browser } is free. Super free, actually. No hidden costs or anything. You don’t pay anything to use it, and we don’t sell your personal data.
+yep-the-firefox-browser-is-free = Yep! The { -brand-name-firefox-browser } is free. Super free, actually. No hidden costs or anything. You don’t pay anything to use it.
 related-questions-free = Related questions: is { -brand-name-firefox-browser } free, does { -brand-name-firefox } cost money
 
 is-chrome-better = Is { -brand-name-chrome } better than { -brand-name-firefox }?
@@ -57,11 +61,13 @@ is-firefox-safe = Is { -brand-name-firefox } safe?
 not-only-is = Not only is { -brand-name-firefox } safe to use, it also helps keep your data and private information safe. The { -brand-name-firefox-browser } automatically blocks known third party trackers, social media trackers, cryptominers and fingerprinters from collecting your data. <a href="{ $url }">Learn more about the privacy in our products.</a>
 
 related-questions-safe = Related questions: is { -brand-name-firefox } good for privacy, is { -brand-name-firefox } secure, is { -brand-name-firefox } better for privacy
+# Obsolete string (expires 25-04-2025)
 does-firefox-sell = Does { -brand-name-firefox } sell your personal data?
 
 # Variables:
 # $url (url) - link to https://www.mozilla.org/firefox/privacy/
 
+# Obsolete string (expires 25-04-2025)
 nope-never-have = Nope. Never have, never will. And we protect you from many of the advertisers who do. { -brand-name-firefox } products are designed to protect your privacy. <a href="{ $url }">That’s a promise.</a>
 
 why-is-firefox = Why is { -brand-name-firefox } so slow?
