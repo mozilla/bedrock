@@ -16,11 +16,7 @@
   <div class="mzp-l-content">
     <div class="header-image">
       <a class="logo-mozilla" href="{{ url('mozorg.home') }}">
-        {% if switch('m24-website-refresh') %}
-          <img class="c-navigation-logo-image m24-logo" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ ftl('error-page-mozilla') }}"  width="192" height="46">
-        {% else %}
-          <img class="c-navigation-logo-image" src="{{ static('protocol/img/logos/mozilla/logo-word-hor.svg') }}" alt="{{ ftl('error-page-mozilla') }}"  width="140">
-        {% endif %}
+        <img class="c-navigation-logo-image m24-logo" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ ftl('error-page-mozilla') }}"  width="192" height="46">
       </a>
       <a class="logo-firefox" href="{{ url('firefox') }}"><img src="{{ static('protocol/img/logos/firefox/logo-word-hor.svg') }}" alt="{{ ftl('error-page-firefox') }}" width="140"></a>
     </div>
