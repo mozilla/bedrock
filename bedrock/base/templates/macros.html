@@ -41,6 +41,7 @@
   {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
 {%- endmacro %}
 
+{# Docs: https://docs.bsky.app/docs/advanced-guides/intent-links #}
 {% macro bluesky_share_url(url, text) -%}
   {{ 'https://bsky.app/intent/compose?text=%s+%s'|format(text|urlencode|truncate(300), url|urlencode)  }}
 {%- endmacro %}
