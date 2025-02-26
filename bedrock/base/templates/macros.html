@@ -41,8 +41,9 @@
   {{ 'https://www.facebook.com/sharer/sharer.php?u=%s'|format(url|urlencode)|e }}
 {%- endmacro %}
 
-{% macro twitter_share_url(url, tweet_text) -%}
-  {{ 'https://www.twitter.com/intent/tweet?url=%s&text=%s'|format(url|urlencode, tweet_text|urlencode)|e }}
+{# Docs: https://docs.bsky.app/docs/advanced-guides/intent-links #}
+{% macro bluesky_share_url(url, text) -%}
+  {{ 'https://bsky.app/intent/compose?text=%s+%s'|format(text|urlencode|truncate(300), url|urlencode)  }}
 {%- endmacro %}
 
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}

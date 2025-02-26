@@ -7,6 +7,7 @@
 {% extends "firefox/base/base-protocol.html" %}
 
 {% from "macros-protocol.html" import split with context %}
+{% from 'macros.html' import bluesky_share_url with context %}
 
 {% block page_title %}{{ ftl('switch-switch-from-chrome') }}{% endblock %}
 {% block page_desc %}{{ ftl('switch-switching-to-firefox-is-fast-updated', fallback='switch-switching-to-firefox-is-fast') }}{% endblock %}
@@ -61,12 +62,13 @@
             {{ ftl('switch-share-to-facebook-updated', fallback='switch-share-to-facebook') }}
           </a>
         </li>
+        {% if ftl_has_messages('switch-share-to-bluesky') %}
         <li>
-          {% set tweet_text = ftl('switch-firefox-makes-switching-fast-tweet') %}
-          <a class="twitter" data-link-position="social share" data-link-text="Twitter" href="https://www.twitter.com/intent/tweet?url={{ share_url|urlencode }}&text={{ tweet_text|urlencode }}">
-            {{ ftl('switch-send-a-tweet') }}
+          <a class="bluesky" data-link-position="social share" data-link-text="Bluesky" href="{{ bluesky_share_url(share_url, ftl('switch-firefox-makes-switching-fast-tweet')) }}">
+            {{ ftl('switch-share-to-bluesky') }}
           </a>
         </li>
+        {% endif %}
         <li>
           {% set email_subject = ftl('switch-switch-to-firefox')|mailtoencode %}
           {% set email_intro = ftl('switch-hey')|mailtoencode %}

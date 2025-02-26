@@ -1819,12 +1819,6 @@
     },
     {
       "files": [
-        "js/mozorg/rise25/rise25.js"
-      ],
-      "name": "rise25-landing"
-    },
-    {
-      "files": [
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
