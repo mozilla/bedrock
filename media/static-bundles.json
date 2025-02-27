@@ -467,12 +467,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-136-vpn.scss"
-      ],
-      "name": "firefox_whatsnew_136_vpn"
-    },
-    {
-      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"

@@ -1270,51 +1270,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx136-eu-pip.html"]
 
-    @override_settings(DEV=True)
-    def test_fx_136_0_0_en_us_vpn(self, render_mock):
-        """Should use VPN WNP template for en-US locale when branch=experiment-wnp-136-vpn"""
-        req = self.rf.get("/firefox/whatsnew/?branch=experiment-wnp-136-vpn")
-        req.locale = "en-US"
-        self.view(req, version="136.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx136-vpn.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_136_0_0_en_ca_vpn(self, render_mock):
-        """Should use VPN WNP template for en-CA locale when branch=experiment-wnp-136-vpn"""
-        req = self.rf.get("/firefox/whatsnew/?branch=experiment-wnp-136-vpn")
-        req.locale = "en-CA"
-        self.view(req, version="136.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx136-vpn.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_136_0_0_de_vpn(self, render_mock):
-        """Should use VPN WNP template for de locale when branch=experiment-wnp-136-vpn"""
-        req = self.rf.get("/firefox/whatsnew/?branch=experiment-wnp-136-vpn")
-        req.locale = "de"
-        self.view(req, version="136.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx136-vpn.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_136_0_0_fr_vpn(self, render_mock):
-        """Should use VPN WNP template for fr locale when branch=experiment-wnp-136-vpn"""
-        req = self.rf.get("/firefox/whatsnew/?branch=experiment-wnp-136-vpn")
-        req.locale = "fr"
-        self.view(req, version="136.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx136-vpn.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_136_0_0_en_gb_vpn(self, render_mock):
-        """Should use VPN WNP template for en-GB locale when branch=experiment-wnp-136-vpn"""
-        req = self.rf.get("/firefox/whatsnew/?branch=experiment-wnp-136-vpn")
-        req.locale = "en-GB"
-        self.view(req, version="136.0")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx136-vpn.html"]
-
     # end 136.0 whatsnew tests
 
 
