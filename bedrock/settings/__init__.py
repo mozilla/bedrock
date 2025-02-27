@@ -183,11 +183,8 @@ if csp_ro_report_uri:
     }
 
 # 4. SETTINGS WHICH APPLY REGARDLESS OF SITE MODE
-if DEV:
-    ALLOWED_HOSTS = ["*"]
-else:
+if not DEV:
     MIDDLEWARE += ["bedrock.base.middleware.FrameOptionsHeader"]
-
 
 if CACHES["default"]["BACKEND"] == "django_pylibmc.memcached.PyLibMCCache":
     CACHES["default"]["BINARY"] = True
