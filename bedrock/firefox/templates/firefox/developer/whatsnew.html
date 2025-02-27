@@ -53,17 +53,9 @@
   </div>
   {% endif %}
 
-  {% if ftl_has_messages('firefox-developer-resources-for-developers', 'firefox-developer-mdn-is-a') %}
+  {% if ftl_has_messages('firefox-developer-resources-for-developers') %}
     {% include '/firefox/developer/includes/mdn-features.html' %}
   {% endif %}
-
-  {% include '/firefox/developer/includes/alt-newsletter.html' %}
-
-  <section class="mzp-t-dark t-engage">
-    {% include '/firefox/developer/includes/engage.html' %}
-    {% include '/firefox/developer/includes/nightly.html' %}
-  </section>
-
 </main>
 {% endblock %}
 

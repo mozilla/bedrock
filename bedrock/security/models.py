@@ -2,9 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from functools import total_ordering
+
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.utils.functional import total_ordering
 
 from django_extensions.db.fields import ModificationDateTimeField
 from django_extensions.db.fields.json import JSONField
@@ -25,6 +26,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def __lt__(self, other):
+        return self.name_tuple < other.name_tuple
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # do not use self.name_tuple because don't want ".0" on versions.
@@ -57,9 +61,6 @@ class Product(models.Model):
     @property
     def version(self):
         return self.name_tuple[1]
-
-    def __lt__(self, other):
-        return self.name_tuple < other.name_tuple
 
 
 class SecurityAdvisory(models.Model):

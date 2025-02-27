@@ -8,15 +8,9 @@
 
 // components
 @use 'button';
-@use 'careers';
 @use 'intro';
-@use 'donate';
-@use 'feature';
-@use 'flag';
 @use 'gallery';
 @use 'showcase';
-@use 'launchpad';
-@use 'springboard';
 @use 'theme';
 @use 'transition';
 
@@ -60,11 +54,6 @@ a:visited {
 }
 
 /* ------------------------------------------------------------------------------- */
-
-.m24-c-container {
-    @include container;
-}
-
 .m24-c-content {
     @include container;
     padding-top: $spacer-xl;

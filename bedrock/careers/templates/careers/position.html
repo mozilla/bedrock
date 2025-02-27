@@ -20,15 +20,15 @@
 
       <div class="title-location">
         at
-        {% if position.is_mofo %}
-          Mozilla Foundation
-        {% else %}
+        {% if position.is_moco %}
           Mozilla Corporation
+        {% else %}
+          {{ position.department }}
         {% endif %}
       </div>
 
       <dl class="mzp-u-list-styled">
-        {% if not position.is_mofo %}
+        {% if position.is_moco %}
           <dt class="job-post-team-head">Team:</dt>
           <dd class="job-post-team">{{ position.department }}</dd>
         {% endif %}

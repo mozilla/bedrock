@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<aside class="c-banner hide-from-legacy-ie {% block banner_class %}{% endblock %}" id="{% block banner_id %}{% endblock %}" aria-label="{{ ftl('ui-promo-label') }}">
+<aside class="c-banner hide-from-legacy-ie {% block banner_class %}{% endblock %}" id="{% block banner_id %}{% endblock %}" aria-label="{% if aria_label %}{{ aria_label }}{% else %}{{ ftl('ui-promo-label') }}{% endif %}">
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <div class="c-banner-inner" data-nosnippet="true">
     <button type="button" class="c-banner-close"><span>{{ ftl('ui-close') }}</span></button>

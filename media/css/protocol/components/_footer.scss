@@ -37,6 +37,10 @@ $image-path: '/media/protocol/img';
                 background-image: url('#{$image-path}/icons/social/x/white.svg');
             }
 
+            &.bluesky {
+                background-image: url('/media/img/icons/social/bluesky/white.svg');
+            }
+
             &.instagram {
                 background-image: url('#{$image-path}/icons/social/instagram/white.svg');
             }

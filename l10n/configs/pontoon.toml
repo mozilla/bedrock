@@ -340,6 +340,20 @@ locales = [
     reference = "en/privacy/*.ftl"
     l10n = "{locale}/privacy/*.ftl"
 [[paths]]
+    reference = "en/privacy/firefox.ftl"
+    l10n = "{locale}/privacy/firefox.ftl"
+    locales = [
+        "cs",
+        "es-ES",
+        "hu",
+        "it",
+        "nl",
+        "pl",
+        "pt-BR",
+        "ru",
+        "zh-CN"
+    ]
+[[paths]]
     reference = "en/products/vpn/download.ftl"
     l10n = "{locale}/products/vpn/download.ftl"
 [[paths]]

@@ -1,6 +1,6 @@
 [tool.ruff]
 line-length = 150
-target-version = 'py39'
+target-version = 'py312'
 extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache"]
 
 [tool.ruff.lint]

@@ -1,0 +1,59 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/new/desktop/download.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% set win_custom_download_id = 'partner-firefox-release-smi-smi-001-stub' %}
+{% set mac_custom_download_id = 'partner-firefox-release-smi-smi-001-latest' %}
+
+{% set android_campaign_url = play_store_url('firefox', 'smi-001') %}
+{% set ios_campaign_url = app_store_url('firefox', 'smi-001') %}
+
+{% block experiments %}{% endblock %}
+
+{% block string_data %}
+  data-win-custom-id="{{ win_custom_download_id }}"
+  data-mac-custom-id="{{ mac_custom_download_id }}"
+{% endblock %}
+
+{% block primary_cta %}
+  {{ download_firefox(dom_id='download-primary', force_direct=True, download_location='primary cta') }}
+{% endblock %}
+
+{% block features_cta %}
+  {{ download_firefox(dom_id='download-features', force_direct=True, download_location='features cta') }}
+{% endblock %}
+
+{% block discover_cta %}
+  {{ download_firefox(dom_id='download-discover', force_direct=True, download_location='discover cta') }}
+{% endblock %}
+
+{% block mobile_primary_cta %}
+  <div class="show-android">
+    {{ google_play_button(href=android_campaign_url) }}
+  </div>
+  <div class="show-ios">
+    {{ apple_app_store_button(href=ios_campaign_url) }}
+  </div>
+{% endblock %}
+
+{% block mobile_secondary_cta %}
+  <ul class="mobile-download-buttons">
+    <li class="android">
+      {{ google_play_button(href=android_campaign_url) }}
+    </li>
+    <li class="ios">
+      {{ apple_app_store_button(href=ios_campaign_url) }}
+    </li>
+  </ul>
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('firefox_partner_build_download') }}
+{% endblock %}

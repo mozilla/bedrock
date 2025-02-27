@@ -108,19 +108,28 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
         stageURL.test(downloadURL) ||
         devURL.test(downloadURL)
     ) {
+        // expect the link to have parameters like: ?product=firefox-beta-latest-ssl&os=osx&lang=en-US
         // extract the values we need from the parameters
         const productParam = params.product;
         const productSplit = productParam.split('-');
+
         // product is first word of product param
-        const product = productSplit[0];
+        let product = productSplit[0];
+        // (except partner builds are labelled as ?product=partner-firefox so class these as regular 'firefox' download events)
+        product = product === 'partner' ? 'firefox' : product;
+
+        // platform is `os` param
         let platform = params.os;
         // change platform to macos if it's osx
         platform = platform === 'osx' ? 'macos' : platform;
         // append 'msi' to platform if msi is in the product parameter
         platform =
             productParam.indexOf('msi') !== -1 ? platform + '-msi' : platform;
-        // release channel is second word of product param
+
+        // release channel uses second word of product param
         let release = productSplit[1];
+        // (except partner builds - where 'partner' is the first word)
+        release = productSplit[0] === 'partner' ? 'release' : release;
         // (except for latest, msi, or sub installer - we update those to say release)
         if (release === 'latest' || release === 'stub' || release === 'msi') {
             release = 'release';

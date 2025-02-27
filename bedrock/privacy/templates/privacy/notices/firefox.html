@@ -5,10 +5,15 @@
 #}
 
 {% extends "privacy/notices/base-notice-headings.html" %}
+{% from "macros-protocol.html" import split, picto with context %}
 
 {% set body_id = "privacy-quantum" %}
 
 {% block article_header_logo %}{{ static('protocol/img/logos/firefox/browser/logo.svg') }}{% endblock %}
+
+{% block page_css %}
+  {{ super() }}
+{% endblock %}
 
 {% block js %}
   {{ super() }}
@@ -17,6 +22,7 @@
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
 {% block google_analytics %}{% endblock %}
+{% block glean %}{% endblock %}
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}

@@ -1,0 +1,45 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_135') }}
+{% endblock %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp135-shortcuts' %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Ein Zoom auf die Funktionen von Firefox' %}
+  {% set main_tagline = 'Navigiere dich mit Firefox schnell durchs Web und nutze <strong>cmd/Strg +</strong> und <strong>cmd/Strg -</strong>, um unkompliziert Inhalte zu vergrößern oder zu verkleinern.' %}
+  {% set main_cta = 'Entdecke weitere Tastenkombinationen' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Zoomez sur les fonctionnalités de Firefox' %}
+  {% set main_tagline = 'Naviguez sur Firefox rapidement avec <strong>cmd/ctrl +</strong> et <strong>cmd/ctrl -</strong> pour facilement redimensionner le contenu d’une page web.' %}
+  {% set main_cta = 'Découvrir plus de raccourcis' %}
+{% else %}
+  {% set main_title = 'Zoom in to Firefox functions' %}
+  {% set main_tagline = 'Navigate Firefox quickly and use <strong>cmd/ctrl +</strong> and <strong>cmd/ctrl -</strong> to easily resize content, making it larger or smaller.' %}
+  {% set main_cta = 'Find more shortcuts' %}
+{% endif %}
+
+{% set main_cta_link = 'https://support.mozilla.org/kb/keyboard-shortcuts-perform-firefox-tasks-quickly?'  + utm_params %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-sm">
+    <img width="182" height="69" class="wnp-main-image" src="{{ l10n_img('firefox/wnp-135/shortcuts.svg') }}" alt="">
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <p class="wnp-main-tagline">{{ main_tagline | safe }}</p>
+    <a class="mzp-c-button mzp-t-product" data-cta-text="Find more shortcuts" href="{{ main_cta_link }}">{{ main_cta }}</a>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}

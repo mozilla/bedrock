@@ -27,11 +27,6 @@ urlpatterns = (
     # Builders AI Challenge - Terms and Conditions
     page("terms/builders-challenge/", "legal/terms/builders-challenge.html"),
     path(
-        "terms/firefox/",
-        LegalDocView.as_view(template_name="legal/terms/firefox.html", legal_doc_name="firefox_about_rights"),
-        name="legal.terms.firefox",
-    ),
-    path(
         "terms/thunderbird/",
         LegalDocView.as_view(template_name="legal/terms/thunderbird.html", legal_doc_name="thunderbird_about_rights"),
         name="legal.terms.thunderbird",
@@ -72,4 +67,10 @@ urlpatterns = (
         name="legal.amo-policies",
     ),
     path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
+    path(
+        "terms/firefox/",
+        # Note that the legal_doc_name is decided by a waffle switch - see the view
+        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name="firefox_about_rights"),
+        name="legal.terms.firefox",
+    ),
 )

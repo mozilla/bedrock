@@ -1,0 +1,148 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($brand-theme: 'firefox', $type-scale: 'standard', $font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+
+.c-banner-fx-newsletter {
+    background: #333336 url('/media/img/banners/fx-newsletter/background-grid-mobile.svg') center center no-repeat;
+    background-size: cover;
+    color: $color-white;
+    min-height: 40px;
+    padding: $spacing-lg 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+
+    .c-banner-title {
+        @include text-title-2xs;
+        @include bidi(((padding-right, 0, padding-left, $spacing-md), (padding-right, $spacing-md, padding-left, 0)));
+        color: $color-white;
+        margin-bottom: .5em;
+    }
+
+    .c-banner-copy {
+        @include bidi(((padding-left, 80px, padding-right, auto),));
+        position: relative;
+
+        &::before {
+            @include bidi(((left, 0, right, 0),));
+            background: transparent url('/media/img/banners/fx-newsletter/lock-sticker.svg') center center no-repeat;
+            background-size: contain;
+            content: '';
+            display: block;
+            height: 60px;
+            position: absolute;
+            top: 0;
+            width: 60px;
+        }
+    }
+
+    .c-banner-cta {
+        margin: 0;
+    }
+
+    .c-banner-button {
+        background: $color-yellow-20 linear-gradient(to right,$color-yellow-20, $color-orange-50, $color-yellow-20, $color-yellow-20);
+        background-size: 300% 100%;
+        border: 0;
+        border-radius: $border-radius-sm;
+        color: $color-black;
+        padding: $spacing-sm $spacing-lg;
+        transition: all 300ms ease-out;
+        white-space: nowrap;
+
+        &:hover,
+        &:focus,
+        &:active {
+            background-position: 100% 0;
+            border-color: $color-black;
+            box-shadow: $box-shadow-sm;
+            color: $color-black;
+        }
+    }
+
+    // Close button
+    .c-banner-close {
+        @include image-replaced;
+        background: transparent url('#{$image-path}/icons/close-white.svg') center center no-repeat;
+        @include background-size(15px 15px);
+        border: none;
+        cursor: pointer;
+        display: block;
+        height: 21px;
+        min-width: 0;
+        padding: 0;
+        width: 21px;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+
+        &:hover,
+        &:focus {
+            @include transform(scale(1.1));
+            @include transition(transform 0.1s ease-in-out);
+        }
+
+        &:focus {
+            outline: 1px dotted $color-white;
+        }
+
+        // hide the 'Close' text
+        span {
+            @include visually-hidden;
+        }
+    }
+
+
+    @media #{$mq-md} {
+        background-image: url('/media/img/banners/fx-newsletter/background-grid-desktop.svg');
+
+        .c-banner-copy {
+            align-items: center;
+            display: flex;
+            gap: $spacing-lg;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+
+            &::before {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .c-banner-title {
+            padding: 0;
+            margin: 0;
+        }
+
+        .c-banner-button {
+            width: auto;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .c-banner-button {
+            background-image: linear-gradient(to right,$color-yellow-20, $color-orange-50);
+            transition: background-color 300ms ease-out;
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-image: linear-gradient(to right,$color-yellow-20, $color-yellow-20);
+            }
+        }
+    }
+}
+
+html[data-firefox-newsletter-banner-closed="true"], html.no-js {
+    .c-banner-fx-newsletter {
+        position: relative;
+    }
+
+    .c-banner-close {
+        display: none;
+    }
+}

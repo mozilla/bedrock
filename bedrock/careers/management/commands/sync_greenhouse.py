@@ -117,6 +117,7 @@ class Command(BaseCommand):
             else:
                 department = ""
 
+            # TODO remove this as there are more than just MoFo
             is_mofo = False
             if department == "Mozilla Foundation":
                 is_mofo = True

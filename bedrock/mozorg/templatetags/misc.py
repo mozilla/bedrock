@@ -149,7 +149,7 @@ def l10n_css(ctx):
     locale = getattr(ctx["request"], "locale", "en-US")
 
     if _l10n_media_exists("css", locale, "intl.css"):
-        markup = '<link rel="stylesheet" media="screen,projection,tv" href=' '"%s">' % static(path.join("css", "l10n", locale, "intl.css"))
+        markup = '<link rel="stylesheet" media="screen,projection,tv" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
     else:
         markup = ""
 
@@ -376,76 +376,6 @@ def donate_url(ctx, location=""):
     location = "?form=" + location if location else "donate/"
 
     return settings.DONATE_LINK.format(location=location)
-
-
-@library.global_function
-@jinja2.pass_context
-def firefox_twitter_url(ctx):
-    """Output a link to Twitter taking locales into account.
-
-    Uses the locale from the current request. Checks to see if we have
-    a Twitter account that match this locale, returns the localized account
-    url or falls back to the US account url if not.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ firefox_twitter_url() }}
-
-    For en-US this would output:
-
-        https://twitter.com/firefox
-
-    For es-ES this would output:
-
-        https://twitter.com/firefox_es
-
-    For pt-BR this would output:
-
-        https://twitter.com/firefoxbrasil
-
-    """
-    locale = getattr(ctx["request"], "locale", "en-US")
-    if locale not in settings.FIREFOX_TWITTER_ACCOUNTS:
-        locale = "en-US"
-
-    return settings.FIREFOX_TWITTER_ACCOUNTS[locale]
-
-
-@library.global_function
-@jinja2.pass_context
-def mozilla_twitter_url(ctx):
-    """Output a link to Twitter taking locales into account.
-
-    Uses the locale from the current request. Checks to see if we have
-    a Twitter account that match this locale, returns the localized account
-    url or falls back to the US account url if not.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ mozilla_twitter_url() }}
-
-    For en-US this would output:
-
-        https://twitter.com/mozilla
-
-    For DE this would output:
-
-        https://twitter.com/mozilla_germany
-
-    """
-    locale = getattr(ctx["request"], "locale", "en-US")
-    if locale not in settings.MOZILLA_TWITTER_ACCOUNTS:
-        locale = "en-US"
-
-    return settings.MOZILLA_TWITTER_ACCOUNTS[locale]
 
 
 @library.global_function
@@ -708,7 +638,7 @@ def _fxa_product_button(
     if class_name:
         css_class += f" {class_name}"
 
-    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>' f"{button_text}" f"</a>"
+    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>{button_text}</a>'
 
     return Markup(markup)
 

@@ -86,9 +86,11 @@
       <div class="c-block-body">
         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
-          <p>{{ ftl('firefox-desktop-download-no-shady') }}</p>
+          <p>{{ ftl('firefox-desktop-download-fast-reliable-private', fallback='firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
-          {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% block primary_cta %}
+            {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+          {% endblock %}
 
           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
 
@@ -114,13 +116,13 @@
             <div class="noodle-pill t-outline-pink"></div>
             <div class="noodle-browser">
               {{ picture(
-                url='img/firefox/new/desktop/firefox-browser-light-600.png',
+                url='img/firefox/new/desktop/firefox-browser-light-600-v2.png',
                 sources=[
                   {
                     'media': '(min-width: 688px)',
                     'srcset': {
-                      'img/firefox/new/desktop/firefox-browser-light-1200.png': '2x',
-                      'img/firefox/new/desktop/firefox-browser-light-600.png': 'default'
+                      'img/firefox/new/desktop/firefox-browser-light-1200-v2.png': '2x',
+                      'img/firefox/new/desktop/firefox-browser-light-600-v2.png': 'default'
                     }
                   },
                   {
@@ -131,8 +133,8 @@
                   }
                 ],
                 optional_attributes={
-                  'height': '371px',
-                  'width': '514px'
+                  'height': '433',
+                  'width': '600'
                 }
               )}}
             </div>
@@ -233,7 +235,7 @@
 {% endif %}
 
   <section class="t-highlights">
-    <h2 class="mzp-c-section-heading mzp-has-zap-11">{{ ftl('firefox-desktop-download-do-what-you-do') }}</h2>
+    <h2 class="mzp-c-section-heading mzp-has-zap-11">{{ ftl('firefox-desktop-download-do-what-you-do-v2', fallback='firefox-desktop-download-do-what-you-do') }}</h2>
 
     <div class="t-block c-block l-reversed">
       <div class="c-block-container">
@@ -278,14 +280,16 @@
           <h3 class="mzp-u-title-sm">{{ ftl('firefox-desktop-download-all-your-devices') }}</h3>
           <p>{{ ftl('firefox-desktop-download-take-your-privacy') }}</p>
           <div class="mobile-download-buttons-wrapper">
-            <ul class="mobile-download-buttons">
-              <li class="android">
-                {{ google_play_button() }}
-              </li>
-              <li class="ios">
-                {{ apple_app_store_button(href=ios_url) }}
-              </li>
-            </ul>
+            {% block mobile_secondary_cta %}
+              <ul class="mobile-download-buttons">
+                <li class="android">
+                  {{ google_play_button() }}
+                </li>
+                <li class="ios">
+                  {{ apple_app_store_button(href=ios_url) }}
+                </li>
+              </ul>
+            {% endblock %}
           </div>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
@@ -383,8 +387,9 @@
           </ul>
         </div>
       </div>
-      {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
-
+      {% block features_cta %}
+        {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+      {% endblock %}
     </div>
   </section>
 
@@ -416,15 +421,15 @@
       <!--<![endif]-->
       <div class="c-screenshot">
         {{ resp_img(
-          url='img/firefox/new/desktop/firefox-new-tab-1000.png',
+          url='img/firefox/new/desktop/firefox-new-tab-1000-v2.png',
           srcset={
-            'img/firefox/new/desktop/firefox-new-tab-2000.png': '2000w',
-            'img/firefox/new/desktop/firefox-new-tab-1800.png': '1800w',
-            'img/firefox/new/desktop/firefox-new-tab-1600.png': '1600w',
-            'img/firefox/new/desktop/firefox-new-tab-1400.png': '1400w',
-            'img/firefox/new/desktop/firefox-new-tab-1200.png': '1200w',
-            'img/firefox/new/desktop/firefox-new-tab-1000.png': '1000w',
-            'img/firefox/new/desktop/firefox-new-tab-800.png': '800w',
+            'img/firefox/new/desktop/firefox-new-tab-2000-v2.png': '2000w',
+            'img/firefox/new/desktop/firefox-new-tab-1800-v2.png': '1800w',
+            'img/firefox/new/desktop/firefox-new-tab-1600-v2.png': '1600w',
+            'img/firefox/new/desktop/firefox-new-tab-1400-v2.png': '1400w',
+            'img/firefox/new/desktop/firefox-new-tab-1200-v2.png': '1200w',
+            'img/firefox/new/desktop/firefox-new-tab-1000-v2.png': '1000w',
+            'img/firefox/new/desktop/firefox-new-tab-800-v2.png': '800w',
           },
           sizes={
             '(min-width: 1200px)': '930px',
@@ -493,7 +498,7 @@
         ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-your-privacy-comes') }}</h3>
         {% set internet_attrs = 'href="%s" data-cta-text="Personal Data Promise"'|safe|format(url('privacy')) %}
-        <p>{{ ftl('firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>
+        <p>{{ ftl('firefox-desktop-download-as-the-internet-v2', fallback='firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>
       </div>
     </div>
   </section>
@@ -544,7 +549,9 @@
         <p>{{ ftl('firefox-desktop-download-from-watching-a') }}</p>
       </div>
     </div>
-    {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% block discover_cta %}
+      {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+    {% endblock %}
   </section>
 
   <section class="c-support">
@@ -562,12 +569,14 @@
 
           <p>{{ ftl('firefox-desktop-download-download-the-mobile') }}</p>
 
-          <div class="show-android">
-            {{ google_play_button() }}
-          </div>
-          <div class="show-ios">
-            {{ apple_app_store_button(href=ios_url) }}
-          </div>
+          {% block mobile_primary_cta %}
+            <div class="show-android">
+              {{ google_play_button() }}
+            </div>
+            <div class="show-ios">
+              {{ apple_app_store_button(href=ios_url) }}
+            </div>
+          {% endblock %}
         </div>
       </div>
     </div>

@@ -12,6 +12,10 @@
 
 {% block page_css %}
   {{ css_bundle('firefox_releases_index') }}
+
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {{ css_bundle('firefox-newsletter-banner') }}
+  {% endif %}
 {% endblock %}
 
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
@@ -56,6 +60,13 @@
       </li>
     </ol>
   </main>
+
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {# Give newsletter landmark a separate aria identifier to the pencil banner: https://github.com/mozilla/bedrock/issues/15958 #}
+    {% with aria_label = 'Newsletter' %}
+      {% include 'includes/banners/firefox-newsletter.html' %}
+    {% endwith %}
+  {% endif %}
 {% endblock %}
 
 {% macro get_link(int_version, version) %}
@@ -65,3 +76,9 @@
     <a href="../{{ version }}/releasenotes/">{{ version }}</a>
   {%- endif -%}
 {% endmacro %}
+
+{% block js %}
+  {% if switch('release-notes-newsletter-banner', ['en']) %}
+    {{ js_bundle('firefox-newsletter-banner') }}
+  {% endif %}
+{% endblock %}

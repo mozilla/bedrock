@@ -20,7 +20,6 @@ from product_details.version_compare import Version
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
 from bedrock.firefox.firefox_details import (
     firefox_android,
@@ -474,7 +473,6 @@ class FirstrunView(L10nTemplateView):
 class WhatsnewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/developer/whatsnew.html": ["firefox/developer"],
-        "firefox/developer/whatsnew-mdnplus.html": ["firefox/whatsnew/whatsnew-developer-mdnplus"],
         "firefox/nightly/whatsnew.html": [
             "firefox/nightly/whatsnew",
             "firefox/whatsnew/whatsnew",
@@ -505,6 +503,10 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx134-gb.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-de.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx135-eu.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx135-na.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx136-eu-pip.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx136-na-pip.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -599,12 +601,7 @@ class WhatsnewView(L10nTemplateView):
         if channel == "nightly":
             template = "firefox/nightly/whatsnew.html"
         elif channel == "developer":
-            if show_102_dev_whatsnew(version):
-                if switch("firefox-developer-whatsnew-mdnplus") and ftl_file_is_active("firefox/whatsnew/whatsnew-developer-mdnplus"):
-                    template = "firefox/developer/whatsnew-mdnplus.html"
-                else:
-                    template = "firefox/developer/whatsnew.html"
-            elif show_57_dev_whatsnew(version):
+            if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
@@ -614,6 +611,20 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx135beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("136."):
+            if locale in ["de", "fr", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx136-eu-pip.html"
+            elif locale in ["en-US", "en-CA"]:
+                template = "firefox/whatsnew/whatsnew-fx136-na-pip.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("135."):
+            if locale in ["de", "fr", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx135-eu.html"
+            elif locale in ["en-US", "en-CA"]:
+                template = "firefox/whatsnew/whatsnew-fx135-na.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("134."):
@@ -972,6 +983,27 @@ class firefox_features_pdf(L10nTemplateView):
             template_name = "firefox/features/pdf-editor-fr.html"
         else:
             template_name = "firefox/features/pdf-editor.html"
+
+        return [template_name]
+
+
+class firefox_features_adblocker(L10nTemplateView):
+    ftl_files_map = {
+        "firefox/features/adblocker-2025.html": [
+            "firefox/features/adblocker-2025",
+            "firefox/features/shared",
+        ],
+        "firefox/features/adblocker.html": [
+            "firefox/features/adblocker",
+            "firefox/features/shared",
+        ],
+    }
+
+    def get_template_names(self):
+        if ftl_file_is_active("firefox/features/adblocker-2025"):
+            template_name = "firefox/features/adblocker-2025.html"
+        else:
+            template_name = "firefox/features/adblocker.html"
 
         return [template_name]
 

@@ -86,7 +86,7 @@ if REDIS_URL:
         "image_renditions": {"URL": f"{REDIS_URL}/0"},
     }
 
-CACHE_TIME_SHORT = 60 * 10  # 10 mins
+CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}")  # 10 mins
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
 
@@ -504,6 +504,7 @@ NOINDEX_URLS = [
     r"^firefox/this-browser-comes-highly-recommended/",
     r"^firefox/nightly/notes/feed/$",
     r"^firefox.*/all/$",
+    r"^firefox/landing/",
     r"^.+/(firstrun|whatsnew)/$",
     r"^m/",
     r"^newsletter/(confirm|existing|hacks\.mozilla\.org|recovery|updated|fxa-error)/",
@@ -712,6 +713,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "bedrock.mozorg.middleware.CacheMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "bedrock.cms.middleware.CMSLocaleFallbackMiddleware",
 ]
 
 ENABLE_CSP_MIDDLEWARE = config("ENABLE_CSP_MIDDLEWARE", default="true", parser=bool)
@@ -946,20 +948,6 @@ EXTERNAL_FILES = {
 CDN_BASE_URL = config("CDN_BASE_URL", default="")
 
 DONATE_LINK = "https://foundation.mozilla.org/{location}"
-
-# Official Firefox Twitter accounts
-FIREFOX_TWITTER_ACCOUNTS = {
-    "en-US": "https://twitter.com/firefox",
-    "es-ES": "https://twitter.com/firefox_es",
-    "pt-BR": "https://twitter.com/firefoxbrasil",
-}
-
-# Official Mozilla Twitter accounts
-MOZILLA_TWITTER_ACCOUNTS = {
-    "en-US": "https://twitter.com/mozilla",
-    "de": "https://twitter.com/mozilla_germany",
-    "fr": "https://twitter.com/mozilla_france",
-}
 
 # Official Firefox Instagram accounts
 MOZILLA_INSTAGRAM_ACCOUNTS = {

@@ -534,7 +534,7 @@ def test_LinkRenderer__mozilla_link__existing_utm(mock_get_current_request):
     mozilla_mock_hyperlink_node = deepcopy(mock_hyperlink_node)
     mozilla_mock_hyperlink_node["data"]["uri"] = "https://mozilla.org/test/page/?utm_source=UTMTEST"
     output = LinkRenderer({"text": TextRenderer}).render(mozilla_mock_hyperlink_node)
-    expected = '<a href="https://mozilla.org/test/page/?utm_source=UTMTEST" ' 'data-cta-text="Example" rel="external noopener">Example</a>'
+    expected = '<a href="https://mozilla.org/test/page/?utm_source=UTMTEST" data-cta-text="Example" rel="external noopener">Example</a>'
 
     assert output == expected
 

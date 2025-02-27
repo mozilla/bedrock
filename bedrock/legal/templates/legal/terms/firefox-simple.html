@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "legal/docs-base.html" %}
+
+{% block page_title %}{{ ftl('legal-firefox-rights') }}{% endblock %}
+
+{% block site_css %}
+  {{ css_bundle('protocol-firefox') }}
+{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('legal-terms-firefox-simple') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block side_nav %}{% endblock %}
+
+{# disable GA on Fx Privacy Notice. Bug 1576673 #}
+{% block google_analytics %}{% endblock %}
+{% block glean %}{% endblock %}
+
+{# Exclude stub attribution for in-product pages: issus 9620 #}
+{% block stub_attribution %}{% endblock %}
+
+{# Avoid loading unnecessary JS bundles for performance boost #}
+{% block site_js %}{% endblock %}
+{% block sentry_client %}{% endblock %}
+{% block consent_banner_js %}{% endblock %}
+
+{% block site_footer %}{% endblock %}

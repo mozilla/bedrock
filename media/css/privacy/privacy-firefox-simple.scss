@@ -1,0 +1,178 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+
+$border: 2px solid $color-marketing-gray-20;
+
+// narrow top / bottom padding for modal display
+#outer-wrapper > .mzp-l-content {
+    padding-bottom: $spacing-xl;
+    padding-top: $spacing-xl;
+}
+
+// narrow max-width for readability
+@media #{$mq-lg} {
+    .mzp-l-main {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Policy header
+
+.privacy-title {
+    margin-bottom: $spacing-lg;
+
+    h1 {
+        @include text-title-xs;
+        font-weight: bold;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Policy header intro
+
+.privacy-lead-in {
+    border-bottom: $border;
+    clear: both;
+    margin-bottom: $layout-sm;
+    padding-bottom: $layout-xs;
+
+    h2 {
+        @include text-title-xs;
+        margin-top: $spacing-2xl;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Main policy content
+
+.privacy-body {
+    > div > section > section {
+        border-bottom: $border;
+    }
+
+    h2 {
+        @include text-title-xs;
+        margin-bottom: $layout-sm;
+    }
+
+    h3 {
+        @include text-body-lg;
+        margin: $layout-sm 0;
+    }
+
+    h4 {
+        @include text-body-md;
+        margin: $layout-sm 0 0;
+    }
+
+    hr {
+        display: none;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Privacy choices widget
+
+.data-choices {
+    @include clearfix;
+    background-color: $color-marketing-gray-20;
+    border-radius: $border-radius-md;
+    margin-top: $spacing-xl;
+    padding: $spacing-sm;
+    position: relative;
+    text-align: center;
+
+    p {
+        @include text-body-md;
+        display: inline-block;
+        margin: 0;
+        padding: $spacing-sm 0;
+    }
+
+    .mzp-c-button {
+        display: block;
+        margin: $spacing-md auto 0;
+    }
+
+    @media #{$mq-md} {
+        @include grid-column-gap($spacing-lg);
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+        @include bidi(((text-align, left, right),));
+
+        .mzp-c-button {
+            margin: 0;
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Policy footer
+
+.privacy-footnote {
+    @include text-body-md;
+    border-top: $border;
+    margin-top: $spacing-2xl;
+    padding: $spacing-2xl 0;
+
+    h2 {
+        @include text-title-xs;
+    }
+
+    h3 {
+        @include visually-hidden;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Summary and details widget
+
+.format-headings .privacy-body {
+    @include details;
+
+    .is-summary {
+        button {
+            @include summary;
+            @include bidi(((padding-left, 0, padding-right, 0),));
+        }
+
+        button[aria-expanded='true']::before {
+            @include summary-open;
+        }
+
+        + div {
+            margin-top: $spacing-sm * -1;
+            margin-bottom: $spacing-xl;
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Tables
+
+.mzp-u-data-table  {
+    th {
+        vertical-align: bottom;
+    }
+
+    td {
+        border-color: $color-light-gray-30;
+        vertical-align: top;
+    }
+
+    .mzp-u-list-styled {
+        margin-left: $spacing-md;
+    }
+}

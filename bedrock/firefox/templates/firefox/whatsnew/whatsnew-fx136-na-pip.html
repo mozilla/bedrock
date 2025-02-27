@@ -1,0 +1,53 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_136_pip') }}
+{% endblock %}
+
+{% block wnp_content %}
+<section class="wnp-content-main t-na">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h1 class="wnp-main-title">Watch while you work with Firefox <span class="c-main-title-feature"><svg aria-hidden="true" fill="none" height="23" viewBox="0 0 27 23" width="27" xmlns="http://www.w3.org/2000/svg"><g fill="currentColor"><path d="m14.685 12.9122h10.2968c.844 0 1.5192.6622 1.5192 1.4899v6.8345c0 .8277-.6752 1.4898-1.5192 1.4898h-10.2968c-.844 0-1.5192-.6621-1.5192-1.4898v-6.8345c0-.8277.6752-1.4899 1.5192-1.4899z"/><path d="m8.63293 22.7264h-4.84698c-2.09794 0-3.78595-1.6791-3.78595-3.7129v-15.30066c0-2.05743 1.71212-3.71284 3.78595-3.71284h18.92975c2.0979 0 3.7859 1.67906 3.7859 3.71284v4.75338c0 .8277-.6752 1.48986-1.5192 1.48986s-1.5192-.66216-1.5192-1.48986v-4.75338c0-.40203-.3376-.73311-.7475-.73311h-18.95386c-.40995 0-.74755.33108-.74755.73311v15.30066c0 .402.3376.7331.74755.7331h4.84698c.844 0 1.51918.6622 1.51918 1.4899s-.67518 1.4899-1.49507 1.4899z"/><path d="m10.7068 11.3042c-.2411 0-.4582-.0946-.6511-.2602l-4.87108-4.77702c-.36172-.35473-.36172-.92229 0-1.25337.36171-.35473.94046-.35473 1.27806 0l4.87112 4.77703c.3617.35476.3617.92226 0 1.25336-.1688.1656-.3859.2602-.627.2602z"/><path d="m10.8516 11.4461h-3.93062c-.5064 0-.91634-.4021-.91634-.8987s.40994-.89864.91634-.89864h3.03841v-2.97973c0-.49662.40991-.89864.91631-.89864s.9164.40202.9164.89864v3.85477c-.0241.5439-.4341.9223-.9405.9223z"/></g></svg> Picture-in-Picture</span></h1>
+    <div class="c-video-wrapper t-wrapper-na">
+      <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew136-pip/multi-browser-cool-colors.png') }}" alt="" />
+      {{ video_inline_embed(
+        id='qoi9rmW4zNo',
+        title='Watch more basketball with Firefox Multi Picture-in-Picture',
+        image=resp_img(
+          url='img/firefox/whatsnew/whatsnew136-pip/basketball-poster.png',
+          srcset={"img/firefox/whatsnew/whatsnew136-pip/basketball-poster-high-res.png": "2x"},
+          optional_attributes={
+            'width': '1116',
+            'height': '622'
+          }
+        ),
+      ) }}
+    </div>
+    <div class="wnp-main-tagline t-wrapper-na">
+      <p>Catch every moment of the big game, whether you’re working, writing or (ahem) procrastinating.</p>
+    </div>
+    <p class="wnp-main-cta">
+      <a class="mzp-c-button mzp-t-product" href="{{ url('firefox.features.picture-in-picture') }}" data-cta-type="button" data-cta-text="Try Picture-in-Picture now">
+        Try Picture-in-Picture now
+      </a>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('video-inline-embed') }}
+{% endblock %}

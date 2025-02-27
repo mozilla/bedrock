@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/basic.html' %}
+
+{% block banner_id %}newsletter-banner{% endblock %}
+
+{% block banner_class %}c-banner-fx-newsletter{% endblock %}
+
+{% block banner_content %}
+  <div class="c-banner-inner mzp-l-content mzp-t-content-nospace mzp-t-content-xl">
+    <div class="c-banner-copy">
+      <h3 class="c-banner-title">Get the most out of Firefox with how-tos and online security tips.</h3>
+      <p class="c-banner-cta">
+        <a class="c-banner-button mzp-c-button mzp-t-lg" href="{{ url('newsletter.firefox') }}" data-cta-text="Get Firefox news" data-cta-position="banner">
+          Get Firefox news
+        </a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

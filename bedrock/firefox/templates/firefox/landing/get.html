@@ -1,0 +1,51 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/new/desktop/download.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block experiments %}{% endblock %}
+
+{% block extrahead %}
+  {{ super() }}
+  {{ css_bundle('firefox_marketing_opt_out') }}
+{% endblock %}
+
+{% macro marketing_opt_out_checkbox(id='marketing-opt-out') -%}
+  <label for="{{ id }}" class="marketing-opt-out-checkbox-label hidden">
+    <input type="checkbox" id="{{ id }}" class="marketing-opt-out-checkbox-input">
+    <span class="marketing-opt-out-text">
+      {% set attrs = 'href="https://support.mozilla.org/kb/marketing-data" target="_blank" rel="noopener"' %}
+      {{ ftl('download-button-share-how-you-discovered', attrs=attrs)}}
+    </span>
+  </label>
+{%- endmacro %}
+
+{% block primary_cta %}
+  {{ marketing_opt_out_checkbox(id='marketing-opt-out-primary') }}
+  {{ download_firefox_thanks(dom_id='download-primary', locale_in_transition=True, download_location='primary cta') }}
+{% endblock %}
+
+{% block features_cta %}
+  {{ marketing_opt_out_checkbox(id='marketing-opt-out-features') }}
+  {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+{% endblock %}
+
+{% block discover_cta %}
+  {{ marketing_opt_out_checkbox(id='marketing-opt-out-discover') }}
+  {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+{% endblock %}
+
+{% block stub_attribution %}
+  {% if settings.STUB_ATTRIBUTION_RATE %}
+    {{ super() }}
+    <!--[if IE 9]><!-->
+      {# Ensure opt-out runs in IE 10 / 11 since we also support stub attribution for those browsers. #}
+      {{ js_bundle('firefox_marketing_opt_out') }}
+    <!--<![endif]-->
+  {% endif %}
+{% endblock %}

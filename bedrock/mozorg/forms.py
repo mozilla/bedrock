@@ -34,7 +34,7 @@ class PrivacyWidget(widgets.CheckboxInput):
 
         policy_txt = ftl("newsletter-form-im-okay-with-mozilla", url=reverse("privacy.notices.websites"))
 
-        return mark_safe(f"""<label for="{attrs['id']}" class="privacy-check-label">{input_txt}<span class="title">{policy_txt}</span></label>""")
+        return mark_safe(f"""<label for="{attrs["id"]}" class="privacy-check-label">{input_txt}<span class="title">{policy_txt}</span></label>""")
 
 
 class HoneyPotWidget(widgets.TextInput):

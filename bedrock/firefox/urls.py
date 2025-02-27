@@ -57,7 +57,7 @@ urlpatterns = (
         "firefox/features/eyedropper/", "firefox/features/eyedropper.html", ftl_files=["firefox/features/eyedropper-2023", "firefox/features/shared"]
     ),
     path("firefox/features/pdf-editor/", views.firefox_features_pdf.as_view(), name="firefox.features.pdf-editor"),
-    page("firefox/features/adblocker/", "firefox/features/adblocker.html", ftl_files=["firefox/features/adblocker", "firefox/features/shared"]),
+    path("firefox/features/adblocker/", views.firefox_features_adblocker.as_view(), name="firefox.features.adblocker"),
     page("firefox/features/bookmarks/", "firefox/features/bookmarks.html", ftl_files=["firefox/features/bookmarks-2023", "firefox/features/shared"]),
     path("firefox/features/fast/", views.firefox_features_fast.as_view(), name="firefox.features.fast"),
     page(
@@ -188,9 +188,10 @@ urlpatterns = (
     page("firefox/welcome/22/", "firefox/welcome/page22.html", ftl_files=["firefox/welcome/page22"]),
     page("firefox/welcome/23/", "firefox/welcome/page23.html", ftl_files=["firefox/welcome/page23"]),
     page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
+    page("firefox/welcome/25/", "firefox/welcome/page25.html", active_locales=["en-US", "fr", "de"]),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/pocket/", "firefox/pocket.html"),
-    page("firefox/share/", "firefox/share.html", active_locales=["de", "fr"]),
+    page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
     page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
     # Issue 6604, SEO firefox/new pages
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
@@ -270,6 +271,9 @@ urlpatterns = (
         "firefox/firefox-20th/index.html",
         active_locales=["de", "fr", "en-US", "en-CA", "en-GB"],
     ),
+    # Issue 15841 - UK influencer campaign
+    page("firefox/landing/tech/", "firefox/landing/tech.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
+    page("firefox/landing/get/", "firefox/landing/get.html", ftl_files="firefox/new/desktop"),
 )
 
 # Contentful

@@ -3,7 +3,7 @@
   "description": "Demo deployments for changes to Mozilla Bedrock.",
   "website": "https://www.mozilla.org",
   "repository": "https://github.com/mozilla/bedrock",
-  "logo": "https://www.mozilla.org/media/img/mozorg/mozilla-256.jpg",
+  "logo": "https://www.mozilla.org/media/img/m24/og.png",
   "success_url": "/healthz-cron/",
   "stack": "container",
   "env": {

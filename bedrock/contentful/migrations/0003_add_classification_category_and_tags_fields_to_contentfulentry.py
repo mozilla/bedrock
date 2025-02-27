@@ -27,8 +27,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 default="",
                 help_text=(
-                    "Some pages may have custom fields on them, distinct "
-                    "from their content type - eg: pagePageResourceCenter has a 'Product' field"
+                    "Some pages may have custom fields on them, distinct from their content type - eg: pagePageResourceCenter has a 'Product' field"
                 ),
                 max_length=255,
             ),

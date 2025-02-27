@@ -92,12 +92,6 @@
     },
     {
       "files": [
-        "css/firefox/developer/whatsnew-mdnplus.scss"
-      ],
-      "name": "firefox_developer_whatsnew_mdnplus"
-    },
-    {
-      "files": [
         "css/firefox/new/basic/download.scss"
       ],
       "name": "firefox_new_download"
@@ -139,6 +133,12 @@
         "css/firefox/new/basic/thanks.scss"
       ],
       "name": "firefox_new_thanks"
+    },
+    {
+      "files": [
+        "css/firefox/landing/get/marketing-opt-out.scss"
+      ],
+      "name": "firefox_marketing_opt_out"
     },
     {
       "files": [
@@ -203,6 +203,12 @@
     },
     {
       "files": [
+        "css/base/banners/firefox-newsletter.scss"
+      ],
+      "name": "firefox-newsletter-banner"
+    },
+    {
+      "files": [
         "css/mozorg/home/includes/mofo-donate-promo.scss"
       ],
       "name": "mofo-donate-promo"
@@ -245,15 +251,21 @@
     },
     {
       "files": [
-        "css/m24/base-navigation-and-footer.scss"
-      ],
-      "name": "m24-navigation-and-footer"
-    },
-    {
-      "files": [
         "css/legal/legal.scss"
       ],
       "name": "legal"
+    },
+    {
+      "files": [
+        "css/legal/terms-firefox-2025.scss"
+      ],
+      "name": "terms-firefox"
+    },
+    {
+      "files": [
+        "css/legal/legal-terms-firefox-simple.scss"
+      ],
+      "name": "legal-terms-firefox-simple"
     },
     {
       "files": [
@@ -428,6 +440,24 @@
         "css/firefox/whatsnew/whatsnew-135beta.scss"
       ],
       "name": "firefox_whatsnew_135beta"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-135.scss"
+      ],
+      "name": "firefox_whatsnew_135"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-135-pdf.scss"
+      ],
+      "name": "firefox_whatsnew_135_pdf"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-136-pip.scss"
+      ],
+      "name": "firefox_whatsnew_136_pip"
     },
     {
       "files": [
@@ -665,6 +695,18 @@
     },
     {
       "files": [
+        "css/privacy/privacy-firefox-simple.scss"
+      ],
+      "name": "privacy_firefox_simple"
+    },
+    {
+      "files": [
+        "css/privacy/privacy-firefox-2025.scss"
+      ],
+      "name": "privacy_firefox"
+    },
+    {
+      "files": [
         "css/firefox/facebook-container.scss"
       ],
       "name": "firefox_facebook_container"
@@ -846,9 +888,9 @@
     },
     {
       "files": [
-        "css/firefox/welcome19-to-24.scss"
+        "css/firefox/welcome19-to-25.scss"
       ],
-      "name": "firefox_welcome_page19_to_24"
+      "name": "firefox_welcome_page19_to_25"
     },
     {
       "files": [
@@ -1139,6 +1181,18 @@
       "name": "m24-base"
     },
     {
+      "files":  [
+        "css/m24/home.scss"
+      ],
+      "name": "m24-home"
+    },
+    {
+      "files":  [
+        "css/m24/about.scss"
+      ],
+      "name": "m24-about"
+    },
+    {
       "files": [
         "css/m24/root.scss",
         "css/protocol/protocol-mozilla-2024.scss"
@@ -1227,9 +1281,9 @@
     },
         {
       "files": [
-        "js/firefox/welcome/welcome19-to-24.js"
+        "js/firefox/welcome/welcome19-to-25.js"
       ],
-      "name": "firefox_welcome_page19_to_24"
+      "name": "firefox_welcome_page19_to_25"
     },
     {
       "files": [
@@ -1250,6 +1304,12 @@
         "js/firefox/new/common/thanks-direct.es6.js"
       ],
       "name": "firefox_new_thanks_direct"
+    },
+    {
+      "files": [
+        "js/firefox/landing/get/marketing-opt-out-init.es6.js"
+      ],
+      "name": "firefox_marketing_opt_out"
     },
     {
       "files": [
@@ -1323,6 +1383,15 @@
     },
     {
       "files": [
+        "js/base/uitour-lib.js",
+        "js/base/mozilla-client.js",
+        "js/base/protocol/utils.es6.js",
+        "js/base/protocol/init-details.es6.js"
+      ],
+      "name": "privacy_firefox_simple"
+    },
+    {
+      "files": [
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
@@ -1361,21 +1430,9 @@
     },
     {
       "files": [
-        "js/base/protocol/init-sidemenu.es6.js"
-      ],
-      "name": "protocol-sidemenu"
-    },
-    {
-      "files": [
         "js/mozorg/about-leadership.js"
       ],
       "name": "about-leadership"
-    },
-    {
-      "files": [
-        "js/firefox/developer/whatsnew-mdnplus.js"
-      ],
-      "name": "firefox_developer_whatsnew_mdnplus"
     },
     {
       "files": [
@@ -1532,6 +1589,13 @@
         "js/base/protocol/init-m24-navigation.es6.js"
       ],
       "name": "m24-ui"
+    },
+    {
+      "files": [
+        "js/base/banners/firefox-newsletter-banner-init.es6.js",
+        "js/base/banners/firefox-newsletter-banner-check.js"
+      ],
+      "name": "firefox-newsletter-banner"
     },
     {
       "files": [
@@ -1749,12 +1813,6 @@
     },
     {
       "files": [
-        "js/mozorg/rise25/rise25.js"
-      ],
-      "name": "rise25-landing"
-    },
-    {
-      "files": [
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
@@ -1770,6 +1828,12 @@
         "js/base/banners/fundraiser-experiment.es6.js"
       ],
       "name": "fundraising-banner-experiment"
+    },
+    {
+      "files": [
+        "js/firefox/landing/partner-build-download-init.es6.js"
+      ],
+      "name": "firefox_partner_build_download"
     }
   ]
 }

@@ -683,7 +683,7 @@ def test_update_contentful__detect_and_delete_absent_entries(
         for idx in range(total_to_create_per_locale):
             ContentfulEntry.objects.create(
                 content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-                contentful_id=f"entry_{idx+1}",
+                contentful_id=f"entry_{idx + 1}",
                 locale=locale,
             )
 
@@ -710,7 +710,7 @@ def test_update_contentful__detect_and_delete_absent_entries__homepage_involved(
         for idx in range(3):
             ContentfulEntry.objects.create(
                 content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-                contentful_id=f"entry_{idx+1}",
+                contentful_id=f"entry_{idx + 1}",
                 locale=locale,
             )
 

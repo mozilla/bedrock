@@ -573,8 +573,7 @@ URLS = flatten(
         # bug 1090468
         url_test(
             "/security/{older-alerts,security-announcement,phishing-test{,-results}}.html",
-            "http://website-archive.mozilla.org/www.mozilla.org/security/security"
-            "/{older-alerts,security-announcement,phishing-test{,-results}}.html",
+            "http://website-archive.mozilla.org/www.mozilla.org/security/security/{older-alerts,security-announcement,phishing-test{,-results}}.html",
         ),
         url_test(
             "/security/iSECPartners_Phishing.pdf", "http://website-archive.mozilla.org/www.mozilla.org/security/security/iSECPartners_Phishing.pdf"
@@ -1329,5 +1328,7 @@ URLS = flatten(
         ),
         # Issue 15386
         url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
+        # Issue 15841
+        url_test("/firefox/tech/", "/firefox/landing/tech/"),
     )
 )

@@ -55,10 +55,11 @@ manifesto-we-are-committed-to-thinking = We are committed to an internet that el
 manifesto-we-are-committed-to-diverse = We are committed to an internet that catalyzes collaboration among diverse communities working together for the common good.
 manifesto-show-your-support = Show Your Support
 manifesto-an-internet-with-these = An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The { -brand-name-mozilla } Manifesto and Addendum represent { -brand-name-mozilla }’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.
+manifesto-i-support-the-vision-of-v2 = I support the vision of a better, healthier internet from { -brand-name-mozilla }, will you join me?
+# obsolete (expires 2025-04-12)
 manifesto-i-support-the-vision-of = I support the vision of a better, healthier internet from @mozilla, will you join me?
 
-manifesto-share-on-x = Share on X
-manifesto-share-on-x-aria-label = Share on X (formerly Twitter)
+manifesto-share-on-bluesky = Share on Bluesky
 manifesto-our-10-principles = <strong>Our 10</strong> Principles
 manifesto-read-the-entire-manifesto = Read the entire manifesto
 manifesto-love-the-web = Love the web?

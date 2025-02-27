@@ -1,0 +1,77 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% extends "firefox/welcome/base.html" %}
+
+ {% block page_title %}{{ main_title }}{% endblock %}
+
+ {% block body_class %}welcome-page25{% endblock %}
+
+ {% block page_css %}
+   {{ css_bundle('firefox_welcome_page19_to_25') }}
+ {% endblock %}
+
+ {% if LANG == 'de' %}
+  {% set old_version = 'Du nutzt eine ältere Version von Firefox' %}
+  {% set main_title = '14. März 2025: Das Ende vieler Firefox Funktionen' %}
+  {% set main_tagline = 'Video-Streaming, Erweiterungen und andere Funktionen werden in deiner Version von Firefox bald nicht mehr funktionieren, weil ein Root-Zertifikat ausläuft.' %}
+  {% set read_more = 'Hier kannst du mehr erfahren' %}
+  {% set cta_text = 'Jetzt aktualisieren' %}
+  {% set description = 'Dauert normalerweise 2–3 Minuten' %}
+{% elif LANG == 'fr' %}
+  {% set old_version = 'Vous utilisez une ancienne version de Firefox' %}
+  {% set main_title = 'Des fonctionnalités de Firefox cesseront de fonctionner le 14 mars 2025' %}
+  {% set main_tagline = 'Les vidéos en streaming, les extensions et d’autres fonctionnalités de votre version de Firefox cesseront de fonctionner car un certificat racine arrive à expiration.' %}
+  {% set read_more = 'En savoir plus' %}
+  {% set cta_text = 'Mettre à jour' %}
+  {% set description = 'Cette opération dure 2 à 3 minutes' %}
+{% else %}
+  {% set old_version = 'You’re on an older version of Firefox' %}
+  {% set main_title = 'Firefox features will break March 14, 2025' %}
+  {% set main_tagline = 'Streaming video, add-ons, and other features in your version of Firefox will stop working because a root certificate is expiring.' %}
+  {% set read_more = 'Read more about this change' %}
+  {% set cta_text = 'Update Now' %}
+  {% set description = 'Usually takes 2–3 minutes' %}
+{% endif %}
+
+{% block warning_notification %}
+  <aside class="c-page-header-notification">
+    <div class="mzp-c-notification-bar mzp-t-warning">
+      {{ old_version }}
+    </div>
+  </aside>
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_intro %}
+<section class="c-content-main">
+  <div class="mzp-l-content mzp-t-content-md mzp-u-centered">
+
+    <div class="c-header-image">
+      <img src="{{ static('img/firefox/welcome/root-ceritification-alert.svg') }}" alt="">
+    </div>
+
+    <h1 class="c-main-title">{{ main_title }}</h1>
+    <p class="c-main-tagline">{{ main_tagline }} <a href="https://support.mozilla.org/kb/root-certificate-expiration" data-cta-text="Read more about this change">{{ read_more }}</a></p>
+
+    {{ download_firefox_thanks(alt_copy=cta_text, button_class='mzp-t-xl', dom_id='update-firefox') }}
+
+    <p class="c-main-cta" id="update-firefox-esr">
+      <a href="{{ url('firefox.all.platforms', product_slug='desktop-esr') }}" class="mzp-c-button mzp-t-product mzp-t-xl" data-cta-text="Update now">
+        {{ cta_text }}
+      </a>
+    </p>
+
+    <small>{{ description }}</small>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_welcome_page19_to_25') }}
+{% endblock %}

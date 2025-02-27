@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+// narrow top / bottom padding for modal display
+#outer-wrapper > .mzp-l-content {
+    padding-bottom: $spacing-xl;
+    padding-top: $spacing-xl;
+}
+
+// narrow max-width for readability
+@media #{$mq-lg} {
+    .mzp-l-main {
+        max-width: 640px;
+        margin: 0 auto;
+    }
+}
+
+// manual styling for markdown content.
+.article-body {
+    h1 {
+        @include text-title-sm;
+    }
+
+    h2 {
+        @include text-title-xs;
+        margin-bottom: $layout-sm;
+    }
+
+    h3 {
+        @include text-body-lg;
+        margin: $layout-sm 0;
+    }
+
+    h4 {
+        @include text-body-md;
+        margin: $layout-sm 0 0;
+    }
+
+    blockquote {
+        @include text-body-lg;
+    }
+
+    ul {
+        list-style: disc;
+    }
+
+    ol {
+        list-style: decimal;
+    }
+
+    li {
+        margin: $spacing-sm $spacing-lg;
+    }
+}

@@ -115,25 +115,13 @@ $image-path: '/media/protocol/img';
 // * -------------------------------------------------------------------------- */
 // Callout
 
-.mzp-c-callout-compact,
 .all-download {
-    display: none;
-}
+    @include text-body-md;
+    background-color: $color-marketing-gray-20;
+    font-weight: bold;
+    padding: $spacing-sm $layout-2xs;
 
-.is-modern-browser {
-    .mzp-c-callout-compact {
-        display: block;
-    }
-
-    .all-download {
-        @include text-body-md;
-        background-color: $color-marketing-gray-30;
-        display: block;
-        font-weight: bold;
-        padding: $spacing-sm $layout-2xs;
-
-        @media #{$mq-md} {
-            text-align: center;
-        }
+    @media #{$mq-md} {
+        text-align: center;
     }
 }

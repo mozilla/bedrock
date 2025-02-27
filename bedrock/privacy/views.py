@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 from lib import l10n_utils
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 HN_PATTERN = re.compile(r"^h(\d)$")
 HREF_PATTERN = re.compile(r"^https?\:\/\/www\.mozilla\.org")
@@ -38,12 +39,23 @@ class PrivacyDocView(LegalDocView):
 
 
 class FirefoxPrivacyDocView(PrivacyDocView):
+    ftl_files = ["privacy/firefox"]
+
     def get_legal_doc(self):
         doc = super().get_legal_doc()
-        if len(doc["content"].select(".privacy-header-firefox")) > 0:
-            self.template_name = "privacy/notices/firefox.html"
+        variant = self.request.GET.get("v", None)
+
+        if variant == "product":
+            if doc["content"].select("h1"):
+                self.template_name = "privacy/notices/firefox-simple-2025.html"
+            else:
+                self.template_name = "privacy/notices/firefox-simple.html"
         else:
-            self.template_name = "privacy/notices/firefox-old-style-notice.html"
+            if doc["content"].select("h1"):
+                self.template_name = "privacy/notices/firefox-2025.html"
+            else:
+                self.template_name = "privacy/notices/firefox.html"
+
         return doc
 
 
@@ -77,3 +89,18 @@ def privacy(request):
     }
 
     return l10n_utils.render(request, "privacy/index.html", template_vars, ftl_files="privacy/index")
+
+
+class FAQView(l10n_utils.L10nTemplateView):
+    ftl_files_map = {
+        "privacy/faq-v2.html": ["privacy/faq-v2", "privacy/index"],
+        "privacy/faq.html": ["privacy/faq", "privacy/index"],
+    }
+
+    def get_template_names(self):
+        if ftl_file_is_active("privacy/faq-v2"):
+            template_name = "privacy/faq-v2.html"
+        else:
+            template_name = "privacy/faq.html"
+
+        return [template_name]

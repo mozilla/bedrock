@@ -70,7 +70,7 @@
 
             <label for="unsub4">
               <input type="checkbox" id="unsub4" name="reason4" value="{{ ftl('newsletters-im-keeping-in-touch-v2', locale='en')|striptags }}">
-              {{ ftl('newsletters-im-keeping-in-touch-v2') }}
+              {{ ftl('newsletters-im-keeping-in-touch-v3', fallback='newsletters-im-keeping-in-touch-v2') }}
             </label>
 
             <label for="unsub99">
@@ -141,7 +141,7 @@
                   ga_title='Meet our parent brand',
                   desc=ftl('newsletters-mozilla-the-non-for-profit'),
                   cta=ftl('ui-learn-more'),
-                  image=resp_img('img/newsletter/confirm/mozilla.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+                  image=resp_img('img/m24/og-16-9.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
                   aspect_ratio='mzp-has-aspect-16-9',
                   link_url=url('mozorg.about.index'),
                 )}}
@@ -177,7 +177,7 @@
                   ga_title='About us',
                   desc=ftl('newsletters-whats-mozilla-all-about'),
                   cta=ftl('newsletters-were-glad-you-asked'),
-                  image=resp_img('img/newsletter/confirm/mozilla.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
+                  image=resp_img('img/m24/og-16-9.png', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
                   aspect_ratio='mzp-has-aspect-16-9',
                   link_url=url('mozorg.about.index'),
                 )}}

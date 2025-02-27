@@ -111,6 +111,12 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['product']).toBe('firefox');
     });
+    it('should identify product for Firefox Desktop partner builds', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://download.mozilla.org/?product=partner-firefox-release-smi-smi-001-latest&os=osx&lang=en-GB'
+        );
+        expect(testEvent['product']).toBe('firefox');
+    });
     it('should identify product for Firefox in the App Store', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/app/firefox-private-safe-browser/id989804926'
@@ -218,6 +224,12 @@ describe('TrackProductDownload.getEventFromUrl', function () {
     it('should identify release_channel for Firefox Release', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-latest-ssl&os=win64&lang=en-US&_gl=1&234*_ga*ABC'
+        );
+        expect(testEvent['release_channel']).toBe('release');
+    });
+    it('should identify release_channel for Firefox partner builds', function () {
+        const testEvent = TrackProductDownload.getEventFromUrl(
+            'https://bouncer-bouncer.stage.mozaws.net/?product=partner-firefox-release-smi-smi-001-latest&os=osx&lang=en-GB&_gl=1&234*_ga*ABC'
         );
         expect(testEvent['release_channel']).toBe('release');
     });
