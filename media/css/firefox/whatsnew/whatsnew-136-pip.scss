@@ -1,0 +1,74 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
+@import "../../protocol/components/video";
+
+@media (prefers-color-scheme: light) {
+    // en is en-US
+    :is([lang="en"], [lang="en-CA"]) .wnp-content-main {
+        background-color: #E0E0E6;
+    }
+
+    :is([lang="en-GB"], [lang="fr"], [lang="de"]) .wnp-content-main {
+        background-color: #F8F6F4;
+    }
+}
+
+:root {
+    --block-end-spacing: #{$spacing-xl};
+}
+
+.t-wrapper-na {
+    max-width: 30.75rem; // 500px
+    margin-inline: auto;
+}
+
+.t-wrapper-eu {
+    max-width: 33.75rem; // 540px
+    margin-inline: auto;
+}
+
+.wnp-content-main {
+    text-align: center;
+
+    .mzp-t-content-lg {
+        padding-block: $layout-lg;
+    }
+}
+
+.mzp-c-video {
+    width: 93%;
+}
+
+.c-video-wrapper {
+    position: relative;
+    margin-block-end: calc(var(--block-end-spacing) + 5%);
+}
+
+.c-video-background {
+    position: absolute;
+    width: 95%;
+    left: 5%;
+    top: 5%;
+}
+
+.wnp-main-title {
+    font-size: 2rem;
+    line-height: 1.33;
+    margin-block-end: var(--block-end-spacing);
+}
+
+.c-main-title-feature {
+    display: block;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    margin-block-end: var(--block-end-spacing);
+}
