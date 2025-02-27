@@ -1,0 +1,148 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/base-protocol.html" %}
+
+{% block page_title %}{{ ftl('privacy-faq-v2-title') }}{% endblock %}
+{% block page_desc %}{{ ftl('privacy-faq-v2-desc') }}{% endblock %}
+
+{% block body_id %}privacy-faq{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% block article %}
+  <header>
+    <h1 class="mzp-c-article-title" itemprop="name">{{ self.page_title() }}</h1>
+  </header>
+  <div itemprop="articleBody" class="mzp-c-article">
+    <h2>
+      {{ ftl('privacy-faq-v2-heading') }}
+    </h2>
+    <p>
+      {{ ftl('privacy-faq-v2-intro') }}
+    </p>
+    <p>
+      {{ ftl('privacy-faq-v2-at-mozilla') }}
+    </p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        {{ ftl('privacy-faq-v2-we-follow', attrs='href="' + url('privacy.principles') + '"') }}
+      </li>
+      <li>
+        {{ ftl('privacy-faq-v2-we-strive-collect-data') }}
+      </li>
+      <li>
+        {{ ftl('privacy-faq-v2-we-work-to') }}
+      </li>
+      <li>
+        {{ ftl('privacy-faq-v2-we-adhere') }}
+      </li>
+    </ul>
+
+    <p>
+      {{ ftl('privacy-faq-v2-following-questions') }}
+    </p>
+
+    <dl class="mzp-u-list-styled">
+      <dt>
+        {{ ftl('privacy-faq-v2-i-use-firefox') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-mozilla-does-not-know') }}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-it-seems-like') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-mozilla-does-not-sell', attrs='href="https://support.mozilla.org/kb/ohttp-explained"') }}
+        </p>
+      <dt>
+         {{ ftl('privacy-faq-v2-wait-so-how') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-mozilla-is-not', attrs='href="https://stateof.mozilla.org/"')}}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-softballs') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-mozilla-does-collect', privacy='href="' + url('privacy.notices.firefox') + '"', data='href="https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry"')}}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-do-you-collect') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-sort-of') }}
+        </p>
+        <p>
+          {{ ftl('privacy-faq-v2-we-may-also', attrs='href="https://support.mozilla.org/kb/shield')}}
+        </p>
+        <p>
+          {{ ftl('privacy-faq-v2-mozilla-pre-release') }}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-but-why-do-you') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-if-we-dont-know', attrs='href="https://support.mozilla.org/kb/ohttp-explained"')}}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-data-collection-bugs-me') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-yes-user-control', privacy='href="https://support.mozilla.org/kb/firefox-options-preferences-and-settings"', data='href="https://support.mozilla.org/kb/technical-and-interaction-data"') }}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-what-about-my-account') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-we-are-big-believers') }}
+        </p>
+        <p>
+          {{ ftl('privacy-faq-v2-you-dont-need-an-account', attrs='href="' + url('mozorg.account') + '"')}}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-you-use-digital') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-no-we-do-not-buy') }}
+        </p>
+        <p>
+          {{ ftl('privacy-faq-v2-we-do-not-ask') }}
+        </p>
+      </dd>
+      <dt>
+        {{ ftl('privacy-faq-v2-well-it-seems') }}
+      </dt>
+      <dd>
+        <p>
+          {{ ftl('privacy-faq-v2-yes-we-do') }}
+        </p>
+      </dd>
+    </dl>
+
+    <p>
+      <a href="https://internethealthreport.org/">{{ ftl('privacy-faq-v2-find-out-more') }}</a>
+    </p>
+
+  </div>
+{% endblock %}
