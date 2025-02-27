@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 from lib import l10n_utils
+from lib.l10n_utils.fluent import ftl_file_is_active
 
 HN_PATTERN = re.compile(r"^h(\d)$")
 HREF_PATTERN = re.compile(r"^https?\:\/\/www\.mozilla\.org")
@@ -88,3 +89,18 @@ def privacy(request):
     }
 
     return l10n_utils.render(request, "privacy/index.html", template_vars, ftl_files="privacy/index")
+
+
+class FAQView(l10n_utils.L10nTemplateView):
+    ftl_files_map = {
+        "privacy/faq-v2.html": ["privacy/faq-v2", "privacy/index"],
+        "privacy/faq.html": ["privacy/faq", "privacy/index"],
+    }
+
+    def get_template_names(self):
+        if ftl_file_is_active("privacy/faq-v2"):
+            template_name = "privacy/faq-v2.html"
+        else:
+            template_name = "privacy/faq.html"
+
+        return [template_name]
