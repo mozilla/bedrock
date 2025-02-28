@@ -163,7 +163,7 @@
   </div>
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
-    <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you') }}</h2>
+    <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you-v2', fallback='vpn-landing-how-a-vpn-helps-you') }}</h2>
 
     <img class="c-section-main-img" loading="lazy" src="{{ static('img/products/vpn/landing-refresh/travel-padlock.svg') }}" width="726" height="280" alt="">
 
@@ -177,8 +177,8 @@
         <p>{{ ftl('vpn-landing-hide-your-activity-from') }}</p>
       </li>
       <li>
-        <h3 class="c-reason-title">{{ ftl('vpn-landing-helps-you-access-global') }}</h3>
-        <p>{{ ftl('vpn-landing-check-out-streaming-media') }}</p>
+        <h3 class="c-reason-title">{{ ftl('vpn-landing-take-control') }}</h3>
+        <p>{{ ftl('vpn-landing-customize-your-vpn') }}</p>
       </li>
     </ul>
   </section>
@@ -290,6 +290,44 @@
           {{ ftl('vpn-landing-extra-security-whole-device') }}
         </p>
       {% endcall %}
+
+      {% if ftl_has_messages('vpn-landing-built-transparently') %}
+        {% call picto(
+          image=resp_img(
+            url='img/products/vpn/landing-refresh/icons/open-source.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '40',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+          base_el='li'
+        ) %}
+          <p class="c-feature-title">
+            {{ ftl('vpn-landing-built-transparently') }}
+          </p>
+        {% endcall %}
+      {% endif %}
+
+      {% if ftl_has_messages('vpn-landing-easy-firefox-integration') %}
+        {% call picto(
+          image=resp_img(
+            url='img/products/vpn/landing-refresh/icons/fx-integration.svg',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '40',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+          base_el='li'
+        ) %}
+          <p class="c-feature-title">
+            {{ ftl('vpn-landing-easy-firefox-integration') }}
+          </p>
+        {% endcall %}
+      {% endif %}
     </ul>
     <p class="c-section-more"><a href="{{ url('products.vpn.features') }}">{{ ftl('vpn-landing-see-all-features') }}</a></p>
   </section>
