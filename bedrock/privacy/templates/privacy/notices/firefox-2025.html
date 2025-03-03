@@ -74,3 +74,8 @@
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('legal_toc') }}
+{% endblock %}

@@ -1408,6 +1408,12 @@
     },
     {
       "files": [
+        "js/base/legal-toc.es6.js"
+      ],
+      "name": "legal_toc"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-client.js",
         "js/base/protocol/utils.es6.js",
