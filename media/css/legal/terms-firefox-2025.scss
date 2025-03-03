@@ -11,6 +11,14 @@
 
 $mq-max: '(min-width: 1440px)';
 
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
 .l-top {
     display: none;
     padding-top: $layout-sm;
@@ -29,6 +37,7 @@ $mq-max: '(min-width: 1440px)';
         border-bottom: 1px solid $color-light-gray-30;
         margin-bottom: $spacing-md;
         padding-bottom: $spacing-sm;
+        text-wrap: balance;
     }
 
     h1 {
@@ -81,6 +90,7 @@ $mq-max: '(min-width: 1440px)';
         background-image: url('/media/img/icons/m24-small/curve-arrow3.svg');
         background-size: $layout-xs auto;
         background-repeat: no-repeat;
+        text-wrap: balance;
 
         &:hover,
         &:focus-visible {
