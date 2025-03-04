@@ -27,8 +27,8 @@ Scope and requirements
 - Attribution now also works on macOS. The flow does not yet work for Linux, Android
   or iOS devices.
 - Attribution will only be passed if a website visitor has their
-  `Do Not Track (DNT)`_ preference disabled in their browser. Visitors can opt-out
-  by enabling DNT. This is covered in our `privacy policy`_.
+  `Do Not Track (DNT)`_ and `Global Privacy Control (GPC) <https://support.mozilla.org/kb/global-privacy-control>`_ preferences disabled in their browser. Visitors can opt-out
+  by enabling DNT or GPC. This is covered in our `privacy policy`_.
 
 How does attribution work?
 --------------------------

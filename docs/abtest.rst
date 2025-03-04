@@ -21,7 +21,7 @@ It's possible to test more than 2 variants.
 
 Traffic Cop sends users to experiments and then we use Google Analytics (GA) to
 analyze which variation is more successful. (If the user has :abbr:`DNT (Do Not Track)`
-enabled they do not participate in experiments.)
+or :abbr:`GPC (Global Privacy Control)` enabled they do not participate in experiments.)
 
 All a/b tests should have a `mana page <https://mana.mozilla.org/wiki/display/EN/Details+of+experiments+by+mozilla.org+team>`_
 detailing the experiment and recording the results.
