@@ -852,10 +852,14 @@ the proper template for the country from which the request originated.
         }
         template_name = "mozorg/everywhere-else-is-also-good.html"
 
+Testing Geo Views
+~~~~~~~~~~~~~~~~~
+
 For testing purposes while you're developing or on any deployment that is not
 accessed via the production domain (www.mozilla.org) you can append your URL
 with a ``geo`` query param (e.g. ``/firefox/?geo=DE``) and that will take
-precedence over the country from the request header.
+precedence over the country from the request header. Remember to use a valid
+`ISO country code <https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements>`_ as param value.
 
 Other Geo Stuff
 ~~~~~~~~~~~~~~~
