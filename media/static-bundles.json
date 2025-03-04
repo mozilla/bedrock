@@ -1411,9 +1411,16 @@
         "js/base/uitour-lib.js",
         "js/base/mozilla-client.js",
         "js/base/protocol/utils.es6.js",
-        "js/base/protocol/init-details.es6.js"
+        "js/base/protocol/init-details.es6.js",
+        "js/privacy/privacy-modal-link.es6.js"
       ],
       "name": "privacy_firefox_simple"
+    },
+    {
+      "files": [
+        "js/privacy/privacy-modal-link.es6.js"
+      ],
+      "name": "tos_modal_link"
     },
     {
       "files": [

@@ -31,10 +31,10 @@
   </div>
 {% endblock %}
 
-{% block site_js %}
-{% endblock %}
+{% block site_js %}{% endblock %}
 
 {% block js %}
+  {{ js_bundle('tos_modal_link') }}
 {% endblock %}
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
