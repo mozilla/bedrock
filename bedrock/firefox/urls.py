@@ -271,8 +271,9 @@ urlpatterns = (
         "firefox/firefox-20th/index.html",
         active_locales=["de", "fr", "en-US", "en-CA", "en-GB"],
     ),
-    # Issue 15841 - UK influencer campaign
+    # Issue 15841, 15920, 5953 - UK influencer campaign pages
     page("firefox/landing/tech/", "firefox/landing/tech.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
+    page("firefox/landing/gaming/", "firefox/landing/gaming.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
     page("firefox/landing/get/", "firefox/landing/get.html", ftl_files="firefox/new/desktop"),
 )
 
