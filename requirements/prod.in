@@ -41,7 +41,6 @@ Markdown==3.7
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
-newrelic==10.6.0
 Pillow==10.4.0
 psycopg[binary]==3.1.19
 PyGithub==2.6.1

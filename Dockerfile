@@ -81,7 +81,7 @@ COPY ./lib ./lib
 COPY ./root_files ./root_files
 COPY ./scripts ./scripts
 COPY ./wsgi ./wsgi
-COPY manage.py LICENSE newrelic.ini ./
+COPY manage.py LICENSE ./
 
 # changes more frequently
 COPY ./docker ./docker
