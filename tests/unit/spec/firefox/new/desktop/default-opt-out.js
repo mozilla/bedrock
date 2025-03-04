@@ -28,6 +28,8 @@ describe('default-opt-out.es6.js', function () {
     });
 
     beforeEach(function () {
+        spyOn(DefaultOptOut, 'shouldSetChecked').and.returnValue(true);
+
         window.site.platform = 'windows';
     });
 

@@ -168,6 +168,12 @@ DefaultOptOut.setCheckboxState = (checked) => {
     }
 };
 
+DefaultOptOut.shouldSetChecked = () => {
+    return (
+        window.location.href.indexOf('utm_campaign=SET_DEFAULT_BROWSER') !== -1
+    );
+};
+
 /**
  * Displays checkboxes via CSS by removing the `hidden`
  * class on their corresponding `<label>` parent elements.
@@ -178,8 +184,12 @@ DefaultOptOut.showCheckbox = () => {
 
     for (let i = 0; i < labels.length; i++) {
         labels[i].classList.remove('hidden');
-        labels[i].querySelector('.default-browser-checkbox-input').checked =
-            true;
+
+        // Only preselect the checkbox if `utm_campaign=SET_DEFAULT_BROWSER` is present.
+        if (DefaultOptOut.shouldSetChecked()) {
+            labels[i].querySelector('.default-browser-checkbox-input').checked =
+                true;
+        }
     }
 };
 
