@@ -545,10 +545,23 @@ SITEMAPS_PATH = DATA_PATH / "sitemaps"
 #   },
 ALT_CANONICAL_PATHS = {}
 
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS",
-    parser=ListOf(str, allow_empty=False),
-    default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+# NOTE:
+# - In the infra config a pod IP is prepended with a trailing comma
+# - In some environments, there might be no additional content after this comma
+# - The `allow_empty=True` ensures the split operation works even when nothing follows the comma
+# - We then use `filter()` to remove any resulting empty strings from the list
+ALLOWED_HOSTS = list(
+    filter(
+        None,
+        config(
+            "ALLOWED_HOSTS",
+            parser=ListOf(
+                str,
+                allow_empty=True,
+            ),
+            default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+        ),
+    )
 )
 ALLOWED_CIDR_NETS = config(
     "ALLOWED_CIDR_NETS",
