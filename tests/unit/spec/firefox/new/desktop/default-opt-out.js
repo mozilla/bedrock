@@ -27,6 +27,10 @@ describe('default-opt-out.es6.js', function () {
         document.body.insertAdjacentHTML('beforeend', optOut);
     });
 
+    beforeEach(function () {
+        window.site.platform = 'windows';
+    });
+
     afterEach(function () {
         const optOut = document.getElementById('opt-out');
         optOut.parentNode.removeChild(optOut);
@@ -34,9 +38,23 @@ describe('default-opt-out.es6.js', function () {
         document
             .getElementsByTagName('html')[0]
             .removeAttribute('data-needs-consent');
+
+        window.site.platform = 'other';
     });
 
     describe('init()', function () {
+        it('should return false if OS is not Windows', function () {
+            window.site.platform = 'osx';
+
+            const result = DefaultOptOut.init();
+            expect(result).toBeFalse();
+
+            const checkboxes = document.querySelectorAll(
+                '.default-browser-checkbox-input:checked'
+            );
+            expect(checkboxes.length).toEqual(0);
+        });
+
         it('should return false if GPC is enabled', function () {
             window.Mozilla.gpcEnabled = sinon.stub().returns(true);
 

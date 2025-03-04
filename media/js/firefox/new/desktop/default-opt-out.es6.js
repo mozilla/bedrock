@@ -195,6 +195,9 @@ DefaultOptOut.meetsRequirements = () => {
         !window.history.replaceState
     ) {
         return false;
+    } else if (window.site.platform !== 'windows') {
+        // Ensure the visitor is on Windows OS
+        return false;
     } else if (dntEnabled() || gpcEnabled()) {
         // Has the visitor set a browser-level privacy flag?
         return false;

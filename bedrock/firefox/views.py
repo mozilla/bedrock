@@ -808,7 +808,7 @@ class NewView(L10nTemplateView):
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if variation == "treatment" and locale.startswith("en-") and country in ["US", "CA"]:
+            if variation == "treatment" and locale in ["en-US", "en-CA"] and country in ["US", "CA"]:
                 template = "firefox/new/desktop/experiment-firefox-new-default.html"
             else:
                 template = "firefox/new/desktop/download.html"

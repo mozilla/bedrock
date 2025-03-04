@@ -9,6 +9,8 @@ import {
     getConsentCookie
 } from '../../../base/consent/utils.es6';
 
+const experimentCookieID = 'download-as-default';
+
 const utmParams = [
     'utm_source=',
     'utm_medium=',
@@ -62,7 +64,7 @@ function meetsExperimentCriteria(platform, params) {
     if (
         (Mozilla.Cookies.hasItem('moz-stub-attribution-code') ||
             Mozilla.Cookies.hasItem('moz-stub-attribution-sig')) &&
-        !Mozilla.Cookies.hasItem('download-as-default')
+        !Mozilla.Cookies.hasItem(experimentCookieID)
     ) {
         return false;
     }
@@ -70,4 +72,4 @@ function meetsExperimentCriteria(platform, params) {
     return true;
 }
 
-export { meetsExperimentCriteria };
+export { meetsExperimentCriteria, experimentCookieID };

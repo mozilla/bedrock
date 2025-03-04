@@ -6,10 +6,12 @@
 
 import TrafficCop from '@mozmeao/trafficcop';
 import { isApprovedToRun } from '../../../base/experiment-utils.es6';
-import { meetsExperimentCriteria } from './default-experiment-criteria.es6';
+import {
+    meetsExperimentCriteria,
+    experimentCookieID
+} from './default-experiment-criteria.es6';
 
 const href = window.location.href;
-const expID = 'download-as-default';
 const ATTRIBUTION_COOKIE_CODE_ID = 'moz-stub-attribution-code';
 const ATTRIBUTION_COOKIE_SIGNATURE_ID = 'moz-stub-attribution-sig';
 
@@ -65,7 +67,7 @@ const init = () => {
     ) {
         window.dataLayer.push({
             event: 'experiment_view',
-            id: expID,
+            id: experimentCookieID,
             variant: 'control'
         });
     } else if (
@@ -89,7 +91,7 @@ const init = () => {
 
         window.dataLayer.push({
             event: 'experiment_view',
-            id: expID,
+            id: experimentCookieID,
             variant: 'treatment'
         });
     } else if (TrafficCop) {
@@ -101,7 +103,7 @@ const init = () => {
             )
         ) {
             const cop = new TrafficCop({
-                id: expID,
+                id: experimentCookieID,
                 variations: {
                     'experiment=download-as-default&variation=control': 25,
                     'experiment=download-as-default&variation=treatment&utm_source=www.mozilla.org&utm_campaign=SET_DEFAULT_BROWSER': 25
