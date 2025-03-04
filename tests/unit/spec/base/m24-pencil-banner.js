@@ -11,9 +11,9 @@
 
 import M24PencilBanner from '../../../../media/js/base/banners/m24-pencil-banner.es6';
 
-describe('mozilla-banner.es6.js', function () {
+describe('m24-pencil-banner.es6.js', function () {
     beforeEach(function () {
-        const content = `<aside class="m24-pencil-banner">
+        const content = `<aside id="pencil-banner" class="m24-pencil-banner">
             <div class="m24-pencil-banner-copy">
                 <p>Promo copy</p>
             </div>
@@ -27,6 +27,7 @@ describe('mozilla-banner.es6.js', function () {
     });
 
     afterEach(function () {
+        document.getElementById('pencil-banner').remove();
         document.documentElement.removeAttribute('data-pencil-banner-closed');
     });
 
