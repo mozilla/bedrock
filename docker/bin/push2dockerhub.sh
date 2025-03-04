@@ -23,12 +23,11 @@ if [[ "$BRANCH_NAME" == "main" ]]; then
     docker push $FROM_DOCKER_REPOSITORY:latest
 fi
 
-if [[ "$BRANCH_NAME" == "prod" ]]; then
-    docker tag $IMG_TO_PUSH $FROM_DOCKER_REPOSITORY:prod-latest
-    docker push $FROM_DOCKER_REPOSITORY:prod-latest
-fi
-
 if [[ "$GIT_TAG_DATE_BASED" == true ]]; then
+    # production tag
     docker tag $IMG_TO_PUSH $FROM_DOCKER_REPOSITORY:$GIT_TAG
     docker push $FROM_DOCKER_REPOSITORY:$GIT_TAG
+    # used by services like sitemap-generator
+    docker tag $IMG_TO_PUSH $FROM_DOCKER_REPOSITORY:prod-latest
+    docker push $FROM_DOCKER_REPOSITORY:prod-latest
 fi
