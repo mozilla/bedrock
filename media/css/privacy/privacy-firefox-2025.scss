@@ -9,6 +9,8 @@
 @use '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
+@use '../m24/vars/color' as m24-tokens;
+
 $mq-max: '(min-width: 1440px)';
 
 // * -------------------------------------------------------------------------- */
@@ -136,15 +138,10 @@ $icon-padding: $icon-width + $layout-sm;
     }
 }
 
-// I measured the height of the tallest menu (french) to come up with the min heights that follow
-@media
-    #{$mq-md} and (min-height: 910px),
-    #{$mq-lg} and (min-height: 854px),
-    #{$mq-xl} and (min-height: 745px),
-    #{$mq-max} and (min-height: 700px) {
-    .mzp-l-sidebar {
+@media #{$mq-md} {
+    .toc-is-sticky {
         position: sticky;
-        top: -2.1rem; // height of the heading
+        top: 1.8rem; // heading has breathing room but is neatly hidden by sticky global nav
     }
 }
 
@@ -176,6 +173,7 @@ $icon-padding: $icon-width + $layout-sm;
         background-size: $layout-xs auto;
         background-repeat: no-repeat;
         text-wrap: balance;
+        transition: color 300ms ease-in;
 
         &:hover,
         &:focus-visible {
@@ -187,6 +185,10 @@ $icon-padding: $icon-width + $layout-sm;
             padding: $spacing-sm 0;
             border: none;
         }
+    }
+
+    li.active a {
+        color: m24-tokens.$token-color-mid-green;
     }
  }
 

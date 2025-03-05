@@ -1395,6 +1395,12 @@
     },
     {
       "files": [
+        "js/privacy/privacy-toc.es6.js"
+      ],
+      "name": "privacy_firefox_2025"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-client.js",
         "js/base/protocol/utils.es6.js",
