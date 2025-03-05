@@ -22,6 +22,17 @@
 }
 
 // * -------------------------------------------------------------------------- */
+// Smooth scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
 // Common elements
 
 body.rise25 {
