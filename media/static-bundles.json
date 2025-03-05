@@ -209,12 +209,6 @@
     },
     {
       "files": [
-        "css/mozorg/home/includes/monitor-banner.scss"
-      ],
-      "name": "monitor-banner"
-    },
-    {
-      "files": [
         "css/base/banners/firefox-newsletter.scss"
       ],
       "name": "firefox-newsletter-banner"
@@ -1830,12 +1824,6 @@
         "js/firefox/nothing-personal/random-answers.es6.js"
       ],
       "name": "firefox-nothing-personal"
-    },
-    {
-      "files": [
-        "js/mozorg/home/monitor-banner.es6.js"
-      ],
-      "name": "monitor-banner"
     },
     {
       "files": [
