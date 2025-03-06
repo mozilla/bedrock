@@ -387,9 +387,9 @@ sphinxcontrib-websupport==1.2.7 \
     --hash=sha256:2dc179d7f821ebd54f31f93c894ca52435ebc5364e4e4dfb0da834ac119d51fd \
     --hash=sha256:e322802ebfd5fe79368efd864aeb87b063566ae61911dccb2714e28a45ed7561
     # via -r requirements/docs.in
-starlette==0.46.0 \
-    --hash=sha256:913f0798bd90ba90a9156383bcf1350a17d6259451d0d8ee27fc0cf2db609038 \
-    --hash=sha256:b359e4567456b28d473d0193f34c0de0ed49710d75ef183a74a5ce0499324f50
+starlette==0.46.1 \
+    --hash=sha256:3c88d58ee4bd1bb807c0d1acb381838afc7752f9ddaec81bbe4383611d833230 \
+    --hash=sha256:77c74ed9d2720138b25875133f3a2dae6d854af2ec37dceb56aef370c1d8a227
     # via sphinx-autobuild
 typing-extensions==4.12.2 \
     --hash=sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d \
