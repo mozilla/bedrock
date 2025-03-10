@@ -493,7 +493,6 @@ django==4.2.20 \
     # via
     #   -r requirements/prod.txt
     #   dj-database-url
-    #   django-allow-cidr
     #   django-cors-headers
     #   django-crum
     #   django-csp
@@ -518,10 +517,6 @@ django==4.2.20 \
     #   wagtail
     #   wagtail-localize
     #   wagtail-localize-smartling
-django-allow-cidr==0.7.1 \
-    --hash=sha256:11126c5bb9df3a61ff9d97304856ba7e5b26d46c6d456709a6d9e28483bff47f \
-    --hash=sha256:382c5d7a9807279e3e96e4f4892b59163a2b30128c596902bf5f80e133e1ccbb
-    # via -r requirements/prod.txt
 django-cors-headers==4.7.0 \
     --hash=sha256:6fdf31bf9c6d6448ba09ef57157db2268d515d94fc5c89a0a1028e1fc03ee52b \
     --hash=sha256:f1c125dcd58479fe7a67fe2499c16ee38b81b397463cf025f0e2c42937421070
@@ -1299,7 +1294,6 @@ packaging==24.2 \
     --hash=sha256:c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f
     # via
     #   -r requirements/prod.txt
-    #   django-allow-cidr
     #   django-csp
     #   pipdeptree
     #   pytest

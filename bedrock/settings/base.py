@@ -563,11 +563,6 @@ ALLOWED_HOSTS = list(
         ),
     )
 )
-ALLOWED_CIDR_NETS = config(
-    "ALLOWED_CIDR_NETS",
-    parser=ListOf(str, allow_empty=False),
-    default="",
-)
 
 # The canonical, production URL without a trailing slash
 CANONICAL_URL = "https://www.mozilla.org"
@@ -705,7 +700,6 @@ ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDL
 
 MIDDLEWARE = [
     # IMPORTANT: this may be extended later in this file or via settings/__init__.py
-    "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "bedrock.mozorg.middleware.HostnameMiddleware",
