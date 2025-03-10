@@ -4,8 +4,10 @@
 
 footer-refresh-discover-mozilla-products =Discover { -brand-name-mozilla } products and initiatives. We promise to keep your email private and secure — no sharing, no selling, just great updates.
 footer-refresh-leadership = Leadership
-footer-refresh-advertise = Advertise with { -brand-name-mozilla }
+footer-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
 footer-refresh-firefox-release-notes = { -brand-name-firefox } Release Notes
+footer-refresh-privacy-first = Privacy-first advertising solutions for brands, publishers, and platforms.
+footer-refresh-learn-more = Learn more
 footer-refresh-mdn-v2 = { -brand-name-mdn }
 # Obsolete string (expires 22-04-2025)
 footer-refresh-mdn = MDN
@@ -25,11 +27,9 @@ footer-refresh-support = Support
 footer-refresh-product-help = Product Help
 footer-refresh-file-a-bug = File a Bug
 footer-refresh-localize-mozilla = Localize { -brand-name-mozilla }
-footer-refresh-resources = Resources
 footer-refresh-brand-standards = Brand Standards
 footer-refresh-developers = Developers
 footer-refresh-developer-edition = { -brand-name-developer-edition }
-footer-refresh-enterprise = { -brand-name-enterprise }
 footer-refresh-tools = Tools
 footer-refresh-donate = Donate
 footer-refresh-visit-mozilla-corporations = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, the <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
