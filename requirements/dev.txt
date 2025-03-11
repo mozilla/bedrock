@@ -69,9 +69,9 @@ boto3==1.37.8 \
     --hash=sha256:9448f4a079189e19c3253cfdc5b8ef6dc51a3b82431e8347a51f4c1b2d9dab42 \
     --hash=sha256:b9f506e08c9f54687d6c073ef1c550a24a62cc2d1e0bc7cda9f13112a38818bf
     # via -r requirements/prod.txt
-botocore==1.37.8 \
-    --hash=sha256:a6c94f33de12f4b10b10684019e554c980469b8394c6d82448a738cbd8452cef \
-    --hash=sha256:b5825e08dd3e25642aa22a0d7d92bf81fef1ef857117e4155f923bbccf5aba63
+botocore==1.37.10 \
+    --hash=sha256:7515c8dfaaf5ba02604db9cf73c172615afee976136f31d8aec628629f24029f \
+    --hash=sha256:ab311982a9872eeb4e71906d3e3fcd2ba331a869d0fed16836ade7ce2e58bcea
     # via
     #   -r requirements/prod.txt
     #   boto3
@@ -407,9 +407,9 @@ cryptography==44.0.2 \
     #   mozilla-django-oidc
     #   pyjwt
     #   pyopenssl
-cssselect==1.2.0 \
-    --hash=sha256:666b19839cfaddb9ce9d36bfe4c969132c647b92fc9088c4e23f786b30f1b3dc \
-    --hash=sha256:da1885f0c10b60c03ed5eccbb6b68d6eff248d91976fcde348f395d54c9fd35e
+cssselect==1.3.0 \
+    --hash=sha256:56d1bf3e198080cc1667e137bc51de9cadfca259f03c2d4e09037b3e01e30f0d \
+    --hash=sha256:57f8a99424cfab289a1b6a816a43075a4b00948c86b4dcf3ef4ee7e15f7ab0c7
     # via pyquery
 curtsies==0.4.2 \
     --hash=sha256:6ebe33215bd7c92851a506049c720cca4cf5c192c1665c1d7a98a04c4702760e \
@@ -590,9 +590,9 @@ django-storages[google]==1.14.4 \
     --hash=sha256:69aca94d26e6714d14ad63f33d13619e697508ee33ede184e462ed766dc2a73f \
     --hash=sha256:d61930acb4a25e3aebebc6addaf946a3b1df31c803a6bf1af2f31c9047febaa3
     # via -r requirements/prod.txt
-django-taggit==5.0.1 \
-    --hash=sha256:a0ca8a28b03c4b26c2630fd762cb76ec39b5e41abf727a7b66f897a625c5e647 \
-    --hash=sha256:edcd7db1e0f35c304e082a2f631ddac2e16ef5296029524eb792af7430cab4cc
+django-taggit==6.1.0 \
+    --hash=sha256:ab776264bbc76cb3d7e49e1bf9054962457831bd21c3a42db9138b41956e4cf0 \
+    --hash=sha256:c4d1199e6df34125dd36db5eb0efe545b254dec3980ce5dd80e6bab3e78757c3
     # via
     #   -r requirements/prod.txt
     #   wagtail
@@ -647,9 +647,9 @@ factory-boy==3.3.3 \
     # via
     #   -r requirements/dev.in
     #   wagtail-factories
-faker==36.2.2 \
-    --hash=sha256:14adc340dc8abed5264142ffafe6f1a0f99cf7a7525bc6863755efd5fbbd0692 \
-    --hash=sha256:758bc63a26dc878fa0d76aa7639b8b65327927980ed0c3683b23bd8a5182f33f
+faker==37.0.0 \
+    --hash=sha256:2598f78b76710a4ed05e197dda5235be409b4c291ba5c9c7514989cfbc7a5144 \
+    --hash=sha256:d2e4e2a30d459a8ec0ae52a552aa51c48973cb32cf51107dee90f58a8322a880
     # via factory-boy
 filetype==1.2.0 \
     --hash=sha256:66b56cd6474bf41d8c54660347d37afcc3f7d1970648de365c102ef77548aadb \
@@ -676,9 +676,9 @@ glean-parser==14.5.0 \
     --hash=sha256:1808f13c0c29675a7bc7cf13bcc6e7c9dc57ebc830c52f8ca0603ecf3f45e964 \
     --hash=sha256:fe3f7a9ccdef5b51e97dac45332ba6223d4871c8d470aea5c92b9388a7f990b0
     # via -r requirements/prod.txt
-google-api-core==2.24.1 \
-    --hash=sha256:bc78d608f5a5bf853b80bd70a795f703294de656c096c0968320830a4bc280f1 \
-    --hash=sha256:f8b36f5456ab0dd99a1b693a40a31d1e7757beea380ad1b38faaf8941eae9d8a
+google-api-core==2.24.2 \
+    --hash=sha256:810a63ac95f3c441b7c0e43d344e372887f62ce9071ba972eacf32672e072de9 \
+    --hash=sha256:81718493daf06d96d6bc76a91c23874dbf2fac0adbbf542831b805ee6e974696
     # via
     #   -r requirements/prod.txt
     #   google-cloud-core
@@ -691,9 +691,9 @@ google-auth==2.38.0 \
     #   google-api-core
     #   google-cloud-core
     #   google-cloud-storage
-google-cloud-core==2.4.2 \
-    --hash=sha256:7459c3e83de7cb8b9ecfec9babc910efb4314030c56dd798eaad12c426f7d180 \
-    --hash=sha256:a4fcb0e2fcfd4bfe963837fad6d10943754fd79c1a50097d68540b6eb3d67f35
+google-cloud-core==2.4.3 \
+    --hash=sha256:1fab62d7102844b278fe6dead3af32408b1df3eb06f5c7e8634cbd40edc4da53 \
+    --hash=sha256:5130f9f4c14b4fafdff75c79448f9495cfade0d8775facf1b09c3bf67e027f6e
     # via
     #   -r requirements/prod.txt
     #   google-cloud-storage
@@ -1457,9 +1457,9 @@ polib==1.2.0 \
     # via
     #   -r requirements/prod.txt
     #   wagtail-localize
-proto-plus==1.26.0 \
-    --hash=sha256:6e93d5f5ca267b54300880fff156b6a3386b3fa3f43b1da62e680fc0c586ef22 \
-    --hash=sha256:bf2dfaa3da281fc3187d12d224c707cb57214fb2c22ba854eb0c105a3fb2d4d7
+proto-plus==1.26.1 \
+    --hash=sha256:13285478c2dcf2abb829db158e1047e2f1e8d63a077d94263c2b88b043c75a66 \
+    --hash=sha256:21a515a4c4c0088a773899e23c7bbade3d18f9c66c73edd4c7ee3816bc96a012
     # via
     #   -r requirements/prod.txt
     #   google-api-core
@@ -2067,9 +2067,9 @@ sentry-sdk==2.22.0 \
     --hash=sha256:3d791d631a6c97aad4da7074081a57073126c69487560c6f8bffcf586461de66 \
     --hash=sha256:b4bf43bb38f547c84b2eadcefbe389b36ef75f3f38253d7a74d6b928c07ae944
     # via -r requirements/prod.txt
-setuptools==75.8.2 \
-    --hash=sha256:4880473a969e5f23f2a2be3646b2dfd84af9028716d398e46192f84bc36900d2 \
-    --hash=sha256:558e47c15f1811c1fa7adbd0096669bf76c1d3f433f58324df69f3f5ecac4e8f
+setuptools==76.0.0 \
+    --hash=sha256:199466a166ff664970d0ee145839f5582cb9bca7a0a3a2e795b6a9cb2308e9c6 \
+    --hash=sha256:43b4ee60e10b0d0ee98ad11918e114c70701bc6051662a9a675a0496c1a158f4
     # via
     #   -r requirements/prod.txt
     #   supervisor
@@ -2251,9 +2251,9 @@ uvloop==0.21.0 \
     # via
     #   -r requirements/prod.txt
     #   granian
-wagtail==6.1.3 \
-    --hash=sha256:8f4908ab1b6b963a8aa7adf8f0ec738cd1dc79b9816c6d5f59018f600a404378 \
-    --hash=sha256:b6c4d5705adf51a5e49ea416032dd0a6534588fc31c5c9a95f698e6ddec0a203
+wagtail==6.3.3 \
+    --hash=sha256:4db952ce324b1473ff20819416c59b9166eb29863370c4f5174ebc1ab299f810 \
+    --hash=sha256:83c8f1b5c6307a08d940fe5e94f19342aaaafbfc51c2388e2e6f734a6bfeef0a
     # via
     #   -r requirements/prod.txt
     #   wagtail-factories
