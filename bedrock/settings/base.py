@@ -559,7 +559,7 @@ ALLOWED_HOSTS = list(
                 str,
                 allow_empty=True,
             ),
-            default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
+            default="",
         ),
     )
 )
