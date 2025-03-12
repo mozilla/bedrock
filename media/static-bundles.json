@@ -1424,6 +1424,12 @@
     },
     {
       "files": [
+        "js/privacy/redirects.es6.js"
+      ],
+      "name": "privacy_redirects"
+    },
+    {
+      "files": [
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
