@@ -4,13 +4,13 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-if (window.location.hash === '#health-report') {
+if (window.location.hash.indexOf('#health-report') === 0) {
     window.location.replace(
         'https://support.mozilla.org/kb/technical-and-interaction-data'
     );
 }
 
-if (window.location.hash === '#crash-reporter') {
+if (window.location.hash.indexOf('#crash-reporter') === 0) {
     window.location.replace(
         'https://support.mozilla.org/en-US/kb/crash-report'
     );
