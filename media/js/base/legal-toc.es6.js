@@ -7,7 +7,6 @@
 let isSticky = false;
 let resizeTimer;
 const stickyTOC = {};
-const viewport = document.getElementsByTagName('html')[0];
 const sidebar = document.querySelector('.mzp-l-sidebar');
 const sections = document.querySelectorAll(
     '.mzp-c-article .section1 .section2'
@@ -57,7 +56,7 @@ stickyTOC.isTwoColumn = () => {
  * @returns {Boolean}
  */
 stickyTOC.isTallEnough = () => {
-    return sidebar.offsetHeight < viewport.offsetHeight;
+    return sidebar.offsetHeight < window.innerHeight;
 };
 
 /**
@@ -69,6 +68,7 @@ stickyTOC.supportsSticky = () => {
         return (
             window.MzpSupports.classList &&
             window.MzpSupports.intersectionObserver &&
+            window.MzpSupports.matchMedia &&
             CSS.supports('position', 'sticky')
         );
     } else {
@@ -110,7 +110,11 @@ stickyTOC.destroySticky = () => {
  */
 stickyTOC.initSticky = () => {
     const makeSticky = () => {
-        if (stickyTOC.isTallEnough() && stickyTOC.isTwoColumn()) {
+        if (
+            stickyTOC.isTallEnough() &&
+            stickyTOC.isTwoColumn() &&
+            !matchMedia('(prefers-reduced-motion: reduce)').matches
+        ) {
             stickyTOC.createSticky();
         } else {
             stickyTOC.destroySticky();
