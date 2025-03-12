@@ -227,13 +227,17 @@ def get_wagtail_urls():
     return urls
 
 
-def update_sitemaps():
+def get_all_urls():
     urls = get_static_urls()
     urls.update(get_release_notes_urls())
     urls.update(get_security_urls())
     urls.update(get_contentful_urls())
     urls.update(get_wagtail_urls())
+    return urls
 
+
+def update_sitemaps():
+    urls = get_all_urls()
     # Output static files
     output_json(urls)
 
