@@ -49,3 +49,8 @@
   {{ title|safe }}
   {{ doc|safe }}
 {% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('legal_toc') }}
+{% endblock %}

@@ -1,0 +1,95 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+@use '../../m24/vars/color' as m24-tokens;
+
+
+@media #{$mq-md} {
+    .toc-is-sticky {
+        position: sticky;
+        top: 1.8rem; // heading has breathing room but is neatly hidden by sticky global nav
+    }
+}
+
+.c-toc {
+    margin-bottom: $layout-lg;
+
+    h3 {
+        margin-bottom: $layout-xs;
+    }
+
+    ul {
+        border-top: 1px solid $color-light-gray-30;
+
+        @media #{$mq-md} {
+            border-top: none;
+        }
+    }
+
+    li a {
+        @include bidi((
+            (background-position, center right, center left),
+            (padding, $spacing-md $layout-sm $spacing-md 0, $spacing-md 0 $spacing-md $layout-sm),
+        ));
+        background-image: url('/media/img/icons/m24-small/curve-arrow3.svg');
+        background-repeat: no-repeat;
+        background-size: $layout-xs auto;
+        border-bottom: 1px solid $color-light-gray-30;
+        display: block;
+        font-weight: 600;
+        position: relative;
+        text-decoration: none;
+        text-wrap: balance;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+        }
+
+        &::before {
+            @include bidi((
+                (left, -10px, right, auto),
+            ));
+            bottom: $spacing-sm;
+            content: '';
+            display: block;
+            position: absolute;
+            top: $spacing-sm;
+            transition: background-color 300ms ease-in;
+            width: 2px;
+        }
+
+        @media #{$mq-md} {
+            @include bidi((
+            (padding, $spacing-sm 0, $spacing-sm 0),
+        ));
+            background: none;
+            border: none;
+
+        }
+    }
+
+    li.active a {
+        &::before {
+            background-color: m24-tokens.$token-color-green;
+        }
+    }
+
+    li.active + li.active a {
+        &::before {
+            background-color: transparent;
+        }
+    }
+ }
+
+.c-extra {
+    display: none;
+    margin-top: $layout-sm;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
