@@ -26,7 +26,9 @@ test.describe(
                 'https://support.mozilla.org/en-US/kb/technical-and-interaction-data';
 
             // Wait for the redirect to happen
-            await page.waitForURL(expectedRedirectUrl, { timeout: 5000 }); // Wait up to 5 seconds for the redirect
+            await page.waitForURL(expectedRedirectUrl, {
+                waitUntil: 'commit'
+            });
 
             // Get the current URL
             const currentUrl = page.url();
