@@ -71,7 +71,7 @@ Traffic Cop
 
 Create a .js file where you initialize Traffic Cop and include that in the
 experiments block in the template that will be doing the redirection. Wrap the
-extra js include in a `switch <http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches>`_.
+extra js include in a `switch <http://bedrock.readthedocs.io/en/latest/install.html#feature-flipping-aka-switches-or-waffle-switches>`_.
 
 .. code-block:: jinja
 
