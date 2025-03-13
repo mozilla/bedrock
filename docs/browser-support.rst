@@ -29,7 +29,7 @@ particular locale for a short while* -- but those will be exceptions and rare.
 Browser Support Matrix
 ----------------------
 
-*Last updated: Updated July 19, 2023*
+*Last updated: January 20, 2025*
 
 Firefox
 ~~~~~~~
@@ -55,7 +55,7 @@ user agents in our browser support matrix below.
 
   macOS 10.15 and above
     - All evergreen browsers
-    - Safari
+    - Safari 15.6
 
   Linux
     - All evergreen browsers
@@ -70,13 +70,13 @@ CSS layout or JS features.
     - Internet Explorer 11
 
   Windows 8.1 and below
-    - Firefox 115
+    - Firefox 115 ESR
     - Chrome 109
     - Internet Explorer 10
 
   macOS 10.14 and below
-    - Firefox 115
-    - Chrome 114
+    - Firefox 115 ESR
+    - Chrome 116
     - Safari 12.1
 
 .. Note::
@@ -131,7 +131,7 @@ consists of no page-specific CSS or JS. Instead, we deliver well formed semantic
 and a universal CSS stylesheet that gets applied to all pages. We do not serve these
 older browsers any JS, with the exception of the following scripts:
 
-  * Google Analytics / :abbr:`GTM (Google Tag Manager)` snippet.
+  * Google Analytics / :abbr:`GTM (Google Tag Manager)` snippet (IE9).
   * HTML5shiv for parsing modern HTML semantic elements.
   * Stub Attribution script (IE8 / IE9).
 
@@ -205,8 +205,10 @@ The ``site.isModernBrowser`` global property can also be used within conditional
         // Code that will only be run on browsers that get enhanced support.
     }
 
-Exceptions (Updated 2019-06-11)
--------------------------------
+Exceptions
+----------
+
+*Last updated: January 20, 2025*
 
 Some pages of the website provide critical functionality to older browsers. In particular,
 the Firefox desktop download funnel enables users on older browsers to get a modern browser.
@@ -215,8 +217,8 @@ pages.
 
 **The following pages get enhanced experiences for a longer list of user agents:**
 
-  * ``/firefox/``
-  * ``/firefox/new/``
+  * ``/firefox/`` (incl. extra IE8 / IE9 styles)
+  * ``/firefox/new/`` (incl. extra IE8 / IE9 styles)
   * ``/firefox/download/thanks/``
 
 .. Note::
@@ -225,4 +227,4 @@ pages.
     by delivering extra page-specific CSS to legacy browsers, or allowing them to degrade
     gracefully. It does not mean everything needs to `look the same in every browser`_.
 
-.. _look the same in every browser: http://dowebsitesneedtolookexactlythesameineverybrowser.com/
+.. _look the same in every browser: https://www.peachpit.com/articles/article.aspx?p=1394622
