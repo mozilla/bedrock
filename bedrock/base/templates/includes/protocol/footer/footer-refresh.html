@@ -15,7 +15,14 @@
           <div class="moz24-footer-advertising-wrapper">
             <h2>{{ ftl('footer-refresh-mozilla-advertising') }}</h2>
             <p>{{ ftl('footer-refresh-privacy-first') }}</p>
-            <a href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Learn more">{{ ftl('footer-refresh-learn-more') }}</a>
+            <a class="moz24-footer-advertising-link" href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Learn more">
+              <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-learn-more') }}</span>
+              <span class="mzp-c-button-icon-end">
+                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
+                  <path fill="#fff" d="M23.4 12 9.1 0v10.5H0v3h9.1V24l14.3-12zm-11.3-1.5v-4l6.6 5.5-6.6 5.5v-7z"/>
+                </svg>
+              </span>
+            </a>
           </div>
         </div>
         <div class="moz24-footer-links">

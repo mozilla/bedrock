@@ -80,6 +80,42 @@ $max-footer-content-width: $content-max;
     width: 100%;
 }
 
+.moz24-footer-advertising-link {
+    font-weight: 600;
+    background-color: $m24-color-alt-white;
+    padding: 8px 24px;
+    border: $border-width solid $m24-color-black;
+    text-align: center;
+    margin-top: $spacer-lg;
+    display: block;
+
+    @media #{$mq-sm} {
+        width: fit-content;
+    }
+
+    &:link,
+    &:visited {
+        color: $m24-color-black;
+        text-decoration: none;
+    }
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        background-color: $m24-color-alt-black;
+        color: $m24-color-white;
+
+        .mzp-c-button-icon-end path {
+            fill: $m24-color-white;
+        }
+
+        .mzp-c-button-icon-text {
+            color: $m24-color-white;
+        }
+    }
+}
+
 .moz24-footer-links {
     @include divider-line;
 
