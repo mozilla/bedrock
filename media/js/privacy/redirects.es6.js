@@ -11,7 +11,5 @@ if (window.location.hash.indexOf('#health-report') === 0) {
 }
 
 if (window.location.hash.indexOf('#crash-reporter') === 0) {
-    window.location.replace(
-        'https://support.mozilla.org/en-US/kb/crash-report'
-    );
+    window.location.replace('https://support.mozilla.org/kb/crash-report');
 }
