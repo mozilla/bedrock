@@ -90,7 +90,6 @@ CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}") 
 CACHE_TIME_MED = 60 * 60  # 1 hour
 CACHE_TIME_LONG = 60 * 60 * 6  # 6 hours
 
-
 CACHES = {
     "default": {
         "BACKEND": "bedrock.base.cache.SimpleDictCache",
@@ -100,6 +99,12 @@ CACHES = {
             "MAX_ENTRIES": 5000,
             "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
         },
+    },
+    "db": {
+        # Intended for use as a slower – but distributed - cache
+        # See bedrock.base.cache.get_from_hybrid_cache and set_in_hybrid_cache
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "TIMEOUT": None,  # cached items will not expire
     },
 }
 
@@ -2433,6 +2438,8 @@ if DEV is True:
 else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
 
+
+CMS_DO_PAGE_PATH_PRECHECK = config("CMS_DO_PAGE_PATH_PRECHECK", default="True", parser=bool)
 
 # Our use of django-waffle relies on the following 2 settings to be set this way so that if a switch
 # doesn't exist, we get `None` back from `switch_is_active`.
