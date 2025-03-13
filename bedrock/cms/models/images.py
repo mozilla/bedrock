@@ -87,3 +87,8 @@ class BedrockRendition(AbstractRendition):
 
     class Meta:
         unique_together = (("image", "filter_spec", "focal_point_key"),)
+
+
+class SVGImage(AbstractImage):
+    def get_queryset(self):
+        return super().get_queryset().filter(file_extension="svg", original_filename__iendswith=".svg")
