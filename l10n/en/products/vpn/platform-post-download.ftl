@@ -35,6 +35,7 @@ vpn-launch-the-app = 2. Launch the app
 vpn-login-or-signup = 3. Log in or sign up
 vpn-enter-your-email = Enter your email address to log in or sign up and get started
 vpn-turn-on-vpn = 4. Turn on VPN
+vpn-install-firefox-extension = 5. Install { -brand-name-firefox } Extension
 vpn-pick-a-recommended = Pick a recommended location for a fast, stable connection or choose your desired location manually, then switch the toggle ON
 
 ## FAQ Strings
