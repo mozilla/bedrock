@@ -32,6 +32,22 @@
 
 .vpn-download-instructions {
     padding-top: $spacing-xl;
+
+    &.windows {
+        @media #{$mq-lg} {
+            .mzp-l-columns {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .mzp-c-picto {
+                grid-column: span 2;
+
+                &:nth-of-type(4) {
+                    grid-column: 2/4;
+                }
+            }
+        }
+    }
 }
 
 .mzp-c-picto {
