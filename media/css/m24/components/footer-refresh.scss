@@ -342,7 +342,6 @@ $max-footer-content-width: $content-max;
 
     @media #{$mq-md} {
         margin-bottom: 0;
-        min-width: 242px; // total width matching lang switcher width
     }
 
     &:link,
