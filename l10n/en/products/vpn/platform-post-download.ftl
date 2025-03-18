@@ -37,6 +37,7 @@ vpn-enter-your-email = Enter your email address to log in or sign up and get sta
 vpn-turn-on-vpn = 4. Turn on VPN
 vpn-install-firefox-extension = 5. Install { -brand-name-firefox } Extension
 vpn-pick-a-recommended = Pick a recommended location for a fast, stable connection or choose your desired location manually, then switch the toggle ON
+vpn-download-and-install = Download and install the extension to set per-site exclusions and choose different locations for different websites.
 
 ## FAQ Strings
 
