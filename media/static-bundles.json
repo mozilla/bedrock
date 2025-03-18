@@ -203,12 +203,6 @@
     },
     {
       "files": [
-        "css/base/banners/fundraiser.scss"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
         "css/base/banners/firefox-newsletter.scss"
       ],
       "name": "firefox-newsletter-banner"
@@ -1848,18 +1842,6 @@
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser.es6.js"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser-experiment.es6.js"
-      ],
-      "name": "fundraising-banner-experiment"
     },
     {
       "files": [
