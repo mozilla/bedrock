@@ -56,6 +56,7 @@ CAMPAIGN_OPTIONS = [
     "smi-domiip",
     "smi-shessdly",
     "smi-bytereview",
+    "pocket-test",
 ]
 
 
