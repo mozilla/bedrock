@@ -15,7 +15,6 @@ import wagtail.fields
 class Migration(migrations.Migration):
     dependencies = [
         ("cms", "0003_bedrockimage_description"),
-        ("wagtailcore", "0095_alter_page_title"),
         ("products", "0004_alter_vpncalltoactionsnippet_locale"),
     ]
 

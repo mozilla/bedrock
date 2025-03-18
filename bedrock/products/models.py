@@ -255,7 +255,11 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
     ]
 
     template = "products/monitor/cms/index.html"
-    AbstractBedrockCMSPage._meta.get_field("title").help_text = "Heading (use sentence case)"
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._meta.get_field("title").verbose_name = "Heading"
+        self._meta.get_field("title").help_text = "Heading (use sentence case)"
 
     def get_context(self, request):
         context = super().get_context(request)
@@ -311,5 +315,7 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
 
     parent_page_types = ["MonitorArticleIndexPage"]  # must be child of MonitorArticleIndexPage
 
-    AbstractBedrockCMSPage._meta.get_field("title").verbose_name = "Heading"
-    AbstractBedrockCMSPage._meta.get_field("title").help_text = "Heading (use sentence case)"
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._meta.get_field("title").verbose_name = "Heading"
+        self._meta.get_field("title").help_text = "Heading (use sentence case)"
