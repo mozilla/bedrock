@@ -2426,6 +2426,8 @@ _allowed_page_models = [
     "mozorg.LeadershipPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
+    "products.MonitorArticleIndexPage",
+    "products.MonitorArticleIndexPage",
 ]
 
 if DEV is True:
