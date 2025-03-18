@@ -114,6 +114,10 @@ $max-footer-content-width: $content-max;
             color: $m24-color-white;
         }
     }
+
+    .mzp-c-button-icon-text span {
+        @include visually-hidden;
+    }
 }
 
 .moz24-footer-links {
