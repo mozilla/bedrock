@@ -91,6 +91,8 @@
   ) }}
 {% endblock %}
 
+{% set feedback_url='https://connect.mozilla.org/' %}
+{% set bugzilla_url='https://bugzilla.mozilla.org/enter_bug.cgi' %}
 {% block content %}
 <main>
   <article id="main-content">
@@ -106,12 +108,6 @@
               {% set primary_heading = '{0} <br> Release Notes'|f(product_name)|safe %}
             {% endif %}
           {% endif %}
-          {% if release.product == 'Firefox for Android' %}
-            {% set feedback_url='https://input.mozilla.org/feedback/android/' + release.version + '?utm_source=releasenotes' %}
-          {% else %}
-            {% set feedback_url='https://input.mozilla.org/feedback/firefox/' + release.version + '?utm_source=releasenotes' %}
-          {% endif %}
-          {% set bugzilla_url='https://bugzilla.mozilla.org/' %}
           {% set call_out_desc = 'Release Notes tell you what’s new in Firefox. As always, we welcome your <a href="%(feedback)s">feedback</a>. You can also <a href="%(bugzilla)s">file a bug in Bugzilla</a> or see the <a href="%(check)s">system requirements</a> of this release.'|format(feedback=feedback_url, bugzilla=bugzilla_url, check=check_url) %}
           {% call callout(
             heading_level=1,
@@ -368,8 +364,8 @@
       <div class="mzp-l-content">
         <div class="c-release-footer-col">
           <h2>Need help or want to leave feedback?</h2>
-          <a rel="external" href="https://bugzilla.mozilla.org/enter_bug.cgi">File a bug</a>
-          <a rel="external" href="https://input.mozilla.org/feedback?utm_source=releasenotes">Leave feedback</a>
+          <a rel="external" href="{{ bugzilla_url }}">File a bug</a>
+          <a rel="external" href="{{ feedback_url }}">Leave feedback</a>
         </div>
         <div class="c-release-footer-col">
           <h2>Get Involved</h2>
