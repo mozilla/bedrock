@@ -26,25 +26,23 @@ block. Banners can also be toggled on and off using a switch:
       {% endif %}
     {% endblock %}
 
-Banner templates should extend the *base banner template*, and content can
-then be inserted using ``banner_title`` and  ``banner_content`` blocks:
+Banner templates should extend the *basic banner template*, which provides very
+unopinionated structure but includes several helpful features such as a close
+button with localized text and exclusion of banner content from search result
+snippets.
+
+Custom banner content can then be inserted using ``banner_title`` and ``banner_content``
+blocks:
 
 .. code-block:: jinja
 
-    {% extends 'includes/banners/base.html' %}
+    {% extends 'includes/banners/basic.html' %}
 
     {% block banner_title %}We all love the web. Join Mozilla in defending it.{% endblock %}
 
     {% block banner_content %}
         <!-- insert custom HTML here -->
     {% endblock %}
-
-CSS styles for banners should be located in ``media/css/base/banners/``, and
-should extend common base banner styles:
-
-.. code-block:: css
-
-    @import 'includes/base';
 
 To initiate a banner on a page, include ``js/base/banners/mozilla-banner.js`` in
 your page bundle and then initiate the banner using a unique ID. The ID will
