@@ -7,3 +7,17 @@
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import 'includes/dark-mode';
 @import 'includes/mofo-donate-cta';
+@import '~@mozilla-protocol/core/protocol/css/components/split';
+
+.wnp-content-title {
+    margin-block-end: $spacing-lg;
+}
+
+.wnp-content-tagline {
+    margin-block-end: $spacing-2xl;
+}
+
+// TODO: get real asset
+.mzp-c-split-media-asset {
+    background-color: gainsboro;
+}
