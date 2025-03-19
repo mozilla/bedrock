@@ -5,10 +5,10 @@
 @forward  '~@mozilla-protocol/core/protocol/css/includes/lib';
 @forward 'animation';
 @forward 'color';
-@forward 'fonts';
 @forward 'grid';
 @forward 'spacing';
 @forward 'text';
 
-
+$primary-font: var(--title-font-family);
+$secondary-font: var(--body-font-family);
 $mq-max: '(min-width: 1440px)';
