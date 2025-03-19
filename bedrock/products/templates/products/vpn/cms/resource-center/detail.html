@@ -29,7 +29,7 @@
   <div class="mzp-l-content mzp-t-content-md">
     <article class="mzp-c-article vpn-article w-rich-text">
       <h2>{{ page.title }}</h2>
-      {{ page.content|wagtail_richtext|safe }}
+      {{ page.content|richtext }}
     </article>
     {% with slug = page.slug %}
       {% include 'products/vpn/cms/resource-center/includes/voting-widget.html' %}

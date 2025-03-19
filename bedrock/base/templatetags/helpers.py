@@ -17,7 +17,6 @@ import jinja2
 from bs4 import BeautifulSoup
 from django_jinja import library
 from markupsafe import Markup
-from wagtail.rich_text import RichText
 
 from bedrock.base import waffle
 from bedrock.utils import expand_locale_groups
@@ -180,10 +179,8 @@ def get_locale_options(request, translations):
 
 
 @library.filter
-def wagtail_richtext(txt):
-    markup = str(RichText(txt))
-
-    soup = BeautifulSoup(markup, "html.parser")
+def add_protocol_classes(html):
+    soup = BeautifulSoup(html, "html.parser")
 
     # Add id to headings
     headings = soup.find_all(re.compile("h[1-6]{1}"))
@@ -208,4 +205,4 @@ def wagtail_richtext(txt):
         fixed_text = em.replace("—", " — ")
         em.replace_with(fixed_text)
 
-    return soup
+    return str(soup)

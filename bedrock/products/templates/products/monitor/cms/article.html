@@ -35,8 +35,12 @@
       <div class="c-toc">
         <h3>{{ ftl('ui-contents') }}</h3>
         <ul>
-          {% set contents = page.content|wagtail_richtext %}
+<<<<<<< HEAD
+          {% for heading in toc %}
+=======
+          {% set contents = page.content|richtext %}
           {% for heading in contents.select('h2') %}
+>>>>>>> 29d519080 (Try a different angle on slotting in Protocol CSS classes that doesn't break with Wagtail's unspoken RichText expectations)
             <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
           {% endfor %}
         </ul>
@@ -46,9 +50,9 @@
     <main class="mzp-l-main">
     <article class="mzp-c-article">
       <h1 class="mzp-c-article-title">{{ page.title }}</h1>
-      <p class="c-subhead">{{ page.subheading|wagtail_richtext }}</p>
+      <p class="c-subhead">{{ page.subheading|richtext }}</p>
 
-      {{ page.summary|wagtail_richtext|safe }}
+      {{ page.summary|richtext }}
 
       {% if page.call_to_action_middle %}
         <section class="c-protect">
@@ -60,13 +64,13 @@
           ) %}
             <h2>{{ page.call_to_action_middle.split_heading }}</h2>
             <p class="c-subhead">{{ page.call_to_action_middle.split_subheading }}</p>
-            {{ page.call_to_action_middle.split_content|wagtail_richtext|safe }}
+            {{ page.call_to_action_middle.split_content|richtext }}
             <p><a href="{{ page.call_to_action_middle.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_middle.split_button_text }}</a></p>
           {% endcall %}
         </section>
       {% endif %}
 
-      {{ page.content|wagtail_richtext|safe }}
+      {{ page.content|richtext }}
 
     </article>
   </div>
@@ -81,7 +85,7 @@
       ) %}
         <h2>{{ page.call_to_action_bottom.split_heading }}</h2>
         <p class="c-subhead">{{ page.call_to_action_bottom.split_subheading }}</p>
-        {{ page.call_to_action_bottom.split_content|wagtail_richtext|safe }}
+        {{ page.call_to_action_bottom.split_content|richtext }}
         <p><a href="{{ page.call_to_action_bottom.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_bottom.split_button_text }}</a></p>
       {% endcall %}
     </section>

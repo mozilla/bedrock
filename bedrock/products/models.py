@@ -4,6 +4,7 @@
 
 from django.db import models
 
+from bs4 import BeautifulSoup
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, HelpPanel, MultiFieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import TranslatableMixin
@@ -258,8 +259,6 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self._meta.get_field("title").verbose_name = "Heading"
-        self._meta.get_field("title").help_text = "Heading (use sentence case)"
 
     def get_context(self, request):
         context = super().get_context(request)
@@ -315,7 +314,14 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
 
     parent_page_types = ["MonitorArticleIndexPage"]  # must be child of MonitorArticleIndexPage
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._meta.get_field("title").verbose_name = "Heading"
-        self._meta.get_field("title").help_text = "Heading (use sentence case)"
+    def get_context(self, request):
+        context = super().get_context(request)
+
+        # Parse the HTML content
+        soup = BeautifulSoup(self.content, "html.parser")
+        # Extract headings and their IDs
+        toc = soup.find_all("h2")
+        # Add headings to the context
+        context["toc"] = toc
+
+        return context

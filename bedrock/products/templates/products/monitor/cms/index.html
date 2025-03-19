@@ -36,7 +36,7 @@
 
     <h2>{{ page.split_heading }}</h2>
     <p class="c-subhead">{{ page.split_subheading }}</p>
-    {{ page.split_content|wagtail_richtext|safe }}
+    {{ page.split_content|richtext }}
 
     <p><a href="{{ page.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.split_button_text }}</a></p>
     {% endcall %}
@@ -83,7 +83,7 @@
     ) %}
       <h2>{{ page.call_to_action_bottom.split_heading }}</h2>
       <p class="c-subhead">{{ page.call_to_action_bottom.split_subheading }}</p>
-      {{ page.call_to_action_bottom.split_content|wagtail_richtext|safe }}
+      {{ page.call_to_action_bottom.split_content|richtext }}
       <p><a href="{{ page.call_to_action_bottom.split_button_link }}{{ _params }}" class="mzp-c-button">{{ page.call_to_action_bottom.split_button_text }}</a></p>
     {% endcall %}
   </section>
