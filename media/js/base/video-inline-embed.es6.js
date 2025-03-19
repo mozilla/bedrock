@@ -41,7 +41,6 @@ function playVideo() {
         videoId: videoId,
         playerVars: {
             start: videoStart,
-            modestbranding: 1, // hide YouTube logo.
             rel: 0, // do not show related videos on end.
             cc_load_policy: 1 // show captions.
         },
