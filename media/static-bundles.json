@@ -1584,6 +1584,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js"
+      ],
+      "name": "firefox_whatsnew_137_uitour"
+    },
+    {
+      "files": [
         "js/firefox/firefox-20th/firefox-20th.js"
       ],
       "name": "firefox_20th"

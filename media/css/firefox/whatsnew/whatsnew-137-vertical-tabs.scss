@@ -17,6 +17,20 @@
     margin-block-end: $spacing-2xl;
 }
 
+.wnp-fallback-explainer {
+    display: none;
+}
+
+:is(.no-js, .wnp-no-uitour) {
+    .wnp-main-cta {
+        display: none;
+    }
+
+    .wnp-fallback-explainer {
+        display: block;
+    }
+}
+
 // TODO: get real asset
 .mzp-c-split-media-asset {
     background-color: gainsboro;
