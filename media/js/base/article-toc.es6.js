@@ -42,7 +42,7 @@ stickyTOC.supportsSticky = () => {
 };
 
 /**
- * Add intersection observer & classes
+ * Add class
  */
 stickyTOC.createSticky = () => {
     if (!isSticky) {
@@ -52,7 +52,7 @@ stickyTOC.createSticky = () => {
 };
 
 /**
- * Remove intersection observer & classes
+ * Remove class
  */
 stickyTOC.destroySticky = () => {
     if (isSticky) {
@@ -93,5 +93,7 @@ stickyTOC.initSticky = () => {
 };
 
 window.addEventListener('DOMContentLoaded', () => {
-    stickyTOC.initSticky();
+    if (sidebar) {
+        stickyTOC.initSticky();
+    }
 });
