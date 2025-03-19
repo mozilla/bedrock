@@ -179,7 +179,7 @@ def get_locale_options(request, translations):
 
 
 @library.filter
-def add_protocol_classes(html):
+def add_bedrock_attributes(html):
     soup = BeautifulSoup(html, "html.parser")
 
     # Add id to headings
