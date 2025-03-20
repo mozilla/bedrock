@@ -1,0 +1,36 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
+@import "../../protocol/components/video";
+
+.wnp-content-wrapper {
+    max-width: 27.5rem; // 440px
+}
+
+.wnp-content-title {
+    margin-block-end: $spacing-lg;
+}
+
+.wnp-content-tagline {
+    margin-block-end: $spacing-2xl;
+}
+
+.wnp-fallback-explainer {
+    display: none;
+}
+
+:is(.no-js, .wnp-no-uitour) {
+    .wnp-main-cta {
+        display: none;
+    }
+
+    .wnp-fallback-explainer {
+        display: block;
+    }
+}
