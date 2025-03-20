@@ -145,11 +145,6 @@
               "img/products/vpn/download/vpn-firefox-extension-700.png": "700w",
               "img/products/vpn/download/vpn-firefox-extension-500.png": "500w",
             },
-            sizes={
-              '(min-width: 1024px)': '25vw',
-              '(min-width: 768px)': '50vw',
-              'default': '250px'
-            },
             optional_attributes={
               'class': 'mzp-c-picto-image',
               'loading': 'lazy'
@@ -157,7 +152,7 @@
           ),
           body=True,
           ) %}
-          <p>{{ ftl('vpn-download-and-install') }}</p>
+          <p>{{ ftl('vpn-download-and-install', extension='https://addons.mozilla.org/firefox/addon/mozilla-vpn-extension/') }}</p>
         {% endcall %}
       </ol>
     </section>
