@@ -53,7 +53,7 @@ $max-footer-content-width: $content-max;
         }
 
         @media #{$mq-lg} {
-            width: grid(4);
+            width: calc((100% - $grid-gutter) / 2);
             flex-wrap: nowrap;
         }
 
@@ -63,6 +63,10 @@ $max-footer-content-width: $content-max;
             font-weight: 600;
             font-family: $primary-font;
             text-align: start;
+
+            @media #{$mq-lg} {
+                width: 65%;
+            }
         }
     }
 
@@ -87,7 +91,7 @@ $max-footer-content-width: $content-max;
         }
 
         @media #{$mq-lg} {
-            width: grid(8);
+            width: calc((100% - $grid-gutter) / 2);
         }
 
         h2 {

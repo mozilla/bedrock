@@ -32,13 +32,9 @@ $max-footer-content-width: $content-max;
 
 // primary nav
 .moz24-footer-primary {
-    margin: 32px 0;
-}
-
-.moz24-footer-sections-wrapper {
+    margin: $spacer-lg 0;
     display: flex;
     flex-direction: column;
-    gap: $grid-gutter;
 
     @media #{$mq-lg} {
         flex-direction: row;
@@ -47,29 +43,119 @@ $max-footer-content-width: $content-max;
     }
 }
 
-.moz24-footer-primary .moz24-footer-section-wrapper {
+.moz24-footer-sections-container {
+    display: flex;
+    flex-direction: column;
+    gap: $spacer-lg;
     width: 100%;
 
     @media #{$mq-lg} {
-        width: grid(2);
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: $grid-gutter;
     }
 
-    &.moz24-links-section {
-        @media (min-width: #{$screen-xs * 1.25}) {
-            display: grid;
-            grid-template-rows: 1fr 1fr;
-            grid-template-columns: 1fr 1fr;
-            column-gap: $grid-gutter;
-            place-items: stretch start;
+    @media #{$mq-xl} {
+        gap: grid(1);
+    }
+}
+
+.moz24-footer-advertising {
+    @include divider-line;
+    padding-bottom: $spacer-lg;
+    width: 100%;
+
+    @media #{$mq-lg} {
+        max-width: 343px;
+        border-bottom: transparent;
+    }
+
+    h2 {
+        color: $m24-color-black;
+    }
+}
+
+.moz24-footer-advertising-wrapper {
+    width: 100%;
+}
+
+.moz24-footer-advertising-link {
+    font-weight: 600;
+    background-color: $m24-color-alt-white;
+    padding: 8px 24px;
+    border: $border-width solid $m24-color-black;
+    text-align: center;
+    margin-top: $spacer-lg;
+    display: block;
+
+    @media #{$mq-sm} {
+        width: fit-content;
+    }
+
+    &:link,
+    &:visited {
+        color: $m24-color-black;
+        text-decoration: none;
+    }
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:focus-visible {
+        background-color: $m24-color-alt-black;
+        color: $m24-color-white;
+
+        .mzp-c-button-icon-end path {
+            fill: $m24-color-white;
         }
 
-        @media #{$mq-lg} {
-            width: grid(8);
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: start;
+        .mzp-c-button-icon-text {
+            color: $m24-color-white;
         }
+    }
+
+    .mzp-c-button-icon-text span {
+        @include visually-hidden;
+    }
+}
+
+.moz24-footer-links {
+    @include divider-line;
+
+    @media #{$mq-xs} {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        column-gap: $grid-gutter;
+        place-items: stretch start;
+    }
+
+    @media #{$mq-sm} {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: start;
+        gap: grid(1);
+    }
+
+    @media #{$mq-lg} {
+        justify-content: flex-end;
+        border-bottom: transparent;
+        width: 100%;
+        gap: $grid-gutter;
+
+        section {
+            width: calc((100% - 3 * $grid-gutter) / 3);
+        }
+    }
+}
+
+.moz24-footer-socials {
+    @include divider-line;
+
+    @media #{$mq-lg} {
+        border-bottom: transparent;
     }
 }
 
@@ -103,7 +189,7 @@ $max-footer-content-width: $content-max;
     }
 }
 
-.moz24-footer-links-social {
+.moz24-footer-social-links {
     margin: 0 0 0 $spacer-lg;
     display: flex;
     background-color: #161616; // hard-coded value as a fallback for readability on older browsers
@@ -239,8 +325,12 @@ $max-footer-content-width: $content-max;
         justify-content: space-between;
         align-items: center;
     }
-}
 
+    @media #{$mq-lg} {
+        justify-content: flex-end;
+        gap: $grid-gutter;
+    }
+}
 
 // donation link
 .moz24-footer-donate {
@@ -248,11 +338,15 @@ $max-footer-content-width: $content-max;
     border-radius: 0;
     font-weight: 600;
     background-color: $m24-color-alt-white;
-    padding: 6px 24px;
+    padding: 9.6px 24px;
     border: $border-width solid $m24-color-black;
     text-align: center;
     max-width: 800px;
     margin-bottom: $spacer-lg;
+
+    @media #{$mq-md} {
+        margin-bottom: 0;
+    }
 
     &:link,
     &:visited {
@@ -274,10 +368,6 @@ $max-footer-content-width: $content-max;
         .mzp-c-button-icon-text {
             color: $m24-color-white;
         }
-    }
-
-    @media #{$mq-md} {
-        margin-bottom: 0;
     }
 }
 
@@ -337,10 +427,14 @@ $max-footer-content-width: $content-max;
         border: $border-width solid $m24-color-alt-black;
         color: $m24-color-alt-black;
         font-weight: 600;
-        margin-top: 16px;
         padding-left: 36px;
         max-width: 100%;
-        width: fit-content;
+        width: 100%;
+        margin: 0;
+
+        @media #{$mq-lg} {
+            width: fit-content;
+        }
 
         &:hover,
         &:focus,
