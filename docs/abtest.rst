@@ -28,18 +28,20 @@ There are generally 3 user groups to consider:
 
 The Firefox team will set up the experiment and provide the URL params:
 
-- **branch** (required): identifies an experiment. When there is a single experiment, the branch value can be used to distinguish control and treatment (i.e. ``experiment-wnp-136-control`` and ``experiment-wnp-136-vpn``)
+- **branch**: identifies an experiment (i.e. ``experiment-wnp-131-tabs``)
 
-- **variant** (optional): when multiple experiments run at the same time, this secondary param distinguishes control and treatment variants within each experiment (i.e. ``experiment-wnp-136-vpn`` has 2 variants and ``experiment-wnp-136-tabs`` has 4 variants). Nimbus variant must match pre-defined value (i.e. ``v1``, ``v2``, ``v3``, ``v4``).
+- **variant**: identifies control and treatment variants within each experiment. Nimbus variant must match pre-defined value (i.e. ``v1``, ``v2``, ``v3``, ``v4``).
 
 Bedrock automatically sets ``nimbus_branch`` and ``nimbus_variant`` variables
-for use in ``firefox/views.py`` logic.
+for What’s New pages to use in ``firefox/views.py`` logic.
 
 Even if `control branch` and `not in experiment` users are served the same
 template, it may be important to distinguish them from an analytics
 perspective. UTM values should be included in the Nimbus experiment brief.
-These values can be used on internal `analytics events <http://bedrock.readthedocs.io/en/latest/coding.html#variation-views>`_
-and on external URLs.
+
+.. Note::
+
+    UTM params should only be applied to external URLs.
 
 Traffic Cop experiments
 -----------------------
