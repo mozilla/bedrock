@@ -8,6 +8,41 @@
 A/B Testing
 ===========
 
+Nimbus experiments
+------------------
+
+Nimbus (Experimenter), is Mozilla's 1st-party experimentation platform.
+Experiments from this platform will split traffic before users arrive on
+the page (meaning no client-side JS delay).
+
+.. Note::
+
+    Bedrock code will still determine what templates to show based on locales
+    and the url parameters added by Nimbus.
+
+There are generally 3 user groups to consider:
+
+#. In experiment - control branch
+#. In experiment - treatment branch
+#. Not in experiment
+
+The Firefox team will set up the experiment and provide the URL params:
+
+- **branch**: identifies an experiment (i.e. ``experiment-wnp-131-tabs``)
+
+- **variant**: identifies control and treatment variants within each experiment. Nimbus variant must match pre-defined value (i.e. ``v1``, ``v2``, ``v3``, ``v4``).
+
+Bedrock automatically sets ``nimbus_branch`` and ``nimbus_variant`` variables
+for What’s New pages to use in ``firefox/views.py`` logic.
+
+Even if `control branch` and `not in experiment` users are served the same
+template, it may be important to distinguish them from an analytics
+perspective. UTM values should be included in the Nimbus experiment brief.
+
+.. Note::
+
+    UTM params should only be applied to external URLs.
+
 Traffic Cop experiments
 -----------------------
 
