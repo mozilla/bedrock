@@ -7,7 +7,11 @@
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
 @import 'includes/dark-mode';
 @import 'includes/mofo-donate-cta';
-@import '~@mozilla-protocol/core/protocol/css/components/split';
+@import "../../protocol/components/video";
+
+.wnp-content-wrapper {
+    max-width: 27.5rem; // 440px
+}
 
 .wnp-content-title {
     margin-block-end: $spacing-lg;
@@ -29,9 +33,4 @@
     .wnp-fallback-explainer {
         display: block;
     }
-}
-
-// TODO: get real asset
-.mzp-c-split-media-asset {
-    background-color: gainsboro;
 }

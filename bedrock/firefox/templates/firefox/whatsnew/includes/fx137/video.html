@@ -1,0 +1,35 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% from "macros.html" import video_inline_embed with context %}
+
+ <!-- TODO: replace with real video and l10n poster images -->
+ {% if LANG == "fr" %}
+   {% set video_id = 'XN3xEfTOW7M' %}
+   {% set video_title = 'FR - placeholder' %}
+ {% elif LANG == "de" %}
+   {% set video_id = 'Fc0fPt_8tLY' %}
+   {% set video_title = 'DE - placeholder' %}
+ {% else %}
+   {% set video_id = '-Mz8xJW4CNE' %}
+   {% set video_title = 'EN - placeholder' %}
+ {% endif %}
+
+ {{ video_inline_embed(
+   id=video_id,
+   title=video_title,
+   image=resp_img(
+     url='img/firefox/whatsnew/whatsnew132/video.jpg',
+     srcset={
+       'img/firefox/whatsnew/whatsnew132/video-high-res.jpg': '2x'
+     },
+     optional_attributes={
+       'width': '800',
+       'height': '450',
+       'alt': '',
+     }
+   ),
+ ) }}

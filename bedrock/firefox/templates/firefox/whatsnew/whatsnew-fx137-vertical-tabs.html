@@ -4,9 +4,13 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros.html" import video_inline_embed with context %}
+{% from "macros-protocol.html" import split with context %}
+
 {% extends "firefox/whatsnew/base.html" %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-split') }}
   {{ css_bundle('firefox_whatsnew_137_vertical_tabs') }}
 {% endblock %}
 
@@ -28,29 +32,29 @@
 {% endif %}
 
 {% block wnp_content %}
-<section class="wnp-content-main mzp-c-split">
-  <div class="mzp-c-split-container">
-    <div class="mzp-c-split-body ">
-        <h2 class="wnp-content-title mzp-u-title-sm">{{ main_title }}</h2>
-        <p class="wnp-content-tagline">{{ main_tagline }}</p>
-        <p class="wnp-main-cta"><button data-cta-text="Enable the new sidebar" data-cta-position="primary" data-cta-name="wnp-137" class="mzp-c-button mzp-t-product">{{ main_cta }}</button></p>
-        <div class="wnp-fallback-explainer">
-          <p>{{ fallback_explainer | safe }}</p>
-          <p><a href="about:preferences" data-cta-text="Enable the new sidebar" data-cta-position="primary" data-cta-name="wnp-137" class="mzp-c-button mzp-t-product">{{ main_cta }}</a></p>
-        </div>
+  {% call split(
+    block_class='wnp-content-main mzp-l-split-center-on-sm-md',
+    body_class='wnp-content-wrapper',
+    media_include='firefox/whatsnew/includes/fx137/video.html',
+    media_class='mzp-l-split-h-center',
+    media_after=True
+    ) %}
+      <h2 class="wnp-content-title mzp-u-title-sm">{{ main_title }}</h2>
+      <p class="wnp-content-tagline">{{ main_tagline }}</p>
+      <p class="wnp-main-cta"><button data-cta-text="Enable the new sidebar" data-cta-position="primary" data-cta-name="wnp-137" class="mzp-c-button mzp-t-product">{{ main_cta }}</button></p>
+      <div class="wnp-fallback-explainer">
+        <p>{{ fallback_explainer | safe }}</p>
+        <p><a href="about:preferences" data-cta-text="Enable the new sidebar" data-cta-position="primary" data-cta-name="wnp-137" class="mzp-c-button mzp-t-product">{{ main_cta }}</a></p>
       </div>
-    <div class="mzp-c-split-media ">
-        <img class="mzp-c-split-media-asset" width="723" height="407" src="/placeholder" alt="placeholder">
-    </div>
-  </div>
-</section>
+  {% endcall %}
 
-<section class="wnp-footer">
-  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
-  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
-</section>
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
 {% endblock %}
 
 {% block js %}
+  {{ js_bundle('video-inline-embed') }}
   {{ js_bundle('firefox_whatsnew_137_uitour') }}
 {% endblock %}
