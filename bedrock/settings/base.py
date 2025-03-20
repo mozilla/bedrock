@@ -1266,6 +1266,10 @@ VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cl
 # ***This URL *MUST* end in a traling slash!***
 VPN_SUBSCRIPTION_URL = config("VPN_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
+# New URL for VPN subscription links
+# ***This URL *MUST* end in a traling slash!***
+VPN_SUBSCRIPTION_URL_NEXT = config("VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/")
+
 # Product ID for VPN subscriptions
 VPN_PRODUCT_ID = config("VPN_PRODUCT_ID", default="prod_FiJ42WCzZNRSbS" if DEV else "prod_FvnsFHIfezy3ZI")
 
