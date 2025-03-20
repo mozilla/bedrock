@@ -11,6 +11,7 @@ from django_jinja import library
 from markupsafe import Markup
 
 from bedrock.base.urlresolvers import reverse
+from bedrock.base.waffle import switch
 from lib.l10n_utils.fluent import ftl
 
 FTL_FILES = ["products/vpn/shared"]
@@ -148,7 +149,12 @@ def vpn_subscribe_link(
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     plan_id = selected_plan.get("id")
 
-    product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
+    if switch("vpn-subplat-next"):
+        product_slug = "mozillavpnstage"
+        plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
+        product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_slug}/{plan_slug}/landing/"
+    else:
+        product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
 
     if "analytics" in selected_plan:
         if class_name is None:
