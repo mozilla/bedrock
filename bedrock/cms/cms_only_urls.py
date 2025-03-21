@@ -32,4 +32,5 @@ urlpatterns = bedrock_i18n_patterns(
     # pattern is:
     # path("url/path/here/", dummy_view, name="route.name.here"),
     path("about/leadership/", dummy_view, name="mozorg.about.leadership.index"),
+    path("products/monitor/", dummy_view, name="products.monitor.landing"),
 )

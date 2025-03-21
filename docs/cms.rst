@@ -253,8 +253,10 @@ The data can be rendered in ``mozorg/test_page.html`` as follows:
         </header>
     {% endblock %}
 
-Note the ``|richtext`` filter applied to the ``page.body`` field. This is a
+Note the ``richtext`` filter applied to the ``page.body`` field. This is a
 Wagtail-provided Jinja2 filter that will render the rich text field as HTML.
+We use a custom ``wagtailcore/shared/richtext.html`` template to slot in
+our own Protocol CSS at the last minute
 
 Previewing pages in the CMS admin
 ---------------------------------
