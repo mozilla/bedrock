@@ -35,12 +35,7 @@
       <div class="c-toc">
         <h3>{{ ftl('ui-contents') }}</h3>
         <ul>
-<<<<<<< HEAD
           {% for heading in toc %}
-=======
-          {% set contents = page.content|richtext %}
-          {% for heading in contents.select('h2') %}
->>>>>>> 29d519080 (Try a different angle on slotting in Protocol CSS classes that doesn't break with Wagtail's unspoken RichText expectations)
             <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
           {% endfor %}
         </ul>
@@ -90,7 +85,6 @@
       {% endcall %}
     </section>
   {% endif %}
-
 
 {% endblock %}
 

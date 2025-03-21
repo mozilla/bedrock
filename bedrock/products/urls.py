@@ -49,14 +49,6 @@ urlpatterns = (
         ),
         name="products.vpn.resource-center.article",
     ),
-    # Monitor
-    path(
-        "monitor/",
-        prefer_cms(
-            views.resource_center_landing_view,
-        ),
-        name="products.monitor.landing",
-    ),
     path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )
