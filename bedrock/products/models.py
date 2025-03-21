@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.db import models
+from django.utils.text import slugify
 
 from bs4 import BeautifulSoup
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, HelpPanel, MultiFieldPanel
@@ -320,8 +321,13 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
         # Parse the HTML content
         soup = BeautifulSoup(self.content, "html.parser")
         # Extract headings and their IDs
-        toc = soup.find_all("h2")
-        # Add headings to the context
-        context["toc"] = toc
+        headings = soup.find_all("h2")
+        if headings:
+            for heading in headings:
+                heading["id"] = slugify(heading.text)
+            # Add headings to the context
+            context["toc"] = headings
+        else:
+            context["toc"] = []
 
         return context
