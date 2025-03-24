@@ -208,16 +208,16 @@
       {{ gallery_tile(
         class='m24-l-grid-quarter',
         image=picture(
-          url="img/home/2024/ai-gallery/llamafile-mobile-720.jpg",
+          url="img/home/2024/ai-gallery/solo-ai-mobile-720.jpg",
           sources=[
             {
               'media': '(max-width: 1311px)',
               "srcset" : {
-                "img/home/2024/ai-gallery/llamafile-mobile-375.jpg": "375w",
-                "img/home/2024/ai-gallery/llamafile-mobile-720.jpg": "720w",
-                "img/home/2024/ai-gallery/llamafile-mobile-976.jpg": "976w",
-                "img/home/2024/ai-gallery/llamafile-mobile-1232.jpg": "1232w",
-                "img/home/2024/ai-gallery/llamafile-mobile-1450.jpg": "1450w",
+                "img/home/2024/ai-gallery/solo-ai-mobile-375.jpg": "375w",
+                "img/home/2024/ai-gallery/solo-ai-mobile-720.jpg": "720w",
+                "img/home/2024/ai-gallery/solo-ai-mobile-976.jpg": "976w",
+                "img/home/2024/ai-gallery/solo-ai-mobile-1232.jpg": "1232w",
+                "img/home/2024/ai-gallery/solo-ai-mobile-1450.jpg": "1450w",
               },
               'sizes': {
                 "(min-width: 768px)": "calc((100vw - 32px) / 2)",
@@ -228,8 +228,8 @@
             },
             {
               'srcset': {
-                "img/home/2024/ai-gallery/llamafile-desktop-344.jpg": "344w",
-                "img/home/2024/ai-gallery/llamafile-desktop-664.jpg": "664w",
+                "img/home/2024/ai-gallery/solo-ai-desktop-344.jpg": "344w",
+                "img/home/2024/ai-gallery/solo-ai-desktop-664.jpg": "664w",
               },
               'sizes': {
                 "(min-width: 1440px)": "332px",
@@ -241,15 +241,15 @@
           ],
           optional_attributes={
             "loading": "lazy",
-            "alt": ftl('m24-home-alt-llamafile-logo'),
+            "alt": ftl('m24-home-alt-solo-ai-logo'),
           }
         ),
         tag=ftl('m24-home-tag-project', fallback='m24-home-tag-product'),
-        title=ftl('m24-home-llamafile'),
-        desc=ftl('m24-home-run-large-language'),
-        link_url='https://builders.mozilla.org/project/llamafile/' + utm_params,
+        title=ftl('m24-home-solo-ai'),
+        desc=ftl('m24-home-create-your-website'),
+        link_url='https://soloist.ai/?utm_source=mozilla&utm_medium=cards_join_the_movement&utm_campaign=mozilla_homepage',
         cta_text=ftl('m24-home-get-started'),
-        link_attributes='rel="external" target="_blank" data-link-text="Get started (Llamafile)"'
+        link_attributes='rel="external" target="_blank" data-link-text="Get started (Solo)"'
       ) }}
 
       {{ gallery_tile(
