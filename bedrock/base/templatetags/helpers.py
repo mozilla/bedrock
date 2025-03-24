@@ -199,10 +199,4 @@ def add_bedrock_attributes(html):
             link["rel"] = "external noopener"
             link["target"] = "_blank"
 
-    # Add spaces around em dash
-    find_ems = soup.find_all(text=re.compile("—"))
-    for em in find_ems:
-        fixed_text = em.replace("—", " — ")
-        em.replace_with(fixed_text)
-
     return str(soup)

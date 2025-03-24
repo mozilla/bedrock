@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 
@@ -125,7 +126,7 @@ class MonitorCallToActionSnippet(TranslatableMixin):
         max_length=60,
         blank=True,
     )
-    split_content = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    split_content = RichTextField(null=True, blank=True, features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL)
     split_button_text = models.CharField(
         verbose_name="Link Text",
         max_length=40,
@@ -187,7 +188,7 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
         max_length=60,
         blank=True,
     )
-    split_content = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    split_content = RichTextField(null=True, blank=True, features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL)
     split_button_text = models.CharField(
         verbose_name="Link Text",
         max_length=40,
@@ -286,7 +287,7 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
         max_length=255,
         blank=True,
     )
-    summary = RichTextField(null=True, blank=True, features=["bold", "italic", "link", "ul", "ol"])
+    summary = RichTextField(null=True, blank=True, features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL)
     call_to_action_middle = models.ForeignKey(
         "products.MonitorCallToActionSnippet",
         null=True,
@@ -294,7 +295,7 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    content = RichTextField(null=True, blank=False, features=["bold", "italic", "link", "ul", "ol", "h2", "h3"])
+    content = RichTextField(null=True, blank=False, features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL)
     call_to_action_bottom = models.ForeignKey(
         "products.MonitorCallToActionSnippet",
         null=True,
