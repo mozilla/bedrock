@@ -38,7 +38,7 @@
       </div>
     </header>
     <section class="vpn-download-instructions windows mzp-l-content" data-testid="vpn-download-instructions">
-      <ol class="mzp-l-columns mzp-t-columns-four">
+      <ol class="mzp-l-columns mzp-t-columns-three">
         {% call picto(
           base_el='li',
           title=ftl('vpn-open-the-file'),
@@ -134,6 +134,25 @@
           body=True,
           ) %}
           <p>{{ ftl('vpn-pick-a-recommended') }}</p>
+        {% endcall %}
+        {% call picto(
+          base_el='li',
+          title=ftl('vpn-install-firefox-extension'),
+          image=resp_img(
+            url='img/products/vpn/download/vpn-firefox-extension-700.png',
+            srcset={
+              "img/products/vpn/download/vpn-firefox-extension-960.png": "960w",
+              "img/products/vpn/download/vpn-firefox-extension-700.png": "700w",
+              "img/products/vpn/download/vpn-firefox-extension-500.png": "500w",
+            },
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'loading': 'lazy'
+            }
+          ),
+          body=True,
+          ) %}
+          <p>{{ ftl('vpn-download-and-install', extension='https://addons.mozilla.org/firefox/addon/mozilla-vpn-extension/') }}</p>
         {% endcall %}
       </ol>
     </section>
