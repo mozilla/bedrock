@@ -6,7 +6,7 @@
 
 BUILDDIR      = site
 
-.PHONY: help clean preflight serve
+.PHONY: help clean preflight serve build
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -21,4 +21,7 @@ preflight:
 	pip install -r ../requirements/docs.txt
 
 serve:
-	mkdocs serve
+	mkdocs serve --open
+
+build:
+	mkdocs build
