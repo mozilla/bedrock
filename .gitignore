@@ -66,3 +66,4 @@ tmp/*
 venv
 /custom-media
 /local-credentials/*.json
+docs/site
