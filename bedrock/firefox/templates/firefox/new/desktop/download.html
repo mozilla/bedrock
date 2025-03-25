@@ -8,6 +8,14 @@
 
 {% extends "firefox/new/desktop/base.html" %}
 
+{% set show_firefox_default_experiment = switch('experiment-firefox-new-default', ['en']) and country_code in ['US', 'CA'] %}
+
+{% block experiments %}
+  {% if show_firefox_default_experiment %}
+    {{ js_bundle('experiment-firefox-new-default') }}
+  {% endif %}
+{% endblock %}
+
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
 {% set ios_url = app_store_url('firefox', 'mozilla-org-firefox-new') %}
 
