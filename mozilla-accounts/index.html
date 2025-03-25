@@ -8,29 +8,35 @@
       
       
       
+        <link rel="canonical" href="https://mozilla.github.io/bedrock/mozilla-accounts/">
+      
       
         <link rel="prev" href="../download-buttons/">
       
       
-        <link rel="next" href="../funnelcake/">
+        <link rel="next" href="../abtest/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>Mozilla accounts helpers - Bedrock Documentation</title>
+        <title>Mozilla account helpers - Bedrock Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,11 +65,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mozilla-account-sign-up-form" class="md-skip">
+        <a href="#mozilla-accounts-helpers" class="md-skip">
           Skip to content
         </a>
       
@@ -89,12 +92,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -106,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mozilla accounts helpers
+              Mozilla account helpers
             
           </span>
         </div>
@@ -115,34 +118,38 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
       
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -150,19 +157,29 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -179,7 +196,7 @@
         <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -209,12 +226,12 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     Bedrock Documentation
@@ -224,7 +241,7 @@
       <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -236,14 +253,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -251,14 +273,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -266,14 +293,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../l10n/" class="md-nav__link">
-        Localization
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
       </a>
     </li>
   
@@ -281,14 +313,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../coding/" class="md-nav__link">
-        Developing on Bedrock
+        
+  
+  <span class="md-ellipsis">
+    Developing on Bedrock
+  </span>
+  
+
       </a>
     </li>
   
@@ -296,14 +333,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browser Support
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../contribute/" class="md-nav__link">
-        How to Contribute
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute
+  </span>
+  
+
       </a>
     </li>
   
@@ -311,14 +373,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
-        Continuous Integration & Deployment
+        
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +393,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../testing/" class="md-nav__link">
-        Front-end testing
+        
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +413,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task-queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Queue
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../redirects/" class="md-nav__link">
-        Managing redirects
+        
+  
+  <span class="md-ellipsis">
+    Managing redirects
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +453,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../newsletters/" class="md-nav__link">
-        Newsletters
+        
+  
+  <span class="md-ellipsis">
+    Newsletters
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,14 +473,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../contentful/" class="md-nav__link">
-        Contentful CMS Integration
+      <a href="../legal-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Legal Docs
+  </span>
+  
+
       </a>
     </li>
   
@@ -386,14 +493,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Content Management System
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../sitemap/" class="md-nav__link">
-        Sitemaps
+        
+  
+  <span class="md-ellipsis">
+    Sitemaps
+  </span>
+  
+
       </a>
     </li>
   
@@ -401,29 +533,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../content-cards/" class="md-nav__link">
-        Using External Content Card Data
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../banners/" class="md-nav__link">
-        Banners
+        
+  
+  <span class="md-ellipsis">
+    Banners
+  </span>
+  
+
       </a>
     </li>
   
@@ -431,14 +553,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../uitour/" class="md-nav__link">
-        Mozilla.UITour
+        
+  
+  <span class="md-ellipsis">
+    Mozilla.UITour
+  </span>
+  
+
       </a>
     </li>
   
@@ -446,14 +573,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../send-to-device/" class="md-nav__link">
-        Send to Device widget
+        
+  
+  <span class="md-ellipsis">
+    Send to Device widget
+  </span>
+  
+
       </a>
     </li>
   
@@ -461,14 +593,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../download-buttons/" class="md-nav__link">
-        Firefox Download Buttons
+        
+  
+  <span class="md-ellipsis">
+    Firefox Download Buttons
+  </span>
+  
+
       </a>
     </li>
   
@@ -476,11 +613,10 @@
     
       
       
-      
-
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -490,12 +626,24 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Mozilla account helpers
+          
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Mozilla account helpers
+        
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
       </a>
       
         
@@ -512,8 +660,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mozilla-accounts-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozilla accounts helpers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mozilla accounts helpers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-account-sign-up-form" class="md-nav__link">
-    Mozilla account sign-up form
+    <span class="md-ellipsis">
+      Mozilla account sign-up form
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla account sign-up form">
@@ -521,14 +681,18 @@
         
           <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
-    Configuration
+    <span class="md-ellipsis">
+      Configuration
+    </span>
   </a>
   
 </li>
@@ -537,10 +701,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-account-links" class="md-nav__link">
-    Mozilla account links
+    <span class="md-ellipsis">
+      Mozilla account links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla account links">
@@ -548,7 +714,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_1" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -557,10 +725,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-monitor-links" class="md-nav__link">
-    Mozilla Monitor links
+    <span class="md-ellipsis">
+      Mozilla Monitor links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla Monitor links">
@@ -568,7 +738,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_2" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -577,10 +749,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pocket-links" class="md-nav__link">
-    Pocket links
+    <span class="md-ellipsis">
+      Pocket links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Pocket links">
@@ -588,7 +762,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_3" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -597,32 +773,40 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#common-parameters" class="md-nav__link">
-    Common Parameters
+    <span class="md-ellipsis">
+      Common Parameters
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mozilla-vpn-links" class="md-nav__link">
-    Mozilla VPN Links
+        
+          <li class="md-nav__item">
+  <a href="#vpn-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozilla VPN (Virtual Private Network) Links
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Mozilla VPN Links">
+    <nav class="md-nav" aria-label="Mozilla VPN (Virtual Private Network) Links">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#usage_4" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#common-vpn-parameters" class="md-nav__link">
-    Common VPN Parameters
+  <a href="#common-vpn-virtual-private-network-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common VPN (Virtual Private Network) Parameters
+    </span>
   </a>
   
 </li>
@@ -631,18 +815,27 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#firefox-sync-and-uitour" class="md-nav__link">
-    Firefox Sync and UITour
+    <span class="md-ellipsis">
+      Firefox Sync and UITour
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-sign-up-flows" class="md-nav__link">
-    Testing Sign-up Flows
+    <span class="md-ellipsis">
+      Testing Sign-up Flows
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -656,29 +849,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../funnelcake/" class="md-nav__link">
-        Funnel cakes and Partner Builds
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../abtest/" class="md-nav__link">
-        A/B Testing
+        
+  
+  <span class="md-ellipsis">
+    A/B Testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -686,14 +869,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../vpn-subscriptions/" class="md-nav__link">
-        Mozilla VPN Subscriptions
+        
+  
+  <span class="md-ellipsis">
+    Mozilla VPN Subscriptions
+  </span>
+  
+
       </a>
     </li>
   
@@ -701,350 +889,569 @@
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
-          Attribution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_21">
-          <span class="md-nav__icon md-icon"></span>
-          Attribution
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../attribution/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../attribution/" class="md-nav__link">
-        Attribution
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Attribution
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            Attribution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0001-analytics/" class="md-nav__link">
-        Mozorg Analytics
+        
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
-        Firefox Desktop attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
-        Firefox Mobile attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Mobile attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
-        Mozilla accounts attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla accounts attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
-        Mozilla CJMS Affiliate attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CJMS Affiliate attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
-        Pocket mode attribution
+      <a href="../attribution/0006-consent-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Data Privacy and Concent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
-          Architectural Decision Records
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
-          <span class="md-nav__icon md-icon"></span>
-          Architectural Decision Records
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../architecture/decisions/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../architectural-decisions/" class="md-nav__link">
-        Architectural Decision Records
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Architectural Decision Records
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_23" id="__nav_23_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural Decision Records
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
-        1. Record architecture decisions
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
-        2. Move CI/CD Pipelines to Gitlab
+        
+  
+  <span class="md-ellipsis">
+    2. Move CI/CD Pipelines to Gitlab
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
-        3. Use Cloudflare Workers and Convert for multi-variant testing
+        
+  
+  <span class="md-ellipsis">
+    3. Use Cloudflare Workers and Convert for multi-variant testing
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
-        4. Use Fluent For Localization
+        
+  
+  <span class="md-ellipsis">
+    4. Use Fluent For Localization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
-        5. Use a Single Docker Image For All Deployments
+        
+  
+  <span class="md-ellipsis">
+    5. Use a Single Docker Image For All Deployments
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        6. Revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    6. Revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        7. Further revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    7. Further revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
-        8. Move Demos To GCP
+        
+  
+  <span class="md-ellipsis">
+    8. Move Demos To GCP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
-        9. Manage Contentful schema state via migrations
+        
+  
+  <span class="md-ellipsis">
+    9. Manage Contentful schema state via migrations
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
-        10. Move CI to Github Actions for Unit and Integration tests
+        
+  
+  <span class="md-ellipsis">
+    10. Move CI to Github Actions for Unit and Integration tests
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
-        11. Use StatsD for metrics collection
+        
+  
+  <span class="md-ellipsis">
+    11. Use StatsD for metrics collection
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0012-wagtail-for-cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Use Wagtail CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../browser-support/" class="md-nav__link">
-        Browser Support
+      <a href="../contentful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contentful (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Content Cards (deprecated)
+  </span>
+  
+
       </a>
     </li>
   
@@ -1075,8 +1482,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#mozilla-accounts-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozilla accounts helpers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mozilla accounts helpers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-account-sign-up-form" class="md-nav__link">
-    Mozilla account sign-up form
+    <span class="md-ellipsis">
+      Mozilla account sign-up form
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla account sign-up form">
@@ -1084,14 +1503,18 @@
         
           <li class="md-nav__item">
   <a href="#usage" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#configuration" class="md-nav__link">
-    Configuration
+    <span class="md-ellipsis">
+      Configuration
+    </span>
   </a>
   
 </li>
@@ -1100,10 +1523,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-account-links" class="md-nav__link">
-    Mozilla account links
+    <span class="md-ellipsis">
+      Mozilla account links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla account links">
@@ -1111,7 +1536,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_1" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -1120,10 +1547,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#mozilla-monitor-links" class="md-nav__link">
-    Mozilla Monitor links
+    <span class="md-ellipsis">
+      Mozilla Monitor links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Mozilla Monitor links">
@@ -1131,7 +1560,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_2" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -1140,10 +1571,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pocket-links" class="md-nav__link">
-    Pocket links
+    <span class="md-ellipsis">
+      Pocket links
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Pocket links">
@@ -1151,7 +1584,9 @@
         
           <li class="md-nav__item">
   <a href="#usage_3" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
@@ -1160,32 +1595,40 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#common-parameters" class="md-nav__link">
-    Common Parameters
+    <span class="md-ellipsis">
+      Common Parameters
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mozilla-vpn-links" class="md-nav__link">
-    Mozilla VPN Links
+        
+          <li class="md-nav__item">
+  <a href="#vpn-helpers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozilla VPN (Virtual Private Network) Links
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Mozilla VPN Links">
+    <nav class="md-nav" aria-label="Mozilla VPN (Virtual Private Network) Links">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#usage_4" class="md-nav__link">
-    Usage
+    <span class="md-ellipsis">
+      Usage
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#common-vpn-parameters" class="md-nav__link">
-    Common VPN Parameters
+  <a href="#common-vpn-virtual-private-network-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common VPN (Virtual Private Network) Parameters
+    </span>
   </a>
   
 </li>
@@ -1194,18 +1637,27 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#firefox-sync-and-uitour" class="md-nav__link">
-    Firefox Sync and UITour
+    <span class="md-ellipsis">
+      Firefox Sync and UITour
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-sign-up-flows" class="md-nav__link">
-    Testing Sign-up Flows
+    <span class="md-ellipsis">
+      Testing Sign-up Flows
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1229,203 +1681,162 @@
 
   <h1>Mozilla account helpers</h1>
 
+<h2 id="mozilla-accounts-helpers">Mozilla accounts helpers<a class="headerlink" href="#mozilla-accounts-helpers" title="Permanent link">&para;</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Since a rebranding in October 2023, we now refer to "Mozilla accounts"
-in our web pages instead of "Firefox accounts". This rebranding is so
-far superficial, and sign up flows still go to <code>accounts.firefox.com</code>.
-Because of this, our internal code and helpers still use <code>FxA</code> or <code>fxa</code>
-as a common abbreviation. However the language used around them should
-now be "Mozilla accounts" going forward.</p>
+<p>Since a rebranding in October 2023, we now refer to "Mozilla accounts" in our web pages instead of "Firefox accounts". This rebranding is so far superficial, and sign up flows still go to <code>accounts.firefox.com</code>. Because of this, our internal code and helpers still use <code>FxA</code> or <code>fxa</code> as a common abbreviation. However the language used around them should now be "Mozilla accounts" going forward.</p>
 </div>
-<p>Marketing pages often promote the creation of a <a href="https://accounts.firefox.com">Mozilla
-account</a> as a common <em>call to action</em>
-(<abbr title="Call To Action">CTA</abbr>). This is typically accomplished using either a sign-up form, or a
-prominent link/button. Other products such as <a href="https://www.mozilla.org/products/vpn/">Mozilla
-<abbr title="Virtual Private Network">VPN</abbr></a> use similar account auth
-flows to manage subscriptions. To accomplish these tasks, bedrock
-templates can take advantage of a series of Python helpers which can be
-used to standardize product referrals, and make supporting these auth
-flows easier.</p>
+<p>Marketing pages often promote the creation of a <a href="https://accounts.firefox.com">Mozilla account</a> as a common <em>call to action</em> (CTA). This is typically accomplished using either a sign-up form, or a prominent link/button. Other products such as <a href="https://www.mozilla.org/products/vpn/">Mozilla VPN</a> use similar account auth flows to manage subscriptions. To accomplish these tasks, bedrock templates can take advantage of a series of Python helpers which can be used to standardize product referrals, and make supporting these auth flows easier.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>See the <a href="../attribution/0004-mozilla-accounts/#mozilla-accounts-attribution">attribution docs</a>
-for more of a detailed description of the analytics functions these helpers provide.</p>
+<p>See the attribution docs (<a href="../attribution/0004-mozilla-accounts/">Mozilla accounts attribution</a>) for more a detailed description of the analytics functions these helpers provide.</p>
 </div>
-<h2 id="mozilla-account-sign-up-form">Mozilla account sign-up form<a class="headerlink" href="#mozilla-account-sign-up-form" title="Permanent link">&para;</a></h2>
-<p>Use the <code>fxa_email_form</code> macro to display a Mozilla account sign-up form
-on a page.</p>
-<h3 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h3>
-<p>To use the form in a Jinja template, first import the <code>fxa_email_form</code>
-macro:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">{%</span> <span class="k">from</span> <span class="s2">&quot;macros.html&quot;</span> <span class="k">import</span> <span class="nv">fxa_email_form</span> <span class="k">with context</span> <span class="cp">%}</span>
-</code></pre></div>
+<h3 id="mozilla-account-sign-up-form">Mozilla account sign-up form<a class="headerlink" href="#mozilla-account-sign-up-form" title="Permanent link">&para;</a></h3>
+<p>Use the <code>fxa_email_form</code> macro to display a Mozilla account sign-up form on a page.</p>
+<h4 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h4>
+<p>To use the form in a Jinja template, first import the <code>fxa_email_form</code> macro:</p>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">{%</span> <span class="k">from</span> <span class="s2">&quot;macros.html&quot;</span> <span class="k">import</span> <span class="nv">fxa_email_form</span> <span class="k">with context</span> <span class="cp">%}</span>
+</span></code></pre></div>
 <p>The form can then be invoked using:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">fxa_email_form</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-accounts&#39;</span><span class="o">)</span> <span class="cp">}}</span>
-</code></pre></div>
-<p>The macro's respective JavaScript and CSS dependencies should also be
-imported in the page:</p>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">{{</span> <span class="nv">fxa_email_form</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-accounts&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<p>The macro's respective JavaScript and CSS dependencies should also be imported in the page:</p>
 <p><strong>Javascript:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="k">import</span><span class="w"> </span><span class="nx">FxaForm</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./path/to/fxa-form.es6.js&#39;</span><span class="p">;</span>
-
-<span class="nx">FxaForm</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
-</code></pre></div>
-<p>The above JS is also available as a pre-compiled bundle, which can be
-included directly in a template:</p>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">js_bundle</span><span class="o">(</span><span class="s1">&#39;fxa_form&#39;</span><span class="o">)</span> <span class="cp">}}</span>
-</code></pre></div>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">import</span><span class="w"> </span><span class="nx">FxaForm</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;./path/to/fxa-form.es6.js&#39;</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nx">FxaForm</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+</span></code></pre></div>
+<p>The above JS is also available as a pre-compiled bundle, which can be included directly in a template:</p>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">{{</span> <span class="nv">js_bundle</span><span class="o">(</span><span class="s1">&#39;fxa_form&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</span></code></pre></div>
 <p><strong>CSS:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../path/to/fxa-form&#39;</span><span class="p">;</span>
-</code></pre></div>
-<p>The JavaScript files will automatically handle things such as adding
-metrics parameters for Firefox desktop browsers. The CSS file contains
-some default styling for the sign-up form.</p>
-<h3 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h3>
-<p>The sign-up form macro accepts the following parameters (* indicates a
-required parameter)</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">@</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../path/to/fxa-form&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<p>The JavaScript files will automatically handle things such as adding metrics parameters for Firefox desktop browsers. The CSS file contains some default styling for the sign-up form.</p>
+<h4 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h4>
+<p>The sign-up form macro accepts the following parameters (* indicates a required parameter)</p>
 <table>
 <thead>
 <tr>
-<th>Parameter name</th>
-<th>Definition</th>
-<th>Format</th>
-<th>Example</th>
+<th>&gt; Parameter name</th>
+<th>&gt; Definition</th>
+<th>&gt; Format</th>
+<th>&gt; Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>entrypoint*</td>
+<td>&gt; entrypoint*</td>
 <td>Unambiguous identifier for which page of the site is the referrer.</td>
 <td>mozilla.org-directory-page</td>
-<td>‘mozilla.org-firefox-accounts’</td>
+<td>'mozilla.org-firefox-accounts'</td>
 </tr>
 <tr>
-<td>entrypoint_experiment</td>
+<td>&gt; entrypoint_experiment</td>
 <td>Used to identify experiments.</td>
 <td>Experiment ID</td>
-<td>‘whatsnew-headlines’</td>
+<td>'whatsnew-headlines'</td>
 </tr>
 <tr>
-<td>entrypoint_variation</td>
+<td>&gt; entrypoint_variation</td>
 <td>Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.</td>
 <td>Variant identifier</td>
-<td>‘b’</td>
+<td>'b'</td>
 </tr>
 <tr>
-<td>style</td>
+<td>&gt; style</td>
 <td>An optional parameter used to invoke an alternatively styled page at accounts.firefox.com.</td>
 <td>String</td>
-<td>‘trailhead’</td>
+<td>&gt; 'trailhead'</td>
 </tr>
 <tr>
-<td>class_name</td>
-<td>Applies a CSS class name to the form. Defaults to: ‘fxa-email-form’</td>
+<td>&gt; class_name</td>
+<td>Applies a CSS class name to the form. Defaults to: 'fxa-email-form'</td>
 <td>String</td>
-<td>‘fxa-email-form’</td>
+<td>'fxa-email-form'</td>
 </tr>
 <tr>
-<td>form_title</td>
+<td>&gt; form_title</td>
 <td>The main heading to be used in the form (optional with no default).</td>
 <td>Localizable string</td>
-<td>‘Join Firefox’ .</td>
+<td>'Join Firefox' .</td>
 </tr>
 <tr>
-<td>intro_text</td>
+<td>&gt; intro_text</td>
 <td>Introductory copy to be used in the form. Defaults to a well localized string.</td>
 <td>Localizable string</td>
-<td>‘Enter your email address to get started.’ .</td>
+<td>'Enter your email address to get started.' .</td>
 </tr>
 <tr>
-<td>button_text</td>
+<td>&gt; button_text</td>
 <td>Button copy to be used in the form. Defaults to a well localized string.</td>
 <td>Localizable string</td>
-<td>‘Sign Up’ .</td>
+<td>'Sign Up' .</td>
 </tr>
 <tr>
-<td>button_class</td>
+<td>&gt; button_class</td>
 <td>CSS class names to be applied to the submit button.</td>
 <td>String of one or more CSS class names</td>
-<td>‘mzp-c-button mzp-t-primary mzp-t-product’</td>
+<td>'mzp-c-button mzp-t-primary mzp-t-product'</td>
 </tr>
 <tr>
-<td>utm_campaign</td>
-<td>Used to identify specific marketing campaigns. Defaults to fxa-embedded-form</td>
+<td>&gt; utm_campaign</td>
+<td>Used to identify specific marketing campaigns. Defaults to <code>fxa-embedded-form</code></td>
 <td>Campaign name prepended to default value</td>
-<td>‘trailhead-fxa-embedded-form’</td>
+<td>'trailhead-fxa-embedded-form'</td>
 </tr>
 <tr>
-<td>utm_term</td>
+<td>&gt; utm_term</td>
 <td>Used for paid search keywords.</td>
 <td>Brief keyword</td>
-<td>‘existing-users’</td>
+<td>'existing-users'</td>
 </tr>
 <tr>
-<td>utm_content</td>
+<td>&gt; utm_content</td>
 <td>Declared when more than one piece of content (on a page or at a URL) links to the same place, to distinguish between them.</td>
 <td>Description of content, or name of experiment treatment</td>
-<td>‘get-the-rest-of-firefox’</td>
+<td>'get-the-rest-of-firefox'</td>
 </tr>
 </tbody>
 </table>
-<p>Invoking the macro will automatically include a set of default
-<abbr title="Urchin Tracking Module">UTM</abbr> parameters as hidden form input fields:</p>
+<p>Invoking the macro will automatically include a set of default <code class="interpreted-text" role="abbr">UTM (Urchin Tracking Module)</code> parameters as hidden form input fields:</p>
 <ul>
-<li><code>utm_source</code> is automatically assigned the value of the <code>entrypoint</code>
-    parameter.</li>
-<li><code>utm_campaign</code> is automatically set as the value of
-    <code>fxa-embedded-form</code>. This can be prefixed with a custom value by
-    passing a <code>utm_campaign</code> value to the macro. For example,
-    <code>utm_campaign='trailhead'</code> would result in a value of
-    <code>trailhead-fxa-embedded-form</code>.</li>
+<li><code>utm_source</code> is automatically assigned the value of the <code>entrypoint</code> parameter.</li>
+<li><code>utm_campaign</code> is automatically set as the value of <code>fxa-embedded-form</code>. This can be prefixed with a custom value by passing a <code>utm_campaign</code> value to the macro. For example, <code>utm_campaign='trailhead'</code> would result in a value of <code>trailhead-fxa-embedded-form</code>.</li>
 <li><code>utm_medium</code> is automatically set as the value of <code>referral</code>.</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When signing into a Mozilla account using this form on a Firefox Desktop
-browser, it will also activate the
-<a href="https://support.mozilla.org/kb/how-do-i-set-sync-my-computer">Sync</a>
-feature.</p>
+<p>When signing into a Mozilla account using this form on a Firefox Desktop browser, it will also activate the <a href="https://support.mozilla.org/kb/how-do-i-set-sync-my-computer">Sync</a> feature.</p>
 </div>
-<h2 id="mozilla-account-links">Mozilla account links<a class="headerlink" href="#mozilla-account-links" title="Permanent link">&para;</a></h2>
-<p>Use the <code>fxa_button</code> helper to create a <abbr title="Call To Action">CTA</abbr> button or link to
-<a href="https://accounts.firefox.com/">https://accounts.firefox.com/</a>.</p>
-<h3 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-sync-page&#39;</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Sign In&#39;</span><span class="o">)</span> <span class="cp">}}</span>
-</code></pre></div>
+<h3 id="mozilla-account-links">Mozilla account links<a class="headerlink" href="#mozilla-account-links" title="Permanent link">&para;</a></h3>
+<p>Use the <code>fxa_button</code> helper to create a <code class="interpreted-text" role="abbr">CTA (Call To Action)</code> button or link to <a href="https://accounts.firefox.com/">https://accounts.firefox.com/</a>.</p>
+<h4 id="usage_1">Usage<a class="headerlink" href="#usage_1" title="Permanent link">&para;</a></h4>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="cp">{{</span> <span class="nv">fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-sync-page&#39;</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Sign In&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There is also a <code>fxa_link_fragment</code> helper which will construct a valid
-<code>href</code> property. This is useful when constructing an inline link inside
-a paragraph, for example.</p>
+<p>There is also a <code>fxa_link_fragment</code> helper which will construct a valid <code>href</code> property. This is useful when constructing an inline link inside a paragraph, for example.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When signing into a Mozilla account using this link on a Firefox Desktop
-browser, it will also activate the
-<a href="https://support.mozilla.org/kb/how-do-i-set-sync-my-computer">Sync</a>
-feature.</p>
+<p>When signing into a Mozilla account using this link on a Firefox Desktop browser, it will also activate the <a href="https://support.mozilla.org/kb/how-do-i-set-sync-my-computer">Sync</a> feature.</p>
 </div>
-<p>For more information on the available parameters, read the "Common
-Parameters" section further below.</p>
-<h2 id="mozilla-monitor-links">Mozilla Monitor links<a class="headerlink" href="#mozilla-monitor-links" title="Permanent link">&para;</a></h2>
-<p>Use the <code>monitor_fxa_button</code> helper to link to
-<a href="https://monitor.firefox.com/">https://monitor.firefox.com/</a> via a Mozilla accounts auth flow.</p>
-<h3 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">monitor_fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="nv">_entrypoint</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Sign Up for Monitor&#39;</span><span class="o">)</span> <span class="cp">}}</span>
-</code></pre></div>
-<p>For more information on the available parameters, read the "Common
-Parameters" section further below.</p>
-<h2 id="pocket-links">Pocket links<a class="headerlink" href="#pocket-links" title="Permanent link">&para;</a></h2>
-<p>Use the <code>pocket_fxa_button</code> helper to link to <a href="https://getpocket.com/">https://getpocket.com/</a>
-via a Mozilla accounts auth flow.</p>
-<h3 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">pocket_fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-pocket&#39;</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Try Pocket Now&#39;</span><span class="o">,</span> <span class="nv">optional_parameters</span><span class="o">={</span><span class="s1">&#39;s&#39;</span><span class="o">:</span> <span class="s1">&#39;ffpocket&#39;</span><span class="o">})</span> <span class="cp">}}</span>
-</code></pre></div>
-<p>For more information on the available parameters, read the "Common
-Parameters" section below.</p>
-<h2 id="common-parameters">Common Parameters<a class="headerlink" href="#common-parameters" title="Permanent link">&para;</a></h2>
-<p>The <code>fxa_button</code>, <code>pocket_fxa_button</code>, and <code>monitor_fxa_button</code> helpers
-all support the same standard parameters:</p>
+<p>For more information on the available parameters, read the "Common Parameters" section further below.</p>
+<h3 id="mozilla-monitor-links">Mozilla Monitor links<a class="headerlink" href="#mozilla-monitor-links" title="Permanent link">&para;</a></h3>
+<p>Use the <code>monitor_fxa_button</code> helper to link to <a href="https://monitor.mozilla.org/">https://monitor.mozilla.org/</a> via a Mozilla accounts auth flow.</p>
+<h4 id="usage_2">Usage<a class="headerlink" href="#usage_2" title="Permanent link">&para;</a></h4>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">{{</span> <span class="nv">monitor_fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="nv">_entrypoint</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Sign Up for Monitor&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<p>For more information on the available parameters, read the "Common Parameters" section further below.</p>
+<h3 id="pocket-links">Pocket links<a class="headerlink" href="#pocket-links" title="Permanent link">&para;</a></h3>
+<p>Use the <code>pocket_fxa_button</code> helper to link to <a href="https://getpocket.com/">https://getpocket.com/</a> via a Mozilla accounts auth flow.</p>
+<h4 id="usage_3">Usage<a class="headerlink" href="#usage_3" title="Permanent link">&para;</a></h4>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">{{</span> <span class="nv">pocket_fxa_button</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;mozilla.org-firefox-pocket&#39;</span><span class="o">,</span> <span class="nv">button_text</span><span class="o">=</span><span class="s1">&#39;Try Pocket Now&#39;</span><span class="o">,</span> <span class="nv">optional_parameters</span><span class="o">={</span><span class="s1">&#39;s&#39;</span><span class="o">:</span> <span class="s1">&#39;ffpocket&#39;</span><span class="o">})</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<p>For more information on the available parameters, read the "Common Parameters" section below.</p>
+<h3 id="common-parameters">Common Parameters<a class="headerlink" href="#common-parameters" title="Permanent link">&para;</a></h3>
+<p>The <code>fxa_button</code>, <code>pocket_fxa_button</code>, and <code>monitor_fxa_button</code> helpers all support the same standard parameters:</p>
 <table>
 <thead>
 <tr>
@@ -1438,183 +1849,159 @@ all support the same standard parameters:</p>
 <tbody>
 <tr>
 <td>entrypoint*</td>
-<td>Unambiguous identifier for which page of the site is the referrer. This also serves as a value for ‘utm_source’.</td>
-<td>‘<a href="http://www.mozilla.org-page-name">www.mozilla.org-page-name</a>’</td>
-<td>‘<a href="http://www.mozilla.org-vpn-product-page">www.mozilla.org-vpn-product-page</a>’</td>
+<td>Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.</td>
+<td>'mozilla.org-firefox-pocket'</td>
+<td>'mozilla.org-firefox-pocket'</td>
 </tr>
 <tr>
-<td>link_text*</td>
-<td>The link copy to be used in the call to action.</td>
+<td>button_text*</td>
+<td>The button copy to be used in the call to action.</td>
 <td>Localizable string</td>
-<td>‘Get Mozilla <abbr title="Virtual Private Network">VPN</abbr>’</td>
+<td>'Try Pocket Now'</td>
 </tr>
 <tr>
 <td>class_name</td>
 <td>A class name to be applied to the link (typically for styling with CSS).</td>
 <td>String of one or more class names</td>
-<td>‘vpn-button’</td>
+<td>'pocket-main-cta-button'</td>
 </tr>
 <tr>
-<td>lang</td>
-<td>Page locale code. Used to query the right subscription plan ID in conjunction to country code.</td>
-<td>Locale string</td>
-<td>‘de’</td>
-</tr>
-<tr>
-<td>country_code</td>
-<td>Country code provided by the CDN. Used to determine the appropriate subscription plan ID.</td>
-<td>Two digit, uppercase country code</td>
-<td>‘DE’</td>
-</tr>
-<tr>
-<td>bundle_relay</td>
-<td>Generate a link that will bundle both Mozilla <abbr title="Virtual Private Network">VPN</abbr> and Firefox Relay in a single subscription. Defaults to False.</td>
+<td>is_button_class</td>
+<td>A boolean value that dictates if the <code class="interpreted-text" role="abbr">CTA (Call To Action)</code> should be styled as a button or a link. Defaults to 'True'.</td>
 <td>Boolean</td>
-<td>True, False</td>
+<td>True or False</td>
+</tr>
+<tr>
+<td>include_metrics</td>
+<td>A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.</td>
+<td>Boolean</td>
+<td>True or False</td>
 </tr>
 <tr>
 <td>optional_parameters</td>
 <td>An dictionary of key value pairs containing additional parameters to append the the href.</td>
 <td>Dictionary</td>
-<td>{‘utm_campaign’: ‘vpn-product-page’}</td>
+<td>{'s': 'ffpocket'}</td>
 </tr>
 <tr>
 <td>optional_attributes</td>
 <td>An dictionary of key value pairs containing additional data attributes to include in the button.</td>
 <td>Dictionary</td>
-<td>{‘data-cta-text’: ‘<abbr title="Virtual Private Network">VPN</abbr> Sign In’, ‘data-cta-type’: ‘fxa-vpn’, ‘data-cta-position’: ‘navigation’}</td>
+<td>{'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'pocket','data-cta-position': 'primary'}</td>
 </tr>
 </tbody>
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code>fxa_button</code> helper also supports an additional <code>action</code> parameter,
-which accepts the values <code>signup</code>, <code>signin</code>, and <code>email</code> for configuring
-the type of authentication flow.</p>
+<p>The <code>fxa_button</code> helper also supports an additional <code>action</code> parameter, which accepts the values <code>signup</code>, <code>signin</code>, and <code>email</code> for configuring the type of authentication flow.</p>
 </div>
-<h2 id="mozilla-vpn-links">Mozilla <abbr title="Virtual Private Network">VPN</abbr> Links<a class="headerlink" href="#mozilla-vpn-links" title="Permanent link">&para;</a></h2>
-<p>Use the <code>vpn_subscribe_link</code> helpers to create a <abbr title="Virtual Private Network">VPN</abbr>
-subscription link via a Mozilla accounts auth flow.</p>
-<h3 id="usage_4">Usage<a class="headerlink" href="#usage_4" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><span class="cp">{{</span> <span class="nv">vpn_subscribe_link</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;www.mozilla.org-vpn-product-page&#39;</span><span class="o">,</span> <span class="nv">link_text</span><span class="o">=</span><span class="s1">&#39;Get Mozilla VPN&#39;</span><span class="o">)</span> <span class="cp">}}</span>
-</code></pre></div>
-<h3 id="common-vpn-parameters">Common <abbr title="Virtual Private Network">VPN</abbr> Parameters<a class="headerlink" href="#common-vpn-parameters" title="Permanent link">&para;</a></h3>
-<p>Both helpers for Mozilla <abbr title="Virtual Private Network">VPN</abbr> support
-the same parameters (* indicates a required parameter)</p>
+<h3 id="vpn-helpers">Mozilla <code class="interpreted-text" role="abbr">VPN (Virtual Private Network)</code> Links<a class="headerlink" href="#vpn-helpers" title="Permanent link">&para;</a></h3>
+<p>Use the <code>vpn_subscribe_link</code> helpers to create a <code class="interpreted-text" role="abbr">VPN (Virtual Private Network)</code> subscription link via a Mozilla accounts auth flow.</p>
+<h4 id="usage_4">Usage<a class="headerlink" href="#usage_4" title="Permanent link">&para;</a></h4>
+<div class="language-jinja highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="cp">{{</span> <span class="nv">vpn_subscribe_link</span><span class="o">(</span><span class="nv">entrypoint</span><span class="o">=</span><span class="s1">&#39;www.mozilla.org-vpn-product-page&#39;</span><span class="o">,</span> <span class="nv">link_text</span><span class="o">=</span><span class="s1">&#39;Get Mozilla VPN&#39;</span><span class="o">)</span> <span class="cp">}}</span>
+</span></code></pre></div>
+<h4 id="common-vpn-virtual-private-network-parameters">Common <code class="interpreted-text" role="abbr">VPN (Virtual Private Network)</code> Parameters<a class="headerlink" href="#common-vpn-virtual-private-network-parameters" title="Permanent link">&para;</a></h4>
+<p>Both helpers for Mozilla <code class="interpreted-text" role="abbr">VPN (Virtual Private Network)</code> support the same parameters (* indicates a required parameter)</p>
 <table>
 <thead>
 <tr>
-<th>Parameter name</th>
-<th>Definition</th>
-<th>Format</th>
-<th>Example</th>
+<th>&gt; Parameter name</th>
+<th>&gt; Definition</th>
+<th>&gt; Format</th>
+<th>&gt; Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>entrypoint*</td>
-<td>Unambiguous identifier for which page of the site is the referrer. This also serves as a value for ‘utm_source’.</td>
-<td>‘<a href="http://www.mozilla.org-page-name">www.mozilla.org-page-name</a>’</td>
-<td>‘<a href="http://www.mozilla.org-vpn-product-page">www.mozilla.org-vpn-product-page</a>’</td>
+<td>&gt; entrypoint*</td>
+<td>Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.</td>
+<td>'<a href="http://www.mozilla.org-page-name">www.mozilla.org-page-name</a>'</td>
+<td>'<a href="http://www.mozilla.org-vpn-product-page">www.mozilla.org-vpn-product-page</a>'</td>
 </tr>
 <tr>
-<td>link_text*</td>
+<td>&gt; link_text*</td>
 <td>The link copy to be used in the call to action.</td>
 <td>Localizable string</td>
-<td>‘Get Mozilla <abbr title="Virtual Private Network">VPN</abbr>’</td>
+<td>'Get Mozilla VPN'</td>
 </tr>
 <tr>
-<td>class_name</td>
+<td>&gt; class_name</td>
 <td>A class name to be applied to the link (typically for styling with CSS).</td>
 <td>String of one or more class names</td>
-<td>‘vpn-button’</td>
+<td>'vpn-button'</td>
 </tr>
 <tr>
-<td>lang</td>
+<td>&gt; lang</td>
 <td>Page locale code. Used to query the right subscription plan ID in conjunction to country code.</td>
 <td>Locale string</td>
-<td>‘de’</td>
+<td>'de'</td>
 </tr>
 <tr>
-<td>country_code</td>
-<td>Country code provided by the CDN. Used to determine the appropriate subscription plan ID.</td>
+<td>&gt; country_code</td>
+<td>Country code provided by the <code class="interpreted-text" role="abbr">CDN (Content Delivery Network)</code>. Used to determine the appropriate subscription plan ID.</td>
 <td>Two digit, uppercase country code</td>
-<td>‘DE’</td>
+<td>'DE'</td>
 </tr>
 <tr>
-<td>bundle_relay</td>
-<td>Generate a link that will bundle both Mozilla <abbr title="Virtual Private Network">VPN</abbr> and Firefox Relay in a single subscription. Defaults to False.</td>
-<td>Boolean</td>
-<td>True, False</td>
-</tr>
-<tr>
-<td>optional_parameters</td>
+<td>&gt; optional_parameters</td>
 <td>An dictionary of key value pairs containing additional parameters to append the the href.</td>
 <td>Dictionary</td>
-<td>{‘utm_campaign’: ‘vpn-product-page’}</td>
+<td>{'utm_campaign': 'vpn-product-page'}</td>
 </tr>
 <tr>
-<td>optional_attributes</td>
+<td>&gt; optional_attributes</td>
 <td>An dictionary of key value pairs containing additional data attributes to include in the button.</td>
 <td>Dictionary</td>
-<td>{‘data-cta-text’: ‘<abbr title="Virtual Private Network">VPN</abbr> Sign In’, ‘data-cta-type’: ‘fxa-vpn’, ‘data-cta-position’: ‘navigation’}</td>
+<td>{'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'}</td>
 </tr>
 </tbody>
 </table>
-<p>The <code>vpn_subscribe_link</code> helper has an additional <code>plan</code> parameter to
-support linking to different subscription plans.</p>
+<p>The <code>vpn_subscribe_link</code> helper has an additional <code>plan</code> parameter to support linking to different subscription plans.</p>
 <table>
 <thead>
 <tr>
-<th>Parameter name</th>
-<th>Definition</th>
-<th>Format</th>
-<th>Example</th>
+<th>&gt; Parameter name</th>
+<th>&gt; Definition</th>
+<th>&gt; Format</th>
+<th>&gt; Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>plan</td>
+<td>&gt; plan</td>
 <td>Subscription plan ID. Defaults to 12-month plan.</td>
-<td>‘12-month’</td>
-<td>‘12-month’ or ‘monthly’</td>
+<td>'12-month'</td>
+<td>'12-month' or 'monthly'</td>
 </tr>
 </tbody>
 </table>
-<h2 id="firefox-sync-and-uitour">Firefox Sync and UITour<a class="headerlink" href="#firefox-sync-and-uitour" title="Permanent link">&para;</a></h2>
-<p>Since Firefox 80 the accounts link and email form macros use
-<a href="../uitour/">UITour</a> to show the Mozilla
-accounts page and log the browser into Sync or an account. For
-non-Firefox browsers or if UITour is not available, the flow uses normal
-links that allow users to log into the Mozilla accounts website only,
-without connecting the Firefox Desktop client. This UITour flow allows
-the Firefox browser to determine the correct Mozilla accounts server and
-authentication flow (this includes handling the China Repack build of
-Firefox). This transition was introduced to later migrate Firefox
-Desktop to an OAuth based client authentication flow.</p>
-<p>The script that handles this logic is <code>/media/js/base/fxa-link.js</code>, and
-will automatically apply to any link with a <code>js-fxa-cta-link</code> class
-name. The current code automatically detects if you are in the supported
-browser for this flow and updates links to drive them through the UITour
-API. The UITour <code>showFirefoxAccounts</code> action supports flow id
-parameters, <abbr title="Urchin Tracking Module">UTM</abbr> parameters and the email data field.</p>
-<h2 id="testing-sign-up-flows">Testing Sign-up Flows<a class="headerlink" href="#testing-sign-up-flows" title="Permanent link">&para;</a></h2>
-<p>Testing the Mozilla account sign-up flows on a non-production
-environment requires some additional configuration.</p>
+<h3 id="firefox-sync-and-uitour">Firefox Sync and UITour<a class="headerlink" href="#firefox-sync-and-uitour" title="Permanent link">&para;</a></h3>
+<p>Since Firefox 80 the accounts link and email form macros use <code class="interpreted-text" role="ref">UITour&lt;ui-tour&gt;</code> to show the Mozilla accounts page and log the browser into Sync or an account. For non-Firefox browsers or if UITour is not available, the flow uses normal links that allow users to log into the Mozilla accounts website only, without connecting the Firefox Desktop client. This transition was introduced to later migrate Firefox Desktop to an OAuth based client authentication flow.</p>
+<p>The script that handles this logic is <code>/media/js/base/fxa-link.js</code>, and will automatically apply to any link with a <code>js-fxa-cta-link</code> class name. The current code automatically detects if you are in the supported browser for this flow and updates links to drive them through the UITour API. The UITour <code>showFirefoxAccounts</code> action supports flow id parameters, <code class="interpreted-text" role="abbr">UTM (Urchin Tracking Module)</code> parameters and the email data field.</p>
+<h3 id="testing-sign-up-flows">Testing Sign-up Flows<a class="headerlink" href="#testing-sign-up-flows" title="Permanent link">&para;</a></h3>
+<p>Testing the Mozilla account sign-up flows on a non-production environment requires some additional configuration.</p>
 <p><strong>Configuring bedrock:</strong></p>
 <p>Set the following in your local <code>.env</code> file:</p>
-<div class="highlight"><pre><span></span><code>FXA_ENDPOINT=https://accounts.stage.mozaws.net/
-</code></pre></div>
-<p>For Mozilla <abbr title="Virtual Private Network">VPN</abbr> links you can also set:</p>
-<div class="highlight"><pre><span></span><code>VPN_ENDPOINT=https://stage.guardian.nonprod.cloudops.mozgcp.net/
-VPN_SUBSCRIPTION_URL=https://accounts.stage.mozaws.net/
-</code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>FXA_ENDPOINT=https://accounts.stage.mozaws.net/
+</span></code></pre></div>
+<p>For Mozilla <code class="interpreted-text" role="abbr">VPN (Virtual Private Network)</code> links you can also set:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>VPN_ENDPOINT=https://stage.guardian.nonprod.cloudops.mozgcp.net/
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>VPN_SUBSCRIPTION_URL=https://accounts.stage.mozaws.net/
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The above values for staging are already set by default when <code>Dev=True</code>,
-which will also apply to demo servers. You may only need to configure
-your <code>.env</code> file if you wish to change a setting to something else.</p>
+<p>The above values for staging are already set by default when <code>Dev=True</code>, which will also apply to demo servers. You may only need to configure your <code>.env</code> file if you wish to change a setting to something else.</p>
 </div>
+
+
+
+
+
+
+
+  
+  
+
 
 
 
@@ -1625,25 +2012,83 @@ your <code>.env</code> file if you wish to change a setting to something else.</
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../download-buttons/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Firefox Download Buttons">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Firefox Download Buttons
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../abtest/" class="md-footer__link md-footer__link--next" aria-label="Next: A/B Testing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                A/B Testing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2011-2025, Mozilla
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mozilla/bedrock/issues/" target="_blank" rel="noopener" title="Report a problem with this documentation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.5c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4h112c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5h64.3c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6q3.3 1.95 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63.1 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
     </a>
   
 </div>
@@ -1657,10 +2102,13 @@ your <code>.env</code> file if you wish to change a setting to something else.</
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

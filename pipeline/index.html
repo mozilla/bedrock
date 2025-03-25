@@ -8,14 +8,17 @@
       
       
       
+        <link rel="canonical" href="https://mozilla.github.io/bedrock/pipeline/">
+      
       
         <link rel="prev" href="../contribute/">
       
       
         <link rel="next" href="../testing/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
@@ -23,14 +26,17 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,11 +65,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#deployed-site-urls" class="md-skip">
+        <a href="#pipeline" class="md-skip">
           Skip to content
         </a>
       
@@ -89,12 +92,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -115,34 +118,38 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
       
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -150,19 +157,29 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -179,7 +196,7 @@
         <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -209,12 +226,12 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     Bedrock Documentation
@@ -224,7 +241,7 @@
       <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -236,14 +253,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -251,14 +273,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -266,14 +293,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../l10n/" class="md-nav__link">
-        Localization
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
       </a>
     </li>
   
@@ -281,14 +313,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../coding/" class="md-nav__link">
-        Developing on Bedrock
+        
+  
+  <span class="md-ellipsis">
+    Developing on Bedrock
+  </span>
+  
+
       </a>
     </li>
   
@@ -296,14 +333,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browser Support
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../contribute/" class="md-nav__link">
-        How to Contribute
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute
+  </span>
+  
+
       </a>
     </li>
   
@@ -311,11 +373,10 @@
     
       
       
-      
-
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -325,12 +386,24 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Continuous Integration & Deployment
+          
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Continuous Integration & Deployment
+        
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
       </a>
       
         
@@ -347,8 +420,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration &amp; Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Integration & Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#deployed-site-urls" class="md-nav__link">
-    Deployed site URLs
+    <span class="md-ellipsis">
+      Deployed site URLs
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Deployed site URLs">
@@ -356,21 +441,27 @@
         
           <li class="md-nav__item">
   <a href="#dev" class="md-nav__link">
-    Dev
+    <span class="md-ellipsis">
+      Dev
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#staging" class="md-nav__link">
-    Staging
+    <span class="md-ellipsis">
+      Staging
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#production" class="md-nav__link">
-    Production
+    <span class="md-ellipsis">
+      Production
+    </span>
   </a>
   
 </li>
@@ -379,10 +470,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#tests-in-the-lifecycle-of-a-change" class="md-nav__link">
-    Tests in the lifecycle of a change
+    <span class="md-ellipsis">
+      Tests in the lifecycle of a change
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Tests in the lifecycle of a change">
@@ -390,35 +483,45 @@
         
           <li class="md-nav__item">
   <a href="#local-development" class="md-nav__link">
-    Local development
+    <span class="md-ellipsis">
+      Local development
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#pull-request" class="md-nav__link">
-    Pull request
+    <span class="md-ellipsis">
+      Pull request
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#push-to-main-branch" class="md-nav__link">
-    Push to main branch
+    <span class="md-ellipsis">
+      Push to main branch
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#push-to-stage-branch" class="md-nav__link">
-    Push to stage branch
+    <span class="md-ellipsis">
+      Push to stage branch
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#push-to-prod-branch-tagged-tagged-commit" class="md-nav__link">
-    Push to prod branch (tagged) {#tagged-commit}
+  <a href="#tagged-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push to prod branch (tagged)
+    </span>
   </a>
   
 </li>
@@ -427,39 +530,54 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#what-is-currently-deployed" class="md-nav__link">
-    What Is Currently Deployed?
+    <span class="md-ellipsis">
+      What Is Currently Deployed?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#instance-configuration-switches" class="md-nav__link">
-    Instance Configuration &amp; Switches
+    <span class="md-ellipsis">
+      Instance Configuration &amp; Switches
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#updating-selenium" class="md-nav__link">
-    Updating Selenium
+    <span class="md-ellipsis">
+      Updating Selenium
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#adding-test-runs" class="md-nav__link">
-    Adding test runs
+    <span class="md-ellipsis">
+      Adding test runs
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pushing-to-the-integration-tests-branch" class="md-nav__link">
-    Pushing to the integration tests branch
+    <span class="md-ellipsis">
+      Pushing to the integration tests branch
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -473,14 +591,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../testing/" class="md-nav__link">
-        Front-end testing
+        
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -488,14 +611,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task-queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Queue
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../redirects/" class="md-nav__link">
-        Managing redirects
+        
+  
+  <span class="md-ellipsis">
+    Managing redirects
+  </span>
+  
+
       </a>
     </li>
   
@@ -503,14 +651,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../newsletters/" class="md-nav__link">
-        Newsletters
+        
+  
+  <span class="md-ellipsis">
+    Newsletters
+  </span>
+  
+
       </a>
     </li>
   
@@ -518,14 +671,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../contentful/" class="md-nav__link">
-        Contentful CMS Integration
+      <a href="../legal-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Legal Docs
+  </span>
+  
+
       </a>
     </li>
   
@@ -533,14 +691,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Content Management System
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../sitemap/" class="md-nav__link">
-        Sitemaps
+        
+  
+  <span class="md-ellipsis">
+    Sitemaps
+  </span>
+  
+
       </a>
     </li>
   
@@ -548,29 +731,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../content-cards/" class="md-nav__link">
-        Using External Content Card Data
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../banners/" class="md-nav__link">
-        Banners
+        
+  
+  <span class="md-ellipsis">
+    Banners
+  </span>
+  
+
       </a>
     </li>
   
@@ -578,14 +751,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../uitour/" class="md-nav__link">
-        Mozilla.UITour
+        
+  
+  <span class="md-ellipsis">
+    Mozilla.UITour
+  </span>
+  
+
       </a>
     </li>
   
@@ -593,14 +771,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../send-to-device/" class="md-nav__link">
-        Send to Device widget
+        
+  
+  <span class="md-ellipsis">
+    Send to Device widget
+  </span>
+  
+
       </a>
     </li>
   
@@ -608,14 +791,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../download-buttons/" class="md-nav__link">
-        Firefox Download Buttons
+        
+  
+  <span class="md-ellipsis">
+    Firefox Download Buttons
+  </span>
+  
+
       </a>
     </li>
   
@@ -623,14 +811,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../mozilla-accounts/" class="md-nav__link">
-        Mozilla account helpers
+        
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
       </a>
     </li>
   
@@ -638,29 +831,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../funnelcake/" class="md-nav__link">
-        Funnel cakes and Partner Builds
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../abtest/" class="md-nav__link">
-        A/B Testing
+        
+  
+  <span class="md-ellipsis">
+    A/B Testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -668,14 +851,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../vpn-subscriptions/" class="md-nav__link">
-        Mozilla VPN Subscriptions
+        
+  
+  <span class="md-ellipsis">
+    Mozilla VPN Subscriptions
+  </span>
+  
+
       </a>
     </li>
   
@@ -683,350 +871,569 @@
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
-          Attribution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_21">
-          <span class="md-nav__icon md-icon"></span>
-          Attribution
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../attribution/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../attribution/" class="md-nav__link">
-        Attribution
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Attribution
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            Attribution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0001-analytics/" class="md-nav__link">
-        Mozorg Analytics
+        
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
-        Firefox Desktop attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
-        Firefox Mobile attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Mobile attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
-        Mozilla accounts attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla accounts attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
-        Mozilla CJMS Affiliate attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CJMS Affiliate attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
-        Pocket mode attribution
+      <a href="../attribution/0006-consent-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Data Privacy and Concent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
-          Architectural Decision Records
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
-          <span class="md-nav__icon md-icon"></span>
-          Architectural Decision Records
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../architecture/decisions/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../architectural-decisions/" class="md-nav__link">
-        Architectural Decision Records
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Architectural Decision Records
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_23" id="__nav_23_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural Decision Records
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
-        1. Record architecture decisions
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
-        2. Move CI/CD Pipelines to Gitlab
+        
+  
+  <span class="md-ellipsis">
+    2. Move CI/CD Pipelines to Gitlab
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
-        3. Use Cloudflare Workers and Convert for multi-variant testing
+        
+  
+  <span class="md-ellipsis">
+    3. Use Cloudflare Workers and Convert for multi-variant testing
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
-        4. Use Fluent For Localization
+        
+  
+  <span class="md-ellipsis">
+    4. Use Fluent For Localization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
-        5. Use a Single Docker Image For All Deployments
+        
+  
+  <span class="md-ellipsis">
+    5. Use a Single Docker Image For All Deployments
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        6. Revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    6. Revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        7. Further revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    7. Further revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
-        8. Move Demos To GCP
+        
+  
+  <span class="md-ellipsis">
+    8. Move Demos To GCP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
-        9. Manage Contentful schema state via migrations
+        
+  
+  <span class="md-ellipsis">
+    9. Manage Contentful schema state via migrations
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
-        10. Move CI to Github Actions for Unit and Integration tests
+        
+  
+  <span class="md-ellipsis">
+    10. Move CI to Github Actions for Unit and Integration tests
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
-        11. Use StatsD for metrics collection
+        
+  
+  <span class="md-ellipsis">
+    11. Use StatsD for metrics collection
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0012-wagtail-for-cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Use Wagtail CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../browser-support/" class="md-nav__link">
-        Browser Support
+      <a href="../contentful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contentful (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Content Cards (deprecated)
+  </span>
+  
+
       </a>
     </li>
   
@@ -1057,8 +1464,20 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Continuous Integration &amp; Deployment
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Continuous Integration & Deployment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#deployed-site-urls" class="md-nav__link">
-    Deployed site URLs
+    <span class="md-ellipsis">
+      Deployed site URLs
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Deployed site URLs">
@@ -1066,21 +1485,27 @@
         
           <li class="md-nav__item">
   <a href="#dev" class="md-nav__link">
-    Dev
+    <span class="md-ellipsis">
+      Dev
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#staging" class="md-nav__link">
-    Staging
+    <span class="md-ellipsis">
+      Staging
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#production" class="md-nav__link">
-    Production
+    <span class="md-ellipsis">
+      Production
+    </span>
   </a>
   
 </li>
@@ -1089,10 +1514,12 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#tests-in-the-lifecycle-of-a-change" class="md-nav__link">
-    Tests in the lifecycle of a change
+    <span class="md-ellipsis">
+      Tests in the lifecycle of a change
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Tests in the lifecycle of a change">
@@ -1100,35 +1527,45 @@
         
           <li class="md-nav__item">
   <a href="#local-development" class="md-nav__link">
-    Local development
+    <span class="md-ellipsis">
+      Local development
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#pull-request" class="md-nav__link">
-    Pull request
+    <span class="md-ellipsis">
+      Pull request
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#push-to-main-branch" class="md-nav__link">
-    Push to main branch
+    <span class="md-ellipsis">
+      Push to main branch
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#push-to-stage-branch" class="md-nav__link">
-    Push to stage branch
+    <span class="md-ellipsis">
+      Push to stage branch
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#push-to-prod-branch-tagged-tagged-commit" class="md-nav__link">
-    Push to prod branch (tagged) {#tagged-commit}
+  <a href="#tagged-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Push to prod branch (tagged)
+    </span>
   </a>
   
 </li>
@@ -1137,39 +1574,54 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#what-is-currently-deployed" class="md-nav__link">
-    What Is Currently Deployed?
+    <span class="md-ellipsis">
+      What Is Currently Deployed?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#instance-configuration-switches" class="md-nav__link">
-    Instance Configuration &amp; Switches
+    <span class="md-ellipsis">
+      Instance Configuration &amp; Switches
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#updating-selenium" class="md-nav__link">
-    Updating Selenium
+    <span class="md-ellipsis">
+      Updating Selenium
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#adding-test-runs" class="md-nav__link">
-    Adding test runs
+    <span class="md-ellipsis">
+      Adding test runs
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#pushing-to-the-integration-tests-branch" class="md-nav__link">
-    Pushing to the integration tests branch
+    <span class="md-ellipsis">
+      Pushing to the integration tests branch
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1193,131 +1645,95 @@
 
   <h1>Continuous Integration & Deployment</h1>
 
-<p>Bedrock runs a series of automated tests as part of continuous
-integration workflow and deployment pipeline. You can learn more about
-each of the individual test suites by reading their respective pieces of
-documentation:</p>
+<h2 id="pipeline">Continuous Integration &amp; Deployment<a class="headerlink" href="#pipeline" title="Permanent link">&para;</a></h2>
+<p>Bedrock runs a series of automated tests as part of continuous integration workflow and deployment pipeline. You can learn more about each of the individual test suites by reading their respective pieces of documentation:</p>
 <ul>
-<li>Python unit tests (see <a href="../install/#run-the-tests">Run the tests</a>).</li>
-<li>JavaScript unit tests (see <a href="../testing/">Frontend testing</a>).</li>
+<li>Python unit tests (see <a href="../install/#run-python-tests">Run the tests</a>).</li>
+<li>JavaScript unit tests (see <a href="../testing/">Front-end testing</a>).</li>
 <li>Redirect tests (see <a href="../redirects/#testing-redirects">Testing redirects</a>).</li>
-<li>Functional tests (see <a href="../testing/">Frontend testing</a>).</li>
+<li>Functional tests (see <a href="../testing/">Front-end testing</a>).</li>
 </ul>
-<h2 id="deployed-site-urls">Deployed site URLs<a class="headerlink" href="#deployed-site-urls" title="Permanent link">&para;</a></h2>
-<p>Note that a deployment of Bedrock will actually trigger two separate
-deployments: one serving all of <code>mozilla.org</code> and another serving
-certain parts of <code>getpocket.com</code></p>
-<h3 id="dev">Dev<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h3>
+<h3 id="deployed-site-urls">Deployed site URLs<a class="headerlink" href="#deployed-site-urls" title="Permanent link">&para;</a></h3>
+<h4 id="dev">Dev<a class="headerlink" href="#dev" title="Permanent link">&para;</a></h4>
 <ul>
 <li><em>Mozorg URL:</em> <a href="https://www-dev.allizom.org/">https://www-dev.allizom.org/</a></li>
-<li><em>Pocket Marketing pages URL:</em> <a href="https://dev.tekcopteg.com/">https://dev.tekcopteg.com/</a></li>
 <li><em>Bedrock locales:</em> dev repo</li>
 <li><em>Bedrock Git branch:</em> main, deployed on git push</li>
+<li><em>Firefox download URL:</em> <a href="https://bouncer-bouncer.stage.mozaws.net/">https://bouncer-bouncer.stage.mozaws.net/</a></li>
 </ul>
-<h3 id="staging">Staging<a class="headerlink" href="#staging" title="Permanent link">&para;</a></h3>
+<h4 id="staging">Staging<a class="headerlink" href="#staging" title="Permanent link">&para;</a></h4>
 <ul>
 <li><em>Mozorg URL:</em> <a href="https://www.allizom.org/">https://www.allizom.org/</a></li>
-<li><em>Pocket Marketing pages URL:</em> <a href="https://www.tekcopteg.com/">https://www.tekcopteg.com/</a></li>
 <li><em>Bedrock locales:</em> prod repo</li>
 <li><em>Bedrock Git branch:</em> stage, deployed on git push</li>
+<li><em>Firefox download URL:</em> <a href="https://download.mozilla.org/">https://download.mozilla.org/</a></li>
 </ul>
-<h3 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h3>
+<h4 id="production">Production<a class="headerlink" href="#production" title="Permanent link">&para;</a></h4>
 <ul>
 <li><em>Mozorg URL:</em> <a href="https://www.mozilla.org/">https://www.mozilla.org/</a></li>
-<li><em>Pocket Marketing pages URL:</em> <a href="https://getpocket.com/">https://getpocket.com/</a></li>
 <li><em>Bedrock locales:</em> prod repo</li>
 <li><em>Bedrock Git branch:</em> prod, deployed on git push with date-tag</li>
+<li><em>Firefox download URL:</em> <a href="https://download.mozilla.org/">https://download.mozilla.org/</a></li>
 </ul>
-<p>You can check the currently deployed git commit by checking
-/revision.txt on any of these URLs.</p>
-<h2 id="tests-in-the-lifecycle-of-a-change">Tests in the lifecycle of a change<a class="headerlink" href="#tests-in-the-lifecycle-of-a-change" title="Permanent link">&para;</a></h2>
-<p>Below is an overview of the tests during the lifecycle of a change to
-bedrock:</p>
-<h3 id="local-development">Local development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h3>
-<p>The change is developed locally, and page specific integration tests can
-be executed against a locally running instance of the application. If
-testing changes to the website as a whole is required, then pushing
-changes to the special <code>run-integration-tests</code> branch (see below) is
-much faster than running the full test suite locally.</p>
-<h3 id="pull-request">Pull request<a class="headerlink" href="#pull-request" title="Permanent link">&para;</a></h3>
-<p>Once a pull request is submitted, a <a href="https://github.com/mozilla/bedrock/actions/workflows/pull_request_tests.yml">Unit Tests Github
-Action</a>
-will run both the Python and JavaScript unit tests, as well as the suite
-of redirect headless HTTP(s) response checks.</p>
-<h3 id="push-to-main-branch">Push to main branch<a class="headerlink" href="#push-to-main-branch" title="Permanent link">&para;</a></h3>
-<p>Whenever a change is pushed to the main branch, a new image is built and
-deployed to the dev environment, and the full suite of headless and UI
-tests are run. This is handled by the pipeline, and is subject to change
-according to the settings in the Github Action workflow defined in
-<code>bedrock/.github/workflows/integration_tests.yml</code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, the Demo servers on GCP point to the Bouncer Dev service at <a href="https://dev.bouncer.nonprod.webservices.mozgcp.net/">https://dev.bouncer.nonprod.webservices.mozgcp.net/</a> To change this, you will have adjust GCP Secrets - see the <a href="https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites">demo sites</a> docs</p>
+</div>
+<p>You can check the currently deployed git commit by checking /revision.txt on any of these URLs.</p>
+<h3 id="tests-in-the-lifecycle-of-a-change">Tests in the lifecycle of a change<a class="headerlink" href="#tests-in-the-lifecycle-of-a-change" title="Permanent link">&para;</a></h3>
+<p>Below is an overview of the tests during the lifecycle of a change to bedrock:</p>
+<h4 id="local-development">Local development<a class="headerlink" href="#local-development" title="Permanent link">&para;</a></h4>
+<p>The change is developed locally, and page specific integration tests can be executed against a locally running instance of the application. If testing changes to the website as a whole is required, then pushing changes to the special <code>run-integration-tests</code> branch (see below) is much faster than running the full test suite locally.</p>
+<h4 id="pull-request">Pull request<a class="headerlink" href="#pull-request" title="Permanent link">&para;</a></h4>
+<p>Once a pull request is submitted, a <a href="https://github.com/mozilla/bedrock/actions/workflows/pull_request_tests.yml">Unit Tests Github Action</a> will run both the Python and JavaScript unit tests, as well as the suite of redirect headless HTTP(s) response checks.</p>
+<h4 id="push-to-main-branch">Push to main branch<a class="headerlink" href="#push-to-main-branch" title="Permanent link">&para;</a></h4>
+<p>Whenever a change is pushed to the main branch, a new image is built and deployed to the dev environment, and the full suite of headless and UI tests are run. This is handled by the pipeline, and is subject to change according to the settings in the Github Action workflow defined in <code>bedrock/.github/workflows/integration_tests.yml</code>.</p>
 <p>The tests for the dev environment are currently configured as follows:</p>
 <ul>
+<li>Firefox, Chromium, and Webkit headless browsers via <a href="https://playwright.dev">Playwright</a>.</li>
 <li>Chrome (latest) via local Selenium grid.</li>
 <li>Firefox (latest) via local Selenium grid.</li>
-<li>Internet Explorer 11 (smoke tests) via <a href="https://saucelabs.com/">Sauce
-    Labs</a>.</li>
-<li>Internet Explorer 9 (sanity tests) via <a href="https://saucelabs.com/">Sauce
-    Labs</a>.</li>
+<li>Internet Explorer 11 (smoke tests) via <a href="https://saucelabs.com/">Sauce Labs</a>.</li>
 <li>Headless tests.</li>
 </ul>
-<p>Note that now we have Mozorg mode and Pocket mode, we actually stand up
-two dev, two stage and two test deployments and we run the appropriate
-integration tests against each deployment: most tests are written for
-Mozorg, but there are some for Pocket mode that also get run.</p>
-<div class="admonition info">
-<p class="admonition-title">The deployment workflow runs like this</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>The deployment workflow runs like this</strong></p>
 <ol>
-<li>A push to the <code>main</code>/<code>stage</code>/<code>prod</code>/<code>run-integration-tests</code> branch
-of <code>mozilla/bedrock</code> triggers a webhook ping to the (private)
-<code>mozilla-sre-deploy/deploy-bedrock</code> repo.</li>
-<li>A Github Action (GHA) in <code>mozilla-sre-deploy/deploy-bedrock</code> builds
-a "release"-ready Bedrock container image, which it stores in a
-private container registry (private because our infra requires
-container-image access to be locked down). Using the same commit, the
-workflow also builds an equivalent set of public Bedrock container
-images, which are pushed to Docker Hub.</li>
-<li>The GHA deploys the relevant container image to the appropriate environment.</li>
-<li>The GHA pings a webhook back in <code>mozilla/bedrock</code> to run integration
-tests against the environment that has just been deployed.</li>
+<li>
+<p>A push to the <code>main</code>/<code>stage</code>/<code>prod</code>/<code>run-integration-tests</code> branch of <code>mozilla/bedrock</code> triggers a webhook ping to the (private) <code>mozilla-sre-deploy/deploy-bedrock</code> repo.</p>
+</li>
+<li>
+<p>A Github Action (GHA) in <code>mozilla-sre-deploy/deploy-bedrock</code> builds a "release"-ready Bedrock container image, which it stores in a private container registry (private because our infra requires container-image access to be locked down). Using the same commit, the workflow also builds an equivalent set of public Bedrock container images, which are pushed to Docker Hub.</p>
+</li>
+<li>
+<p>The GHA deploys the relevant container image to the appropriate environment.</p>
+</li>
+<li>
+<p>The GHA pings a webhook back in <code>mozilla/bedrock</code> to run integration tests against the environment that has just been deployed.</p>
+</li>
 </ol>
 </div>
-<h3 id="push-to-stage-branch">Push to stage branch<a class="headerlink" href="#push-to-stage-branch" title="Permanent link">&para;</a></h3>
-<p>Whenever a change is pushed to the stage branch, a production docker
-image is built, published to <a href="https://hub.docker.com/r/mozmeao/bedrock/tags">Docker
-Hub</a>, and deployed to a
-<a href="https://www.allizom.org">public staging environment</a>. Once the new
-image is deployed, the full suite of UI tests is run against it again,
-but this time with the addition of the [headless download
-tests]{.title-ref}.</p>
-<h3 id="push-to-prod-branch-tagged-tagged-commit">Push to prod branch (tagged) {#tagged-commit}<a class="headerlink" href="#push-to-prod-branch-tagged-tagged-commit" title="Permanent link">&para;</a></h3>
-<p>When a tagged commit is pushed to the <code>prod</code> branch, a production
-container image (private, see above) is built, and a set of public
-images is also built and pushed to <a href="https://hub.docker.com/r/mozmeao/bedrock/tags">Docker
-Hub</a> if needed (usually
-this will have already happened as a result of a push to the <code>main</code> or
-<code>stage</code> branch). The production image is deployed to each
-<a href="https://www.mozilla.org">production</a> deployment.</p>
+<h4 id="push-to-stage-branch">Push to stage branch<a class="headerlink" href="#push-to-stage-branch" title="Permanent link">&para;</a></h4>
+<p>Whenever a change is pushed to the stage branch, a production docker image is built, published to <a href="https://hub.docker.com/r/mozmeao/bedrock/tags">Docker Hub</a>, and deployed to a <a href="https://www.allizom.org">public staging environment</a>. Once the new image is deployed, the full suite of UI tests is run against it again, but this time with the addition of the <code>headless download tests</code>.</p>
+<h4 id="tagged-commit">Push to prod branch (tagged)<a class="headerlink" href="#tagged-commit" title="Permanent link">&para;</a></h4>
+<p>When a tagged commit is pushed to the <code>prod</code> branch, a production container image (private, see above) is built, and a set of public images is also built and pushed to <a href="https://hub.docker.com/r/mozmeao/bedrock/tags">Docker Hub</a> if needed (usually this will have already happened as a result of a push to the <code>main</code> or <code>stage</code> branch). The production image is deployed to each <a href="https://www.mozilla.org">production</a> deployment.</p>
 <p><strong>Push to prod cheat sheet</strong></p>
 <ol>
 <li>
 <p>Check out the <code>main</code> branch</p>
 </li>
 <li>
-<p>Make sure the <code>main</code> branch is up to date with
-    <code>mozilla/bedrock main</code></p>
+<p>Make sure the <code>main</code> branch is up to date with <code>mozilla/bedrock main</code></p>
 </li>
 <li>
 <p>Check that dev deployment is green:</p>
 <ol>
-<li>View the <a href="https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml">Integration Tests Github
-    Action</a>
-    and look at the run labelled
-    <code>Run Integration tests for main</code></li>
+<li>View the <a href="https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml">Integration Tests Github Action</a> and look at the run labelled <code>Run Integration tests for main</code></li>
 </ol>
 </li>
 <li>
-<p>Check that stage deployment is also green
-    (<code>Run Integration tests for stage</code>)</p>
+<p>Check that stage deployment is also green (<code>Run Integration tests for stage</code>)</p>
 </li>
 <li>
 <p>Tag and push the deployment by running <code>bin/tag-release.sh --push</code></p>
@@ -1325,75 +1741,42 @@ this will have already happened as a result of a push to the <code>main</code> o
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default the <code>tag-release.sh</code> script will push to the <code>origin</code> git
-remote. If you'd like for it to push to a different remote name you can
-either pass in a <code>-r</code> or <code>--remote</code> argument, or set the
-<code>MOZ_GIT_REMOTE</code> environment variable. So the following are equivalent:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>bin/tag-release.sh<span class="w"> </span>--push<span class="w"> </span>-r<span class="w"> </span>mozilla
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">MOZ_GIT_REMOTE</span><span class="o">=</span>mozilla<span class="w"> </span>bin/tag-release.sh<span class="w"> </span>--push
-</code></pre></div>
-<p>And if you'd like to just tag and not push the tag anywhere, you may
-omit the <code>--push</code> parameter.</p>
+<p>By default the <code>tag-release.sh</code> script will push to the <code>origin</code> git remote. If you'd like for it to push to a different remote name you can either pass in a <code>-r</code> or <code>--remote</code> argument, or set the <code>MOZ_GIT_REMOTE</code> environment variable. So the following are equivalent:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>bin/tag-release.sh<span class="w"> </span>--push<span class="w"> </span>-r<span class="w"> </span>mozilla
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">MOZ_GIT_REMOTE</span><span class="o">=</span>mozilla<span class="w"> </span>bin/tag-release.sh<span class="w"> </span>--push
+</span></code></pre></div>
+<p>And if you'd like to just tag and not push the tag anywhere, you may omit the <code>--push</code> parameter.</p>
 </div>
-<h2 id="what-is-currently-deployed">What Is Currently Deployed?<a class="headerlink" href="#what-is-currently-deployed" title="Permanent link">&para;</a></h2>
-<p>You can look at the git log of the <code>main</code> branch to find the last commit
-with a date-tag on it (e.g. 2022-05-05): this commit will be the last
-one that was deployed to production. You can also use the
-whatsdeployed.io service to get a nice view of what is actually
-currently deployed to Dev, Stage, and Prod:</p>
+<h3 id="what-is-currently-deployed">What Is Currently Deployed?<a class="headerlink" href="#what-is-currently-deployed" title="Permanent link">&para;</a></h3>
+<p>You can look at the git log of the <code>main</code> branch to find the last commit with a date-tag on it (e.g. 2022-05-05): this commit will be the last one that was deployed to production. You can also use the whatsdeployed.io service to get a nice view of what is actually currently deployed to Dev, Stage, and Prod:</p>
 <p><a href="https://whatsdeployed.io/s/RuO/mozilla/bedrock"><img alt="image" src="https://img.shields.io/badge/whatsdeployed-dev,stage,prod-green.svg" /></a></p>
-<h2 id="instance-configuration-switches">Instance Configuration &amp; Switches<a class="headerlink" href="#instance-configuration-switches" title="Permanent link">&para;</a></h2>
-<p>We have a <a href="https://github.com/mozmeao/www-config">separate repo</a> for
-configuring our primary instances (dev, stage, and prod). The <a href="https://mozmeao.github.io/www-config/">docs for
-updating configurations</a> in that
-repo are on their own page, but there is a way to tell what version of
-the configuration is in use on any particular instance of bedrock. You
-can go to the <code>/healthz-cron/</code> URL on an instance (<a href="https://www.mozilla.org/healthz-cron/">see
-prod</a> for example) to see the
-current commit of all of the external Git repos in use by the site and
-how long ago they were updated. The info on that page also includes the
-latest version of the database in use, the git revision of the bedrock
-code, and how long ago the database was updated. If you recently made a
-change to one of these repos and are curious if the changes have made it
-to production, this is the URL you should check.</p>
-<h2 id="updating-selenium">Updating Selenium<a class="headerlink" href="#updating-selenium" title="Permanent link">&para;</a></h2>
-<p>There are several components for Selenium, which are independently
-versioned. The first is the Python client, and this can be updated via
-the <a href="https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt">test
-dependencies</a>.
-The other components are the Selenium versions used in both SauceLabs
-and the local Selenium grid. These versions are selected automatically
-based on the required OS / Browser configuration, so they should not
-need to be updated or specified independently.</p>
-<h2 id="adding-test-runs">Adding test runs<a class="headerlink" href="#adding-test-runs" title="Permanent link">&para;</a></h2>
-<p>Test runs can be added by creating a new job in
-<code>bedrock/.github/workflows/integration_tests.yml</code> with the desired
-variables and pushing that branch to Github. For example, if you wanted
-to run the smoke tests in IE10 (using Saucelabs) you could add the
-following clause to the matrix:</p>
-<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">LABEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-ie10-saucelabs</span>
-<span class="w">  </span><span class="nt">BROWSER_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internet explorer</span>
-<span class="w">  </span><span class="nt">BROWSER_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.0&quot;</span>
-<span class="w">  </span><span class="nt">DRIVER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SauceLabs</span>
-<span class="w">  </span><span class="nt">PYTEST_PROCESSES</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8&quot;</span>
-<span class="w">  </span><span class="nt">PLATFORM</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Windows 8</span>
-<span class="w">  </span><span class="nt">MARK_EXPRESSION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smoke</span>
-</code></pre></div>
-<p>You can use <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/">Sauce Labs platform
-configurator</a>
-to help with the parameter values.</p>
-<h2 id="pushing-to-the-integration-tests-branch">Pushing to the integration tests branch<a class="headerlink" href="#pushing-to-the-integration-tests-branch" title="Permanent link">&para;</a></h2>
-<p>If you have commit rights to our Github repo (mozilla/bedrock) you can
-simply push your branch to the branch named <code>run-integration-tests</code>, and
-the app will be deployed and the full suite of integration tests for
-that branch will be run. Please announce in our Slack channel (#www on
-mozilla.slack.com) that you'll be doing this so that we don't get
-conflicts. Also remember that you'll likely need to force push, as
-there may be commits on that branch which aren't in yours -- so, if you
-have the <code>mozilla/bedrock</code> remote set as <code>mozilla</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>mozilla<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>:run-integration-tests
-</code></pre></div>
+<h3 id="instance-configuration-switches">Instance Configuration &amp; Switches<a class="headerlink" href="#instance-configuration-switches" title="Permanent link">&para;</a></h3>
+<p>We have a <a href="https://github.com/mozmeao/www-config">separate repo</a> for configuring our primary instances (dev, stage, and prod). The <a href="https://mozmeao.github.io/www-config/">docs for updating configurations</a> in that repo are on their own page, but there is a way to tell what version of the configuration is in use on any particular instance of bedrock. You can go to the <code>/healthz-cron/</code> URL on an instance (<a href="https://www.mozilla.org/healthz-cron/">see prod</a> for example) to see the current commit of all of the external Git repos in use by the site and how long ago they were updated. The info on that page also includes the latest version of the database in use, the git revision of the bedrock code, and how long ago the database was updated. If you recently made a change to one of these repos and are curious if the changes have made it to production, this is the URL you should check.</p>
+<h3 id="updating-selenium">Updating Selenium<a class="headerlink" href="#updating-selenium" title="Permanent link">&para;</a></h3>
+<p>There are several components for Selenium, which are independently versioned. The first is the Python client, and this can be updated via the <a href="https://github.com/mozilla/bedrock/blob/main/requirements/dev.txt">test dependencies</a>. The other components are the Selenium versions used in both SauceLabs and the local Selenium grid. These versions are selected automatically based on the required OS / Browser configuration, so they should not need to be updated or specified independently.</p>
+<h3 id="adding-test-runs">Adding test runs<a class="headerlink" href="#adding-test-runs" title="Permanent link">&para;</a></h3>
+<p>Test runs can be added by creating a new job in <code>bedrock/.github/workflows/integration_tests.yml</code> with the desired variables and pushing that branch to Github. For example, if you wanted to run the smoke tests in IE10 (using Saucelabs) you could add the following clause to the matrix:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">LABEL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-ie10-saucelabs</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">BROWSER_NAME</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">internet explorer</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">BROWSER_VERSION</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;10.0&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">DRIVER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SauceLabs</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">PYTEST_PROCESSES</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8&quot;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">PLATFORM</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Windows 8</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">MARK_EXPRESSION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">smoke</span>
+</span></code></pre></div>
+<p>You can use <a href="https://wiki.saucelabs.com/display/DOCS/Platform+Configurator/">Sauce Labs platform configurator</a> to help with the parameter values.</p>
+<h3 id="pushing-to-the-integration-tests-branch">Pushing to the integration tests branch<a class="headerlink" href="#pushing-to-the-integration-tests-branch" title="Permanent link">&para;</a></h3>
+<p>If you have commit rights to our Github repo (mozilla/bedrock) you can simply push your branch to the branch named <code>run-integration-tests</code>, and the app will be deployed and the full suite of integration tests for that branch will be run. Please announce in our Slack channel (#www on mozilla.slack.com) that you'll be doing this so that we don't get conflicts. Also remember that you'll likely need to force push, as there may be commits on that branch which aren't in yours -- so, if you have the <code>mozilla/bedrock</code> remote set as <code>mozilla</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>mozilla<span class="w"> </span><span class="k">$(</span>git<span class="w"> </span>branch<span class="w"> </span>--show-current<span class="k">)</span>:run-integration-tests
+</span></code></pre></div>
+
+
+
+
+
+
+
 
 
 
@@ -1404,25 +1787,83 @@ have the <code>mozilla/bedrock</code> remote set as <code>mozilla</code>:</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../contribute/" class="md-footer__link md-footer__link--prev" aria-label="Previous: How to Contribute">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                How to Contribute
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../testing/" class="md-footer__link md-footer__link--next" aria-label="Next: Front-end testing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Front-end testing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2011-2025, Mozilla
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mozilla/bedrock/issues/" target="_blank" rel="noopener" title="Report a problem with this documentation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.5c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4h112c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5h64.3c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6q3.3 1.95 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63.1 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
     </a>
   
 </div>
@@ -1436,10 +1877,13 @@ have the <code>mozilla/bedrock</code> remote set as <code>mozilla</code>:</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

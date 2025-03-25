@@ -8,14 +8,17 @@
       
       
       
+        <link rel="canonical" href="https://mozilla.github.io/bedrock/testing/">
+      
       
         <link rel="prev" href="../pipeline/">
       
       
-        <link rel="next" href="../redirects/">
+        <link rel="next" href="../task-queue/">
       
-      <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      
+      <link rel="icon" href="../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
@@ -23,14 +26,17 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,11 +65,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#testing" class="md-skip">
           Skip to content
         </a>
       
@@ -89,12 +92,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -115,34 +118,38 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
       
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -150,19 +157,29 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -179,7 +196,7 @@
         <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -209,12 +226,12 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../images/mozilla-logo.svg" alt="logo">
 
     </a>
     Bedrock Documentation
@@ -224,7 +241,7 @@
       <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -236,14 +253,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href=".." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -251,14 +273,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../install/" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -266,14 +293,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../l10n/" class="md-nav__link">
-        Localization
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
       </a>
     </li>
   
@@ -281,14 +313,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../coding/" class="md-nav__link">
-        Developing on Bedrock
+        
+  
+  <span class="md-ellipsis">
+    Developing on Bedrock
+  </span>
+  
+
       </a>
     </li>
   
@@ -296,14 +333,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browser Support
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../contribute/" class="md-nav__link">
-        How to Contribute
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute
+  </span>
+  
+
       </a>
     </li>
   
@@ -311,14 +373,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../pipeline/" class="md-nav__link">
-        Continuous Integration & Deployment
+        
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,11 +393,10 @@
     
       
       
-      
-
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -340,12 +406,24 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Front-end testing
+          
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Front-end testing
+        
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
       </a>
       
         
@@ -362,30 +440,48 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Front-end testing
+    </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-jasmine-tests-using-jasmine-browser-runner" class="md-nav__link">
-    Running Jasmine tests using Jasmine Browser Runner
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-functional-tests" class="md-nav__link">
-    Running functional tests
-  </a>
-  
-    <nav class="md-nav" aria-label="Running functional tests">
+    <nav class="md-nav" aria-label="Front-end testing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#running-tests-in-sauce-labs" class="md-nav__link">
-    Running tests in Sauce Labs
+  <a href="#automating-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automating the browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Jasmine tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Jasmine tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing Jasmine tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Jasmine tests
+    </span>
   </a>
   
 </li>
@@ -394,10 +490,115 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#running-playwright-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Playwright tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Playwright tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specifying-an-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying an environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the test suite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-specific-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running specific tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidelines-for-writing-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines for writing integration tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-agent-string-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Agent string overrides
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-axe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility testing (Axe)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-selenium-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Selenium tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Selenium tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests-in-sauce-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running tests in Sauce Labs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#writing-selenium-tests" class="md-nav__link">
-    Writing Selenium tests
+    <span class="md-ellipsis">
+      Writing Selenium tests
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Writing Selenium tests">
@@ -405,21 +606,27 @@
         
           <li class="md-nav__item">
   <a href="#destructive-tests" class="md-nav__link">
-    Destructive tests
+    <span class="md-ellipsis">
+      Destructive tests
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#smoke-tests" class="md-nav__link">
-    Smoke tests
+    <span class="md-ellipsis">
+      Smoke tests
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#waits-and-expected-conditions" class="md-nav__link">
-    Waits and Expected Conditions
+    <span class="md-ellipsis">
+      Waits and Expected Conditions
+    </span>
   </a>
   
 </li>
@@ -428,32 +635,47 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#debugging-selenium" class="md-nav__link">
-    Debugging Selenium
+    <span class="md-ellipsis">
+      Debugging Selenium
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#guidelines-for-writing-functional-tests" class="md-nav__link">
-    Guidelines for writing functional tests
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-basket-email-forms" class="md-nav__link">
-    Testing Basket email forms
+    <span class="md-ellipsis">
+      Testing Basket email forms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Basket email forms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headless-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headless tests
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#headless-tests" class="md-nav__link">
-    Headless tests
-  </a>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -467,14 +689,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../task-queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Queue
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../redirects/" class="md-nav__link">
-        Managing redirects
+        
+  
+  <span class="md-ellipsis">
+    Managing redirects
+  </span>
+  
+
       </a>
     </li>
   
@@ -482,14 +729,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../newsletters/" class="md-nav__link">
-        Newsletters
+        
+  
+  <span class="md-ellipsis">
+    Newsletters
+  </span>
+  
+
       </a>
     </li>
   
@@ -497,14 +749,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../contentful/" class="md-nav__link">
-        Contentful CMS Integration
+      <a href="../legal-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Legal Docs
+  </span>
+  
+
       </a>
     </li>
   
@@ -512,14 +769,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Content Management System
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../sitemap/" class="md-nav__link">
-        Sitemaps
+        
+  
+  <span class="md-ellipsis">
+    Sitemaps
+  </span>
+  
+
       </a>
     </li>
   
@@ -527,29 +809,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../content-cards/" class="md-nav__link">
-        Using External Content Card Data
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../banners/" class="md-nav__link">
-        Banners
+        
+  
+  <span class="md-ellipsis">
+    Banners
+  </span>
+  
+
       </a>
     </li>
   
@@ -557,14 +829,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../uitour/" class="md-nav__link">
-        Mozilla.UITour
+        
+  
+  <span class="md-ellipsis">
+    Mozilla.UITour
+  </span>
+  
+
       </a>
     </li>
   
@@ -572,14 +849,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../send-to-device/" class="md-nav__link">
-        Send to Device widget
+        
+  
+  <span class="md-ellipsis">
+    Send to Device widget
+  </span>
+  
+
       </a>
     </li>
   
@@ -587,14 +869,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../download-buttons/" class="md-nav__link">
-        Firefox Download Buttons
+        
+  
+  <span class="md-ellipsis">
+    Firefox Download Buttons
+  </span>
+  
+
       </a>
     </li>
   
@@ -602,14 +889,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../mozilla-accounts/" class="md-nav__link">
-        Mozilla account helpers
+        
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
       </a>
     </li>
   
@@ -617,29 +909,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../funnelcake/" class="md-nav__link">
-        Funnel cakes and Partner Builds
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../abtest/" class="md-nav__link">
-        A/B Testing
+        
+  
+  <span class="md-ellipsis">
+    A/B Testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -647,14 +929,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../vpn-subscriptions/" class="md-nav__link">
-        Mozilla VPN Subscriptions
+        
+  
+  <span class="md-ellipsis">
+    Mozilla VPN Subscriptions
+  </span>
+  
+
       </a>
     </li>
   
@@ -662,350 +949,569 @@
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
-          Attribution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_21">
-          <span class="md-nav__icon md-icon"></span>
-          Attribution
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../attribution/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../attribution/" class="md-nav__link">
-        Attribution
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Attribution
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            Attribution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0001-analytics/" class="md-nav__link">
-        Mozorg Analytics
+        
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0002-firefox-desktop/" class="md-nav__link">
-        Firefox Desktop attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0003-firefox-mobile/" class="md-nav__link">
-        Firefox Mobile attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Mobile attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0004-mozilla-accounts/" class="md-nav__link">
-        Mozilla accounts attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla accounts attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../attribution/0005-affiliate-marketing/" class="md-nav__link">
-        Mozilla CJMS Affiliate attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CJMS Affiliate attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../attribution/0006-pocket-analytics/" class="md-nav__link">
-        Pocket mode attribution
+      <a href="../attribution/0006-consent-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Data Privacy and Concent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
-          Architectural Decision Records
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
-          <span class="md-nav__icon md-icon"></span>
-          Architectural Decision Records
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../architecture/decisions/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../architectural-decisions/" class="md-nav__link">
-        Architectural Decision Records
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Architectural Decision Records
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_23" id="__nav_23_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural Decision Records
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
-        1. Record architecture decisions
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
-        2. Move CI/CD Pipelines to Gitlab
+        
+  
+  <span class="md-ellipsis">
+    2. Move CI/CD Pipelines to Gitlab
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
-        3. Use Cloudflare Workers and Convert for multi-variant testing
+        
+  
+  <span class="md-ellipsis">
+    3. Use Cloudflare Workers and Convert for multi-variant testing
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
-        4. Use Fluent For Localization
+        
+  
+  <span class="md-ellipsis">
+    4. Use Fluent For Localization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
-        5. Use a Single Docker Image For All Deployments
+        
+  
+  <span class="md-ellipsis">
+    5. Use a Single Docker Image For All Deployments
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        6. Revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    6. Revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        7. Further revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    7. Further revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
-        8. Move Demos To GCP
+        
+  
+  <span class="md-ellipsis">
+    8. Move Demos To GCP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
-        9. Manage Contentful schema state via migrations
+        
+  
+  <span class="md-ellipsis">
+    9. Manage Contentful schema state via migrations
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
-        10. Move CI to Github Actions for Unit and Integration tests
+        
+  
+  <span class="md-ellipsis">
+    10. Move CI to Github Actions for Unit and Integration tests
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
-        11. Use StatsD for metrics collection
+        
+  
+  <span class="md-ellipsis">
+    11. Use StatsD for metrics collection
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/decisions/0012-wagtail-for-cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Use Wagtail CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../browser-support/" class="md-nav__link">
-        Browser Support
+      <a href="../contentful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contentful (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content-cards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Content Cards (deprecated)
+  </span>
+  
+
       </a>
     </li>
   
@@ -1036,30 +1542,48 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#installation" class="md-nav__link">
-    Installation
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Front-end testing
+    </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-jasmine-tests-using-jasmine-browser-runner" class="md-nav__link">
-    Running Jasmine tests using Jasmine Browser Runner
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#running-functional-tests" class="md-nav__link">
-    Running functional tests
-  </a>
-  
-    <nav class="md-nav" aria-label="Running functional tests">
+    <nav class="md-nav" aria-label="Front-end testing">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#running-tests-in-sauce-labs" class="md-nav__link">
-    Running tests in Sauce Labs
+  <a href="#automating-the-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automating the browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Jasmine tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Jasmine tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing Jasmine tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#debugging-jasmine-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging Jasmine tests
+    </span>
   </a>
   
 </li>
@@ -1068,10 +1592,115 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#running-playwright-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Playwright tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Playwright tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#specifying-an-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying an environment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-the-test-suite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running the test suite
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-specific-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running specific tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#writing-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Writing tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Writing tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#guidelines-for-writing-integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines for writing integration tests
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-agent-string-overrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Agent string overrides
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accessibility-testing-axe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessibility testing (Axe)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#running-selenium-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running Selenium tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Running Selenium tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#running-tests-in-sauce-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running tests in Sauce Labs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#writing-selenium-tests" class="md-nav__link">
-    Writing Selenium tests
+    <span class="md-ellipsis">
+      Writing Selenium tests
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Writing Selenium tests">
@@ -1079,21 +1708,27 @@
         
           <li class="md-nav__item">
   <a href="#destructive-tests" class="md-nav__link">
-    Destructive tests
+    <span class="md-ellipsis">
+      Destructive tests
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#smoke-tests" class="md-nav__link">
-    Smoke tests
+    <span class="md-ellipsis">
+      Smoke tests
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#waits-and-expected-conditions" class="md-nav__link">
-    Waits and Expected Conditions
+    <span class="md-ellipsis">
+      Waits and Expected Conditions
+    </span>
   </a>
   
 </li>
@@ -1102,32 +1737,47 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#debugging-selenium" class="md-nav__link">
-    Debugging Selenium
+    <span class="md-ellipsis">
+      Debugging Selenium
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#guidelines-for-writing-functional-tests" class="md-nav__link">
-    Guidelines for writing functional tests
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#testing-basket-email-forms" class="md-nav__link">
-    Testing Basket email forms
+    <span class="md-ellipsis">
+      Testing Basket email forms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing Basket email forms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#headless-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Headless tests
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#headless-tests" class="md-nav__link">
-    Headless tests
-  </a>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1151,306 +1801,243 @@
 
   <h1>Front-end testing</h1>
 
-<p>Bedrock runs a suite of front-end
-<a href="https://jasmine.github.io/index.html">Jasmine</a> behavioral/unit tests,
-which use <a href="https://jasmine.github.io/setup/browser.html">Jasmine Browser
-Runner</a> as a test runner.
-We also have a suite of functional tests using
-<a href="http://docs.seleniumhq.org/">Selenium</a> and
-<a href="http://pytest.org/latest/">pytest</a>. This allows us to emulate users
-interacting with a real browser. All these test suites live in the
-<code>tests</code> directory. To run the tests locally, you must also first
-download
-<a href="https://github.com/mozilla/geckodriver/releases/latest">geckodriver</a>
-and <a href="https://chromedriver.chromium.org/downloads">chromedriver</a> and make
-it available in your system path. You can alternatively specify the path
-to geckodriver and chromedriver using the command line (see the
-<a href="http://pytest-selenium.readthedocs.org/en/latest/index.html">pytest-selenium
-documentation</a>
-for more information).</p>
-<p>The <code>tests</code> directory comprises of:</p>
+<h2 id="testing">Front-end testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<p>Bedrock runs several different types of front-end tests to ensure that the site is working correctly and that new changes don't break existing functionality.</p>
 <ul>
-<li><code>/functional</code> contains pytest tests.</li>
-<li><code>/pages</code> contains Python page objects.</li>
-<li><code>/unit</code> contains the Jasmine tests and Jasmine Browser Runner config
-    file.</li>
+<li><a href="https://jasmine.github.io/index.html">Jasmine</a> unit/behavioral tests are used to test JavaScript code that runs in the browser. These tests are run against both Firefox and Chrome browsers via a GitHub action, which is triggered against all pull requests and commits to the main branch.</li>
+<li><a href="https://playwright.dev">Playwright</a> integration tests are used to run end-to-end tests in a real browser environment. These tests are run automatically as part of our CI deployment process against dev, stage, and prod. Playwright tests are run against Firefox, Chromium, and Webkit headless browsers for cross-engine coverage.</li>
+<li><a href="https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md">Axe</a> tests are used to test for accessibility issues on key pages. These tests are not run as part of our CI deployment process as they can contain a lot of information, but instead run once per day via a GitHub action against dev. Axe tests are run via Playwright as a subset of tests using the <code>@a11y</code> tag. Accessibility issues are reported in the GitHub action output, which can be downloaded and reviewed.</li>
+<li><a href="http://docs.seleniumhq.org/">Selenium</a> tests are bedrock's older, legacy integration test suite, which will eventually be replaced by Playwright. These tests are run against Firefox, Chrome, and Internet Explorer (via a mix of both a local Selenium Grid and Sauce Labs) as part of our CI pipeline, and run alongside the Playwright tests.</li>
 </ul>
-<h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>First follow the <a href="../install/">installation instructions for bedrock</a>,
-which will install the dependencies required to run the
-various front-end test suites.</p>
-<p>To download geckodriver and chromedriver and have it ready to run in
-your system, there are a couple of ways:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>New integration tests should be written using Playwright, but we will continue to run the Selenium tests until they are all migrated over. We will also eventually retire the Internet Explorer tests.</p>
+</div>
+<p>The test specs for all of the above suites can be found in the root <code>./tests</code> directory:</p>
 <ul>
-<li>
-<p><a href="https://github.com/mozilla/geckodriver/releases/latest">Download
-    geckdriver</a>
-    and add it to your system path:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/your/downloaded/files/
-mv<span class="w"> </span>geckodriver<span class="w"> </span>/usr/local/bin/
-</code></pre></div>
-</blockquote>
-</li>
-<li>
-<p>If you're on MacOS, download geckodriver directly using Homebrew,
-    which automatically places it in your system path:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>geckodriver
-</code></pre></div>
-</blockquote>
-</li>
-<li>
-<p><a href="https://chromedriver.chromium.org/downloads">Download chromedriver</a>
-    and add it to your system path:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/path/to/your/downloaded/files/
-mv<span class="w"> </span>chromedriver<span class="w"> </span>/usr/local/bin/
-</code></pre></div>
-</blockquote>
-</li>
-<li>
-<p>If you're on MacOS, download chromedriver directly using
-    Homebrew/Cask, which automatically places it in your system path:</p>
-<blockquote>
-<div class="highlight"><pre><span></span><code>brew<span class="w"> </span>tap<span class="w"> </span>homebrew/cask
-
-brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>chromedriver
-</code></pre></div>
-</blockquote>
-</li>
+<li><code>./tests/unit/</code> for Jasmine tests.</li>
+<li><code>./tests/playwright/</code> Playwright tests.</li>
+<li><code>./tests/playwright/specs/a11y/</code> Axe tests.</li>
+<li><code>./tests/functional/</code> for Selenium tests.</li>
 </ul>
-<h2 id="running-jasmine-tests-using-jasmine-browser-runner">Running Jasmine tests using Jasmine Browser Runner<a class="headerlink" href="#running-jasmine-tests-using-jasmine-browser-runner" title="Permanent link">&para;</a></h2>
-<p>To perform a single run of the Jasmine test suite using Firefox and
-Chrome, first make sure you have both browsers installed locally, and
-then activate your bedrock virtual env.</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>pyenv<span class="w"> </span>activate<span class="w"> </span>bedrock
-</code></pre></div>
-<p>You can then run the tests with the following command:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
-</code></pre></div>
-<p>This will run all our front-end linters and formatting checks before
-running the Jasmine test suite. If you only want to run the tests
-themselves, you can run:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
-</code></pre></div>
-<p>See the <a href="https://jasmine.github.io/index.html">Jasmine</a> documentation
-for tips on how to write JS behavioral or unit tests. We also use
-<a href="http://sinonjs.org/">Sinon</a> for creating test spies, stubs and mocks.</p>
-<h2 id="running-functional-tests">Running functional tests<a class="headerlink" href="#running-functional-tests" title="Permanent link">&para;</a></h2>
+<h3 id="automating-the-browser">Automating the browser<a class="headerlink" href="#automating-the-browser" title="Permanent link">&para;</a></h3>
+<p>Jasmine, Playwright and Selenium all require a browser to run. In order to automate browsers such as Firefox and Chrome, you may also need to have the appropriate drivers installed. To download <code>geckodriver</code> and <code>chromedriver</code> and have them ready to run in your system, there are a couple of ways:</p>
+<p>Download <a href="https://github.com/mozilla/geckodriver/releases/latest">geckodriver</a> and add it to your system path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/your/downloaded/files/
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>mv<span class="w"> </span>geckodriver<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div>
+<p>If you're on MacOS, download <code>geckodriver</code> directly using Homebrew, which automatically places it in your system path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>geckodriver
+</span></code></pre></div>
+<p>Download <a href="https://chromedriver.chromium.org/downloads">chromedriver</a> and add it to your system path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/path/to/your/downloaded/files/
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>$<span class="w"> </span>mv<span class="w"> </span>chromedriver<span class="w"> </span>/usr/local/bin/
+</span></code></pre></div>
+<p>If you're on MacOS, download <code>chromedriver</code> directly using Homebrew/Cask, which automatically places it in your system path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>brew<span class="w"> </span>tap<span class="w"> </span>homebrew/cask
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>$<span class="w"> </span>brew<span class="w"> </span>cask<span class="w"> </span>install<span class="w"> </span>chromedriver
+</span></code></pre></div>
+<h3 id="running-jasmine-tests">Running Jasmine tests<a class="headerlink" href="#running-jasmine-tests" title="Permanent link">&para;</a></h3>
+<p>Jasmine and its dependencies are installed via npm and are included when you run <code>make preflight</code> to install bedrock's main dependencies.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>$<span class="w"> </span>make<span class="w"> </span>preflight
+</span></code></pre></div>
+<p>Next, make sure you activate your bedrock virtual env.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>$<span class="w"> </span>pyenv<span class="w"> </span>activate<span class="w"> </span>bedrock
+</span></code></pre></div>
+<p>You can then run the full suite of Jasmine tests with the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span><span class="nb">test</span>
+</span></code></pre></div>
+<p>This will also run all our front-end linters and formatting checks before running the Jasmine test suite. If you only want to run the tests themselves, you can run:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>jasmine
+</span></code></pre></div>
+<h4 id="writing-jasmine-tests">Writing Jasmine tests<a class="headerlink" href="#writing-jasmine-tests" title="Permanent link">&para;</a></h4>
+<p>See the <a href="https://jasmine.github.io/index.html">Jasmine</a> documentation for tips on how to write JS behavioral or unit tests. We also use <a href="http://sinonjs.org/">Sinon</a> for creating test spies, stubs and mocks.</p>
+<h4 id="debugging-jasmine-tests">Debugging Jasmine tests<a class="headerlink" href="#debugging-jasmine-tests" title="Permanent link">&para;</a></h4>
+<p>If you need to debug Jasmine tests, you can also run them interactively in the browser using the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>jasmine-serve
+</span></code></pre></div>
+<h3 id="running-playwright-tests">Running Playwright tests<a class="headerlink" href="#running-playwright-tests" title="Permanent link">&para;</a></h3>
+<p>Playwright test dependencies are installed via NPM but are not included in the <code>make preflight</code> command along with bedrock's core dependencies. This is because the dependencies are not required to run the site, and also include several large binary files for each headless browser engine.</p>
+<p>To install the Playwright dependencies, run the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>tests/playwright<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>install<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>install-deps
+</span></code></pre></div>
+<h4 id="specifying-an-environment">Specifying an environment<a class="headerlink" href="#specifying-an-environment" title="Permanent link">&para;</a></h4>
+<p>By default Playwright tests will run against <code>http://localhost:8000/</code>. Remember to have your development server running before starting the test suite locally.</p>
+<p>You can also set <code>PLAYWRIGHT_BASE_URL</code> in your <code>.env</code> to point to a different environment, such as dev or stage. For example:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nv">PLAYWRIGHT_BASE_URL</span><span class="o">=</span>https://dev.bedrock.nonprod.webservices.mozgcp.net
+</span></code></pre></div>
+<h4 id="running-the-test-suite">Running the test suite<a class="headerlink" href="#running-the-test-suite" title="Permanent link">&para;</a></h4>
+<p>To run the full suite of tests (from the <code>/tests/playwright/</code> directory):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>integration-tests
+</span></code></pre></div>
+<p>This will run all tests against three different headless browser engines (Firefox, Chromium, WebKit).</p>
+<h4 id="running-specific-tests">Running specific tests<a class="headerlink" href="#running-specific-tests" title="Permanent link">&para;</a></h4>
+<p>Tests are grouped using tags, such as <code>@mozorg</code>, <code>@firefox</code>, <code>@vpn</code>. To run only one group of tests, instead of the whole suite, you can use <code>--grep</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--grep<span class="w"> </span>@firefox
+</span></code></pre></div>
+<p>To run only a specific test file, such as <code>firefox-new.spec.js</code>, you can pass the filename:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$<span class="w"> </span>npx<span class="w"> </span>playwright<span class="w"> </span><span class="nb">test</span><span class="w"> </span>firefox-new
+</span></code></pre></div>
+<p>See the <a href="https://playwright.dev/docs/test-cli">Playwright CLI docs</a> for more options when running and debugging tests.</p>
+<h4 id="writing-tests">Writing tests<a class="headerlink" href="#writing-tests" title="Permanent link">&para;</a></h4>
+<p>Playwright test spec files are found in the <code>./tests/playwright/specs/</code> directory.</p>
+<p>See the Playwright docs for more examples on <a href="https://playwright.dev/docs/writing-tests">how to write tests</a>.</p>
+<h5 id="guidelines-for-writing-integration-tests">Guidelines for writing integration tests<a class="headerlink" href="#guidelines-for-writing-integration-tests" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Try and keep tests focused on user journeys and key functionality. For example, a test for the download page should focus on the download button, and not the footer or header.</li>
+<li>Test expected functionality from a <strong>user perspective</strong>. For example, if a user clicks a button, the test should check that the expected action occurs. Try to avoid testing implementation details, as these are both invisible to the user and likely to change more frequently.</li>
+<li>Keep tests organized and cleanly separated. Each page should have its own test spec file, and each test should be responsible for a specific purpose, or component of a page.</li>
+<li>Try and use <code>data-testid</code> attributes for a <a href="https://playwright.dev/docs/locators#locate-by-test-id">locator strategy</a>, as these are less likely to change than other attributes.</li>
+<li>Avoid string checking as tests may break if strings are updated, or could change depending on the page locale.</li>
+<li>When writing tests, push them to the <code>run-integration-tests</code> branch to run them against the deployed environment prior to merging to <code>main</code>. This will allow you to catch any issues that may not be present in local testing. It's also worth running tests a few times to identify any potential intermittent failures.</li>
+</ul>
+<h4 id="user-agent-string-overrides">User Agent string overrides<a class="headerlink" href="#user-agent-string-overrides" title="Permanent link">&para;</a></h4>
+<p>Playwright tests use User Agent string overrides to mock different browser and operating systems combinations. By default tests run with User Agent strings configured for Firefox and Chrome running on Windows, and Safari running on macOS. This is accomplished using an <code>OpenPage()</code> helper that can be imported in each test file:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">openPage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;../scripts/open-page&#39;</span><span class="p">);</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/en-US/firefox/new/&#39;</span><span class="p">;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">test</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">page</span><span class="p">,</span><span class="w"> </span><span class="nx">browserName</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">openPage</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">page</span><span class="p">,</span><span class="w"> </span><span class="nx">browserName</span><span class="p">);</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>To mock a different browser or operating system combination, tests can manually load a different override instead of using <code>openPage</code>:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">test</span><span class="p">.</span><span class="nx">beforeEach</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">({</span><span class="w"> </span><span class="nx">page</span><span class="p">,</span><span class="w"> </span><span class="nx">browserName</span><span class="w"> </span><span class="p">})</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">browserName</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;webkit&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">        </span><span class="c1">// Set macOS 10.14 UA strings.</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addInitScript</span><span class="p">({</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">            </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="sb">`./scripts/useragent/mac-old/</span><span class="si">${</span><span class="nx">browserName</span><span class="si">}</span><span class="sb">.js`</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">        </span><span class="c1">// Set Windows 8.1 UA strings (64-bit).</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">        </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="nx">addInitScript</span><span class="p">({</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">            </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="sb">`./scripts/useragent/win-old/</span><span class="si">${</span><span class="nx">browserName</span><span class="si">}</span><span class="sb">.js`</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">        </span><span class="p">});</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="k">await</span><span class="w"> </span><span class="nx">page</span><span class="p">.</span><span class="kr">goto</span><span class="p">(</span><span class="nx">url</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;?automation=true&#39;</span><span class="p">);</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="p">});</span>
+</span></code></pre></div>
+<h3 id="accessibility-testing-axe">Accessibility testing (Axe)<a class="headerlink" href="#accessibility-testing-axe" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md">Axe</a> tests are run as a subset of Playwright tests using the <code>@a11y</code> tag. These tests are run against the dev environment once per day via a GitHub action. The axe spec files can be found in the <code>./tests/playwright/specs/a11y/</code> directory.</p>
+<p>To run the Axe tests locally, you can use the following command from the <code>./tests/playwright/</code> directory:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>npm<span class="w"> </span>run<span class="w"> </span>a11y-tests
+</span></code></pre></div>
+<p>The Axe tests consist of two different test types. One that scans an entire page for accessibility issues, and another that scans a specific element for issues (such as the main navigation and footer). These tests can also be run at both desktop and mobile viewport sizes.</p>
+<p>Test results are output to the console, and any issues found will be created as HTML report files in the <code>./tests/playwright/test-results-a11y/</code> directory. When run via the <a href="https://github.com/mozilla/bedrock/actions/workflows/a11y_tests.yml">GitHub action</a>, the reports are also output to the annotation logs for each test job.</p>
+<p>A list of all the Axe rules that are checked by the tests can be viewed in the <a href="https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md">axe-core repo</a>.</p>
+<h3 id="running-selenium-tests">Running Selenium tests<a class="headerlink" href="#running-selenium-tests" title="Permanent link">&para;</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Before running the functional tests, please make sure to follow the
-bedrock <a href="../install/">installation docs</a>
-including the database sync that is needed to pull in external data such
-as event/blog feeds etc. These are required for some of the tests to
-pass.</p>
+<p>Selenium tests are being retired in favour of the newer Playwright test suite. Whilst we will continue to run the Selenium tests until they are all migrated over, new tests should be written using Playwright.</p>
 </div>
-<p>To run the full functional test suite against your local bedrock
-instance in Mozorg mode:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>py.test<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/
-</code></pre></div>
-<p>This will run all test suites found in the <code>tests/functional</code> directory
-and assumes you have bedrock running at <code>localhost</code> on port <code>8000</code>.
-Results will be reported in <code>tests/functional/results.html</code>.</p>
-<p>To run the full functional test suite against your local bedrock
-instance in Pocket mode, things are slightly different, because of the
-way things are set up in order to allow CI to test both Mozorg Mode and
-Pocket Mode at the same time. You need to define a temporary environment
-variable (needed by the [pocket_base_url]{.title-ref} fixture) and scope
-pytest to only run Pocket tests:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">BASE_POCKET_URL</span><span class="o">=</span>http://localhost:8000<span class="w"> </span>py.test<span class="w"> </span>-m<span class="w"> </span>pocket_mode<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/
-</code></pre></div>
-<p>This will run all test suites found in the <code>tests/functional</code> directory
-that have the pytest "[mark]{.title-ref}" of [pocket_mode]{.title-ref}
-and assumes you have bedrock running <em>in Pocket mode</em> at <code>localhost</code> on
-port <code>8000</code>. Results will be reported in
-<code>tests/functional/results.html</code>.</p>
+<p>Before running the Selenium tests, please make sure to follow the bedrock <code class="interpreted-text" role="ref">installation docs&lt;install&gt;</code>, including the database sync that is needed to pull in external data such as event/blog feeds etc. These are required for some of the tests to pass.</p>
+<p>To run the full Selenium integration test suite against your local bedrock instance:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span>pytest<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/
+</span></code></pre></div>
+<p>This will run all test suites found in the <code>tests/functional</code> directory and assumes you have bedrock running at <code>localhost</code> on port <code>8000</code>. Results will be reported in <code>tests/functional/results.html</code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you omit the <code>--base-url</code> command line option in Mozorg mode (ie, not
-in Pocket mode) then a local instance of bedrock will be started,
-however the tests are not currently able to run against bedrock in this
-way.</p>
+<p>If you omit the <code>--base-url</code> command line option then a local instance of bedrock will be started, however the tests are not currently able to run against bedrock in this way.</p>
 </div>
-<p>By default, tests will run one at a time. This is the safest way to
-ensure predictable results, due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1230105">bug
-1230105</a>. If you
-want to run tests in parallel (this should be safe when running against
-a deployed instance), you can add <code>-n auto</code> to the command line. Replace
-<code>auto</code> with an integer if you want to set the maximum number of
-concurrent processes.</p>
+<p>By default, tests will run one at a time. This is the safest way to ensure predictable results, due to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1230105">bug 1230105</a>. If you want to run tests in parallel (this should be safe when running against a deployed instance), you can add <code>-n auto</code> to the command line. Replace <code>auto</code> with an integer if you want to set the maximum number of concurrent processes.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>There are some functional tests that do not require a browser. These can
-take a long time to run, especially if they're not running in parallel.
-To skip these tests, add <code>-m 'not headless'</code> to your command line.</p>
+<p>There are some tests that do not require a browser. These can take a long time to run, especially if they're not running in parallel. To skip these tests, add <code>-m 'not headless'</code> to your command line.</p>
 </div>
-<p>To run a single test file you must tell py.test to execute a specific
-file e.g. <code>tests/functional/test_newsletter.py</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>py.test<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/firefox/new/test_download.py
-</code></pre></div>
-<p>To run a single test you can filter using the <code>-k</code> argument supplied
-with a keyword e.g. <code>-k test_download_button_displayed</code>:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>py.test<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/firefox/new/test_download.py<span class="w"> </span>-k<span class="w"> </span>test_download_button_displayed
-</code></pre></div>
-<p>You can also easily run the tests against any bedrock environment by
-specifying the <code>--base-url</code> argument. For example, to run all functional
-tests against dev:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span>py.test<span class="w"> </span>--base-url<span class="w"> </span>https://www-dev.allizom.org<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/
-</code></pre></div>
+<p>To run a single test file you must tell pytest to execute a specific file e.g. <code>tests/functional/test_newsletter.py</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$<span class="w"> </span>pytest<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/firefox/new/test_download.py
+</span></code></pre></div>
+<p>To run a single test you can filter using the <code>-k</code> argument supplied with a keyword e.g. <code>-k test_download_button_displayed</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>$<span class="w"> </span>pytest<span class="w"> </span>--base-url<span class="w"> </span>http://localhost:8000<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/firefox/new/test_download.py<span class="w"> </span>-k<span class="w"> </span>test_download_button_displayed
+</span></code></pre></div>
+<p>You can also easily run the tests against any bedrock environment by specifying the <code>--base-url</code> argument. For example, to run all Selenium integration tests against dev:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>$<span class="w"> </span>pytest<span class="w"> </span>--base-url<span class="w"> </span>https://www-dev.allizom.org<span class="w"> </span>--driver<span class="w"> </span>Firefox<span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For the above commands to work, Firefox needs to be installed in a
-predictable location for your operating system. For details on how to
-specify the location of Firefox, or running the tests against
-alternative browsers, refer to the <a href="http://pytest-selenium.readthedocs.org/en/latest/index.html">pytest-selenium
-documentation</a>.</p>
+<p>For the above commands to work, Firefox needs to be installed in a predictable location for your operating system. For details on how to specify the location of Firefox, or running the tests against alternative browsers, refer to the <a href="http://pytest-selenium.readthedocs.org/en/latest/index.html">pytest-selenium documentation</a>.</p>
 </div>
-<p>For more information on command line options, see the <a href="http://pytest.org/latest/">pytest
-documentation</a>.</p>
-<h3 id="running-tests-in-sauce-labs">Running tests in Sauce Labs<a class="headerlink" href="#running-tests-in-sauce-labs" title="Permanent link">&para;</a></h3>
-<p>You can also run tests in Sauce Labs directly from the command line.
-This can be useful if you want to run tests against Internet Explorer
-when you're on Mac OSX, for instance.</p>
+<p>For more information on command line options, see the <a href="http://pytest.org/latest/">pytest documentation</a>.</p>
+<h4 id="running-tests-in-sauce-labs">Running tests in Sauce Labs<a class="headerlink" href="#running-tests-in-sauce-labs" title="Permanent link">&para;</a></h4>
+<p>You can also run tests in Sauce Labs directly from the command line. This can be useful if you want to run tests against Internet Explorer when you're on Mac OSX, for instance.</p>
 <ol>
 <li>Sign up for an account at <a href="https://saucelabs.com/opensauce/">https://saucelabs.com/opensauce/</a>.</li>
 <li>Log in and obtain your Remote Access Key from user settings.</li>
-<li>Run a test specifying <code>SauceLabs</code> as your driver, and pass your
-    credentials.</li>
+<li>Run a test specifying <code>SauceLabs</code> as your driver, and pass your credentials.</li>
 </ol>
-<p>For example, to run the home page tests using Internet Explorer via
-Sauce Labs:</p>
-<div class="highlight"><pre><span></span><code>$<span class="w"> </span><span class="nv">SAUCELABS_USERNAME</span><span class="o">=</span>thedude<span class="w"> </span><span class="nv">SAUCELABS_API_KEY</span><span class="o">=</span><span class="m">123456789</span><span class="w"> </span><span class="nv">SAUCELABS_W3C</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">SELENIUM_EXCLUDE_DEBUG</span><span class="o">=</span>logs<span class="w"> </span>py.test<span class="w"> </span>--base-url<span class="w"> </span>https://www-dev.allizom.org<span class="w"> </span>--driver<span class="w"> </span>SauceLabs<span class="w"> </span>--capability<span class="w"> </span>browserName<span class="w"> </span><span class="s1">&#39;internet explorer&#39;</span><span class="w"> </span>--capability<span class="w"> </span>platformName<span class="w"> </span><span class="s1">&#39;Windows 10&#39;</span><span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/test_home.py
-</code></pre></div>
-<h2 id="writing-selenium-tests">Writing Selenium tests<a class="headerlink" href="#writing-selenium-tests" title="Permanent link">&para;</a></h2>
-<p>Tests usually consist of interactions and assertions. Selenium provides
-an API for opening pages, locating elements, interacting with elements,
-and obtaining state of pages and elements. To improve readability and
-maintainability of the tests, we use the <a href="http://martinfowler.com/bliki/PageObject.html">Page
-Object</a> model, which
-means each page we test has an object that represents the actions and
-states that are needed for testing.</p>
-<p>Well written page objects should allow your test to contain simple
-interactions and assertions as shown in the following example:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">test_sign_up_for_newsletter</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">NewsletterPage</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-    <span class="n">page</span><span class="o">.</span><span class="n">type_email</span><span class="p">(</span><span class="s1">&#39;noreply@mozilla.com&#39;</span><span class="p">)</span>
-    <span class="n">page</span><span class="o">.</span><span class="n">accept_privacy_policy</span><span class="p">()</span>
-    <span class="n">page</span><span class="o">.</span><span class="n">click_sign_me_up</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">sign_up_successful</span>
-</code></pre></div>
-<p>It's important to keep assertions in your tests and not your page
-objects, and to limit the amount of logic in your page objects. This
-will ensure your tests all start with a known state, and any deviations
-from this expected state will be highlighted as potential regressions.
-Ideally, when tests break due to a change in bedrock, only the page
-objects will need updating. This can often be due to an element needing
-to be located in a different way.</p>
-<p>Please take some time to read over the <a href="http://seleniumhq.github.io/selenium/docs/api/py/api.html">Selenium
-documentation</a>
-for details on the Python client API.</p>
-<h3 id="destructive-tests">Destructive tests<a class="headerlink" href="#destructive-tests" title="Permanent link">&para;</a></h3>
-<p>By default all tests are assumed to be destructive, which means they
-will be skipped if they're run against a <a href="http://pytest-selenium.readthedocs.org/en/latest/user_guide.html#sensitive-environments">sensitive
-environment</a>.
-This prevents accidentally running tests that create, modify, or delete
-data on the application under test. If your test is nondestructive you
-will need to apply the <code>nondestructive</code> marker to it. A simple example
-is shown below, however you can also read the <a href="http://pytest.org/latest/example/markers.html">pytest
-markers</a> documentation
-for more options.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">nondestructive</span>
-<span class="k">def</span> <span class="nf">test_newsletter_default_values</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">NewsletterPage</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="s1">&#39;&#39;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">email</span>
-    <span class="k">assert</span> <span class="s1">&#39;United States&#39;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">country</span>
-    <span class="k">assert</span> <span class="s1">&#39;English&#39;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">language</span>
-    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">html_format_selected</span>
-    <span class="k">assert</span> <span class="ow">not</span> <span class="n">page</span><span class="o">.</span><span class="n">text_format_selected</span>
-    <span class="k">assert</span> <span class="ow">not</span> <span class="n">page</span><span class="o">.</span><span class="n">privacy_policy_accepted</span>
-</code></pre></div>
-<h3 id="smoke-tests">Smoke tests<a class="headerlink" href="#smoke-tests" title="Permanent link">&para;</a></h3>
-<p>Smoke tests are considered to be our most critical tests that must pass
-in a wide range of web browsers, including Internet Explorer 11. The
-number of smoke tests we run should be enough to cover our most critical
-pages where legacy browser support is important.</p>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pytest</span>
-
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">smoke</span>
-<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">nondestructive</span>
-<span class="k">def</span> <span class="nf">test_download_button_displayed</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">DownloadPage</span><span class="p">(</span><span class="n">selenium</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">is_download_button_displayed</span>
-</code></pre></div>
-<p>You can run smoke tests only by adding <code>-m smoke</code> when running the test
-suite on the command line.</p>
-<h3 id="waits-and-expected-conditions">Waits and Expected Conditions<a class="headerlink" href="#waits-and-expected-conditions" title="Permanent link">&para;</a></h3>
-<p>Often an interaction with a page will cause a visible response. While
-Selenium does its best to wait for any page loads to be complete, it's
-never going to be as good as you at knowing when to allow the test to
-continue. For this reason, you will need to write explicit
-<a href="http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html">waits</a>
-in your page objects. These repeatedly execute code (a condition) until
-the condition returns true. The following example is probably the most
-commonly used, and will wait until an element is considered displayed:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">expected</span>
-<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span> <span class="k">as</span> <span class="n">Wait</span>
-
-<span class="n">Wait</span><span class="p">(</span><span class="n">selenium</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
-    <span class="n">expected</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s1">&#39;my_element&#39;</span><span class="p">))</span>
-</code></pre></div>
-<p>For convenience, the Selenium project offers some basic <a href="http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html">expected
-conditions</a>,
-which can be used for the most common cases.</p>
-<h2 id="debugging-selenium">Debugging Selenium<a class="headerlink" href="#debugging-selenium" title="Permanent link">&para;</a></h2>
-<p>Debug information is collected on failure and added to the HTML report
-referenced by the <code>--html</code> argument. You can enable debug information
-for all tests by setting the <code>SELENIUM_CAPTURE_DEBUG</code> environment
-variable to <code>always</code>.</p>
-<h2 id="guidelines-for-writing-functional-tests">Guidelines for writing functional tests<a class="headerlink" href="#guidelines-for-writing-functional-tests" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Try and keep tests organized and cleanly separated. Each page should
-    have its own page object and test file, and each test should be
-    responsible for a specific purpose, or component of a page.</li>
-<li>Avoid using sleeps - always use waits as mentioned above.</li>
-<li>Don't make tests overly specific. If a test keeps failing because
-    of generic changes to a page such as an image filename or <code>href</code>
-    being updated, then the test is probably too specific.</li>
-<li>Avoid string checking as tests may break if strings are updated, or
-    could change depending on the page locale.</li>
-<li>When writing tests, try and run them against a staging or demo
-    environment in addition to local testing. It's also worth running
-    tests a few times to identify any intermittent failures that may
-    need additional waits.</li>
-</ul>
-<p>See also the <a href="https://wiki.mozilla.org/QA/Execution/Web_Testing/Docs/Automation/StyleGuide">Web QA style
-guide</a>
-for Python based testing.</p>
-<h2 id="testing-basket-email-forms">Testing Basket email forms<a class="headerlink" href="#testing-basket-email-forms" title="Permanent link">&para;</a></h2>
-<p>When writing functional tests for front-end email newsletter forms that
-submit to <a href="https://github.com/mozilla/basket">Basket</a>, we have some
-special case email addresses that can be used just for testing:</p>
+<p>For example, to run the home page tests using Internet Explorer via Sauce Labs:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>$<span class="w"> </span><span class="nv">SAUCELABS_USERNAME</span><span class="o">=</span>thedude<span class="w"> </span><span class="nv">SAUCELABS_API_KEY</span><span class="o">=</span><span class="m">123456789</span><span class="w"> </span><span class="nv">SAUCELABS_W3C</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="nv">SELENIUM_EXCLUDE_DEBUG</span><span class="o">=</span>logs<span class="w"> </span>pytest<span class="w"> </span>--base-url<span class="w"> </span>https://www-dev.allizom.org<span class="w"> </span>--driver<span class="w"> </span>SauceLabs<span class="w"> </span>--capability<span class="w"> </span>browserName<span class="w"> </span><span class="s1">&#39;internet explorer&#39;</span><span class="w"> </span>--capability<span class="w"> </span>platformName<span class="w"> </span><span class="s1">&#39;Windows 10&#39;</span><span class="w"> </span>--html<span class="w"> </span>tests/functional/results.html<span class="w"> </span>tests/functional/test_home.py
+</span></code></pre></div>
+<h4 id="writing-selenium-tests">Writing Selenium tests<a class="headerlink" href="#writing-selenium-tests" title="Permanent link">&para;</a></h4>
+<p>Tests usually consist of interactions and assertions. Selenium provides an API for opening pages, locating elements, interacting with elements, and obtaining state of pages and elements. To improve readability and maintainability of the tests, we use the <a href="http://martinfowler.com/bliki/PageObject.html">Page Object</a> model, which means each page we test has an object that represents the actions and states that are needed for testing.</p>
+<p>Well written page objects should allow your test to contain simple interactions and assertions as shown in the following example:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_sign_up_for_newsletter</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="n">page</span> <span class="o">=</span> <span class="n">NewsletterPage</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    <span class="n">page</span><span class="o">.</span><span class="n">type_email</span><span class="p">(</span><span class="s2">&quot;noreply@mozilla.com&quot;</span><span class="p">)</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="n">page</span><span class="o">.</span><span class="n">accept_privacy_policy</span><span class="p">()</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="n">page</span><span class="o">.</span><span class="n">click_sign_me_up</span><span class="p">()</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">sign_up_successful</span>
+</span></code></pre></div>
+<p>It's important to keep assertions in your tests and not your page objects, and to limit the amount of logic in your page objects. This will ensure your tests all start with a known state, and any deviations from this expected state will be highlighted as potential regressions. Ideally, when tests break due to a change in bedrock, only the page objects will need updating. This can often be due to an element needing to be located in a different way.</p>
+<p>Please take some time to read over the <a href="http://seleniumhq.github.io/selenium/docs/api/py/api.html">Selenium documentation</a> for details on the Python client API.</p>
+<h5 id="destructive-tests">Destructive tests<a class="headerlink" href="#destructive-tests" title="Permanent link">&para;</a></h5>
+<p>By default all tests are assumed to be destructive, which means they will be skipped if they're run against a <a href="http://pytest-selenium.readthedocs.org/en/latest/user_guide.html#sensitive-environments">sensitive environment</a>. This prevents accidentally running tests that create, modify, or delete data on the application under test. If your test is nondestructive you will need to apply the <code>nondestructive</code> marker to it. A simple example is shown below, however you can also read the <a href="http://pytest.org/latest/example/markers.html">pytest markers</a> documentation for more options.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">nondestructive</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_newsletter_default_values</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>    <span class="n">page</span> <span class="o">=</span> <span class="n">NewsletterPage</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    <span class="k">assert</span> <span class="s2">&quot;&quot;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">email</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="k">assert</span> <span class="s2">&quot;United States&quot;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">country</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>    <span class="k">assert</span> <span class="s2">&quot;English&quot;</span> <span class="o">==</span> <span class="n">page</span><span class="o">.</span><span class="n">language</span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">html_format_selected</span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">page</span><span class="o">.</span><span class="n">text_format_selected</span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>    <span class="k">assert</span> <span class="ow">not</span> <span class="n">page</span><span class="o">.</span><span class="n">privacy_policy_accepted</span>
+</span></code></pre></div>
+<h5 id="smoke-tests">Smoke tests<a class="headerlink" href="#smoke-tests" title="Permanent link">&para;</a></h5>
+<p>Smoke tests are considered to be our most critical tests that must pass in a wide range of web browsers, including Internet Explorer 11. The number of smoke tests we run should be enough to cover our most critical pages where legacy browser support is important.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">smoke</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">nondestructive</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="k">def</span><span class="w"> </span><span class="nf">test_download_button_displayed</span><span class="p">(</span><span class="n">base_url</span><span class="p">,</span> <span class="n">selenium</span><span class="p">):</span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>    <span class="n">page</span> <span class="o">=</span> <span class="n">DownloadPage</span><span class="p">(</span><span class="n">selenium</span><span class="p">,</span> <span class="n">base_url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">open</span><span class="p">()</span>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>    <span class="k">assert</span> <span class="n">page</span><span class="o">.</span><span class="n">is_download_button_displayed</span>
+</span></code></pre></div>
+<p>You can run smoke tests only by adding <code>-m smoke</code> when running the test suite on the command line.</p>
+<h5 id="waits-and-expected-conditions">Waits and Expected Conditions<a class="headerlink" href="#waits-and-expected-conditions" title="Permanent link">&para;</a></h5>
+<p>Often an interaction with a page will cause a visible response. While Selenium does its best to wait for any page loads to be complete, it's never going to be as good as you at knowing when to allow the test to continue. For this reason, you will need to write explicit <a href="http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.wait.html">waits</a> in your page objects. These repeatedly execute code (a condition) until the condition returns true. The following example is probably the most commonly used, and will wait until an element is considered displayed:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support</span><span class="w"> </span><span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">expected</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">selenium.webdriver.support.ui</span><span class="w"> </span><span class="kn">import</span> <span class="n">WebDriverWait</span> <span class="k">as</span> <span class="n">Wait</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">Wait</span><span class="p">(</span><span class="n">selenium</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">until</span><span class="p">(</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>    <span class="n">expected</span><span class="o">.</span><span class="n">visibility_of_element_located</span><span class="p">(</span><span class="n">By</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="s2">&quot;my_element&quot;</span><span class="p">)</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="p">)</span>
+</span></code></pre></div>
+<p>For convenience, the Selenium project offers some basic <a href="http://seleniumhq.github.io/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.expected_conditions.html">expected conditions</a>, which can be used for the most common cases.</p>
+<h4 id="debugging-selenium">Debugging Selenium<a class="headerlink" href="#debugging-selenium" title="Permanent link">&para;</a></h4>
+<p>Debug information is collected on failure and added to the HTML report referenced by the <code>--html</code> argument. You can enable debug information for all tests by setting the <code>SELENIUM_CAPTURE_DEBUG</code> environment variable to <code>always</code>.</p>
+<h3 id="testing-basket-email-forms">Testing Basket email forms<a class="headerlink" href="#testing-basket-email-forms" title="Permanent link">&para;</a></h3>
+<p>When writing integration tests for front-end email newsletter forms that submit to <a href="https://github.com/mozilla/basket">Basket</a>, we have some special case email addresses that can be used just for testing:</p>
 <ol>
-<li>Any newsletter subscription request using the email address
-    "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#99;&#99;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;">&#115;&#117;&#99;&#99;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;</a>" will always return success from the basket
-    client.</li>
-<li>Any newsletter subscription request using the email address
-    "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#97;&#105;&#108;&#117;&#114;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;">&#102;&#97;&#105;&#108;&#117;&#114;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;</a>" will always raise an exception from the
-    basket client.</li>
+<li>Any newsletter subscription request using the email address "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#117;&#99;&#99;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;">&#115;&#117;&#99;&#99;&#101;&#115;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;</a>" will always return success from the basket client.</li>
+<li>Any newsletter subscription request using the email address "<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#97;&#105;&#108;&#117;&#114;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;">&#102;&#97;&#105;&#108;&#117;&#114;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#99;&#111;&#109;</a>" will always raise an exception from the basket client.</li>
 </ol>
-<p>Using the above email addresses enables newsletter form testing without
-actually hitting the Basket instance, which reduces automated newsletter
-spam and improves test reliability due to any potential network
-flakiness.</p>
-<h2 id="headless-tests">Headless tests<a class="headerlink" href="#headless-tests" title="Permanent link">&para;</a></h2>
-<p>There are targeted headless tests for the
-<a href="https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py">download</a>
-pages. These tests and are run as part of the pipeline to ensure that
-download links constructed via product details are well formed and
-return valid 200 responses.</p>
+<p>Using the above email addresses enables newsletter form testing without actually hitting the Basket instance, which reduces automated newsletter spam and improves test reliability due to any potential network flakiness.</p>
+<h4 id="headless-tests">Headless tests<a class="headerlink" href="#headless-tests" title="Permanent link">&para;</a></h4>
+<p>There are targeted headless tests for the <a href="https://github.com/mozilla/bedrock/blob/main/tests/functional/test_download.py">download</a> pages. These tests and are run as part of the pipeline to ensure that download links constructed via product details are well formed and return valid 200 responses.</p>
+
+
+
+
+
+
+
 
 
 
@@ -1461,25 +2048,83 @@ return valid 200 responses.</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../pipeline/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Continuous Integration &amp; Deployment">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Continuous Integration & Deployment
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../task-queue/" class="md-footer__link md-footer__link--next" aria-label="Next: Task Queue">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Task Queue
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2011-2025, Mozilla
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mozilla/bedrock/issues/" target="_blank" rel="noopener" title="Report a problem with this documentation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.5c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4h112c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5h64.3c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6q3.3 1.95 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63.1 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
     </a>
   
 </div>
@@ -1493,10 +2138,13 @@ return valid 200 responses.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-      <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

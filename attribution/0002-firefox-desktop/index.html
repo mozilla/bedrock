@@ -8,29 +8,35 @@
       
       
       
+        <link rel="canonical" href="https://mozilla.github.io/bedrock/attribution/0002-firefox-desktop/">
+      
       
         <link rel="prev" href="../0001-analytics/">
       
       
         <link rel="next" href="../0003-firefox-mobile/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>Firefox desktop attribution - Bedrock Documentation</title>
+        <title>Firefox Desktop attribution - Bedrock Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,11 +65,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#scope-and-requirements" class="md-skip">
+        <a href="#firefox_desktop_attribution" class="md-skip">
           Skip to content
         </a>
       
@@ -89,12 +92,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/mozilla-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -106,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Firefox desktop attribution
+              Firefox Desktop attribution
             
           </span>
         </div>
@@ -115,34 +118,38 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
       
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -150,19 +157,29 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -179,7 +196,7 @@
         <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -209,12 +226,12 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/mozilla-logo.svg" alt="logo">
 
     </a>
     Bedrock Documentation
@@ -224,7 +241,7 @@
       <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -236,14 +253,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -251,14 +273,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../install/" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -266,14 +293,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../l10n/" class="md-nav__link">
-        Localization
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
       </a>
     </li>
   
@@ -281,14 +313,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../coding/" class="md-nav__link">
-        Developing on Bedrock
+        
+  
+  <span class="md-ellipsis">
+    Developing on Bedrock
+  </span>
+  
+
       </a>
     </li>
   
@@ -296,14 +333,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browser-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browser Support
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../contribute/" class="md-nav__link">
-        How to Contribute
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute
+  </span>
+  
+
       </a>
     </li>
   
@@ -311,14 +373,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../pipeline/" class="md-nav__link">
-        Continuous Integration & Deployment
+        
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +393,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../testing/" class="md-nav__link">
-        Front-end testing
+        
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +413,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../task-queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Queue
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../redirects/" class="md-nav__link">
-        Managing redirects
+        
+  
+  <span class="md-ellipsis">
+    Managing redirects
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +453,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../newsletters/" class="md-nav__link">
-        Newsletters
+        
+  
+  <span class="md-ellipsis">
+    Newsletters
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,14 +473,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../../contentful/" class="md-nav__link">
-        Contentful CMS Integration
+      <a href="../../legal-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Legal Docs
+  </span>
+  
+
       </a>
     </li>
   
@@ -386,14 +493,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Content Management System
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../sitemap/" class="md-nav__link">
-        Sitemaps
+        
+  
+  <span class="md-ellipsis">
+    Sitemaps
+  </span>
+  
+
       </a>
     </li>
   
@@ -401,29 +533,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../content-cards/" class="md-nav__link">
-        Using External Content Card Data
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../../banners/" class="md-nav__link">
-        Banners
+        
+  
+  <span class="md-ellipsis">
+    Banners
+  </span>
+  
+
       </a>
     </li>
   
@@ -431,14 +553,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../uitour/" class="md-nav__link">
-        Mozilla.UITour
+        
+  
+  <span class="md-ellipsis">
+    Mozilla.UITour
+  </span>
+  
+
       </a>
     </li>
   
@@ -446,14 +573,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../send-to-device/" class="md-nav__link">
-        Send to Device widget
+        
+  
+  <span class="md-ellipsis">
+    Send to Device widget
+  </span>
+  
+
       </a>
     </li>
   
@@ -461,14 +593,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../download-buttons/" class="md-nav__link">
-        Firefox Download Buttons
+        
+  
+  <span class="md-ellipsis">
+    Firefox Download Buttons
+  </span>
+  
+
       </a>
     </li>
   
@@ -476,14 +613,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../mozilla-accounts/" class="md-nav__link">
-        Mozilla account helpers
+        
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
       </a>
     </li>
   
@@ -491,29 +633,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../funnelcake/" class="md-nav__link">
-        Funnel cakes and Partner Builds
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../../abtest/" class="md-nav__link">
-        A/B Testing
+        
+  
+  <span class="md-ellipsis">
+    A/B Testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -521,14 +653,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../vpn-subscriptions/" class="md-nav__link">
-        Mozilla VPN Subscriptions
+        
+  
+  <span class="md-ellipsis">
+    Mozilla VPN Subscriptions
+  </span>
+  
+
       </a>
     </li>
   
@@ -536,68 +673,96 @@
     
       
       
-      
-
   
   
     
   
   
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
-          Attribution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_21">
-          <span class="md-nav__icon md-icon"></span>
-          Attribution
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" checked>
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        Attribution
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Attribution
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            Attribution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0001-analytics/" class="md-nav__link">
-        Mozorg Analytics
+        
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -607,12 +772,24 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Firefox Desktop attribution
+          
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Firefox Desktop attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
       </a>
       
         
@@ -629,58 +806,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#firefox_desktop_attribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firefox desktop attribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firefox desktop attribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#scope-and-requirements" class="md-nav__link">
-    Scope and requirements
+    <span class="md-ellipsis">
+      Scope and requirements
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#how-does-attribution-work" class="md-nav__link">
-    How does attribution work?
+    <span class="md-ellipsis">
+      How does attribution work?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#attribution-data" class="md-nav__link">
-    Attribution data
+    <span class="md-ellipsis">
+      Attribution data
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cookies" class="md-nav__link">
-    Cookies
+    <span class="md-ellipsis">
+      Cookies
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#measuring-campaigns-and-experiments" class="md-nav__link">
-    Measuring campaigns and experiments
+    <span class="md-ellipsis">
+      Measuring campaigns and experiments
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#return-to-addonsmozillaorg-rtamo" class="md-nav__link">
-    Return to addons.mozilla.org (RTAMO)
+    <span class="md-ellipsis">
+      Return to addons.mozilla.org (RTAMO)
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#how-can-visitors-opt-out" class="md-nav__link">
-    How can visitors opt out?
+    <span class="md-ellipsis">
+      How can visitors opt out?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#local-testing" class="md-nav__link">
-    Local testing
+    <span class="md-ellipsis">
+      Local testing
+    </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-testing-for-code-reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual testing for code reviews
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -691,283 +908,468 @@
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0003-firefox-mobile/" class="md-nav__link">
-        Firefox Mobile attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Mobile attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0004-mozilla-accounts/" class="md-nav__link">
-        Mozilla accounts attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla accounts attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0005-affiliate-marketing/" class="md-nav__link">
-        Mozilla CJMS Affiliate attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CJMS Affiliate attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../0006-pocket-analytics/" class="md-nav__link">
-        Pocket mode attribution
+      <a href="../0006-consent-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Data Privacy and Concent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
-          Architectural Decision Records
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
-          <span class="md-nav__icon md-icon"></span>
-          Architectural Decision Records
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../architecture/decisions/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../architectural-decisions/" class="md-nav__link">
-        Architectural Decision Records
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Architectural Decision Records
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_23" id="__nav_23_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural Decision Records
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
-        1. Record architecture decisions
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
-        2. Move CI/CD Pipelines to Gitlab
+        
+  
+  <span class="md-ellipsis">
+    2. Move CI/CD Pipelines to Gitlab
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
-        3. Use Cloudflare Workers and Convert for multi-variant testing
+        
+  
+  <span class="md-ellipsis">
+    3. Use Cloudflare Workers and Convert for multi-variant testing
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
-        4. Use Fluent For Localization
+        
+  
+  <span class="md-ellipsis">
+    4. Use Fluent For Localization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
-        5. Use a Single Docker Image For All Deployments
+        
+  
+  <span class="md-ellipsis">
+    5. Use a Single Docker Image For All Deployments
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        6. Revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    6. Revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        7. Further revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    7. Further revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
-        8. Move Demos To GCP
+        
+  
+  <span class="md-ellipsis">
+    8. Move Demos To GCP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
-        9. Manage Contentful schema state via migrations
+        
+  
+  <span class="md-ellipsis">
+    9. Manage Contentful schema state via migrations
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
-        10. Move CI to Github Actions for Unit and Integration tests
+        
+  
+  <span class="md-ellipsis">
+    10. Move CI to Github Actions for Unit and Integration tests
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
-        11. Use StatsD for metrics collection
+        
+  
+  <span class="md-ellipsis">
+    11. Use StatsD for metrics collection
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/0012-wagtail-for-cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Use Wagtail CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../../browser-support/" class="md-nav__link">
-        Browser Support
+      <a href="../../contentful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contentful (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../content-cards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Content Cards (deprecated)
+  </span>
+  
+
       </a>
     </li>
   
@@ -998,58 +1400,98 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#firefox_desktop_attribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Firefox desktop attribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Firefox desktop attribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#scope-and-requirements" class="md-nav__link">
-    Scope and requirements
+    <span class="md-ellipsis">
+      Scope and requirements
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#how-does-attribution-work" class="md-nav__link">
-    How does attribution work?
+    <span class="md-ellipsis">
+      How does attribution work?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#attribution-data" class="md-nav__link">
-    Attribution data
+    <span class="md-ellipsis">
+      Attribution data
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#cookies" class="md-nav__link">
-    Cookies
+    <span class="md-ellipsis">
+      Cookies
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#measuring-campaigns-and-experiments" class="md-nav__link">
-    Measuring campaigns and experiments
+    <span class="md-ellipsis">
+      Measuring campaigns and experiments
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#return-to-addonsmozillaorg-rtamo" class="md-nav__link">
-    Return to addons.mozilla.org (RTAMO)
+    <span class="md-ellipsis">
+      Return to addons.mozilla.org (RTAMO)
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#how-can-visitors-opt-out" class="md-nav__link">
-    How can visitors opt out?
+    <span class="md-ellipsis">
+      How can visitors opt out?
+    </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#local-testing" class="md-nav__link">
-    Local testing
+    <span class="md-ellipsis">
+      Local testing
+    </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#manual-testing-for-code-reviews" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual testing for code reviews
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1073,172 +1515,212 @@
 
   <h1>Firefox Desktop attribution</h1>
 
-<p>Firefox Desktop Attribution (often referred to as Stub Attribution) is a
-system that enables Mozilla to link website attributable referral data
-(including Google Analytics data) to a user's Firefox profile. When a
-website visitor lands on <a href="http://www.mozilla.org">www.mozilla.org</a> and clicks to download Firefox,
-we pass attribution data about their visit to the Firefox installer for
-inclusion in <a href="https://telemetry.mozilla.org/">Telemetry</a>. This is to
-enable Mozilla to better understand how things like changes to our
-website and different marketing campaigns can affect installation rates,
-as well as overall product retention. The data also gives us an insight
-into how many installations originate from <a href="http://www.mozilla.org">www.mozilla.org</a>, as opposed
-to elsewhere on the internet.</p>
-<h2 id="scope-and-requirements">Scope and requirements<a class="headerlink" href="#scope-and-requirements" title="Permanent link">&para;</a></h2>
+<h2 id="firefox_desktop_attribution">Firefox desktop attribution<a class="headerlink" href="#firefox_desktop_attribution" title="Permanent link">&para;</a></h2>
+<p>Firefox Desktop Attribution (often referred to as Stub Attribution) is a system that enables Mozilla to link website attributable referral data (including Google Analytics data) to a user's Firefox profile. When a website visitor lands on <a href="http://www.mozilla.org">www.mozilla.org</a> and clicks to download Firefox, we pass attribution data about their visit to the Firefox installer for inclusion in <a href="https://telemetry.mozilla.org/">Telemetry</a>. This is to enable Mozilla to better understand how changes to our website and different marketing campaigns can affect installation rates, as well as overall product retention. The data also gives us an insight into how many installations originate from <a href="http://www.mozilla.org">www.mozilla.org</a>, as opposed to elsewhere on the internet.</p>
+<h3 id="scope-and-requirements">Scope and requirements<a class="headerlink" href="#scope-and-requirements" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Attribution was originally only possible via the Firefox stub
-    installer on Windows (hence the name <em>stub attribution</em>), however it
-    now also works on full installer links, and across all Windows
-    desktop release channels.</li>
-<li>Attribution is still limited to devices running a Windows OS. The
-    flow does not yet work for macOS and Linux users. It also does not
-    work for Android or iOS devices.</li>
-<li>Attribution will only be passed if a website visitor has their <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do
-    Not Track
-    (DNT)</a>
-    preference disabled in their browser. Visitors can opt-out by
-    enabling DNT. This is covered in our <a href="https://www.mozilla.org/privacy/websites/">privacy
-    policy</a>.</li>
+<li>Attribution was originally only possible via the Firefox stub installer on Windows (hence the name <em>stub attribution</em>), however it now also works on full installer links, and across all desktop release channels.</li>
+<li>Attribution now also works on macOS. The flow does not yet work for Linux, Android or iOS devices.</li>
+<li>Attribution will only be passed if a website visitor has their <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do Not Track (DNT)</a> and <a href="https://support.mozilla.org/kb/global-privacy-control">Global Privacy Control (GPC)</a> preferences disabled in their browser. Visitors can opt-out by enabling DNT or GPC. This is covered in our <a href="https://www.mozilla.org/privacy/websites/">privacy policy</a>.</li>
 </ul>
-<h2 id="how-does-attribution-work">How does attribution work?<a class="headerlink" href="#how-does-attribution-work" title="Permanent link">&para;</a></h2>
-<p>See the <a href="https://www.figma.com/file/q5mJpicWBpzAYuQ3fV00ix/Firefox-Stub-Attribution-Flow?node-id=0%3A1&amp;t=EFe91WQzQ7cXHSiB-1">Application Logic Flow
-Chart</a>
-for a more detailed visual representation of the steps below (Mozilla
-access only).</p>
+<h3 id="how-does-attribution-work">How does attribution work?<a class="headerlink" href="#how-does-attribution-work" title="Permanent link">&para;</a></h3>
+<p>See the <a href="https://www.figma.com/file/q5mJpicWBpzAYuQ3fV00ix/Firefox-Stub-Attribution-Flow?node-id=0%3A1&amp;t=EFe91WQzQ7cXHSiB-1">Application Logic Flow Chart</a> for a more detailed visual representation of the steps below (Mozilla access only).</p>
 <ol>
-<li>A user visits a page on <a href="http://www.mozilla.org">www.mozilla.org</a>. On page load, a <a href="https://github.com/mozilla/bedrock/blob/main/media/js/base/stub-attribution.js">JavaScript
-    function</a>
-    collects referral and analytics data about from where their visit
-    originated (see the table below for a full list of attribution data
-    we collect).</li>
-<li>Once the attribution data is validated, bedrock then generates an
-    attribution session ID. This ID is included in the user's
-    attribution data, and is also sent to Google Analytics as a
-    non-interaction event.</li>
-<li>Next we send the attribution data to an authentication service that
-    is part of bedrock's back-end server. The data is validated again,
-    then base64 encoded and returned to the client together with an
-    signed, encrypted signature to prove that the data came from
-    <a href="http://www.mozilla.org">www.mozilla.org</a>.</li>
-<li>The encoded attribution data and signature are then stored as
-    cookies in the user's web browser. The cookies have the IDs
-    <code>moz-stub-attribution-code</code> (the attribution code) and
-    <code>moz-stub-attribution-sig</code> (the encrypted signature). Both cookies
-    have a 24 hour expiry.</li>
-<li>Once the user reaches a Firefox download page, bedrock then checks
-    if both attribution cookies exist, and if so appends the
-    authenticated data to the Firefox download link. The query
-    parameters are labelled <code>attribution_code</code> and <code>attribution_sig</code>.</li>
-<li>When the user clicks the Firefox download link, another attribution
-    service hosted at <code>download.mozilla.org</code> then decrypts and validates
-    the attribution signature. If the secret matches, a unique download
-    token is generated. The service then stores both the attribution
-    data (including the Google Analytics client ID) and the download
-    token in Mozilla's private server logs.</li>
-<li>The service then passes the download token and attribution data
-    (excluding the GA client ID) into the installer being served to the
-    user.</li>
-<li>Once the user installs Firefox, the data that was passed to the
-    installer is then stored in the users' Telemetry profile.</li>
-<li>During analysis, the download token can be used to join Telemetry
-    data with the corresponding GA data in the server logs.</li>
+<li>A user visits a page on <a href="http://www.mozilla.org">www.mozilla.org</a>. On page load, a <a href="https://github.com/mozilla/bedrock/blob/main/media/js/base/stub-attribution.js">JavaScript function</a> collects referral and analytics data about from where their visit originated (see the table below for a full list of attribution data we collect).</li>
+<li>Once the attribution data is validated, bedrock then generates an attribution session ID. This ID is included in the user's attribution data, and is also sent to Google Analytics as a non-interaction event.</li>
+<li>Next we send the attribution data to an authentication service that is part of bedrock's back-end server. The data is validated again, then base64 encoded and returned to the client together with an signed, encrypted signature to prove that the data came from <a href="http://www.mozilla.org">www.mozilla.org</a>.</li>
+<li>The encoded attribution data and signature are then stored as cookies in the user's web browser. The cookies have the IDs <code>moz-stub-attribution-code</code> (the attribution code) and <code>moz-stub-attribution-sig</code> (the encrypted signature). Both cookies have a 24 hour expiry.</li>
+<li>Once the user reaches a Firefox download page, bedrock then checks if both attribution cookies exist, and if so appends the authenticated data to the Firefox download link. The query parameters are labelled <code>attribution_code</code> and <code>attribution_sig</code>.</li>
+<li>When the user clicks the Firefox download link, another attribution service hosted at <code>download.mozilla.org</code> then decrypts and validates the attribution signature. If the secret matches, a unique download token is generated. The service then stores both the attribution data (including the Google Analytics client ID) and the download token in Mozilla's private server logs.</li>
+<li>The service then passes the download token and attribution data (excluding the GA client ID) into the installer being served to the user.</li>
+<li>Once the user installs Firefox, the data that was passed to the installer is then stored in the users' Telemetry profile.</li>
+<li>During analysis, the download token can be used to join Telemetry data with the corresponding GA data in the server logs.</li>
 </ol>
-<h2 id="attribution-data">Attribution data<a class="headerlink" href="#attribution-data" title="Permanent link">&para;</a></h2>
-<hr />
-<p>Name             Description                                   Example</p>
-<hr />
-<p><code>utm_source</code>     Query param identifying the referring site    <code>utm_source=google</code>
-                   which sent the visitor.</p>
-<p><code>utm_medium</code>     Query param identifying the type of link,     <code>utm_medium=cpc</code>
-                   such as referral, cost per click, or email.</p>
-<p><code>utm_campaign</code>   Query param identifying the specific          <code>utm_campaign=fast</code>
-                   marketing campaign that was seen.</p>
-<p><code>utm_content</code>    Query param identifying the specific element  <code>utm_content=getfirefox</code>
-                   that was clicked.</p>
-<p><code>referrer</code>       The domain of the referring site when the     <code>google.com</code>
-                   link was clicked.</p>
-<p><code>ua</code>             Simplified browser name parsed from the       <code>chrome</code>
-                   visitor's User Agent string.</p>
-<p><code>experiment</code>     Query param identifying an experiment name    <code>taskbar</code>
-                   that visitor was a cohort of.</p>
-<p><code>variation</code>      Query param identifying the experiment
-                   variation that was seen by the visitor.</p>
-<p><code>client_id</code>      Google Analytics Client ID.                   <code>1715265578.1681917481</code></p>
-<p><code>session_id</code>     A random 10 digit string identifier used to   <code>9770365798</code>
-                   associate attribution data with GA session.</p>
-<p><code>dlsource</code>       A hard-coded string ID used to distinguish    <code>mozorg</code>
-                   mozorg downloads from archive downloads</p>
-<hr />
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If any of the above values are not present then a default value of
-<code>(not set)</code> will be used.</p>
+<p>The stub attribution script uses the attribute <code>data-download-version</code> to identify what links are download links.</p>
 </div>
-<h2 id="cookies">Cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h2>
+<h3 id="attribution-data">Attribution data<a class="headerlink" href="#attribution-data" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>utm_source</code></td>
+<td>Query param identifying the referring site which sent the visitor.</td>
+<td><code>utm_source=google</code></td>
+</tr>
+<tr>
+<td><code>utm_medium</code></td>
+<td>Query param identifying the type of link, such as referral, cost per click, or email.</td>
+<td><code>utm_medium=cpc</code></td>
+</tr>
+<tr>
+<td><code>utm_campaign</code></td>
+<td>Query param identifying the specific marketing campaign that was seen.</td>
+<td><code>utm_campaign=fast</code></td>
+</tr>
+<tr>
+<td><code>utm_content</code></td>
+<td>Query param identifying the specific element that was clicked.</td>
+<td><code>utm_content=getfirefox</code></td>
+</tr>
+<tr>
+<td><code>referrer</code></td>
+<td>The domain of the referring site when the link was clicked.</td>
+<td><code>google.com</code></td>
+</tr>
+<tr>
+<td><code>ua</code></td>
+<td>Simplified browser name parsed from the visitor's User Agent string.</td>
+<td><code>chrome</code></td>
+</tr>
+<tr>
+<td><code>experiment</code></td>
+<td>Query param identifying an experiment name that visitor was a cohort of.</td>
+<td><code>taskbar</code></td>
+</tr>
+<tr>
+<td><code>variation</code></td>
+<td>Query param identifying the experiment variation that was seen by the visitor.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>client_id_ga4</code></td>
+<td>Google Analytics 4 Client ID.</td>
+<td><code>1715265578.1681917481</code></td>
+</tr>
+<tr>
+<td><code>session_id</code></td>
+<td>A random 10 digit string identifier used to associate attribution data with GA session.</td>
+<td><code>9770365798</code></td>
+</tr>
+<tr>
+<td><code>dlsource</code></td>
+<td>A hard-coded string ID used to distinguish mozorg downloads from archive downloads</td>
+<td><code>mozorg</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If any of the above values are not present then a default value of <code>(not set)</code> will be used.</p>
+</div>
+<h3 id="cookies">Cookies<a class="headerlink" href="#cookies" title="Permanent link">&para;</a></h3>
 <p>The cookies created during the attribution flow are as follows:</p>
-<hr />
-<p>Name                          Value                    Domain              Path   Expiry</p>
-<hr />
-<p><code>moz-stub-attribution-code</code>   Base64 encoded           <code>www.mozilla.org</code>   <code>/</code>    24 hours
-                                attribution string</p>
-<p><code>moz-stub-attribution-sig</code>    Base64 encoded signature <code>www.mozilla.org</code>   <code>/</code>    24 hours</p>
-<hr />
-<h2 id="measuring-campaigns-and-experiments">Measuring campaigns and experiments<a class="headerlink" href="#measuring-campaigns-and-experiments" title="Permanent link">&para;</a></h2>
-<p>Firefox Desktop Attribution was originally designed for measuring the
-effectiveness of marketing campaigns where the top of the funnel was
-outside the remit of <a href="http://www.mozilla.org">www.mozilla.org</a>. For these types of campaigns, stub
-attribution requires zero configuration. It just works in the background
-and passes along any attribution data that exists.</p>
-<p>It is also possible to measure the effectiveness of experiments on
-installation rates and retention. This is achieved by adding optional
-<code>experiment</code> and <code>variation</code> parameters to a page URL. Additionally,
-these values can also be set via JavaScript using:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">StubAttribution</span><span class="p">.</span><span class="nx">experimentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;experiment-name&#39;</span><span class="p">;</span>
-<span class="nx">Mozilla</span><span class="p">.</span><span class="nx">StubAttribution</span><span class="p">.</span><span class="nx">experimentVariation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;v1&#39;</span><span class="p">;</span>
-</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+<th>Domain</th>
+<th>Path</th>
+<th>Expiry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>moz-stub-attribution-code</code></td>
+<td>Base64 encoded attribution string</td>
+<td><code>www.mozilla.org</code></td>
+<td><code>/</code></td>
+<td>24 hours</td>
+</tr>
+<tr>
+<td><code>moz-stub-attribution-sig</code></td>
+<td>Base64 encoded signature</td>
+<td><code>www.mozilla.org</code></td>
+<td><code>/</code></td>
+<td>24 hours</td>
+</tr>
+</tbody>
+</table>
+<h3 id="measuring-campaigns-and-experiments">Measuring campaigns and experiments<a class="headerlink" href="#measuring-campaigns-and-experiments" title="Permanent link">&para;</a></h3>
+<p>Firefox Desktop Attribution was originally designed for measuring the effectiveness of marketing campaigns where the top of the funnel was outside the remit of <a href="http://www.mozilla.org">www.mozilla.org</a>. For these types of campaigns, stub attribution requires zero configuration. It just works in the background and passes along any attribution data that exists.</p>
+<p>It is also possible to measure the effectiveness of experiments on installation rates and retention. This is achieved by adding optional <code>experiment</code> and <code>variation</code> parameters to a page URL. Additionally, these values can also be set via JavaScript using:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">StubAttribution</span><span class="p">.</span><span class="nx">experimentName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;experiment-name&#39;</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">StubAttribution</span><span class="p">.</span><span class="nx">experimentVariation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;v1&#39;</span><span class="p">;</span>
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When setting a experiment parameters using JavaScript like in the
-example above, it must be done prior to calling
-<code>Mozilla.StubAttribution.init()</code>.</p>
+<p>When setting a experiment parameters using JavaScript like in the example above, it must be done prior to calling <code>Mozilla.StubAttribution.init()</code>.</p>
 </div>
-<h2 id="return-to-addonsmozillaorg-rtamo">Return to addons.mozilla.org (RTAMO)<a class="headerlink" href="#return-to-addonsmozillaorg-rtamo" title="Permanent link">&para;</a></h2>
-<p><a href="https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO">Return to
-AMO</a> (RTAMO)
-is a Firefox feature whereby a first-time installation onboarding flow
-is initiated, that redirects a user to install the extension they have
-chosen whilst browsing <a href="https://addons.mozilla.org/firefox/">AMO</a> using
-a different browser. RTAMO works by leveraging the existing stub
-attribution flow, and checking for specific <code>utm_</code> parameters that were
-passed if the referrer is from AMO.</p>
-<p>Specifically, the RTAMO feature looks for a <code>utm_content</code> parameter that
-starts with <code>rta:</code>, followed by an ID specific to an extension. For
-example: <code>utm_content=rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ</code>. The stub
-attribution code in bedrock also checks the referrer before passing this
-on, to make sure the links originate from AMO. If RTAMO data comes from
-a domain other than AMO, then the attribution data is dropped.</p>
-<p>RTAMO initially worked for only a limited subset of addons recommended
-by Mozilla. This functionality was recently expanded by the AMO team to
-cover all publically listed addons, under a project called [Extended
-RTAMO (ERTAMO)]{.title-ref}.</p>
-<h2 id="how-can-visitors-opt-out">How can visitors opt out?<a class="headerlink" href="#how-can-visitors-opt-out" title="Permanent link">&para;</a></h2>
-<p>Visitors to the website can opt-out of desktop attribution on our
-website by enabling <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do Not Track
-(DNT)</a>
-in their web browser. We facilitate this by using a <a href="https://github.com/mozmeao/dnt-helper">DNT
-helper</a> that our team maintains.</p>
-<h2 id="local-testing">Local testing<a class="headerlink" href="#local-testing" title="Permanent link">&para;</a></h2>
-<p>For stub attribution to work locally or on a demo instance, a value for
-the HMAC key that is used to sign the attribution code must be set via
-an environment variable e.g.</p>
-<div class="highlight"><pre><span></span><code>STUB_ATTRIBUTION_HMAC_KEY=thedude
-</code></pre></div>
+<h3 id="return-to-addonsmozillaorg-rtamo">Return to addons.mozilla.org (RTAMO)<a class="headerlink" href="#return-to-addonsmozillaorg-rtamo" title="Permanent link">&para;</a></h3>
+<p><a href="https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO">Return to AMO</a> (RTAMO) is a Firefox feature whereby a first-time installation onboarding flow is initiated, that redirects a user to install the extension they have chosen whilst browsing <a href="https://addons.mozilla.org/firefox/">AMO</a> using a different browser. RTAMO works by leveraging the existing stub attribution flow, and checking for specific <code>utm_</code> parameters that were passed if the referrer is from AMO.</p>
+<p>Specifically, the RTAMO feature looks for a <code>utm_content</code> parameter that starts with <code>rta:</code>, followed by an ID specific to an extension. For example: <code>utm_content=rta:dUJsb2NrMEByYXltb25kaGlsbC5uZXQ</code>. The stub attribution code in bedrock also checks the referrer before passing this on, to make sure the links originate from AMO. If RTAMO data comes from a domain other than AMO, then the attribution data is dropped.</p>
+<p>RTAMO initially worked for only a limited subset of addons recommended by Mozilla. This functionality was recently expanded by the AMO team to cover all publically listed addons, under a project called <code>Extended RTAMO (ERTAMO)</code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Because RTAMO is a user facing feature, expressly requested by the user from the AMO page, we deem the RTAMO flow as an essential/necessary use of attribution data. We do however limit the amount of data we collect to only what's essential for the RTAMO to function as a feature. Non-essential fields such as the Google Analytics client ID are omitted. We also continue to respect Do Not Track (DNT) as a valid opt-out signal.</p>
+</div>
+<h3 id="how-can-visitors-opt-out">How can visitors opt out?<a class="headerlink" href="#how-can-visitors-opt-out" title="Permanent link">&para;</a></h3>
+<p>Visitors to the website can opt-out of desktop attribution on our website by enabling <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do Not Track (DNT)</a> in their web browser. We facilitate this by using a <a href="https://github.com/mozmeao/dnt-helper">DNT helper</a> that our team maintains.</p>
+<h3 id="local-testing">Local testing<a class="headerlink" href="#local-testing" title="Permanent link">&para;</a></h3>
+<p>For stub attribution to work locally or on a demo instance, a value for the HMAC key that is used to sign the attribution code must be set via an environment variable e.g.</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>STUB_ATTRIBUTION_HMAC_KEY=thedude
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This value can be anything if all you need to do is test the bedrock
-functionality. It only needs to match the value used to verify data
-passed to the stub installer for full end-to-end testing via Telemetry.</p>
+<p>This value can be anything if all you need to do is test the bedrock functionality. It only needs to match the value used to verify data passed to the stub installer for full end-to-end testing via Telemetry.</p>
 </div>
+<h3 id="manual-testing-for-code-reviews">Manual testing for code reviews<a class="headerlink" href="#manual-testing-for-code-reviews" title="Permanent link">&para;</a></h3>
+<p>You might not need to test all these depending on what is changing this is an exhaustive testing guide. This guide assumes demo1, make sure you're testing on the right URL.</p>
+<ol>
+<li>
+<p>Use Chrome on Windows or MacOS with DNT and adblocking disabled.</p>
+</li>
+<li>
+<p>Open <a href="https://www-demo1.allizom.org/en-US/?utm_source=ham&amp;utm_campaign=pineapple">https://www-demo1.allizom.org/en-US/?utm_source=ham&amp;utm_campaign=pineapple</a></p>
+</li>
+<li>
+<p>Using Dev Tools, open the Application tab and inspect cookies.</p>
+</li>
+<li>
+<p>Look for a cookie called <code>moz-stub-attribution-code</code> and copy the value (it should be a base64 encoded string).</p>
+</li>
+</ol>
+<p>5.</p>
+<div class="language-text highlight"><pre><span></span><code>Decode the base64 string (e.g. using &lt;https://base64decode.org&gt;) and check that:
+
+:   -   ``dlsource`` parameter value is mozorg
+    -   ``client_id_ga4`` and ``session_id`` parameters exist
+    -   ``client_id_ga4`` should look something like 0700077325.1656063224 (the numbers will differ but the format with the middle period should look the same).
+    -   ``source`` and ``campaign`` have the values ham and pineapple, respectively.
+    -   The ua value should be chrome (assuming you tested in Chrome).
+    -   Everything else should be (not set).
+</code></pre></div>
+<ol>
+<li>
+<p>Inspect the "Download Firefox" button in the top right and verify the download URL contains <code>attribution_code</code> and <code>attribution_sig</code> params.</p>
+</li>
+<li>
+<p>Click "Download Firefox".</p>
+</li>
+<li>
+<p>Inspect the "Try downloading again" link and check for the <code>attribution_code</code> and <code>attribution_sig</code> params.</p>
+<ul>
+<li>decode the value of <code>attribution_code</code> to check it has the expected values</li>
+</ul>
+</li>
+</ol>
+<p>Other places on the site you may want to check:</p>
+<ul>
+<li><a href="https://www-demo1.allizom.org/en-US/firefox/all/">firefox/all</a> (inspect the network request to check that the attribution params were added on click)</li>
+<li><a href="https://www-demo1.allizom.org/en-US/firefox/new/">firefox/new</a></li>
+<li><a href="https://www-demo1.allizom.org/en-US/firefox/enterprise/">firefox/enterprise</a></li>
+</ul>
+
+
+
+
+
+
+
 
 
 
@@ -1249,25 +1731,83 @@ passed to the stub installer for full end-to-end testing via Telemetry.</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../0001-analytics/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Mozorg Analytics">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Mozorg Analytics
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../0003-firefox-mobile/" class="md-footer__link md-footer__link--next" aria-label="Next: Firefox Mobile attribution">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Firefox Mobile attribution
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2011-2025, Mozilla
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mozilla/bedrock/issues/" target="_blank" rel="noopener" title="Report a problem with this documentation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.5c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4h112c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5h64.3c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6q3.3 1.95 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63.1 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
     </a>
   
 </div>
@@ -1281,10 +1821,13 @@ passed to the stub installer for full end-to-end testing via Telemetry.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>

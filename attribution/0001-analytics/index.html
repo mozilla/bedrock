@@ -8,29 +8,35 @@
       
       
       
+        <link rel="canonical" href="https://mozilla.github.io/bedrock/attribution/0001-analytics/">
+      
       
         <link rel="prev" href="../">
       
       
         <link rel="next" href="../0002-firefox-desktop/">
       
-      <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.19">
+      
+      <link rel="icon" href="../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.50">
     
     
       
-        <title>Mozorg analytics - Bedrock Documentation</title>
+        <title>Mozorg Analytics - Bedrock Documentation</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.eebd395e.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a40c8224.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecc896b0.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -42,7 +48,7 @@
       
     
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -59,11 +65,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
-    
-    
-      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#google-tag-manager-gtm" class="md-skip">
+        <a href="#analytics" class="md-skip">
           Skip to content
         </a>
       
@@ -89,12 +92,12 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Bedrock Documentation" class="md-header__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/mozilla-logo.svg" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -106,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Mozorg analytics
+              Mozorg Analytics
             
           </span>
         </div>
@@ -115,34 +118,38 @@
     
       
         <form class="md-header__option" data-md-component="palette">
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
-            
-              <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-            
-            
-            
-            <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
-            
-              <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
-              </label>
-            
-          
-        </form>
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
       
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
     
     
       <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
@@ -150,19 +157,29 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
@@ -179,7 +196,7 @@
         <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -209,12 +226,12 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Bedrock Documentation" class="md-nav__button md-logo" aria-label="Bedrock Documentation" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+  <img src="../../images/mozilla-logo.svg" alt="logo">
 
     </a>
     Bedrock Documentation
@@ -224,7 +241,7 @@
       <a href="https://github.com/mozilla/bedrock" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     mozilla/bedrock
@@ -236,14 +253,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../.." class="md-nav__link">
-        Home
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
       </a>
     </li>
   
@@ -251,14 +273,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../install/" class="md-nav__link">
-        Install
+        
+  
+  <span class="md-ellipsis">
+    Install
+  </span>
+  
+
       </a>
     </li>
   
@@ -266,14 +293,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../l10n/" class="md-nav__link">
-        Localization
+        
+  
+  <span class="md-ellipsis">
+    Localization
+  </span>
+  
+
       </a>
     </li>
   
@@ -281,14 +313,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../coding/" class="md-nav__link">
-        Developing on Bedrock
+        
+  
+  <span class="md-ellipsis">
+    Developing on Bedrock
+  </span>
+  
+
       </a>
     </li>
   
@@ -296,14 +333,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browser-support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Browser Support
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../contribute/" class="md-nav__link">
-        How to Contribute
+        
+  
+  <span class="md-ellipsis">
+    How to Contribute
+  </span>
+  
+
       </a>
     </li>
   
@@ -311,14 +373,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../pipeline/" class="md-nav__link">
-        Continuous Integration & Deployment
+        
+  
+  <span class="md-ellipsis">
+    Continuous Integration & Deployment
+  </span>
+  
+
       </a>
     </li>
   
@@ -326,14 +393,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../testing/" class="md-nav__link">
-        Front-end testing
+        
+  
+  <span class="md-ellipsis">
+    Front-end testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -341,14 +413,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../task-queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Task Queue
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../redirects/" class="md-nav__link">
-        Managing redirects
+        
+  
+  <span class="md-ellipsis">
+    Managing redirects
+  </span>
+  
+
       </a>
     </li>
   
@@ -356,14 +453,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../newsletters/" class="md-nav__link">
-        Newsletters
+        
+  
+  <span class="md-ellipsis">
+    Newsletters
+  </span>
+  
+
       </a>
     </li>
   
@@ -371,14 +473,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../../contentful/" class="md-nav__link">
-        Contentful CMS Integration
+      <a href="../../legal-docs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Legal Docs
+  </span>
+  
+
       </a>
     </li>
   
@@ -386,14 +493,39 @@
     
       
       
-      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Content Management System
+  </span>
+  
 
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../sitemap/" class="md-nav__link">
-        Sitemaps
+        
+  
+  <span class="md-ellipsis">
+    Sitemaps
+  </span>
+  
+
       </a>
     </li>
   
@@ -401,29 +533,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../content-cards/" class="md-nav__link">
-        Using External Content Card Data
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../../banners/" class="md-nav__link">
-        Banners
+        
+  
+  <span class="md-ellipsis">
+    Banners
+  </span>
+  
+
       </a>
     </li>
   
@@ -431,14 +553,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../uitour/" class="md-nav__link">
-        Mozilla.UITour
+        
+  
+  <span class="md-ellipsis">
+    Mozilla.UITour
+  </span>
+  
+
       </a>
     </li>
   
@@ -446,14 +573,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../send-to-device/" class="md-nav__link">
-        Send to Device widget
+        
+  
+  <span class="md-ellipsis">
+    Send to Device widget
+  </span>
+  
+
       </a>
     </li>
   
@@ -461,14 +593,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../download-buttons/" class="md-nav__link">
-        Firefox Download Buttons
+        
+  
+  <span class="md-ellipsis">
+    Firefox Download Buttons
+  </span>
+  
+
       </a>
     </li>
   
@@ -476,14 +613,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../mozilla-accounts/" class="md-nav__link">
-        Mozilla account helpers
+        
+  
+  <span class="md-ellipsis">
+    Mozilla account helpers
+  </span>
+  
+
       </a>
     </li>
   
@@ -491,29 +633,19 @@
     
       
       
-      
-
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../funnelcake/" class="md-nav__link">
-        Funnel cakes and Partner Builds
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
   
   
   
     <li class="md-nav__item">
       <a href="../../abtest/" class="md-nav__link">
-        A/B Testing
+        
+  
+  <span class="md-ellipsis">
+    A/B Testing
+  </span>
+  
+
       </a>
     </li>
   
@@ -521,14 +653,19 @@
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../vpn-subscriptions/" class="md-nav__link">
-        Mozilla VPN Subscriptions
+        
+  
+  <span class="md-ellipsis">
+    Mozilla VPN Subscriptions
+  </span>
+  
+
       </a>
     </li>
   
@@ -536,54 +673,75 @@
     
       
       
-      
-
   
   
     
   
   
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_21" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_21" id="__nav_21_label" tabindex="0">
-          Attribution
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_21_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_21">
-          <span class="md-nav__icon md-icon"></span>
-          Attribution
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" checked>
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../" class="md-nav__link">
-        Attribution
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Attribution
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_22" id="__nav_22_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_22">
+            <span class="md-nav__icon md-icon"></span>
+            Attribution
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
   
   
     
+  
   
   
     <li class="md-nav__item md-nav__item--active">
@@ -593,12 +751,24 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Mozorg Analytics
+          
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Mozorg Analytics
+        
+  
+  <span class="md-ellipsis">
+    Mozorg Analytics
+  </span>
+  
+
       </a>
       
         
@@ -615,86 +785,173 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#google-tag-manager-gtm" class="md-nav__link">
-    Google Tag Manager (GTM)
+  <a href="#analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozorg analytics
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Google Tag Manager (GTM)">
+    <nav class="md-nav" aria-label="Mozorg analytics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-gtm-datalayer" class="md-nav__link">
-    The GTM DataLayer
+  <a href="#google-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Analytics
+    </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#datalayer-push-example" class="md-nav__link">
-    DataLayer push example
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-core-datalayer-object" class="md-nav__link">
-    The Core DataLayer object
-  </a>
-  
-    <nav class="md-nav" aria-label="The Core DataLayer object">
+    <nav class="md-nav" aria-label="Google Analytics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#conditional-banners" class="md-nav__link">
-    Conditional banners
+  <a href="#how-can-visitors-opt-out-of-ga" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can visitors opt out of GA?
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ab-tests" class="md-nav__link">
-    A/B tests
+  <a href="#event-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Tracking
+    </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gtm-listeners-data-attributes" class="md-nav__link">
-    GTM listeners &amp; data attributes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4" class="md-nav__link">
-    GA4
-  </a>
-  
-    <nav class="md-nav" aria-label="GA4">
+    <nav class="md-nav" aria-label="Event Tracking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#enhanced-event-measurement" class="md-nav__link">
-    Enhanced Event Measurement
+    <span class="md-ellipsis">
+      Enhanced Event Measurement
+    </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#data-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cta-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      CTA Click
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link Click
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-layer-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Layer Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Layer Events">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#begin-checkout" class="md-nav__link">
-    Begin Checkout
+    <span class="md-ellipsis">
+      Begin Checkout
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#product-download" class="md-nav__link">
-    Product Download
+  <a href="#default-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newsletter-subscribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Newsletter Subscribe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Product Downloads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-to-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      Send to Device
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#social-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      Social Share
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-session-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stub Session Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#widget-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Widget Action
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimension-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimension Set
+    </span>
   </a>
   
 </li>
@@ -704,10 +961,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#how-can-visitors-opt-out-of-ga" class="md-nav__link">
-    How can visitors opt out of GA?
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -715,54 +970,88 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#glean" class="md-nav__link">
-    Glean
+    <span class="md-ellipsis">
+      Glean
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Glean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#debugging-pings" class="md-nav__link">
-    Debugging pings
+  <a href="#where-can-i-query-glean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where can I query Glean data?
+    </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Where can I query Glean data?">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#filtering-out-non-production-pings" class="md-nav__link">
-    Filtering out non-production pings
+    <span class="md-ellipsis">
+      Filtering out non-production pings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recording-page-load-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording page load events
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-pings-in-the-console" class="md-nav__link">
-    Logging pings in the console
+  <a href="#recording-click-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording click events
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#defining-metrics-and-pings" class="md-nav__link">
-    Defining metrics and pings
+  <a href="#defining-additional-metrics-and-pings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining additional metrics and pings
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-glean-events-in-individual-page-bundles" class="md-nav__link">
-    Using Glean events in individual page bundles
+  <a href="#debugging-pings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging pings
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#how-can-visitors-opt-out-of-glean" class="md-nav__link">
-    How can visitors opt out of Glean?
+    <span class="md-ellipsis">
+      How can visitors opt out of Glean?
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -778,297 +1067,489 @@
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0002-firefox-desktop/" class="md-nav__link">
-        Firefox Desktop attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Desktop attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0003-firefox-mobile/" class="md-nav__link">
-        Firefox Mobile attribution
+        
+  
+  <span class="md-ellipsis">
+    Firefox Mobile attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0004-mozilla-accounts/" class="md-nav__link">
-        Mozilla accounts attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla accounts attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../0005-affiliate-marketing/" class="md-nav__link">
-        Mozilla CJMS Affiliate attribution
+        
+  
+  <span class="md-ellipsis">
+    Mozilla CJMS Affiliate attribution
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../0006-pocket-analytics/" class="md-nav__link">
-        Pocket mode attribution
+      <a href="../0006-consent-management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing Data Privacy and Concent
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
+  
+  
+  
+  
+    
+    
       
-
-  
-  
-  
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_22" >
-      
-      
-      
-        <label class="md-nav__link" for="__nav_22" id="__nav_22_label" tabindex="0">
-          Architectural Decision Records
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_22_label" aria-expanded="false">
-        <label class="md-nav__title" for="__nav_22">
-          <span class="md-nav__icon md-icon"></span>
-          Architectural Decision Records
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_23" >
+        
           
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../architecture/decisions/" class="md-nav__link ">
               
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../architectural-decisions/" class="md-nav__link">
-        Architectural Decision Records
-      </a>
-    </li>
+  <span class="md-ellipsis">
+    Architectural Decision Records
+  </span>
   
 
-            
-          
+            </a>
             
               
+              <label class="md-nav__link " for="__nav_23" id="__nav_23_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_23_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_23">
+            <span class="md-nav__icon md-icon"></span>
+            Architectural Decision Records
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0001-record-architecture-decisions/" class="md-nav__link">
-        1. Record architecture decisions
+        
+  
+  <span class="md-ellipsis">
+    1. Record architecture decisions
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0002-move-ci-cd-pipelines-to-gitlab/" class="md-nav__link">
-        2. Move CI/CD Pipelines to Gitlab
+        
+  
+  <span class="md-ellipsis">
+    2. Move CI/CD Pipelines to Gitlab
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0003-use-cloudflare-workers-and-convert-for-multi-variant-testing/" class="md-nav__link">
-        3. Use Cloudflare Workers and Convert for multi-variant testing
+        
+  
+  <span class="md-ellipsis">
+    3. Use Cloudflare Workers and Convert for multi-variant testing
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0004-use-fluent-for-localization/" class="md-nav__link">
-        4. Use Fluent For Localization
+        
+  
+  <span class="md-ellipsis">
+    4. Use Fluent For Localization
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0005-use-a-single-docker-image-for-all-deployments/" class="md-nav__link">
-        5. Use a Single Docker Image For All Deployments
+        
+  
+  <span class="md-ellipsis">
+    5. Use a Single Docker Image For All Deployments
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0006-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        6. Revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    6. Revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0007-further-revise-tooling-for-python-dependency-management/" class="md-nav__link">
-        7. Further revise tooling for Python dependency management
+        
+  
+  <span class="md-ellipsis">
+    7. Further revise tooling for Python dependency management
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0008-move-demos-to-gcp/" class="md-nav__link">
-        8. Move Demos To GCP
+        
+  
+  <span class="md-ellipsis">
+    8. Move Demos To GCP
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0009-use-manage-contentful-migrations/" class="md-nav__link">
-        9. Manage Contentful schema state via migrations
+        
+  
+  <span class="md-ellipsis">
+    9. Manage Contentful schema state via migrations
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0010-move-ci-cd-to-github-actions/" class="md-nav__link">
-        10. Move CI to Github Actions for Unit and Integration tests
+        
+  
+  <span class="md-ellipsis">
+    10. Move CI to Github Actions for Unit and Integration tests
+  </span>
+  
+
       </a>
     </li>
   
 
-            
-          
+              
             
               
+                
+  
   
   
   
     <li class="md-nav__item">
       <a href="../../architecture/decisions/0011-use-statsd-for-metrics-collection/" class="md-nav__link">
-        11. Use StatsD for metrics collection
+        
+  
+  <span class="md-ellipsis">
+    11. Use StatsD for metrics collection
+  </span>
+  
+
       </a>
     </li>
   
 
+              
             
-          
-        </ul>
-      </nav>
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/decisions/0012-wagtail-for-cms/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12. Use Wagtail CMS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
     
       
       
-      
-
+  
   
   
   
     <li class="md-nav__item">
-      <a href="../../browser-support/" class="md-nav__link">
-        Browser Support
+      <a href="../../contentful/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contentful (deprecated)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../content-cards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    External Content Cards (deprecated)
+  </span>
+  
+
       </a>
     </li>
   
@@ -1099,86 +1580,173 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#google-tag-manager-gtm" class="md-nav__link">
-    Google Tag Manager (GTM)
+  <a href="#analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mozorg analytics
+    </span>
   </a>
   
-    <nav class="md-nav" aria-label="Google Tag Manager (GTM)">
+    <nav class="md-nav" aria-label="Mozorg analytics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-gtm-datalayer" class="md-nav__link">
-    The GTM DataLayer
+  <a href="#google-analytics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Google Analytics
+    </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#datalayer-push-example" class="md-nav__link">
-    DataLayer push example
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-core-datalayer-object" class="md-nav__link">
-    The Core DataLayer object
-  </a>
-  
-    <nav class="md-nav" aria-label="The Core DataLayer object">
+    <nav class="md-nav" aria-label="Google Analytics">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#conditional-banners" class="md-nav__link">
-    Conditional banners
+  <a href="#how-can-visitors-opt-out-of-ga" class="md-nav__link">
+    <span class="md-ellipsis">
+      How can visitors opt out of GA?
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ab-tests" class="md-nav__link">
-    A/B tests
+  <a href="#event-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Event Tracking
+    </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#gtm-listeners-data-attributes" class="md-nav__link">
-    GTM listeners &amp; data attributes
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ga4" class="md-nav__link">
-    GA4
-  </a>
-  
-    <nav class="md-nav" aria-label="GA4">
+    <nav class="md-nav" aria-label="Event Tracking">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#enhanced-event-measurement" class="md-nav__link">
-    Enhanced Event Measurement
+    <span class="md-ellipsis">
+      Enhanced Event Measurement
+    </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#data-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cta-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      CTA Click
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link-click" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link Click
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-layer-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Layer Events
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Layer Events">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#begin-checkout" class="md-nav__link">
-    Begin Checkout
+    <span class="md-ellipsis">
+      Begin Checkout
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#product-download" class="md-nav__link">
-    Product Download
+  <a href="#default-browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      Default Browser
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#newsletter-subscribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      Newsletter Subscribe
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#product-downloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      Product Downloads
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#send-to-device" class="md-nav__link">
+    <span class="md-ellipsis">
+      Send to Device
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#social-share" class="md-nav__link">
+    <span class="md-ellipsis">
+      Social Share
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-session-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stub Session Set
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#widget-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      Widget Action
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dimension-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimension Set
+    </span>
   </a>
   
 </li>
@@ -1188,10 +1756,8 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#how-can-visitors-opt-out-of-ga" class="md-nav__link">
-    How can visitors opt out of GA?
-  </a>
+      </ul>
+    </nav>
   
 </li>
         
@@ -1199,54 +1765,88 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#glean" class="md-nav__link">
-    Glean
+    <span class="md-ellipsis">
+      Glean
+    </span>
   </a>
   
     <nav class="md-nav" aria-label="Glean">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#debugging-pings" class="md-nav__link">
-    Debugging pings
+  <a href="#where-can-i-query-glean-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where can I query Glean data?
+    </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="Where can I query Glean data?">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#filtering-out-non-production-pings" class="md-nav__link">
-    Filtering out non-production pings
+    <span class="md-ellipsis">
+      Filtering out non-production pings
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recording-page-load-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording page load events
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#logging-pings-in-the-console" class="md-nav__link">
-    Logging pings in the console
+  <a href="#recording-click-events" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recording click events
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#defining-metrics-and-pings" class="md-nav__link">
-    Defining metrics and pings
+  <a href="#defining-additional-metrics-and-pings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining additional metrics and pings
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#using-glean-events-in-individual-page-bundles" class="md-nav__link">
-    Using Glean events in individual page bundles
+  <a href="#debugging-pings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debugging pings
+    </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#how-can-visitors-opt-out-of-glean" class="md-nav__link">
-    How can visitors opt out of Glean?
+    <span class="md-ellipsis">
+      How can visitors opt out of Glean?
+    </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1275,183 +1875,208 @@
 
   <h1>Mozorg Analytics</h1>
 
-<h2 id="google-tag-manager-gtm">Google Tag Manager (<abbr title="Google Tag Manager">GTM</abbr>)<a class="headerlink" href="#google-tag-manager-gtm" title="Permanent link">&para;</a></h2>
-<p>In mozorg mode, bedrock uses <a href="https://tagmanager.google.com/">Google Tag Manager
-(<abbr title="Google Tag Manager">GTM</abbr>)</a> to manage and organize its
-<a href="https://analytics.google.com/">Google Analytics</a> solution.</p>
-<p><abbr title="Google Tag Manager">GTM</abbr> is a tag management system that allows for easy implementation of Google
-Analytics (GA) tags and other 3<sup>rd</sup> party marketing tags in a nice <abbr title="Graphical User Interface">GUI</abbr>
-experience. Tags can be added, updated, or removed directly from the
-<abbr title="Graphical User Interface">GUI</abbr>. <abbr title="Google Tag Manager">GTM</abbr> allows for a "one source of truth" approach to managing an
-analytics solution in that all analytics tracking can be inside <abbr title="Google Tag Manager">GTM</abbr>.</p>
-<p>Bedrock's <abbr title="Google Tag Manager">GTM</abbr> solution is <abbr title="Content Security Policy">CSP</abbr> compliant
-and does not allow for the injection of custom HTML or JavaScript but
-all tags use built in templates to minimize any chance of introducing a
-bug into Bedrock.</p>
-<h3 id="the-gtm-datalayer">The <abbr title="Google Tag Manager">GTM</abbr> DataLayer<a class="headerlink" href="#the-gtm-datalayer" title="Permanent link">&para;</a></h3>
-<p>How an application communicates with <abbr title="Google Tag Manager">GTM</abbr> is via the <code>dataLayer</code> object,
-which is a simple JavaScript array <abbr title="Google Tag Manager">GTM</abbr> instantiates on the page. Bedrock
-will send messages to the <code>dataLayer</code> object by means of pushing an
-object literal onto the <code>dataLayer</code>. <abbr title="Google Tag Manager">GTM</abbr> creates an abstract data model
-from these pushed objects that consists of the most recent value for all
-keys that have been pushed to the <code>dataLayer</code>.</p>
-<p>The only reserved key in an object pushed to the <code>dataLayer</code> is <code>event</code>
-which will cause <abbr title="Google Tag Manager">GTM</abbr> to evaluate the firing conditions for all tag
-triggers.</p>
-<h3 id="datalayer-push-example">DataLayer push example<a class="headerlink" href="#datalayer-push-example" title="Permanent link">&para;</a></h3>
-<p>If we wanted to track clicks on a carousel and capture what the image
-was that was clicked, we might write a dataLayer push like this:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">    </span><span class="s1">&#39;event&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;carousel-click&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;image&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;house&#39;</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>In the dataLayer push there is an event value to have <abbr title="Google Tag Manager">GTM</abbr> evaluate the
-firing conditions for tag triggers, making it possible to fire a tag off
-the dataLayer push. The event value is descriptive to the user action so
-it's clear to someone coming in later what the dataLayer push
-signifies. There is also an image property to capture the image that is
-clicked, in this example it's the house picture.</p>
-<p>In <abbr title="Google Tag Manager">GTM</abbr>, a tag could be setup to fire when the event <code>carousel-click</code> is
-pushed to the dataLayer and could consume the image value to pass on
-what image was clicked.</p>
-<h3 id="the-core-datalayer-object">The Core DataLayer object<a class="headerlink" href="#the-core-datalayer-object" title="Permanent link">&para;</a></h3>
-<p>For the passing of contextual data on the user and page to <abbr title="Google Tag Manager">GTM</abbr>, we've
-created what we call the Core DataLayer Object. This object passes as
-soon as all required API calls for contextual data have completed.
-Unless there is a significant delay to when data will be available,
-please pass all contextual or meta data on the user or page here that
-you want to make available to <abbr title="Google Tag Manager">GTM</abbr>.</p>
-<h4 id="conditional-banners">Conditional banners<a class="headerlink" href="#conditional-banners" title="Permanent link">&para;</a></h4>
-<p>When a banner is shown:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">    </span><span class="s1">&#39;eLabel&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Banner Impression&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;banner name&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">//ex. Fb-Video-Compat</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-impression&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;event&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;non-interaction&#39;</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>When an element in the banner is clicked:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">    </span><span class="s1">&#39;eLabel&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Banner Clickthrough&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;banner name&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">//ex. Fb-Video-Compat</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-click&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;event&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;in-page-interaction&#39;</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>When a banner is dismissed:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">    </span><span class="s1">&#39;eLabel&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Banner Dismissal&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;&lt;banner name&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">//ex. Fb-Video-Compat</span>
-<span class="w">    </span><span class="s1">&#39;data-banner-dismissal&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;1&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="s1">&#39;event&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;in-page-interaction&#39;</span>
-<span class="p">});</span>
-</code></pre></div>
-<h4 id="ab-tests">A/B tests<a class="headerlink" href="#ab-tests" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;v=a&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">        </span><span class="s1">&#39;data-ex-variant&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;de-page&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;data-ex-name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Berlin-Campaign-Landing-Page&#39;</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">href</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s1">&#39;v=b&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
-<span class="w">        </span><span class="s1">&#39;data-ex-variant&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;campaign-page&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="s1">&#39;data-ex-name&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Berlin-Campaign-Landing-Page&#39;</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="gtm-listeners-data-attributes"><abbr title="Google Tag Manager">GTM</abbr> listeners &amp; data attributes<a class="headerlink" href="#gtm-listeners-data-attributes" title="Permanent link">&para;</a></h3>
-<p><abbr title="Google Tag Manager">GTM</abbr> also uses click and form submit listeners to gather context on what
-is happening on the page. Listeners push to the dataLayer data on the
-specific element that triggered the event, along with the element object
-itself.</p>
-<p>Since <abbr title="Google Tag Manager">GTM</abbr> listeners pass the interacted element object to the dataLayer,
-the use of data attributes works very well when trying to identify key
-elements that you want to be tracked and for storing data on that
-element to be passed into Google Analytics. We use data attributes to
-track clicks on all downloads, buttons elements, and nav, footer, and
-<abbr title="Call to Action">CTA</abbr>/button link elements.</p>
-<div class="admonition tip">
-<p class="admonition-title">Important</p>
-<p>When adding any new elements to a Bedrock page, please follow the below
-guidelines to ensure accurate analytics tracking.</p>
-</div>
-<p>For all generic <abbr title="Call to Action">CTA</abbr> links and <code>&lt;button&gt;</code> elements, add these data
-attributes (* indicates a required attribute):</p>
-<hr />
-<p>Data Attribute        Expected Value (lowercase)</p>
-<hr />
-<p><code>data-cta-type</code> *    Link type (e.g. <code>navigation</code>, <code>footer</code>, or <code>button</code>)</p>
-<p><code>data-cta-text</code>       name or text of the link</p>
-<p><code>data-cta-position</code>   Location of <abbr title="Call to Action">CTA</abbr> on the page (e.g. <code>primary</code>,
-                        <code>secondary</code>, <code>header</code>)</p>
-<hr />
-<p>For Firefox download buttons, add these data attributes (* indicates a
-required attribute). Note that <code>data-download-name</code> and
-<code>data-download-version</code> should be included for download buttons that
-serve multiple platforms. For mobile specific store badges, they are not
-strictly required.</p>
-<hr />
-<p>Data Attribute             Expected Value</p>
-<hr />
-<p><code>data-link-type</code> *        <code>download</code></p>
-<p><code>data-download-os</code> *      <code>Desktop</code>, <code>Android</code>, <code>iOS</code></p>
-<p><code>data-download-name</code>       <code>Windows 32-bit</code>, <code>Windows 64-bit</code>, <code>macOS</code>,
-                             <code>Linux 32-bit</code>, <code>Linux 64-bit</code>, <code>iOS</code>, <code>Android</code></p>
-<p><code>data-download-version</code>    <code>win</code>, <code>win64</code>, <code>osx</code>, <code>linux</code>, <code>linux64</code>, <code>ios</code>,
-                             <code>android</code></p>
-<p><code>data-download-location</code>   <code>primary</code>, <code>secondary</code>, <code>nav</code>, <code>other</code></p>
-<hr />
-<p>For all links to accounts.firefox.com use these data attributes (*
-indicates a required attribute):</p>
-<hr />
-<p>Data Attribute        Expected Value</p>
-<hr />
-<p><code>data-cta-type</code> *    fxa-servicename (e.g. <code>fxa-sync</code>, <code>fxa-monitor</code>)</p>
-<p><code>data-cta-text</code>       Name or text of the link (e.g. <code>Sign Up</code>, <code>Join Now</code>,
-                        <code>Start Here</code>). We use this when the link text is not useful, as
-                        is the case with many account forms that say, <code>Continue</code>. We
-                        replace <code>Continue</code> with <code>Register</code>.</p>
-<p><code>data-cta-position</code>   Location of <abbr title="Call to Action">CTA</abbr> on the page (e.g. <code>primary</code>, <code>secondary</code>,
-                        <code>header</code>)</p>
-<hr />
-<p><strong>Old data-cta structure</strong></p>
-<p>Do not use. Included here because some old pages still use it.</p>
-<p><code>data-cta-type=""</code> and <code>data-cta-name=""</code> trigger a generic link /
-button click with the following structure:</p>
+<h2 id="analytics">Mozorg analytics<a class="headerlink" href="#analytics" title="Permanent link">&para;</a></h2>
+<h3 id="google-analytics">Google Analytics<a class="headerlink" href="#google-analytics" title="Permanent link">&para;</a></h3>
+<p>We use Google Analytics (GA) to track how our website is used.</p>
+<p><em>Implementation</em></p>
+<p>Google calls a 3<sup>rd</sup> party JavaScript library that is imported by adding a script tag to a website, Google names these "tags".</p>
+<p>We include the tag for Google Tag Manager (GTM) on our website. GTM is a service meant to simplify and centralize the tags included on a website in cases where multiple tags are needed. Their web-based user interface can then be used to watch for user actions on the website and then trigger events to be sent to tags.</p>
+<p>We do no not use any of GTM's most powerful features. Our use of GTM is a historical artifact of our Universal Analytics (UA) (aka GA3) implementation. GTM is a tool to let non-technical users add code to a website, however, there is no one outside of the websites team who is trained to do that.</p>
+<p>The only tag we include with GTM is the Google Tag (GTag), and that in turn connects to our Google Analytics (GA) account.</p>
+<p>There are three ways we send events from our site to GA:</p>
+<ol>
+<li>Google's Enhanced Event Measurement logs certain events automatically.</li>
+<li>GTM watches elements with specific data-attributes for user interaction</li>
+<li>Bedrock watches for specific events, formats them, and sends them to GTM using the dataLayer</li>
+</ol>
+<p><em>Implementation Principles</em></p>
+<p>The current implementation tries very hard to keep any kind of logic and formatting of our events in bedrock where it can be tested, code reviewed, and version controlled.</p>
+<p>Many user interactions will trigger multiple events. For example: clicking the "get subscription" button on the VPN page will trigger <code>link</code>, <code>cta_click</code>, and <code>begin_checkout</code> events. This is totally fine.</p>
+<p>If you're creating a new event use the two word noun_verb scheme that Google came up with and use snake_case, even if one of your noun or verb is more than one word.</p>
+<p><em>Debugging</em></p>
 <ul>
-<li>Event Category: <code>{{page ID}} Interactions</code></li>
-<li>Event Action: <code>{{data-cta-type}} click</code></li>
-<li>Event Label: <code>{{data-cta-name}}</code></li>
+<li>GTM is managed with Tag Manager <a href="https://tagmanager.google.com/">https://tagmanager.google.com/</a></li>
+<li>Our gTag is also managed with Tag Manager <a href="https://tagmanager.google.com/#/home#tags">https://tagmanager.google.com/#/home#tags</a></li>
+<li>GA, GTM, and gTag can be debugged using Tag Assistant <a href="https://tagassistant.google.com/">https://tagassistant.google.com/</a></li>
+<li>GA also has a debug view <a href="https://support.google.com/analytics/answer/7201382?hl=en">https://support.google.com/analytics/answer/7201382?hl=en</a></li>
 </ul>
-<h3 id="ga4">GA4<a class="headerlink" href="#ga4" title="Permanent link">&para;</a></h3>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>The migration to GA4 has begun but is incomplete.</p>
-</div>
-<h4 id="enhanced-event-measurement">Enhanced Event Measurement<a class="headerlink" href="#enhanced-event-measurement" title="Permanent link">&para;</a></h4>
-<p>Pageviews, video events, and external link clicks are being collected
-using GA4's <a href="https://support.google.com/analytics/answer/9216061">enhanced event
-measurement</a>.</p>
-<p>Some form submissions are also being collected but newsletter signups
-are not. <a href="https://github.com/mozilla/bedrock/issues/13348">(See Bug #13348)</a></p>
-<h4 id="begin-checkout">Begin Checkout<a class="headerlink" href="#begin-checkout" title="Permanent link">&para;</a></h4>
-<p>We are using GA4's recommended eCommerce event
-<a href="https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#begin_checkout">begin_checkout</a>
-for VPN and Relay referrals to the FxA Subscription Platform with
-purchase intent.</p>
+<h4 id="how-can-visitors-opt-out-of-ga">How can visitors opt out of GA?<a class="headerlink" href="#how-can-visitors-opt-out-of-ga" title="Permanent link">&para;</a></h4>
+<p>Visitors to the website can opt-out of loading Google Analytics on our website by enabling <a href="https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature">Do Not Track (DNT)</a> in their web browser. We facilitate this by using a <a href="https://github.com/mozmeao/dnt-helper">DNT helper</a> that our team maintains. We also respect <a href="https://developer.mozilla.org/docs/Web/API/Navigator/globalPrivacyControl">Global Privacy Control (GPC)</a> as an additional opt-out signal.</p>
+<p>Alternatively, visitors can also opt-out of GA by visiting the <a href="https://www.mozilla.org/privacy/websites/cookie-settings/">cookie settings page</a>, which is linked to in the main site footer on every page.</p>
+<h4 id="event-tracking">Event Tracking<a class="headerlink" href="#event-tracking" title="Permanent link">&para;</a></h4>
+<h5 id="enhanced-event-measurement">Enhanced Event Measurement<a class="headerlink" href="#enhanced-event-measurement" title="Permanent link">&para;</a></h5>
+<p>Pageviews, scrolls, video events, and outbound link clicks are being collected using GA4's <a href="https://support.google.com/analytics/answer/9216061">enhanced event measurement</a>.</p>
+<p>Some form submissions are also being collected but newsletter signups are not <a href="https://github.com/mozilla/bedrock/issues/13348">(see bug #13348)</a> . They are instead being tracked with the <code>newsletter_subscribe</code> event.</p>
+<p>See the full list of events GA collects by default. <a href="https://support.google.com/analytics/answer/9216061">https://support.google.com/analytics/answer/9216061</a></p>
+<h5 id="data-attributes">Data Attributes<a class="headerlink" href="#data-attributes" title="Permanent link">&para;</a></h5>
+<p>One place where we do still rely on GTM to watch for an trigger events is when we use data-attributes to pass information. There are only two events we do this with and they are primarily used on buttons and links.</p>
+<h6 id="cta-click">CTA Click<a class="headerlink" href="#cta-click" title="Permanent link">&para;</a></h6>
+<p>CTA ("Call to Action") click is intented to track the one or two main actions the page is designed to get the user to do. This data-attribute can be used on either <code>&lt;button&gt;</code> or <code>&lt;a&gt;</code>. Links can go to or away from the site, a button might trigger a JS function instead of going away from the page, that's still a cta.</p>
+<p>The attribute <code>data-cta-text</code> must be present to trigger the event. All links to accounts.mozilla.com must also use <code>data-cta-type</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Data Attribute</th>
+<th>Expected Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-cta-text</code> *</td>
+<td>Text or name of the link (e.g. <code>Sign Up</code>, <code>Start Here</code>, <code>Get Relay</code>, <code>See your report</code>, <code>Read the Manifesto</code>).</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>-   This does not need to exactly match the text displayed to the user</td>
+</tr>
+<tr>
+<td></td>
+<td>-   Defining this is useful to group the link clicks across locales</td>
+</tr>
+<tr>
+<td></td>
+<td>-   -   this attribute is required</td>
+</tr>
+<tr>
+<td><code>data-cta-position</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>banner</code>, <code>pricing</code>)</td>
+</tr>
+<tr>
+<td><code>data-cta-type</code></td>
+<td>fxa-servicename (e.g. <code>fxa-sync</code>, <code>fxa-monitor</code>, <code>fxa-vpn</code>, <code>monitor</code>, <code>relay</code>, <code>pocket</code>)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>-   This is to group CTAs by their destination</td>
+</tr>
+<tr>
+<td></td>
+<td>-   Do not use this to identify the element (ie. link, button)</td>
+</tr>
+<tr>
+<td><code>data-cta-name</code></td>
+<td>A identifier for this cta that is unique across the entire site. (e.g. <code>fx20-primarycta</code>, <code>wnp118-sfaq-so-special-features</code>). This is to help with reporting since it is difficult to filter on more than one parameter at a time.</td>
+</tr>
+</tbody>
+</table>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://monitor.firefox.com/&quot;</span> <span class="na">data-cta-text</span><span class="o">=</span><span class="s">&quot;Check for breaches&quot;</span> <span class="na">data-cta-type</span><span class="o">=</span><span class="s">&quot;fxa-monitor&quot;</span><span class="p">&gt;</span>Check for breaches<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url(&#39;firefox.browsers.mobile.get-app&#39;) }}&quot;</span> <span class="na">data-cta-text</span><span class="o">=</span><span class="s">&quot;Send Link for Firefox Mobile&quot;</span> <span class="na">data-cta-position</span><span class="o">=</span><span class="s">&quot;banner&quot;</span><span class="p">&gt;</span>Send me a link<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url(&#39;firefox.browsers.mobile.ios&#39;) }}&quot;</span> <span class="na">data-cta-text</span><span class="o">=</span><span class="s">&quot;Firefox for iOS&quot;</span><span class="p">&gt;</span>Firefox for iOS<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h6 id="link-click">Link Click<a class="headerlink" href="#link-click" title="Permanent link">&para;</a></h6>
+<p>Link click is intended to track links that are of interest but not the focus of the page. Examples include links in paragraphs, lists, FAQs, supplemental content, or in a navigation menu. Links can go to or away from the site.</p>
+<p>The attribute <code>data-link-text</code> must be present to trigger the event.</p>
+<table>
+<thead>
+<tr>
+<th>Data Attribute</th>
+<th>Expected Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data-link-text</code> *</td>
+<td>Text or name of the link (e.g. <code>Monitor</code>, <code>Features</code>, <code>Instagram (mozilla)</code>, <code>Mozilla VPN</code>). - * this attribute is required</td>
+</tr>
+<tr>
+<td><code>data-link-position</code></td>
+<td>Location of CTA on the page (e.g. <code>topnav</code>, <code>subnav</code>, <code>body</code>, <code>features</code>)</td>
+</tr>
+</tbody>
+</table>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is text with a <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#&quot;</span> <span class="na">data-link-text</span><span class="o">=</span><span class="s">&quot;simple&quot;</span><span class="p">&gt;</span>simple<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>example.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url(&#39;firefox.features.pdf-editor&#39;) }}&quot;</span> <span class="na">data-link-text</span><span class="o">=</span><span class="s">&quot;Edit PDFs&quot;</span><span class="p">&gt;</span>Edit PDFs<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> on the go within your Firefox browser window.<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Link click is also commonly used for navigation menus. If you wish to indicate that a link is nested you can include the categories seperated by a dash (<code>topnav - firefox</code>, <code>footer - company</code>)</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url(&#39;firefox.developer.index&#39;) }}&quot;</span> <span class="na">data-link-text</span><span class="o">=</span><span class="s">&quot;Firefox Developer Edition&quot;</span> <span class="na">data-link-position</span><span class="o">=</span><span class="s">&quot;footer&quot;</span><span class="p">&gt;</span>{{ ftl(&#39;footer-developer-edition&#39;) }}<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ url(&#39;firefox.browsers.mobile.android&#39;) }}&quot;</span> <span class="na">data-link-text</span><span class="o">=</span><span class="s">&quot;Firefox for Android&quot;</span> <span class="na">data-link-position</span><span class="o">=</span><span class="s">&quot;topnav - firefox&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h5 id="data-layer-events">Data Layer Events<a class="headerlink" href="#data-layer-events" title="Permanent link">&para;</a></h5>
+<p>The data layer is a JS object we can push events to and GTM will read from it.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="s1">&#39;event&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;event_name&#39;</span><span class="p">});</span>
+</span></code></pre></div>
+<p>We push a mix of recommended events and custom events to the data layer. When creating a new custom event please follow the Implementation Principles outlined above. Remember, both GTM and GA must be configured to recieve new events.</p>
+<p><a href="https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtag#begin_checkout">https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtag#begin_checkout</a></p>
+<p><a href="https://mozilla-hub.atlassian.net/wiki/spaces/EN/pages/430866463/GA4+Custom+Events">https://mozilla-hub.atlassian.net/wiki/spaces/EN/pages/430866463/GA4+Custom+Events</a></p>
+<p><a href="https://developers.google.com/tag-platform/tag-manager/datalayer">https://developers.google.com/tag-platform/tag-manager/datalayer</a></p>
+<p>Events that bedrock will send to GTM include:</p>
+<ul>
+<li>begin_checkout</li>
+<li>cta_click</li>
+<li>default_browser_set</li>
+<li>dimension_set</li>
+<li>experiment_view</li>
+<li>link_click</li>
+<li>newsletter_subscribe</li>
+<li>product_download (firefox_download, firefox_mobile_download, etc)</li>
+<li>send_to_device</li>
+<li>social_share</li>
+<li>stub_session_set</li>
+<li>widget_action</li>
+</ul>
+<h6 id="begin-checkout">Begin Checkout<a class="headerlink" href="#begin-checkout" title="Permanent link">&para;</a></h6>
+<p>We are using GA4's recommended eCommerce event <a href="https://developers.google.com/analytics/devguides/collection/ga4/reference/events?client_type=gtm#begin_checkout">begin_checkout</a> for VPN referrals to the FxA Subscription Platform with purchase intent. This event can accept values for other products but we are not currently using it for anything other than VPN.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Any link to Mozilla accounts should also be using
-<a href="../0004-mozilla-accounts/">mozilla accounts attribution</a></p>
+<p>Any link to Mozilla accounts should also be using <code class="interpreted-text" role="ref">mozilla accounts attribution&lt;mozilla-accounts-attribution&gt;</code></p>
 </div>
-<p><code>datalayer-begincheckout.es6.js</code> contains generic functions that can be
-called on to push the appropriate information to the dataLayer. The
-script is expecting the following values:</p>
+<p><code>datalayer-begincheckout.es6.js</code> contains generic functions that can be called on to push the appropriate information to the dataLayer. The script is expecting the following values:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>item_id</code></td>
+<td>Text or name of the link (e.g. <code>Sign Up</code>, <code>Join Now</code>, <code>Start Here</code>).</td>
+</tr>
+<tr>
+<td><code>brand</code></td>
+<td>fxa-servicename (e.g. <code>fxa-sync</code>, <code>fxa-monitor</code>)</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>header</code>)</td>
+</tr>
+<tr>
+<td><code>period</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>header</code>)</td>
+</tr>
+<tr>
+<td><code>price</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>header</code>)</td>
+</tr>
+<tr>
+<td><code>currency</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>header</code>)</td>
+</tr>
+<tr>
+<td><code>discount</code></td>
+<td>Location of CTA on the page (e.g. <code>primary</code>, <code>secondary</code>, <code>header</code>)</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>item_id: Stripe Plan ID</li>
 <li>brand: <code>relay</code>, <code>vpn</code>, or <code>monitor</code></li>
-<li>plan:<ul>
+<li>
+<p>plan:</p>
+<ul>
 <li><code>vpn-monthly</code></li>
 <li><code>vpn-yearly</code></li>
 <li><code>vpn-relay-yearly</code></li>
@@ -1463,186 +2088,316 @@ script is expecting the following values:</p>
 <li><code>monitor-yearly</code></li>
 </ul>
 </li>
-<li>period: <code>monthly</code> or <code>yearly</code></li>
-<li>price: cost displayed at checkout, pre tax (example: 119.88)</li>
-<li>currency: in <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">3-letter ISO 4217
-    format</a>
-    (examples: USD, EUR)</li>
-<li>discount: value of the discount in the same currency as price
-    (example: 60.00)</li>
+<li>
+<p>period: <code>monthly</code> or <code>yearly</code></p>
+</li>
+<li>
+<p>price: cost displayed at checkout, pre tax (example: 119.88)</p>
+</li>
+<li>
+<p>currency: in <a href="https://en.wikipedia.org/wiki/ISO_4217#Active_codes">3-letter ISO 4217 format</a> (examples: USD, EUR)</p>
+</li>
+<li>
+<p>discount: value of the discount in the same currency as price (example: 60.00)</p>
+</li>
 </ul>
 <p>There are two ways to use TrackBeginCheckout:</p>
-<p><strong>1)  Call the function passing the values directly.</strong></p>
-<div class="highlight"><pre><span></span><code><span class="nx">TrackBeginCheckout</span><span class="p">.</span><span class="nx">getEventObjectAndSend</span><span class="p">(</span><span class="nx">item_id</span><span class="p">,</span><span class="w"> </span><span class="nx">brand</span><span class="p">,</span><span class="w"> </span><span class="nx">plan</span><span class="p">,</span><span class="w"> </span><span class="nx">period</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">discount</span><span class="p">)</span>
-</code></pre></div>
-<p><strong>2)  Pass the values as a data attribute.</strong></p>
-<p>The <code>vpn_subscribe_link</code> and <code>relay_subscribe_link</code> will automatically
-generate a <code>data-ga-item</code> object and add the <code>ga-begin-checkout</code> class
-to links they create -- as long as there is analytics information
-associated with the plan in its lookup table.</p>
-<p>To use this method you will need to include
-<code>datalayer-begincheckout-init.es6.js</code> in the page bundle.</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ fxa link }}&quot;</span>
-    <span class="na">class</span><span class="o">=</span><span class="s">&quot;ga-begin-checkout&quot;</span>
-    <span class="na">data-ga-item</span><span class="o">=</span><span class="s">&quot;{</span>
-<span class="s">        &#39;id&#39; : &#39;price_1Iw7qSJNcmPzuWtRMUZpOwLm&#39;,</span>
-<span class="s">        &#39;brand&#39; : &#39;vpn&#39;,</span>
-<span class="s">        &#39;plan&#39; : &#39;vpn&#39;,</span>
-<span class="s">        &#39;period&#39; : &#39;monthly&#39;,</span>
-<span class="s">        &#39;price&#39; : &#39;9.99&#39;,</span>
-<span class="s">        &#39;discount&#39; : &#39;0&#39;,</span>
-<span class="s">        &#39;currency&#39; : &#39;USD&#39;</span>
-<span class="s">    }&quot;</span>
-<span class="p">&gt;</span>
-    Get monthly plan
-<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div>
-<h4 id="product-download">Product Download<a class="headerlink" href="#product-download" title="Permanent link">&para;</a></h4>
-<div class="admonition tip">
+<p>1)  Call the function passing the values directly.</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">TrackBeginCheckout</span><span class="p">.</span><span class="nx">getEventObjectAndSend</span><span class="p">(</span><span class="nx">item_id</span><span class="p">,</span><span class="w"> </span><span class="nx">brand</span><span class="p">,</span><span class="w"> </span><span class="nx">plan</span><span class="p">,</span><span class="w"> </span><span class="nx">period</span><span class="p">,</span><span class="w"> </span><span class="nx">price</span><span class="p">,</span><span class="w"> </span><span class="nx">currency</span><span class="p">,</span><span class="w"> </span><span class="nx">discount</span><span class="p">)</span>
+</span></code></pre></div>
+<p>2)  Pass the values as a data attribute.</p>
+<p>The <code>vpn_subscribe_link</code> will automatically generate a <code>data-ga-item</code> object and add the <code>ga-begin-checkout</code> class to links they create -- as long as there is analytics information associated with the plan in its lookup table.</p>
+<p>To use this method you will need to include <code>datalayer-begincheckout-init.es6.js</code> in the page bundle.</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ fxa link }}&quot;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="na">class</span><span class="o">=</span><span class="s">&quot;ga-begin-checkout&quot;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="na">data-ga-item</span><span class="o">=</span><span class="s">&quot;{</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s">        &#39;id&#39; : &#39;price_1Iw7qSJNcmPzuWtRMUZpOwLm&#39;,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s">        &#39;brand&#39; : &#39;vpn&#39;,</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s">        &#39;plan&#39; : &#39;vpn&#39;,</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s">        &#39;period&#39; : &#39;monthly&#39;,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s">        &#39;price&#39; : &#39;9.99&#39;,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s">        &#39;discount&#39; : &#39;0&#39;,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s">        &#39;currency&#39; : &#39;USD&#39;</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s">    }&quot;</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="p">&gt;</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    Get monthly plan
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<h6 id="default-browser">Default Browser<a class="headerlink" href="#default-browser" title="Permanent link">&para;</a></h6>
+<p>Trigger this event when a user sets their default browser to Firefox. It's an important conversion for us!</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;default_browser_set&#39;</span><span class="p">,</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="p">});</span>
+</span></code></pre></div>
+<h6 id="newsletter-subscribe">Newsletter Subscribe<a class="headerlink" href="#newsletter-subscribe" title="Permanent link">&para;</a></h6>
+<h6 id="product-downloads">Product Downloads<a class="headerlink" href="#product-downloads" title="Permanent link">&para;</a></h6>
+<div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Only Firefox and Pocket are currently supported. VPN support has not
-been added.</p>
+<p>VPN support has not been added. Firefox, Firefox Mobile, Focus, Klar, and Pocket are currently supported.</p>
 </div>
-<p>We are using a the custom event [product_download]{.title-ref} to track
-product downloads and app store referrals for Firefox, Pocket, and VPN.
-We are not using the default GA4 event file_download for a combination
-of reasons: it does not trigger for the Firefox file types, we would
-like to collect more information than is included with the default
-events, and we would like to treat product downloads as goals but not
-all file downloads are goals.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Most apps listed in <em>appstores.py</em> are supported but you may still want
-to check that the URL you are tracking is identified as valid in
-<code>isValidDownloadURL and will be recognized by</code>getEventFromUrl`.</p>
-</div>
-<p>Properties for use with [product_download]{.title-ref} (not all products
-will have all options):</p>
+<p>When the user signals their intent do install one of our products we log a download event named for the product. This intent could be: clicking an app store badge, triggering a file download, or sending themselves the link using the send to device widget. The events are in the format [product name]_download and all function the same. So they use the same JavaScript "TrackProductDownload". For this documentation the following custom events will be talked about as <code>product_download</code> :</p>
 <ul>
-<li>product (example: firefox)</li>
-<li>platform (example: win64)</li>
-<li>method (store, site, or adjust)</li>
-<li>release_channel (example: nightly)</li>
-<li>download_language (example: en-CA)</li>
+<li><code>firefox_download</code></li>
+<li><code>firefox_mobile_download</code></li>
+<li><code>focus_download</code></li>
+<li><code>klar_download</code></li>
+<li><code>pocket_download</code></li>
+</ul>
+<p>Properties for use with <code>product_download</code> (not all products will have all options):</p>
+<ul>
+<li>product (one of: firefox, firefox_mobile, focus, klar, pocket, vpn)</li>
+<li>platform <strong>optional</strong> (one of: win, win-msi, win64, win64-msi, win64-aarch64, macos, linux, linux64, android, ios)</li>
+<li>method (one of: site, store, or adjust)</li>
+<li>release_channel <strong>optional</strong> (one of: release, esr, devedition, beta, nightly)</li>
+<li>download_language <strong>optional</strong> (example: en-CA)</li>
 </ul>
 <p>There are two ways to use TrackProductDownload:</p>
-<p>1)  Call the function, passing it the same URL you are sending the user
-    to:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">TrackProductDownload</span><span class="p">.</span><span class="nx">sendEventFromURL</span><span class="p">(</span><span class="nx">downloadURL</span><span class="p">);</span>
-</code></pre></div>
+<p>1)  Call the function, passing it the same URL you are sending the user to:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">TrackProductDownload</span><span class="p">.</span><span class="nx">sendEventFromURL</span><span class="p">(</span><span class="nx">downloadURL</span><span class="p">);</span>
+</span></code></pre></div>
 <p>2)  Add a class to the link:</p>
-<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ link }}&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;ga-product-download&quot;</span><span class="p">&gt;</span>Link text<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>You do NOT need to include <code>datalayer-productdownload-init.es6.js</code> in
-the page bundle, it is already included in the site bundle.</p>
-<h3 id="how-can-visitors-opt-out-of-ga">How can visitors opt out of GA?<a class="headerlink" href="#how-can-visitors-opt-out-of-ga" title="Permanent link">&para;</a></h3>
-<p>Visitors to the website can opt-out of loading Google Analytics on our
-website by enabling <a href="https://support.mozilla.org/en-US/kb/how-do-i-turn-do-not-track-feature">Do Not Track
-(DNT)</a>
-in their web browser. We facilitate this by using a <a href="https://github.com/mozmeao/dnt-helper">DNT
-helper</a> that our team maintains.</p>
-<h2 id="glean">Glean<a class="headerlink" href="#glean" title="Permanent link">&para;</a></h2>
-<p>Currently in an evaluation phase, bedrock is now capable of running a
-parallel first-party analytics implementation alongside <abbr title="Google Tag Manager">GTM</abbr>, using Mozilla's own
-<a href="https://docs.telemetry.mozilla.org/concepts/glean/glean.html">Glean</a>
-telemetry <abbr title="Software Development Kit">SDK</abbr>. See the <a href="https://mozilla.github.io/glean/book/index.html">Glean Book</a> for more
-developer reference documentation.</p>
-<p>Glean is currently behind a feature switch called
-<code>SWITCH_GLEAN_ANALYTICS</code>. When the switch is enabled pages will load the
-Glean JavaScript bundle, which will do things like record page hits and
-link click events that we want to measure.</p>
-<h3 id="debugging-pings">Debugging pings<a class="headerlink" href="#debugging-pings" title="Permanent link">&para;</a></h3>
-<p>For all non-production environments, bedrock will automatically set a
-debug view tag for all pings. This means that when running on localhost,
-on a demo, or on a staging environment, ping data will be viewable in
-the <a href="https://debug-ping-preview.firebaseapp.com/">Glean debug dashboard</a>
-which can be used to test that pings are working correctly. All bedrock
-debug pings will register in the debug dashboard with the tag name
-<code>bedrock</code>.</p>
-<h3 id="filtering-out-non-production-pings">Filtering out non-production pings<a class="headerlink" href="#filtering-out-non-production-pings" title="Permanent link">&para;</a></h3>
-<p>Bedrock will also set an <code>app_channel</code> tag with a value of either <code>prod</code>
-or <code>non-prod</code>, depending on the environment. This is present in all
-pings in the <code>client_info</code> section, and is useful for filtering out
-non-production data in telemetry dashboards.</p>
-<h3 id="logging-pings-in-the-console">Logging pings in the console<a class="headerlink" href="#logging-pings-in-the-console" title="Permanent link">&para;</a></h3>
-<p>When running bedrock locally, you can also set the following environment
-variable in your <code>.env</code>` file to automatically log pings in the
-browser's web console. This can be especially useful when making
-updates to analytics code.</p>
-<div class="highlight"><pre><span></span><code>GLEAN_LOG_PINGS=True
-</code></pre></div>
-<h3 id="defining-metrics-and-pings">Defining metrics and pings<a class="headerlink" href="#defining-metrics-and-pings" title="Permanent link">&para;</a></h3>
-<p>All of the data we send to the Glean pipeline is defined in <abbr title="Yet Another Markup Language">YAML</abbr>
-schema files in the <code>./glean/</code> project root directory. The
-<code>metrics.yaml</code> file defines all the different metrics types and events
-we record.</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;{{ link }}&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;ga-product-download&quot;</span><span class="p">&gt;</span>Link text<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>You do NOT need to include <code>datalayer-productdownload-init.es6.js</code> in the page bundle, it is already included in the site bundle.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Before running any Glean commands locally, always make sure you have
-first activated your virtual environment by running
-<code>pyenv activate bedrock</code>.</p>
+<p>Most apps listed in <em>appstores.py</em> are supported but you may still want to check that the URL you are tracking is identified as valid in <code>`</code>isValidDownloadURL <code>` and will be recognized by</code>getEventFromUrl`.</p>
 </div>
-<p>When bedrock starts, we automatically run <code>npm run glean</code> which parses
-these schema files and then generates some JavaScript library code in
-<code>./media/js/libs/glean/</code>. This library code is not committed to the
-repository on purpose, in order to avoid people altering it and becoming
-out of sync with the schema. This library code is then imported into our
-Glean analytics code in <code>./media/js/glean/</code>, which is where we initiate
-page views and capture click events.</p>
-<p>Running <code>npm run glean</code> can also be performed independently of starting
-bedrock. It will also first lint the schema files.</p>
-<div class="admonition tip">
+<p>If you would like to track something as a download that is not currently in the <em>appstores.py</em> you can get and send the event object manually. This most often happens with adjust links generated for specific campaigns:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">customEventObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">TrackProductDownload</span><span class="p">.</span><span class="nx">getEventObject</span><span class="p">(</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">        </span><span class="s1">&#39;firefox_mobile&#39;</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">        </span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// if you are not redirecting to a specific store, leave platform empty</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">        </span><span class="s1">&#39;adjust&#39;</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="p">);</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="nx">TrackProductDownload</span><span class="p">.</span><span class="nx">sendEvent</span><span class="p">(</span><span class="nx">customEventObject</span><span class="p">);</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Calling TrackProductDownload will also fire an event named <code>product_download</code> so two events are being logged for each product download. This is because prior to Feb 2024 we only used one unified product download event and did not have the individual product download events yet. The split events are considered easier to deal with for reporting purposes inside GA4. Some data science dashboards use <code>product_download</code> because it has existed longer. Ideally, we will remove it some day.</p>
+</div>
+<h6 id="send-to-device">Send to Device<a class="headerlink" href="#send-to-device" title="Permanent link">&para;</a></h6>
+<h6 id="social-share">Social Share<a class="headerlink" href="#social-share" title="Permanent link">&para;</a></h6>
+<h6 id="stub-session-set">Stub Session Set<a class="headerlink" href="#stub-session-set" title="Permanent link">&para;</a></h6>
+<h6 id="widget-action">Widget Action<a class="headerlink" href="#widget-action" title="Permanent link">&para;</a></h6>
+<p>We are using the custom event <code>widget_action</code> to track the behaviour of javascript widgets.</p>
+<p><strong>How do you chose between ``widget_action`` and ``cta_click``?</strong></p>
+<table>
+<thead>
+<tr>
+<th>widget_action</th>
+<th>cta_click</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The action is specific or unique.</td>
+<td>The action is \"click\".</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(Only the language switcher changes</em> <em>the page language.)</em></td>
+<td></td>
+</tr>
+<tr>
+<td>The user does not leave the page.</td>
+<td>It sends the user somewhere else.</td>
+</tr>
+<tr>
+<td>It requires Javascript to work.</td>
+<td>No JS required.</td>
+</tr>
+<tr>
+<td>It can perform several actions.</td>
+<td>It does one action.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(A modal can be opened and closed.)</em></td>
+<td></td>
+</tr>
+<tr>
+<td>There could be several on the page doing different things.</td>
+<td>There could be several on the page doing the same thing.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><em>(An accordion list of FAQs)</em></td>
+<td><em>(A download button in the header and footer.)</em></td>
+</tr>
+</tbody>
+</table>
+<p>Properties for use with <code>widget_action</code> (not all widgets will use all options):</p>
+<ul>
+<li>
+<p>type</p>
+<ul>
+<li><strong>Required.</strong></li>
+<li>The type of widget.</li>
+<li>Examples: \"modal\", \"protection report\", \"affiliate notification\", \"help icon\".</li>
+<li><em>Avoid "button" or "link". If you want to track a link or button use `cta_click`.</em></li>
+</ul>
+</li>
+<li>
+<p>action</p>
+<ul>
+<li><strong>Required.</strong></li>
+<li>The thing that happened.</li>
+<li>Examples: \"open\", \"accept\", \"timeout\", \"vote up\".</li>
+<li><em>Avoid "click". If you want to track a click use `cta_click`.</em></li>
+</ul>
+</li>
+<li>
+<p>text</p>
+<ul>
+<li>How is this action labeled to the user?</li>
+<li>Examples: \"Okay\", \"Check your protection report\", \"Get the app\"</li>
+</ul>
+</li>
+<li>
+<p>name</p>
+<ul>
+<li>Give the widget a name.</li>
+<li>You probably only need this optional attribute if the <code>text</code> value is not enough to tell the widgets apart.</li>
+<li>This can help you group actions from the same widget, or make it easier to find the widget in the reports.</li>
+<li>The dashes are not required but they\'re allowed if you want to match the element class or ID.</li>
+<li>Examples: \"dad-joke-banner\", \"focus-qr-code\", \"Join Firefox Modal\"</li>
+</ul>
+</li>
+<li>
+<p>non_interaction (boolean)</p>
+<ul>
+<li>True if the action was triggered by something other than a user gesture.</li>
+<li>If it\'s not included we assume the value is <em>false</em></li>
+</ul>
+</li>
+</ul>
+<p>To use <code>widget_action</code> push your event to the <code>dataLayer</code>:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;widget_action&#39;</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;banner&#39;</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;accept&#39;</span><span class="p">,</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dad-jokes-banner&#39;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">});</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;widget_action&#39;</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;modal&#39;</span><span class="p">,</span>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;open&#39;</span><span class="p">,</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;help-icon&#39;</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Get Browser Help&#39;</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="p">});</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;widget_action&#39;</span><span class="p">,</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;vote&#39;</span><span class="p">,</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;helpful&#39;</span><span class="p">,</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;vpn-resource-center&#39;</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;What is an IP address?&#39;</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="p">});</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;widget_action&#39;</span><span class="p">,</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;details&#39;</span><span class="p">,</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">    </span><span class="nx">action</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;open&#39;</span><span class="p">,</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">    </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;relay-faq&#39;</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">    </span><span class="nx">text</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Where is Relay available?&#39;</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="p">});</span>
+</span></code></pre></div>
+<h6 id="dimension-set">Dimension Set<a class="headerlink" href="#dimension-set" title="Permanent link">&para;</a></h6>
+<p>When using GA4 through GTM there isn't a way to set user scoped custom dimensions without an accompanying event. The custom event we use for this is <code>dimension_set</code>.</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">window</span><span class="p">.</span><span class="nx">dataLayer</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nx">event</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;dimension_set&#39;</span><span class="p">,</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="nx">firefox_is_default</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="p">});</span>
+</span></code></pre></div>
+<p>User scoped custom dimensions must be configured in GA4. The list of supported custom dimensions is:</p>
+<ul>
+<li><code>firefox_is_default</code> (boolean)</li>
+<li><code>firefox_is_signed_in</code> (boolean)</li>
+</ul>
+<h3 id="glean">Glean<a class="headerlink" href="#glean" title="Permanent link">&para;</a></h3>
+<p>In addition to GA, Bedrock also runs a parallel web analytics implementation using Mozilla\'s own <a href="https://mozilla.github.io/glean.js/">Glean</a> telemetry <code class="interpreted-text" role="abbr">SDK (Software Development Kit)</code>.</p>
+<p>One advantage to Glean is that it is a first-party solution, meaning that we have full control over the data we collect and how it is used. It is also less likely to be blocked by ad blockers or privacy tools.</p>
+<p>Using Glean\'s standardized schema for data collection, we can also take advantage of automated dashboard creation in Looker (see below), which makes it easier to query data than some other tools such as GA4\'s default dashboard.</p>
+<h4 id="where-can-i-query-glean-data">Where can I query Glean data?<a class="headerlink" href="#where-can-i-query-glean-data" title="Permanent link">&para;</a></h4>
+<p>The easiest place to view Glean data is in Looker:</p>
+<ul>
+<li><a href="https://mozilla.cloud.looker.com/dashboards/websites::website_sessions?App%20ID=bedrock&amp;Submission%20Date=7%20day&amp;Country%20Name=&amp;External%20Referrer=&amp;App%20Channel=prod&amp;UA%20-%20Browser=&amp;Traffic%20Source=">Website sessions dashboard</a></li>
+<li><a href="https://mozilla.cloud.looker.com/dashboards/1452?Event+Name=%22glean.page_load%22&amp;App+Name=www.mozilla.org&amp;Window+Start+Time=28+days&amp;Channel=prod">Event monitoring dashboard</a></li>
+</ul>
+<p>If you need more detailed queries, you can click \"Explore from here\" from within each visualization to create your own queries.</p>
+<p>It is also possible to create more complex queries for raw Glean events using any of our standard Telemetry tools. The easiest way to do this is via the <a href="https://dictionary.telemetry.mozilla.org/apps/bedrock">Glean Dictionary</a>. For example, if you view the <a href="https://dictionary.telemetry.mozilla.org/apps/bedrock/metrics/glean_page_load">page load ping</a>, you will see a table in the \"Access\" section (see screenshot below) that contains different links to query the event data.</p>
+<p><img alt="Screenshot of the \'Access\' table in the Glean Dictionary" src="../../images/glean-dictionary.png" /></p>
+<h5 id="filtering-out-non-production-pings">Filtering out non-production pings<a class="headerlink" href="#filtering-out-non-production-pings" title="Permanent link">&para;</a></h5>
+<p>Bedrock automatically sets an <code>app_channel</code> tag with a value of either <code>prod</code> or <code>non-prod</code>, depending on the environment. This is present in all pings in the <code>client_info</code> section, and is useful for filtering out non-production data in telemetry dashboards.</p>
+<p>If you are viewing one of the dashboards linked above, make sure you set the <code>app_channel</code> filter to <code>prod</code> to only see production data.</p>
+<h4 id="recording-page-load-events">Recording page load events<a class="headerlink" href="#recording-page-load-events" title="Permanent link">&para;</a></h4>
+<p>Glean automatically records a page load event when the page is loaded. This event contains basic information about the page, such as the URL, the page title, and the referrer. The page load event is recorded in the <code>glean.page_load</code> event. Each page load event is associated with a unique <code>glean.page_id</code> metric, which is used to group all events related to a single page view / session.</p>
+<h4 id="recording-click-events">Recording click events<a class="headerlink" href="#recording-click-events" title="Permanent link">&para;</a></h4>
+<p>Glean will automatically record click events on any HTML element that has at least one of the following data attributes:</p>
+<ul>
+<li><code>data-glean-id</code>: A string indicating an identifier of the clicked element.</li>
+<li><code>data-glean-type</code>: A string indicating the type of the clicked element.</li>
+<li><code>data-glean-label</code>: A string indicating the label of the clicked element.</li>
+</ul>
+<p>Each click event will also record a <code>glean.page_id</code> metric, so that we can associate the click event with the page view that triggered it.</p>
+<p>Bedrock also has a custom <code>Mozilla.Glean.clickEvent()</code> helper that can be used to record click events directly via JavaScript:</p>
+<div class="language-javascript highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="p">.</span><span class="nx">clickEvent</span><span class="p">({</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="nx">id</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;firefox_download&#39;</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;macos&#39;</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;release&#39;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>All metrics and events we record using Glean must first undergo a <a href="https://wiki.mozilla.org/Data_Collection">data
-review</a> before being made
-active in production. Therefore anytime we make new additions to these
-files, those changes should also undergo review.</p>
+<p>When calling <code>Mozilla.Glean.clickEvent()</code> directly, make sure to always check if the <code>Mozilla.Glean</code> object is defined first.</p>
 </div>
-<h3 id="using-glean-events-in-individual-page-bundles">Using Glean events in individual page bundles<a class="headerlink" href="#using-glean-events-in-individual-page-bundles" title="Permanent link">&para;</a></h3>
-<p>Our analytics code for Glean lives in a single bundle in the base
-template, which is intended to be shared across all web pages. This
-bundle automatically initializes Glean and records page hit events. It
-also creates some helpers that can be used across different page bundles
-to record interaction events such as link clicks and form submissions.</p>
-<p>The <code>Mozilla.Glean.pageEvent()</code> helper can be used to record events that
-are specific to a page, such as successful form completions:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="p">.</span><span class="nx">pageEvent</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;newsletter-sign-up-success&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;mozilla-and-you&#39;</span><span class="w"> </span><span class="c1">// type is optional</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>It can also be used to record non-interaction events that are not
-directly initiated by a visitor:</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="p">.</span><span class="nx">pageEvent</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;firefox-default&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">nonInteraction</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>The <code>Mozilla.Glean.clickEvent()</code> helper can be used to record click
-events that are specific to an element in a page, such as a link or
-button.</p>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="w"> </span><span class="o">!==</span><span class="w"> </span><span class="s1">&#39;undefined&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nb">window</span><span class="p">.</span><span class="nx">Mozilla</span><span class="p">.</span><span class="nx">Glean</span><span class="p">.</span><span class="nx">clickEvent</span><span class="p">({</span>
-<span class="w">        </span><span class="nx">label</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;firefox-download&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;macOS, release, en-US&#39;</span><span class="p">,</span><span class="w"> </span><span class="c1">// type is optional</span>
-<span class="w">        </span><span class="nx">position</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;primary&#39;</span><span class="w"> </span><span class="c1">// position is optional</span>
-<span class="w">    </span><span class="p">});</span>
-<span class="p">}</span>
-</code></pre></div>
-<h3 id="how-can-visitors-opt-out-of-glean">How can visitors opt out of Glean?<a class="headerlink" href="#how-can-visitors-opt-out-of-glean" title="Permanent link">&para;</a></h3>
-<p>Website visitors can opt out of Glean by visiting the first party <a href="https://www.mozilla.org/privacy/websites/data-preferences/">data
-preferences
-page</a>, which
-is linked to in the <a href="https://www.mozilla.org/privacy/websites/">websites privacy
-notice</a>. Clicking opt-out
-will set a cookie which Glean checks for before initializing on page
-load. In production, the cookie that is set applies for all
-<code>.mozilla.org</code> domains, so other sites such as <code>developer.mozilla.org</code>
-can also make use of the opt-out mechanism.</p>
+<h4 id="defining-additional-metrics-and-pings">Defining additional metrics and pings<a class="headerlink" href="#defining-additional-metrics-and-pings" title="Permanent link">&para;</a></h4>
+<p>Outside of the standard page load and click event metrics recorded by Glean, any additional metrics we send to the Glean pipeline is defined in <code class="interpreted-text" role="abbr">YAML (Yet Another Markup Language)</code> schema files in the <code>./glean/</code> project root directory. The <code>metrics.yaml</code> file defines all the different metrics types and events we record.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Before running any Glean commands locally, always make sure you have first activated your virtual environment by running <code>pyenv activate bedrock</code>.</p>
+</div>
+<p>When Bedrock starts, we automatically run <code>npm run glean</code> which parses these schema files and then generates some JavaScript library code in <code>./media/js/libs/glean/</code>. This library code is not committed to the repository on purpose, in order to avoid people altering it and becoming out of sync with the schema. This library code is then imported into our Glean analytics code in <code>./media/js/glean/</code>, which is where we initiate page views and capture click events.</p>
+<p>Running <code>npm run glean</code> can also be performed independently of starting bedrock. It will also first lint the schema files.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>All metrics and events we add to the YAML file first undergo a <a href="https://wiki.mozilla.org/Data_Collection">data review</a> before being recorded in production. Additionally changes or updates to existing metrics should also undergo a data review.</p>
+</div>
+<h4 id="debugging-pings">Debugging pings<a class="headerlink" href="#debugging-pings" title="Permanent link">&para;</a></h4>
+<p>Glean supports debugging pings via a set of flags that can be enabled directly in the browser\'s web console.</p>
+<ul>
+<li><code>window.Glean.setLogPings(true)</code> (enable verbose ping logging in the web console).</li>
+<li><code>window.Glean.setDebugViewTag('bedrock')</code> (send pings to the <a href="https://debug-ping-preview.firebaseapp.com/">Glean debug dashboard</a> with the tag name <code>bedrock</code>).</li>
+<li>You can also use <code>window.Glean.debugSession()</code> for automatically opening a link to the Debug Ping Viewer with your current session selected.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After enabling Glean debugging in the web console, it will be remembered when navigating across pages using <code>sessionStorage</code>. To stop debugging, you need to either close the browser tab, or delete the items from <code>sessionStorage</code>. You can disable ping logging by calling <code>window.Glean.setLogPings(false)</code>.</p>
+</div>
+<h4 id="how-can-visitors-opt-out-of-glean">How can visitors opt out of Glean?<a class="headerlink" href="#how-can-visitors-opt-out-of-glean" title="Permanent link">&para;</a></h4>
+<p>Website visitors can opt out of Glean by visiting the <a href="https://www.mozilla.org/privacy/websites/cookie-settings/">cookie settings page</a>, which is linked to in the main site footer on every page. Clicking opt-out will set a cookie which Glean checks for before initializing on page load.</p>
+
+
+
+
+
+
+
+  
+  
+
 
 
 
@@ -1653,25 +2408,83 @@ can also make use of the opt-out mechanism.</p>
             </div>
           
           
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
-            Back to top
-          </button>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Index">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Index
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../0002-firefox-desktop/" class="md-footer__link md-footer__link--next" aria-label="Next: Firefox Desktop attribution">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Firefox Desktop attribution
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © Copyright 2011-2025, Mozilla
+    </div>
   
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/mozilla/bedrock/issues/" target="_blank" rel="noopener" title="Report a problem with this documentation" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M256 0c53 0 96 43 96 96v3.6c0 15.7-12.7 28.4-28.4 28.4H188.5c-15.7 0-28.4-12.7-28.4-28.4V96c0-53 43-96 96-96zM41.4 105.4c12.5-12.5 32.8-12.5 45.3 0l64 64c.7.7 1.3 1.4 1.9 2.1 14.2-7.3 30.4-11.4 47.5-11.4h112c17.1 0 33.2 4.1 47.5 11.4.6-.7 1.2-1.4 1.9-2.1l64-64c12.5-12.5 32.8-12.5 45.3 0s12.5 32.8 0 45.3l-64 64c-.7.7-1.4 1.3-2.1 1.9 6.2 12 10.1 25.3 11.1 39.5h64.3c17.7 0 32 14.3 32 32s-14.3 32-32 32h-64c0 24.6-5.5 47.8-15.4 68.6q3.3 1.95 6 4.8l64 64c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0l-63.1-63.1c-24.5 21.8-55.8 36.2-90.3 39.6V240c0-8.8-7.2-16-16-16s-16 7.2-16 16v239.2c-34.5-3.4-65.8-17.8-90.3-39.6l-63.1 63c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l64-64c1.9-1.9 3.9-3.4 6-4.8C101.5 367.8 96 344.6 96 320H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h64.3c1.1-14.1 5-27.5 11.1-39.5-.7-.6-1.4-1.2-2.1-1.9l-64-64c-12.5-12.5-12.5-32.8 0-45.3z"/></svg>
     </a>
   
 </div>
@@ -1685,10 +2498,13 @@ can also make use of the opt-out mechanism.</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "toc.follow"], "search": "../../assets/javascripts/workers/search.74e28a9f.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
     
     
-      <script src="../../assets/javascripts/bundle.220ee61c.min.js"></script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "content.code.select", "content.code.annotate", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.indexes", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.60a45f97.min.js"></script>
       
     
   </body>
