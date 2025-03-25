@@ -24,11 +24,7 @@ m24-about-a-group-of = A group of thinkers sitting in a circle on the floor shar
 m24-about-advocate = Advocate
 m24-about-we-advocate-for = We advocate for better products, holding governments and tech corporations accountable for what they create.
 m24-about-research = Research
-# Obsolete string (expires: 2025-02-03)
-m24-about-monitor = Monitor
 m24-about-we-uncover-insights = We uncover insights, campaign to improve products and drive policies that represent your interests.
-# Obsolete string (expires: 2025-02-03)
-m24-about-we-monitor-developments = We monitor developments, conduct research and campaign to improve products and drive policies that represent your interests.
 m24-about-build = Build
 m24-about-we-build-products = We build products that put you in control — like { -brand-name-firefox }, { -brand-name-fakespot } and more.
 m24-about-fund = Fund
@@ -70,8 +66,6 @@ m24-about-see-open-positions = See open positions
 ## Community
 
 m24-about-community-love-v2 = Community love, our driving force
-# Obsolete string (expires: 2025-02-03)
-m24-about-community-love = Community love —<br> our driving force
 m24-about-mozilla-is-a = { -brand-name-mozilla } is a global community of passionate volunteers, fellows and contributors who have been building, protecting and shaping the internet with us since 1998.
 m24-about-from-writing-code = From writing code and spotting bugs to advocating for privacy and keeping the internet open for everyone — our community members are the backbone of everything we do. Their passion and dedication inspire us every day.
 # Used as an accessible text alternative for an image
