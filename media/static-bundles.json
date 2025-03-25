@@ -1584,9 +1584,10 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js"
+        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js",
+        "js/firefox/whatsnew/whatsnew-137-video-events.es6.js"
       ],
-      "name": "firefox_whatsnew_137_uitour"
+      "name": "firefox_whatsnew_137"
     },
     {
       "files": [
