@@ -317,7 +317,7 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
     parent_page_types = ["MonitorArticleIndexPage"]  # must be child of MonitorArticleIndexPage
 
     def get_context(self, request):
-        context = super().get_context(request)
+        context = super().get_context(self, request)
 
         # Parse the HTML content
         soup = BeautifulSoup(self.content, "html.parser")
