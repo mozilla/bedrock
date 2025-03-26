@@ -19,11 +19,11 @@ pytest-mock==3.14.0
 pytest-parallel==0.1.1
 pytest-rerunfailures==15.0
 pytest-selenium==4.0.1
-responses==0.25.6
-ruff==0.9.9
+responses==0.25.7
+ruff==0.11.2
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
-translate-toolkit==3.15.0
-uv==0.6.5
+translate-toolkit==3.15.1
+uv==0.6.9
 wagtail-factories==4.2.1
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0

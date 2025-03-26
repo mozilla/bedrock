@@ -23,15 +23,17 @@ for fname in "${STARTUP_FILES[@]}"; do
     fi
 done
 
-# Granian recommends containerized apps use the defaults of workers=1, threads=1.
-# The backgpressure defaults to backlog (1024) / workers (1), but should be adjusted to match the
-# number of database connections when configured for databases.
+# Granian recommends containerized apps use the defaults of workers=1, blocking-threads=1.
+# We configure Granian to 1 worker and 1 blocking thread per pod, and let k8s manage the scaling.
+#
+# Adjust using these environment variables:
+#   PORT: port to run the app on
+#   GRANIAN_WORKERS: number of workers
+#   GRANIAN_BLOCKING_THREADS: number of blocking threads
+#   GRANIAN_LOG_LEVEL: log level to use (granian default: info)
+
 granian --interface wsgi \
     --host 0.0.0.0 \
     --port "${PORT:-8000}" \
     --no-ws \
-    --workers "${GRANIAN_WORKERS:-1}" \
-    --threads "${GRANIAN_THREADS:-1}" \
-    --backpressure "${GRANIAN_BACKPRESSURE:-1024}" \
-    --log-level "${GRANIAN_LOG_LEVEL:-warning}" \
     wsgi.app:application
