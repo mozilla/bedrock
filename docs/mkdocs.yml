@@ -6,6 +6,7 @@ dev_addr: 127.0.0.1:8765
 
 repo_name: 'mozilla/bedrock'
 repo_url: 'https://github.com/mozilla/bedrock'
+edit_uri: edit/main/docs/docs/
 
 plugins:
   - search
@@ -14,7 +15,13 @@ theme:
   name: material
   logo: images/mozilla-logo.svg
   favicon: images/favicon.png
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/file-edit
+    view: material/code-tags
   features:
+    - content.action.edit
+    - content.action.view
     - content.code.copy
     - content.code.select
     - content.code.annotate
