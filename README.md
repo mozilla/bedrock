@@ -17,7 +17,7 @@ general technical documentation. In addition, there are project-specific
 
 [django]: https://www.djangoproject.com/
 [dj-docs]: https://docs.djangoproject.com/
-[br-docs]: http://bedrock.readthedocs.org/
+[br-docs]: https://mozilla.github.io/bedrock/
 
 Contributing
 ------------
