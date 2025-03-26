@@ -119,17 +119,17 @@ class VPNResourceCenterDetailPage(ArticleDetailPageBase):
 @register_snippet
 class MonitorCallToActionSnippet(TranslatableMixin):
     split_heading = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=False,
     )
     split_subheading = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=True,
     )
     split_content = RichTextField(null=True, blank=True, features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL)
     split_button_text = models.CharField(
         verbose_name="Link Text",
-        max_length=40,
+        max_length=255,
         blank=False,
     )
     split_button_link = models.URLField(
@@ -181,17 +181,17 @@ class MonitorCallToActionSnippet(TranslatableMixin):
 
 class MonitorArticleIndexPage(AbstractBedrockCMSPage):
     split_heading = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=False,
     )
     split_subheading = models.CharField(
-        max_length=60,
+        max_length=255,
         blank=True,
     )
     split_content = RichTextField(null=True, blank=True, features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL)
     split_button_text = models.CharField(
         verbose_name="Link Text",
-        max_length=40,
+        max_length=255,
         blank=False,
     )
     split_button_link = models.URLField(
@@ -206,7 +206,7 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
         related_name="+",
     )
     articles_heading = models.CharField(
-        max_length=100,
+        max_length=255,
         blank=False,
     )
     articles_subheading = models.CharField(
