@@ -73,7 +73,7 @@ class VPNResourceCenterIndexPage(ArticleIndexPageBase):
 
     def get_context(self, request, *args, **kwargs):
         ARTICLE_GROUP_SIZE = 6
-        context = super().get_context(request)
+        context = super().get_context(request, *args, **kwargs)
         vpn_available_in_country = vpn_available(request)
         mobile_sub_only = vpn_available_mobile_sub_only(request)
         article_data = VPNResourceCenterDetailPage.objects.filter(locale=self.locale).live().public().order_by("-first_published_at")
@@ -109,7 +109,7 @@ class VPNResourceCenterDetailPage(ArticleDetailPageBase):
     template = "products/vpn/cms/resource-center/detail.html"
 
     def get_context(self, request, *args, **kwargs):
-        context = super().get_context(request)
+        context = super().get_context(request, *args, **kwargs)
         vpn_available_in_country = vpn_available(request)
         context["ftl_files"] = ["products/vpn/resource-center", "products/vpn/shared"]
         context["vpn_available"] = vpn_available_in_country
@@ -262,8 +262,8 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-    def get_context(self, request):
-        context = super().get_context(request)
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
         context["articlepages"] = MonitorArticlePage.objects.live().public()  # live() and public() are wagtail filters
         return context
 
@@ -316,8 +316,8 @@ class MonitorArticlePage(AbstractBedrockCMSPage):
 
     parent_page_types = ["MonitorArticleIndexPage"]  # must be child of MonitorArticleIndexPage
 
-    def get_context(self, request):
-        context = super().get_context(self, request)
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
 
         # Parse the HTML content
         soup = BeautifulSoup(self.content, "html.parser")
