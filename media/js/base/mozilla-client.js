@@ -230,7 +230,7 @@ if (typeof window.Mozilla === 'undefined') {
     /**
      * Use the async mozUITour API of Firefox to retrieve the user's browser info, including the update channel and
      * accurate, patch-level version number. This API is available on Firefox 35 and later. See
-     * http://bedrock.readthedocs.org/en/latest/uitour.html for details.
+     * https://mozilla.github.io/bedrock/uitour/ for details.
      *
      * @param  {Function} callback - callback function to be executed with the Firefox details
      * @return {None}
@@ -317,7 +317,7 @@ if (typeof window.Mozilla === 'undefined') {
 
     /**
      * Use the async mozUITour API of Firefox to retrieve the user's FxA info. See
-     * http://bedrock.readthedocs.org/en/latest/uitour.html for details.
+     * https://mozilla.github.io/bedrock/uitour/ for details.
      *
      * The various states here are... complicated
      * This is the intention:
