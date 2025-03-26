@@ -27,4 +27,4 @@ The positive side of this change is that the developer has total control over th
 and there are no string extraction or merge steps.
 
 [Fluent]: https://projectfluent.org/
-[bedrock docs]: https://bedrock.readthedocs.io/en/latest/l10n.html#fluent
+[bedrock docs]: https://mozilla.github.io/bedrock/l10n/#fluent

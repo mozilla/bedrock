@@ -88,7 +88,7 @@
 </a>
 {%- endmacro %}
 
-{# Docs: https://bedrock.readthedocs.io/en/latest/firefox-accounts.html#signup-form #}
+{# Docs: https://mozilla.github.io/bedrock/mozilla-accounts/#mozilla-account-sign-up-form #}
 {% macro fxa_email_form(entrypoint, entrypoint_experiment, entrypoint_variation, context=None, utm_campaign=None, utm_content=None, utm_term=None, style=None, class_name='fxa-email-form', form_title=None, intro_text=none, button_text=None, button_class='mzp-c-button mzp-t-product') -%}
   <form action="{{ settings.FXA_ENDPOINT }}" id="fxa-email-form" class="mzp-c-form {{ class_name }}" data-test-id="fxa-form">
     <input type="hidden" name="action" value="email">
