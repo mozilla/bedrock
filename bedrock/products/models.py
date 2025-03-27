@@ -180,6 +180,8 @@ class MonitorCallToActionSnippet(TranslatableMixin):
 
 
 class MonitorArticleIndexPage(AbstractBedrockCMSPage):
+    subpage_types = ["MonitorArticlePage"]
+
     split_heading = models.CharField(
         max_length=255,
         blank=False,
@@ -264,7 +266,9 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["articlepages"] = MonitorArticlePage.objects.live().public()  # live() and public() are wagtail filters
+        context["articlepages"] = (
+            MonitorArticlePage.objects.live().public().order_by("-first_published_at")
+        )  # live() and public() are wagtail filters
         return context
 
 

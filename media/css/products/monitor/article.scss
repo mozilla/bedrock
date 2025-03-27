@@ -97,6 +97,19 @@ html {
     }
 }
 
+@media screen and (max-width: #{$screen-xl - 1px}) {
+    .c-protect-middle {
+        .mzp-c-split-container {
+            display: block;
+        }
+
+        .mzp-c-split-media {
+            margin-top: $layout-md;
+        }
+    }
+}
+
+
 // * -------------------------------------------------------------------------- */
 // Temporary fix until https://github.com/mozilla/protocol/issues/933 is resolved
 .mzp-c-breadcrumb {
