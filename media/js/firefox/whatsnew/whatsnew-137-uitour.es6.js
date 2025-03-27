@@ -6,6 +6,9 @@
 
 function init() {
     Mozilla.UITour.ping(() => {
+        // show main CTA
+        document.body.classList.add('wnp-uitour');
+
         // main CTA should open about:preferences at "Browser Layout" section
         const button = document.querySelector('.wnp-main-cta .mzp-c-button');
 
@@ -27,6 +30,4 @@ if (
     window.Mozilla.Client.isFirefoxDesktop
 ) {
     init();
-} else {
-    document.classList.add('wnp-no-uitour');
 }

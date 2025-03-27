@@ -34,9 +34,13 @@
     margin-inline: auto;
 }
 
+.wnp-main-cta {
+    display: none;
+}
 
-:is(.no-js, .wnp-no-uitour) {
+
+:is(.js, .wnp-uitour) {
     .wnp-main-cta {
-        display: none;
+        display: block;
     }
 }
