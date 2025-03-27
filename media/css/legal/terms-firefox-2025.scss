@@ -9,7 +9,17 @@
 @use '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
+@import '../protocol/components/legal-toc';
+
 $mq-max: '(min-width: 1440px)';
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
 
 .l-top {
     display: none;
@@ -29,6 +39,7 @@ $mq-max: '(min-width: 1440px)';
         border-bottom: 1px solid $color-light-gray-30;
         margin-bottom: $spacing-md;
         padding-bottom: $spacing-sm;
+        text-wrap: balance;
     }
 
     h1 {
@@ -51,56 +62,6 @@ $mq-max: '(min-width: 1440px)';
             padding-bottom: 0;
             padding-top: $spacing-sm;
         }
-    }
-}
-
-.c-toc {
-    margin-bottom: $layout-lg;
-
-    h3 {
-        margin-bottom: $layout-xs;
-    }
-
-    ul {
-        border-top: 1px solid $color-light-gray-30;
-
-        @media #{$mq-md} {
-            border-top: none;
-        }
-    }
-
-    li a {
-        @include bidi((
-            (background-position, center right, center left),
-        ));
-        display: block;
-        padding: $spacing-md $layout-sm $spacing-md 0;
-        border-bottom: 1px solid $color-light-gray-30;
-        text-decoration: none;
-        font-weight: 600;
-        background-image: url('/media/img/icons/m24-small/curve-arrow3.svg');
-        background-size: $layout-xs auto;
-        background-repeat: no-repeat;
-
-        &:hover,
-        &:focus-visible {
-            text-decoration: underline;
-        }
-
-        @media #{$mq-md} {
-            background: none;
-            padding: $spacing-sm 0;
-            border: none;
-        }
-    }
- }
-
-.c-extra {
-    display: none;
-    margin-top: $layout-sm;
-
-    @media #{$mq-md} {
-        display: block;
     }
 }
 

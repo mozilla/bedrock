@@ -269,7 +269,6 @@ GITHUB_REPO = "https://github.com/mozilla/bedrock"
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
     "banners/firefox-app-store",
-    "banners/m24-pencil-banner",
     "brands",
     "download_button",
     "footer",
@@ -545,15 +544,23 @@ SITEMAPS_PATH = DATA_PATH / "sitemaps"
 #   },
 ALT_CANONICAL_PATHS = {}
 
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS",
-    parser=ListOf(str, allow_empty=False),
-    default="www.mozilla.org,www.ipv6.mozilla.org,www.allizom.org",
-)
-ALLOWED_CIDR_NETS = config(
-    "ALLOWED_CIDR_NETS",
-    parser=ListOf(str, allow_empty=False),
-    default="",
+# NOTE:
+# - In the infra config a pod IP is prepended with a trailing comma
+# - In some environments, there might be no additional content after this comma
+# - The `allow_empty=True` ensures the split operation works even when nothing follows the comma
+# - We then use `filter()` to remove any resulting empty strings from the list
+ALLOWED_HOSTS = list(
+    filter(
+        None,
+        config(
+            "ALLOWED_HOSTS",
+            parser=ListOf(
+                str,
+                allow_empty=True,
+            ),
+            default="",
+        ),
+    )
 )
 
 # The canonical, production URL without a trailing slash
@@ -692,7 +699,6 @@ ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDL
 
 MIDDLEWARE = [
     # IMPORTANT: this may be extended later in this file or via settings/__init__.py
-    "allow_cidr.middleware.AllowCIDRMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "bedrock.mozorg.middleware.HostnameMiddleware",
@@ -1258,6 +1264,10 @@ VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cl
 # URL for Mozilla VPN subscription links
 # ***This URL *MUST* end in a traling slash!***
 VPN_SUBSCRIPTION_URL = config("VPN_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+
+# New URL for VPN subscription links
+# ***This URL *MUST* end in a trailing slash!***
+VPN_SUBSCRIPTION_URL_NEXT = config("VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/")
 
 # Product ID for VPN subscriptions
 VPN_PRODUCT_ID = config("VPN_PRODUCT_ID", default="prod_FiJ42WCzZNRSbS" if DEV else "prod_FvnsFHIfezy3ZI")

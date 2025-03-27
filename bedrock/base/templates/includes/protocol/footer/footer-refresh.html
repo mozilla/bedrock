@@ -10,8 +10,22 @@
   {% endif %}
   <div class="moz24-footer-content">
     <div class="moz24-footer-primary">
-      <div class="moz24-footer-sections-wrapper">
-        <div class="moz24-footer-section-wrapper moz24-links-section">
+      <div class="moz24-footer-sections-container">
+        <div class="moz24-footer-advertising">
+          <div class="moz24-footer-advertising-wrapper">
+            <h2>{{ ftl('footer-refresh-mozilla-advertising', fallback='footer-refresh-advertise') }}</h2>
+            <p>{{ ftl('footer-refresh-privacy-first') }}</p>
+            <a class="moz24-footer-advertising-link" href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Learn more">
+              <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-learn-more-about-mozilla-advertising') }}</span>
+              <span class="mzp-c-button-icon-end">
+                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
+                  <path fill="#fff" d="M23.4 12 9.1 0v10.5H0v3h9.1V24l14.3-12zm-11.3-1.5v-4l6.6 5.5-6.6 5.5v-7z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="moz24-footer-links">
           <section>
             <h2 class="moz24-footer-label" data-testid="footer-heading-company">
               {{ ftl('footer-refresh-company') }}
@@ -40,16 +54,6 @@
           </section>
 
           <section>
-            <h2 class="moz24-footer-label" data-testid="footer-heading-resources">
-              {{ ftl('footer-refresh-resources') }}
-            </h2>
-            <ul class="moz24-footer-primary-list" data-testid="footer-list-resources">
-              <li><a href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Advertise with Mozilla">{{ ftl('footer-refresh-advertise') }}</a></li>
-              <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
-            </ul>
-          </section>
-
-          <section>
             <h2 class="moz24-footer-label" data-testid="footer-heading-developers">
               {{ ftl('footer-refresh-developers') }}
             </h2>
@@ -58,31 +62,30 @@
               <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
               <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-position="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
               <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn-v2', fallback="footer-refresh-mdn") }}</a></li>
+              <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>
             </ul>
           </section>
         </div>
-        <div class="moz24-footer-section-wrapper">
-          <section>
-            <div class="moz24-footer-refresh-social-wrapper">
-              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-mozilla') }}</h2>
-              <ul class="moz24-footer-links-social">
-                <li><a class="bluesky" href="https://bsky.app/profile/mozilla.org" data-link-position="footer" data-link-text="Bluesky (@mozilla.org)" translate="no">Bluesky<span> (@mozilla.org)</span></a></li>
-                <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-position="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-position="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
-                <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-position="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
-                <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-position="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
-              </ul>
-            </div>
-            <div class="moz24-footer-refresh-social-wrapper">
-              <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-firefox') }}</h2>
-              <ul class="moz24-footer-links-social">
-                <li><a class="bluesky" href="https://bsky.app/profile/firefox.com" data-link-position="footer" data-link-text="Bluesky (@firefox.com)" translate="no">Bluesky<span> (@firefox.com)</span></a></li>
-                <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-position="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
-                <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-position="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
-                <li><a class="tiktok" href="https://www.tiktok.com/@firefox" data-link-position="footer" data-link-text="TikTok (@firefox)">{{ ftl('footer-refresh-tiktok') }}<span> (@firefox)</span></a></li>
-              </ul>
-            </div>
-          </section>
+        <div class="moz24-footer-socials">
+          <div class="moz24-footer-refresh-social-wrapper">
+            <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-mozilla') }}</h2>
+            <ul class="moz24-footer-social-links">
+              <li><a class="bluesky" href="https://bsky.app/profile/mozilla.org" data-link-position="footer" data-link-text="Bluesky (@mozilla.org)" translate="no">Bluesky<span> (@mozilla.org)</span></a></li>
+              <li><a class="instagram" href="{{ mozilla_instagram_url() }}" data-link-position="footer" data-link-text="Instagram (@mozilla)">{{ ftl('footer-refresh-instagram') }}<span> (@mozilla)</span></a></li>
+              <li><a class="linkedin" href="https://www.linkedin.com/company/mozilla-corporation/" data-link-position="footer" data-link-text="LinkedIn (@mozilla)">{{ ftl('footer-refresh-linkedin') }}<span> (@mozilla)</span></a></li>
+              <li><a class="tiktok" href="https://www.tiktok.com/@mozilla" data-link-position="footer" data-link-text="TikTok (@mozilla)">{{ ftl('footer-refresh-tiktok') }}<span> (@mozilla)</span></a></li>
+              <li><a class="spotify" href="https://open.spotify.com/show/0vT7LJMeVDxyQ2ZamHKu08?si=_uDRD6bRR_6M5YZyISGXgA" data-link-position="footer" data-link-text="Spotify (@mozilla)">{{ ftl('footer-refresh-spotify') }}<span> (@mozilla)</span></a></li>
+            </ul>
+          </div>
+          <div class="moz24-footer-refresh-social-wrapper">
+            <h2 class="moz24-footer-heading-social">{{ ftl('footer-refresh-follow-firefox') }}</h2>
+            <ul class="moz24-footer-social-links">
+              <li><a class="bluesky" href="https://bsky.app/profile/firefox.com" data-link-position="footer" data-link-text="Bluesky (@firefox.com)" translate="no">Bluesky<span> (@firefox.com)</span></a></li>
+              <li><a class="instagram" href="https://www.instagram.com/firefox/" data-link-position="footer" data-link-text="Instagram (@firefox)">{{ ftl('footer-refresh-instagram') }}<span> (@firefox)</span></a></li>
+              <li><a class="youtube" href="https://www.youtube.com/user/firefoxchannel" data-link-position="footer" data-link-text="YouTube (@firefoxchannel)">{{ ftl('footer-refresh-youtube') }}<span> (@firefoxchannel)</span></a></li>
+              <li><a class="tiktok" href="https://www.tiktok.com/@firefox" data-link-position="footer" data-link-text="TikTok (@firefox)">{{ ftl('footer-refresh-tiktok') }}<span> (@firefox)</span></a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

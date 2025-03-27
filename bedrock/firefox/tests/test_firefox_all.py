@@ -64,10 +64,10 @@ def test_all_step_1(client):
 @pytest.mark.parametrize(
     "product_slug, name, count",
     (
-        ("desktop-release", "Firefox", 9),
+        ("desktop-release", "Firefox", 10),
         ("desktop-esr", "Firefox Extended Support Release", 8),
-        ("desktop-beta", "Firefox Beta", 9),
-        ("desktop-developer", "Firefox Developer Edition", 8),
+        ("desktop-beta", "Firefox Beta", 10),
+        ("desktop-developer", "Firefox Developer Edition", 9),
         ("desktop-nightly", "Firefox Nightly", 9),
     ),
 )

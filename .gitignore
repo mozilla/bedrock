@@ -13,6 +13,7 @@ __pycache__/
 .noseids
 .python-version
 .vscode/*
+.venv
 *-all.css
 *-all.js
 *-min.css
@@ -65,3 +66,4 @@ tmp/*
 venv
 /custom-media
 /local-credentials/*.json
+docs/site

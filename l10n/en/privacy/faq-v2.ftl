@@ -37,7 +37,7 @@ privacy-faq-v2-wait-so-how = Wait, so how do you make money?
 
 # Variables:
 #   $attrs (url) - link to https://stateof.mozilla.org
-privacy-faq-v2-mozilla-is-not = { -brand-name-mozilla } is not your average organization. Founded as a community open source project in 1998, { -brand-name-mozilla } is a mission-driven organization working towards a more healthy internet. The majority of { -brand-name-mozilla-corporation }’s revenue is from royalties earned through { -brand-name-firefox } web browser search partnerships and distribution deals around the world. You can learn more about how we make money in our <a { $attrs }">annual financial report</a>.
+privacy-faq-v2-mozilla-is-not = { -brand-name-mozilla } is not your average organization. Founded as a community open source project in 1998, { -brand-name-mozilla } is a mission-driven organization working towards a more healthy internet. The majority of { -brand-name-mozilla-corporation }’s revenue is from royalties earned through { -brand-name-firefox } web browser search partnerships and distribution deals around the world. You can learn more about how we make money in our <a { $attrs }>annual financial report</a>.
 
 privacy-faq-v2-softballs = Okay, those first few were softballs. What data do you collect?
 

@@ -69,12 +69,12 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.9.7
+    rev: v0.11.2
     hooks:
       - id: ruff
       - id: ruff-format
   - repo: https://github.com/mozilla-l10n/moz-fluent-linter
-    rev: v0.4.6
+    rev: v0.4.7
     hooks:
       - id: fluent_linter
         files: \.ftl$

@@ -167,6 +167,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
 
         img {
             display: block;
+            width: 64px;
         }
 
         .platform-body {
@@ -220,7 +221,7 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
     @media #{$mq-sm} {
         .secondary-platform {
             flex-direction: row;
-            height: 165px;
+            min-height: 165px;
             width: 350px;
             padding: 0 $spacing-lg;
             text-align: left;
@@ -240,6 +241,14 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         grid-template-rows: repeat(2, 1fr);
         grid-column-gap: $spacing-xl;
         grid-row-gap: $spacing-xl;
+
+        .secondary-platform.firefox-extension {
+            width: calc(100% - 2 * $spacing-lg);
+            grid-column-start: 1;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+        }
     }
 
     @media #{$vpn-download-mq-2xl} {
@@ -262,6 +271,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
 
         .secondary-platform.windows {
             display: none;
+
+            &.firefox-extension {
+                display: flex;
+            }
         }
     }
 
@@ -271,6 +284,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         }
 
         .secondary-platform.macos {
+            display: none;
+        }
+
+        .secondary-platform.firefox-extension {
             display: none;
         }
     }
@@ -283,6 +300,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         .secondary-platform.linux {
             display: none;
         }
+
+        .secondary-platform.firefox-extension {
+            display: none;
+        }
     }
 
     .js.ios & {
@@ -293,6 +314,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         .secondary-platform.ios {
             display: none;
         }
+
+        .secondary-platform.firefox-extension {
+            display: none;
+        }
     }
 
     .js.android & {
@@ -301,6 +326,10 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         }
 
         .secondary-platform.android {
+            display: none;
+        }
+
+        .secondary-platform.firefox-extension {
             display: none;
         }
     }

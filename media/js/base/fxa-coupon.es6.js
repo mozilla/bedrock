@@ -6,7 +6,11 @@
 
 const FxaCoupon = {};
 
-const _allowedDomains = ['accounts.firefox.com', 'accounts.stage.mozaws.net'];
+const _allowedDomains = [
+    'accounts.firefox.com',
+    'accounts.stage.mozaws.net',
+    'payments-next.stage.fxa.nonprod.webservices.mozgcp.net'
+];
 
 FxaCoupon.getCoupon = (url) => {
     const _validParamChars = /^[\w/.%-]+$/;
@@ -22,7 +26,8 @@ FxaCoupon.getCoupon = (url) => {
 FxaCoupon.verifyLink = (url) => {
     return (
         _allowedDomains.indexOf(url.hostname) !== -1 &&
-        url.pathname.startsWith('/subscriptions/products/')
+        (url.pathname.startsWith('/subscriptions/products/') ||
+            url.pathname.startsWith('/mozillavpnstage/'))
     );
 };
 

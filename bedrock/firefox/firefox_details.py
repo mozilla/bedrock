@@ -86,8 +86,8 @@ class FirefoxDesktop(_ProductDetails):
         else:
             platforms = self.platform_labels.copy()
 
-        # Linux ARM64/AArch64 installers are only currently available for Nightly builds.
-        if channel != "nightly":
+        # Linux ARM64/AArch64 installers not available for ESR builds.
+        if channel == "esr":
             del platforms["linux64-aarch64"]
 
         return list(platforms.items())

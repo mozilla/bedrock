@@ -56,12 +56,6 @@
     },
     {
       "files": [
-        "css/mozorg/social-content-policies.scss"
-      ],
-      "name": "social-content-policies"
-    },
-    {
-      "files": [
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
@@ -142,6 +136,12 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/default-experiment.scss"
+      ],
+      "name": "experiment-firefox-new-default"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -188,18 +188,6 @@
         "css/mozorg/home/home-new.scss"
       ],
       "name": "home-new"
-    },
-    {
-      "files": [
-        "css/base/banners/fundraiser.scss"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "css/mozorg/home/includes/monitor-banner.scss"
-      ],
-      "name": "monitor-banner"
     },
     {
       "files": [
@@ -1313,6 +1301,19 @@
     },
     {
       "files": [
+        "js/firefox/new/desktop/default-experiment.es6.js"
+      ],
+      "name": "experiment-firefox-new-default"
+    },
+    {
+      "files": [
+        "js/base/stub-attribution/stub-attribution.js",
+        "js/firefox/new/desktop/default-opt-out-init.es6.js"
+      ],
+      "name": "firefox-new-default-opt-out"
+    },
+    {
+      "files": [
         "js/base/stub-attribution/stub-attribution.js",
         "js/base/stub-attribution/stub-attribution-init.es6.js"
       ],
@@ -1383,12 +1384,31 @@
     },
     {
       "files": [
+        "js/base/legal-toc.es6.js"
+      ],
+      "name": "legal_toc"
+    },
+    {
+      "files": [
         "js/base/uitour-lib.js",
         "js/base/mozilla-client.js",
         "js/base/protocol/utils.es6.js",
-        "js/base/protocol/init-details.es6.js"
+        "js/base/protocol/init-details.es6.js",
+        "js/privacy/privacy-modal-link.es6.js"
       ],
       "name": "privacy_firefox_simple"
+    },
+    {
+      "files": [
+        "js/privacy/privacy-modal-link.es6.js"
+      ],
+      "name": "tos_modal_link"
+    },
+    {
+      "files": [
+        "js/privacy/redirects.es6.js"
+      ],
+      "name": "privacy_redirects"
     },
     {
       "files": [
@@ -1801,12 +1821,6 @@
     },
     {
       "files": [
-        "js/mozorg/home/monitor-banner.es6.js"
-      ],
-      "name": "monitor-banner"
-    },
-    {
-      "files": [
         "js/m24/animation-play-state.es6.js"
       ],
       "name": "m24-animation"
@@ -1816,18 +1830,6 @@
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser.es6.js"
-      ],
-      "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "js/base/banners/fundraiser-experiment.es6.js"
-      ],
-      "name": "fundraising-banner-experiment"
     },
     {
       "files": [

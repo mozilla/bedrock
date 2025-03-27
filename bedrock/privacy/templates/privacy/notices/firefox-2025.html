@@ -14,6 +14,11 @@
   {% endif %}
 {% endblock %}
 
+{% block extrahead %}
+  {# redirects for in product links issue 16080  #}
+  {{ js_bundle('privacy_redirects') }}
+{% endblock %}
+
 {% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
 {% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
 {% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
@@ -74,3 +79,8 @@
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('legal_toc') }}
+{% endblock %}
