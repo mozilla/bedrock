@@ -17,8 +17,8 @@ theme:
   favicon: images/favicon.png
   icon:
     repo: fontawesome/brands/github
-    edit: material/file-edit
-    view: material/code-tags
+    admonition:
+      note: material/lightbulb
   features:
     - content.action.edit
     - content.action.view
