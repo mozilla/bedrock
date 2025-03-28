@@ -461,6 +461,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-137-vertical-tabs.scss"
+      ],
+      "name": "firefox_whatsnew_137_vertical_tabs"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
@@ -1563,6 +1569,13 @@
         "js/firefox/whatsnew/whatsnew-134-experiment.es6.js"
       ],
       "name": "firefox_whatsnew_134_experiment"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js",
+        "js/firefox/whatsnew/whatsnew-137-video-events.es6.js"
+      ],
+      "name": "firefox_whatsnew_137"
     },
     {
       "files": [
