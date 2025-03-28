@@ -22,7 +22,7 @@
 
     .c-navigation-logo a {
         @include image-replaced;
-        background: transparent url('/media/img/logos/m24/lockup-black-on-white.png') center center no-repeat;
+        background: url('/media/img/logos/m24/lockup-black-on-white.png') no-repeat;
         display: block;
         height: 48px;
         width: 160px;
@@ -153,7 +153,7 @@
 
 .m24-c-navigation-logo-link {
     @include image-replaced;
-    background: transparent url('/media/img/logos/m24/lockup-black-on-white.png') center center no-repeat;
+    background: url('/media/img/logos/m24/lockup-black-on-white.png') no-repeat;
     display: block;
     height: 48px;
     width: 160px;
