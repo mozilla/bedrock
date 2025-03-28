@@ -95,3 +95,91 @@ def test_vpn_resource_center_detail_page(minimal_site, rf, serving_method):  # n
     assert "Test VPN Resource Center Detail Page Title" in page_content
     assert "Test Detail Page Content" in page_content
     assert "Test Call To Action Bottom Heading" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_monitor_article_index_page(minimal_site, rf, serving_method):  # noqa
+    root_page = minimal_site.root_page
+
+    call_to_action_bottom = factories.MonitorCallToActionSnippetFactory(
+        split_heading="Test Call To Action Bottom Heading",
+    )
+    call_to_action_bottom.save()
+
+    test_index_page = factories.MonitorArticleIndexPageFactory(
+        parent=root_page,
+        split_heading="Test Split Heading",
+        articles_heading="Test Article Heading",
+        call_to_action_bottom=call_to_action_bottom,
+    )
+
+    test_index_page.save()
+
+    test_article_pages = {}
+
+    for i in range(1, 5):
+        test_article_pages[f"test_article_page_{i}"] = factories.MonitorArticlePageFactory(
+            parent=test_index_page,
+            slug=f"test-article-{i}",
+            title=f"Test Article Page {i} Title",
+            content=RichText(f"Test Article Page {i} Content"),
+        )
+        test_article_pages[f"test_article_page_{i}"].save()
+
+    _relative_url = test_index_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/test/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(test_index_page, serving_method)(request)
+    page_content = str(resp.content)
+    assert "Test Monitor Article Index Page Title" in page_content
+    assert "Test Split Heading" in page_content
+    assert "Test Article Heading" in page_content
+    assert "Test Article Page 1 Title" in page_content
+    assert "Test Article Page 4 Title" in page_content
+    assert "Test Call To Action Bottom Heading" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
+    root_page = minimal_site.root_page
+
+    call_to_action_middle = factories.MonitorCallToActionSnippetFactory(
+        split_heading="Test Call To Action Middle Heading",
+    )
+    call_to_action_middle.save()
+
+    call_to_action_bottom = factories.MonitorCallToActionSnippetFactory(
+        split_heading="Test Call To Action Bottom Heading",
+    )
+    call_to_action_bottom.save()
+
+    test_index_page = factories.MonitorArticleIndexPageFactory(
+        parent=root_page,
+    )
+
+    test_article_page = factories.MonitorArticlePageFactory(
+        parent=test_index_page,
+        slug="test-article-1",
+        subheading="Test Monitor Article Page Subheading",
+        summary="Test Monitor Article Page Summary",
+        call_to_action_middle=call_to_action_middle,
+        content=RichText("Test Article Page Content"),
+        call_to_action_bottom=call_to_action_bottom,
+    )
+
+    test_index_page.save()
+    test_article_page.save()
+
+    _relative_url = test_article_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/test/test-article-1/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(test_article_page, serving_method)(request)
+    page_content = str(resp.content)
+    assert "Test Monitor Article Page Title" in page_content
+    assert "Test Monitor Article Page Subheading" in page_content
+    assert "Test Monitor Article Page Summary" in page_content
+    assert "Test Call To Action Middle Heading" in page_content
+    assert "Test Article Page Content" in page_content
+    assert "Test Call To Action Bottom Heading" in page_content

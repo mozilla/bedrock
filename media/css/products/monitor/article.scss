@@ -1,0 +1,211 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+@use '~@mozilla-protocol/core/protocol/css/components/article';
+@use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+@use '~@mozilla-protocol/core/protocol/css/components/card';
+@use '~@mozilla-protocol/core/protocol/css/components/picto';
+@use '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@use '~@mozilla-protocol/core/protocol/css/components/split';
+@use '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+
+
+@use '../../protocol/components/legal-toc';
+
+@media #{$mq-md} {
+    .toc-is-sticky {
+        position: sticky;
+        top: 1.8rem; // heading has breathing room but is neatly hidden by sticky global nav
+    }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// Smooth Scroll
+
+html {
+    scroll-behavior: smooth;
+
+    @media (prefers-reduced-motion: reduce) {
+        scroll-behavior: auto;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+
+.c-subhead {
+    font-size: 24px;
+    text-wrap: balance;
+}
+
+.c-hero {
+    h2 {
+        margin-bottom: 16px;
+    }
+
+    .c-subhead {
+        font-size: 32px;
+        margin-bottom: 40px; // should be 48 but we make it a bit smaller because the line height makes 48 look too big
+        line-height: 1.1;
+    }
+
+    ul {
+        margin-bottom: 48px;
+    }
+}
+
+.c-manage {
+    background: radial-gradient(124.5% 124.5% at 50% 50%, rgba(184, 51, 225, 0.1) 0%, rgba(0, 144, 237, 0.1) 100%);
+    text-align: center;
+    font-size: 24px;
+
+    h2,
+    p {
+        text-wrap: balance;
+    }
+}
+
+.c-more {
+    .mzp-c-card {
+        margin-bottom: 0;
+
+        .mzp-c-card-desc {
+            margin-top: 8px;
+        }
+    }
+
+    .has-aspect-icon  .mzp-c-card-media-wrapper {
+        background-color: transparent;
+        padding: 8px 8px 16px;
+
+        img {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.c-protect {
+    background: radial-gradient(124.5% 124.5% at 50% 50%, rgba(184, 51, 225, 0.1) 0%, rgba(0, 144, 237, 0.1) 100%);
+    margin: $layout-lg 0;
+
+    .mzp-l-content + & {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: #{$screen-xl - 1px}) {
+    .c-protect-middle {
+        .mzp-c-split-container {
+            display: block;
+        }
+
+        .mzp-c-split-media {
+            margin-top: $layout-md;
+        }
+    }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// Temporary fix until https://github.com/mozilla/protocol/issues/933 is resolved
+.mzp-c-breadcrumb {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    &.is-hidden {
+        display: none;
+    }
+
+    .mzp-c-breadcrumb-list {
+        max-width: $content-max;
+        margin: 0 auto;
+    }
+
+    .mzp-c-breadcrumb-item a {
+        &:link,
+        &:visited {
+            text-decoration: underline;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+        }
+    }
+
+    @media #{$mq-md} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px $layout-lg;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .mzp-c-breadcrumb-list {
+            padding: 8px $layout-xl;
+        }
+    }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// article styles as used in the new PN/TOU, these are good reading enhancements and should be ported
+
+.mzp-c-article {
+    width: auto;
+
+    > {
+        p, ul li, ol li {
+            max-width: 75ch;
+        }
+
+        h1 {
+            text-wrap: balance;
+        }
+
+        h2 {
+            margin-bottom: $layout-xs;
+            margin-top: $layout-sm;
+            text-wrap: balance;
+        }
+
+        h3 {
+            margin-bottom: $layout-xs;
+            margin-top: $layout-sm;
+            text-wrap: balance;
+        }
+
+        h4 {
+            @include text-body-lg;
+            font-family: var(--body-font-family);
+            margin-bottom: 0;
+            text-wrap: balance;
+        }
+
+        @media #{$mq-md} {
+            h2 {
+                margin-bottom: $layout-sm;
+                margin-top: $layout-md;
+            }
+
+            h3 {
+                margin-top: $layout-md;
+            }
+        }
+
+        @media #{$mq-xl} {
+            h2 {
+                margin-bottom: $layout-md;
+                margin-top: $layout-lg;
+            }
+
+            h3 {
+                margin-top: $layout-lg;
+            }
+        }
+    }
+}

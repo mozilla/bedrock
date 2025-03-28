@@ -5,7 +5,14 @@
 import factory
 import wagtail_factories
 
-from bedrock.products.models import VPNCallToActionSnippet, VPNResourceCenterDetailPage, VPNResourceCenterIndexPage
+from bedrock.products.models import (
+    MonitorArticleIndexPage,
+    MonitorArticlePage,
+    MonitorCallToActionSnippet,
+    VPNCallToActionSnippet,
+    VPNResourceCenterDetailPage,
+    VPNResourceCenterIndexPage,
+)
 
 
 class VPNCallToActionSnippetFactory(factory.BaseDictFactory):
@@ -37,3 +44,40 @@ class VPNResourceCenterDetailPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = VPNResourceCenterDetailPage
+
+
+class MonitorCallToActionSnippetFactory(factory.BaseDictFactory):
+    split_heading = wagtail_factories.CharBlockFactory
+    split_image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    split_button_text = "Monitor Call To Action"
+    split_button_link = "https://example.com"
+    split_image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+
+    class Meta:
+        model = MonitorCallToActionSnippet
+
+
+class MonitorArticleIndexPageFactory(wagtail_factories.PageFactory):
+    title = "Test Monitor Article Index Page Title"
+    live = True
+    slug = "test"
+
+    articles_heading = wagtail_factories.CharBlockFactory
+    split_heading = wagtail_factories.CharBlockFactory
+    split_button_text = "Monitor Index Split"
+    split_button_link = "https://example.com"
+    split_image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+
+    class Meta:
+        model = MonitorArticleIndexPage
+
+
+class MonitorArticlePageFactory(wagtail_factories.PageFactory):
+    title = "Test Monitor Article Page Title"
+    live = True
+
+    icon = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    content = wagtail_factories.CharBlockFactory
+
+    class Meta:
+        model = MonitorArticlePage
