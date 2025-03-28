@@ -8,6 +8,11 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/themes';
 @use '~@mozilla-protocol/core/protocol/css/components/forms/form';
 
+// Fonts
+// NOTE: Inter is used as a fallback for specific l10n cases
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/mozilla-headline';
+@import '~@mozilla-protocol/core/protocol/css/includes/fonts/mozilla-text';
+
 // Base elements - general HTML elements
 @import '~@mozilla-protocol/core/protocol/css/base/elements';
 
@@ -31,7 +36,6 @@
 
 // Mozilla 2024 brand variables
 @import '../m24/vars/color';
-@import '../m24/vars/fonts';
 @import '../m24/vars/text';
 
 // Temporary styling until the newsletter component is updated in Protocol

@@ -104,7 +104,7 @@ $color-ads-off-black: #161616;
         }
 
         strong {
-            @include font-mozilla;
+            @include font-mozilla-headline;
             @include text-title-md;
             display: block;
             margin-bottom: $spacing-sm;
