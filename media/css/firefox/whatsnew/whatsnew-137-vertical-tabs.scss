@@ -38,8 +38,7 @@
     display: none;
 }
 
-
-:is(.js, .wnp-uitour) {
+html.wnp-uitour {
     .wnp-main-cta {
         display: block;
     }
