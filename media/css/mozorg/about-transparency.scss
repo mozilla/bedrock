@@ -10,13 +10,13 @@
 // * -------------------------------------------------------------------------- */
 // Index
 
-dt {
+main dt {
     @include text-title-xs;
     font-weight: bold;
     margin-top: $spacing-sm;
 }
 
-dd {
+main dd {
     padding: $spacing-sm;
 }
 
@@ -96,12 +96,12 @@ dd {
     margin: 0 auto $layout-lg;
 }
 
-h2 {
+main h2 {
     @include text-title-md;
     margin-top: $spacing-2xl;
 }
 
-h3 {
+main h3 {
     @include text-title-sm;
     margin-top: $spacing-2xl;
 }
