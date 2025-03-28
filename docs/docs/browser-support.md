@@ -13,7 +13,7 @@ Some website experiences may require us to deviate from these principles -- imag
 
 ## Browser Support Matrix
 
-*Last updated: Updated July 19, 2023*
+*Last updated: January 20, 2025*
 
 ### Firefox
 
@@ -38,7 +38,7 @@ It is important for website visitors to be able to download Firefox on a very br
 - **macOS 10.15 and above**
 
     -   All evergreen browsers
-    -   Safari
+    -   Safari 15.6
 
 - **Linux**
 
@@ -54,14 +54,14 @@ Website visitors on slightly older browsers fall under degraded support, which m
 
 - **Windows 8.1 and below**
 
-    -   Firefox 115
+    -   Firefox 115 ESR
     -   Chrome 109
     -   Internet Explorer 10
 
 - **macOS 10.14 and below**
 
-    -   Firefox 115
-    -   Chrome 114
+    -   Firefox 115 ESR
+    -   Chrome 116
     -   Safari 12.1
 
 !!! note
@@ -100,7 +100,7 @@ The most notable thing here for bedrock is that Internet Explorer 11 does not ne
 
 On IE browsers that support [conditional comments](https://wikipedia.org/wiki/Conditional_comment) (IE9 and below), basic support consists of no page-specific CSS or JS. Instead, we deliver well formed semantic HTML, and a universal CSS stylesheet that gets applied to all pages. We do not serve these older browsers any JS, with the exception of the following scripts:
 
-- Google Analytics / `GTM (Google Tag Manager)`{.interpreted-text role="abbr"} snippet.
+- Google Analytics / `GTM (Google Tag Manager)`{.interpreted-text role="abbr"} snippet (IE9).
 - HTML5shiv for parsing modern HTML semantic elements.
 - Stub Attribution script (IE8 / IE9).
 
@@ -154,15 +154,17 @@ if (window.site.isModernBrowser) {
 }
 ```
 
-## Exceptions (Updated 2019-06-11)
+## Exceptions
+
+*Last updated: January 20, 2025*
 
 Some pages of the website provide critical functionality to older browsers. In particular, the Firefox desktop download funnel enables users on older browsers to get a modern browser. To the extent possible, we try to deliver enhanced experiences to all user agents on these pages.
 
 **The following pages get enhanced experiences for a longer list of user agents:**
 
-- `/firefox/`
-- `/firefox/new/`
+- `/firefox/` (incl. extra IE8 / IE9 styles)
+- `/firefox/new/` (incl. extra IE8 / IE9 styles)
 - `/firefox/download/thanks/`
 
 !!! note
-    An enhanced experience can be defined as a step above basic support. This can be achieved by delivering extra page-specific CSS to legacy browsers, or allowing them to degrade gracefully. It does not mean everything needs to [look the same in every browser](http://dowebsitesneedtolookexactlythesameineverybrowser.com/).
+    An enhanced experience can be defined as a step above basic support. This can be achieved by delivering extra page-specific CSS to legacy browsers, or allowing them to degrade gracefully. It does not mean everything needs to [look the same in every browser](https://www.peachpit.com/articles/article.aspx?p=1394622).
