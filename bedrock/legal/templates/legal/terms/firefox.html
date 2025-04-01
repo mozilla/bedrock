@@ -4,6 +4,53 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "legal/docs-base.html" %}
+{% extends "base-article.html" %}
+
+{% block page_css %}
+  {{ super() }}
+  {{ css_bundle('terms-firefox')}}
+{% endblock %}
+
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
+
+{% set header = doc.body.section %}
+{% set title = doc.h1.extract() %}
+{% set time = doc.select('[datetime]')[0].extract() %}
+
 
 {% block page_title %}{{ ftl('legal-firefox-rights') }}{% endblock %}
+
+
+{% block main_feature %}
+  <div class="mzp-l-content c-legal" id="notice">
+    <div class="c-legal-heading">
+      <h1>{{ title|join|safe }}</h1>
+      <time datetime="{{ time['datetime'] }}" itemprop="dateModified">{{ time.string }}</time>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block side_nav %}
+  <div class="c-toc">
+    <h3>{{ ftl('legal-firefox-contents') }}</h3>
+    <ul>
+      {% for heading in doc.select('h2') %}
+        <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}
+
+
+{% block article %}
+  {{ title|safe }}
+  {{ doc|safe }}
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('legal_toc') }}
+{% endblock %}

@@ -9,7 +9,6 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
-from waffle.testutils import override_switch
 
 from bedrock.legal import views
 from bedrock.legal_docs import views as legal_docs_views
@@ -30,7 +29,6 @@ class TestFirefoxSimpleDocView(TestCase):
         assert template == "legal/terms/firefox.html"
 
     @override_settings(DEV=False)
-    @override_switch("FIREFOX_TOU", active=False)
     def test_simple_template(self, render_mock, lld_mock, pld_mock):
         req = RequestFactory().get("/about/legal/terms/firefox/?v=product")
         req.locale = "en-US"
@@ -38,13 +36,3 @@ class TestFirefoxSimpleDocView(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == "legal/terms/firefox-simple.html"
-
-    @override_settings(DEV=False)
-    @override_switch("FIREFOX_TOU", active=True)
-    def test_simple_template_2025(self, render_mock, lld_mock, pld_mock):
-        req = RequestFactory().get("/about/legal/terms/firefox/")
-        req.locale = "en-US"
-        view = views.FirefoxTermsOfServiceDocView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == "legal/terms/firefox-2025.html"

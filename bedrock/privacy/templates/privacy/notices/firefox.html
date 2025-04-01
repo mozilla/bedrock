@@ -4,20 +4,67 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "privacy/notices/base-notice-headings.html" %}
+{% extends "base-article.html" %}
 {% from "macros-protocol.html" import split, picto with context %}
-
-{% set body_id = "privacy-quantum" %}
-
-{% block article_header_logo %}{{ static('protocol/img/logos/firefox/browser/logo.svg') }}{% endblock %}
 
 {% block page_css %}
   {{ super() }}
+  {{ css_bundle('privacy_firefox')}}
 {% endblock %}
 
-{% block js %}
-  {{ super() }}
-  {{ js_bundle('privacy_firefox') }}
+{% block extrahead %}
+  {# redirects for in product links issue 16080  #}
+  {{ js_bundle('privacy_redirects') }}
+{% endblock %}
+
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
+
+{% set header = doc.body.section %}
+{% set title = doc.h1.extract() %}
+{% set time = doc.select('[datetime]')[0].extract() %}
+{% set lead_in = doc.body.section.section.extract() %}
+
+{% block page_title %}{{ title|join|safe }}{% endblock %}
+
+{% block body_id %}{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block main_feature %}
+
+  {% include 'privacy/includes/privacy-basics.html' %}
+
+  <div class="mzp-l-content c-legal" id="notice">
+    <div class="c-legal-heading">
+      <h1>{{ title|join|safe }}</h1>
+      <time datetime="{{ time['datetime'] }}" itemprop="dateModified">{{ time.string }}</time>
+    </div>
+  </div>
+
+{% endblock %}
+
+{% block side_nav %}
+  <div class="c-toc">
+    <h3>{{ ftl('privacy-firefox-contents') }}</h3>
+    <ul>
+      {% for heading in doc.select('h2') %}
+        <li><a href="#{{ heading['id'] }}">{{ heading.get_text() }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+  <aside class="c-extra">
+    <p>{{ ftl('privacy-firefox-take-me-back', attrs='href="#notice"') }}</p>
+    <p>{{ ftl('privacy-firefox-lost-in-the', attrs='href="#basics"') }}</p>
+  </aside>
+
+{% endblock %}
+
+{% block article %}
+  {{ lead_in|safe }}
+  {{ doc|safe }}
 {% endblock %}
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}
@@ -26,3 +73,8 @@
 
 {# Exclude stub attribution for in-product pages: issus 9620 #}
 {% block stub_attribution %}{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('legal_toc') }}
+{% endblock %}
