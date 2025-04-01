@@ -695,20 +695,35 @@ describe('stub-attribution.js', function () {
     });
 
     describe('requestAuthentication', function () {
-        let xhr;
         let xhrRequests = [];
 
         beforeEach(function () {
-            xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = (req) => {
-                xhrRequests.push(req);
+            xhrRequests = [];
+
+            function FakeXHR() {
+                this.headers = {};
+                this.readyState = 0;
+                this.status = 0;
+                this.responseText = '';
+                this.onreadystatechange = null;
+
+                xhrRequests.push(this);
+            }
+
+            FakeXHR.prototype.open = jasmine.createSpy('open');
+            FakeXHR.prototype.setRequestHeader = function (header, value) {
+                this.headers[header] = value;
             };
+            FakeXHR.prototype.send = jasmine.createSpy('send');
+
+            spyOn(window, 'XMLHttpRequest').and.callFake(function () {
+                return new FakeXHR();
+            });
             jasmine.clock().install();
             Mozilla.StubAttribution.requestComplete = false;
         });
 
         afterEach(function () {
-            xhr.restore();
             xhrRequests = [];
             jasmine.clock().uninstall();
             Mozilla.StubAttribution.requestComplete = false;
@@ -731,11 +746,13 @@ describe('stub-attribution.js', function () {
             spyOn(Mozilla.StubAttribution, 'setCookie');
             spyOn(Mozilla.StubAttribution, 'successCallback');
             Mozilla.StubAttribution.requestAuthentication();
-            xhrRequests[0].respond(
-                200,
-                { 'Content-Type': 'application/json' },
-                JSON.stringify(data)
-            );
+
+            const req = xhrRequests[0];
+            req.status = 200;
+            req.responseText = JSON.stringify(data);
+            req.readyState = 4;
+            req.onreadystatechange();
+
             expect(
                 Mozilla.StubAttribution.onRequestSuccess
             ).toHaveBeenCalledWith(data);
