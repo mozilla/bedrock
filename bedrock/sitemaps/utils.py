@@ -8,7 +8,6 @@ from unittest.mock import patch
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.test import override_settings
 from django.test.client import Client
 from django.urls import resolvers
 
@@ -93,8 +92,6 @@ def get_release_notes_urls():
     return urls
 
 
-# DEV should always be False for this to avoid some URLs that are only present in DEV=True mode
-@override_settings(DEV=False)
 def get_static_urls():
     urls = {}
     client = Client()
