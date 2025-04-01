@@ -2,8 +2,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// This style sheet is served exclusively to Internet Explorer 8 and older.
-// Old versions get this minimal style while IE9 and up recieve more advanced styling.
+// This stylesheet is only served to Internet Explorer 9 and older for basic appearance.
+// It's used as the only style for IE9-, while IE10+ link the bundles like any other UA.
+// (The selectors, rules and values below include IE-specific hacks to target IE6-IE9 based on their compatibility, see: https://gist.github.com/ricardozea/5549389 for examples)
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
@@ -37,6 +38,10 @@ img {
 
 label {
     display: block;
+}
+
+hr {
+    margin: $layout-xs 0;
 }
 
 .visually-hidden {

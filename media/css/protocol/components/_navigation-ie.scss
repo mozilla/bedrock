@@ -2,9 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 
 // * -------------------------------------------------------------------------- */
@@ -25,7 +22,7 @@ $image-path: '/media/protocol/img';
 
     .c-navigation-logo a {
         @include image-replaced;
-        background: transparent url('/media/img/logos/m24/lockup-black-on-white.png') center center no-repeat;
+        background: url('/media/img/logos/m24/lockup-black-on-white.png') no-repeat;
         display: block;
         height: 48px;
         width: 160px;
@@ -41,7 +38,7 @@ $image-path: '/media/protocol/img';
         *display: inline;
         margin: 0;
         position: absolute;
-        right: 0;
+        @include bidi(((right, 0, left, auto),));
         text-align: center;
         top: $spacing-md;
         top: 0\0;
@@ -80,9 +77,9 @@ $image-path: '/media/protocol/img';
         zoom: 1;
     }
 
-    // only display primary navigation links to IE visitors.
+    // only display primary navigation links to IE visitors
     .c-menu-panel {
-        display: none !important; /* stylelint-disable-line declaration-no-important */
+        display: none;
     }
 
     .c-menu-title {
@@ -104,5 +101,107 @@ $image-path: '/media/protocol/img';
                 padding: 0;
             }
         }
+    }
+}
+
+.c-sub-navigation {
+    .c-sub-navigation-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline-block;
+            float: none;
+        }    
+    }
+}
+
+// fallback navigation between `firefox.all.*` download steps
+.c-product-info {
+    .c-steps img.c-step-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline;
+        }
+    }
+
+    .c-steps a.c-step-icon {
+        img {
+            display: none;
+        }
+        
+        &:after { /* stylelint-disable-line selector-pseudo-element-colon-notation */
+            content: ' (×)';
+        }
+
+        // revert for IE9 which supports SVG
+        :root & {
+            img {
+                display: inline;
+            }
+
+            &:after { /* stylelint-disable-line selector-pseudo-element-colon-notation */
+                content: '';
+            }
+        }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Redesigned header
+
+.m24-c-navigation-logo-link {
+    @include image-replaced;
+    background: url('/media/img/logos/m24/lockup-black-on-white.png') no-repeat;
+    display: block;
+    height: 48px;
+    width: 160px;
+
+    .m24-c-navigation-logo-image {
+        display: none;
+    }
+}
+
+// only show top-level menu items
+.m24-c-menu {
+    .m24-c-menu-panel {
+        display: none;
+    }
+
+    .m24-c-menu-title,
+    ul,
+    li {
+        @include bidi(((margin-right, $spacing-md, margin-left, 0),));
+        display: inline-block;
+        *display: inline;
+        font-weight: bold;
+        margin-top: $spacing-sm;
+        zoom: 1;
+    }
+
+    .m24-c-menu-title-icon {
+        display: none;
+
+        // only show in IE9 which supports SVG
+        :root & {
+            display: inline-block;
+        }
+    }
+}
+
+// hide SVG or JS-dependent interaction from IE visitors
+.m24-c-navigation-menu-button,
+.m24-c-flag,
+.moz24-footer-logo-image-bottom {
+    display: none;
+}
+
+.m24-pencil-banner {
+    @include bidi(((float, right, left),));
+    
+    button {
+        display: none;
     }
 }
