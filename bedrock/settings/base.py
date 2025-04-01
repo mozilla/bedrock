@@ -2401,6 +2401,16 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "image",
 ]
 
+WAGTAIL_RICHTEXT_FEATURES_MINIMAL = [
+    # https://docs.wagtail.org/en/stable/advanced_topics/customisation/page_editing_interface.html#limiting-features-in-a-rich-text-field
+    # Order here is the order used in the editor UI
+    "bold",
+    "italic",
+    "link",
+    "ol",
+    "ul",
+]
+
 WAGTAILIMAGES_IMAGE_MODEL = "cms.BedrockImage"
 
 WAGTAILIMAGES_EXTENSIONS = [
@@ -2429,6 +2439,8 @@ _allowed_page_models = [
     "mozorg.LeadershipPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
+    "products.MonitorArticleIndexPage",
+    "products.MonitorArticleIndexPage",
 ]
 
 if DEV is True:
