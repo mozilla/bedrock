@@ -4,6 +4,7 @@
 
 // This stylesheet is only served to Internet Explorer 9 and older for basic appearance.
 // It's used as the only style for IE9-, while IE10+ link the bundles like any other UA.
+// (The selectors, rules and values below include IE-specific hacks to target IE6-IE9 based on their compatibility, see: https://gist.github.com/ricardozea/5549389 for examples)
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
