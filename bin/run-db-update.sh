@@ -9,6 +9,9 @@
 # We deliberately don't set -e here because we don't want a failure to block subsequent tasks
 set -x
 
+# ENV Vars for the below commands
+export ALLOWED_HOSTS='*'
+
 # run all jobs
 ALL=false
 # run jobs that require secrets
