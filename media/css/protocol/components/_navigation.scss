@@ -90,6 +90,12 @@
 
     @media #{$mq-md} {
         @include bidi(((margin, $spacing-md ($spacing-sm * 2) $spacing-md 0, $spacing-md 0 $spacing-md ($spacing-sm * 2)),));
+
+        .c-navigation-logo-image {
+            height: 21px;
+            position: relative;
+            top: 1px;
+        }
     }
 
     @media #{$mq-lg} {

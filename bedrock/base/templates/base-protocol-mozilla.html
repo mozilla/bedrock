@@ -9,14 +9,10 @@
 {% block body_class %}mzp-t-mozilla{% endblock %}
 
 {% block site_css %}
-  {% if switch('m24-website-refresh') %}
     {{ css_bundle('protocol-mozilla-2024') }}
     {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
       {{ css_bundle('m24-navigation-and-footer') }}
     {% else %}
       {{ css_bundle('legacy-navigation-and-footer') }}
     {% endif %}
-  {% else %}
-    {{ css_bundle('protocol-mozilla') }}
-  {% endif %}
 {% endblock %}

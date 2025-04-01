@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+{% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
   {% include 'includes/protocol/navigation/navigation-refresh.html' %}
 {% else %}
   {# Bug 1438302 Avoid duplicate content for en-CA and en-GB pages. #}
@@ -22,7 +22,7 @@
         <button class="c-navigation-menu-button" type="button" aria-controls="c-navigation-items" data-testid="navigation-menu-button">{{ ftl('navigation-v2-menu') }}</button>
         <div class="c-navigation-logo">
           <a href="{{ url('mozorg.home') }}" data-link-text="mozilla home icon" data-link-position="nav">
-            <img class="c-navigation-logo-image m24-logo" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ logo_alt }}" width="88" height="21">
+            <img class="c-navigation-logo-image" src="{{ static('img/logos/m24/lockup-black.svg') }}" alt="{{ logo_alt }}" width="88" height="21">
           </a>
         </div>
 

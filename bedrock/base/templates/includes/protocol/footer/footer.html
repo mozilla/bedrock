@@ -6,13 +6,13 @@
 
 {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer' %}
 
-{% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+{% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
   {% include 'includes/protocol/footer/footer-refresh.html' %}
 {% else %}
 <footer class="mzp-c-footer {% if theme_class %}{{ theme_class }}{% endif %}" id="colophon" role="contentinfo">
   <div class="mzp-l-content">
     <nav class="mzp-c-footer-primary">
-      <div class="mzp-c-footer-primary-logo{% if switch('m24-website-refresh') %} m24-logo{% endif %}">
+      <div class="mzp-c-footer-primary-logo">
         <a href="{{ url('mozorg.home') }}" data-link-position="footer" data-link-text="Mozilla">{{ ftl('footer-mozilla') }}</a>
       </div>
       <div class="mzp-c-footer-sections">

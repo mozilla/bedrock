@@ -17,7 +17,6 @@ from django.views.generic import TemplateView
 from jsonview.decorators import json_view
 from product_details import product_details
 
-from bedrock.base.waffle import switch
 from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
@@ -151,7 +150,7 @@ class HomeView(L10nTemplateView):
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
-        if switch("m24-website-refresh") and ftl_file_is_active("mozorg/home-m24") and experience != "legacy":
+        if ftl_file_is_active("mozorg/home-m24") and experience != "legacy":
             return [self.m24_template_name]
         elif ftl_file_is_active("mozorg/home-new") and experience != "legacy":
             return [self.template_name]
@@ -167,7 +166,7 @@ class AboutView(L10nTemplateView):
     ftl_files_map = {template_name: ["mozorg/about"], m24_template_name: ["mozorg/about-m24"]}
 
     def get_template_names(self):
-        if switch("m24-website-refresh") and ftl_file_is_active("mozorg/about-m24"):
+        if ftl_file_is_active("mozorg/about-m24"):
             return [self.m24_template_name]
 
         return [self.template_name]
