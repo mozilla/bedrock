@@ -180,8 +180,6 @@ class MonitorCallToActionSnippet(TranslatableMixin):
 
 
 class MonitorArticleIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["MonitorArticlePage"]
-
     split_heading = models.CharField(
         max_length=255,
         blank=False,
