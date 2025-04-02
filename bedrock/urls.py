@@ -75,7 +75,7 @@ if settings.WAGTAIL_ENABLE_ADMIN:
 if settings.ENABLE_DJANGO_SILK:
     urlpatterns += [path("silk/", include("silk.urls", namespace="silk"))]
 
-if settings.DEFAULT_FILE_STORAGE == "django.core.files.storage.FileSystemStorage":
+if settings.STORAGES["default"]["BACKEND"] == "django.core.files.storage.FileSystemStorage":
     # Serve media files from Django itself - production won't use this
     from django.urls import re_path
     from django.views.static import serve
