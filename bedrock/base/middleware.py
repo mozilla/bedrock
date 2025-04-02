@@ -261,7 +261,7 @@ class MetricsViewTimingMiddleware(MiddlewareMixin):
         if not settings.ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE:
             raise MiddlewareNotUsed
 
-        self.get_response = get_response
+        super().__init__(get_response)
 
     def process_view(self, request, view_func, view_args, view_kwargs):
         if inspect.isfunction(view_func):
