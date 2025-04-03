@@ -71,7 +71,7 @@ class TestContentCardModel(TestCase):
                 "youtube_id": "rZAQ6vgt8nE",
                 "aspect_ratio": "mzp-has-aspect-16-9",
                 "desc": "You have the right to your own life \u2014 and your own data. Everything we make and do fights for you.",
-                "link_url": "/de/firefox/",
+                "link_url": "/de/firefox/new/",
                 "tag_label": "Video",
             },
         )

@@ -27,7 +27,6 @@ const desktopTestURLs = [
     '/en-US/careers/teams/',
     '/en-US/contact/',
     '/en-US/contribute/',
-    '/en-US/firefox/',
     '/en-US/firefox/all/',
     '/en-US/firefox/browsers/mobile/',
     '/en-US/firefox/browsers/mobile/android/',
