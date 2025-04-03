@@ -2440,7 +2440,7 @@ _allowed_page_models = [
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",
-    "products.MonitorArticleIndexPage",
+    "products.MonitorArticlePage",
 ]
 
 if DEV is True:
