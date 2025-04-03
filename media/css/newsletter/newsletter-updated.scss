@@ -50,7 +50,7 @@
     margin-top: $spacing-lg;
 
     a::before {
-        content: '\2190\0020';
+        @include bidi(((content, '\2190\0020', '\2192\0020'),));
     }
 
     /* only show back link for JS enabled clients */
