@@ -259,6 +259,8 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
 
     template = "products/monitor/cms/index.html"
 
+    subpage_types = ["MonitorArticlePage"]  # can only have MonitorArticlePage as children
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
