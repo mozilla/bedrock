@@ -24,7 +24,6 @@ ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 
 urlpatterns = (
-    path("firefox/", views.FirefoxHomeView.as_view(), name="firefox"),
     path(
         "firefox/challenge-the-default/",
         VariationTemplateView.as_view(

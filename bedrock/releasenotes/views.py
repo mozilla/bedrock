@@ -56,7 +56,7 @@ def get_download_url(release):
         elif release.channel == "Beta":
             return reverse("firefox.channel.desktop") + "#beta"
         else:
-            return reverse("firefox")
+            return reverse("firefox.new")
 
 
 def show_android_sys_req(version):

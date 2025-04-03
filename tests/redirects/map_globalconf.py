@@ -17,9 +17,9 @@ URLS = flatten(
         url_test("/es/", "/es-ES/", status_code=requests.codes.found),
         url_test("/pt/", "/pt-BR/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
-        url_test("/en-us/firefox/", "/en-US/firefox/", status_code=requests.codes.found),
-        url_test("/es-es/firefox/", "/es-ES/firefox/", status_code=requests.codes.found),
-        url_test("/pt-br/firefox/", "/pt-BR/firefox/", status_code=requests.codes.found),
+        url_test("/en-us/firefox/new/", "/en-US/firefox/new/", status_code=requests.codes.found),
+        url_test("/es-es/firefox/new/", "/es-ES/firefox/new/", status_code=requests.codes.found),
+        url_test("/pt-br/firefox/new/", "/pt-BR/firefox/new/", status_code=requests.codes.found),
         # bug 880182
         url_test("/ja-JP-mac/", "/ja/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
@@ -273,15 +273,15 @@ URLS = flatten(
         # Bug 1090468
         url_test("/security/transition.txt", "/media/security/transition.txt"),
         # Bug 920212
-        url_test("/firefox/fx/", "/firefox/"),
+        url_test("/firefox/fx/", "/firefox/new/"),
         # Bug 979531, 1003727, 979664, 979654, 979660, 1150713
         url_test("/firefox/customize/", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
         url_test("/firefox/{performance,happy,speed,memory}/", "/firefox/features/fast/"),
         url_test("/firefox/security/", "/firefox/features/private/"),
         url_test("/firefox/technology/", "https://developer.mozilla.org/docs/Tools"),
-        url_test("/firefox/sms/{,sent}", "/firefox/"),
+        url_test("/firefox/sms/{,sent}", "/firefox/new/"),
         # Previously Bug 979527 / Github #10004 "Getting Started" Page
-        url_test("{/products,}/firefox/central{/,.html}", "/firefox/"),
+        url_test("{/products,}/firefox/central{/,.html}", "/firefox/new/"),
         # bug 868169
         url_test(
             "/mobile/android-download.html?dude=abiding",
@@ -656,7 +656,7 @@ URLS = flatten(
         url_test("/projects/mathml/screenshots/", "https://developer.mozilla.org/Mozilla_MathML_Project/Screenshots"),
         # bug 961010
         url_test("/mobile/credits/credits-people-list.html", "/credits/"),
-        url_test("/fennec/", "/firefox/"),
+        url_test("/fennec/", "/firefox/new/"),
         # issue 8749
         url_test("/mobile/", "/firefox/browsers/mobile/"),
         # bug 876668
@@ -824,7 +824,6 @@ URLS = flatten(
         url_test("/firefox/partners/", "https://support.mozilla.org/products/firefox-os"),
         url_test("/b2g/", "https://support.mozilla.org/products/firefox-os"),
         # from mcom-tests
-        url_test("/firefox/", "/en-US/firefox/", status_code=requests.codes.found),
         url_test("/firefox/new/", "/en-US/firefox/new/", status_code=requests.codes.found),
         url_test("/mobile/37.0{,beta,a2}/releasenotes", "/firefox/android/37.0{,beta,a2}/releasenotes/"),
         url_test("/projects/firefox/3.6.13/whatsnew/", "/firefox/3.6.13/whatsnew/"),
@@ -950,7 +949,7 @@ URLS = flatten(
         # Bug 1384370
         url_test("/developers", "https://developer.mozilla.com/"),
         # Bug 1369732
-        url_test("{/en-US,}/Firefox", "{/en-US,}/firefox/"),
+        url_test("{/en-US,}/Firefox", "{/en-US,}/firefox/new/"),
         # Bug 1380845
         url_test("/persona/privacy-policy/", "/privacy/archive/persona/2017-07/"),
         url_test("/persona/terms-of-service/", "/privacy/archive/persona/2017-07/#terms-of-service"),
@@ -977,7 +976,7 @@ URLS = flatten(
         url_test("/firefox/)", "/firefox/"),
         url_test("/firefox/{new,developer}/)", "/firefox/{new,developer}/"),
         url_test("/firefox/default.htm", "/firefox/"),
-        url_test("/firefox/fx/dude", "/firefox/"),
+        url_test("/firefox/fx/dude", "/firefox/new/"),
         url_test("/firefox/android/45.0", "/firefox/android/45.0/releasenotes/"),
         url_test("/firefox/stats/", "/firefox/"),
         # bug 1416706
@@ -1027,7 +1026,7 @@ URLS = flatten(
         url_test("/foundation/leadership-network/", "https://foundation.mozilla.org/"),
         url_test("/foundation/advocacy/", "https://foundation.mozilla.org/"),
         # Issue 6979
-        url_test("/firefoxfightsforyou/", "/firefox/"),
+        url_test("/firefoxfightsforyou/", "/firefox/new/"),
         # Issue 6994
         url_test("/contribute/signup/", "/contribute/"),
         url_test("/contribute/task/{,devtools-challenger/, firefox-mobile/}", "/contribute/"),
@@ -1044,7 +1043,7 @@ URLS = flatten(
         # Issue 7491
         url_test("/firefox/organizations/", "/firefox/enterprise/"),
         # Issue 7670
-        url_test("/firefox/fights-for-you/", "/firefox/"),
+        url_test("/firefox/fights-for-you/", "/firefox/new/"),
         # Issue 7842
         url_test("/enterprise/", "/firefox/enterprise/"),
         # Issue 7970
@@ -1103,8 +1102,8 @@ URLS = flatten(
         url_test("/firefox/windows-64-bit/", "/firefox/browsers/windows-64-bit/"),
         url_test("/firefox/best-browser/", "/firefox/browsers/best-browser/"),
         # Issue 8536, 11891
-        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/"),
-        url_test("/firefox/retention/thank-you/", "/firefox/"),
+        url_test("/etc/firefox/retention/{thank-you-a/,thank-you-b/,thank-you-referral/}", "/firefox/new/"),
+        url_test("/firefox/retention/thank-you/", "/firefox/new/"),
         # Issue 8374
         url_test("/plugincheck/", "https://support.mozilla.org/kb/npapi-plugins/"),
         url_test("/ekr/", "https://blog.mozilla.org/blog/author/ekrmozilla-com/"),
@@ -1121,8 +1120,8 @@ URLS = flatten(
         url_test("/about/governance/policies/security/plugin-whitelist-policy/", "https://wiki.mozilla.org/Plugins/Firefox_Whitelist"),
         url_test("/about/governance/policies/security-group/tld-idn/", "https://wiki.mozilla.org/IDN_Display_Algorithm"),
         # Unfck campaign, issue 11613
-        url_test("/firefox/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
-        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/"),
+        url_test("/firefox/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/new/"),
+        url_test("/{unfck,unfuck,love,liebe,rendonslenetplusnet}/", "/firefox/new/"),
         # issue 9148
         url_test("/firefox/campaign/", "/firefox/new/"),
         # Issue 9560
@@ -1172,10 +1171,10 @@ URLS = flatten(
         # issue 12156
         url_test("/privacy/{mozilla-vpn,firefox-relay}/", "/privacy/subscription-services/"),
         # Issue 11204
-        url_test("/{truecolors,truecolours,turningred}/", "/firefox/"),
+        url_test("/{truecolors,truecolours,turningred}/", "/firefox/new/"),
         url_test(
             "/{truecolors,truecolours,turningred}/?utm_source=dude",
-            "/firefox/",
+            "/firefox/new/",
             query={
                 "utm_source": "dude",
             },
@@ -1186,7 +1185,7 @@ URLS = flatten(
         url_test("/newsletter/country/success/", "/newsletter/updated/"),
         url_test("/careers/internships/", "/careers/", status_code=requests.codes.found),
         # Issue 12563
-        url_test("/exp/firefox/", "/firefox/"),
+        url_test("/exp/firefox/", "/firefox/new/"),
         url_test("/exp/firefox/new/", "/firefox/new/"),
         url_test("/exp/firefox/accounts/", "/account/"),
         url_test("/exp/opt-out/", "https://www.convert.com/opt-out/"),
@@ -1275,14 +1274,14 @@ URLS = flatten(
         # Issue 14255
         url_test("/stories/", "https://blog.mozilla.org/category/products/firefox/"),
         # Issue 14231
-        url_test("/firefox/flashback/", "/firefox/"),
-        url_test("/landing/firefox/fx100/", "/firefox/"),
+        url_test("/firefox/flashback/", "/firefox/new/"),
+        url_test("/landing/firefox/fx100/", "/firefox/new/"),
         url_test("/{santa-locator,santalocator}/", "/"),
         # Issue 14351
         url_test("/research/", "https://foundation.mozilla.org/research/"),
         url_test("/research/cc/", "https://foundation.mozilla.org/research/library/?topics=187"),
         # Issue 14222
-        url_test("/firefox/browsers/", "/firefox/"),
+        url_test("/firefox/browsers/", "/firefox/new/"),
         # issue 14467
         url_test("/firefox/125.0/releasenotes/", "/firefox/125.0.1/releasenotes/"),
         # issue 14647
@@ -1330,5 +1329,7 @@ URLS = flatten(
         url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
         # Issue 15841
         url_test("/firefox/tech/", "/firefox/landing/tech/"),
+        # Issue 16089
+        url_test("/firefox/", "/firefox/new/"),
     )
 )

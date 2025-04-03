@@ -65,7 +65,6 @@ def test_301_urls(url, base_url, follow_redirects=False):
 @pytest.mark.parametrize(
     "url",
     [
-        "/firefox/",
         "/firefox/all/",
         "/firefox/developer/",
         "/firefox/installer-help/",

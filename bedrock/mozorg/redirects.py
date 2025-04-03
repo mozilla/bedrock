@@ -74,7 +74,7 @@ redirectpatterns = (
     # Bug 1144949
     redirect(r"^contribute/page/?$", "https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org"),
     # Bug 763665, 1148127
-    redirect(r"^projects/?$", "firefox"),
+    redirect(r"^projects/?$", "firefox.new"),
     # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418
     redirect(r"^firefox/brand(/.*)?", "https://mozilla.design/firefox/"),
     # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418
@@ -488,8 +488,8 @@ redirectpatterns = (
     redirect(r"^technology/incognito-browser/?$", "firefox.browsers.incognito-browser"),
     redirect(r"^technology/browser-history/?$", "firefox.browsers.browser-history"),
     # Issue 8536, 11891
-    redirect(r"^etc/firefox/retention(/.*)?", "firefox"),
-    redirect(r"^firefox/retention/thank-you/?", "firefox"),
+    redirect(r"^etc/firefox/retention(/.*)?", "firefox.new"),
+    redirect(r"^firefox/retention/thank-you/?", "firefox.new"),
     # Issue 8374
     redirect(r"^plugincheck/?$", "https://support.mozilla.org/kb/npapi-plugins/"),
     # Vanity URL for EKR's blog
@@ -518,18 +518,13 @@ redirectpatterns = (
     # Issue 9984
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
     # Issue 11204
-    redirect(r"^(truecolou?rs|turningred)/?$", "firefox"),
+    redirect(r"^(truecolou?rs|turningred)/?$", "firefox.new"),
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
     # Issue 14231
     redirect(r"^santa-?locator/?$", "mozorg.home"),
-    redirect(r"^landing/firefox/fx100/?$", "firefox"),
-    # Issue 12563
-    redirect(r"^/exp/firefox/?$", "firefox"),
-    redirect(r"^/exp/firefox/new/?$", "firefox.new"),
+    redirect(r"^landing/firefox/fx100/?$", "firefox.new"),
     redirect(r"^accounts/?$", "mozorg.account"),
-    # redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
-    redirect(r"^/exp/opt-out/?$", "https://www.convert.com/opt-out/"),
     # Issue 13211
     redirect(r"^/en/$", "/en-US/", permanent=True),
     # Issue 13554
