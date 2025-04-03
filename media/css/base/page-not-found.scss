@@ -74,7 +74,7 @@
     cursor: pointer;
 
     &::before {
-        content: '\2190\0020';
+        @include bidi(((content, '\2190\0020', '\2192\0020'),));
     }
 }
 
