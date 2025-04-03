@@ -4,18 +4,14 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if switch('challenge-the-default-active') %}
-  {% if LANG == 'de' %}
-    {% include 'firefox/challenge-the-default/langs/landing.de.html' %}
-  {% elif LANG == 'es-ES' %}
-    {% include 'firefox/challenge-the-default/langs/landing.es-ES.html' %}
-  {% elif LANG == 'fr' %}
-    {% include 'firefox/challenge-the-default/langs/landing.fr.html' %}
-  {% elif LANG == 'it' %}
-    {% include 'firefox/challenge-the-default/langs/landing.it.html' %}
-  {% elif LANG == 'pl' %}
-    {% include 'firefox/challenge-the-default/langs/landing.pl.html' %}
-  {% endif %}
-{% else %}
-  {% include 'firefox/index.html' %}
+{% if LANG == 'de' %}
+  {% include 'firefox/challenge-the-default/langs/landing.de.html' %}
+{% elif LANG == 'es-ES' %}
+  {% include 'firefox/challenge-the-default/langs/landing.es-ES.html' %}
+{% elif LANG == 'fr' %}
+  {% include 'firefox/challenge-the-default/langs/landing.fr.html' %}
+{% elif LANG == 'it' %}
+  {% include 'firefox/challenge-the-default/langs/landing.it.html' %}
+{% elif LANG == 'pl' %}
+  {% include 'firefox/challenge-the-default/langs/landing.pl.html' %}
 {% endif %}

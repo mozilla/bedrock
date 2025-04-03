@@ -63,7 +63,7 @@
         }
       ),
     ) %}
-      <h2 class="mzp-c-picto-heading"><a href="{{ url('firefox') }}" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h2>
+      <h2 class="mzp-c-picto-heading"><a href="{{ url('firefox.new') }}" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browser-that-blocks') }}</p>
       {% set alt_copy = ftl('download-button-download-firefox') + " " + icon_download|safe %}
       <div class="show-else">{{ download_firefox_thanks(alt_copy=alt_copy, button_class='mzp-t-secondary mzp-t-lg') }}</div>

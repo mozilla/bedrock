@@ -882,11 +882,6 @@ def ios_testflight(request):
     return l10n_utils.render(request, "firefox/testflight.html", ctx)
 
 
-class FirefoxHomeView(L10nTemplateView):
-    ftl_files_map = {"firefox/index.html": ["firefox/browsers"]}
-    template_name = "firefox/index.html"
-
-
 BREACH_TIPS_URLS = {
     "de": "https://blog.mozilla.org/firefox/de/was-macht-man-nach-einem-datenleck/",
     "fr": "https://blog.mozilla.org/firefox/fr/que-faire-en-cas-de-fuite-de-donnees/",
