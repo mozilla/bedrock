@@ -71,18 +71,33 @@ describe('UnsubscribedEmailForm', function () {
     });
 
     describe('form submission', function () {
-        let xhr;
         let xhrRequests = [];
 
         beforeEach(function () {
-            xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = (req) => {
-                xhrRequests.push(req);
+            xhrRequests = [];
+
+            function FakeXHR() {
+                this.headers = {};
+                this.readyState = 0;
+                this.status = 0;
+                this.responseText = '';
+                this.onload = null;
+
+                xhrRequests.push(this);
+            }
+
+            FakeXHR.prototype.open = jasmine.createSpy('open');
+            FakeXHR.prototype.setRequestHeader = function (header, value) {
+                this.headers[header] = value;
             };
+            FakeXHR.prototype.send = jasmine.createSpy('send');
+
+            spyOn(window, 'XMLHttpRequest').and.callFake(function () {
+                return new FakeXHR();
+            });
         });
 
         afterEach(function () {
-            xhr.restore();
             xhrRequests = [];
         });
 
@@ -94,15 +109,17 @@ describe('UnsubscribedEmailForm', function () {
             document.getElementById('unsub99').click();
             document.getElementById('unsub99-reason-text').value = 'Test';
             document.getElementById('newsletter-updated-form-submit').click();
-            xhrRequests[0].respond(
-                200,
-                { 'Content-Type': 'application/json' },
-                '{"status": "ok"}'
-            );
 
-            expect(xhrRequests[0].requestBody).toEqual(
+            const req = xhrRequests[0];
+            req.status = 200;
+            req.readyState = 4;
+            req.responseText = '{"status": "ok"}';
+            req.onload({ target: req });
+
+            expect(req.send).toHaveBeenCalledWith(
                 'token=a1a2a3a4-abc1-12ab-a123-12345a12345b&reason=You%20send%20too%20many%20emails.%0A%0AOther%E2%80%A6%0A%0ATest'
             );
+
             expect(UnsubscribedEmailForm.handleFormSuccess).toHaveBeenCalled();
             expect(
                 document
@@ -159,11 +176,13 @@ describe('UnsubscribedEmailForm', function () {
             UnsubscribedEmailForm.init();
             document.getElementById('unsub0').click();
             document.getElementById('newsletter-updated-form-submit').click();
-            xhrRequests[0].respond(
-                400,
-                { 'Content-Type': 'application/json' },
-                '{"status": "error", "desc": "Unknown non-helpful error"}'
-            );
+
+            const req = xhrRequests[0];
+            req.status = 400;
+            req.readyState = 4;
+            req.responseText =
+                '{"status": "error", "desc": "Unknown non-helpful error"}';
+            req.onload({ target: req });
 
             expect(UnsubscribedEmailForm.handleFormError).toHaveBeenCalled();
             expect(

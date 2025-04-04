@@ -47,20 +47,35 @@ describe('CountryForm', function () {
     });
 
     describe('form submission', function () {
-        let xhr;
         let xhrRequests = [];
 
         beforeEach(function () {
             spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
 
-            xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = (req) => {
-                xhrRequests.push(req);
+            xhrRequests = [];
+
+            function FakeXHR() {
+                this.headers = {};
+                this.readyState = 0;
+                this.status = 0;
+                this.responseText = '';
+                this.onload = null;
+
+                xhrRequests.push(this);
+            }
+
+            FakeXHR.prototype.open = jasmine.createSpy('open');
+            FakeXHR.prototype.setRequestHeader = function (header, value) {
+                this.headers[header] = value;
             };
+            FakeXHR.prototype.send = jasmine.createSpy('send');
+
+            spyOn(window, 'XMLHttpRequest').and.callFake(function () {
+                return new FakeXHR();
+            });
         });
 
         afterEach(function () {
-            xhr.restore();
             xhrRequests = [];
         });
 
@@ -68,14 +83,17 @@ describe('CountryForm', function () {
             spyOn(CountryForm, 'handleFormSuccess').and.callThrough();
             CountryForm.init();
             document.getElementById('country-newsletter-submit').click();
-            xhrRequests[0].respond(
-                200,
-                { 'Content-Type': 'application/json' },
-                '{"status": "ok"}'
-            );
 
-            expect(xhrRequests[0].url).toEqual(
-                `https://basket.mozilla.org/news/user-meta/${TOKEN_MOCK}/`
+            const req = xhrRequests[0];
+            req.status = 200;
+            req.readyState = 4;
+            req.responseText = '{"status": "ok"}';
+            req.onload({ target: req });
+
+            expect(req.open).toHaveBeenCalledWith(
+                'POST',
+                `https://basket.mozilla.org/news/user-meta/${TOKEN_MOCK}/`,
+                true
             );
             expect(CountryForm.handleFormSuccess).toHaveBeenCalled();
             expect(
@@ -94,11 +112,13 @@ describe('CountryForm', function () {
             spyOn(CountryForm, 'handleFormError').and.callThrough();
             CountryForm.init();
             document.getElementById('country-newsletter-submit').click();
-            xhrRequests[0].respond(
-                400,
-                { 'Content-Type': 'application/json' },
-                '{"status": "error", "desc": "Unknown non-helpful error"}'
-            );
+
+            const req = xhrRequests[0];
+            req.status = 400;
+            req.readyState = 4;
+            req.responseText =
+                '{"status": "error", "desc": "Unknown non-helpful error"}';
+            req.onload({ target: req });
 
             expect(CountryForm.handleFormError).toHaveBeenCalled();
             expect(
@@ -117,11 +137,12 @@ describe('CountryForm', function () {
             spyOn(CountryForm, 'handleFormError').and.callThrough();
             CountryForm.init();
             document.getElementById('country-newsletter-submit').click();
-            xhrRequests[0].respond(
-                500,
-                { 'Content-Type': 'application/json' },
-                null
-            );
+
+            const req = xhrRequests[0];
+            req.status = 500;
+            req.readyState = 4;
+            req.responseText = null;
+            req.onload({ target: req });
 
             expect(CountryForm.handleFormError).toHaveBeenCalled();
             expect(

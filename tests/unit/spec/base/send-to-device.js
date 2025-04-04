@@ -62,18 +62,33 @@ describe('send-to-device.js', function () {
     });
 
     describe('onFormSubmit', function () {
-        let xhr;
-        let xhrRequests = [];
+        let xhrRequests;
 
         beforeEach(function () {
-            xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = (req) => {
-                xhrRequests.push(req);
+            xhrRequests = [];
+
+            function FakeXHR() {
+                this.headers = {};
+                this.readyState = 0;
+                this.status = 0;
+                this.responseText = '';
+                this.onload = null;
+
+                xhrRequests.push(this);
+            }
+
+            FakeXHR.prototype.open = jasmine.createSpy('open');
+            FakeXHR.prototype.setRequestHeader = function (header, value) {
+                this.headers[header] = value;
             };
+            FakeXHR.prototype.send = jasmine.createSpy('send');
+
+            spyOn(window, 'XMLHttpRequest').and.callFake(function () {
+                return new FakeXHR();
+            });
         });
 
         afterEach(function () {
-            xhr.restore();
             xhrRequests = [];
         });
 
@@ -85,11 +100,12 @@ describe('send-to-device.js', function () {
             document
                 .querySelector('.send-to-device-form button[type="submit"]')
                 .click();
-            xhrRequests[0].respond(
-                200,
-                { 'Content-Type': 'application/json' },
-                '{"status": "ok"}'
-            );
+
+            const req = xhrRequests[0];
+            req.status = 200;
+            req.readyState = 4;
+            req.responseText = '{"status": "ok"}';
+            req.onload({ target: req });
 
             expect(form.onFormSuccess).toHaveBeenCalled();
         });
@@ -102,11 +118,13 @@ describe('send-to-device.js', function () {
             document
                 .querySelector('.send-to-device-form button[type="submit"]')
                 .click();
-            xhrRequests[0].respond(
-                400,
-                { 'Content-Type': 'application/json' },
-                '{"status": "error", "desc": "Invalid email address"}'
-            );
+
+            const req = xhrRequests[0];
+            req.status = 400;
+            req.readyState = 4;
+            req.responseText =
+                '{"status": "error", "desc": "Invalid email address"}';
+            req.onload({ target: req });
 
             expect(form.onFormError).toHaveBeenCalledWith(
                 'Invalid email address'
@@ -121,11 +139,12 @@ describe('send-to-device.js', function () {
             document
                 .querySelector('.send-to-device-form button[type="submit"]')
                 .click();
-            xhrRequests[0].respond(
-                500,
-                { 'Content-Type': 'application/json' },
-                null
-            );
+
+            const req = xhrRequests[0];
+            req.status = 500;
+            req.readyState = 4;
+            req.responseText = null;
+            req.onload({ target: req });
 
             expect(form.onFormError).toHaveBeenCalled();
         });

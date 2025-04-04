@@ -42,18 +42,33 @@ describe('ConfirmationForm', function () {
     });
 
     describe('form submission', function () {
-        let xhr;
         let xhrRequests = [];
 
         beforeEach(function () {
-            xhr = sinon.useFakeXMLHttpRequest();
-            xhr.onCreate = (req) => {
-                xhrRequests.push(req);
+            xhrRequests = [];
+
+            function FakeXHR() {
+                this.headers = {};
+                this.readyState = 0;
+                this.status = 0;
+                this.responseText = '';
+                this.onload = null;
+
+                xhrRequests.push(this);
+            }
+
+            FakeXHR.prototype.open = jasmine.createSpy('open');
+            FakeXHR.prototype.setRequestHeader = function (header, value) {
+                this.headers[header] = value;
             };
+            FakeXHR.prototype.send = jasmine.createSpy('send');
+
+            spyOn(window, 'XMLHttpRequest').and.callFake(function () {
+                return new FakeXHR();
+            });
         });
 
         afterEach(function () {
-            xhr.restore();
             xhrRequests = [];
         });
 
@@ -64,16 +79,19 @@ describe('ConfirmationForm', function () {
 
             return ConfirmationForm.init().then(() => {
                 document.querySelector('.c-confirm-form-submit').click();
-                xhrRequests[0].respond(
-                    200,
-                    { 'Content-Type': 'application/json' },
-                    '{"status": "ok"}'
-                );
 
-                expect(xhrRequests[0].url).toEqual(
-                    'https://basket.mozilla.org/news/subscribe/'
+                const req = xhrRequests[0];
+                req.status = 200;
+                req.readyState = 4;
+                req.responseText = '{"status": "ok"}';
+                req.onload({ target: req });
+
+                expect(req.open).toHaveBeenCalledWith(
+                    'POST',
+                    'https://basket.mozilla.org/news/subscribe/',
+                    true
                 );
-                expect(xhrRequests[0].requestBody).toEqual(
+                expect(req.send).toHaveBeenCalledWith(
                     'newsletters=mozilla-and-you&source_url=https%3A%2F%2Fwww.mozilla.org%2Fen-US%2Fnewsletter%2Ffirefox%2Fconfirm%2F&lang=en&token=a1a2a3a4-abc1-12ab-a123-12345a12345b'
                 );
                 expect(ConfirmationForm.handleFormSuccess).toHaveBeenCalled();
@@ -99,11 +117,13 @@ describe('ConfirmationForm', function () {
                 .then()
                 .then(() => {
                     document.querySelector('.c-confirm-form-submit').click();
-                    xhrRequests[0].respond(
-                        400,
-                        { 'Content-Type': 'application/json' },
-                        '{"status": "error", "desc": "Invalid basket token"}'
-                    );
+
+                    const req = xhrRequests[0];
+                    req.status = 400;
+                    req.readyState = 4;
+                    req.responseText =
+                        '{"status": "error", "desc": "Invalid basket token"}';
+                    req.onload({ target: req });
 
                     expect(ConfirmationForm.handleFormError).toHaveBeenCalled();
                     expect(
@@ -126,11 +146,13 @@ describe('ConfirmationForm', function () {
 
             return ConfirmationForm.init().then(() => {
                 document.querySelector('.c-confirm-form-submit').click();
-                xhrRequests[0].respond(
-                    400,
-                    { 'Content-Type': 'application/json' },
-                    '{"status": "error", "desc": "Unknown non-helpful error"}'
-                );
+
+                const req = xhrRequests[0];
+                req.status = 400;
+                req.readyState = 4;
+                req.responseText =
+                    '{"status": "error", "desc": "Unknown non-helpful error"}';
+                req.onload({ target: req });
 
                 expect(ConfirmationForm.handleFormError).toHaveBeenCalled();
                 expect(
@@ -153,11 +175,12 @@ describe('ConfirmationForm', function () {
 
             return ConfirmationForm.init().then(() => {
                 document.querySelector('.c-confirm-form-submit').click();
-                xhrRequests[0].respond(
-                    500,
-                    { 'Content-Type': 'application/json' },
-                    null
-                );
+
+                const req = xhrRequests[0];
+                req.status = 500;
+                req.readyState = 4;
+                req.responseText = null;
+                req.onload({ target: req });
 
                 expect(ConfirmationForm.handleFormError).toHaveBeenCalled();
                 expect(
