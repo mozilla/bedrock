@@ -11,7 +11,6 @@ from django.views.decorators.csrf import csrf_protect
 from bs4 import BeautifulSoup
 
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from bedrock.legal.forms import FraudReportForm
 from bedrock.legal_docs.views import LegalDocView
 from lib import l10n_utils
@@ -46,10 +45,7 @@ class FirefoxTermsOfServiceDocView(TermsDocView):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        if switch("firefox-tou"):
-            self.legal_doc_name = "firefox_terms_of_use"
-        else:
-            self.legal_doc_name = "firefox_about_rights"
+        self.legal_doc_name = "firefox_terms_of_use"
 
     def get_legal_doc(self):
         doc = super().get_legal_doc()
@@ -58,10 +54,7 @@ class FirefoxTermsOfServiceDocView(TermsDocView):
         if variant == "product":
             self.template_name = "legal/terms/firefox-simple.html"
         else:
-            if switch("firefox-tou"):
-                self.template_name = "legal/terms/firefox-2025.html"
-            else:
-                self.template_name = "legal/terms/firefox.html"
+            self.template_name = "legal/terms/firefox.html"
 
         return doc
 

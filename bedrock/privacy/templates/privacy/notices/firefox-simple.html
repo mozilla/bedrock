@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "privacy/notices/base-notice-headings.html" %}
+{% extends "base-article.html" %}
 
 {% block site_css %}
   {{ css_bundle('protocol-firefox') }}
@@ -14,19 +14,27 @@
   {{ css_bundle('privacy_firefox_simple') }}
 {% endblock %}
 
+{% set title = doc.h1 %}
+{% block page_title %}{{ title|join|safe }}{% endblock %}
+
 {% block site_header %}{% endblock %}
 
 {% block sidemenu %}{% endblock %}
 
-{% block article_header_logo %}{% endblock %}
+{% do doc.select('ul')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('ol')|htmlattr(class="mzp-u-list-styled") %}
+{% do doc.select('table')|htmlattr(class="mzp-u-data-table") %}
 
-{% block site_js %}
-  {{ js_bundle('privacy_firefox_simple') }}
+{% block article %}
+  <div class="privacy-body">
+    {{ doc|safe }}
+  </div>
 {% endblock %}
 
+{% block site_js %}{% endblock %}
+
 {% block js %}
-  {{ super() }}
-  {{ js_bundle('privacy_firefox') }}
+  {{ js_bundle('tos_modal_link') }}
 {% endblock %}
 
 {# disable GA on Fx Privacy Notice. Bug 1576673 #}

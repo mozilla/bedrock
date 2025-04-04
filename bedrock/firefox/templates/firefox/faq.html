@@ -68,15 +68,9 @@
     <ul class="faq-list">
       <li>
         <h2>{{ ftl('what-is-firefox') }}</h2>
-        {% if switch('firefox-tou') %}
-          <p>{{ ftl('the-firefox-browser-the-only',
-            url=url('firefox'),
-            url2=url('products.landing')) }}</p>
-        {% else %}
-          <p>{{ ftl('the-firefox-browser',
-            url=url('firefox'),
-            url2=url('products.landing')) }}</p>
-        {% endif %}
+        <p>{{ ftl('the-firefox-browser-the-only',
+          url=url('firefox'),
+          url2=url('products.landing')) }}</p>
       </li>
       <li>
         <h2>{{ ftl('how-do-i') }}</h2>
@@ -90,11 +84,7 @@
       </li>
       <li>
         <h2>{{ ftl('is-firefox-free') }}</h2>
-        {% if switch('firefox-tou') %}
-          <p>{{ ftl('yep-the-firefox-browser-is-free') }}</p>
-        {% else %}
-          <p>{{ ftl('yep-the-firefox') }}</p>
-        {% endif %}
+        <p>{{ ftl('yep-the-firefox-browser-is-free') }}</p>
         <small>{{ ftl('related-questions-free') }}</small>
       </li>
       <li>
@@ -112,12 +102,6 @@
         <p>{{ ftl('not-only-is', url=url('firefox.features.private')) }}</p>
         <small>{{ ftl('related-questions-safe') }}</small>
       </li>
-      {% if not switch('firefox-tou') %}
-        <li>
-          <h2>{{ ftl('does-firefox-sell') }}</h2>
-          <p>{{ ftl('nope-never-have', url=url('privacy')) }}</p>
-        </li>
-      {% endif %}
       <li>
         <h2>{{ ftl('why-is-firefox') }}</h2>
         <p>{{ ftl('firefox-isnt-slow') }}</p>
