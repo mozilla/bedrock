@@ -158,10 +158,18 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     width: 100px;
 }
 
+
+
 // Mobile navigation menu with JS enabled.
 .js .m24-c-navigation-items {
     display: none;
-
+    
+    a {
+     &:hover {
+        color: $color-black !important;
+     }   
+    }
+    
     @media (max-width: $screen-md) {
         &.mzp-is-open {
             display: flex;
