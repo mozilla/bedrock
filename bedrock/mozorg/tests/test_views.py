@@ -61,13 +61,23 @@ class TestHomePageLocales(TestCase):
         assert resp.status_code == 405
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_new_homepage_template(self, render_mock):
+    def test_m24_homepage_template(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "en-US"
         view = views.HomeView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["mozorg/home/home-new.html"]
+        assert template == ["mozorg/home/home-m24.html"]
+
+    def test_new_homepage_template(self, render_mock):
+        req = RequestFactory().get("/")
+        req.locale = "en-US"
+        with patch.object(views, "ftl_file_is_active") as active_mock:
+            active_mock.side_effect = [False, True]
+            view = views.HomeView.as_view()
+            view(req)
+            template = render_mock.call_args[0][1]
+            assert template == ["mozorg/home/home-new.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: False)
     def test_old_homepage_template(self, render_mock):
@@ -79,13 +89,24 @@ class TestHomePageLocales(TestCase):
         assert template == ["mozorg/home/home-old.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_new_homepage_template_global(self, render_mock):
+    def test_m24_homepage_template_global(self, render_mock):
         req = RequestFactory().get("/")
         req.locale = "es-ES"
         view = views.HomeView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["mozorg/home/home-new.html"]
+        assert template == ["mozorg/home/home-m24.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_new_homepage_template_global(self, render_mock):
+        req = RequestFactory().get("/")
+        req.locale = "es-ES"
+        with patch.object(views, "ftl_file_is_active") as active_mock:
+            active_mock.side_effect = [False, True]
+            view = views.HomeView.as_view()
+            view(req)
+            template = render_mock.call_args[0][1]
+            assert template == ["mozorg/home/home-new.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: False)
     def test_old_homepage_template_global(self, render_mock):

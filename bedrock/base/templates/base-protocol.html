@@ -72,15 +72,11 @@
     <!--[if !IE]><!-->
     {# Global styles, hidden from IE9 and lower #}
     {% block site_css %}
-      {% if switch('m24-website-refresh') %}
-        {{ css_bundle('protocol-mozilla-2024') }}
-        {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-          {{ css_bundle('m24-navigation-and-footer') }}
-        {% else %}
-          {{ css_bundle('legacy-navigation-and-footer') }}
-        {% endif %}
+      {{ css_bundle('protocol-mozilla-2024') }}
+      {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+        {{ css_bundle('m24-navigation-and-footer') }}
       {% else %}
-        {{ css_bundle('protocol-firefox') }}
+        {{ css_bundle('legacy-navigation-and-footer') }}
       {% endif %}
     {% endblock %}
 
@@ -144,7 +140,7 @@
         {{ js_bundle('lib') }}
         {{ js_bundle('fxa') }}
         {{ js_bundle('data') }}
-        {% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+        {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
           {{ js_bundle('m24-ui') }}
         {% else %}
           {{ js_bundle('ui') }}

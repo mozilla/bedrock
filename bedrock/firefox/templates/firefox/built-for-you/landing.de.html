@@ -14,7 +14,7 @@
 {% block page_image %}{{ static('img/firefox/built-for-you/meta-de.jpg') }}{% endblock %}
 
 {% block site_css %}
-  {% if switch('m24-website-refresh') and ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
+  {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
     {{ css_bundle('m24-root') }}
     {{ css_bundle('m24-navigation-and-footer') }}
   {% else %}
