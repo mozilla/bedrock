@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { trapKeyboardFocus } from './m24-keyboard-focus-trap.es6';
+
 const MzpMenu = {};
 let _menuOpen = false;
 let _hoverTimeout;
@@ -16,6 +18,8 @@ const _options = {
     onMenuClose: null,
     onMenuButtonClose: null
 };
+
+let _menuKeyboardFocusTrapCleanUp = null;
 
 /**
  * Opens a menu panel.
@@ -35,6 +39,17 @@ MzpMenu.open = (el, animate) => {
 
     if (typeof _options.onMenuOpen === 'function') {
         _options.onMenuOpen(el);
+    }
+
+    if (typeof window.MzpNavigation !== 'undefined') {
+        // disable navigation focus trap
+        window.MzpNavigation.disableKeyboardFcousTrap();
+        // focus trap for only mobile screens
+        _menuKeyboardFocusTrapCleanUp = trapKeyboardFocus(
+            () => !window.MzpNavigation.isLargeViewport(),
+            document.querySelector('.m24-navigation-refresh'),
+            '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .mzp-is-selected a'
+        );
     }
 };
 
@@ -110,6 +125,20 @@ MzpMenu.toggle = (el) => {
 
         if (typeof _options.onMenuClose === 'function') {
             _options.onMenuClose();
+        }
+
+        // remove mobile menu keyboard focus trap
+        if (_menuKeyboardFocusTrapCleanUp !== null) {
+            _menuKeyboardFocusTrapCleanUp();
+            _menuKeyboardFocusTrapCleanUp = null;
+        }
+
+        // enable navigation keyboard focus trap
+        if (
+            typeof window.MzpNavigation !== 'undefined' &&
+            !window.MzpNavigation.isLargeViewport()
+        ) {
+            window.MzpNavigation.enableKeyboardFcousTrap();
         }
     }
 };

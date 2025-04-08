@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { trapKeyboardFocus } from './m24-keyboard-focus-trap.es6';
+
 const MzpNavigation = {};
 let _navElem;
 let _navItemsLists;
@@ -20,6 +22,22 @@ const _wideBreakpoint = '768px';
 const _tallBreakpoint = '600px';
 let _mqLargeNav;
 const _viewport = document.getElementsByTagName('html')[0];
+let _enableKeyboardFcousTrap = false;
+let _navigationKeyboardFocusTrapCleanUp = null;
+
+/**
+ * Enable the keyboard focus trapfor navigation
+ */
+MzpNavigation.enableKeyboardFcousTrap = () => {
+    _enableKeyboardFcousTrap = true;
+};
+
+/**
+ * Disable the keyboard focus trapfor navigation
+ */
+MzpNavigation.disableKeyboardFcousTrap = () => {
+    _enableKeyboardFcousTrap = false;
+};
 
 /**
  * Does the viewport meet the minimum width and height
@@ -176,9 +194,21 @@ MzpNavigation.onClick = (e) => {
         if (typeof _options.onNavOpen === 'function') {
             _options.onNavOpen(thisNavItemList);
         }
+
+        _enableKeyboardFcousTrap = true;
+        _navigationKeyboardFocusTrapCleanUp = trapKeyboardFocus(
+            () => _enableKeyboardFcousTrap && !MzpNavigation.isLargeViewport(),
+            document.querySelector('.m24-navigation-refresh'),
+            '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .m24-c-menu-title'
+        );
     } else {
         if (typeof _options.onNavClose === 'function') {
             _options.onNavClose(thisNavItemList);
+        }
+
+        if (_navigationKeyboardFocusTrapCleanUp !== null) {
+            _navigationKeyboardFocusTrapCleanUp();
+            _navigationKeyboardFocusTrapCleanUp = null;
         }
     }
 };
