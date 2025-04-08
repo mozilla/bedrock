@@ -57,6 +57,7 @@ CAMPAIGN_OPTIONS = [
     "smi-koschtaaa",
     "smi-itsmanjuu",
     "smi-domiip",
+    "smi-drfaye",
     "smi-shessdly",
     "smi-bytereview",
     "pocket-test",
