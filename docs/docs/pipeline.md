@@ -2,37 +2,36 @@
 
 Bedrock runs a series of automated tests as part of continuous integration workflow and deployment pipeline. You can learn more about each of the individual test suites by reading their respective pieces of documentation:
 
--   Python unit tests (see [Run the tests](install.md#run-python-tests)).
--   JavaScript unit tests (see [Front-end testing](testing.md)).
--   Redirect tests (see [Testing redirects](redirects.md#testing-redirects)).
--   Functional tests (see [Front-end testing](testing.md)).
+- Python unit tests (see [Run the tests](install.md#run-python-tests)).
+- JavaScript unit tests (see [Front-end testing](testing.md)).
+- Redirect tests (see [Testing redirects](redirects.md#testing-redirects)).
+- Functional tests (see [Front-end testing](testing.md)).
 
 ## Deployed site URLs
 
 ### Dev
 
--   *Mozorg URL:* <https://www-dev.allizom.org/>
--   *Bedrock locales:* dev repo
--   *Bedrock Git branch:* main, deployed on git push
--   *Firefox download URL:* <https://bouncer-bouncer.stage.mozaws.net/>
+- *Mozorg URL:* <https://www-dev.allizom.org/>
+- *Bedrock locales:* dev repo
+- *Bedrock Git branch:* main, deployed on git push
+- *Firefox download URL:* <https://bouncer-bouncer.stage.mozaws.net/>
 
 ### Staging
 
--   *Mozorg URL:* <https://www.allizom.org/>
--   *Bedrock locales:* prod repo
--   *Bedrock Git branch:* stage, deployed on git push
--   *Firefox download URL:* <https://download.mozilla.org/>
+- *Mozorg URL:* <https://www.allizom.org/>
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* stage, deployed on git push
+- *Firefox download URL:* <https://download.mozilla.org/>
 
 ### Production
 
--   *Mozorg URL:* <https://www.mozilla.org/>
--   *Bedrock locales:* prod repo
--   *Bedrock Git branch:* prod, deployed on git push with date-tag
--   *Firefox download URL:* <https://download.mozilla.org/>
+- *Mozorg URL:* <https://www.mozilla.org/>
+- *Bedrock locales:* prod repo
+- *Bedrock Git branch:* prod, deployed on git push with date-tag
+- *Firefox download URL:* <https://download.mozilla.org/>
 
 !!! note
     By default, the Demo servers on GCP point to the Bouncer Dev service at <https://dev.bouncer.nonprod.webservices.mozgcp.net/> To change this, you will have adjust GCP Secrets - see the [demo sites](https://bedrock.readthedocs.io/en/latest/contribute.html#demo-sites) docs
-
 
 You can check the currently deployed git commit by checking /revision.txt on any of these URLs.
 
@@ -54,11 +53,11 @@ Whenever a change is pushed to the main branch, a new image is built and deploye
 
 The tests for the dev environment are currently configured as follows:
 
--   Firefox, Chromium, and Webkit headless browsers via [Playwright](https://playwright.dev).
--   Chrome (latest) via local Selenium grid.
--   Firefox (latest) via local Selenium grid.
--   Internet Explorer 11 (smoke tests) via [Sauce Labs](https://saucelabs.com/).
--   Headless tests.
+- Firefox, Chromium, and Webkit headless browsers via [Playwright](https://playwright.dev).
+- Chrome (latest) via local Selenium grid.
+- Firefox (latest) via local Selenium grid.
+- Internet Explorer 11 (smoke tests) via [Sauce Labs](https://saucelabs.com/).
+- Headless tests.
 
 !!! note
     **The deployment workflow runs like this**
@@ -81,16 +80,16 @@ When a tagged commit is pushed to the `prod` branch, a production container imag
 
 **Push to prod cheat sheet**
 
-1.  Check out the `main` branch
+1. Check out the `main` branch
 
-2.  Make sure the `main` branch is up to date with `mozilla/bedrock main`
+2. Make sure the `main` branch is up to date with `mozilla/bedrock main`
 
 3. Check that dev deployment is green:
-    1.  View the [Integration Tests Github Action](https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml) and look at the run labelled `Run Integration tests for main`
+    1. View the [Integration Tests Github Action](https://github.com/mozilla/bedrock/actions/workflows/integration_tests.yml) and look at the run labelled `Run Integration tests for main`
 
-4.  Check that stage deployment is also green (`Run Integration tests for stage`)
+4. Check that stage deployment is also green (`Run Integration tests for stage`)
 
-5.  Tag and push the deployment by running `bin/tag-release.sh --push`
+5. Tag and push the deployment by running `bin/tag-release.sh --push`
 
 !!! note
     By default the `tag-release.sh` script will push to the `origin` git remote. If you'd like for it to push to a different remote name you can either pass in a `-r` or `--remote` argument, or set the `MOZ_GIT_REMOTE` environment variable. So the following are equivalent:
@@ -107,9 +106,11 @@ When a tagged commit is pushed to the `prod` branch, a production container imag
 
 ## What Is Currently Deployed?
 
-You can look at the git log of the `main` branch to find the last commit with a date-tag on it (e.g. 2022-05-05): this commit will be the last one that was deployed to production. You can also use the whatsdeployed.io service to get a nice view of what is actually currently deployed to Dev, Stage, and Prod:
+You can look at the git log of the `main` branch to find the last commit with a date-tag on it (e.g. `2022-05-05`): this commit will be the last one that was deployed to production. You can also use the following links to compare Dev (`main`), with Stage and/or Prod:
 
-[![image](https://img.shields.io/badge/whatsdeployed-dev,stage,prod-green.svg)](https://whatsdeployed.io/s/RuO/mozilla/bedrock)
+- [Compare Stage (`stage`) to Dev (`main`)](https://github.com/mozilla/bedrock/compare/stage...main)
+- [Compare Prod (`prod`) to Dev (`main`)](https://github.com/mozilla/bedrock/compare/prod...main)
+- [Compare Prod (`prod`) to Stage (`stage`)](https://github.com/mozilla/bedrock/compare/prod...stage)
 
 ## Instance Configuration & Switches
 
@@ -140,5 +141,5 @@ You can use [Sauce Labs platform configurator](https://wiki.saucelabs.com/displa
 If you have commit rights to our Github repo (mozilla/bedrock) you can simply push your branch to the branch named `run-integration-tests`, and the app will be deployed and the full suite of integration tests for that branch will be run. Please announce in our Slack channel (#www on mozilla.slack.com) that you'll be doing this so that we don't get conflicts. Also remember that you'll likely need to force push, as there may be commits on that branch which aren't in yours -- so, if you have the `mozilla/bedrock` remote set as `mozilla`:
 
 ``` bash
-$ git push -f mozilla $(git branch --show-current):run-integration-tests
+git push -f mozilla $(git branch --show-current):run-integration-tests
 ```
