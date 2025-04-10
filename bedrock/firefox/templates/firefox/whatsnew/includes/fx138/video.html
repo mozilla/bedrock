@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+{% if LANG == "fr" %}
+  {% set video_id = 'cV8UOjBbQMg' %}
+  {% set video_title = 'Prenez le contrôle de votre navigation avec les groupes d’onglets' %}
+{% elif LANG == "de" %}
+  {% set video_id = 'r-WsVPMhKeQ' %}
+  {% set video_title = 'Übernimm mit Tab-Gruppen die Kontrolle über deinen Browser' %}
+{% else %}
+  {% set video_id = 'wmKGkjbli_g' %}
+  {% set video_title = 'Take control of your browsing with tab groups' %}
+{% endif %}
+
+{{ video_inline_embed(
+  id=video_id,
+  title=video_title,
+  image=resp_img(
+    url="img/firefox/wnp-138/poster.png",
+    srcset={
+      "img/firefox/wnp-138/poster-high-res.png": "2x",
+    },
+    optional_attributes={
+        "alt": "",
+        "l10n": True,
+        "width": 1136,
+        "height": 641
+    },
+  )
+) }}
