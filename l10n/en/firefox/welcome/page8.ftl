@@ -23,9 +23,6 @@ welcome-page8-mozilla-monitor = { -brand-name-mozilla-monitor }
 
 welcome-page8-see-what-youve-been = See if you’ve been involved in known online data breaches and take action to resolve them.
 welcome-page8-go-to-monitor = Go to { -brand-name-monitor }
-welcome-page8-firefox-send = { -brand-name-firefox-send }
-welcome-page8-share-large-files = Share large files with end-to-end encryption, using a link that expires automatically.
-welcome-page8-try-send = Try { -brand-name-send }
 welcome-page8-facebook-container = { -brand-name-facebook-container }
 welcome-page8-stay-connected = Stay connected to the people you can’t be with in real life, and stop { -brand-name-facebook } from following you online.
 welcome-page8-add-facebook-container = Add { -brand-name-facebook-container }

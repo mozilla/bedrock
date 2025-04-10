@@ -39,11 +39,6 @@ cookie-settings-category-analytics-what-are-subheading = What are Analytics Cook
 cookie-settings-category-analytics-what-are-desc = These technologies collect information about how people use websites, such as pages visited, links clicked on, and which other websites visits originated from.
 cookie-settings-category-analytics-how-does-desc = { -brand-name-mozilla } uses analytics information to understand how users interact with our websites so that we can improve them, and fix any problems that arise. We may also use data from Cookies, device information, and IP addresses to help us understand how users engage with our products, services, communications, websites, online campaigns, devices, and other platforms. We will only collect analytics information and set Analytics Cookies with your consent.
 
-## Consent section
-
-cookie-settings-your-consent-heading = Your consent
-cookie-settings-your-consent-desc = By agreeing to Cookies, your consent will be granted for the following list of { -brand-name-mozilla } websites, which all follow the same strict standards for data privacy. Please note that this list may be updated over time.
-
 ## Privacy section
 
 cookie-settings-privacy-heading = Our privacy notice

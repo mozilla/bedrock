@@ -5,34 +5,17 @@
 
 sub-navigation-all-languages = All Languages
 sub-navigation-firefox = { -brand-name-firefox }
-sub-navigation-chrome = { -brand-name-chrome }
-sub-navigation-edge = { -brand-name-edge }
-sub-navigation-ie = { -brand-name-ie }
-sub-navigation-opera = { -brand-name-opera }
-sub-navigation-safari = { -brand-name-safari }
-sub-navigation-brave = { -brand-name-brave }
 sub-navigation-compare-browsers = Compare Browsers
-sub-navigation-compare-mobile-browsers = Compare Mobile Browsers
 sub-navigation-firefox-for-desktop = { -brand-name-firefox } for Desktop
 sub-navigation-release-notes = Release Notes
 sub-navigation-desktop = Desktop
 sub-navigation-mobile = Mobile
 sub-navigation-android = { -brand-name-android }
 sub-navigation-ios = { -brand-name-ios }
-sub-navigation-ios-support = { -brand-name-ios } Support
-sub-navigation-android-support = { -brand-name-android } Support
-sub-navigation-android-beta = { -brand-name-android } { -brand-name-beta }
 sub-navigation-desktop-beta-and-developer = Desktop { -brand-name-beta } & { -brand-name-developer-edition }
 sub-navigation-desktop-nightly = Desktop { -brand-name-nightly }
 sub-navigation-features = Features
-
-sub-navigation-more = More
-sub-navigation-firefox-for-mobile = { -brand-name-firefox } for Mobile
-
 sub-navigation-chromebook = { -brand-name-chromebook }
-
-sub-navigation-mozilla-account = { -brand-name-mozilla-account }
-sub-navigation-sync = { -brand-name-sync }
 sub-navigation-windows = { -brand-name-windows }
 sub-navigation-windows-64-bit = { -brand-name-windows } 64-bit
 sub-navigation-mac = { -brand-name-mac-short }
@@ -41,9 +24,6 @@ sub-navigation-enterprise = { -brand-name-enterprise }
 sub-navigation-nightly-and-beta = { -brand-name-nightly } and { -brand-name-beta }
 sub-navigation-android-nightly-and-beta = { -brand-name-android } { -brand-name-nightly } and { -brand-name-beta }
 sub-navigation-ios-test-flight = { -brand-name-ios } { -brand-name-test-flight }
-sub-navigation-firefox-features = { -brand-name-firefox } Features
-sub-navigation-ad-tracker-blocking = Ad Tracker Blocking
-sub-navigation-private-browsing = Private Browsing
 sub-navigation-what-is-a-browser = What is a Browser?
 sub-navigation-browsing-history = Browsing History
 sub-navigation-browser-history = Browser History
