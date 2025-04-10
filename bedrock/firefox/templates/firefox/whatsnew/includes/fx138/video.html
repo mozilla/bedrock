@@ -1,0 +1,23 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import video_inline_embed with context %}
+
+<!-- TODO: real l10n ids and titles -->
+{{ video_inline_embed(
+  id='qoi9rmW4zNo',
+  title='Take control of your browsing with tab groups',
+  image=resp_img(
+    url="img/firefox/wnp-138/poster.png",
+    srcset={
+      "img/firefox/wnp-138/poster-high-res.png": "2x",
+    },
+    optional_attributes={
+        "alt": "",
+        "l10n": True,
+    },
+  )
+) }}
