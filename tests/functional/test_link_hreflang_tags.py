@@ -14,7 +14,6 @@ LINK_TEMPLATE = '<link rel="canonical" href="{url}">'
     "url,locales",
     [
         ("/firefox/new/", ("en-US", "de", "id")),
-        ("/firefox/", ("en-US", "de", "id")),
         ("/", ("en-US", "de", "id")),
     ],
 )

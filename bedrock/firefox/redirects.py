@@ -183,14 +183,14 @@ redirectpatterns = (
     redirect(r"^(products/)?firefox/start/central\.html$", "firefox.new"),
     redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
     # Bug 920212
-    redirect(r"^firefox/fx(/.*)?", "firefox"),
+    redirect(r"^firefox/fx(/.*)?", "firefox.new"),
     # Bug 979531, 1003727, 979664, 979654, 979660
     redirect(r"^firefox/customize/?$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
     redirect(r"^firefox/(?:performance|happy|speed|memory)/?$", "firefox.features.fast"),
     redirect(r"^firefox/security/?$", "firefox.features.private"),
     redirect(r"^firefox/technology/?$", "https://developer.mozilla.org/docs/Tools"),
     # Previously Bug 979527 / Github #10004 "Getting Started" Page
-    redirect(r"^(products/)?firefox/central(/|\.html|-lite\.html)?$", "firefox"),
+    redirect(r"^(products/)?firefox/central(/|\.html|-lite\.html)?$", "firefox.new"),
     # bug 868169
     redirect(r"^mobile/android-download\.html$", "https://play.google.com/store/apps/details", query={"id": "org.mozilla.firefox"}, merge_query=True),
     redirect(
@@ -252,7 +252,7 @@ redirectpatterns = (
         "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
     ),
     # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
-    redirect(r"^(fennec)/?$", "firefox"),
+    redirect(r"^(fennec)/?$", "firefox.new"),
     # issue 8749
     redirect(r"^(mobile)/?$", "firefox.browsers.mobile.index"),
     # bug 876668
@@ -276,7 +276,7 @@ redirectpatterns = (
     # bug 960543
     redirect(r"^firefox/(?P<vers>[23])\.0/eula", "/legal/eula/firefox-{vers}/"),
     # bug 1150713
-    redirect(r"^firefox/sms(?:/.*)?$", "firefox"),
+    redirect(r"^firefox/sms(?:/.*)?$", "firefox.new"),
     # Redirects for SeaMonkey project website, now living at seamonkey-project.org
     redirect(r"^projects/seamonkey/$", "http://www.seamonkey-project.org/"),
     redirect(r"^projects/seamonkey/artwork\.html$", "http://www.seamonkey-project.org/dev/artwork"),
@@ -440,7 +440,7 @@ redirectpatterns = (
     # Bug 654614 /blocklist -> addons.m.o/blocked
     redirect(r"^blocklist(/.*)?$", "https://addons.mozilla.org/blocked/"),
     redirect(r"^products/firebird/compare/?$", "firefox.new"),
-    redirect(r"^products/firebird/?$", "firefox"),
+    redirect(r"^products/firebird/?$", "firefox.new"),
     redirect(r"^products/firebird/download/$", "firefox.new"),
     redirect(r"^products/firefox/add-engines\.html$", "https://addons.mozilla.org/search-engines.php"),
     redirect(r"^products/firefox/all$", "/firefox/all/"),
@@ -466,13 +466,13 @@ redirectpatterns = (
     redirect(r"^products/firefox/support/$", "https://support.mozilla.org/"),
     redirect(r"^products/firefox/switch", "firefox.new"),
     redirect(r"^products/firefox/system-requirements", "/firefox/system-requirements/"),
-    redirect(r"^products/firefox/tabbed-browsing", "firefox"),
+    redirect(r"^products/firefox/tabbed-browsing", "firefox.new"),
     redirect(r"^products/firefox/text-zoom\.html$", "https://support.mozilla.org/kb/font-size-and-zoom-increase-size-of-web-pages"),
     redirect(r"^products/firefox/themes$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/themes\.html$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/ui-customize\.html$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
     redirect(r"^products/firefox/upgrade", "firefox.new"),
-    redirect(r"^products/firefox/why/$", "firefox"),
+    redirect(r"^products/firefox/why/$", "firefox.new"),
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r"^products/firefox/start/?$", "http://start.mozilla.org"),
     # issue 9008
@@ -511,7 +511,7 @@ redirectpatterns = (
         },
     ),
     # bug 1369732
-    redirect(r"^Firefox/?$", "firefox"),
+    redirect(r"^Firefox/?$", "firefox.new"),
     # bug 1386112
     redirect(r"^firefox/android/faq/?", "https://support.mozilla.org/products/mobile"),
     # bug 1392796
@@ -562,7 +562,7 @@ redirectpatterns = (
     # issue 6186
     redirect(r"^vote/?", "/firefox/election/"),
     # issue 9391
-    redirect(r"^/firefox/election/?$", "firefox"),
+    redirect(r"^/firefox/election/?$", "firefox.new"),
     # fxa
     redirect(r"^firefox/accounts/features/?", "mozorg.account"),
     # bug 1577449
@@ -570,9 +570,8 @@ redirectpatterns = (
     # issue 6512
     redirect(r"^firefox/firefox\.html$", "firefox.new"),
     # issue 6979
-    redirect(r"^firefoxfightsforyou/?", "firefox"),
+    redirect(r"^firefoxfightsforyou/?", "firefox.new"),
     # issue 14240
-    redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
     redirect(r"^firefox/accounts/?$", "mozorg.account"),
     # issue 7210
     redirect(r"^firefox/account/?$", "mozorg.account"),
@@ -581,7 +580,7 @@ redirectpatterns = (
     # issue 7491
     redirect(r"^firefox/organizations/?$", "firefox.enterprise.index"),
     # issue 7670
-    redirect(r"^/firefox/fights-for-you/?", "firefox"),
+    redirect(r"^/firefox/fights-for-you/?", "firefox.new"),
     # issue #7424
     redirect(r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/content-blocking/start/?$", "https://support.mozilla.org/kb/content-blocking"),
     # issue #7424
@@ -596,11 +595,11 @@ redirectpatterns = (
     redirect(r"^/firefox/windows-64-bit/?$", "firefox.browsers.windows-64-bit"),
     redirect(r"^/firefox/best-browser/?$", "firefox.browsers.best-browser"),
     # Unfck campaign, issue 11613
-    redirect(r"^firefox/unfu?ck/?$", "firefox"),
-    redirect(r"^firefox/love/?$", "firefox"),
-    redirect(r"^firefox/liebe/?$", "firefox"),
-    redirect(r"^firefox/rendonslenetplusnet/?$", "firefox"),
-    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox"),
+    redirect(r"^firefox/unfu?ck/?$", "firefox.new"),
+    redirect(r"^firefox/love/?$", "firefox.new"),
+    redirect(r"^firefox/liebe/?$", "firefox.new"),
+    redirect(r"^firefox/rendonslenetplusnet/?$", "firefox.new"),
+    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox.new"),
     # issue 9148
     redirect(r"^/firefox/campaign/?$", "firefox.new"),
     # issue 9788
@@ -609,14 +608,11 @@ redirectpatterns = (
     redirect(r"^/firefox/features/pip/?$", "firefox.features.picture-in-picture"),
     # issue 10182
     redirect(r"^/firefox/mobile/?$", "firefox.browsers.mobile.index"),
-    redirect(r"^/exp/firefox/mobile/?$", "firefox.browsers.mobile.index"),
     # issue 10292, 10590
     redirect(r"^firefox/(?P<version>[^/]+)/whatsnew/(india|africa|france|en|all|china)/?$", "/firefox/{version}/whatsnew/"),
     redirect(r"^firefox/whatsnew/(india|africa|france|en|all|china)/?$", "firefox.whatsnew"),
     # issue 10703
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
-    # issue 10879
-    redirect(r"^/exp/?$", "mozorg.home"),
     # issue 12107
     redirect(r"^/firefox/families/?$", "firefox.family.index"),
     redirect(r"^firefox/features/memory/?$", "firefox.features.fast"),
@@ -629,9 +625,9 @@ redirectpatterns = (
     # issue 14172
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
     # issue 14231
-    redirect(r"^firefox/flashback/?$", "firefox"),
+    redirect(r"^firefox/flashback/?$", "firefox.new"),
     # issue 14222
-    redirect(r"^firefox/browsers/?$", "firefox"),
+    redirect(r"^firefox/browsers/?$", "firefox.new"),
     # issue 14248
     redirect(r"^firefox/privacy/?$", "privacy"),
     redirect(r"^firefox/privacy/products/?$", "products.landing"),
@@ -640,4 +636,6 @@ redirectpatterns = (
     redirect(r"^firefox/nothingpersonal/?$", "firefox.nothing-personal.index"),
     # issue 15841
     redirect(r"^firefox/tech/?$", "firefox.landing.tech"),
+    # issue 16089
+    redirect(r"^/firefox/?$", "firefox.new"),
 )
