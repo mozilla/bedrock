@@ -4,7 +4,6 @@
 
 
 navigation-v2-mozilla = { -brand-name-mozilla }
-navigation-v2-download-firefox = Download { -brand-name-firefox }
 navigation-v2-get-mozilla-vpn = Get { -brand-name-mozilla-vpn }
 navigation-v2-menu = Menu
 
@@ -77,11 +76,7 @@ navigation-v2-firefox-developer-edition = { -brand-name-firefox-developer-editio
 navigation-v2-get-the-firefox-browser-built = Get the { -brand-name-firefox } browser built just for developers.
 navigation-v2-mdn-web-docs = { -brand-name-mdn-web-docs }
 navigation-v2-check-out-the-home-for-web = Check out the home for web developer resources.
-navigation-v2-firefox-reality = { -brand-name-firefox-reality }
-navigation-v2-explore-the-web-with-the = Explore the web with the { -brand-name-firefox } browser for virtual reality.
 navigation-v2-common-voice = { -brand-name-common-voice }
 navigation-v2-donate-your-voice-so-the-future = Donate your voice so the future of the web can hear everyone.
-navigation-v2-webassembly = { -brand-name-webassembly }
-navigation-v2-learn-more-about-the-new = Learn more about the new, low-level, assembly-like language.
 navigation-v2-mozilla-innovation-projects = { -brand-name-mozilla } Innovation Projects
 navigation-v2-discover-ways-to-bring = Discover ways to bring bright ideas to life.

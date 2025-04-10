@@ -50,19 +50,19 @@ The majority of config changes need to happen in `bedrock/settings/base.py`:
     >
     > VPN_PLAN_ID_MATRIX = {
     >
-    > :   
+    > :
     >
     >     "usd": {
     >
-    >     :   
+    >     :
     >
     >         "en": {
     >
-    >         :   
+    >         :
     >
     >             "12-month": {
     >
-    >             :   
+    >             :
     >
     >                 "id": (
     >
@@ -89,7 +89,7 @@ The majority of config changes need to happen in `bedrock/settings/base.py`:
     >
     > VPN_VARIABLE_PRICING = {
     >
-    > :   
+    > :
     >
     >     "US": {
     >
@@ -144,7 +144,7 @@ The majority of config changes need to happen in `bedrock/settings/base.py`:
         self.assertIn("?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm", markup)
     ```
 
-5.  Next, update `VPN_AVAILABLE_COUNTRIES` to the new total number of countries where VPN is available. Again, because this needs to be behind a feature switch you may want a new temporary variable that you can use in `products/views.py`:
+5.  Finally, update `VPN_AVAILABLE_COUNTRIES` to the new total number of countries where VPN is available. Again, because this needs to be behind a feature switch you may want a new temporary variable that you can use in `products/views.py`:
 
     ``` python
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
@@ -153,21 +153,7 @@ The majority of config changes need to happen in `bedrock/settings/base.py`:
         available_countries = settings.VPN_AVAILABLE_COUNTRIES_WAVE_VI
     ```
 
-6.  Finally, there is also a string in `l10n/en/products/vpn/shared.ftl` that needs updating to include the new countries. This should be a new string ID, and behind a feature switch in the template:
-
-    ``` fluent
-    vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Canada, Finland, France, Germany, Ireland, Italy, Malaysia, the Netherlands, New Zealand, Singapore, Spain, Sweden, Switzerland, the UK, and the US.
-    ```
-
-    ``` jinja
-    {% if switch('vpn_wave_vi') %}
-        {{ ftl('vpn-shared-available-countries-v6', fallback='vpn-shared-available-countries-v5') }}
-    {% else %}
-        {{ ftl('vpn-shared-available-countries-v5') }}
-    {% endif %}
-    ```
-
-7.  After things are launched in production and QA has verified that all is well, don't forget to file an issue to tidy up the temporary variables and switch logic.
+6.  After things are launched in production and QA has verified that all is well, don't forget to file an issue to tidy up the temporary variables and switch logic.
 
 ## Excluded countries
 
