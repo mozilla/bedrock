@@ -364,6 +364,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
         text-decoration: none;
     }
 
+    &:hover:is(a) {
+        color: $color-black;
+    }
+    
     .m24-c-menu-title-icon {
         @include bidi(((margin, 0 8px 0 0, 0 0 0 8px),));
     }
