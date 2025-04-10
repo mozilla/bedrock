@@ -36,24 +36,6 @@ firefox-desktop-download-do-what-you-do-v2 = Do what you do online.<br> { -brand
 # Obsolete string (expires: 2025-04-17)
 firefox-desktop-download-do-what-you-do = Do what you do online.<br> { -brand-name-firefox-browser } <strong>isn’t</strong> watching.
 
-firefox-desktop-download-how-firefox-compares = How { -brand-name-firefox } compares to other browsers
-firefox-desktop-download-get-all-the-speed = Get all the speed and tools with none of the invasions of privacy. { -brand-name-firefox-browser } collects so little data about you, we don’t even require your email address to download. That’s because unlike other browsers, we have no financial stake in following you around the web.
-firefox-desktop-download-how-we-compare = How we compare to other browsers
-firefox-desktop-download-compare-firefox-to = Compare { -brand-name-firefox } to:
-firefox-desktop-download-compare-chrome = { -brand-name-chrome }
-firefox-desktop-download-compare-edge = { -brand-name-edge }
-firefox-desktop-download-compare-safari = { -brand-name-safari }
-firefox-desktop-download-yes = Yes
-firefox-desktop-download-no = No
-firefox-desktop-download-blocks-third-party = Blocks third-party tracking cookies
-firefox-desktop-download-blocks-third-party-default = Blocks third-party tracking cookies by default
-firefox-desktop-download-autoplay-blocking = Autoplay blocking
-firefox-desktop-download-blocks-social-trackers = Blocks social trackers
-# OS is short for "Operating System"
-firefox-desktop-download-os-availability = OS availability
-firefox-desktop-download-in-browser-screenshot = In-browser screenshot tool
-firefox-desktop-download-primary-password = Primary password
-
 firefox-desktop-download-we-block-the-ad = We block the ad trackers. You explore the internet faster.
 firefox-desktop-download-ads-are-distracting = Ads are distracting and make web pages load slower while their trackers watch every move you make online. The { -brand-name-firefox-browser } blocks most trackers automatically, so there’s no need to dig into your security settings.
 firefox-desktop-download-see-your-report = See your protection report
@@ -167,8 +149,6 @@ firefox-desktop-download-firefox-automatically = { -brand-name-firefox } automat
 #   $attrs (attrs) - link to https://addons.mozilla.org/firefox/extensions/
 firefox-desktop-download-questions = Questions? <a { $attrs }>{ -brand-name-mozilla } support</a> has you covered.
 
-firefox-desktop-download-watch-for-hackers-with-v3 = Watch for hackers with { -brand-name-mozilla-monitor }, protect your email address with { -brand-name-firefox-relay }, and more.
-
 ## URL: https://www-dev.allizom.org/firefox/download/thanks/
 
 firefox-desktop-download-almost-there = Almost there!
@@ -192,10 +172,6 @@ firefox-desktop-download-if-you-see-a-prompt = If you see a prompt stating the a
 firefox-desktop-download-visit-support-for-more = Visit Support for More Details
 
 # Variables:
-#   $url (url) - link to https://support.mozilla.org/kb/end-support-windows-xp-and-vista
-firefox-desktop-download-mozilla-no-longer-provides = { -brand-name-mozilla } <a href="{ $url }">no longer provides security updates</a> on { -brand-name-windows } { -brand-name-xp } or { -brand-name-vista }, but you can still use { -brand-name-firefox }.
-
-# Variables:
 #   $id (string) - HTML ID for the download link.
 #   $fallback_url (url) - link to https://www.mozilla.org/firefox/all/
 firefox-desktop-download-your-firefox-new-should-begin = Your download should begin automatically. Didn’t work? <a id="{ $id }" href="{ $fallback_url }">Try downloading again.</a>
@@ -203,10 +179,6 @@ firefox-desktop-download-your-firefox-new-should-begin = Your download should be
 firefox-new-firefox-is-more-than-a-browser = { -brand-name-firefox } is more than a browser.
 # "all is not lost" is another way to say "don't give up hope", "there are other things we can try", or "don't stop trying yet"
 firefox-desktop-download-interrupted = Your download was interrupted. But all is not lost.
-
-# Variables:
-#   $url (url) - link to https://support.mozilla.org/kb/install-firefox-linux
-firefox-desktop-download-please-follow = Please follow <a href="{ $url }">these instructions</a> to install { -brand-name-firefox }.
 
 # Variables:
 #   $url (url) - link to https://www.mozilla.org/firefox/all/
