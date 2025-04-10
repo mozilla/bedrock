@@ -69,8 +69,12 @@ urlpatterns = (
     path("defend-mozilla-trademarks/", views.fraud_report, name="legal.fraud-report"),
     path(
         "terms/firefox/",
-        # Note that the legal_doc_name is decided by a waffle switch - see the view
-        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name="firefox_about_rights"),
+        views.FirefoxTermsOfServiceDocView.as_view(legal_doc_name="firefox_terms_of_use"),
         name="legal.terms.firefox",
+    ),
+    path(
+        "terms/firefox-focus/",
+        views.FocusTermsOfServiceDocView.as_view(legal_doc_name="focus_terms_of_use"),
+        name="legal.terms.focus",
     ),
 )
