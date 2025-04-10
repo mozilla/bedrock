@@ -32,16 +32,12 @@
 {% block body_class %}{% endblock %}
 
 {% block main_feature %}
-
-  {% include 'privacy/includes/privacy-basics.html' %}
-
   <div class="mzp-l-content c-legal" id="notice">
     <div class="c-legal-heading">
       <h1>{{ title|join|safe }}</h1>
       <time datetime="{{ time['datetime'] }}" itemprop="dateModified">{{ time.string }}</time>
     </div>
   </div>
-
 {% endblock %}
 
 {% block side_nav %}
@@ -53,13 +49,6 @@
       {% endfor %}
     </ul>
   </div>
-
-
-  <aside class="c-extra">
-    <p>{{ ftl('privacy-firefox-take-me-back', attrs='href="#notice"') }}</p>
-    <p>{{ ftl('privacy-firefox-lost-in-the', attrs='href="#basics"') }}</p>
-  </aside>
-
 {% endblock %}
 
 {% block article %}

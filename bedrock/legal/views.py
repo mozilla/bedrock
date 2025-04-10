@@ -42,11 +42,19 @@ class TermsDocView(LegalDocView):
 
 
 class FirefoxTermsOfServiceDocView(TermsDocView):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def get_legal_doc(self):
+        doc = super().get_legal_doc()
+        variant = self.request.GET.get("v", None)
 
-        self.legal_doc_name = "firefox_terms_of_use"
+        if variant == "product":
+            self.template_name = "legal/terms/firefox-simple.html"
+        else:
+            self.template_name = "legal/terms/firefox.html"
 
+        return doc
+
+
+class FocusTermsOfServiceDocView(TermsDocView):
     def get_legal_doc(self):
         doc = super().get_legal_doc()
         variant = self.request.GET.get("v", None)
