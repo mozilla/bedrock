@@ -10,6 +10,7 @@
  * @param {Boolean} isFocusTrapped - determine if keyboard focus trap is active.
  * @param {String} element - element to trap keyboard focus within.
  * @param {String} focusableClassList - a string of class names of focusable elements.
+ * @returns {Function} - an arrow function that removes the same event listener that is added to the element
  */
 function trapKeyboardFocus(isFocusTrapped, element, focusableClassList) {
     const focusableEles = element.querySelectorAll(focusableClassList);

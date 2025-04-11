@@ -42,9 +42,13 @@ MzpMenu.open = (el, animate) => {
     }
 
     if (typeof window.MzpNavigation !== 'undefined') {
-        // disable navigation focus trap
+        // disable focus trap for MzpNavigation menu category list items(.m24-c-menu-title),
+        // this prevents two "keydown" event listeners running at the same time
+        // on the global navigation (.m24-navigation-refresh)
         window.MzpNavigation.disableKeyboardFcousTrap();
-        // focus trap for only mobile screens
+        // enable keyboard focus trap for selected menu category(.m24-c-menu-category.mzp-is-selected)
+        // global navigation (.m24-navigation-refresh) "keydown" event listening is now handled by MzpMenu
+        // trap focus for only mobile screens
         _menuKeyboardFocusTrapCleanUp = trapKeyboardFocus(
             () => !window.MzpNavigation.isLargeViewport(),
             document.querySelector('.m24-navigation-refresh'),
@@ -127,13 +131,13 @@ MzpMenu.toggle = (el) => {
             _options.onMenuClose();
         }
 
-        // remove mobile menu keyboard focus trap
+        // remove mobile MzpMenu keyboard focus trap
         if (_menuKeyboardFocusTrapCleanUp !== null) {
             _menuKeyboardFocusTrapCleanUp();
             _menuKeyboardFocusTrapCleanUp = null;
         }
 
-        // enable navigation keyboard focus trap
+        // hand off keyboard focus trap back to MzpNavigation
         if (
             typeof window.MzpNavigation !== 'undefined' &&
             !window.MzpNavigation.isLargeViewport()
