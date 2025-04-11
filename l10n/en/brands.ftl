@@ -22,7 +22,6 @@
 -brand-name-linkedin = LinkedIn
 -brand-name-tiktok = TikTok
 -brand-name-spotify = Spotify
--brand-name-mastodon = Mastodon
 
 ## Firefox browsers
 
@@ -51,33 +50,25 @@
 -brand-name-firefox-aurora = Firefox Aurora
 -brand-name-aurora = Aurora
 -brand-name-firefox-quantum = Firefox Quantum
--brand-name-firefox-lite = Firefox Lite
--brand-name-firefox-reality = Firefox Reality
--brand-name-reality = Reality
 
 ## Firefox products
 
 -brand-name-facebook-container = Facebook Container
 -brand-name-firefox-devtools = Firefox DevTools
 -brand-name-firefox-relay = Firefox Relay
--brand-name-firefox-sync = Firefox Sync
 -brand-name-firefox-translations = Firefox Translations
 
 ## Firefox products (short names)
 
 -brand-name-devtools = DevTools
 -brand-name-relay = Relay
--brand-name-sync = Sync
 
 ## Firefox products (legacy)
 
 -brand-name-firefox-account = Firefox Account
 -brand-name-firefox-accounts = Firefox Accounts
--brand-name-firefox-better-web = Firefox Better Web
 -brand-name-firefox-marketplace = Firefox Marketplace
 -brand-name-firefox-os = Firefox OS
--brand-name-firefox-send = Firefox Send
--brand-name-send = Send
 -brand-name-firefox-private-network = Firefox Private Network
 
 ## Firefox projects
@@ -131,7 +122,6 @@
 ## Open Source projects
 
 -brand-name-rust = Rust
--brand-name-webassembly = WebAssembly
 
 ## Other browsers
 
@@ -150,9 +140,7 @@
 -brand-name-linux = Linux
 -brand-name-mac = macOS
 -brand-name-mac-short = Mac
--brand-name-vista = Vista
 -brand-name-windows = Windows
--brand-name-xp = XP
 
 ## Apple products
 
