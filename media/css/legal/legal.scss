@@ -10,6 +10,15 @@
 @use '~@mozilla-protocol/core/protocol/css/components/logos/logo-product-firefox';
 
 /* -------------------------------------------------------------------------- */
+// Main
+.mzp-l-content.mzp-has-sidebar.mzp-l-sidebar-left{
+    padding-top: 0;
+
+    @media #{$mq-md} {
+        padding-top: var(--v-grid-md);
+    }
+}
+
 // Article
 
 .mzp-c-article {
