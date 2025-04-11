@@ -152,10 +152,6 @@
       "description": "{{ ftl('newsletters-add-your-voice')|striptags }}",
       "title": "{{ ftl('newsletters-take-action')|striptags }}"
   },
-  "test-pilot": {
-      "description": "{{ ftl('newsletters-help-us-make-a-better-v2')|striptags }}",
-      "title": "{{ ftl('newsletters-new-product-testing')|striptags }}"
-  },
   "webmaker": {
       "description": "{{ ftl('newsletters-special-announcements-helping-you')|striptags }}",
       "title": "{{ ftl('newsletters-webmaker')|striptags }}"
