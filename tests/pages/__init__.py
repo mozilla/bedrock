@@ -6,7 +6,7 @@
 # "Moved Collections Abstract Base Classes to the collections.abc module."
 import collections
 
-collections.Iterable = collections.abc.Iterable
+collections.abc.Iterable = collections.abc.Iterable
 
 # The above is set before importing ``WebView`` to avoid ``AttributeError``.
 from pypom.view import WebView  # noqa: E402

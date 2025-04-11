@@ -112,7 +112,7 @@
         :root & {
             display: inline-block;
             float: none;
-        }    
+        }
     }
 }
 
@@ -131,7 +131,7 @@
         img {
             display: none;
         }
-        
+
         &:after { /* stylelint-disable-line selector-pseudo-element-colon-notation */
             content: ' (×)';
         }
@@ -200,7 +200,7 @@
 
 .m24-pencil-banner {
     @include bidi(((float, right, left),));
-    
+
     button {
         display: none;
     }

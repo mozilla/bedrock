@@ -20,6 +20,8 @@ repos:
     -   id: check-shebang-scripts-are-executable
     -   id: check-yaml
     -   id: end-of-file-fixer
+        exclude_types:
+          - svg
     -   id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=md
