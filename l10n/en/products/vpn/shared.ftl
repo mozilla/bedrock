@@ -8,30 +8,8 @@ vpn-shared-product-name = { -brand-name-mozilla-vpn }
 vpn-shared-subscribe-link = Get { -brand-name-mozilla-vpn }
 vpn-shared-waitlist-link = Join the Waitlist
 
-vpn-shared-available-countries-v6 = We currently offer { -brand-name-mozilla-vpn } in Austria, Belgium, Bulgaria, Canada, Croatia, Cyprus, the Czech Republic, Denmark, Estonia, Finland, France, Germany, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malaysia, Malta, the Netherlands, New Zealand, Poland, Portugal, Romania, Singapore, Slovenia, Slovakia, Spain, Sweden, Switzerland, the UK, and the US.
-
 # This is a standalone string that is typically displayed underneath a "Get Mozilla VPN" button.
 vpn-shared-money-back-guarantee = 30-day money-back guarantee
-vpn-shared-features-encrypt = Device-level encryption
-vpn-shared-features-bandwidth = No bandwidth restrictions
-vpn-shared-features-activity = No logging of your network activity
-vpn-shared-features-activity-logs = No online activity logs now or ever
-
-# Variables:
-#   $countries (number) - number of available countries
-vpn-shared-features-access-countries = Access to servers in { $countries }+ countries
-
-# Variables:
-#   $devices (number) - number of available devices
-vpn-shared-features-protection = Protection for up to { $devices } devices
-
-# Variables:
-#   $countries (number) - number of available countries
-vpn-shared-features-strong-servers = Strong servers in { $countries }+ countries
-
-# Variables:
-#   $devices (number) - number of available devices
-vpn-shared-features-connect = Connect up to { $devices } devices
 
 # This string is displayed as an item in a list of features.
 vpn-shared-features-guarantee = 30-day money-back guarantee
@@ -80,12 +58,9 @@ vpn-shared-mozilla-vpn-is-not-yet-available = { -brand-name-mozilla-vpn } is not
 
 # Platform subpage shared strings
 
-vpn-shared-platform-cta-headline = Let’s get started
 vpn-shared-platform-cta-button = See pricing & availability
-vpn-shared-platform-privacy-promise = Your privacy is our promise
 vpn-shared-platform-what-is = What is { -brand-name-mozilla-vpn }?
 vpn-shared-platfrom-why-choose = Why { -brand-name-mozilla-vpn }?
-vpn-shared-platform-what-youll-get = What you’ll get with { -brand-name-mozilla-vpn }:
 
 # Subnav strings
 vpn-subnav-title = { -brand-name-mozilla-vpn }

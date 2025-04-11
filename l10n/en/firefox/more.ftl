@@ -16,9 +16,7 @@ a-web-browser = A web browser takes you anywhere on the internet, letting you se
 update-your-browser = Update your browser to fast, safe and secure { -brand-name-firefox }.
 the-firefox-browser = The { -brand-name-firefox } browser is built to protect your privacy at every turn — because that’s the fastest way to free you from slow loads, bad ads, and trackers.
 firefox-is-more = { -brand-name-firefox } is more than a browser
-its-a-lightning = It’s a lightning fast door to the best web experience.
 get-the-browsers = Get the browsers that put your privacy first — and always have
-get-the-privacy = Get the privacy you deserve. Enhanced Tracking Protection makes privacy automatic, every time you open your browser.
 choose-which-firefox = Choose which { -brand-name-firefox-browser } to download in your language
 firefox-more-firefox-chromebook = { -brand-name-firefox-browser } for { -brand-name-chromebook }
 firefox-more-while-on-chromebook = While a { -brand-name-chromebook } already has { -brand-name-chrome } installed, downloading and using { -brand-name-firefox } as your go-to browser provides you with a few benefits
@@ -34,7 +32,6 @@ new-school-meets = New school meets old school with the fastest browser yet.
 firefox-for-windows = { -brand-name-firefox } for { -brand-name-windows } 64-bit
 we-worry-about = We worry about your data safety so you don’t have to.
 
-old-habits-that = Old habits that die hard but you’ll feel better when they do.
 incognito-browser-what = Incognito browser: What it really means
 firefox-calls-it = { -brand-name-firefox } calls it private browsing, { -brand-name-chrome } calls it incognito mode. Both let you browse the web without saving your browsing history.
 
@@ -42,7 +39,5 @@ firefox-more-fingerprinter-blocking = Fingerprinter Blocking
 firefox-more-fingerprinting-is-a = Fingerprinting is a type of online tracking that’s more invasive than ordinary cookie-based tracking — that’s why { -brand-name-firefox-browser } blocks it.
 firefox-more-translate-the-web = Translate the web
 firefox-more-translate-more-than = Translate more than 100 languages to your language directly in your { -brand-name-firefox-browser } - easier than ever.
-firefox-more-a-guide-to = A guide to safer logins and passwords
-firefox-more-more-and-more = More and more of the sensitive, valuable things in our life are guarded by passwords.
 firefox-more-avoid-misinformation-heading = Avoid misinformation online – { -brand-name-firefox } is here to help
 firefox-more-avoid-misinformation-desc = Check out tips for seeing less misinformation and focusing on what’s important to you.

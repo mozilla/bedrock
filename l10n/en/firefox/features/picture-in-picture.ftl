@@ -11,12 +11,8 @@ features-pip-firefox-picture-in-picture-get-more = { -brand-name-firefox } Pictu
 features-pip-got-things-to-do-and-things-to-watch = Got things to do and things to watch? Do both using Picture-in-Picture in { -brand-name-firefox }.
 
 features-pip-picture-in-picture = Picture-in-Picture
-
-features-pip-new-feature-firefox-multi-picture = New feature: { -brand-name-firefox } multi Picture-in-Picture
-features-pip-cool-feature-picture-in-picture = Cool feature: Picture-in-Picture
 features-pip-get-more-done-with-pop-out-videos = Get more done with pop-out videos
 features-pip-got-things-to-do-do-both-with = Got things to do and things to watch? Do both using Picture-in-Picture in { -brand-name-firefox }. It lets you pop a video out of its webpage and pin it to your screen so you can keep watching while you’re on other pages, tabs and apps.
-features-pip-play-the-video = Play the video
 features-pip-heres-how-it-works = Here’s how it works:
 features-pip-play-any-video-in-your-updated = <strong>Play any video</strong> in your { -brand-name-firefox } browser, like this one.
 features-pip-play-any-video-in-your = <strong>Play any video</strong> in your { -brand-name-firefox } browser, like this one starring red panda cubs.

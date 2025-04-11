@@ -24,19 +24,5 @@ firefox-browsers-send-me-a-link = Send me a link
 firefox-browsers-enterprise = { -brand-name-enterprise }
 firefox-browsers-get-unmatched-data-protection = Get unmatched data protection with support cycles tailored to suit your company’s needs.
 firefox-browsers-enterprise-packages = { -brand-name-enterprise } packages
-firefox-browsers-reality = { -brand-name-reality }
-firefox-browsers-go-beyond-two-dimensions-and = Go beyond two dimensions and enjoy the best immersive content from around the web.
-
-# The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
-firefox-browsers-build-sites-and-refine-your = Build sites and refine your code with { -brand-name-firefox } <strong>{ -brand-name-devtools }</strong>
-
-firefox-browsers-learn-more-about-devtools = Learn more about { -brand-name-devtools }
-
-# Variables:
-#   $fxa_attr (string) - anchor link url and attributes
-#   $accounts_attr (string) - anchor link url and attributes
-firefox-browsers-already-have-an-account-sign-v2 = Already have an account? <a { $fxa_attr }>Sign in</a> or <a { $accounts_attr }>learn more</a> about joining { -brand-name-firefox }.
-
 firefox-browsers-android = { -brand-name-android }
 firefox-browsers-ios = { -brand-name-ios }
-firefox-browsers-developer-edition = { -brand-name-developer-edition }

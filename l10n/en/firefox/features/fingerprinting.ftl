@@ -4,19 +4,11 @@
 
 ### URL: https://www-dev.allizom.org/firefox/features/block-fingerprinting/
 
-# page title
-features-fingerprinting-what-is-fingerprinting-title = What is fingerprinting and why you should block it
-
 # page description
 features-fingerprinting-fingerprinting-is-a-desc = Fingerprinting is a type of online tracking that’s more invasive than ordinary cookie-based tracking — that’s why { -brand-name-firefox-browser } blocks it.
 
 features-fingerprinting-fingerprint-blocking = Fingerprint blocking
 features-fingerprinting-firefox-blocks-fingerprinting = { -brand-name-firefox } blocks fingerprinting
-features-fingerprinting-ditch-the-sticky = Ditch the sticky ads following you around with { -brand-name-firefox } browser’s built-in fingerprinting blockers.
-
-# description for the header image
-features-fingerprinting-every-fingerprint = Every fingerprint is unique.
-features-fingerprinting-download-firefox = Download { -brand-name-firefox }
 features-fingerprinting-what-is-fingerprinting-body = What is fingerprinting?
 features-fingerprinting-fingerprinting-is-a = Fingerprinting is a type of online tracking that’s more invasive than ordinary cookie-based tracking. A digital fingerprint is created when a company makes a unique profile of you based on your computer hardware, software, add-ons, and even preferences. Your settings like the screen you use, the fonts installed on your computer, and even your choice of a web browser can all be used to create a fingerprint.
 features-fingerprinting-if-you-have = If you have a commonly used laptop, PC or smartphone, it may be harder to uniquely identify your device through fingerprinting. However, the more unique add-ons, fonts, and settings you have, the easier you’ll be likely to find. Companies can use this unique combination of information to create your fingerprint. That’s why { -brand-name-firefox } blocks known fingerprinting, so you can still use your favorite extensions, themes and customization without being followed by ads.
@@ -41,4 +33,3 @@ features-fingerprinting-and-its-not = And it’s not a deep setting you need to 
 
 # $url_download (string) - link to firefox/new
 features-fingerprinting-you-probably-wouldnt = You probably wouldn’t appreciate someone tracking your moves in real life. There’s no reason to accept it online. If you don’t already have { -brand-name-firefox }, <a { $url_download }>download and protect yourself</a> from digital fingerprinting.
-features-fingerprinting-protect = Protect your privacy

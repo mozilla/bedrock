@@ -11,5 +11,3 @@ fxa-form-by-proceeding = By proceeding, you agree to the <a href="{ $url1 }">Ter
 
 fxa-form-email-address = Email address
 fxa-form-continue = Continue
-fxa-form-create-account = Create account
-fxa-form-get-the-app = Get the app
