@@ -1,15 +1,16 @@
 {#
- This Source Code Form is subject to the terms of the Mozilla Public
- License, v. 2.0. If a copy of the MPL was not distributed with this
- file, You can obtain one at https://mozilla.org/MPL/2.0/.
-#}
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
 
+ 
 <main id="partial-target">
   <div class="mzp-l-content">
     <div class="c-product-info" {% if product %} data-current="{{ product.slug }}"{% endif %}>
       <div class="c-intro">
         <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
-        <p>{{ ftl('firefox-all-everyone-deserves-access-v2', fallback="'firefox-all-everyone-deserves-access") }}</p>
+        <p>{{ ftl('firefox-all-everyone-deserves-access-v2') }}</p>
         {% if product %}
           {% if product.slug == "desktop-release" %}
             <div>
