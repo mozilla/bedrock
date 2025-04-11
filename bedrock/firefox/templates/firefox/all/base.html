@@ -19,8 +19,8 @@
 
 {% block canonical_urls %}
   {% if product %}
-    {# do not index child pages, we prefer people visit more user friendly pages from search results #}
-    <meta name="robots" content="noindex,follow">
+    {# do not index or follow child pages, we prefer people visit more user friendly pages from search results #}
+    <meta name="robots" content="noindex,nofollow">
   {% else %}
     {{ super() }}
   {% endif %}
