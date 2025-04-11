@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { trapKeyboardFocus } from './m24-keyboard-focus-trap.es6';
+
 const MzpMenu = {};
 let _menuOpen = false;
 let _hoverTimeout;
@@ -16,6 +18,8 @@ const _options = {
     onMenuClose: null,
     onMenuButtonClose: null
 };
+
+let _menuKeyboardFocusTrapCleanUp = null;
 
 /**
  * Opens a menu panel.
@@ -35,6 +39,21 @@ MzpMenu.open = (el, animate) => {
 
     if (typeof _options.onMenuOpen === 'function') {
         _options.onMenuOpen(el);
+    }
+
+    if (typeof window.MzpNavigation !== 'undefined') {
+        // disable focus trap for MzpNavigation menu category list items(.m24-c-menu-title),
+        // this prevents two "keydown" event listeners running at the same time
+        // on the global navigation (.m24-navigation-refresh)
+        window.MzpNavigation.disableKeyboardFcousTrap();
+        // enable keyboard focus trap for selected menu category(.m24-c-menu-category.mzp-is-selected)
+        // global navigation (.m24-navigation-refresh) "keydown" event listening is now handled by MzpMenu
+        // trap focus for only mobile screens
+        _menuKeyboardFocusTrapCleanUp = trapKeyboardFocus(
+            () => !window.MzpNavigation.isLargeViewport(),
+            document.querySelector('.m24-navigation-refresh'),
+            '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .mzp-is-selected a'
+        );
     }
 };
 
@@ -110,6 +129,20 @@ MzpMenu.toggle = (el) => {
 
         if (typeof _options.onMenuClose === 'function') {
             _options.onMenuClose();
+        }
+
+        // remove mobile MzpMenu keyboard focus trap
+        if (_menuKeyboardFocusTrapCleanUp !== null) {
+            _menuKeyboardFocusTrapCleanUp();
+            _menuKeyboardFocusTrapCleanUp = null;
+        }
+
+        // hand off keyboard focus trap back to MzpNavigation
+        if (
+            typeof window.MzpNavigation !== 'undefined' &&
+            !window.MzpNavigation.isLargeViewport()
+        ) {
+            window.MzpNavigation.enableKeyboardFocusTrap();
         }
     }
 };
