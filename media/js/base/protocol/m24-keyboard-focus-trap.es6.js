@@ -7,9 +7,9 @@
 /**
  * Trap keyboard focus on mobile navigation.
  * Issue #16090
- * @param {Boolean} isFocusTrapped - determine if keyoard focus trap is active.
+ * @param {Boolean} isFocusTrapped - determine if keyboard focus trap is active.
  * @param {String} element - element to trap keyboard focus within.
- * @param {String} focusableClassList - a string of clsss names of focusable elements.
+ * @param {String} focusableClassList - a string of class names of focusable elements.
  */
 function trapKeyboardFocus(isFocusTrapped, element, focusableClassList) {
     const focusableEles = element.querySelectorAll(focusableClassList);

@@ -22,21 +22,21 @@ const _wideBreakpoint = '768px';
 const _tallBreakpoint = '600px';
 let _mqLargeNav;
 const _viewport = document.getElementsByTagName('html')[0];
-let _enableKeyboardFcousTrap = false;
+let _enableKeyboardFocusTrap = false;
 let _navigationKeyboardFocusTrapCleanUp = null;
 
 /**
- * Enable the keyboard focus trapfor navigation
+ * Enable the keyboard focus trap for navigation
  */
-MzpNavigation.enableKeyboardFcousTrap = () => {
-    _enableKeyboardFcousTrap = true;
+MzpNavigation.enableKeyboardFocusTrap = () => {
+    _enableKeyboardFocusTrap = true;
 };
 
 /**
- * Disable the keyboard focus trapfor navigation
+ * Disable the keyboard focus trap for navigation
  */
 MzpNavigation.disableKeyboardFcousTrap = () => {
-    _enableKeyboardFcousTrap = false;
+    _enableKeyboardFocusTrap = false;
 };
 
 /**
@@ -195,9 +195,9 @@ MzpNavigation.onClick = (e) => {
             _options.onNavOpen(thisNavItemList);
         }
 
-        _enableKeyboardFcousTrap = true;
+        _enableKeyboardFocusTrap = true;
         _navigationKeyboardFocusTrapCleanUp = trapKeyboardFocus(
-            () => _enableKeyboardFcousTrap && !MzpNavigation.isLargeViewport(),
+            () => _enableKeyboardFocusTrap && !MzpNavigation.isLargeViewport(),
             document.querySelector('.m24-navigation-refresh'),
             '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .m24-c-menu-title'
         );

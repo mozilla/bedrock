@@ -138,7 +138,7 @@ MzpMenu.toggle = (el) => {
             typeof window.MzpNavigation !== 'undefined' &&
             !window.MzpNavigation.isLargeViewport()
         ) {
-            window.MzpNavigation.enableKeyboardFcousTrap();
+            window.MzpNavigation.enableKeyboardFocusTrap();
         }
     }
 };
