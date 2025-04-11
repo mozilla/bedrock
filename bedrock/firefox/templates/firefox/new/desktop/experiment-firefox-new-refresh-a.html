@@ -1,0 +1,29 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/new/desktop/download.html" %}
+
+{% block experiments %}
+  {{ js_bundle('experiment-firefox-new-refresh-init') }}
+{% endblock %}
+
+{% block primary_cta %}
+  {{ download_firefox_thanks(dom_id='download-primary', locale_in_transition=True, download_location='primary cta') }}
+{% endblock %}
+
+{% block features_cta %}
+  {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
+{% endblock %}
+
+{% block discover_cta %}
+  {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+{% endblock %}
+
+
+{% block js %}
+  {{ js_bundle('firefox_desktop_download') }}
+  {{ js_bundle('experiment-firefox-new-refresh-data') }}
+{% endblock %}
