@@ -21,6 +21,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,6 +37,7 @@ jobs:
         with:
           path: ./docs/site
   deploy:
+    if: github.repository == 'mozilla/bedrock'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
