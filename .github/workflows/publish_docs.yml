@@ -21,6 +21,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
