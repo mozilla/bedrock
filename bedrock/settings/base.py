@@ -2391,6 +2391,7 @@ WAGTAIL_RICHTEXT_FEATURES_FULL = [
     "italic",
     "code",
     "blockquote",
+    "superscript",
     "link",
     "ol",
     "ul",
