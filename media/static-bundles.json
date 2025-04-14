@@ -136,12 +136,6 @@
     },
     {
       "files": [
-        "css/firefox/new/desktop/default-experiment.scss"
-      ],
-      "name": "experiment-firefox-new-default"
-    },
-    {
-      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -1304,19 +1298,6 @@
         "js/firefox/landing/get/marketing-opt-out-init.es6.js"
       ],
       "name": "firefox_marketing_opt_out"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/default-experiment.es6.js"
-      ],
-      "name": "experiment-firefox-new-default"
-    },
-    {
-      "files": [
-        "js/base/stub-attribution/stub-attribution.js",
-        "js/firefox/new/desktop/default-opt-out-init.es6.js"
-      ],
-      "name": "firefox-new-default-opt-out"
     },
     {
       "files": [
