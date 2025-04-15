@@ -91,13 +91,6 @@ template {
 /* ----------------------------------------------------------------------------- */
 // Mozilla 2024 brand theme
 :root {
-    // fonts
-    /* stylelint-disable value-keyword-case  */
-    --body-font-family: 'Mozilla Text', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
-    --button-font-family: 'Mozilla Text', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
-    --title-font-family: 'Mozilla Headline', Inter, 'Helvetica Neue', Arial, X-LocaleSpecific, sans-serif;
-    /* stylelint-enable */
-
     // colors
     --background-color-tertiary-inverse: #{$m24-color-dark-gray};
     --background-color-tertiary: #{$m24-color-light-gray};
@@ -119,30 +112,6 @@ template {
     --link-color: #{$m24-color-black};
     --title-text-color-inverse: #{$m24-color-white};
     --title-text-color: #{$m24-color-black};
-
-    // type scale
-    --title-2xl-size: 8rem;
-    --title-2xl-line-height: 1.1;
-    --title-xl-size: 5rem;
-    --title-xl-line-height: 1.1;
-    --title-lg-size: 3rem;
-    --title-lg-line-height: 1.1;
-    --title-md-size: 2.5rem;
-    --title-md-line-height: 1.1;
-    --title-sm-size: 2rem;
-    --title-sm-line-height: 1.1;
-    --title-xs-size: 1.75rem;
-    --title-xs-line-height: 1.1;
-    --title-2xs-size: 1.5rem;
-    --title-2xs-line-height: 1.1;
-    --title-3xs-size: 1.25rem;
-    --title-3xs-line-height: 1.1;
-    --body-xl-size: 1.313rem;
-    --body-lg-size: 1.125rem;
-    --body-md-size: 1rem;
-    --body-sm-size: 0.875rem;
-    --body-xs-size: 0.75rem;
-    --body-line-height: 1.4;
 }
 
 .mzp-t-dark {

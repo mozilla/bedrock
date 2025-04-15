@@ -41,7 +41,7 @@
     border: 1px solid $m24-color-light-gray;
     box-shadow: none;
     color: $m24-color-black;
-    font-family: $primary-font;
+    font-family: var(--body-font-family);
     font-size: calc(#{$font-size} * 1rem);
     font-weight: 600;
     line-height: $font-size;
