@@ -2,66 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import re
+
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
 PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
-CAMPAIGN_OPTIONS = [
-    "firefox-whatsnew",
-    "firefox-welcome-4",
-    "firefox-welcome-6",
-    "firefox-welcome-17-en",
-    "firefox-welcome-17-de",
-    "firefox-welcome-17-fr",
-    "firefox-browsers-mobile-get-app",
-    "firefox-browsers-mobile-focus",
-    "mzaonboardingemail-de",
-    "mzaonboardingemail-fr",
-    "mzaonboardingemail-es",
-    "mzaonboardingemail-it",
-    "mzaonboardingemail-nl",
-    "mzaonboardingemail-pl",
-    "firefox-all",
-    "fxshare1",
-    "fxshare2",
-    "fxshare3",
-    "fxshare4",
-    "fxshare5",
-    "fxshare6",
-    "fxshare7",
-    "fxshare8",
-    "fxshare9",
-    "fxshare10",
-    "fxshare11",
-    "fxshare12",
-    "fxshare13",
-    "fxshare14",
-    "fxshare15",
-    "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_a",
-    "DESKTOP_FEATURE_CALLOUT_SIGNED_INTO_ACCOUNT.treatment_b",
-    "wnp134-de-a",
-    "wnp134-de-b",
-    "wnp134-de-c",
-    "wnp134-en-ca-a",
-    "wnp134-en-ca-b",
-    "wnp134-en-ca-c",
-    "wnp134-en-na-a",
-    "wnp134-en-na-b",
-    "wnp134-en-na-c",
-    "wnp134-en-uk-a",
-    "wnp134-en-uk-b",
-    "wnp134-en-uk-c",
-    "wnp134-fr-a",
-    "wnp134-fr-b",
-    "wnp134-fr-c",
-    "smi-marvintsp",
-    "smi-koschtaaa",
-    "smi-itsmanjuu",
-    "smi-domiip",
-    "smi-drfaye",
-    "smi-shessdly",
-    "smi-bytereview",
-    "pocket-test",
-]
+# matches only ASCII letters (ignoring case), numbers, dashes, periods, and underscores.
+PARAM_VALUES_RE = re.compile(r"[\w.-]+", flags=re.ASCII)
 
 
 def firefox_mobile_faq(request, *args, **kwargs):
@@ -76,10 +23,21 @@ def firefox_channel(*args, **kwargs):
     return platform_redirector("firefox.channel.desktop", "firefox.channel.android", "firefox.channel.ios")
 
 
+def validate_param_value(param: str | None) -> str | None:
+    """
+    Returns the value passed in if it matches the regex `PARAM_VALUES_RE`.
+    Otherwise returns `None`.
+    """
+    if param and PARAM_VALUES_RE.fullmatch(param):
+        return param
+
+    return None
+
+
 def mobile_app(request, *args, **kwargs):
     c = request.GET.get("campaign")
     p = request.GET.get("product")
-    campaign = c if c in CAMPAIGN_OPTIONS else None
+    campaign = validate_param_value(c)
     product = p if p in PRODUCT_OPTIONS else "firefox"
     return mobile_app_redirector(request, product, campaign)
 
