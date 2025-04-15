@@ -1,0 +1,2 @@
+moz-fluent-linter~=0.4.7
+moz-l10n~=0.6.2
