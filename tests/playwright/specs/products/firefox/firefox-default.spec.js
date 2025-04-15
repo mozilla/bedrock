@@ -28,21 +28,28 @@ test.describe(
                 waitUntil: 'commit'
             });
 
+            const downloadButtonMac = page.getByTestId(
+                'download-button-desktop-release-osx'
+            );
+            const downloadButtonWin = page.getByTestId(
+                'download-button-desktop-release-win'
+            );
+            const defaultMessaging = page.getByTestId(
+                'firefox-not-default-message'
+            );
+
             if (browserName === 'webkit') {
-                const downloadButtonMac = page.getByTestId(
-                    'download-button-desktop-release-osx'
-                );
                 await expect(downloadButtonMac).toBeVisible();
+                await expect(downloadButtonWin).not.toBeVisible();
+                await expect(defaultMessaging).not.toBeVisible();
             } else if (browserName === 'chromium') {
-                const downloadButtonWin = page.getByTestId(
-                    'download-button-desktop-release-win'
-                );
                 await expect(downloadButtonWin).toBeVisible();
+                await expect(downloadButtonMac).not.toBeVisible();
+                await expect(defaultMessaging).not.toBeVisible();
             } else if (browserName === 'firefox') {
-                const defaultMessaging = page.getByTestId(
-                    'firefox-not-default-message'
-                );
                 await expect(defaultMessaging).toBeVisible();
+                await expect(downloadButtonWin).not.toBeVisible();
+                await expect(downloadButtonMac).not.toBeVisible();
             }
         });
     }
