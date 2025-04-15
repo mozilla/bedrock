@@ -50,7 +50,7 @@ $quote-height: 45px;
 
         cite {
             color: $m24-color-dark-green;
-            font-family: $primary-font;
+            font-family: var(--body-font-family);
             font-size: $text-body-md;
             font-style: normal;
             text-transform: uppercase;

@@ -2,8 +2,17 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
 // global components
 @use 'components/footer-newsletter';
 @use 'components/footer-refresh';
 @use 'components/navigation-refresh';
 @use 'components/pencil-banner';
+
+.m24-navigation-refresh,
+.moz24-footer {
+    --body-font-family: #{$font-stack-mozilla-text};
+    --title-font-family: #{$font-stack-mozilla-headline};
+    font-family: var(--body-font-family);
+}

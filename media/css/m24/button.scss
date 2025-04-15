@@ -9,7 +9,7 @@
     border: $border-width solid $m24-color-black;
     color: $m24-color-white;
     display: inline-block;
-    font-family: $secondary-font;
+    font-family: var(--title-font-family);
     font-size: $text-body-md;
     font-weight: 400;
     padding: $spacer-sm $spacer-md;
