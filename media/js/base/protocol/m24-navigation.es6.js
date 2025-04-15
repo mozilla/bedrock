@@ -22,21 +22,26 @@ const _wideBreakpoint = '768px';
 const _tallBreakpoint = '600px';
 let _mqLargeNav;
 const _viewport = document.getElementsByTagName('html')[0];
-let _enableKeyboardFocusTrap = false;
 let _navigationKeyboardFocusTrapCleanUp = null;
 
+// MzpNavigation focusable element class list
+const _defaultFocusList =
+    '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .m24-c-menu-title';
+let _focusList = _defaultFocusList;
+
 /**
- * Enable the keyboard focus trap for navigation
+ * set class list for focusable elements
+ * @param {String} list - class list to determine focusable elements.
  */
-MzpNavigation.enableKeyboardFocusTrap = () => {
-    _enableKeyboardFocusTrap = true;
+MzpNavigation.setFocusList = (list) => {
+    _focusList = list;
 };
 
 /**
- * Disable the keyboard focus trap for navigation
+ * reset class list for focusable elements as the default one
  */
-MzpNavigation.disableKeyboardFcousTrap = () => {
-    _enableKeyboardFocusTrap = false;
+MzpNavigation.resetFocusListFunction = () => {
+    _focusList = _defaultFocusList;
 };
 
 /**
@@ -195,11 +200,11 @@ MzpNavigation.onClick = (e) => {
             _options.onNavOpen(thisNavItemList);
         }
 
-        _enableKeyboardFocusTrap = true;
+        // trap keyboard navigation focus for MzpNavigation
         _navigationKeyboardFocusTrapCleanUp = trapKeyboardFocus(
-            () => _enableKeyboardFocusTrap && !MzpNavigation.isLargeViewport(),
+            () => !MzpNavigation.isLargeViewport(),
             document.querySelector('.m24-navigation-refresh'),
-            '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .m24-c-menu-title'
+            () => _focusList
         );
     } else {
         if (typeof _options.onNavClose === 'function') {

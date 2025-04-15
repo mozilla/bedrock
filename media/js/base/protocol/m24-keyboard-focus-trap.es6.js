@@ -9,14 +9,10 @@
  * Issue #16090
  * @param {Boolean} isFocusTrapped - determine if keyboard focus trap is active.
  * @param {String} element - element to trap keyboard focus within.
- * @param {String} focusableClassList - a string of class names of focusable elements.
+ * @param {Function} focusableClassList - a function that returns a string of class names of focusable elements.
  * @returns {Function} - an arrow function that removes the same event listener that is added to the element
  */
 function trapKeyboardFocus(isFocusTrapped, element, focusableClassList) {
-    const focusableEles = element.querySelectorAll(focusableClassList);
-    const firstFocusableEle = focusableEles[0];
-    const lastFocusableEle = focusableEles[focusableEles.length - 1];
-
     const listener = function (e) {
         if (!isFocusTrapped()) {
             return;
@@ -27,6 +23,10 @@ function trapKeyboardFocus(isFocusTrapped, element, focusableClassList) {
         if (!isTabPressed) {
             return;
         }
+
+        const focusableEles = element.querySelectorAll(focusableClassList());
+        const firstFocusableEle = focusableEles[0];
+        const lastFocusableEle = focusableEles[focusableEles.length - 1];
 
         if (e.shiftKey) {
             // shift + tab
