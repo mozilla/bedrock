@@ -27,7 +27,10 @@ jobs:
           python-version: "3.12"
       - name: Install Python dependencies
         run: |
-          pip install moz-fluent-linter==0.4.*
+          pip install -r .github/l10n/requirements.txt
       - name: Lint mozilla.org files
         run: |
           moz-fluent-lint l10n/en --config .github/l10n/linter_config.yml
+      - name: Check TOML files
+        run: |
+          python .github/l10n/check_toml_configs.py --path .
