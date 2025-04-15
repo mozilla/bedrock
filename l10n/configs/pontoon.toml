@@ -249,9 +249,6 @@ locales = [
     reference = "en/firefox/whatsnew/whatsnew.ftl"
     l10n = "{locale}/firefox/whatsnew/whatsnew.ftl"
 [[paths]]
-    reference = "en/firefox/whatsnew/whatsnew-developer-mdnplus.ftl"
-    l10n = "{locale}/firefox/whatsnew/whatsnew-developer-mdnplus.ftl"
-[[paths]]
     reference = "en/mozorg/contribute.ftl"
     l10n = "{locale}/mozorg/contribute.ftl"
 [[paths]]
