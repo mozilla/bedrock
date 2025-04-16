@@ -7,8 +7,8 @@
 'use strict';
 
 const { test, expect } = require('@playwright/test');
-const openPage = require('../scripts/open-page');
-const url = '/legal/privacy/firefox.html#health-report';
+const openPage = require('../../scripts/open-page');
+const url = '/legal/privacy/firefox.html#crash-reporter';
 
 test.describe(
     `${url} page`,
@@ -23,7 +23,7 @@ test.describe(
         test('health report redirect', async ({ page }) => {
             // Expected redirect URL
             const expectedRedirectUrl =
-                'https://support.mozilla.org/en-US/kb/technical-and-interaction-data';
+                'https://support.mozilla.org/en-US/kb/crash-report';
 
             // Wait for the redirect to happen
             await page.waitForURL(expectedRedirectUrl, {
