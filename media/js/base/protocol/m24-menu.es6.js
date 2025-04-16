@@ -74,6 +74,9 @@ MzpMenu.close = () => {
         _options.onMenuClose();
     }
 
+    // reset keyboard navigation focus trap for MzpNavigation
+    window.MzpNavigation.resetFocusListFunction();
+
     return current.length > 0;
 };
 
