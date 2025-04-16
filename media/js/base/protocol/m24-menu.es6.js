@@ -36,6 +36,15 @@ MzpMenu.open = (el, animate) => {
     if (typeof _options.onMenuOpen === 'function') {
         _options.onMenuOpen(el);
     }
+
+    // set new nav focusable elements to be focusable elements on MzpMenu
+    if (typeof window.MzpNavigation !== 'undefined') {
+        if (typeof window.MzpNavigation.setFocusList === 'function') {
+            window.MzpNavigation.setFocusList(
+                '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .mzp-is-selected a'
+            );
+        }
+    }
 };
 
 /**
@@ -64,6 +73,9 @@ MzpMenu.close = () => {
     if (typeof _options.onMenuClose === 'function' && current.length > 0) {
         _options.onMenuClose();
     }
+
+    // reset keyboard navigation focus trap for MzpNavigation
+    window.MzpNavigation.resetFocusListFunction();
 
     return current.length > 0;
 };
@@ -111,6 +123,9 @@ MzpMenu.toggle = (el) => {
         if (typeof _options.onMenuClose === 'function') {
             _options.onMenuClose();
         }
+
+        // reset keyboard navigation focus trap for MzpNavigation
+        window.MzpNavigation.resetFocusListFunction();
     }
 };
 

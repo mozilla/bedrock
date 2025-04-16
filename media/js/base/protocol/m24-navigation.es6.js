@@ -4,6 +4,8 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import { trapKeyboardFocus } from './m24-keyboard-focus-trap.es6';
+
 const MzpNavigation = {};
 let _navElem;
 let _navItemsLists;
@@ -20,6 +22,27 @@ const _wideBreakpoint = '768px';
 const _tallBreakpoint = '600px';
 let _mqLargeNav;
 const _viewport = document.getElementsByTagName('html')[0];
+let _navigationKeyboardFocusTrapCleanUp = null;
+
+// MzpNavigation focusable element class list
+const _defaultFocusList =
+    '.m24-c-navigation-logo-link, .m24-c-navigation-menu-button, .m24-c-menu-title';
+let _focusList = _defaultFocusList;
+
+/**
+ * set class list for focusable elements
+ * @param {String} list - class list to determine focusable elements.
+ */
+MzpNavigation.setFocusList = (list) => {
+    _focusList = list;
+};
+
+/**
+ * reset class list for focusable elements as the default one
+ */
+MzpNavigation.resetFocusListFunction = () => {
+    _focusList = _defaultFocusList;
+};
 
 /**
  * Does the viewport meet the minimum width and height
@@ -176,9 +199,21 @@ MzpNavigation.onClick = (e) => {
         if (typeof _options.onNavOpen === 'function') {
             _options.onNavOpen(thisNavItemList);
         }
+
+        // trap keyboard navigation focus for MzpNavigation
+        _navigationKeyboardFocusTrapCleanUp = trapKeyboardFocus(
+            () => !MzpNavigation.isLargeViewport(),
+            document.querySelector('.m24-navigation-refresh'),
+            () => _focusList
+        );
     } else {
         if (typeof _options.onNavClose === 'function') {
             _options.onNavClose(thisNavItemList);
+        }
+
+        if (_navigationKeyboardFocusTrapCleanUp !== null) {
+            _navigationKeyboardFocusTrapCleanUp();
+            _navigationKeyboardFocusTrapCleanUp = null;
         }
     }
 };
