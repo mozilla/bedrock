@@ -34,7 +34,9 @@ function showBanner() {
 
 function hideBanner() {
     // Ensure all elements are available before proceeding
-    if (!dadJokesBanner || !dadJokesBannerClose || !emojiWrapper) return;
+    if (!dadJokesBanner || !dadJokesBannerClose || !emojiWrapper) { 
+        return;
+    }
 
     // GA4
     window.dataLayer.push({
