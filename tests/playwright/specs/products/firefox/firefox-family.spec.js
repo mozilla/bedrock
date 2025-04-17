@@ -38,8 +38,7 @@ test.describe(
             await expect(pdfButton).toBeVisible();
         });
 
-        // fixme() can be removed once https://github.com/mozilla/bedrock/issues/16193 is resolved.
-        test.fixme('Dad jokes banner can be dismissed', async ({ page }) => {
+        test('Dad jokes banner can be dismissed', async ({ page }) => {
             const dadJokesBanner = page.getByTestId('dad-jokes-banner');
             const bannerCloseButton = page.getByTestId('button-banner-close');
 
