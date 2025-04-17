@@ -82,7 +82,9 @@ const init = function () {
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
 
-    if (!dadJokesBanner || !dadJokesBannerClose) return;
+    if (!dadJokesBanner || !dadJokesBannerClose) {
+        return;
+    }
 
     // Create emoji wrapper with images
     const eyeroll = '/media/img/firefox/family/banner-emoji-eyeroll.svg';
