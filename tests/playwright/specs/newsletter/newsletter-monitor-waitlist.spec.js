@@ -8,7 +8,12 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../scripts/open-page');
-const url = '/en-US/newsletter/monitor-waitlist/';
+const url = '/en-US/';
+const slugs = [
+    'newsletter/monitor-waitlist',
+    'products/monitor/waitlist-plus',
+    'products/monitor/waitlist-scan'
+];
 
 test.describe(
     `${url} page`,
@@ -16,63 +21,81 @@ test.describe(
         tag: '@newsletter'
     },
     () => {
-        test('Waitlist submit success', async ({ page, browserName }) => {
-            await openPage(url + '?geo=us', page, browserName);
+        for (const slug of slugs) {
+            test(`Waitlist submit success /${slug}/`, async ({
+                page,
+                browserName
+            }) => {
+                await openPage(url + `${slug}/?geo=us`, page, browserName);
 
-            const form = page.getByTestId('newsletter-form');
-            const emailField = page.getByTestId('newsletter-email-input');
-            const privacyCheckbox = page.getByTestId(
-                'newsletter-privacy-checkbox'
-            );
-            const submitButton = page.getByTestId('newsletter-submit-button');
-            const thanksMessage = page.getByTestId('newsletter-thanks-message');
+                const form = page.getByTestId('newsletter-form');
+                const emailField = page.getByTestId('newsletter-email-input');
+                const privacyCheckbox = page.getByTestId(
+                    'newsletter-privacy-checkbox'
+                );
+                const submitButton = page.getByTestId(
+                    'newsletter-submit-button'
+                );
+                const thanksMessage = page.getByTestId(
+                    'newsletter-thanks-message'
+                );
 
-            // expand form before running test
-            await submitButton.click();
+                // expand form before running test
+                await submitButton.click();
 
-            await expect(thanksMessage).not.toBeVisible();
-            await emailField.fill('success@example.com');
-            await privacyCheckbox.click();
-            await submitButton.click();
-            await expect(form).not.toBeVisible();
-            await expect(thanksMessage).toBeVisible();
-        });
+                await expect(thanksMessage).not.toBeVisible();
+                await emailField.fill('success@example.com');
+                await privacyCheckbox.click();
+                await submitButton.click();
+                await expect(form).not.toBeVisible();
+                await expect(thanksMessage).toBeVisible();
+            });
 
-        test('Waitlist submit failure', async ({ page, browserName }) => {
-            await openPage(url + '?geo=us', page, browserName);
+            test(`Waitlist submit failure /${slug}/`, async ({
+                page,
+                browserName
+            }) => {
+                await openPage(url + `${slug}/?geo=us`, page, browserName);
 
-            const emailField = page.getByTestId('newsletter-email-input');
-            const privacyCheckbox = page.getByTestId(
-                'newsletter-privacy-checkbox'
-            );
-            const submitButton = page.getByTestId('newsletter-submit-button');
-            const thanksMessage = page.getByTestId('newsletter-thanks-message');
-            const errorMessage = page.getByTestId('newsletter-error-message');
+                const emailField = page.getByTestId('newsletter-email-input');
+                const privacyCheckbox = page.getByTestId(
+                    'newsletter-privacy-checkbox'
+                );
+                const submitButton = page.getByTestId(
+                    'newsletter-submit-button'
+                );
+                const thanksMessage = page.getByTestId(
+                    'newsletter-thanks-message'
+                );
+                const errorMessage = page.getByTestId(
+                    'newsletter-error-message'
+                );
 
-            // expand form before running test
-            await page.getByTestId('newsletter-submit-button').click();
+                // expand form before running test
+                await page.getByTestId('newsletter-submit-button').click();
 
-            await expect(errorMessage).not.toBeVisible();
-            await emailField.fill('failure@example.com');
-            await privacyCheckbox.click();
-            await submitButton.click();
-            await expect(errorMessage).toBeVisible();
-            await expect(thanksMessage).not.toBeVisible();
-        });
+                await expect(errorMessage).not.toBeVisible();
+                await emailField.fill('failure@example.com');
+                await privacyCheckbox.click();
+                await submitButton.click();
+                await expect(errorMessage).toBeVisible();
+                await expect(thanksMessage).not.toBeVisible();
+            });
 
-        test('Waitlist unavailable in country', async ({
-            page,
-            browserName
-        }) => {
-            await openPage(url + '?geo=de', page, browserName);
+            test(`Waitlist unavailable in country /${slug}/`, async ({
+                page,
+                browserName
+            }) => {
+                await openPage(url + `${slug}/?geo=de`, page, browserName);
 
-            const newsletterForm = page.getByTestId('newsletter-form');
-            const unavailableMessage = page.getByTestId(
-                'waitlist-not-available'
-            );
+                const newsletterForm = page.getByTestId('newsletter-form');
+                const unavailableMessage = page.getByTestId(
+                    'waitlist-not-available'
+                );
 
-            await expect(newsletterForm).not.toBeVisible();
-            await expect(unavailableMessage).toBeVisible();
-        });
+                await expect(newsletterForm).not.toBeVisible();
+                await expect(unavailableMessage).toBeVisible();
+            });
+        }
     }
 );
