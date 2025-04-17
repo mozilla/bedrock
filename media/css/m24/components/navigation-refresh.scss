@@ -32,6 +32,10 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     display: flex;
     width: 100%;
 
+    * {
+        line-height: 1.1;
+    }
+
     @media #{$mq-md} {
         display: block;
     }
