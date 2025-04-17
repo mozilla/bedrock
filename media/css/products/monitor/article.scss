@@ -163,27 +163,21 @@ html {
             max-width: 75ch;
         }
 
-        h1 {
-            text-wrap: balance;
-        }
-
         h2 {
             margin-bottom: $layout-xs;
             margin-top: $layout-sm;
-            text-wrap: balance;
         }
 
         h3 {
             margin-bottom: $layout-xs;
             margin-top: $layout-sm;
-            text-wrap: balance;
+
         }
 
         h4 {
             @include text-body-lg;
             font-family: var(--body-font-family);
             margin-bottom: 0;
-            text-wrap: balance;
         }
 
         @media #{$mq-md} {

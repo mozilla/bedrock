@@ -61,7 +61,6 @@ $max-footer-content-width: $content-max;
             margin-bottom: 0;
             line-height: 1.3;
             font-weight: 600;
-            font-family: $primary-font;
             text-align: start;
 
             @media #{$mq-lg} {
@@ -104,13 +103,11 @@ $max-footer-content-width: $content-max;
             }
 
             p {
-                font-family: $primary-font;
                 font-weight: 400;
             }
         }
 
         .error-try-again-later {
-            font-family: $primary-font;
             font-weight: 400;
         }
     }
@@ -127,7 +124,6 @@ $max-footer-content-width: $content-max;
             margin-bottom: 0;
             line-height: 1.3;
             font-weight: 600;
-            font-family: $primary-font;
             text-align: start;
 
             @media #{$mq-lg} {
@@ -169,7 +165,6 @@ $max-footer-content-width: $content-max;
         input[type="email"] {
             margin-bottom: $spacer-lg;
             width: 100%;
-            font-family: $primary-font;
 
             @media #{$mq-md} {
                 min-width: 100%;
@@ -181,7 +176,6 @@ $max-footer-content-width: $content-max;
         }
 
         select {
-            font-family: $primary-font;
             width: 100%;
             @include bidi(((background-position, right 8px center, 8px center),));
             background: $m24-color-light-gray url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
@@ -234,7 +228,6 @@ $max-footer-content-width: $content-max;
             margin-bottom: 0;
             line-height: 1.3;
             font-weight: 600;
-            font-family: $primary-font;
             text-align: start;
 
             @media #{$mq-lg} {
