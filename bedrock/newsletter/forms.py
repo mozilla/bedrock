@@ -257,4 +257,4 @@ class EmailForm(forms.Form):
     Form to enter email, e.g. to be sent a recovery message
     """
 
-    email = forms.EmailField(widget=EmailInput(attrs={"required": "required"}))
+    email = forms.EmailField(widget=EmailInput(attrs={"required": "required", "data-testid": "newsletter-email-input"}))

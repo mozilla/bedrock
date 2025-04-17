@@ -5,8 +5,6 @@
 from pypom import Page, Region
 from selenium.webdriver.common.by import By
 
-from pages.regions.newsletter import NewsletterEmbedForm
-
 
 class ScrollElementIntoView:
     def scroll_element_into_view(self, strategy, locator):
@@ -39,10 +37,6 @@ class BasePage(ScrollElementIntoView, Page):
     @property
     def navigation(self):
         return self.Navigation(self)
-
-    @property
-    def newsletter(self):
-        return NewsletterEmbedForm(self)
 
     class Navigation(BaseRegion):
         _root_locator = (By.CLASS_NAME, "m24-navigation-refresh")

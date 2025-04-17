@@ -28,7 +28,7 @@
     {% if country_code == "US" %}
       {{ email_newsletter_form(newsletters='monitor-waitlist', include_title=False, include_country=False, include_language=False, submit_text='Sign up now', spinner_color='#0c99d5') }}
     {% else %}
-      <p class="c-not-available">Sorry, this service is not currently available in your country.</p>
+      <p class="c-not-available" data-testid="waitlist-not-available">Sorry, this service is not currently available in your country.</p>
     {% endif %}
     </div>
   </section>

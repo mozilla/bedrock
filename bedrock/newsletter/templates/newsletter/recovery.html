@@ -33,12 +33,12 @@
   <div class="mzp-l-content mzp-t-content-sm">
     <h1 class="mzp-u-title-sm">{{ ftl('newsletters-manage-your-newsletter') }}</h1>
 
-    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
+    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form" data-testid="newsletter-recovery-form">
       <header class="mzp-c-newsletter-header">
         <p>{{ ftl('newsletters-enter-your-email-address') }}</p>
       </header>
 
-      <div class="mzp-c-form-errors {% if not messages %}hidden{% endif %}" id="newsletter-errors">
+      <div class="mzp-c-form-errors {% if not messages %}hidden{% endif %}" id="newsletter-errors" data-testid="newsletter-recovery-error-message">
         <ul class="mzp-u-list-styled">
           <li class="error-email-invalid hidden">{{ ftl('newsletters-this-is-not-a-valid-email') }}</li>
           <li class="error-email-not-found hidden">{{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}</li>
@@ -52,7 +52,7 @@
         </ul>
       </div>
 
-      <div class="newsletter-recovery-form-success-msg hidden">
+      <div class="newsletter-recovery-form-success-msg hidden" data-testid="newsletter-recovery-thanks">
         <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
       </div>
 
@@ -62,7 +62,7 @@
           {{ field_with_attrs(form.email, class='mzp-c-field-control'|safe) }}
         </div>
         <div class="mzp-c-button-container mzp-l-stretch">
-          <button class="mzp-c-button" id="newsletter-submit" type="submit">{{ ftl('newsletters-send-me-a-link') }}</button>
+          <button class="mzp-c-button" id="newsletter-submit" type="submit" data-testid="newsletter-recovery-submit">{{ ftl('newsletters-send-me-a-link') }}</button>
         </div>
       </div>
     </form>

@@ -10,18 +10,40 @@
 {% if release.product == 'Firefox for iOS' %}
   {% set product_name = release.product %}
   {% set download_button_primary %}
-    {{ apple_app_store_button(href=app_store_url('firefox', 'firefox-release-notes'), id='download-ios-primary') }}
+    {{ apple_app_store_button(
+      href=app_store_url('firefox', 'firefox-release-notes'),
+      id='download-ios-primary',
+      extra_data_attributes={
+        'testid': 'download-ios-primary'
+      }
+    ) }}
   {% endset %}
   {% set download_button_secondary %}
-    {{ apple_app_store_button(href=app_store_url('firefox', 'firefox-release-notes'), id='download-ios-secondary') }}
+    {{ apple_app_store_button(
+      href=app_store_url('firefox', 'firefox-release-notes'),
+      id='download-ios-secondary',
+      extra_data_attributes={
+        'testid': 'download-ios-secondary'
+      }
+    ) }}
   {% endset %}
 {% elif release.product == 'Firefox for Android' %}
   {% set product_name = 'Firefox for Android' %}
   {% set download_button_primary %}
-    {{ google_play_button(id='download-android-primary') }}
+    {{ google_play_button(
+      id='download-android-primary',
+      extra_data_attributes={
+        'testid': 'download-android-primary'
+      }
+    ) }}
   {% endset %}
   {% set download_button_secondary %}
-    {{ google_play_button(id='download-android-secondary') }}
+    {{ google_play_button(
+      id='download-android-secondary',
+      extra_data_attributes={
+        'testid': 'download-android-secondary'
+      }
+    ) }}
   {% endset %}
   {% set download_all_link = firefox_url('android', 'all', channel=channel_name|lower()) %}
 {% elif release.product == 'Firefox' %}
