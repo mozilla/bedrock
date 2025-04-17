@@ -5,8 +5,12 @@
 # Fix for pypom being incompatible with Python 3.10+ due to
 # "Moved Collections Abstract Base Classes to the collections.abc module."
 import collections
+import collections.abc
 
-collections.Iterable = collections.abc.Iterable
+# Shim `collections.Iterable`` for pypom.
+# Workaround for pyupgrade trying to rewrite `collections.Iterable` to `collections.abc.Iterable`.
+setattr(collections, "Iterable", collections.abc.Iterable)
+
 
 # The above is set before importing ``WebView`` to avoid ``AttributeError``.
 from pypom.view import WebView  # noqa: E402

@@ -212,4 +212,3 @@ jobs:
             rm -rf ./$TMP_DIR/ ./$TMP_DIR_HASHED/
             docker kill assets-tmp
             docker rm assets-tmp
-

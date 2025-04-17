@@ -20,6 +20,8 @@ repos:
     -   id: check-shebang-scripts-are-executable
     -   id: check-yaml
     -   id: end-of-file-fixer
+        exclude_types:
+          - svg
     -   id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=md
@@ -110,3 +112,13 @@ repos:
         # args: ["--branches", "main", "other_branch"]
     -   id: check-unapplied-migrations
     -   id: check-absent-migrations
+  - repo: https://github.com/asottile/pyupgrade
+    rev: "v3.19.1"
+    hooks:
+    - id: pyupgrade
+      args: [--py312]
+  - repo: https://github.com/adamchainz/django-upgrade
+    rev: "1.24.0"  # replace with latest tag on GitHub
+    hooks:
+    -   id: django-upgrade
+        args: [--target-version, "5.1"]

@@ -14,6 +14,3 @@ welcome-page22-update-now = <strong>Your version of { -brand-name-firefox } will
 
 welcome-page22-update-now-cta = Update now
 welcome-page22-usually-takes = Usually takes 2–3 minutes
-
-
-
