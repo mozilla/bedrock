@@ -1,0 +1,30 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import "../../protocol/components/video";
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
+
+.wnp-content-title {
+    // keep small for initial split screen sizes
+    @include text-title-sm;
+    text-wrap: balance;
+
+    @media #{$mq-lg} {
+        @include text-title-md;
+    }
+}
+
+@media #{$mq-md} {
+    .wnp-content-tagline {
+        max-width: 25rem;
+    }
+
+    :where([lang="de"], [lang="fr"]) .wnp-content-tagline {
+        max-width: 28rem;
+    }
+}
