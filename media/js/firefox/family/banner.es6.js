@@ -33,6 +33,11 @@ function showBanner() {
 }
 
 function hideBanner() {
+    // Ensure all elements are available before proceeding
+    if (!dadJokesBanner || !dadJokesBannerClose || !emojiWrapper) {
+        return;
+    }
+
     // GA4
     window.dataLayer.push({
         event: 'widget_action',
@@ -40,30 +45,36 @@ function hideBanner() {
         action: 'accept',
         name: 'dad-jokes-banner'
     });
+
+    // Disable button to prevent repeated clicks
+    dadJokesBannerClose.setAttribute('disabled', 'true');
+    dadJokesBannerClose.removeEventListener('click', hideBanner);
+
     // start emoji animation according to user preference
     const userPrefAnimation = motionAllowed()
         ? 'animate-bubbles'
         : 'animate-emoji-appearance';
     emojiWrapper.classList.add(userPrefAnimation);
-    dadJokesBannerClose.setAttribute('disabled', 'true');
-    // fade out banner
-    emojiWrapper.addEventListener('animationend', (e) => fadeOutBanner(e));
-    // remove banner from accessibility tree
-    dadJokesBanner.addEventListener('transitionend', removeBanner);
-    // remove unusable event listeners
-    dadJokesBannerClose.removeEventListener('click', hideBanner);
-    emojiWrapper.removeEventListener('animationend', (e) => fadeOutBanner(e));
-    dadJokesBanner.removeEventListener('transitionend', removeBanner);
+
+    // Wait for emoji animation to finish, then fade out and remove the banner
+    emojiWrapper.addEventListener('animationend', onEmojiAnimationEnd, {
+        once: true
+    });
 }
 
-function fadeOutBanner(e) {
-    if (!e.target.nextSibling) {
-        dadJokesBanner.classList.remove('fade-in-banner');
-    }
+function onEmojiAnimationEnd() {
+    // Start the fade-out AFTER emoji animation completes
+    dadJokesBanner.classList.remove('fade-in-banner');
+    dadJokesBanner.classList.add('fade-out-banner');
+
+    // Wait for fade-out to complete before removing from DOM
+    dadJokesBanner.addEventListener('transitionend', onFadeOutTransitionEnd, {
+        once: true
+    });
 }
 
-function removeBanner() {
-    dadJokesBanner.classList.add('hide-banner');
+function onFadeOutTransitionEnd() {
+    dadJokesBanner.remove();
 }
 
 const init = function () {
@@ -71,7 +82,11 @@ const init = function () {
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
 
-    // create emoji wrapper and images inside banner
+    if (!dadJokesBanner || !dadJokesBannerClose) {
+        return;
+    }
+
+    // Create emoji wrapper with images
     const eyeroll = '/media/img/firefox/family/banner-emoji-eyeroll.svg';
     const grimace = '/media/img/firefox/family/banner-emoji-grimace.svg';
 
