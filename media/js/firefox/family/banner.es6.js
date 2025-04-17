@@ -34,7 +34,9 @@ function showBanner() {
 
 function hideBanner() {
     // Ensure all elements are available before proceeding
-    if (!dadJokesBanner || !dadJokesBannerClose || !emojiWrapper) return;
+    if (!dadJokesBanner || !dadJokesBannerClose || !emojiWrapper) {
+        return;
+    }
 
     // GA4
     window.dataLayer.push({
@@ -80,7 +82,9 @@ const init = function () {
     dadJokesBanner = document.getElementById('dad-jokes-banner');
     dadJokesBannerClose = document.getElementById('dad-jokes-banner-close');
 
-    if (!dadJokesBanner || !dadJokesBannerClose) return;
+    if (!dadJokesBanner || !dadJokesBannerClose) {
+        return;
+    }
 
     // Create emoji wrapper with images
     const eyeroll = '/media/img/firefox/family/banner-emoji-eyeroll.svg';
