@@ -57,5 +57,5 @@ https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.2.0.t
 wagtail-localize-smartling==0.10.2
 wagtail-localize==1.11.3
 Wand==0.6.13  # For animated GIF support
-Wagtail==6.3.3
+Wagtail==6.4.1
 whitenoise==6.9.0

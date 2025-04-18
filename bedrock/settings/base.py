@@ -2300,7 +2300,7 @@ if WAGTAIL_ENABLE_ADMIN:
     # but only for deployments where the CMS is enabled. This is needed to support
     # complex pages with lots of (small, but) nested fields.
     # Resolves https://mozilla.sentry.io/issues/5800147294
-    DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
+    DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
 
 def lazy_wagtail_langs():
