@@ -20,19 +20,19 @@ from .base import *  # noqa: F403, F405
 ROOT_URLCONF = "bedrock.urls"
 
 # CSP settings for MOZORG, expanded upon later:
-_csp_default_src = [
+_csp_default_src = {
     csp.constants.SELF,
     "*.mozilla.net",
     "*.mozilla.org",
     "*.mozilla.com",
-]
-_csp_img_src = [
+}
+_csp_img_src = {
     "data:",
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
-]
-_csp_script_src = [
+}
+_csp_script_src = {
     # TODO change settings so we don't need unsafes even in dev
     csp.constants.UNSAFE_INLINE,
     csp.constants.UNSAFE_EVAL,
@@ -42,19 +42,19 @@ _csp_script_src = [
     "www.youtube.com",
     "s.ytimg.com",
     "js.stripe.com",
-]
-_csp_style_src = [
+}
+_csp_style_src = {
     # TODO fix things so that we don't need this
     csp.constants.UNSAFE_INLINE,
-]
-_csp_child_src = [
+}
+_csp_frame_src = {
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "accounts.firefox.com",
     "www.youtube.com",
     "js.stripe.com",
-]
-_csp_connect_src = [
+}
+_csp_connect_src = {
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "region1.google-analytics.com",
@@ -64,9 +64,8 @@ _csp_connect_src = [
     FXA_ENDPOINT,
     "stage.cjms.nonprod.cloudops.mozgcp.net",
     "cjms.services.mozilla.com",
-]
-_csp_connect_extra_for_dev = []
-_csp_font_src = []
+}
+_csp_font_src = set()
 
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
@@ -84,38 +83,31 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
 
 # 3. DJANGO-CSP SETTINGS
-extra_csp_default_src = config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False))
-if extra_csp_default_src:
-    _csp_default_src = list(set(_csp_default_src + extra_csp_default_src))
-if DEV:
-    if _csp_connect_extra_for_dev:
-        _csp_connect_src = list(set(_csp_connect_src + _csp_connect_extra_for_dev))
-_csp_child_src = list(set(_csp_default_src + _csp_child_src))
-csp_extra_frame_src = config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False))
-if csp_extra_frame_src:
-    _csp_child_src = list(set(_csp_child_src + csp_extra_frame_src))
+if extra_csp_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):
+    _csp_default_src |= set(extra_csp_default_src)
+_csp_frame_src |= _csp_default_src
+if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False)):
+    _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
 csp_ro_report_uri = config("CSP_RO_REPORT_URI", default="") or None
 # On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
 if WAGTAIL_ENABLE_ADMIN:
-    _csp_frame_ancestors = [csp.constants.SELF]
+    _csp_frame_ancestors = {csp.constants.SELF}
 else:
-    _csp_frame_ancestors = [csp.constants.NONE]
+    _csp_frame_ancestors = {csp.constants.NONE}
 
 CONTENT_SECURITY_POLICY = {
     # Default report percentage to 1% just in case the env var isn't set, we don't want to bombard Sentry.
     "REPORT_PERCENTAGE": config("CSP_REPORT_PERCENTAGE", default="1.0", parser=float),
     "DIRECTIVES": {
         "default-src": _csp_default_src,
-        "img-src": list(set(_csp_default_src + _csp_img_src)),
-        "script-src": list(set(_csp_default_src + _csp_script_src)),
-        "style-src": list(set(_csp_default_src + _csp_style_src)),
-        "font-src": list(set(_csp_default_src + _csp_font_src)),
-        "child-src": _csp_child_src,
-        "connect-src": list(set(_csp_default_src + _csp_connect_src)),
-        # support older browsers (mainly Safari)
-        "frame-src": _csp_child_src,
+        "connect-src": _csp_default_src | _csp_connect_src,
+        "font-src": _csp_default_src | _csp_font_src,
         "frame-ancestors": _csp_frame_ancestors,
+        "frame-src": _csp_frame_src,
+        "img-src": _csp_default_src | _csp_img_src,
+        "script-src": _csp_default_src | _csp_script_src,
+        "style-src": _csp_default_src | _csp_style_src,
         "upgrade-insecure-requests": False if DEBUG else True,
         "report-uri": csp_report_uri,
     },
@@ -129,13 +121,13 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = [csp.constants.SELF]
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["media-src"] = [csp.constants.SELF, "assets.mozilla.net", "videos.cdn.mozilla.net"]
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = [csp.constants.NONE]
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"].remove(csp.constants.UNSAFE_INLINE)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = [csp.constants.NONE]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = {csp.constants.SELF}
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = {csp.constants.NONE}
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["media-src"] = {csp.constants.SELF, "assets.mozilla.net", "videos.cdn.mozilla.net"}
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = {csp.constants.NONE}
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
     # For `form-action`, include a trailing slash to avoid CSP's "exact match" path-part rules, unless exact matching is intended.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["form-action"] = [csp.constants.SELF, f"{BASKET_URL}/news/", FXA_ENDPOINT]
+    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["form-action"] = {csp.constants.SELF, f"{BASKET_URL}/news/", FXA_ENDPOINT}
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
@@ -143,14 +135,17 @@ if csp_ro_report_uri:
 # `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
 
 
-def _override_csp(csp, append: dict[str, list[str]] = None, replace: dict[str, list[str]] = None):
+def _override_csp(
+    csp: dict[str, dict[str, set[str]]],
+    append: dict[str, set[str]] = None,
+    replace: dict[str, set[str]] = None,
+) -> dict[str, dict[str, set[str]]]:
+    # Don't modify the original CSP settings.
     csp = deepcopy(csp)
 
     if append is not None:
         for key, value in append.items():
-            if key in csp["DIRECTIVES"]:
-                value = csp["DIRECTIVES"][key] + value
-            csp["DIRECTIVES"][key] = value
+            csp["DIRECTIVES"][key] = csp["DIRECTIVES"].get(key, set()) | value
 
     if replace is not None:
         for key, value in replace.items():
@@ -164,11 +159,11 @@ def _override_csp(csp, append: dict[str, list[str]] = None, replace: dict[str, l
 #
 
 # /cms-admin/images/ loads just-uploaded images as blobs.
-CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": ["blob:"]})
-CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": ["blob:"]})
+CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": {"blob:"}})
+CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": {"blob:"}})
 # The CMS admin frames itself for page previews.
-CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": [csp.constants.SELF]})
-CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": [csp.constants.SELF]})
+CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": {csp.constants.SELF}})
+CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": {csp.constants.SELF}})
 
 CSP_PATH_OVERRIDES = {
     # Order them from most specific to least.
