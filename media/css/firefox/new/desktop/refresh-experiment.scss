@@ -448,7 +448,7 @@ button.mzp-c-cta-link {
         position: absolute;
         top: 0;
         left: 0;
-        max-height: $layout-md;
+        max-height: $layout-sm;
     }
 
     p {
@@ -468,7 +468,7 @@ button.mzp-c-cta-link {
             float: left;
             width: calc(33.3% - (#{$h-grid-lg} - #{math.div($h-grid-lg, 3)}));
             margin-bottom: 0;
-            padding-top: 80px + $spacing-xl;
+            padding-top: 54px + $spacing-xl;
 
             &:nth-child(2n) {
                 margin-left: $h-grid-lg;
@@ -478,7 +478,11 @@ button.mzp-c-cta-link {
 
         img {
             float: none;
-            max-height: 80px;
+            max-height: 54px;
+        }
+
+        .t-cursor img {
+            max-height: 38px;
         }
     }
 }
@@ -547,6 +551,8 @@ button.mzp-c-cta-link {
 
     @media #{$mq-md} {
         margin-bottom: $layout-lg;
+        margin-left: -$layout-xl;
+        margin-right: -$layout-xl;
     }
 }
 
