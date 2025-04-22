@@ -6,6 +6,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseNotFound
 
 import pytest
+from wagtail.models import Page
 
 from bedrock.cms.middleware import CMSLocaleFallbackMiddleware
 
@@ -143,3 +144,23 @@ def test_CMSLocaleFallbackMiddleware_accept_language_header_lang_codes_are_conve
     response = middleware(request)
     assert response.status_code == 302
     assert response.headers["Location"] == "/pt-BR/test-page/child-page/"
+
+
+def test_CMSLocaleFallbackMiddleware_404_when_no_live_page_exists_only_drafts(
+    rf,
+    tiny_localized_site,
+):
+    # See https://github.com/mozilla/bedrock/issues/16202
+
+    # Unpublish all pages with the matching slug, so only drafts exist - and
+    # we don't expect to be served any of those, of course
+    child_pages = Page.objects.filter(slug="child-page")
+    child_pages.unpublish()
+
+    request = rf.get(
+        "/pt-BR/test-page/child-page/",
+        HTTP_ACCEPT_LANGUAGE="Pt-bR,de-DE,fr;q=0.8,sco;q=0.6",
+    )
+    middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
+    response = middleware(request)
+    assert response.status_code == 404  # rather than a redirect to `child_page`
