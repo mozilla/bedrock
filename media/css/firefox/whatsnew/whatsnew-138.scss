@@ -5,15 +5,9 @@
 @import 'includes/base';
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
-@import "../../protocol/components/video";
+@import '~@mozilla-protocol/core/protocol/css/components/video';
 @import 'includes/dark-mode';
 @import 'includes/mofo-donate-cta';
-
-// increase play icon contrast with yellow poster background
-.video-play::after {
-    opacity: 1;
-    filter: drop-shadow(1px 1px 1px $color-ink-80);
-}
 
 .wnp-content-title {
     // keep small for initial split screen sizes
