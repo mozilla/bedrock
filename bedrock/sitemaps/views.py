@@ -15,8 +15,8 @@ class SitemapView(RequireSafeMixin, TemplateView):
     content_type = "text/xml"
 
     def _get_locale(self):
-        if "is_none" in self.kwargs:
-            # is_none here refers to the sitemap_none.xml URL. the value of that kwarg
+        if "is_global" in self.kwargs:
+            # is_global here refers to the all-urls-global.xml URL. the value of that kwarg
             # when on that URL will be "_none" and will be None if not on that URL.
             # For that page we set the locale to the special value as that is what the entries
             # in the DB have recorded for locale for URLs that don't have a locale.
