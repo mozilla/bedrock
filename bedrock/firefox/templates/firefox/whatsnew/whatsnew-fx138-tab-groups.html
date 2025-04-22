@@ -15,17 +15,17 @@
 
 {% if LANG == 'de' %}
   {% set main_title = 'Übernimm die Kontrolle über deinen Browser – mit Tab-Gruppen' %}
-  {% set main_tagline = 'Sag dem Tab-Chaos Lebewohl! Bleibe fokussiert, nutze deine Zeit effizient und behalte stets den Überblick.' %}
+  {% set main_tagline = '<p>Sag dem Tab-Chaos Lebewohl! Bleibe fokussiert, nutze deine Zeit effizient und behalte stets den Überblick.</p><p>Zieh einfach einen Tab auf einen anderen, um eine Gruppe zu erstellen.</p>' %}
   {% set main_cta = 'Erfahre jetzt mehr' %}
   {% set main_cta_url = 'https://support.mozilla.org/de/kb/tab-groups' %}
 {% elif LANG == 'fr' %}
   {% set main_title = 'Prenez le contrôle de votre navigation avec les groupes d’onglets' %}
-  {% set main_tagline = 'Fini le trop-plein d’onglets. Organisez-vous et contrôlez votre temps et votre capacité d’attention.' %}
+  {% set main_tagline = '<p>Fini le trop-plein d’onglets. Organisez-vous et contrôlez votre temps et votre capacité d’attention.</p><p>Glissez un onglet sur un autre pour créer votre premier groupe.</p>' %}
   {% set main_cta = 'Montrez-moi' %}
   {% set main_cta_url = 'https://support.mozilla.org/fr/kb/groupes-onglets' %}
 {% else %}
   {% set main_title = 'Take control of your browsing with tab groups' %}
-  {% set main_tagline = 'No more tab overload. Stay organized and in control of your time and attention.' %}
+  {% set main_tagline = '<p>No more tab overload. Stay organized and in control of your time and attention.</p><p>Drag one tab onto another to create your first group.</p>' %}
   {% set main_cta = 'Show me how' %}
   {% set main_cta_url = 'https://support.mozilla.org/kb/tab-groups' %}
 {% endif %}
@@ -41,7 +41,7 @@
     media_after=True
     ) %}
       <h2 class="wnp-content-title">{{ main_title }}</h2>
-      <p class="wnp-content-tagline">{{ main_tagline }}</p>
+      <div class="wnp-content-tagline">{{ main_tagline | safe }}</div>
       <p class="wnp-main-cta"><a href="{{ main_cta_url }}?{{ utm_params }}" rel="external" data-cta-text="Show me how" data-cta-position="primary" class="mzp-c-button mzp-t-product">{{ main_cta }}</a></p>
   {% endcall %}
 
