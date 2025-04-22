@@ -2429,6 +2429,10 @@ WAGTAILIMAGES_EXTENSIONS = [
 #
 # NB: EVERY TIME you add a new Wagtail Page subclass to the CMS, you must enable
 # it here if you want it to be selectable as a new child page in Production
+#
+# You must ALSO consider if they need to be added to the DB export script. If
+# they are not, they will not be fully exported to the sqlite DB, which
+# may break things like demos and integration tests. See bin/export-db-to-sqlite.sh
 
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
