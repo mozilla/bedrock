@@ -56,6 +56,7 @@
     <li><a href="#eligible-bugs">What types of security bugs are eligible?</a></li>
     <li><a href="#dos-bugs">Why won't you provide a reward for denial of
       service bugs?</a></li>
+    <li><a href="#spoof-bugs">What type of spoofing bugs qualify for a reward?</a></li>
   </ul>
 
   <h3>Bug reporting, etc.</h3>
@@ -217,6 +218,24 @@
         graphics, sending excessively long mail messages, etc.). We have
         decided to concentrate our limited resources on rewarding people who
         find what we consider to be more serious security problems.</p>
+    </dd>
+
+    <dt id="spoof-bugs">What type of spoofing bugs qualify for a reward?</dt>
+    <dd>
+      <p>Spoofing bugs that are rated
+        <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">sec-high</a>
+        are elligible for a bounty.  The severity rating page is authoritative, but to
+        reiterate these bugs require a fairly high level of attacker control - specificaly
+        attacker controlled HTML with an attacker-controlled URL in the actual browser
+        address bar, retaining normal badging and iconography. When a bug is limited in
+        one aspect of this, we encourage you to explore ways to bypass that
+        limitation - your proof of concept should include a fully functional
+        compelling example fo a high-quality spoof.</p>
+      <p>Most URL, fullscreen, address bar, or browser chrome spoofing bugs will be rated
+        as sec-low, and we do not plan to pay a bounty on them; even when we use our
+        discretion to elevate certain bugs to a sec-moderate.  Many of the bugs in these
+        categories represent edge cases, partial obscuring of information, or unusual user
+        interaction.</p>
     </dd>
   </dl>
 
