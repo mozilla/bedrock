@@ -165,6 +165,9 @@ python manage.py dumpdata \
     products.VPNCallToActionSnippet \
     products.VPNResourceCenterIndexPage \
     products.VPNResourceCenterDetailPage \
+    products.MonitorCallToActionSnippet \
+    products.MonitorArticleIndexPage \
+    products.MonitorArticlePage \
     externalfiles.ExternalFile \
     security.Product \
     security.SecurityAdvisory \
