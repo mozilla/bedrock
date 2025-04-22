@@ -3,9 +3,9 @@
 {%- for locale in locales %}
   <sitemap>
     {% if locale == NO_LOCALE -%}
-      <loc>{{ settings.CANONICAL_URL }}/sitemap_none.xml</loc>
+      <loc>{{ settings.CANONICAL_URL }}/all-urls-global.xml</loc>
     {%- else -%}
-      <loc>{{ settings.CANONICAL_URL }}/{{ locale }}/sitemap.xml</loc>
+      <loc>{{ settings.CANONICAL_URL }}/{{ locale }}/all-urls.xml</loc>
     {%- endif %}
   </sitemap>
 {%- endfor %}

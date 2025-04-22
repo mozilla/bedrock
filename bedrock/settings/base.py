@@ -477,8 +477,8 @@ SUPPORTED_NONLOCALES = [
 # Paths that can exist either with or without a locale code in the URL.
 # Matches the whole URL path
 SUPPORTED_LOCALE_IGNORE = [
-    "/sitemap_none.xml",  # in sitemap urls
-    "/sitemap.xml",  # in sitemap urls
+    "/all-urls-global.xml",  # in sitemap urls
+    "/all-urls.xml",  # in sitemap urls
 ]
 # Pages that we don't want to be indexed by search engines.
 # Only impacts sitemap generator. If you need to disallow indexing of
@@ -529,10 +529,6 @@ EXTRA_INDEX_URLS = {
     "/privacy/firefox-klar/": ["de"],
     "/about/legal/impressum/": ["de"],
 }
-
-SITEMAPS_REPO = config("SITEMAPS_REPO", default="https://github.com/mozmeao/www-sitemap-generator.git")
-SITEMAPS_REPO_BRANCH = config("SITEMAPS_REPO_BRANCH", default="master")
-SITEMAPS_PATH = DATA_PATH / "sitemaps"
 
 # Pages that have different URLs for different locales, e.g.
 #   'firefox/private-browsing/': {
