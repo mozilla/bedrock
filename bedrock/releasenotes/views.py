@@ -52,9 +52,9 @@ def get_download_url(release):
         return ios_builds(release.channel)[0]["download_link"]
     else:
         if release.channel == "Aurora":
-            return reverse("firefox.channel.desktop") + "#developer"
+            return reverse("firefox.channel.desktop", fragment="developer")
         elif release.channel == "Beta":
-            return reverse("firefox.channel.desktop") + "#beta"
+            return reverse("firefox.channel.desktop", fragment="beta")
         else:
             return reverse("firefox.new")
 

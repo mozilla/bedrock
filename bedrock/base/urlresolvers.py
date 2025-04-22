@@ -15,6 +15,8 @@ def reverse(
     kwargs=None,
     current_app=None,
     locale=None,
+    query=None,
+    fragment=None,
 ):
     """
     Thin wrapper around Django's reverse that allows you to force the locale to something
@@ -28,4 +30,6 @@ def reverse(
             args=args,
             kwargs=kwargs,
             current_app=current_app,
+            query=query,
+            fragment=fragment,
         )
