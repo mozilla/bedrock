@@ -241,7 +241,7 @@ def test_page(minimal_site, rf, serving_method):  # noqa
     request = rf.get(_relative_url)
 
     resp = getattr(test_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test Heading" in page_content
     assert "Test Body" in page_content
 ```

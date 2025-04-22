@@ -43,7 +43,7 @@ class TestSitemapView(TestCase):
             </sitemapindex>"""
         )
         resp = self.client.get("/all-urls.xml")
-        assert resp.content.decode() == good_resp
+        assert resp.text == good_resp
 
     def test_none(self):
         good_resp = dedent(
@@ -59,7 +59,7 @@ class TestSitemapView(TestCase):
             </urlset>"""
         )
         resp = self.client.get("/all-urls-global.xml")
-        assert resp.content.decode() == good_resp
+        assert resp.text == good_resp
 
     def test_locales(self):
         good_resp = dedent(
@@ -75,7 +75,7 @@ class TestSitemapView(TestCase):
             </urlset>"""
         )
         resp = self.client.get("/de/all-urls.xml")
-        assert resp.content.decode() == good_resp
+        assert resp.text == good_resp
 
         good_resp = dedent(
             """\
@@ -90,7 +90,7 @@ class TestSitemapView(TestCase):
             </urlset>"""
         )
         resp = self.client.get("/fr/all-urls.xml")
-        assert resp.content.decode() == good_resp
+        assert resp.text == good_resp
 
     def test_post(self):
         resp = self.client.post("/en-US/all-urls.xml")

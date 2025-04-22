@@ -105,12 +105,12 @@ def test_decorating_django_view(lang_code_prefix, minimal_site, client):
     # Control case: undecorated view
     resp = client.get(f"{lang_code_prefix}/undecorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the undecorated view"
+    assert resp.text == "This is a dummy response from the undecorated view"
 
     # Show decorated view renders Django view initially, because there is no CMS page at that route yet
     resp = client.get("/decorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view"
+    assert resp.text == "This is a dummy response from the decorated view"
 
     # Show the decorated view will "prefer" to render the Wagtail page when it exists
     _set_up_cms_pages(
@@ -120,7 +120,7 @@ def test_decorating_django_view(lang_code_prefix, minimal_site, client):
 
     resp = client.get(f"{lang_code_prefix}/decorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert "This is a CMS page now, with the slug of path" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of path" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -135,7 +135,7 @@ def test_decorating_django_view__passing_fallback_lang_codes(
         follow=True,
     )
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view with locale strings passed in"
+    assert resp.text == "This is a dummy response from the decorated view with locale strings passed in"
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
@@ -151,7 +151,7 @@ def test_decorating_django_view__passing_fallback_lang_codes(
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of strings" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of strings" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -166,9 +166,7 @@ def test_decorating_django_view__passing_callable_for_locales(
         follow=True,
     )
     assert resp.status_code == 200
-    assert (
-        resp.content.decode("utf-8") == "This is a dummy response from the decorated view for the callable, taking () and {'a_slug': 'a-slug-here'}"
-    )
+    assert resp.text == "This is a dummy response from the decorated view for the callable, taking () and {'a_slug': 'a-slug-here'}"
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
@@ -184,7 +182,7 @@ def test_decorating_django_view__passing_callable_for_locales(
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of a-slug-here" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of a-slug-here" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -199,7 +197,7 @@ def test_decorating_django_view__passing_ftl_files(lang_code_prefix, minimal_sit
         follow=True,
     )
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view with fluent files explicitly passed in"
+    assert resp.text == "This is a dummy response from the decorated view with fluent files explicitly passed in"
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES", "fr-CA"]
     mock_get_active_locales.assert_called_once_with(
@@ -226,7 +224,7 @@ def test_decorating_django_view__passing_ftl_files(lang_code_prefix, minimal_sit
         force=True,
     )
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of files" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of files" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -236,7 +234,7 @@ def test_patching_in_urlconf__standard_django_view(lang_code_prefix, minimal_sit
     # because there is no CMS page at that route yet
     resp = client.get(f"{lang_code_prefix}/wrapped/view/path/", follow=True)
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the wrapped view"
+    assert resp.text == "This is a dummy response from the wrapped view"
 
     # Show the decorated view will "prefer" to render the Wagtail page when it exists
     _set_up_cms_pages(
@@ -246,7 +244,7 @@ def test_patching_in_urlconf__standard_django_view(lang_code_prefix, minimal_sit
 
     resp = client.get(f"{lang_code_prefix}/wrapped/view/path/", follow=True)
     assert resp.status_code == 200
-    assert "This is a CMS page now, with the slug of path" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of path" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -261,7 +259,7 @@ def test_patching_in_urlconf__standard_django_view__with_locale_list(
         follow=True,
     )
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the wrapped view"
+    assert resp.text == "This is a dummy response from the wrapped view"
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
@@ -277,7 +275,7 @@ def test_patching_in_urlconf__standard_django_view__with_locale_list(
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of strings" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of strings" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -292,7 +290,7 @@ def test_patching_in_urlconf__standard_django_view__with_callback_for_locales(
         follow=True,
     )
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the wrapped view"
+    assert resp.text == "This is a dummy response from the wrapped view"
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
@@ -308,7 +306,7 @@ def test_patching_in_urlconf__standard_django_view__with_callback_for_locales(
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of a-slug-here" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of a-slug-here" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -329,7 +327,7 @@ def test_patching_in_urlconf__standard_django_view__with_fluent_files(
         follow=True,
     )
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the wrapped view"
+    assert resp.text == "This is a dummy response from the wrapped view"
 
     mock_get_active_locales.assert_called_once_with(
         ["test/fluent1", "test/fluent2"],
@@ -355,7 +353,7 @@ def test_patching_in_urlconf__standard_django_view__with_fluent_files(
 
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES", "fr-CA"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
-    assert "This is a CMS page now, with the slug of files" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of files" in resp.text
 
 
 @pytest.mark.urls(__name__)
@@ -364,7 +362,7 @@ def test_draft_pages_do_not_get_preferred_over_django_views(lang_code_prefix, mi
     # Show decorated view renders Django view initially, because there is no CMS page at that route yet
     resp = client.get("/decorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view"
+    assert resp.text == "This is a dummy response from the decorated view"
 
     # Show the decorated view will "prefer" to render the Wagtail page when it exists
     leaf_page = _set_up_cms_pages(
@@ -374,14 +372,14 @@ def test_draft_pages_do_not_get_preferred_over_django_views(lang_code_prefix, mi
     assert leaf_page.live is True
     resp = client.get(f"{lang_code_prefix}/decorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert "This is a CMS page now, with the slug of path" in resp.content.decode("utf-8")
+    assert "This is a CMS page now, with the slug of path" in resp.text
 
     # Show how unpublishing will give us the Django view's content, because there is no
     # live CMS page to "prefer"
     leaf_page.unpublish()
     resp = client.get("/decorated/view/path/", follow=True)
     assert resp.status_code == 200
-    assert resp.content.decode("utf-8") == "This is a dummy response from the decorated view"
+    assert resp.text == "This is a dummy response from the decorated view"
 
 
 def _fake_callable():

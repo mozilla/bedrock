@@ -77,7 +77,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn(b"Please enter a URL.", response.content)
+        self.assertIn("Please enter a URL.", response.text)
 
     def test_view_post_honeypot(self):
         """
@@ -95,7 +95,7 @@ class TestFraudReport(TestCase):
         response = legal_views.fraud_report(request)
 
         assert response.status_code == 200
-        self.assertIn(b"An error has occurred", response.content)
+        self.assertIn("An error has occurred", response.text)
 
     def test_form_valid_data(self):
         """

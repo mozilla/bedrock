@@ -245,21 +245,21 @@ class TestMiecoEmail(TestCase):
     def test_not_post(self):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, b'{"error": 400, "message": "Only POST requests are allowed"}')
+        self.assertEqual(resp.text, '{"error": 400, "message": "Only POST requests are allowed"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
     def test_bad_json(self):
         resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, b'{"error": 400, "message": "Error decoding JSON"}')
+        self.assertEqual(resp.text, '{"error": 400, "message": "Error decoding JSON"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
     def test_invalid_email(self):
         resp = self.client.post(self.url, content_type="application/json", data='{"email": "foo@bar"}')
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, b'{"error": 400, "message": "Invalid form data"}')
+        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
@@ -267,7 +267,7 @@ class TestMiecoEmail(TestCase):
         self.data["message_id"] = "the-dude"
         resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
         self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.content, b'{"error": 400, "message": "Invalid form data"}')
+        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
@@ -280,7 +280,7 @@ class TestMiecoEmail(TestCase):
         mock_emailMessage.assert_called_once_with(
             views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
         )
-        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertEqual(resp.text, '{"status": "ok"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
@@ -294,7 +294,7 @@ class TestMiecoEmail(TestCase):
         mock_emailMessage.assert_called_once_with(
             views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
         )
-        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertEqual(resp.text, '{"status": "ok"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 
@@ -308,7 +308,7 @@ class TestMiecoEmail(TestCase):
         mock_emailMessage.assert_called_once_with(
             views.MIECO_EMAIL_SUBJECT["innovations"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["innovations"]
         )
-        self.assertEqual(resp.content, b'{"status": "ok"}')
+        self.assertEqual(resp.text, '{"status": "ok"}')
         self.assertIn("Access-Control-Allow-Origin", resp.headers)
         self.assertIn("Access-Control-Allow-Headers", resp.headers)
 

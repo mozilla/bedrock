@@ -43,8 +43,9 @@ class PositionTests(TestCase):
         url = reverse("careers.position", kwargs={"job_id": "aabbccdd", "source": "gh"})
         response = self.client.get(url, follow=True)
         self.assertEqual(response.status_code, 404)
-        self.assertTrue("<title>404: Job Not Found</title>" in str(response.content))
-        self.assertTrue(b"Sorry, we can\xe2\x80\x99t find that job posting" in response.content)
+        self.assertTrue("<title>404: Job Not Found</title>" in response.text)
+        self.assertTrue("Sorry, we can’t find that job posting" in response.text)
+
         self.assertTemplateUsed(response, "careers/404.html")
 
 

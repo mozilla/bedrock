@@ -35,7 +35,7 @@ def test_locale_redirect_logic_is_skipped_for_cms_page(
     request = rf.get(_relative_url)
 
     resp = page.serve(request)
-    assert "Test Page" in str(resp.content)
+    assert "Test Page" in resp.text
 
     l10n_utils.redirect_to_locale.assert_not_called()
     l10n_utils.redirect_to_best_locale.assert_not_called()
@@ -107,7 +107,7 @@ def test_locales_are_drawn_from_page_translations(minimal_site, rf, serving_meth
     request = rf.get(_relative_url)
 
     resp = getattr(page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test Page" in page_content
     assert '<option lang="en-US" value="en-US" selected>English</option>' in page_content
     assert '<option lang="fr" value="fr">Français</option>'.encode() in resp.content
