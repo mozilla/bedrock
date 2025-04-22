@@ -92,7 +92,7 @@ class CMSLocaleFallbackMiddleware:
                 full_url_path = f"{root}/{_url_path}"
                 possible_url_path_patterns.append(full_url_path)
 
-            cms_pages_with_viable_locales = Page.objects.live().filter(
+            cms_pages_with_viable_locales = Page.objects.filter(
                 url_path__in=possible_url_path_patterns,
                 # There's no extra value in filtering with locale__language_code__in=ranked_locales
                 # due to the locale code being embedded in the url_path strings
