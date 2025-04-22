@@ -98,7 +98,7 @@ class TestLegalDocView(TestCase):
         view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists")
         resp = view(req)
         assert "cache-control" not in resp  # This view is no longer cached at the Bedrock level
-        assert resp.content.decode("utf-8") == doc_value
+        assert resp.text == doc_value
         assert render_mock.call_args[0][2]["doc"] == doc_value
         lld_mock.assert_called_with("the_dude_exists", "de")
 

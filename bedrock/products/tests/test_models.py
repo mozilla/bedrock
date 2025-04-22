@@ -52,7 +52,7 @@ def test_vpn_resource_center_index_page(minimal_site, rf, serving_method):  # no
     request = rf.get(_relative_url)
 
     resp = getattr(test_index_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test VPN Resource Center Index Page Title" in page_content
     assert "Test Subtitle" in page_content
     assert "Test Detail Page 1 Description" in page_content
@@ -91,7 +91,7 @@ def test_vpn_resource_center_detail_page(minimal_site, rf, serving_method):  # n
     request = rf.get(_relative_url)
 
     resp = getattr(test_detail_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test VPN Resource Center Detail Page Title" in page_content
     assert "Test Detail Page Content" in page_content
     assert "Test Call To Action Bottom Heading" in page_content
@@ -131,7 +131,7 @@ def test_monitor_article_index_page(minimal_site, rf, serving_method):  # noqa
     request = rf.get(_relative_url)
 
     resp = getattr(test_index_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test Monitor Article Index Page Title" in page_content
     assert "Test Split Heading" in page_content
     assert "Test Article Heading" in page_content
@@ -176,7 +176,7 @@ def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
     request = rf.get(_relative_url)
 
     resp = getattr(test_article_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test Monitor Article Page Title" in page_content
     assert "Test Monitor Article Page Subheading" in page_content
     assert "Test Monitor Article Page Summary" in page_content

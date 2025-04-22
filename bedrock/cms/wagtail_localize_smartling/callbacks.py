@@ -31,7 +31,7 @@ def _get_html_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
             request=request,
             key=sharing_link.key,
         )
-        return resp.content.decode("utf-8")
+        return resp.text
     except Exception as ex:
         # Ensure Sentry gets any problem with turning the sharing link into HTML
         capture_exception(ex)

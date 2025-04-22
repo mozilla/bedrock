@@ -17,7 +17,7 @@ def _test(
     resp = client.get(url, follow=follow)
     assert resp.status_code == expected_status
     if expected_content is not None:
-        assert expected_content in str(resp.content)
+        assert expected_content in resp.text
 
 
 def test_healthz(client):

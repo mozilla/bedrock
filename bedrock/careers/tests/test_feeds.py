@@ -22,7 +22,7 @@ class FeedTests(TestCase):
         self.assertEqual(response["Content-Type"], "application/rss+xml; charset=utf-8")
         self.assertEqual(response.status_code, 200)
 
-        content = response.content.decode("utf-8")
+        content = response.text
         self.assertIn(reverse("careers.listings"), content)
         self.assertIn(url, content)
 
@@ -39,5 +39,4 @@ class FeedTests(TestCase):
         job_id_3 = "oFlWVfwc"
         job_3 = PositionFactory(job_id=job_id_3, job_locations="Remote")
         response = self.client.get(url, follow=True)
-        content = response.content.decode("utf-8")
-        self.assertNotIn(job_3.get_absolute_url(), content)
+        self.assertNotIn(job_3.get_absolute_url(), response.text)

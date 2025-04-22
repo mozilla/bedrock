@@ -40,7 +40,7 @@ def test_leadership_page(minimal_site, rf, serving_method):  # noqa
     request = rf.get(_relative_url)
 
     resp = getattr(leadership_page, serving_method)(request)
-    page_content = str(resp.content)
+    page_content = resp.text
     assert "Test Section Title" in page_content
     assert "Test Leadership Group" in page_content
     assert "Test Name" in page_content
