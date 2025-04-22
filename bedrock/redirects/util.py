@@ -15,6 +15,7 @@ from django.http import (
 from django.urls import NoReverseMatch, URLResolver, re_path, reverse
 from django.urls.resolvers import RegexPattern
 from django.utils.html import strip_tags
+from django.utils.http import url_has_allowed_host_and_scheme
 from django.views.decorators.vary import vary_on_headers
 
 import commonware.log
@@ -277,6 +278,11 @@ def redirect(
 
         if PROTOCOL_RELATIVE_RE.match(redirect_url):
             redirect_url = "/" + redirect_url.lstrip("/")
+
+        # Validate the redirect URL
+        if not url_has_allowed_host_and_scheme(redirect_url, allowed_hosts=settings.ALLOWED_HOSTS):
+            log.warning("Unsafe redirect URL detected: %s", redirect_url)
+            redirect_url = "/"
 
         return redirect_class(redirect_url)
 
