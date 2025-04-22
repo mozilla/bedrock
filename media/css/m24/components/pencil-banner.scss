@@ -52,3 +52,30 @@ html[data-pencil-banner-closed="true"] {
         display: none;
     }
 }
+
+.m24-pencil-banner-vpn-referral-link,
+.m24-pencil-banner-vpn-referral-link:link,
+.m24-pencil-banner-vpn-referral-link:visited {
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    text-decoration: underline !important;
+    padding: 0;
+    line-height: 1.2;
+
+    &.mzp-c-button.mzp-t-secondary:hover {
+        text-decoration: none !important;
+        background-color: transparent;
+    }
+
+    &.mzp-c-button.mzp-t-secondary:active {
+        text-decoration: none !important;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &.mzp-c-button.mzp-t-secondary:focus {
+        text-decoration: none !important;
+        border: none;
+    }
+}
