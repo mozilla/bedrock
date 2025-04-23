@@ -2,7 +2,7 @@ APScheduler==3.11.0
 babis==0.2.4
 basket-client==1.2.0
 bleach[css]==6.1.0
-boto3==1.37.20
+boto3==1.38.0
 chardet==5.2.0
 commonware==0.6.0
 contentful==2.3.2
@@ -11,7 +11,7 @@ dirsync==2.2.5
 dj-database-url==2.3.0
 django-cors-headers==4.7.0
 django-crum==0.7.9
-django-csp==4.0b4
+django-csp==4.0
 django-extensions==3.2.3
 django-jinja-markdown==1.1
 django-jinja==2.11.0
@@ -35,8 +35,8 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.8.0
-lxml==5.3.1  # Needed as a top-level dep so that it's available for BeautifulSoup, which doesn't explicitly pull it in
-Markdown==3.7
+lxml==5.3.1  # Needed for BeautifulSoup. Also, pinned since translate-toolkit==3.15.1 depends on lxml>=5.2.0,<5.4
+Markdown==3.8
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
@@ -45,15 +45,15 @@ psycopg[binary]==3.1.19
 PyGithub==2.6.1
 pyOpenSSL==25.0.0
 PyYAML==6.0.2
-qrcode==8.0
+qrcode==8.1
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests>=2.32.3  # min secure version
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
-sentry-sdk==2.24.1
+sentry-sdk==2.26.1
 supervisor==4.2.5
 timeago==1.0.16
-https://github.com/mozmeao/wagtaildraftsharing/archive/refs/tags/mozmeao-0.2.0.tar.gz#egg=wagtaildraftsharing
+wagtaildraftsharing==0.2.0
 wagtail-localize-smartling==0.10.2
 wagtail-localize==1.11.3
 Wand==0.6.13  # For animated GIF support
