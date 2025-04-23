@@ -8,10 +8,10 @@
 
  {% extends "firefox/new/desktop/base.html" %}
 
- {% set show_firefox_default_experiment = switch('experiment-firefox-new-refresh', ['en']) %}
+ {% set show_firefox_refresh_experiment = switch('experiment-firefox-new-refresh', ['en-US', 'en-CA']) %}
 
  {% block experiments %}
-   {% if show_firefox_default_experiment %}
+   {% if show_firefox_refresh_experiment %}
      {{ js_bundle('experiment-firefox-new-refresh-init') }}
    {% endif %}
  {% endblock %}
@@ -64,7 +64,7 @@
        <div class="c-block-body">
          <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
            <h2>Take control of your internet</h2>
-           <p>Go online with fewer distractions, noise and stress. Think of us as bubble wrap for your brain.</p>
+           <p>Go online with less distraction, noise and stress. Think of us as bubble wrap for your brain.</p>
          <div class="c-intro-download">
            {% block primary_cta %}
              {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
@@ -76,7 +76,17 @@
          </div>
        </div>
        <div class="c-block-media l-v-center">
-          <img alt="Firefox in dark mode." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/hero.png') }}" width="768">
+        {{ resp_img(
+          url='img/firefox/new/desktop/experiment-refresh/hero.png',
+          srcset={
+            'img/firefox/new/desktop/experiment-refresh/hero-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'c-block-media-img',
+            'alt': 'Firefox on desktop and mobile.',
+            'width': '768'
+          }
+        ) }}
        </div>
      </div>
    </section>
@@ -242,5 +252,7 @@
 
  {% block js %}
    {{ js_bundle('firefox_desktop_download') }}
-   {{ js_bundle('experiment-firefox-new-refresh-data') }}
+   {% if show_firefox_refresh_experiment %}
+    {{ js_bundle('experiment-firefox-new-refresh-data') }}
+   {% endif %}
  {% endblock %}

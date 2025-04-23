@@ -23,8 +23,8 @@ const init = () => {
         for (let i = 0; i < downloadButtons.length; i++) {
             const downloadButton = downloadButtons[i];
             // add cta-name values that are cta position + experiment variant
-            const ctaPosition = downloadButton.dataset.ctaPosition
-                ? downloadButton.dataset.ctaPosition
+            const ctaPosition = downloadButton.getAttribute('data-cta-position')
+                ? downloadButton.getAttribute('data-cta-position')
                 : 'unsupported';
             const ctaName = 'exp-new-refresh-' + v + ' : ' + ctaPosition;
             downloadButton.setAttribute('data-cta-name', ctaName);
