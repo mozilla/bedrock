@@ -52,28 +52,3 @@ html[data-pencil-banner-closed="true"] {
         display: none;
     }
 }
-
-.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link,
-.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link:link,
-.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link:visited {
-    background-color: transparent;
-    border: none;
-    border-radius: 2px;
-    text-decoration: underline !important;
-    padding: 0;
-    line-height: 1.2;
-
-    &:hover {
-        text-decoration: none !important;
-        background-color: transparent;
-    }
-
-    &:active {
-        text-decoration: none !important;
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    &:focus {
-        text-decoration: none !important;
-    }
-}
