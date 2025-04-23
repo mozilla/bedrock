@@ -1579,6 +1579,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-138-video-events.es6.js"
+      ],
+      "name": "firefox_whatsnew_138"
+    },
+    {
+      "files": [
         "js/firefox/firefox-20th/firefox-20th.js"
       ],
       "name": "firefox_20th"
