@@ -53,9 +53,9 @@ html[data-pencil-banner-closed="true"] {
     }
 }
 
-.m24-pencil-banner-vpn-referral-link,
-.m24-pencil-banner-vpn-referral-link:link,
-.m24-pencil-banner-vpn-referral-link:visited {
+.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link,
+.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link:link,
+.mzp-c-button.mzp-t-secondary.m24-pencil-banner-vpn-referral-link:visited {
     background-color: transparent;
     border: none;
     border-radius: 2px;
@@ -63,19 +63,17 @@ html[data-pencil-banner-closed="true"] {
     padding: 0;
     line-height: 1.2;
 
-    &.mzp-c-button.mzp-t-secondary:hover {
+    &:hover {
         text-decoration: none !important;
         background-color: transparent;
     }
 
-    &.mzp-c-button.mzp-t-secondary:active {
+    &:active {
         text-decoration: none !important;
-        border: none;
         background-color: rgba(0, 0, 0, 0.05);
     }
 
-    &.mzp-c-button.mzp-t-secondary:focus {
+    &:focus {
         text-decoration: none !important;
-        border: none;
     }
 }
