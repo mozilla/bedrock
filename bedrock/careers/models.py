@@ -29,6 +29,7 @@ class Position(models.Model):
     internal_job_id = models.PositiveIntegerField()
 
     NON_MOCO_DEPTS = [
+        "Pan Mozilla",
         "Mozilla Foundation",
         "MZLA/Thunderbird",
     ]
