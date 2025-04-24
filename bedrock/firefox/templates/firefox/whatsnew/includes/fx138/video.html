@@ -1,0 +1,29 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if LANG == "fr" %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/138/wnp-138-fr-high-res-v3.webm' %}
+  {% set poster_high_res_src = 'img/firefox/whatsnew/whatsnew138/poster-fr-high-res.png' %}
+{% elif LANG == "de" %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/138/wnp-138-de-high-res-v3.webm' %}
+  {% set poster_high_res_src = 'img/firefox/whatsnew/whatsnew138/poster-de-high-res.png' %}
+{% else %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/138/wnp-138-en-high-res-v3.webm' %}
+  {% set poster_high_res_src = 'img/firefox/whatsnew/whatsnew138/poster-en-high-res.png' %}
+{% endif %}
+
+<div class="mzp-c-video">
+  <video
+    id="wnp-video"
+    preload="none"
+    loop
+    controls
+    width="1136"
+    height="641"
+    poster="{{ static(poster_high_res_src) }}">
+      <source src="{{ video_src }}" type="video/webm">
+  </video>
+</div>

@@ -1308,6 +1308,61 @@ class TestWhatsNew(TestCase):
 
     # end 137.0 whatsnew tests
 
+    # begin 138.0 whatsnew tests
+
+    @override_settings(DEV=True)
+    def test_fx_138_0_0_en_US(self, render_mock):
+        """Should use whatsnew-fx138-tab-groups template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx138-tab-groups.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_138_0_0_en_CA(self, render_mock):
+        """Should use whatsnew-fx138-tab-groups template for en-CA locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-CA"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx138-tab-groups.html"]
+
+    def test_fx_138_0_0_de(self, render_mock):
+        """Should use whatsnew-fx138-tab-groups template for de locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "de"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx138-tab-groups.html"]
+
+    def test_fx_138_0_0_fr(self, render_mock):
+        """Should use whatsnew-fx138-tab-groups template for fr locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "fr"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx138-tab-groups.html"]
+
+    def test_fx_138_0_0_en_gb(self, render_mock):
+        """Should use whatsnew-fx138-tab-groups template for en-GB locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx138-tab-groups.html"]
+
+    @override_settings(DEV=True)
+    def test_fx_138_0_0_es_es(self, render_mock):
+        """Should use default WNP template for other locales"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "es-ES"
+        self.view(req, version="138.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/index.html"]
+
+    # end 138.0 whatsnew tests
+
 
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
 class TestFirstRun(TestCase):
