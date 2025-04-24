@@ -2111,6 +2111,7 @@ class TestVPNProductReferralLink(TestCase):
         link_to_pricing_page=False,
         page_anchor="",
         link_text=None,
+        is_cta_button_styled=True,
         class_name=None,
         optional_attributes=None,
         optional_parameters=None,
@@ -2120,8 +2121,16 @@ class TestVPNProductReferralLink(TestCase):
             req.locale = "en-US"
 
             return render(
-                f"""{{{{ vpn_product_referral_link('{referral_id}', {link_to_pricing_page}, '{page_anchor}',
-                                                   '{link_text}', '{class_name}', {optional_attributes}, {optional_parameters}) }}}}""",
+                f"""{{{{ vpn_product_referral_link(
+                    '{referral_id}',
+                    {link_to_pricing_page},
+                    '{page_anchor}',
+                    '{link_text}',
+                    {is_cta_button_styled},
+                    '{class_name}',
+                    {optional_attributes},
+                    {optional_parameters}
+                ) }}}}""",
                 {"request": req},
             )
 
@@ -2163,12 +2172,13 @@ class TestVPNProductReferralLink(TestCase):
             referral_id="navigation",
             link_to_pricing_page=True,
             link_text="Get Mozilla VPN",
+            is_cta_button_styled=False,
             class_name="mzp-t-product mzp-t-secondary mzp-t-md",
             optional_attributes={"data-cta-text": "Get Mozilla VPN", "data-cta-type": "vpn"},
             optional_parameters={"coupon": "cyber20"},
         )
         expected = (
-            '<a href="/en-US/products/vpn/pricing/?coupon=cyber20" class="mzp-c-button js-fxa-product-referral-link '
+            '<a href="/en-US/products/vpn/pricing/?coupon=cyber20" class="js-fxa-product-referral-link '
             'mzp-t-product mzp-t-secondary mzp-t-md" data-referral-id="navigation" '
             'data-cta-text="Get Mozilla VPN" data-cta-type="vpn">Get Mozilla VPN</a>'
         )

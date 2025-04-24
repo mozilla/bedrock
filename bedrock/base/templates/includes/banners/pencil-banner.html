@@ -8,7 +8,20 @@
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <aside class="m24-pencil-banner" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
     <div class="m24-pencil-banner-copy">
-      <p>Create a website for your business and connect a custom domain for free. <strong><a href="https://soloist.ai/?utm_source=mozilla&utm_medium=top_bar&utm_campaign=mozilla_homepage" data-cta-type="link" data-cta-text="Try Solo AI" data-cta-position="banner">Try Solo AI</a></strong></p>
+      <p>Take control of your privacy —
+        <strong>
+          {{ vpn_product_referral_link(
+            referral_id='evergreen',
+            link_text='Get Mozilla VPN today',
+            is_cta_button_styled=False,
+            optional_attributes= {
+                'data-cta-text' : 'Get Mozilla VPN today',
+                'data-cta-type' : 'fxa-vpn',
+                'data-cta-position' : 'banner',
+            }
+          ) }}
+        </strong>.
+      </p>
     </div>
     <button class="m24-pencil-banner-close" type="button">{{ ftl('ui-close') }}</button>
   </aside>
