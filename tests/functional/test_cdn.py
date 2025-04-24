@@ -62,9 +62,9 @@ def get_ssllabs_results(base_url):
     "url",
     (
         "/",
-        "/firefox/",
         "/firefox/new/",
         "/about/",
+        "/products/",
     ),
 )
 @pytest.mark.nondestructive
