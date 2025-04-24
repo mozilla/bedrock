@@ -20,7 +20,7 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('404 page is displayed', async ({ page }) => {
+        test('404 page back link', async ({ page }) => {
             await page.goto('/en-US/404/?automation=true');
             const goBackLink = page.getByTestId('link-go-back');
             await expect(goBackLink).toBeVisible();
