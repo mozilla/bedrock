@@ -136,6 +136,12 @@
     },
     {
       "files": [
+        "css/firefox/new/desktop/refresh-experiment.scss"
+      ],
+      "name": "experiment-firefox-new-refresh"
+    },
+    {
+      "files": [
         "css/security/security.scss"
       ],
       "name": "security"
@@ -1304,6 +1310,18 @@
         "js/firefox/landing/get/marketing-opt-out-init.es6.js"
       ],
       "name": "firefox_marketing_opt_out"
+    },
+    {
+      "files": [
+        "js/firefox/new/desktop/experiment-refresh-init.es6.js"
+      ],
+      "name": "experiment-firefox-new-refresh-init"
+    },
+    {
+      "files": [
+        "js/firefox/new/desktop/experiment-refresh-data.es6.js"
+      ],
+      "name": "experiment-firefox-new-refresh-data"
     },
     {
       "files": [

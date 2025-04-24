@@ -112,14 +112,16 @@
     'use strict';
 
     var sys = document.getElementById('system-requirements');
-    var href = sys.getAttribute('href');
+    if (sys) {
+        var href = sys.getAttribute('href');
 
-    if (/windows/.test(window.site.platform)) {
-        sys.href = href + '#windows';
-    } else if (/osx/.test(window.site.platform)) {
-        sys.href = href + '#mac';
-    } else if (/linux/.test(window.site.platform)) {
-        sys.href = href + '#linux';
+        if (/windows/.test(window.site.platform)) {
+            sys.href = href + '#windows';
+        } else if (/osx/.test(window.site.platform)) {
+            sys.href = href + '#mac';
+        } else if (/linux/.test(window.site.platform)) {
+            sys.href = href + '#linux';
+        }
     }
 })();
 

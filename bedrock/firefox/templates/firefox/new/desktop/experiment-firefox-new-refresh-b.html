@@ -1,0 +1,258 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+ {% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
+
+ {% extends "firefox/new/desktop/base.html" %}
+
+ {% set show_firefox_refresh_experiment = switch('experiment-firefox-new-refresh', ['en-US', 'en-CA']) %}
+
+ {% block experiments %}
+   {% if show_firefox_refresh_experiment %}
+     {{ js_bundle('experiment-firefox-new-refresh-init') }}
+   {% endif %}
+ {% endblock %}
+
+ {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
+ {% set ios_url = app_store_url('firefox', 'mozilla-org-firefox-new') %}
+
+ {% block string_data %}{% endblock %}
+
+ {% block page_image %}
+    {{ static('img/firefox/new/desktop/meta-img-en.png') }}
+ {% endblock %}
+
+ {% block extrahead %}
+   {{ super() }}
+   {{ css_bundle('experiment-firefox-new-refresh') }}
+
+   <!--[if IE 9]>
+     {{ css_bundle('firefox_desktop_download_ie9') }}
+   <![endif]-->
+
+   <!--[if lt IE 9]>
+     {{ css_bundle('firefox_desktop_download_ie8') }}
+   <![endif]-->
+ {% endblock %}
+
+ {% block sub_navigation %}
+   {% include 'firefox/includes/sub-nav-firefox.html' %}
+ {% endblock %}
+
+ {% block content %}
+
+ {% if outdated %}
+
+   {% set update_url = 'href="%s" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/kb/update-firefox-latest-release' + referrals)) %}
+
+   {% if ftl_has_messages('firefox-desktop-out-of-date') %}
+     <aside class="c-page-header-notification">
+       <div class="mzp-c-notification-bar mzp-t-warning">
+         {{ ftl('firefox-desktop-out-of-date', update_url=update_url) }}
+       </div>
+     </aside>
+   {% endif %}
+
+ {% endif %}
+
+ <main class="main-download" {% if variation %}data-variation="{{ variation }}"{% endif %}>
+   <section id="desktop-banner" class="c-block t-intro show-else mzp-has-media-hide-on-sm">
+     <div class="c-block-container">
+       <div class="c-block-body">
+         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
+           <h2>Take control of your internet</h2>
+           <p>Go online with less distraction, noise and stress. Think of us as bubble wrap for your brain.</p>
+         <div class="c-intro-download">
+           {% block primary_cta %}
+             {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
+           {% endblock %}
+
+           <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
+
+           <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
+         </div>
+       </div>
+       <div class="c-block-media l-v-center">
+        {{ resp_img(
+          url='img/firefox/new/desktop/experiment-refresh/hero.png',
+          srcset={
+            'img/firefox/new/desktop/experiment-refresh/hero-high-res.png': '2x'
+          },
+          optional_attributes={
+            'class': 'c-block-media-img',
+            'alt': 'Firefox on desktop and mobile.',
+            'width': '768'
+          }
+        ) }}
+       </div>
+     </div>
+   </section>
+
+
+  <section class="mzp-l-content t-releases">
+    <div class="mzp-c-emphasis-box js-animate">
+      <h2 class="mzp-c-section-heading">Latest Firefox features</h2>
+      <ul class="c-trio">
+        <li>
+          <img alt="Happy toggle." src="{{ static('img/firefox/new/desktop/experiment-refresh/toggle.svg') }}" height="40">
+          <h3>Dial down the noise</h3>
+          <p>Block ads and enhance your privacy with customizable settings and tons of downloadable extensions.</p>
+        </li>
+        <li class="t-cursor">
+          <img alt="Multiple cursors." src="{{ static('img/firefox/new/desktop/experiment-refresh/multi.svg') }}" height="40">
+          <h3>Multi-task or mono-task</h3>
+          <p>Go into reading mode, pop out videos and get more organized with vertical tabs and tab groups.</p>
+        </li>
+        <li>
+          <img alt="Lots of open tabs." src="{{ static('img/firefox/new/desktop/experiment-refresh/tabs.svg') }}" height="40">
+          <h3>Keep tabs on all your tabs</h3>
+          <p>Close duplicates, search and pin open tabs — there are almost infinite possibilities for the almost infinite number of tabs you have open.</p>
+        </li>
+      </ul>
+
+      <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">See Release Notes</a></p>
+    </div>
+  </section>
+
+
+   <section class="t-highlights">
+     <h2 class="mzp-c-section-heading">Get the browser that helps you get sh*t done</h2>
+
+     <div class="t-block c-block l-reversed">
+       <div class="c-block-container">
+         <div class="c-block-body l-v-center l-h-start">
+           <h3 class="mzp-u-title-sm">Block ad trackers without lifting a paw</h3>
+           <p>Not-fun fact: Ad trackers make web pages load slower. Fun fact: You won’t have to dig around in settings to fix that because Firefox automatically blocks most trackers.</p>
+           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
+         </div>
+         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
+          <img alt="Shield and hand protecting a browser tab." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/block.svg') }}" width="220">
+         </div>
+       </div>
+     </div>
+
+     <div class="t-think c-block">
+       <div class="c-block-container">
+         <div class="c-block-body l-v-center l-h-end">
+           <h3 class="mzp-u-title-sm">Swear off staring into the abyss</h3>
+           <p>Stay focused with extensions like <a href="https://addons.mozilla.org/en-US/firefox/addon/tomato-clock/">Tomato Clock</a> and <a href="http://addons.mozilla.org/en-US/firefox/addon/turn-off-the-lights">Turn Off the Lights</a> — they’re Recommended, which is like our gold star for having exceptional security and functionality.</p>
+         </div>
+         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
+          <img alt="A human brain connected to the world." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/think.svg') }}" width="260">
+         </div>
+       </div>
+     </div>
+
+     <div class="t-devices c-block l-reversed">
+       <div class="c-block-container">
+         <div class="c-block-body l-v-center">
+           <h3 class="mzp-u-title-sm">Your stuff, on all your screens</h3>
+           <p>Get Firefox mobile so your passwords, tabs and history — and the privacy and security you rely on — go with you wherever you go.</p>
+           <div class="mobile-download-buttons-wrapper">
+             {% block mobile_secondary_cta %}
+               <ul class="mobile-download-buttons">
+                 <li class="android">
+                   {{ google_play_button() }}
+                 </li>
+                 <li class="ios">
+                   {{ apple_app_store_button(href=ios_url) }}
+                 </li>
+               </ul>
+             {% endblock %}
+           </div>
+         </div>
+         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
+          <img alt="Desktop, laptop, and phone. " class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/screens.svg') }}" width="350">
+         </div>
+       </div>
+     </div>
+   </section>
+
+   <div class="t-custom">
+    <section class="mzp-l-content mzp-t-content-md">
+      <h2 class="mzp-c-section-heading">*Really* make it yours</h2>
+
+      <div class="c-screen">
+        <div class="c-screenshot">
+          <img alt="Firefox in dark mode." src="{{ static('img/firefox/new/desktop/experiment-refresh/dark.svg') }}" width="1000">
+        </div>
+      </div>
+
+      <ul class="mzp-l-columns mzp-t-columns-two">
+        <li>
+          <h3>Work smarter, play harder</h3>
+          <p>Explore the possibilities for research, shopping and more in <a href="https://addons.mozilla.org/en-US/firefox/extensions/">extensions</a>.</p>
+        </li>
+
+        <li>
+          <h3>Bye, boring browser</h3>
+          <p>The internet can be all kittens and rainbows — with the right add-on <a href="https://addons.mozilla.org/en-US/firefox/themes/">theme</a>.</p>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+   <section class="mzp-l-content t-free">
+    <div class="mzp-c-emphasis-box js-animate">
+      <div class="c-free">
+        <div class="c-free-img">
+          <img alt="Firefox on a desktop." src="{{ static('img/firefox/new/desktop/experiment-refresh/free.svg') }}" width="300">
+        </div>
+        <div class="c-free-body">
+          <h2>Billionaire-free for 20+ years</h2>
+          <p>Firefox was created in 2004 by Mozilla as a faster, more private, and customizable alternative to browsers like Internet Explorer. Today, we are still not-for-profit, still not owned by any billionaires and still working to make the internet — and the time you spend on it — better.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <section class="mzp-c-section-heading">
+     {% block discover_cta %}
+       {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
+     {% endblock %}
+   </section>
+
+   <section class="c-support">
+     {% set questions_attrs = 'href="https://support.mozilla.org/products/firefox%s&utm_content=mozilla-support" rel="external noopener" data-cta-text="Mozilla support"'|safe|format(referrals) %}
+     {{ ftl('firefox-desktop-download-questions', attrs=questions_attrs) }}
+   </section>
+
+   <aside id="mobile-banner" class="show-android show-ios" data-nosnippet>
+     <div class="c-mobile mzp-t-dark">
+       <div class="mzp-l-content">
+         <div class="c-mobile-text">
+           <h2 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox-browser') }}</h2>
+           <h2 class="mzp-has-zap-7 mzp-u-title-md show-android">{{ ftl('firefox-desktop-download-get-firefox-android') }}</h2>
+           <h2 class="mzp-has-zap-7 mzp-u-title-md show-ios">{{ ftl('firefox-desktop-download-get-firefox-ios') }}</h2>
+
+           <p>{{ ftl('firefox-desktop-download-download-the-mobile') }}</p>
+
+           {% block mobile_primary_cta %}
+             <div class="show-android">
+               {{ google_play_button() }}
+             </div>
+             <div class="show-ios">
+               {{ apple_app_store_button(href=ios_url) }}
+             </div>
+           {% endblock %}
+         </div>
+       </div>
+     </div>
+     <h2 class="c-desktop">
+       <a href="#next">{{ ftl('firefox-desktop-download-learn-about-the') }}</a>
+     </h2>
+     <span id="next"></span>
+   </aside>
+ </main>
+
+ {% endblock %}
+
+ {% block js %}
+   {{ js_bundle('firefox_desktop_download') }}
+   {% if show_firefox_refresh_experiment %}
+    {{ js_bundle('experiment-firefox-new-refresh-data') }}
+   {% endif %}
+ {% endblock %}
