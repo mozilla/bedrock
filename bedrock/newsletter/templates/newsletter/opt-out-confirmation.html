@@ -23,14 +23,14 @@
       <p class="tagline mzp-u-title-sm">{{ self.page_desc() }}</p>
     </header>
 
-    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form">
+    <form method="post" action="{{ recovery_url }}" id="newsletter-recovery-form" class="newsletter-recovery-form mzp-c-form" data-testid="newsletter-recovery-form">
       <header class="mzp-c-form-header">
         <p>
           {{ ftl('opt-out-confirmation-youll-continue') }}
         </p>
       </header>
 
-      <div class="mzp-c-form-errors hidden" id="newsletter-errors">
+      <div class="mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-recovery-error-message">
         <ul class="mzp-u-list-styled">
           <li class="error-email-invalid hidden">{{ ftl('newsletters-this-is-not-a-valid-email') }}</li>
           <li class="error-email-not-found hidden">{{ ftl('newsletters-this-email-address-is-not', url=url('newsletter.subscribe')) }}</li>
@@ -38,7 +38,7 @@
         </ul>
       </div>
 
-      <div class="newsletter-recovery-form-success-msg hidden">
+      <div class="newsletter-recovery-form-success-msg hidden" data-testid="newsletter-recovery-thanks">
         <p>{{ ftl('newsletters-success-an-email-has-been-sent') }}</p>
       </div>
 
@@ -49,7 +49,7 @@
           {{ field_with_attrs(form.email, placeholder=ftl('opt-out-confirmation-yournameexamplecom')|safe, class='mzp-c-field-control'|safe) }}
         </div>
         <div class="mzp-c-button-container mzp-l-stretch">
-          <button id="newsletter-submit" class="mzp-c-button" type="submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
+          <button id="newsletter-submit" class="mzp-c-button" type="submit" data-testid="newsletter-recovery-submit">{{ ftl('opt-out-confirmation-manage-preferences') }}</button>
         </div>
       </div>
     </form>
