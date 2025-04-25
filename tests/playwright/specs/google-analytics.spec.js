@@ -10,18 +10,21 @@ const { test, expect } = require('@playwright/test');
 const openPage = require('../scripts/open-page');
 const url = '/en-US/analytics-tests/';
 
-const isGALoaded = async function (page) {
-    const dataLayer = await page.evaluate(() => {
-        return window.dataLayer;
-    });
-
-    const loadEvent = dataLayer.filter((layer) => {
-        return (
-            Object.prototype.hasOwnProperty.call(layer, 'event') &&
-            layer['event'] === 'gtm.load'
+const waitForGAToLoad = async function (page) {
+    try {
+        await page.waitForFunction(() => {
+            return (
+                typeof window.dataLayer !== 'undefined' &&
+                window.dataLayer.some((entry) => entry.event === 'gtm.load')
+            );
+        });
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(
+            'These tests require Google Analytics to be configured. Please ensure you have set a GTM_CONTAINER_ID environment variable in your .env and you are not blocking GA in your browser.'
         );
-    });
-    return loadEvent.length > 0 ? true : false;
+        throw error; // rethrow to fail the test, or handle it differently
+    }
 };
 
 const getGAElement = async function (page, name) {
@@ -44,7 +47,7 @@ test.describe(
         });
 
         test('window.dataLayer updates on download click', async ({ page }) => {
-            expect(await isGALoaded(page)).toBe(true);
+            await waitForGAToLoad(page);
 
             const button = page.getByTestId('button-download');
             await button.click();
@@ -55,7 +58,7 @@ test.describe(
         });
 
         test('window.dataLayer updates on CTA click', async ({ page }) => {
-            expect(await isGALoaded(page)).toBe(true);
+            await waitForGAToLoad(page);
 
             const button = page.getByTestId('button-cta');
             await button.click();
@@ -68,7 +71,7 @@ test.describe(
         test('window.dataLayer updates on FxA button click', async ({
             page
         }) => {
-            expect(await isGALoaded(page)).toBe(true);
+            await waitForGAToLoad(page);
 
             const button = page.getByTestId('button-fxa');
             await button.click();
