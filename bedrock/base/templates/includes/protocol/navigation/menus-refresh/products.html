@@ -23,7 +23,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </li>
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="https://monitor.mozilla.org/?{{ utm_params }}" data-link-text="Mozilla Monitor" data-link-position="topnav - products">
+              {% if LANG.startswith('en-') %}
+                {% set monitor_link = url('products.monitor.landing') %}
+              {% else %}
+                {% set monitor_link = "https://monitor.mozilla.org/?" + utm_params %}
+              {% endif %}
+              <a class="m24-c-menu-item-link" href="{{ monitor_link }}" data-link-text="Mozilla Monitor" data-link-position="topnav - products">
                 <img loading="lazy" src="{{ static('protocol/img/logos/firefox/monitor/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-mozilla-monitor-v2') }}</h2>
               </a>
