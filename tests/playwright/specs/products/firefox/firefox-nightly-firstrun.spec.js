@@ -20,7 +20,12 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Calls to action are displayed', async ({ page }) => {
+        test('Calls to action are displayed', async ({ page, browserName }) => {
+            test.skip(
+                browserName !== 'firefox',
+                'Page shown to Firefox browsers only'
+            );
+
             const testingButton = page.getByTestId('start-testing');
             const codingButton = page.getByTestId('start-coding');
             const localizingButton = page.getByTestId('start-localizing');

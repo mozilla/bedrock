@@ -36,12 +36,12 @@
 
   <div class="primary-cta">
     <div class="state-not-default">
-      <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" >
+      <a id="set-as-default-button" href="{{ url('firefox.set-as-default.thanks') }}" class="mzp-c-button mzp-t-product" data-cta-text="Make Firefox your default browser" data-testid="button-firefox-default">
         {{ ftl('welcome-page6-make-firefox-your-default') }}
       </a>
     </div>
     <div class="state-is-default">
-      <button type="button" class="mzp-c-button mzp-t-product js-modal-link">{{ ftl('welcome-page6-get-the-firefox-app') }}</button>
+      <button type="button" class="mzp-c-button mzp-t-product js-modal-link" data-testid="button-firefox-get-app">{{ ftl('welcome-page6-get-the-firefox-app') }}</button>
     </div>
   </div>
   {% endcall %}
@@ -56,6 +56,7 @@
       <div class="qr-code-wrapper">
         <img src="{{ static('img/firefox/welcome/qrcode-firefox-welcome-6.png') }}"
             id="firefox-qr"
+            data-testid="firefox-qr-code"
             alt="{{ ftl('welcome-page6-qr-code-to-scan-for-firefox') }}">
       </div>
     {% endif %}

@@ -20,7 +20,15 @@ test.describe(
             await openPage(url, page, browserName);
         });
 
-        test('Up-to-date message is displayed', async ({ page }) => {
+        test('Up-to-date message is displayed', async ({
+            page,
+            browserName
+        }) => {
+            test.skip(
+                browserName !== 'firefox',
+                'Page shown to Firefox browsers only'
+            );
+
             const updateMessage = page.getByTestId(
                 'nightly-whatsnew-update-message'
             );
