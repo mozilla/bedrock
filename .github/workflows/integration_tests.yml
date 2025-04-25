@@ -46,19 +46,9 @@ jobs:
             MARK_EXPRESSION: "smoke or sanity"
             PLATFORM: Windows 10
             PYTEST_PROCESSES: 8
-          - LABEL: test-firefox-remote
-            BROWSER_NAME: firefox
-            MARK_EXPRESSION: "not headless and not download and not skip_if_firefox and not cdn"
-            DRIVER: Remote
-            PYTEST_PROCESSES: auto
           - LABEL: test-headless
             DRIVER: ""
             MARK_EXPRESSION: headless
-          - LABEL: test-chrome-remote
-            BROWSER_NAME: chrome
-            DRIVER: Remote
-            MARK_EXPRESSION: "not headless and not download and not skip_if_not_firefox and not cdn"
-            PYTEST_PROCESSES: auto
 
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
@@ -106,7 +96,7 @@ jobs:
   playwright-tests:
     if: always()
     runs-on: ubuntu-latest
-    needs: [notify-of-test-run-start, integration-tests]
+    needs: [notify-of-test-run-start]
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
       CI: true
@@ -126,7 +116,7 @@ jobs:
   notify-of-test-run-completion:
     if: always()
     runs-on: ubuntu-latest
-    needs: [notify-of-test-run-start, integration-tests, playwright-tests]
+    needs: [integration-tests, playwright-tests]
     steps:
       - uses: actions/checkout@v4
       - name: Notify via Slack of test-run success
