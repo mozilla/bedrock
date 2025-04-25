@@ -43,7 +43,12 @@
         </a>
       </li>
       <li class="m24-c-launchpad-item">
-        <a class="m24-c-launchpad-link m24-t-product-monitor" href="{{ url('products.monitor.landing') }}" data-cta-text="Monitor" data-cta-position="product-list">
+        {% if LANG.startswith('en-') %}
+          {% set monitor_link = url('products.monitor.landing') %}
+        {% else %}
+          {% set monitor_link = "https://monitor.mozilla.org/?" + utm_params %}
+        {% endif %}
+        <a class="m24-c-launchpad-link m24-t-product-monitor" href="{{monitor_link }}" data-cta-text="Monitor" data-cta-position="product-list">
           <strong class="m24-c-launchpad-title">{{ ftl('m24-home-mozilla-monitor') }}<b>:</b></strong>
           <span class="m24-c-launchpad-info">{{ ftl('m24-home-get-a-headsup') }}</span>
         </a>

@@ -123,7 +123,12 @@
         }
       ),
     ) %}
-      <h2 class="mzp-c-picto-heading"><a href="{{ url('products.monitor.landing') }}" data-cta-text="Monitor" data-cta-position="heading">{{ ftl('firefox-products-mozilla-monitor') }}</a></h2>
+    {% if LANG.startswith('en-') %}
+      {% set monitor_link = url('products.monitor.landing') %}
+    {% else %}
+      {% set monitor_link = "https://monitor.mozilla.org/?" + utm_params %}
+    {% endif %}
+      <h2 class="mzp-c-picto-heading"><a href="{{ monitor_link }}" data-cta-text="Monitor" data-cta-position="heading">{{ ftl('firefox-products-mozilla-monitor') }}</a></h2>
       <p>{% if country_code == 'US' %}See if you’ve been part of a data breach. If so, let us automatically get your private info back for you and continually monitor your identity for new leaks.{% else %}{{ ftl('firefox-products-see-if-your-personal-information') }}{% endif %}</p>
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://monitor.mozilla.org/{{ referrals }}" data-cta-text="Check for breaches">{% if LANG == 'en-US' %}Check for breaches now{% else %}{{ ftl('firefox-products-check-for-breaches') }}{% endif %} {{ icon_external|safe }}</a></p>
     {% endcall %}
