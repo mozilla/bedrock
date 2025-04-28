@@ -5,10 +5,10 @@ Bedrock runs several different types of front-end tests to ensure that the site 
 -   [Jasmine](https://jasmine.github.io/index.html) unit/behavioral tests are used to test JavaScript code that runs in the browser. These tests are run against both Firefox and Chrome browsers via a GitHub action, which is triggered against all pull requests and commits to the main branch.
 -   [Playwright](https://playwright.dev) integration tests are used to run end-to-end tests in a real browser environment. These tests are run automatically as part of our CI deployment process against dev, stage, and prod. Playwright tests are run against Firefox, Chromium, and Webkit headless browsers for cross-engine coverage.
 -   [Axe](https://github.com/dequelabs/axe-core-npm/blob/develop/packages/playwright/README.md) tests are used to test for accessibility issues on key pages. These tests are not run as part of our CI deployment process as they can contain a lot of information, but instead run once per day via a GitHub action against dev. Axe tests are run via Playwright as a subset of tests using the `@a11y` tag. Accessibility issues are reported in the GitHub action output, which can be downloaded and reviewed.
--   [Selenium](http://docs.seleniumhq.org/) tests are bedrock's older, legacy integration test suite, which will eventually be replaced by Playwright. These tests are run against Firefox, Chrome, and Internet Explorer (via a mix of both a local Selenium Grid and Sauce Labs) as part of our CI pipeline, and run alongside the Playwright tests.
+-   [Selenium](http://docs.seleniumhq.org/) tests are bedrock's older, legacy integration test suite. These tests now consist only of a small set of smoke tests that are targeted at Internet Explorer 11 (via Sauce Labs) as part of our CI pipeline, and run alongside the Playwright tests.
 
 !!! note
-    New integration tests should be written using Playwright, but we will continue to run the Selenium tests until they are all migrated over. We will also eventually retire the Internet Explorer tests.
+    New integration tests should be written using Playwright. The Selenium Internet Explorer tests continue to run for the time being, but can be retired in the future when the time is right.
 
 
 The test specs for all of the above suites can be found in the root `./tests` directory:
@@ -209,7 +209,7 @@ A list of all the Axe rules that are checked by the tests can be viewed in the [
 ## Running Selenium tests
 
 !!! note
-    Selenium tests are being retired in favour of the newer Playwright test suite. Whilst we will continue to run the Selenium tests until they are all migrated over, new tests should be written using Playwright.
+    The majority of Selenium tests have now been migrated to Playwright. We still use Selenium for a small suite of IE focused smoke tests, but most new integration tests should be written using Playwright.
 
 
 Before running the Selenium tests, please make sure to follow the bedrock `installation docs<install>`{.interpreted-text role="ref"}, including the database sync that is needed to pull in external data such as event/blog feeds etc. These are required for some of the tests to pass.
@@ -232,7 +232,7 @@ By default, tests will run one at a time. This is the safest way to ensure predi
     There are some tests that do not require a browser. These can take a long time to run, especially if they're not running in parallel. To skip these tests, add `-m 'not headless'` to your command line.
 
 
-To run a single test file you must tell pytest to execute a specific file e.g. `tests/functional/test_newsletter.py`:
+To run a single test file you must tell pytest to execute a specific file e.g. `tests/functional/firefox/new/test_download.py`:
 
 ``` bash
 $ pytest --base-url http://localhost:8000 --driver Firefox --html tests/functional/results.html tests/functional/firefox/new/test_download.py

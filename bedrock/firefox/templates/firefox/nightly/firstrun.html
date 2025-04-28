@@ -71,7 +71,7 @@
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-find-and-file-bugs') }}</p>
-          <a href="https://wiki.mozilla.org/Nightly#Filing_Bugs" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start testing">{{ ftl('nightly-firstrun-start-testing') }}</a>
+          <a href="https://wiki.mozilla.org/Nightly#Filing_Bugs" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start testing" data-testid="start-testing">{{ ftl('nightly-firstrun-start-testing') }}</a>
         {% endcall %}
 
         {% call picto(
@@ -88,7 +88,7 @@
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-file-bugs-and-work') }}</p>
-          <a href="https://firefox-source-docs.mozilla.org/contributing/contributing_to_mozilla.html" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start coding">{{ ftl('nightly-firstrun-start-coding') }}</a>
+          <a href="https://firefox-source-docs.mozilla.org/contributing/contributing_to_mozilla.html" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start coding" data-testid="start-coding">{{ ftl('nightly-firstrun-start-coding') }}</a>
         {% endcall %}
 
         {% call picto(
@@ -105,7 +105,7 @@
           base_el='li'
         ) %}
           <p>{{ ftl('nightly-firstrun-make-firefox-available') }}</p>
-          <a href="{{ ftl('nightly-firstrun-contribute-link') }}" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start localizing">{{ ftl('nightly-firstrun-start-localizing') }}</a>
+          <a href="{{ ftl('nightly-firstrun-contribute-link') }}" class="mzp-c-button mzp-t-product mzp-t-dark" data-cta-text="Start localizing" data-testid="start-localizing">{{ ftl('nightly-firstrun-start-localizing') }}</a>
         {% endcall %}
       </ul>
     </div>
