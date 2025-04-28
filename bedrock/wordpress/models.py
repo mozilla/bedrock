@@ -69,7 +69,7 @@ class BlogPostQuerySet(models.QuerySet):
         return self.filter(wp_blog_slug__in=blog_slugs)
 
     def filter_by_tags(self, *tags):
-        tag_qs = [Q(tags__contains=f'"{t}"') for t in tags]
+        tag_qs = [Q(tags__icontains=f'"{t}"') for t in tags]
         return self.filter(reduce(operator.or_, tag_qs))
 
 
