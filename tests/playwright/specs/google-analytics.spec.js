@@ -44,11 +44,10 @@ test.describe(
     () => {
         test.beforeEach(async ({ page, browserName }) => {
             await openPage(url, page, browserName);
+            await waitForGAToLoad(page);
         });
 
         test('window.dataLayer updates on download click', async ({ page }) => {
-            await waitForGAToLoad(page);
-
             const button = page.getByTestId('button-download');
             await button.click();
 
@@ -58,8 +57,6 @@ test.describe(
         });
 
         test('window.dataLayer updates on CTA click', async ({ page }) => {
-            await waitForGAToLoad(page);
-
             const button = page.getByTestId('button-cta');
             await button.click();
 
@@ -71,8 +68,6 @@ test.describe(
         test('window.dataLayer updates on FxA button click', async ({
             page
         }) => {
-            await waitForGAToLoad(page);
-
             const button = page.getByTestId('button-fxa');
             await button.click();
 
