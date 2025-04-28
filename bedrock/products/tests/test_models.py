@@ -2,6 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from datetime import timedelta
+
+from django.utils.timezone import now as utc_now
+
 import pytest
 from wagtail.rich_text import RichText
 
@@ -38,12 +42,15 @@ def test_vpn_resource_center_index_page(minimal_site, rf, serving_method):  # no
 
     test_detail_pages = {}
 
+    _now = utc_now()
+
     for i in range(1, 13):
         test_detail_pages[f"test_detail_page_{i}"] = factories.VPNResourceCenterDetailPageFactory(
             parent=test_index_page,
             slug=f"test-detail-{i}",
             desc=f"Test Detail Page {i} Description",
             content=RichText(f"Test Detail Page {i} Content"),
+            first_published_at=_now - timedelta(minutes=i),
         )
         test_detail_pages[f"test_detail_page_{i}"].save()
 
