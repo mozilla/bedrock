@@ -33,6 +33,9 @@ class CMSLocaleFallbackMiddleware:
         response = self.get_response(request)
 
         if response.status_code == HTTPStatus.NOT_FOUND:
+            if self._run_null_byte_check(request) is True:
+                return response
+
             # At this point we have a request that has resulted in a 404,
             # which means it didn't match any Django URLs, and didn't match
             # a CMS page for the current locale+path combination in the URL.
@@ -120,3 +123,10 @@ class CMSLocaleFallbackMiddleware:
                 # (once the work to pre-cache the page tree lands)
 
         return response
+
+    def _run_null_byte_check(self, request):
+        if "\x00" in request.path:
+            logger.warning("Null byte found in request path: %s", request.path)
+            # This gets called as a 404, so let's just treat it as Not Found
+            return True
+        return False
