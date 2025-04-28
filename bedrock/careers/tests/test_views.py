@@ -9,11 +9,11 @@ from django.utils import timezone
 
 from bedrock.careers.forms import PositionFilterForm
 from bedrock.careers.tests import PositionFactory
-from bedrock.mozorg.tests import TestCase
+from bedrock.mozorg.tests import TransactionTestCase
 from bedrock.wordpress.models import BlogPost
 
 
-class PositionTests(TestCase):
+class PositionTests(TransactionTestCase):
     def test_context(self):
         response = self.client.get(reverse("careers.listings"), follow=True)
         self.assertEqual(response.status_code, 200)
@@ -49,7 +49,7 @@ class PositionTests(TestCase):
         self.assertTemplateUsed(response, "careers/404.html")
 
 
-class BlogTests(TestCase):
+class BlogTests(TransactionTestCase):
     blog_data = {
         "wp_blog_slug": "careers",
         "excerpt": "",
