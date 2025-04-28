@@ -1,0 +1,13 @@
+{
+    "contacts": [
+        {
+            "email_address": "matrix-admins@mozilla.com",
+            "role": "m.role.admin"
+        },
+        {
+            "email_address": "matrix-admins@mozilla.com",
+            "role": "m.role.security"
+        }
+    ],
+    "support_page": "https://matrix.to/#/#synchronicity:mozilla.org"
+}
