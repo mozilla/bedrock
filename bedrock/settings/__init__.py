@@ -79,7 +79,9 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
     # use default product-details data
     PROD_DETAILS_STORAGE = "product_details.storage.PDFileStorage"
 
-    DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
+    # If we're using sqlite, run tests on an in-memory version, else use the configured default DB engine
+    if DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3":
+        DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
 
 # 3. DJANGO-CSP SETTINGS
