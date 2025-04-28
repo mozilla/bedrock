@@ -164,3 +164,28 @@ def test_CMSLocaleFallbackMiddleware_404_when_no_live_page_exists_only_drafts(
     middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
     response = middleware(request)
     assert response.status_code == 404  # rather than a redirect to `child_page`
+
+
+@pytest.mark.parametrize(
+    "bad_url_path",
+    [
+        "/bad/\x00/path",
+        "/bad/path/\x00",
+        "/bad/path/\x00/",
+        "/bad/\x00/path/\x00",
+        "is/download/badfilename\x00.jpg/some-follow-on/path/",
+    ],
+)
+def test_CMSLocaleFallbackMiddleware_404_with_null_byte_in_url(
+    rf,
+    tiny_localized_site,
+    bad_url_path,
+):
+    # See https://github.com/mozilla/bedrock/issues/16222
+
+    request = rf.get(
+        bad_url_path,
+    )
+    middleware = CMSLocaleFallbackMiddleware(get_response=get_404_response)
+    response = middleware(request)
+    assert response.status_code == 404  # rather than a 500 when using postgres
