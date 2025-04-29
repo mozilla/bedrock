@@ -24,6 +24,7 @@ navigation-refresh-mozilla-builders = { -brand-name-mozilla-builders }
 navigation-refresh-mozilla-ai-v3 = { -brand-name-mozilla-ai-v2 }
 navigation-refresh-mozilla-ventures-v2 = { -brand-name-mozilla-ventures }
 navigation-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
+navigation-refresh-mozilla-new-products = { -brand-name-mozilla } New Products
 
 ## Firefox
 
