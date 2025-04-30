@@ -1,0 +1,470 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'sass:math';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark';
+@use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-firefox';
+@use '~@mozilla-protocol/core/protocol/css/components/section-heading';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@use '../../protocol/components/sub-navigation';
+
+main {
+    background-color: $color-white; // for IE6
+    color: $color-dark-gray-30;
+
+    h2,
+    h3,
+    h4 {
+        color: $color-marketing-gray-99;
+        margin-bottom: $spacing-md;
+    }
+}
+
+// Override Protocol wordmark
+.mzp-c-wordmark.mzp-t-wordmark-md.mzp-t-product-firefox {
+    background-image: url('/media/img/firefox/landing/logo-word-hor.svg');
+    margin-bottom: $spacing-lg;
+}
+
+// button container
+
+.mzp-c-button-download-container {
+    .main-download & { // target main to avoid conflicting with nav
+        margin-bottom: 0;
+    }
+
+    .t-intro & {
+        @include bidi(((text-align, left, right),));
+    }
+
+    .t-features &,
+    .t-extensions & {
+        display: block;
+    }
+}
+
+// --------------------------------------------------------------------------
+// conditional content classes
+
+.show-android,
+.show-ios {
+    display: none !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.ios .show-ios {
+    display: block !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.android .show-android {
+    display: block !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.ios,
+.android {
+    #download-features {
+        display: none;
+    }
+}
+
+.show-else {
+    .android &,
+    .ios & {
+        display: none !important; /* stylelint-disable-line declaration-no-important */
+    }
+}
+
+// --------------------------------------------------------------------------
+// section titles
+
+.mzp-c-section-heading {
+    @include text-title-md;
+}
+
+// --------------------------------------------------------------------------
+// Blocks
+// used for hero, and mobile
+
+.c-block {
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding: $layout-md 0;
+    position: relative;
+
+    @media #{$mq-md} {
+        padding: $layout-xl 0;
+    }
+}
+
+.c-block-container {
+    @include clearfix;
+    @include border-box;
+    margin: 0 auto;
+    max-width: $content-xl + $layout-xl * 2;
+    min-width: $content-xs;
+    padding: 0 $layout-sm;
+
+    .c-block-media-img {
+        margin: 0 auto;
+    }
+
+    @media #{$mq-md} {
+        padding: 0 $layout-lg;
+    }
+
+    // vertical alignment only browsers with grid support
+    @supports (display:grid) {
+        .l-v-center {
+            align-self: center;
+        }
+    }
+}
+
+.c-block-media {
+    display: none;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+// --------------------------------------
+// side by side layout, float based fall back
+
+@media #{$mq-md} {
+    .c-block-body {
+        @include border-box;
+        @include bidi(((float, left, right),));
+        width: 50%;
+        padding: 0 ($layout-lg * 0.5);
+
+        > *:first-child {
+            margin-top: 0;
+        }
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .c-block-media {
+        @include border-box;
+        @include bidi(((float, right, left),));
+        width: 50%;
+        padding: 0 ($layout-lg * 0.5);
+    }
+}
+
+// --------------------------------------
+// side by side layout, grid based
+
+@media #{$mq-md} {
+    @supports (display:grid) {
+        .c-block-container {
+            // grid is all start/end based we don't need bidi declarations for RTL support \o/
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas: 'body media';
+            grid-column-gap: $layout-lg;
+        }
+
+        .c-block-body,
+        .c-block-media {
+            .c-block-container & { // extra specificity to over-ride the styles that make the float fall-back work
+                float: none;
+                min-width: 0; // because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
+                padding: 0;
+                width: auto;
+            }
+        }
+
+        .c-block-body {
+            grid-area: body;
+        }
+
+        .c-block-media {
+            align-self: stretch;
+            grid-area: media;
+
+            .c-block-media-img {
+                display: block;
+                max-width: none;
+            }
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+// intro banner
+
+.t-intro {
+    h2 {
+        @include text-display-lg;
+    }
+
+    &.c-block {
+        @include text-body-md;
+        padding-top: $layout-sm;
+
+        @media #{$mq-lg} {
+            @include text-body-lg;
+            padding-top: $layout-lg;
+        }
+    }
+
+    .c-block-container {
+        max-width: $content-xl + $layout-xl * 2;
+    }
+
+    .c-block-body > p {
+        margin-bottom: $spacing-xl;
+    }
+
+    // issue 13317
+    .fx-unsupported-message {
+        @include bidi(((text-align, left, right),));
+    }
+}
+
+.c-intro-download-alt {
+    @include text-body-xs;
+    color: $color-dark-gray-30;
+    display: block;
+    margin-top: $spacing-md;
+
+    a:link,
+    a:visited {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a:hover,
+    a:active,
+    a:focus {
+        text-decoration: underline;
+    }
+}
+
+// --------------------------------------------------------------------------
+
+.t-custom {
+    .t-custom-intro {
+        padding-bottom: 0;
+    }
+
+    .t-custom-list {
+        padding-top: $spacing-2xl;
+
+        p {
+            word-break: keep-all; // prevent hyphens breaking onto new line
+        }
+    }
+
+    .c-screen {
+        @include border-box;
+        margin-bottom: $layout-sm;
+        padding: $spacing-xl $spacing-lg;
+        text-align: center;
+
+        @media #{$mq-md} {
+            padding: $spacing-2xl $spacing-xl;
+        }
+
+        &.t-gaming {
+            background-color: #d9bfff;
+        }
+
+        &.t-education {
+            background-color: #ffa266;
+        }
+    }
+}
+
+// --------------------------------------------------------------------------
+
+.t-extensions {
+    .t-extensions-item {
+        margin-bottom: $spacing-xl;
+
+        p {
+            word-break: keep-all; // prevent hyphens breaking onto new line
+        }
+    }
+
+    .mzp-t-columns-three {
+        margin-bottom: $spacing-2xl;
+    }
+
+    img {
+        display: block;
+        margin: 0 0 $spacing-lg;
+        text-align: left;
+    }
+}
+
+// --------------------------------------------------------------------------
+
+.t-features {
+    background-color: $color-light-gray-10;
+
+    .t-features-item {
+        margin-bottom: $spacing-xl;
+
+        p {
+            word-break: keep-all; // prevent hyphens breaking onto new line
+        }
+    }
+
+    .mzp-t-columns-three {
+        margin-bottom: $spacing-2xl;
+    }
+
+    img {
+        margin-bottom: $spacing-lg;
+    }
+
+    .mzp-u-list-styled {
+        @include bidi(((margin-left, $spacing-md, margin-right, 0),));
+        margin-bottom: 0;
+    }
+}
+
+// --------------------------------------------------------------------------
+
+.c-support {
+    @include text-title-xs;
+    background-color: $color-light-gray-10;
+    display: block; // IE8
+    font-weight: bold;
+    padding: $spacing-lg;
+    text-align: center;
+}
+
+// --------------------------------------------------------------------------
+// mobile
+
+.android main,
+.ios main {
+    @include flexbox;
+    flex-direction: column;
+}
+
+#mobile-banner {
+    order: -1;
+}
+
+.c-mobile.mzp-t-dark {
+    @include light-links;
+    background-color: $color-violet-70;
+    color: $color-white;
+    position: relative;
+    overflow-x: hidden;
+
+    h2 {
+        color: $color-white;
+    }
+
+    p {
+        margin-bottom: $layout-md;
+    }
+
+    @media #{$mq-sm} {
+        &::after {
+            @include bidi((
+                (left, 60%, right, auto),
+                (margin-left, $layout-xs * 0.5, margin-left, 0),
+            ));
+            background-position: top center;
+            background-repeat: no-repeat;
+            border-radius: $border-radius-sm;
+            bottom: $layout-lg;
+            content: '';
+            display: block;
+            position: absolute;
+            top: $layout-lg;
+            width: 40%;
+
+            &,
+            .android & {
+                @include at2x('/media/img/firefox/new/desktop/android.png', contain);
+            }
+
+            .ios & {
+                @include at2x('/media/img/firefox/new/desktop/ios.png', contain);
+            }
+        }
+
+        .c-mobile-text {
+            @include bidi(((padding-right, $layout-xs * 0.5, padding-left, 0),));
+            @include border-box;
+            max-width: 60%;
+        }
+    }
+
+    @media #{$mq-md} {
+        &::after {
+            @include bidi((
+                (left, 50%, right, auto),
+                (margin-left, $layout-lg * 0.5, margin-right, 0),
+            ));
+        }
+
+        .c-mobile-text {
+            @include bidi(((padding-right, $layout-lg * 0.5, padding-left, 0),));
+            max-width: 50%;
+        }
+    }
+
+    @media #{$mq-lg} {
+        &::after {
+            @include bidi(((margin-left, $layout-lg * 0.5, margin-right, 0),));
+        }
+
+        .c-mobile-text {
+            @include bidi(((padding-right, $layout-lg * 0.5, padding-left, 0),));
+        }
+    }
+}
+
+.c-desktop a {
+    @include text-title-xs;
+    background-image: url('/media/img/firefox/new/desktop/mobile-arrow.svg');
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    color: $color-purple-50;
+    display: block;
+    font-weight: bold;
+    padding: $spacing-md $layout-xs #{$spacing-lg + 64px};
+    text-align: center;
+    text-decoration: none;
+}
+
+// --------------------------------------------------------------------------
+// scroll animation
+
+@supports (animation-fill-mode: forwards) {
+    .has-animate {
+        opacity: 0;
+        transform-origin: bottom center;
+    }
+
+    .is-animated {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+        animation-name: zoom;
+    }
+
+    @keyframes zoom {
+        from {
+            opacity: 0;
+            transform: scaleX(0.8) scaleY(0.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scaleX(1) scaleY(1);
+        }
+    }
+}

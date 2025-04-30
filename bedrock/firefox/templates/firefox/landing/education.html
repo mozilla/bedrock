@@ -1,0 +1,295 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+
+{% extends "firefox/new/desktop/base.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block experiments %}{% endblock %}
+
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=smi-002' %}
+
+{% set win_custom_download_id = 'partner-firefox-release-smi-smi-002-stub' %}
+{% set mac_custom_download_id = 'partner-firefox-release-smi-smi-002-latest' %}
+
+{% set android_campaign_url = play_store_url('firefox', 'smi-002') %}
+{% set ios_campaign_url = app_store_url('firefox', 'smi-002') %}
+
+{% block string_data %}
+  data-win-custom-id="{{ win_custom_download_id }}"
+  data-mac-custom-id="{{ mac_custom_download_id }}"
+{% endblock %}
+
+{% block page_title_full %}Smash deadlines and stay focused with Firefox{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/landing/education/og.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('firefox_landing') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
+{% block content %}
+<main class="main-download">
+  <section id="desktop-banner" class="c-block t-intro show-else">
+    <div class="c-block-container">
+      <div class="c-block-body">
+        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
+          <h2>Smash deadlines and stay focused with Firefox</h2>
+          <p>Streamline your study sessions with browsing that’s fast and free of distractions.</p>
+        <div class="c-intro-download">
+          {{ download_firefox(dom_id='download-primary', force_direct=True, download_location='primary cta') }}
+
+          <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
+
+          <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
+        </div>
+      </div>
+      <div class="c-block-media l-v-center">
+        <div class="c-block-img">
+          {{ picture(
+            url='img/firefox/landing/education/hero-600.png',
+            sources=[
+              {
+                'media': '(min-width: 688px)',
+                'srcset': {
+                  'img/firefox/landing/education/hero-1000.png': '1000w',
+                  'img/firefox/landing/education/hero-800.png': '800w',
+                  'img/firefox/landing/education/hero-600.png': '600w',
+                  'img/firefox/landing/education/hero-400.png': '400w',
+                },
+                'sizes': {
+                  'default': '50vw'
+                },
+                'height': '425',
+                'width': '600'
+              },
+              {
+                'media': '(max-width: 687px)',
+                'srcset': {
+                  'img/placeholder.png': 'default'
+                },
+                'height': '0',
+                'width': '0'
+              }
+            ]
+          )}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-custom">
+    <div class="mzp-l-content t-custom-intro">
+      <h2 class="mzp-c-section-heading">Unlock the full potential of Firefox</h2>
+
+      <div class="c-screen t-education">
+        <div class="c-screenshot">
+          {{ resp_img(
+            url='img/firefox/landing/education/students-600.png',
+            srcset={
+              'img/firefox/landing/education/students-1200.png': '1200w',
+              'img/firefox/landing/education/students-1000.png': '1000w',
+              'img/firefox/landing/education/students-800.png': '800w',
+              'img/firefox/landing/education/students-600.png': '600w',
+              'img/firefox/landing/education/students-400.png': '400w',
+            },
+            sizes={
+              '(min-width: 800px)': '600px',
+              'default': '90vw'
+            },
+            optional_attributes={
+              'width': '600',
+              'height': '326',
+              'loading': 'lazy'
+            }
+          ) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="mzp-l-content t-custom-list">
+      <ul class="mzp-l-columns mzp-t-columns-four">
+        <li>
+          <h3 class="mzp-u-title-xs">Study and watch with Picture-in-Picture</h3>
+          <p>Follow tutorials, lectures, or videos while taking notes with Picture-in-Picture – multitasking made easy.</p>
+        </li>
+
+        <li>
+          <h3 class="mzp-u-title-xs">Protect your inbox</h3>
+          <p>Firefox Relay hides your email address when you sign up to things to keep your real inbox safe and clutter-free.</p>
+        </li>
+
+        <li>
+          <h3 class="mzp-u-title-xs">Edit and annotate PDFs on the fly</h3>
+          <p>Highlight text, fill out forms, and add comments directly in your browser - perfect for reviewing lecture notes or collaborating on assignments.</p>
+        </li>
+
+        <li>
+          <h3 class="mzp-u-title-xs">Capture and share screenshots instantly</h3>
+          <p>Quickly save key points from lecture slides or share resources with your study group, making collaboration easy.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-xl t-extensions">
+    <h2 class="mzp-c-section-heading">Study smarter</h2>
+
+    <div class="mzp-l-columns mzp-t-columns-three">
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/education/icon-tomato-clock-64.png',
+          srcset={
+            'img/firefox/landing/education/icon-tomato-clock-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/tomato-clock/{{ referrals }}" target="_blank" rel="noopener">Tomato Clock</a>
+        </h3>
+        <p>Stay productive with Tomato Clock, a simple Pomodoro timer to help you break up your study sessions and keep you fresh.</p>
+      </div>
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/education/icon-language-tool-64.png',
+          srcset={
+            'img/firefox/landing/education/icon-language-tool-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/languagetool/{{ referrals }}" target="_blank" rel="noopener">LanguageTool</a>
+        </h3>
+        <p>Write with confidence using this advanced spelling and grammar checker for multiple languages.</p>
+      </div>
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/education/icon-unhook-64.png',
+          srcset={
+            'img/firefox/landing/education/icon-unhook-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/youtube-recommended-videos/{{ referrals }}" target="_blank" rel="noopener">UnHook</a>
+        </h3>
+        <p>Stay focussed with UnHook – hide Youtube recommendations, comments, and other time sinks while studying.</p>
+      </div>
+    </div>
+
+    <p class="mzp-u-centered">
+      <a class="mzp-c-cta-link" href="https://addons.mozilla.org/en-GB/firefox/extensions/{{ referrals }}" target="_blank" rel="noopener">See all extensions</a>
+    </p>
+  </section>
+
+  <section class="t-features">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <h2 class="mzp-c-section-heading">Do it all with Firefox</h2>
+      <div class="mzp-l-columns mzp-t-columns-three">
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/education/icon-search.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Smarter searches, better results</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Save searches with autocomplete history</li>
+            <li>Search from address bar</li>
+            <li>Search engine options</li>
+            <li>Smart search suggestions</li>
+            <li>Bookmark, history and open tab in results</li>
+          </ul>
+        </div>
+
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/education/icon-productivity.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Boost your productivity</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Works with Google products</li>
+            <li>Built-in screenshot tool</li>
+            <li>Bookmarks manager</li>
+            <li>Autosuggest URLs</li>
+            <li>Synchronise across devices</li>
+            <li>Reader mode</li>
+            <li>Spell check</li>
+            <li>Pinned Tabs</li>
+          </ul>
+        </div>
+
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/education/icon-privacy.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Secure your personal info</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Breached website alerts</li>
+            <li>Built-in password manager</li>
+            <li>Clear history</li>
+            <li>Form autofill</li>
+            <li>Automatic updates</li>
+          </ul>
+        </div>
+      </div>
+
+      {{ download_firefox(dom_id='download-features', force_direct=True, download_location='features cta') }}
+    </div>
+  </section>
+
+  <section class="c-support">
+    {% set questions_attrs = 'href="https://support.mozilla.org/products/firefox%s&utm_content=mozilla-support" rel="external noopener" data-cta-text="Mozilla support"'|safe|format(referrals) %}
+    {{ ftl('firefox-desktop-download-questions', attrs=questions_attrs) }}
+  </section>
+
+  <aside id="mobile-banner" class="show-android show-ios" data-nosnippet>
+    <div class="c-mobile mzp-t-dark">
+      <div class="mzp-l-content">
+        <div class="c-mobile-text">
+          <h2 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox-browser') }}</h2>
+          <h2 class="mzp-u-title-md show-android">{{ ftl('firefox-desktop-download-get-firefox-android') }}</h2>
+          <h2 class="mzp-u-title-md show-ios">{{ ftl('firefox-desktop-download-get-firefox-ios') }}</h2>
+
+          <p>{{ ftl('firefox-desktop-download-download-the-mobile') }}</p>
+
+          {% block mobile_primary_cta %}
+            <div class="show-android">
+              {{ google_play_button(href=android_campaign_url) }}
+            </div>
+            <div class="show-ios">
+              {{ apple_app_store_button(href=ios_campaign_url) }}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <h2 class="c-desktop">
+      <a href="#next">{{ ftl('firefox-desktop-download-learn-about-the') }}</a>
+    </h2>
+    <span id="next"></span>
+  </aside>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_landing') }}
+  {{ js_bundle('firefox_partner_build_download') }}
+{% endblock %}
