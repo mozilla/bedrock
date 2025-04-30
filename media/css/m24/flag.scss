@@ -51,8 +51,8 @@
     cursor: pointer;
     transition: background-color $fast, border-color $fast;
 
-    // Focused button is always visible: https://bugzilla.mozilla.org/show_bug.cgi?id=1936862
-    &:focus {
+    // Keyboard focused button is always visible: https://bugzilla.mozilla.org/show_bug.cgi?id=1936862
+    &:focus-visible {
         position: relative;
         z-index: 1001; // must be above .m24-navigation-refresh.m24-mzp-is-sticky
     }
