@@ -347,10 +347,6 @@ html:not(.is-firefox) {
         border-radius: $border-radius-lg;
         margin-top: $spacing-lg;
 
-        summary {
-          cursor: pointer; // Temporary fix until https://github.com/mozilla/protocol/issues/948
-        }
-
         h3 {
             margin-bottom: 0;
             @include font-size(18px);
