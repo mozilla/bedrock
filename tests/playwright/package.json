@@ -5,9 +5,9 @@
   "private": true,
   "dependencies": {
     "@axe-core/playwright": "^4.10.1",
-    "@playwright/test": "^1.51.1",
+    "@playwright/test": "^1.52.0",
     "axe-html-reporter": "^2.2.11",
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.5.0"
   },
   "repository": {
     "type": "git",
