@@ -73,10 +73,6 @@ $brand-theme: 'firefox';
         margin-bottom: $spacing-lg;
         position: relative;
 
-        summary:hover {
-            cursor: pointer;
-        }
-
         &::before {
             @include bidi(((left, 0, right, 0),));
             border-radius: 100%;
