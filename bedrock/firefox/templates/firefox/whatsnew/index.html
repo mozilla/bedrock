@@ -23,9 +23,19 @@
   <div class="mzp-l-content mzp-t-content-md">
     <h1 class="wnp-main-title">{{ ftl('whatsnew-s2d-download-firefox-for-your') }}</h1>
 
-    <div class="qr-wrapper">
-      <img class="qr-code" src="{{ static('img/firefox/whatsnew/qrcode-firefox-whatsnew.png') }}" width="180" height="180" alt="{{ ftl('whatsnew-s2d-qr-code-alt') }}">
-    </div>
+    {% if variant == '2' %}
+      <div class="qr-wrapper variant-b">
+        <img class="qr-code" src="{{ static('img/firefox/whatsnew/qrcode-firefox-whatsnew-variant-b.png') }}" width="180" height="180" alt="{{ ftl('whatsnew-s2d-qr-code-alt') }}">
+      </div>
+    {% elif variant == '1' %}
+      <div class="qr-wrapper variant-a">
+        <img class="qr-code" src="{{ static('img/firefox/whatsnew/qrcode-firefox-whatsnew-variant-a.png') }}" width="180" height="180" alt="{{ ftl('whatsnew-s2d-qr-code-alt') }}">
+      </div>
+    {% else %}
+      <div class="qr-wrapper">
+        <img class="qr-code" src="{{ static('img/firefox/whatsnew/qrcode-firefox-whatsnew.png') }}" width="180" height="180" alt="{{ ftl('whatsnew-s2d-qr-code-alt') }}">
+      </div>
+    {% endif %}
 
     <ul class="mobile-download-buttons">
       <li class="android">

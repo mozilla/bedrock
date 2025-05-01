@@ -53,17 +53,29 @@ $image-path: '/media/protocol/img';
 
 .qr-wrapper {
     position: relative;
+    margin: $spacing-lg auto;
     width: 210px;
     height: 315px;
-    margin: $spacing-lg auto;
     background: transparent url('/media/img/firefox/whatsnew/qr-wrapper-foxphone.svg') center top no-repeat;
     background-size: 210px 315px;
 
     .qr-code {
         position: absolute;
-        top: 118px;
         left: 50%;
+        top: 118px;
         margin-left: -90px;
+    }
+
+    &.variant-b {
+        width: 236px;
+        height: 342px;
+        background: transparent url('/media/img/firefox/whatsnew/qr-wrapper-foxphone-spring.svg') center top no-repeat;
+        background-size: 236px 342px;
+
+        .qr-code {
+            top: 144px;
+            margin-left: -93px;
+        }
     }
 }
 
