@@ -200,12 +200,12 @@ $border: 2px solid $color-marketing-gray-20;
         }
 
         tr {
-        border-top: 1px solid $color-light-gray-50;
-        padding: $layout-2xs 0;
+            border-top: 1px solid $color-light-gray-50;
+            padding: $layout-2xs 0;
 
-        &:first-child {
-            border-top: none;
-        }
+            &:first-child {
+                border-top: none;
+            }
         }
     }
 }
