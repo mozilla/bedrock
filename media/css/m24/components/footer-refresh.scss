@@ -4,8 +4,6 @@
 
 @use '../vars/lib' as *;
 
-$max-footer-content-width: $content-max;
-
 @mixin divider-line {
     border-bottom: $border-width solid $m24-color-light-gray;
 }
@@ -213,7 +211,6 @@ $max-footer-content-width: $content-max;
             background-size: 16px 16px;
             background-position: center center;
             opacity: .45;
-            border-bottom: 1px solid rgba(0,0,0,0);
             display: block;
             height: 24px;
             width: 24px;
@@ -225,7 +222,6 @@ $max-footer-content-width: $content-max;
             &:hover,
             &:focus {
                 opacity: 1;
-                border-bottom-color: transparent;
             }
 
             &.linkedin {
@@ -273,40 +269,16 @@ $max-footer-content-width: $content-max;
         padding-bottom: $spacer-xs;
     }
 
-    a,
     a:link,
     a:visited {
         text-decoration: none;
-        position: relative;
-        color: $m24-color-black;
-        font-weight: 400;
-    }
-
-    a:hover,
-    a:link:hover,
-    a:visited:hover {
         color: $m24-color-black;
 
-        &::after {
-            display: block;
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 1px;
-            left: 0;
-            bottom: 1px;
-            background: $m24-color-black;
-        }
-    }
-
-    a:focus-visible,
-    a:link:focus-visible,
-    a:active,
-    a:link:active {
-        color: $m24-color-black;
-
-        &::after {
-            display: none;
+        &:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 0.1em;
+            color: $m24-color-black;
         }
     }
 }
@@ -480,15 +452,11 @@ $max-footer-content-width: $content-max;
         margin-bottom: 0;
     }
 
-    a {
-        display: inline-block;
-    }
-
-    a,
     a:link,
     a:visited {
         color: $m24-color-black;
         font-weight: 600;
+        display: inline-block;
     }
 }
 
@@ -509,7 +477,6 @@ $max-footer-content-width: $content-max;
         }
     }
 
-    a,
     a:link,
     a:visited {
         color: $m24-color-black;
