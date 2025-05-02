@@ -1201,9 +1201,9 @@
     {
       "files": [
         "css/m24/root.scss",
-        "css/protocol/protocol-mozilla-2024.scss"
+        "css/protocol/protocol-mozilla.scss"
       ],
-      "name": "protocol-mozilla-2024"
+      "name": "protocol-mozilla"
     },
     {
       "files": [
