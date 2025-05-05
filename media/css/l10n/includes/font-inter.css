@@ -8,9 +8,7 @@
     font-family: Inter;
     font-style: normal;
     font-weight: normal;
-    src:
-        url('/media/protocol/fonts/Inter-Regular.woff2') format('woff2'),
-        url('/media/protocol/fonts/Inter-Regular.woff') format('woff');
+    src: url('/media/protocol/fonts/Inter-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -18,9 +16,7 @@
     font-family: Inter;
     font-style: italic;
     font-weight: normal;
-    src:
-        url('/media/protocol/fonts/Inter-Italic.woff2') format('woff2'),
-        url('/media/protocol/fonts/Inter-Italic.woff') format('woff');
+    src: url('/media/protocol/fonts/Inter-Italic.woff2') format('woff2');
 }
 
 @font-face {
@@ -28,9 +24,7 @@
     font-family: Inter;
     font-style: normal;
     font-weight: 600;
-    src:
-        url('/media/fonts/inter/Inter-SemiBold.woff2') format('woff2'),
-        url('/media/fonts/inter/Inter-SemiBold.woff') format('woff');
+    src: url('/media/fonts/inter/Inter-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
@@ -38,9 +32,7 @@
     font-family: Inter;
     font-style: italic;
     font-weight: 600;
-    src:
-        url('/media/fonts/inter/Inter-SemiBoldItalic.woff2') format('woff2'),
-        url('/media/fonts/inter/Inter-SemiBoldItalic.woff') format('woff');
+    src: url('/media/fonts/inter/Inter-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
@@ -48,9 +40,7 @@
     font-family: Inter;
     font-style: normal;
     font-weight: bold;
-    src:
-        url('/media/protocol/fonts/Inter-Bold.woff2') format('woff2'),
-        url('/media/protocol/fonts/Inter-Bold.woff') format('woff');
+    src: url('/media/protocol/fonts/Inter-Bold.woff2') format('woff2');
 }
 
 @font-face {
@@ -58,7 +48,5 @@
     font-family: Inter;
     font-style: italic;
     font-weight: bold;
-    src:
-        url('/media/protocol/fonts/Inter-BoldItalic.woff2') format('woff2'),
-        url('/media/protocol/fonts/Inter-BoldItalic.woff') format('woff');
+    src: url('/media/protocol/fonts/Inter-BoldItalic.woff2') format('woff2');
 }
