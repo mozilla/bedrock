@@ -5,10 +5,6 @@
 @forward  '~@mozilla-protocol/core/protocol/css/includes/lib';
 @forward 'animation';
 @forward 'color';
-@forward 'fonts';
 @forward 'grid';
 @forward 'spacing';
 @forward 'text';
-
-
-$mq-max: '(min-width: 1440px)';

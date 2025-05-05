@@ -15,7 +15,7 @@
     }
 
     .mzp-c-breadcrumb-list {
-        max-width: 1440px;
+        max-width: $content-max;
         margin: 0 auto;
     }
 
@@ -77,7 +77,6 @@ main {
 
     .cookie-summary {
         border-bottom: 1px solid $color-light-gray-40;
-        cursor: pointer; // Temporary fix until https://github.com/mozilla/protocol/issues/948 is added
     }
 
     .cookie-summary-title {

@@ -108,7 +108,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     color: $color-black;
     display: block;
     float: right;
-    font-family: $primary-font;
     font-weight: 600;
     height: 32px;
     margin: 4px 0 0;
@@ -349,7 +348,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     border: none;
     color: $color-black;
     display: flex;
-    font-family: $primary-font;
     font-size: $text-body-md;
     font-weight: 600;
     padding: 0;
@@ -437,7 +435,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 }
 
 .m24-c-menu-item-title {
-    font-family: $primary-font;
+    font-family: var(--body-font-family);
     font-size: $text-body-md;
     font-weight: 600;
     margin-bottom: 0;
@@ -559,7 +557,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 .m24-c-menu-panel .m24-c-menu-category-link {
     border: none;
     display: flex;
-    font-family: $primary-font;
     font-size: $text-body-md;
     justify-content: flex-end;
     margin: $spacer-lg $spacer-lg 0;
@@ -572,7 +569,6 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     border: none;
     color: $color-black;
     display: flex;
-    font-family: $primary-font;
     font-weight: 600;
     position: relative;
     text-decoration: none;

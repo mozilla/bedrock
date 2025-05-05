@@ -163,7 +163,7 @@ $springboard-thumb-width: 32px;
     }
 }
 
-@media (min-width: 1440px) {
+@media #{$mq-max} {
     @supports (grid-template-columns: subgrid) {
         .m24-c-springboard-preview {
             white-space: nowrap;
