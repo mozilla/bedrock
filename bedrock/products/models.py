@@ -266,7 +266,7 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["articlepages"] = MonitorArticlePage.objects.live().public().in_menu().order_by("path")
+        context["articlepages"] = MonitorArticlePage.objects.live().public().order_by("path")
         return context
 
 
