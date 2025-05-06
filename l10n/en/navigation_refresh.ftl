@@ -17,8 +17,6 @@ navigation-refresh-mozilla-manifesto-v2 = The { -brand-name-mozilla } Manifesto
 navigation-refresh-mozilla-foundation = { -brand-name-mozilla-foundation }
 navigation-refresh-get-involved = Get involved
 navigation-refresh-get-involved-v2 = Get Involved
-navigation-refresh-innovation-projects = Innovation projects
-navigation-refresh-innovation-projects-v2 = Innovation Projects
 navigation-refresh-blog = Blog
 navigation-refresh-our-mission = Our Mission
 navigation-refresh-our-work = Our Work
@@ -26,6 +24,7 @@ navigation-refresh-mozilla-builders = { -brand-name-mozilla-builders }
 navigation-refresh-mozilla-ai-v3 = { -brand-name-mozilla-ai-v2 }
 navigation-refresh-mozilla-ventures-v2 = { -brand-name-mozilla-ventures }
 navigation-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
+navigation-refresh-mozilla-new-products = { -brand-name-mozilla } New Products
 
 ## Firefox
 
