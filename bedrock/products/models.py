@@ -266,9 +266,7 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        context["articlepages"] = (
-            MonitorArticlePage.objects.live().public().order_by("-first_published_at")
-        )  # live() and public() are wagtail filters
+        context["articlepages"] = MonitorArticlePage.objects.live().public().order_by("path")
         return context
 
 
