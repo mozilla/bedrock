@@ -31,9 +31,11 @@ ROOT_URLCONF = "bedrock.urls"
 #   - e.g. `https://example.com/api/` will match anything that starts with `https://example.com/api/`
 
 _csp_default_src = {
+    # NOTE: Keep `default-src` minimal. Best to set resources in the specific directives.
     csp.constants.SELF,
 }
 _csp_connect_src = {
+    csp.constants.SELF,
     # NOTE: Check if these need to be in the `_csp_form_action` list as well since we often
     # progressively enhance forms by using Javascript.
     "o1069899.ingest.sentry.io",
@@ -44,7 +46,9 @@ _csp_connect_src = {
     BASKET_URL,
     FXA_ENDPOINT,
 }
-_csp_font_src = set()
+_csp_font_src = {
+    csp.constants.SELF,
+}
 _csp_form_action = {
     csp.constants.SELF,
     # NOTE: Check if these need to be in the `_csp_connect_src` list as well since we often
@@ -57,6 +61,7 @@ _csp_frame_ancestors = {
     csp.constants.SELF if WAGTAIL_ENABLE_ADMIN else csp.constants.NONE,
 }
 _csp_frame_src = {
+    csp.constants.SELF,
     "accounts.firefox.com",
     "js.stripe.com",
     "www.google-analytics.com",
@@ -64,6 +69,7 @@ _csp_frame_src = {
     "www.youtube.com",
 }
 _csp_img_src = {
+    csp.constants.SELF,
     "data:",
     "www.googletagmanager.com",
     "www.google-analytics.com",
@@ -75,7 +81,7 @@ _csp_media_src = {
     "videos.cdn.mozilla.net",
 }
 _csp_script_src = {
-    # TODO change settings so we don't need unsafes even in dev
+    csp.constants.SELF,
     "js.stripe.com",
     "s.ytimg.com",
     "tagmanager.google.com",
@@ -86,7 +92,7 @@ _csp_script_src = {
     csp.constants.UNSAFE_INLINE,
 }
 _csp_style_src = {
-    # TODO fix things so that we don't need this
+    csp.constants.SELF,
     csp.constants.UNSAFE_INLINE,
 }
 
@@ -121,16 +127,16 @@ CONTENT_SECURITY_POLICY = {
     "DIRECTIVES": {
         "default-src": _csp_default_src,
         "base-uri": {csp.constants.NONE},
-        "connect-src": _csp_default_src | _csp_connect_src,
-        "font-src": _csp_default_src | _csp_font_src,
+        "connect-src": _csp_connect_src,
+        "font-src": _csp_font_src,
         "form-action": _csp_form_action,
         "frame-ancestors": _csp_frame_ancestors,
-        "frame-src": _csp_default_src | _csp_frame_src,
-        "img-src": _csp_default_src | _csp_img_src,
+        "frame-src": _csp_frame_src,
+        "img-src": _csp_img_src,
         "media-src": _csp_media_src,
         "object-src": {csp.constants.NONE},
-        "script-src": _csp_default_src | _csp_script_src,
-        "style-src": _csp_default_src | _csp_style_src,
+        "script-src": _csp_script_src,
+        "style-src": _csp_style_src,
         "upgrade-insecure-requests": False if DEBUG else True,
         "report-uri": csp_report_uri,
     },
