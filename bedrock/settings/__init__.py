@@ -23,6 +23,13 @@ ROOT_URLCONF = "bedrock.urls"
 _csp_default_src = {
     csp.constants.SELF,
 }
+_csp_form_action = {
+    csp.constants.SELF,
+    # NOTE: Check if these need to be in the `_csp_connect_src` list as well since we often
+    # progressively enhance forms by using Javascript.
+    BASKET_URL,
+    FXA_ENDPOINT,
+}
 _csp_img_src = {
     "data:",
     "www.googletagmanager.com",
@@ -57,10 +64,12 @@ _csp_frame_src = {
     "js.stripe.com",
 }
 _csp_connect_src = {
+    # NOTE: Check if these need to be in the `_csp_form_action` list as well since we often
+    # progressively enhance forms by using Javascript.
+    BASKET_URL,
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "region1.google-analytics.com",
-    "sentry.prod.mozaws.net",  # DEPRECATED. TODO: remove this once all sites are talking to sentry.io instead
     "o1069899.sentry.io",
     "o1069899.ingest.sentry.io",
     FXA_ENDPOINT,
@@ -106,6 +115,7 @@ CONTENT_SECURITY_POLICY = {
         "base-uri": {csp.constants.NONE},
         "connect-src": _csp_default_src | _csp_connect_src,
         "font-src": _csp_default_src | _csp_font_src,
+        "form-action": _csp_form_action,
         "frame-ancestors": _csp_frame_ancestors,
         "frame-src": _csp_frame_src,
         "img-src": _csp_default_src | _csp_img_src,
@@ -127,8 +137,6 @@ if csp_ro_report_uri:
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
-    # For `form-action`, include a trailing slash to avoid CSP's "exact match" path-part rules, unless exact matching is intended.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["form-action"] = {csp.constants.SELF, f"{BASKET_URL}/news/", FXA_ENDPOINT}
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
