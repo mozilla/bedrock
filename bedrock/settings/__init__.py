@@ -66,6 +66,10 @@ _csp_style_src = {
     # TODO fix things so that we don't need this
     csp.constants.UNSAFE_INLINE,
 }
+# On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
+_csp_frame_ancestors = {
+    csp.constants.SELF if WAGTAIL_ENABLE_ADMIN else csp.constants.NONE,
+}
 _csp_frame_src = {
     "www.googletagmanager.com",
     "www.google-analytics.com",
@@ -111,11 +115,6 @@ if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListO
     _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
 csp_ro_report_uri = config("CSP_RO_REPORT_URI", default="") or None
-# On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
-if WAGTAIL_ENABLE_ADMIN:
-    _csp_frame_ancestors = {csp.constants.SELF}
-else:
-    _csp_frame_ancestors = {csp.constants.NONE}
 
 CONTENT_SECURITY_POLICY = {
     # Default report percentage to 1% just in case the env var isn't set, we don't want to bombard Sentry.
