@@ -108,8 +108,8 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 
 
 # 3. DJANGO-CSP SETTINGS
-if extra_csp_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):
-    _csp_default_src |= set(extra_csp_default_src)
+if csp_extra_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):
+    _csp_default_src |= set(csp_extra_default_src)
 if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
