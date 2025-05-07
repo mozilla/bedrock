@@ -33,12 +33,35 @@ ROOT_URLCONF = "bedrock.urls"
 _csp_default_src = {
     csp.constants.SELF,
 }
+_csp_connect_src = {
+    # NOTE: Check if these need to be in the `_csp_form_action` list as well since we often
+    # progressively enhance forms by using Javascript.
+    "o1069899.ingest.sentry.io",
+    "o1069899.sentry.io",
+    "region1.google-analytics.com",
+    "www.google-analytics.com",
+    "www.googletagmanager.com",
+    BASKET_URL,
+    FXA_ENDPOINT,
+}
+_csp_font_src = set()
 _csp_form_action = {
     csp.constants.SELF,
     # NOTE: Check if these need to be in the `_csp_connect_src` list as well since we often
     # progressively enhance forms by using Javascript.
     BASKET_URL,
     FXA_ENDPOINT,
+}
+# On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
+_csp_frame_ancestors = {
+    csp.constants.SELF if WAGTAIL_ENABLE_ADMIN else csp.constants.NONE,
+}
+_csp_frame_src = {
+    "accounts.firefox.com",
+    "js.stripe.com",
+    "www.google-analytics.com",
+    "www.googletagmanager.com",
+    "www.youtube.com",
 }
 _csp_img_src = {
     "data:",
@@ -53,42 +76,19 @@ _csp_media_src = {
 }
 _csp_script_src = {
     # TODO change settings so we don't need unsafes even in dev
-    csp.constants.UNSAFE_INLINE,
-    csp.constants.UNSAFE_EVAL,
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "tagmanager.google.com",
-    "www.youtube.com",
-    "s.ytimg.com",
     "js.stripe.com",
+    "s.ytimg.com",
+    "tagmanager.google.com",
+    "www.google-analytics.com",
+    "www.googletagmanager.com",
+    "www.youtube.com",
+    csp.constants.UNSAFE_EVAL,
+    csp.constants.UNSAFE_INLINE,
 }
 _csp_style_src = {
     # TODO fix things so that we don't need this
     csp.constants.UNSAFE_INLINE,
 }
-# On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
-_csp_frame_ancestors = {
-    csp.constants.SELF if WAGTAIL_ENABLE_ADMIN else csp.constants.NONE,
-}
-_csp_frame_src = {
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "accounts.firefox.com",
-    "www.youtube.com",
-    "js.stripe.com",
-}
-_csp_connect_src = {
-    # NOTE: Check if these need to be in the `_csp_form_action` list as well since we often
-    # progressively enhance forms by using Javascript.
-    BASKET_URL,
-    "www.googletagmanager.com",
-    "www.google-analytics.com",
-    "region1.google-analytics.com",
-    "o1069899.sentry.io",
-    "o1069899.ingest.sentry.io",
-    FXA_ENDPOINT,
-}
-_csp_font_src = set()
 
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
