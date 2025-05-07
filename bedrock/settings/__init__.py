@@ -110,6 +110,7 @@ CONTENT_SECURITY_POLICY = {
         "frame-src": _csp_frame_src,
         "img-src": _csp_default_src | _csp_img_src,
         "media-src": _csp_media_src,
+        "object-src": {csp.constants.NONE},
         "script-src": _csp_default_src | _csp_script_src,
         "style-src": _csp_default_src | _csp_style_src,
         "upgrade-insecure-requests": False if DEBUG else True,
@@ -125,7 +126,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = {csp.constants.NONE}
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
     # For `form-action`, include a trailing slash to avoid CSP's "exact match" path-part rules, unless exact matching is intended.
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["form-action"] = {csp.constants.SELF, f"{BASKET_URL}/news/", FXA_ENDPOINT}
