@@ -22,9 +22,6 @@ ROOT_URLCONF = "bedrock.urls"
 # CSP settings for MOZORG, expanded upon later:
 _csp_default_src = {
     csp.constants.SELF,
-    "*.mozilla.net",
-    "*.mozilla.org",
-    "*.mozilla.com",
 }
 _csp_img_src = {
     "data:",
@@ -121,7 +118,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
     # CSP directive updates we're testing that we hope to move to the enforced policy.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["default-src"] = {csp.constants.SELF}
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["base-uri"] = {csp.constants.NONE}
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["media-src"] = {csp.constants.SELF, "assets.mozilla.net", "videos.cdn.mozilla.net"}
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["object-src"] = {csp.constants.NONE}
