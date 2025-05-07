@@ -1,0 +1,286 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros.html" import google_play_button, apple_app_store_button with context %}
+
+{% extends "firefox/new/desktop/base.html" %}
+
+{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+
+{% block experiments %}{% endblock %}
+
+{% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=smi-003' %}
+
+{% set win_custom_download_id = 'partner-firefox-release-smi-smi-003-stub' %}
+{% set mac_custom_download_id = 'partner-firefox-release-smi-smi-003-latest' %}
+
+{% set android_campaign_url = play_store_url('firefox', 'smi-003') %}
+{% set ios_campaign_url = app_store_url('firefox', 'smi-003') %}
+
+{% block string_data %}
+  data-win-custom-id="{{ win_custom_download_id }}"
+  data-mac-custom-id="{{ mac_custom_download_id }}"
+{% endblock %}
+
+{% block page_title_full %}Level up your browser with Firefox{% endblock %}
+
+{% block page_image %}{{ static('img/firefox/landing/gaming/og.png') }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('firefox_landing') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'firefox/includes/sub-nav-firefox.html' %}
+{% endblock %}
+
+{% block content %}
+<main class="main-download">
+  <section id="desktop-banner" class="c-block t-intro show-else">
+    <div class="c-block-container">
+      <div class="c-block-body">
+        <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
+          <h2>Level up your browser</h2>
+          <p>No lag, no limits – Firefox is fast, flexible, and optimised for all your gaming needs.</p>
+        <div class="c-intro-download">
+          {{ download_firefox(dom_id='download-primary', force_direct=True, download_location='primary cta') }}
+
+          <div class="c-intro-download-alt"><a href="{{ url('firefox.all') }}">{{ ftl('firefox-desktop-download-download-options') }}</a></div>
+
+          <div class="c-intro-download-alt"><a href="https://support.mozilla.org/products/firefox{{ referrals }}&utm_content=browser-support" rel="external noopener" data-cta-text="Firefox browser support">{{ ftl('firefox-desktop-download-browser-support') }}</a></div>
+        </div>
+      </div>
+      <div class="c-block-media l-v-center">
+        <div class="c-block-img">
+          {{ picture(
+            url='img/firefox/landing/gaming/hero-600.png',
+            sources=[
+              {
+                'media': '(min-width: 688px)',
+                'srcset': {
+                  'img/firefox/landing/gaming/hero-1000.png': '1000w',
+                  'img/firefox/landing/gaming/hero-800.png': '800w',
+                  'img/firefox/landing/gaming/hero-600.png': '600w',
+                  'img/firefox/landing/gaming/hero-400.png': '400w',
+                },
+                'sizes': {
+                  'default': '50vw'
+                },
+                'height': '442',
+                'width': '600'
+              },
+              {
+                'media': '(max-width: 687px)',
+                'srcset': {
+                  'img/placeholder.png': 'default'
+                },
+                'height': '0',
+                'width': '0'
+              }
+            ]
+          )}}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="t-custom">
+    <div class="mzp-l-content t-custom-intro">
+      <h2 class="mzp-c-section-heading">Unlock the full potential of Firefox</h2>
+
+      <div class="c-screen t-gaming">
+        <div class="c-screenshot">
+          {{ resp_img(
+            url='img/firefox/landing/gaming/gamers-600.png',
+            srcset={
+              'img/firefox/landing/gaming/gamers-1200.png': '1200w',
+              'img/firefox/landing/gaming/gamers-1000.png': '1000w',
+              'img/firefox/landing/gaming/gamers-800.png': '800w',
+              'img/firefox/landing/gaming/gamers-600.png': '600w',
+              'img/firefox/landing/gaming/gamers-400.png': '400w',
+            },
+            sizes={
+              '(min-width: 800px)': '600px',
+              'default': '90vw'
+            },
+            optional_attributes={
+              'width': '600',
+              'height': '362',
+              'loading': 'lazy'
+            }
+          ) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="mzp-l-content mzp-t-content-xl t-custom-list">
+      <ul class="mzp-l-columns mzp-t-columns-three">
+        <li>
+          <h3 class="mzp-u-title-xs">Play and watch</h3>
+          <p>Watch your favourite content while keeping your hands free for the game with Picture-in-Picture – multitasking made easy.</p>
+        </li>
+
+        <li>
+          <h3 class="mzp-u-title-xs">Customise your navigation</h3>
+          <p>Switch to Dark Mode for a calming, eye-friendly experience, or choose themes you love.</p>
+        </li>
+
+        <li>
+          <h3 class="mzp-u-title-xs">Enjoy the fastest Firefox ever</h3>
+          <p>Firefox loads pages quickly and efficiently, so you never miss a beat in-game or online.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mzp-l-content mzp-t-content-xl t-extensions">
+    <h2 class="mzp-c-section-heading">Transform your play with custom tools</h2>
+
+    <div class="mzp-l-columns mzp-t-columns-three">
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/gaming/icon-augmented-steam-64.png',
+          srcset={
+            'img/firefox/landing/gaming/icon-augmented-steam-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/augmented-steam/{{ referrals }}" target="_blank" rel="noopener">Augmented Steam</a>
+        </h3>
+        <p>Discover game deals, filter searches, and personalise your profile, all while enjoying the user-friendly interface.</p>
+      </div>
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/gaming/icon-enhancer-64.png',
+          srcset={
+            'img/firefox/landing/gaming/icon-enhancer-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/enhancer-for-youtube/{{ referrals }}" target="_blank" rel="noopener">Enhancer for YouTube</a>
+        </h3>
+        <p>Customise your YouTube with a variety of features, from ad-blocking to playback controls tailored to your preferences.</p>
+      </div>
+
+      <div class="t-extensions-item js-animate">
+        {{ resp_img(
+          url='img/firefox/landing/gaming/icon-bitwarden-64.png',
+          srcset={
+            'img/firefox/landing/gaming/icon-bitwarden-128.png': '2x'
+          },
+          optional_attributes={
+            'loading': 'lazy',
+            'height': '64',
+            'width': '64'
+          },
+        ) }}
+        <h3 class="mzp-u-title-xs">
+          <a href="https://addons.mozilla.org/en-GB/firefox/addon/bitwarden-password-manager/{{ referrals }}" target="_blank" rel="noopener">Bitwarden</a>
+        </h3>
+        <p>A free, secure password manager that effortlessly syncs across all your devices, ensuring your login credentials are always safe and within arms’ reach.</p>
+      </div>
+    </div>
+
+    <p class="mzp-u-centered">
+      <a class="mzp-c-cta-link" href="https://addons.mozilla.org/en-GB/firefox/extensions/{{ referrals }}" target="_blank" rel="noopener">See all extensions</a>
+    </p>
+  </section>
+
+  <section class="t-features">
+    <div class="mzp-l-content mzp-t-content-xl">
+      <h2 class="mzp-c-section-heading">More Firefox features</h2>
+      <div class="mzp-l-columns mzp-t-columns-three">
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/gaming/icon-stream.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Stream, share, and play</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Picture-in-Picture</li>
+            <li>Curated content on new tab</li>
+            <li>Share links</li>
+          </ul>
+        </div>
+
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/gaming/icon-customize.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Customise your browser</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Themes</li>
+            <li>Dark mode</li>
+            <li>Library of extensions</li>
+            <li>Adjust search bar settings</li>
+            <li>Change new tab layout</li>
+          </ul>
+        </div>
+
+        <div class="t-features-item js-animate">
+          <img loading="lazy" src="{{ static('img/firefox/landing/gaming/icon-privacy.svg') }}" alt="" width="40" height="40">
+          <h3 class="mzp-u-title-xs">Secure your personal info</h3>
+          <ul class="mzp-u-list-styled">
+            <li>Breached web site alerts</li>
+            <li>Built-in password manager</li>
+            <li>Clear history</li>
+            <li>Form autofill</li>
+            <li>Automatic updates</li>
+          </ul>
+        </div>
+      </div>
+
+      {{ download_firefox(dom_id='download-features', force_direct=True, download_location='features cta') }}
+    </div>
+  </section>
+
+  <section class="c-support">
+    {% set questions_attrs = 'href="https://support.mozilla.org/products/firefox%s&utm_content=mozilla-support" rel="external noopener" data-cta-text="Mozilla support"'|safe|format(referrals) %}
+    {{ ftl('firefox-desktop-download-questions', attrs=questions_attrs) }}
+  </section>
+
+  <aside id="mobile-banner" class="show-android show-ios" data-nosnippet>
+    <div class="c-mobile mzp-t-dark">
+      <div class="mzp-l-content">
+        <div class="c-mobile-text">
+          <h2 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox-browser') }}</h2>
+          <h2 class="mzp-u-title-md show-android">{{ ftl('firefox-desktop-download-get-firefox-android') }}</h2>
+          <h2 class="mzp-u-title-md show-ios">{{ ftl('firefox-desktop-download-get-firefox-ios') }}</h2>
+
+          <p>{{ ftl('firefox-desktop-download-download-the-mobile') }}</p>
+
+          {% block mobile_primary_cta %}
+            <div class="show-android">
+              {{ google_play_button(href=android_campaign_url) }}
+            </div>
+            <div class="show-ios">
+              {{ apple_app_store_button(href=ios_campaign_url) }}
+            </div>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+    <h2 class="c-desktop">
+      <a href="#next">{{ ftl('firefox-desktop-download-learn-about-the') }}</a>
+    </h2>
+    <span id="next"></span>
+  </aside>
+</main>
+
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_landing') }}
+  {{ js_bundle('firefox_partner_build_download') }}
+{% endblock %}
