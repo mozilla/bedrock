@@ -110,7 +110,6 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 # 3. DJANGO-CSP SETTINGS
 if extra_csp_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_default_src |= set(extra_csp_default_src)
-_csp_frame_src |= _csp_default_src
 if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
@@ -126,7 +125,7 @@ CONTENT_SECURITY_POLICY = {
         "font-src": _csp_default_src | _csp_font_src,
         "form-action": _csp_form_action,
         "frame-ancestors": _csp_frame_ancestors,
-        "frame-src": _csp_frame_src,
+        "frame-src": _csp_default_src | _csp_frame_src,
         "img-src": _csp_default_src | _csp_img_src,
         "media-src": _csp_media_src,
         "object-src": {csp.constants.NONE},
