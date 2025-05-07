@@ -19,7 +19,17 @@ from .base import *  # noqa: F403, F405
 
 ROOT_URLCONF = "bedrock.urls"
 
-# CSP settings for MOZORG, expanded upon later:
+# CSP settings, expanded upon later:
+# NOTE: We are providing all settings to django-csp as sets, not lists.
+# - This is for de-duping, and because django-csp will convert them to `sorted` lists for us.
+
+# NOTE: For any URLs that contain a path, not just the origin, trailing slashes are important.
+# - if no path is provided, all resources are allowed from the origin.
+# - if path is provided with no trailing slash: an exact-match is required.
+#   - e.g. `https://example.com/api` will only match `https://example.com/api`
+# - if path is provided with trailing slash: the path is a prefix-match.
+#   - e.g. `https://example.com/api/` will match anything that starts with `https://example.com/api/`
+
 _csp_default_src = {
     csp.constants.SELF,
 }
