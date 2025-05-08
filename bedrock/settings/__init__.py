@@ -5,6 +5,7 @@
 import logging.config
 import sys
 from copy import deepcopy
+from urllib.parse import urlparse
 
 import csp.constants
 
@@ -38,13 +39,13 @@ _csp_connect_src = {
     csp.constants.SELF,
     # NOTE: Check if these need to be in the `_csp_form_action` list as well since we often
     # progressively enhance forms by using Javascript.
-    "cjms.services.mozilla.com",
     "o1069899.ingest.sentry.io",
     "o1069899.sentry.io",
     "region1.google-analytics.com",
-    "stage.cjms.nonprod.cloudops.mozgcp.net",
     "www.google-analytics.com",
     "www.googletagmanager.com",
+    # Just get the CJMS domain from the URL, nothing else.
+    urlparse(CJMS_AFFILIATE_ENDPOINT).netloc,
     BASKET_URL,
     FXA_ENDPOINT,
 }
