@@ -110,7 +110,7 @@ nav:
     - Firefox Mobile attribution: attribution/0003-firefox-mobile.md
     - Mozilla accounts attribution: attribution/0004-mozilla-accounts.md
     - Mozilla CJMS Affiliate attribution: attribution/0005-affiliate-marketing.md
-    - Managing Data Privacy and Concent: attribution/0006-consent-management.md
+    - Managing Data Privacy and Consent: attribution/0006-consent-management.md
   - Architectural Decision Records:
     - architecture/decisions/index.md
     - 1. Record architecture decisions: architecture/decisions/0001-record-architecture-decisions.md
