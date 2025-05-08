@@ -40,15 +40,15 @@ Therefore, a good policy balances the use of technical and social controls to mi
 
 <ol class="mzp-u-list-styled">
   <li>
-    Try/User access - ‘try’ trees and user repositories in Hg, plus any other tree placed at this level.
+    Try/User access - ‘try’ trees and user repositories in the VCS, plus any other tree placed at this level.
     <p>Requirements: one voucher - any other user with level 2 or above access.</p>
   </li>
   <li>
-    General access - all of Hg not in level 3 or listed as an exception. Currently, this level is rarely used for Mozilla development.
+    General access - all of VCS not in level 3 or listed as an exception. Currently, this level is rarely used for Mozilla development.
     <p>Requirements: one voucher - any current Mozilla code module owner.</p>
   </li>
   <li>
-    Hg core product (Firefox/Thunderbird/GeckoView) access.
+    VCS core product (Firefox/Thunderbird/GeckoView) access.
     <p>Requirements: two vouchers - current module owners or peers of code stored in a repo at this level.</p>
   </li>
 </ol>
@@ -71,7 +71,7 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <p>Some trees, most often those from which code is pushed automatically into use on major Mozilla websites, requires special permission for checkin access. You need permission from the listed owner in order to get access to check in to their tree. The trees and owners are:</p>
 
-<h4>Hg</h4>
+<h4>Mercurial</h4>
 
 <table class="mzp-u-data-table">
   <tr>
@@ -92,7 +92,7 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <p>Requirements: one voucher - any current Mozilla code module owner</p>
 
-<p>This access allows one to check in to everywhere in any SCM (Hg or Git) except the core product code in Hg and the exceptions listed above.</p>
+<p>This access allows one to check in to everywhere in any VCS (Hg or Git) except the core product code and the exceptions listed above.</p>
 
 <h2 id="Level3">Level 3 - Core Product Access</h2>
 
@@ -108,11 +108,11 @@ This is the lowest level of access. It allows someone to check in to the <a href
 
 <p>The repositories which fall in this category are:</p>
 
-<h4>Hg</h4>
+<h4>VCS</h4>
 
 <pre>
+main
 autoland
-mozilla-central
 comm-central
 </pre>
 
