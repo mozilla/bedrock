@@ -28,7 +28,7 @@ The second type of button is more heavyweight, and can be configured to download
 {{ download_firefox() }}
 ```
 
-The download button rendered by the `download_firefox()` helper is actually several different download buttons all folded into one. Each button is for a different build or operating system supported by Firefox. Only one button is displayed to the visitor at any one time, using the logic in `site.js` and `_download-button.scss` to determine which one is correct. Because this button is a lot more complex, it should be tested very carefully when making changes or adding new builds.
+The download button rendered by the `download_firefox()` helper is actually several different download buttons all folded into one. Each button is for a different build or operating system supported by Firefox. Only one button is displayed to the visitor at any one time, using the logic in `site.js` and `_download-button.scss` to determine which one is correct. For users with JS disabled, they see a list of all download options. Because this button is a lot more complex, it should be tested very carefully when making changes or adding new builds.
 
 ### Which helper should I use?
 
