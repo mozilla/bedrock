@@ -71,6 +71,7 @@ _csp_frame_src = {
 _csp_img_src = {
     csp.constants.SELF,
     "data:",
+    "blog.mozilla.org",  # For careers pages.
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
