@@ -368,11 +368,29 @@ class TestFirefoxNew(TestCase):
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_download_template(self, render_mock):
         req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-US"
+        req.locale = "en-GB"
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ["firefox/new/desktop/download.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_download_template_en_us(self, render_mock):
+        req = RequestFactory().get("/firefox/new/")
+        req.locale = "en-US"
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/new/desktop/firefox-new-refresh.html"]
+
+    @patch.object(views, "ftl_file_is_active", lambda *x: True)
+    def test_download_template_en_ca(self, render_mock):
+        req = RequestFactory().get("/firefox/new/")
+        req.locale = "en-CA"
+        view = views.NewView.as_view()
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/new/desktop/firefox-new-refresh.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_thanks_template(self, render_mock):
