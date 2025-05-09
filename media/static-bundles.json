@@ -136,9 +136,9 @@
     },
     {
       "files": [
-        "css/firefox/new/desktop/refresh-experiment.scss"
+        "css/firefox/new/desktop/firefox-new-refresh.scss"
       ],
-      "name": "experiment-firefox-new-refresh"
+      "name": "firefox_new_refresh"
     },
     {
       "files": [
@@ -1316,18 +1316,6 @@
         "js/firefox/landing/get/marketing-opt-out-init.es6.js"
       ],
       "name": "firefox_marketing_opt_out"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/experiment-refresh-init.es6.js"
-      ],
-      "name": "experiment-firefox-new-refresh-init"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/experiment-refresh-data.es6.js"
-      ],
-      "name": "experiment-firefox-new-refresh-data"
     },
     {
       "files": [
