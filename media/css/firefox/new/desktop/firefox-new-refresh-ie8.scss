@@ -1,0 +1,48 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+$h-grid-lg: 80px;
+
+.c-trio {
+    width: $content-sm;
+    margin: 0 auto;
+}
+
+.c-screenshot {
+    position: static !important; /* stylelint-disable-line declaration-no-important */
+}
+
+// block
+
+.c-block-body {
+    @include border-box;
+    @include bidi(((float, left, right),));
+    padding: 0 ($h-grid-lg * 0.5);
+    width: 50%;
+
+    > *:first-child {
+        margin-top: 0;
+    }
+
+    > *:last-child {
+        margin-bottom: 0;
+    }
+
+    .l-reversed & {
+        @include bidi(((float, right, left),));
+    }
+}
+
+.c-block-media {
+    @include border-box;
+    @include bidi(((float, right, left),));
+    padding: 0 ($h-grid-lg * 0.5);
+    width: 50%;
+
+    .l-reversed & {
+        @include bidi(((float, left, right),));
+    }
+}
