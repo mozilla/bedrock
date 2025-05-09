@@ -44,6 +44,8 @@ _csp_connect_src = {
     "region1.google-analytics.com",
     "www.google-analytics.com",
     "www.googletagmanager.com",
+    # This is for glean pings and deletion requests.
+    "www.mozilla.org/submit/bedrock/",
     # Just get the CJMS domain from the URL, nothing else.
     urlparse(CJMS_AFFILIATE_ENDPOINT).netloc,
     BASKET_URL,
