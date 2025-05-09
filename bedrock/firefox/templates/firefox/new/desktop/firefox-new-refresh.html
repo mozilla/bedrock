@@ -8,14 +8,6 @@
 
  {% extends "firefox/new/desktop/base.html" %}
 
- {% set show_firefox_refresh_experiment = switch('experiment-firefox-new-refresh', ['en-US', 'en-CA']) %}
-
- {% block experiments %}
-   {% if show_firefox_refresh_experiment %}
-     {{ js_bundle('experiment-firefox-new-refresh-init') }}
-   {% endif %}
- {% endblock %}
-
  {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
  {% set ios_url = app_store_url('firefox', 'mozilla-org-firefox-new') %}
 
@@ -27,7 +19,7 @@
 
  {% block extrahead %}
    {{ super() }}
-   {{ css_bundle('experiment-firefox-new-refresh') }}
+   {{ css_bundle('firefox_new_refresh') }}
 
    <!--[if IE 9]>
      {{ css_bundle('firefox_desktop_download_ie9') }}
@@ -64,7 +56,7 @@
        <div class="c-block-body">
          <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
            <h2>Take control of your internet</h2>
-           <p>Go online with less distraction, noise and stress. Think of us as bubble wrap for your brain.</p>
+           <p>Go online with fewer distractions, noise and stress. Think of us as bubble wrap for your brain.</p>
          <div class="c-intro-download">
            {% block primary_cta %}
              {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
@@ -77,9 +69,9 @@
        </div>
        <div class="c-block-media l-v-center">
         {{ resp_img(
-          url='img/firefox/new/desktop/experiment-refresh/hero.png',
+          url='img/firefox/new/desktop/firefox-new-refresh/hero.png',
           srcset={
-            'img/firefox/new/desktop/experiment-refresh/hero-high-res.png': '2x'
+            'img/firefox/new/desktop/firefox-new-refresh/hero-high-res.png': '2x'
           },
           optional_attributes={
             'class': 'c-block-media-img',
@@ -97,17 +89,17 @@
       <h2 class="mzp-c-section-heading">Latest Firefox features</h2>
       <ul class="c-trio">
         <li>
-          <img alt="Happy toggle." src="{{ static('img/firefox/new/desktop/experiment-refresh/toggle.svg') }}" height="40">
+          <img alt="Happy toggle." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/toggle.svg') }}" height="40">
           <h3>Dial down the noise</h3>
           <p>Block ads and enhance your privacy with customizable settings and tons of downloadable extensions.</p>
         </li>
         <li class="t-cursor">
-          <img alt="Multiple cursors." src="{{ static('img/firefox/new/desktop/experiment-refresh/multi.svg') }}" height="40">
+          <img alt="Multiple cursors." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/multi.svg') }}" height="40">
           <h3>Multi-task or mono-task</h3>
-          <p>Go into reading mode, pop out videos and get more organized with vertical tabs and tab groups.</p>
+          <p>Go into reading mode, pop out videos and get more organized with the new sidebar layout.</p>
         </li>
         <li>
-          <img alt="Lots of open tabs." src="{{ static('img/firefox/new/desktop/experiment-refresh/tabs.svg') }}" height="40">
+          <img alt="Lots of open tabs." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/tabs.svg') }}" height="40">
           <h3>Keep tabs on all your tabs</h3>
           <p>Close duplicates, search and pin open tabs — there are almost infinite possibilities for the almost infinite number of tabs you have open.</p>
         </li>
@@ -129,7 +121,7 @@
            <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
          </div>
          <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          <img alt="Shield and hand protecting a browser tab." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/block.svg') }}" width="220">
+          <img alt="Shield and hand protecting a browser tab." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/block.svg') }}" width="220">
          </div>
        </div>
      </div>
@@ -138,10 +130,10 @@
        <div class="c-block-container">
          <div class="c-block-body l-v-center l-h-end">
            <h3 class="mzp-u-title-sm">Swear off staring into the abyss</h3>
-           <p>Stay focused with extensions like <a href="https://addons.mozilla.org/en-US/firefox/addon/tomato-clock/">Tomato Clock</a> and <a href="http://addons.mozilla.org/en-US/firefox/addon/turn-off-the-lights">Turn Off the Lights</a> — they’re Recommended, which is like our gold star for having exceptional security and functionality.</p>
+           <p>Stay focused with extensions like <a href="https://addons.mozilla.org/firefox/addon/tomato-clock/">Tomato Clock</a> and <a href="http://addons.mozilla.org/firefox/addon/turn-off-the-lights">Turn Off the Lights</a> — they’re Recommended, which is like our gold star for having exceptional security and functionality.</p>
          </div>
          <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
-          <img alt="A human brain connected to the world." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/think.svg') }}" width="260">
+          <img alt="A human brain connected to the world." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/think.svg') }}" width="260">
          </div>
        </div>
      </div>
@@ -165,7 +157,7 @@
            </div>
          </div>
          <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-          <img alt="Desktop, laptop, and phone. " class="c-block-media-img" src="{{ static('img/firefox/new/desktop/experiment-refresh/screens.svg') }}" width="350">
+          <img alt="Desktop, laptop, and phone. " class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/screens.svg') }}" width="350">
          </div>
        </div>
      </div>
@@ -177,19 +169,19 @@
 
       <div class="c-screen">
         <div class="c-screenshot">
-          <img alt="Firefox in dark mode." src="{{ static('img/firefox/new/desktop/experiment-refresh/dark.svg') }}" width="1000">
+          <img alt="Firefox in dark mode." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/dark.svg') }}" width="1000">
         </div>
       </div>
 
       <ul class="mzp-l-columns mzp-t-columns-two">
         <li>
           <h3>Work smarter, play harder</h3>
-          <p>Explore the possibilities for research, shopping and more in <a href="https://addons.mozilla.org/en-US/firefox/extensions/">extensions</a>.</p>
+          <p>Explore the possibilities for research, shopping and more in <a href="https://addons.mozilla.org/firefox/extensions/">extensions</a>.</p>
         </li>
 
         <li>
           <h3>Bye, boring browser</h3>
-          <p>The internet can be all kittens and rainbows — with the right add-on <a href="https://addons.mozilla.org/en-US/firefox/themes/">theme</a>.</p>
+          <p>The internet can be all kittens and rainbows — with the right add-on <a href="https://addons.mozilla.org/firefox/themes/">theme</a>.</p>
         </li>
       </ul>
     </section>
@@ -199,7 +191,7 @@
     <div class="mzp-c-emphasis-box js-animate">
       <div class="c-free">
         <div class="c-free-img">
-          <img alt="Firefox on a desktop." src="{{ static('img/firefox/new/desktop/experiment-refresh/free.svg') }}" width="300">
+          <img alt="Firefox on a desktop." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/free.svg') }}" width="300">
         </div>
         <div class="c-free-body">
           <h2>Billionaire-free for 20+ years</h2>
@@ -252,7 +244,4 @@
 
  {% block js %}
    {{ js_bundle('firefox_desktop_download') }}
-   {% if show_firefox_refresh_experiment %}
-    {{ js_bundle('experiment-firefox-new-refresh-data') }}
-   {% endif %}
  {% endblock %}
