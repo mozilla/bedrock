@@ -115,7 +115,6 @@ test.describe(
                 'css=#download-button-thanks .fx-unsupported-message.win .download-link.os_win'
             );
 
-
             const downloadDiscoverOsxUnsupported = page.locator(
                 'css=#download-discover .fx-unsupported-message.mac .download-link'
             );
