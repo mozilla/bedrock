@@ -13,7 +13,6 @@ from django.views.decorators.http import require_safe
 from sentry_sdk import capture_exception
 
 from bedrock.base.geo import get_country_from_request
-from bedrock.base.waffle import switch
 from bedrock.contentful.constants import (
     ARTICLE_CATEGORY_LABEL,
     CONTENT_CLASSIFICATION_VPN,
@@ -75,12 +74,9 @@ def active_locale_available(slug, locale):
 @require_safe
 def vpn_landing_page(request):
     ftl_files = ["products/vpn/landing-2023", "products/vpn/shared", "products/vpn/pricing-2023"]
-    country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     mobile_sub_only = vpn_available_mobile_sub_only(request)
     android_sub_only = vpn_available_android_sub_only(request)
-    attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
-    vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
@@ -102,7 +98,6 @@ def vpn_landing_page(request):
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
-        "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
         "experience": experience,
         "entrypoint_experiment": entrypoint_experiment,
         "entrypoint_variation": entrypoint_variation,
@@ -115,12 +110,9 @@ def vpn_landing_page(request):
 def vpn_pricing_page(request):
     ftl_files = ["products/vpn/pricing-2023", "products/vpn/shared"]
     available_countries = settings.VPN_AVAILABLE_COUNTRIES
-    country = get_country_from_request(request)
     vpn_available_in_country = vpn_available(request)
     mobile_sub_only = vpn_available_mobile_sub_only(request)
     android_sub_only = vpn_available_android_sub_only(request)
-    attribution_available_in_country = country in settings.VPN_AFFILIATE_COUNTRIES
-    vpn_affiliate_attribution_enabled = vpn_available_in_country and attribution_available_in_country and switch("vpn-affiliate-attribution")
     experience = request.GET.get("xv", None)
     template_name = "products/vpn/pricing-refresh.html"
 
@@ -132,7 +124,6 @@ def vpn_pricing_page(request):
         "connect_servers": settings.VPN_CONNECT_SERVERS,
         "connect_countries": settings.VPN_CONNECT_COUNTRIES,
         "connect_devices": settings.VPN_CONNECT_DEVICES,
-        "vpn_affiliate_attribution_enabled": vpn_affiliate_attribution_enabled,
         "experience": experience,
     }
 

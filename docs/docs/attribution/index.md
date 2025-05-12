@@ -5,8 +5,7 @@ Attribution is the practice of recording the main touch points that a website vi
 These documents define how attribution works for the different products on our websites.
 
 -   [Mozorg analytics](0001-analytics.md)
--   [Mozilla CJMS affiliate attribution](0005-affiliate-marketing.md)
--   [Managing Data Privacy and Consent](0006-consent-management.md)
+-   [Managing Data Privacy and Consent](0005-consent-management.md)
 -   [Mozilla accounts attribution](0004-mozilla-accounts.md)
 -   [Firefox desktop attribution](0002-firefox-desktop.md)
 -   [Firefox mobile attribution](0003-firefox-mobile.md)
