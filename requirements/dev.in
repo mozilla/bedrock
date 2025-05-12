@@ -17,13 +17,13 @@ pytest-datadir==1.6.1
 pytest-django==4.11.1
 pytest-mock==3.14.0
 pytest-parallel==0.1.1
-pytest-rerunfailures==15.0
+pytest-rerunfailures==15.1
 pytest-selenium==4.0.1
 responses==0.25.7
-ruff==0.11.6
+ruff==0.11.9
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
-translate-toolkit==3.15.1
-uv==0.6.16
+translate-toolkit==3.15.2
+uv==0.7.3
 wagtail-factories==4.2.1
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
