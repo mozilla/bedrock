@@ -5,27 +5,6 @@
  */
 
 /*
-    system requirements
-    - add target to link so they go to their system's requirements
-*/
-(function () {
-    'use strict';
-
-    var sys = document.getElementById('system-requirements');
-    if (sys) {
-        var href = sys.getAttribute('href');
-
-        if (/windows/.test(window.site.platform)) {
-            sys.href = href + '#windows';
-        } else if (/osx/.test(window.site.platform)) {
-            sys.href = href + '#mac';
-        } else if (/linux/.test(window.site.platform)) {
-            sys.href = href + '#linux';
-        }
-    }
-})();
-
-/*
     scroll animations
     - add class to animate
     - add observer to trigger animations
