@@ -8,7 +8,7 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../scripts/open-page');
-const url = '/en-GB/firefox/new/';
+const url = '/en-US/firefox/new/';
 
 test.describe(
     `${url} page`,
@@ -21,8 +21,6 @@ test.describe(
             browserName
         }) => {
             const downloadButton = page.getByTestId('download-button-thanks');
-            const downloadFeaturesButton =
-                page.getByTestId('download-features');
             const downloadDiscoverButton =
                 page.getByTestId('download-discover');
 
@@ -30,7 +28,6 @@ test.describe(
 
             // Assert download buttons are visible.
             await expect(downloadButton).toBeVisible();
-            await expect(downloadFeaturesButton).toBeVisible();
             await expect(downloadDiscoverButton).toBeVisible();
 
             // Click primary download button.
@@ -55,8 +52,6 @@ test.describe(
 
         test('Download Firefox (Linux)', async ({ page, browserName }) => {
             const downloadButton = page.getByTestId('download-button-thanks');
-            const downloadFeaturesButton =
-                page.getByTestId('download-features');
             const downloadDiscoverButton =
                 page.getByTestId('download-discover');
 
@@ -73,7 +68,6 @@ test.describe(
 
             // Assert download buttons are visible.
             await expect(downloadButton).toBeVisible();
-            await expect(downloadFeaturesButton).toBeVisible();
             await expect(downloadDiscoverButton).toBeVisible();
 
             // Click primary download button.
@@ -106,8 +100,6 @@ test.describe(
             browserName
         }) => {
             const downloadButton = page.getByTestId('download-button-thanks');
-            const downloadFeaturesButton =
-                page.getByTestId('download-features');
             const downloadDiscoverButton =
                 page.getByTestId('download-discover');
 
@@ -121,18 +113,6 @@ test.describe(
 
             const downloadWinUnsupported32bit = page.locator(
                 'css=#download-button-thanks .fx-unsupported-message.win .download-link.os_win'
-            );
-
-            const downloadFeaturesOsxUnsupported = page.locator(
-                'css=#download-features .fx-unsupported-message.mac .download-link'
-            );
-
-            const downloadFeaturesWinUnsupported64bit = page.locator(
-                'css=#download-features .fx-unsupported-message.win .download-link.os_win64'
-            );
-
-            const downloadFeaturesWinUnsupported32bit = page.locator(
-                'css=#download-features .fx-unsupported-message.win .download-link.os_win'
             );
 
             const downloadDiscoverOsxUnsupported = page.locator(
@@ -156,17 +136,11 @@ test.describe(
 
                 // Assert regular download buttons are not displayed.
                 await expect(downloadButton).not.toBeVisible();
-                await expect(downloadFeaturesButton).not.toBeVisible();
                 await expect(downloadDiscoverButton).not.toBeVisible();
 
                 // Assert Firefox ESR mac download button is displayed.
                 await expect(downloadOsxUnsupported).toBeVisible();
                 await expect(downloadOsxUnsupported).toHaveAttribute(
-                    'href',
-                    /\?product=firefox-esr115-latest-ssl&os=osx/
-                );
-                await expect(downloadFeaturesOsxUnsupported).toBeVisible();
-                await expect(downloadFeaturesOsxUnsupported).toHaveAttribute(
                     'href',
                     /\?product=firefox-esr115-latest-ssl&os=osx/
                 );
@@ -184,7 +158,6 @@ test.describe(
 
                 // Assert regular download buttons are not displayed.
                 await expect(downloadButton).not.toBeVisible();
-                await expect(downloadFeaturesButton).not.toBeVisible();
                 await expect(downloadDiscoverButton).not.toBeVisible();
 
                 // Assert Firefox ESR windows download button is displayed.
@@ -195,22 +168,6 @@ test.describe(
                 );
                 await expect(downloadWinUnsupported32bit).not.toBeVisible();
                 await expect(downloadWinUnsupported32bit).toHaveAttribute(
-                    'href',
-                    /\?product=firefox-esr115-latest-ssl&os=win/
-                );
-                await expect(downloadFeaturesWinUnsupported64bit).toBeVisible();
-                await expect(
-                    downloadFeaturesWinUnsupported64bit
-                ).toHaveAttribute(
-                    'href',
-                    /\?product=firefox-esr115-latest-ssl&os=win64/
-                );
-                await expect(
-                    downloadFeaturesWinUnsupported32bit
-                ).not.toBeVisible();
-                await expect(
-                    downloadFeaturesWinUnsupported32bit
-                ).toHaveAttribute(
                     'href',
                     /\?product=firefox-esr115-latest-ssl&os=win/
                 );
