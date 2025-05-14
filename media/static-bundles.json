@@ -479,6 +479,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-139-awesome-bar.scss"
+      ],
+      "name": "firefox_whatsnew_139"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
