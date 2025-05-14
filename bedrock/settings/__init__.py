@@ -62,8 +62,6 @@ _csp_connect_src = {
     "o1069899.sentry.io",
     "o1069899.ingest.sentry.io",
     FXA_ENDPOINT,
-    "stage.cjms.nonprod.cloudops.mozgcp.net",
-    "cjms.services.mozilla.com",
 }
 _csp_font_src = set()
 

@@ -12,8 +12,6 @@
 {% block page_title_suffix %}{% endblock %}
 {% block page_desc %}{% endblock %}
 
-{% block html_attrs %}{{ super() }} data-cj-affiliate-endpoint="{{ settings.CJMS_AFFILIATE_ENDPOINT }}"{% endblock %}
-
 {% block body_class %}mozilla-vpn-pricing-page{% endblock %}
 
 {% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
@@ -111,11 +109,6 @@
 {% endblock %}
 
 {% block js %}
-  {% if vpn_affiliate_attribution_enabled %}
-    {{ js_bundle('mozilla-vpn-affiliate') }}
-  {% else %}
-    {{ js_bundle('fxa_product_button') }}
-  {% endif %}
-
+  {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('data_begincheckout') }}
 {% endblock %}

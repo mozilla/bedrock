@@ -1764,12 +1764,6 @@
     },
     {
       "files": [
-        "js/products/shared/affiliate-init.es6.js"
-      ],
-      "name": "mozilla-vpn-affiliate"
-    },
-    {
-      "files": [
         "js/products/vpn/invite.es6.js",
         "js/products/vpn/invite-init.es6.js"
       ],

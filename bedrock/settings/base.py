@@ -960,9 +960,6 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 # ***This URL *MUST* end in a traling slash!***
 FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
 
-# Affiliate micro service (CJMS) endpoint (issue 11212)
-CJMS_AFFILIATE_ENDPOINT = "https://stage.cjms.nonprod.cloudops.mozgcp.net/aic" if DEV else "https://cjms.services.mozilla.com/aic"
-
 # Google Play and Apple App Store settings
 from .appstores import (  # noqa: E402, F401
     AMAZON_FIREFOX_FIRE_TV_LINK,
@@ -2107,7 +2104,6 @@ VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES = [
     "SN",  # Senegal
 ]
 
-VPN_AFFILIATE_COUNTRIES = ["CA", "DE", "FR", "GB", "IE", "US"]
 VPN_AVAILABLE_COUNTRIES = 57
 VPN_CONNECT_SERVERS = 500
 VPN_CONNECT_COUNTRIES = 30
