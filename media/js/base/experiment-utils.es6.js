@@ -8,7 +8,6 @@ import { gpcEnabled, dntEnabled } from './consent/utils.es6';
 
 const knownExcludedParams = [
     'automation=true', // Automated functional tests
-    'cjevent=', // CJ Affiliate marketing referral links
     'entrypoint_experiment=', // Mozilla accounts experiments
     'entrypoint_variation=',
     'experiment=', // Stub attribution experiments

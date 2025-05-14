@@ -41,7 +41,6 @@ describe('experiment-utils.es6.js', function () {
             ).toBeFalse();
             expect(isApprovedToRun('?experiment=test&variation=a')).toBeFalse();
             expect(isApprovedToRun('?automation=true')).toBeFalse();
-            expect(isApprovedToRun('?cjevent=1234567890')).toBeFalse();
         });
 
         it('should return false if the user has enabled Global Privacy Control', function () {
