@@ -30,6 +30,10 @@ ROOT_URLCONF = "bedrock.urls"
 # - if path is provided with trailing slash: the path is a prefix-match.
 #   - e.g. `https://example.com/api/` will match anything that starts with `https://example.com/api/`
 
+# Add the host for front-end assets which is needed during integration tests or when someone is
+# accessing the origin directly instead of the CDN.
+CSP_ASSETS_HOST = config("CSP_ASSETS_HOST", default="")
+
 _csp_default_src = {
     # NOTE: Keep `default-src` minimal. Best to set resources in the specific directives.
     csp.constants.SELF,
@@ -50,6 +54,7 @@ _csp_connect_src = {
 }
 _csp_font_src = {
     csp.constants.SELF,
+    CSP_ASSETS_HOST,
 }
 _csp_form_action = {
     csp.constants.SELF,
@@ -72,6 +77,7 @@ _csp_frame_src = {
 }
 _csp_img_src = {
     csp.constants.SELF,
+    CSP_ASSETS_HOST,
     "data:",
     "blog.mozilla.org",  # For careers pages.
     "www.googletagmanager.com",
@@ -80,11 +86,13 @@ _csp_img_src = {
 }
 _csp_media_src = {
     csp.constants.SELF,
+    CSP_ASSETS_HOST,
     "assets.mozilla.net",
     "videos.cdn.mozilla.net",
 }
 _csp_script_src = {
     csp.constants.SELF,
+    CSP_ASSETS_HOST,
     "js.stripe.com",
     "s.ytimg.com",
     "tagmanager.google.com",
@@ -96,6 +104,7 @@ _csp_script_src = {
 }
 _csp_style_src = {
     csp.constants.SELF,
+    CSP_ASSETS_HOST,
     csp.constants.UNSAFE_INLINE,
 }
 
