@@ -161,7 +161,7 @@
     {% if release.is_public and release_notes %}
       {% for note in release_notes if note.tag == "New" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/highlight.svg') }}" width="30" height="30">
               <h3>{{ note.tag }}</h3>
@@ -179,7 +179,7 @@
 
       {% for note in release_notes if note.tag == "Fixed" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/check.svg') }}" width="30" height="30">
               <h3>{{ note.tag }}</h3>
@@ -197,7 +197,7 @@
 
       {% for note in release_notes if note.tag == "Changed" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/features.svg') }}" width="30" height="30">
               <h3>{{ note.tag }}</h3>
@@ -215,7 +215,7 @@
 
       {% for note in release_notes if note.tag == "Enterprise" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/enterprise.svg') }}" width="30" height="30">
               <h3>{{ note.tag }}</h3>
@@ -240,7 +240,7 @@
           {% continue %}
         {% endif %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/developer.svg') }}" width="30" height="30">
               <h3>Developer</h3>
@@ -258,7 +258,7 @@
 
       {% for note in release_notes if note.tag == "HTML5" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <div class="mzp-l-sidebar">
               <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/globe.svg') }}" width="30" height="30">
               <h3>Web Platform</h3>
@@ -308,7 +308,7 @@
 
       {% for note in release_notes if note.tag == "Known" %}
         {% if loop.first %}
-          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="known">
+          <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left" id="{{ note.tag|lower() }}">
             <img class="sidebar-icon" alt="" src="{{ static('protocol/img/icons/stop.svg') }}" width="30" height="30">
             <div class="mzp-l-sidebar"><h3>Unresolved</h3></div>
             <div class="mzp-l-main mzp-l-article">
