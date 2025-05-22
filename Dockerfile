@@ -1,7 +1,7 @@
 ########
 # Python dependencies builder
 #
-FROM python:3.12-slim-bookworm AS python-builder
+FROM python:3.13-slim-bookworm AS python-builder
 
 WORKDIR /app
 ENV LANG=C.UTF-8
@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1
 ENV PATH="/venv/bin:$PATH"
 
 COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install gettext build-essential libxml2-dev libxslt1-dev libxslt1.1
+RUN apt-install build-essential gettext libxml2-dev libxslt1-dev libxslt1.1
 RUN python -m venv /venv
 
 COPY requirements/prod.txt ./requirements/
@@ -52,7 +52,7 @@ RUN npm run build --verbose
 ########
 # django app container
 #
-FROM python:3.12-slim-bookworm AS app-base
+FROM python:3.13-slim-bookworm AS app-base
 
 # Extra python env
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -68,7 +68,7 @@ EXPOSE 8000
 CMD ["./bin/run.sh"]
 
 COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install gettext libxslt1.1 git curl sqlite3 libmagickwand-dev
+RUN apt-install curl gettext git libmagickwand-dev libpq-dev libxslt1.1 sqlite3
 
 # copy in Python environment
 COPY --from=python-builder /venv /venv
