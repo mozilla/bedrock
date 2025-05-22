@@ -116,7 +116,7 @@ repos:
     rev: "v3.19.1"
     hooks:
     - id: pyupgrade
-      args: [--py312]
+      args: [--py313]
   - repo: https://github.com/adamchainz/django-upgrade
     rev: "1.24.0"  # replace with latest tag on GitHub
     hooks:
