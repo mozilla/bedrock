@@ -1,0 +1,58 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_139') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Suche so, wie es für dich passt.' %}
+  {% set main_tagline = 'Wähl aus, wo du suchst–direkt in der Firefox-Adressleiste und ohne in den Einstellungen rumzuklicken.' %}
+  {% set main_cta = 'Mehr Infos' %}
+  {% set main_cta_url = 'https://blog.mozilla.org/de/firefox-de/address-bar/' %}
+  {% set img_alt = 'Wähl aus, wo du suchst – direkt in der Firefox-Adressleiste.' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Prenez le contrôle de vos recherches' %}
+  {% set main_tagline = 'Choisissez votre moteur de recherche directement dans la barre d’adresse de Firefox. Fini de se perdre dans les paramètres.' %}
+  {% set main_cta = 'En savoir plus' %}
+  {% set main_cta_url = 'https://blog.mozilla.org/fr/mozilla-fr/address-bar/' %}
+  {% set img_alt = 'Choisissez votre moteur de recherche directement dans la barre d’adresse de Firefox.' %}
+{% else %}
+  {% set main_title = 'Search on your own terms' %}
+  {% set main_tagline = 'Choose where you search, right in Firefox’s address bar—no need to dig in settings.' %}
+  {% set main_cta = 'Learn more' %}
+  {% set main_cta_url = 'https://blog.mozilla.org/en/firefox/address-bar/' %}
+  {% set img_alt = 'Choose where you search, right in Firefox’s address bar.' %}
+{% endif %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp139' %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='wnp-content-main mzp-l-split-body-narrow mzp-l-split-center-on-sm-md',
+    image=resp_img(
+      url="img/firefox/wnp-139/address-bar.png",
+      srcset={"img/firefox/wnp-139/address-bar-high-res.png": "2x"},
+      optional_attributes={"l10n": True, "alt": img_alt}
+    ),
+    media_class='wnp-main-image mzp-l-split-h-center',
+    media_after=True
+    ) %}
+      <h1 class="wnp-main-title mzp-u-title-md">{{ main_title }}</h1>
+      <p>{{ main_tagline }}</p>
+      <p><a href="{{ main_cta_url }}?{{ utm_params }}" rel="external" data-cta-text="Show me how" data-cta-position="primary" class="mzp-c-button mzp-t-product">{{ main_cta }}</a></p>
+  {% endcall %}
+
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
+{% endblock %}
