@@ -41,7 +41,7 @@ markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==4.0.1
 Pillow==11.2.1
-psycopg[binary]==3.1.19
+psycopg[binary]==3.2.8
 PyGithub==2.6.1
 pyOpenSSL==25.0.0
 PyYAML==6.0.2
