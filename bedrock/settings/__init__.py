@@ -80,6 +80,7 @@ _csp_img_src = {
     CSP_ASSETS_HOST,
     "data:",
     "blog.mozilla.org",  # For careers pages.
+    "www.mozilla.org",  # For release notes.
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
