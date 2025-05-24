@@ -30,11 +30,20 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
+{% block experiments %}
+  {% if switch('vpn-bundle-promo') %}
+    {{ js_bundle('vpn-bundle-promo-experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
+  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+    {{ css_bundle('mozilla-vpn-bundle-promo') }}
+  {% endif %}
 {% endblock %}
 
 {% block site_header %}
@@ -139,6 +148,8 @@
         {% with heading = ftl('vpn-landing-one-subscription-for-all-your'), campaign = 'vpn-landing-page' %}
           {% include 'products/vpn/includes/mobile-subscribe.html' %}
         {% endwith %}
+      {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+        {% include 'products/vpn/includes/bundle-promo.html' %}
       {% else %}
         <section class="mzp-l-content mzp-t-content-xl">
           <header class="c-pricing-main-header">
@@ -428,4 +439,7 @@
 {% block js %}
   {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('data_begincheckout') }}
+  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+    {{ js_bundle('vpn_promo_tabs') }}
+  {% endif %}
 {% endblock %}

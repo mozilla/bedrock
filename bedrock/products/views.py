@@ -82,10 +82,10 @@ def vpn_landing_page(request):
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in []:
+    if entrypoint_variation not in ["a", "b"]:
         entrypoint_variation = None
 
-    if entrypoint_experiment not in []:
+    if entrypoint_experiment not in ["vpn-landing-bundle-promo"]:
         entrypoint_experiment = None
 
     template_name = "products/vpn/landing-refresh.html"

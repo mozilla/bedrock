@@ -948,6 +948,12 @@
     },
     {
       "files": [
+        "css/products/vpn/bundle-promo.scss"
+      ],
+      "name": "mozilla-vpn-bundle-promo"
+    },
+    {
+      "files": [
         "css/products/vpn/features.scss"
       ],
       "name": "mozilla-vpn-features"
@@ -1774,6 +1780,18 @@
         "js/products/vpn/thanks.js"
       ],
       "name": "vpn_platform_download"
+    },
+    {
+      "files": [
+        "js/products/vpn/promo-tabs.js"
+      ],
+      "name": "vpn_promo_tabs"
+    },
+    {
+      "files": [
+        "js/products/vpn/bundle-promo-experiment.es6.js"
+      ],
+      "name": "vpn-bundle-promo-experiment"
     },
     {
       "files": [
