@@ -6,7 +6,7 @@
 
 {# Choose product #}
 
-<h2 class="c-step-name">
+<h2 tabindex="-1" class="c-step-name">
   {{ ftl('firefox-all-browser-v2') }}
   {% if product %}
     <span class="c-step-choice">{{ product and product.name }}</span> <a href="{{ url('firefox.all') }}" class="load-content-partial c-step-icon"><img alt="{{ ftl('firefox-all-change-browser') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
@@ -42,7 +42,7 @@
           <li class="{{ p.slug }}"><a href="{{ url('firefox.all.platforms', product_slug=p.slug) }}" class="load-content-partial">{{ p.name }}</a></li>
         {% endif %}
       {% endfor %}
-      <li class="ios-testflight"><a href="{{ url('firefox.ios.testflight') }}" class="load-content-partial">{{ ftl('firefox-all-product-firefox-ios-testflight') }}</a></li>
+      <li class="ios-testflight"><a href="{{ url('firefox.ios.testflight') }}">{{ ftl('firefox-all-product-firefox-ios-testflight') }}</a></li>
     </ul>
 
     <div id="browser-help" class="c-help mzp-u-modal-content">

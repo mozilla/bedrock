@@ -9,7 +9,7 @@
     <div class="c-product-info" {% if product %} data-current="{{ product.slug }}"{% endif %}>
       <div class="c-intro">
         <h1 class="c-intro-heading">{{ ftl('firefox-all-choose-which-firefox') }}</h1>
-        <p>{{ ftl('firefox-all-everyone-deserves-access-v2', fallback="'firefox-all-everyone-deserves-access") }}</p>
+        <p>{{ ftl('firefox-all-everyone-deserves-access-v2') }}</p>
         {% if product %}
           {% if product.slug == "desktop-release" %}
             <div>

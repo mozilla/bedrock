@@ -9,7 +9,7 @@
 {% set icon_download ='<span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 13c.2 0 .4-.1.5-.2l4.4-4.4-1.1-1.1-3.1 3.1V1H7.2v9.4L4.1 7.3l-1 1.1 4.4 4.4c.1.1.3.2.5.2z" /><path d="M13.5 12v2c0 .3-.2.5-.5.5H3c-.3 0-.5-.2-.5-.5v-2H1v2c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-2h-1.5z" /></svg></span>' %}
 
 {# Show download #}
-<h2 {% if not (product and platform and locale) %} class="c-step-name t-step-disabled" aria-disabled="true" {% else %} class="c-step-name" aria-disabled="false" {% endif %}>
+<h2 tabindex="-1" {% if not (product and platform and locale) %} class="c-step-name t-step-disabled" aria-disabled="true" {% else %} class="c-step-name" aria-disabled="false" {% endif %}>
   {{ ftl('firefox-all-download') }}
   {% if product and platform and locale %}
     <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
