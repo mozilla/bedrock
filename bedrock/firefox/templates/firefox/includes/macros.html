@@ -39,10 +39,12 @@
 
 
 {% macro firefox_download_desktop_button_mac(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-osx', position='primary cta') -%}
+{% set DOWNLOAD_LANG = "ja-JP-mac" if LANG == "ja" else LANG %}
+
   <div class="firefox-platform-button-mac">
     <div class="firefox-platform-button">
       <a class="download-link os_osx mzp-t-xl mzp-c-button mzp-t-product ga-product-download"
-        id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=osx&lang={{ LANG }}"
+        id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=osx&lang={{ DOWNLOAD_LANG }}"
         data-download-version="osx"
         data-cta-text="Download Now"
         data-cta-type="firefox"
