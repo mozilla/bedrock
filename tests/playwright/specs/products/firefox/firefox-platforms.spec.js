@@ -55,7 +55,7 @@ test.describe(
             await downloadButton.click();
 
             const download = await downloadPromise;
-            expect(download.url()).toContain('mac');
+            expect(download.url()).toEqual(expect.stringMatching(/mac|osx/));
 
             // Cancel download
             await download.cancel();
@@ -82,7 +82,7 @@ test.describe(
             await downloadButton.click();
 
             const download = await downloadPromise;
-            expect(download.url()).toContain('mac');
+            expect(download.url()).toEqual(expect.stringMatching(/mac|osx/));
 
             // Cancel download
             await download.cancel();
