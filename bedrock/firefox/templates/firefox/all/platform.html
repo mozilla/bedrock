@@ -14,10 +14,6 @@
     {% if product.slug.startswith('desktop') %}
       <a href="{{ url('firefox.all.platforms', product_slug=product.slug) }}" class="load-content-partial c-step-icon"><img alt="{{ ftl('firefox-all-change-platform') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
     {% endif %}
-  {% elif product %}
-    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
-  {% else %}
-    <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}
 
   {% if product and not platform %}
