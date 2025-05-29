@@ -94,11 +94,11 @@ If you make a change to `media/static-bundles.json`, you'll need to restart Dock
 
 These instructions assume you have Python, pip, and NodeJS installed. If you don't have ``pip`` installed (you probably do) you can install it with the instructions in [the pip docs](https://pip.pypa.io/en/stable/installing/).
 
-Bedrock currently uses Python 3.12.x. The recommended way to install and use that version is with [pyenv](https://github.com/pyenv/pyenv) and to create a virtualenv using [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) that will isolate Bedrock's dependencies from other things installed on the system.
+Bedrock currently uses Python 3.13.x. The recommended way to install and use that version is with [pyenv](https://github.com/pyenv/pyenv) and to create a virtualenv using [pyenv-virtualenv](https://github.com/pyenv/pyenv-virtualenv) that will isolate Bedrock's dependencies from other things installed on the system.
 
 The following assumes you are on MacOS, using `zsh` as your shell and [Homebrew](https://brew.sh/) as your package manager. If you are not, there are installation instructions for a variety of platforms and shells in the READMEs for the two pyenv projects.
 
-**Install Python 3.12.x with pyenv**
+**Install Python 3.13.x with pyenv**
 
 1.  Install `pyenv` itself :
 
@@ -114,22 +114,22 @@ The following assumes you are on MacOS, using `zsh` as your shell and [Homebrew]
 
     $ zsh -l
 
-4.  Install the latest Python 3.12.x (e.g. 3.12.6), then test it's there:
+4.  Install the latest Python 3.13.x (e.g. 3.13.3), then test it's there:
 
-        $ pyenv install 3.12.6
+        $ pyenv install 3.13.3
 
-    If you'd like to make Python 3.12 your default globally, you can do so with:
+    If you'd like to make Python 3.13 your default globally, you can do so with:
 
-        $ pyenv global 3.12.6
+        $ pyenv global 3.13.3
 
-    If you only want to make Python 3.12 available in the current shell, while you set up the Python virtualenv (below), you can do so with:
+    If you only want to make Python 3.13 available in the current shell, while you set up the Python virtualenv (below), you can do so with:
 
-        $ pyenv shell 3.12.6
+        $ pyenv shell 3.13.3
 
 5.  Verify that you have the correct version of Python installed:
 
         $ python --version
-        Python 3.12.6
+        Python 3.13.3
 
 **Install a plugin to manage virtualenvs via pyenv and create a virtualenv for Bedrock's dependencies**
 
@@ -147,7 +147,7 @@ The following assumes you are on MacOS, using `zsh` as your shell and [Homebrew]
 
 4.  Make a virtualenv we can use - in this example we'll call it `bedrock` but use whatever you want :
 
-        $ pyenv virtualenv 3.12.6 bedrock
+        $ pyenv virtualenv 3.13.3 bedrock
 
 **Use the virtualenv**
 
@@ -168,7 +168,7 @@ The following assumes you are on MacOS, using `zsh` as your shell and [Homebrew]
         $ make install-local-python-deps
 
 !!! note
-    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple Silicon, 3.12.6 should 'just work':
+    If you are on OSX and some of the compiled dependencies fails to compile, try explicitly setting the arch flags and try again. The following are relevant to Intel Macs only. If you're on Apple Silicon, 3.13.3 should 'just work':
 
     ``` bash
     $ export ARCHFLAGS="-arch i386 -arch x86_64"
