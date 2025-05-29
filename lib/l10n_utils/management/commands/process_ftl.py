@@ -39,6 +39,7 @@ class Command(FTLRepoCommand):
     def add_arguments(self, parser):
         super().add_arguments(parser)
         parser.add_argument("--push", action="store_true", dest="push", default=False, help="Push the changes to the MEAO Fluent files repo.")
+        parser.add_argument("--reset", action="store_true", dest="reset", default=False, help="Delete and recreate the activation metadata.")
 
     def handle(self, *args, **options):
         super().handle(*args, **options)
@@ -46,7 +47,7 @@ class Command(FTLRepoCommand):
         self.update_fluent_files()
         self.update_l10n_team_files()
         no_errors = self.copy_ftl_files()
-        self.set_activation()
+        self.set_activation(reset=options["reset"])
         self.copy_configs()
         if options["push"]:
             changes = self.commit_changes()
@@ -134,10 +135,19 @@ class Command(FTLRepoCommand):
 
             return True
 
-    def set_activation(self):
+    def _get_all_ftl_file_names(self):
+        paths = self.meao_repo.path.rglob("*.ftl")
+        return [str(p.relative_to(self.meao_repo.path)) for p in paths]
+
+    def set_activation(self, reset=False):
         updated_ftl = set()
-        modified, _ = self.meao_repo.modified_files()
-        for fname in modified:
+        if reset:
+            ftl_files = self._get_all_ftl_file_names()
+            shutil.rmtree(self.meao_repo.path.joinpath("metadata"))
+        else:
+            ftl_files, _ = self.meao_repo.modified_files()
+
+        for fname in ftl_files:
             if not fname.endswith(".ftl"):
                 continue
 
