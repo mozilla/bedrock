@@ -4,7 +4,9 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=vpn-bundle-promo&utm_content=vpn-landing' %}
+{% set utm_params_banner = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=landing-page-banner&utm_content=banner-us' %}
+
+{% set utm_params_pricing_grid = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=landing-page-pricing-grid&utm_content=landing-page-pricing-grid-us' %}
 
 <section class="mzp-l-content mzp-t-content-xl privacy-bundle-banner">
   <div class="banner-wrapper">
@@ -32,7 +34,7 @@
       <p>Plan includes VPN, data broker protection, and unlimited email masks to prevent spam.</p>
     </div>
     <div class="banner-cta-container">
-      <a class="mzp-c-button mzp-t-product mzp-t-xl banner-cta" href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/privacyprotectionplan/yearly/landing?spVersion=2&{{ utm_params }}" data-cta-text="Get year-round protection" data-cta-position="privacy-bundle-banner" data-testid="get-year-round-protection-link">
+      <a class="mzp-c-button mzp-t-product mzp-t-xl banner-cta" href="https://accounts.firefox.com/subscriptions/products/prod_SOYBYCOWallcgz?plan=price_1RTl5CJNcmPzuWtRVETtMFUX/?{{ utm_params_banner }}" data-cta-text="Get year-round protection" data-cta-position="privacy-bundle-banner" data-testid="get-year-round-protection-link">
         Get year-round protection
       </a>
       <p>
@@ -78,17 +80,54 @@
             <div id="tabpanel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
               <small>Billed yearly</small>
               <div class="card-price">$4.99/mo</div>
+              {{ vpn_subscribe_link(
+                entrypoint='www.mozilla.org',
+                link_text='Get started',
+                plan='12-month',
+                class_name='mzp-c-button mzp-t-product mzp-t-xl mzp-t-secondary card-cta',
+                country_code=country_code,
+                lang=LANG,
+                optional_parameters={
+                  'utm_campaign': 'landing-page-pricing-grid'
+                },
+                optional_attributes={
+                  'data-cta-type': 'fxa-vpn',
+                  'data-cta-text': 'Get started VPN 12-month',
+                  'data-cta-position': 'pricing',
+                  'data-glean-id': 'subscribe_intent',
+                  'data-glean-type': 'annual',
+                  'data-glean-label': 'vpn',
+                  'data-testid': 'vpn-pricing-grid-12-month-button'
+                })
+              }}
             </div>
             <div id="tabpanel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2" class="is-hidden">
               <small>Billed monthly</small>
               <div class="card-price">$9.99/mo</div>
+              {{ vpn_subscribe_link(
+                entrypoint='www.mozilla.org',
+                link_text='Get started',
+                plan='monthly',
+                class_name='mzp-c-button mzp-t-product mzp-t-xl mzp-t-secondary card-cta',
+                country_code=country_code,
+                lang=LANG,
+                optional_parameters={
+                  'utm_campaign': 'landing-page-pricing-grid'
+                },
+                optional_attributes={
+                  'data-cta-type': 'fxa-vpn',
+                  'data-cta-text': 'Get started VPN monthly',
+                  'data-cta-position': 'pricing',
+                  'data-glean-id': 'subscribe_intent',
+                  'data-glean-type': 'monthly',
+                  'data-glean-label': 'vpn',
+                  'data-testid': 'vpn-pricing-grid-monthly-button'
+                })
+              }}
             </div>
-          </div>
-        </div>
-        <a class="mzp-c-button mzp-t-product mzp-t-xl mzp-t-secondary card-cta" href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/privacyprotectionplan/yearly/landing?spVersion=3&{{ utm_params }}" data-cta-text="Get started VPN" data-cta-position="privacy-vpn-card" data-testid="get-started-vpn-link">
-          Get started
-        </a>
-      </div>
+          </div><!-- .tabs closing div -->
+        </div><!-- .billing-tabs closing div -->
+      </div><!-- .price-details closing div -->
     </div>
     <div class="privacy-bundle-option option-bundle">
       <div class="privacy-bundle-details">
@@ -108,7 +147,7 @@
             </a>
           </li>
           <li>
-            <a href="https://relay.firefox.com/?{{ utm_params }}" class="bundle-option-link" data-link-text="Monitor Plus" data-link-position="privacy-bundle-card">
+            <a href="https://relay.firefox.com/?{{ utm_params_pricing_grid }}" class="bundle-option-link" data-link-text="Monitor Plus" data-link-position="privacy-bundle-card">
               <strong>
                 <span class="bundle-option-icon option-monitor"></span>
                 {{ ftl('vpn-landing-monitor') }} Plus
@@ -117,7 +156,7 @@
             </a>
           </li>
           <li>
-            <a href="https://monitor.mozilla.org/?{{ utm_params }}" class="bundle-option-link" data-link-text="Relay Premium" data-link-position="privacy-bundle-card">
+            <a href="https://monitor.mozilla.org/?{{ utm_params_pricing_grid }}" class="bundle-option-link" data-link-text="Relay Premium" data-link-position="privacy-bundle-card">
               <strong>
                 <span class="bundle-option-icon option-relay"></span>
                 {{ ftl('vpn-landing-relay') }} Premium
@@ -130,7 +169,7 @@
       <div class="price-details">
         <small>$99 billed yearly</small>
         <div class="card-price"><s>$14.99</s> $8.25/mo</div>
-        <a class="mzp-c-button mzp-t-product mzp-t-xl card-cta" href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/privacyprotectionplan/yearly/landing?spVersion=2&{{ utm_params }}" data-cta-text="Get started bundle" data-cta-position="privacy-bundle-card" data-testid="get-started-bundle-link">
+        <a class="mzp-c-button mzp-t-product mzp-t-xl card-cta" href="https://accounts.firefox.com/subscriptions/products/prod_SOYBYCOWallcgz?plan=price_1RTl5CJNcmPzuWtRVETtMFUX/?{{ utm_params_pricing_grid }}" data-cta-text="Get started bundle" data-cta-position="privacy-bundle-card" data-testid="get-started-bundle-link">
           Get started
         </a>
       </div>
