@@ -95,7 +95,7 @@ Traffic Cop will not set a cookie once it opts a user into an experiment. It is 
 
 If you want to return the user to the experiment if they return to the page you will need to explicitly set a cookie which contains the chosen variant ID. Make sure the ID of the cookie you are setting is passed to Traffic Cop when you initialize it.
 
-A [concent check](attribution/0005-consent-management.md) may be necessary before setting the cookie depending on who will be opted into the experiment.
+A [consent check](attribution/0005-consent-management.md) may be necessary before setting the cookie depending on who will be opted into the experiment.
 
 ``` javascript
 function setVariationCookie(exp) {
