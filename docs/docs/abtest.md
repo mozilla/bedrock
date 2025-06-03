@@ -38,17 +38,15 @@ perspective. UTM values should be included in the Nimbus experiment brief.
 
 ## Traffic Cop experiments
 
-More complex experiments, such as those that feature full page redesigns, or multi-page user flows, should be implemented using [Traffic Cop](https://github.com/mozmeao/trafficcop/). Traffic Cop small javascript library which will direct site traffic to different variants in a/b experiments and make sure a visitor always sees the same variation.
+More complex experiments, such as those that feature full page redesigns, or multi-page user flows, should be implemented using [Traffic Cop](https://github.com/mozmeao/trafficcop/). Traffic Cop is a small javascript library which will direct site traffic to different variants in a/b experiments and make sure a visitor always sees the same variation.
 
 It's possible to test more than 2 variants.
 
 Traffic Cop sends users to experiments and then we use Google Analytics (GA) to analyze which variation is more successful. (If the user has `DNT (Do Not Track)`{.interpreted-text role="abbr"} or `GPC (Global Privacy Control)`{.interpreted-text role="abbr"} enabled they do not participate in experiments.)
 
-All a/b tests should have a [mana page](https://mana.mozilla.org/wiki/display/EN/Details+of+experiments+by+mozilla.org+team) detailing the experiment and recording the results.
-
 ### Coding the variants
 
-Traffic cop supports two methods of a/b testing. Executing different on page javascript or redirecting to the same URL with a query string appended. We mostly use the redirect method in bedrock. This makes testing easier.
+Traffic cop supports two methods of a/b testing: executing different on page javascript or redirecting to the same URL with a query string appended. We mostly use the redirect method in bedrock. This makes testing easier. See the [Traffic Cop documentation](https://github.com/mozmeao/trafficcop/) for examples.
 
 Create a [variation view](coding.md#variation-views) for the a/b test.
 
@@ -91,13 +89,41 @@ Create a .js file where you initialize Traffic Cop and include that in the exper
 
 See the traffic cop section of the [switch docs](install.md#feature-flipping-aka-switches-or-waffle-switches) for instructions.
 
+### Cookies & Consent
+
+Traffic Cop will not set a cookie once it opts a user into an experiment. It is okay to opt users into an experiment without a consent check.
+
+If you want to return the user to the experiment if they return to the page you will need to explicitly set a cookie which contains the chosen variant ID. Make sure the ID of the cookie you are setting is passed to Traffic Cop when you initialize it.
+
+A [consent check](attribution/0005-consent-management.md) may be necessary before setting the cookie depending on who will be opted into the experiment.
+
+``` javascript
+function setVariationCookie(exp) {
+    if (cookiesEnabled) {
+        const date = new Date();
+        date.setTime(date.getTime() + 7 * 24 * 60 * 60 * 1000); // 7 day expiration
+        const expires = date.toUTCString();
+
+        window.Mozilla.Cookies.setItem(
+            exp.id,
+            exp.chosenVariation,
+            expires,
+            undefined,
+            undefined,
+            false,
+            'lax'
+        );
+    }
+}
+```
+
 ### Recording the data
 
 !!! note
     If you are measuring installs as part of your experiment be sure to configure [custom stub attribution](attribution/0002-firefox-desktop.md#measuring-campaigns-and-experiments) as well.
 
 
-Send the experiment view events to GA4 with the event name `experiment_view`. The `id` of all variants should be the same and all `variant` values should be unique.
+Send the experiment view events to GA with the event name `experiment_view`. The `id` of all variants should be the same and all `variant` values should be unique.
 
 Make sure any buttons and interaction which are being compared as part of the test will report into `GA (Google Analytics)`{.interpreted-text role="abbr"}.
 
