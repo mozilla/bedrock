@@ -331,3 +331,13 @@
         width: 100%;
     }
 }
+
+.no-js .privacy-bundle-pricing .billing-tabs {
+    [role="tablist"] {
+        display: none;
+    }
+
+    [role="tabpanel"].is-hidden {
+        display: block;
+    }
+}
