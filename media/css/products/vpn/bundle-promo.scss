@@ -27,6 +27,7 @@
     @media #{$mq-xl} {
         padding: $layout-md 0;
         border-radius: $border-radius-lg;
+        margin-top: calc (2 * var(--v-grid-md));
     }
 
     .banner-wrapper {

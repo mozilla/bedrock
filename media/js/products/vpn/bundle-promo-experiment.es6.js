@@ -35,14 +35,26 @@ const initTrafficCop = () => {
             window.dataLayer.push({
                 event: 'experiment_view',
                 id: 'vpn-landing-bundle-promo',
-                variant: 'landing-refresh-page-experiment'
+                variant: 'landing-refresh-page-experiment-b'
+            });
+        } else if (
+            href.indexOf(
+                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=c'
+            ) !== -1
+        ) {
+            // GA4
+            window.dataLayer.push({
+                event: 'experiment_view',
+                id: 'vpn-landing-bundle-promo',
+                variant: 'landing-refresh-page-experiment-c'
             });
         }
     } else if (TrafficCop) {
         const cop = new TrafficCop({
             variations: {
-                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=a': 50, // landing refresh page control
-                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=b': 50 // landing refresh page experiment
+                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=a': 33, // landing refresh page control
+                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=b': 33, // landing refresh page experiment b
+                'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=c': 33 // landing refresh page experiment c
             }
         });
         cop.init();

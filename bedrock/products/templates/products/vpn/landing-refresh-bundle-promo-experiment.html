@@ -41,7 +41,7 @@
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
-  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation != 'a' %}
     {{ css_bundle('mozilla-vpn-bundle-promo') }}
   {% endif %}
 {% endblock %}
@@ -142,34 +142,39 @@
   {% endcall %}
 
   {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-  <div id="pricing">
-    {% if vpn_available %}
-      {% if mobile_sub_only %}
+  {% if vpn_available %}
+    {% if mobile_sub_only %}
+      <div id="pricing">
         {% with heading = ftl('vpn-landing-one-subscription-for-all-your'), campaign = 'vpn-landing-page' %}
           {% include 'products/vpn/includes/mobile-subscribe.html' %}
         {% endwith %}
-      {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+      </div>
+    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+      <div id="pricing">
         {% include 'products/vpn/includes/bundle-promo.html' %}
-      {% else %}
+      </div>
+    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'a' %}
+      <div id="pricing">
         <section class="mzp-l-content mzp-t-content-xl">
           <header class="c-pricing-main-header">
             <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
           </header>
           {% include 'products/vpn/includes/pricing-refresh.html' %}
         </section>
-      {% endif %}
-    {% else %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div id="pricing">
       <section class="mzp-l-content mzp-t-content-xl">
         <header class="c-pricing-main-header">
           <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
-
           <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-not-available-button">
             {{ ftl('vpn-shared-waitlist-link') }}
           </a>
         </header>
       </section>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you-v2', fallback='vpn-landing-how-a-vpn-helps-you') }}</h2>
@@ -192,7 +197,14 @@
     </ul>
   </section>
 
-  {{ vpn_conditional_cta_refresh('secondary') }}
+  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'c' %}
+    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+    <div id="pricing">
+      {% include 'products/vpn/includes/bundle-promo.html' %}
+    </div>
+  {% else %}
+    {{ vpn_conditional_cta_refresh('secondary') }}
+  {% endif %}
 
   <section class="c-features mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title t-large">{{ ftl('vpn-landing-features') }}</h2>
@@ -439,7 +451,7 @@
 {% block js %}
   {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('data_begincheckout') }}
-  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'b' %}
+  {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation != 'a' %}
     {{ js_bundle('vpn_promo_tabs') }}
   {% endif %}
 {% endblock %}

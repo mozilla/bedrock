@@ -83,7 +83,7 @@ def vpn_landing_page(request):
     country = get_country_from_request(request)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in ["a", "b"]:
+    if entrypoint_variation not in ["a", "b", "c"]:
         entrypoint_variation = None
 
     if entrypoint_experiment not in ["vpn-landing-bundle-promo"]:
