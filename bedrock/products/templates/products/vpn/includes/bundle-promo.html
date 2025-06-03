@@ -34,9 +34,36 @@
       <p>Plan includes VPN, data broker protection, and unlimited email masks to prevent spam.</p>
     </div>
     <div class="banner-cta-container">
-      <a class="mzp-c-button mzp-t-product mzp-t-xl banner-cta" href="https://accounts.firefox.com/subscriptions/products/prod_SOYBYCOWallcgz?plan=price_1RTl5CJNcmPzuWtRVETtMFUX/?{{ utm_params_banner }}" data-cta-text="Get year-round protection" data-cta-position="privacy-bundle-banner" data-testid="get-year-round-protection-link">
-        Get year-round protection
-      </a>
+      {{ vpn_subscribe_link(
+        entrypoint='www.mozilla.org-vpn-product-page',
+        link_text='Get year-round protection',
+        plan='12-month',
+        class_name='mzp-c-button mzp-t-product mzp-t-xl banner-cta ga-begin-checkout',
+        country_code=country_code,
+        bundle_monitor_relay=True,
+        lang=LANG,
+        optional_parameters={
+          'utm_campaign': 'landing-page-banner'
+        },
+        optional_attributes={
+          'data-cta-type': 'fxa-privacy-product-bundle',
+          'data-cta-text': 'Get year-round protection',
+          'data-cta-position': 'pricing',
+          'data-glean-id': 'subscribe_intent',
+          'data-glean-type': 'annual',
+          'data-glean-label': 'privacy-product-bundle',
+          'data-testid': 'privacy-product-bundle-banner-button',
+          'data-ga-item': {
+              'id' : 'price_1RTl5CJNcmPzuWtRVETtMFUX',
+              'brand' : 'vpn',
+              'plan' : 'vpn',
+              'period' : 'monthly',
+              'price' : '9.99',
+              'discount' : '0',
+              'currency' : 'USD'
+          }
+        }
+      )}}
       <p>
         <small>$99/year, billed annually.</small>
         <br />
@@ -85,6 +112,7 @@
                 link_text='Get started',
                 plan='12-month',
                 class_name='mzp-c-button mzp-t-product mzp-t-xl mzp-t-secondary card-cta',
+                bundle_monitor_relay=False,
                 country_code=country_code,
                 lang=LANG,
                 optional_parameters={
@@ -110,6 +138,7 @@
                 plan='monthly',
                 class_name='mzp-c-button mzp-t-product mzp-t-xl mzp-t-secondary card-cta',
                 country_code=country_code,
+                bundle_monitor_relay=False,
                 lang=LANG,
                 optional_parameters={
                   'utm_campaign': 'landing-page-pricing-grid'
@@ -169,9 +198,36 @@
       <div class="price-details">
         <small>$99 billed yearly</small>
         <div class="card-price"><s>$14.99</s> $8.25/mo</div>
-        <a class="mzp-c-button mzp-t-product mzp-t-xl card-cta" href="https://accounts.firefox.com/subscriptions/products/prod_SOYBYCOWallcgz?plan=price_1RTl5CJNcmPzuWtRVETtMFUX/?{{ utm_params_pricing_grid }}" data-cta-text="Get started bundle" data-cta-position="privacy-bundle-card" data-testid="get-started-bundle-link">
-          Get started
-        </a>
+        {{ vpn_subscribe_link(
+          entrypoint='www.mozilla.org-vpn-product-page',
+          link_text='Get started',
+          plan='12-month',
+          class_name='mzp-c-button mzp-t-product mzp-t-xl card-cta ga-begin-checkout',
+          country_code=country_code,
+          bundle_monitor_relay=True,
+          lang=LANG,
+          optional_parameters={
+            'utm_campaign': 'landing-page-pricing-grid'
+          },
+          optional_attributes={
+            'data-cta-type': 'fxa-privacy-product-bundle',
+            'data-cta-text': 'Get year-round protection',
+            'data-cta-position': 'pricing',
+            'data-glean-id': 'subscribe_intent',
+            'data-glean-type': 'annual',
+            'data-glean-label': 'privacy-product-bundle',
+            'data-testid': 'privacy-product-bundle-pricing-grid-button',
+            'data-ga-item': {
+                'id' : 'price_1RTl5CJNcmPzuWtRVETtMFUX',
+                'brand' : 'vpn',
+                'plan' : 'vpn',
+                'period' : 'monthly',
+                'price' : '9.99',
+                'discount' : '0',
+                'currency' : 'USD'
+            }
+          }
+        )}}
       </div>
     </div>
   </div>
