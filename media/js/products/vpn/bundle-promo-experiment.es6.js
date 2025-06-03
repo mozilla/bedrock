@@ -13,6 +13,29 @@ if (typeof window.dataLayer === 'undefined') {
 
 const href = window.location.href;
 
+const experimentCookieID = 'vpn-landing-bundle-promo';
+
+/**
+ * Sets a cookie to remember which experiment variation has been seen.
+ * @param {Object} traffic cop config
+ */
+function setVariationCookie(exp) {
+    // set cookie to expire in 24 hours
+    const date = new Date();
+    date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
+    const expires = date.toUTCString();
+
+    window.Mozilla.Cookies.setItem(
+        exp.id,
+        exp.chosenVariation,
+        expires,
+        undefined,
+        undefined,
+        false,
+        'lax'
+    );
+}
+
 const initTrafficCop = () => {
     if (href.indexOf('entrypoint_experiment=') !== -1) {
         if (
@@ -23,7 +46,7 @@ const initTrafficCop = () => {
             // GA4
             window.dataLayer.push({
                 event: 'experiment_view',
-                id: 'vpn-landing-bundle-promo',
+                id: experimentCookieID,
                 variant: 'landing-refresh-page-control'
             });
         } else if (
@@ -34,7 +57,7 @@ const initTrafficCop = () => {
             // GA4
             window.dataLayer.push({
                 event: 'experiment_view',
-                id: 'vpn-landing-bundle-promo',
+                id: experimentCookieID,
                 variant: 'landing-refresh-page-experiment-b'
             });
         } else if (
@@ -45,12 +68,13 @@ const initTrafficCop = () => {
             // GA4
             window.dataLayer.push({
                 event: 'experiment_view',
-                id: 'vpn-landing-bundle-promo',
+                id: experimentCookieID,
                 variant: 'landing-refresh-page-experiment-c'
             });
         }
     } else if (TrafficCop) {
         const cop = new TrafficCop({
+            id: experimentCookieID,
             variations: {
                 'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=a': 33, // landing refresh page control
                 'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=b': 33, // landing refresh page experiment b
@@ -58,6 +82,7 @@ const initTrafficCop = () => {
             }
         });
         cop.init();
+        setVariationCookie(cop);
     }
 };
 
