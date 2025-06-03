@@ -91,7 +91,7 @@ See the traffic cop section of the [switch docs](install.md#feature-flipping-aka
 
 ### Cookies & Consent
 
-Traffic Cop will not set a cookie once it opts a user into an experiment. It is okay to opt users into an experiment without a concent check.
+Traffic Cop will not set a cookie once it opts a user into an experiment. It is okay to opt users into an experiment without a consent check.
 
 If you want to return the user to the experiment if they return to the page you will need to explicitly set a cookie which contains the chosen variant ID. Make sure the ID of the cookie you are setting is passed to Traffic Cop when you initialize it.
 
