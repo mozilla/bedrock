@@ -6,6 +6,12 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use 'includes/lib' as *;
 
+.bundle-container {
+    @media #{$mq-xl} {
+        margin-top: $layout-xl;
+    }
+}
+
 .privacy-bundle-banner {
     background-image: url('/media/img/products/vpn/landing-refresh/shield-center.svg'), url('/media/img/products/vpn/landing-refresh/bundle-banner-background.png');
     background-repeat: no-repeat, no-repeat;
@@ -27,7 +33,6 @@
     @media #{$mq-xl} {
         padding: $layout-md 0;
         border-radius: $border-radius-lg;
-        margin-top: $layout-xl;
     }
 
     .banner-wrapper {

@@ -199,7 +199,7 @@
 
   {% if switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'c' %}
     {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-    <div id="pricing">
+    <div id="pricing" class="bundle-container">
       {% include 'products/vpn/includes/bundle-promo.html' %}
     </div>
   {% else %}
