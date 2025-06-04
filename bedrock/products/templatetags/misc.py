@@ -126,12 +126,12 @@ def vpn_subscribe_link(
     entrypoint,
     link_text,
     plan=VPN_12_MONTH_PLAN,
-    bundle_monitor_relay=False,
     class_name=None,
     country_code=None,
     lang=None,
     optional_parameters=None,
     optional_attributes=None,
+    bundle_monitor_relay=False,
 ):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.

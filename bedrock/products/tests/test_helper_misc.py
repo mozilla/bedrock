@@ -539,7 +539,6 @@ def render(s, context=None):
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
 @override_switch("VPN_SUBPLAT_NEXT", active=False)
-@override_switch("VPN_BUNDLE_PROMO", active=False)
 class TestVPNSubscribeLink(TestCase):
     rf = RequestFactory()
 
@@ -551,15 +550,15 @@ class TestVPNSubscribeLink(TestCase):
         class_name="mzp-c-button",
         country_code=None,
         lang=None,
-        bundle_monitor_relay=False,
         optional_parameters=None,
         optional_attributes=None,
+        bundle_monitor_relay=False,
     ):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(
             f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
-                                        '{lang}', {bundle_monitor_relay}, {optional_parameters}, {optional_attributes}) }}}}""",
+                                        '{lang}', {optional_parameters}, {optional_attributes}, {bundle_monitor_relay}) }}}}""",
             {"request": req},
         )
 
@@ -1237,7 +1236,6 @@ class TestVPNSubscribeLink(TestCase):
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
-@override_switch("VPN_BUNDLE_PROMO", active=False)
 @override_switch("VPN_SUBPLAT_NEXT", active=True)
 class TestVPNSubscribeLinkNext(TestCase):
     rf = RequestFactory()
