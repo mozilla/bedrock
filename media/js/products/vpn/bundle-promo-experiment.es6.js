@@ -27,7 +27,7 @@ function setVariationCookie(exp) {
 
     window.Mozilla.Cookies.setItem(
         exp.id,
-        exp.variations,
+        'entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=a',
         expires,
         undefined,
         undefined,
