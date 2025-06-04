@@ -5,3 +5,15 @@
 @import 'header';
 @import 'sign-off';
 @import 'release-notes';
+
+.content-wrapper {
+    background: var(--wnp-color-background);
+}
+
+.wnp-content-main {
+    color: var(--wnp-color-text);
+
+    h1, h2, h3, h4 {
+        color: var(--wnp-color-title);
+    }
+}

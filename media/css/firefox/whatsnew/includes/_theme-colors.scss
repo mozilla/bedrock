@@ -1,0 +1,17 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+:root {
+    --wnp-color-background: #{$color-white};
+    --wnp-color-text: #757575;
+    --wnp-color-title: #{$color-black};
+
+    @media (prefers-color-scheme: dark) {
+        --wnp-color-background: #{$color-dark-gray-60};
+        --wnp-color-text: #{$color-moz-light-gray};
+        --wnp-color-title: #{$color-white};
+    }
+}
