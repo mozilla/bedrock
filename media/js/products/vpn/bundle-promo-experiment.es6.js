@@ -27,7 +27,7 @@ function setVariationCookie(exp) {
 
     window.Mozilla.Cookies.setItem(
         exp.id,
-        exp.chosenVariation,
+        exp.variations,
         expires,
         undefined,
         undefined,

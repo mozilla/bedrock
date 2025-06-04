@@ -54,7 +54,7 @@ def _vpn_get_ga_data(selected_plan):
     return ga_data
 
 
-def _vpn_get_available_plans(country_code, lang, bundle_monitor_relay):
+def _vpn_get_available_plans(country_code, lang, bundle_monitor_relay=False):
     """
     Get subscription plan IDs using country_code and page language.
     Defaults to "US" if no matching country code is found.

@@ -539,6 +539,7 @@ def render(s, context=None):
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
 @override_switch("VPN_SUBPLAT_NEXT", active=False)
+@override_switch("VPN_BUNDLE_PROMO", active=False)
 class TestVPNSubscribeLink(TestCase):
     rf = RequestFactory()
 
@@ -550,6 +551,7 @@ class TestVPNSubscribeLink(TestCase):
         class_name="mzp-c-button",
         country_code=None,
         lang=None,
+        bundle_monitor_relay=False,
         optional_parameters=None,
         optional_attributes=None,
     ):
@@ -557,7 +559,7 @@ class TestVPNSubscribeLink(TestCase):
         req.locale = "en-US"
         return render(
             f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
-                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
+                                        '{lang}', {bundle_monitor_relay}, {optional_parameters}, {optional_attributes}) }}}}""",
             {"request": req},
         )
 
@@ -567,6 +569,7 @@ class TestVPNSubscribeLink(TestCase):
             plan="12-month",
             country_code="US",
             lang="en-US",
+            bundle_monitor_relay=False,
             optional_parameters={"utm_campaign": "vpn-product-page"},
             optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
         )
@@ -1234,6 +1237,7 @@ class TestVPNSubscribeLink(TestCase):
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
 )
+@override_switch("VPN_BUNDLE_PROMO", active=False)
 @override_switch("VPN_SUBPLAT_NEXT", active=True)
 class TestVPNSubscribeLinkNext(TestCase):
     rf = RequestFactory()
