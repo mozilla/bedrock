@@ -80,15 +80,19 @@ def vpn_landing_page(request):
     experience = request.GET.get("xv", None)
     entrypoint_experiment = request.GET.get("entrypoint_experiment", None)
     entrypoint_variation = request.GET.get("entrypoint_variation", None)
+    country = get_country_from_request(request)
 
     # ensure experiment parameters matches pre-defined values
-    if entrypoint_variation not in []:
+    if entrypoint_variation not in ["a", "b", "c"]:
         entrypoint_variation = None
 
-    if entrypoint_experiment not in []:
+    if entrypoint_experiment not in ["vpn-landing-bundle-promo"]:
         entrypoint_experiment = None
 
-    template_name = "products/vpn/landing-refresh.html"
+    if request.locale.startswith("en") and country == "US":
+        template_name = "products/vpn/landing-refresh-bundle-promo-experiment.html"
+    else:
+        template_name = "products/vpn/landing-refresh.html"
 
     context = {
         "vpn_available": vpn_available_in_country,

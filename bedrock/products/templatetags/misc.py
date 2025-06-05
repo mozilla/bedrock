@@ -54,14 +54,17 @@ def _vpn_get_ga_data(selected_plan):
     return ga_data
 
 
-def _vpn_get_available_plans(country_code, lang):
+def _vpn_get_available_plans(country_code, lang, bundle_monitor_relay=False):
     """
     Get subscription plan IDs using country_code and page language.
     Defaults to "US" if no matching country code is found.
     Each country also has a default language if no match is found.
     """
 
-    country_plans = settings.VPN_VARIABLE_PRICING.get(country_code, settings.VPN_VARIABLE_PRICING["US"])
+    if bundle_monitor_relay:
+        country_plans = settings.VPN_MONITOR_RELAY_BUNDLE_PRICING.get(country_code, settings.VPN_MONITOR_RELAY_BUNDLE_PRICING["US"])
+    else:
+        country_plans = settings.VPN_VARIABLE_PRICING.get(country_code, settings.VPN_VARIABLE_PRICING["US"])
 
     return country_plans.get(lang, country_plans.get("default"))
 
@@ -128,6 +131,7 @@ def vpn_subscribe_link(
     lang=None,
     optional_parameters=None,
     optional_attributes=None,
+    bundle_monitor_relay=False,
 ):
     """
     Render a vpn.mozilla.org subscribe link with required params for FxA authentication.
@@ -144,8 +148,12 @@ def vpn_subscribe_link(
                               lang=LANG) }}
     """
 
-    product_id = settings.VPN_PRODUCT_ID
-    available_plans = _vpn_get_available_plans(country_code, lang)
+    if bundle_monitor_relay:
+        product_id = settings.VPN_MONITOR_RELAY_BUNDLE_PRODUCT_ID
+    else:
+        product_id = settings.VPN_PRODUCT_ID
+
+    available_plans = _vpn_get_available_plans(country_code, lang, bundle_monitor_relay)
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     plan_id = selected_plan.get("id")
 
@@ -169,7 +177,7 @@ def vpn_subscribe_link(
 
 @library.global_function
 @jinja2.pass_context
-def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None):
+def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None, bundle_monitor_relay=False):
     """
     Render a localized string displaying VPN monthly plan price.
 
@@ -183,7 +191,7 @@ def vpn_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lang=None)
                              lang=LANG) }}
     """
 
-    available_plans = _vpn_get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang, bundle_monitor_relay)
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
     price = selected_plan.get("price")
     currency = selected_plan.get("currency")
@@ -233,7 +241,7 @@ def vpn_mobile_monthly_price(ctx, plan=VPN_12_MONTH_PLAN, country_code=None, lan
 
 @library.global_function
 @jinja2.pass_context
-def vpn_total_price(ctx, country_code=None, lang=None):
+def vpn_total_price(ctx, country_code=None, lang=None, bundle_monitor_relay=False):
     """
     Render a localized string displaying VPN total plan price.
 
@@ -246,7 +254,7 @@ def vpn_total_price(ctx, country_code=None, lang=None):
         {{ vpn_total_price(country_code=country_code, lang=LANG) }}
     """
 
-    available_plans = _vpn_get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang, bundle_monitor_relay)
     selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
     price = selected_plan.get("total")
     currency = selected_plan.get("currency")
@@ -296,7 +304,7 @@ def vpn_mobile_total_price(ctx, country_code=None, lang=None):
 
 @library.global_function
 @jinja2.pass_context
-def vpn_saving(ctx, country_code=None, lang=None, ftl_string="vpn-shared-pricing-save-percent"):
+def vpn_saving(ctx, country_code=None, lang=None, bundle_monitor_relay=False, ftl_string="vpn-shared-pricing-save-percent"):
     """
     Render a localized string displaying saving (as a percentage) of a given VPN subscription plan.
 
@@ -309,7 +317,7 @@ def vpn_saving(ctx, country_code=None, lang=None, ftl_string="vpn-shared-pricing
         {{ vpn_saving(country_code=country_code, lang=LANG) }}
     """
 
-    available_plans = _vpn_get_available_plans(country_code, lang)
+    available_plans = _vpn_get_available_plans(country_code, lang, bundle_monitor_relay)
     selected_plan = available_plans.get(VPN_12_MONTH_PLAN)
     percent = selected_plan.get("saving")
     saving = ftl(ftl_string, percent=percent, ftl_files=FTL_FILES)

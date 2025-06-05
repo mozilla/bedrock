@@ -552,12 +552,13 @@ class TestVPNSubscribeLink(TestCase):
         lang=None,
         optional_parameters=None,
         optional_attributes=None,
+        bundle_monitor_relay=False,
     ):
         req = self.rf.get("/")
         req.locale = "en-US"
         return render(
             f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
-                                        '{lang}', {optional_parameters}, {optional_attributes}) }}}}""",
+                                        '{lang}', {optional_parameters}, {optional_attributes}, {bundle_monitor_relay}) }}}}""",
             {"request": req},
         )
 
@@ -567,6 +568,7 @@ class TestVPNSubscribeLink(TestCase):
             plan="12-month",
             country_code="US",
             lang="en-US",
+            bundle_monitor_relay=False,
             optional_parameters={"utm_campaign": "vpn-product-page"},
             optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
         )

@@ -59,3 +59,7 @@ vpn-landing-do-you-need-a-vpn-at-home = Do you need a VPN at home? Here’s 5 re
 vpn-landing-what-is-an-ip-address = What is an IP address?
 vpn-landing-how-your-location-is-tracked = How your location is tracked and how you can limit sharing it
 vpn-landing-see-more-resources = See more resources
+
+vpn-landing-vpn = { -brand-name-mozilla-vpn }
+vpn-landing-monitor = { -brand-name-monitor }
+vpn-landing-relay = { -brand-name-relay }
