@@ -162,6 +162,15 @@
           {% include 'products/vpn/includes/pricing-refresh.html' %}
         </section>
       </div>
+    {% else %}
+      <div id="pricing">
+        <section class="mzp-l-content mzp-t-content-xl">
+          <header class="c-pricing-main-header">
+            <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
+          </header>
+          {% include 'products/vpn/includes/pricing-refresh.html' %}
+        </section>
+      </div>
     {% endif %}
   {% else %}
     <div id="pricing">
