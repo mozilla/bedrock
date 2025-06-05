@@ -153,7 +153,9 @@
       <div id="pricing">
         {% include 'products/vpn/includes/bundle-promo.html' %}
       </div>
-    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'a' %}
+    {# do nothing for variation C #}
+    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'c' %}
+    {% else %}
       <div id="pricing">
         <section class="mzp-l-content mzp-t-content-xl">
           <header class="c-pricing-main-header">
