@@ -9,7 +9,7 @@
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../scripts/open-page');
 const url = '/en-US/products/vpn/';
-const availableCountries = ['us', 'ca', 'gb', 'de', 'fr'];
+const availableCountries = ['ca', 'gb', 'de', 'fr'];
 const mobileOnlyCountries = ['au', 'in', 'mx', 'ua'];
 const androidOnlyCountries = ['br', 'ma'];
 const unavailableCountries = ['cn'];
