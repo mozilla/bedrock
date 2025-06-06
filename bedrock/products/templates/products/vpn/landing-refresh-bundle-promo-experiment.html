@@ -153,15 +153,8 @@
       <div id="pricing">
         {% include 'products/vpn/includes/bundle-promo.html' %}
       </div>
-    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'a' %}
-      <div id="pricing">
-        <section class="mzp-l-content mzp-t-content-xl">
-          <header class="c-pricing-main-header">
-            <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
-          </header>
-          {% include 'products/vpn/includes/pricing-refresh.html' %}
-        </section>
-      </div>
+    {% elif switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US" and entrypoint_variation == 'c' %}
+        {# do nothing for variation C #}
     {% else %}
       <div id="pricing">
         <section class="mzp-l-content mzp-t-content-xl">
