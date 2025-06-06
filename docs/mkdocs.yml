@@ -99,10 +99,14 @@ nav:
   - Banners: banners.md
   - Mozilla.UITour: uitour.md
   - Send to Device widget: send-to-device.md
-  - Firefox Download Buttons: download-buttons.md
+
   - Mozilla account helpers: mozilla-accounts.md
   - A/B Testing: abtest.md
   - Mozilla VPN Subscriptions: vpn-subscriptions.md
+  - Firefox Downloads:
+    - firefox-downloads/download-buttons.md
+    - firefox-downloads/download-as-default.md
+    - firefox-downloads/download-page.md
   - Attribution:
     - attribution/index.md
     - Mozorg Analytics: attribution/0001-analytics.md
