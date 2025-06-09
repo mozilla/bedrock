@@ -1,0 +1,42 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+// Match newsletter styling
+.c-image-wrapper {
+    background-color: #f8f6f4;
+    max-width: unset;
+}
+
+.c-image {
+    display: block;
+    width: 100%;
+    max-width: $content-sm;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+// override protocol content container
+.c-copy-wrapper {
+    padding-top: $spacing-lg;
+
+    @media #{$mq-md} {
+        padding-top: $spacing-2xl;
+    }
+}
+
+.c-title {
+    @include text-title-sm;
+}
+
+.c-tagline {
+    @include text-body-md;
+    color: $color-marketing-gray-70;
+    margin: $spacing-lg auto $spacing-xl;
+
+    @media #{$mq-md} {
+        @include text-body-xl;
+    }
+}

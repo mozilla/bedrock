@@ -111,7 +111,7 @@
 
         {% if details %}
           <span class="mzp-c-fieldnote">{{ details }}</span>
-        {% elif not is_multi_newsletter_form %}
+        {% elif not is_multi_newsletter_form and not id =='ten-tabs' %}
             <span class="mzp-c-fieldnote">
               {# Issue 7460 `mozilla-and-you` is the ID for the Firefox newsletter, because history... #}
               {% if id == 'mozilla-and-you' %}
