@@ -1,0 +1,110 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_140') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Clever suchen. Mehr erledigen. Direkt in deiner Adressleiste.' %}
+  <!-- Box 1 -->
+  {% set box_one_title = 'Erledige Alltagsaufgaben im Handumdrehen.' %}
+  {% set box_one_body = 'Nutze Schnellaktionen und gib Befehle wie „drucken“, „Screenshot“ oder „Verlauf löschen“ einfach direkt ins Suchfeld ein.' %}
+  {% set box_one_cta = 'Mehr erfahren' %}
+  {% set box_one_cta_url = 'https://blog.mozilla.org/de/firefox-de/address-bar/#schnellaktionen' %}
+  {% set box_one_img_alt = 'Screenshot. Mach einen Screenshot.' %}
+  <!-- Box 2 -->
+  {% set box_two_title = 'Greif direkt auf deine gespeicherten Inhalte zu.' %}
+  {% set box_two_body = 'Mit @-Shortcuts wie @bookmarks, @history oder @downloads durchsuchst du gezielt einzelne Bereiche deines Browsers.' %}
+  {% set box_two_cta = 'Mehr erfahren' %}
+  {% set box_two_cta_url = 'https://blog.mozilla.org/de/firefox-de/address-bar/#intuitive-suchbegriffe' %}
+  {% set box_two_img_alt = 'Lesezeichen. Lesezeichen durchsuchen.' %}
+  <!-- Box 3 -->
+  {% set box_three_title = 'Finde ganz einfach den Tab, den du brauchst.' %}
+  {% set box_three_body = 'Mit der Tab-Suche tippst du einfach los. Firefox zeigt dir passende offene Tabs, und du wechselst direkt dorthin, ohne zu scrollen.' %}
+  {% set box_three_cta = 'Mehr erfahren' %}
+  {% set box_three_cta_url = 'https://blog.mozilla.org/de/firefox-de/address-bar/#sekundare-aktionen' %}
+  {% set box_three_img_alt = 'Firefox-Vorschläge. Zum Tab wechseln.' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Des recherches plus intelligentes. Plus approfondies. Depuis votre barre d’adresse.' %}
+  <!-- Box 1 -->
+  {% set box_one_title = 'Gérez vos tâches du quotidien en un éclair' %}
+  {% set box_one_body = 'Grâce aux Actions rapides, entrez par exemple « Imprimer », « Capture d’écran » ou « Effacer l’historique » directement depuis la barre de recherche.' %}
+  {% set box_one_cta = 'En savoir plus' %}
+  {% set box_one_cta_url = 'https://blog.mozilla.org/fr/firefox-fr/address-bar/#les-actions-rapides' %}
+  {% set box_one_img_alt = 'Capture d’écran. Effectuer une capture d’écran.' %}
+  <!-- Box 2 -->
+  {% set box_two_title = 'Accédez à vos sauvegardes sans détour' %}
+  {% set box_two_body = 'Utilisez les @ raccourcis comme @ marque-pages, @ historique ou @ téléchargements pour accéder instantanément à des parties spécifiques de votre navigateur.' %}
+  {% set box_two_cta = 'En savoir plus' %}
+  {% set box_two_cta_url = 'https://blog.mozilla.org/fr/firefox-fr/address-bar/#les-mots-cles-de-recherche-intuitifs' %}
+  {% set box_two_img_alt = 'Marque-pages. Rechercher des marque-pages.' %}
+  <!-- Box 3 -->
+  {% set box_three_title = 'Trouvez facilement l’onglet que vous cherchez' %}
+  {% set box_three_body = 'Avec la Recherche d’onglets, commencez à  taper votre requête et Firefox vous suggère les onglets correspondants déjà ouverts pour un accès rapide sans scroller.' %}
+  {% set box_three_cta = 'En savoir plus' %}
+  {% set box_three_cta_url = 'https://blog.mozilla.org/fr/firefox-fr/address-bar/#les-actions-secondaires' %}
+  {% set box_three_img_alt = 'Firefox suggère. Passer à l’onglet.' %}
+{% else %}
+  {% set main_title = 'Search smarter. Do more. All from your address bar.' %}
+  <!-- Box 1 -->
+  {% set box_one_title = 'Handle everyday tasks in a flash' %}
+  {% set box_one_body = 'Use Quick Actions to type things like “print,” “screenshot,” or “clear history” right where you search.' %}
+  {% set box_one_cta = 'Learn more' %}
+  {% set box_one_cta_url = 'https://blog.mozilla.org/en/firefox/address-bar/#quick-actions' %}
+  {% set box_one_img_alt = 'Screenshot. Take a screenshot.' %}
+  <!-- Box 2 -->
+  {% set box_two_title = 'Get straight to what you’ve saved' %}
+  {% set box_two_body = 'Use @ Shortcuts like @bookmarks, @history, or @downloads to search specific parts of your browser instantly.' %}
+  {% set box_two_cta = 'Learn more' %}
+  {% set box_two_cta_url = 'https://blog.mozilla.org/en/firefox/address-bar/#intuitive-search-keywords' %}
+  {% set box_two_img_alt = 'Bookmarks. Search bookmarks.' %}
+  <!-- Box 3 -->
+  {% set box_three_title = 'Find the tab you need easily' %}
+  {% set box_three_body = 'With Tab Search, just start typing and Firefox shows matching open tabs so you can switch without the scroll.' %}
+  {% set box_three_cta = 'Learn more' %}
+  {% set box_three_cta_url = 'https://blog.mozilla.org/en/firefox/address-bar/#smart-shortcuts' %}
+  {% set box_three_img_alt = 'Firefox suggest. Switch to tab.' %}
+{% endif %}
+
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp140' %}
+
+{% block wnp_content %}
+  <div class="wnp-content-main mzp-l-content mzp-t-content-max">
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <div class="mzp-l-columns mzp-t-columns-three">
+      <section class="c-box box-one">
+        <img class="c-box-image" src="{{ l10n_img('firefox/wnp-140/quick-actions.svg') }}" alt="{{ box_one_img_alt }}" width="298" height="167">
+        <h2 class="c-box-title">{{ box_one_title }}</h2>
+        <p class="c-box-body">{{ box_one_body }}</p>
+        <a class="c-box-cta mzp-c-button mzp-t-secondary" href="{{ box_one_cta_url }}?{{ utm_params }}" data-cta-text="{{ box_one_cta }}" data-cta-type="button"  target="_blank" rel="external noopener">{{ box_one_cta }}</a>
+      </section>
+
+      <section class="c-box box-two">
+        <img class="c-box-image" src="{{ l10n_img('firefox/wnp-140/bookmarks.svg') }}" alt="{{ box_two_img_alt }}" width="298" height="167">
+        <h2 class="c-box-title">{{ box_two_title }}</h2>
+        <p class="c-box-body">{{ box_two_body }}</p>
+        <a class="c-box-cta mzp-c-button mzp-t-secondary" href="{{ box_two_cta_url }}?{{ utm_params }}" data-cta-text="{{ box_two_cta }}" data-cta-type="button" target="_blank" rel="external noopener">{{ box_two_cta }}</a>
+      </section>
+
+      <section class="c-box box-three">
+        <img class="c-box-image" src="{{ l10n_img('firefox/wnp-140/tab-search.svg') }}" alt="{{ box_three_img_alt }}" width="298" height="167">
+        <h2 class="c-box-title">{{ box_three_title }}</h2>
+        <p class="c-box-body">{{ box_three_body }}</p>
+        <a class="c-box-cta mzp-c-button mzp-t-secondary" href="{{ box_three_cta_url }}?{{ utm_params }}" data-cta-text="{{ box_two_cta }}" data-cta-type="button" target="_blank" rel="external noopener">{{ box_two_cta }}</a>
+      </section>
+    </div>
+  </div>
+
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
+{% endblock %}

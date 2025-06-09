@@ -4,7 +4,10 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% if LANG == 'fr' %}
+<!-- TODO: check if removal of "the" applies to all languages -->
+ {% if LANG.startswith('en-') %}
+  {% set donate_cta = "Donate to Mozilla Foundation" %}
+{% elif LANG == 'fr' %}
   {% set donate_cta = "Faire un don à la Fondation Mozilla" %}
 {% elif LANG == 'de' %}
   {% set donate_cta = "Spende an die Mozilla Foundation" %}
