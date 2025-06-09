@@ -23,7 +23,6 @@
 }
 
 .c-box {
-    --wnp-color-title: #{$color-black};
     background-color: $color-marketing-gray-10;
     border-radius: $border-radius-md;
     color: $color-black;
@@ -37,8 +36,10 @@
     width: 100%;
 }
 
-.c-box-title {
+// extra specificity needed to override dark mode colors
+h2.c-box-title {
     @include text-title-2xs;
+    color: $color-black;
     margin-bottom: $spacing-sm;
 }
 
