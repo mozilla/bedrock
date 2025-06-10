@@ -490,9 +490,9 @@ dj-database-url==3.0.0 \
     --hash=sha256:749a7a42d88d6c741c1d2f4ab24c2ae0d5cd12f00f2d1d55ff9f5fadabe8a2c3 \
     --hash=sha256:cbb84b2e3f372460b1e43692bf9fdc0c32e78930ee101db470cba56105fca1e5
     # via -r requirements/prod.txt
-django==5.2.2 \
-    --hash=sha256:85852e517f84435e9b13421379cd6c43ef5b48a9c8b391d29a26f7900967e952 \
-    --hash=sha256:997ef2162d04ead6869551b22cde4e06da1f94cf595f4af3f3d3afeae1f3f6fe
+django==5.2.3 \
+    --hash=sha256:335213277666ab2c5cac44a792a6d2f3d58eb79a80c14b6b160cd4afc3b75684 \
+    --hash=sha256:c517a6334e0fd940066aa9467b29401b93c37cec2e61365d663b80922542069d
     # via
     #   -r requirements/prod.txt
     #   dj-database-url
@@ -607,9 +607,9 @@ django-taggit==6.1.0 \
     # via
     #   -r requirements/prod.txt
     #   wagtail
-django-tasks==0.6.1 \
-    --hash=sha256:4086e7eb9e965f79c4ac76f5c3690ec3bf41c461585237b71b4bde729ced9826 \
-    --hash=sha256:b3648e28bdcda809cb7831f3aff98aa46c327025447c462b8943cce9dfbb0281
+django-tasks==0.7.0 \
+    --hash=sha256:499f80d1a051566443cfa88a300d8b03435af7fc5708cad4d8da6d285614f739 \
+    --hash=sha256:8a8d64f2dc6e29ac2f45092d90e2dd82dc1dca100dfe3a4f2ce1209db99f3527
     # via
     #   -r requirements/prod.txt
     #   wagtail
@@ -2245,9 +2245,9 @@ uv==0.7.12 \
     --hash=sha256:e34b4ad4288828210c2e075934009903514ca97bd603aced7d0755040b4d0489 \
     --hash=sha256:e70a4393fd6a09b056e1ac500fe2b796d26c30783194868c6801ea08c3bbf863
     # via -r requirements/dev.in
-wagtail==6.4.1 \
-    --hash=sha256:85206f86b04876d5596190e042d30de0430fdb5cdd71b6005748c8a0d45066ec \
-    --hash=sha256:cec3e6d4920a6d178fa1eb6f4af80b370fdd5570ed924b979104e157f10ca097
+wagtail==7.0 \
+    --hash=sha256:6a254ef84a740689dd844aabc5254828ecb62840257721e639929cb0e1a2b3c1 \
+    --hash=sha256:7c267ead43da3aa9469f233b111624aa1a508a5840f1ddda72d104957fdb3426
     # via
     #   -r requirements/prod.txt
     #   wagtail-factories
@@ -2268,9 +2268,9 @@ wagtail-localize-smartling==0.10.3 \
     --hash=sha256:5f3d7b7fa97c075023f711786cccd761d340488f29ac8bcbb168db1b6a5a4341 \
     --hash=sha256:8fad0510319918cc57071d4ef6a07f8ab5a7fa16040b399e6bc084fec1f232ae
     # via -r requirements/prod.txt
-wagtaildraftsharing==0.2.0 \
-    --hash=sha256:4aaec052d72ce86a3ecc5af6773cff20c04dcbca0f25f1cfa55fddd597f19e99 \
-    --hash=sha256:af88816cad39bf151dfb5439334807310845abda51c4cf610beb9a3d01c40590
+wagtaildraftsharing==0.3.0 \
+    --hash=sha256:2e77b46df0b164c089d25ff146e25fa3601e52de7ccaa9226925e6e6357fdeab \
+    --hash=sha256:450c756f600c8d43eb0391ebb6829d554a5501b58a3e7e525349dc0409cf2bdd
     # via -r requirements/prod.txt
 wand==0.6.13 \
     --hash=sha256:e5dda0ac2204a40c29ef5c4cb310770c95d3d05c37b1379e69c94ea79d7d19c0 \
