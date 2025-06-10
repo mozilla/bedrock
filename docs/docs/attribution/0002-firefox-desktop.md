@@ -110,16 +110,14 @@ You might not need to test all these depending on what is changing this is an ex
 
 4.  Look for a cookie called ``moz-stub-attribution-code`` and copy the value (it should be a base64 encoded string).
 
-5.
+5. Decode the base64 string (e.g. using <https://base64decode.org>) and check that:
 
-    Decode the base64 string (e.g. using <https://base64decode.org>) and check that:
-
-    :   -   ``dlsource`` parameter value is mozorg
-        -   ``client_id_ga4`` and ``session_id`` parameters exist
-        -   ``client_id_ga4`` should look something like 0700077325.1656063224 (the numbers will differ but the format with the middle period should look the same).
-        -   ``source`` and ``campaign`` have the values ham and pineapple, respectively.
-        -   The ua value should be chrome (assuming you tested in Chrome).
-        -   Everything else should be (not set).
+    -   ``dlsource`` parameter value is mozorg
+    -   ``client_id_ga4`` and ``session_id`` parameters exist
+    -   ``client_id_ga4`` should look something like 0700077325.1656063224 (the numbers will differ but the format with the middle period should look the same).
+    -   ``source`` and ``campaign`` have the values ham and pineapple, respectively.
+    -   The ua value should be chrome (assuming you tested in Chrome).
+    -   Everything else should be (not set).
 
 6.  Inspect the "Download Firefox" button in the top right and verify the download URL contains ``attribution_code`` and ``attribution_sig`` params.
 
