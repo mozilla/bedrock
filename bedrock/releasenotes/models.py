@@ -22,6 +22,7 @@ import markdown
 from django_extensions.db.fields.json import JSONField
 from markdown.extensions import Extension
 from markdown.inlinepatterns import InlineProcessor
+from product_details import product_details
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
@@ -166,6 +167,13 @@ class ProductReleaseQuerySet(models.QuerySet):
         if product_name.lower() == "firefox extended support release":
             product_name = "firefox"
             channel_name = "esr"
+
+        if channel_name == "esr":
+            # There may be several ESRs in existence at once, so make sure
+            # we get the version declared as the latest in the source of truth.
+            latest_esr = product_details.firefox_versions["FIREFOX_ESR"]
+            version = latest_esr.replace("esr", "")
+
         q = self.filter(product__iexact=product_name)
         if channel_name:
             q = q.filter(channel__iexact=channel_name)
