@@ -14,7 +14,8 @@
 <nav role="directory">
   <p>In this document:</p>
   <ul class="mzp-u-list-styled">
-    <li><a href="#basic-policy">Basic Policy</a>: Patch authors will be notified of a regression and must respond within 3 days or their changes will be backed out.</li>
+    <li><a href="#basic-policy">Basic Policy</a>: Patch authors will be notified of a regression and must respond within 3 days or their changes may be backed out.</li>
+    <li><a href="#critical-tests">Critical Tests</a>: Regressions in these tests trigger an immediate back out.</a></li>
     <li><a href="#criteria">Sheriffing Criteria</a>: Minimum criteria to be met before tests will be monitored by sheriffs.</a></li>
     <li><a href="#requirements">Bug Requirements</a>: Requirements for regression bugs opened by sheriffs.</li>
     <li><a href="#outcomes">Acceptable Outcomes</a>: Responses to regressions.</li>
@@ -24,7 +25,12 @@
 
 <section id="basic-policy">
   <h2>Basic Policy</h2>
-  <p>Performance is a critical goal for Firefox releases, as well as Mozilla’s other products and services. We cannot allow performance regressions to go unnoticed or unresolved during our development cycles. When a regression is identified, a bug will be filed and the patch author will be asked to provide information via the needinfo flag in bugzilla. We expect a response and reasonable dialog within 3 business days. If a resolution is not found we will back out the offending patch(es) and the patch author can reland when they have more time to investigate.</p>
+  <p>Performance is a critical goal for Firefox releases, as well as Mozilla’s other products and services. We cannot allow performance regressions to go unnoticed or unresolved during our development cycles. When a regression is identified, a bug will be filed and the patch author will be asked to provide information via the needinfo flag in bugzilla. We expect a response and reasonable dialog within 3 business days. If there is no acknowledgement within that time, and no investigation has started, then we may back out the offending patch(es).</p>
+</section>
+
+<section id="critical-tests">
+  <h2>Critical Tests</h2>
+  <p>Some of our performance tests are marked as <strong>critical tests</strong>. These are the ones where we do not want to regress their metric under any circumstances unless the regression is explicitly approved by appropriate parties. When one of these tests regresses, the regressor patch is backed out immediately by sheriffs after it has been found and confirmed. See <a href="https://firefox-source-docs.mozilla.org/testing/perfdocs/#critical-performance-tests">the existing list of critical tests here</a>.</p>
 </section>
 
 <section id="criteria">
@@ -36,15 +42,13 @@
     <li>Test jobs run on integration or mozilla-beta.</li>
     <li>Test jobs run as tier 2 or above.</li>
     <li>Tests can be run and debugged locally.</li>
-    <li>Tests are documented in the <a href="https://firefox-source-docs.mozilla.org/testing/perfdocs/">Firefox Source Docs</a> or <a href="https://wiki.mozilla.org/TestEngineering/Performance">Mozilla Wiki</a>.</li>
+    <li>Tests are documented in the <a href="https://firefox-source-docs.mozilla.org/testing/perfdocs/">Firefox Source Docs</a>.</li>
   </ul>
-
-  <p>In the future this list will be extended to include thresholds for noise, engineer traction, and fix ratio. In the meantime please consider these aspects when working on performance tests.</p>
 </section>
 
 <section id="requirements">
   <h2>Bug Requirements</h2>
-  <p>To be fair, some initial work up front should be done prior to filing a bug and requesting a <em>needinfo</em> from the original author. Here is what to expect:</p>
+  <p>To be fair, some initial work up front should be done prior to filing a bug and requesting a needinfo from the original author. Here is what to expect:</p>
   <ul class="mzp-u-list-styled">
     <li>On integration branches (higher volume), a performance sheriff will have verified the root cause within 5 business days of the patch landing.</li>
     <li>A patch or set of patches from a bug must be identified as the root cause. This can take place through retriggers on the tree or in the case of many patches landing at once this would take place through a push to try backing out the suspected patch(es).</li>
@@ -57,9 +61,9 @@
   <h2>Acceptable Outcomes</h2>
   <p>What we expect from a developer when asking them to look at a regression:</p>
   <ul class="mzp-u-list-styled">
-    <li>A promise to attempt a fix at the bug is agreed upon, the bug is assigned to someone and an estimated timeline is documented in the bug.</li>
+    <li>A promise to attempt to fix the bug is agreed upon, the bug is assigned to someone and an estimated timeline is documented in the bug.</li>
     <li>The bug will contain enough details and evidence to support accepting this regression, we will mark it as wontfix.</li>
-    <li>It is agreed that this should be backed out and a sheriff will verify the backout removes the regressions.</li>
+    <li>It is agreed that this should be backed out and a sheriff will verify the back out removes the regressions.</li>
   </ul>
 </section>
 
@@ -67,11 +71,8 @@
   <h2>Other Scenarios</h2>
   <p>There are many reasons why a regression will not fall into the above workflow. Here a few examples of other scenarios and how we will handle them:</p>
   <ul class="mzp-u-list-styled">
-    <li>A bug related to the alert is not filed within 5 business days of the patch landing. This removes the urgency and required action.</li>
-    <li>We only caught a regression at uplift time. There is a chance this isn’t easily determined, this will be documented and identified patch authors will use their judgement to fix the bug.</li>
     <li>Regression is unrelated to code (e.g. infrastructure changes) - this should be documented in the bug and closed as wontfix.</li>
-    <li>When we uplift to Beta, all regressions filed before the uplift that show up on the upstream branch will have a needinfo flag set and require action to be taken.</li>
-    <li>A backout or fix doesn’t fully resolve the regression. We will do our best to understand the difference and fix or document the remainder.</li>
+    <li>A back out or fix doesn’t fully resolve the regression. We will do our best to understand the difference and fix or document the remainder.</li>
   </ul>
 </section>
 
