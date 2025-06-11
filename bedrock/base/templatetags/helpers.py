@@ -171,8 +171,14 @@ def get_locale_options(request, translations):
     # the locale being requested. In this situation _locales_available_via_cms
     # and _locales_for_django_fallback_view are annotated onto the request.
     # We need to use these to create a more accurate view of what locales are
-    # available
-    if hasattr(request, "_locales_available_via_cms") and hasattr(request, "_locales_for_django_fallback_view"):
+    # available. Also note that being decorated with prefer_cms doesn't guarantee
+    # that the annotated lists of locales contain any values, so we must also count
+    # them to be sure they are viable lists.
+
+    cms_locale_count = len(getattr(request, "_locales_available_via_cms", []))
+    django_fallback_locale_count = len(getattr(request, "_locales_for_django_fallback_view", []))
+
+    if cms_locale_count > 0 and django_fallback_locale_count > 0:
         available_locales = get_translations_native_names(sorted(set(request._locales_available_via_cms + request._locales_for_django_fallback_view)))
 
     return available_locales
