@@ -11,6 +11,7 @@ from django.core.cache import caches
 from django.test.utils import override_settings
 
 import markdown
+from product_details import product_details
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.releasenotes import models
@@ -118,6 +119,18 @@ class TestReleaseModel(TestCase):
         # markdown
         assert note.note.startswith("<p>Firefox Nightly")
         assert note.id == 787203
+
+    def test_product_method_gets_specifically_latest_esr_based_on_product_details(self):
+        _patched_dict = product_details.firefox_versions
+        _patched_dict.update({"FIREFOX_ESR": "999.76"})
+
+        with patch.dict("bedrock.releasenotes.models.product_details.firefox_versions", _patched_dict):
+            # See https://github.com/mozilla/bedrock/issues/16289
+            query = models.ProductRelease.objects.product(product_name="firefox", channel_name="esr")
+
+        raw_query_as_str = str(query.query)
+        assert 'AND "releasenotes_productrelease"."channel" LIKE esr' in raw_query_as_str
+        assert 'AND "releasenotes_productrelease"."version" = 999.76' in raw_query_as_str
 
     @override_settings(DEV=False)
     def test_is_public_query(self):
