@@ -1235,6 +1235,7 @@ class TestVPNSubscribeLink(TestCase):
     VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
+    VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=False,
 )
 @override_switch("VPN_SUBPLAT_NEXT", active=True)
 class TestVPNSubscribeLinkNext(TestCase):
@@ -1305,6 +1306,29 @@ class TestVPNSubscribeLinkNext(TestCase):
         )
         expected = (
             '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/monthly/landing/'
+            "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
+            '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
+            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm','brand' : 'vpn',"
+            "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
+        )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_subscribe_link_daily__for_staging_testing_only(self):
+        """Should return expected markup for a link to a daily subscription that ONLY exists on the staging server for QA"""
+
+        with override_settings(VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=True):
+            markup = self._render(
+                plan="monthly",
+                country_code="US",
+                lang="en-US",
+                optional_parameters={"utm_campaign": "vpn-product-page"},
+                optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+            )
+
+        # The only change compared to monthly sub is the /daily/ in the URL, not any of the params
+        expected = (
+            '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/daily/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
