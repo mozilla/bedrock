@@ -201,7 +201,9 @@ DownloadAsDefault.meetsRequirements = () => {
     } else if (hasConsentCookie()) {
         // Does the visitor have an existing analytics consent cookie?
         const cookie = getConsentCookie();
-        return cookie.analytics ? true : false;
+        if (cookie && !cookie.analytics) {
+            return false;
+        }
     } else if (consentRequired()) {
         // Is the visitor in EU/EAA?
         return false;

@@ -74,23 +74,6 @@ describe('download-as-default.es6.js', function () {
             delete window.Mozilla.dntEnabled;
         });
 
-        it('should return true if consent cookie accepts analytics', function () {
-            spyOn(window.Mozilla.Cookies, 'hasItem')
-                .withArgs('moz-consent-pref')
-                .and.returnValue(true);
-            spyOn(window.Mozilla.Cookies, 'getItem')
-                .withArgs('moz-consent-pref')
-                .and.returnValue(
-                    JSON.stringify({
-                        analytics: true,
-                        preference: true
-                    })
-                );
-
-            const result = DownloadAsDefault.meetsRequirements();
-            expect(result).toBeTrue();
-        });
-
         it('should return false if consent cookie rejects analytics', function () {
             spyOn(window.Mozilla.Cookies, 'hasItem')
                 .withArgs('moz-consent-pref')
@@ -121,31 +104,6 @@ describe('download-as-default.es6.js', function () {
             expect(result).toBeFalse();
         });
 
-        it('should return true if visitor is outside EU/EAA', function () {
-            window.Mozilla.gpcEnabled = sinon.stub().returns(false);
-            spyOn(window.Mozilla.Cookies, 'hasItem')
-                .withArgs('moz-consent-pref')
-                .and.returnValue(false);
-            spyOn(window.Mozilla.Cookies, 'getItem')
-                .withArgs('moz-consent-pref')
-                .and.returnValue(false);
-            spyOn(
-                window.Mozilla.StubAttribution,
-                'meetsRequirements'
-            ).and.returnValue(true);
-
-            document
-                .getElementsByTagName('html')[0]
-                .setAttribute('data-needs-consent', 'False');
-
-            const result = DownloadAsDefault.meetsRequirements();
-            expect(result).toBeTrue();
-
-            document
-                .getElementsByTagName('html')[0]
-                .removeAttribute('data-needs-consent');
-        });
-
         it('should return false if attribution requirements are not satisfied', function () {
             spyOn(window.Mozilla.Cookies, 'hasItem')
                 .withArgs('moz-consent-pref')
@@ -157,6 +115,11 @@ describe('download-as-default.es6.js', function () {
 
             const result = DownloadAsDefault.meetsRequirements();
             expect(result).toBeFalse();
+        });
+
+        it('should return true if attribution requirements are satisfied', function () {
+            const result = DownloadAsDefault.meetsRequirements();
+            expect(result).toBeTrue();
         });
     });
     describe('init()', function () {

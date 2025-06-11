@@ -28,5 +28,4 @@ If they match the criteria a script will:
 Unchecking the checkbox will not revert to the previous value of the stub attribution code.
 
 Note that it is permitted by EU/EAA law to send the campaign parameter in response to an explicit
-user action so we may enable this for `needs_data_consent` countries in the future. One blocker
-is that
+user action so we may enable this for `needs_data_consent` countries in the future.
