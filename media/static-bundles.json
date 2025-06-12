@@ -1329,6 +1329,13 @@
     },
     {
       "files": [
+        "js/firefox/new/desktop/download-as-default.es6.js",
+        "js/firefox/new/desktop/download-as-default-init.es6.js"
+      ],
+      "name": "download_as_default"
+    },
+    {
+      "files": [
         "js/firefox/new/common/thanks.js",
         "js/firefox/new/common/thanks-init.js"
       ],

@@ -6,6 +6,19 @@
 
 {% from "macros.html" import google_play_button, apple_app_store_button, fxa_email_form with context %}
 
+{% if switch('download_as_default') and not needs_data_consent(country_code) and ftl_has_messages('firefox-desktop-set-as-default') %}
+  {% set download_as_default_enabled = true %}
+{% else %}
+  {% set download_as_default_enabled = false %}
+{% endif %}
+
+{% macro default_browser_checkbox(id='default-browser-checkbox') -%}
+<label for="{{ id }}" class="default-browser-label hidden">
+  <input type="checkbox" id="{{ id }}" class="default-browser-checkbox">
+  {{ ftl('firefox-desktop-set-as-default') }}
+</label>
+{%- endmacro %}
+
 {% extends "firefox/new/desktop/base.html" %}
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-desktop' %}
@@ -89,6 +102,7 @@
           <p>{{ ftl('firefox-desktop-download-fast-reliable-private', fallback='firefox-desktop-download-no-shady') }}</p>
         <div class="c-intro-download">
           {% block primary_cta %}
+            {{ default_browser_checkbox(id='default-browser-checkbox-primary') }}
             {{ download_firefox_thanks(locale_in_transition=True, download_location='primary cta') }}
           {% endblock %}
 
@@ -388,6 +402,7 @@
         </div>
       </div>
       {% block features_cta %}
+        {{ default_browser_checkbox(id='default-browser-checkbox-features') }}
         {{ download_firefox_thanks(dom_id='download-features', locale_in_transition=True, download_location='features cta') }}
       {% endblock %}
     </div>
@@ -550,6 +565,7 @@
       </div>
     </div>
     {% block discover_cta %}
+      {{ default_browser_checkbox(id='default-browser-checkbox-discover') }}
       {{ download_firefox_thanks(dom_id='download-discover', locale_in_transition=True, download_location='discover cta') }}
     {% endblock %}
   </section>
@@ -591,4 +607,8 @@
 
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
+
+  {% if download_as_default_enabled %}
+    {{ js_bundle('download_as_default') }}
+  {% endif %}
 {% endblock %}

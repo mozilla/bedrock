@@ -1324,3 +1324,28 @@ button.mzp-c-cta-link {
         }
     }
 }
+
+
+// --------------------------------------------------------------------------
+// download as default checkbox
+
+.default-browser-label {
+    display: block;
+    font-weight: normal;
+    margin: 0 auto $spacing-lg;
+    padding-bottom: 0;
+    width: max-content;
+
+    &.hidden {
+        display: none;
+    }
+
+    input[type="checkbox"] {
+        margin-right: $spacing-sm;
+        vertical-align: top;
+    }
+
+    .c-intro-download & {
+        margin: 0 0 $spacing-lg;
+    }
+}

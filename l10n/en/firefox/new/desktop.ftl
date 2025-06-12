@@ -24,6 +24,8 @@ firefox-desktop-download-get-the-browser = Get the browser that protects what’
 
 firefox-desktop-download-fast-reliable-private = Fast, reliable and private — for peace of mind online.
 
+firefox-desktop-set-as-default = Set { -brand-name-firefox } as your default browser.
+
 # Obsolete string (expires: 2025-04-17)
 firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
 
