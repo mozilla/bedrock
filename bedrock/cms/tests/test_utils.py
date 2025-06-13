@@ -3,11 +3,21 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from django.core.cache import cache
+
 import pytest
 from wagtail.coreutils import get_dummy_request
 from wagtail.models import Locale, Page
 
-from bedrock.cms.utils import get_cms_locales_for_path, get_locales_for_cms_page, get_page_for_request
+from bedrock.cms.utils import (
+    BEDROCK_ALL_CMS_PATHS_CACHE_KEY,
+    _get_all_cms_paths,
+    get_cms_locales_for_path,
+    get_locales_for_cms_page,
+    get_page_for_request,
+    path_exists_in_cms,
+    warm_page_path_cache,
+)
 
 pytestmark = [pytest.mark.django_db]
 
@@ -142,3 +152,115 @@ def test_get_cms_locales_for_path(
     if get_page_for_request_should_return_a_page:
         mock_get_page_for_request.assert_called_once_with(request=request)
         mock_get_locales_for_cms_page.assert_called_once_with(page=page)
+
+
+@pytest.mark.parametrize(
+    "path, hit_expected",
+    (
+        # Regular path
+        ("/en-US/test-page/child-page/", True),
+        # Checking missing trailing slashes
+        ("/en-US/test-page/child-page", True),
+        # Checking querystrings don't fox things
+        ("/en-US/test-page/child-page/?some=querystring", True),
+        ("/en-US/test-page/child-page/?some=querystring&and=more-stuff", True),
+        # Checking deeper in the tree
+        ("/fr/test-page/child-page/grandchild-page/", True),
+        ("/fr/test-page/child-page/grandchild-page/great-grandchild/", False),
+        ("/fr/test-page/child-page/grandchild-page/?testing=yes!", True),
+        ("/fr/test-page/child-page/grandchild-page/?testing=yes!&other=things", True),
+        # Pages that would 404
+        ("/en-US/test-page/not-child-page/", False),
+        ("/en-US/test-page/not-child-page", False),
+        ("/fr/grandchild-page/", False),
+        ("/en-US/not-a-path", False),
+        ("/en-US/not-a-path/", False),
+        ("/en-US/", True),
+        ("/fr/", True),
+        ("/pt-BR/", True),
+        ("/pt-BR/test-page/", True),
+        # Checking paths for redirects are in the cache too
+        ("/fr/moved-page", True),
+        ("/en-US/deeper/nested/moved-page", True),
+        ("/fr/moved-page/", True),  # Trailing slash is not part of the redirect
+        # Confirm that the CMS admin route is not counted as "existing in the CMS"
+        # (which also means page previews and draftsharing links are unaffected by this lookup)
+        ("/cms-admin/", False),
+        # Confirm that some known-only-to-django URLs are not in the page lookup cache
+        ("/django-admin/", False),
+        ("/careers/", False),
+    ),
+)
+def test_path_exists_in_cms(
+    client,
+    tiny_localized_site,
+    tiny_localized_site_redirects,
+    path,
+    hit_expected,
+):
+    cache.delete(BEDROCK_ALL_CMS_PATHS_CACHE_KEY)
+    assert path_exists_in_cms(path) == hit_expected
+
+    some_django_served_urls = [
+        "/cms-admin/",
+        "/django-admin/",
+        "/careers/",
+    ]
+
+    # Also confirm that what would happen without the lookup is what we expect
+    if (
+        hit_expected is False  # These are pages that should 404
+        and path not in some_django_served_urls  # This is not in the URLs the CMS knows about but
+    ):
+        assert client.get(path, follow=True).status_code == 404
+    else:
+        # These are pages that should be serveable by Wagtail in some way
+        if "moved-page" in path:
+            # The "moved-page" is a route that's been configured as a Redirect
+            # so will 301 when we get it
+            resp = client.get(path)
+            assert resp.status_code == 301
+            assert client.get(resp.headers["location"]).status_code == 200
+        else:
+            # These are regular page serves
+            assert client.get(path, follow=True).status_code == 200
+
+
+def test_warm_page_path_cache(mocker):
+    cache.delete(BEDROCK_ALL_CMS_PATHS_CACHE_KEY)
+
+    mock_get_all_cms_paths = mocker.patch("bedrock.cms.utils._get_all_cms_paths")
+    expected = set(["this", "is a", "test"])
+    mock_get_all_cms_paths.return_value = expected
+
+    assert cache.get(BEDROCK_ALL_CMS_PATHS_CACHE_KEY) is None
+
+    warm_page_path_cache()
+    assert cache.get(BEDROCK_ALL_CMS_PATHS_CACHE_KEY) is expected
+
+    expected_updated = set(["this", "is also a", "test"])
+    mock_get_all_cms_paths.return_value = expected_updated
+
+    warm_page_path_cache()
+    assert cache.get(BEDROCK_ALL_CMS_PATHS_CACHE_KEY) is expected_updated
+
+
+def test__get_all_cms_paths(client, tiny_localized_site, tiny_localized_site_redirects):
+    expected = set(
+        [
+            "/en-US/",
+            "/en-US/test-page/",
+            "/en-US/test-page/child-page/",
+            "/fr/",
+            "/fr/test-page/",
+            "/fr/test-page/child-page/",
+            "/fr/test-page/child-page/grandchild-page/",
+            "/pt-BR/",
+            "/pt-BR/test-page/",
+            "/pt-BR/test-page/child-page/",
+            "/fr/moved-page",  # No trailing slashes on redirects
+            "/en-US/deeper/nested/moved-page",  # No trailing slashes on redirects
+        ]
+    )
+    actual = _get_all_cms_paths()
+    assert actual == expected
