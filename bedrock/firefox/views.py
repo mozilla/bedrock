@@ -923,6 +923,7 @@ def firefox_welcome_page1(request):
 @require_safe
 def firefox_features_translate(request):
     translate_langs = [
+        "ar",
         "bg",
         "ca",
         "zh-CN",
