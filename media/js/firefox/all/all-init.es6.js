@@ -8,7 +8,7 @@ import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
 (function (Mozilla) {
-    //Getter function since outerHTML replacement in fetchContent breaks existing references
+    // Getter function since outerHTML replacement in fetchContent breaks existing references
     function getPartialTargetElement() {
         return document.getElementById('partial-target');
     }
