@@ -43,7 +43,7 @@ jobs:
           - LABEL: test-ie-saucelabs
             BROWSER_NAME: internet explorer
             DRIVER: SauceLabs
-            MARK_EXPRESSION: "smoke or sanity"
+            MARK_EXPRESSION: smoke
             PLATFORM: Windows 10
             PYTEST_PROCESSES: 8
           - LABEL: test-headless
