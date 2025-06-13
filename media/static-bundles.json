@@ -515,6 +515,12 @@
     },
     {
       "files": [
+        "css/newsletter/newsletter-ten-tabs.scss"
+      ],
+      "name": "newsletter-ten-tabs"
+    },
+    {
+      "files": [
         "css/newsletter/newsletter-recovery.scss"
       ],
       "name": "newsletter-recovery"
