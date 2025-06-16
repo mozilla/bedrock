@@ -159,11 +159,14 @@ def vpn_subscribe_link(
 
     if switch("vpn-subplat-next"):
         product_slug = "mozillavpnstage"
+        plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
+
         # For testing/QA we support a test 'daily' API endpoint on the staging API only
-        if settings.VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY:
+        # We only want to override the monthly VPN option when in QA mode; annual remains unchanged
+        # https://mozilla-hub.atlassian.net/browse/VPN-6985
+        if plan_slug == "monthly" and settings.VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY:
             plan_slug = "daily"
-        else:
-            plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
+
         product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_slug}/{plan_slug}/landing/"
     else:
         product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"

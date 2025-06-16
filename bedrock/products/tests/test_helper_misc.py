@@ -1314,7 +1314,7 @@ class TestVPNSubscribeLinkNext(TestCase):
         )
         self.assertEqual(markup, expected)
 
-    def test_vpn_subscribe_link_daily__for_staging_testing_only(self):
+    def test_vpn_subscribe_link_daily_instead_of_monthly_for_staging_testing_only(self):
         """Should return expected markup for a link to a daily subscription that ONLY exists on the staging server for QA"""
 
         with override_settings(VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=True):
@@ -1335,6 +1335,32 @@ class TestVPNSubscribeLinkNext(TestCase):
             "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm','brand' : 'vpn',"
             "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
+        self.assertEqual(markup, expected)
+
+    def test_vpn_subscribe_link_remains_annual_when_qa_mode_is_on(self):
+        """Should return expected markup for a link to an annual subscription even though
+        the QA mode for daily subscription is on, because that only affects 'monthly' mode
+
+        The output here is the same as for test_vpn_subscribe_link_variable_12_month
+        """
+
+        with override_settings(VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=True):
+            markup = self._render(
+                plan="12-month",
+                country_code="US",
+                lang="en-US",
+                optional_parameters={"utm_campaign": "vpn-product-page"},
+                optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
+            )
+            expected = (
+                '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/yearly/landing/'
+                "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
+                '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
+                'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
+                "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
+                "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
+            )
+
         self.assertEqual(markup, expected)
 
 
