@@ -114,7 +114,7 @@ $image-path: '/media/protocol/img';
 }
 
 .c-product-list {
-    @include bidi(((padding-left, 36px, padding-right, 0),)); // to match the desktop & mobile icons
+    @include bidi(((padding-left, var(--spacer-lg), padding-right, 0),)); // indent from desktop/mobile icons
 
     li,
     .release {
@@ -124,7 +124,7 @@ $image-path: '/media/protocol/img';
             ));
         background-size: 1.5em auto;
         background-repeat: no-repeat;
-        margin-bottom: 0.6rem;
+        padding-bottom: 0.6rem;
     }
 
     .release,
