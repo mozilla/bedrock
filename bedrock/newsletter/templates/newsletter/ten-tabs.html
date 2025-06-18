@@ -1,0 +1,49 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'base-protocol.html' %}
+
+{% block page_title %}Ten Tabs from Firefox{% endblock page_title %}
+
+{% block page_desc %}Your guide to the most fascinating articles from top publications{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-newsletter') }}
+  {{ css_bundle('newsletter-ten-tabs') }}
+{% endblock %}
+
+{% block site_header %}{% endblock %}
+
+{% block content %}
+<main>
+  <div class="c-image-wrapper mzp-l-content">
+    <h1><img class="c-image" src="{{ static('img/newsletter/ten-tabs/ten-tabs.svg')}}" alt="Ten Tabs from Firefox" /></h1>
+  </div>
+  <div class="c-copy-wrapper mzp-l-content mzp-t-content-sm">
+    <h2 class="c-title">Your guide to the most fascinating articles from top publications</h2>
+    <div class="c-tagline">
+      <p>With Ten Tabs, skip the noise and get straight to what matters. Join millions of readers who start their weekdays with insightful reads from trusted sources.</p>
+      <p>Thoughtfully curated by Firefox.</p>
+    </div>
+    <div class="c-newsletter-wrapper">
+      {{ email_newsletter_form(
+        newsletters='ten-tabs',
+        include_title=False,
+        include_language=False,
+        include_country=False,
+        submit_text="Subscribe",
+        use_thankyou=True,
+        thankyou_head="Thanks!",
+        thankyou_content="You're now subscribed.",
+      )}}
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('newsletter') }}
+{% endblock %}
