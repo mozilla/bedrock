@@ -775,6 +775,7 @@ class DownloadThanksView(L10nTemplateView):
 
 class NewView(L10nTemplateView):
     ftl_files_map = {
+        "firefox/new/firefox-new-refresh-all.html": ["firefox/new/refresh-all"],
         "firefox/new/basic/base_download.html": ["firefox/new/download"],
         "firefox/new/desktop/download.html": ["firefox/new/desktop"],
         "firefox/new/desktop/firefox-new-refresh.html": ["firefox/new/desktop"],
@@ -833,10 +834,10 @@ class NewView(L10nTemplateView):
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if locale in ["en-US", "en-CA"]:
+            if locale in ["en-US", "en-CA", "en-GB", "fr", "de"]:
                 template = "firefox/new/desktop/firefox-new-refresh.html"
             else:
-                template = "firefox/new/desktop/download.html"
+                template = "firefox/new/desktop/firefox-new-refresh-all.html"
         else:
             template = "firefox/new/basic/base_download.html"
 
