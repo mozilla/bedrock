@@ -120,23 +120,23 @@
 
   <section class="wnp-footer">
     {% if LANG.startswith('en') and variant == '1' %}
-      <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+      <p data-testid="variant-1" class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
       {% with cta_location = 'whatsnew-1'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
     {% elif LANG.startswith('en') and variant == '2' %}
-      <p class="wnp-sign-off"><strong>Powered by Mozilla.</strong> Billionaire-free for 20+ years.</p>
+      <p data-testid="variant-2" class="wnp-sign-off"><strong>Powered by Mozilla.</strong> Billionaire-free for 20+ years.</p>
       {% with cta_location = 'whatsnew-2'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
     {% elif LANG.startswith('en') and variant == '3' %}
-      <p class="wnp-sign-off"><strong>Powered by Mozilla, the non-profit behind Firefox.</strong></p>
+      <p data-testid="variant-3" class="wnp-sign-off"><strong>Powered by Mozilla, the non-profit behind Firefox.</strong></p>
       <p class="wnp-sign-off-note">Mozilla Foundation has lost millions of dollars in funding due to U.S. government cuts, and 24,455 Mozilla supporters have contributed to fill this gap. Can you join them?</p>
       {% with cta_location = 'whatsnew-3'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
     {% else %}
-      <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+      <p data-testid="default" class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
       {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
     {% endif %}
   </section>
