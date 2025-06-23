@@ -29,7 +29,8 @@
         @include white-links;
     }
 
-    .wnp-sign-off {
+    .wnp-sign-off,
+    .wnp-sign-off-note {
         color: $color-white;
     }
 }

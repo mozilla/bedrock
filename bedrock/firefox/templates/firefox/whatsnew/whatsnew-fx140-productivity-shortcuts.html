@@ -8,6 +8,12 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
+{% block experiments %}
+  {% if switch('whatsnew-donate-experiment', ['en-US', 'en-GB', 'en-CA']) %}
+    {{ js_bundle('firefox_whatsnew_donate_experiment') }}
+  {% endif %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('firefox_whatsnew_140') }}
 {% endblock %}
@@ -113,7 +119,25 @@
   </div>
 
   <section class="wnp-footer">
-    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
-    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+    {% if LANG.startswith('en') and variant == '1' %}
+      <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+      {% with cta_location = 'whatsnew-1'%}
+        {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+      {% endwith %}
+    {% elif LANG.startswith('en') and variant == '2' %}
+      <p class="wnp-sign-off"><strong>Powered by Mozilla.</strong> Billionaire-free for 20+ years.</p>
+      {% with cta_location = 'whatsnew-2'%}
+        {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+      {% endwith %}
+    {% elif LANG.startswith('en') and variant == '3' %}
+      <p class="wnp-sign-off"><strong>Powered by Mozilla, the non-profit behind Firefox.</strong></p>
+      <p class="wnp-sign-off-note">Mozilla Foundation has lost millions of dollars in funding due to U.S. government cuts, and 24,455 Mozilla supporters have contributed to fill this gap. Can you join them?</p>
+      {% with cta_location = 'whatsnew-3'%}
+        {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+      {% endwith %}
+    {% else %}
+      <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+      {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+    {% endif %}
   </section>
 {% endblock %}
