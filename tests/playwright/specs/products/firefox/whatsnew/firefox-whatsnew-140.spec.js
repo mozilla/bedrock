@@ -26,10 +26,17 @@ test.describe(
 
             await openPage(`${url}/?v=1`, page, browserName);
 
-            await expect(page.getByTestId('variant-1')).toBeVisible();
-            await expect(page.getByTestId('variant-2')).not.toBeVisible();
-            await expect(page.getByTestId('variant-3')).not.toBeVisible();
-            await expect(page.getByTestId('default')).not.toBeVisible();
+            const wnpFooter = page.getByTestId('wnp-footer');
+
+            await expect(wnpFooter.getByTestId('variant-1')).toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-2')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-3')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('default')).not.toBeVisible();
+
+            await expect(wnpFooter.getByRole('link')).toHaveAttribute(
+                'href',
+                'https://foundation.mozilla.org/?form=25wnp07A'
+            );
         });
 
         test('Displays variant 2', async ({ page, browserName }) => {
@@ -40,10 +47,17 @@ test.describe(
 
             await openPage(`${url}/?v=2`, page, browserName);
 
-            await expect(page.getByTestId('variant-1')).not.toBeVisible();
-            await expect(page.getByTestId('variant-2')).toBeVisible();
-            await expect(page.getByTestId('variant-3')).not.toBeVisible();
-            await expect(page.getByTestId('default')).not.toBeVisible();
+            const wnpFooter = page.getByTestId('wnp-footer');
+
+            await expect(wnpFooter.getByTestId('variant-1')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-2')).toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-3')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('default')).not.toBeVisible();
+
+            await expect(wnpFooter.getByRole('link')).toHaveAttribute(
+                'href',
+                'https://foundation.mozilla.org/?form=25wnp07B'
+            );
         });
 
         test('Displays variant 3', async ({ page, browserName }) => {
@@ -54,10 +68,17 @@ test.describe(
 
             await openPage(`${url}/?v=3`, page, browserName);
 
-            await expect(page.getByTestId('variant-1')).not.toBeVisible();
-            await expect(page.getByTestId('variant-2')).not.toBeVisible();
-            await expect(page.getByTestId('variant-3')).toBeVisible();
-            await expect(page.getByTestId('default')).not.toBeVisible();
+            const wnpFooter = page.getByTestId('wnp-footer');
+
+            await expect(wnpFooter.getByTestId('variant-1')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-2')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-3')).toBeVisible();
+            await expect(wnpFooter.getByTestId('default')).not.toBeVisible();
+
+            await expect(wnpFooter.getByRole('link')).toHaveAttribute(
+                'href',
+                'https://foundation.mozilla.org/?form=25wnp07C'
+            );
         });
     }
 );
@@ -78,10 +99,17 @@ test.describe(
 
             await openPage(`${url}/?v=1`, page, browserName);
 
-            await expect(page.getByTestId('variant-1')).not.toBeVisible();
-            await expect(page.getByTestId('variant-2')).not.toBeVisible();
-            await expect(page.getByTestId('variant-3')).not.toBeVisible();
-            await expect(page.getByTestId('default')).toBeVisible();
+            const wnpFooter = page.getByTestId('wnp-footer');
+
+            await expect(wnpFooter.getByTestId('variant-1')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-2')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('variant-3')).not.toBeVisible();
+            await expect(wnpFooter.getByTestId('default')).toBeVisible();
+
+            await expect(wnpFooter.getByRole('link')).toHaveAttribute(
+                'href',
+                'https://foundation.mozilla.org/?form=whats-new-product'
+            );
         });
     }
 );
