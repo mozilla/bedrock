@@ -1548,6 +1548,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-mofo-donate-experiment.es6.js"
+      ],
+      "name": "firefox_whatsnew_donate_experiment"
+    },
+    {
+      "files": [
         "js/firefox/whatsnew/whatsnew-events.js"
       ],
       "name": "firefox_whatsnew_events"

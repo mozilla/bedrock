@@ -19,3 +19,11 @@
         }
     }
 }
+
+.wnp-sign-off-note {
+    @include text-body-sm;
+    color: $color-black;
+    margin-inline: auto;
+    max-width: $screen-md;
+    text-align: center;
+}
