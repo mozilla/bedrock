@@ -2504,3 +2504,6 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
     MIDDLEWARE.insert(0, "silk.middleware.SilkyMiddleware")
     SUPPORTED_NONLOCALES.append("silk")
     SILKY_PYTHON_PROFILER = config("SILKY_PYTHON_PROFILER", default="False", parser=bool)
+
+
+FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")

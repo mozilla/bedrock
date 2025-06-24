@@ -8,6 +8,7 @@ from urllib.parse import parse_qs, urlencode
 
 from django.conf import settings
 from django.http import (
+    Http404,
     HttpResponseGone,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
@@ -300,3 +301,12 @@ def gone_view(request, *args, **kwargs):
 def gone(pattern):
     """Return a url matcher suitable for urlpatterns that returns a 410."""
     return re_path(pattern, gone_view)
+
+
+def not_found_view(request, *args, **kwargs):
+    raise Http404()
+
+
+def not_found(pattern):
+    """Return a url matcher suitable for urlpatterns that raises a 404."""
+    return re_path(pattern, not_found_view)
