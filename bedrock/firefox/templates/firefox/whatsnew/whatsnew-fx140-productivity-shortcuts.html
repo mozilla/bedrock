@@ -8,8 +8,10 @@
 
 {% extends "firefox/whatsnew/base.html" %}
 
+{% set is_donate_experiment_active = switch('whatsnew-donate-experiment', ['en-US', 'en-GB', 'en-CA']) %}
+
 {% block experiments %}
-  {% if switch('whatsnew-donate-experiment', ['en-US', 'en-GB', 'en-CA']) %}
+  {% if is_donate_experiment_active %}
     {{ js_bundle('firefox_whatsnew_donate_experiment') }}
   {% endif %}
 {% endblock %}
@@ -119,23 +121,24 @@
   </div>
 
   <section data-testid="wnp-footer" class="wnp-footer">
-    {% if LANG.startswith('en') and variant == '1' %}
+    {% if is_donate_experiment_active and variant == '1'%}
       <p data-testid="variant-1" class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
       {% with cta_location = '25wnp07A'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
-    {% elif LANG.startswith('en') and variant == '2' %}
+    {% elif is_donate_experiment_active  and variant == '2' %}
       <p data-testid="variant-2" class="wnp-sign-off"><strong>Powered by Mozilla.</strong> Billionaire-free for 20+ years.</p>
       {% with cta_location = '25wnp07B'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
-    {% elif LANG.startswith('en') and variant == '3' %}
+    {% elif is_donate_experiment_active and variant == '3' %}
       <p data-testid="variant-3" class="wnp-sign-off"><strong>Powered by Mozilla, the non-profit behind Firefox.</strong></p>
       <p class="wnp-sign-off-note">Mozilla Foundation has lost millions of dollars in funding due to U.S. government cuts, and 24,455 Mozilla supporters have contributed to fill this gap. Can you join them?</p>
       {% with cta_location = '25wnp07C'%}
         {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
       {% endwith %}
     {% else %}
+      <!-- catches if donate experiment switch is not active OR switch is active but not approved to run  -->
       <p data-testid="default" class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
       {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
     {% endif %}
