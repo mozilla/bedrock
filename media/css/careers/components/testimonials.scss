@@ -96,10 +96,10 @@
                     @include text-title-md;
                     content: '“';
                     position: absolute;
-                    top: -15px;
-                    left: -20px;
+                    top: -14px;
+                    left: -28px;
                     color: $color-black;
-                    font-weight: bold;
+                    font-weight: normal;
                 }
 
                 &::after {
@@ -108,7 +108,7 @@
                     position: absolute;
                     bottom: 0;
                     color: $color-black;
-                    font-weight: bold;
+                    font-weight: normal;
                 }
             }
 
