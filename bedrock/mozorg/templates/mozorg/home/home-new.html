@@ -117,24 +117,6 @@
         <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="pocket">{{ ftl('home-cta-get-pocket') }}</a>
       {% endcall %}
 
-      <!-- Fakespot -->
-      {% call picto(
-        base_el='li',
-        title=ftl('home-product-fakespot-detect'),
-        image=resp_img(
-          url='img/logos/fakespot/logo-blue.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image',
-            'loading': 'lazy',
-            'width': '50',
-            'height': '50'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="https://fakespot.com/{{ utm_params }}" class="mzp-c-button mzp-t-secondary" id="homepage-get-fakespot" data-cta-text="Get Fakespot" data-cta-type="fakespot">{{ ftl('home-cta-get-fakespot') }}</a>
-      {% endcall %}
-
       <!-- Relay -->
       {% call picto(
         base_el='li',

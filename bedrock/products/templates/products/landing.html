@@ -189,24 +189,6 @@
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.thunderbird.net/download/{{ referrals }}" rel="external noopener" data-cta-text="Thunderbird Download">{{ ftl('firefox-products-download-thunderbird') }} {{ icon_download|safe }}</a></p>
     {% endcall %}
 
-    <!-- Fakespot -->
-    {% call picto(
-      body=True,
-      image=resp_img(
-        url='img/logos/fakespot/logo.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'width': '64',
-          'height': '64',
-          'loading': 'lazy'
-        }
-      ),
-    ) %}
-      <h2 class="mzp-c-picto-heading" aria-labelledby="fakespot-aria-hint"><a href="https://www.fakespot.com/{{ referrals }}" data-cta-text="Fakespot" data-cta-position="heading" aria-label="fake spot">{{ ftl('firefox-products-fakespot') }}</a></h2>
-      <p>{{ ftl('firefox-products-fakespot-has-your') }}</p>
-      <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.fakespot.com/analyzer{{ referrals }}" rel="external noopener" data-cta-text="Analyze a url with Fakespot">{{ ftl('firefox-products-analyze') }} {{ icon_external|safe }}</a></p>
-    {% endcall %}
-
     <!-- Pocket -->
     {% call picto(
       body=True,

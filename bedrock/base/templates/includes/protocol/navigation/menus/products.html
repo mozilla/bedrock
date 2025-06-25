@@ -67,18 +67,6 @@
               </a>
             </section>
           </li>
-          <li>
-            <section class="c-menu-item mzp-has-icon">
-              <a class="c-menu-item-link" href="https://fakespot.com/?{{ utm_params }}" data-link-text="Fakespot" data-link-position="topnav - projects">
-                <img loading="lazy" src="{{ static('img/logos/fakespot/logo-blue.svg') }}" class="c-menu-item-icon" width="32" height="32" alt="">
-                <h4 class="c-menu-item-title" aria-labelledby="fakespot-aria-hint">{{ ftl('navigation-v2-fakespot') }}</h4>
-                <span id="fakespot-aria-hint" aria-label="fake spot"></span>
-              {% if ftl_has_messages('navigation-v2-use-ai-to-detect') %}
-                <p class="c-menu-item-desc">{{ ftl('navigation-v2-use-ai-to-detect') }}</p>
-              {% endif %}
-              </a>
-            </section>
-          </li>
         </ul>
         <p class="c-menu-category-link"><a href="{{ url('products.landing') }}" data-link-text="View all Products" data-link-position="topnav - products">{{ ftl('navigation-v2-view-all-products') }}</a></p>
       </div>

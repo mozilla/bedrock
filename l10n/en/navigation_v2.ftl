@@ -45,8 +45,6 @@ navigation-v2-sign-up-for-new-accounts = Sign up for new accounts without handin
 navigation-v2-mdn-plus = { -brand-name-mdn-plus}
 navigation-v2-new-features-and-tools = New features and tools for a customized { -brand-name-mdn} experience
 navigation-v2-view-all-products = View all Products
-navigation-v2-fakespot = { -brand-name-fakespot }
-navigation-v2-use-ai-to-detect = Use AI to detect fake reviews and scams
 
 ## Who We Are menu
 

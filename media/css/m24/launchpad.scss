@@ -86,10 +86,6 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
         background-image: url('/media/protocol/img/logos/firefox/browser/logo.svg');
     }
 
-    &.m24-t-product-fakespot::before {
-        background-image: url('/media/img/logos/fakespot/logo.svg');
-    }
-
     &.m24-t-product-pocket::before {
         background-image: url('/media/protocol/img/logos/pocket/logo.svg');
     }

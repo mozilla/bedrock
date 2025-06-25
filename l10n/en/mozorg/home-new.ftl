@@ -28,8 +28,6 @@ home-cta-get-vpn = Get { -brand-name-mozilla-vpn }
 
 home-product-monitor-protect-your = Protect your private info from data brokers
 home-cta-get-monitor = Get { -brand-name-monitor }
-home-product-fakespot-detect = Detect fake shopping reviews
-home-cta-get-fakespot = Get { -brand-name-fakespot }
 
 home-mozilla-takes-bets = “{ -brand-name-mozilla } is taking bets to show the world there’s a business to be made with trustworthy AI. That includes putting things like human rights, data protection and transparency at the core of how these complex systems work.”
 
