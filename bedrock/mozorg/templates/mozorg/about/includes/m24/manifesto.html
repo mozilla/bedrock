@@ -85,7 +85,7 @@
       heading_level=3,
       title=ftl('m24-about-build')
     ) %}
-      <p>{{ ftl('m24-about-we-build-products') }}</p>
+      <p>{{ ftl('m24-about-we-build-products-v2', fallback='m24-about-we-build-products') }}</p>
     {% endcall %}
 
     {% call picto(
