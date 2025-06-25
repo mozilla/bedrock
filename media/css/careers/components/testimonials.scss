@@ -96,8 +96,8 @@
                     @include text-title-md;
                     content: '“';
                     position: absolute;
-                    top: -14px;
-                    left: -28px;
+                    top: -10px;
+                    left: -20px;
                     color: $color-black;
                     font-weight: normal;
                 }
@@ -106,7 +106,7 @@
                     @include text-title-md;
                     content: '”';
                     position: absolute;
-                    bottom: 0;
+                    bottom: -5px;
                     color: $color-black;
                     font-weight: normal;
                 }
@@ -128,6 +128,10 @@
             .c-careers-testimonial-item {
                 q {
                     @include font-size(26px);
+
+                    &::after {
+                        bottom: -15px;
+                    }
                 }
 
                 &:last-child {
@@ -158,7 +162,7 @@
                 }
 
                 @media #{$mq-high-res} {
-                    &.perla {
+                    &.one {
                         background-image: url('/media/img/careers/testimonials/perla-high-res.jpg');
                     }
 
@@ -223,7 +227,6 @@
                         top: -15px;
                         left: -20px;
                         color: $color-dark-gray-20;
-                        font-weight: bold;
                     }
                 }
 
@@ -234,7 +237,6 @@
                         position: absolute;
                         bottom: -15px;
                         color: $color-dark-gray-20;
-                        font-weight: bold;
                     }
                 }
             }
