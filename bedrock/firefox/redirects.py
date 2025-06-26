@@ -4,6 +4,8 @@
 
 import re
 
+from django.conf import settings
+
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
 PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
@@ -42,6 +44,8 @@ def mobile_app(request, *args, **kwargs):
     return mobile_app_redirector(request, product, campaign)
 
 
+# These are enabled IFF the redirects to springfield (bedrock/base/legacy_firefox_redirects.py)
+# are NOT enabled, and vice-versa. Look for the if clause at the end of this file
 redirectpatterns = (
     # overrides
     # issue 8096
@@ -597,3 +601,7 @@ redirectpatterns = (
     # issue 16089
     redirect(r"^/firefox/?$", "firefox.new"),
 )
+
+# If we're redirecting to www.firefox.com, the above redirects are all redundant
+if settings.ENABLE_FIREFOX_COM_REDIRECTS:
+    redirectpatterns = ()

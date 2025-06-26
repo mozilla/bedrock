@@ -2486,7 +2486,6 @@ if DEV is True:
 else:
     CMS_ALLOWED_PAGE_MODELS = _allowed_page_models
 
-
 # Our use of django-waffle relies on the following 2 settings to be set this way so that if a switch
 # doesn't exist, we get `None` back from `switch_is_active`.
 WAFFLE_SWITCH_DEFAULT = None
@@ -2504,3 +2503,18 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
     MIDDLEWARE.insert(0, "silk.middleware.SilkyMiddleware")
     SUPPORTED_NONLOCALES.append("silk")
     SILKY_PYTHON_PROFILER = config("SILKY_PYTHON_PROFILER", default="False", parser=bool)
+
+# Whether or not to redirect appropriate /firefox/* pages to www.firefox.com instead
+ENABLE_FIREFOX_COM_REDIRECTS = config(
+    "ENABLE_FIREFOX_COM_REDIRECTS",
+    default="False",
+    parser=bool,
+)
+
+# Whether or not the redirects to www.firefox.com should generally be
+# HTTP 301 Moved Permanently (True) or 302 Found (False)
+ENABLE_PERMANENT_FIREFOX_COM_REDIRECTS = config(
+    "ENABLE_PERMANENT_FIREFOX_COM_REDIRECTS",
+    default="False",
+    parser=bool,
+)
