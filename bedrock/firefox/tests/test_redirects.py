@@ -4,7 +4,8 @@
 
 from unittest.mock import patch
 
-from django.test import RequestFactory
+from django.conf import settings
+from django.test import RequestFactory, override_settings
 
 import pytest
 
@@ -85,3 +86,71 @@ def test_mobile_app():
     with patch("bedrock.firefox.redirects.mobile_app_redirector") as mar:
         mobile_app(req)
         mar.assert_called_with(req, "firefox", None)
+
+
+EXPECTED_FIREFOX_COM_REDIRECT_CODE = 301 if settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT else 302
+
+EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
+
+
+@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "path,expected_location,expected_status,follow_redirects",
+    [
+        (
+            "/en-US/firefox/",
+            f"https://www.firefox.com{EXPECTED_REDIRECT_QS}",
+            200,
+            True,
+        ),
+        (
+            "/en-US/firefox/new/",
+            f"https://www.firefox.com{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/en-US/firefox/releasenotes/",
+            f"https://www.firefox.com/firefox/releasenotes/{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/en-US/firefox/all/",
+            f"https://www.firefox.com/download/all/{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/en-US/firefox/installer-help/",
+            f"https://www.firefox.com/download/installer-help/{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/firefox/browsers/best-browser/",
+            f"https://www.firefox.com/more/best-browser/{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/firefox/features/adblocker/",
+            f"https://www.firefox.com/features/adblocker/{EXPECTED_REDIRECT_QS}",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        # ("/firefox/browsers/compare/ie/", None, 404),
+        # ("/firefox/browsers/quantum/", None, 404),
+    ],
+)
+def test_springfield_redirect_patterns(client, path, expected_location, expected_status, follow_redirects):
+    response = client.get(
+        path,
+        follow=follow_redirects,
+    )
+    assert response.status_code == expected_status
+    if expected_status in [200, 404]:
+        assert "Location" not in response.headers
+    else:
+        assert response.headers["Location"] == expected_location

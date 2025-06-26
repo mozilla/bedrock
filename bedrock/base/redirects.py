@@ -2,10 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from bedrock.base.waffle import switch
 from bedrock.redirects.util import redirect
-
-from .redirects_springfield import redirectpatterns as redirects_springfield
 
 redirectpatterns = (
     # Issue 11875
@@ -22,6 +19,3 @@ redirectpatterns = (
     redirect(r"^/exp/firefox/accounts/?$", "mozorg.account"),
     redirect(r"^/exp/firefox/mobile/?$", "firefox.browsers.mobile.index"),
 )
-
-if switch("enable-springfield-redirects"):
-    redirectpatterns = redirects_springfield + redirectpatterns

@@ -2507,3 +2507,15 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
 
 
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
+
+ENABLE_FIREFOX_COM_REDIRECTS = config(
+    "ENABLE_FIREFOX_COM_REDIRECTS",
+    default="False",
+    parser=bool,
+)
+
+MAKE_FIREFOX_COM_REDIRECTS_PERMANENT = ENABLE_FIREFOX_COM_REDIRECTS and config(
+    "MAKE_FIREFOX_COM_REDIRECTS_PERMANENT",
+    default="False",
+    parser=bool,
+)
