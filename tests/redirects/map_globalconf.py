@@ -1027,7 +1027,9 @@ URLS = flatten(
         url_test("/foundation/trademarks/poweredby/faq/", "/foundation/trademarks/policy/"),
         url_test("/foundation/trademarks/l10n-website-policy/", "/foundation/trademarks/policy/"),
         # Issue 6209
-        url_test("/pocket/", "/firefox/pocket/"),
+        url_test("/pocket/", "https://getpocket.com/"),
+        # issue 16358
+        url_test("/firefox/pocket/", "https://getpocket.com/"),
         # Issue 6476
         url_test("/foundation/", "https://foundation.mozilla.org/"),
         url_test("/foundation/about/", "https://foundation.mozilla.org/about/"),

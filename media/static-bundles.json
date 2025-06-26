@@ -755,12 +755,6 @@
     },
     {
       "files": [
-        "css/firefox/pocket.scss"
-      ],
-      "name": "product_pocket"
-    },
-    {
-      "files": [
         "css/firefox/share.scss"
       ],
       "name": "firefox_share"
