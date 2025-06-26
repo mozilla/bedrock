@@ -6,13 +6,13 @@
     html,
     body,
     .content-wrapper {
-        background: $color-dark-gray-60;
-        color: $color-white;
+        background: var(--wnp-color-background, $color-dark-gray-60);
+        color: var(--wnp-color-text, $color-white);
     }
 
     .wnp-content-main {
         h1, h2, h3, h4 {
-            color: $color-white;
+            color: var(--wnp-color-title, $color-white);
         }
     }
 
