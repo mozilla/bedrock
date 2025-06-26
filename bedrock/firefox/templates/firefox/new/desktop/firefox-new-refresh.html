@@ -49,80 +49,6 @@
 
 {% block content %}
 
-{% if LANG == 'fr' %}
-  {% set title = "Reprenez le contrôle de votre internet" %}
-  {% set subtitle = "Surfez avec moins de distractions, de bruit et de stress. Voyez nous comme un bol d’air frais pour votre esprit." %}
-  {% set feature_one = "Réduisez le brouhaha" %}
-  {% set feature_one_details = "Bloquez les pubs et renforcez votre confidentialité avec des paramètres personnalisés et tout plein d’extensions à télécharger." %}
-  {% set feature_two = "Multitâche ou monotâche" %}
-  {% set feature_two_details = "Plongez en mode lecture, désincrustez vos vidéos et maintenez une organisation au top avec le nouveau panneau latéral." %}
-  {% set feature_three = "Gardez tous vos onglets sous la main" %}
-  {% set feature_three_details = "Éliminez les doublons, menez vos recherches et épinglez les onglets intéressants. Les possibilités sont aussi infinies que le nombre infini d’onglets ouverts." %}
-  {% set see_release_notes = "Voir les notes de version" %}
-  {% set highlight_title = "Le navigateur qui vous aide à faire le taf" %}
-  {% set highlight_one = "Bloquez les traqueurs publicitaires sans lever le petit doigt" %}
-  {% set highlight_one_detail = "Pas-si-bonne-nouvelle : les traqueurs ralentissent votre navigation. Bonne nouvelle : vous n’avez plus à fouiller dans les paramètres puisque Firefox bloque automatiquement la plupart des traqueurs." %}
-  {% set highlight_two = "Promettez de ne plus regarder dans le vide" %}
-  {% set highlight_two_detail = "Restez concentré.e avec des extensions comme Tomato Clock ou Turn Off the Lights, nos ultimes recommandations pour une sécurité et des fonctionnalités exceptionnelles." %}
-  {% set highlight_three = "Tous vos trucs, sur tous vos écrans" %}
-  {% set highlight_three_detail = "Installer Firefox mobile pour que vos mots de passe, onglets, historiques, ainsi que votre précieuse confidentialité et votre sécurité, vous accompagnent partout où vous allez." %}
-  {% set add_on_title = "Faites-le vraiment vôtre" %}
-  {% set add_on_one = "Plus efficace au travail, plus de plaisir en dehors" %}
-  {% set add_on_one_detail= "Explorez les possibilités de recherche, de shopping et plus encore parmi les extensions. " %}
-  {% set add_on_two = "Bye-bye la navigation plan-plan" %}
-  {% set add_on_two_detail= "Internet, ça peut être tout rose ; à condition d'ajouter le bon thème. " %}
-  {% set free_title = "20 ans sans milliardaires" %}
-  {% set free_detail= "Firefox a été créé en 2004 par Mozilla pour offrir une alternative plus confidentielle et personnalisable qu’Internet Explorer. Aujourd’hui, nous sommes toujours à but non lucratif, loin des ultra-riches, avec l’ambition de créer un meilleur internet et de préserver le temps que vous y passez." %}
-{% elif LANG == 'de' %}
-  {% set title = "Übernimm die Kontrolle über dein Internet" %}
-  {% set subtitle = "Geh online – mit weniger Ablenkung, weniger Lärm und Stress. Firefox ist wie eine Frischzellenkur für Körper und Geist." %}
-  {% set feature_one = "Weniger Lärm, mehr Klarheit" %}
-  {% set feature_one_details = "Blockiere Werbung und verbessere deinen Datenschutz mit anpassbaren Einstellungen und unzähligen Erweiterungen." %}
-  {% set feature_two = "Multitasking oder Fokus auf eine Aufgabe" %}
-  {% set feature_two_details = "Nutze den Lesemodus, lass Videos in separaten Fenstern abspielen und organisiere dich besser mit dem neuen Seitenleisten-Layout." %}
-  {% set feature_three = "Behalte alle deine Tabs im Griff" %}
-  {% set feature_three_details = "Schließe doppelte Tabs, durchsuche und pinne geöffnete Tabs – es gibt nahezu unendliche Möglichkeiten für die nahezu unendliche Anzahl an Tabs, die du offen hast." %}
-  {% set see_release_notes = "Siehe Versionshinweise" %}
-  {% set highlight_title = "Hol dir den Browser, der dich wirklich weiterbringt" %}
-  {% set highlight_one = "Blockiere Werbetracker ohne einen Finger zu rühren" %}
-  {% set highlight_one_detail = "Schlechte Nachrichten: Werbetracker machen das Laden deiner Websites viel langsamer. Gute Nachrichten: Du musst nicht in den Einstellungen suchen, denn Firefox blockiert die meisten Tracker automatisch." %}
-  {% set highlight_two = "Mach dem endlosen Starren ein Ende" %}
-  {% set highlight_two_detail = "Bleib fokussiert mit Erweiterungen wie Tomato Clock und Turn Off the Lights – diese werden von uns empfohlen und entsprechen unserem Goldstandard für überragende Sicherheit und Funktionalität." %}
-  {% set highlight_three = "Deine Inhalte, auf all deinen Geräten" %}
-  {% set highlight_three_detail = "Hol dir Firefox fürs Smartphone, damit deine Passwörter, Tabs und dein Verlauf – plus die Privatsphäre und Sicherheit, die du gewohnt bist – überall dabei sind." %}
-  {% set add_on_title = "Mach Firefox wirklich zu DEINEM Browser" %}
-  {% set add_on_one = "Effizienter arbeiten und öfter mal abschalten" %}
-  {% set add_on_one_detail= "Entdecke Erweiterungen für Recherche, Shopping und mehr unter Extensions." %}
-  {% set add_on_two = "Tschüss, langweiliger Browser" %}
-  {% set add_on_two_detail= "Das Internet kann voller Kätzchen und Regenbögen sein – mit dem richtigen Add-on-Theme." %}
-  {% set free_title = "Seit über 20 Jahren frei von Milliardären" %}
-  {% set free_detail= "Firefox wurde 2004 von Mozilla als schnellere, privatere und flexiblere Alternative zu Browsern wie Internet Explorer entwickelt. Wir sind bis heute gemeinnützig, gehören keinem Milliardär und arbeiten weiter daran, das Internet – und die Zeit die du darin verbringst – besser zu machen." %}
-{% else %}
-  {% set title = "Take control of your internet" %}
-  {% set subtitle = "Go online with fewer distractions, noise and stress. Think of us as bubble wrap for your brain." %}
-  {% set feature_one = "Dial down the noise" %}
-  {% set feature_one_details = "Block ads and enhance your privacy with customizable settings and tons of downloadable extensions." %}
-  {% set feature_two = "Multi-task or mono-task" %}
-  {% set feature_two_details = "Go into reading mode, pop out videos and get more organized with vertical tabs and tab groups." %}
-  {% set feature_three = "Keep tabs on all your tabs" %}
-  {% set feature_three_details = "Close duplicates, search and pin open tabs — there are almost-infinite possibilities for the almost-infinite number of tabs you have open." %}
-  {% set see_release_notes = "See Release Notes" %}
-  {% set highlight_title = "Get the browser that helps you get sh*t done" %}
-  {% set highlight_one = "Block ad trackers without lifting a paw" %}
-  {% set highlight_one_detail = "Not-fun fact: Ad trackers make web pages load slower. Fun fact: You won’t have to dig around in settings to fix that, because Firefox automatically blocks most trackers." %}
-  {% set highlight_two = "Swear off staring into the abyss" %}
-  {% set highlight_two_detail = "Stay focused with extensions like <a href='https://addons.mozilla.org/firefox/addon/tomato-clock/'>Tomato Clock</a> and <a href='https://addons.mozilla.org/firefox/addon/turn-off-the-lights/'>Turn Off the Lights</a> — they’re Recommended, which is like our gold star for having exceptional security and functionality."|safe %}
-  {% set highlight_three = "Your stuff, on all your screens" %}
-  {% set highlight_three_detail = "Get Firefox mobile so your passwords, tabs and history — and the privacy and security you rely on — go with you wherever you go." %}
-  {% set add_on_title = "*Really* make it yours" %}
-  {% set add_on_one = "Work smarter, play harder" %}
-  {% set add_on_one_detail= "Explore the possibilities for research, shopping and more in <a href='https://addons.mozilla.org/firefox/extensions/'>extensions</a>."|safe %}
-  {% set add_on_two = "Bye, boring browser" %}
-  {% set add_on_two_detail= "The internet can be all kittens and rainbows — with the right add-on <a href='https://addons.mozilla.org/firefox/themes/'>theme</a>."|safe %}
-  {% set free_title = "Billionaire-free for 20+ years" %}
-  {% set free_detail= "Firefox was created in 2004 by Mozilla as a faster, more private, and customizable alternative to browsers like Internet Explorer. Today, we are still not-for-profit, still not owned by any billionaires and still working to make the internet — and the time you spend on it — better." %}
-{% endif %}
-
 {% if outdated %}
 
   {% set update_url = 'href="%s" data-cta-text="Update to the latest version"'|safe|format(('https://support.mozilla.org/kb/update-firefox-latest-release' + referrals)) %}
@@ -142,8 +68,8 @@
     <div class="c-block-container">
       <div class="c-block-body">
         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
-          <h2>{{ title }}</h2>
-          <p>{{ subtitle }}</p>
+          <h2>{{ ftl('firefox-new-refresh-take-control') }}</h2>
+          <p>{{ ftl('firefox-new-refresh-go-online') }}</p>
         <div class="c-intro-download">
           {% block primary_cta %}
             {{ default_browser_checkbox(id='default-browser-checkbox-primary') }}
@@ -178,34 +104,34 @@
     <ul class="c-trio">
       <li>
         <img alt="Happy toggle." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/toggle.svg') }}" width="90" height="54">
-        <h3>{{ feature_one }}</h3>
-        <p>{{ feature_one_details }}</p>
+        <h3>{{ ftl('firefox-new-refresh-dial-down') }}</h3>
+        <p>{{ ftl('firefox-new-refresh-block-ads') }}</p>
       </li>
       <li class="t-cursor">
         <img alt="Multiple cursors." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/multi.svg') }}" width="134" height="38">
-        <h3>{{ feature_two }}</h3>
-        <p>{{ feature_two_details }}</p>
+        <h3>{{ ftl('firefox-new-refresh-multitasking') }}</h3>
+        <p>{{ ftl('firefox-new-refresh-go-into-reading') }}</p>
       </li>
       <li>
         <img alt="Lots of open tabs." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/tabs.svg') }}" width="72" height="54">
-        <h3>{{ feature_three }}</h3>
-        <p>{{ feature_three_details }}</p>
+        <h3>{{ ftl('firefox-new-refresh-keep-tabs-on') }}</h3>
+        <p>{{ ftl('firefox-new-refresh-close-duplicates') }}</p>
       </li>
     </ul>
 
-    <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">{{ see_release_notes }}</a></p>
+    <p class="c-notes"><a class="mzp-c-cta-link" href="{{ url('firefox.notes') }}" data-cta-text="See Release Notes">{{ ftl('firefox-new-refresh-see-release') }}</a></p>
   </div>
 </section>
 
 
   <section class="t-highlights">
-    <h2 class="mzp-c-section-heading">{{ highlight_title }}</h2>
+    <h2 class="mzp-c-section-heading">{{ ftl('firefox-new-refresh-get-the-browser') }}</h2>
 
     <div class="t-block c-block l-reversed">
       <div class="c-block-container">
         <div class="c-block-body l-v-center l-h-start">
-          <h3 class="mzp-u-title-sm">{{ highlight_one }}</h3>
-          <p>{{ highlight_one_detail }}</p>
+          <h3 class="mzp-u-title-sm">{{ ftl('firefox-new-refresh-block-ad-trackers') }}</h3>
+          <p>{{ ftl('firefox-new-refresh-ad-trackers-make') }}</p>
           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
@@ -217,8 +143,8 @@
     <div class="t-think c-block">
       <div class="c-block-container">
         <div class="c-block-body l-v-center l-h-end">
-          <h3 class="mzp-u-title-sm">{{ highlight_two }}</h3>
-          <p>{{ highlight_two_detail }}</p>
+          <h3 class="mzp-u-title-sm">{{ ftl('firefox-new-refresh-swear-off') }}</h3>
+          <p>{{ ftl('firefox-new-refresh-stay-focused', tomato_clock_url='https://addons.mozilla.org/firefox/addon/tomato-clock/', turn_off_the_lights_url='https://addons.mozilla.org/firefox/addon/turn-off-the-lights/') }}</p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
         <img alt="A human brain connected to the world." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/think.svg') }}" width="260">
@@ -229,8 +155,8 @@
     <div class="t-devices c-block l-reversed">
       <div class="c-block-container">
         <div class="c-block-body l-v-center">
-          <h3 class="mzp-u-title-sm">{{ highlight_three }}</h3>
-          <p>{{ highlight_three_detail }}</p>
+          <h3 class="mzp-u-title-sm">{{ ftl('firefox-new-refresh-your-stuff') }}</h3>
+          <p>{{ ftl('firefox-new-refresh-get-firefox-mibile') }}</p>
           <div class="mobile-download-buttons-wrapper">
             {% block mobile_secondary_cta %}
               <ul class="mobile-download-buttons">
@@ -253,7 +179,7 @@
 
   <div class="t-custom">
   <section class="mzp-l-content mzp-t-content-md">
-    <h2 class="mzp-c-section-heading">{{ add_on_title}}</h2>
+    <h2 class="mzp-c-section-heading">{{ ftl('firefox-new-refresh-really-make-it') }}</h2>
 
     <div class="c-screen">
       <div class="c-screenshot">
@@ -263,13 +189,13 @@
 
     <ul class="mzp-l-columns mzp-t-columns-two">
       <li>
-        <h3>{{ add_on_one}}</h3>
-        <p>{{ add_on_one_detail}}</p>
+        <h3>{{ ftl('firefox-new-refresh-work-smarter') }}</h3>
+        <p>{{ ftl('firefox-new-refresh-explore-the-possibilities', extensions_url='https://addons.mozilla.org/firefox/extensions/') }}</p>
       </li>
 
       <li>
-        <h3>{{ add_on_two}}</h3>
-        <p>{{ add_on_two_detail}}</p>
+        <h3>{{ ftl('firefox-new-refresh-bye-boring') }}</h3>
+        <p>{{ ftl('firefox-new-refresh-the-internet-can', theme_url='https://addons.mozilla.org/firefox/themes/') }}</p>
       </li>
     </ul>
   </section>
@@ -282,8 +208,8 @@
         <img alt="Firefox on a desktop." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/free.svg') }}" width="300">
       </div>
       <div class="c-free-body">
-        <h2>{{ free_title }}</h2>
-        <p>{{ free_detail }}</p>
+        <h2>{{ ftl('firefox-new-refresh-billionaire-free') }}</h2>
+        <p>{{ ftl('firefox-new-refresh-firefox-was-created') }}</p>
       </div>
     </div>
   </div>

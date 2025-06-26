@@ -372,7 +372,7 @@ class TestFirefoxNew(TestCase):
         view = views.NewView.as_view()
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/firefox-new-refresh-all.html"]
+        assert template == ["firefox/new/desktop/firefox-new-refresh.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_download_template_en_us(self, render_mock):
