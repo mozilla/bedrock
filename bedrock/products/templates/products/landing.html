@@ -31,8 +31,6 @@
 {% set fx_ios_url = app_store_url('firefox', 'products') %}
 {% set fc_android_url = play_store_url('focus', 'products') %}
 {% set fc_ios_url = app_store_url('focus', 'firefox-browsers-mobile-focus') %}
-{% set pocket_android_url = play_store_url('pocket', 'products') %}
-{% set pocket_ios_url = app_store_url('pocket', 'products') %}
 
 {% set referrals = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=products' %}
 {% set _entrypoint = 'mozilla.org-products' %}
@@ -188,28 +186,6 @@
       <p>{{ ftl('firefox-products-access-all') }}</p>
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.thunderbird.net/download/{{ referrals }}" rel="external noopener" data-cta-text="Thunderbird Download">{{ ftl('firefox-products-download-thunderbird') }} {{ icon_download|safe }}</a></p>
     {% endcall %}
-
-    <!-- Pocket -->
-    {% call picto(
-      body=True,
-      image=resp_img(
-        url='protocol/img/logos/pocket/logo.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'width': '64',
-          'height': '64',
-          'loading': 'lazy'
-        }
-      ),
-    ) %}
-    <h2 class="mzp-c-picto-heading"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" data-cta-text="Pocket" data-cta-position="heading">{{ ftl('firefox-products-pocket') }}</a></h2>
-      <p>{{ ftl('firefox-products-discover-the-best-content-v2') }}</p>
-      <p class="show-else"><a href="https://getpocket.com/signup{{ referrals }}" rel="external noopener" class="mzp-c-button mzp-t-product mzp-t-secondary" data-cta-text="Pocket sign up">{{ ftl('firefox-products-get-pocket') }} {{ icon_external|safe }}</a></p>
-      <p class="show-android">{{ google_play_button(href=pocket_android_url, id='playStoreLink-pocket') }}</p>
-      <p class="show-ios">{{ apple_app_store_button(href=pocket_ios_url, id='appStoreLink-pocket') }}</p>
-    {% endcall %}
-
-
   </section>
 
 

@@ -99,24 +99,6 @@
         <a href="{{ url('firefox.new')}}" class="mzp-c-button mzp-t-secondary" id="homepage-get-firefox" data-cta-text="Get Firefox" >{{ ftl('home-cta-get-firefox') }}</a>
       {% endcall %}
 
-      <!-- Pocket -->
-      {% call picto(
-        base_el='li',
-        title=ftl('home-product-pocket-articles'),
-        image=resp_img(
-          url='protocol/img/logos/pocket/logo.svg',
-          optional_attributes={
-            'class': 'mzp-c-picto-image c-product-pocket',
-            'loading': 'lazy',
-            'width': '45',
-            'height': '45'
-          }
-          ),
-          body=True,
-          ) %}
-        <a href="https://getpocket.com/{{ utm_params }}" rel="external noopener" class="mzp-c-button mzp-t-secondary" id="homepage-get-pocket" data-cta-text="Get Pocket" data-cta-type="pocket">{{ ftl('home-cta-get-pocket') }}</a>
-      {% endcall %}
-
       <!-- Relay -->
       {% call picto(
         base_el='li',
