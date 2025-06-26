@@ -35,3 +35,12 @@ firefox-new-refresh-bye-boring = Bye, boring browser
 firefox-new-refresh-the-internet-can = The internet can be a rosy place, with the right add-on <a href="{ $theme_url }">theme</a>.
 firefox-new-refresh-billionaire-free = Billionaire-free for 20+ years
 firefox-new-refresh-firefox-was-created = { -brand-name-firefox } was created in 2004 by { -brand-name-mozilla } as a faster, more private, and customizable alternative to browsers like Internet Explorer. Today, we are still not-for-profit, still not owned by any billionaires and still working to make the internet — and the time you spend on it — better.
+firefox-new-refresh-set-firefox-as = Set { -brand-name-firefox } as your default browser.
+firefox-new-refresh-firefox-on-desktop = { -brand-name-firefox } on desktop and mobile.
+firefox-new-refresh-multiple-cursors = Multiple cursors.
+firefox-new-refresh-lots-of-open =Lots of open tabs.
+firefox-new-refresh-shield-and-hand = Shield and hand protecting a browser tab.
+firefox-new-refresh-a-human-brain = A human brain connected to the world.
+firefox-new-refresh-desktop-laptop-and-phone = Desktop, laptop, and phone.
+firefox-new-refresh-firefox-in-dark = { -brand-name-firefox } in dark mode.
+firefox-new-refresh-firefox-on-a-desktop = { -brand-name-firefox } on a desktop.

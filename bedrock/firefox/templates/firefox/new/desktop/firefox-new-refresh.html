@@ -15,7 +15,7 @@
 {% macro default_browser_checkbox(id='default-browser-checkbox') -%}
 <label for="{{ id }}" class="default-browser-label hidden">
   <input type="checkbox" id="{{ id }}" class="default-browser-checkbox">
-  Set Firefox as your default browser.
+  {{ ftl('firefox-new-refresh-set-firefox-as')}}
 </label>
 {%- endmacro %}
 
@@ -89,7 +89,7 @@
         },
         optional_attributes={
           'class': 'c-block-media-img',
-          'alt': 'Firefox on desktop and mobile.',
+          'alt': ftl('firefox-new-refresh-firefox-on-desktop'),
           'width': '768'
         }
       ) }}
@@ -108,12 +108,12 @@
         <p>{{ ftl('firefox-new-refresh-block-ads') }}</p>
       </li>
       <li class="t-cursor">
-        <img alt="Multiple cursors." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/multi.svg') }}" width="134" height="38">
+        <img alt="{{ ftl('firefox-new-refresh-multiple-cursors') }}" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/multi.svg') }}" width="134" height="38">
         <h3>{{ ftl('firefox-new-refresh-multitasking') }}</h3>
         <p>{{ ftl('firefox-new-refresh-go-into-reading') }}</p>
       </li>
       <li>
-        <img alt="Lots of open tabs." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/tabs.svg') }}" width="72" height="54">
+        <img alt="{{ ftl('firefox-new-refresh-lots-of-open') }}" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/tabs.svg') }}" width="72" height="54">
         <h3>{{ ftl('firefox-new-refresh-keep-tabs-on') }}</h3>
         <p>{{ ftl('firefox-new-refresh-close-duplicates') }}</p>
       </li>
@@ -135,7 +135,7 @@
           <button id="protection-report" type="button" class="mzp-c-cta-link">{{ ftl('firefox-desktop-download-see-your-report') }}</button>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-        <img alt="Shield and hand protecting a browser tab." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/block.svg') }}" width="220">
+        <img alt="{{ ftl('firefox-new-refresh-shield-and-hand') }}" class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/block.svg') }}" width="220">
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@
           <p>{{ ftl('firefox-new-refresh-stay-focused', tomato_clock_url='https://addons.mozilla.org/firefox/addon/tomato-clock/', turn_off_the_lights_url='https://addons.mozilla.org/firefox/addon/turn-off-the-lights/') }}</p>
         </div>
         <div class="c-block-media l-v-center l-h-start l-media-constrain-on-sm">
-        <img alt="A human brain connected to the world." class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/think.svg') }}" width="260">
+        <img alt="{{ ftl('firefox-new-refresh-a-human-brain') }}" class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/think.svg') }}" width="260">
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@
           </div>
         </div>
         <div class="c-block-media l-v-end l-h-end l-media-constrain-on-sm">
-        <img alt="Desktop, laptop, and phone. " class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/screens.svg') }}" width="350">
+        <img alt="{{ ftl('firefox-new-refresh-desktop-laptop-and-phone') }}" class="c-block-media-img" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/screens.svg') }}" width="350">
         </div>
       </div>
     </div>
@@ -183,7 +183,7 @@
 
     <div class="c-screen">
       <div class="c-screenshot">
-        <img alt="Firefox in dark mode." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/dark.svg') }}" width="1000">
+        <img alt="{{ ftl('firefox-new-refresh-firefox-in-dark') }}" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/dark.svg') }}" width="1000">
       </div>
     </div>
 
@@ -205,7 +205,7 @@
   <div class="mzp-c-emphasis-box js-animate">
     <div class="c-free">
       <div class="c-free-img">
-        <img alt="Firefox on a desktop." src="{{ static('img/firefox/new/desktop/firefox-new-refresh/free.svg') }}" width="300">
+        <img alt="{{ ftl('firefox-new-refresh-firefox-on-a-desktop') }}" src="{{ static('img/firefox/new/desktop/firefox-new-refresh/free.svg') }}" width="300">
       </div>
       <div class="c-free-body">
         <h2>{{ ftl('firefox-new-refresh-billionaire-free') }}</h2>
