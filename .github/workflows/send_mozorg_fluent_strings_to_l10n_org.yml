@@ -1,24 +1,29 @@
 # Workflow to open a PR on mozilla-l10n/www-l10n with
 # new strings that exist in Bedrock and need localising
 
-name: Open Fluent PR for Mozorg
+name: Open Fluent PR in www-l10n
 
 on:
-  push:
-    paths:
-      - "l10n/**/*"
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Build and push a Docker image"]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
   schedule:
-    - cron: "0 0/3 * * *" # Every 3 hours
+    - cron: "25 5 * * *" # Every 5:25 AM UTC
 
 jobs:
   open_l10n_pr:
-    if: github.repository == 'mozilla/bedrock'
+    if: |
+      github.repository == 'mozilla/bedrock' &&
+      (github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run')
     runs-on: ubuntu-latest
+    env:
+      HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.HEAD_SHA }}
       - name: Run PR-opening script
         shell: bash
         run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
