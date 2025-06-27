@@ -777,7 +777,7 @@ class NewView(L10nTemplateView):
     ftl_files_map = {
         "firefox/new/basic/base_download.html": ["firefox/new/download"],
         "firefox/new/desktop/download.html": ["firefox/new/desktop"],
-        "firefox/new/desktop/firefox-new-refresh.html": ["firefox/new/desktop"],
+        "firefox/new/desktop/firefox-new-refresh.html": ["firefox/new/desktop", "firefox/new/refresh-all"],
     }
     activation_files = [
         "firefox/new/download",
@@ -826,17 +826,13 @@ class NewView(L10nTemplateView):
     def get_template_names(self):
         variation = self.request.GET.get("variation", None)
         experience = self.request.GET.get("xv", None)
-        locale = l10n_utils.get_locale(self.request)
 
         # ensure variant matches pre-defined value
         if variation not in self.variations:
             variation = None
 
         if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if locale in ["en-US", "en-CA"]:
-                template = "firefox/new/desktop/firefox-new-refresh.html"
-            else:
-                template = "firefox/new/desktop/download.html"
+            template = "firefox/new/desktop/firefox-new-refresh.html"
         else:
             template = "firefox/new/basic/base_download.html"
 
