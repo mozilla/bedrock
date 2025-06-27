@@ -460,13 +460,12 @@ def test_paths_not_to_be_redirected_to_springfield(client, path):
 
 
 def test_mobile_app_redirector_does_not_go_to_springfield(client):
-    resp = client.get(
-        "/en-US/firefox/browsers/mobile/app/",
-    )
-    assert resp.status_code == 302
+    resp = client.get("/en-US/firefox/browsers/mobile/app/")
+    assert resp.status_code == 301
     assert resp.headers["Location"] == "https://apps.apple.com/app/apple-store/id989804926"
 
 
+@pytest.mark.django_db
 @pytest.mark.parametrize(
     "path",
     (
