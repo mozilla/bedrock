@@ -424,7 +424,13 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         ),
     ],
 )
-def test_springfield_redirect_patterns(client, path, expected_location, expected_status, follow_redirects):
+def test_springfield_redirect_patterns(
+    client,
+    path,
+    expected_location,
+    expected_status,
+    follow_redirects,
+):
     response = client.get(
         path,
         follow=follow_redirects,
@@ -436,9 +442,41 @@ def test_springfield_redirect_patterns(client, path, expected_location, expected
         assert response.headers["Location"] == expected_location
 
 
-def test_springfield_redirects_carry_over_querystrings_and_add_redirect_source():
-    # /firefox/installer-help/ - > /download/installer-help/
-    assert False, "WRITE ME"
+@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "path,expected_location,expected_status,follow_redirects",
+    [
+        (
+            "/en-US/firefox/installer-help/?channel=beta&installer_lang=en_US",
+            "https://www.firefox.com/download/installer-help/?redirect_source=mozilla-org&channel=beta&installer_lang=en_US",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+        (
+            "/en-US/firefox/new/?foo=bar",
+            "https://www.firefox.com?redirect_source=mozilla-org&foo=bar",
+            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            False,
+        ),
+    ],
+)
+def test_springfield_redirects_carry_over_querystrings_and_add_redirect_source(
+    client,
+    path,
+    expected_location,
+    expected_status,
+    follow_redirects,
+):
+    response = client.get(
+        path,
+        follow=follow_redirects,
+    )
+    assert response.status_code == expected_status
+    if expected_status in [200, 404]:
+        assert "Location" not in response.headers
+    else:
+        assert response.headers["Location"] == expected_location
 
 
 @override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)

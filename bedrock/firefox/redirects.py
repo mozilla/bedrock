@@ -50,7 +50,7 @@ def mobile_app(request, *args, **kwargs):
 
 
 # All redirects in this file will get the `redirect_source` query parameter set to `mozilla-org`.
-offsite_redirect = partial(redirect, query={"redirect_source": "mozilla-org"})
+offsite_redirect = partial(redirect, query={"redirect_source": "mozilla-org"}, merge_query=True)
 
 # Issue 16355
 springfield_redirectpatterns = (
