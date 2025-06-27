@@ -159,7 +159,6 @@ urlpatterns = (
     page("firefox/welcome/17a/", "firefox/welcome/page17/page17-a.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
     page("firefox/welcome/17b/", "firefox/welcome/page17/page17-b.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
     page("firefox/welcome/17c/", "firefox/welcome/page17/page17-c.html", ftl_files=["firefox/welcome/page14"], active_locales=["en-US", "fr", "de"]),
-    page("firefox/welcome/18/", "firefox/welcome/page18.html"),
     page(
         "firefox/welcome/19/",
         "firefox/welcome/page19.html",

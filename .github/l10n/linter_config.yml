@@ -20,7 +20,6 @@ ID02:
 CO01:
   enabled: true
   brands:
-    - Fakespot
     - Firefox
     - MDN
     - Mozilla
