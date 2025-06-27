@@ -2510,7 +2510,7 @@ FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
 
 ENABLE_FIREFOX_COM_REDIRECTS = config(
     "ENABLE_FIREFOX_COM_REDIRECTS",
-    default="False",
+    default="True",
     parser=bool,
 )
 
