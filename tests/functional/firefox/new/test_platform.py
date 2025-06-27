@@ -4,9 +4,14 @@
 
 import pytest
 
+from bedrock import settings
 from pages.firefox.new.platform import PlatformDownloadPage
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_windows_download_buttons_is_displayed(base_url, selenium):
@@ -14,6 +19,10 @@ def test_windows_download_buttons_is_displayed(base_url, selenium):
     assert page.is_windows_download_button_displayed
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_mac_download_buttons_is_displayed(base_url, selenium):
@@ -21,6 +30,10 @@ def test_mac_download_buttons_is_displayed(base_url, selenium):
     assert page.is_mac_download_button_displayed
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_linux_download_buttons_is_displayed(base_url, selenium):

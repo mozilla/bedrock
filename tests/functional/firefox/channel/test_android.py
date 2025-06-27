@@ -4,9 +4,14 @@
 
 import pytest
 
+from bedrock import settings
 from pages.firefox.channel.android import ChannelAndroidPage
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_download_buttons_are_displayed(base_url, selenium):
