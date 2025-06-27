@@ -153,7 +153,6 @@ def test__get_card_image_url():
         ("Firefox Relay", "mzp-t-product-relay"),
         ("Mozilla", "mzp-t-product-mozilla"),
         ("Mozilla VPN", "mzp-t-product-vpn"),
-        ("Pocket", "mzp-t-product-pocket"),
     ),
 )
 def test__get_product_class(product_name, expected):

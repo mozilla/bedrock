@@ -28,10 +28,6 @@
     optional_attributes={'data-cta-text': cta_text, 'data-cta-type': 'fxa-sync'}
   ) }}
 
-{% elif action == 'Get Pocket' %}
-
-  <a href="https://getpocket.com/{{ referral|safe }}" class="mzp-c-button {{ button_class }}" rel="external noopener" data-cta-text="{{ cta_text }}" data-cta-type="pocket">{{ label }}</a>
-
 {% elif action == 'Get Mozilla VPN' %}
 
   <a href="{{ url('products.vpn.landing') }}" class="mzp-c-button {{ button_class }}" data-cta-text="{{ cta_text }}" data-cta-type="vpn">{{ label }}</a>
