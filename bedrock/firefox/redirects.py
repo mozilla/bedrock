@@ -57,11 +57,13 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/$", FXC, permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/$", FXC, permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/new/$", FXC, permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/releasenotes/$", f"{FXC}/firefox/releasenotes/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/system-requirements/$", f"{FXC}/firefox/system-requirements/", permanent=PERM_REDIRECTS),
+    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
+    # offsite_redirect(r"^firefox/releasenotes/$", f"{FXC}/firefox/releasenotes/", permanent=PERM_REDIRECTS),
+    # offsite_redirect(r"^firefox/system-requirements/$", f"{FXC}/firefox/system-requirements/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/all/$", f"{FXC}/download/all/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/android/releasenotes/$", f"{FXC}/firefox/android/releasenotes/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/android/system-requirements/$", f"{FXC}/firefox/android/system-requirements/", permanent=PERM_REDIRECTS),
+    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
+    # offsite_redirect(r"^firefox/android/releasenotes/$", f"{FXC}/firefox/android/releasenotes/", permanent=PERM_REDIRECTS),
+    # offsite_redirect(r"^firefox/android/system-requirements/$", f"{FXC}/firefox/android/system-requirements/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/best-browser/$", f"{FXC}/more/best-browser/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/browser-history/$", f"{FXC}/more/browser-history/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/chromebook/$", f"{FXC}/browsers/desktop/chromebook/", permanent=PERM_REDIRECTS),
@@ -73,13 +75,14 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/browsers/compare/safari/$", f"{FXC}/compare/safari/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/incognito-browser/$", f"{FXC}/more/incognito-browser/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/mobile/$", f"{FXC}/browsers/mobile/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/browsers/mobile/compare/$", f"{FXC}/browsers/mobile/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/mobile/android/$", f"{FXC}/browsers/mobile/android/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/mobile/focus/$", f"{FXC}/browsers/mobile/focus/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/mobile/ios/$", f"{FXC}/browsers/mobile/ios/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/update-your-browser/$", f"{FXC}/more/update-your-browser/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/what-is-a-browser/$", f"{FXC}/more/what-is-a-browser/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/browsers/windows-64-bit/$", f"{FXC}/more/windows-64-bit/", permanent=PERM_REDIRECTS),
+    # For now let's leave the /firefox/channel/ redirect happen on www.m.o and then just redirect the resulting
+    # destination, which is the android/desktop/ios version of the URL that follows
     # https://www.mozilla.org/en-US/firefox/channel/	redirects to /channel/{platform}	(Redirects)	redirect to /channel/{platform}
     offsite_redirect(r"^firefox/channel/android/$", f"{FXC}/channel/android/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/channel/desktop/$", f"{FXC}/channel/desktop/", permanent=PERM_REDIRECTS),
@@ -106,34 +109,24 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/features/tips/$", f"{FXC}/features/tips/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/features/translate/$", f"{FXC}/features/translate/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/installer-help/$", f"{FXC}/download/installer-help/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/ios/releasenotes/$", f"{FXC}/firefox/ios/releasenotes/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/ios/system-requirements/$", f"{FXC}/firefox/ios/system-requirements/", permanent=PERM_REDIRECTS),
+    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
+    # offsite_redirect(r"^firefox/ios/releasenotes/$", f"{FXC}/firefox/ios/releasenotes/", permanent=PERM_REDIRECTS),
+    # offsite_redirect(r"^firefox/ios/system-requirements/$", f"{FXC}/firefox/ios/system-requirements/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/ios/testflight/$", f"{FXC}/channel/ios/testflight", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/linux/$", f"{FXC}/browsers/desktop/linux/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/mac/$", f"{FXC}/browsers/desktop/mac/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/mobile/get-app/$", f"{FXC}/browsers/mobile/get-app/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/more/$", f"{FXC}/more/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/releases/$", f"{FXC}/releases/", permanent=PERM_REDIRECTS),
+    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
+    # offsite_redirect(r"^firefox/releases/$", f"{FXC}/releases/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/set-as-default/$", f"{FXC}/landing/set-as-default/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/set-as-default/thanks/$", f"{FXC}/landing/set-as-default/thanks/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/unsupported-systems/$", f"{FXC}/browsers/unsupported-systems/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/windows/$", f"{FXC}/browsers/desktop/windows/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/landing/get/$", f"{FXC}/landing/get", permanent=PERM_REDIRECTS),
-    # 404s
-    # # TODO: Remove from here once the pages are removed from mozorg.
-    # # TODO: try gone() instead
-    # not_found(r"^/firefox/browsers/compare/ie/$"),
-    # not_found(r"^/firefox/browsers/quantum/$"),
-    # not_found(r"^/firefox/facebookcontainer/$"),
-    # not_found(r"^/firefox/family/$"),
-    # not_found(r"^/firefox/flashback/$"),
-    # not_found(r"^/firefox/more/misinformation/$"),
-    # not_found(r"^/firefox/pocket/$"),
-    # not_found(r"^/firefox/privacy/$"),
-    # not_found(r"^/firefox/privacy/book/$"),
-    # not_found(r"^/firefox/privacy/products/$"),
-    # not_found(r"^/firefox/products/$"),
-    # not_found(r"^/firefox/switch/$"),
+    # DO NOT REDIRECT firefox/landing/get/ yet - it's the target for paid ads, etc. There's
+    # a dedicated URL on www.firefox.com that newer campaigns can send traffic to.
+    # offsite_redirect(r"^firefox/landing/get/$", f"{FXC}/landing/get", permanent=PERM_REDIRECTS),
+    offsite_redirect(r"^firefox/switch/", f"{FXC}/landing/switch/", permanent=PERM_REDIRECTS),
 )
 
 bedrock_redirectpatterns = (
@@ -692,7 +685,7 @@ bedrock_redirectpatterns = (
     redirect(r"^/firefox/?$", "firefox.new"),
 )
 
-if settings.ENABLE_FIREFOX_COM_REDIRECTS:
+if settings.ENABLE_FIREFOX_COM_REDIRECTS is True:
     redirectpatterns = (
         bedrock_redirectpatterns + springfield_redirectpatterns
     )  # bedrock redirects first, to keep tests, happy, then off to springfield, if relevant
