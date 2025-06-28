@@ -24,13 +24,17 @@ test.describe(
         });
 
         test('should not have any detectable a11y issues', async ({ page }) => {
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
+            );
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
 
-            // Hover over Firefox link to open menu
-            await expect(firefoxMenu).not.toBeVisible();
-            await firefoxLink.hover();
-            await expect(firefoxMenu).toBeVisible();
+            // Hover over Products link to open menu
+            await expect(productsMenu).not.toBeVisible();
+            await productsLink.hover();
+            await expect(productsMenu).toBeVisible();
 
             const results = await scanPageElement(
                 page,
@@ -62,18 +66,22 @@ test.describe(
             const navigationMenuItems = page.getByTestId(
                 'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
+            );
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
 
             // Open navigation menu
             await expect(navigationMenuItems).not.toBeVisible();
             await navigationMenuButton.click();
             await expect(navigationMenuItems).toBeVisible();
 
-            // Open Firefox menu
-            await expect(firefoxMenu).not.toBeVisible();
-            await firefoxLink.click();
-            await expect(firefoxMenu).toBeVisible();
+            // Open Products menu
+            await expect(productsMenu).not.toBeVisible();
+            await productsLink.click();
+            await expect(productsMenu).toBeVisible();
 
             const results = await scanPageElement(
                 page,
