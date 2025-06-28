@@ -4,9 +4,14 @@
 
 import pytest
 
+from bedrock import settings
 from pages.firefox.browsers.mobile_focus import FirefoxMobileFocusPage
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_get_firefox_qr_code(base_url, selenium):

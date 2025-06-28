@@ -58,8 +58,13 @@
               {{ ftl('footer-refresh-developers') }}
             </h2>
             <ul class="moz24-footer-primary-list" data-testid="footer-list-developers">
-              <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
-              <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
+              {% if not settings.ENABLE_FIREFOX_COM_REDIRECTS %}
+                <li><a href="{{ url('firefox.developer.index') }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
+                <li><a href="{{ url('firefox.enterprise.index') }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
+              {% else %}
+                <li><a href="{{ settings.FXC_BASE_URL }}/channel/desktop/developer/?{{ utm_params }}" data-link-position="footer" data-link-text="Firefox Developer Edition">{{ ftl('footer-refresh-developer-edition') }}</a></li>
+                <li><a href="{{ settings.FXC_BASE_URL }}/browsers/enterprise/?{{ utm_params }}" data-link-position="footer" data-link-text="Firefox for Enterprise">{{ ftl('footer-refresh-enterprise') }}</a></li>
+              {% endif %}
               <li><a href="https://firefox-source-docs.mozilla.org/devtools-user/?{{ utm_params }}&utm_content=developers" rel="external" data-link-position="footer" data-link-text="Tools">{{ ftl('footer-refresh-tools') }}</a></li>
               <li><a href="https://developer.mozilla.org/?{{ utm_params }}" data-link-position="footer" data-link-text="MDN">{{ ftl('footer-refresh-mdn-v2', fallback="footer-refresh-mdn") }}</a></li>
               <li><a href="/firefox/{{ latest_firefox_version }}/releasenotes/" data-link-position="footer" data-link-text="Firefox Release Notes">{{ ftl('footer-refresh-firefox-release-notes') }}</a></li>

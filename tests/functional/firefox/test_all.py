@@ -4,11 +4,16 @@
 
 import pytest
 
+from bedrock import settings
 from pages.firefox.all import FirefoxAllPage
 
 # help modals
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_browser_help_modal(base_url, selenium):
@@ -18,6 +23,10 @@ def test_open_browser_help_modal(base_url, selenium):
     assert modal.is_displayed
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_open_installer_help_modal(base_url, selenium):

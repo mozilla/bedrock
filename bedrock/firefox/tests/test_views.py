@@ -1,11 +1,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-
 import json
+from unittest import skipIf
 from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
+from django.conf import settings
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
@@ -450,6 +451,10 @@ class TestFirefoxNew(TestCase):
     # end /thanks?s=direct URL - issue 10520
 
 
+@skipIf(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 class TestFirefoxNewNoIndex(TestCase):
     def test_download_noindex(self):
         # Scene 1 of /firefox/new/ should never contain a noindex tag.
@@ -529,6 +534,10 @@ class TestFirefoxWelcomePage1(TestCase):
 
 
 # Issue 13253: Ensure that Firefox can continue to refer to this URL.
+@skipIf(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 class TestFirefoxSetAsDefaultThanks(TestCase):
     def test_firefox_set_as_default_thanks(self):
         resp = self.client.get("/firefox/set-as-default/thanks/", follow=True)

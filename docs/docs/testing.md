@@ -163,7 +163,7 @@ Playwright tests use User Agent string overrides to mock different browser and o
 
 ``` javascript
 const openPage = require('../scripts/open-page');
-const url = '/en-US/firefox/new/';
+const url = '/en-US/products/vpn/';
 
 test.beforeEach(async ({ page, browserName }) => {
     await openPage(url, page, browserName);

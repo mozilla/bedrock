@@ -8,14 +8,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable">
   <a class="m24-c-menu-title" href="{{ url('products.landing') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-products" data-testid="m24-navigation-link-products">{{ ftl('navigation-refresh-products') }}</a>
-  <div class="m24-c-menu-panel" id="m24-c-menu-panel-products" data-testid="m24-navigation-menu-products">
-    <div class="m24-c-menu-panel-container">
+  <div class="m24-c-menu-panel" id="m24-c-menu-panel-products" data-testid="m24-navigation-panel-products">
+    <div class="m24-c-menu-panel-container" data-testid="m24-navigation-menu-products">
       <button class="m24-c-menu-button-close" type="button" aria-controls="m24-c-menu-panel-products">{{ ftl('navigation-refresh-close-products-menu') }}</button>
       <div class="m24-c-menu-panel-content">
         <ul class="m24-mzp-l-content">
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
-              <a class="m24-c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-text="Mozilla VPN" data-link-position="topnav - products">
+              <a class="m24-c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-text="Mozilla VPN" data-link-position="topnav - products" data-testid="m24-navigation-menu-link-products-vpn">
                 <img loading="lazy" src="{{ static('protocol/img/logos/mozilla/vpn/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-mozilla-vpn-v2') }}</h2>
               </a>
