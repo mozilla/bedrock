@@ -6,6 +6,8 @@
 
  {% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=nav&utm_content=firefox' %}
 
+
+ {% if not settings.ENABLE_FIREFOX_COM_REDIRECTS %}
  <li class="m24-c-menu-category mzp-has-drop-down mzp-js-expandable m24-c-menu-category-has-icon">
   <a class="m24-c-menu-title" href="{{ url('firefox.new') }}" aria-haspopup="true" aria-controls="m24-c-menu-panel-firefox" data-testid="m24-navigation-link-firefox">
     <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-title-icon" width="16" height="16" alt="">
@@ -61,3 +63,11 @@
     </div><!-- close .m24-c-menu-panel-container -->
   </div><!-- close .m24-c-menu-panel -->
 </li><!-- close firefox -->
+{% else %}
+<li class="m24-c-menu-category">
+  <a class="m24-c-menu-title" href="{{ settings.FXC_BASE_URL }}?{{ utm_params }}" data-testid="m24-navigation-link-firefox">
+    <img src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-title-icon" width="16" height="16" alt="">
+    {{ ftl('navigation-refresh-firefox-browsers') }}
+  </a>
+</li>
+{% endif %}
