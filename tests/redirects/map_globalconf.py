@@ -834,11 +834,7 @@ URLS = flatten(
         url_test("/firefox/partners/", "https://support.mozilla.org/products/firefox-os"),
         url_test("/b2g/", "https://support.mozilla.org/products/firefox-os"),
         # from mcom-tests
-        url_test(
-            "/firefox/new/",
-            "https://www.firefox.com?redirect_source=mozilla-org",  # Issue 16355
-            status_code=STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE,  # Issue 16355
-        ),
+        url_test("/products/", "/en-US/products/", status_code=requests.codes.found),
         url_test("/mobile/37.0{,beta,a2}/releasenotes", "/firefox/android/37.0{,beta,a2}/releasenotes/"),
         url_test("/projects/firefox/3.6.13/whatsnew/", "/firefox/3.6.13/whatsnew/"),
         url_test("/apps/", "https://marketplace.firefox.com/"),

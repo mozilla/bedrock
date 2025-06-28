@@ -13,7 +13,7 @@ LINK_TEMPLATE = '<link rel="canonical" href="{url}">'
 @pytest.mark.parametrize(
     "url,locales",
     [
-        ("/firefox/new/", ("en-US", "de", "id")),
+        ("/about/", ("en-US", "de", "id")),
         ("/", ("en-US", "de", "id")),
     ],
 )
