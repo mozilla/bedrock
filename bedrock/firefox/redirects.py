@@ -131,7 +131,8 @@ springfield_redirectpatterns = (
     # DO NOT REDIRECT firefox/landing/get/ yet - it's the target for paid ads, etc. There's
     # a dedicated URL on www.firefox.com that newer campaigns can send traffic to.
     # offsite_redirect(r"^firefox/landing/get/$", f"{FXC}/landing/get", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/switch/", f"{FXC}/landing/switch/", permanent=PERM_REDIRECTS),
+    # DO NOT REDIRECT YET: page has not been ported to Springfield
+    # offsite_redirect(r"^firefox/switch/", f"{FXC}/landing/switch/", permanent=PERM_REDIRECTS),
 )
 
 bedrock_redirectpatterns = (
