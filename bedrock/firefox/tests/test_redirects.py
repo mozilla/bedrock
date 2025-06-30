@@ -370,7 +370,7 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         ),
         (
             "/firefox/ios/testflight/",
-            f"https://www.firefox.com/channel/ios/testflight{EXPECTED_REDIRECT_QS}",
+            f"https://www.firefox.com/channel/ios/testflight/{EXPECTED_REDIRECT_QS}",
             EXPECTED_FIREFOX_COM_REDIRECT_CODE,
             False,
         ),
@@ -401,12 +401,6 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         (
             "/firefox/set-as-default/thanks/",
             f"https://www.firefox.com/landing/set-as-default/thanks/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
-            False,
-        ),
-        (
-            "/firefox/switch/",
-            f"https://www.firefox.com/landing/switch/{EXPECTED_REDIRECT_QS}",
             EXPECTED_FIREFOX_COM_REDIRECT_CODE,
             False,
         ),
