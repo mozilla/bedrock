@@ -813,7 +813,7 @@ URLS = flatten(
         ),
         # Bug 1221739
         url_test("/firefox/hello/feedbacksurvey/", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", status_code=requests.codes.found),
-        # # bug 1236791 - DISABLED for Issue 16355 because the grounds for needing the redirect is no longer valid
+        # bug 1236791 - DISABLED for Issue 16355 because the grounds for needing the redirect is no longer valid
         # https://bugzilla.mozilla.org/show_bug.cgi?id=1236791 is 9 years old at the point of this change and looks
         # no longer relevant, so disabling this test is OK.
         # url_test(
@@ -821,7 +821,7 @@ URLS = flatten(
         #     "https://www.firefox.com?redirect_source=mozilla-org",  # Issue 16355
         #     status_code=STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE,  # Issue 16355
         # ),
-        # # bug 1235853
+        # bug 1235853
         url_test("/facebookapps/{,downloadtab/}", "/firefox/new/"),
         # bug 1238248
         url_test("/firefox/push/", "https://support.mozilla.org/kb/push-notifications-firefox"),

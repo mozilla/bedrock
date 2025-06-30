@@ -117,7 +117,7 @@ springfield_redirectpatterns = (
     # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
     # offsite_redirect(r"^firefox/ios/releasenotes/$", f"{FXC}/firefox/ios/releasenotes/", permanent=PERM_REDIRECTS),
     # offsite_redirect(r"^firefox/ios/system-requirements/$", f"{FXC}/firefox/ios/system-requirements/", permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/ios/testflight/$", f"{FXC}/channel/ios/testflight", permanent=PERM_REDIRECTS),
+    offsite_redirect(r"^firefox/ios/testflight/$", f"{FXC}/channel/ios/testflight/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/linux/$", f"{FXC}/browsers/desktop/linux/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/mac/$", f"{FXC}/browsers/desktop/mac/", permanent=PERM_REDIRECTS),
     offsite_redirect(r"^firefox/mobile/get-app/$", f"{FXC}/browsers/mobile/get-app/", permanent=PERM_REDIRECTS),
