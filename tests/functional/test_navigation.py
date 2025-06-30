@@ -11,12 +11,11 @@ from pages.home import HomePage
 @pytest.mark.nondestructive
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url, locale="de").open()
-    page.navigation.open_firefox_menu()
+
     assert page.navigation.is_firefox_menu_displayed
 
     page.navigation.open_products_menu()
     assert page.navigation.is_products_menu_displayed
-    assert not page.navigation.is_firefox_menu_displayed
 
     page.navigation.open_about_menu()
     assert page.navigation.is_about_menu_displayed

@@ -2,12 +2,16 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 import requests
 
 from .base import flatten, url_test
 
 UA_ANDROID = {"User-Agent": "Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) Gecko/51.0 Firefox/51.0"}
 UA_IOS = {"User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190"}
+
+STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE = 301 if settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT else 302
 
 URLS = flatten(
     (
@@ -17,9 +21,9 @@ URLS = flatten(
         url_test("/es/", "/es-ES/", status_code=requests.codes.found),
         url_test("/pt/", "/pt-BR/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
-        url_test("/en-us/firefox/new/", "/en-US/firefox/new/", status_code=requests.codes.found),
-        url_test("/es-es/firefox/new/", "/es-ES/firefox/new/", status_code=requests.codes.found),
-        url_test("/pt-br/firefox/new/", "/pt-BR/firefox/new/", status_code=requests.codes.found),
+        url_test("/en-us/about/", "/en-US/about/", status_code=requests.codes.found),
+        url_test("/es-es/about/", "/es-ES/about/", status_code=requests.codes.found),
+        url_test("/pt-br/about/", "/pt-BR/about/", status_code=requests.codes.found),
         # bug 880182
         url_test("/ja-JP-mac/", "/ja/", status_code=requests.codes.found),
         # bug 795970 - lowercase to uppercase, e.g. en-us to en-US
@@ -809,8 +813,14 @@ URLS = flatten(
         ),
         # Bug 1221739
         url_test("/firefox/hello/feedbacksurvey/", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", status_code=requests.codes.found),
-        # bug 1236791
-        url_test("/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}", "/en-US/firefox/new/"),
+        # bug 1236791 - DISABLED for Issue 16355 because the grounds for needing the redirect is no longer valid
+        # https://bugzilla.mozilla.org/show_bug.cgi?id=1236791 is 9 years old at the point of this change and looks
+        # no longer relevant, so disabling this test is OK.
+        # url_test(
+        #     "/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}",
+        #     "https://www.firefox.com?redirect_source=mozilla-org",  # Issue 16355
+        #     status_code=STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE,  # Issue 16355
+        # ),
         # bug 1235853
         url_test("/facebookapps/{,downloadtab/}", "/firefox/new/"),
         # bug 1238248
@@ -824,7 +834,7 @@ URLS = flatten(
         url_test("/firefox/partners/", "https://support.mozilla.org/products/firefox-os"),
         url_test("/b2g/", "https://support.mozilla.org/products/firefox-os"),
         # from mcom-tests
-        url_test("/firefox/new/", "/en-US/firefox/new/", status_code=requests.codes.found),
+        url_test("/products/", "/en-US/products/", status_code=requests.codes.found),
         url_test("/mobile/37.0{,beta,a2}/releasenotes", "/firefox/android/37.0{,beta,a2}/releasenotes/"),
         url_test("/projects/firefox/3.6.13/whatsnew/", "/firefox/3.6.13/whatsnew/"),
         url_test("/apps/", "https://marketplace.firefox.com/"),

@@ -13,7 +13,7 @@ const url = '/firefox/welcome/4/';
 test.describe(
     `${url} page`,
     {
-        tag: '@firefox'
+        tag: ['@firefox', '@wfc-redirect']
     },
     () => {
         test('Send to device form success', async ({ page, browserName }) => {

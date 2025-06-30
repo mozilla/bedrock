@@ -4,9 +4,14 @@
 
 import pytest
 
+from bedrock import settings
 from pages.firefox.browsers.mobile_ios import FirefoxMobileIosPage
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_send_to_device_success(base_url, selenium):
@@ -18,6 +23,10 @@ def test_send_to_device_success(base_url, selenium):
     assert send_to_device.send_successful
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.smoke
 @pytest.mark.nondestructive
 def test_send_to_device_failure(base_url, selenium):
@@ -28,6 +37,10 @@ def test_send_to_device_failure(base_url, selenium):
     assert send_to_device.is_form_error_displayed
 
 
+@pytest.mark.skipif(
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Related view is now unreachable and [TODO] should be removed",
+)
 @pytest.mark.skip(reason="Test requires loclized page to be in production")
 @pytest.mark.smoke
 @pytest.mark.nondestructive

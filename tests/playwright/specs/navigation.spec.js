@@ -21,8 +21,6 @@ test.describe(
         });
 
         test('Navigation menu hover', async ({ page }) => {
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
             const productsLink = page.getByTestId(
                 'm24-navigation-link-products'
             );
@@ -36,14 +34,9 @@ test.describe(
                 'm24-navigation-menu-about-us'
             );
 
-            // Hover over Firefox link
-            await firefoxLink.hover();
-            await expect(firefoxMenu).toBeVisible();
-
             // Hover over products link
             await productsLink.hover();
             await expect(productsMenu).toBeVisible();
-            await expect(firefoxMenu).not.toBeVisible();
 
             // Hover over about us link
             await aboutUsLink.hover();
@@ -52,24 +45,28 @@ test.describe(
         });
 
         test('Navigation link click', async ({ page }) => {
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
-            const firefoxMenuLink = page.getByTestId(
-                'm24-navigation-menu-link-firefox-desktop'
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
+            );
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
+            const productsMenuLink = page.getByTestId(
+                'm24-navigation-menu-link-products-vpn'
             );
 
-            // Hover over Firefox link
-            await firefoxLink.hover();
-            await expect(firefoxMenu).toBeVisible();
+            // Hover over Products VPN link
+            await productsLink.hover();
+            await expect(productsMenu).toBeVisible();
 
-            // Click Firefox desktop link
-            await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/', {
+            // Click Products VPN link
+            await productsMenuLink.click();
+            await page.waitForURL('**/products/vpn/', {
                 waitUntil: 'commit'
             });
 
-            // Assert Firefox menu is closed after navigation
-            await expect(firefoxMenu).not.toBeVisible();
+            // Assert Products menu is closed after navigation
+            await expect(productsMenu).not.toBeVisible();
         });
     }
 );
@@ -93,8 +90,6 @@ test.describe(
             const navigationMenuItems = page.getByTestId(
                 'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
             const productsLink = page.getByTestId(
                 'm24-navigation-link-products'
             );
@@ -111,12 +106,6 @@ test.describe(
             // Open navigation menu
             await navigationMenuButton.click();
             await expect(navigationMenuItems).toBeVisible();
-
-            // Open and close Firefox menu
-            await firefoxLink.click();
-            await expect(firefoxMenu).toBeVisible();
-            await firefoxLink.click();
-            await expect(firefoxMenu).not.toBeVisible();
 
             // Open and close products menu
             await productsLink.click();
@@ -142,23 +131,27 @@ test.describe(
             const navigationMenuItems = page.getByTestId(
                 'm24-navigation-menu-items'
             );
-            const firefoxLink = page.getByTestId('m24-navigation-link-firefox');
-            const firefoxMenu = page.getByTestId('m24-navigation-menu-firefox');
-            const firefoxMenuLink = page.getByTestId(
-                'm24-navigation-menu-link-firefox-desktop'
+            const productsLink = page.getByTestId(
+                'm24-navigation-link-products'
+            );
+            const productsMenu = page.getByTestId(
+                'm24-navigation-menu-products'
+            );
+            const productsMenuLink = page.getByTestId(
+                'm24-navigation-menu-link-products-vpn'
             );
 
             // Open navigation menu
             await navigationMenuButton.click();
             await expect(navigationMenuItems).toBeVisible();
 
-            // Open and Firefox menu
-            await firefoxLink.click();
-            await expect(firefoxMenu).toBeVisible();
+            // Open Products menu
+            await productsLink.click();
+            await expect(productsMenu).toBeVisible();
 
-            // Click Firefox desktop link
-            await firefoxMenuLink.click();
-            await page.waitForURL('**/firefox/new/', {
+            // Click products vpn link
+            await productsMenuLink.click();
+            await page.waitForURL('**/products/vpn/', {
                 waitUntil: 'commit'
             });
 
