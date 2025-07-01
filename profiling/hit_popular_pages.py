@@ -28,7 +28,6 @@ paths = [
     "/en-US/firefox/new/?reason=outdated",
     "/en-US/firefox/features/",
     "/en-US/firefox/all/",
-    "/en-US/firefox/welcome/18/",
     "/en-US/",
     "/en-US/firefox/installer-help/?channel=release&installer_lang=en-US",
     "/en-US/firefox/download/thanks/?s=direct",

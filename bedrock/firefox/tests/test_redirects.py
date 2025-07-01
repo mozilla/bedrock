@@ -481,7 +481,7 @@ def test_springfield_redirects_carry_over_querystrings_and_add_redirect_source(
         "/en-US/firefox/landing/get/",
         "/en-US/firefox/138.0/whatsnew/",
         "/en-US/firefox/nightly/firstrun/",
-        "/en-US/firefox/welcome/18/",
+        "/en-US/firefox/welcome/19/",
         "/en-US/firefox/download/thanks/",
     ),
 )
