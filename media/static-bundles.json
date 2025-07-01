@@ -912,12 +912,6 @@
     },
     {
       "files": [
-        "css/firefox/welcome18.scss"
-      ],
-      "name": "firefox_welcome_page18"
-    },
-    {
-      "files": [
         "css/firefox/welcome19-to-25.scss"
       ],
       "name": "firefox_welcome_page19_to_25"
