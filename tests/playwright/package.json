@@ -4,8 +4,8 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@axe-core/playwright": "^4.10.1",
-    "@playwright/test": "^1.52.0",
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.53.2",
     "axe-html-reporter": "^2.2.11",
     "dotenv": "^16.5.0"
   },
