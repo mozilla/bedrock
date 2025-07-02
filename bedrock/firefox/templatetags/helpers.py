@@ -430,6 +430,8 @@ def firefox_com_canonical_tag(ctx, dest_path=None, domain="www.firefox.com"):
         {{ firefox_com_canonical_tag(domain="some-alternate-subdomain.firefox.com") }}
 
     """
+    if settings.ENABLE_FIREFOX_COM_REDIRECTS is False:
+        return ""
 
     request = ctx["request"]
 
