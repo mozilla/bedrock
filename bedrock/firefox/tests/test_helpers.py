@@ -601,3 +601,62 @@ def test_send_to_device_form(test_input, expected):
 
     newsletter_id = doc("input[name='newsletters']").val()
     assert newsletter_id == expected["newsletter_id"]
+
+
+@pytest.mark.parametrize(
+    "fake_request_path, override_path, domain, assume_https, expected_result",
+    (
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "",
+            True,
+            '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "",
+            False,  # http not https, just for the code path
+            '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "/some/other/path/",
+            "",
+            True,
+            '<link rel="canonical" href="https://www.firefox.com/some/other/path/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "www.example.com",
+            True,
+            '<link rel="canonical" href="https://www.example.com/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "/some/other/path/",
+            "www.example.com",
+            True,
+            '<link rel="canonical" href="https://www.example.com/some/other/path/">',
+        ),
+    ),
+)
+def test_firefox_com_canonical_tag(rf, fake_request_path, override_path, domain, assume_https, expected_result):
+    def _render(dest_path, domain):
+        req = rf.get(fake_request_path)
+        req.META["wsgi.url_scheme"] = "https" if assume_https else "http"
+
+        if dest_path and domain:
+            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}', domain='{domain}') }}}}"
+        elif dest_path:
+            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}') }}}}"
+        elif domain:
+            tmpl = f"{{{{ firefox_com_canonical_tag(domain='{domain}') }}}}"
+        else:
+            tmpl = "{{ firefox_com_canonical_tag() }}"
+
+        return render(tmpl, {"request": req})
+
+    assert _render(override_path, domain) == expected_result
