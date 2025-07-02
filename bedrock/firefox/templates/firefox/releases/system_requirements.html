@@ -21,6 +21,11 @@
   {{ css_bundle('firefox_system_requirements') }}
 {% endblock %}
 
+{# We want to denote www.firefox.com as the canonical source of release notes #}
+{% block canonical_urls %}
+    {{ firefox_com_canonical_tag() }}
+{% endblock %}
+
 {% block content %}
   <main class="mzp-l-content mzp-t-content-md">
     <h1 class="c-page-title">Firefox System Requirements</h1>

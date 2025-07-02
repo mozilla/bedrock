@@ -2,11 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from pathlib import Path
 from unittest.mock import patch
+
+from django.core.cache import caches
+from django.test import override_settings
 
 import pytest
 
-from bedrock.releasenotes.views import releases_index, show_android_sys_req
+from bedrock.releasenotes.models import ProductRelease
+from bedrock.releasenotes.views import release_notes, releases_index, show_android_sys_req, system_requirements
+
+RELEASES_PATH = str(Path(__file__).parent)
+release_cache = caches["release-notes"]
 
 
 @pytest.mark.parametrize(
@@ -161,3 +169,35 @@ def test_releases_index__product_other_than_firefox(render_mock, rf):
         "someproduct/releases/index.html",
         {"releases": []},
     )
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("enable_redirects", (True, False))
+def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
+    # Bootstrap relnotes test data
+    ProductRelease.objects.refresh()
+    release_cache.clear()
+
+    request = rf.get("/en-US/firefox/56.0.2/releasenotes/")
+    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
+        resp = release_notes(request, version="56.0.2")
+        _link_is_in_content = '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/56.0.2/releasenotes/">' in str(resp.content)
+        assert _link_is_in_content == enable_redirects
+
+    release_cache.clear()
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("enable_redirects", (True, False))
+def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
+    # Bootstrap relnotes test data
+    ProductRelease.objects.refresh()
+    release_cache.clear()
+
+    request = rf.get("/en-US/firefox/56.0.2/system-requirements/")
+    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
+        resp = system_requirements(request, version="56.0.2")
+        _link_is_in_content = '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/56.0.2/system-requirements/">' in str(resp.content)
+        assert _link_is_in_content == enable_redirects
+
+    release_cache.clear()
