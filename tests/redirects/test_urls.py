@@ -7,6 +7,8 @@
 import pytest
 import requests
 
+from bedrock import settings
+
 from .base import assert_valid_url
 from .map_410 import URLS_410
 
@@ -59,6 +61,10 @@ def test_301_urls(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects)
 
 
+@pytest.mark.skipif(
+    settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT is True,
+    reason="Redirected offsite as 301, not 302 locally",
+)
 @pytest.mark.headless
 @pytest.mark.nondestructive
 @pytest.mark.django_db
