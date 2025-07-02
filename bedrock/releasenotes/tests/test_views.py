@@ -171,33 +171,47 @@ def test_releases_index__product_other_than_firefox(render_mock, rf):
     )
 
 
+@patch("bedrock.firefox.templatetags.helpers.desktop_builds")
 @pytest.mark.django_db
 @pytest.mark.parametrize("enable_redirects", (True, False))
-def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
+def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(mock_desktop_builds, rf, enable_redirects):
     # Bootstrap relnotes test data
-    ProductRelease.objects.refresh()
-    release_cache.clear()
+    with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
+        ProductRelease.objects.refresh()
+        release_cache.clear()
 
-    request = rf.get("/en-US/firefox/56.0.2/releasenotes/")
+    ver = ProductRelease.objects.last().version
+    assert ver == "24.5.0"  # safety check that the data hasn't moved
+
+    request = rf.get("/en-US/firefox/24.5.0/releasenotes/")
+    request.META["wsgi.url_scheme"] = "https"
+
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
-        resp = release_notes(request, version="56.0.2")
-        _link_is_in_content = '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/56.0.2/releasenotes/">' in str(resp.content)
+        resp = release_notes(request, version="24.5.0")
+        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/releasenotes/">' in str(resp.content)
         assert _link_is_in_content == enable_redirects
 
     release_cache.clear()
 
 
+@patch("bedrock.firefox.templatetags.helpers.desktop_builds")
 @pytest.mark.django_db
 @pytest.mark.parametrize("enable_redirects", (True, False))
-def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
+def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(mock_desktop_builds, rf, enable_redirects):
     # Bootstrap relnotes test data
-    ProductRelease.objects.refresh()
-    release_cache.clear()
+    with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
+        ProductRelease.objects.refresh()
+        release_cache.clear()
 
-    request = rf.get("/en-US/firefox/56.0.2/system-requirements/")
+    ver = ProductRelease.objects.last().version
+    assert ver == "24.5.0"  # safety check that the data hasn't moved
+
+    request = rf.get("/en-US/firefox/24.5.0/system-requirements/")
+    request.META["wsgi.url_scheme"] = "https"
+
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
-        resp = system_requirements(request, version="56.0.2")
-        _link_is_in_content = '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/56.0.2/system-requirements/">' in str(resp.content)
+        resp = system_requirements(request, version="24.5.0")
+        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/system-requirements/">' in str(resp.content)
         assert _link_is_in_content == enable_redirects
 
     release_cache.clear()
@@ -207,13 +221,16 @@ def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_c
 @pytest.mark.parametrize("enable_redirects", (True, False))
 def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
     # Bootstrap relnotes test data
-    ProductRelease.objects.refresh()
-    release_cache.clear()
+    with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
+        ProductRelease.objects.refresh()
+        release_cache.clear()
 
     request = rf.get("/en-US/firefox/releases/")
+    request.META["wsgi.url_scheme"] = "https"
+
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
         resp = releases_index(request, product="Firefox")
-        _link_is_in_content = '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/releases/">' in str(resp.content)
+        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/releases/">' in str(resp.content)
         assert _link_is_in_content == enable_redirects
 
     release_cache.clear()
