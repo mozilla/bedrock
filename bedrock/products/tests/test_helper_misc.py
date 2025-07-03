@@ -16,6 +16,8 @@ TEST_FXA_ENDPOINT = "https://accounts.firefox.com/"
 TEST_VPN_ENDPOINT = "https://vpn.mozilla.org/"
 TEST_VPN_PRODUCT_ID = "prod_FvnsFHIfezy3ZI"
 TEST_VPN_SUBSCRIPTION_URL = "https://accounts.firefox.com/"
+TEST_VPN_SUBSCRIPTION_URL_NEXT = "https://payments.firefox.com/"
+TEST_VPN_PRODUCT_ID_NEXT = "vpn"
 
 TEST_VPN_PLAN_ID_MATRIX = {
     "chf": {  # Swiss franc
@@ -1233,6 +1235,8 @@ class TestVPNSubscribeLink(TestCase):
 @override_settings(
     FXA_ENDPOINT=TEST_FXA_ENDPOINT,
     VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
+    VPN_SUBSCRIPTION_URL_NEXT=TEST_VPN_SUBSCRIPTION_URL_NEXT,
+    VPN_PRODUCT_ID_NEXT=TEST_VPN_PRODUCT_ID_NEXT,
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
     VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=False,
@@ -1270,7 +1274,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/yearly/landing/'
+            '<a href="https://payments.firefox.com/vpn/yearly/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
@@ -1287,7 +1291,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             lang="en-US",
         )
         expected = (
-            '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/yearly/landing/'
+            '<a href="https://payments.firefox.com/vpn/yearly/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
             "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
@@ -1305,7 +1309,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/monthly/landing/'
+            '<a href="https://payments.firefox.com/vpn/monthly/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
@@ -1328,7 +1332,7 @@ class TestVPNSubscribeLinkNext(TestCase):
 
         # The only change compared to monthly sub is the /daily/ in the URL, not any of the params
         expected = (
-            '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/daily/landing/'
+            '<a href="https://payments.firefox.com/vpn/daily/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
@@ -1353,7 +1357,7 @@ class TestVPNSubscribeLinkNext(TestCase):
                 optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
             )
             expected = (
-                '<a href="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/mozillavpnstage/yearly/landing/'
+                '<a href="https://payments.firefox.com/vpn/yearly/landing/'
                 "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
                 '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
                 'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
