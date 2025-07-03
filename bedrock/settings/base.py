@@ -1259,13 +1259,16 @@ VPN_SUBSCRIPTION_URL = config("VPN_SUBSCRIPTION_URL", default="https://accounts.
 
 # New URL for VPN subscription links
 # ***This URL *MUST* end in a trailing slash!***
-VPN_SUBSCRIPTION_URL_NEXT = config("VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/")
+VPN_SUBSCRIPTION_URL_NEXT = config(
+    "VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/" if DEV else "https://payments.firefox.com/"
+)
 
 # For testing/QA we support a test 'daily' API endpoint on the staging API only
 VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY = config("VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY", default="False", parser=bool)
 
 # Product ID for VPN subscriptions
 VPN_PRODUCT_ID = config("VPN_PRODUCT_ID", default="prod_FiJ42WCzZNRSbS" if DEV else "prod_FvnsFHIfezy3ZI")
+VPN_PRODUCT_ID_NEXT = "mozillavpnstage" if DEV else "vpn"
 
 # VPN variable subscription plan IDs by currency/language.
 VPN_PLAN_ID_MATRIX = {

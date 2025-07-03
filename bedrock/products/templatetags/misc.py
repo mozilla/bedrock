@@ -158,7 +158,7 @@ def vpn_subscribe_link(
     plan_id = selected_plan.get("id")
 
     if switch("vpn-subplat-next"):
-        product_slug = "mozillavpnstage"
+        product_id = settings.VPN_PRODUCT_ID_NEXT
         plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
 
         # For testing/QA we support a test 'daily' API endpoint on the staging API only
@@ -167,7 +167,11 @@ def vpn_subscribe_link(
         if plan_slug == "monthly" and settings.VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY:
             plan_slug = "daily"
 
-        product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_slug}/{plan_slug}/landing/"
+        if bundle_monitor_relay:
+            product_id = "privacyprotectionplan"
+            plan_slug = "yearly"
+
+        product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_id}/{plan_slug}/landing/"
     else:
         product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
 
