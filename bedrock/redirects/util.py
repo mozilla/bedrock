@@ -224,6 +224,8 @@ def redirect(
         query = query.copy()
 
     def _view(request, *args, **kwargs):
+        nonlocal query
+
         # don't want to have 'None' in substitutions
         kwargs = {k: v or "" for k, v in kwargs.items()}
         args = [x or "" for x in args]
@@ -240,7 +242,7 @@ def redirect(
             try:
                 redirect_url = reverse(to_value, args=to_args, kwargs=to_kwargs)
                 # reverse() will give us, by default, a redirection
-                # with settings.LANGAUGE_CODE as the prefixed language.
+                # with settings.LANGUAGE_CODE as the prefixed language.
                 # We don't want this by default, only if explicitly requested
                 redirect_url = _drop_lang_code(redirect_url)
             except NoReverseMatch:
@@ -249,6 +251,21 @@ def redirect(
 
         if prepend_locale and redirect_url.startswith("/") and kwargs.get("locale"):
             redirect_url = "/{locale}" + redirect_url.lstrip("/")
+        elif prepend_locale and "{_locale}" in redirect_url:
+            # So this is a full domain / offsite redirect, not a relative one.
+            # But do we have a locale already known to us? If so, use it, to avoid
+            # a 302 on the destination when the locale is re-detected
+            #
+            # Note that we're using a variable called _locale in the URL template
+            # to deliberately avoid clashing with `locale` in the current variable
+            # space.
+            if kwargs.get("locale"):  # extracted as, say, "fr/"
+                _locale = kwargs.get("locale").rstrip("/")
+                redirect_url = redirect_url.format(_locale=_locale)
+            else:
+                # If we don't yet have a locale to use in the redirect, we have to
+                # just live without it
+                redirect_url = redirect_url.replace("/{_locale}", "")
 
         # use info from url captures.
         if args or kwargs:
