@@ -546,3 +546,52 @@ def test_releasenotes_generic_urls_not_rediected_to_springfield(client, path):
     resp = client.get(path)
     assert resp.status_code == 302
     assert "https://www.firefox.com" not in resp.headers["Location"]
+
+
+@pytest.mark.parametrize(
+    "path, expected_dest",
+    (
+        ("/en-US/firefox/new/?hello=world", f"https://www.firefox.com/en-US/{EXPECTED_REDIRECT_QS}&hello=world"),
+        ("/en-US/firefox/new/", f"https://www.firefox.com/en-US/{EXPECTED_REDIRECT_QS}"),
+        (
+            "/en-US/firefox/installer-help/?bar=baz&bam=bam",
+            f"https://www.firefox.com/en-US/download/installer-help/{EXPECTED_REDIRECT_QS}&bar=baz&bam=bam",
+        ),
+        ("/en-US/firefox/installer-help/", f"https://www.firefox.com/en-US/download/installer-help/{EXPECTED_REDIRECT_QS}"),
+    ),
+)
+@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
+def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
+    client,
+    path,
+    expected_dest,
+):
+    # Safety check that Django/Bedrock isn't cacheing querystrings used in other
+    # responses. Both of the paramatrized paths above have been used in earlier
+    # tests in this suite, where they DID include extra querystrings, which should
+    # NOT appear in the responses for this test. We also include dupes here
+    resp = client.get(path, secure=True)
+    assert resp.status_code == 302
+    assert resp.headers["Location"] == expected_dest
+
+
+@pytest.mark.parametrize(
+    "path, expected_dest",
+    (
+        ("/firefox/new/", f"https://www.firefox.com/{EXPECTED_REDIRECT_QS}"),
+        ("/firefox/set-as-default/", f"https://www.firefox.com/landing/set-as-default/{EXPECTED_REDIRECT_QS}"),
+        ("/firefox/browsers/incognito-browser/", f"https://www.firefox.com/more/incognito-browser/{EXPECTED_REDIRECT_QS}"),
+    ),
+)
+@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
+def test_offsite_redirects_still_work_when_locale_not_in_source_path(
+    client,
+    path,
+    expected_dest,
+):
+    # Our redirects kick in before our locale-prepending middleware, so we may
+    # find we have some redirects that don't have a locale when they send the
+    # user to www.firefox.com
+    resp = client.get(path, secure=True)
+    assert resp.status_code == 302
+    assert resp.headers["Location"] == expected_dest

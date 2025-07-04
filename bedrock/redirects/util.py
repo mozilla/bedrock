@@ -4,6 +4,7 @@
 
 import re
 from collections import defaultdict
+from copy import deepcopy
 from urllib.parse import parse_qs, urlencode
 
 from django.conf import settings
@@ -224,7 +225,8 @@ def redirect(
         query = query.copy()
 
     def _view(request, *args, **kwargs):
-        nonlocal query
+        # Avoid the _view closure capturing the original _query state
+        request_query = deepcopy(query)
 
         # don't want to have 'None' in substitutions
         kwargs = {k: v or "" for k, v in kwargs.items()}
@@ -276,13 +278,13 @@ def redirect(
                 redirect_url = redirect_url.format_map(defaultdict(str, kwargs))
             redirect_url = strip_tags(redirect_url)
 
-        if query:
+        if request_query:
             if merge_query:
-                req_query = parse_qs(request.META.get("QUERY_STRING", ""))
-                query.update(req_query)
+                _req_qs_query = parse_qs(request.META.get("QUERY_STRING", ""))
+                request_query.update(_req_qs_query)
 
-            querystring = urlencode(query, doseq=True)
-        elif query is None:
+            querystring = urlencode(request_query, doseq=True)
+        elif request_query is None:
             querystring = request.META.get("QUERY_STRING", "")
         else:
             querystring = ""
