@@ -13,7 +13,7 @@ PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
 # matches only ASCII letters (ignoring case), numbers, dashes, periods, and underscores.
 PARAM_VALUES_RE = re.compile(r"[\w.-]+", flags=re.ASCII)
 
-FXC = getattr(settings, "FXC_BASE_URL", "https://www.firefox.com")
+FXC = settings.FXC_BASE_URL + "/{_locale}"  # var is named `_locale`` to avoid clashing with `locale`
 
 PERM_REDIRECTS = settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT
 
@@ -52,16 +52,16 @@ def mobile_app(request, *args, **kwargs):
 # All redirects in this file will get the `redirect_source` query parameter set to `mozilla-org`.
 offsite_redirect = partial(
     redirect,
-    query={"redirect_source": "mozilla-org"},  # additional querystring to addd
+    query={"redirect_source": "mozilla-org"},  # additional querystring to add to every redirection
     merge_query=True,  # ensure we don't lose existing querystrings during redirection
     cache_timeout=3,  # 3 hour timeout, lower than default 12hr
 )
 
 # Issue 16355
 springfield_redirectpatterns = (
-    offsite_redirect(r"^firefox/$", FXC, permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/browsers/$", FXC, permanent=PERM_REDIRECTS),
-    offsite_redirect(r"^firefox/new/$", FXC, permanent=PERM_REDIRECTS),
+    offsite_redirect(r"^firefox/$", f"{FXC}/", permanent=PERM_REDIRECTS),
+    offsite_redirect(r"^firefox/browsers/$", f"{FXC}/", permanent=PERM_REDIRECTS),
+    offsite_redirect(r"^firefox/new/$", f"{FXC}/", permanent=PERM_REDIRECTS),
     # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
     # offsite_redirect(r"^firefox/releasenotes/$", f"{FXC}/firefox/releasenotes/", permanent=PERM_REDIRECTS),
     # offsite_redirect(r"^firefox/system-requirements/$", f"{FXC}/firefox/system-requirements/", permanent=PERM_REDIRECTS),

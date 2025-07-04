@@ -2508,7 +2508,9 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
     SUPPORTED_NONLOCALES.append("silk")
     SILKY_PYTHON_PROFILER = config("SILKY_PYTHON_PROFILER", default="False", parser=bool)
 
-# Config for redirection of certain pages over to www.firefox.com
+# Config for redirection of certain pages over to www.firefox.com - if you override this,
+# be sure NOT to include `locale` - we add that in the redirects as and when needed
+# NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
 
 ENABLE_FIREFOX_COM_REDIRECTS = config(
