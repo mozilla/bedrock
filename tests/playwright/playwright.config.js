@@ -10,7 +10,8 @@ const { defineConfig, devices } = require('@playwright/test');
 
 // Read environment variables from file.
 require('dotenv').config({
-    path: '../../.env'
+    path: '../../.env',
+    quiet: true
 });
 
 // Default desktop viewport size for tests.
