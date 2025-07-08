@@ -167,9 +167,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             case 'org.mozilla.klar':
                 androidProduct = 'klar';
                 break;
-            case 'com.ideashower.readitlater.pro':
-                androidProduct = 'pocket';
-                break;
             case 'org.mozilla.firefox.vpn':
                 androidProduct = 'vpn';
                 break;
@@ -189,8 +186,6 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             iosProduct = 'focus';
         } else if (downloadURL.indexOf('/id1073435754') !== -1) {
             iosProduct = 'klar';
-        } else if (downloadURL.indexOf('/id309601447') !== -1) {
-            iosProduct = 'pocket';
         } else if (downloadURL.indexOf('/id1489407738') !== -1) {
             iosProduct = 'vpn';
         }

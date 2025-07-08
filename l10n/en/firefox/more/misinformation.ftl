@@ -44,9 +44,6 @@ misinformation-social-media-clean-heading = { -brand-name-firefox } helps to kee
 #   $container (url) - link to https://www.mozilla.org/firefox/facebookcontainer/
 misinformation-social-media-clean-desc = Social networks know a lot about you. Plus, they’re able to track you beyond their platforms with their Share and Like buttons despite Tracking Protection — even if you don’t have an account. The <a href="{ $container }">{ -brand-name-facebook-container }</a> for { -brand-name-firefox } makes sure that { -brand-name-facebook } and { -brand-name-instagram } can’t do this so easily, which again reduces the probability of seeing misinformation via ads and promoted content significantly.
 
-# This string is currently shown to en and de locales only since it refers to Pocket recommendations in Firefox.
-misinformation-surface-content-heading = { -brand-name-firefox } helps you surface content that’s worthy of your time:
-
 misinformation-why-trust-firefox = Why trust { -brand-name-firefox }?
 
 # Variables:
