@@ -565,7 +565,6 @@ describe('fxa-attribution.js', function () {
                     <a id="test-expected" class="js-fxa-cta-link" href="https://accounts.firefox.com/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Mozilla account</a>
                     <a id="test-not-accounts" class="js-fxa-cta-link" href="https://www.mozilla.org/?service=sync&amp;action=email&amp;context=fx_desktop_v3&amp;entrypoint=mozilla.org-accounts_page&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Create a Mozilla account</a>
                     <a id="test-second-expected" class="js-fxa-cta-link" href="https://monitor.mozilla.org/oauth/init?form_type=button&amp;entrypoint=mozilla.org-firefox-accounts&amp;utm_content=accounts-page-top-cta&amp;utm_source=accounts-page&amp;utm_medium=referral&amp;utm_campaign=fxa-benefits-page">Sign In to Mozilla Monitor</a>
-                    <a id="test-third-expected" class="js-fxa-cta-link" href="https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral">Activate Pocket</a>
                     <a id="test-subscription" class="js-fxa-product-cta-link" href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&amp;entrypoint=www.mozilla.org-vpn-product-page&amp;form_type=button&amp;service=e6eb0d1e856335fc&amp;utm_source=www.mozilla.org-vpn-product-page&amp;utm_medium=referral&amp;utm_campaign=vpn-product-page&amp;data_cta_position=pricing">Get Mozilla VPN</a>
                 </div>`;
 
@@ -594,10 +593,6 @@ describe('fxa-attribution.js', function () {
                 'test-second-expected'
             );
             const secondExpectedHref = secondExpected.getAttribute('href');
-            const thirdExpected = document.getElementById(
-                'test-third-expected'
-            );
-            const thirdExpectedHref = thirdExpected.getAttribute('href');
             const fourthExpected = document.getElementById('test-subscription');
             const fourthExpectedHref = fourthExpected.getAttribute('href');
 
@@ -606,9 +601,6 @@ describe('fxa-attribution.js', function () {
             );
             expect(secondExpectedHref).toEqual(
                 'https://monitor.mozilla.org/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two'
-            );
-            expect(thirdExpectedHref).toEqual(
-                'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two'
             );
             expect(fourthExpectedHref).toEqual(
                 'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&data_cta_position=pricing&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two'
@@ -672,10 +664,6 @@ describe('fxa-attribution.js', function () {
                 'test-second-expected'
             );
             const secondExpectedHref = secondExpected.getAttribute('href');
-            const thirdExpected = document.getElementById(
-                'test-third-expected'
-            );
-            const thirdExpectedHref = thirdExpected.getAttribute('href');
             const fourthExpected = document.getElementById('test-subscription');
             const fourthExpectedHref = fourthExpected.getAttribute('href');
 
@@ -687,9 +675,6 @@ describe('fxa-attribution.js', function () {
             );
             expect(secondExpectedHref).toEqual(
                 'https://monitor.mozilla.org/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_content=accounts-page-top-cta&utm_source=accounts-page&utm_medium=referral&utm_campaign=fxa-benefits-page&device_id=10646c078bb9484585971c1451fc2ab2&flow_id=2f8d4301abb8b864ff76ee9058e5cdc1e727fe286ad6ea47a698fd430c4d3222&flow_begin_time=1683735311599&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
-            );
-            expect(thirdExpectedHref).toEqual(
-                'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=mozilla.org-firefox-welcome-2&utm_campaign=welcome-2-pocket&utm_medium=referral&device_id=10646c078bb9484585971c1451fc2ab2&flow_id=2f8d4301abb8b864ff76ee9058e5cdc1e727fe286ad6ea47a698fd430c4d3222&flow_begin_time=1683735311599&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
             );
             expect(fourthExpectedHref).toEqual(
                 'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=pricing&device_id=10646c078bb9484585971c1451fc2ab2&flow_id=2f8d4301abb8b864ff76ee9058e5cdc1e727fe286ad6ea47a698fd430c4d3222&flow_begin_time=1683735311599&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
@@ -724,10 +709,6 @@ describe('fxa-attribution.js', function () {
                 'test-second-expected'
             );
             const secondExpectedHref = secondExpected.getAttribute('href');
-            const thirdExpected = document.getElementById(
-                'test-third-expected'
-            );
-            const thirdExpectedHref = thirdExpected.getAttribute('href');
             const fourthExpected = document.getElementById('test-subscription');
             const fourthExpectedHref = fourthExpected.getAttribute('href');
 
@@ -739,9 +720,6 @@ describe('fxa-attribution.js', function () {
             );
             expect(secondExpectedHref).toEqual(
                 'https://monitor.mozilla.org/oauth/init?form_type=button&entrypoint=mozilla.org-firefox-accounts&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
-            );
-            expect(thirdExpectedHref).toEqual(
-                'https://getpocket.com/ff_signup?s=ffwelcome2&form_type=button&entrypoint=mozilla.org-firefox-welcome-2&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
             );
             expect(fourthExpectedHref).toEqual(
                 'https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&data_cta_position=pricing&utm_source=source-two&utm_campaign=campaign-two&utm_content=content-two&utm_term=term-two&utm_medium=medium-two&entrypoint_experiment=test-experiment&entrypoint_variation=test-variation'
