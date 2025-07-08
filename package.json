@@ -37,19 +37,19 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "dotenv-webpack": "^8.1.0",
+    "concurrently": "^9.2.0",
+    "dotenv-webpack": "^8.1.1",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
-    "globals": "^16.2.0",
+    "globals": "^16.3.0",
     "jasmine-browser-runner": "^3.0.0",
-    "jasmine-core": "^5.7.1",
+    "jasmine-core": "^5.8.0",
     "prettier": "^3.3.3",
     "sinon": "^21.0.0",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "svgo": "^4.0.0",
-    "webpack-dev-server": "^5.2.1"
+    "webpack-dev-server": "^5.2.2"
   },
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
