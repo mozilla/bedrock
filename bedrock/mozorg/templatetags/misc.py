@@ -645,28 +645,6 @@ def _fxa_product_button(
 
 @library.global_function
 @jinja2.pass_context
-def pocket_fxa_button(
-    ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
-):
-    """
-    Render a getpocket.com link with required params for Mozilla account authentication.
-
-    Examples
-    ========
-
-    In Template
-    -----------
-
-        {{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now') }}
-    """
-    product_url = "https://getpocket.com/ff_signup"
-    return _fxa_product_button(
-        product_url, entrypoint, button_text, class_name, is_button_class, include_metrics, optional_parameters, optional_attributes
-    )
-
-
-@library.global_function
-@jinja2.pass_context
 def monitor_fxa_button(
     ctx, entrypoint, button_text, class_name=None, is_button_class=True, include_metrics=True, optional_parameters=None, optional_attributes=None
 ):

@@ -23,7 +23,6 @@ CO01:
     - Firefox
     - MDN
     - Mozilla
-    - Pocket
     - "{ -brand-name-mozilla } account"
   exclusions:
     files: []

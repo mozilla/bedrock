@@ -609,7 +609,9 @@ bedrock_redirectpatterns = (
     # bug 1428783
     redirect(r"^firefox/dnt/?$", "https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature"),
     # issue 6209
-    redirect(r"^pocket/?", "/firefox/pocket/"),
+    redirect(r"^pocket/?", "https://getpocket.com/"),
+    # issue 16358
+    redirect(r"^firefox/pocket/?", "https://getpocket.com/"),
     # issue 6186
     redirect(r"^vote/?", "/firefox/election/"),
     # issue 9391

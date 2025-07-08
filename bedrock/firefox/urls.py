@@ -143,7 +143,6 @@ urlpatterns = (
     path("firefox/releases/", bedrock.releasenotes.views.releases_index, {"product": "Firefox"}, name="firefox.releases.index"),
     path("firefox/stub_attribution_code/", views.stub_attribution_code, name="firefox.stub_attribution_code"),
     path("firefox/welcome/1/", views.firefox_welcome_page1, name="firefox.welcome.page1"),
-    page("firefox/welcome/2/", "firefox/welcome/page2.html", ftl_files=["firefox/welcome/page2"]),
     page("firefox/welcome/4/", "firefox/welcome/page4.html", ftl_files=["firefox/welcome/page4"]),
     page("firefox/welcome/6/", "firefox/welcome/page6.html", ftl_files=["firefox/welcome/page6"]),
     page("firefox/welcome/7/", "firefox/welcome/page7.html", ftl_files=["firefox/welcome/page7"]),
@@ -187,7 +186,6 @@ urlpatterns = (
     page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
     page("firefox/welcome/25/", "firefox/welcome/page25.html", active_locales=["en-US", "fr", "de"]),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
-    page("firefox/pocket/", "firefox/pocket.html"),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
     page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
     # Issue 6604, SEO firefox/new pages

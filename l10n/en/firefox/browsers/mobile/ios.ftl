@@ -40,7 +40,11 @@ mobile-ios-find-it-all = Find it all faster
 mobile-ios-get-search-suggestions = Get search suggestions in the search bar and quickly access the sites you visit most. Type in your search question, and get suggested and previously searched results across your favorite search engines.
 
 mobile-ios-discover-more-of = Discover more of what you love
+# Obsolete string (expires 26-10-2025)
 mobile-ios-open-a-new = Open a new tab in { -brand-name-firefox } to see the sites you visit most, your recent bookmarks and popular articles in { -brand-name-pocket }. { -brand-name-firefox } gives you quick access to your most recently used sites to help you get where you’re going faster.
+mobile-ios-open-a-new-v2 = Open a new tab in { -brand-name-firefox } to see the sites you visit most and your recent bookmarks. { -brand-name-firefox } gives you quick access to your most recently used sites to help you get where you’re going faster.
 
 mobile-ios-about-mozilla = About { -brand-name-mozilla }
+# Obsolete string (expires 26-10-2025)
 mobile-ios-mozilla-exists-to = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } and { -brand-name-pocket } to promote choice, transparency and control.
+mobile-ios-mozilla-exists-to-v2 = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } to promote choice, transparency and control.
