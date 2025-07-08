@@ -135,18 +135,6 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['product']).toBe('firefox_mobile');
     });
-    it('should identify product for Pocket in the App Store', function () {
-        const testEvent = TrackProductDownload.getEventFromUrl(
-            'https://itunes.apple.com/{country}/app/pocket-save-read-grow/id309601447'
-        );
-        expect(testEvent['product']).toBe('pocket');
-    });
-    it('should identify product for Pocket in the Play Store', function () {
-        const testEvent = TrackProductDownload.getEventFromUrl(
-            'https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro'
-        );
-        expect(testEvent['product']).toBe('pocket');
-    });
     it('should identify product for Focus in the App Store', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://itunes.apple.com/{country}/app/firefox-focus-privacy-browser/id1055677337'

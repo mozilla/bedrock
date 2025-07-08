@@ -116,31 +116,19 @@ Use the `monitor_fxa_button` helper to link to <https://monitor.mozilla.org/> vi
 
 For more information on the available parameters, read the "Common Parameters" section further below.
 
-## Pocket links
-
-Use the `pocket_fxa_button` helper to link to <https://getpocket.com/> via a Mozilla accounts auth flow.
-
-### Usage
-
-``` jinja
-{{ pocket_fxa_button(entrypoint='mozilla.org-firefox-pocket', button_text='Try Pocket Now', optional_parameters={'s': 'ffpocket'}) }}
-```
-
-For more information on the available parameters, read the "Common Parameters" section below.
-
 ## Common Parameters
 
-The `fxa_button`, `pocket_fxa_button`, and `monitor_fxa_button` helpers all support the same standard parameters:
+The `fxa_button` and `monitor_fxa_button` helpers all support the same standard parameters:
 
 | Parameter name      | Definition                                                                                                                                               | Format                            | Example                                                                                                   |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| entrypoint*        | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.                                       | 'mozilla.org-firefox-pocket'    | 'mozilla.org-firefox-pocket'                                                                            |
-| button_text*       | The button copy to be used in the call to action.                                                                                                        | Localizable string                | 'Try Pocket Now'                                                                                        |
-| class_name          | A class name to be applied to the link (typically for styling with CSS).                                                                                 | String of one or more class names | 'pocket-main-cta-button'                                                                                |
+| entrypoint*        | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.                                       | 'mozilla.org-firefox-monitor'    | 'mozilla.org-firefox-monitor'                                                                            |
+| button_text*       | The button copy to be used in the call to action.                                                                                                        | Localizable string                | 'Try Monitor Now'                                                                                        |
+| class_name          | A class name to be applied to the link (typically for styling with CSS).                                                                                 | String of one or more class names | 'monitor-main-cta-button'                                                                                |
 | is_button_class     | A boolean value that dictates if the `CTA (Call To Action)`{.interpreted-text role="abbr"} should be styled as a button or a link. Defaults to 'True'. | Boolean                           | True or False                                                                                             |
 | include_metrics     | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.                                            | Boolean                           | True or False                                                                                             |
-| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href.                                                                | Dictionary                        | {'s': 'ffpocket'}                                                                                     |
-| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button.                                                         | Dictionary                        | {'data-cta-text': 'Try Pocket Now', 'data-cta-type': 'pocket','data-cta-position': 'primary'} |
+| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href.                                                                | Dictionary                        | {'s': 'ffmonitor'}                                                                                     |
+| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button.                                                         | Dictionary                        | {'data-cta-text': 'Try Monitor Now', 'data-cta-type': 'monitor','data-cta-position': 'primary'} |
 
 !!! note
     The `fxa_button` helper also supports an additional `action` parameter, which accepts the values `signup`, `signin`, and `email` for configuring the type of authentication flow.

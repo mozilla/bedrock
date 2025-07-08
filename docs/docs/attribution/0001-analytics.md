@@ -73,7 +73,7 @@ The attribute `data-cta-text` must be present to trigger the event. All links to
 |                     | -   Defining this is useful to group the link clicks across locales                                                                                                                                                                |
 |                     | -   -   this attribute is required                                                                                                                                                                                                 |
 | `data-cta-position` | Location of CTA on the page (e.g. `primary`, `secondary`, `banner`, `pricing`)                                                                                                                                                     |
-| `data-cta-type`     | fxa-servicename (e.g. `fxa-sync`, `fxa-monitor`, `fxa-vpn`, `monitor`, `relay`, `pocket`)                                                                                                                                          |
+| `data-cta-type`     | fxa-servicename (e.g. `fxa-sync`, `fxa-monitor`, `fxa-vpn`, `monitor`, `relay`)                                                                                                                                          |
 |                     |                                                                                                                                                                                                                                    |
 |                     | -   This is to group CTAs by their destination                                                                                                                                                                                     |
 |                     | -   Do not use this to identify the element (ie. link, button)                                                                                                                                                                     |
@@ -230,7 +230,7 @@ window.dataLayer.push({
 ##### Product Downloads
 
 !!! important
-    VPN support has not been added. Firefox, Firefox Mobile, Focus, Klar, and Pocket are currently supported.
+    VPN support has not been added. Firefox, Firefox Mobile, Focus, and Klar are currently supported.
 
 When the user signals their intent do install one of our products we log a download event named for the product. This intent could be: clicking an app store badge, triggering a file download, or sending themselves the link using the send to device widget. The events are in the format [product name]_download and all function the same. So they use the same JavaScript "TrackProductDownload". For this documentation the following custom events will be talked about as ``product_download`` :
 
@@ -238,11 +238,10 @@ When the user signals their intent do install one of our products we log a downl
 -   ``firefox_mobile_download``
 -   ``focus_download``
 -   ``klar_download``
--   ``pocket_download``
 
 Properties for use with ``product_download`` (not all products will have all options):
 
--   product (one of: firefox, firefox_mobile, focus, klar, pocket, vpn)
+-   product (one of: firefox, firefox_mobile, focus, klar, vpn)
 -   platform **optional** (one of: win, win-msi, win64, win64-msi, win64-aarch64, macos, linux, linux64, android, ios)
 -   method (one of: site, store, or adjust)
 -   release_channel **optional** (one of: release, esr, devedition, beta, nightly)
