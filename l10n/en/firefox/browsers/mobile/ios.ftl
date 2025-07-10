@@ -47,4 +47,4 @@ mobile-ios-open-a-new-v2 = Open a new tab in { -brand-name-firefox } to see the 
 mobile-ios-about-mozilla = About { -brand-name-mozilla }
 # Obsolete string (expires 26-10-2025)
 mobile-ios-mozilla-exists-to = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } and { -brand-name-pocket } to promote choice, transparency and control.
-mobile-ios-mozilla-exists-to-v2 = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } to promote choice, transparency and control.
+mobile-ios-mozilla-exists-to-v2 = { -brand-name-mozilla } exists to build the internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } to promote choice, transparency and control.
