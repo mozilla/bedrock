@@ -47,7 +47,7 @@ mobile-android-pop-videos-out = Pop videos out of their websites or players and 
 mobile-android-about-mozilla = About { -brand-name-mozilla }
 # Obsolete string (expires 26-10-2025)
 mobile-android-mozilla-exists-to = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } and { -brand-name-pocket } to promote choice, transparency and control.
-mobile-android-mozilla-exists-to-v2 = { -brand-name-mozilla } exists to build the Internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } to promote choice, transparency and control.
+mobile-android-mozilla-exists-to-v2 = { -brand-name-mozilla } exists to build the internet as a public resource accessible to all because we believe open and free is better than closed and controlled. We build products like { -brand-name-firefox } to promote choice, transparency and control.
 
 # 'Shortcut' is US slang, means a quicker way of doing or acheiving something. Being used here as a verb to mean "Take a shortcut..." Alternative is 'Get there faster with Firefox for Android'
 mobile-android-short-cut-the-internet = Shortcut the internet with { -brand-name-firefox } for { -brand-name-android }
