@@ -19,6 +19,11 @@
 {# header_class is applied to the page header as an additional style hook if needed #}
 {% set header_class = header_class|default('') %}
 
+{# We want to denote www.firefox.com as the canonical source of release notes #}
+{% block canonical_urls %}
+    {{ firefox_com_canonical_tag() }}
+{% endblock %}
+
 {# theme_class is applied to the body as an additional style hook if needed #}
 {% set theme_class = '' %}
 {% set ver = release.major_version_int %}
