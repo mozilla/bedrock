@@ -571,7 +571,7 @@ def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
     # tests in this suite, where they DID include extra querystrings, which should
     # NOT appear in the responses for this test. We also include dupes here
     resp = client.get(path, secure=True)
-    assert resp.status_code == 302
+    assert resp.status_code == EXPECTED_FIREFOX_COM_REDIRECT_CODE
     assert resp.headers["Location"] == expected_dest
 
 
@@ -593,5 +593,5 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
     # find we have some redirects that don't have a locale when they send the
     # user to www.firefox.com
     resp = client.get(path, secure=True)
-    assert resp.status_code == 302
+    assert resp.status_code == EXPECTED_FIREFOX_COM_REDIRECT_CODE
     assert resp.headers["Location"] == expected_dest
