@@ -230,7 +230,7 @@ def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redire
 
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
         resp = releases_index(request, product="Firefox")
-        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/releases/">' in str(resp.content)
+        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/releases/">' in str(resp.content)
         assert _link_is_in_content == enable_redirects
 
     release_cache.clear()
