@@ -184,7 +184,6 @@ def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_
     assert ver == "24.5.0"  # safety check that the data hasn't moved
 
     request = rf.get("/en-US/firefox/24.5.0/releasenotes/")
-    request.META["wsgi.url_scheme"] = "https"
 
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
         resp = release_notes(request, version="24.5.0")
@@ -207,7 +206,6 @@ def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_c
     assert ver == "24.5.0"  # safety check that the data hasn't moved
 
     request = rf.get("/en-US/firefox/24.5.0/system-requirements/")
-    request.META["wsgi.url_scheme"] = "https"
 
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
         resp = system_requirements(request, version="24.5.0")
@@ -226,7 +224,6 @@ def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redire
         release_cache.clear()
 
     request = rf.get("/en-US/firefox/releases/")
-    request.META["wsgi.url_scheme"] = "https"
 
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
         resp = releases_index(request, product="Firefox")

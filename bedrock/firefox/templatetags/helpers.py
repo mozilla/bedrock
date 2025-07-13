@@ -411,12 +411,12 @@ def send_to_device(
 
 @library.global_function
 @jinja2.pass_context
-def firefox_com_canonical_tag(ctx, dest_path=None, domain="www.firefox.com"):
+def firefox_com_canonical_tag(ctx, dest_path=None, domain=settings.FXC_BASE_URL):
     """Create a <rel='canonical'...> link based on the URL of the current page, but swapping the
     hostname for firefox.com (by default).
 
     By default uses the same path as the current URL
-    By default targets www.firefox.com as the target domain
+    By default targets FXC_BASE_URL (firefox.com) as the target domain
 
     Examples
     ========
@@ -426,8 +426,8 @@ def firefox_com_canonical_tag(ctx, dest_path=None, domain="www.firefox.com"):
 
         {{ firefox_com_canonical_tag() }}
         {{ firefox_com_canonical_tag(dest_path="/some/alernative/path") }}
-        {{ firefox_com_canonical_tag(dest_path="/some/alernative/path", domain="some-alternate-subdomain.firefox.com") }}
-        {{ firefox_com_canonical_tag(domain="some-alternate-subdomain.firefox.com") }}
+        {{ firefox_com_canonical_tag(dest_path="/some/alernative/path", domain="https://getfirefox.de") }}
+        {{ firefox_com_canonical_tag(domain="https://some-subdomain.firefox.com") }}
 
     """
     if settings.ENABLE_FIREFOX_COM_REDIRECTS is False:
@@ -437,8 +437,6 @@ def firefox_com_canonical_tag(ctx, dest_path=None, domain="www.firefox.com"):
 
     _path = request.path if not dest_path else dest_path
 
-    dest = f"{request.scheme}://{domain}{_path}"
-
-    html = f'<link rel="canonical" href="{dest}">'
+    html = f'<link rel="canonical" href="{domain}{_path}">'
 
     return Markup(html)

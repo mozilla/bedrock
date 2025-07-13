@@ -604,45 +604,40 @@ def test_send_to_device_form(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "fake_request_path, override_path, domain, assume_https, redirects_enabled, expected_result",
+    "fake_request_path, override_path, domain, redirects_enabled, expected_result",
     (
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
             "",
             True,
-            True,
             '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
-            "",
-            False,  # http not https, just for the code path
+            "ftp://getfirefox.de",
             True,
-            '<link rel="canonical" href="http://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
+            '<link rel="canonical" href="ftp://getfirefox.de/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "/some/other/path/",
             "",
-            True,
             True,
             '<link rel="canonical" href="https://www.firefox.com/some/other/path/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
-            "www.example.com",
-            True,
+            "https://www.example.com",
             True,
             '<link rel="canonical" href="https://www.example.com/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "/some/other/path/",
-            "www.example.com",
-            True,
+            "https://www.example.com",
             True,
             '<link rel="canonical" href="https://www.example.com/some/other/path/">',
         ),
@@ -650,7 +645,6 @@ def test_send_to_device_form(test_input, expected):
             "/en-US/firefox/140.0/releasenotes/",
             "",
             "",
-            True,
             False,  # redirects not enabled
             "",
         ),
@@ -661,13 +655,11 @@ def test_firefox_com_canonical_tag(
     fake_request_path,
     override_path,
     domain,
-    assume_https,
     redirects_enabled,
     expected_result,
 ):
     def _render(dest_path, domain):
         req = rf.get(fake_request_path)
-        req.META["wsgi.url_scheme"] = "https" if assume_https else "http"
 
         if dest_path and domain:
             tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}', domain='{domain}') }}}}"
