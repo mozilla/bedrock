@@ -44,14 +44,7 @@ $image-path: '/media/protocol/img';
 
 // Honeypot field styling - hide from users but keep accessible to bots
 .super-priority-field {
-    position: absolute !important;
-    left: -9999px !important;
-    top: -9999px !important;
-    width: 1px !important;
-    height: 1px !important;
-    overflow: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    @include visually-hidden;
 
     // Hide from screen readers
     label {
