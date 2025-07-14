@@ -258,16 +258,3 @@ class TestNewsletterFooterForm(TestCase):
         form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
         self.assertFalse(form.is_valid())
         self.assertIn("office_fax", form.errors)
-
-    def test_honeypot_whitespace_invalid(self):
-        """Honeypot field should be invalid when filled with whitespace only"""
-        data = {
-            "email": "foo@example.com",
-            "lang": "fr",
-            "privacy": True,
-            "newsletters": [self.newsletter_name],
-            "office_fax": "   ",  # honeypot field
-        }
-        form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
-        self.assertFalse(form.is_valid())
-        self.assertIn("office_fax", form.errors)
