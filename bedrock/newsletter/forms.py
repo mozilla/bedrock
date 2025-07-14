@@ -254,15 +254,9 @@ class NewsletterFooterForm(forms.Form):
         return su
 
     def clean_office_fax(self):
-        # Check raw data to catch any value, including whitespace-only
-        office_fax = self.data.get("office_fax", "")
-        if office_fax:
-            import logging
-
-            logger = logging.getLogger("b.newsletter")
-            logger.warning(f'Honeypot field filled with value: "{office_fax}"')
-            raise forms.ValidationError("Invalid submission")
-        return ""
+        honeypot = self.cleaned_data.pop("office_fax", None)
+        if honeypot:
+            raise forms.ValidationError("Your submission could not be processed")
 
 
 class EmailForm(forms.Form):
