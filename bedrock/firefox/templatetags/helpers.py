@@ -407,3 +407,36 @@ def send_to_device(
 
     html = render_to_string("firefox/includes/send-to-device.html", context, request=request)
     return Markup(html)
+
+
+@library.global_function
+@jinja2.pass_context
+def firefox_com_canonical_tag(ctx, dest_path=None, root_url=settings.FXC_BASE_URL):
+    """Create a <rel='canonical'...> link based on the URL of the current page, but swapping the
+    hostname for firefox.com (by default).
+
+    By default uses the same path as the current URL
+    By default targets FXC_BASE_URL (firefox.com) as the target root_url
+
+    Examples
+    ========
+
+    In Template
+    -----------
+
+        {{ firefox_com_canonical_tag() }}
+        {{ firefox_com_canonical_tag(dest_path="/some/alernative/path") }}
+        {{ firefox_com_canonical_tag(dest_path="/some/alernative/path", root_url="https://getfirefox.de") }}
+        {{ firefox_com_canonical_tag(root_url="https://some-subdomain.firefox.com") }}
+
+    """
+    if settings.ENABLE_FIREFOX_COM_REDIRECTS is False:
+        return ""
+
+    request = ctx["request"]
+
+    _path = request.path if not dest_path else dest_path
+
+    html = f'<link rel="canonical" href="{root_url}{_path}">'
+
+    return Markup(html)

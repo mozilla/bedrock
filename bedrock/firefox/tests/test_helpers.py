@@ -601,3 +601,75 @@ def test_send_to_device_form(test_input, expected):
 
     newsletter_id = doc("input[name='newsletters']").val()
     assert newsletter_id == expected["newsletter_id"]
+
+
+@pytest.mark.parametrize(
+    "fake_request_path, override_path, root_url, redirects_enabled, expected_result",
+    (
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "",
+            True,
+            '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "ftp://getfirefox.de",
+            True,
+            '<link rel="canonical" href="ftp://getfirefox.de/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "/some/other/path/",
+            "",
+            True,
+            '<link rel="canonical" href="https://www.firefox.com/some/other/path/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "https://www.example.com",
+            True,
+            '<link rel="canonical" href="https://www.example.com/en-US/firefox/140.0/releasenotes/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "/some/other/path/",
+            "https://www.example.com",
+            True,
+            '<link rel="canonical" href="https://www.example.com/some/other/path/">',
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/",
+            "",
+            "",
+            False,  # redirects not enabled
+            "",
+        ),
+    ),
+)
+def test_firefox_com_canonical_tag(
+    rf,
+    fake_request_path,
+    override_path,
+    root_url,
+    redirects_enabled,
+    expected_result,
+):
+    def _render(dest_path, root_url):
+        req = rf.get(fake_request_path)
+
+        if dest_path and root_url:
+            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}', root_url='{root_url}') }}}}"
+        elif dest_path:
+            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}') }}}}"
+        elif root_url:
+            tmpl = f"{{{{ firefox_com_canonical_tag(root_url='{root_url}') }}}}"
+        else:
+            tmpl = "{{ firefox_com_canonical_tag() }}"
+        return render(tmpl, {"request": req})
+
+    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=redirects_enabled):
+        assert _render(override_path, root_url) == expected_result

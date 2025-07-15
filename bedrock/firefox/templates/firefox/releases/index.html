@@ -20,6 +20,11 @@
 
 {% block body_class %}{{ super() }} mzp-t-firefox{% endblock %}
 
+{# We want to denote www.firefox.com as the canonical source of releases #}
+{% block canonical_urls %}
+    {{ firefox_com_canonical_tag(dest_path="/en-US/releases/") }}
+{% endblock %}
+
 {% block content %}
   <main id="main-content" class="mzp-l-content">
     <a href="{{ url('firefox.new') }}">
