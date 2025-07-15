@@ -8,13 +8,10 @@ browser during installation if the stub attribution code includes the campaign v
 Using stub attribution this way means it cannot be used for acquisition data, though it will still include
 the analytics session IDs if they are present.
 
-At the moment (2025-06-10) if the switch `download_as_default` is enabled a checkbox should
+At the moment (2025-07-14) if the switch `download_as_default` is enabled a checkbox should
 appear for users who match the following criteria:
 
 - their device supports stub attribution
-- they are not in the EU/EAA
-- they have not explicitly declined cookies
-- they have not enabled GCP or DNT
 - their device supports Firefox
 - their device is running a version of Windows higher than 8.1
 
@@ -22,10 +19,8 @@ If they match the criteria a script will:
 
 - reveal the checkboxes
 - strip utm parameters from the URL
-- update the URL to include the `SET_DEFAULT_BROWSER` campaign parameter
-- refresh stub attribution to reflect the updated url
+- update the URL to only include the `SET_DEFAULT_BROWSER` campaign parameter
+- check the users's consent status to see if we should `omitNonEssentialFields` when initializing stubAttribution
+- initialize stub attribution to reflect the updated url
 
-Unchecking the checkbox will not revert to the previous value of the stub attribution code.
-
-Note that it is permitted by EU/EAA law to send the campaign parameter in response to an explicit
-user action so we may enable this for `needs_data_consent` countries in the future.
+Unchecking the checkbox will *not* revert to the previous value of the stub attribution code.
