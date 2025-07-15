@@ -604,7 +604,7 @@ def test_send_to_device_form(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "fake_request_path, override_path, domain, redirects_enabled, expected_result",
+    "fake_request_path, override_path, root_url, redirects_enabled, expected_result",
     (
         (
             "/en-US/firefox/140.0/releasenotes/",
@@ -654,22 +654,22 @@ def test_firefox_com_canonical_tag(
     rf,
     fake_request_path,
     override_path,
-    domain,
+    root_url,
     redirects_enabled,
     expected_result,
 ):
-    def _render(dest_path, domain):
+    def _render(dest_path, root_url):
         req = rf.get(fake_request_path)
 
-        if dest_path and domain:
-            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}', domain='{domain}') }}}}"
+        if dest_path and root_url:
+            tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}', root_url='{root_url}') }}}}"
         elif dest_path:
             tmpl = f"{{{{ firefox_com_canonical_tag(dest_path='{dest_path}') }}}}"
-        elif domain:
-            tmpl = f"{{{{ firefox_com_canonical_tag(domain='{domain}') }}}}"
+        elif root_url:
+            tmpl = f"{{{{ firefox_com_canonical_tag(root_url='{root_url}') }}}}"
         else:
             tmpl = "{{ firefox_com_canonical_tag() }}"
         return render(tmpl, {"request": req})
 
     with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=redirects_enabled):
-        assert _render(override_path, domain) == expected_result
+        assert _render(override_path, root_url) == expected_result
