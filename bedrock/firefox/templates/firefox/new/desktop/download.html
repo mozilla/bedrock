@@ -99,7 +99,7 @@
       <div class="c-block-body">
         <h1 class="mzp-c-wordmark mzp-t-wordmark-md mzp-t-product-firefox">{{ ftl('firefox-desktop-download-firefox') }}</h1>
           <h2 class="mzp-has-zap-7">{{ ftl('firefox-desktop-download-get-the-browser') }}</h2>
-          <p>{{ ftl('firefox-desktop-download-fast-reliable-private', fallback='firefox-desktop-download-no-shady') }}</p>
+          <p>{{ ftl('firefox-desktop-download-fast-reliable-private') }}</p>
         <div class="c-intro-download">
           {% block primary_cta %}
             {{ default_browser_checkbox(id='default-browser-checkbox-primary') }}
@@ -249,7 +249,7 @@
 {% endif %}
 
   <section class="t-highlights">
-    <h2 class="mzp-c-section-heading mzp-has-zap-11">{{ ftl('firefox-desktop-download-do-what-you-do-v2', fallback='firefox-desktop-download-do-what-you-do') }}</h2>
+    <h2 class="mzp-c-section-heading mzp-has-zap-11">{{ ftl('firefox-desktop-download-do-what-you-do-v2') }}</h2>
 
     <div class="t-block c-block l-reversed">
       <div class="c-block-container">
@@ -513,7 +513,7 @@
         ) }}
         <h3 class="mzp-u-title-xs">{{ ftl('firefox-desktop-download-your-privacy-comes') }}</h3>
         {% set internet_attrs = 'href="%s" data-cta-text="Personal Data Promise"'|safe|format(url('privacy')) %}
-        <p>{{ ftl('firefox-desktop-download-as-the-internet-v2', fallback='firefox-desktop-download-as-the-internet', attrs=internet_attrs) }}</p>
+        <p>{{ ftl('firefox-desktop-download-as-the-internet-v2', attrs=internet_attrs) }}</p>
       </div>
     </div>
   </section>

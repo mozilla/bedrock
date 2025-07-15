@@ -26,17 +26,11 @@ firefox-desktop-download-fast-reliable-private = Fast, reliable and private — 
 
 firefox-desktop-set-as-default = Set { -brand-name-firefox } as your default browser.
 
-# Obsolete string (expires: 2025-04-17)
-firefox-desktop-download-no-shady = No shady privacy policies or back doors for advertisers. Just a lightning fast browser that doesn’t sell you out.
-
 firefox-desktop-download-download-options = Download options and other languages
 firefox-desktop-download-browser-support = { -brand-name-firefox-browser } support
 
 # The strong tag wraps a word that gets highlighted with a colorful underline for emphasis. The underline breaks if it is on two words, please omit the strong tags if they need to be around multiple words in your language
 firefox-desktop-download-do-what-you-do-v2 = Do what you do online.<br> { -brand-name-firefox-browser } has got you <strong>covered</strong>.
-
-# Obsolete string (expires: 2025-04-17)
-firefox-desktop-download-do-what-you-do = Do what you do online.<br> { -brand-name-firefox-browser } <strong>isn’t</strong> watching.
 
 firefox-desktop-download-we-block-the-ad = We block the ad trackers. You explore the internet faster.
 firefox-desktop-download-ads-are-distracting = Ads are distracting and make web pages load slower while their trackers watch every move you make online. The { -brand-name-firefox-browser } blocks most trackers automatically, so there’s no need to dig into your security settings.
@@ -129,11 +123,6 @@ firefox-desktop-download-firefox-was-created = { -brand-name-firefox } was creat
 # Variables:
 #   $attrs (attrs) - link to https://www.mozilla.org/privacy/firefox/
 firefox-desktop-download-as-the-internet-v2 = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy — that’s always been our thing. Learn more about our data practices in our <a { $attrs }>Privacy Notice</a>.
-
-# Obsolete string (expires: 2025-04-17)
-# Variables:
-#   $attrs (attrs) - link to https://www.mozilla.org/firefox/privacy/
-firefox-desktop-download-as-the-internet = As the internet grows and changes, { -brand-name-firefox } continues to focus on your right to privacy  — we call it the <a { $attrs }>Personal Data Promise</a>: Take less. Keep it safe. No secrets. Your data, your web activity, your life online is protected with { -brand-name-firefox }.
 
 # Variables:
 #   $attrs (attrs) - link to https://accounts.firefox.com/signin

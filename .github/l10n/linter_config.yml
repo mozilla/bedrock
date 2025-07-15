@@ -26,5 +26,4 @@ CO01:
     - "{ -brand-name-mozilla } account"
   exclusions:
     files: []
-    messages:
-      - footer-refresh-mdn
+    messages: []
