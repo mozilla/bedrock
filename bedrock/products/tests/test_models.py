@@ -2,11 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
 from datetime import timedelta
 
+from django.urls import reverse
 from django.utils.timezone import now as utc_now
 
 import pytest
+import wagtail_factories
 from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa
@@ -147,10 +150,17 @@ def test_monitor_article_index_page(minimal_site, rf, serving_method):  # noqa
     assert "Test Call To Action Bottom Heading" in page_content
 
 
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
+@pytest.fixture
+def monitor_article_index_page(minimal_site):  # noqa
     root_page = minimal_site.root_page
 
+    return factories.MonitorArticleIndexPageFactory(
+        parent=root_page,
+    )
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_monitor_article_page(minimal_site, monitor_article_index_page, rf, serving_method):  # noqa
     call_to_action_middle = factories.MonitorCallToActionSnippetFactory(
         split_heading="Test Call To Action Middle Heading",
     )
@@ -161,12 +171,8 @@ def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
     )
     call_to_action_bottom.save()
 
-    test_index_page = factories.MonitorArticleIndexPageFactory(
-        parent=root_page,
-    )
-
     test_article_page = factories.MonitorArticlePageFactory(
-        parent=test_index_page,
+        parent=monitor_article_index_page,
         slug="test-article-1",
         subheading="Test Monitor Article Page Subheading",
         summary="Test Monitor Article Page Summary",
@@ -175,7 +181,7 @@ def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
         call_to_action_bottom=call_to_action_bottom,
     )
 
-    test_index_page.save()
+    monitor_article_index_page.save()
     test_article_page.save()
 
     _relative_url = test_article_page.relative_url(minimal_site)
@@ -190,3 +196,59 @@ def test_monitor_article_page(minimal_site, rf, serving_method):  # noqa
     assert "Test Call To Action Middle Heading" in page_content
     assert "Test Article Page Content" in page_content
     assert "Test Call To Action Bottom Heading" in page_content
+
+
+def test_monitor_article_page_form(monitor_article_index_page, client, admin_user):
+    client.force_login(admin_user)
+    url = reverse(
+        "wagtailadmin_pages:add",
+        kwargs={
+            "content_type_app_name": "products",
+            "content_type_model_name": "monitorarticlepage",
+            "parent_page_id": monitor_article_index_page.id,
+        },
+    )
+
+    icon = wagtail_factories.ImageChooserBlockFactory()
+
+    response = client.post(
+        url,
+        data={
+            "action-publish": "action-publish",  # Make sure we publish the page
+            "title": "Test Monitor Article Page",
+            "slug": "test-monitor-article-page",
+            "subheading": "Test Subheading",
+            "summary": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Summary</p>"}]}),
+            "content": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Content</p>"}]}),
+            "icon": icon.id,
+        },
+    )
+    assert response.status_code == 200
+    assert response.context_data.get("form")
+    assert not response.context_data["form"].is_valid()
+    assert "search_description" in response.context_data["form"].errors
+
+    response = client.post(
+        url,
+        data={
+            "action-publish": "action-publish",  # Make sure we publish the page
+            "title": "Test Monitor Article Page",
+            "slug": "test-monitor-article-page",
+            "subheading": "Test Subheading",
+            "summary": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Summary</p>"}]}),
+            "content": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Content</p>"}]}),
+            "icon": icon.id,
+            "search_description": "Test Search Description",
+        },
+    )
+    assert response.status_code == 302
+    assert response.url == reverse(
+        "wagtailadmin_explore",
+        kwargs={
+            "parent_page_id": monitor_article_index_page.id,
+        },
+    )
+    monitor_article_index_page.refresh_from_db()
+    assert monitor_article_index_page.get_children().count() == 1
+    article_page = monitor_article_index_page.get_children().first()
+    assert article_page.title == "Test Monitor Article Page"

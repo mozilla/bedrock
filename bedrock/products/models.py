@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.text import slugify
 
 from bs4 import BeautifulSoup
+from wagtail.admin.forms import WagtailAdminPageForm
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, HelpPanel, MultiFieldPanel
 from wagtail.fields import RichTextField
 from wagtail.models import TranslatableMixin
@@ -270,7 +271,15 @@ class MonitorArticleIndexPage(AbstractBedrockCMSPage):
         return context
 
 
+class MonitorArticleForm(WagtailAdminPageForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["search_description"].required = True
+
+
 class MonitorArticlePage(AbstractBedrockCMSPage):
+    base_form_class = MonitorArticleForm
+
     # promote panels
     icon = models.ForeignKey(
         "cms.BedrockImage",
