@@ -280,19 +280,6 @@ class MonitorArticleForm(WagtailAdminPageForm):
 class MonitorArticlePage(AbstractBedrockCMSPage):
     base_form_class = MonitorArticleForm
 
-    # promote panels
-    icon = models.ForeignKey(
-        "cms.BedrockImage",
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-
-    promote_panels = AbstractBedrockCMSPage.promote_panels + [
-        FieldPanel("icon"),
-    ]
-
     # content panels
     subheading = models.CharField(
         max_length=255,

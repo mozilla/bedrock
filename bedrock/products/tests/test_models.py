@@ -9,7 +9,6 @@ from django.urls import reverse
 from django.utils.timezone import now as utc_now
 
 import pytest
-import wagtail_factories
 from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa
@@ -209,8 +208,6 @@ def test_monitor_article_page_form(monitor_article_index_page, client, admin_use
         },
     )
 
-    icon = wagtail_factories.ImageChooserBlockFactory()
-
     response = client.post(
         url,
         data={
@@ -220,7 +217,6 @@ def test_monitor_article_page_form(monitor_article_index_page, client, admin_use
             "subheading": "Test Subheading",
             "summary": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Summary</p>"}]}),
             "content": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Content</p>"}]}),
-            "icon": icon.id,
         },
     )
     assert response.status_code == 200
@@ -237,7 +233,6 @@ def test_monitor_article_page_form(monitor_article_index_page, client, admin_use
             "subheading": "Test Subheading",
             "summary": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Summary</p>"}]}),
             "content": json.dumps({"blocks": [{"key": "xx", "text": "<p>Test Content</p>"}]}),
-            "icon": icon.id,
             "search_description": "Test Search Description",
         },
     )
