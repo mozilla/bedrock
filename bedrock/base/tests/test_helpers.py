@@ -122,9 +122,24 @@ def test_switch():
             ["de", "pt-BR", "ja-JP", "zh-CN"],
         ),
         (
+            # Just use defaults
             ["en-US", "fr", "sco"],
             [],
             [],
+            ["en-US", "fr", "sco"],
+        ),
+        (
+            # Don't use CMS + Django Fallback
+            ["en-US", "fr", "sco"],
+            ["en-US", "de"],
+            [],
+            ["en-US", "fr", "sco"],
+        ),
+        (
+            # Don't use CMS + Django Fallback
+            ["en-US", "fr", "sco"],
+            [],
+            ["en-US", "de"],
             ["en-US", "fr", "sco"],
         ),
     ),
@@ -132,11 +147,12 @@ def test_switch():
 def test_get_locale_options(rf, translations_locales, cms_locales, django_locales, expected):
     native_translations = get_translations_native_names(translations_locales)
     native_expected = get_translations_native_names(expected)
-
     request = rf.get("/dummy/path/")
 
-    if cms_locales and django_locales:
+    if cms_locales is not None:
         request._locales_available_via_cms = cms_locales
+
+    if django_locales is not None:
         request._locales_for_django_fallback_view = django_locales
 
     assert native_expected == helpers.get_locale_options(
