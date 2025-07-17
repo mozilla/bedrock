@@ -76,7 +76,6 @@ class MonitorArticlePageFactory(wagtail_factories.PageFactory):
     title = "Test Monitor Article Page Title"
     live = True
 
-    icon = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     content = wagtail_factories.CharBlockFactory
 
     class Meta:

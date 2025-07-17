@@ -5,7 +5,7 @@
  #}
 
 {% from "macros-protocol.html" import card, picto, split with context %}
-{% from "products/monitor/cms/includes/macros.html" import picto_icon, split_media with context %}
+{% from "products/monitor/cms/includes/macros.html" import split_media with context %}
 
 {% extends "products/monitor/base.html" %}
 
@@ -61,8 +61,6 @@
 
       {{ card(
         link_url=article.url,
-        aspect_ratio="has-aspect-icon",
-        image=picto_icon(article.icon),
         heading_level=3,
         title=article.title,
         desc=article.search_description
