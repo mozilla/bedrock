@@ -59,11 +59,11 @@
 
         @media #{$mq-md} {
             &.left {
-                @include bidi(((margin-left, 0, margin-right, 0),));
+                margin-inline-end: auto;
             }
 
             &.right {
-                @include bidi(((margin-right, 0, margin-left, 0),));
+                margin-inline-start: auto;
             }
         }
     }
