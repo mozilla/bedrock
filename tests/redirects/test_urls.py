@@ -46,6 +46,7 @@ def test_404_url(base_url):
         "/firefox/desktop/",
         "/firefox/interest-dashboard/",
         "/firefox/mobile/",
+        "/firefox/nightly/whatsnew/",
         "/firefox/os/",
         "/firefox/os/notes/1.1/",
         "/firefox/partners/",
@@ -62,8 +63,8 @@ def test_301_urls(url, base_url, follow_redirects=False):
 
 
 @pytest.mark.skipif(
-    settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT is True,
-    reason="Redirected offsite as 301, not 302 locally",
+    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+    reason="Redirected offsite now. [TODO] Make a new list of key locale fixups.",
 )
 @pytest.mark.headless
 @pytest.mark.nondestructive
@@ -74,14 +75,29 @@ def test_301_urls(url, base_url, follow_redirects=False):
         "/firefox/all/",
         "/firefox/developer/",
         "/firefox/installer-help/",
-        "/firefox/latest/releasenotes/",
         "/firefox/new/",
+        "/firefox/unsupported-systems/",
+    ],
+)
+def test_302_fx_urls(url, base_url, follow_redirects=False):
+    assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects, status_code=requests.codes.found)
+
+
+@pytest.mark.headless
+@pytest.mark.nondestructive
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "url",
+    [
+        "/firefox/latest/releasenotes/",
+        "/firefox/releasenotes/",
+        "/firefox/notes/",
+        "/firefox/system-requirements/",
         "/firefox/nightly/firstrun/",
         "/firefox/releases/",
-        "/firefox/unsupported-systems/",
         "/firefox/android/releasenotes/",
         "/firefox/ios/releasenotes/",
     ],
 )
-def test_302_urls(url, base_url, follow_redirects=False):
+def test_302_fx_urls_kept(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects, status_code=requests.codes.found)
