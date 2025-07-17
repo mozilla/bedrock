@@ -61,7 +61,7 @@
         }
       ),
     ) %}
-      <h2 class="mzp-c-picto-heading"><a href="{{ url('firefox.new') }}" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h2>
+      <h2 class="mzp-c-picto-heading"><a href="https://www.firefox.com/{{ referrals }}" data-cta-text="Firefox" data-cta-position="heading">{{ ftl('firefox-products-firefox') }}</a></h2>
       <p>{{ ftl('firefox-products-get-the-browser-that-blocks') }}</p>
       {% set alt_copy = ftl('download-button-download-firefox') + " " + icon_download|safe %}
       <div class="show-else">{{ download_firefox_thanks(alt_copy=alt_copy, button_class='mzp-t-secondary mzp-t-lg') }}</div>
@@ -82,7 +82,7 @@
         }
       ),
     ) %}
-      <h2 class="mzp-c-picto-heading"><a href="{{ url('firefox.browsers.mobile.focus') }}" data-cta-text="Focus" data-cta-position="heading">{{ ftl('firefox-products-firefox-focus') }}</a></h2>
+      <h2 class="mzp-c-picto-heading"><a href="https://www.firefox.com/browsers/mobile/focus/{{ referrals }}" data-cta-text="Focus" data-cta-position="heading">{{ ftl('firefox-products-firefox-focus') }}</a></h2>
       <p>{{ ftl('firefox-products-your-dedicated-privacy') }}</p>
       <p>
         <span class="hide-ios">{{ google_play_button(href=fc_android_url, id='playStoreLink-focus') }}</span>
