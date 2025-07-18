@@ -1342,7 +1342,7 @@ URLS = flatten(
         url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
         # Issue 15841
         url_test("/firefox/tech/", "/firefox/landing/tech/"),
-        # Switching to www.firefox.com from www.m.o
+        # Issue 16159
         url_test(
             "/firefox/",
             "https://www.firefox.com/",
