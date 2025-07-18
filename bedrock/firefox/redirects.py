@@ -689,7 +689,7 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/nothingpersonal/?$", "firefox.nothing-personal.index"),
     # issue 15841
     redirect(r"^firefox/tech/?$", "firefox.landing.tech"),
-    # Switch to using www.firefox.com as main site for Firefox content
+    # issue 16089, 16159
     redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
