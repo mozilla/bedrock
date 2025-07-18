@@ -70,6 +70,12 @@ Mozilla.StubAttribution.experimentVariation = 'v1';
     When setting a experiment parameters using JavaScript like in the example above, it must be done prior to calling `Mozilla.StubAttribution.init()`.
 
 
+## Download as Default
+
+[Download as default](../firefox-downloads/desktop-download-as-default.md) is a feature that communicates to the
+stub installer that the browser should be set as default when downloaded. At the moment this feature is hijacking
+the stub attribution service to communicate this and it will over-write other attribution data.
+
 ## Return to addons.mozilla.org (RTAMO)
 
 [Return to AMO](https://wiki.mozilla.org/Add-ons/QA/Testplan/Return_to_AMO) (RTAMO) is a Firefox feature whereby a first-time installation onboarding flow is initiated, that redirects a user to install the extension they have chosen whilst browsing [AMO](https://addons.mozilla.org/firefox/) using a different browser. RTAMO works by leveraging the existing stub attribution flow, and checking for specific `utm_` parameters that were passed if the referrer is from AMO.

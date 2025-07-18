@@ -60,20 +60,20 @@ The JavaScript files will automatically handle things such as adding metrics par
 
 The sign-up form macro accepts the following parameters (* indicates a required parameter)
 
-| > Parameter name        | > Definition                                                                                                               | > Format                                                | > Example                                      |
+| Parameter name        |Definition                                                                                                               | Format                                                | Example                                      |
 | ----------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------- |
-| > entrypoint*          | Unambiguous identifier for which page of the site is the referrer.                                                         | mozilla.org-directory-page                              | 'mozilla.org-firefox-accounts'               |
-| > entrypoint_experiment | Used to identify experiments.                                                                                              | Experiment ID                                           | 'whatsnew-headlines'                         |
-| > entrypoint_variation  | Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.         | Variant identifier                                      | 'b'                                          |
-| > style                 | An optional parameter used to invoke an alternatively styled page at accounts.firefox.com.                                 | String                                                  | > 'trailhead'                                |
-| > class_name            | Applies a CSS class name to the form. Defaults to: 'fxa-email-form'                                                      | String                                                  | 'fxa-email-form'                             |
-| > form_title            | The main heading to be used in the form (optional with no default).                                                        | Localizable string                                      | 'Join Firefox' .                             |
-| > intro_text            | Introductory copy to be used in the form. Defaults to a well localized string.                                             | Localizable string                                      | 'Enter your email address to get started.' . |
-| > button_text           | Button copy to be used in the form. Defaults to a well localized string.                                                   | Localizable string                                      | 'Sign Up' .                                  |
-| > button_class          | CSS class names to be applied to the submit button.                                                                        | String of one or more CSS class names                   | 'mzp-c-button mzp-t-primary mzp-t-product'   |
-| > utm_campaign          | Used to identify specific marketing campaigns. Defaults to `fxa-embedded-form`                                             | Campaign name prepended to default value                | 'trailhead-fxa-embedded-form'                |
-| > utm_term              | Used for paid search keywords.                                                                                             | Brief keyword                                           | 'existing-users'                             |
-| > utm_content           | Declared when more than one piece of content (on a page or at a URL) links to the same place, to distinguish between them. | Description of content, or name of experiment treatment | 'get-the-rest-of-firefox'                    |
+| entrypoint*          | Unambiguous identifier for which page of the site is the referrer.                                                         | mozilla.org-directory-page                              | 'mozilla.org-firefox-accounts'               |
+| entrypoint_experiment | Used to identify experiments.                                                                                              | Experiment ID                                           | 'whatsnew-headlines'                         |
+| entrypoint_variation  | Used to track page variations in multivariate tests. Usually just a number or letter but could be a short keyword.         | Variant identifier                                      | 'b'                                          |
+| style                 | An optional parameter used to invoke an alternatively styled page at accounts.firefox.com.                                 | String                                                  | 'trailhead'                                |
+| class_name            | Applies a CSS class name to the form. Defaults to: 'fxa-email-form'                                                      | String                                                  | 'fxa-email-form'                             |
+| form_title            | The main heading to be used in the form (optional with no default).                                                        | Localizable string                                      | 'Join Firefox' .                             |
+| intro_text            | Introductory copy to be used in the form. Defaults to a well localized string.                                             | Localizable string                                      | 'Enter your email address to get started.' . |
+| button_text           | Button copy to be used in the form. Defaults to a well localized string.                                                   | Localizable string                                      | 'Sign Up' .                                  |
+| button_class          | CSS class names to be applied to the submit button.                                                                        | String of one or more CSS class names                   | 'mzp-c-button mzp-t-primary mzp-t-product'   |
+| utm_campaign          | Used to identify specific marketing campaigns. Defaults to `fxa-embedded-form`                                             | Campaign name prepended to default value                | 'trailhead-fxa-embedded-form'                |
+| utm_term              | Used for paid search keywords.                                                                                             | Brief keyword                                           | 'existing-users'                             |
+| utm_content           | Declared when more than one piece of content (on a page or at a URL) links to the same place, to distinguish between them. | Description of content, or name of experiment treatment | 'get-the-rest-of-firefox'                    |
 
 Invoking the macro will automatically include a set of default `UTM (Urchin Tracking Module)`{.interpreted-text role="abbr"} parameters as hidden form input fields:
 
@@ -120,15 +120,15 @@ For more information on the available parameters, read the "Common Parameters" s
 
 The `fxa_button` and `monitor_fxa_button` helpers all support the same standard parameters:
 
-| Parameter name      | Definition                                                                                                                                               | Format                            | Example                                                                                                   |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| entrypoint*        | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.                                       | 'mozilla.org-firefox-monitor'    | 'mozilla.org-firefox-monitor'                                                                            |
-| button_text*       | The button copy to be used in the call to action.                                                                                                        | Localizable string                | 'Try Monitor Now'                                                                                        |
-| class_name          | A class name to be applied to the link (typically for styling with CSS).                                                                                 | String of one or more class names | 'monitor-main-cta-button'                                                                                |
-| is_button_class     | A boolean value that dictates if the `CTA (Call To Action)`{.interpreted-text role="abbr"} should be styled as a button or a link. Defaults to 'True'. | Boolean                           | True or False                                                                                             |
-| include_metrics     | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'.                                            | Boolean                           | True or False                                                                                             |
-| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href.                                                                | Dictionary                        | {'s': 'ffmonitor'}                                                                                     |
-| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button.                                                         | Dictionary                        | {'data-cta-text': 'Try Monitor Now', 'data-cta-type': 'monitor','data-cta-position': 'primary'} |
+| Parameter name | Definition | Format | Example |
+| -------------- | ---------- | ------ | ------- |
+| entrypoint* | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'. | 'mozilla.org-firefox-monitor'    | 'mozilla.org-firefox-monitor' |
+| button_text* | The button copy to be used in the call to action. | Localizable string | 'Try Monitor Now' |
+| class_name | A class name to be applied to the link (typically for styling with CSS). | String of one or more class names | 'monitor-main-cta-button' |
+| is_button_class | A boolean value that dictates if the `CTA (Call To Action)`{.interpreted-text role="abbr"} should be styled as a button or a link. Defaults to 'True'. | Boolean | True or False |
+| include_metrics | A boolean value that dictates if metrics parameters should be added to the button href. Defaults to 'True'. | Boolean | True or False |
+| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href. | Dictionary | {'s': 'ffmonitor'} |
+| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button. | Dictionary                        | {'data-cta-text': 'Try Monitor Now', 'data-cta-type': 'monitor','data-cta-position': 'primary'} |
 
 !!! note
     The `fxa_button` helper also supports an additional `action` parameter, which accepts the values `signup`, `signin`, and `email` for configuring the type of authentication flow.
@@ -148,21 +148,21 @@ Use the `vpn_subscribe_link` helpers to create a `VPN (Virtual Private Network)`
 
 Both helpers for Mozilla `VPN (Virtual Private Network)`{.interpreted-text role="abbr"} support the same parameters (* indicates a required parameter)
 
-| > Parameter name      | > Definition                                                                                                                                          | > Format                          | > Example                                                                                                   |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| > entrypoint*        | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'.                                    | 'www.mozilla.org-page-name'     | 'www.mozilla.org-vpn-product-page'                                                                        |
-| > link_text*         | The link copy to be used in the call to action.                                                                                                       | Localizable string                | 'Get Mozilla VPN'                                                                                         |
-| > class_name          | A class name to be applied to the link (typically for styling with CSS).                                                                              | String of one or more class names | 'vpn-button'                                                                                              |
-| > lang                | Page locale code. Used to query the right subscription plan ID in conjunction to country code.                                                        | Locale string                     | 'de'                                                                                                      |
-| > country_code        | Country code provided by the `CDN (Content Delivery Network)`{.interpreted-text role="abbr"}. Used to determine the appropriate subscription plan ID. | Two digit, uppercase country code | 'DE'                                                                                                      |
-| > optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href.                                                             | Dictionary                        | {'utm_campaign': 'vpn-product-page'}                                                                    |
-| > optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button.                                                      | Dictionary                        | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'} |
+| Parameter name | Definition | Format | Example |
+| -------------- | ---------- | ------ | ------- |
+| entrypoint* | Unambiguous identifier for which page of the site is the referrer. This also serves as a value for 'utm_source'. | 'www.mozilla.org-page-name' | 'www.mozilla.org-vpn-product-page' |
+| link_text* | The link copy to be used in the call to action. | Localizable string | 'Get Mozilla VPN' |
+| class_name | A class name to be applied to the link (typically for styling with CSS). | String of one or more class names | 'vpn-button' |
+| lang | Page locale code. Used to query the right subscription plan ID in conjunction to country code. | Locale string | 'de' |
+| country_code | Country code provided by the `CDN (Content Delivery Network)`{.interpreted-text role="abbr"}. Used to determine the appropriate subscription plan ID. | Two digit, uppercase country code | 'DE' |
+| optional_parameters | An dictionary of key value pairs containing additional parameters to append the the href. | Dictionary | {'utm_campaign': 'vpn-product-page'} |
+| optional_attributes | An dictionary of key value pairs containing additional data attributes to include in the button. | Dictionary | {'data-cta-text': 'VPN Sign In', 'data-cta-type': 'fxa-vpn', 'data-cta-position': 'navigation'} |
 
 The `vpn_subscribe_link` helper has an additional `plan` parameter to support linking to different subscription plans.
 
-| > Parameter name | > Definition                                     | > Format     | > Example                   |
-| ---------------- | ------------------------------------------------ | ------------ | --------------------------- |
-| > plan           | Subscription plan ID. Defaults to 12-month plan. | '12-month' | '12-month' or 'monthly' |
+| Parameter name | Definition | Format | Example |
+| -------------- | ---------- | ------ | ------- |
+| plan | Subscription plan ID. Defaults to 12-month plan. | '12-month' | '12-month' or 'monthly' |
 
 ## Firefox Sync and UITour
 
