@@ -93,6 +93,9 @@ def pytest_generate_tests(metafunc):
             urls = []
             doc = get_web_page(f"{base_url}/en-US/firefox/all/")
             product_urls = [a.attrib["href"] for a in doc("ul.c-product-list a")]
+            # FIXME: sanity checks after first scene is redirected to FXC:
+            if product_urls and product_urls[0].startswith("/en-US/download/all/"):
+                product_urls = ["/en-US/firefox/all/desktop-release/", "/en-US/firefox/all/desktop-nightly/"]
             # If product url links outside of /firefox/all/ ignore it. (e.g. testflight)
             product_urls = [url for url in product_urls if url.startswith("/en-US/firefox/all/")]
             for url in product_urls:
