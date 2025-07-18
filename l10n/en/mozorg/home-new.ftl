@@ -44,7 +44,7 @@ home-so-what-is-mozilla = So, what is { -brand-name-mozilla }?
 home-at-its-core-v2 = At its core, { -brand-name-mozilla } is an activist organization led by the { -brand-name-mozilla-foundation } that makes change in the world through a variety of ventures including { -brand-name-mozilla-corporation }, MZLA, <a {$ventures}>{ -brand-name-mozilla-ventures }</a> and <a {$mozai}>{ -brand-name-mozilla-ai-v2 }</a>. How are we different? Because we’re mission-driven, it means we have the freedom to make all of our decisions based on what’s best for the internet and for everyone online, not based on the demands of shareholders — we don’t actually have any of those.
 
 
-home-learn-about-mofo = Learn about the { -brand-name-mozilla-foundation }
+home-learn-about-mofo = Learn about { -brand-name-mozilla-foundation }
 
 home-join-the-fight = Join the fight for a healthy internet
 home-your-voice-your-code = Your voice. Your code. Your ideas. There are literally thousands of ways you can contribute to { -brand-name-mozilla }.
