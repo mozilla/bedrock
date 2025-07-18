@@ -562,7 +562,7 @@ bedrock_redirectpatterns = (
         },
     ),
     # bug 1369732
-    redirect(r"^Firefox/?$", "firefox.new"),
+    redirect(r"^Firefox/?$", f"{FXC}/"),
     # bug 1386112
     redirect(r"^firefox/android/faq/?", "https://support.mozilla.org/products/mobile"),
     # bug 1392796
@@ -689,8 +689,8 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/nothingpersonal/?$", "firefox.nothing-personal.index"),
     # issue 15841
     redirect(r"^firefox/tech/?$", "firefox.landing.tech"),
-    # issue 16089
-    redirect(r"^/firefox/?$", "firefox.new"),
+    # Switch to using www.firefox.com as main site for Firefox content
+    redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
 if settings.ENABLE_FIREFOX_COM_REDIRECTS is True:

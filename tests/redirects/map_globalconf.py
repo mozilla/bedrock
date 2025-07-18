@@ -959,7 +959,8 @@ URLS = flatten(
         # Bug 1384370
         url_test("/developers", "https://developer.mozilla.com/"),
         # Bug 1369732
-        url_test("{/en-US,}/Firefox", "{/en-US,}/firefox/new/"),
+        url_test("/en-US/Firefox", "https://www.firefox.com/en-US/"),
+        url_test("/Firefox", "https://www.firefox.com/"),
         # Bug 1380845
         url_test("/persona/privacy-policy/", "/privacy/archive/persona/2017-07/"),
         url_test("/persona/terms-of-service/", "/privacy/archive/persona/2017-07/#terms-of-service"),
@@ -1341,7 +1342,10 @@ URLS = flatten(
         url_test("/products/vpn/resource-center/no-Logging-vpn-from-mozilla/", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
         # Issue 15841
         url_test("/firefox/tech/", "/firefox/landing/tech/"),
-        # Issue 16089
-        url_test("/firefox/", "/firefox/new/"),
+        # Switching to www.firefox.com from www.m.o
+        url_test(
+            "/firefox/",
+            "https://www.firefox.com/",
+        ),
     )
 )
