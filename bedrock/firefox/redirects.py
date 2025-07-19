@@ -54,7 +54,6 @@ offsite_redirect = partial(
     redirect,
     query={"redirect_source": "mozilla-org"},  # additional querystring to add to every redirection
     merge_query=True,  # ensure we don't lose existing querystrings during redirection
-    cache_timeout=3,  # 3 hour timeout, lower than default 12hr
 )
 
 # Issue 16355
