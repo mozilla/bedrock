@@ -14,4 +14,11 @@
 
 .wnp-content-main {
     text-align: center;
+
+    @media (prefers-color-scheme: dark) {
+        a:link,
+        a:visited {
+            color: white;
+        }
+    }
 }
