@@ -389,6 +389,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-142beta.scss"
+      ],
+      "name": "firefox_whatsnew_142beta"
+    },
+    {
+      "files": [
         "css/firefox/whatsnew/whatsnew-130.scss"
       ],
       "name": "firefox_whatsnew_130"
@@ -440,12 +446,6 @@
         "css/firefox/whatsnew/whatsnew-133-donation.scss"
       ],
       "name": "firefox_whatsnew_133_donation"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-135beta.scss"
-      ],
-      "name": "firefox_whatsnew_135beta"
     },
     {
       "files": [
