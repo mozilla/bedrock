@@ -2359,6 +2359,8 @@ def lazy_wagtail_langs():
         ("ru", "Russian"),
         ("zh-CN", "Chinese (China-Simplified)"),
     ]
+    if DEV:
+        enabled_wagtail_langs.append(("ar", "Arabic"))  # To test the RTL support in the CMS
     enabled_language_codes = [x[0] for x in LANGUAGES]
     retval = [wagtail_lang for wagtail_lang in enabled_wagtail_langs if wagtail_lang[0] in enabled_language_codes]
     return retval

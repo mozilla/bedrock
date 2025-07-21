@@ -59,11 +59,13 @@
 
         @media #{$mq-md} {
             &.left {
-                @include bidi(((margin-left, 0, margin-right, 0),));
+                @include bidi(((margin-left, 0, auto),));
+                @include bidi(((margin-right, auto, 0),));
             }
 
             &.right {
-                @include bidi(((margin-right, 0, margin-left, 0),));
+                @include bidi(((margin-left, auto, 0),));
+                @include bidi(((margin-right, 0, auto),));
             }
         }
     }
