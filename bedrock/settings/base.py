@@ -2519,6 +2519,6 @@ ENABLE_FIREFOX_COM_REDIRECTS = config(
 
 MAKE_FIREFOX_COM_REDIRECTS_PERMANENT = ENABLE_FIREFOX_COM_REDIRECTS and config(
     "MAKE_FIREFOX_COM_REDIRECTS_PERMANENT",
-    default="False",
+    default="True",
     parser=bool,
 )
