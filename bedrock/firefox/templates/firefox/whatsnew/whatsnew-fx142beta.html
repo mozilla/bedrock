@@ -1,0 +1,56 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ #}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_142beta') }}
+{% endblock %}
+
+{% block wnp_content %}
+  <section class="wnp-content-main">
+    <div class="mzp-l-content mzp-t-content-md">
+      {{ resp_img(
+        url='img/firefox/whatsnew/whatsnew142beta/foxfood.png',
+        srcset={
+          'img/firefox/whatsnew/whatsnew142beta/foxfood-high-res.png': '2x'
+        },
+        optional_attributes={
+          'class': 'wnp-main-image',
+          'width': '300',
+          'height': '300',
+          'alt': 'Cartoon illustration of a swashbuckling fox, wearing black gloves and boots with a red sash, swinging from a rope and wielding a rapier like Robin Hood. A banner reads “Defend your fox!”'
+        }
+      ) }}
+
+      <h1>Try and Help Shape Firefox’s New Semantic Search</h1>
+
+      <p>Firefox is introducing Semantic History Search, a new feature that makes
+        it easier to search your Firefox history by understanding the meaning and
+        context, instead of relying solely on keywords. Built on a vector-based
+        model, it offers a more intuitive browsing experience while keeping your
+        data private by processing everything locally on your device.</p>
+
+      <p>With the release of Firefox Beta 142, Mozilla’s community will be among
+        the first to experience this new feature and provide feedback directly to
+        the team behind it. Your input will help shape the feature while it’s
+        still in development.</p>
+
+      <p><a class="mzp-c-button mzp-t-product" href="https://community.mozilla.org/en/campaigns/semantic-history-search-test-days-event/?utm_campaign=semantic&utm_medium=inproduct&utm_source=wnp" data-cta-text="Get involved">Get involved</a></p>
+
+      <p class="wnp-sign-off">This event is organized by Mozilla Support in collaboration with Firefox QA. <a href="https://support.mozilla.org/contribute">Mozilla Support</a> is a global community of enthusiastic volunteers and staff working together to help users through the community forums, help articles, and article localization.</p>
+    </div>
+  </section>
+
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_events') }}
+{% endblock %}

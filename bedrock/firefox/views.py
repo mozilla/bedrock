@@ -482,6 +482,7 @@ class WhatsnewView(L10nTemplateView):
             "firefox/whatsnew/whatsnew",
         ],
         "firefox/whatsnew/index-thanks.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx142beta.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
@@ -497,7 +498,6 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx133-donation.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-donation-eu.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx133-donation-na.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx135beta.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-us.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-ca.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx134-gb.html": ["firefox/whatsnew/whatsnew"],
@@ -610,9 +610,9 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif channel == "beta":
-            if version.startswith("135."):
+            if version.startswith("142."):
                 if locale.startswith("en-"):
-                    template = "firefox/whatsnew/whatsnew-fx135beta.html"
+                    template = "firefox/whatsnew/whatsnew-fx142beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
             else:
