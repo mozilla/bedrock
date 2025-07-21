@@ -1,0 +1,71 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import 'includes/base';
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@import '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@import '~@mozilla-protocol/core/protocol/css/components/video';
+@import 'includes/dark-mode';
+@import 'includes/mofo-donate-cta';
+
+.t-wrapper {
+    max-width: 30.75rem; // 500px
+    margin-inline: auto;
+}
+
+.wnp-content-main {
+    text-align: center;
+
+    .mzp-t-content-lg {
+        padding-block: $layout-lg;
+    }
+
+    @media (prefers-color-scheme: light) {
+        background-color: $color-light-gray-30;
+        color: $color-black;
+    }
+}
+
+.mzp-c-video {
+    width: 93%;
+    border-radius: $border-radius-sm;
+}
+
+.c-video-wrapper {
+    position: relative;
+    margin-block-end: calc(#{$spacing-xl} + 5%);
+}
+
+.c-video-background {
+    position: absolute;
+    width: 95%;
+    left: 5%;
+    top: 5%;
+}
+
+.wnp-main-title {
+    font-size: 2rem;
+    line-height: 1.33;
+    margin-block-end: $spacing-xl;
+}
+
+.wnp-main-tagline {
+    @include text-body-lg;
+    margin-block-end: $spacing-xl;
+
+    svg {
+        vertical-align: text-bottom;
+    }
+}
+
+// only include WNP cta if UITour JS runs
+.wnp-main-cta {
+    display: none;
+}
+
+body.wnp-uitour {
+    .wnp-main-cta {
+        display: block;
+    }
+}

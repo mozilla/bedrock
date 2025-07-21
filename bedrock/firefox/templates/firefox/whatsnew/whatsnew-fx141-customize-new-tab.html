@@ -1,0 +1,75 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_141') }}
+{% endblock %}
+
+{# Don't forget to set '<title>%s</title>' content when formatting, e.g. per locale from 'icon_title'. #}
+
+{% set pencil_icon = '<svg role="img" xmlns="http://www.w3.org/2000/svg" width="18" height="19" viewBox="0 0 18 19"><title>%s</title><g clip-path="url(#a)"><path fill="currentColor" d="M16.935 4.622 14 1.672a1.035 1.035 0 0 0-1.46 0L2.135 12.062l-.95 4.1a1.03 1.03 0 0 0 1 1.25q.107.01.215 0l4.145-.95 10.39-10.38a1.035 1.035 0 0 0 0-1.46m-10.89 10.94-3.885.815.885-3.81 7.785-7.755 3 3zM14.5 7.087l-3-3 1.74-1.73 2.95 3z"/></g><defs><clipPath id="a"><path d="M0 .462h18v18H0z"/></clipPath></defs></svg>' %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Ein neuer Tab, ganz nach deinem Geschmack.' %}
+  {% set main_tagline = '<p class="t-wrapper">Gestalte einen Raum, der nur dir gehört. Passe die Atmosphäre mit Firefox-Hintergründen, eigenen Farben oder einem Foto an.</p><p>Öffne einen neuen Tab und klicke auf das Icon ' + pencil_icon + ', um mit den Anpassungen zu starten.</p>' %}
+  {% set main_cta = 'Jetzt ausprobieren' %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/141/wnp-141-de.webm' %}
+  {% set icon_title = 'Anpassen' %}
+{% elif LANG == 'fr' %}
+  {% set main_title = 'Votre nouvel onglet, à votre façon' %}
+  {% set main_tagline = '<p class="t-wrapper">Créez un espace qui vous ressemble. Donnez le ton avec des fonds d’écran Firefox, des coloris personnalisés ou vos propres photos.</p><p>Ouvrez un nouvel onglet et cliquez sur l’icône ' + pencil_icon + ' pour lancer la personnalisation.</p>' %}
+  {% set main_cta = 'Essayer maintenant' %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/141/wnp-141-fr.webm' %}
+  {% set icon_title = 'Personnaliser' %}
+{% else %}
+  {% set main_title = 'Make your New Tab feel like home' %}
+  {% set main_tagline = '<p class="t-wrapper">Create a space that’s uniquely yours. Set the mood with Firefox wallpapers, custom colors, or your own photo.</p><p>Open a new tab and click the ' + pencil_icon + ' icon to start customizing</p>' %}
+  {% set main_cta = 'Try it now' %}
+  {% set video_src = 'https://assets.mozilla.net/video/whatsnew/141/wnp-141-en.webm' %}
+  {% set icon_title = 'Customize' %}
+{% endif %}
+
+{% block wnp_content %}
+<section class="wnp-content-main">
+  <div class="mzp-l-content mzp-t-content-lg">
+    <h1 class="wnp-main-title">{{ main_title }}</h1>
+    <div class="c-video-wrapper t-wrapper">
+      <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew141-customize/multi-browser-cool-colors.png') }}" alt="">
+      <div class="mzp-c-video">
+        <video
+          id="wnp-video"
+          preload="none"
+          controls
+          loop
+          width="847"
+          height="476"
+          poster="{{ static('img/firefox/whatsnew/whatsnew141-customize/poster-high-res.jpg') }}">
+            <source src="{{ video_src }}" type="video/webm">
+        </video>
+      </div>
+    </div>
+    <div class="wnp-main-tagline">
+      {{ main_tagline | safe | format(icon_title) }}
+    </div>
+    <p class="wnp-main-cta">
+      <button class="mzp-c-button mzp-t-product" data-cta-type="button" data-cta-text="Try it now">
+        {{ main_cta }}
+      </button>
+    </p>
+  </div>
+</section>
+
+<section class="wnp-footer">
+  <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+  {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+</section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_141') }}
+{% endblock %}
