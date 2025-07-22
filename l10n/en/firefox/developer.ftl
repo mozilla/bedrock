@@ -57,7 +57,6 @@ firefox-developer-firefox-devtools-now-grays-out = { -brand-name-firefox-devtool
 firefox-developer-firefox-devtools = { -brand-name-firefox-devtools }
 firefox-developer-the-new-firefox-devtools = The new { -brand-name-firefox-devtools } are powerful, flexible, and best of all, hackable. This includes a best-in-class JavaScript debugger, which can target multiple browsers and is built in React and Redux.
 firefox-developer-master-css-grid = Master CSS Grid
-firefox-developer-built-for-developers = Built for Developers
 firefox-developer-master-innovative-features = Innovative Features
 firefox-developer-firefox-is-the-only-browser = { -brand-name-firefox } is the only browser with tools built specifically for building and designing with CSS Grid. These tools allow you to visualize the grid, display associated area names, preview transformations on the grid and much more.
 firefox-developer-faster-innovation = Faster Information
