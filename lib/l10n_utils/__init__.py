@@ -20,22 +20,6 @@ from bedrock.settings.base import language_url_map_with_fallbacks
 from .fluent import fluent_l10n, ftl_file_is_active, get_active_locales as ftl_active_locales
 
 
-def template_source_url(template):
-    if template in settings.EXCLUDE_EDIT_TEMPLATES:
-        return None
-
-    if template.split("/")[0] in settings.EXCLUDE_EDIT_TEMPLATES_DIRECTORIES:
-        return None
-
-    try:
-        absolute_path = loader.get_template(template).template.filename
-    except TemplateDoesNotExist:
-        return None
-
-    relative_path = relpath(absolute_path, settings.ROOT)
-    return f"{settings.GITHUB_REPO}/tree/master/{relative_path}"
-
-
 def render_to_string(template_name, context=None, request=None, using=None, ftl_files=None):
     if request:
         context = context or {}
@@ -151,7 +135,6 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     context["fluent_files"] = ftl_files or settings.FLUENT_DEFAULT_FILES
     context["template"] = template
-    context["template_source_url"] = template_source_url(template)
 
     # if it's a CMS page, draw the active locales from the Page data.
     # if `active_locales` is given use it as the full list of active translations
