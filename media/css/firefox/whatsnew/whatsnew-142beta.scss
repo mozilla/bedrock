@@ -8,12 +8,12 @@
 @import 'includes/dark-mode';
 @import 'includes/mofo-donate-cta';
 
-.wnp-footer {
-    text-align: center;
-}
-
 .wnp-content-main {
     text-align: center;
+
+    p {
+      margin: 2em 0;
+    }
 
     @media (prefers-color-scheme: dark) {
         a:link,
@@ -21,4 +21,17 @@
             color: white;
         }
     }
+}
+
+@media ($mq-sm) {
+    .wnp-main-image {
+        float: left;
+        margin-bottom: 0.5em;
+        shape-outside: url('/media/img/firefox/whatsnew/whatsnew142beta/foxfood.png');
+        shape-margin: $spacing-xl;
+    }
+}
+
+.wnp-footer {
+    text-align: center;
 }
