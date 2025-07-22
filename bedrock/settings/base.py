@@ -262,8 +262,6 @@ def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
 # Our accepted production locales are the values from the above, plus an exception.
 PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), [])) + ["ja-JP-mac"])
 
-GITHUB_REPO = "https://github.com/mozilla/bedrock"
-
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
@@ -304,29 +302,6 @@ FLUENT_PATHS = [
     FLUENT_LOCAL_PATH,
     # remote FTL files from l10n team
     FLUENT_REPO_PATH,
-]
-
-# Templates to exclude from having an "edit this page" link in the footer
-# these are typically ones for which most of the content is in the DB
-EXCLUDE_EDIT_TEMPLATES = [
-    "firefox/releases/nightly-notes.html",
-    "firefox/releases/dev-browser-notes.html",
-    "firefox/releases/esr-notes.html",
-    "firefox/releases/beta-notes.html",
-    "firefox/releases/aurora-notes.html",
-    "firefox/releases/release-notes.html",
-    "firefox/releases/notes.html",
-    "firefox/releases/system_requirements.html",
-    "mozorg/credits.html",
-    "mozorg/about/forums.html",
-    "security/advisory.html",
-    "security/advisories.html",
-    "security/product-advisories.html",
-    "security/known-vulnerabilities.html",
-]
-# Also allow entire directories to be skipped
-EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
-    "cms",
 ]
 
 IGNORE_LANG_DIRS = [
