@@ -611,7 +611,7 @@ def test_send_to_device_form(test_input, expected):
             "",
             "",
             True,
-            '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/140.0/releasenotes/">',
+            f'<link rel="canonical" href="{settings.FXC_BASE_URL}/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
@@ -625,7 +625,7 @@ def test_send_to_device_form(test_input, expected):
             "/some/other/path/",
             "",
             True,
-            '<link rel="canonical" href="https://www.firefox.com/some/other/path/">',
+            f'<link rel="canonical" href="{settings.FXC_BASE_URL}/some/other/path/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
