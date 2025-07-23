@@ -10,25 +10,31 @@ from typing import Any
 from django.test import override_settings
 
 
-def reload_redirects_with_settings(module_path: str, **settings_kwargs):
+def reload_redirects_with_settings(redirects_module_path: str, middleware_module_path: str, **settings_kwargs):
     """
     Generic decorator that enables dynamic redirect reloading for testing.
 
     This decorator:
-    1. Overrides specified settings using the same pattern as @override_settings
-    2. Reloads the specified redirects module to pick up new patterns
-    3. Patches the redirects middleware to use the reloaded patterns
-    4. Restores original state after the test
+    1. Stores the original setting values before any changes
+    2. Overrides specified settings using the same pattern as @override_settings
+    3. Reloads the specified redirects module to pick up new patterns
+    4. Patches the specified middleware module to use the reloaded patterns
+    5. Restores original settings and reloads module again after the test
 
     This is needed because Django loads redirects once at startup and doesn't
     reload them when @override_settings is used.
 
     Args:
-        module_path: The module path to reload (e.g., 'bedrock.firefox.redirects')
-        **settings_kwargs: Settings to override (e.g., ENABLE_FIREFOX_COM_REDIRECTS=True)
+        redirects_module_path: The redirects module path to reload
+        middleware_module_path: The middleware module path to patch
+        **settings_kwargs: Settings to override
 
     Usage:
-        @reload_redirects_with_settings('bedrock.firefox.redirects', ENABLE_FIREFOX_COM_REDIRECTS=True)
+        @reload_redirects_with_settings(
+            'bedrock.firefox.redirects',
+            'bedrock.redirects.middleware',
+            ENABLE_FIREFOX_COM_REDIRECTS=True
+        )
         def test_my_redirect():
             # Your test code here
             pass
@@ -37,63 +43,67 @@ def reload_redirects_with_settings(module_path: str, **settings_kwargs):
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
+            from django.conf import settings
+
+            original_settings = {}
+            for setting_name in settings_kwargs.keys():
+                original_settings[setting_name] = getattr(settings, setting_name, None)
+
             with override_settings(**settings_kwargs):
-                original_patterns, original_resolver = _patch_redirects_middleware(module_path)
+                original_get_resolver = _reload_module_and_patch_middleware(redirects_module_path, middleware_module_path)
                 try:
                     return func(*args, **kwargs)
                 finally:
-                    _restore_redirects_middleware(module_path, original_patterns, original_resolver)
+                    restore_settings = {name: value for name, value in original_settings.items()}
+                    with override_settings(**restore_settings):
+                        _reload_module_and_patch_middleware(redirects_module_path, middleware_module_path)
+                    middleware_module = importlib.import_module(middleware_module_path)
+                    middleware_module.get_resolver = original_get_resolver
 
         return wrapper
 
     return decorator
 
 
-def _patch_redirects_middleware(module_path: str) -> tuple[Any, Any]:
+def _reload_module_and_patch_middleware(redirects_module_path: str, middleware_module_path: str) -> Any:
     """
-    Patch the redirects middleware to use reloaded patterns from the specified module.
+    Import, reload the specified module, and patch the redirects middleware.
 
     Args:
-        module_path: The module path to reload
+        redirects_module_path: The redirects module path to reload
+        middleware_module_path: The middleware module path to patch
 
     Returns:
-        Tuple of (original_patterns, original_resolver) for restoration
+        The original get_resolver function for restoration
     """
-    import bedrock.redirects.middleware
+    middleware_module = importlib.import_module(middleware_module_path)
 
-    # Import and reload the specified module
-    module = importlib.import_module(module_path)
-    importlib.reload(module)  # type: ignore
+    redirects_module = importlib.import_module(redirects_module_path)
+    importlib.reload(redirects_module)  # type: ignore
+    original_get_resolver = middleware_module.get_resolver
 
-    # Store original state
-    original_patterns = module.redirectpatterns  # type: ignore
-    original_resolver = bedrock.redirects.middleware.get_resolver
-
-    # Patch the resolver to use the reloaded patterns
     def patched_get_resolver(patterns=None):
         if patterns is None:
-            patterns = module.redirectpatterns  # type: ignore
-        return original_resolver(patterns)
+            patterns = redirects_module.redirectpatterns  # type: ignore
+        return original_get_resolver(patterns)
 
-    bedrock.redirects.middleware.get_resolver = patched_get_resolver
+    middleware_module.get_resolver = patched_get_resolver
 
-    return original_patterns, original_resolver
+    return original_get_resolver
 
 
-def _restore_redirects_middleware(module_path: str, original_patterns: Any, original_resolver: Any) -> None:
+def enable_fxc_redirects():
     """
-    Restore the original redirects middleware state.
+    Convenience decorator for Firefox.com redirect testing.
 
-    Args:
-        module_path: The module path that was reloaded
-        original_patterns: The original redirectpatterns to restore
-        original_resolver: The original get_resolver function to restore
+    This is a wrapper around reload_redirects_with_settings that enables
+    Firefox.com redirects for the duration of the test regardless of the
+    ENABLE_FIREFOX_COM_REDIRECTS environment variable.
+
+    Usage:
+        @enable_fxc_redirects()
+        def test_my_redirect():
+            # Your test code here
+            pass
     """
-    import bedrock.redirects.middleware
-
-    # Restore original patterns
-    module = importlib.import_module(module_path)
-    module.redirectpatterns = original_patterns  # type: ignore
-
-    # Restore original resolver
-    bedrock.redirects.middleware.get_resolver = original_resolver
+    return reload_redirects_with_settings("bedrock.firefox.redirects", "bedrock.redirects.middleware", ENABLE_FIREFOX_COM_REDIRECTS=True)

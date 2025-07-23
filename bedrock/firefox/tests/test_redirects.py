@@ -10,7 +10,7 @@ from django.test import RequestFactory
 import pytest
 
 from bedrock.firefox.redirects import mobile_app, validate_param_value
-from tests.utils import reload_redirects_with_settings
+from tests.utils import enable_fxc_redirects
 
 
 @pytest.mark.parametrize(
@@ -94,7 +94,7 @@ EXPECTED_FIREFOX_COM_REDIRECT_CODE = 301 if settings.MAKE_FIREFOX_COM_REDIRECTS_
 EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
 
 
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path,expected_location,expected_status,follow_redirects",
@@ -468,7 +468,7 @@ def test_springfield_redirect_patterns(
         assert response.headers["Location"] == expected_location
 
 
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path,expected_location,expected_status,follow_redirects",
@@ -505,7 +505,7 @@ def test_springfield_redirects_carry_over_querystrings_and_add_redirect_source(
         assert response.headers["Location"] == expected_location
 
 
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path",
@@ -529,7 +529,7 @@ def test_mobile_app_redirector_does_not_go_to_springfield(client):
     assert resp.headers["Location"] == "https://apps.apple.com/app/apple-store/id989804926"
 
 
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path",
@@ -562,7 +562,7 @@ def test_releasenotes_generic_urls_not_rediected_to_springfield(client, path):
         ("/en-US/firefox/installer-help/", f"{settings.FXC_BASE_URL}/en-US/download/installer-help/{EXPECTED_REDIRECT_QS}"),
     ),
 )
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
     client,
     path,
@@ -585,7 +585,7 @@ def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
         ("/firefox/browsers/incognito-browser/", f"{settings.FXC_BASE_URL}/more/incognito-browser/{EXPECTED_REDIRECT_QS}"),
     ),
 )
-@reload_redirects_with_settings("bedrock.firefox.redirects", ENABLE_FIREFOX_COM_REDIRECTS=True)
+@enable_fxc_redirects()
 def test_offsite_redirects_still_work_when_locale_not_in_source_path(
     client,
     path,
