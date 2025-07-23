@@ -1626,21 +1626,13 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js",
-        "js/firefox/whatsnew/whatsnew-137-video-events.es6.js"
+        "js/firefox/whatsnew/whatsnew-137-uitour.es6.js"
       ],
       "name": "firefox_whatsnew_137"
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-138-video-events.es6.js"
-      ],
-      "name": "firefox_whatsnew_138"
-    },
-    {
-      "files": [
-        "js/firefox/whatsnew/whatsnew-141-uitour.es6.js",
-        "js/firefox/whatsnew/whatsnew-141-video-events.es6.js"
+        "js/firefox/whatsnew/whatsnew-141-uitour.es6.js"
       ],
       "name": "firefox_whatsnew_141"
     },
@@ -1759,6 +1751,12 @@
         "js/base/datalayer-begincheckout-init.es6.js"
       ],
       "name": "data_begincheckout"
+    },
+    {
+      "files": [
+        "js/base/datalayer-videoengagement-init.es6.js"
+      ],
+      "name": "data_videoengagement"
     },
     {
       "files": [
