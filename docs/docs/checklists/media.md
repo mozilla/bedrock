@@ -1,0 +1,2 @@
+- [ ] Optimized
+- [ ] SVG contains viewbox
