@@ -48,7 +48,7 @@
 
     <div class="mobile-cta">
         <p>{{ ftl('facebook-container-only-available-for-desktop') }}</p>
-        <p>{{ ftl('facebook-container-visit-to-get-for-desktop', url=url('firefox.new'), link_copy='www.mozilla.org/firefox/new/') }}</p>
+        <p>{{ ftl('facebook-container-visit-to-get-for-desktop', url="https://www.firefox.com/?redirect_source=mozilla-org", link_copy='www.mozilla.org/firefox/new/') }}</p>
 
       {% if ftl_has_messages('facebook-container-get-firefox-android-ios') %}
         <p>{{ ftl('facebook-container-get-firefox-android-ios') }}</p>

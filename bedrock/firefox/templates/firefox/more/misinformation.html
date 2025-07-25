@@ -123,7 +123,7 @@
       block_class='mzp-l-split-reversed'
     ) %}
       <h2>{{ ftl('misinformation-firefox-keeps-trackers-heading') }}</h2>
-      <p>{{ ftl('misinformation-firefox-keeps-trackers-desc', firefox=url('firefox.new'), protection='https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' + _params) }}</p>
+      <p>{{ ftl('misinformation-firefox-keeps-trackers-desc', firefox="https://www.firefox.com/?redirect_source=mozilla-org", protection='https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop' + _params) }}</p>
     {% endcall %}
 
     {% call split(
