@@ -235,9 +235,6 @@ urlpatterns = (
         "firefox/browsers/compare/safari.html",
         ftl_files=["firefox/browsers/compare/safari", "firefox/browsers/compare/shared"],
     ),
-    # Issue 8432
-    # Issue 13253: Ensure that Firefox can continue to refer to this URL.
-    page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
     # Default browser campaign
     page("firefox/set-as-default/", "firefox/set-as-default/landing.html", ftl_files="firefox/set-as-default/landing"),
     # Issue #9490 - Evergreen Content for SEO

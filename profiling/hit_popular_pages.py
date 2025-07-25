@@ -59,7 +59,6 @@ paths = [
     "/en-US/firefox/welcome/17b/",
     "/en-US/firefox/welcome/17c/",
     "/en-US/firefox/welcome/17a/",
-    "/en-US/firefox/set-as-default/thanks/",
     "/en-US/careers/listings/",
     "/en-US/firefox/browsers/chromebook/",
     "/en-US/firefox/nothing-personal/",

@@ -492,7 +492,6 @@ NOINDEX_URLS = [
     r"^contribute/(embed|event)/",
     r"^cms-admin/",
     r"^django-admin/",
-    r"^firefox/set-as-default/thanks/",
     r"^firefox/unsupported/",
     r"^firefox/(sms-)?send-to-device-post",
     r"^firefox/feedback",
