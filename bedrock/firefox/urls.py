@@ -112,7 +112,6 @@ urlpatterns = (
     path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
     page("firefox/nightly/firstrun/", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
-    path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
     re_path(firstrun_re, views.FirstrunView.as_view(), name="firefox.firstrun"),
     re_path(whatsnew_re, views.WhatsnewView.as_view(), name="firefox.whatsnew"),
     # Release notes

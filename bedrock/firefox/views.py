@@ -59,29 +59,6 @@ STUB_VALUE_NAMES = [
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
 
 
-class InstallerHelpView(L10nTemplateView):
-    template_name = "firefox/installer-help.html"
-    ftl_files = ["firefox/installer-help"]
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        installer_lang = self.request.GET.get("installer_lang", None)
-        installer_channel = self.request.GET.get("channel", None)
-        ctx["installer_lang"] = None
-        ctx["installer_channel"] = None
-
-        if installer_lang and installer_lang in firefox_desktop.languages:
-            ctx["installer_lang"] = installer_lang
-
-        if installer_channel and installer_channel in INSTALLER_CHANNElS:
-            if installer_channel == "aurora":
-                ctx["installer_channel"] = "alpha"
-            else:
-                ctx["installer_channel"] = installer_channel
-
-        return ctx
-
-
 @require_safe
 def stub_attribution_code(request):
     """Return a JSON response containing the HMAC signed stub attribution value"""
