@@ -37,6 +37,6 @@
 {% set url_protections = 'href="https://support.mozilla.org/kb/enhanced-tracking-protection-firefox-desktop#w_protections-dashboard" rel="external noopener"' %}
 <p>{{ ftl('features-fingerprinting-and-its-not', url_protections=url_protections) }}</p>
 
-{% set url_download='href="%s"'|safe|format(url('firefox.new')) %}
+{% set url_download='href="%s"'|safe|format("https://www.firefox.com/?redirect_source=mozilla-org") %}
 <p>{{ ftl('features-fingerprinting-you-probably-wouldnt', url_download=url_download) }}</p>
 {% endblock article_content %}
