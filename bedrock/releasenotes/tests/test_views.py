@@ -204,7 +204,7 @@ def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_c
     request = rf.get("/en-US/firefox/24.5.0/system-requirements/")
 
     resp = system_requirements(request, version="24.5.0")
-    assert  '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/system-requirements/">' in str(resp.content)
+    assert '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/system-requirements/">' in str(resp.content)
 
     release_cache.clear()
 

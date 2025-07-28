@@ -2,16 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from django.conf import settings
-
 import requests
 
 from .base import flatten, url_test
 
 UA_ANDROID = {"User-Agent": "Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) Gecko/51.0 Firefox/51.0"}
 UA_IOS = {"User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190"}
-
-STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE = 301 if settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT else 302
 
 URLS = flatten(
     (
@@ -819,7 +815,7 @@ URLS = flatten(
         # url_test(
         #     "/en-US/firefox/new/?product=firefox-{3.6.8,13.0.1}{&os={osx〈=en-US,win},}",
         #     "https://www.firefox.com?redirect_source=mozilla-org",  # Issue 16355
-        #     status_code=STATUS_CODE_BASED_ON_SPRINGFIELD_REDIRECT_MODE,  # Issue 16355
+        #     status_code=301,  # Issue 16355
         # ),
         # bug 1235853
         url_test("/facebookapps/{,downloadtab/}", "/firefox/new/"),
