@@ -109,7 +109,6 @@ urlpatterns = (
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
-    path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
     page("firefox/nightly/firstrun/", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
     path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
