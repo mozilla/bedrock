@@ -10,7 +10,6 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.http import Http404, HttpResponsePermanentRedirect, JsonResponse
 from django.utils.cache import patch_response_headers
-from django.utils.encoding import force_str
 from django.views.decorators.http import require_safe
 
 import querystringsafe_base64
@@ -775,76 +774,6 @@ class DownloadThanksView(L10nTemplateView):
                 template = "firefox/new/basic/thanks_direct.html"
             else:
                 template = "firefox/new/basic/thanks.html"
-
-        return [template]
-
-
-class NewView(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/new/basic/base_download.html": ["firefox/new/download"],
-        "firefox/new/desktop/download.html": ["firefox/new/desktop"],
-        "firefox/new/desktop/firefox-new-refresh.html": ["firefox/new/desktop"],
-    }
-    activation_files = [
-        "firefox/new/download",
-        "firefox/new/desktop",
-    ]
-
-    # place expected ?v= values in this list
-    variations = []
-
-    def get(self, *args, **kwargs):
-        # Remove legacy query parameters (Bug 1236791)
-        if self.request.GET.get("product", None) or self.request.GET.get("os", None):
-            return HttpResponsePermanentRedirect(settings.FXC_BASE_URL)
-
-        scene = self.request.GET.get("scene", None)
-        if scene == "2":
-            # send to new permanent scene2 URL (bug 1438302)
-            thanks_url = reverse("firefox.download.thanks")
-            query_string = self.request.META.get("QUERY_STRING", "")
-            if query_string:
-                thanks_url = "?".join([thanks_url, force_str(query_string, errors="ignore")])
-            return HttpResponsePermanentRedirect(thanks_url)
-
-        return super().get(*args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-
-        # note: variation and xv params only allow a-z, A-Z, 0-9, -, and _ characters
-        variation = self.request.GET.get("variation", None)
-
-        # ensure variant matches pre-defined value
-        if variation not in self.variations:
-            variation = None
-
-        ctx["variation"] = variation
-
-        reason = self.request.GET.get("reason", None)
-        manual_update = True if reason == "manual-update" else False
-        outdated = reason == "outdated"
-        ctx["manual_update"] = manual_update
-        ctx["outdated"] = outdated
-
-        return ctx
-
-    def get_template_names(self):
-        variation = self.request.GET.get("variation", None)
-        experience = self.request.GET.get("xv", None)
-        locale = l10n_utils.get_locale(self.request)
-
-        # ensure variant matches pre-defined value
-        if variation not in self.variations:
-            variation = None
-
-        if ftl_file_is_active("firefox/new/desktop") and experience != "basic":
-            if locale in ["en-US", "en-CA"]:
-                template = "firefox/new/desktop/firefox-new-refresh.html"
-            else:
-                template = "firefox/new/desktop/download.html"
-        else:
-            template = "firefox/new/basic/base_download.html"
 
         return [template]
 
