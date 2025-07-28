@@ -10,6 +10,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.urls import NoReverseMatch
 from django.views.decorators.http import require_safe
 
+from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
 from bedrock.firefox.templatetags.helpers import android_builds, ios_builds
@@ -56,7 +57,7 @@ def get_download_url(release):
         elif release.channel == "Beta":
             return reverse("firefox.channel.desktop", fragment="beta")
         else:
-            return reverse("firefox.new")
+            return urlparams(f"{settings.FXC_BASE_URL}/", redirect_url="mozilla-org")
 
 
 def show_android_sys_req(version):
