@@ -1541,7 +1541,7 @@ class TestFirstRun(TestCase):
 
     @override_settings(DEV=True)
     def test_fx_firstrun_release_channel(self, render_mock):
-        """Should redirect to /firefox/new/ page"""
+        """Should redirect to www.firefox.com page"""
         req = self.rf.get("/en-US/firefox/firstrun/")
         resp = self.view(req, version="40.0")
         assert resp.status_code == 301
