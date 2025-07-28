@@ -5,7 +5,6 @@ import os
 from unittest import skip
 from unittest.mock import Mock, call, patch
 
-from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings

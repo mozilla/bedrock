@@ -7,8 +7,6 @@
 import pytest
 import requests
 
-from bedrock import settings
-
 from .base import assert_valid_url
 from .map_410 import URLS_410
 

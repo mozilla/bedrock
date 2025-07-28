@@ -5,7 +5,7 @@
 from unittest.mock import patch
 
 from django.conf import settings
-from django.test import RequestFactory, override_settings
+from django.test import RequestFactory
 
 import pytest
 
