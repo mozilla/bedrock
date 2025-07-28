@@ -86,52 +86,15 @@
     },
     {
       "files": [
-        "css/firefox/new/basic/download.scss"
-      ],
-      "name": "firefox_new_download"
-    },
-    {
-      "files": [
         "css/firefox/new/basic/platform.scss"
       ],
       "name": "firefox_new_platform"
     },
     {
       "files": [
-        "css/firefox/new/desktop/download.scss"
-      ],
-      "name": "firefox_desktop_download"
-    },
-    {
-      "files": [
         "css/firefox/new/desktop/ie9.scss"
       ],
       "name": "firefox_desktop_download_ie9"
-    },
-    {
-      "files": [
-        "css/firefox/new/desktop/firefox-new-refresh-ie9.scss"
-      ],
-      "name": "firefox_new_refresh_ie9"
-    },
-    {
-      "files": [
-        "css/firefox/new/desktop/firefox-new-refresh-ie8.scss"
-      ],
-      "name": "firefox_new_refresh_ie8"
-    },
-    {
-      "files": [
-        "css/firefox/new/desktop/ie8.scss"
-      ],
-      "name": "firefox_desktop_download_ie8"
-    },
-    {
-      "files": [
-        "css/firefox/new/common/thanks-messaging.scss",
-        "css/firefox/new/desktop/thanks.scss"
-      ],
-      "name": "firefox_desktop_download_thanks"
     },
     {
       "files": [
@@ -145,12 +108,6 @@
         "css/firefox/landing/get/marketing-opt-out.scss"
       ],
       "name": "firefox_marketing_opt_out"
-    },
-    {
-      "files": [
-        "css/firefox/new/desktop/firefox-new-refresh.scss"
-      ],
-      "name": "firefox_new_refresh"
     },
     {
       "files": [
@@ -1314,25 +1271,6 @@
         "js/firefox/welcome/welcome19-to-25.js"
       ],
       "name": "firefox_welcome_page19_to_25"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/download.js"
-      ],
-      "name": "firefox_desktop_download"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/firefox-new-refresh.js"
-      ],
-      "name": "firefox_new_refresh"
-    },
-    {
-      "files": [
-        "js/firefox/new/desktop/download-as-default.es6.js",
-        "js/firefox/new/desktop/download-as-default-init.es6.js"
-      ],
-      "name": "download_as_default"
     },
     {
       "files": [
