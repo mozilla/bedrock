@@ -62,8 +62,7 @@ def test_301_urls(url, base_url, follow_redirects=False):
     assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects)
 
 
-@pytest.mark.skipif(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@pytest.mark.skip(
     reason="Redirected offsite now. [TODO] Make a new list of key locale fixups.",
 )
 @pytest.mark.headless

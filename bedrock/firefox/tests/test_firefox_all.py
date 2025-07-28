@@ -49,8 +49,7 @@ OS_LANG_PAIRS = [
 ]
 
 
-@pytest.mark.skipif(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@pytest.mark.skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 def test_all_step_1(client):
@@ -65,8 +64,7 @@ def test_all_step_1(client):
     assert len(doc(".qa-mobile-list > li")) == 4
 
 
-@pytest.mark.skipif(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@pytest.mark.skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 @pytest.mark.parametrize(
@@ -90,8 +88,7 @@ def test_all_step_2(client, product_slug, name, count):
     assert len(doc(".c-platform-list > li")) == count
 
 
-@pytest.mark.skipif(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@pytest.mark.skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 def test_all_step_3(client):
@@ -365,8 +362,7 @@ def test_firefox_ios_beta(client):
     assert doc(".c-step-download a").attr("href") == reverse("firefox.ios.testflight")
 
 
-@pytest.mark.skipif(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@pytest.mark.skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 @pytest.mark.parametrize(

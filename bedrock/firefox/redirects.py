@@ -692,9 +692,6 @@ bedrock_redirectpatterns = (
     redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
-if settings.ENABLE_FIREFOX_COM_REDIRECTS is True:
-    redirectpatterns = (
-        bedrock_redirectpatterns + springfield_redirectpatterns
-    )  # bedrock redirects first, to keep tests, happy, then off to springfield, if relevant
-else:
-    redirectpatterns = bedrock_redirectpatterns
+redirectpatterns = (
+    bedrock_redirectpatterns + springfield_redirectpatterns
+)  # bedrock redirects first, to keep tests, happy, then off to springfield, if relevant

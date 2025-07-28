@@ -430,9 +430,6 @@ def firefox_com_canonical_tag(ctx, dest_path=None, root_url=settings.FXC_BASE_UR
         {{ firefox_com_canonical_tag(root_url="https://some-subdomain.firefox.com") }}
 
     """
-    if settings.ENABLE_FIREFOX_COM_REDIRECTS is False:
-        return ""
-
     request = ctx["request"]
 
     _path = request.path if not dest_path else dest_path

@@ -2513,13 +2513,8 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
 # NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
 
-ENABLE_FIREFOX_COM_REDIRECTS = config(
-    "ENABLE_FIREFOX_COM_REDIRECTS",
-    default="True",
-    parser=bool,
-)
 
-MAKE_FIREFOX_COM_REDIRECTS_PERMANENT = ENABLE_FIREFOX_COM_REDIRECTS and config(
+MAKE_FIREFOX_COM_REDIRECTS_PERMANENT =  config(
     "MAKE_FIREFOX_COM_REDIRECTS_PERMANENT",
     default="True",
     parser=bool,
