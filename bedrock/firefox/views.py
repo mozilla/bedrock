@@ -444,7 +444,7 @@ class FirstrunView(L10nTemplateView):
 
     def get(self, *args, **kwargs):
         version = self.kwargs.get("version") or ""
-        new_page_url = urlparams(reverse("firefox.new"), reason="outdated")
+        new_page_url = urlparams(f"{settings.FXC_BASE_URL}/", reason="outdated")
         channel = detect_channel(version)
 
         # redirect legacy /firstrun URLs to /firefox/new/
@@ -796,7 +796,7 @@ class NewView(L10nTemplateView):
     def get(self, *args, **kwargs):
         # Remove legacy query parameters (Bug 1236791)
         if self.request.GET.get("product", None) or self.request.GET.get("os", None):
-            return HttpResponsePermanentRedirect(reverse("firefox.new"))
+            return HttpResponsePermanentRedirect(settings.FXC_BASE_URL)
 
         scene = self.request.GET.get("scene", None)
         if scene == "2":

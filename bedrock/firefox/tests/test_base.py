@@ -1545,7 +1545,7 @@ class TestFirstRun(TestCase):
         req = self.rf.get("/en-US/firefox/firstrun/")
         resp = self.view(req, version="40.0")
         assert resp.status_code == 301
-        assert resp["location"].endswith("/firefox/new/?reason=outdated")
+        assert resp["location"].endswith(f"{settings.FXC_BASE_URL}/?reason=outdated")
 
     @override_settings(DEV=True)
     def test_fx_firstrun_dev_edition_old(self, render_mock):
@@ -1561,4 +1561,4 @@ class TestFirstRun(TestCase):
         req = self.rf.get("/en-US/firefox/firstrun/")
         resp = self.view(req, version="57.0")
         assert resp.status_code == 301
-        assert resp["location"].endswith("/firefox/new/?reason=outdated")
+        assert resp["location"].endswith(f"{settings.FXC_BASE_URL}/?reason=outdated")
