@@ -447,7 +447,7 @@ class FirstrunView(L10nTemplateView):
         new_page_url = urlparams(f"{settings.FXC_BASE_URL}/", reason="outdated")
         channel = detect_channel(version)
 
-        # redirect legacy /firstrun URLs to /firefox/new/
+        # redirect legacy /firstrun URLs to firefox.com
         if channel != "developer":
             return HttpResponsePermanentRedirect(new_page_url)
         elif channel == "developer" and not show_57_dev_firstrun(version):
