@@ -2,6 +2,7 @@
 
 - [ ] CSS written mobile-first
 - [ ] In extremely wide viewports, the edges of backgrounds are not visible
+- [ ] In extremely wide viewports, content is restricted to `$max-width`
 - [ ] In narrow viewports, content stacks in a logical reading order
 - [ ] Conditional content displays under correct conditions (logged in, out, Fx, not Fx)
 

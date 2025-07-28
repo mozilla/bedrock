@@ -6,6 +6,9 @@
     - [ ] If there are two of the same `data-cta-text` include `data-cta-position`
     - [ ] Does not have both `data-cta-text` and `data-link-text`
 - [ ] If linking to another Mozilla property include `utm` params
+    - [ ] `utm_source` is `'www.firefox.com` or `www.mozilla.org`
+    - [ ] `utm_medium` is `referral`
+    - [ ] if the query string is in a variable it is called `params` and the string includes the `?`
 - Download button:
     - [ ] Use the appropriate helper, don't hard code these. (`download_firefox_thanks`, `google_play_button`, `apple_app_store_button`)
     - [ ] include a download_location if there are multiple buttons on the page
