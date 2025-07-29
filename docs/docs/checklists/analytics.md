@@ -1,4 +1,4 @@
-## Links `<a>`
+## Links `<a href="">`
 
 - [ ] Has a `data-cta-text` OR `data-link-text`
     - [ ] If it has class `mzp-c-button` it is a CTA
