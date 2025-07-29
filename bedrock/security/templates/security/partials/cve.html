@@ -14,8 +14,10 @@
     <dt>Impact</dt>
     <dd><span class="level {{ impact_class }}">{{ impact }}</span></dd>
   </dl>
-  <h5>Description</h5>
-  {{ description|markdown }}
+  {% if description %}
+    <h5>Description</h5>
+    {{ description|markdown }}
+  {% endif %}
   {% if bugs %}
     <h5>References</h5>
     <ul>
