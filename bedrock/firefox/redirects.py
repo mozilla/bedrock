@@ -692,4 +692,4 @@ bedrock_redirectpatterns = (
 
 redirectpatterns = (
     bedrock_redirectpatterns + springfield_redirectpatterns
-)  # bedrock redirects first, to keep tests, happy, then off to springfield, if relevant
+)  # bedrock redirects first, to keep tests happy, then off to springfield, if relevant
