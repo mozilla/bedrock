@@ -2,11 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import json
-from unittest import skipIf
+from unittest import skip
 from unittest.mock import ANY, patch
 from urllib.parse import parse_qs
 
-from django.conf import settings
 from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
@@ -451,8 +450,7 @@ class TestFirefoxNew(TestCase):
     # end /thanks?s=direct URL - issue 10520
 
 
-@skipIf(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 class TestFirefoxNewNoIndex(TestCase):
@@ -534,8 +532,7 @@ class TestFirefoxWelcomePage1(TestCase):
 
 
 # Issue 13253: Ensure that Firefox can continue to refer to this URL.
-@skipIf(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 class TestFirefoxSetAsDefaultThanks(TestCase):

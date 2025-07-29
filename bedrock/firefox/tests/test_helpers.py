@@ -604,49 +604,37 @@ def test_send_to_device_form(test_input, expected):
 
 
 @pytest.mark.parametrize(
-    "fake_request_path, override_path, root_url, redirects_enabled, expected_result",
+    "fake_request_path, override_path, root_url, expected_result",
     (
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
             "",
-            True,
             f'<link rel="canonical" href="{settings.FXC_BASE_URL}/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
             "ftp://getfirefox.de",
-            True,
             '<link rel="canonical" href="ftp://getfirefox.de/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "/some/other/path/",
             "",
-            True,
             f'<link rel="canonical" href="{settings.FXC_BASE_URL}/some/other/path/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "",
             "https://www.example.com",
-            True,
             '<link rel="canonical" href="https://www.example.com/en-US/firefox/140.0/releasenotes/">',
         ),
         (
             "/en-US/firefox/140.0/releasenotes/",
             "/some/other/path/",
             "https://www.example.com",
-            True,
             '<link rel="canonical" href="https://www.example.com/some/other/path/">',
-        ),
-        (
-            "/en-US/firefox/140.0/releasenotes/",
-            "",
-            "",
-            False,  # redirects not enabled
-            "",
         ),
     ),
 )
@@ -655,7 +643,6 @@ def test_firefox_com_canonical_tag(
     fake_request_path,
     override_path,
     root_url,
-    redirects_enabled,
     expected_result,
 ):
     def _render(dest_path, root_url):
@@ -671,5 +658,4 @@ def test_firefox_com_canonical_tag(
             tmpl = "{{ firefox_com_canonical_tag() }}"
         return render(tmpl, {"request": req})
 
-    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=redirects_enabled):
-        assert _render(override_path, root_url) == expected_result
+    assert _render(override_path, root_url) == expected_result

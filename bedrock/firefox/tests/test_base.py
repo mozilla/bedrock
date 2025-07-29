@@ -2,10 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-from unittest import skipIf
+from unittest import skip
 from unittest.mock import Mock, call, patch
 
-from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -23,8 +22,7 @@ GOOD_PLATS = {"Windows": {}, "OS X": {}, "Linux": {}}
 jinja_env = Jinja2.get_default().env
 
 
-@skipIf(
-    settings.ENABLE_FIREFOX_COM_REDIRECTS is True,
+@skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
 class TestInstallerHelp(TestCase):

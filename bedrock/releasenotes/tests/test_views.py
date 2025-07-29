@@ -173,8 +173,7 @@ def test_releases_index__product_other_than_firefox(render_mock, rf):
 
 @patch("bedrock.firefox.templatetags.helpers.desktop_builds")
 @pytest.mark.django_db
-@pytest.mark.parametrize("enable_redirects", (True, False))
-def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(mock_desktop_builds, rf, enable_redirects):
+def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com(mock_desktop_builds, rf):
     # Bootstrap relnotes test data
     with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
         ProductRelease.objects.refresh()
@@ -185,18 +184,15 @@ def test_release_notes_detail_contains_canonical_tag_pointing_to_firefox_com_if_
 
     request = rf.get("/en-US/firefox/24.5.0/releasenotes/")
 
-    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
-        resp = release_notes(request, version="24.5.0")
-        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/releasenotes/">' in str(resp.content)
-        assert _link_is_in_content == enable_redirects
+    resp = release_notes(request, version="24.5.0")
+    assert '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/releasenotes/">' in str(resp.content)
 
     release_cache.clear()
 
 
 @patch("bedrock.firefox.templatetags.helpers.desktop_builds")
 @pytest.mark.django_db
-@pytest.mark.parametrize("enable_redirects", (True, False))
-def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(mock_desktop_builds, rf, enable_redirects):
+def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(mock_desktop_builds, rf):
     # Bootstrap relnotes test data
     with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
         ProductRelease.objects.refresh()
@@ -207,17 +203,14 @@ def test_system_requirements_detail_contains_canonical_tag_pointing_to_firefox_c
 
     request = rf.get("/en-US/firefox/24.5.0/system-requirements/")
 
-    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
-        resp = system_requirements(request, version="24.5.0")
-        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/system-requirements/">' in str(resp.content)
-        assert _link_is_in_content == enable_redirects
+    resp = system_requirements(request, version="24.5.0")
+    assert '<link rel="canonical" href="https://www.firefox.com/en-US/firefox/24.5.0/system-requirements/">' in str(resp.content)
 
     release_cache.clear()
 
 
 @pytest.mark.django_db
-@pytest.mark.parametrize("enable_redirects", (True, False))
-def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf, enable_redirects):
+def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redirects_enabled(rf):
     # Bootstrap relnotes test data
     with override_settings(RELEASE_NOTES_PATH=RELEASES_PATH):
         ProductRelease.objects.refresh()
@@ -225,9 +218,7 @@ def test_releases_index_contains_canonical_tag_pointing_to_firefox_com_if_redire
 
     request = rf.get("/en-US/firefox/releases/")
 
-    with override_settings(ENABLE_FIREFOX_COM_REDIRECTS=enable_redirects):
-        resp = releases_index(request, product="Firefox")
-        _link_is_in_content = '<link rel="canonical" href="https://www.firefox.com/en-US/releases/">' in str(resp.content)
-        assert _link_is_in_content == enable_redirects
+    resp = releases_index(request, product="Firefox")
+    assert '<link rel="canonical" href="https://www.firefox.com/en-US/releases/">' in str(resp.content)
 
     release_cache.clear()

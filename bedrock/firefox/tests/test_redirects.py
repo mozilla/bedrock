@@ -5,7 +5,7 @@
 from unittest.mock import patch
 
 from django.conf import settings
-from django.test import RequestFactory, override_settings
+from django.test import RequestFactory
 
 import pytest
 
@@ -88,12 +88,9 @@ def test_mobile_app():
         mar.assert_called_with(req, "firefox", None)
 
 
-EXPECTED_FIREFOX_COM_REDIRECT_CODE = 301 if settings.MAKE_FIREFOX_COM_REDIRECTS_PERMANENT else 302
-
 EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
 
 
-@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path,expected_location,expected_status,follow_redirects",
@@ -107,19 +104,19 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         (
             "/en-US/firefox/new/",
             f"{settings.FXC_BASE_URL}/en-US/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/all/",
             f"{settings.FXC_BASE_URL}/en-US/download/all/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/installer-help/",
             f"{settings.FXC_BASE_URL}/en-US/download/installer-help/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
@@ -131,320 +128,320 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         (
             "/en-US/firefox/browsers/best-browser/",
             f"{settings.FXC_BASE_URL}/en-US/more/best-browser/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/browser-history/",
             f"{settings.FXC_BASE_URL}/en-US/more/browser-history/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/chromebook/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/desktop/chromebook/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/",
             f"{settings.FXC_BASE_URL}/en-US/compare/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/brave/",
             f"{settings.FXC_BASE_URL}/en-US/compare/brave/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/chrome/",
             f"{settings.FXC_BASE_URL}/en-US/compare/chrome/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/edge/",
             f"{settings.FXC_BASE_URL}/en-US/compare/edge/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/opera/",
             f"{settings.FXC_BASE_URL}/en-US/compare/opera/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/compare/safari/",
             f"{settings.FXC_BASE_URL}/en-US/compare/safari/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/incognito-browser/",
             f"{settings.FXC_BASE_URL}/en-US/more/incognito-browser/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/mobile/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/mobile/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/mobile/android/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/mobile/android/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/mobile/focus/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/mobile/focus/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/mobile/ios/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/mobile/ios/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/update-your-browser/",
             f"{settings.FXC_BASE_URL}/en-US/more/update-your-browser/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/what-is-a-browser/",
             f"{settings.FXC_BASE_URL}/en-US/more/what-is-a-browser/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/browsers/windows-64-bit/",
             f"{settings.FXC_BASE_URL}/en-US/more/windows-64-bit/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/channel/android/",
             f"{settings.FXC_BASE_URL}/en-US/channel/android/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/channel/desktop/",
             f"{settings.FXC_BASE_URL}/en-US/channel/desktop/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/channel/ios/",
             f"{settings.FXC_BASE_URL}/en-US/channel/ios/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/developer/",
             f"{settings.FXC_BASE_URL}/en-US/channel/desktop/developer/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/enterprise/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/enterprise/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/faq/",
             f"{settings.FXC_BASE_URL}/en-US/more/faq/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/",
             f"{settings.FXC_BASE_URL}/en-US/features/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/adblocker/",
             f"{settings.FXC_BASE_URL}/en-US/features/adblocker/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/add-ons/",
             f"{settings.FXC_BASE_URL}/en-US/features/add-ons/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/block-fingerprinting/",
             f"{settings.FXC_BASE_URL}/en-US/features/block-fingerprinting/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/bookmarks/",
             f"{settings.FXC_BASE_URL}/en-US/features/bookmarks/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/customize/",
             f"{settings.FXC_BASE_URL}/en-US/features/customize/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/eyedropper/",
             f"{settings.FXC_BASE_URL}/en-US/features/eyedropper/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/fast/",
             f"{settings.FXC_BASE_URL}/en-US/features/fast/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/password-manager/",
             f"{settings.FXC_BASE_URL}/en-US/features/password-manager/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/pdf-editor/",
             f"{settings.FXC_BASE_URL}/en-US/features/pdf-editor/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/picture-in-picture/",
             f"{settings.FXC_BASE_URL}/en-US/features/picture-in-picture/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/pinned-tabs/",
             f"{settings.FXC_BASE_URL}/en-US/features/pinned-tabs/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/private-browsing/",
             f"{settings.FXC_BASE_URL}/en-US/features/private-browsing/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/private/",
             f"{settings.FXC_BASE_URL}/en-US/features/private/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/sync/",
             f"{settings.FXC_BASE_URL}/en-US/features/sync/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/tips/",
             f"{settings.FXC_BASE_URL}/en-US/features/tips/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/features/translate/",
             f"{settings.FXC_BASE_URL}/en-US/features/translate/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/ios/testflight/",
             f"{settings.FXC_BASE_URL}/en-US/channel/ios/testflight/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/linux/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/desktop/linux/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/mac/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/desktop/mac/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/more/",
             f"{settings.FXC_BASE_URL}/en-US/more/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/set-as-default/",
             f"{settings.FXC_BASE_URL}/en-US/landing/set-as-default/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/set-as-default/thanks/",
             f"{settings.FXC_BASE_URL}/en-US/landing/set-as-default/thanks/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/unsupported-systems/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/unsupported-systems/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/windows/",
             f"{settings.FXC_BASE_URL}/en-US/browsers/desktop/windows/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/de/firefox/windows/",
             f"{settings.FXC_BASE_URL}/de/browsers/desktop/windows/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/fr-CA/firefox/windows/",
             f"{settings.FXC_BASE_URL}/fr-CA/browsers/desktop/windows/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         # Also test some without the
         (
             "/firefox/new/",
             f"{settings.FXC_BASE_URL}/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/firefox/set-as-default/",
             f"{settings.FXC_BASE_URL}/landing/set-as-default/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/firefox/browsers/incognito-browser/",
             f"{settings.FXC_BASE_URL}/more/incognito-browser/{EXPECTED_REDIRECT_QS}",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
     ],
@@ -467,7 +464,6 @@ def test_springfield_redirect_patterns(
         assert response.headers["Location"] == expected_location
 
 
-@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path,expected_location,expected_status,follow_redirects",
@@ -475,13 +471,13 @@ def test_springfield_redirect_patterns(
         (
             "/en-US/firefox/installer-help/?channel=beta&installer_lang=en_US",
             f"{settings.FXC_BASE_URL}/en-US/download/installer-help/?redirect_source=mozilla-org&channel=beta&installer_lang=en_US",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
         (
             "/en-US/firefox/new/?foo=bar",
             f"{settings.FXC_BASE_URL}/en-US/?redirect_source=mozilla-org&foo=bar",
-            EXPECTED_FIREFOX_COM_REDIRECT_CODE,
+            301,
             False,
         ),
     ],
@@ -504,7 +500,6 @@ def test_springfield_redirects_carry_over_querystrings_and_add_redirect_source(
         assert response.headers["Location"] == expected_location
 
 
-@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "path",
@@ -541,7 +536,6 @@ def test_mobile_app_redirector_does_not_go_to_springfield(client):
         "/firefox/releases/",
     ),
 )
-@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
 def test_releasenotes_generic_urls_not_rediected_to_springfield(client, path):
     resp = client.get(path)
     assert resp.status_code == 302
@@ -561,7 +555,6 @@ def test_releasenotes_generic_urls_not_rediected_to_springfield(client, path):
         ("/en-US/firefox/installer-help/", f"{settings.FXC_BASE_URL}/en-US/download/installer-help/{EXPECTED_REDIRECT_QS}"),
     ),
 )
-@override_settings(ENABLE_FIREFOX_COM_REDIRECTS=True)
 def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
     client,
     path,
@@ -572,7 +565,7 @@ def test_subsequent_redirects_do_not_carry_querystrings_from_earlier_requests(
     # tests in this suite, where they DID include extra querystrings, which should
     # NOT appear in the responses for this test. We also include dupes here
     resp = client.get(path, secure=True)
-    assert resp.status_code == EXPECTED_FIREFOX_COM_REDIRECT_CODE
+    assert resp.status_code == 301
     assert resp.headers["Location"] == expected_dest
 
 
@@ -593,5 +586,5 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
     # find we have some redirects that don't have a locale when they send the
     # user to www.firefox.com
     resp = client.get(path, secure=True)
-    assert resp.status_code == EXPECTED_FIREFOX_COM_REDIRECT_CODE
+    assert resp.status_code == 301
     assert resp.headers["Location"] == expected_dest

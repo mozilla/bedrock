@@ -318,9 +318,9 @@ import pytest
 
 @pytest.mark.smoke
 @pytest.mark.nondestructive
-def test_download_button_displayed(base_url, selenium):
-    page = DownloadPage(selenium, base_url, params="").open()
-    assert page.is_download_button_displayed
+def test_firefox_menu_displayed(base_url, selenium):
+    page = HomePage(selenium, base_url, params="").open()
+    assert page.navigation.is_firefox_menu_displayed
 ```
 
 You can run smoke tests only by adding `-m smoke` when running the test suite on the command line.
