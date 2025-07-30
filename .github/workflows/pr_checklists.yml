@@ -56,7 +56,6 @@ jobs:
                 [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
                 [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
                 [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
-              continue
             fi
 
             # Get only the changed lines for this file
