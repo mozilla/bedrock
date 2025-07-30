@@ -41,15 +41,14 @@ jobs:
           INCLUDE_HTML=false
           INCLUDE_JS=false
 
-          while IFS= read -r FILE; do
+          while IFS=$'\t' read -r STATUS FILE; do
             # Skip if file doesn't exist or is not readable
             if [[ ! -f "$FILE" || ! -r "$FILE" ]]; then
               echo "Skipping non-existing or unreadable file: $FILE"
               continue
             fi
 
-            # Check if the file is newly added (status "A" from git diff --name-status)
-            STATUS=$(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD | grep "$FILE" | awk '{print $1}')
+            # Only run filename checks for newly added files
             if [[ "$STATUS" == "A" ]]; then
                 [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
                 [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
