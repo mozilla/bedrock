@@ -114,7 +114,7 @@ jobs:
             exit 1
           fi
 
-          BODY="2 Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
+          BODY="Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
 
           # Flag to track if any checklist was added
           CHECKLIST_ADDED=false
