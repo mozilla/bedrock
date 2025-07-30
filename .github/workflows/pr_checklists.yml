@@ -58,42 +58,42 @@ jobs:
               [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
             fi
 
-            # # Get only the changed lines for this file
-            # CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
+            # Get only the changed lines for this file
+            CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
 
-            # # Content-based checks (apply to all changed files)
-            # if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
-            #   if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
-            #     INCLUDE_ANALYTICS=true
-            #   fi
-            # fi
+            # Content-based checks (apply to all changed files)
+            if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
+              if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
+                INCLUDE_ANALYTICS=true
+              fi
+            fi
 
-            # if [[ "$FILE" == *.js ]]; then
-            #   if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
-            #     echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
-            #   fi
-            #   if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
-            #     echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
-            #   fi
-            # fi
+            if [[ "$FILE" == *.js ]]; then
+              if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
+                echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
+              fi
+              if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
+                echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
+              fi
+            fi
 
-            # if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
-            #   if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
-            #     if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
-            #       INCLUDE_EXPERIMENT=true
-            #     fi
-            #   fi
-            # fi
+            if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
+              if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
+                if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
+                  INCLUDE_EXPERIMENT=true
+                fi
+              fi
+            fi
 
-            # if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
-            #   INCLUDE_ANALYTICS=true
-            # fi
+            if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
+              INCLUDE_ANALYTICS=true
+            fi
 
-            # if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
-            #       "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
-            #       "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
-            #   break
-            # fi
+            if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
+                  "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
+                  "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
+              break
+            fi
 
           done < <(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD)
 
