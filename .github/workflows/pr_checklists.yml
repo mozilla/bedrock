@@ -170,7 +170,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               comment_id: ${{ steps.find-comment.outputs.comment-id }},
-              body: `${{ steps.comment.outputs.body }}`
+              body: "${{ steps.comment.outputs.body }}"
             });
 
       - name: Create new comment
@@ -183,7 +183,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: context.issue.number,
-                body: `${{ steps.comment.outputs.body }}`
+                body: "${{ steps.comment.outputs.body }}"
               });
             } catch (error) {
               core.warning(`Failed to create comment: ${error.message}`);
