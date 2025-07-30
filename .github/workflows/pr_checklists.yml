@@ -50,24 +50,23 @@ jobs:
 
             # Only run filename checks for newly added files
             if [[ "$STATUS" == "A" ]]; then
-                [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
-                [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
-                [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
-                [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
-                [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
+              [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
+              [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
+              [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
+              [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
+              [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
             fi
 
             # Get only the changed lines for this file
             CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
 
-            # Check HTML files for links and buttons in changed lines
+            # Content-based checks (apply to all changed files)
             if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
               if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
                 INCLUDE_ANALYTICS=true
               fi
             fi
 
-            # Check JS files for event listeners and experiment views in changed lines
             if [[ "$FILE" == *.js ]]; then
               if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
                 echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
@@ -77,7 +76,6 @@ jobs:
               fi
             fi
 
-            # Check if any views.py files have 'variations = [' in changed lines, but not 'variations = []'
             if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
               if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
                 if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
@@ -86,19 +84,17 @@ jobs:
               fi
             fi
 
-            # If experiment checklist is needed, always add analytics checklist too
             if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
               INCLUDE_ANALYTICS=true
             fi
 
-            # Stop looping through files if everything is already included
             if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
                   "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
                   "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
               break
             fi
 
-          done < files.txt
+          done < <(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD)
 
           # Store results for next steps
           echo "css=$INCLUDE_CSS" >> $GITHUB_OUTPUT
