@@ -140,6 +140,7 @@ jobs:
             echo "No specific checklists needed for this PR."
             echo "should_comment=false" >> $GITHUB_OUTPUT
           else
+            echo -e "\nIf you want to suggest an improvement to this script please comment in <a href=\"https://github.com/mozmeao/springfield/issues/396\">mozmeao/springfield#396</a>" >> comment.txt
             echo "should_comment=true" >> $GITHUB_OUTPUT
             # Save the comment content to an output for the next step, safely encoded
             echo "body=$(cat comment.txt | jq -Rs .)" >> $GITHUB_OUTPUT
