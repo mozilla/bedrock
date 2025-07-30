@@ -48,43 +48,55 @@ jobs:
               continue
             fi
 
-            # Check file names first (simplest checks)
-            [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
-            [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
-            [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
-            [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
-            [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
+            # Check if the file is newly added (status "A" from git diff --name-status)
+            STATUS=$(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD | grep "$FILE" | awk '{print $1}')
+            if [[ "$STATUS" == "A" ]]; then
+                [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
+                [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
+                [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
+                [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
+                [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
+              continue
+            fi
 
-            # Check HTML files for links and buttons
+            # Get only the changed lines for this file
+            CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
+
+            # Check HTML files for links and buttons in changed lines
             if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
-              if grep -qE '<a|<button' "$FILE" 2>/dev/null; then
+              if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
                 INCLUDE_ANALYTICS=true
               fi
             fi
 
-            # Check JS files for event listeners and experiment views
+            # Check JS files for event listeners and experiment views in changed lines
             if [[ "$FILE" == *.js ]]; then
               if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
-                grep -qE '\.addEventListener|onclick|onchange|onsubmit' "$FILE" 2>/dev/null && INCLUDE_ANALYTICS=true
+                echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
               fi
               if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
-                grep -q 'experiment_view' "$FILE" 2>/dev/null && INCLUDE_EXPERIMENT=true
+                echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
               fi
             fi
 
-            # Check if any views.py files have values in the entrypoint_variation allow list
+            # Check if any views.py files have 'variations = [' in changed lines, but not 'variations = []'
             if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
-              if grep -q 'entrypoint_variation' "$FILE" 2>/dev/null; then
-                VALUE=$(grep 'entrypoint_variation' "$FILE" 2>/dev/null | grep -v '\[\s*\]' || true)
-                [[ -n "$VALUE" ]] && INCLUDE_EXPERIMENT=true
+              if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
+                if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
+                  INCLUDE_EXPERIMENT=true
+                fi
               fi
+            fi
+
+            # If experiment checklist is needed, always add analytics checklist too
+            if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
+              INCLUDE_ANALYTICS=true
             fi
 
             # Stop looping through files if everything is already included
             if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
                   "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
                   "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
-              # All flags are set, no need to check more files
               break
             fi
 
