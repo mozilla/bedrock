@@ -41,6 +41,7 @@ jobs:
           INCLUDE_HTML=false
           INCLUDE_JS=false
 
+          # Loop directly over status and filename from git diff --name-status
           while IFS=$'\t' read -r STATUS FILE; do
             # Skip if file doesn't exist or is not readable
             if [[ ! -f "$FILE" || ! -r "$FILE" ]]; then
@@ -57,42 +58,42 @@ jobs:
               [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
             fi
 
-            # Get only the changed lines for this file
-            CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
+            # # Get only the changed lines for this file
+            # CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
 
-            # Content-based checks (apply to all changed files)
-            if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
-              if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
-                INCLUDE_ANALYTICS=true
-              fi
-            fi
+            # # Content-based checks (apply to all changed files)
+            # if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
+            #   if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
+            #     INCLUDE_ANALYTICS=true
+            #   fi
+            # fi
 
-            if [[ "$FILE" == *.js ]]; then
-              if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
-                echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
-              fi
-              if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
-                echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
-              fi
-            fi
+            # if [[ "$FILE" == *.js ]]; then
+            #   if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
+            #     echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
+            #   fi
+            #   if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
+            #     echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
+            #   fi
+            # fi
 
-            if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
-              if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
-                if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
-                  INCLUDE_EXPERIMENT=true
-                fi
-              fi
-            fi
+            # if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
+            #   if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
+            #     if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
+            #       INCLUDE_EXPERIMENT=true
+            #     fi
+            #   fi
+            # fi
 
-            if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
-              INCLUDE_ANALYTICS=true
-            fi
+            # if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
+            #   INCLUDE_ANALYTICS=true
+            # fi
 
-            if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
-                  "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
-                  "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
-              break
-            fi
+            # if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
+            #       "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
+            #       "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
+            #   break
+            # fi
 
           done < <(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD)
 
@@ -113,7 +114,7 @@ jobs:
             exit 1
           fi
 
-          BODY="Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
+          BODY="2 Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
 
           # Flag to track if any checklist was added
           CHECKLIST_ADDED=false
