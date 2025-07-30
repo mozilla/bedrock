@@ -88,7 +88,7 @@ jobs:
               break
             fi
 
-          done < changed_files.txt
+          done < files.txt
 
           # Store results for next steps
           echo "css=$INCLUDE_CSS" >> $GITHUB_OUTPUT
