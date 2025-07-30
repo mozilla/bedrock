@@ -57,7 +57,7 @@ jobs:
 
             # Check HTML files for links and buttons
             if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
-              if grep -qE '<a\s+[^>]*href=|<button' "$FILE" 2>/dev/null; then
+              if grep -qE '<a|<button' "$FILE" 2>/dev/null; then
                 INCLUDE_ANALYTICS=true
               fi
             fi
