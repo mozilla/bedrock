@@ -16,14 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 2
 
       - name: Get changed files
         id: files
         run: |
-          # Ensure command doesn't fail if diff returns nothing
           set -o pipefail
-          FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} || echo "")
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD || echo "")
           if [[ -z "$FILES" ]]; then
             echo "No files changed in this PR."
             echo "[]" > changed_files.txt
