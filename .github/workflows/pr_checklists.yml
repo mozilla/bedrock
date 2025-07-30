@@ -108,17 +108,20 @@ jobs:
       - name: Build comment body
         id: comment
         run: |
-          # Check if checklist directory exists
+          # Ensure the checklist markdown files exist before proceeding.
           if [[ ! -d "docs/docs/checklists" ]]; then
             echo "Error: docs/docs/checklists directory not found!" >&2
             exit 1
           fi
 
+          # Initial message for the PR comment.
           BODY="Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
 
-          # Flag to track if any checklist was added
+          # Tracks whether any checklist was appended to the comment.
           CHECKLIST_ADDED=false
 
+          # Appends a checklist section to the comment file.
+          # Usage: append_checklist "Title" "path/to/checklist.md"
           append_checklist() {
             local title="$1"
             local file="$2"
@@ -126,8 +129,10 @@ jobs:
             CHECKLIST_ADDED=true
           }
 
+          # Start the comment file with the initial message.
           echo -e "$BODY" > comment.txt
 
+          # Append each checklist if its flag is set.
           [[ "${{ steps.checklists.outputs.css }}" == "true" ]] && append_checklist "🧾 CSS Checklist" "docs/docs/checklists/css.md"
           [[ "${{ steps.checklists.outputs.analytics }}" == "true" ]] && append_checklist "📊 Analytics Checklist" "docs/docs/checklists/analytics.md"
           [[ "${{ steps.checklists.outputs.l10n }}" == "true" ]] && append_checklist "🌍 L10n Checklist" "docs/docs/checklists/l10n.md"
@@ -135,14 +140,15 @@ jobs:
           [[ "${{ steps.checklists.outputs.html }}" == "true" ]] && append_checklist "🧱 HTML Checklist" "docs/docs/checklists/html.md"
           [[ "${{ steps.checklists.outputs.js }}" == "true" ]] && append_checklist "📜 JavaScript Checklist" "docs/docs/checklists/js.md"
 
-          # If no checklists were added, output a message and set a flag
+          # If no checklists were added, do not post a comment, but log a message for workflow visibility.
           if [[ "$CHECKLIST_ADDED" == "false" ]]; then
             echo "No specific checklists needed for this PR."
             echo "should_comment=false" >> $GITHUB_OUTPUT
           else
+            # Add a suggestion link for improving the script to the comment.
             echo -e "\nIf you want to suggest an improvement to this script please comment in <a href=\"https://github.com/mozmeao/springfield/issues/396\">mozmeao/springfield#396</a>" >> comment.txt
             echo "should_comment=true" >> $GITHUB_OUTPUT
-            # Save the comment content to an output for the next step, safely encoded
+            # Encode the comment for safe output to the next workflow step.
             echo "body=$(cat comment.txt | jq -Rs .)" >> $GITHUB_OUTPUT
           fi
 
@@ -151,6 +157,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Find an existing bot comment with the checklist intro text.
             const { data: comments } = await github.rest.issues.listComments({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -162,6 +169,7 @@ jobs:
                      comment.body.includes('Based on the contents you may need to double-check these things');
             });
 
+            // Output the comment ID and existence flag for later steps.
             if (botComment) {
               core.setOutput('comment-id', botComment.id);
               core.setOutput('exists', 'true');
@@ -174,6 +182,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Update the existing bot comment with the new checklist content.
             github.rest.issues.updateComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -188,6 +197,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            // Create a new bot comment with the checklist content.
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
