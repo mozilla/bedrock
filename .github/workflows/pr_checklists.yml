@@ -22,12 +22,13 @@ jobs:
         id: files
         run: |
           set -o pipefail
-          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD || echo "")
+          git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+          git fetch origin ${{ github.event.pull_request.head.ref }}:${{ github.event.pull_request.head.ref }}
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD)
           if [[ -z "$FILES" ]]; then
-            echo "No files changed in this PR."
-            echo "[]" > changed_files.txt
+            echo "No files changed in this PR." > files.txt
           else
-            echo "$FILES" > changed_files.txt
+            echo "$FILES" > files.txt
           fi
 
       - name: Determine which checklists to include
