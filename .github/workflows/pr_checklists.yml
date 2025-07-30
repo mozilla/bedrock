@@ -135,13 +135,15 @@ jobs:
           [[ "${{ steps.checklists.outputs.html }}" == "true" ]] && append_checklist "🧱 HTML Checklist" "docs/docs/checklists/html.md"
           [[ "${{ steps.checklists.outputs.js }}" == "true" ]] && append_checklist "📜 JavaScript Checklist" "docs/docs/checklists/js.md"
 
-          # If no checklists were added, add a simple message
+          # If no checklists were added, output a message and set a flag
           if [[ "$CHECKLIST_ADDED" == "false" ]]; then
-            echo -e "\nNo specific checklists needed for this PR." >> comment.txt
+            echo "No specific checklists needed for this PR."
+            echo "should_comment=false" >> $GITHUB_OUTPUT
+          else
+            echo "should_comment=true" >> $GITHUB_OUTPUT
+            # Save the comment content to an output for the next step, safely encoded
+            echo "body=$(cat comment.txt | jq -Rs .)" >> $GITHUB_OUTPUT
           fi
-
-          # Save the comment content to an output for the next step, safely encoded
-          echo "body=$(cat comment.txt | jq -Rs .)" >> $GITHUB_OUTPUT
 
       - name: Check for existing comment
         id: find-comment
@@ -167,7 +169,7 @@ jobs:
             }
 
       - name: Update existing comment
-        if: steps.find-comment.outputs.exists == 'true'
+        if: steps.find-comment.outputs.exists == 'true' && steps.comment.outputs.should_comment == 'true'
         uses: actions/github-script@v7
         with:
           script: |
@@ -181,7 +183,7 @@ jobs:
           BODY: ${{ steps.comment.outputs.body }}
 
       - name: Create new comment
-        if: steps.find-comment.outputs.exists == 'false'
+        if: steps.find-comment.outputs.exists == 'false' && steps.comment.outputs.should_comment == 'true'
         uses: actions/github-script@v7
         with:
           script: |
