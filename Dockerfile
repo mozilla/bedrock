@@ -111,7 +111,7 @@ COPY ./tests ./tests
 
 RUN bin/run-sync-all.sh
 
-RUN chown webdev:webdev -R . && echo "Files chowned  in devapp"
+RUN chown webdev:webdev -R . && echo "Files chowned in devapp"
 
 # for bpython
 RUN mkdir /home/webdev/
