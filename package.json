@@ -7,7 +7,7 @@
     "@babel/core": "^7.27.7",
     "@babel/preset-env": "^7.27.2",
     "@mozilla-protocol/core": "^20.0.0",
-    "@mozilla/glean": "^5.0.3",
+    "@mozilla/glean": "^5.0.5",
     "@mozmeao/consent-banner": "^1.1.0",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
@@ -24,7 +24,7 @@
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
-    "webpack": "^5.99.9",
+    "webpack": "^5.101.0",
     "webpack-cli": "^6.0.1"
   },
   "repository": {
@@ -62,7 +62,7 @@
     "test": "npm run glean && npm run lint && npm run jasmine",
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
     "prebuild": "npm run glean && npm run static",
-    "build": "webpack --mode=production --bail --progress",
+    "build": "webpack --mode=production --bail",
     "prewatch": "npm run glean && npm run static",
     "watch": "webpack serve --mode=development --progress",
     "prettier": "prettier --write .",
