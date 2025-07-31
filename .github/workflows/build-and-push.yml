@@ -60,8 +60,10 @@ jobs:
 
       - id: build_and_push_docker_hub_images
         name: Build and push public images to Docker hub
-        run: |-
-          ./bin/build-release-image.sh --push
+        run: |
+            # assets is failing to build in CI, this tempoarary workaround primes the docker cache and gets things working
+            docker build --target assets .
+            ./bin/build-release-image.sh --push
 
         env:
             GIT_COMMIT: ${{ steps.long-sha.outputs.LONG_SHA }}
