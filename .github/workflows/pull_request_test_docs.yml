@@ -1,0 +1,21 @@
+name: Test documentation build
+
+on:
+  workflow_dispatch: # allow manual runs
+  pull_request:
+    paths: # only build on relevant changes
+      - docs/**
+      - requirements/docs.*
+      - .github/workflows/pull_request_test_docs.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+          cache: pip
+      - run: pip install -r requirements/docs.txt
+      - run: cd docs && mkdocs build --strict
