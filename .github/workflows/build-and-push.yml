@@ -64,7 +64,7 @@ jobs:
             # assets is failing to build in CI, this tempoarary workaround primes the docker cache and gets things working
             docker build --target assets .
             ./bin/build-release-image.sh --push
-
+        timeout-minutes: 45
         env:
             GIT_COMMIT: ${{ steps.long-sha.outputs.LONG_SHA }}
 
