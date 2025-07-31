@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 from bedrock.redirects.util import gone, redirect, ua_redirector
 
 
@@ -13,15 +15,17 @@ def to_uppercase(url):
     return decider
 
 
+FXC_URL = settings.FXC_BASE_URL.strip("/") + "/"
+
 redirectpatterns = (
     # bug 874913, 681572
-    redirect(r"^(products/)?download\.html", "firefox.new", query=""),
+    redirect(r"^(products/)?download\.html", f"{FXC_URL}/en-US/", query=""),
     # bug 845580
-    redirect(r"^home/?$", "firefox.new"),
+    redirect(r"^home/?$", FXC_URL),
     # bug 948605
-    redirect(r"^firefox/xp", "firefox.new"),
+    redirect(r"^firefox/xp", FXC_URL),
     # bug 875052
-    redirect(r"^start/", ua_redirector("seamonkey", "http://www.seamonkey-project.org/start/", "firefox.new"), cache_timeout=0),
+    redirect(r"^start/", ua_redirector("seamonkey", "http://www.seamonkey-project.org/start/", FXC_URL), cache_timeout=0),
     # bug 856081 redirect /about/drivers https://wiki.mozilla.org/Firefox/Drivers
     redirect(r"^about/drivers(\.html|/)?$", "https://wiki.mozilla.org/Firefox/Drivers"),
     # community
@@ -55,7 +59,7 @@ redirectpatterns = (
     # bug 975476
     redirect(r"^projects/security/pki/python-nss/doc/api/current/html(?P<path>.*)$", "https://mozilla.github.io/python-nss-docs{path}"),
     # bug 780672
-    redirect(r"^firefox/webhero", "firefox.new"),
+    redirect(r"^firefox/webhero", FXC_URL),
     # bug 964107
     redirect(r"^firefox/video", "https://www.youtube.com/firefoxchannel"),
     # bug 948520
@@ -74,7 +78,7 @@ redirectpatterns = (
     # Bug 1144949
     redirect(r"^contribute/page/?$", "https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org"),
     # Bug 763665, 1148127
-    redirect(r"^projects/?$", "firefox.new"),
+    redirect(r"^projects/?$", FXC_URL),
     # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418
     redirect(r"^firefox/brand(/.*)?", "https://mozilla.design/firefox/"),
     # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418
@@ -370,7 +374,7 @@ redirectpatterns = (
     # bug 1236910
     redirect(r"^support(/.*)?$", "https://support.mozilla.org/"),
     # Bug 1235853
-    redirect(r"^facebookapps(/.*)?$", "firefox.new"),
+    redirect(r"^facebookapps(/.*)?$", FXC_URL),
     # Bug 1255882
     redirect(r"^firefox/about/?$", "mozorg.about.index"),
     # bug 453506, 1255882
@@ -488,8 +492,8 @@ redirectpatterns = (
     redirect(r"^technology/incognito-browser/?$", "firefox.browsers.incognito-browser"),
     redirect(r"^technology/browser-history/?$", "firefox.browsers.browser-history"),
     # Issue 8536, 11891
-    redirect(r"^etc/firefox/retention(/.*)?", "firefox.new"),
-    redirect(r"^firefox/retention/thank-you/?", "firefox.new"),
+    redirect(r"^etc/firefox/retention(/.*)?", FXC_URL),
+    redirect(r"^firefox/retention/thank-you/?", FXC_URL),
     # Issue 8374
     redirect(r"^plugincheck/?$", "https://support.mozilla.org/kb/npapi-plugins/"),
     # Vanity URL for EKR's blog
@@ -518,12 +522,12 @@ redirectpatterns = (
     # Issue 9984
     redirect(r"^/about/legal/fraud-report/?$", "/about/legal/defend-mozilla-trademarks/"),
     # Issue 11204
-    redirect(r"^(truecolou?rs|turningred)/?$", "firefox.new"),
+    redirect(r"^(truecolou?rs|turningred)/?$", FXC_URL),
     # Issue 11991
     redirect(r"^transparency/?$", "mozorg.about.policy.transparency.index"),
     # Issue 14231
     redirect(r"^santa-?locator/?$", "mozorg.home"),
-    redirect(r"^landing/firefox/fx100/?$", "firefox.new"),
+    redirect(r"^landing/firefox/fx100/?$", FXC_URL),
     redirect(r"^accounts/?$", "mozorg.account"),
     # Issue 13211
     redirect(r"^/en/$", "/en-US/", permanent=True),

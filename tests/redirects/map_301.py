@@ -1,8 +1,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
+from django.conf import settings
 
 from .base import flatten, url_test
+
+FXC_URL = settings.FXC_BASE_URL.strip("/") + "/"
+
 
 URLS = flatten(
     (
@@ -572,7 +576,7 @@ URLS = flatten(
         url_test("/download-mozilla.html", "http://developer.mozilla.org/en/Download_Mozilla_Source_Code"),
         url_test("/en/", "/en-US/"),  # Issue 13211
         url_test("/feedback.html", "/contact/"),
-        url_test("/firebird", "http://www.firefox.com"),
+        url_test("/firebird", "https://www.firefox.com"),
         url_test("/foundation/privacy-policy.html", "/privacy/websites/"),
         url_test("/get-involved.html", "/contribute/"),
         url_test("/glimpsesearch.html", "https://dxr.mozilla.org/"),
@@ -967,16 +971,16 @@ URLS = flatten(
             "https://developer.mozilla.org/docs/Mozilla/Gecko/Gecko_Embedding_Basics#Appendix:_Data_Flow_Inside_Gecko",
         ),
         url_test("/projects/embedding/examples/", "https://developer.mozilla.org/docs/Gecko/Embedding_Mozilla/Roll_your_own_browser"),
-        url_test("/products/firebird", "/firefox/new/"),
-        url_test("/products/firebird/download/", "/firefox/new/"),
+        url_test("/products/firebird", FXC_URL),
+        url_test("/products/firebird/download/", FXC_URL),
         url_test("/products/firefox/add-engines.html", "https://addons.mozilla.org/search-engines.php"),
         url_test("/products/firefox/all", "/firefox/all/"),
         url_test("/products/firefox/all.html", "/firefox/all/"),
         url_test("/products/firefox/banners.html", "/contribute/friends/"),
         url_test("/products/firefox/buttons.html", "/contribute/friends/"),
-        url_test("/products/firefox/download", "/firefox/new/"),
-        url_test("/products/firefox/download.html", "/firefox/new/"),
-        url_test("/products/firefox/get", "/firefox/new/"),
+        url_test("/products/firefox/download", FXC_URL),
+        url_test("/products/firefox/download.html", FXC_URL),
+        url_test("/products/firefox/get", FXC_URL),
         url_test("/products/firefox/", "/products/"),
         url_test("/products/firefox/live-bookmarks", "/firefox/features/"),
         url_test("/products/firefox/live-bookmarks.html", "/firefox/features/"),
@@ -995,15 +999,15 @@ URLS = flatten(
         url_test("/products/firefox/shelf.html", "https://blog.mozilla.org/press/awards/"),
         url_test("/products/firefox/smart-keywords.html", "https://support.mozilla.org/en-US/kb/Smart+keywords"),
         url_test("/products/firefox/support/", "https://support.mozilla.org/"),
-        url_test("/products/firefox/switch", "/firefox/new/"),
+        url_test("/products/firefox/switch", FXC_URL),
         url_test("/products/firefox/system-requirements.html", "/firefox/system-requirements/"),
-        url_test("/products/firefox/tabbed-browsing.html", "/firefox/new/"),
+        url_test("/products/firefox/tabbed-browsing.html", FXC_URL),
         url_test("/products/firefox/text-zoom.html", "https://support.mozilla.org/kb/font-size-and-zoom-increase-size-of-web-pages"),
         url_test("/products/firefox/themes", "https://addons.mozilla.org/themes/"),
         url_test("/products/firefox/themes.html", "https://addons.mozilla.org/themes/"),
         url_test("/products/firefox/ui-customize.html", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
-        url_test("/products/firefox/upgrade/", "/firefox/new/"),
-        url_test("/products/firefox/why/", "/firefox/new/"),
+        url_test("/products/firefox/upgrade/", FXC_URL),
+        url_test("/products/firefox/why/", FXC_URL),
         url_test("/products/thunderbird/all-beta.html", "/thunderbird/all/"),
         url_test("/products/thunderbird/all.html", "/thunderbird/all/"),
         url_test("/products/thunderbird/global-inbox.html", "http://kb.mozillazine.org/Global_Inbox"),
@@ -1018,7 +1022,7 @@ URLS = flatten(
         url_test("/products/thunderbird/sysreq.html", "/thunderbird/system-requirements/"),
         url_test("/profilemanager/isp-rdf-info.txt", "https://developer.mozilla.org/docs/Isp_Data"),
         url_test("/projects.html", "https://www.mozilla.org/projects/"),
-        url_test("/projects/browsers.html", "/firefox/new/"),
+        url_test("/projects/browsers.html", FXC_URL),
         url_test("/projects/bugzilla", "https://www.bugzilla.org"),
         url_test("/projects/deerpark/", "/firefox/channel/desktop/"),
         url_test("/projects/distros.html", "/projects/mozilla-based.html"),

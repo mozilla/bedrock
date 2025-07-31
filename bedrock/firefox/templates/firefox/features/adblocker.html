@@ -15,7 +15,7 @@
 <h2>{{ ftl('features-adblocker-so-many-ads-so-little') }}</h2>
 <p>{{ ftl('features-adblocker-the-average-person-sees') }}</p>
 <p>{{ ftl('features-adblocker-an-ad-blocker-is-a-piece') }}</p>
-<p>{{ ftl('features-adblocker-these-ads-might-be-loud', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+<p>{{ ftl('features-adblocker-these-ads-might-be-loud', firefox="https://www.firefox.com/?redirect_source=mozilla-org", addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
 
 <h2>{{ ftl('features-adblocker-find-the-right-ad-blocker') }}</h2>
 
@@ -23,7 +23,7 @@
 <p>{{ ftl('features-adblocker-considered-by-many-to-be-the', attrs='href="https://addons.mozilla.org/firefox/addon/ublock-origin/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
 <p>{{ ftl('features-adblocker-adguard-adblocker-blunts', attrs1='href="https://addons.mozilla.org/firefox/addon/adguard-adblocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe', attrs2='href="https://addons.mozilla.org/firefox/addon/popup-blocker/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
 <p>{{ ftl('features-adblocker-ghostery-is-another-great', attrs='href="https://addons.mozilla.org/firefox/addon/ghostery/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features"|safe') }}</p>
-{% set desktop_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.new')) %}
+{% set desktop_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format("https://www.firefox.com/?redirect_source=mozilla-org") %}
 {% set android_link = 'href="%s" data-link-type="link" data-link-text="Firefox for desktop"'|safe|format(url('firefox.browsers.mobile.android')) %}
 <p>{{ ftl('features-adblocker-these-extensions-work-beautifully', attrs1=desktop_link, attrs2=android_link) }}</p>
 
@@ -116,5 +116,5 @@
 
 <h2>{{ ftl('features-adblocker-speed-up-thanks-to-ad') }}</h2>
 <p>{{ ftl('features-adblocker-in-some-cases-an-ad-blocker') }}</p>
-<p>{{ ftl('features-adblocker-if-you-want-to-learn-more-v2', url=url('firefox.new')) }}</p>
+<p>{{ ftl('features-adblocker-if-you-want-to-learn-more-v2', url="https://www.firefox.com/?redirect_source=mozilla-org") }}</p>
 {% endblock %}
