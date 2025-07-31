@@ -46,7 +46,7 @@ COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean
 
-RUN npm run build --verbose
+RUN npm run build
 
 
 ########
