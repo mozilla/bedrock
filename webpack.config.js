@@ -45,6 +45,9 @@ module.exports = {
         path: path.resolve(__dirname, 'assets/'),
         publicPath: '/media/'
     },
+    cache: {
+        type: 'memory' // rather than default of filesystem
+    },
     optimization: {
         minimizer: [
             new TerserPlugin({
