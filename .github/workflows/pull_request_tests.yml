@@ -35,9 +35,12 @@ jobs:
           python-version: "3.13"  # matches current Python in production
       - name: "Run Python tests (on Docker)"
         run: |
+            # assets is failing to build in CI, this tempoarary workaround primes the docker cache and gets things working
+            docker build --target assets .
             make clean test-image
             CONTAINER_ID=$(docker ps -alq)
             docker cp $CONTAINER_ID:/app/python_coverage .
+        timeout-minutes: 30
       - name: Store coverage as an artifact
         uses: actions/upload-artifact@v4
         with:
