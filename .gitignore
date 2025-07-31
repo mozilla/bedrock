@@ -10,7 +10,6 @@ __pycache__/
 .eslintcache
 .idea
 .jshintrc
-.noseids
 .python-version
 .vscode/*
 .venv
@@ -35,18 +34,12 @@ build
 build.py
 db.sql
 Desktop.ini
-docs/_build
-docs/_gh-pages
-james.ini
+docs/site
 media/js/libs/glean
 node_modules
 npm-debug.log
 pip-log.txt
 python_coverage/
-root_files/*/sitemap.xml
-root_files/etags.json
-root_files/sitemap.json
-root_files/sitemap*.xml
 settings_local.py
 settings/local.py
 static
@@ -66,4 +59,3 @@ tmp/*
 venv
 /custom-media
 /local-credentials/*.json
-docs/site
