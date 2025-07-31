@@ -62,7 +62,7 @@
     "test": "npm run glean && npm run lint && npm run jasmine",
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
     "prebuild": "npm run glean && npm run static",
-    "build": "webpack --mode=production --bail --progress",
+    "build": "webpack --mode=production --bail --progress && echo 'FE deps build done ✅'",
     "prewatch": "npm run glean && npm run static",
     "watch": "webpack serve --mode=development --progress",
     "prettier": "prettier --write .",

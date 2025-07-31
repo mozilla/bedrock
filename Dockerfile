@@ -38,7 +38,8 @@ ENV PATH="/.venv/bin:$PATH"
 COPY package.json package-lock.json ./
 
 # install dependencies
-RUN npm ci --verbose
+RUN echo "Installing JS deps" && npm ci --verbose && echo "Deps installed"
+
 
 # copy supporting files and media
 COPY eslint.config.js .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
@@ -46,7 +47,8 @@ COPY ./media ./media
 COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean
 
-RUN npm run build --verbose
+# Run build with sentinels either side to help spot a hung build
+RUN echo "Starting build" && npm run build --verbose && echo "Build complete"
 
 
 ########
