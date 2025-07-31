@@ -59,16 +59,18 @@
     "test-build": "webpack --config webpack.test.config.js --mode=development",
     "jasmine": "npm run test-build && npx jasmine-browser-runner runSpecs --config=tests/unit/jasmine-browser.json && npx jasmine-browser-runner runSpecs --browser=chrome --config=tests/unit/jasmine-browser.json",
     "jasmine-serve": "concurrently \"webpack --watch --config webpack.test.config.js --mode=development\" \"npx jasmine-browser-runner serve --config=tests/unit/jasmine-browser.json\"",
-    "test": "npm run lint && npm run jasmine",
+    "test": "npm run glean && npm run lint && npm run jasmine",
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
-    "prebuild": "npm run static",
+    "prebuild": "npm run glean && npm run static",
     "build": "webpack --mode=production --bail --progress && echo 'FE deps build done ✅'",
-    "prewatch": "npm run static",
+    "prewatch": "npm run glean && npm run static",
     "watch": "webpack serve --mode=development --progress",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
     "stylelint-fix": "npx stylelint \"media/css/**/*.{css,scss}\" --fix",
-    "format": "npm run prettier && npm run stylelint-fix"
+    "format": "npm run prettier && npm run stylelint-fix",
+    "glean-lint": "glean glinter glean/metrics.yaml",
+    "glean": "npm run glean-lint && glean translate glean/metrics.yaml -f javascript -o media/js/libs/glean/"
   },
   "browserslist": [
     "defaults",
