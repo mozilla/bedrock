@@ -48,7 +48,7 @@ COPY ./tests/unit ./tests/unit
 COPY ./glean ./glean
 
 # Run build with sentinels either side to help spot a hung build
-RUN echo "Starting build" && npm run build --verbose && echo "Build complete"
+# RUN echo "Starting build" && npm run build --verbose && echo "Build complete"
 
 
 ########
