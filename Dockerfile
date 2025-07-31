@@ -27,12 +27,12 @@ FROM node:24.4.1-slim AS assets
 ENV PATH=/app/node_modules/.bin:$PATH
 WORKDIR /app
 
-# Required for required glean_parser dependencies
-COPY docker/bin/apt-install /usr/local/bin/
-RUN apt-install python3 python3-venv
-RUN python3 -m venv /.venv
-COPY --from=python-builder /venv /.venv
-ENV PATH="/.venv/bin:$PATH"
+# # Required for required glean_parser dependencies
+# COPY docker/bin/apt-install /usr/local/bin/
+# RUN apt-install python3 python3-venv
+# RUN python3 -m venv /.venv
+# COPY --from=python-builder /venv /.venv
+# ENV PATH="/.venv/bin:$PATH"
 
 # copy dependency definitions
 COPY package.json package-lock.json ./
@@ -45,7 +45,7 @@ RUN echo "Installing JS deps" && npm ci --verbose && echo "Deps installed"
 COPY eslint.config.js .stylelintrc .prettierrc.json .prettierignore webpack.config.js webpack.static.config.js ./
 COPY ./media ./media
 COPY ./tests/unit ./tests/unit
-COPY ./glean ./glean
+# COPY ./glean ./glean
 
 # Run build with sentinels either side to help spot a hung build
 RUN echo "Starting build" && npm run build --verbose && echo "Build complete"
