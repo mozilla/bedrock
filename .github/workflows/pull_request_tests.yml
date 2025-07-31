@@ -27,7 +27,7 @@ jobs:
         run: xvfb-run npm test
 
   test-python:
-    runs-on: macos-latest  # TODO: FIXME
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -35,5 +35,6 @@ jobs:
           python-version: "3.13"  # matches current Python in production
       - name: "Run Python tests (on Docker)"
         run: |
-            make clean test-image
+            export COMPOSE_BAKE=false
+            make clean test-image            
         # FIXME: add back coverage
