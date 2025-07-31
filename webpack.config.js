@@ -90,8 +90,9 @@ module.exports = {
                     {
                         loader: 'sass-loader',
                         options: {
+                            api: 'modern',
                             sassOptions: {
-                                quietDeps: true
+                                silenceDeprecations: ['mixed-decls']
                             }
                         }
                     }
