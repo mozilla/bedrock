@@ -111,14 +111,14 @@ COPY ./tests ./tests
 
 RUN bin/run-sync-all.sh
 
-# RUN chown webdev:webdev -R . && echo "Files chowned  in devapp"
+RUN chown webdev:webdev -R . && echo "Files chowned  in devapp"
 
 # for bpython
 RUN mkdir /home/webdev/
 RUN touch /home/webdev/.pythonhist
-# RUN chown -R webdev /home/webdev/
+RUN chown -R webdev /home/webdev/
 
-# USER webdev
+USER webdev
 
 # build args
 ARG GIT_SHA=latest
@@ -140,8 +140,8 @@ COPY --from=assets /app/assets /app/assets
 RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 
 # Change User
-# RUN chown webdev:webdev -R . && echo "Files chowned  in release"
-# USER webdev
+RUN chown webdev:webdev -R . && echo "Files chowned  in release"
+USER webdev
 
 # build args
 ARG GIT_SHA=latest
