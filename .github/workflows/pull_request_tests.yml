@@ -27,7 +27,7 @@ jobs:
         run: xvfb-run npm test
 
   test-python:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04  # TODO: FIXME
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
