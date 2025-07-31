@@ -39,8 +39,7 @@ jobs:
           python-version: "3.13"  # matches current Python in production
       - name: "Run Python tests (on Docker)"
         run: |
-            docker compose build app
-            # make clean test-image
+            docker compose build assets
             # CONTAINER_ID=$(docker ps -alq)
             # docker cp $CONTAINER_ID:/app/python_coverage .
       - name: Store coverage as an artifact
