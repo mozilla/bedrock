@@ -4,8 +4,8 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.27.7",
-    "@babel/preset-env": "^7.27.2",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
     "@mozilla-protocol/core": "^20.0.0",
     "@mozilla/glean": "^5.0.3",
     "@mozmeao/consent-banner": "^1.1.0",
@@ -14,7 +14,7 @@
     "@mozmeao/trafficcop": "^3.1.0",
     "@sentry/browser": "^9.33.0",
     "babel-loader": "^10.0.0",
-    "caniuse-lite": "^1.0.30001726",
+    "caniuse-lite": "^1.0.30001731",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
@@ -24,7 +24,7 @@
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
-    "webpack": "^5.99.9",
+    "webpack": "^5.101.0",
     "webpack-cli": "^6.0.1"
   },
   "repository": {
