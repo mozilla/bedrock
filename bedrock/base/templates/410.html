@@ -1,0 +1,46 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-error.html" %}
+
+{% block page_title %}{{ ftl('gone-page-gone-page-page-gone') }}{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('page_not_found') }}
+{% endblock %}
+
+{# 410 pages must not include canonical and hreflang x-default: https://github.com/mozilla/bedrock/issues/5895 #}
+{% block canonical_urls %}{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content message-section">
+  <h1 class="error-title">{{ ftl('gone-page-sorry-that-page-is-gone') }}</h1>
+  <p>{{ ftl('gone-page-you-may-be-able-to-find-more', blog='https://blog.mozilla.org/') }}</p>
+
+  <p class="hide-back" id="go-back">
+    <a class="back-button" data-testid="link-go-back">{{ ftl('gone-page-go-back') }}</a>
+  </p>
+
+  <ul class="content-list">
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
+    </li>
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-download-the-firefox-browser', download=url('firefox.new')) }}
+    </li>
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/default-browser.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-donate-to-mozilla-reclaim-from', donate='href="%s"'|safe|format(donate_url(location='donate-410'))) }}
+    </li>
+  </ul>
+  </main>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle('page_not_found') }}
+{% endblock %}
