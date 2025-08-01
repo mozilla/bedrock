@@ -20,3 +20,4 @@ jobs:
       - name: "Basically docker compose build app assets …"
         run: |
             make clean test-image            
+        timeout-minutes: 10
