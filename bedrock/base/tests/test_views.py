@@ -46,6 +46,34 @@ class TestGeoTemplateView(TestCase):
         assert template == "firefox-mobile.html"
 
 
+class TestErrorPages(TestCase):
+    """Test error pages using the debug URLs that are set up in DEBUG mode."""
+
+    def test_404_page_returns_correct_status(self):
+        response = self.client.get("/en-US/404/")
+        self.assertEqual(response.status_code, 404)
+
+    def test_404_page_uses_correct_template(self):
+        response = self.client.get("/en-US/404/")
+        self.assertTemplateUsed(response, "404.html")
+
+    def test_410_page_returns_correct_status(self):
+        response = self.client.get("/en-US/410/")
+        self.assertEqual(response.status_code, 410)
+
+    def test_410_page_uses_correct_template(self):
+        response = self.client.get("/en-US/410/")
+        self.assertTemplateUsed(response, "410.html")
+
+    def test_500_page_returns_correct_status(self):
+        response = self.client.get("/en-US/500/")
+        self.assertEqual(response.status_code, 500)
+
+    def test_500_page_uses_correct_template(self):
+        response = self.client.get("/en-US/500/")
+        self.assertTemplateUsed(response, "500.html")
+
+
 @patch("bedrock.base.views.tz_now")
 @patch("bedrock.base.views.timeago.format")
 @pytest.mark.django_db
