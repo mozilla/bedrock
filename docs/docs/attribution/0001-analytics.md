@@ -230,7 +230,7 @@ window.dataLayer.push({
 ##### Product Downloads
 
 !!! important
-    VPN support has not been added. Firefox, Firefox Mobile, Focus, and Klar are currently supported.
+    Firefox, Firefox Mobile, Focus, VPN, and Klar are currently supported.
 
 When the user signals their intent do install one of our products we log a download event named for the product. This intent could be: clicking an app store badge, triggering a file download, or sending themselves the link using the send to device widget. The events are in the format [product name]_download and all function the same. So they use the same JavaScript "TrackProductDownload". For this documentation the following custom events will be talked about as ``product_download`` :
 
@@ -238,6 +238,7 @@ When the user signals their intent do install one of our products we log a downl
 -   ``firefox_mobile_download``
 -   ``focus_download``
 -   ``klar_download``
+-   ``vpn_download``
 
 Properties for use with ``product_download`` (not all products will have all options):
 

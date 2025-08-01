@@ -15,6 +15,8 @@ const playStoreURL = /^https:\/\/play.google.com/;
 const marketURL = /^market:\/\/play.google.com/;
 const msStoreUrl = /^https:\/\/apps.microsoft.com/;
 const msStoreUrl2 = /^ms-windows-store:\/\/pdp\//;
+const vpnDesktopUrl =
+    /^.+\/vpn\/download\/(?<platform>mac|windows|linux)(?:\/[^]*)?\/?/;
 
 if (typeof window.dataLayer === 'undefined') {
     window.dataLayer = [];
@@ -36,7 +38,8 @@ TrackProductDownload.isValidDownloadURL = (downloadURL) => {
             playStoreURL.test(downloadURL) ||
             marketURL.test(downloadURL) ||
             msStoreUrl.test(downloadURL) ||
-            msStoreUrl2.test(downloadURL)
+            msStoreUrl2.test(downloadURL) ||
+            vpnDesktopUrl.test(downloadURL)
         ) {
             return true;
         } else {
@@ -104,7 +107,16 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
     }
 
     let eventObject = {};
-    if (
+
+    if (vpnDesktopUrl.test(downloadURL)) {
+        const platform = downloadURL.match(vpnDesktopUrl).groups.platform;
+        eventObject = TrackProductDownload.getEventObject(
+            'vpn',
+            platform,
+            'site',
+            'release'
+        );
+    } else if (
         prodURL.test(downloadURL) ||
         stageURL.test(downloadURL) ||
         devURL.test(downloadURL)

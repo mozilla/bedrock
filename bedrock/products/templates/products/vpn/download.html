@@ -81,7 +81,7 @@
               <h2>{{ ftl('vpn-download-for-windows-long') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
-              <a class="mzp-c-button" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" data-testid="vpn-download-link-primary-windows">
+              <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" data-testid="vpn-download-link-primary-windows">
               {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
               </a>
             </div>
@@ -95,7 +95,7 @@
               <h2>{{ ftl('vpn-download-for-mac-long', fallback='vpn-download-for-mac') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-version-requirements', version='11.0') }}</p>
-              <a class="mzp-c-button" href="{{ url('products.vpn.mac-download') }}" data-cta-text="VPN Download (macOS)" class="platform-download-link" data-testid="vpn-download-link-primary-mac">
+              <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.mac-download') }}" data-cta-text="VPN Download (macOS)" class="platform-download-link" data-testid="vpn-download-link-primary-mac">
               {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
               </a>
             </div>
@@ -109,7 +109,7 @@
               <h2>{{ ftl('vpn-download-for-linux-long', fallback='vpn-download-for-linux') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-for-linux-requirements', version='22.04') }}</p>
-              <a class="mzp-c-button" href="{{ linux_download_url }}" data-cta-text="VPN Download (Linux)" class="platform-download-link">
+              <a class="mzp-c-button ga-product-download" href="{{ linux_download_url }}" data-cta-text="VPN Download (Linux)" class="platform-download-link">
               {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
               </a>
             </div>
@@ -123,7 +123,7 @@
               <h2>{{ ftl('vpn-download-for-ios-long-v2', fallback='vpn-download-for-ios') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-version-requirements', version='15.0') }}</p>
-              <a href="{{ ios_download_url }}" data-cta-text="VPN Download (iOS)" class="platform-download-link">
+              <a href="{{ ios_download_url }}" data-cta-text="VPN Download (iOS)" class="platform-download-link ga-product-download">
                 <img src="{{ static('img/products/vpn/download/apple-app-store-badge.svg') }}" alt=" {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}">
               </a>
             </div>
@@ -137,7 +137,7 @@
               <h2>{{ ftl('vpn-download-for-android-long', fallback='vpn-download-for-android') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-version-requirements', version='8.0') }}</p>
-              <a class="platform-download-link" href="{{ android_download_url }}" data-cta-text="VPN Download (Android)" target="_blank" rel="noopener noreferrer">
+              <a class="platform-download-link ga-product-download" href="{{ android_download_url }}" data-cta-text="VPN Download (Android)" target="_blank" rel="noopener noreferrer">
                 <img src="{{ static('img/products/vpn/download/google-play-badge.png') }}" alt=" {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}">
               </a>
             </div>
@@ -169,7 +169,7 @@
               <h2>{{ ftl('vpn-download-for-windows-v2') }}</h2>
               <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
             </div>
-            <a href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" class="platform-download-link" data-testid="vpn-download-link-secondary-windows">
+            <a href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" class="platform-download-link ga-product-download" data-testid="vpn-download-link-secondary-windows">
               <span class="visually-hidden">{{ ftl('vpn-download-for-windows-long') }}</span>
             </a>
           </li>
@@ -182,7 +182,7 @@
               <h2>{{ ftl('vpn-download-for-mac') }}</h2>
               <p>{{ ftl('vpn-download-version-requirements', version='11.0') }}</p>
             </div>
-            <a href="{{ url('products.vpn.mac-download') }}" data-cta-text="VPN Download (macOS)" class="platform-download-link" data-testid="vpn-download-link-secondary-mac">
+            <a href="{{ url('products.vpn.mac-download') }}" data-cta-text="VPN Download (macOS)" class="platform-download-link ga-product-download" data-testid="vpn-download-link-secondary-mac">
               <span class="visually-hidden">{{ ftl('vpn-download-for-mac-long') }}</span>
             </a>
           </li>
@@ -195,7 +195,7 @@
               <h2>{{ ftl('vpn-download-for-linux') }}</h2>
               <p>{{ ftl('vpn-download-for-linux-requirements', version='22.04') }}</p>
             </div>
-            <a href="{{ linux_download_url }}" data-cta-text="VPN Download (Linux)" class="platform-download-link">
+            <a href="{{ linux_download_url }}" data-cta-text="VPN Download (Linux)" class="platform-download-link ga-product-download">
               <span class="visually-hidden">{{ ftl('vpn-download-for-linux-long') }}</span>
             </a>
           </li>
@@ -208,7 +208,7 @@
               <h2>{{ ftl('vpn-download-for-ios') }}</h2>
               <p>{{ ftl('vpn-download-version-requirements', version='15.0') }}</p>
             </div>
-            <a href="{{ ios_download_url }}" data-cta-text="VPN Download (iOS)" class="platform-download-link">
+            <a href="{{ ios_download_url }}" data-cta-text="VPN Download (iOS)" class="platform-download-link ga-product-download">
               <span class="visually-hidden">{{ ftl('vpn-download-for-ios-long-v2') }}</span>
             </a>
           </li>
@@ -221,7 +221,7 @@
               <h2>{{ ftl('vpn-download-for-android') }}</h2>
               <p>{{ ftl('vpn-download-version-requirements', version='8.0') }}</p>
             </div>
-            <a href="{{ android_download_url }}" data-cta-text="VPN Download (Android)" class="platform-download-link">
+            <a href="{{ android_download_url }}" data-cta-text="VPN Download (Android)" class="platform-download-link ga-product-download">
               <span class="visually-hidden">{{ ftl('vpn-download-for-android-long') }}</span>
             </a>
           </li>
