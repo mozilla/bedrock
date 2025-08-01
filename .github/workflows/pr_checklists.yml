@@ -1,0 +1,208 @@
+name: Pull Request Checklists
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checklist:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get changed files
+        id: files
+        run: |
+          set -o pipefail
+          git fetch origin ${{ github.event.pull_request.base.ref }}:${{ github.event.pull_request.base.ref }}
+          git fetch origin ${{ github.event.pull_request.head.ref }}:${{ github.event.pull_request.head.ref }}
+          FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD)
+          if [[ -z "$FILES" ]]; then
+            echo "No files changed in this PR." > files.txt
+          else
+            echo "$FILES" > files.txt
+          fi
+
+      - name: Determine which checklists to include
+        id: checklists
+        run: |
+          INCLUDE_CSS=false
+          INCLUDE_ANALYTICS=false
+          INCLUDE_L10N=false
+          INCLUDE_EXPERIMENT=false
+          INCLUDE_HTML=false
+          INCLUDE_JS=false
+
+          # Loop directly over status and filename from git diff --name-status
+          while IFS=$'\t' read -r STATUS FILE; do
+            # Skip if file doesn't exist or is not readable
+            if [[ ! -f "$FILE" || ! -r "$FILE" ]]; then
+              echo "Skipping non-existing or unreadable file: $FILE"
+              continue
+            fi
+
+            # Only run filename checks for newly added files
+            if [[ "$STATUS" == "A" ]]; then
+              [[ "$INCLUDE_CSS" != "true" && "$FILE" == *.scss ]] && INCLUDE_CSS=true
+              [[ "$INCLUDE_L10N" != "true" && "$FILE" == *.ftl ]] && INCLUDE_L10N=true
+              [[ "$INCLUDE_HTML" != "true" && "$FILE" == *.html ]] && INCLUDE_HTML=true
+              [[ "$INCLUDE_JS" != "true" && "$FILE" == *.js ]] && INCLUDE_JS=true
+              [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *experiment* ]] && INCLUDE_EXPERIMENT=true
+            fi
+
+            # Get only the changed lines for this file
+            CHANGED_LINES=$(git diff origin/${{ github.event.pull_request.base.ref }}...HEAD -- "$FILE" | grep '^+' | grep -v '^+++' | cut -c2-)
+
+            # Content-based checks (apply to all changed files)
+            if [[ "$INCLUDE_ANALYTICS" != "true" && "$FILE" == *.html ]]; then
+              if echo "$CHANGED_LINES" | grep -qE '<a|<button'; then
+                INCLUDE_ANALYTICS=true
+              fi
+            fi
+
+            if [[ "$FILE" == *.js ]]; then
+              if [[ "$INCLUDE_ANALYTICS" != "true" ]]; then
+                echo "$CHANGED_LINES" | grep -qE '\.addEventListener|onclick|onchange|onsubmit' && INCLUDE_ANALYTICS=true
+              fi
+              if [[ "$INCLUDE_EXPERIMENT" != "true" ]]; then
+                echo "$CHANGED_LINES" | grep -q 'experiment_view' && INCLUDE_EXPERIMENT=true
+              fi
+            fi
+
+            if [[ "$INCLUDE_EXPERIMENT" != "true" && "$FILE" == *views.py ]]; then
+              if echo "$CHANGED_LINES" | grep -q 'variations = \['; then
+                if ! echo "$CHANGED_LINES" | grep -q 'variations = \[\]'; then
+                  INCLUDE_EXPERIMENT=true
+                fi
+              fi
+            fi
+
+            if [[ "$INCLUDE_EXPERIMENT" == "true" ]]; then
+              INCLUDE_ANALYTICS=true
+            fi
+
+            if [[ "$INCLUDE_CSS" == "true" && "$INCLUDE_ANALYTICS" == "true" &&
+                  "$INCLUDE_L10N" == "true" && "$INCLUDE_EXPERIMENT" == "true" &&
+                  "$INCLUDE_HTML" == "true" && "$INCLUDE_JS" == "true" ]]; then
+              break
+            fi
+
+          done < <(git diff --name-status origin/${{ github.event.pull_request.base.ref }}...HEAD)
+
+          # Store results for next steps
+          echo "css=$INCLUDE_CSS" >> $GITHUB_OUTPUT
+          echo "analytics=$INCLUDE_ANALYTICS" >> $GITHUB_OUTPUT
+          echo "l10n=$INCLUDE_L10N" >> $GITHUB_OUTPUT
+          echo "experiment=$INCLUDE_EXPERIMENT" >> $GITHUB_OUTPUT
+          echo "html=$INCLUDE_HTML" >> $GITHUB_OUTPUT
+          echo "js=$INCLUDE_JS" >> $GITHUB_OUTPUT
+
+      - name: Build comment body
+        id: comment
+        run: |
+          # Ensure the checklist markdown files exist before proceeding.
+          if [[ ! -d "docs/docs/checklists" ]]; then
+            echo "Error: docs/docs/checklists directory not found!" >&2
+            exit 1
+          fi
+
+          # Initial message for the PR comment.
+          BODY="Thank you for your pull request. Based on the contents you may need to double-check these things:\n"
+
+          # Tracks whether any checklist was appended to the comment.
+          CHECKLIST_ADDED=false
+
+          # Appends a checklist section to the comment file.
+          # Usage: append_checklist "Title" "path/to/checklist.md"
+          append_checklist() {
+            local title="$1"
+            local file="$2"
+            echo -e "\n---\n\n<details>\n<summary><strong>$title</strong></summary>\n\n$(cat $file)\n</details>\n" >> comment.txt
+            CHECKLIST_ADDED=true
+          }
+
+          # Start the comment file with the initial message.
+          echo -e "$BODY" > comment.txt
+
+          # Append each checklist if its flag is set.
+          [[ "${{ steps.checklists.outputs.css }}" == "true" ]] && append_checklist "🧾 CSS Checklist" "docs/docs/checklists/css.md"
+          [[ "${{ steps.checklists.outputs.analytics }}" == "true" ]] && append_checklist "📊 Analytics Checklist" "docs/docs/checklists/analytics.md"
+          [[ "${{ steps.checklists.outputs.l10n }}" == "true" ]] && append_checklist "🌍 L10n Checklist" "docs/docs/checklists/l10n.md"
+          [[ "${{ steps.checklists.outputs.experiment }}" == "true" ]] && append_checklist "🧪 Experiment Checklist" "docs/docs/checklists/experiment.md"
+          [[ "${{ steps.checklists.outputs.html }}" == "true" ]] && append_checklist "🧱 HTML Checklist" "docs/docs/checklists/html.md"
+          [[ "${{ steps.checklists.outputs.js }}" == "true" ]] && append_checklist "📜 JavaScript Checklist" "docs/docs/checklists/js.md"
+
+          # If no checklists were added, do not post a comment, but log a message for workflow visibility.
+          if [[ "$CHECKLIST_ADDED" == "false" ]]; then
+            echo "No specific checklists needed for this PR."
+            echo "should_comment=false" >> $GITHUB_OUTPUT
+          else
+            # Add a suggestion link for improving the script to the comment.
+            echo -e "\nIf you want to suggest an improvement to this script please comment in <a href=\"https://github.com/mozmeao/springfield/issues/396\">mozmeao/springfield#396</a>" >> comment.txt
+            echo "should_comment=true" >> $GITHUB_OUTPUT
+            # Encode the comment for safe output to the next workflow step.
+            echo "body=$(cat comment.txt | jq -Rs .)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for existing comment
+        id: find-comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Find an existing bot comment with the checklist intro text.
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const botComment = comments.find(comment => {
+              return comment.user.login === 'github-actions[bot]' &&
+                     comment.body.includes('Based on the contents you may need to double-check these things');
+            });
+
+            // Output the comment ID and existence flag for later steps.
+            if (botComment) {
+              core.setOutput('comment-id', botComment.id);
+              core.setOutput('exists', 'true');
+            } else {
+              core.setOutput('exists', 'false');
+            }
+
+      - name: Update existing comment
+        if: steps.find-comment.outputs.exists == 'true' && steps.comment.outputs.should_comment == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Update the existing bot comment with the new checklist content.
+            github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: ${{ steps.find-comment.outputs.comment-id }},
+              body: JSON.parse(process.env.BODY)
+            })
+        env:
+          BODY: ${{ steps.comment.outputs.body }}
+
+      - name: Create new comment
+        if: steps.find-comment.outputs.exists == 'false' && steps.comment.outputs.should_comment == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Create a new bot comment with the checklist content.
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: JSON.parse(process.env.BODY)
+            })
+        env:
+          BODY: ${{ steps.comment.outputs.body }}
