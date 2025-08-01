@@ -693,62 +693,62 @@ class TestAppStoreURL(TestCase):
 
     def test_firefox_app_store_url_no_locale(self):
         """No locale, fallback to default URL"""
-        assert self._render("firefox", "", "") == "https://apps.apple.com/app/apple-store/id989804926"
+        assert self._render("firefox", "", "") == "https://apps.apple.com/app/apple-store/id989804926?mz_pr=firefox_mobile"
 
     def test_firefox_app_store_url_default(self):
         """should fallback to default URL"""
-        assert self._render("firefox", "", "ar") == "https://apps.apple.com/app/apple-store/id989804926"
-        assert self._render("firefox", "", "zu") == "https://apps.apple.com/app/apple-store/id989804926"
+        assert self._render("firefox", "", "ar") == "https://apps.apple.com/app/apple-store/id989804926?mz_pr=firefox_mobile"
+        assert self._render("firefox", "", "zu") == "https://apps.apple.com/app/apple-store/id989804926?mz_pr=firefox_mobile"
 
     def test_firefox_app_store_url_localized(self):
         """should return localized URL"""
-        assert self._render("firefox", "", "en-US") == "https://apps.apple.com/us/app/apple-store/id989804926"
-        assert self._render("firefox", "", "es-ES") == "https://apps.apple.com/es/app/apple-store/id989804926"
-        assert self._render("firefox", "", "de") == "https://apps.apple.com/de/app/apple-store/id989804926"
+        assert self._render("firefox", "", "en-US") == "https://apps.apple.com/us/app/apple-store/id989804926?mz_pr=firefox_mobile"
+        assert self._render("firefox", "", "es-ES") == "https://apps.apple.com/es/app/apple-store/id989804926?mz_pr=firefox_mobile"
+        assert self._render("firefox", "", "de") == "https://apps.apple.com/de/app/apple-store/id989804926?mz_pr=firefox_mobile"
 
     def test_firefox_app_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("firefox", "firefox-home", "en-US")
-            == "https://apps.apple.com/us/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/us/app/apple-store/id989804926?mz_pr=firefox_mobile&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
         assert (
             self._render("firefox", "firefox-home", "es-ES")
-            == "https://apps.apple.com/es/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/es/app/apple-store/id989804926?mz_pr=firefox_mobile&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
         assert (
             self._render("firefox", "firefox-home", "de")
-            == "https://apps.apple.com/de/app/apple-store/id989804926?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/de/app/apple-store/id989804926?mz_pr=firefox_mobile&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
 
     def test_focus_app_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("focus", "firefox-home", "en-US")
-            == "https://apps.apple.com/us/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/us/app/apple-store/id1055677337?mz_pr=focus&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
         assert (
             self._render("focus", "firefox-home", "es-ES")
-            == "https://apps.apple.com/es/app/apple-store/id1055677337?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/es/app/apple-store/id1055677337?mz_pr=focus&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
         assert (
             self._render("focus", "firefox-home", "de")
-            == "https://apps.apple.com/de/app/apple-store/id1073435754?pt=373246&amp;ct=firefox-home&amp;mt=8"
+            == "https://apps.apple.com/de/app/apple-store/id1073435754?mz_pr=focus&amp;pt=373246&amp;ct=firefox-home&amp;mt=8"
         )
 
     def test_vpn_app_store_url_localized_campaign(self):
         """should return localized URL with additional campaign parameters"""
         assert (
             self._render("vpn", "vpn-landing-page", "en-US")
-            == "https://apps.apple.com/us/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+            == "https://apps.apple.com/us/app/apple-store/id1489407738?mz_pr=vpn&amp;pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
         )
         assert (
             self._render("vpn", "vpn-landing-page", "es-ES")
-            == "https://apps.apple.com/es/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+            == "https://apps.apple.com/es/app/apple-store/id1489407738?mz_pr=vpn&amp;pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
         )
         assert (
             self._render("vpn", "vpn-landing-page", "de")
-            == "https://apps.apple.com/de/app/apple-store/id1489407738?pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
+            == "https://apps.apple.com/de/app/apple-store/id1489407738?mz_pr=vpn&amp;pt=373246&amp;ct=vpn-landing-page&amp;mt=8"
         )
 
 
@@ -833,34 +833,38 @@ class TestMSStoreURL(TestCase):
 
     def test_firefox_release_ms_store_url(self):
         """should return a MS Store URL for Firefox release channel"""
-        assert self._render(product="firefox") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini"
+        assert self._render(product="firefox") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini&amp;mz_cn=release"
 
     def test_firefox_beta_ms_store_url(self):
         """should return a MS Store URL for Firefox Beta channel"""
-        assert self._render(product="firefox_beta") == "https://apps.microsoft.com/detail/9nzw26frndln?mode=mini"
+        assert self._render(product="firefox_beta") == "https://apps.microsoft.com/detail/9nzw26frndln?mode=mini&amp;mz_cn=beta"
 
     def test_firefox_ms_store_url_launch_mode(self):
         """should return a MS Store URL including different launch mode parameters"""
-        assert self._render(product="firefox", mode="full") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=full"
-        assert self._render(product="firefox", mode="direct") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct"
+        assert self._render(product="firefox", mode="full") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=full&amp;mz_cn=release"
+        assert self._render(product="firefox", mode="direct") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=direct&amp;mz_cn=release"
 
     def test_firefox_ms_store_url_campaign(self):
         """should return a MS Store URL including campaign parameters"""
         assert (
-            self._render(product="firefox", campaign="mozorg-firefox-home")
-            == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini&amp;cid=mozorg-firefox-home"
+            self._render(product="firefox", campaign="test-firefox-home")
+            == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini&amp;cid=test-firefox-home&amp;mz_cn=release"
         )
 
     def test_firefox_ms_store_url_protocol_handler(self):
         """should return a MS Store URL including campaign parameters"""
         assert (
-            self._render(product="firefox", campaign="mozorg-firefox-home", handler="ms-windows-store")
-            == "ms-windows-store://pdp/?productid=9nzvdkpmr9rd&amp;mode=mini&amp;cid=mozorg-firefox-home"
+            self._render(product="firefox", campaign="test-firefox-home", handler="ms-windows-store")
+            == "ms-windows-store://pdp/?productid=9nzvdkpmr9rd&amp;mode=mini&amp;cid=test-firefox-home&amp;mz_cn=release"
         )
         assert (
-            self._render(product="firefox_beta", campaign="mozorg-firefox-home", handler="ms-windows-store")
-            == "ms-windows-store://pdp/?productid=9nzw26frndln&amp;mode=mini&amp;cid=mozorg-firefox-home"
+            self._render(product="firefox_beta", campaign="test-firefox-home", handler="ms-windows-store")
+            == "ms-windows-store://pdp/?productid=9nzw26frndln&amp;mode=mini&amp;cid=test-firefox-home&amp;mz_cn=beta"
         )
+
+    def test_firefox_unknown_product_ms_store_url(self):
+        """should return a MS Store URL with unrecognized channel for unknown product"""
+        assert self._render(product="unknown_product") == "https://apps.microsoft.com/detail/9nzvdkpmr9rd?mode=mini&amp;mz_cn=unrecognized"
 
 
 class TestLangShort(TestCase):

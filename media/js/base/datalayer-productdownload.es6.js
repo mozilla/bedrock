@@ -100,7 +100,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             downloadURL.split('?')[1]
         );
     } else {
-        params = [];
+        params = {};
     }
 
     let eventObject = {};
@@ -179,18 +179,7 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             androidRelease
         );
     } else if (appStoreURL.test(downloadURL) || iTunesURL.test(downloadURL)) {
-        let iosProduct = 'unrecognized';
-        if (downloadURL.indexOf('/id989804926') !== -1) {
-            iosProduct = 'firefox_mobile';
-        } else if (downloadURL.indexOf('/id1055677337') !== -1) {
-            iosProduct = 'focus';
-        } else if (downloadURL.indexOf('/id1073435754') !== -1) {
-            iosProduct = 'klar';
-        } else if (downloadURL.indexOf('/id1489407738') !== -1) {
-            iosProduct = 'vpn';
-        }
-
-        // Apple App Store
+        const iosProduct = params.mz_pr ? params.mz_pr : 'unrecognized';
         eventObject = TrackProductDownload.getEventObject(
             iosProduct,
             'ios',
@@ -198,14 +187,10 @@ TrackProductDownload.getEventFromUrl = (downloadURL) => {
             'release'
         );
     } else if (msStoreUrl.test(downloadURL) || msStoreUrl2.test(downloadURL)) {
-        let channel = 'unrecognized';
-        if (downloadURL.indexOf('9nzvdkpmr9rd') !== -1) {
-            channel = 'release';
-        } else if (downloadURL.indexOf('9nzw26frndln') !== -1) {
-            channel = 'beta';
-        }
-
-        // MS Store
+        const channel =
+            params.mz_cn === 'release' || params.mz_cn === 'beta'
+                ? params.mz_cn
+                : 'unrecognized';
         eventObject = TrackProductDownload.getEventObject(
             'firefox',
             'win',
