@@ -523,26 +523,6 @@ def test_mobile_app_redirector_does_not_go_to_springfield(client):
     assert resp.headers["Location"] == "https://apps.apple.com/app/apple-store/id989804926"
 
 
-@pytest.mark.django_db
-@pytest.mark.parametrize(
-    "path",
-    (
-        "/firefox/releasenotes/",
-        "/firefox/system-requirements/",
-        "/firefox/android/releasenotes/",
-        "/firefox/android/system-requirements/",
-        "/firefox/ios/releasenotes/",
-        "/firefox/ios/system-requirements/",
-        "/firefox/releases/",
-    ),
-)
-def test_releasenotes_generic_urls_not_rediected_to_springfield(client, path):
-    resp = client.get(path)
-    assert resp.status_code == 302
-    assert settings.FXC_BASE_URL not in resp.headers["Location"]
-    assert resp.headers["Location"].startswith("/")
-
-
 @pytest.mark.parametrize(
     "path, expected_dest",
     (
@@ -588,3 +568,187 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
     resp = client.get(path, secure=True)
     assert resp.status_code == 301
     assert resp.headers["Location"] == expected_dest
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "path, expected",
+    (
+        (
+            "/en-US/firefox/notes/",
+            "/en-US/firefox/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/notes/?foo=bar",
+            "/en-US/firefox/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/android/notes/",
+            "/en-US/firefox/android/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/android/notes/?foo=bar",
+            "/en-US/firefox/android/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/ios/notes/",
+            "/en-US/firefox/ios/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/ios/notes/?foo=bar",
+            "/en-US/firefox/ios/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/aurora/notes/",
+            "/en-US/firefox/aurora/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/aurora/notes/?foo=bar",
+            "/en-US/firefox/aurora/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/beta/notes/",
+            "/en-US/firefox/beta/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/beta/notes/?foo=bar",
+            "/en-US/firefox/beta/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/developer/notes/",
+            "/en-US/firefox/developer/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/developer/notes/?foo=bar",
+            "/en-US/firefox/developer/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/nightly/notes/",
+            "/en-US/firefox/nightly/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/nightly/notes/?foo=bar",
+            "/en-US/firefox/nightly/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/organizations/notes/",
+            "/en-US/firefox/organizations/notes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/organizations/notes/?foo=bar",
+            "/en-US/firefox/organizations/notes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/releasenotes/",
+            "/en-US/firefox/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/releasenotes/?foo=bar",
+            "/en-US/firefox/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/latest/releasenotes/",
+            "/en-US/firefox/latest/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/latest/releasenotes/?foo=bar",
+            "/en-US/firefox/latest/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/android/releasenotes/",
+            "/en-US/firefox/android/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/android/releasenotes/?foo=bar",
+            "/en-US/firefox/android/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/ios/releasenotes/",
+            "/en-US/firefox/ios/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/ios/releasenotes/?foo=bar",
+            "/en-US/firefox/ios/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/nightly/notes/feed/",
+            "/en-US/firefox/nightly/notes/feed/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/nightly/notes/feed/?foo=bar",
+            "/en-US/firefox/nightly/notes/feed/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/android/system-requirements/",
+            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/android/system-requirements/?foo=bar",
+            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/system-requirements/",
+            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/system-requirements/?foo=bar",
+            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/ios/system-requirements/",
+            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/ios/system-requirements/?foo=bar",
+            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/android/system-requirements/",
+            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/android/system-requirements/?foo=bar",
+            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/system-requirements/",
+            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/system-requirements/?foo=bar",
+            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/ios/system-requirements/",
+            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/ios/system-requirements/?foo=bar",
+            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org&foo=bar",
+        ),
+    ),
+)
+def test_releasenotes_and_sysreq_redirects(client, path, expected):
+    resp = client.get(path)
+    assert resp.status_code == 302
+    assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{expected}"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path, dest_path",
+    (
+        (
+            "/en-US/firefox/system-requirements/",
+            "/en-US/firefox/system-requirements/",
+        ),
+        (
+            "/en-US/firefox/releases/",
+            "/releases/",
+        ),
+    ),
+)
+def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(client, source_path, dest_path):
+    resp = client.get(source_path)
+    assert resp.status_code == 302
+    assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
