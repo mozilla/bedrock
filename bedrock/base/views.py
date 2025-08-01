@@ -191,5 +191,10 @@ def page_not_found_view(request, exception=None, template_name="404.html"):
     return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)
 
 
+def page_gone_view(request, exception=None, template_name="410.html"):
+    """410 error handler that runs context processors."""
+    return l10n_utils.render(request, template_name, ftl_files=["410", "500"], status=410)
+
+
 def csrf_failure(request, reason="CSRF failure", template_name="403_csrf.html"):
     return render(request, template_name, status=403)
