@@ -60,9 +60,11 @@ jobs:
 
       - id: build_and_push_docker_hub_images
         name: Build and push public images to Docker hub
-        run: |-
-          ./bin/build-release-image.sh --push
-
+        run: |
+            # FIXME: GitHub provides compose version enabling bake but timing out
+            export COMPOSE_BAKE=false
+            ./bin/build-release-image.sh --push
+        timeout-minutes: 45
         env:
             GIT_COMMIT: ${{ steps.long-sha.outputs.LONG_SHA }}
 
