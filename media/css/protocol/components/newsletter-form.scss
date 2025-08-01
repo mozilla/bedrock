@@ -42,4 +42,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
-/* stylelint-enable declaration-no-important */
+// Honeypot field styling - hide from users but keep accessible to bots
+.super-priority-field {
+    @include visually-hidden;
+
+    // Hide from screen readers
+    label {
+        display: none !important;
+    }
+}
