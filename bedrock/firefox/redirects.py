@@ -77,6 +77,20 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
 
 
 releasenotes_redirectpatterns = (
+    # Special-case redirects that existed before the Bedrock->Springfield redirects;
+    # pulled together here in one place
+    offsite_redirect(
+        # issue 14467; 16381
+        r"^firefox/125.0/releasenotes/?$",
+        f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/",
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        r"^firefox/38\.0\.3/releasenotes/$",
+        f"{settings.FXC_BASE_URL}/firefox/38.0.5/releasenotes/",
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    # Redirects from Bedrock to Springfield in general
     offsite_redirect(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$",
         _redirect_to_same_path_on_fxc,
@@ -138,7 +152,7 @@ releasenotes_redirectpatterns = (
         permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
     ),
     offsite_redirect(
-        "firefox/releases/",
+        "firefox/releases/$",
         f"{settings.FXC_BASE_URL}/releases/",  # leave Springfield to sort out the local redirect
         permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
     ),
@@ -383,12 +397,12 @@ bedrock_redirectpatterns = (
     # bug 988746, 989423, 994186, 1153351
     redirect(r"^mobile/(?P<v>2[38]\.0(?:\.\d)?|29\.0(?:beta|\.\d)?)/releasenotes/?$", "/firefox/android/{v}/releasenotes/"),
     redirect(r"^mobile/(?P<v>[3-9]\d\.\d(?:a2|beta|\.\d)?)/(?P<p>aurora|release)notes/?$", "/firefox/android/{v}/{p}notes/"),
-    # bug 1041712, 1069335, 1069902
-    redirect(
-        r"^(?P<prod>firefox|mobile)/(?P<vers>([0-9]|1[0-9]|2[0-8])\.(\d+(?:beta|a2|\.\d+)?))"
-        r"/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$",
-        "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
-    ),
+    # bug 1041712, 1069335, 1069902; superceded by Issue 16381
+    # redirect(
+    #     r"^(?P<prod>firefox|mobile)/(?P<vers>([0-9]|1[0-9]|2[0-8])\.(\d+(?:beta|a2|\.\d+)?))"
+    #     r"/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$",
+    #     "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
+    # ),
     # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
     redirect(r"^(fennec)/?$", "firefox.new"),
     # issue 8749
@@ -664,7 +678,6 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/(new/)?addon", "https://addons.mozilla.org"),
     redirect(r"^firefox/tips", "firefox.features.tips"),
     redirect(r"^firefox/new/.+", "/firefox/new/"),
-    redirect(r"^firefox/38\.0\.3/releasenotes/$", "/firefox/38.0.5/releasenotes/"),
     redirect(r"^firefox/default\.htm", "/firefox/"),
     redirect(r"^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$", "/firefox/android/{version}/releasenotes/"),
     redirect(r"^firefox/stats/", "/firefox/"),

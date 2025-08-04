@@ -639,6 +639,22 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
             "/en-US/firefox/organizations/notes/?redirect_source=mozilla-org&foo=bar",
         ),
         (
+            "/en-US/firefox/140.0/releasenotes/",
+            "/en-US/firefox/140.0/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/140.0/releasenotes/?foo=bar",
+            "/en-US/firefox/140.0/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
+            "/en-US/firefox/android/140.0/releasenotes/",
+            "/en-US/firefox/android/140.0/releasenotes/?redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/ios/140.0/releasenotes/?foo=bar",
+            "/en-US/firefox/ios/140.0/releasenotes/?redirect_source=mozilla-org&foo=bar",
+        ),
+        (
             "/en-US/firefox/releasenotes/",
             "/en-US/firefox/releasenotes/?redirect_source=mozilla-org",
         ),
