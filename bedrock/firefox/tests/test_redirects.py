@@ -695,14 +695,6 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
             "/en-US/firefox/nightly/notes/feed/?redirect_source=mozilla-org&foo=bar",
         ),
         (
-            "/en-US/firefox/android/system-requirements/",
-            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org",
-        ),
-        (
-            "/en-US/firefox/android/system-requirements/?foo=bar",
-            "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org&foo=bar",
-        ),
-        (
             "/en-US/firefox/system-requirements/",
             "/en-US/firefox/system-requirements/?redirect_source=mozilla-org",
         ),
@@ -711,28 +703,12 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
             "/en-US/firefox/system-requirements/?redirect_source=mozilla-org&foo=bar",
         ),
         (
-            "/en-US/firefox/ios/system-requirements/",
-            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org",
-        ),
-        (
-            "/en-US/firefox/ios/system-requirements/?foo=bar",
-            "/en-US/firefox/ios/system-requirements/?redirect_source=mozilla-org&foo=bar",
-        ),
-        (
             "/en-US/firefox/android/system-requirements/",
             "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org",
         ),
         (
             "/en-US/firefox/android/system-requirements/?foo=bar",
             "/en-US/firefox/android/system-requirements/?redirect_source=mozilla-org&foo=bar",
-        ),
-        (
-            "/en-US/firefox/system-requirements/",
-            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org",
-        ),
-        (
-            "/en-US/firefox/system-requirements/?foo=bar",
-            "/en-US/firefox/system-requirements/?redirect_source=mozilla-org&foo=bar",
         ),
         (
             "/en-US/firefox/ios/system-requirements/",
