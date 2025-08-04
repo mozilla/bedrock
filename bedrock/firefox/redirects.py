@@ -81,7 +81,7 @@ releasenotes_redirectpatterns = (
     # pulled together here in one place
     offsite_redirect(
         # issue 14467; 16381
-        r"^firefox/125.0/releasenotes/?$",
+        r"^firefox/125\.0/releasenotes/?$",
         f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/",
         permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
     ),
