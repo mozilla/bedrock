@@ -1248,7 +1248,7 @@ URLS = flatten(
         ),
         url_test(
             "/firefox/browsers/mobile/app/?product=firefox&campaign=firefox-whatsnew",
-            "https://apps.apple.com/app/apple-store/id989804926?pt=373246&ct=firefox-whatsnew&mt=8",
+            "https://apps.apple.com/app/apple-store/id989804926?mz_pr=firefox_mobile&pt=373246&ct=firefox-whatsnew&mt=8",
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
@@ -1260,7 +1260,7 @@ URLS = flatten(
         ),
         url_test(
             "/firefox/browsers/mobile/app/?product=focus&campaign=firefox-browsers-mobile-focus",
-            "https://apps.apple.com/app/apple-store/id1055677337?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            "https://apps.apple.com/app/apple-store/id1055677337?mz_pr=focus&pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
@@ -1272,7 +1272,7 @@ URLS = flatten(
         ),
         url_test(
             "/firefox/browsers/mobile/app/?product=klar&campaign=firefox-browsers-mobile-focus",
-            "https://apps.apple.com/app/apple-store/id1073435754?pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
+            "https://apps.apple.com/app/apple-store/id1073435754?mz_pr=klar&pt=373246&ct=firefox-browsers-mobile-focus&mt=8",
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),
@@ -1330,7 +1330,7 @@ URLS = flatten(
         ),
         url_test(
             "/products/vpn/mobile/app/?product=vpn&campaign=vpn-landing-page",
-            "https://apps.apple.com/app/apple-store/id1489407738?pt=373246&ct=vpn-landing-page&mt=8",
+            "https://apps.apple.com/app/apple-store/id1489407738?mz_pr=vpn&pt=373246&ct=vpn-landing-page&mt=8",
             req_headers=UA_IOS,
             resp_headers={"Cache-Control": "max-age=0"},
         ),

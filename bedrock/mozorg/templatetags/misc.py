@@ -524,7 +524,18 @@ def app_store_url(ctx, product, campaign=None):
     """Returns a localised app store URL for a given product"""
     locale = getattr(ctx["request"], "locale", "en-US")
     countries = settings.APPLE_APPSTORE_COUNTRY_MAP
-    params = "?pt=373246&ct={cmp}&mt=8"
+
+    # Map product names to tracking product codes
+    product_mapping = {
+        "firefox": "firefox_mobile",
+        "firefox_beta": "firefox_mobile",
+        "firefox_nightly": "firefox_mobile",
+        "focus": "focus",
+        "klar": "klar",
+        "vpn": "vpn",
+    }
+
+    tracking_product = product_mapping.get(product, "unrecognized")
 
     if product == "focus" and locale == "de":
         base_url = getattr(settings, "APPLE_APPSTORE_KLAR_LINK")
@@ -532,7 +543,11 @@ def app_store_url(ctx, product, campaign=None):
         base_url = getattr(settings, f"APPLE_APPSTORE_{product.upper()}_LINK")
 
     if campaign:
-        base_url = base_url + params.format(cmp=campaign)
+        params = "?mz_pr={tp}&pt=373246&ct={cmp}&mt=8"
+        base_url = base_url + params.format(tp=tracking_product, cmp=campaign)
+    else:
+        params = "?mz_pr={tp}"
+        base_url = base_url + params.format(tp=tracking_product)
 
     if locale in countries:
         return base_url.format(country=countries[locale])
@@ -571,6 +586,16 @@ def ms_store_url(ctx, product="firefox", mode="mini", campaign=None, handler=Non
     See https://apps.microsoft.com/badge for details.
     """
 
+    channel_mapping = {
+        "firefox": "release",
+        "firefox_beta": "beta",
+    }
+
+    channel = channel_mapping.get(product, "unrecognized")
+
+    if product not in channel_mapping:
+        product = "firefox"
+
     if handler == "ms-windows-store":
         base_url = getattr(settings, f"MICROSOFT_WINDOWS_STORE_{product.upper()}_DIRECT_LINK")
     else:
@@ -579,6 +604,7 @@ def ms_store_url(ctx, product="firefox", mode="mini", campaign=None, handler=Non
     params = {
         "mode": mode,
         "cid": campaign,
+        "mz_cn": channel,
     }
 
     return urlparams(base_url, **params)
