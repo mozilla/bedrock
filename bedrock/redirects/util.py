@@ -201,7 +201,7 @@ def redirect(
         redirect(r'projects/$', 'mozorg.product'),
         redirect(r'^projects/seamonkey$', 'mozorg.product', locale_prefix=False),
         redirect(r'apps/$', 'https://marketplace.firefox.com'),
-        redirect(r'firefox/$', settings.FXC_BASE_URL, name='firefox'),
+        redirect(r'firefox/$', settings.FXC_BASE_URL, name='firefox'),  # note that redirect_source querystring is not added by default
         redirect(r'the/dude$', 'abides', query={'aggression': 'not_stand'}),
     ]
     """

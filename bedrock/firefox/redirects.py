@@ -523,7 +523,7 @@ bedrock_redirectpatterns = (
     redirect(r"^products/firefox/themes$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/themes\.html$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/ui-customize\.html$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
-    # Issue 16431; Issue 16431
+    # Issue 16431
     redirect(r"^products/firefox/upgrade", f"{FXC}/"),
     redirect(r"^products/firefox/why/$", f"{FXC}/"),
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
@@ -584,7 +584,7 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$", "/firefox/android/{version}/releasenotes/"),
     redirect(r"^firefox/stats/", "/firefox/"),
     # bug 1416706; Issue 16431
-    redirect(r"^firefox/desktop/?", f"{FXC}/"),
+    redirect(r"^firefox/desktop/?", f"{FXC}/browsers/desktop/"),
     # bug 1418500
     redirect(r"^firefox/android/?$", "firefox.browsers.mobile.android"),
     redirect(r"^firefox/focus/?$", "firefox.browsers.mobile.focus"),

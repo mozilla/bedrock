@@ -995,7 +995,7 @@ URLS = flatten(
         url_test("/firefox/android/45.0", "/firefox/android/45.0/releasenotes/"),
         url_test("/firefox/stats/", "/firefox/"),
         # bug 1416706
-        url_test("/firefox/desktop/", FXC_URL),
+        url_test("/firefox/desktop/", f"{FXC_URL}browsers/desktop/"),
         # issue 9502
         url_test("/firefox/quantum/", "/firefox/browsers/quantum/"),
         # bug 1421584, issue 7491
