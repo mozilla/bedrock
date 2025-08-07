@@ -722,7 +722,7 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
 )
 def test_releasenotes_and_sysreq_redirects(client, path, expected):
     resp = client.get(path)
-    assert resp.status_code == 302
+    assert resp.status_code == 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
 
@@ -742,5 +742,5 @@ def test_releasenotes_and_sysreq_redirects(client, path, expected):
 )
 def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(client, source_path, dest_path):
     resp = client.get(source_path)
-    assert resp.status_code == 302
+    assert resp.status_code == 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
