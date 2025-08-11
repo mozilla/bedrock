@@ -39,8 +39,12 @@ m24-home-mask-your-email = Mask your email and phone number so you only get the 
 
 ## Donate
 
+# Obsolete string (expires 04-12-2025)
 m24-home-donate-to-the = Donate to the { -brand-name-mozilla } non-profit
+m24-home-donate-to-v2 = Donate to { -brand-name-mozilla-foundation }
+# Obsolete string (expires 04-12-2025)
 m24-home-mozilla-is-building = { -brand-name-mozilla } is building a movement to reclaim the internet. Together we can build a future where our privacy is protected, AI is trustworthy and irresponsible tech companies are held accountable. But that’s only possible if we do it together.
+m24-home-mozilla-foundation-is-building-v2 = { -brand-name-mozilla-foundation }  is building a future where technology is powered by people, and open by design. That’s why we fuel community-centered tech through advocacy, education, funding, and innovation — to make sure that the future of tech is good for everyone. But that’s only possible if we do it together.
 m24-home-were-proudly-nonprofit = We’re proudly non-profit. Will you donate to { -brand-name-mozilla } today?
 m24-home-donate = Donate
 
