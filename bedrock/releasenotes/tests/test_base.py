@@ -4,6 +4,7 @@
 
 import datetime
 from pathlib import Path
+from unittest import skip
 from unittest.mock import Mock, patch
 
 from django.core.cache import caches
@@ -394,6 +395,7 @@ class TestReleaseViews(TestCase):
         assert len(self.last_ctx["notes"]) == 26
 
 
+@skip("TODO: remove this test when the now-unreachable views are removed")
 class TestReleaseNotesIndex(TestCase):
     pd_cache = caches["product-details"]
 
@@ -443,6 +445,7 @@ class TestReleaseNotesIndex(TestCase):
             assert releases[78][1]["minor"] == ["5.0.1"]
 
 
+@skip("TODO: remove this test when the now-unreachable views are removed")
 class TestNotesRedirects(TestCase):
     def _test(self, url_from, url_to):
         with self.activate_locale("en-US"):
@@ -508,6 +511,7 @@ class TestNotesRedirects(TestCase):
         self._test("/firefox/ios/notes/", "/firefox/ios/1.4/releasenotes/")
 
 
+@skip("TODO: remove this test when the now-unreachable views are removed")
 class TestSysreqRedirect(TestCase):
     def _test(self, url_from, url_to):
         with self.activate_locale("en-US"):
