@@ -1640,6 +1640,12 @@
     },
     {
       "files": [
+        "js/firefox/whatsnew/whatsnew-142-base.es6.js"
+      ],
+      "name": "firefox_whatsnew_142"
+    },
+    {
+      "files": [
         "js/firefox/firefox-20th/firefox-20th.js"
       ],
       "name": "firefox_20th"
