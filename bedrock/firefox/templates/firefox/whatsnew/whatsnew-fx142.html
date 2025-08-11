@@ -1,0 +1,211 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# The 142 release is a new design, so we use a new base template #}
+{% extends "firefox/whatsnew/base_142.html" %}
+
+{% block wnp_content %}
+<div class="wnp-page">
+  <div class="wnp-content">
+    <main class="wnp-main">
+      <!-- Hero Section -->
+      <section class="wnp-section wnp-section-intro">
+        <div class="wnp-container">
+          <p class="wnp-eyebrow">Month Year Update</p>
+          <h1 class="wnp-title">AI-powered answers, directly from your search bar</h1>
+          <p class="wnp-body">Perplexity is now a search option in Firefox. Ask your question and get cited results without switching tabs. Fast, intuitive, and your choice, every time.</p>
+          <p>
+            <a class="wnp-button wnp-button-secondary" href="#blog-post">Learn more</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Spotlight Illustration -->
+      <section class="wnp-section wnp-spotlight" aria-labelledby="spotlight-heading">
+        <div class="wnp-container">
+          <div class="wnp-grid">
+            <div class="wnp-spotlight-illustration" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Desktop Feature Panels (different order in design vs content document) -->
+      <section class="wnp-section" aria-labelledby="highlights-heading">
+        <div class="wnp-container">
+          <h2 id="highlights-heading" class="wnp-subtitle text-center">Tailor Firefox to fit your flow.</h2>
+          <p class="wnp-body">Stay organized, find what you need, and browse your way.</p>
+          <div class="wnp-grid">
+            <article class="wnp-card">
+              <h3 class="wnp-subtitle">Less clutter and more focus with vertical tabs</h3>
+              <p class="wnp-body">Firefox’s new sidebar lets you move tabs to the side, pin key sites and keep your AI assistant handy.</p>
+            </article>
+            <article class="wnp-card">
+              <h3 class="wnp-subtitle">Take control of your browsing with tab groups.</h3>
+              <p class="wnp-body">No more tab overload. Stay organized and in control of your time and attention.</p>
+              <p class="wnp-body">Drag one tab onto another to create your first group.</p>
+            </article>
+            <article class="wnp-card">
+              <h3 class="wnp-subtitle">Make your New Tab feel like home</h3>
+              <p class="wnp-body">Create a space that's uniquely yours. Set the mood with Firefox wallpapers, custom colors, or your own photo.</p>
+              <p class="wnp-body">Open a new tab and click the [pencil] icon to start customizing.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Headlines / Sub Features -->
+      <section class="wnp-section" aria-labelledby="features-heading">
+        <div class="wnp-container">
+          <h2 id="features-heading" class="wnp-subtitle text-center">Know Before You Click. Stay in Control as You Browse.</h2>
+          <p class="wnp-body">Firefox helps you preview links and keep tabs tidy so nothing slows you down.</p>
+
+          <div class="wnp-feature">
+            <div class="wnp-feature-media">
+              <img src="/media/img/firefox/whatsnew/whatsnew142/feature-placeholder.png" alt="Feature illustration">
+            </div>
+            <div class="wnp-feature-content">
+              <p class="wnp-eyebrow">Eyebrow</p>
+              <h3 class="wnp-subtitle">See what’s behind the link before you click</h3>
+              <p class="wnp-body">Link Previews show a snapshot of the page before you open it, helping you decide what’s worth your time. Just long press and hold on any link to preview to save yourself a distraction.</p>
+              <p><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/firefox-ai/ai-link-previews-firefox/">Learn More</a></p>
+            </div>
+          </div>
+
+          <div class="wnp-feature wnp-feature--reverse">
+            <div class="wnp-feature-media">
+              <img src="/media/img/firefox/whatsnew/whatsnew142/feature-placeholder.png" alt="Feature illustration">
+            </div>
+            <div class="wnp-feature-content">
+              <p class="wnp-eyebrow">Eyebrow</p>
+              <h3 class="wnp-subtitle">Your tabs, automatically grouped by topic.</h3>
+              <p class="wnp-body">A local AI model identifies similar tabs, automatically organizes them into groups, and even suggests group names, helping you stay organized. Everything happens on your device to respect your privacy.</p>
+              <p><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups">Learn More</a></p>
+            </div>
+          </div>
+
+          <div class="wnp-feature">
+            <div class="wnp-feature-media">
+              <img src="/media/img/firefox/whatsnew/whatsnew142/feature-placeholder.png" alt="Feature illustration">
+            </div>
+            <div class="wnp-feature-content">
+              <p class="wnp-eyebrow">Eyebrow</p>
+              <h3 class="wnp-subtitle">Heading C</h3>
+              <p class="wnp-body">Proin sed neque et ante rutrum malesuada. Proin a diam odio. Mauris aliquet ipsum et arcu lacinia, nec sodales ligula venenatis. Pellentesque et fringilla odio. Sed volutpat, magna et porta congue, diam justo imperdiet mauris, vel pulvinar orci nulla et dui. Donec maximus lectus at neque ultricies, nec bibendum nunc sagittis.</p>
+              <p><a class="wnp-button wnp-button-outline" href="#learn-privacy">Button</a></p>
+            </div>
+          </div>
+
+          <p class="wnp-link-wrap" style="text-align:center">
+            <a class="wnp-link" href="#release-notes">See Full Release Notes</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- Additional Panels -->
+      <section class="wnp-section" aria-labelledby="cards-block-2-heading">
+        <div class="wnp-container">
+          <h2 id="cards-block-2-heading" class="wnp-subtitle text-center">Headline</h2>
+          <p class="wnp-body">Subheader...</p>
+          <div class="wnp-grid">
+            <article class="wnp-card">
+              <span class="wnp-tag">Tag</span>
+              <h3 class="wnp-subtitle">Heading</h3>
+              <p class="wnp-body">Suspendisse imperdiet, lacus eget molestie accumsan, diam tortor ornare ante, vel malesuada mi purus at lacus. </p>
+              <p><a class="wnp-button wnp-button-outline" href="#">Button</a></p>
+            </article>
+            <article class="wnp-card">
+              <span class="wnp-tag">Tag</span>
+              <h3 class="wnp-subtitle">Heading</h3>
+              <p class="wnp-body">Suspendisse imperdiet, lacus eget molestie accumsan, diam tortor ornare ante, vel malesuada mi purus at lacus. </p>
+              <p><a class="wnp-button wnp-button-outline" href="#">Button</a></p>
+            </article>
+            <article class="wnp-card">
+              <span class="wnp-tag">Tag</span>
+              <h3 class="wnp-subtitle">Heading</h3>
+              <p class="wnp-body">Suspendisse imperdiet, lacus eget molestie accumsan, diam tortor ornare ante, vel malesuada mi purus at lacus. </p>
+              <p><a class="wnp-button wnp-button-outline" href="#">Button</a></p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Subscribe Banner -->
+      <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+        <div class="wnp-container">
+          <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
+          <p class="wnp-body">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
+          <form class="wnp-subscribe" action="#" method="post" novalidate>
+            <label class="visually-hidden" for="wnp-email">Email address</label>
+            <input id="wnp-email" class="wnp-input" type="email" name="email" placeholder="your email address" autocomplete="email" />
+            <button class="wnp-button wnp-button-outline" type="submit">Sign up to Firefox News</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Section 4: Mobile Features -->
+      <section class="wnp-section wnp-section-emphasis" aria-labelledby="wnp-mobile-heading">
+        <div class="wnp-container">
+          <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">What’s New on Firefox Mobile?</h2>
+          <p class="wnp-body">New tools for focus, privacy, and smoother mobile browsing.</p>
+          <div class="wnp-feature">
+            <div class="wnp-feature-media">
+              <img src="/media/img/firefox/whatsnew/whatsnew142/feature-placeholder.png" alt="Feature illustration">
+            </div>
+            <div class="wnp-feature-content">
+              <h3 class="wnp-subtitle">Private tabs that stay private</h3>
+              <p class="wnp-body">Your private tabs lock automatically when you step away — and only unlock with your face, fingerprint, or PIN.</p>
+            </div>
+          </div>
+          <div class="wnp-grid">
+            <article class="wnp-card">
+              <span class="wnp-tag">Android</span>
+              <h3 class="wnp-subtitle">Getting even more multilingual</h3>
+              <p class="wnp-body">Now translate web pages into Japanese, Chinese, Korean and more, so you can browse in your preferred language.</p>
+            </article>
+            <article class="wnp-card">
+              <span class="wnp-tag">iOS</span>
+              <h3 class="wnp-subtitle">Smarter passwords, fewer hassles</h3>
+              <p class="wnp-body">Firefox suggests strong passwords when you’re creating a new account on any site, and keeps them secure, ready on any device when you sync.</p>
+            </article>
+            <article class="wnp-card">
+              <span class="wnp-tag">iOS</span>
+              <h3 class="wnp-subtitle">A cleaner look with sharper focus</h3>
+              <p class="wnp-body">A streamlined UI and upgraded dark mode on Firefox for iOS bring clarity and calm to everything you browse.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- QR Code Banner -->
+      <section class="wnp-section wnp-section-mobile" aria-labelledby="wnp-mobile-qr-heading">
+        <div class="wnp-container">
+          <div class="wnp-mobile">
+            <div class="wnp-mobile-layout">
+              <div class="wnp-mobile-media" aria-hidden="true">
+                <div class="wnp-mobile-qr">QR Code</div>
+              </div>
+              <div class="wnp-mobile-content">
+                <h2 id="wnp-mobile-qr-heading" class="wnp-subtitle">Take Firefox with you</h2>
+                <p class="wnp-body text-left">Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Banner -->
+      <section class="wnp-section wnp-section-cta" aria-labelledby="cta-heading">
+        <div class="wnp-container">
+          <div class="wnp-cta">
+            <h2 id="cta-heading" class="wnp-subtitle">Call To Action</h2>
+            <a class="wnp-button wnp-button-outline" href="#">Button</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+{% endblock %}

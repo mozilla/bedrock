@@ -1246,6 +1246,12 @@
         "css/protocol/navigation-and-footer.scss"
       ],
       "name": "legacy-navigation-and-footer"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-142.scss"
+      ],
+      "name": "firefox_whatsnew_142"
     }
   ],
   "js": [

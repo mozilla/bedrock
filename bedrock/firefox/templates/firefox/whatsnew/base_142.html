@@ -1,0 +1,219 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<!doctype html>
+<html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}" {% endif %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}" {% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}" {% endif %} {% block html_attrs %}{% endblock %}>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="robots" content="noindex,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block extra_meta %}{% endblock %}
+
+    <title>{% block page_title %}What's New with Firefox {{ version }}{% endblock %}</title>
+
+    {% block site_css %}
+    {{ css_bundle('firefox_whatsnew_142') }}
+    {% endblock %}
+
+    {# The Firefox Design System fonts files (Metropolis, Inter) come from Protocol, but we only use the font files, not Protocol CSS #}
+    <link rel="preload" href="{{ static('protocol/fonts/Metropolis-Medium.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ static('protocol/fonts/Metropolis-Bold.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ static('protocol/fonts/Inter-Regular.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ static('protocol/fonts/Inter-Bold.woff2') }}" as="font" type="font/woff2" crossorigin>
+
+    {% block page_css %}{% endblock %}
+
+    {% block google_analytics %}
+    {% if settings.GTM_CONTAINER_ID %}
+    {{ js_bundle('gtm-snippet') }}
+    {% endif %}
+    {% endblock %}
+  </head>
+
+  <body {% if self.body_id() %}id="{% block body_id %}firefox-whatsnew-{{ version }}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
+
+    {% block wnp_header %}
+    <header class="wnp-header">
+      <div class="wnp-header-inner">
+        <h2 class="wnp-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
+        <button class="wnp-hamburger" type="button" aria-label="{{ ftl('ui-menu') }}" data-label-closed="{{ ftl('ui-menu') }}" data-label-open="{{ ftl('ui-close') }}" aria-controls="wnp-nav" aria-expanded="false" aria-haspopup="true">
+          <span aria-hidden="true"></span>
+        </button>
+        <nav id="wnp-nav" class="wnp-nav" aria-label="Primary">
+          <ul class="wnp-nav-menu">
+            <li><a class="wnp-nav-link wnp-nav-link-active" href="#">What’s New</a></li>
+            <li><a class="wnp-nav-link" href="/firefox/releases/">Archive</a></li>
+            <li><a class="wnp-nav-link" href="/firefox/{{ version }}/releasenotes/">Release Notes</a></li>
+          </ul>
+          <div class="wnp-theme-toggle" role="group" aria-label="{{ ftl('firefox-desktop-download-themes') }}">
+            <button type="button" class="wnp-theme-btn is-light" data-theme="light">Light Mode</button>
+            <button type="button" class="wnp-theme-btn is-dark" data-theme="dark">Dark Mode</button>
+          </div>
+        </nav>
+        <button class="wnp-nav-toggle" type="button" aria-label="Toggle Dark Mode" aria-pressed="false">
+          <span>Toggle Dark Mode</span>
+        </button>
+      </div>
+    </header>
+    {% endblock %}
+
+    <div id="outer-wrapper">
+      {% block wnp_content %}
+      <main class="wnp-content">
+        <div class="wnp-content-inner">
+          <h1>What's New in Firefox {{ version }}</h1>
+        </div>
+      </main>
+      {% endblock %}
+
+      {% block wnp_footer %}
+      <footer class="wnp-footer">
+        <div class="wnp-footer-inner">
+          <div class="wnp-footer-top">
+            <p class="wnp-footer-copy">
+              Visit <a class="wnp-footer-link" href="https://www.mozilla.org/en-US/">Mozilla Corporation’s</a> not-for-profit parent, the
+              <a class="wnp-footer-link" href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer">Mozilla Foundation</a>.<br>
+              Portions of this content are ©1998–2025 by individual mozilla.org contributors.<br>
+              Content available under a <a class="wnp-footer-link" href="https://www.mozilla.org/en-US/foundation/licensing/website-content/">Creative Commons license</a>.
+            </p>
+            <nav class="wnp-footer-links" aria-label="Footer">
+              <ul>
+                <li>
+                  <a class="wnp-footer-link" href="https://support.mozilla.org/">Firefox Support</a>
+                </li>
+                <li>
+                  <a class="wnp-footer-link" href="/privacy/websites/">Privacy Notice</a>
+                </li>
+                <li>
+                  <a class="wnp-footer-link" href="/about/legal/terms/mozilla/">Terms of Use</a>
+                </li>
+                <li>
+                  <a class="wnp-footer-link" href="/privacy/websites/cookie-settings/">Cookie Policy</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="wnp-footer-logo" aria-hidden="true"></div>
+          </div>
+
+          <hr class="wnp-footer-divider">
+
+          <div class="wnp-footer-bottom">
+            <div class="wnp-footer-brand">
+              <h3 class="wnp-footer-title">Powered by Mozilla</h3>
+              <p class="wnp-footer-subtitle">Putting people before profits since 1998</p>
+            </div>
+            <div class="wnp-footer-cta">
+              <a class="wnp-button wnp-button-outline" href="#">Donate to Mozilla</a>
+              <p class="wnp-footer-note">Lorem ipsum dolor sit amet consectetur</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+      {% endblock %}
+    </div>
+
+    {% block site_js %}
+    {{ js_bundle('lib') }}
+    {{ js_bundle('data') }}
+    {% endblock %}
+
+    {% block js %}
+    <script>
+      (function () {
+        var storageKey = 'wnp-theme';
+        var root = document.documentElement;
+        var toggle = document.querySelector('.wnp-nav-toggle');
+        var hamburger = document.querySelector('.wnp-hamburger');
+        var nav = document.getElementById('wnp-nav');
+        var themeButtons = document.querySelectorAll('.wnp-theme-btn');
+
+        function applyStoredTheme() {
+          var stored = localStorage.getItem(storageKey);
+          if (stored === 'light' || stored === 'dark') {
+            root.setAttribute('data-theme', stored);
+            if (toggle) toggle.setAttribute('aria-pressed', stored === 'dark');
+            themeButtons.forEach(function (btn) {
+              btn.classList.toggle('is-active', btn.getAttribute('data-theme') === stored);
+            });
+          } else {
+            root.removeAttribute('data-theme');
+            if (toggle) {
+              var isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+              toggle.setAttribute('aria-pressed', isSystemDark);
+            }
+            var sys = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+            themeButtons.forEach(function (btn) {
+              btn.classList.toggle('is-active', btn.getAttribute('data-theme') === sys);
+            });
+          }
+        }
+
+        function toggleTheme() {
+          var forced = root.getAttribute('data-theme');
+          if (!forced) {
+            var isSystemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var next = isSystemDark ? 'light' : 'dark';
+            localStorage.setItem(storageKey, next);
+          } else {
+            var nextForced = forced === 'dark' ? 'light' : 'dark';
+            localStorage.setItem(storageKey, nextForced);
+          }
+          applyStoredTheme();
+        }
+
+        if (toggle) {
+          toggle.addEventListener('click', toggleTheme);
+        }
+
+        function toggleMobileNav() {
+          if (!nav || !hamburger) return;
+          var open = nav.classList.toggle('is-open');
+          hamburger.setAttribute('aria-expanded', open);
+          var openLabel = hamburger.getAttribute('data-label-open') || 'Close';
+          var closedLabel = hamburger.getAttribute('data-label-closed') || 'Menu';
+          hamburger.setAttribute('aria-label', open ? openLabel : closedLabel);
+          // Lock scroll when open
+          document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        if (hamburger && nav) {
+          hamburger.addEventListener('click', toggleMobileNav);
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+              toggleMobileNav();
+            }
+          });
+        }
+
+        if (themeButtons.length) {
+          themeButtons.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+              var choice = btn.getAttribute('data-theme');
+              if (choice === 'light' || choice === 'dark') {
+                localStorage.setItem(storageKey, choice);
+                applyStoredTheme();
+              }
+            });
+          });
+        }
+
+        if (window.matchMedia) {
+          var mql = window.matchMedia('(prefers-color-scheme: dark)');
+          mql.addEventListener ? mql.addEventListener('change', function () {
+            if (!localStorage.getItem(storageKey)) applyStoredTheme();
+          }) : mql.addListener && mql.addListener(function () {
+            if (!localStorage.getItem(storageKey)) applyStoredTheme();
+          });
+        }
+
+        applyStoredTheme();
+      })();
+    </script>
+    {% endblock %}
+  </body>
+
+</html>

@@ -512,6 +512,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx139-awesome-bar.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx140-productivity-shortcuts.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx141-customize-new-tab.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx142.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -616,6 +617,14 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx142beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("142."):
+            # TODO: This template may be English only. Consider whether other locales
+            # should fallback to index.html (existing design) or display this template
+            # in English (new design)
+            if locale in ["en-US", "en-CA", "en-GB", "de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx142.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("141."):
