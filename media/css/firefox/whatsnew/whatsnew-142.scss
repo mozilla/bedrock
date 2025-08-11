@@ -995,6 +995,7 @@ body {
   font-size: var(--fds-font-size-base);
   box-shadow: var(--fds-shadow-sm);
 }
+.wnp-mobile-qr svg path { fill: var(--fds-color-charcoal); }
 
 .wnp-mobile-content {
   max-width: 840px;
