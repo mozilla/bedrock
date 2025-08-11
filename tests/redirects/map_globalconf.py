@@ -8,6 +8,8 @@ import requests
 
 from .base import flatten, url_test
 
+RELNOTES_REDIRECT_STATUS_CODE = 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
+
 UA_ANDROID = {"User-Agent": "Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) Gecko/51.0 Firefox/51.0"}
 UA_IOS = {"User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190"}
 
@@ -168,7 +170,8 @@ URLS = flatten(
         # bug 860865, 1101220, issue 8096
         url_test("/firefox/all-{beta,rc}{/,.html}", "/firefox/all/desktop-beta/"),
         url_test("/firefox/all-aurora{/,.html}", "/firefox/all/desktop-developer/"),
-        url_test("/firefox/aurora/{notes,system-requirements}/", "/firefox/developer/{notes,system-requirements}/"),
+        # Made redundant via Issue 16381
+        # url_test("/firefox/aurora/{notes,system-requirements}/", "/firefox/developer/{notes,system-requirements}/"),
         url_test("/firefox/organizations/all.html", "/firefox/all/desktop-esr/"),
         # bug 729329
         url_test("/mobile/sync/is/da/best/", "/firefox/features/sync/"),
@@ -572,12 +575,18 @@ URLS = flatten(
         url_test("/projects/security/older-vulnerabilities.html", "/security/known-vulnerabilities/older-vulnerabilities/"),
         # bug 1017564
         url_test("/mobile/RANDOM-STUFF/system-requirements/", "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"),
-        # bug 1041712, 1069335, 1069902
-        url_test(
-            "/{firefox,mobile}/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
-            "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US"
-            "/{firefox,mobile}/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
-        ),
+        # bug 1041712, 1069335, 1069902; superceded by Issue 16381
+        # url_test(
+        #     "/mobile/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
+        #     "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US"
+        #     "/mobile/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
+        #     status_code=302,
+        # ),
+        # url_test(
+        #     "/firefox/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
+        #     settings.FXC_BASE_URL + "/firefox/{2,19,27}.0{a2,beta,.2}/{release,aurora}notes/{,stuff}",
+        #     status_code=RELNOTES_REDIRECT_STATUS_CODE,
+        # ),
         # bug 1090468
         url_test(
             "/security/{older-alerts,security-announcement,phishing-test{,-results}}.html",
@@ -645,16 +654,17 @@ URLS = flatten(
             "/projects/devpreview/stuff.html",
             "http://website-archive.mozilla.org/www.mozilla.org/devpreview_releasenotes/projects/devpreview/stuff.html",
         ),
-        # bug 947890, 1069902
+        # bug 947890, 1069902; superceded by Issue 16381
         url_test(
             "/firefox/releases/{0.9.1,1.5.0.1}.html",
             "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/firefox/releases/{0.9.1,1.5.0.1}.html",
         ),
-        url_test(
-            "/{firefox,mobile}/{2,9,18,25}.0/releasenotes/",
-            "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{firefox,mobile}/{2,9,18,25}.0/releasenotes/",
-        ),
-        # bug 988746, 989423, 994186, 1153351
+        # 1069902; superceded by Issue 16381
+        # url_test(
+        #     "/{firefox,mobile}/{2,9,18,25}.0/releasenotes/",
+        #     "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{firefox,mobile}/{2,9,18,25}.0/releasenotes/",
+        # ),
+        # bug 988746, 989423, 994186, 1153351;
         url_test("/mobile/{23,28,29}.0/releasenotes/", "/firefox/android/{23,28,29}.0/releasenotes/"),
         url_test("/mobile/{3,4}2.0beta/{aurora,release}notes/", "/firefox/android/{3,4}2.0beta/{aurora,release}notes/"),
         # bug 724682
@@ -987,7 +997,11 @@ URLS = flatten(
         # https://en.wikipedia.org/wiki/Left-to-right_mark
         url_test("/firefox/%E2%80%8E", FXC_URL, follow_redirects=True),
         url_test("/firefox/new/%E2%80%8E", FXC_URL, follow_redirects=True),
-        url_test("/firefox/38.0.3/releasenotes/", "/firefox/38.0.5/releasenotes/"),
+        url_test(
+            "/firefox/38.0.3/releasenotes/",
+            f"{settings.FXC_BASE_URL}/firefox/38.0.5/releasenotes/?redirect_source=mozilla-org",
+            status_code=RELNOTES_REDIRECT_STATUS_CODE,
+        ),
         url_test("/firefox/)", "/firefox/"),
         url_test("/firefox/{new,developer}/)", "/firefox/{new,developer}/"),
         url_test("/firefox/default.htm", "/firefox/"),
@@ -1300,7 +1314,11 @@ URLS = flatten(
         # Issue 14222
         url_test("/firefox/browsers/", FXC_URL),
         # issue 14467
-        url_test("/firefox/125.0/releasenotes/", "/firefox/125.0.1/releasenotes/"),
+        url_test(
+            "/firefox/125.0/releasenotes/",
+            f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/?redirect_source=mozilla-org",
+            status_code=RELNOTES_REDIRECT_STATUS_CODE,
+        ),
         # issue 14647
         url_test("/privacy/hubs/", "/privacy/archive/mozilla-hubs/notice-2024-06/"),
         url_test("/about/legal/terms/hubs/", "/privacy/archive/mozilla-hubs/tos-2024-06/"),

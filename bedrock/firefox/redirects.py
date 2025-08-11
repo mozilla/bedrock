@@ -7,6 +7,16 @@ from functools import partial
 
 from django.conf import settings
 
+from bedrock.firefox.urls import (
+    android_releasenotes_re,
+    android_sysreq_re,
+    channel_re,
+    ios_releasenotes_re,
+    ios_sysreq_re,
+    platform_re,
+    releasenotes_re,
+    sysreq_re,
+)
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
 PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
@@ -52,6 +62,100 @@ offsite_redirect = partial(
     redirect,
     query={"redirect_source": "mozilla-org"},  # additional querystring to add to every redirection
     merge_query=True,  # ensure we don't lose existing querystrings during redirection
+)
+
+
+def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
+    """Returns the same path but on the Firefox domain.
+
+    Note that this is meant to be called from the offsite_redirect helper,
+    which has merge_query enabled and also adds on the redirect_source
+    querystring, so we don't need to explicitly [re]set the querystring in the
+    URL we return.
+    """
+    return f"{settings.FXC_BASE_URL}{request.path}"
+
+
+releasenotes_redirectpatterns = (
+    # Special-case redirects that existed before the Bedrock->Springfield redirects;
+    # pulled together here in one place
+    offsite_redirect(
+        # issue 14467; 16381
+        r"^firefox/125\.0/releasenotes/?$",
+        f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/",
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        r"^firefox/38\.0\.3/releasenotes/$",
+        f"{settings.FXC_BASE_URL}/firefox/38.0.5/releasenotes/",
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    # Redirects from Bedrock to Springfield in general
+    offsite_redirect(
+        f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        "firefox/nightly/notes/feed/",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        "firefox/(?:latest/)?releasenotes/$",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        "firefox/android/releasenotes/",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        "firefox/ios/releasenotes/",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        releasenotes_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        android_releasenotes_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        ios_releasenotes_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        sysreq_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        android_sysreq_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        ios_sysreq_re,
+        _redirect_to_same_path_on_fxc,
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
+    offsite_redirect(
+        "firefox/releases/$",
+        f"{settings.FXC_BASE_URL}/releases/",  # leave Springfield to sort out the local redirect
+        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+    ),
 )
 
 # Issue 16355
@@ -579,7 +683,6 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/(new/)?addon", "https://addons.mozilla.org"),
     redirect(r"^firefox/tips", "firefox.features.tips"),
     redirect(r"^firefox/new/.+", "/firefox/new/"),
-    redirect(r"^firefox/38\.0\.3/releasenotes/$", "/firefox/38.0.5/releasenotes/"),
     redirect(r"^firefox/default\.htm", "/firefox/"),
     redirect(r"^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$", "/firefox/android/{version}/releasenotes/"),
     redirect(r"^firefox/stats/", "/firefox/"),
@@ -695,6 +798,4 @@ bedrock_redirectpatterns = (
     redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
-redirectpatterns = (
-    bedrock_redirectpatterns + springfield_redirectpatterns
-)  # bedrock redirects first, to keep tests happy, then off to springfield, if relevant
+redirectpatterns = releasenotes_redirectpatterns + bedrock_redirectpatterns + springfield_redirectpatterns

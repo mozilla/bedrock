@@ -2514,3 +2514,9 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
 # but if you use it without a path you must add a trailing slash to avoid a 302 at
 # the firefox.com end, because Django will append a trailing slash if it doesn't exist.
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
+
+MAKE_RELNOTES_REDIRECTS_PERMANENT = config(
+    "MAKE_RELNOTES_REDIRECTS_PERMANENT",
+    default="False",
+    parser=bool,
+)
