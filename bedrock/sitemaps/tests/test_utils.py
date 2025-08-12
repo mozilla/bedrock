@@ -269,7 +269,6 @@ def test_get_wagtail_urls__ensure_locale_codes_not_stripped(dummy_wagtail_pages)
 
 
 @patch("bedrock.sitemaps.utils.get_static_urls")
-@patch("bedrock.sitemaps.utils.get_release_notes_urls")
 @patch("bedrock.sitemaps.utils.get_security_urls")
 @patch("bedrock.sitemaps.utils.get_contentful_urls")
 @patch("bedrock.sitemaps.utils.get_wagtail_urls")
@@ -279,24 +278,21 @@ def test_update_sitemaps(
     mock_get_wagtail_urls,
     mock_get_contentful_urls,
     mock_get_security_urls,
-    mock_get_release_notes_urls,
     mock_get_static_urls,
 ):
     "Light check to ensure we've not added _new_ things we haven't added tests for"
 
-    mock_get_wagtail_urls.return_value = {"wagtail": "dummy1"}
-    mock_get_contentful_urls.return_value = {"contentful": "dummy2"}
-    mock_get_security_urls.return_value = {"security": "dummy3"}
-    mock_get_release_notes_urls.return_value = {"release_notes": "dummy4"}
-    mock_get_static_urls.return_value = {"static_urls": "dummy5"}
+    mock_get_wagtail_urls.return_value = {"wagtail": "walterite"}
+    mock_get_contentful_urls.return_value = {"contentful": "gutterball"}
+    mock_get_security_urls.return_value = {"security": "grainwave"}
+    mock_get_static_urls.return_value = {"static_urls": "rubberduck"}
 
     update_sitemaps()
     expected = {
-        "wagtail": "dummy1",
-        "contentful": "dummy2",
-        "security": "dummy3",
-        "release_notes": "dummy4",
-        "static_urls": "dummy5",
+        "wagtail": "walterite",
+        "contentful": "gutterball",
+        "security": "grainwave",
+        "static_urls": "rubberduck",
     }
 
     mock_output_json.assert_called_once_with(expected)
