@@ -790,6 +790,10 @@ body {
     margin-top: auto;
     padding: var(--fds-spacing-4xl) 0;
     background: light-dark(var(--fds-color-ash), var(--fds-color-black));
+
+    .wnp-button-outline img {
+        margin-right: var(--fds-spacing-md);
+    }
 }
 
 .wnp-footer-inner {
@@ -900,8 +904,10 @@ body {
 
 .wnp-footer-note {
     margin: 0;
+    margin-top: var(--fds-spacing-sm);
     color: light-dark(var(--fds-color-charcoal), var(--fds-color-ash));
     font-size: var(--fds-font-size-xs);
+    text-align: center;
 }
 
 .wnp-eyebrow {
