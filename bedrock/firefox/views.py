@@ -620,10 +620,7 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("142."):
-            # TODO: This template may be English only. Consider whether other locales
-            # should fallback to index.html (existing design) or display this template
-            # in English (new design)
-            if locale in ["en-US", "en-CA", "en-GB", "de", "fr"]:
+            if locale in ["en-US", "en-CA", "en-GB"]:
                 template = "firefox/whatsnew/whatsnew-fx142.html"
             else:
                 template = "firefox/whatsnew/index.html"
