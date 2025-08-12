@@ -1573,7 +1573,7 @@ class TestWhatsNew(TestCase):
         req.locale = "de"
         self.view(req, version="142.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_142_0_0_fr(self, render_mock):
         """
@@ -1584,7 +1584,7 @@ class TestWhatsNew(TestCase):
         req.locale = "fr"
         self.view(req, version="142.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_142_0_0_pt_BR(self, render_mock):
         """Should use whatsnew-index template for pt-BR locale"""
