@@ -225,7 +225,7 @@ MzpNavigation.onClick = (e) => {
 MzpNavigation.menuButtonVisible = (callback) => {
     // check if Intersection observer is supported
     if (
-        window.MzpSupports !== 'undefined' &&
+        typeof window.MzpSupports !== 'undefined' &&
         window.MzpSupports.intersectionObserver
     ) {
         const observer = new IntersectionObserver(
@@ -249,7 +249,7 @@ MzpNavigation.menuButtonVisible = (callback) => {
  */
 MzpNavigation.setAria = () => {
     if (
-        window.MzpSupports !== 'undefined' &&
+        typeof window.MzpSupports !== 'undefined' &&
         window.MzpSupports.intersectionObserver
     ) {
         MzpNavigation.menuButtonVisible((isVisible, menuButton) => {
