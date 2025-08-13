@@ -286,16 +286,16 @@ bedrock_redirectpatterns = (
     redirect(r"^firefoxos", "/firefox/os/"),
     # bug 1438302
     no_redirect(r"^firefox/download/thanks/?$"),
-    # Bug 1006616
-    redirect(r"^download/?$", "firefox.new"),
-    # Bug 1409554
-    redirect(r"^(firefox|mobile)/download", "firefox.new"),
+    # Bug 1006616; Issue 16431
+    redirect(r"^download/?$", f"{FXC}/"),
+    # Bug 1409554; Issue 16431
+    redirect(r"^(firefox|mobile)/download", f"{FXC}/"),
     # bug 837883
     redirect(r"^firefox/firefox\.exe$", "mozorg.home", re_flags="i"),
     # bug 821006
     redirect(r"^firefox/all(\.html)?$", "firefox.all"),
-    # bug 727561
-    redirect(r"^firefox/search(?:\.html)?$", "firefox.new"),
+    # bug 727561; Issue 16431
+    redirect(r"^firefox/search(?:\.html)?$", f"{FXC}/"),
     # bug 860865, 1101220, issue 8096
     redirect(r"^firefox/all-(?:beta|rc)(?:/|\.html)?$", "firefox.all.platforms", to_args=["desktop-beta"]),
     redirect(r"^firefox/all-aurora(?:/|\.html)?$", "firefox.all.platforms", to_args=["desktop-developer"]),
@@ -303,14 +303,14 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/organizations/all\.html$", "firefox.all.platforms", to_args=["desktop-esr"]),
     # bug 729329
     redirect(r"^mobile/sync", "firefox.features.sync"),
-    # bug 882845
-    redirect(r"^firefox/toolkit/download-to-your-devices", "firefox.new"),
+    # bug 882845; Issue 16431
+    redirect(r"^firefox/toolkit/download-to-your-devices", f"{FXC}/"),
     # bug 1014823
     redirect(r"^(products/)?firefox/releases/whatsnew/?$", "firefox.whatsnew"),
-    # bug 929775
+    # bug 929775; Issue 16431
     redirect(
         r"^firefox/update",
-        "firefox.new",
+        f"{FXC}/",
         query={
             "utm_source": "firefox-browser",
             "utm_medium": "firefox-browser",
@@ -320,30 +320,30 @@ bedrock_redirectpatterns = (
     # Bug 868182, 986174
     redirect(r"^(m|(firefox/)?mobile)/features/?$", "firefox.browsers.mobile.index"),
     redirect(r"^(m|(firefox/)?mobile)/faq/?$", firefox_mobile_faq, query=False),
-    # bug 884933
+    # bug 884933; Issue 16431
     redirect(r"^(m|(firefox/)?mobile)/platforms/?$", "https://support.mozilla.org/kb/will-firefox-work-my-mobile-device"),
-    redirect(r"^m/?$", "firefox.new"),
-    # Bug 730488 deprecate /firefox/all-older.html
-    redirect(r"^firefox/all-older\.html$", "firefox.new"),
+    redirect(r"^m/?$", f"{FXC}/"),
+    # Bug 730488 deprecate /firefox/all-older.html; Issue 16431
+    redirect(r"^firefox/all-older\.html$", f"{FXC}/"),
     # bug 1120658
     redirect(r"^seamonkey-transition\.html$", "http://www-archive.mozilla.org/seamonkey-transition.html"),
     # Bug 1186373
     redirect(r"^firefox/hello/npssurvey/?$", "https://www.surveygizmo.com/s3/2227372/Firefox-Hello-Product-Survey", permanent=False),
     # Bug 1221739
     redirect(r"^firefox/hello/feedbacksurvey/?$", "https://www.surveygizmo.com/s3/2319863/d2b7dc4b5687", permanent=False),
-    # Bug 1110927
-    redirect(r"^(products/)?firefox/start/central\.html$", "firefox.new"),
+    # Bug 1110927; Issue 16431
+    redirect(r"^(products/)?firefox/start/central\.html$", f"{FXC}/"),
     redirect(r"^firefox/sync/firstrun\.html$", "firefox.features.sync"),
-    # Bug 920212
-    redirect(r"^firefox/fx(/.*)?", "firefox.new"),
+    # Bug 920212; Issue 16431
+    redirect(r"^firefox/fx(/.*)?", f"{FXC}/"),
     # Bug 979531, 1003727, 979664, 979654, 979660
     redirect(r"^firefox/customize/?$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
     redirect(r"^firefox/(?:performance|happy|speed|memory)/?$", "firefox.features.fast"),
     redirect(r"^firefox/security/?$", "firefox.features.private"),
     redirect(r"^firefox/technology/?$", "https://developer.mozilla.org/docs/Tools"),
     # Previously Bug 979527 / Github #10004 "Getting Started" Page
-    redirect(r"^(products/)?firefox/central(/|\.html|-lite\.html)?$", "firefox.new"),
-    # bug 868169
+    redirect(r"^(products/)?firefox/central(/|\.html|-lite\.html)?$", f"{FXC}/"),
+    # bug 868169; Issue 16431
     redirect(r"^mobile/android-download\.html$", "https://play.google.com/store/apps/details", query={"id": "org.mozilla.firefox"}, merge_query=True),
     redirect(
         r"^mobile/android-download-beta\.html$",
@@ -397,21 +397,21 @@ bedrock_redirectpatterns = (
     # bug 988746, 989423, 994186, 1153351
     redirect(r"^mobile/(?P<v>2[38]\.0(?:\.\d)?|29\.0(?:beta|\.\d)?)/releasenotes/?$", "/firefox/android/{v}/releasenotes/"),
     redirect(r"^mobile/(?P<v>[3-9]\d\.\d(?:a2|beta|\.\d)?)/(?P<p>aurora|release)notes/?$", "/firefox/android/{v}/{p}notes/"),
-    # bug 1041712, 1069335, 1069902; superceded by Issue 16381
-    # redirect(
-    #     r"^(?P<prod>firefox|mobile)/(?P<vers>([0-9]|1[0-9]|2[0-8])\.(\d+(?:beta|a2|\.\d+)?))"
-    #     r"/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$",
-    #     "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
-    # ),
-    # bug 767614 superceeded by bug 957711 and 1003718 and 1239960
-    redirect(r"^(fennec)/?$", "firefox.new"),
+    # bug 1041712, 1069335, 1069902
+    redirect(
+        r"^(?P<prod>firefox|mobile)/(?P<vers>([0-9]|1[0-9]|2[0-8])\.(\d+(?:beta|a2|\.\d+)?))"
+        r"/(?P<channel>release|aurora)notes/(?P<page>[\/\w\.-]+)?$",
+        "http://website-archive.mozilla.org/www.mozilla.org/firefox_releasenotes/en-US/{prod}/{vers}/{channel}notes/{page}",
+    ),
+    # bug 767614 superceeded by bug 957711 and 1003718 and 1239960; Issue 16431
+    redirect(r"^(fennec)/?$", f"{FXC}/"),
     # issue 8749
     redirect(r"^(mobile)/?$", "firefox.browsers.mobile.index"),
     # bug 876668
     redirect(r"^mobile/customize(?:/.*)?$", "firefox.browsers.mobile.index"),
-    # bug 1211907
-    redirect(r"^firefox/independent/?$", "firefox.new"),
-    redirect(r"^firefox/personal/?$", "firefox.new"),
+    # bug 1211907; Issue 16431
+    redirect(r"^firefox/independent/?$", f"{FXC}/"),
+    redirect(r"^firefox/personal/?$", f"{FXC}/"),
     # bug 845983
     redirect(r"^metrofirefox(?P<path>/.*)?$", "/firefox{path}"),
     # bug 1003703, 1009630
@@ -427,8 +427,8 @@ bedrock_redirectpatterns = (
     ),
     # bug 960543
     redirect(r"^firefox/(?P<vers>[23])\.0/eula", "/legal/eula/firefox-{vers}/"),
-    # bug 1150713
-    redirect(r"^firefox/sms(?:/.*)?$", "firefox.new"),
+    # bug 1150713; Issue 16431
+    redirect(r"^firefox/sms(?:/.*)?$", f"{FXC}/"),
     # Redirects for SeaMonkey project website, now living at seamonkey-project.org
     redirect(r"^projects/seamonkey/$", "http://www.seamonkey-project.org/"),
     redirect(r"^projects/seamonkey/artwork\.html$", "http://www.seamonkey-project.org/dev/artwork"),
@@ -460,10 +460,10 @@ bedrock_redirectpatterns = (
     # Bug 424204
     redirect(r"^firefox/help/?$", "https://support.mozilla.org/"),
     redirect(r"^fxandroid/?$", "firefox.browsers.mobile.android"),
-    # Bug 1255882
-    redirect(r"^firefox/personal", "firefox.new"),
-    redirect(r"^firefox/upgrade", "firefox.new"),
-    redirect(r"^firefox/ie", "firefox.new"),
+    # Bug 1255882; Issue 16431
+    redirect(r"^firefox/personal", f"{FXC}/"),
+    redirect(r"^firefox/upgrade", f"{FXC}/"),
+    redirect(r"^firefox/ie", f"{FXC}/"),
     # must go above the bug 1255882 stuff below
     redirect(r"^projects/xul/joy-of-xul\.html$", "https://developer.mozilla.org/docs/Mozilla/Tech/XUL/The_Joy_of_XUL"),
     redirect(r"^projects/xul/xre(old)?\.html$", "https://developer.mozilla.org/docs/Archive/Mozilla/XULRunner"),
@@ -591,16 +591,18 @@ bedrock_redirectpatterns = (
     redirect(r"^quality(/.*)?$", "http://quality.mozilla.org/"),
     # Bug 654614 /blocklist -> addons.m.o/blocked
     redirect(r"^blocklist(/.*)?$", "https://addons.mozilla.org/blocked/"),
-    redirect(r"^products/firebird/compare/?$", "firefox.new"),
-    redirect(r"^products/firebird/?$", "firefox.new"),
-    redirect(r"^products/firebird/download/$", "firefox.new"),
+    # Issue 16431
+    redirect(r"^products/firebird/compare/?$", f"{FXC}/"),
+    redirect(r"^products/firebird/?$", f"{FXC}/"),
+    redirect(r"^products/firebird/download/$", f"{FXC}/"),
     redirect(r"^products/firefox/add-engines\.html$", "https://addons.mozilla.org/search-engines.php"),
     redirect(r"^products/firefox/all$", "/firefox/all/"),
     redirect(r"^products/firefox/all\.html$", "/firefox/all/"),
     redirect(r"^products/firefox/banners\.html$", "/contribute/friends/"),
     redirect(r"^products/firefox/buttons\.html$", "/contribute/friends/"),
-    redirect(r"^products/firefox/download", "firefox.new"),
-    redirect(r"^products/firefox/get$", "firefox.new"),
+    # Issue 16431
+    redirect(r"^products/firefox/download", f"{FXC}/"),
+    redirect(r"^products/firefox/get$", f"{FXC}/"),
     redirect(r"^products/firefox/live-bookmarks", "/firefox/features/"),
     redirect(r"^products/firefox/mirrors\.html$", "http://www-archive.mozilla.org/mirrors.html"),
     redirect(r"^products/firefox/releases/$", "/firefox/releases/"),
@@ -616,21 +618,24 @@ bedrock_redirectpatterns = (
     redirect(r"^products/firefox/shelf\.html$", "https://blog.mozilla.org/press/awards/"),
     redirect(r"^products/firefox/smart-keywords\.html$", "https://support.mozilla.org/en-US/kb/Smart+keywords"),
     redirect(r"^products/firefox/support/$", "https://support.mozilla.org/"),
-    redirect(r"^products/firefox/switch", "firefox.new"),
+    # Issue 16431
+    redirect(r"^products/firefox/switch", f"{FXC}/"),
     redirect(r"^products/firefox/system-requirements", "/firefox/system-requirements/"),
-    redirect(r"^products/firefox/tabbed-browsing", "firefox.new"),
+    # Issue 16431
+    redirect(r"^products/firefox/tabbed-browsing", f"{FXC}/"),
     redirect(r"^products/firefox/text-zoom\.html$", "https://support.mozilla.org/kb/font-size-and-zoom-increase-size-of-web-pages"),
     redirect(r"^products/firefox/themes$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/themes\.html$", "https://addons.mozilla.org/themes/"),
     redirect(r"^products/firefox/ui-customize\.html$", "https://support.mozilla.org/kb/customize-firefox-controls-buttons-and-toolbars"),
-    redirect(r"^products/firefox/upgrade", "firefox.new"),
-    redirect(r"^products/firefox/why/$", "firefox.new"),
+    # Issue 16431
+    redirect(r"^products/firefox/upgrade", f"{FXC}/"),
+    redirect(r"^products/firefox/why/$", f"{FXC}/"),
     # bug 857246 redirect /products/firefox/start/  to start.mozilla.org
     redirect(r"^products/firefox/start/?$", "http://start.mozilla.org"),
     # issue 9008
     redirect(r"^products/firefox(/.*)?$", "products.landing"),
-    # bug 1260423
-    redirect(r"^firefox/choose/?$", "firefox.new"),
+    # bug 1260423; Issue 16431
+    redirect(r"^firefox/choose/?$", f"{FXC}/"),
     # bug 1288552 - redirect /secondrun/ traffic from funnelcake test
     redirect(r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/secondrun(?:/.*)?", "firefox.browsers.mobile.index", query=False),
     # bug 1293539
@@ -662,7 +667,7 @@ bedrock_redirectpatterns = (
             "utm_content": "windows10-welcome-tab",
         },
     ),
-    # bug 1369732
+    # bug 1369732; Issue 16431
     redirect(r"^Firefox/?$", f"{FXC}/"),
     # bug 1386112
     redirect(r"^firefox/android/faq/?", "https://support.mozilla.org/products/mobile"),
@@ -681,8 +686,8 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/default\.htm", "/firefox/"),
     redirect(r"^firefox/android/(?P<version>\d+\.\d+(?:\.\d+)?)$", "/firefox/android/{version}/releasenotes/"),
     redirect(r"^firefox/stats/", "/firefox/"),
-    # bug 1416706
-    redirect(r"^firefox/desktop/?", "firefox.new"),
+    # bug 1416706; Issue 16431
+    redirect(r"^firefox/desktop/?", f"{FXC}/browsers/desktop/"),
     # bug 1418500
     redirect(r"^firefox/android/?$", "firefox.browsers.mobile.android"),
     redirect(r"^firefox/focus/?$", "firefox.browsers.mobile.focus"),
@@ -715,15 +720,15 @@ bedrock_redirectpatterns = (
     # issue 6186
     redirect(r"^vote/?", "/firefox/election/"),
     # issue 9391
-    redirect(r"^/firefox/election/?$", "firefox.new"),
+    redirect(r"^/firefox/election/?$", f"{FXC}/"),
     # fxa
     redirect(r"^firefox/accounts/features/?", "mozorg.account"),
     # bug 1577449
     redirect(r"^firefox/features/send-tabs/?", "https://support.mozilla.org/kb/send-tab-firefox-desktop-other-devices"),
     # issue 6512
-    redirect(r"^firefox/firefox\.html$", "firefox.new"),
+    redirect(r"^firefox/firefox\.html$", f"{FXC}/"),
     # issue 6979
-    redirect(r"^firefoxfightsforyou/?", "firefox.new"),
+    redirect(r"^firefoxfightsforyou/?", f"{FXC}/"),
     # issue 14240
     redirect(r"^firefox/accounts/?$", "mozorg.account"),
     # issue 7210
@@ -732,8 +737,8 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/feedback/?$", "https://support.mozilla.org/questions/new/desktop"),
     # issue 7491
     redirect(r"^firefox/organizations/?$", "firefox.enterprise.index"),
-    # issue 7670
-    redirect(r"^/firefox/fights-for-you/?", "firefox.new"),
+    # issue 7670; Issue 16431
+    redirect(r"^/firefox/fights-for-you/?", f"{FXC}/"),
     # issue #7424
     redirect(r"^firefox(?:\/\d+\.\d+(?:\.\d+)?(?:a\d+)?)?/content-blocking/start/?$", "https://support.mozilla.org/kb/content-blocking"),
     # issue #7424
@@ -747,14 +752,14 @@ bedrock_redirectpatterns = (
     # issue 8641
     redirect(r"^/firefox/windows-64-bit/?$", "firefox.browsers.windows-64-bit"),
     redirect(r"^/firefox/best-browser/?$", "firefox.browsers.best-browser"),
-    # Unfck campaign, issue 11613
-    redirect(r"^firefox/unfu?ck/?$", "firefox.new"),
-    redirect(r"^firefox/love/?$", "firefox.new"),
-    redirect(r"^firefox/liebe/?$", "firefox.new"),
-    redirect(r"^firefox/rendonslenetplusnet/?$", "firefox.new"),
-    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", "firefox.new"),
-    # issue 9148
-    redirect(r"^/firefox/campaign/?$", "firefox.new"),
+    # Unfck campaign, issue 11613; Issue 16431
+    redirect(r"^firefox/unfu?ck/?$", f"{FXC}/"),
+    redirect(r"^firefox/love/?$", f"{FXC}/"),
+    redirect(r"^firefox/liebe/?$", f"{FXC}/"),
+    redirect(r"^firefox/rendonslenetplusnet/?$", f"{FXC}/"),
+    redirect(r"^(unfu?ck|love|liebe|rendonslenetplusnet)/?$", f"{FXC}/"),
+    # issue 9148; Issue 16431
+    redirect(r"^/firefox/campaign/?$", f"{FXC}/"),
     # issue 9788
     redirect(r"^/firefox/enterprise/signup(/.*)?$", "firefox.enterprise.index"),
     # issue 9953
@@ -777,10 +782,10 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/mobile/get-app/?$", "firefox.browsers.mobile.get-app"),
     # issue 14172
     redirect(r"^firefox/browsers/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
-    # issue 14231
-    redirect(r"^firefox/flashback/?$", "firefox.new"),
-    # issue 14222
-    redirect(r"^firefox/browsers/?$", "firefox.new"),
+    # issue 14231; Issue 16431
+    redirect(r"^firefox/flashback/?$", f"{FXC}/"),
+    # issue 14222; Issue 16431
+    redirect(r"^firefox/browsers/?$", f"{FXC}/"),
     # issue 14248
     redirect(r"^firefox/privacy/?$", "privacy"),
     redirect(r"^firefox/privacy/products/?$", "products.landing"),

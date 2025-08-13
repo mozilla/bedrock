@@ -2485,7 +2485,9 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
 
 # Config for redirection of certain pages over to www.firefox.com - if you override this,
 # be sure NOT to include `locale` - we add that in the redirects as and when needed
-# NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed
+# NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed,
+# but if you use it without a path you must add a trailing slash to avoid a 302 at
+# the firefox.com end, because Django will append a trailing slash if it doesn't exist.
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
 
 MAKE_RELNOTES_REDIRECTS_PERMANENT = config(

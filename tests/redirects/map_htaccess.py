@@ -2,9 +2,14 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
+
 import requests
 
 from .base import flatten, url_test
+
+FXC_URL = settings.FXC_BASE_URL.rstrip("/") + "/"
+
 
 URLS = flatten(
     (
@@ -107,9 +112,9 @@ URLS = flatten(
         url_test("/projects/bonecho/anti-phishing/", "https://support.mozilla.org/kb/how-does-phishing-and-malware-protection-work"),
         # Bug 453876, 840416
         url_test("/add-ons/kodakcd", "https://addons.mozilla.org/en-US/firefox/addon/4441"),
-        # Bug 1255882
-        url_test("/firefox/personal.html", "/firefox/new/"),
-        url_test("/firefox/upgrade.html", "/firefox/new/"),
-        url_test("/firefox/ie.html", "/firefox/new/"),
+        # Bug 1255882; Issue 16431
+        url_test("/firefox/personal.html", FXC_URL),
+        url_test("/firefox/upgrade.html", FXC_URL),
+        url_test("/firefox/ie.html", FXC_URL),
     )
 )
