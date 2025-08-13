@@ -74,6 +74,7 @@ def test_301_urls(url, base_url, follow_redirects=False):
         "/firefox/installer-help/",
         "/firefox/new/",
         "/firefox/unsupported-systems/",
+        "/firefox/nightly/firstrun/",
     ],
 )
 def test_302_fx_urls(url, base_url, follow_redirects=False):
@@ -90,11 +91,15 @@ def test_302_fx_urls(url, base_url, follow_redirects=False):
         "/firefox/releasenotes/",
         "/firefox/notes/",
         "/firefox/system-requirements/",
-        "/firefox/nightly/firstrun/",
         "/firefox/releases/",
         "/firefox/android/releasenotes/",
         "/firefox/ios/releasenotes/",
     ],
 )
-def test_302_fx_urls_kept(url, base_url, follow_redirects=False):
-    assert_valid_url(url, base_url=base_url, follow_redirects=follow_redirects, status_code=requests.codes.found)
+def test_301_fx_urls_kept(url, base_url, follow_redirects=False):
+    assert_valid_url(
+        url,
+        base_url=base_url,
+        follow_redirects=follow_redirects,
+        status_code=requests.codes.moved_permanently,
+    )

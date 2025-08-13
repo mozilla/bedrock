@@ -2490,6 +2490,6 @@ FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
 
 MAKE_RELNOTES_REDIRECTS_PERMANENT = config(
     "MAKE_RELNOTES_REDIRECTS_PERMANENT",
-    default="False",
+    default="True",
     parser=bool,
 )
