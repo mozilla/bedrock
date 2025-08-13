@@ -71,7 +71,7 @@
     --figma-Yellow-Dark-Yellow: #ffbd4f;
     --figma-Blue-Light-Blue: #ccedfe;
     --figma-Blue-Blue: #00a6f9;
-    --figma-Blue-Medium-Blue: #0079d3;
+    --figma-Blue-Medium-Blue: #0079d2;
     --figma-Blue-Dark-Blue: #003c6e;
     --figma-Blue-Button: #0360df;
     --figma-Purple-Purple: #754fe0;
@@ -91,7 +91,7 @@
     --fds-color-secondary-dark: var(--figma-Blue-Dark-Blue); // Blue/Dark Blue
     --fds-color-success: var(--figma-Success); // Functional/Success
     --fds-color-warning: var(--figma-Yellow-Dark-Yellow); // Dark Yellow (+ Alert)
-    --fds-color-error: var(--figma-Functional-Error); // Functional/Error
+    --fds-color-error:#b02e19; // Error color chosen for accessible contrast
 
     // Neutrals (referencing Figma tokens)
     --fds-color-white: var(--figma-Neutrals-White);
@@ -913,7 +913,7 @@ body {
 .wnp-eyebrow {
     font-family: var(--fds-font-family-secondary);
     font-size: var(--fds-font-size-sm);
-    color: var(--fds-color-gray-60);
+    color: var(--fds-color-gray-70);
     margin-bottom: var(--fds-spacing-sm);
 }
 
