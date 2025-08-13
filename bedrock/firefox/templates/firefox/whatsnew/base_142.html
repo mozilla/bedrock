@@ -117,6 +117,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     </div>
 
     {% block site_js %}
+    {{ js_bundle('site') }}
     {{ js_bundle('lib') }}
     {{ js_bundle('data') }}
     {{ js_bundle('firefox_whatsnew_142') }}
