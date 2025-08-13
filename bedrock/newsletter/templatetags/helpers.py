@@ -39,6 +39,7 @@ def email_newsletter_form(
     email_label=None,
     email_placeholder=None,
     multi_opt_in_required=False,  # switches multi-newsletter forms to be opt-in rather than pre-checked.
+    template="newsletter/includes/form.html",
 ):
     request = ctx["request"]
     context = ctx.get_all()
@@ -83,5 +84,5 @@ def email_newsletter_form(
         )
     )
 
-    html = render_to_string("newsletter/includes/form.html", context, request=request)
+    html = render_to_string(template, context, request=request)
     return Markup(html)

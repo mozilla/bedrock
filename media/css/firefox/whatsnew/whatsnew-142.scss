@@ -224,7 +224,7 @@ body {
 // Utility Classes
 // ============================================================================
 
-.visually-hidden {
+.visually-hidden, .hidden {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -1005,6 +1005,15 @@ body {
     .wnp-body, .wnp-subtitle {
         color: var(--fds-color-charcoal);
         margin-top: 0;
+
+        &.wnp-form-error {
+            color: var(--fds-color-error);
+        }
+    }
+
+    .wnp-form-feedback {
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     .wnp-input {
@@ -1025,6 +1034,10 @@ body {
 
     .wnp-input, .wnp-button-outline {
         padding: 12px 18px;
+    }
+
+    a {
+        color: light-dark(var(--fds-color-charcoal), var(--fds-color-ash));
     }
 }
 
@@ -1084,6 +1097,17 @@ body {
     max-width: 700px;
     margin: 0 auto;
     margin-top: var(--fds-spacing-lg);
+}
+
+.wnp-subscribe-consent, .wnp-form-feedback {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+}
+
+.wnp-button[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
 }
 
 .wnp-input {

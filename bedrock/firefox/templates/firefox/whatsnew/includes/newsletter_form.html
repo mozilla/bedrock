@@ -1,0 +1,74 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# NOTE: This file uses mzp classes from Mozilla Protocol, even though this page is not using Protocol. The newsletter JS depends on these classes.#}
+
+{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
+
+{% if not success %}
+  <form id="newsletter-form" class="wnp-subscribe mzp-c-newsletter-form" action="{{ action }}" method="post" novalidate>
+    {% if not is_multi_newsletter_form %}
+      <div hidden>
+        {{ form.newsletters|safe }}
+      </div>
+    {% endif %}
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+
+    <label class="visually-hidden" for="wnp-email">{{ email_label|d(ftl('newsletter-form-your-email-address'), true) }}</label>
+    {% if email_placeholder %}
+      {% set placeholder = email_placeholder %}
+    {% else %}
+      {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
+    {% endif %}
+    <input id="wnp-email" class="wnp-input mzp-js-email-field" type="email" name="email" placeholder="{{ placeholder }}" autocomplete="email" />
+
+    {% if not include_language %}
+      <input type="hidden" name="lang" id="id_lang" value="en">
+    {% endif %}
+
+    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
+
+    <div class="wnp-subscribe-consent">
+      <label for="wnp-privacy" class="wnp-body">
+        <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
+      </label>
+    </div>
+    <div id="newsletter-details" style="display:block;"></div>
+    <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
+      <ul class="mzp-u-list-styled">
+        <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
+        <li class="error-try-again-later hidden">{{ ftl('newsletter-form-we-are-sorry-but-there') }}</li>
+      </ul>
+    </div>
+  </form>
+  <div id="newsletter-thanks" class="wnp-body wnp-form-feedback mzp-c-newsletter-thanks hidden" data-testid="newsletter-thanks-message">
+    {% if thankyou_content %}
+    <h3>{{ thankyou_head }}</h3>
+    <p>{{ thankyou_content }}</p>
+    {% else %}
+    {{ email_form_thankyou() }}
+    {% endif %}
+  </div>
+  <script>
+    (function() {
+      var checkbox = document.getElementById('wnp-privacy');
+      var submit = document.getElementById('newsletter-submit');
+      if (!checkbox || !submit) { return; }
+      function sync() { submit.disabled = !checkbox.checked; }
+      checkbox.addEventListener('change', sync);
+      sync();
+    })();
+  </script>
+{% elif use_thankyou %}
+  <div class="wnp-subscribe-thanks">
+    {% if thankyou_content %}
+      <h3>{{ thankyou_head }}</h3>
+      <p>{{ thankyou_content }}</p>
+    {% else %}
+      {{ email_form_thankyou() }}
+    {% endif %}
+  </div>
+{% endif %}

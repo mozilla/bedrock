@@ -118,11 +118,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-container">
           <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
           <p class="wnp-body">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
-          <form class="wnp-subscribe" action="#" method="post" novalidate>
-            <label class="visually-hidden" for="wnp-email">Email address</label>
-            <input id="wnp-email" class="wnp-input" type="email" name="email" placeholder="your email address" autocomplete="email" />
-            <button class="wnp-button wnp-button-outline" type="submit">Sign Up</button>
-          </form>
+          {{ email_newsletter_form(
+          template="firefox/whatsnew/includes/newsletter_form.html",
+          include_country=false,
+          include_language=false,
+          footer=false,
+          include_title=false
+          ) }}
         </div>
       </section>
 
