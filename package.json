@@ -12,7 +12,7 @@
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
     "@mozmeao/trafficcop": "^3.1.0",
-    "@sentry/browser": "^9.33.0",
+    "@sentry/browser": "^10.4.0",
     "babel-loader": "^10.0.0",
     "caniuse-lite": "^1.0.30001731",
     "clean-webpack-plugin": "^4.0.0",
