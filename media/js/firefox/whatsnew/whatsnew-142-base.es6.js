@@ -47,18 +47,16 @@
             });
             swapStickerSourcesForTheme(stored);
         } else {
-            root.removeAttribute('data-theme');
-            if (toggle) {
-                const isSystemDark =
-                    window.matchMedia &&
-                    window.matchMedia('(prefers-color-scheme: dark)').matches;
-                toggle.setAttribute('aria-pressed', isSystemDark);
-            }
             const sys =
                 window.matchMedia &&
                 window.matchMedia('(prefers-color-scheme: dark)').matches
                     ? 'dark'
                     : 'light';
+            root.setAttribute('data-theme', sys);
+
+            if (toggle) {
+                toggle.setAttribute('aria-pressed', sys === 'dark');
+            }
             themeButtons.forEach(function (btn) {
                 btn.classList.toggle(
                     'is-active',

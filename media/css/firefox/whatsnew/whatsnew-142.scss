@@ -89,7 +89,7 @@
     --fds-color-primary-dark: var(--figma-Orange-Medium-Orange); // Orange/Medium Orange
     --fds-color-secondary: var(--figma-Blue-Medium-Blue); // Blue/Medium Blue
     --fds-color-secondary-dark: var(--figma-Blue-Dark-Blue); // Blue/Dark Blue
-    --fds-color-secondary-light: #0279D2; // taken from dark version button hover
+    --fds-color-secondary-light: var(--figma-Blue-Medium-Blue); // Blue/Medium Blue (slightly different than the hover color in Figma, but using the Figma tokens instead)
     --fds-color-success: var(--figma-Success); // Functional/Success
     --fds-color-warning: var(--figma-Yellow-Dark-Yellow); // Dark Yellow (+ Alert)
     --fds-color-error:#b02e19; // Error color chosen for accessible contrast
@@ -286,7 +286,7 @@ body {
         margin: 0;
     }
 
-    @media (prefers-color-scheme: dark) {
+    [data-theme="dark"] & {
         background-image: url('/media/img/logos/firefox/logo-word-hor-white.svg');
     }
 }
@@ -550,6 +550,16 @@ body {
             text-align: center;
             margin-left: 0;
             margin-right: 0;
+
+            @media (max-width: 1024px) {
+                margin: 0 auto var(--fds-spacing-lg);
+            }
+        }
+
+        .wnp-eyebrow {
+            @media (max-width: 1024px) {
+                margin-bottom: var(--fds-spacing-sm);
+            }
         }
 
         .wnp-btn-wrap {
@@ -631,7 +641,7 @@ body {
     margin: 0 auto var(--fds-spacing-lg);
     text-align: center;
 
-    &.has-subhead-spacing {
+    &.wnp-has-subhead-spacing {
         margin-bottom: var(--fds-spacing-2xl);
     }
 }
@@ -709,7 +719,6 @@ body {
     .wnp-section-mobile .wnp-qr { padding: var(--fds-spacing-lg); }
 
     .wnp-section-mobile .wnp-qr-media {
-
         padding:  var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
     }
 
@@ -780,8 +789,7 @@ body {
     }
 
     &.wnp-button-secondary {
-        background: var(--figma-Blue-Button);
-        /* stylelint-disable-next-line custom-property-pattern -- using Figma tokens so colors aren't affected by dark mode */
+        background: var(--fds-color-info);
         color: var(--fds-color-white);
 
         &:hover {
@@ -900,7 +908,6 @@ body {
 
 .wnp-footer-link {
     color: inherit;
-
     text-decoration: none;
 
     &:hover {
@@ -913,10 +920,9 @@ body {
     height: 66px;
     background-image: url('/media/img/logos/firefox/logo-word-hor.svg');
 
-    @media (prefers-color-scheme: dark) {
+    [data-theme="dark"] & {
         background-image: url('/media/img/logos/firefox/logo-word-hor-white.svg');
     }
-
     background-repeat: no-repeat;
     background-position: left center;
     background-size: contain;
@@ -1018,7 +1024,7 @@ body {
 .wnp-eyebrow {
     font-family: var(--fds-font-family-secondary);
     font-size: var(--fds-font-size-sm);
-    color: light-dark(var(--fds-color-gray-50), var(--fds-color-gray-50));
+    color: light-dark(var(--fds-color-gray-70), var(--fds-color-gray-30));
     margin-bottom: var(--fds-spacing-sm);
 }
 
@@ -1156,6 +1162,49 @@ body {
         }
     }
 
+    input[type="checkbox"] {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        background: var(--fds-color-white);
+        border: 1px solid var(--fds-color-gray-50);
+        border-radius: 2px;
+        position: relative;
+        cursor: pointer;
+        vertical-align: baseline;
+        top: 2px;
+        margin: 0;
+        flex-shrink: 0;
+
+        &:checked {
+            background: var(--fds-color-secondary-light);
+            border-color: var(--fds-color-secondary-light);
+
+            &::after {
+                content: '';
+                position: absolute;
+                left: 4px;
+                top: -1px;
+                width: 5px;
+                height: 9px;
+                border: 2px solid var(--fds-color-white);
+                border-top: 0;
+                border-left: 0;
+                transform: rotate(45deg);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--fds-color-info);
+            outline-offset: 2px;
+        }
+
+        &:hover {
+            border-color: var(--fds-color-secondary-light);
+        }
+    }
+
     .wnp-button-outline {
         color: var(--fds-color-charcoal);
         border-color: var(--fds-color-charcoal);
@@ -1205,7 +1254,6 @@ body {
 }
 
 .wnp-qr-qr {
-    /* stylelint-disable-next-line custom-property-pattern -- using Figma tokens so colors aren't affected by dark mode */
     background: var(--fds-color-white);
     color: var(--fds-color-gray-90);
     border-radius: var(--fds-border-radius-lg) var(--fds-border-radius-lg) 0 0;
