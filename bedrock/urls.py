@@ -19,6 +19,7 @@ from bedrock.base.i18n import bedrock_i18n_patterns
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
 handler500 = "bedrock.base.views.server_error_view"
+handler410 = "bedrock.base.views.page_gone_view"
 handler404 = "bedrock.base.views.page_not_found_view"
 locale404 = "lib.l10n_utils.locale_selection"
 
@@ -35,6 +36,9 @@ urlpatterns = bedrock_i18n_patterns(
     path("", include("bedrock.mozorg.urls")),  # these are locale-needing URLs, vs mozorg.nonlocale_urls
     path("", include("bedrock.newsletter.urls")),
     path("careers/", include("bedrock.careers.urls")),
+    path("404/", import_string(handler404)),
+    path("410/", import_string(handler410)),
+    path("500/", import_string(handler500)),
 )
 
 # Paths that must not have a locale prefix
@@ -54,10 +58,6 @@ if settings.DEV:
     )
 
 if settings.DEBUG:
-    urlpatterns += bedrock_i18n_patterns(
-        path("404/", import_string(handler404)),
-        path("500/", import_string(handler500)),
-    )
     urlpatterns += (path("csrf_403/", base_views.csrf_failure, {}),)
 
 if settings.WAGTAIL_ENABLE_ADMIN:
