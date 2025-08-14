@@ -18,9 +18,9 @@
 
 @font-face {
     font-family: Metropolis;
-    src: url('/media/protocol/fonts/Metropolis-Bold.woff2') format('woff2'),
-    url('/media/protocol/fonts/Metropolis-Bold.woff') format('woff');
-    font-weight: 700;
+    src: url('/media/fonts/metropolis/Metropolis-SemiBold.woff2') format('woff2'),
+    url('/media/fonts/metropolis/Metropolis-SemiBold.woff') format('woff');
+    font-weight: 600;
     font-style: normal;
     font-display: swap;
 }
@@ -254,7 +254,7 @@ body {
 
 .wnp-header {
     padding: 18px var(--fds-spacing-2xl);
-    border-bottom: 1px solid light-dark(var(--fds-color-gray-30), var(--fds-color-gray-70));
+    border-bottom: 1px solid light-dark(var(--fds-color-gray-30), var(--fds-color-gray-80));
     background: light-dark(var(--fds-color-ash), var(--fds-color-black));
     @media (max-width: 1024px) {
         padding: 10px var(--fds-spacing-xl);
@@ -285,7 +285,7 @@ body {
         margin: 0;
     }
 
-    [data-theme="dark"] & {
+    @media (prefers-color-scheme: dark) {
         background-image: url('/media/img/logos/firefox/logo-word-hor-white.svg');
     }
 }
@@ -858,9 +858,10 @@ body {
     height: 66px;
     background-image: url('/media/img/logos/firefox/logo-word-hor.svg');
 
-    [data-theme="dark"] & {
+    @media (prefers-color-scheme: dark) {
         background-image: url('/media/img/logos/firefox/logo-word-hor-white.svg');
     }
+
     background-repeat: no-repeat;
     background-position: left center;
     background-size: contain;
