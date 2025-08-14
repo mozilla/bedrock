@@ -17,6 +17,10 @@ function init() {
             (e) => {
                 e.preventDefault();
 
+                if (typeof window.dataLayer === 'undefined') {
+                    window.dataLayer = [];
+                }
+
                 window.dataLayer.push({
                     event: 'widget_action',
                     type: 'protection report',
