@@ -1219,6 +1219,11 @@ body {
     .wnp-button-outline {
         color: var(--fds-color-charcoal);
         border-color: var(--fds-color-charcoal);
+
+        &:hover {
+            background: var(--fds-color-black);
+            color: var(--fds-color-white);
+        }
     }
 
     .wnp-form-error-list {
