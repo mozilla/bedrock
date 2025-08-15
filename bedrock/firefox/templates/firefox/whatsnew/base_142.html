@@ -4,6 +4,8 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% set major_version = version.split('.')[0] %}
+
 <!doctype html>
 <html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}" {% endif %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}" {% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}" {% endif %} {% block html_attrs %}{% endblock %}>
 
@@ -13,7 +15,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
 
-    <title>{% block page_title %}What's New with Firefox {{ version }}{% endblock %}</title>
+    <title>{% block page_title %}What’s new with Firefox {{ major_version }}{% endblock %}</title>
 
     {% block site_css %}
     {{ css_bundle('firefox_whatsnew_142') }}
@@ -34,13 +36,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     {% endblock %}
   </head>
 
-  <body {% if self.body_id() %}id="{% block body_id %}firefox-whatsnew-{{ version }}{% endblock %}" {% endif %}class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
+  <body id="{% block body_id %}firefox-whatsnew-{{ major_version }}{% endblock %}" class="html-{{ DIR }} {% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
 
     {% block wnp_header %}
     <header class="wnp-header">
       <div class="wnp-header-inner">
         <h2 class="wnp-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
-        <!-- <button class="wnp-hamburger" type="button" aria-label="{{ ftl('ui-menu') }}" data-label-closed="{{ ftl('ui-menu') }}" data-label-open="{{ ftl('ui-close') }}" aria-controls="wnp-nav" aria-expanded="false" aria-haspopup="true">
+        {# Navigation functionality built for future versions - not part of current design, but useful for debugging dark mode #}
+        {% if settings.DEBUG %}
+        <button class="wnp-hamburger" type="button" aria-label="{{ ftl('ui-menu') }}" data-label-closed="{{ ftl('ui-menu') }}" data-label-open="{{ ftl('ui-close') }}" aria-controls="wnp-nav" aria-expanded="false" aria-haspopup="true">
           <span aria-hidden="true"></span>
         </button>
         <nav id="wnp-nav" class="wnp-nav" aria-label="Primary">
@@ -56,7 +60,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </nav>
         <button class="wnp-nav-toggle" type="button" aria-label="Toggle Dark Mode" aria-pressed="false">
           <span>Toggle Dark Mode</span>
-        </button> -->
+        </button>
+        {% endif %}
       </div>
     </header>
     {% endblock %}
@@ -65,7 +70,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       {% block wnp_content %}
       <main class="wnp-content">
         <div class="wnp-content-inner">
-          <h1>What's New in Firefox {{ version }}</h1>
+          <h1>What's New in Firefox {{ major_version }}</h1>
         </div>
       </main>
       {% endblock %}
@@ -84,7 +89,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               <ul>
                 <li>
                   <a class="wnp-footer-link" href="https://support.mozilla.org/">Firefox Support
-                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 13" width="12" height="12" alt="" aria-hidden="true">
+                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 13" width="12" height="12" aria-hidden="true">
                       <path d="M6.938.5v1.125h3.141L5.337 6.367l.796.795 4.742-4.742v3.143H12V.5H6.937Z" fill="currentColor"/>
                       <path d="M7.875 11.375h-6.75v-6.75H4.5V3.5H0v9h9V8H7.875v3.375Z" fill="currentColor"/>
                     </svg>
@@ -112,8 +117,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               <p class="wnp-footer-subtitle">Putting people before profits since 1998</p>
             </div>
             <div class="wnp-footer-cta">
-              <a class="wnp-button wnp-button-outline" href="https://foundation.mozilla.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true" />Donate to Mozilla</a>
-              <p class="wnp-footer-note">Make good things together</p>
+              <a class="wnp-button wnp-button-outline" href="https://foundation.mozilla.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true">Donate to Mozilla Foundation</a>
             </div>
           </div>
         </div>

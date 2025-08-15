@@ -129,5 +129,50 @@
             : mql.addListener && mql.addListener(onChange);
     }
 
+    // Inclusive Card Pattern - Making entire cards clickable
+    // Based on https://inclusive-components.design/cards/
+    function initInclusiveCards() {
+        addInclusiveInteraction('.wnp-feature', '.wnp-feature-content-inner');
+        addInclusiveInteraction('.wnp-card', '.wnp-card-content');
+    }
+
+    function addInclusiveInteraction(cardClass, wrapperClass) {
+        const cards = document.querySelectorAll(cardClass);
+        cards.forEach(function (card) {
+            const link = card.querySelector('.wnp-subtitle a');
+            if (!link) return;
+            card.style.cursor = 'pointer';
+            const contentWrapper = card.querySelector(wrapperClass);
+            if (contentWrapper) {
+                let down, up;
+                contentWrapper.onmousedown = () => (down = +new Date());
+                contentWrapper.onmouseup = () => {
+                    up = +new Date();
+                    const clickDuration = up - down;
+                    const button = card.querySelector('.wnp-button');
+                    if (
+                        event.target === link ||
+                        link.contains(event.target) ||
+                        (button &&
+                            (event.target === button ||
+                                button.contains(event.target)))
+                    ) {
+                        return;
+                    }
+                    if (clickDuration > 200) {
+                        return;
+                    }
+                    link.click();
+                };
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initInclusiveCards);
+    } else {
+        initInclusiveCards();
+    }
+
     applyStoredTheme();
 })();
