@@ -168,6 +168,117 @@
         });
     }
 
+    function initCustomDropdowns() {
+        const customSelects = document.querySelectorAll('.wnp-custom-select');
+
+        customSelects.forEach(function (select) {
+            const button = select.querySelector('.wnp-select-button');
+            const dropdown = select.querySelector('.wnp-select-dropdown');
+            const options = select.querySelectorAll('.wnp-select-option');
+            const hiddenInput = select.querySelector('input[type="hidden"]');
+            const textSpan = select.querySelector('.wnp-select-text');
+
+            if (!button || !dropdown || !hiddenInput || !textSpan) return;
+
+            button.addEventListener('click', function (e) {
+                e.preventDefault();
+                const isExpanded =
+                    button.getAttribute('aria-expanded') === 'true';
+
+                customSelects.forEach(function (otherSelect) {
+                    if (otherSelect !== select) {
+                        otherSelect
+                            .querySelector('.wnp-select-button')
+                            .setAttribute('aria-expanded', 'false');
+                        otherSelect
+                            .querySelector('.wnp-select-dropdown')
+                            .classList.remove('wnp-select-open');
+                    }
+                });
+                button.setAttribute('aria-expanded', !isExpanded);
+                dropdown.classList.toggle('wnp-select-open');
+            });
+
+            options.forEach(function (option) {
+                option.addEventListener('click', function () {
+                    const value = option.dataset.value;
+                    const text = option.textContent;
+
+                    hiddenInput.value = value;
+
+                    textSpan.textContent = text;
+
+                    options.forEach(function (opt) {
+                        opt.classList.remove('wnp-select-selected');
+                    });
+                    option.classList.add('wnp-select-selected');
+
+                    button.setAttribute('aria-expanded', 'false');
+                    dropdown.classList.remove('wnp-select-open');
+
+                    hiddenInput.dispatchEvent(new Event('change'));
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!select.contains(e.target)) {
+                    button.setAttribute('aria-expanded', 'false');
+                    dropdown.classList.remove('wnp-select-open');
+                }
+            });
+
+            button.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                }
+            });
+
+            dropdown.addEventListener('keydown', function (e) {
+                const currentOption =
+                    dropdown.querySelector(
+                        '.wnp-select-option[tabindex="0"]'
+                    ) || options[0];
+
+                switch (e.key) {
+                    case 'ArrowDown': {
+                        e.preventDefault();
+                        const nextOption =
+                            currentOption.nextElementSibling || options[0];
+                        options.forEach((opt) =>
+                            opt.setAttribute('tabindex', '-1')
+                        );
+                        nextOption.setAttribute('tabindex', '0');
+                        nextOption.focus();
+                        break;
+                    }
+                    case 'ArrowUp': {
+                        e.preventDefault();
+                        const prevOption =
+                            currentOption.previousElementSibling ||
+                            options[options.length - 1];
+                        options.forEach((opt) =>
+                            opt.setAttribute('tabindex', '-1')
+                        );
+                        prevOption.setAttribute('tabindex', '0');
+                        prevOption.focus();
+                        break;
+                    }
+                    case 'Enter':
+                    case ' ':
+                        e.preventDefault();
+                        currentOption.click();
+                        break;
+                    case 'Escape':
+                        button.setAttribute('aria-expanded', 'false');
+                        dropdown.classList.remove('wnp-select-open');
+                        button.focus();
+                        break;
+                }
+            });
+        });
+    }
+
     function initNewsletterForm() {
         const emailInput = document.getElementById('wnp-email');
         const formDetails = document.querySelector('.wnp-form-details');
@@ -231,6 +342,9 @@
 
         emailInput.addEventListener('input', sync);
         checkbox.addEventListener('change', sync);
+
+        // Initialize custom dropdowns
+        initCustomDropdowns();
 
         if (include_country && document.getElementById('id_country')) {
             document

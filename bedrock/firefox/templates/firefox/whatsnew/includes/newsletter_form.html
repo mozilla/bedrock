@@ -35,28 +35,46 @@
       {% if include_country %}
       <div class="wnp-form-field">
         <label for="id_country" class="visually-hidden">{{ form.country.label }}</label>
-        <select name="{{ form.country.name }}" id="{{ form.country.id_for_label }}" class="{{ form.country.field.widget.attrs.class|default('') }}">
-          <option value="">Select Country or Region</option>
-          {% for choice in form.country.field.choices %}
-          {% if choice.0 %}
-          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-          {% endif %}
-          {% endfor %}
-        </select>
+        <div class="wnp-custom-select" data-field="country">
+          <button type="button" class="wnp-select-button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="wnp-select-text">Select Country or Region</span>
+            <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <ul class="wnp-select-dropdown" role="listbox" tabindex="-1">
+            <li class="wnp-select-option" data-value="" role="option">Select Country or Region</li>
+            {% for choice in form.country.field.choices %}
+            {% if choice.0 %}
+            <li class="wnp-select-option" data-value="{{ choice.0 }}" role="option">{{ choice.1 }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          <input type="hidden" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}" value="">
+          </div>
       </div>
       {% endif %}
 
       {% if include_language %}
       <div class="wnp-form-field">
         <label for="id_lang" class="visually-hidden">{{ form.lang.label }}</label>
-        <select name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}" class="{{ form.lang.field.widget.attrs.class|default('') }}">
-          <option value="">Select Language</option>
-          {% for choice in form.lang.field.choices %}
-          {% if choice.0 %}
-          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-          {% endif %}
-          {% endfor %}
-        </select>
+        <div class="wnp-custom-select" data-field="language">
+          <button type="button" class="wnp-select-button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="wnp-select-text">Select Language</span>
+            <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+          <ul class="wnp-select-dropdown" role="listbox" tabindex="-1">
+            <li class="wnp-select-option" data-value="" role="option">Select Language</li>
+            {% for choice in form.lang.field.choices %}
+            {% if choice.0 %}
+            <li class="wnp-select-option" data-value="{{ choice.0 }}" role="option">{{ choice.1 }}</li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+          <input type="hidden" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}" value="">
+          </div>
       </div>
       {% endif %}
 
