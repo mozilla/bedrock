@@ -31,37 +31,58 @@
 
     <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
 
-    <div class="wnp-subscribe-consent">
-      <label for="wnp-privacy" class="wnp-body">
-        <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
-      </label>
-    </div>
+    <div class="wnp-form-details wnp-form-row-hidden">
+      {% if include_country %}
+      <div class="wnp-form-field">
+        <label for="id_country" class="visually-hidden">{{ form.country.label }}</label>
+        <select name="{{ form.country.name }}" id="{{ form.country.id_for_label }}" class="{{ form.country.field.widget.attrs.class|default('') }}">
+          <option value="">Select Country or Region</option>
+          {% for choice in form.country.field.choices %}
+          {% if choice.0 %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+
+      {% if include_language %}
+      <div class="wnp-form-field">
+        <label for="id_lang" class="visually-hidden">{{ form.lang.label }}</label>
+        <select name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}" class="{{ form.lang.field.widget.attrs.class|default('') }}">
+          <option value="">Select Language</option>
+          {% for choice in form.lang.field.choices %}
+          {% if choice.0 %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
+
+      <div class="wnp-subscribe-consent">
+        <label for="wnp-privacy" class="wnp-body">
+          <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
+        </label>
+      </div>
+      </div>
     <div id="newsletter-details" style="display:block;"></div>
     <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
-      <ul class="mzp-u-list-styled">
+      <ul class="wnp-form-error-list mzp-u-list-styled">
         <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
         <li class="error-try-again-later hidden">{{ ftl('newsletter-form-we-are-sorry-but-there') }}</li>
       </ul>
     </div>
   </form>
-  <div id="newsletter-thanks" class="wnp-body wnp-form-feedback mzp-c-newsletter-thanks hidden" data-testid="newsletter-thanks-message">
-    {% if thankyou_content %}
-    <h3>{{ thankyou_head }}</h3>
-    <p>{{ thankyou_content }}</p>
-    {% else %}
-    {{ email_form_thankyou() }}
-    {% endif %}
+  <div id="newsletter-thanks" class="wnp-newsletter-success hidden" data-testid="newsletter-thanks-message"
+       {% if thankyou_head %}aria-label="{{ thankyou_head }}" {% endif %}
+       {% if thankyou_content %}aria-description="{{ thankyou_content }}" {% endif %}>
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="40" cy="40" r="40" fill="white" />
+      <path d="M28 40L36 48L52 32" stroke="black" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" />
+    </svg>
   </div>
-  <script>
-    (function() {
-      var checkbox = document.getElementById('wnp-privacy');
-      var submit = document.getElementById('newsletter-submit');
-      if (!checkbox || !submit) { return; }
-      function sync() { submit.disabled = !checkbox.checked; }
-      checkbox.addEventListener('change', sync);
-      sync();
-    })();
-  </script>
+
 {% elif use_thankyou %}
   <div class="wnp-subscribe-thanks">
     {% if thankyou_content %}
