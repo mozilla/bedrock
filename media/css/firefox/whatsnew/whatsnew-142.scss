@@ -1337,8 +1337,8 @@ body {
 
 .wnp-custom-select {
     appearance: none;
-    -webkit-appearance: none; /* Safari */
-    -moz-appearance: none;    /* Firefox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     width: 100%;
     height: 50px;
     padding: var(--fds-spacing-sm) var(--fds-spacing-md);
@@ -1377,6 +1377,7 @@ body {
     transition: transform var(--fds-transition-base);
 }
 
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 .wnp-custom-select:open ~ .wnp-select-arrow {
     transform: rotate(180deg);
 }
