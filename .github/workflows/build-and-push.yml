@@ -23,7 +23,7 @@ env:
   GAR_LOCATION: us
   GCP_PROJECT_ID: moz-fx-bedrock-prod
   GAR_REPOSITORY: bedrock-prod
-  REF_ID: ${{ github.ref }}
+  REF_ID: ${{ github.event.inputs.ref || github.ref }}
 
 
 jobs:
