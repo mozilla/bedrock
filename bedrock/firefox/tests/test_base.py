@@ -1543,10 +1543,7 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
 
     def test_fx_142_0_0_en_CA(self, render_mock):
-        """
-        TODO: Define where other locales should go
-        Should use whatsnew-fx142 template for en-CA locale
-        """
+        """Should use whatsnew-fx142 template for en-CA locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-CA"
         self.view(req, version="142.0")
@@ -1554,10 +1551,7 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
 
     def test_fx_142_0_0_en_GB(self, render_mock):
-        """
-        TODO: Define where other locales should go
-        Should use whatsnew-fx142 template for en-GB locale
-        """
+        """Should use whatsnew-fx142 template for en-GB locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-GB"
         self.view(req, version="142.0")
@@ -1565,10 +1559,7 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
 
     def test_fx_142_0_0_de(self, render_mock):
-        """
-        TODO: Define where other locales should go
-        Should use whatsnew-fx142 template for de locale
-        """
+        """Should use whatsnew-fx142 template for de locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "de"
         self.view(req, version="142.0")
@@ -1576,10 +1567,7 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_142_0_0_fr(self, render_mock):
-        """
-        TODO: Define where other locales should go
-        Should use whatsnew-fx142 template for fr locale
-        """
+        """Should use whatsnew-fx142 template for fr locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "fr"
         self.view(req, version="142.0")
