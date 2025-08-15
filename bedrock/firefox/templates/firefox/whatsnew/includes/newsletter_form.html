@@ -29,52 +29,38 @@
       <input type="hidden" name="lang" id="id_lang" value="en">
     {% endif %}
 
-    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
-
     <div class="wnp-form-details wnp-form-row-hidden">
       {% if include_country %}
-      <div class="wnp-form-field">
-        <label for="id_country" class="visually-hidden">{{ form.country.label }}</label>
-        <div class="wnp-custom-select" data-field="country">
-          <button type="button" class="wnp-select-button" aria-haspopup="listbox" aria-expanded="false">
-            <span class="wnp-select-text">Select Country or Region</span>
-            <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-          <ul class="wnp-select-dropdown" role="listbox" tabindex="-1">
-            <li class="wnp-select-option" data-value="" role="option">Select Country or Region</li>
+        <div class="wnp-form-field">
+          <label for="{{ form.country.id_for_label }}" class="visually-hidden">{{ form.country.label }}</label>
+          <select class="wnp-custom-select" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}">
+            <option value="" disabled selected>Select Country or Region</option>
             {% for choice in form.country.field.choices %}
             {% if choice.0 %}
-            <li class="wnp-select-option" data-value="{{ choice.0 }}" role="option">{{ choice.1 }}</li>
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
             {% endif %}
             {% endfor %}
-          </ul>
-          <input type="hidden" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}" value="">
-          </div>
-      </div>
+          </select>
+          <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
       {% endif %}
 
       {% if include_language %}
       <div class="wnp-form-field">
-        <label for="id_lang" class="visually-hidden">{{ form.lang.label }}</label>
-        <div class="wnp-custom-select" data-field="language">
-          <button type="button" class="wnp-select-button" aria-haspopup="listbox" aria-expanded="false">
-            <span class="wnp-select-text">Select Language</span>
-            <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-          <ul class="wnp-select-dropdown" role="listbox" tabindex="-1">
-            <li class="wnp-select-option" data-value="" role="option">Select Language</li>
-            {% for choice in form.lang.field.choices %}
+        <label for="{{ form.lang.id_for_label }}" class="visually-hidden">{{ form.lang.label }}</label>
+        <select class="wnp-custom-select" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}">
+          <option value="" disabled selected>Select Language</option>
+          {% for choice in form.lang.field.choices %}
             {% if choice.0 %}
-            <li class="wnp-select-option" data-value="{{ choice.0 }}" role="option">{{ choice.1 }}</li>
+              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
             {% endif %}
-            {% endfor %}
-          </ul>
-          <input type="hidden" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}" value="">
-          </div>
+          {% endfor %}
+        </select>
+        <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
       {% endif %}
 
@@ -83,7 +69,8 @@
           <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true"> Firefox <a href="https://www.mozilla.org/en-US/about/legal/terms/firefox/">Terms of Use</a> &amp; <a href="/privacy/websites/">Privacy Policy</a>
         </label>
       </div>
-      </div>
+    </div>
+    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
     <div id="newsletter-details" style="display:block;"></div>
     <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
       <ul class="wnp-form-error-list mzp-u-list-styled">
