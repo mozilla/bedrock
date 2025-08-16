@@ -1,0 +1,8 @@
+- [ ] Behaves as expected
+- [ ] Logs analytics events as needed
+- [ ] No errors in the console
+- [ ] No `console.log`s
+- [ ] Conditional content displays under correct conditions (mobile vs desktop, firefox vs other, signed in to account, vs signed out)
+- [ ] promise rejections are handled
+- [ ] Has a sensible fallback for when JS is disabled.
+- [ ] Code makes logical sense
