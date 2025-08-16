@@ -1,4 +1,3 @@
----
 name: Glean probe-scraper
 on:
   push:
@@ -8,4 +7,15 @@ on:
 jobs:
   glean-probe-scraper:
     if: github.repository == 'mozilla/bedrock'
-    uses: mozilla/probe-scraper/.github/workflows/glean.yaml@main
+    #uses: mozilla/probe-scraper/.github/workflows/glean.yaml@main
+    # FIXME: same-org workflow calls failing: https://bugzil.la/1983348
+    # this inlines mozilla/probe-scraper@78f5c5f callable directly:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Glean probe-scraper manually (bugzil.la/1983348)
+        run: |-
+          curl --fail-with-body https://us-west1-moz-fx-data-probe-s-prod-2bc3.cloudfunctions.net/glean-push --data '{
+            "url": "${{github.server_url}}/${{github.repository}}",
+            "commit":"${{github.sha}}",
+            "branch":"${{github.ref_name}}"
+          }'
