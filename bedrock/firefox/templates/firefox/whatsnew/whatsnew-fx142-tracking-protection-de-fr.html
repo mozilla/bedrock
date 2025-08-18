@@ -1,0 +1,52 @@
+{#
+  This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import split with context %}
+
+{% extends "firefox/whatsnew/base.html" %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_whatsnew_142_tracking_protection_de_fr') }}
+{% endblock %}
+
+{% if LANG == 'de' %}
+  {% set main_title = 'Wir schützen jeden Tag deine Privatsphäre' %}
+  {% set main_tagline = 'Firefox blockiert automatisch versteckte Tracker und sorgt dafür, dass du privat surfst.
+In deinem Schutzbericht siehst du, wie viele Tracking Versuche verhindert wurden.
+' %}
+  {% set main_cta = 'Zu deinem Dashboard' %}
+{% else %}
+  {% set main_title = 'Protection de votre confidentialité au quotidien.' %}
+  {% set main_tagline = 'Firefox bloque automatiquement les traqueurs cachés pour vous aider à naviguer en toute confidentialité. Votre rapport de protection montre combien de tentatives de pistage ont été arrêtées.' %}
+  {% set main_cta = 'Voir mon tableau de bord' %}
+{% endif %}
+
+{% block wnp_content %}
+  {% call split(
+    block_class='wnp-content-main mzp-l-split-center-on-sm-md mzp-l-split-body-narrow',
+    image=resp_img(
+      url="img/firefox/wnp-142/tracking-protection.jpg",
+      srcset={"img/firefox/wnp-142/tracking-protection-high-res.jpg": "2x"},
+      optional_attributes={"l10n": True }
+    ),
+    media_class='wnp-main-image mzp-l-split-h-center',
+    media_after=True
+    ) %}
+      <h1 class="wnp-main-title mzp-u-title-md">{{ main_title }}</h1>
+      <p>{{ main_tagline }}</p>
+      <p class="wnp-main-cta"><button class="mzp-c-button mzp-t-product">{{ main_cta }}</button></p>
+  {% endcall %}
+
+  <section class="wnp-footer">
+    <p class="wnp-sign-off">{{ ftl('whatsnew-signoff') }}</p>
+    {% include "firefox/whatsnew/includes/mofo-donate-cta.html" %}
+  </section>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_142_de_fr') }}
+{% endblock %}
