@@ -225,6 +225,55 @@ body {
 // What's New Page Styles
 // ============================================================================
 
+.wnp-page-header-notification {
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: auto;
+    max-width: none;
+    padding: 0;
+
+    .wnp-notification-bar {
+        margin: 0;
+        border-radius: var(--fds-border-radius-md);
+        border: none;
+        background: light-dark(var(--fds-color-purple-light), var(--fds-color-purple-light));
+        color: var(--fds-color-charcoal);
+        white-space: nowrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 48px;
+        text-align: center;
+
+        p {
+            margin: 0;
+            font-family: var(--fds-font-family-secondary);
+            font-size: var(--fds-font-size-sm);
+            line-height: 1.4;
+            padding: var(--fds-spacing-md) var(--fds-spacing-lg);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        position: absolute;
+        top: 70px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: calc(100vw - var(--fds-spacing-lg));
+
+        .wnp-notification-bar {
+            white-space: normal;
+
+            p {
+                padding: var(--fds-spacing-sm) var(--fds-spacing-md);
+            }
+        }
+    }
+}
+
 .wnp-page {
     min-height: 100vh;
     display: flex;
@@ -234,6 +283,7 @@ body {
 }
 
 .wnp-header {
+    position: relative;
     padding: 18px var(--fds-spacing-2xl);
     border-bottom: 1px solid light-dark(var(--fds-color-gray-30), var(--fds-color-gray-80));
     background: light-dark(var(--fds-color-ash), var(--fds-color-black));

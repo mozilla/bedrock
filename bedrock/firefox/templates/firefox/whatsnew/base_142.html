@@ -43,6 +43,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <header class="wnp-header">
       <div class="wnp-header-inner">
         <h2 class="wnp-logo-fx">{{ ftl('whatsnew-firefox') }}</h2>
+          {% if ftl_has_messages('whatsnew-update-notification') %}
+          <div class="wnp-page-header-notification">
+            <div class="wnp-notification-bar wnp-t-success">
+              <p>{{ ftl('whatsnew-update-notification') }}</p>
+            </div>
+          </div>
+          {% endif %}
         {# Navigation functionality built for future versions - not part of current design, but useful for debugging dark mode #}
         {% if settings.DEBUG %}
         <button class="wnp-hamburger" type="button" aria-label="{{ ftl('ui-menu') }}" data-label-closed="{{ ftl('ui-menu') }}" data-label-open="{{ ftl('ui-close') }}" aria-controls="wnp-nav" aria-expanded="false" aria-haspopup="true">
