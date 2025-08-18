@@ -598,14 +598,6 @@ body {
 
     }
 
-    .wnp-intro-media {
-        display: none;
-
-        @media (min-width: 1024px) {
-            display: block;
-        }
-    }
-
     @media (min-width: 1024px) {
         .wnp-intro-content {
             text-align: left;
