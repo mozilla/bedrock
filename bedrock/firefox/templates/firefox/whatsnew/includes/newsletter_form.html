@@ -1,0 +1,100 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# NOTE: This file uses mzp classes from Mozilla Protocol, even though this page is not using Protocol. The newsletter JS depends on these classes.#}
+
+{% from "newsletter/includes/macros.html" import email_form_thankyou with context %}
+
+{% if not success %}
+  <form id="newsletter-form" class="wnp-subscribe mzp-c-newsletter-form" action="{{ action }}" method="post" novalidate>
+    {% if not is_multi_newsletter_form %}
+      <div hidden>
+        {{ form.newsletters|safe }}
+      </div>
+    {% endif %}
+    <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
+
+    <label class="visually-hidden" for="wnp-email">{{ email_label|d(ftl('newsletter-form-your-email-address'), true) }}</label>
+    {% if email_placeholder %}
+      {% set placeholder = email_placeholder %}
+    {% else %}
+      {% set placeholder = ftl('newsletter-form-yournameexamplecom', fallback='newsletter-form-your-email-here') %}
+    {% endif %}
+    <input id="wnp-email" class="wnp-input mzp-js-email-field" type="email" name="email" placeholder="{{ placeholder }}" autocomplete="email" />
+
+    {% if not include_language %}
+      <input type="hidden" name="lang" id="id_lang" value="en">
+    {% endif %}
+
+    <div class="wnp-form-details wnp-form-row-hidden">
+      {% if include_country %}
+        <div class="wnp-form-field">
+          <label for="{{ form.country.id_for_label }}" class="visually-hidden">{{ form.country.label }}</label>
+          <select class="wnp-custom-select" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}">
+            <option value="" disabled selected>Select Country or Region</option>
+            {% for choice in form.country.field.choices %}
+            {% if choice.0 %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endif %}
+            {% endfor %}
+          </select>
+          <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      {% endif %}
+
+      {% if include_language %}
+      <div class="wnp-form-field">
+        <label for="{{ form.lang.id_for_label }}" class="visually-hidden">{{ form.lang.label }}</label>
+        <select class="wnp-custom-select" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}">
+          {% for choice in form.lang.field.choices %}
+            {% if choice.0 %}
+              <option value="{{ choice.0 }}" {% if choice.0=='en' %}selected{% endif %}>{{ choice.1 }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+        <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="#666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+      {% endif %}
+
+      <div class="wnp-subscribe-consent">
+        <label for="wnp-privacy" class="wnp-body wnp-checkbox-label">
+          <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true">
+          <span class="wnp-checkbox-text">Firefox <a href="https://www.mozilla.org/en-US/about/legal/terms/firefox/">Terms of Use</a> &amp; <a href="/privacy/websites/">Privacy Policy</a>. We will only send you Firefox-related information. You can unsubscribe at any time.</span>
+        </label>
+      </div>
+    </div>
+    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
+    <div id="newsletter-details" style="display:block;"></div>
+    <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
+      <ul class="wnp-form-error-list mzp-u-list-styled">
+        <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
+        <li class="error-try-again-later hidden">{{ ftl('newsletter-form-we-are-sorry-but-there') }}</li>
+      </ul>
+    </div>
+  </form>
+  <div id="newsletter-thanks" class="wnp-newsletter-success hidden" data-testid="newsletter-thanks-message"
+       {% if thankyou_head %}aria-label="{{ thankyou_head }}" {% endif %}
+       {% if thankyou_content %}aria-description="{{ thankyou_content }}" {% endif %}>
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="40" cy="40" r="40" fill="white" />
+      <path d="M28 40L36 48L52 32" stroke="black" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" />
+    </svg>
+  </div>
+
+{% elif use_thankyou %}
+  <div class="wnp-subscribe-thanks">
+    {% if thankyou_content %}
+      <h3>{{ thankyou_head }}</h3>
+      <p>{{ thankyou_content }}</p>
+    {% else %}
+      {{ email_form_thankyou() }}
+    {% endif %}
+  </div>
+{% endif %}

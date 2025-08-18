@@ -511,6 +511,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx139-awesome-bar.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx140-productivity-shortcuts.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx141-customize-new-tab.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx142.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html": ["firefox/whatsnew/whatsnew"],
     }
 
@@ -619,7 +620,9 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("142."):
-            if locale in ["de", "fr"]:
+            if locale in ["en-US", "en-CA", "en-GB"]:
+                template = "firefox/whatsnew/whatsnew-fx142.html"
+            elif locale in ["de", "fr"]:
                 template = "firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html"
             else:
                 template = "firefox/whatsnew/index.html"

@@ -1252,6 +1252,12 @@
         "css/protocol/navigation-and-footer.scss"
       ],
       "name": "legacy-navigation-and-footer"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-142.scss"
+      ],
+      "name": "firefox_whatsnew_142"
     }
   ],
   "js": [
@@ -1637,6 +1643,12 @@
         "js/firefox/whatsnew/whatsnew-141-video-events.es6.js"
       ],
       "name": "firefox_whatsnew_141"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-142-base.es6.js"
+      ],
+      "name": "firefox_whatsnew_142"
     },
     {
       "files": [

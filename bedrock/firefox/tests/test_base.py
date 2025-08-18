@@ -1535,16 +1535,38 @@ class TestWhatsNew(TestCase):
 
     # begin 142.0 whatsnew tests
 
-    @override_settings(DEV=True)
+    def test_fx_142_0_0_en_US(self, render_mock):
+        """Should use whatsnew-fx142 template for en-US locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-US"
+        self.view(req, version="142.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
+
+    def test_fx_142_0_0_en_CA(self, render_mock):
+        """Should use whatsnew-fx142 template for en-CA locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-CA"
+        self.view(req, version="142.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
+
+    def test_fx_142_0_0_en_GB(self, render_mock):
+        """Should use whatsnew-fx142 template for en-GB locale"""
+        req = self.rf.get("/firefox/whatsnew/")
+        req.locale = "en-GB"
+        self.view(req, version="142.0")
+        template = render_mock.call_args[0][1]
+        assert template == ["firefox/whatsnew/whatsnew-fx142.html"]
+
     def test_fx_142_0_0_de(self, render_mock):
-        """Should use whatsnew-fx142-tracking-protection-de-fr template for de locale"""
+        """Should use whatsnew-fx142 template for de locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "de"
         self.view(req, version="142.0")
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html"]
 
-    @override_settings(DEV=True)
     def test_fx_142_0_0_fr(self, render_mock):
         """Should use whatsnew-fx142-tracking-protection-de-fr template for fr locale"""
         req = self.rf.get("/firefox/whatsnew/")
@@ -1553,7 +1575,6 @@ class TestWhatsNew(TestCase):
         template = render_mock.call_args[0][1]
         assert template == ["firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html"]
 
-    @override_settings(DEV=True)
     def test_fx_142_0_0_es_es(self, render_mock):
         """Should use default WNP template for other locales"""
         req = self.rf.get("/firefox/whatsnew/")
