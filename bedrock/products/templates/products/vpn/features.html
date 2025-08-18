@@ -403,7 +403,7 @@
         <p>
           {% set mofo_url = 'href="%s"  rel="external noopener" target="_blank"'|safe|format(('https://foundation.mozilla.org/' + _params)) %}
 
-          {{ ftl('vpn-features-were-backed-by-mofo', mofo=mofo_url) }}
+          {{ ftl('vpn-features-were-backed-by-mofo-v2', fallback='vpn-features-were-backed-by-mofo', mofo=mofo_url) }}
         </p>
       {% endcall %}
     </ul>
