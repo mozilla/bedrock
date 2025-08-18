@@ -25,7 +25,9 @@ about-our-leadership-has-been-at = Our leadership has been at the forefront of b
 about-firefox-fast-for-good = { -brand-name-firefox }: Fast for Good
 about-when-you-use-the-new-firefox = When you use the new { -brand-name-firefox }, you get a blazing fast experience while supporting { -brand-name-mozilla }’s mission to keep the internet healthy, weird and welcoming to all.
 about-corporation-foundation-not = Corporation. Foundation. Not-for-profit.
+# Obsolete string (expires 19-10-2025)
 about-learn-about-the-mozilla-foundation = Learn about the { -brand-name-mozilla-foundation }
+about-learn-about-the-mozilla-foundation-v2 = Learn about { -brand-name-mozilla-foundation }
 about-mozilla-puts-people-over-profit = { -brand-name-mozilla } puts people over profit in everything we say, build and do. In fact, there’s a non-profit Foundation at the heart of our enterprise.
 about-the-mozilla-manifesto = The { -brand-name-mozilla } Manifesto
 about-the-principles-we-wrote-in = The principles we wrote in 1998 still guide us today. And in 2018, we created an addendum to emphasize inclusion, privacy and safety for everyone online.

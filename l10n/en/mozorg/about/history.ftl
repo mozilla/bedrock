@@ -44,7 +44,9 @@ history-not-many-people-noticed = Not many people noticed at the time, but the f
 
 # Variables:
 #   $foundation (url) link to https://blog.mozilla.org/press/2003/07/mozilla-org-announces-launch-of-the-mozilla-foundation-to-lead-open-source-browser-efforts/
+# Obsolete string (expires 19-10-2025)
 history-in-2003-the-mozilla-project = In 2003, the { -brand-name-mozilla } project created the { -brand-name-mozilla-foundation }, an <a href="{ $foundation }">independent non-profit organization</a> supported by individual donors and a variety of companies.
+history-in-2003-the-mozilla-project-v2 = In 2003, the { -brand-name-mozilla } project created { -brand-name-mozilla-foundation }, an <a href="{ $foundation }">independent non-profit organization</a> supported by individual donors and a variety of companies.
 
 # Variables:
 #   $manifesto (url) link to https://www.mozilla.org/about/manifesto/
