@@ -1291,7 +1291,8 @@ body {
 }
 
 .wnp-qr-media {
-    background: var(--fds-color-blue-light);
+    background: url('/media/img/firefox/whatsnew/whatsnew142/qr-background.png') no-repeat center;
+    background-size: contain;
     border-radius: var(--fds-border-radius-xl);
     display: flex;
     align-items: flex-end;
@@ -1300,12 +1301,17 @@ body {
     height: 338px;
 }
 
+@media (max-width: 767px) {
+    .wnp-qr-media {
+        background-size: cover;
+    }
+}
+
 .wnp-qr-qr {
-    background: var(--fds-color-white);
     color: var(--fds-color-gray-90);
     border-radius: var(--fds-border-radius-lg) var(--fds-border-radius-lg) 0 0;
     width: 224px;
-    height: 261px;
+    height: 300px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
