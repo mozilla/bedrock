@@ -1326,6 +1326,30 @@ body {
     margin-bottom: var(--fds-spacing-md);
 }
 
+.wnp-checkbox-label {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--fds-spacing-sm);
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 0;
+
+    input[type="checkbox"] {
+        flex-shrink: 0;
+        margin: 0;
+        margin-top: 2px;
+    }
+
+    .wnp-checkbox-text {
+        flex: 1;
+        line-height: 1.4;
+        margin: 0;
+        text-align: left;
+        min-width: 0;
+    }
+}
+
 .wnp-form-label {
     display: block;
     font-family: var(--fds-font-family-secondary);
