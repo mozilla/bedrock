@@ -10,6 +10,8 @@ from bedrock.mozorg.util import page
 from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationTemplateView
 
+# Note that these regular expressions are also used in bedrock.firefox.redirects,
+# so if they become redundant here, they will need to be moved to that module.
 latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
 firstrun_re = latest_re % (version_re, "firstrun")
 whatsnew_re = latest_re % (version_re, "whatsnew")
@@ -109,7 +111,6 @@ urlpatterns = (
     ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
-    path("firefox/new/", views.NewView.as_view(), name="firefox.new"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
     page("firefox/nightly/firstrun/", "firefox/nightly/firstrun.html", ftl_files=["firefox/nightly/firstrun"]),
     path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),

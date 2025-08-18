@@ -12,7 +12,7 @@ import {
     getCurrentScope,
     globalHandlersIntegration,
     httpContextIntegration,
-    inboundFiltersIntegration,
+    eventFiltersIntegration,
     makeFetchTransport
 } from '@sentry/browser';
 
@@ -59,7 +59,7 @@ const SentryConsent = {
                 dedupeIntegration(),
                 globalHandlersIntegration(),
                 httpContextIntegration(),
-                inboundFiltersIntegration(options)
+                eventFiltersIntegration(options)
             ]
         });
 

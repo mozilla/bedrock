@@ -30,10 +30,10 @@ For Node packages we use [NPM](https://docs.npmjs.com/cli/v8/commands/npm-instal
 
 Our team maintains a few dependencies that we serve on Bedrock's front-end.
 
--   [@mozilla-protocol/core](https://www.npmjs.com/package/@mozilla-protocol/core): Bedrock's primary design system
--   [@mozmeao/cookie-helper](https://www.npmjs.com/package/@mozmeao/cookie-helper): A complete cookies reader/writer framework
--   [@mozmeao/dnt-helper](https://github.com/mozmeao/dnt-helper): Do Not Track (DNT) helper
--   [@mozmeao/trafficcop](https://www.npmjs.com/package/@mozmeao/trafficcop): Used for A/B testing page variants
+- [@mozilla-protocol/core](https://www.npmjs.com/package/@mozilla-protocol/core): Bedrock's primary design system
+- [@mozmeao/cookie-helper](https://www.npmjs.com/package/@mozmeao/cookie-helper): A complete cookies reader/writer framework
+- [@mozmeao/dnt-helper](https://github.com/mozmeao/dnt-helper): Do Not Track (DNT) helper
+- [@mozmeao/trafficcop](https://www.npmjs.com/package/@mozmeao/trafficcop): Used for A/B testing page variants
 
 Because they are all published on NPM, install the packages and keep up-to-date with the latest version of each dependency by running an `npm install`. For further documentation on installing NPM packages, [check out the official documentation](https://docs.npmjs.com/cli/v6/commands/npm-install).
 
@@ -57,7 +57,6 @@ We use two separate config files to keep responsibilities clearly defined, and t
 
 !!! note
     Because of the large number of files used in bedrock, only JS and SCSS files managed by `webpack.config.js` are watched for changes when in development mode. This helps save on memory consumption. The implication of this is that files handled by `webpack.static.config.js` are only copied over when Webpack first runs. If you update an image for example, then you will need to stop and restart Webpack to pick up the change. This is not true for JS and SCSS files, which will be watched for change automatically.
-
 
 ### Asset Bundling
 
@@ -117,7 +116,6 @@ Write `example-script.es6.js` using ES2015+ syntax. Webpack will transpile the c
 !!! important
     Whilst Babel will transpile most modern JS syntax to ES5 when suitable fallbacks exist, it won't automatically include custom polyfills for everything since these can start to greatly increase bundle size. If you want to use `Promise` or `async/await` functions for example, then you will need to load polyfills for those. This can be done either at the page level, or globally in `lib.js` if it's something that multiple pages would benefit from. But please pick and choose wisely, and be concious of performance.
 
-
 For pages that are served to Firefox browsers only, such as `/whatsnew`, it is also possible to write native modern JS syntax and serve that directly in production. Here there is no need to include the `.es6.js` file extension. Instead, you can simply use `.js`. The rules that define which files can do this can be found in our [ESLint config](https://github.com/mozilla/bedrock/blob/main/eslint.config.js).
 
 ## Writing URL Patterns
@@ -159,13 +157,12 @@ Bedrock follows the Django app structure and most templates are easy to find by 
 
 To get from URL to template path:
 
--   Ignore `https://www.mozilla.org` and the locale path segment `/en-US`. The next path segment is the app name `/firefox`.
--   From the root folder of bedrock, find the app's template folder at `bedrock/{app}/templates/{app}`
--   Match remaining URL path segments (`/features/private-browsing`) to the template folder's structure (`/features/private-browsing.html`)
+- Ignore `https://www.mozilla.org` and the locale path segment `/en-US`. The next path segment is the app name `/firefox`.
+- From the root folder of bedrock, find the app's template folder at `bedrock/{app}/templates/{app}`
+- Match remaining URL path segments (`/features/private-browsing`) to the template folder's structure (`/features/private-browsing.html`)
 
 !!! note
     `mozorg` is the app name for the home page and child pages related to Mozilla Corporation (i.e. About, Contact, Diversity).
-
 
 ### Whatsnew and Firstrun
 
@@ -173,7 +170,6 @@ These pages are specific to Firefox browsers, and only appear when a user update
 
 !!! note
     There may be extra logic in the app's `views.py` file to change the template based on locale or geographic location as well.
-
 
 #### Firefox release
 
@@ -212,20 +208,19 @@ Release note templates live here: <https://github.com/mozilla/bedrock/tree/main/
 !!! note
     Release note content is pulled in from an external data source.
 
-
--   Firefox release: <https://www.mozilla.org/en-US/firefox/99.0.1/releasenotes/>
--   Firefox Developer and Beta: <https://www.mozilla.org/en-US/firefox/100.0beta/releasenotes/>
--   Firefox Nightly: <https://www.mozilla.org/en-US/firefox/101.0a1/releasenotes/>
--   Firefox Android: <https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/>
--   Firefox iOS: <https://www.mozilla.org/en-US/firefox/ios/99.0/releasenotes/>
+- Firefox release: <https://www.mozilla.org/en-US/firefox/99.0.1/releasenotes/>
+- Firefox Developer and Beta: <https://www.mozilla.org/en-US/firefox/100.0beta/releasenotes/>
+- Firefox Nightly: <https://www.mozilla.org/en-US/firefox/101.0a1/releasenotes/>
+- Firefox Android: <https://www.mozilla.org/en-US/firefox/android/99.0/releasenotes/>
+- Firefox iOS: <https://www.mozilla.org/en-US/firefox/ios/99.0/releasenotes/>
 
 ## Optimizing Images
 
 Images can take a long time to load and eat up a lot of bandwidth. Always take care to optimize images before uploading them to the site. There are a number of great online resources available to help with this:
 
--   <https://tinypng.com/>
--   <https://jakearchibald.github.io/svgomg/>
--   <https://squoosh.app/>
+- <https://tinypng.com/>
+- <https://jakearchibald.github.io/svgomg/>
+- <https://squoosh.app/>
 
 We also bundle the [svgo package](https://www.npmjs.com/package/svgo) as a dev dependency, which can optimize SVGs on the command line.
 
@@ -282,14 +277,13 @@ This would output:
 
 In the above example we specified the available image sources using the `srcset` parameter. We then used `sizes` to say:
 
--   When the viewport is greater than `1000px` wide, the panda image will take up roughly half of the page width.
--   When the viewport is less than `1000px` wide, the panda image will take up roughly full page width.
+- When the viewport is greater than `1000px` wide, the panda image will take up roughly half of the page width.
+- When the viewport is less than `1000px` wide, the panda image will take up roughly full page width.
 
 The default image `src` is what we specified using the `url` param. This is also what older browsers will fall back to using. Modern browsers will instead pick the best source option from `srcset` (based on both the estimated image size and screen resolution) to satisfy the condition met in `sizes`.
 
 !!! note
     The value `default` in the second `sizes` entry above should be used when you want to omit a media query. This makes it possible to provide a fallback size when no other media queries match.
-
 
 Another example might be to serve a high resolution alternative for a fixed size image:
 
@@ -305,8 +299,8 @@ This would output:
 
 Here we don't need a `sizes` attribute, since the panda image is fixed in size and small enough that it won't need to resize along with the browser window. Instead the `srcset` image includes an alternate high resolution source URL, along with a pixel density descriptor. This can then be used to say:
 
--   When a browser specifies a device pixel ratio of `2x` or greater, use `panda-high-res.png`.
--   When a browser specifies a device pixel ration of less than `2x`, use `panda.png`.
+- When a browser specifies a device pixel ratio of `2x` or greater, use `panda-high-res.png`.
+- When a browser specifies a device pixel ration of less than `2x`, use `panda.png`.
 
 The `resp_img()` helper also supports localized images by setting the `'l10n'` parameter to `True``:
 
@@ -389,7 +383,6 @@ In the above example, the default image `src` is what we specified using the `ur
 
 !!! note
     The value `default` in the `srcset` entry above should be used when you want to omit a descriptor. In this example we only have one entry in `srcset` (meaning it will be chosen immediately should the media query be satisfied), hence we omit a descriptor value.
-
 
 A more complex example might be when we want to load responsively sized, animated gifs, but also offer still images for users who set `(prefers-reduced-motion: reduce)`:
 
@@ -496,9 +489,9 @@ This is a good question. The answer depends entirely on the image in question. A
     :   -   Is the same image displayed on both large and small viewports? Does the image need to scale as the browser resizes? If yes to both, then use `resp_img()` with both `srcset` and `sizes`.
         -   Is the image fixed in size (non-responsive)? Do you need to serve a high resolution version? If yes to both, then use `resp_img()` with just `srcset`.
 
--   Does the source image need to change depending on a media query (e.g serve a different image on both desktop and mobile)? If yes, then use `picture()` with `media` and `srcset`.
+- Does the source image need to change depending on a media query (e.g serve a different image on both desktop and mobile)? If yes, then use `picture()` with `media` and `srcset`.
 
--   Is the image format only supported in certain browsers? Do you need to provide a fallback? If yes to both, then use `picture()` with `type` and `srcset`.
+- Is the image format only supported in certain browsers? Do you need to provide a fallback? If yes to both, then use `picture()` with `type` and `srcset`.
 
 ### Secondary image helpers
 
@@ -542,14 +535,14 @@ To avoid this, split your changes across releases, such as below.
 
 For column renames:
 
--   Release 1: Add your new column
--   Release 2: Amend the codebase to use it instead of the old column
--   Release 3: Clean up - drop the old, deprecated column, which should not be referenced in code at this point.
+- Release 1: Add your new column
+- Release 2: Amend the codebase to use it instead of the old column
+- Release 3: Clean up - drop the old, deprecated column, which should not be referenced in code at this point.
 
 For column drops:
 
--   Release 1: Update all code that uses the relevant column, so that nothing interacts with it any more.
--   Release 2: Clean up - drop the old, deprecated column.
+- Release 1: Update all code that uses the relevant column, so that nothing interacts with it any more.
+- Release 2: Clean up - drop the old, deprecated column.
 
 With both paths, check for any custom schema or data migrations that might reference the deprecated column.
 
@@ -679,7 +672,6 @@ Any request to the page in for example French would not use the alternate templa
 !!! note
     If you'd like to add this functionality to an existing Class-Based View, there is a mixin that implements this pattern that should work with most views: `bedrock.utils.views.VariationMixin`.
 
-
 ### Geo Template View {: #geo-location }
 
 Now that we have our `CDN (Content Delivery Network)`{.interpreted-text role="abbr"} configured properly, we can also just swap out templates per request country. This is very similar to the above, but it will simply use the proper template for the country from which the request originated.
@@ -697,7 +689,7 @@ class CanadaIsSpecialView(GeoTemplateView):
 
 ### Testing Geo Views
 
-For testing purposes while you're developing or on any deployment that is not accessed via the production domain (www.mozilla.org) you can append your URL with a `geo` query param (e.g. `/firefox/?geo=DE`) and that will take precedence over the country from the request header. Remember to use a valid [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) as param value.
+For testing purposes while you're developing or on any deployment that is not accessed via the production domain (<www.mozilla.org>) you can append your URL with a `geo` query param (e.g. `/firefox/?geo=DE`) and that will take precedence over the country from the request header. Remember to use a valid [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) as param value.
 
 ### Other Geo Stuff
 
@@ -727,7 +719,7 @@ The other convenience available is that the country code, either from the `CDN (
 
 Reference:
 
--   Officially assigned list of [ISO country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements).
+- Officially assigned list of [ISO country codes](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements).
 
 ## Metrics Collection with Markus
 
@@ -768,20 +760,20 @@ For more information, refer to the [Markus documentation](https://markus.readthe
 
 Bedrock uses the following open source tools to follow coding styles and conventions, as well as applying automatic code formatting:
 
--   [ruff](https://beta.ruff.rs/docs/) for Python style, code quality rules, and import ordering.
--   [black](https://black.readthedocs.io/) for Python code formatting.
--   [Prettier](https://prettier.io/) for JavaScript code formatting.
--   [ESLint](https://eslint.org/) for JavaScript code quality rules.
--   [Stylelint](https://stylelint.io/) for Sass/CSS style and code quality rules.
+- [ruff](https://beta.ruff.rs/docs/) for Python style, code quality rules, and import ordering.
+- [black](https://black.readthedocs.io/) for Python code formatting.
+- [Prettier](https://prettier.io/) for JavaScript code formatting.
+- [ESLint](https://eslint.org/) for JavaScript code quality rules.
+- [Stylelint](https://stylelint.io/) for Sass/CSS style and code quality rules.
 
 For front-end HTML & CSS conventions, bedrock uses Mozilla's Protocol design system for building components. You can read the [Protocol documentation site](https://protocol.mozilla.org/) for more information.
 
 Mozilla also has some more general coding styleguides available, although some of these are now rather outdated:
 
--   [Mozilla Python Style Guide](http://mozweb.readthedocs.org/en/latest/reference/python-style.html)
--   [Mozilla HTML Style Guide](http://mozweb.readthedocs.org/en/latest/reference/html-style.html)
--   [Mozilla JS Style Guide](http://mozweb.readthedocs.org/en/latest/reference/js-style.html)
--   [Mozilla CSS Style Guide](http://mozweb.readthedocs.org/en/latest/reference/css-style.html)
+- [Mozilla Python Style Guide](http://mozweb.readthedocs.org/en/latest/reference/python-style.html)
+- [Mozilla HTML Style Guide](http://mozweb.readthedocs.org/en/latest/reference/html-style.html)
+- [Mozilla JS Style Guide](http://mozweb.readthedocs.org/en/latest/reference/js-style.html)
+- [Mozilla CSS Style Guide](http://mozweb.readthedocs.org/en/latest/reference/css-style.html)
 
 ## Test coverage
 
@@ -799,8 +791,8 @@ Bedrock uses the [Protocol Design System](https://protocol.mozilla.org/) to quic
 
 One method involves two steps:
 
-1.  Adding the [correct markup](#styles-and-components) or importing the [appropriate macro](#macros) to the page's HTML file.
-2.  Importing the necessary Protocol styles to a page's SCSS file.
+1. Adding the [correct markup](#styles-and-components) or importing the [appropriate macro](#macros) to the page's HTML file.
+2. Importing the necessary Protocol styles to a page's SCSS file.
 
 The other method is to [import CSS bundles](#import-css-bundles) onto the HTML file. However, this only works for certain components, which are listed below in the respective section.
 
@@ -840,7 +832,6 @@ $brand-theme: 'firefox';
 !!! note
     If you create a new SCSS file for a page, you will have to include it in that page's CSS bundle by updating [static-bundles.json](#asset-bundling) file.
 
-
 ### Macros
 
 The team has created several [Jinja macros](https://jinja.palletsprojects.com/en/3.1.x/templates/?=macros#macros) out of Protocol components to simplify the usage of components housing larger blocks of code (i.e. Billboard). The code housing the custom macros can be found in our [protocol macros file](https://github.com/mozilla/bedrock/blob/main/bedrock/base/templates/macros-protocol.html). These Jinja macros include parameters that are simple to define and customize based on how the component should look like on a given page.
@@ -857,7 +848,7 @@ To use these macros in files, we simply import a macro to the page's HTML code a
     ga_title='This is Firefox',
     desc='Firefox is an awesome web browser.',
     link_cta='Click here to install',
-    link_url=url('firefox.new')
+    link_url="https://www.firefox.com/"
   )}}
 ```
 
@@ -876,13 +867,13 @@ $brand-theme: 'firefox';
 
 We created pre-built CSS bundles to be used for some components due to their frequency of use. This method only requires an import into the HTML template. Since it's a separate CSS bundle, we don't need to import that component in the respective page CSS. The CSS bundle import only works for the following components:
 
--   Split
--   Card
--   Picto
--   Callout
--   Article
--   Newsletter form
--   Emphasis box
+- Split
+- Card
+- Picto
+- Callout
+- Article
+- Newsletter form
+- Emphasis box
 
 Include a CSS bundle in the template's `page_css` block along with any other page-specific bundles, like so:
 

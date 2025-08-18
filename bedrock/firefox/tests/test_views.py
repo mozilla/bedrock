@@ -357,41 +357,7 @@ class TestStubAttributionCode(TestCase):
 
 @override_settings(DEV=False)
 @patch("bedrock.firefox.views.l10n_utils.render", return_value=HttpResponse())
-class TestFirefoxNew(TestCase):
-    def test_post(self, render_mock):
-        req = RequestFactory().post("/firefox/new/")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 405
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_download_template(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-GB"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/download.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_download_template_en_us(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/firefox-new-refresh.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: True)
-    def test_download_template_en_ca(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "en-CA"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/desktop/firefox-new-refresh.html"]
-
+class TestFirefoxDownloadThanks(TestCase):
     @patch.object(views, "ftl_file_is_active", lambda *x: True)
     def test_thanks_template(self, render_mock):
         req = RequestFactory().get("/firefox/download/thanks/")
@@ -402,15 +368,6 @@ class TestFirefoxNew(TestCase):
         assert template == ["firefox/new/desktop/thanks.html"]
 
     @patch.object(views, "ftl_file_is_active", lambda *x: False)
-    def test_download_basic_template(self, render_mock):
-        req = RequestFactory().get("/firefox/new/")
-        req.locale = "de"
-        view = views.NewView.as_view()
-        view(req)
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/new/basic/base_download.html"]
-
-    @patch.object(views, "ftl_file_is_active", lambda *x: False)
     def test_thanks_basic_template(self, render_mock):
         req = RequestFactory().get("/firefox/download/thanks/")
         req.locale = "de"
@@ -418,14 +375,6 @@ class TestFirefoxNew(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ["firefox/new/basic/thanks.html"]
-
-    def test_thanks_redirect(self, render_mock):
-        req = RequestFactory().get("/firefox/new/?scene=2&dude=abides")
-        req.locale = "en-US"
-        view = views.NewView.as_view()
-        resp = view(req)
-        assert resp.status_code == 301
-        assert resp["location"].endswith("/firefox/download/thanks/?scene=2&dude=abides")
 
     # begin /thanks?s=direct URL - issue 10520
 
@@ -453,14 +402,7 @@ class TestFirefoxNew(TestCase):
 @skip(
     reason="Related view is now unreachable and [TODO] should be removed",
 )
-class TestFirefoxNewNoIndex(TestCase):
-    def test_download_noindex(self):
-        # Scene 1 of /firefox/new/ should never contain a noindex tag.
-        response = self.client.get("/en-US/firefox/new/")
-        doc = pq(response.content)
-        robots = doc('meta[name="robots"]')
-        assert robots.length == 0
-
+class TestFirefoxDownloadThanksNoIndex(TestCase):
     def test_thanks_canonical(self):
         # Scene 2 /firefox/download/thanks/ should always contain a noindex tag.
         response = self.client.get("/en-US/firefox/download/thanks/")
@@ -500,26 +442,6 @@ class TestFirefoxPlatform(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == ["firefox/new/basic/download_windows.html"]
-
-
-class TestFirefoxGA(TestCase):
-    def assert_ga_attr(self, response):
-        doc = pq(response.content)
-        links = doc(".mzp-c-button")
-        # test buttons all have appropriate attribute to trigger tracking in GA
-        for link in links.items():
-            cta_text = link.attr("data-cta-text")
-            link_text = link.attr("data-link-text")
-            if cta_text or link_text:
-                assert True
-            else:
-                assert False, f"{link} does not contain attr data-cta-text or data-link-text"
-
-    def test_firefox_new_GA(self):
-        req = RequestFactory().get("/en-US/firefox/new/")
-        view = views.NewView.as_view()
-        response = view(req)
-        self.assert_ga_attr(response)
 
 
 class TestFirefoxWelcomePage1(TestCase):

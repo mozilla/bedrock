@@ -262,8 +262,6 @@ def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
 # Our accepted production locales are the values from the above, plus an exception.
 PROD_LANGUAGES = _put_default_lang_first(sorted(sum(LOCALES_BY_REGION.values(), [])) + ["ja-JP-mac"])
 
-GITHUB_REPO = "https://github.com/mozilla/bedrock"
-
 # Global L10n files.
 FLUENT_DEFAULT_FILES = [
     "banners/consent-banner",
@@ -304,29 +302,6 @@ FLUENT_PATHS = [
     FLUENT_LOCAL_PATH,
     # remote FTL files from l10n team
     FLUENT_REPO_PATH,
-]
-
-# Templates to exclude from having an "edit this page" link in the footer
-# these are typically ones for which most of the content is in the DB
-EXCLUDE_EDIT_TEMPLATES = [
-    "firefox/releases/nightly-notes.html",
-    "firefox/releases/dev-browser-notes.html",
-    "firefox/releases/esr-notes.html",
-    "firefox/releases/beta-notes.html",
-    "firefox/releases/aurora-notes.html",
-    "firefox/releases/release-notes.html",
-    "firefox/releases/notes.html",
-    "firefox/releases/system_requirements.html",
-    "mozorg/credits.html",
-    "mozorg/about/forums.html",
-    "security/advisory.html",
-    "security/advisories.html",
-    "security/product-advisories.html",
-    "security/known-vulnerabilities.html",
-]
-# Also allow entire directories to be skipped
-EXCLUDE_EDIT_TEMPLATES_DIRECTORIES = [
-    "cms",
 ]
 
 IGNORE_LANG_DIRS = [
@@ -2510,5 +2485,13 @@ if ENABLE_DJANGO_SILK := config("ENABLE_DJANGO_SILK", default="False", parser=bo
 
 # Config for redirection of certain pages over to www.firefox.com - if you override this,
 # be sure NOT to include `locale` - we add that in the redirects as and when needed
-# NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed
+# NOTE THE LACK OF TRAILING SLASH, too - this is deliberate and should be followed,
+# but if you use it without a path you must add a trailing slash to avoid a 302 at
+# the firefox.com end, because Django will append a trailing slash if it doesn't exist.
 FXC_BASE_URL = config("FXC_BASE_URL", default="https://www.firefox.com")
+
+MAKE_RELNOTES_REDIRECTS_PERMANENT = config(
+    "MAKE_RELNOTES_REDIRECTS_PERMANENT",
+    default="True",
+    parser=bool,
+)

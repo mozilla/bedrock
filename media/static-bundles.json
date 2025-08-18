@@ -497,6 +497,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-142-tracking-protection-de-fr.scss"
+      ],
+      "name": "firefox_whatsnew_142_tracking_protection_de_fr"
+    },
+    {
+      "files": [
         "css/firefox/firefox-20th/firefox-20th.scss"
       ],
       "name": "firefox_20th"
@@ -1643,6 +1649,12 @@
         "js/firefox/whatsnew/whatsnew-142-base.es6.js"
       ],
       "name": "firefox_whatsnew_142"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-142-uitour-de-fr.es6.js"
+      ],
+      "name": "firefox_whatsnew_142_de_fr"
     },
     {
       "files": [

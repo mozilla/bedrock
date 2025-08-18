@@ -54,8 +54,8 @@
 
     <li>
       {% with mozorg=url('mozorg.home'),
-              mozdownloads=url('firefox.new') %}
-      We suggest that if you want to distribute Mozilla software, you do so by linking to official downloads at <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. For example, if you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozdownloads }}">Mozilla.org</a>.
+              mozdownloads="https://www.firefox.com/" %}
+      We suggest that if you want to distribute Mozilla software, you do so by linking to official downloads linked from <a href="{{ mozorg }}">Mozilla.org</a> to help ensure safe, reliable downloads. For example, if you wish to directly distribute copies of Firefox yourself, you must distribute the latest stable version available at <a href="{{ mozdownloads }}">www.firefox.com</a>.
       {% endwith %}
     </li>
 

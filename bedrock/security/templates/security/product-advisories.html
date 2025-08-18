@@ -21,7 +21,7 @@
   {% if is_obsolete %}
     <p class="note">{{ product_name }} is unsupported.
       {% if product_slug == 'firefox' %}
-        Please <a href="{{ url('firefox.new') }}">upgrade to the latest version</a>.
+        Please <a href="https://www.firefox.com/">upgrade to the latest version</a>.
       {% elif product_slug == 'firefox-esr' %}
         Please <a href="{{ url('firefox.enterprise.index') }}">upgrade to the latest version</a>.
       {% elif product_slug.startswith('thunderbird') %}

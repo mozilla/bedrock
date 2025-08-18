@@ -15,7 +15,7 @@
 {% block article_content %}
 <p>{{ ftl('features-adblocker-in-todays-digital-world') }}</p>
 <p>{{ ftl('features-adblocker-ad-blockers-work') }}</p>
-<p>{{ ftl('features-adblocker-using-an-adblocker', firefox=url('firefox.new'), addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
+<p>{{ ftl('features-adblocker-using-an-adblocker', firefox="https://www.firefox.com/?redirect_source=mozilla-org", addons='https://blog.mozilla.org/firefox/ad-blocker-roundup-5-adblockers-that-improve-your-internet-experience/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=firefox-features') }}</p>
 
 <h2>{{ ftl('features-adblocker-finding-the-right') }}</h2>
 <p>{{ ftl('features-adblocker-there-are-many') }}</p>
@@ -64,5 +64,5 @@
 
 <h2>{{ftl('features-adblocker-why-use') }}</h2>
 <p>{{ ftl('features-adblocker-ad-blockers-do-more') }}</p>
-<p>{{ ftl('features-adblocker-explore-hundreds', url=url('firefox.new')) }}</p>
+<p>{{ ftl('features-adblocker-explore-hundreds', url="https://www.firefox.com/?redirect_source=mozilla-org") }}</p>
 {% endblock %}

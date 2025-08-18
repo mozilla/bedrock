@@ -107,7 +107,7 @@ module.exports = [
     {
         files: ['media/js/**/*.es6.js'],
         languageOptions: {
-            ecmaVersion: 2017,
+            ecmaVersion: 2018,
             sourceType: 'module',
             globals: {
                 ...customGlobals,
