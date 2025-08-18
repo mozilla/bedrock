@@ -222,26 +222,6 @@ body {
 }
 
 // ============================================================================
-// Utility Classes
-// ============================================================================
-
-.visually-hidden, .hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-}
-
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-
-// ============================================================================
 // What's New Page Styles
 // ============================================================================
 
@@ -1302,7 +1282,7 @@ body {
     margin-top: var(--fds-spacing-lg);
 }
 
-.wnp-subscribe.wnp-subscribe-expanded {
+.wnp-subscribe.wnp-subscribe-expanded:not(.hidden) {
     display: flex;
     flex-direction: column;
 }
@@ -1500,3 +1480,27 @@ body {
         }
     }
 }
+
+// ============================================================================
+// Utility Classes
+// ============================================================================
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
