@@ -1283,7 +1283,7 @@ body {
 }
 
 .wnp-qr-media {
-    background: url('/media/img/firefox/whatsnew/whatsnew142/qr-background.png') no-repeat center;
+    background: url('/media/img/firefox/whatsnew/whatsnew142/qr-background-simple.png') no-repeat center;
     background-size: contain;
     border-radius: var(--fds-border-radius-xl);
     display: flex;
@@ -1291,6 +1291,7 @@ body {
     justify-content: center;
     padding: 0 var(--fds-spacing-2xl);
     height: 338px;
+    width: auto;
 }
 
 @media (max-width: 767px) {
@@ -1305,7 +1306,7 @@ body {
     width: 224px;
     height: 300px;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     font-family: var(--fds-font-family-secondary);
     font-size: var(--fds-font-size-base);

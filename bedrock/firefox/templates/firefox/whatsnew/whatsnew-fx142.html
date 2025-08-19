@@ -7,6 +7,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# The 142 release is a new design, so we use a new base template #}
 {% extends "firefox/whatsnew/base_142.html" %}
 
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp142' %}
+
 {% block wnp_content %}
 <div class="wnp-page">
   <main class="wnp-main">
@@ -19,7 +21,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h1 class="wnp-title">Keep your email address to yourself.</h1>
             <p class="wnp-subtitle-5">Firefox Relay generates secure email masks when you sign up for new online accounts, so you can stay anonymous and get less spam in your inbox.</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-secondary" href="https://support.mozilla.org/en-US/kb/integrate-firefox-relay-firefox-password-manager" data-cta-text="Try Relay">
+              <a class="wnp-button wnp-button-secondary" href="https://relay.firefox.com/?{{ utm_params }}" data-cta-text="Try Relay">
                 Try Relay
                 <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
               </a>
@@ -27,7 +29,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </div>
           <div class="wnp-intro-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
-              <img src="/media/img/firefox/whatsnew/whatsnew142/hero-relay.png" alt="Illustration of privacy and security oriented features">
+              <picture>
+                <source
+                  srcset="/media/img/firefox/whatsnew/whatsnew142/relay-hero-600.png 600w, /media/img/firefox/whatsnew/whatsnew142/relay-hero-1200.png 1200w, /media/img/firefox/whatsnew/whatsnew142/relay-hero-1800.png 1800w"
+                  sizes="(max-width: 1024px) 100%, 520px"
+                  type="image/png" />
+                <img src="/media/img/firefox/whatsnew/whatsnew142/relay-hero-600.png" alt="Illustration of privacy and security oriented features">
+              </picture>
             </div>
           </div>
         </div>
