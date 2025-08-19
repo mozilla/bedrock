@@ -4,3 +4,4 @@
 
 from .pages import *  # noqa
 from .images import *  # noqa
+from .utility import *  # noqa
