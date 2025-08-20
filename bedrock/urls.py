@@ -36,9 +36,6 @@ urlpatterns = bedrock_i18n_patterns(
     path("", include("bedrock.mozorg.urls")),  # these are locale-needing URLs, vs mozorg.nonlocale_urls
     path("", include("bedrock.newsletter.urls")),
     path("careers/", include("bedrock.careers.urls")),
-    path("404/", import_string(handler404)),
-    path("410/", import_string(handler410)),
-    path("500/", import_string(handler500)),
 )
 
 # Paths that must not have a locale prefix
@@ -58,6 +55,11 @@ if settings.DEV:
     )
 
 if settings.DEBUG:
+    urlpatterns += bedrock_i18n_patterns(
+        path("404/", import_string(handler404)),
+        path("410/", import_string(handler410)),
+        path("500/", import_string(handler500)),
+    )
     urlpatterns += (path("csrf_403/", base_views.csrf_failure, {}),)
 
 if settings.WAGTAIL_ENABLE_ADMIN:
