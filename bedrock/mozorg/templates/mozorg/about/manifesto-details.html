@@ -33,12 +33,12 @@
   <p>{{ ftl('manifesto-details-as-a-result-of') }}</p>
   <p>{{ ftl('manifesto-details-the-goals-for') }}</p>
   <ol class="mzp-u-list-styled">
-    <li>{{ ftl('manifesto-details-articulate-a-vision')}} </li>
+    <li>{{ ftl('manifesto-details-articulate-a-vision-v2', fallback='manifesto-details-articulate-a-vision')}} </li>
     <li>{{ ftl('manifesto-details-speak-to-people')}}</li>
     <li>{{ ftl('manifesto-details-make-mozilla-contributors') }}</li>
     <li>{{ ftl('manifesto-details-provide-a-framework') }}</li>
   </ol>
-  <p>{{ ftl('manifesto-details-these-principles') }}</p>
+  <p>{{ ftl('manifesto-details-these-principles-v2', fallback='manifesto-details-these-principles') }}</p>
 </section>
 <section id="principles">
   <h2>{{ ftl('manifesto-details-principles') }}</h2>
@@ -60,7 +60,7 @@
   <p>{{ ftl('manifesto-details-there-are-many') }} </p>
   <section>
     <h3>{{ ftl('manifesto-details-mozilla-foundation') }}</h3>
-    <p>{{ ftl('manifesto-details-the-mozilla-foundation-pleges') }}</p>
+    <p>{{ ftl('manifesto-details-the-mozilla-foundation-pleges-v2', fallback='manifesto-details-the-mozilla-foundation-pleges') }}</p>
     <ul class="mzp-u-list-styled">
       <li>{{ ftl('manifesto-details-build-and-enable') }}</li>
       <li>{{ ftl('manifesto-details-build-and-deliver') }}</li>
@@ -68,11 +68,11 @@
       <li>{{ ftl('manifesto-details-promote-models') }}</li>
       <li>{{ ftl('manifesto-details-promote-the-mozilla') }}</li>
     </ul>
-    <p>{{ ftl('manifesto-details-some-foundation') }}</p>
+    <p>{{ ftl('manifesto-details-some-foundation-v2', fallback='manifesto-details-some-foundation') }}</p>
   </section>
   <section>
     <h3>{{ ftl('manifesto-details-invitation') }}</h3>
-    <p>{{ ftl('manifesto-details-the-mozilla-foundation-invites') }}</p>
+    <p>{{ ftl('manifesto-details-the-mozilla-foundation-invites-v2', fallback='manifesto-details-the-mozilla-foundation-invites') }}</p>
   </section>
 </section>
 
