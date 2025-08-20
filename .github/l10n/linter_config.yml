@@ -27,4 +27,6 @@ CO01:
     - "{ -brand-name-mozilla } VPN"
   exclusions:
     files: []
-    messages: []
+    messages:
+      # This exclusion should be removed when this fallback string is removed
+      - vpn-windows-protect-your-windows
