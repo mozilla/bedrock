@@ -11,7 +11,7 @@ from django.utils.timezone import now as tz_now
 
 import pytest
 
-from bedrock.base.views import GeoTemplateView, get_contentful_sync_info
+from bedrock.base.views import GeoTemplateView, get_contentful_sync_info, page_gone_view, page_not_found_view, server_error_view
 from bedrock.contentful.models import ContentfulEntry
 
 geo_template_view = GeoTemplateView.as_view(
@@ -47,31 +47,33 @@ class TestGeoTemplateView(TestCase):
 
 
 class TestErrorPages(TestCase):
-    """Test error pages using the debug URLs that are set up in DEBUG mode."""
+    """Test error page handlers by calling them directly with mocked dependencies."""
 
-    def test_404_page_returns_correct_status(self):
-        response = self.client.get("/en-US/404/")
-        self.assertEqual(response.status_code, 404)
+    def check_error_handler(self, handler_func, expected_template, expected_status=200):
+        with patch("lib.l10n_utils.render") as render_mock:
+            rf = RequestFactory()
+            req = rf.get("/")
 
-    def test_404_page_uses_correct_template(self):
-        response = self.client.get("/en-US/404/")
-        self.assertTemplateUsed(response, "404.html")
+            try:
+                handler_func(req, exception=None)
+            except TypeError:
+                handler_func(req)
 
-    def test_410_page_returns_correct_status(self):
-        response = self.client.get("/en-US/410/")
-        self.assertEqual(response.status_code, 410)
+            args, kwargs = render_mock.call_args
+            self.assertEqual(args[1], expected_template)
+            self.assertEqual(kwargs.get("status"), expected_status)
 
-    def test_410_page_uses_correct_template(self):
-        response = self.client.get("/en-US/410/")
-        self.assertTemplateUsed(response, "410.html")
+    def test_404_handler(self):
+        """Test 404 handler uses correct template and status."""
+        self.check_error_handler(page_not_found_view, "404.html", 404)
 
-    def test_500_page_returns_correct_status(self):
-        response = self.client.get("/en-US/500/")
-        self.assertEqual(response.status_code, 500)
+    def test_410_handler(self):
+        """Test 410 handler uses correct template and status."""
+        self.check_error_handler(page_gone_view, "410.html", 410)
 
-    def test_500_page_uses_correct_template(self):
-        response = self.client.get("/en-US/500/")
-        self.assertTemplateUsed(response, "500.html")
+    def test_500_handler(self):
+        """Test 500 handler uses correct template and status."""
+        self.check_error_handler(server_error_view, "500.html", 500)
 
 
 @patch("bedrock.base.views.tz_now")
