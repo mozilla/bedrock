@@ -15,9 +15,7 @@ footer-beta = { -brand-name-beta }
 footer-nightly = { -brand-name-nightly }
 footer-nightly-for-android = { -brand-name-nightly } for { -brand-name-android }
 footer-beta-for-android = { -brand-name-beta } for { -brand-name-android }
-# Obsolete string (expires 19-10-2025)
 footer-visit-mozilla-corporations = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, the <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
-footer-visit-mozilla-corporations-v2 = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
 footer-portions-of-this-content = Portions of this content are ©1998–{ $current_year } by individual mozilla.org contributors. Content available under a <a rel="license" href="{ $url }">{ -brand-name-creative-commons } license</a>.
 footer-mozilla = { -brand-name-mozilla }
 footer-company = Company
