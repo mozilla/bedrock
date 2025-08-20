@@ -57,22 +57,6 @@ VideoEngagement.getPassedThresholds = (percentageComplete) => {
     );
 };
 
-VideoEngagement.sendProgressThreshold = (currentTime, threshold) => {
-    VideoEngagement.sendEvent({
-        event: 'video_progress',
-        currentTime,
-        percent: threshold
-    });
-};
-
-VideoEngagement.sendComplete = (currentTime, percentageComplete) => {
-    VideoEngagement.sendEvent({
-        event: 'video_complete',
-        currentTime,
-        percent: percentageComplete
-    });
-};
-
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/timeupdate_event
 VideoEngagement.handleProgress = (e) => {
     const currentTime = Math.round(e.target.currentTime);
@@ -81,7 +65,12 @@ VideoEngagement.handleProgress = (e) => {
 
     // Check if video has ended
     if (percentageComplete === 100) {
-        VideoEngagement.sendComplete(currentTime, percentageComplete);
+        // Send complete event
+        VideoEngagement.sendEvent({
+            event: 'video_complete',
+            currentTime,
+            percent: 100
+        });
 
         // Stop sending events
         e.target.removeEventListener(
@@ -93,15 +82,21 @@ VideoEngagement.handleProgress = (e) => {
         const passedThresholds =
             VideoEngagement.getPassedThresholds(percentageComplete);
         if (passedThresholds.length > 0) {
-            // Remove thresholds we've passed from list of ones we're looking for
-            VideoEngagement.progressThresholds =
-                VideoEngagement.progressThresholds.filter(
-                    (threshold) => percentageComplete < threshold
-                );
-            // Send progress event(s)
-            passedThresholds.forEach((threshold) => {
-                VideoEngagement.sendProgressThreshold(currentTime, threshold);
-            });
+            const lastThreshold = e.target.hasAttribute('data-ga-threshold')
+                ? parseInt(e.target.getAttribute('data-ga-threshold'), 10)
+                : 0;
+            const currentThreshold =
+                passedThresholds[passedThresholds.length - 1];
+            // Send progress event if we've passed a new threshold
+            if (currentThreshold > lastThreshold) {
+                VideoEngagement.sendEvent({
+                    event: 'video_progress',
+                    currentTime,
+                    percent: currentThreshold
+                });
+                // Store record of sent threshold data for this element
+                e.target.setAttribute('data-ga-threshold', currentThreshold);
+            }
         }
     }
 };
