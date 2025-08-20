@@ -6,7 +6,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% extends "base-error.html" %}
 
-{% block page_title %}{{ ftl('gone-page-gone-page-page-gone') }}{% endblock %}
+{% block page_title %}{{ ftl('page-gone-title') }}{% endblock %}
 
 {% block page_css %}
 {{ css_bundle('page_not_found') }}
@@ -17,8 +17,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block content %}
 <main class="mzp-l-content message-section">
-  <h1 class="error-title">{{ ftl('gone-page-sorry-that-page-is-gone') }}</h1>
-  <p>{{ ftl('gone-page-you-may-be-able-to-find-more', blog='https://blog.mozilla.org/') }}</p>
+  <h1 class="error-title">{{ ftl('page-gone-title') }}</h1>
+  <p>{{ ftl('page-gone-body', blog='href="https://blog.mozilla.org/"') }}</p>
 
   <p class="hide-back" id="go-back">
     <a class="back-button" data-testid="link-go-back">{{ ftl('gone-page-go-back') }}</a>
@@ -26,16 +26,20 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
   <ul class="content-list">
     <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/home.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-go-home', home='href="/"') }}
+      </li>
+      <li>
       <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
-      {{ ftl('gone-page-learn-about-mozilla-the-non', about=url('mozorg.about.index')) }}
+      {{ ftl('gone-page-browse-products', products='href="%s"'|safe|format(url('products.landing'))) }}
     </li>
     <li>
-      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
-      {{ ftl('gone-page-download-the-firefox-browser', download=url('firefox.new')) }}
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/blog.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-search-blog', blog='href="https://blog.mozilla.org/"') }}
     </li>
     <li>
-      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/default-browser.svg') }}" width="30" height="30">
-      {{ ftl('gone-page-donate-to-mozilla-reclaim-from', donate='href="%s"'|safe|format(donate_url(location='donate-410'))) }}
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/help.svg') }}" width="30" height="30">
+      {{ ftl('gone-page-visit-support', support='href="https://support.mozilla.org/"') }}
     </li>
   </ul>
   </main>
