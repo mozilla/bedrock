@@ -8,7 +8,7 @@
 
 /**
  * URL paths for inclusion in page-level a11y scans.
- * Pages will be scanned at both desktop and mobile resolutions.
+ * Different set of pages will be scanned at desktop and mobile resolutions.
  */
 const desktopTestURLs = [
     '/en-US/',
@@ -26,16 +26,26 @@ const desktopTestURLs = [
     '/en-US/contact/',
     '/en-US/contribute/',
     '/en-US/firefox/download/thanks/',
-    '/en-US/firefox/releasenotes/',
+    '/en-US/foundation/annualreport/2024/',
     '/en-US/privacy/',
     '/en-US/privacy/websites/cookie-settings/',
     '/en-US/products/',
     '/en-US/products/vpn/',
     '/en-US/products/vpn/download/',
     '/en-US/products/vpn/features/',
-    '/en-US/products/vpn/pricing/'
+    '/en-US/products/vpn/pricing/',
+    '/en-US/security/advisories/',
+    '/en-US/security/known-vulnerabilities/firefox/'
 ];
 
-const mobileTestURLs = ['/en-US/'];
+const mobileTestURLs = [
+    '/en-US/',
+    '/en-US/firefox/download/thanks/',
+    '/en-US/privacy/',
+    '/en-US/privacy/firefox/',
+    '/en-US/products/',
+    '/en-US/products/vpn/',
+    '/en-US/products/vpn/download/'
+];
 
 module.exports = { desktopTestURLs, mobileTestURLs };
