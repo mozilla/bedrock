@@ -13,7 +13,7 @@ const url = '/firefox/welcome/6/';
 test.describe(
     `${url} page`,
     {
-        tag: ['@firefox', '@wfc-redirect']
+        tag: '@firefox'
     },
     () => {
         test('Send set as default button displayed', async ({
