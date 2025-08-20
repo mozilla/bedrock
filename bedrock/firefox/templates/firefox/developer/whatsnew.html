@@ -36,7 +36,7 @@
   <div class="mzp-l-content mzp-t-content-md t-center">
     <div class="mzp-c-logo mzp-t-logo-xl mzp-t-product-developer mzp-l-logo-center"></div>
     <h1>{{ ftl('firefox-developer-congrats-you-now-have-latest-v2') }}</h1>
-    {% set attrs = 'href="' ~ url('firefox.notes', channel='beta') ~ '"' %}
+    {% set attrs = 'href="https://www.firefox.com/firefox/developer/notes/"' %}
     {% if LANG.startswith('en-') %}
       <p>View the <a {{ attrs|safe }}>release notes</a> to see what’s new.</p>
     {% else %}
