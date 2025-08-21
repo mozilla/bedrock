@@ -660,11 +660,15 @@ body {
     font-size: var(--fds-font-size-md);
     line-height: 1.6;
     color: light-dark(var(--fds-color-charcoal), var(--fds-color-ash));
-    margin: 0 auto var(--fds-spacing-lg);
+    margin: 0 0 var(--fds-spacing-lg);
     text-align: center;
 
     &.wnp-has-subhead-spacing {
         margin-bottom: var(--fds-spacing-2xl);
+    }
+
+    &.is-centered {
+        margin-inline: auto;
     }
 }
 
@@ -1107,12 +1111,6 @@ body {
 .wnp-feature-content {
     .wnp-subtitle, .wnp-body, .wnp-eyebrow {
         text-align: left;
-    }
-
-    @media (max-width: 767px) {
-        .wnp-button {
-            width: 100%;
-        }
     }
 
     @media (min-width: 1024px) {
