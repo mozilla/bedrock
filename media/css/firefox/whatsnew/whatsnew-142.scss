@@ -1080,7 +1080,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--fds-spacing-lg);
-    align-items: flex-start;
+    align-items: center;
     margin: var(--fds-spacing-2xl) 0;
 
     .wnp-subtitle {
