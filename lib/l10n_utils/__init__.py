@@ -106,7 +106,7 @@ def locale_selection(request, available_locales=None):
     return response
 
 
-def render(request, template, context=None, ftl_files=None, activation_files=None, **kwargs):
+def render(request, template, context=None, ftl_files=None, activation_files=None, non_locale_url=False, **kwargs):
     """
     Same as django's render() shortcut, but with l10n template support.
     If used like this::
@@ -128,7 +128,7 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
-    non_locale_url = name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
+    non_locale_url = non_locale_url or name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
 
     # is this a CMS page?
     is_cms_page = hasattr(request, "is_cms_page") and request.is_cms_page
