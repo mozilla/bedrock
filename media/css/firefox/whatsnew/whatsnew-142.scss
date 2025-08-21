@@ -660,11 +660,15 @@ body {
     font-size: var(--fds-font-size-md);
     line-height: 1.6;
     color: light-dark(var(--fds-color-charcoal), var(--fds-color-ash));
-    margin: 0 auto var(--fds-spacing-lg);
+    margin: 0 0 var(--fds-spacing-lg);
     text-align: center;
 
     &.wnp-has-subhead-spacing {
         margin-bottom: var(--fds-spacing-2xl);
+    }
+
+    &.wnp-is-centered {
+        margin-inline: auto;
     }
 }
 
@@ -1076,7 +1080,7 @@ body {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--fds-spacing-lg);
-    align-items: flex-start;
+    align-items: center;
     margin: var(--fds-spacing-2xl) 0;
 
     .wnp-subtitle {
