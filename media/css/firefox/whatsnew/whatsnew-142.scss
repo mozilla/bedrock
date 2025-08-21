@@ -1113,6 +1113,12 @@ body {
         text-align: left;
     }
 
+    @media (max-width: 767px) {
+        .wnp-button {
+            width: 100%;
+        }
+    }
+
     @media (min-width: 1024px) {
         padding: 0;
     }
