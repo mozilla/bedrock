@@ -16,7 +16,6 @@ const src = 'https://www.youtube.com/iframe_api';
 let videoLink;
 let videoId;
 let videoStart;
-let title;
 
 function loadScript() {
     const tag = document.createElement('script');
@@ -45,37 +44,12 @@ function playVideo() {
             cc_load_policy: 1 // show captions.
         },
         events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange
+            onReady: onPlayerReady
         }
     });
 
     function onPlayerReady(event) {
         event.target.playVideo();
-    }
-
-    function onPlayerStateChange(event) {
-        let state;
-
-        switch (event.data) {
-            case window.YT.PlayerState.PLAYING:
-                state = 'video play';
-                break;
-            case window.YT.PlayerState.PAUSED:
-                state = 'video paused';
-                break;
-            case window.YT.PlayerState.ENDED:
-                state = 'video complete';
-                break;
-        }
-
-        if (state) {
-            window.dataLayer.push({
-                event: 'video-interaction',
-                videoTitle: title,
-                interaction: state
-            });
-        }
     }
 }
 
@@ -101,7 +75,6 @@ function init() {
                 videoLink.getAttribute('data-video-start'),
                 10
             );
-            title = videoLink.getAttribute('data-video-title');
             initVideoPlayer();
         });
     }
