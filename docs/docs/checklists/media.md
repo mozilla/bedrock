@@ -1,0 +1,5 @@
+- [ ] Have alt text where applicable
+- [ ] All images in a `srcset` can be loaded
+- [ ] Use image helpers
+- [ ] Optimized
+- [ ] SVG contains viewbox
