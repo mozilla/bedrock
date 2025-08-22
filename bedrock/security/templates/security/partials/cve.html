@@ -6,7 +6,7 @@
 
 <section class="cve">
   <h4 id="{{ id }}" class="level-heading">
-    <a href="#{{ id }}"><span class="anchor">#</span>{{ id }}: {{ title }}</a>
+    <a href="#{{ id }}"><span class="anchor">#</span>{{ id }}{% if title %}: {{ title }}{% endif %}</a>
   </h4>
   <dl class="summary">
     <dt>Reporter</dt>
