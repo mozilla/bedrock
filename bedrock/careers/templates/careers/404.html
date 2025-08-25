@@ -30,15 +30,21 @@
     <ul class="content-list">
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
-        <a href="{{ url('mozorg.about.index') }}">Learn</a> about Mozilla, the not-for-profit behind Firefox.
+        <span>
+          <a href="{{ url('mozorg.about.index') }}">Learn</a> about Mozilla, the not-for-profit behind Firefox.
+        </span>
       </li>
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/desktop.svg') }}" width="30" height="30">
-        <a href="https://www.firefox.com/">Download</a> the Firefox browser for your mobile device or desktop.
+        <span>
+          <a href="https://www.firefox.com/">Download</a> the Firefox browser for your mobile device or desktop.
+        </span>
       </li>
       <li>
         <img class="list-icon" alt="" src="{{ static('protocol/img/icons/default-browser.svg') }}" width="30" height="30">
-        <a href="{{ donate_url(location='donate-404') }}">Donate</a> to Mozilla Foundation and reclaim the internet from big tech.
+        <span>
+          <a href="{{ donate_url(location='donate-404') }}">Donate</a> to Mozilla Foundation and reclaim the internet from big tech.
+        </span>
       </li>
     </ul>
   </main>
