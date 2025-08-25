@@ -4,15 +4,15 @@
 
 ### URL: https://www-dev.allizom.org/410/
 
-page-gone-title = This page is no longer available
+page-gone-title = This page has been removed
 
-page-gone-body = This page used to exist, but it was intentionally removed and isn’t available anywhere on our site. You may find what you’re looking for on the pages below.
+page-gone-body = We are sorry, but this content is no longer available. You can follow some of the links below to find more current information.
 
 gone-page-go-back = Go Back
 
 # Variables:
 #   $home (attr) - attributes to be added to the <a> tag - href="https://mozilla.org"
-gone-page-go-home = Go to the <a { $home }>home page</a>.
+gone-page-go-home = Start exploring the site from its <a { $home }>home page</a>.
 
 # Variables:
 #   $blog (attr) - attributes to be added to the <a> tag - href="https://blog.mozilla.org/"
