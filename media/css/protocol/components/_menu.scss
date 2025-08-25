@@ -139,6 +139,10 @@
             padding: 0 $spacing-md;
         }
     }
+
+    .c-menu-title-icon {
+        @include bidi(((margin, 0 $spacing-sm 0 0, 0 0 0 $spacing-sm),));
+    }
 }
 
 // Basic hover interactions with JavaScript disabled or not supported..
