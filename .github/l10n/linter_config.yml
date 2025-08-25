@@ -28,5 +28,5 @@ CO01:
   exclusions:
     files: []
     messages:
-      # This exclusion should be removed when this fallback string is removed
+      # Obsolete string (expires 2025-12-19) - This exclusion should be removed when the string is removed
       - vpn-windows-protect-your-windows
