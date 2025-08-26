@@ -22,14 +22,14 @@ VideoEngagement.progressThresholds = [10, 25, 50, 75];
 
 VideoEngagement.sendEvent = (videoObject) => {
     window.dataLayer.push({
+        event: videoObject.event,
         visible: true,
         video_duration: VideoEngagement.duration,
         video_title: VideoEngagement.title,
         video_url: VideoEngagement.url,
         video_provider: 'self-hosted',
         video_current_time: videoObject.currentTime,
-        video_percent: videoObject.percent,
-        event: videoObject.event
+        video_percent: videoObject.percent
     });
 };
 
