@@ -20,6 +20,34 @@ VideoEngagement.duration = null;
 // Match GA4 thresholds
 VideoEngagement.progressThresholds = [10, 25, 50, 75];
 
+// https://rahultomar092.medium.com/throttling-in-js-with-leading-and-trailing-4a60d5d99122
+VideoEngagement.throttle = (func, wait) => {
+    let waiting = false;
+    let lastArgs = null;
+    return function wrapper(...args) {
+        if (waiting === false) {
+            waiting = true;
+            // helper function to trigger a new waiting period
+            const startWaitingPeriod = () =>
+                setTimeout(() => {
+                    // if at the end of the waiting period lastArgs exist, execute the function using it
+                    if (lastArgs) {
+                        func.apply(this, lastArgs);
+                        lastArgs = null;
+                        // start another waiting period
+                        startWaitingPeriod();
+                    } else {
+                        waiting = false;
+                    }
+                }, wait);
+            func.apply(this, args);
+            startWaitingPeriod();
+        } else {
+            lastArgs = args; // store the arguments of the last function call within waiting period
+        }
+    };
+};
+
 VideoEngagement.sendEvent = (videoObject) => {
     window.dataLayer.push({
         event: videoObject.event,
@@ -62,6 +90,9 @@ VideoEngagement.handleProgress = (e) => {
     const currentTime = Math.round(e.target.currentTime);
     const percentageComplete =
         VideoEngagement.getPercentageComplete(currentTime);
+    const lastThresholdCompleted = e.target.hasAttribute('data-ga-threshold')
+        ? parseInt(e.target.getAttribute('data-ga-threshold'), 10)
+        : 0;
 
     // Check if video has ended
     if (percentageComplete === 100) {
@@ -75,20 +106,30 @@ VideoEngagement.handleProgress = (e) => {
         // Stop sending events
         e.target.removeEventListener(
             'timeupdate',
-            VideoEngagement.handleProgress
+            VideoEngagement.throttledProgress
+        );
+    } else if (percentageComplete < lastThresholdCompleted) {
+        // If video looped before we recorded complete event
+        VideoEngagement.sendEvent({
+            event: 'video_complete',
+            currentTime: VideoEngagement.duration,
+            percent: 100
+        });
+
+        // Stop sending events
+        e.target.removeEventListener(
+            'timeupdate',
+            VideoEngagement.throttledProgress
         );
     } else {
         // Check if we have a progress event to send
         const passedThresholds =
             VideoEngagement.getPassedThresholds(percentageComplete);
         if (passedThresholds.length > 0) {
-            const lastThreshold = e.target.hasAttribute('data-ga-threshold')
-                ? parseInt(e.target.getAttribute('data-ga-threshold'), 10)
-                : 0;
             const currentThreshold =
                 passedThresholds[passedThresholds.length - 1];
             // Send progress event if we've passed a new threshold
-            if (currentThreshold > lastThreshold) {
+            if (currentThreshold > lastThresholdCompleted) {
                 VideoEngagement.sendEvent({
                     event: 'video_progress',
                     currentTime,
@@ -100,5 +141,11 @@ VideoEngagement.handleProgress = (e) => {
         }
     }
 };
+
+// Set reference to throttle function so we can remove listener event
+VideoEngagement.throttledProgress = VideoEngagement.throttle(
+    VideoEngagement.handleProgress,
+    1000 // wait time in milliseconds
+);
 
 export default VideoEngagement;

@@ -27,5 +27,5 @@ for (let i = 0; i < HTMLVideos.length; ++i) {
     });
     // 'timeupdate' will handle both video_progress and video_complete data
     // ('ended' not reliable: if 'loop' is true, it will not fire)
-    video.addEventListener('timeupdate', VideoEngagement.handleProgress);
+    video.addEventListener('timeupdate', VideoEngagement.throttledProgress);
 }
