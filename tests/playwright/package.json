@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@playwright/test": "^1.54.1",
+    "@playwright/test": "^1.55.0",
     "axe-html-reporter": "^2.2.11",
     "dotenv": "^17.2.1"
   },
