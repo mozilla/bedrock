@@ -42,6 +42,8 @@
       <img class="c-video-background" src="{{ static('img/firefox/whatsnew/whatsnew141-customize/multi-browser-cool-colors.png') }}" alt="">
       <div class="mzp-c-video">
         <video
+          class="ga-video-engagement"
+          data-ga-title="wnp-141"
           id="wnp-video"
           preload="none"
           controls
@@ -72,4 +74,5 @@
 
 {% block js %}
   {{ js_bundle('firefox_whatsnew_141') }}
+  {{ js_bundle('data_videoengagement') }}
 {% endblock %}
