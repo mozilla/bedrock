@@ -13,6 +13,7 @@ const allowedList = [
     'https://guardian-dev.herokuapp.com/',
     'https://monitor.mozilla.org/',
     'https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/',
+    'https://payments.firefox.com/',
     'https://relay.firefox.com/',
     'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
     'https://vpn.mozilla.org/'
