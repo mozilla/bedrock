@@ -8,7 +8,12 @@ import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
 
 (function (Mozilla) {
-    function onLoad() {
+    // Getter function since outerHTML replacement in fetchContent breaks existing references
+    function getPartialTargetElement() {
+        return document.getElementById('partial-target');
+    }
+
+    function setUpPartialContentListeners() {
         const browserHelpContent = document.getElementById('browser-help');
         const browserHelpIcon = document.getElementById('icon-browser-help');
         const installerHelpContent = document.getElementById('installer-help');
@@ -81,6 +86,74 @@ import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
                 );
             }
         }
+
+        // Override click events for drill-down links.
+        getPartialTargetElement().addEventListener('click', function (event) {
+            const anchor = event.target.closest('a');
+            if (anchor && anchor.matches('.load-content-partial')) {
+                event.preventDefault();
+                fetchContent(anchor.href, true);
+            }
+        });
+    }
+
+    // A fetch helper since we use this in both the on click and popstate.
+    // pushState is a boolean so we avoid pushing state if triggered from popstate.
+    function fetchContent(url, pushState = false) {
+        fetch(url, {
+            // Signifies to backend to return partial HTML.
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            // Ignore what's cached and also don't cache this response.
+            // This is so we don't get full html pages when we expect partial html, or vice versa.
+            cache: 'no-store'
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then((html) => {
+                const partialTarget = getPartialTargetElement();
+                partialTarget.outerHTML = html;
+
+                // Re-attach listeners as we just replaced partialTarget
+                setUpPartialContentListeners();
+
+                if (pushState) {
+                    history.pushState({ path: url }, '', url);
+                }
+
+                const activeHeaders = document.querySelectorAll(
+                    '.c-step-name:not(.t-step-disabled)'
+                );
+                const targetHeader = activeHeaders[activeHeaders.length - 1];
+                targetHeader.focus({ preventScroll: true });
+            })
+            .catch((error) => {
+                throw new Error(
+                    'There was a problem with the fetch operation:',
+                    error
+                );
+            });
+    }
+
+    function onLoad() {
+        setUpPartialContentListeners();
+
+        // Add popstate listener so we return partial HTML with browser back button.
+        window.addEventListener('popstate', function (event) {
+            if (!event.state) {
+                return;
+            }
+            fetchContent(event.state.path, false);
+        });
+
+        // Ensure initial state is set up when the page loads so root page is in popstate.
+        window.addEventListener('DOMContentLoaded', () => {
+            const url = window.location.href;
+            history.replaceState({ path: url }, '', url);
+        });
     }
 
     Mozilla.run(onLoad);
