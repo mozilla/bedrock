@@ -233,3 +233,28 @@ class TestNewsletterFooterForm(TestCase):
         form = NewsletterFooterForm(spacey_newsletters, "en-US", data=data.copy())
         self.assertTrue(form.is_valid())
         self.assertEqual(form.cleaned_data["newsletters"], newsletters)
+
+    def test_honeypot_empty_valid(self):
+        """Honeypot field should be valid when empty"""
+        data = {
+            "email": "foo@example.com",
+            "lang": "fr",
+            "privacy": True,
+            "newsletters": [self.newsletter_name],
+            "office_fax": "",  # honeypot field
+        }
+        form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_honeypot_filled_invalid(self):
+        """Honeypot field should be invalid when filled"""
+        data = {
+            "email": "foo@example.com",
+            "lang": "fr",
+            "privacy": True,
+            "newsletters": [self.newsletter_name],
+            "office_fax": "some value",  # honeypot field
+        }
+        form = NewsletterFooterForm(self.newsletter_name, locale="en-US", data=data.copy())
+        self.assertFalse(form.is_valid())
+        self.assertIn("office_fax", form.errors)
