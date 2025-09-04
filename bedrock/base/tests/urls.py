@@ -11,6 +11,8 @@ from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.http.multipartparser import MultiPartParserError
 from django.urls import path
 
+from bedrock.base.exceptions import Http410
+
 
 def index(request):
     return HttpResponse("test")
@@ -48,6 +50,14 @@ def raises_404(request):
     raise Http404
 
 
+def returns_410(request):
+    return HttpResponse("410", status=410)
+
+
+def raises_410(request):
+    raise Http410
+
+
 def returns_500(request):
     return HttpResponse("500", status=500)
 
@@ -66,6 +76,8 @@ urlpatterns = [
     path("returns_400/", returns_400, name="returns_400"),
     path("raises_404/", raises_404, name="raises_404"),
     path("returns_404/", returns_404, name="returns_404"),
+    path("raises_410/", raises_410, name="raises_410"),
+    path("returns_410/", returns_410, name="returns_410"),
     path("raises_500/", raises_500, name="raises_500"),
     path("returns_500/", returns_500, name="returns_500"),
 ]
