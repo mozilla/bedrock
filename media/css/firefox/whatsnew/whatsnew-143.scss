@@ -1,0 +1,62 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+.wnp-section-mobile {
+    .wnp-qr {
+        padding: 0;
+
+        @media #{$mq-md} {
+            padding: var(--fds-spacing-lg);
+        }
+
+        @media #{$mq-md} {
+            padding: var(--fds-spacing-lg);
+        }
+
+        @media #{$mq-lg} {
+            padding: 0 var(--fds-spacing-lg);
+        }
+    }
+
+    .wnp-qr-content {
+        padding: var(--fds-spacing-lg);
+    }
+
+    .wnp-qr-media {
+        background: url('/media/img/firefox/whatsnew/whatsnew143-us/qr-background-orange.png') no-repeat center;
+        background-size: cover;
+        padding: var(--fds-spacing-md) var(--fds-spacing-sm) 0;
+
+        @media #{$mq-sm} {
+            padding: var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
+        }
+
+        @media #{$mq-lg} {
+            background-size: contain;
+        }
+    }
+}
+
+.wnp-section-tools {
+    .wnp-feature {
+        background-color: var(--fds-color-white);
+        border-radius: var(--fds-border-radius-lg);
+        padding: var(--fds-spacing-lg);
+
+        // Dark mode support
+        [data-theme="dark"] & {
+            background-color: var(--fds-color-gray-90);
+        }
+    }
+}
+
+.wnp143-uitour-cta {
+    display: none;
+}
+
+body.wnp-uitour .wnp143-uitour-cta {
+    display: inline-block;
+}
