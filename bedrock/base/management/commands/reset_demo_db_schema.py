@@ -4,7 +4,7 @@
 
 # yourapp/management/commands/reset_schema.py
 from django.core.management.base import BaseCommand, CommandError
-from django.db import connection, transaction
+from django.db import connection
 
 from bedrock.base.config_manager import config
 
@@ -19,8 +19,6 @@ class Command(BaseCommand):
         if connection.vendor != "postgresql":
             raise CommandError("reset_schema only supports PostgreSQL")
 
-        # Ensure DDL runs immediately
-        transaction.set_autocommit(True)
         with connection.cursor() as cur:
             cur.execute("DROP SCHEMA IF EXISTS public CASCADE;")
             cur.execute("CREATE SCHEMA public AUTHORIZATION CURRENT_USER;")
