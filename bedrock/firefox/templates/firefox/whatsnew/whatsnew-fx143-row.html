@@ -32,6 +32,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set learn_more = 'Mehr erfahren' %}
   {% set video_src = 'https://assets.mozilla.net/video/whatsnew/143/wnp-143-de.webm' %}
   {% set poster_src = 'img/l10n/de/firefox/wnp-143/google-lens-high-res.png' %}
+  {% set tag_privacy = 'TODO' %}
+  {% set tag_language = 'TODO' %}
+  {% set tag_design = 'TODO' %}
 {% elif LANG == 'fr' %}
   {% set hero_title = 'Recherchez ce que vous voyez avec Google Lens' %}
   {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Faites simplement un clic droit sur n’importe quelle image quand vous naviguez dans Firefox (avec Google en tant que moteur de recherche par défaut) pour essayer Google Lens.</p>" %}
@@ -55,6 +58,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set learn_more = 'En savoir plus ' %}
   {% set video_src = 'https://assets.mozilla.net/video/whatsnew/143/wnp-143-fr.webm' %}
   {% set poster_src = 'img/l10n/fr/firefox/wnp-143/google-lens-high-res.png' %}
+  {% set tag_privacy = 'Confidentialité' %}
+  {% set tag_language = 'Langue' %}
+  {% set tag_design = 'Design' %}
 {% else %}
   {% set hero_title = 'Search what you see with Google Lens' %}
   {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Just right-click any image as you browse in Firefox (with Google set as your default search engine) to try Google Lens.</p>" %}
@@ -78,6 +84,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set learn_more = 'Learn more' %}
   {% set video_src = 'https://assets.mozilla.net/video/whatsnew/143/wnp-143-en.webm' %}
   {% set poster_src = 'img/l10n/en-US/firefox/wnp-143/google-lens-high-res.png' %}
+  {% set tag_privacy = 'Privacy' %}
+  {% set tag_language = 'Language' %}
+  {% set tag_design = 'Design' %}
 {% endif %}
 
 {% block wnp_content %}
@@ -200,28 +209,28 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-grid">
           <article class="wnp-card">
             <div>
-              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">Privacy</span>
+              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_privacy }}</span>
             </div>
             <h3 class="wnp-subtitle">{{ card_1_title }}</h3>
             <p class="wnp-body">{{ card_1_body }}</p>
           </article>
           <article class="wnp-card">
             <div>
-              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-blue"><img src="/media/img/firefox/whatsnew/whatsnew142/language-icon.svg" width="12" height="12" alt="" aria-hidden="true">Language</span>
+              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-blue"><img src="/media/img/firefox/whatsnew/whatsnew142/language-icon.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_language }}</span>
             </div>
             <h3 class="wnp-subtitle">{{ card_2_title }}</h3>
             <p class="wnp-body">{{ card_2_body }}</p>
           </article>
           <article class="wnp-card">
             <div>
-              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">Privacy</span>
+              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_privacy }}</span>
             </div>
             <h3 class="wnp-subtitle">{{ card_3_title }}</h3>
             <p class="wnp-body">{{ card_3_body }}</p>
           </article>
           <article class="wnp-card">
             <div>
-              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-yellow"><img src="/media/img/firefox/whatsnew/whatsnew142/design-icon.svg" width="12" height="12" alt="" aria-hidden="true">Design</span>
+              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-yellow"><img src="/media/img/firefox/whatsnew/whatsnew142/design-icon.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_design }}</span>
             </div>
             <h3 class="wnp-subtitle">{{ card_4_title }}</h3>
             <p class="wnp-body">{{ card_4_body }}</p>

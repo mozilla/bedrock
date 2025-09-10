@@ -513,7 +513,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx141-customize-new-tab.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx143-row.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx143-row.html": ["firefox/whatsnew/whatsnew", "footer-refresh"],
     }
 
     # specific templates that should not be rendered in
