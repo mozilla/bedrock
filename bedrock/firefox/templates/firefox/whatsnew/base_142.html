@@ -6,6 +6,23 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% set major_version = version.split('.')[0] %}
 
+{% if LANG == 'fr' %}
+  {% set footer_portions_of_this_content = "Certaines parties de ce contenu sont ©1998–2025 par les contributeurs individuels de mozilla.org. <br> Ce contenu est disponible sous <a class='wnp-footer-link' rel='license' href='/fr/foundation/licensing/website-content/'>licence Creative Commons</a>." %}
+  {% set donate_cta = "Faire un don à la Fondation Mozilla" %}
+  {% set signoff_heading = "Conçu par Mozilla" %}
+  {% set signoff_body = "Pensé pour vous depuis 1998" %}
+{% elif LANG == 'de' %}
+  {% set footer_portions_of_this_content = "Teile dieses Inhalts sind ©1998–2025 von einzelnen Mitwirkenden von mozilla.org. <br> Inhalt verfügbar unter einer <a class='wnp-footer-link' rel='license' href='/de/foundation/licensing/website-content/'>Creative Commons</a> Lizenz." %}
+  {% set donate_cta = "Spende an die Mozilla Foundation" %}
+  {% set signoff_heading = "Powered by Mozilla" %}
+  {% set signoff_body = "Für dich und das Web. Schon seit 1998." %}
+{% else %}
+  {% set footer_portions_of_this_content = "Portions of this content are ©1998–2025 by individual mozilla.org contributors. <br> Content available under a <a class='wnp-footer-link' rel='license' href='/en-US/foundation/licensing/website-content/'>Creative Commons license</a>." %}
+  {% set donate_cta = "Donate to Mozilla Foundation" %}
+  {% set signoff_heading = "Powered by Mozilla" %}
+  {% set signoff_body = "Putting people before profits since 1998" %}
+{% endif %}
+
 <!doctype html>
 <html class="windows no-js" lang="{{ LANG|replace('en-US', 'en') }}" dir="{{ DIR }}" data-country-code="{{ country_code }}" data-needs-consent="{{ needs_data_consent(country_code) }}" data-latest-firefox="{{ latest_firefox_version }}" data-esr-versions="{{ esr_firefox_versions|join(' ') }}" {% if settings.GTM_CONTAINER_ID %}data-gtm-container-id="{{ settings.GTM_CONTAINER_ID }}" {% endif %} {% if settings.STUB_ATTRIBUTION_RATE %}data-stub-attribution-rate="{{ settings.STUB_ATTRIBUTION_RATE }}" {% endif %} {% if settings.SENTRY_FRONTEND_DSN %}data-sentry-dsn="{{ settings.SENTRY_FRONTEND_DSN }}" {% endif %} {% block html_attrs %}{% endblock %}>
 
@@ -15,7 +32,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block extra_meta %}{% endblock %}
 
-    <title>{% block page_title %}What’s new with Firefox {{ major_version }}{% endblock %}</title>
+    <title>{% block page_title %}{{ ftl('whatsnew-page-title-v2') }} {{ major_version }}{% endblock %}</title>
+    <meta name="description" content="{{ ftl('whatsnew-page-description') }}">
 
     {% block site_css %}
     {{ css_bundle('firefox_whatsnew_142') }}
@@ -88,15 +106,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-footer-inner">
           <div class="wnp-footer-top">
             <p class="wnp-footer-copy">
-              Visit <a class="wnp-footer-link" href="https://www.mozilla.org/en-US/">Mozilla Corporation’s</a> not-for-profit parent,
-              <a class="wnp-footer-link" href="https://www.mozillafoundation.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer">Mozilla Foundation</a>.<br>
-              Portions of this content are ©1998–2025 by individual mozilla.org contributors.<br>
-              Content available under a <a class="wnp-footer-link" href="https://www.mozilla.org/en-US/foundation/licensing/website-content/">Creative Commons license</a>.
+              {% set moco_link = 'href="%s" class="wnp-footer-link" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
+              {% set mofo_link = 'href="https://foundation.mozilla.org/{{ params }}" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
+              {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
+              {{ footer_portions_of_this_content | safe }}
             </p>
             <nav class="wnp-footer-links" aria-label="Footer">
               <ul>
                 <li>
-                  <a class="wnp-footer-link" href="https://support.mozilla.org/">Firefox Support
+                  <a class="wnp-footer-link" href="https://support.mozilla.org/{{ params }}">{{ ftl('footer-refresh-product-help') }}
                     <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 13" width="12" height="12" aria-hidden="true">
                       <path d="M6.938.5v1.125h3.141L5.337 6.367l.796.795 4.742-4.742v3.143H12V.5H6.937Z" fill="currentColor"/>
                       <path d="M7.875 11.375h-6.75v-6.75H4.5V3.5H0v9h9V8H7.875v3.375Z" fill="currentColor"/>
@@ -104,13 +122,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                   </a>
                 </li>
                 <li>
-                  <a class="wnp-footer-link" href="/privacy/websites/">Privacy Notice</a>
+                  <a class="wnp-footer-link" href="/privacy/websites/">{{ ftl('footer-refresh-websites-privacy-notice') }}</a>
                 </li>
                 <li>
-                  <a class="wnp-footer-link" href="/about/legal/terms/mozilla/">Terms of Use</a>
+                  <a class="wnp-footer-link" href="/about/legal/terms/">{{ ftl('footer-refresh-websites-legal') }}</a>
                 </li>
                 <li>
-                  <a class="wnp-footer-link" href="/privacy/websites/cookie-settings/">Cookie Policy</a>
+                  <a class="wnp-footer-link" href="/privacy/websites/cookie-settings/">{{ ftl('footer-refresh-websites-cookies') }}</a>
                 </li>
               </ul>
             </nav>
@@ -121,11 +139,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
           <div class="wnp-footer-bottom">
             <div class="wnp-footer-brand">
-              <h3 class="wnp-footer-title">Powered by Mozilla</h3>
-              <p class="wnp-footer-subtitle">Putting people before profits since 1998</p>
+              <h3 class="wnp-footer-title">{{ signoff_heading }}</h3>
+              <p class="wnp-footer-subtitle">{{ signoff_body }}</p>
             </div>
             <div class="wnp-footer-cta">
-              <a class="wnp-button wnp-button-outline" href="https://www.mozillafoundation.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true">Donate to Mozilla Foundation</a>
+              <a class="wnp-button wnp-button-outline" href="https://www.mozillafoundation.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true">{{ donate_cta }}</a>
             </div>
           </div>
         </div>
