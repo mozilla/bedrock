@@ -10,7 +10,7 @@
 # Usage ./bin/fill-empty-postgres-database.sh
 
 # 0. Are we configured appropriately?
-ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
+ACTIVE_DATABASE=$(PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
 
 if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
     echo "ERROR: Django's active database does not point to a Postgres database."
