@@ -19,6 +19,7 @@ from bedrock.base.i18n import bedrock_i18n_patterns
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
 handler500 = "bedrock.base.views.server_error_view"
+handler410 = "bedrock.base.views.page_gone_view"
 handler404 = "bedrock.base.views.page_not_found_view"
 locale404 = "lib.l10n_utils.locale_selection"
 
@@ -56,6 +57,7 @@ if settings.DEV:
 if settings.DEBUG:
     urlpatterns += bedrock_i18n_patterns(
         path("404/", import_string(handler404)),
+        path("410/", import_string(handler410)),
         path("500/", import_string(handler500)),
     )
     urlpatterns += (path("csrf_403/", base_views.csrf_failure, {}),)
