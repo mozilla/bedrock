@@ -13,13 +13,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'Was gibt’s Neues?' %}
   {% set hero_title = 'Suche, was du siehst mit visueller Suche' %}
   {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>Klicke einfach mit der rechten Maustaste auf ein beliebiges Bild, während du in Firefox browst (mit Google als Standardsuchmaschine), und probiere Google Lens aus.</p>" %}
-  {% set feature_1_eyebrow = '' %}
-  {% set feature_1_title = '' %}
-  {% set feature_1_body = '' %}
-  {% set feature_1_cta = '' %}
+  {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
+  {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
   {% set feature_2_eyebrow = '' %}
   {% set feature_2_title = 'Tabs sichern, Speicher zurückholen.' %}
-  {% set feature_2_body = 'Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht nutzt. Gleichzeitig verbraucht er im Hintergrund keine Ressourcen und macht dein Browsen schneller. Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“, um die Funktion zu aktivieren. Wenn du zurückkommst, lädt der Tab genau an der Stelle neu, an der du pausiert hast.' %}
+  {% set feature_2_body = '<p>Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht nutzt. Gleichzeitig verbraucht er im Hintergrund keine Ressourcen und macht dein Browsen schneller.</p><p>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“, um die Funktion zu aktivieren. Wenn du zurückkommst, lädt der Tab genau an der Stelle neu, an der du pausiert hast.</p>' %}
   {% set mobile_title = 'Was gibt’s Neues bei Firefox Mobile?' %}
   {% set mobile_subtitle = 'Entdecke die neuesten Updates' %}
   {% set card_1_title = 'Private Tabs bleiben privat' %}
@@ -46,13 +44,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'Quoi de neuf ?' %}
   {% set hero_title = 'Recherchez ce que vous voyez grâce à la recherche visuelles' %}
   {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Faites simplement un clic droit sur n’importe quelle image quand vous naviguez dans Firefox (avec Google en tant que moteur de recherche par défaut) pour essayer Google Lens.</p>" %}
-  {% set feature_1_eyebrow = '' %}
-  {% set feature_1_title = '' %}
-  {% set feature_1_body = '' %}
-  {% set feature_1_cta = '' %}
+  {% set features_title = 'Smarter. Faster. Yours.' %}
+  {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
   {% set feature_2_eyebrow = '' %}
   {% set feature_2_title = 'Conservez vos onglets. Libérez de la mémoire.' %}
-  {% set feature_2_body = 'Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU. Faites un clic droit sur un ou plusieurs onglets et choisissez Décharger Onglet pour aider Firefox à rester rapide. Revenez et retrouvez votre onglet, où vous l’avez laissé.' %}
+  {% set feature_2_body = '<p>Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.</p><p>Faites un clic droit sur un ou plusieurs onglets et choisissez Décharger Onglet pour aider Firefox à rester rapide.</p>Revenez et retrouvez votre onglet, où vous l’avez laissé.</p>' %}
   {% set mobile_title = 'Quoi de neuf sur Firefox Mobile ?' %}
   {% set mobile_subtitle = 'Découvrez les dernières infos' %}
   {% set card_1_title = 'Des onglets privés qui le restent' %}
@@ -79,13 +75,15 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'What’s New' %}
   {% set hero_title = 'Search what you see with Google Lens' %}
   {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Just right-click any image as you browse in Firefox (with Google set as your default search engine) to try Google Lens.</p>" %}
+  {% set features_title = 'Smarter. Faster. Yours.' %}
+  {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
   {% set feature_1_eyebrow = 'Shake to Summarize' %}
   {% set feature_1_title = 'Shake it up. Skip the scroll.' %}
   {% set feature_1_body = 'Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.' %}
   {% set feature_1_cta = 'Get the app' %}
   {% set feature_2_eyebrow = 'Unload Tabs' %}
   {% set feature_2_title = 'Keep your tabs. Free up memory.' %}
-  {% set feature_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU. Right-click a tab or multiple tabs and select Unload Tab to help Firefox run smoothly. When you come back, your tab will reload just where you left off.' %}
+  {% set feature_2_body = '<p>Unloading a tab keeps it visible while freeing up memory and CPU.</p><p>Right-click a tab or multiple tabs and select Unload Tab to help Firefox run smoothly.</p><p>When you come back, your tab will reload just where you left off.</p>' %}
   {% set mobile_title = 'What’s New on Firefox Mobile?' %}
   {% set mobile_subtitle = 'Discover the latest updates' %}
   {% set card_1_title = 'Private tabs that stay private' %}
@@ -116,7 +114,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <section class="wnp-section wnp-section-intro">
       <div class="wnp-container">
         <div class="wnp-intro-layout">
-          <!-- TODO: make larger text proportion of layout -->
+          <!-- TODO: make larger text proportion of layout and fix video sizing/alignment -->
           <div class="wnp-intro-content">
             <p class="wnp-eyebrow">{{ hero_eyebrow }} | Firefox {{ major_version }}</p>
             <h1 class="wnp-title">{{ hero_title }}</h1>
@@ -149,6 +147,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <!-- Section 2: Headlines / Sub Features -->
     <section class="wnp-section">
       <div class="wnp-container">
+
+        <h2 id="features-heading" class="wnp-subtitle text-center">{{ features_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ features_subtitle }}</p>
+
+        <!-- TODO: add image -->
+        {% if LANG.startswith('en-') %}
         <div class="wnp-feature">
           <div class="wnp-feature-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
@@ -162,18 +166,19 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">{{ feature_1_eyebrow }}</p>
-            <h3 class="wnp-subtitle">{{ feature_1_title }}</h3>
-            <p class="wnp-body">{{ feature_1_body }}</p>
+            <p class="wnp-feature-eyebrow">Shake to Summarize</p>
+            <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
+            <p class="wnp-body">Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="#TODO{{ params }}" data-cta-text="Learn more - ">{{ feature_1_cta }}
+              <a class="wnp-button wnp-button-outline" href="#qr-code" data-cta-text="Get the app">Get the app
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
           </div>
         </div>
+        {% endif %}
 
-        <div class="wnp-feature wnp-feature--reverse">
+        <div class="wnp-feature {% if LANG.startswith('en-') %}wnp-feature--reverse{% endif %}">
           <div class="wnp-feature-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
               {{resp_img(
@@ -186,9 +191,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
+            <!-- TODO: eyebrow translation -->
             <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
-            <p class="wnp-body">{{ feature_2_body }}</p>
+            <p class="wnp-body">{{ feature_2_body | safe }}</p>
             <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox{{ params }}" data-cta-text="Learn more - ai-enhanced tab groups">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
@@ -258,7 +264,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     </section>
 
     <!-- QR Code Banner -->
-    <section class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
       <div class="wnp-container">
         <div class="wnp-qr">
           <div class="wnp-qr-layout">
