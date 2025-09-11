@@ -129,6 +129,16 @@ nav:
     - 10. Move CI to Github Actions for Unit and Integration tests: architecture/decisions/0010-move-ci-cd-to-github-actions.md
     - 11. Use StatsD for metrics collection: architecture/decisions/0011-use-statsd-for-metrics-collection.md
     - 12. Use Wagtail CMS: architecture/decisions/0012-wagtail-for-cms.md
+  - Code Review Checklists:
+    - General: checklists/general.md
+    - HTML: checklists/html.md
+    - CSS: checklists/css.md
+    - JS: checklists/js.md
+    - Media: checklists/media.md
+    - Analytics: checklists/analytics.md
+    - Experiments: checklists/experiments.md
+    - Localization: checklists/l10n.md
+    - Tests: checklists/tests.md
   - Contentful (deprecated): contentful.md
   - External Content Cards (deprecated): content-cards.md
 
