@@ -4,6 +4,12 @@
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 
+.wnp-section-intro {
+    ol {
+        text-align: start;
+    }
+}
+
 .wnp-section-mobile {
     .wnp-qr {
         padding: 0;
