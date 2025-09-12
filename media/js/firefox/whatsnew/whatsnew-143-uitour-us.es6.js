@@ -6,20 +6,22 @@
 
 function init() {
     Mozilla.UITour.ping(() => {
-        // show main CTA
+        // show new tab CTA
         document.body.classList.add('wnp-uitour');
 
-        // main CTA should open Protections Dashboard
-        const button = document.querySelector('.wnp143-uitour-cta');
+        // new tab CTA should open new tab
+        const newtabCta = document.querySelector('.wnp143-uitour-newtab');
+        // sidebar CTA should open sidebar
+        const sidebarCta = document.querySelector('.wnp143-uitour-sidebar');
 
-        button.addEventListener(
+        if (typeof window.dataLayer === 'undefined') {
+            window.dataLayer = [];
+        }
+
+        newtabCta.addEventListener(
             'click',
             (e) => {
                 e.preventDefault();
-
-                if (typeof window.dataLayer === 'undefined') {
-                    window.dataLayer = [];
-                }
 
                 window.dataLayer.push({
                     event: 'widget_action',
@@ -29,6 +31,23 @@ function init() {
                 });
 
                 Mozilla.UITour.showNewTab();
+            },
+            false
+        );
+
+        sidebarCta.addEventListener(
+            'click',
+            (e) => {
+                e.preventDefault();
+
+                window.dataLayer.push({
+                    event: 'widget_action',
+                    type: 'sidebar',
+                    action: 'open',
+                    label: 'Try the sidebar'
+                });
+
+                Mozilla.UITour.openPreferences('browser-layout');
             },
             false
         );
