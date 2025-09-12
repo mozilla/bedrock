@@ -1,0 +1,76 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+.wnp-section-intro {
+    ol {
+        text-align: start;
+    }
+}
+
+.wnp-section-mobile {
+    .wnp-qr {
+        padding: 0;
+
+        @media #{$mq-md} {
+            padding: var(--fds-spacing-lg);
+        }
+
+        @media #{$mq-md} {
+            padding: var(--fds-spacing-lg);
+        }
+
+        @media #{$mq-lg} {
+            padding: 0 var(--fds-spacing-lg);
+        }
+    }
+
+    .wnp-qr-content {
+        padding: var(--fds-spacing-lg);
+    }
+
+    .wnp-qr-media {
+        background: url('/media/img/firefox/whatsnew/whatsnew143-us/qr-background-orange.png') no-repeat center;
+        background-size: cover;
+        padding: var(--fds-spacing-md) var(--fds-spacing-sm) 0;
+
+        @media #{$mq-sm} {
+            padding: var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
+        }
+
+        @media #{$mq-lg} {
+            background-size: contain;
+        }
+    }
+}
+
+.wnp-section-highlights {
+    .wnp-subtitle-content {
+        @media #{$mq-md} {
+            max-width: 60%;
+        }
+    }
+
+    .wnp-card-sticker {
+        margin-bottom: var(--fds-spacing-xl);
+    }
+
+    .wnp-subtitle {
+        margin-bottom: var(--fds-spacing-md);
+    }
+
+    .wnp-body {
+        margin-bottom: var(--fds-spacing-2xl);
+    }
+}
+
+// only include WNP cta if UITour JS runs
+.wnp143-uitour {
+    display: none;
+}
+
+body.wnp-uitour .wnp143-uitour {
+    display: inline-block;
+}
