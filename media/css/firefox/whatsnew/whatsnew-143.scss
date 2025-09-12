@@ -40,23 +40,25 @@
     }
 }
 
-.wnp-section-tools {
-    .wnp-feature {
-        background-color: var(--fds-color-white);
-        border-radius: var(--fds-border-radius-lg);
-        padding: var(--fds-spacing-lg);
+.wnp-section-highlights {
+    .wnp-card-sticker {
+        margin-bottom: var(--fds-spacing-xl);
+    }
 
-        // Dark mode support
-        [data-theme="dark"] & {
-            background-color: var(--fds-color-gray-90);
-        }
+    .wnp-subtitle {
+        margin-bottom: var(--fds-spacing-md);
+    }
+
+    .wnp-body {
+        margin-bottom: var(--fds-spacing-2xl);
     }
 }
 
-.wnp143-uitour-cta {
+// only include WNP cta if UITour JS runs
+.wnp143-uitour {
     display: none;
 }
 
-body.wnp-uitour .wnp143-uitour-cta {
+body.wnp-uitour .wnp143-uitour {
     display: inline-block;
 }

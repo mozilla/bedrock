@@ -94,7 +94,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">New Tab 'Sections'</p>
             <h3 class="wnp-subtitle">Your new tab, your way</h3>
             <p class="wnp-body">Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.</p>
-            <div class="wnp-btn-wrap"><button class="wnp143-uitour-cta wnp-button wnp-button-outline" aria-label="Personalize my new tab">Personalize my new tab
+            <div class="wnp-btn-wrap"><button class="wnp143-uitour wnp143-uitour-newtab wnp-button wnp-button-outline" aria-label="Personalize my new tab">Personalize my new tab
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
             </button>
             </div>
@@ -167,31 +167,48 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-    <!-- Smart Tools -->
-    <section class="wnp-section wnp-section-tools" aria-labelledby="wnp-smart-tools-heading">
+    <!-- Feature Panels -->
+    <section class="wnp-section wnp-section-highlights" aria-labelledby="highlights-heading">
       <div class="wnp-container">
-        <h2 id="wnp-smart-tools-heading" class="wnp-subtitle text-center">Smart tools that help you stay focused</h2>
-        <p class="wnp-body wnp-is-centered">From instant link previews to automatic tab grouping, Firefox gives you built-in tools to help reduce clutter and keep your focus.</p>
-        <div class="wnp-feature wnp-feature--reverse">
-          <div class="wnp-feature-media" aria-hidden="true">
-            <div class="wnp-media-frame wnp-media-frame--settings">
-              <img
-                src="/media/img/firefox/whatsnew/whatsnew143-us/link-preview.png"
-                alt="link preview illustration"
-                srcset="
-                  /media/img/firefox/whatsnew/whatsnew143-us/link-preview@2x.png 2x
-                "
-              />
-            </div>
-          </div>
-          <div class="wnp-feature-content">
-            <h3 class="wnp-subtitle">See what’s behind the link before you click</h3>
-            <p class="wnp-body">Firefox Link Previews shows a snapshot of the page before you open it, helping you decide if it's worth your time. Just long press and hold on any link to preview.</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/firefox-ai/ai-link-previews-firefox/?{{ utm_params}}" aria-label="Learn more about link previews" data-cta-text="Learn more about link previews">Learn more about link previews
-                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+        <h2 id="highlights-heading" class="wnp-subtitle text-center">Smart tools that help you stay focused</h2>
+        <p class="wnp-body wnp-has-subhead-spacing wnp-is-centered">From instant link previews to automatic tab grouping, Firefox gives you built-in tools to help you stay organized and work smarter.</p>
+        <div class="wnp-grid">
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/link-preview.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/link-preview-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <a href="https://connect.mozilla.org/t5/discussions/try-link-previews-in-firefox-142-see-what-s-behind-a-link-before/m-p/103496#M40177/?{{ utm_params }}" data-cta-text="Learn more - Link Previews">See what’s behind the link before you click</a>
+              </h3>
+              <p class="wnp-body">Firefox Link Previews shows a snapshot of the page before you open it, helping you decide if it's worth your time. Just long press and hold on any link to preview.</p>
+              <a class="wnp-button wnp-button-outline" href="https://connect.mozilla.org/t5/discussions/try-link-previews-in-firefox-142-see-what-s-behind-a-link-before/m-p/103496#M40177/?{{ utm_params }}" data-cta-text="Try it on this link">
+                Try it on this link <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
-          </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/tab-group.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/tab-group-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <a href="https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups/?{{ utm_params }}" data-cta-text="Learn more - new tab customization" aria-describedby="desc-tab-group">Your tabs grouped by topic</a>
+              </h3>
+              <p class="wnp-body">A local AI model identifies similar tabs and automatically organizes them into groups. It even suggests tab group names to help you stay organized. All on your device only, to ensure your privacy.</p>
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups/?{{ utm_params }}" aria-label="Learn more about tab group" data-cta-text="Learn more - tab group" id="desc-tab-group">
+                Learn more <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/vertical-tabs.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/vertical-tabs-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <span>Less clutter with vertical tabs</span>
+              </h3>
+              <p class="wnp-body">Firefox’s sidebar lets you move tabs to the side, pin key sites and keep your AI assistant handy.</p>
+              <button class="wnp143-uitour wnp143-uitour-sidebar wnp-button wnp-button-outline" aria-label="Try the sidebar" data-cta-text="Try the sidebar" id="desc-sidebar">
+                Try the sidebar <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
