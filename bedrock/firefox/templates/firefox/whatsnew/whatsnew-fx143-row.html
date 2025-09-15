@@ -15,7 +15,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>So geht’s: <ol><li>Klicke mit der rechten Maustaste auf ein beliebiges Bild in Firefox</li><li>Wähle „Mit Google Lens suchen“ (Google muss als Standardsuchmaschine festgelegt sein)</li><li>Dein Bild wird zu Antworten</li></ol></ol></p>" %}
   {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
   {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
-  {% set feature_2_eyebrow = '' %}
+  {% set feature_2_eyebrow = 'Tab entladen' %}
   {% set feature_2_title = 'Tabs sichern, Speicher zurückholen.' %}
   {% set feature_2_body = '<p>Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht nutzt. Gleichzeitig verbraucht er im Hintergrund keine Ressourcen und macht dein Browsen schneller.</p><p>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“, um die Funktion zu aktivieren. Wenn du zurückkommst, lädt der Tab genau an der Stelle neu, an der du pausiert hast.</p>' %}
   {% set mobile_title = 'Was gibt’s Neues bei Firefox Mobile?' %}
@@ -36,7 +36,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set try_it_now = 'Jetzt ausprobieren' %}
   {% set learn_more = 'Mehr erfahren' %}
   {% set poster_src = 'img/l10n/de/firefox/wnp-143/google-lens-high-res.png' %}
-  {% set release_notes = 'Voir la totalité des notes de version' %}
+  {% set release_notes = 'Alle Versionshinweise anzeigen' %}
   {% set tag_privacy = 'Datenschutz' %}
   {% set tag_language = 'Sprache' %}
   {% set tag_design = 'Design' %}
@@ -44,11 +44,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'Quoi de neuf ?' %}
   {% set hero_title = 'Recherchez ce que vous voyez grâce à la recherche visuelles' %}
   {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Voici comment : <ol><li>Faites un clic droit sur n’importe quelle image dans Firefox</li><li>Sélectionnez « Rechercher avec Google Lens » (Google par défaut est requis)</li><li>Votre image se change en réponses</li></ol></ol></p>" %}
-  {% set features_title = 'Smarter. Faster. Yours.' %}
-  {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
-  {% set feature_2_eyebrow = '' %}
+  {% set features_title = 'Conservez vos onglets et votre rapidité' %}
+  {% set features_subtitle = 'Libérez de la mémoire sans abandonner vos onglets utiles.' %}
+  {% set feature_2_eyebrow = 'Décharger l’onglet' %}
   {% set feature_2_title = 'Conservez vos onglets. Libérez de la mémoire.' %}
-  {% set feature_2_body = '<p>Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.</p><p>Faites un clic droit sur un ou plusieurs onglets et choisissez Décharger Onglet pour aider Firefox à rester rapide.</p>Revenez et retrouvez votre onglet, où vous l’avez laissé.</p>' %}
+  {% set feature_2_body = '<p>Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.</p><p>Faites un clic droit sur un ou plusieurs onglets et choisissez <strong>Décharger l’onglet</strong> pour aider Firefox à rester rapide.</p>Revenez et retrouvez votre onglet, où vous l’avez laissé.</p>' %}
   {% set mobile_title = 'Quoi de neuf sur Firefox Mobile ?' %}
   {% set mobile_subtitle = 'Découvrez les dernières infos' %}
   {% set card_1_title = 'Des onglets privés qui le restent' %}
@@ -83,7 +83,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set feature_1_cta = 'Get the app' %}
   {% set feature_2_eyebrow = 'Unload Tabs' %}
   {% set feature_2_title = 'Keep your tabs. Free up memory.' %}
-  {% set feature_2_body = '<p>Unloading a tab keeps it visible while freeing up memory and CPU.</p><p>Right-click a tab or multiple tabs and select Unload Tab to help Firefox run smoothly.</p><p>When you come back, your tab will reload just where you left off.</p>' %}
+  {% set feature_2_body = '<p>Unloading a tab keeps it visible while freeing up memory and CPU.</p><p>Right-click a tab or multiple tabs and select <strong>Unload Tab</strong> to help Firefox run smoothly.</p><p>When you come back, your tab will reload just where you left off.</p>' %}
   {% set mobile_title = 'What’s New on Firefox Mobile?' %}
   {% set mobile_subtitle = 'Discover the latest updates' %}
   {% set card_1_title = 'Private tabs that stay private' %}
@@ -189,7 +189,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <!-- TODO: eyebrow translation -->
             <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
             <p class="wnp-body">{{ feature_2_body | safe }}</p>
@@ -206,26 +205,28 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-    <!-- Subscribe Banner -->
-    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+    <!-- QR Code Banner -->
+    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
       <div class="wnp-container">
-        <h2 id="subscribe-heading" class="wnp-subtitle text-center">{{ newsletter_title }}</h2>
-        <p class="wnp-body wnp-is-centered">{{ newsletter_body }}</p>
-        {{ email_newsletter_form(
-        template="firefox/whatsnew/includes/newsletter_form.html",
-        include_country=true,
-        include_language=true,
-        footer=false,
-        include_title=false
-        ) }}
+        <div class="wnp-qr">
+          <div class="wnp-qr-layout">
+            <div class="wnp-qr-media" aria-hidden="true">
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}", 12) }}</div>
+            </div>
+            <div class="wnp-qr-content">
+              <div class="wnp-qr-content-inner">
+                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
+                <p class="wnp-body">{{ qr_body }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- TODO: update subscribe copy, thank you, error -->
     </section>
 
      <!-- Section 4: Mobile Features -->
     <section class="wnp-section wnp-section-mobile" aria-labelledby="wnp-mobile-heading">
       <div class="wnp-container">
-        <!-- TODO: translate mobile heading/subheading -->
         <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">{{ mobile_title }}</h2>
         <p class="wnp-body wnp-is-centered">{{ mobile_subtitle }}</p>
         <div class="wnp-grid">
@@ -261,23 +262,20 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-    <!-- QR Code Banner -->
-    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+    <!-- Subscribe Banner -->
+    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
       <div class="wnp-container">
-        <div class="wnp-qr">
-          <div class="wnp-qr-layout">
-            <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}", 12) }}</div>
-            </div>
-            <div class="wnp-qr-content">
-              <div class="wnp-qr-content-inner">
-                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
-                <p class="wnp-body">{{ qr_body }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">{{ newsletter_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ newsletter_body }}</p>
+        {{ email_newsletter_form(
+        template="firefox/whatsnew/includes/newsletter_form.html",
+        include_country=true,
+        include_language=true,
+        footer=false,
+        include_title=false
+        ) }}
       </div>
+      <!-- TODO: update subscribe copy, thank you, error -->
     </section>
 </div>
 {% endblock %}
