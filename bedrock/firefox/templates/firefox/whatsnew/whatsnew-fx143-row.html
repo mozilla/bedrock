@@ -80,8 +80,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_title = 'Search what you see with visual search' %}
   {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Here’s how: <ol><li>Right-click any image in Firefox</li><li>Choose “Search with Google Lens” (requires Google as your default)</li><li>Your image turns into answers</li></ol></ol></p>" %}
   {% set hero_link = 'https://www.firefox.com/favicon.png' %}
-  {% set features_title = 'Smarter. Faster. Yours.' %}
-  {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
+  {% set features_title = 'Stay fast, keep your tabs' %}
+  {% set features_subtitle = 'Free up memory without giving up the tabs you need.' %}
   {% set feature_1_eyebrow = 'Shake to Summarize' %}
   {% set feature_1_title = 'Shake it up. Skip the scroll.' %}
   {% set feature_1_body = 'Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.' %}
@@ -159,33 +159,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <h2 id="features-heading" class="wnp-subtitle text-center">{{ features_title }}</h2>
         <p class="wnp-body wnp-is-centered">{{ features_subtitle }}</p>
 
-        {% if LANG.startswith('en-') %}
         <div class="wnp-feature">
-          <div class="wnp-feature-media" aria-hidden="true">
-            <div class="wnp-media-frame wnp-media-frame--settings">
-              {{resp_img(
-                url="img/firefox/wnp-143/shake-to-summarize.png",
-                srcset={
-                    "img/firefox/wnp-143/shake-to-summarize-high-res.png": "2x",
-                },
-                optional_attributes={"l10n": True, "loading": "lazy"},
-            )}}
-            </div>
-          </div>
-          <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">Shake to Summarize</p>
-            <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
-            <p class="wnp-body">Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.</p>
-            <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="#qr-code" data-cta-text="Get the app">Get the app
-                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-
-        <div class="wnp-feature {% if LANG.startswith('en-') %}wnp-feature--reverse{% endif %}">
           <div class="wnp-feature-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
               {{resp_img(
