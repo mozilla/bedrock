@@ -753,12 +753,6 @@ body {
 
     .wnp-section-mobile .wnp-mobile { padding: var(--fds-spacing-3xl); }
 
-    .wnp-section-mobile .wnp-qr { padding: var(--fds-spacing-lg); }
-
-    .wnp-section-mobile .wnp-qr-media {
-        padding:  var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
-    }
-
     .wnp-footer-inner { padding: 0 var(--fds-spacing-lg); }
 
     .wnp-footer-top, .wnp-footer-bottom {
@@ -1320,12 +1314,6 @@ body {
 
     @media (min-width: 1024px) {
         background-size: contain;
-    }
-}
-
-@media (max-width: 767px) {
-    .wnp-qr-media {
-        background-size: cover;
     }
 }
 
