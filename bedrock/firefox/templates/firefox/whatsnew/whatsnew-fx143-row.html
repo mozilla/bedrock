@@ -12,7 +12,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% if LANG == 'de' %}
   {% set hero_eyebrow = 'Was gibt’s Neues?' %}
   {% set hero_title = 'Suche, was du siehst mit visueller Suche' %}
-  {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>Klicke einfach mit der rechten Maustaste auf ein beliebiges Bild, während du in Firefox browst (mit Google als Standardsuchmaschine), und probiere Google Lens aus.</p>" %}
+  {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>So geht’s: <ol><li>Klicke mit der rechten Maustaste auf ein beliebiges Bild in Firefox</li><li>Wähle „Mit Google Lens suchen“ (Google muss als Standardsuchmaschine festgelegt sein)</li><li>Dein Bild wird zu Antworten</li></ol></ol></p>" %}
   {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
   {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
   {% set feature_2_eyebrow = '' %}
@@ -33,6 +33,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_title = 'Mach das Beste aus Firefox' %}
   {% set newsletter_body = 'Melde dich für monatliche Updates von Firefox und den neuesten Internet-Trends an und gestalte dein Online-Leben.' %}
   {% set newsletter_subscribe = 'Jetzt abonnieren' %}
+  {% set try_it_now = 'Jetzt ausprobieren' %}
   {% set learn_more = 'Mehr erfahren' %}
   {% set poster_src = 'img/l10n/de/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
@@ -42,7 +43,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% elif LANG == 'fr' %}
   {% set hero_eyebrow = 'Quoi de neuf ?' %}
   {% set hero_title = 'Recherchez ce que vous voyez grâce à la recherche visuelles' %}
-  {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Faites simplement un clic droit sur n’importe quelle image quand vous naviguez dans Firefox (avec Google en tant que moteur de recherche par défaut) pour essayer Google Lens.</p>" %}
+  {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Voici comment : <ol><li>Faites un clic droit sur n’importe quelle image dans Firefox</li><li>Sélectionnez « Rechercher avec Google Lens » (Google par défaut est requis)</li><li>Votre image se change en réponses</li></ol></ol></p>" %}
   {% set features_title = 'Smarter. Faster. Yours.' %}
   {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
   {% set feature_2_eyebrow = '' %}
@@ -63,6 +64,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_title = 'Révélez tout le potentiel de Firefox' %}
   {% set newsletter_body = 'Abonnez-vous et retrouvez les dernières actualités et astuces pour améliorer votre expérience internet.' %}
   {% set newsletter_subscribe = 'Je m’inscris' %}
+  {% set try_it_now = 'Essayer maintenant' %}
   {% set learn_more = 'En savoir plus ' %}
   {% set poster_src = 'img/l10n/fr/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
@@ -71,8 +73,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set tag_design = 'Design' %}
 {% else %}
   {% set hero_eyebrow = 'What’s New' %}
-  {% set hero_title = 'Search what you see with Google Lens' %}
-  {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Just right-click any image as you browse in Firefox (with Google set as your default search engine) to try Google Lens.</p>" %}
+  {% set hero_title = 'Search what you see with Visual Search' %}
+  {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Here’s how: <ol><li>Right-click any image in Firefox</li><li>Choose “Search with Google Lens” (requires Google as your default)</li><li>Your image turns into answers</li></ol></ol></p>" %}
   {% set features_title = 'Smarter. Faster. Yours.' %}
   {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
   {% set feature_1_eyebrow = 'Shake to Summarize' %}
@@ -97,6 +99,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_title = 'Keep up with all things Firefox' %}
   {% set newsletter_body = 'Get monthly tips, guides and news to help you make the most out of Firefox.' %}
   {% set newsletter_subscribe = 'Sign up to Firefox News' %}
+  {% set try_it_now = 'Try it now' %}
   {% set learn_more = 'Learn more' %}
   {% set poster_src = 'img/l10n/en-US/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'See Full Release Notes' %}
@@ -111,14 +114,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <section class="wnp-section wnp-section-intro">
       <div class="wnp-container">
         <div class="wnp-intro-layout">
-          <!-- TODO: make larger text proportion of layout and fix video sizing/alignment -->
           <div class="wnp-intro-content">
             <p class="wnp-eyebrow">{{ hero_eyebrow }} | Firefox {{ major_version }}</p>
             <h1 class="wnp-title">{{ hero_title }}</h1>
             {{ hero_body | safe }}
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-secondary" href="#TODO{{ params }}" data-cta-text="Learn more - google lens">
-                {{ learn_more }}
+              <a class="wnp-button wnp-button-secondary" href="https://en.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg{{ params }}" data-cta-text="Try it now - google lens">
+                {{ try_it_now }}
                 <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
               </a>
             </div>
