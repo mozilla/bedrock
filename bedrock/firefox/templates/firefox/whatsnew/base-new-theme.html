@@ -36,7 +36,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <meta name="description" content="{{ ftl('whatsnew-page-description') }}">
 
     {% block site_css %}
-    {{ css_bundle('firefox_whatsnew_142') }}
+      {{ css_bundle('firefox_whatsnew_new_theme') }}
     {% endblock %}
 
     {# The Firefox Design System fonts files (Metropolis, Inter) come from Protocol, but we only use the font files, not Protocol CSS #}
@@ -154,8 +154,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     {% block site_js %}
     {{ js_bundle('lib') }}
     {{ js_bundle('data') }}
-    {{ js_bundle('firefox_whatsnew_142') }}
+    {{ js_bundle('firefox_whatsnew_new_theme') }}
     {{ js_bundle('newsletter') }}
+    {% endblock %}
+
+    {% block js %}
     {% endblock %}
   </body>
 

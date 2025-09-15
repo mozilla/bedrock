@@ -1257,7 +1257,13 @@
       "files": [
         "css/firefox/whatsnew/whatsnew-142.scss"
       ],
-      "name": "firefox_whatsnew_142"
+      "name": "firefox_whatsnew_new_theme"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-143.scss"
+      ],
+      "name": "firefox_whatsnew_143"
     }
   ],
   "js": [
@@ -1648,13 +1654,19 @@
       "files": [
         "js/firefox/whatsnew/whatsnew-142-base.es6.js"
       ],
-      "name": "firefox_whatsnew_142"
+      "name": "firefox_whatsnew_new_theme"
     },
     {
       "files": [
         "js/firefox/whatsnew/whatsnew-142-uitour-de-fr.es6.js"
       ],
       "name": "firefox_whatsnew_142_de_fr"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-143-uitour-us.es6.js"
+      ],
+      "name": "firefox_whatsnew_143_us"
     },
     {
       "files": [
