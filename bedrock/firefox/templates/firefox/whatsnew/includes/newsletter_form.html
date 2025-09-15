@@ -34,7 +34,7 @@
         <div class="wnp-form-field">
           <label for="{{ form.country.id_for_label }}" class="visually-hidden">{{ form.country.label }}</label>
           <select class="wnp-custom-select" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}">
-            <option value="" disabled selected>Select Country or Region</option>
+            <option value="" disabled selected>{{ ftl('newsletter-form-please-select-country') }}</option>
             {% for choice in form.country.field.choices %}
             {% if choice.0 %}
             <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -50,10 +50,15 @@
       {% if include_language %}
       <div class="wnp-form-field">
         <label for="{{ form.lang.id_for_label }}" class="visually-hidden">{{ form.lang.label }}</label>
+        {% if LANG.startswith('en-') %}
+          {% set lang_default = 'en' %}
+        {% else %}
+          {% set lang_default = LANG %}
+        {% endif %}
         <select class="wnp-custom-select" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}">
           {% for choice in form.lang.field.choices %}
             {% if choice.0 %}
-              <option value="{{ choice.0 }}" {% if choice.0=='en' %}selected{% endif %}>{{ choice.1 }}</option>
+              <option value="{{ choice.0 }}" {% if choice.0 == lang_default %}selected{% endif %}>{{ choice.1 }}</option>
             {% endif %}
           {% endfor %}
         </select>
@@ -63,14 +68,22 @@
       </div>
       {% endif %}
 
+      {% if LANG == 'de' %}
+        {% set legal_links = '<a href="/about/legal/terms/firefox/">Nutzungsbedingungen</a> und <a href="/privacy/websites/">Datenschutzrichtlinie</a> von Firefox.' %}
+      {% elif LANG == 'fr' %}
+        {% set legal_links = '<a href="/about/legal/terms/firefox/">Conditions d’utilisation</a> de Firefox et <a href="/privacy/websites/">Politique de confidentialité</a>.' %}
+      {% else %}
+        {% set legal_links = 'Firefox <a href="/about/legal/terms/firefox/">Terms of Use</a> &amp; <a href="/privacy/websites/">Privacy Policy</a>.' %}
+      {% endif %}
       <div class="wnp-subscribe-consent">
         <label for="wnp-privacy" class="wnp-body wnp-checkbox-label">
           <input type="checkbox" id="wnp-privacy" name="privacy" required aria-required="true">
-          <span class="wnp-checkbox-text">Firefox <a href="https://www.mozilla.org/en-US/about/legal/terms/firefox/">Terms of Use</a> &amp; <a href="/privacy/websites/">Privacy Policy</a>. We will only send you Firefox-related information. You can unsubscribe at any time.</span>
+          <span class="wnp-checkbox-text">{{ legal_links | safe }} {{ ftl('newsletter-form-we-will-only-send-firefox-v2') }}</span>
         </label>
       </div>
     </div>
-    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>Sign Up</button>
+    {% set submit_label = 'Sign Up' if LANG.startswith('en-') else ftl('newsletter-form-sign-me-up') %}
+    <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>{{ submit_label }}</button>
     <div id="newsletter-details" style="display:block;"></div>
     <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
       <ul class="wnp-form-error-list mzp-u-list-styled">
