@@ -618,7 +618,8 @@ body {
 .wnp-media-frame {
     overflow: hidden;
 
-    img {
+    img,
+    video {
         display: block;
         width: 100%;
         height: auto;
