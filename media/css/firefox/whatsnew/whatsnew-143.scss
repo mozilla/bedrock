@@ -14,16 +14,12 @@
     .wnp-qr {
         padding: 0;
 
-        @media #{$mq-md} {
-            padding: var(--fds-spacing-lg);
-        }
-
-        @media #{$mq-md} {
+        @media #{$mq-sm} {
             padding: var(--fds-spacing-lg);
         }
 
         @media #{$mq-lg} {
-            padding: 0 var(--fds-spacing-lg);
+            padding: var(--fds-spacing-2xl);
         }
     }
 
