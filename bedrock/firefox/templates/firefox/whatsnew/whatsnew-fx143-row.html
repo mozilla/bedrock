@@ -7,7 +7,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# We use a new base template introduced with WNP142 #}
 {% extends "firefox/whatsnew/base-new-theme.html" %}
 
-{% set params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp143' %}
+{% set params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp' ~ major_version %}
 
 {% if LANG == 'de' %}
   {% set hero_eyebrow = 'Was gibt’s Neues?' %}
@@ -258,7 +258,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-qr">
           <div class="wnp-qr-layout">
             <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143", 12) }}</div>
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
             </div>
             <div class="wnp-qr-content">
               <div class="wnp-qr-content-inner">
