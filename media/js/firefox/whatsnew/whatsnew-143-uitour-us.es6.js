@@ -11,8 +11,6 @@ function init() {
 
         // new tab CTA should open new tab
         const newtabCta = document.querySelector('.wnp143-uitour-newtab');
-        // sidebar CTA should open sidebar
-        const sidebarCta = document.querySelector('.wnp143-uitour-sidebar');
 
         if (typeof window.dataLayer === 'undefined') {
             window.dataLayer = [];
@@ -31,23 +29,6 @@ function init() {
                 });
 
                 Mozilla.UITour.showNewTab();
-            },
-            false
-        );
-
-        sidebarCta.addEventListener(
-            'click',
-            (e) => {
-                e.preventDefault();
-
-                window.dataLayer.push({
-                    event: 'widget_action',
-                    type: 'sidebar',
-                    action: 'open',
-                    label: 'Try the sidebar'
-                });
-
-                Mozilla.UITour.openPreferences('browser-layout');
             },
             false
         );
