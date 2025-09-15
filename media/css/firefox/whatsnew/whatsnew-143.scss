@@ -8,44 +8,12 @@
     ol {
         text-align: start;
     }
-
-    #wnp-video {
-        display: block;
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
-    }
 }
 
 .wnp-section-mobile {
-    .wnp-qr {
-        padding: 0;
-
-        @media #{$mq-sm} {
-            padding: var(--fds-spacing-lg);
-        }
-
-        @media #{$mq-lg} {
-            padding: var(--fds-spacing-2xl);
-        }
-    }
-
-    .wnp-qr-content {
-        padding: var(--fds-spacing-lg);
-    }
-
     .wnp-qr-media {
-        background: url('/media/img/firefox/whatsnew/whatsnew143-us/qr-background-orange.png') no-repeat center;
+        background: url('/media/img/firefox/whatsnew/whatsnew143-us/qr-background-orange.png') no-repeat top;
         background-size: cover;
-        padding: var(--fds-spacing-md) var(--fds-spacing-sm) 0;
-
-        @media #{$mq-sm} {
-            padding: var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
-        }
-
-        @media #{$mq-lg} {
-            background-size: contain;
-        }
     }
 }
 
