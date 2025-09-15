@@ -671,6 +671,10 @@ body {
     &.wnp-is-centered {
         margin-inline: auto;
     }
+
+    &:has(ul, ol) {
+        text-align: start;
+    }
 }
 
 .wnp-section-highlights {

@@ -123,7 +123,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="wnp-intro-content">
             <p class="wnp-eyebrow">{{ hero_eyebrow }} | Firefox {{ major_version }}</p>
             <h1 class="wnp-title">{{ hero_title }}</h1>
-            {{ hero_body | safe }}
+            <div class="wnp-body">
+              {{ hero_body | safe }}
+            </div>
             <div class="wnp-btn-wrap">
               <!-- NOTE: cannot use params on the link as it links to an svg file -->
               <a class="wnp-button wnp-button-secondary" href="{{ hero_link }}" data-cta-text="Try it now - google lens">
