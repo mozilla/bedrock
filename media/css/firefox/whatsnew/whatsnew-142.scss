@@ -1132,6 +1132,10 @@ body {
 .wnp-link {
     color: light-dark(var(--fds-color-charcoal), var(--fds-color-white));
     text-decoration: underline;
+
+    &[href$="releasenotes/"] {
+        font-weight: bold;
+    }
 }
 
 .wnp-tag {
