@@ -50,10 +50,15 @@
       {% if include_language %}
       <div class="wnp-form-field">
         <label for="{{ form.lang.id_for_label }}" class="visually-hidden">{{ form.lang.label }}</label>
+        {% if LANG.startswith('en-') %}
+          {% set lang_default = 'en' %}
+        {% else %}
+          {% set lang_default = LANG %}
+        {% endif %}
         <select class="wnp-custom-select" name="{{ form.lang.name }}" id="{{ form.lang.id_for_label }}">
           {% for choice in form.lang.field.choices %}
             {% if choice.0 %}
-              <option value="{{ choice.0 }}" {% if choice.0=='en' %}selected{% endif %}>{{ choice.1 }}</option>
+              <option value="{{ choice.0 }}" {% if choice.0 == lang_default %}selected{% endif %}>{{ choice.1 }}</option>
             {% endif %}
           {% endfor %}
         </select>

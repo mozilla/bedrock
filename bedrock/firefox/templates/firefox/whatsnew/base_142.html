@@ -107,7 +107,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="wnp-footer-top">
             <p class="wnp-footer-copy">
               {% set moco_link = 'href="%s" class="wnp-footer-link" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-              {% set mofo_link = 'href="https://foundation.mozilla.org/{{ params }}" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
+              {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp%s" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe|format(version) %}
               {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
               {{ footer_portions_of_this_content | safe }}
             </p>
@@ -125,7 +125,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                   <a class="wnp-footer-link" href="/privacy/websites/">{{ ftl('footer-refresh-websites-privacy-notice') }}</a>
                 </li>
                 <li>
-                  <a class="wnp-footer-link" href="/about/legal/terms/">{{ ftl('footer-refresh-websites-legal') }}</a>
+                  <a class="wnp-footer-link" href="/about/legal/terms/mozilla">{{ ftl('footer-refresh-websites-legal') }}</a>
                 </li>
                 <li>
                   <a class="wnp-footer-link" href="/privacy/websites/cookie-settings/">{{ ftl('footer-refresh-websites-cookies') }}</a>

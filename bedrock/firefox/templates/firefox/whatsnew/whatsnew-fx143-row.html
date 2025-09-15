@@ -13,11 +13,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'Was gibt’s Neues?' %}
   {% set hero_title = 'Suche, was du siehst mit visueller Suche' %}
   {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>So geht’s: <ol><li>Klicke mit der rechten Maustaste auf ein beliebiges Bild in Firefox</li><li>Wähle „Mit Google Lens suchen“ (Google muss als Standardsuchmaschine festgelegt sein)</li><li>Dein Bild wird zu Antworten</li></ol></ol></p>" %}
+  {% set hero_link = 'https://de.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg' %}
   {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
   {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
   {% set feature_2_eyebrow = 'Tab entladen' %}
   {% set feature_2_title = 'Tabs sichern, Speicher zurückholen.' %}
   {% set feature_2_body = '<p>Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht nutzt. Gleichzeitig verbraucht er im Hintergrund keine Ressourcen und macht dein Browsen schneller.</p><p>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“, um die Funktion zu aktivieren. Wenn du zurückkommst, lädt der Tab genau an der Stelle neu, an der du pausiert hast.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/de/kb/tabs-entladen-systemspeicherverbrauch-reduzieren' %}
   {% set mobile_title = 'Was gibt’s Neues bei Firefox Mobile?' %}
   {% set mobile_subtitle = 'Entdecke die neuesten Updates' %}
   {% set card_1_title = 'Private Tabs bleiben privat' %}
@@ -44,11 +46,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'Quoi de neuf ?' %}
   {% set hero_title = 'Recherchez ce que vous voyez grâce à la recherche visuelles' %}
   {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Voici comment : <ol><li>Faites un clic droit sur n’importe quelle image dans Firefox</li><li>Sélectionnez « Rechercher avec Google Lens » (Google par défaut est requis)</li><li>Votre image se change en réponses</li></ol></ol></p>" %}
+  {% set hero_link = 'https://fr.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg' %}
   {% set features_title = 'Conservez vos onglets et votre rapidité' %}
   {% set features_subtitle = 'Libérez de la mémoire sans abandonner vos onglets utiles.' %}
   {% set feature_2_eyebrow = 'Décharger l’onglet' %}
   {% set feature_2_title = 'Conservez vos onglets. Libérez de la mémoire.' %}
   {% set feature_2_body = '<p>Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.</p><p>Faites un clic droit sur un ou plusieurs onglets et choisissez <strong>Décharger l’onglet</strong> pour aider Firefox à rester rapide.</p>Revenez et retrouvez votre onglet, où vous l’avez laissé.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/fr/kb/decharger-onglets-reduire-utilisation-memoire-firefox' %}
   {% set mobile_title = 'Quoi de neuf sur Firefox Mobile ?' %}
   {% set mobile_subtitle = 'Découvrez les dernières infos' %}
   {% set card_1_title = 'Des onglets privés qui le restent' %}
@@ -75,6 +79,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set hero_eyebrow = 'What’s New' %}
   {% set hero_title = 'Search what you see with Visual Search' %}
   {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Here’s how: <ol><li>Right-click any image in Firefox</li><li>Choose “Search with Google Lens” (requires Google as your default)</li><li>Your image turns into answers</li></ol></ol></p>" %}
+  {% set hero_link = 'https://en.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg' %}
   {% set features_title = 'Smarter. Faster. Yours.' %}
   {% set features_subtitle = 'Page summaries, personalized tabs, and memory-saving performance all built into Firefox' %}
   {% set feature_1_eyebrow = 'Shake to Summarize' %}
@@ -84,6 +89,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set feature_2_eyebrow = 'Unload Tabs' %}
   {% set feature_2_title = 'Keep your tabs. Free up memory.' %}
   {% set feature_2_body = '<p>Unloading a tab keeps it visible while freeing up memory and CPU.</p><p>Right-click a tab or multiple tabs and select <strong>Unload Tab</strong> to help Firefox run smoothly.</p><p>When you come back, your tab will reload just where you left off.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
   {% set mobile_title = 'What’s New on Firefox Mobile?' %}
   {% set mobile_subtitle = 'Discover the latest updates' %}
   {% set card_1_title = 'Private tabs that stay private' %}
@@ -119,7 +125,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h1 class="wnp-title">{{ hero_title }}</h1>
             {{ hero_body | safe }}
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-secondary" href="https://en.wikipedia.org/wiki/Firefox#/media/File:Firefox_logo,_2019.svg" data-cta-text="Try it now - google lens">
+              <!-- NOTE: cannot use params on the link as it links to an svg file -->
+              <a class="wnp-button wnp-button-secondary" href="{{ hero_link }}" data-cta-text="Try it now - google lens">
                 {{ try_it_now }}
                 <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
               </a>
@@ -192,7 +199,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
             <p class="wnp-body">{{ feature_2_body | safe }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox{{ params }}" data-cta-text="Learn more - ai-enhanced tab groups">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}{{ params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -211,7 +218,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-qr">
           <div class="wnp-qr-layout">
             <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}", 12) }}</div>
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143", 12) }}</div>
             </div>
             <div class="wnp-qr-content">
               <div class="wnp-qr-content-inner">
@@ -275,7 +282,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         include_title=false
         ) }}
       </div>
-      <!-- TODO: update subscribe copy, thank you, error -->
     </section>
 </div>
 {% endblock %}
