@@ -1292,19 +1292,35 @@ body {
 .wnp-qr {
     border: 1px solid light-dark(var(--fds-color-charcoal), var(--fds-color-ash));
     border-radius: var(--fds-border-radius-xl);
-    padding: var(--fds-spacing-2xl);
+    padding: 0;
+
+    @media (min-width: 480px) {
+        padding: var(--fds-spacing-lg);
+    }
+
+    @media (min-width: 1024px) {
+        padding: var(--fds-spacing-2xl);
+    }
 }
 
 .wnp-qr-media {
     background: url('/media/img/firefox/whatsnew/whatsnew142/qr-background-simple.png') no-repeat center;
-    background-size: contain;
+    background-size: cover;
     border-radius: var(--fds-border-radius-xl);
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    padding: 0 var(--fds-spacing-2xl);
+    padding: var(--fds-spacing-md) var(--fds-spacing-sm) 0;
     height: 338px;
     width: auto;
+
+    @media (min-width: 480px) {
+        padding: var(--fds-spacing-lg) var(--fds-spacing-lg) 0;
+    }
+
+    @media (min-width: 1024px) {
+        background-size: contain;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1329,6 +1345,7 @@ body {
 
 .wnp-qr-content {
     max-width: 840px;
+    padding: var(--fds-spacing-lg);
 
     .wnp-body {
         text-align: left;
