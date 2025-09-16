@@ -116,42 +116,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% block wnp_content %}
 <div class="wnp-page">
-  <!-- Hero Section -->
-    <section class="wnp-section wnp-section-intro">
-      <div class="wnp-container">
-        <div class="wnp-intro-layout">
-          <div class="wnp-intro-content">
-            <p class="wnp-eyebrow">{{ hero_eyebrow }} | Firefox {{ major_version }}</p>
-            <h1 class="wnp-title">{{ hero_title }}</h1>
-            <div class="wnp-body">
-              {{ hero_body | safe }}
-            </div>
-            <div class="wnp-btn-wrap">
-              <!-- NOTE: cannot use params on the link as it links to an svg file -->
-              <a class="wnp-button wnp-button-secondary" href="{{ hero_link }}" data-cta-text="Try it now - google lens">
-                {{ try_it_now }}
-                <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true">
-              </a>
-            </div>
-          </div>
-          <div class="wnp-intro-media">
-            <div class="wnp-media-frame wnp-media-frame--settings">
-              <video
-                id="wnp-video"
-                preload="none"
-                loop
-                controls
-                width="1200"
-                height="639"
-                poster="{{ static(poster_src) }}">
-                  <source src="https://assets.mozilla.net/video/whatsnew/143/google-lens.webm" type="video/webm">
-              </video>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Section 2: Headlines / Sub Features -->
     <section class="wnp-section">
       <div class="wnp-container">
