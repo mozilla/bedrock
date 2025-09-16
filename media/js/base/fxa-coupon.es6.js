@@ -9,7 +9,7 @@ const FxaCoupon = {};
 const _allowedDomains = [
     'accounts.firefox.com',
     'accounts.stage.mozaws.net',
-    'payments-next.stage.fxa.nonprod.webservices.mozgcp.net',
+    'payments-next.allizom.org',
     'payments.firefox.com'
 ];
 
