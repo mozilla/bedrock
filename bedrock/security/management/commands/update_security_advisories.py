@@ -141,7 +141,7 @@ def add_or_update_cve(data):
             "title": cve_title,
             "impact": advisory["impact"] or "",
             "reporter": advisory["reporter"] or "",
-            "description": advisory["description"] or "",
+            "description": advisory.get("description", "") or "",
             "bugs": advisory["bugs"],
         }
         try:
