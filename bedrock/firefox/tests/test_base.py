@@ -1631,44 +1631,44 @@ class TestWhatsNew(TestCase):
     # begin 143.0 whatsnew tests
 
     def test_fx_143_0_0_en_CA(self, render_mock):
-        """Should use whatsnew-fx143-row template for en-CA locale"""
+        """Should use index template for en-CA locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-CA"
         self.view(req, version="143.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx143-row.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_143_0_0_en_GB(self, render_mock):
-        """Should use whatsnew-fx143-row template for en-GB locale"""
+        """Should use index template for en-GB locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-GB"
         self.view(req, version="143.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx143-row.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_143_0_0_de(self, render_mock):
-        """Should use whatsnew-fx143-row template for de locale"""
+        """Should use index template for de locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "de"
         self.view(req, version="143.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx143-row.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_143_0_0_fr(self, render_mock):
-        """Should use whatsnew-fx143-row template for fr locale"""
+        """Should use index template for fr locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "fr"
         self.view(req, version="143.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx143-row.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_143_0_0_en_US(self, render_mock):
-        """Should use whatsnew-fx143 template for en-US locale"""
+        """Should use index template for en-US locale"""
         req = self.rf.get("/firefox/whatsnew/")
         req.locale = "en-US"
         self.view(req, version="143.0")
         template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx143-us.html"]
+        assert template == ["firefox/whatsnew/index.html"]
 
     def test_fx_143_0_0_es_es(self, render_mock):
         """Should use default WNP template for other locales"""
