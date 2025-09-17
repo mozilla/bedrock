@@ -47,13 +47,15 @@ test.describe(
             await waitForGAToLoad(page);
         });
 
-        test('window.dataLayer updates on download click', async ({ page }) => {
-            const button = page.getByTestId('button-download');
+        test('window.dataLayer updates on link-text click', async ({
+            page
+        }) => {
+            const button = page.getByTestId('button-link');
             await button.click();
 
-            const layer = await getGAElement(page, 'data-link-type');
+            const layer = await getGAElement(page, 'data-link-text');
 
-            expect(layer).toBe('download-test');
+            expect(layer).toBe('link-test');
         });
 
         test('window.dataLayer updates on CTA click', async ({ page }) => {
