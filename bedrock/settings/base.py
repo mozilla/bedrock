@@ -1233,7 +1233,7 @@ VPN_SUBSCRIPTION_URL = config("VPN_SUBSCRIPTION_URL", default="https://accounts.
 # New URL for VPN subscription links
 # ***This URL *MUST* end in a trailing slash!***
 VPN_SUBSCRIPTION_URL_NEXT = config(
-    "VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.stage.fxa.nonprod.webservices.mozgcp.net/" if DEV else "https://payments.firefox.com/"
+    "VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.allizom.org/" if DEV else "https://payments.firefox.com/"
 )
 
 # For testing/QA we support a test 'daily' API endpoint on the staging API only
