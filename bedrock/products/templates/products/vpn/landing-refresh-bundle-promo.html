@@ -30,13 +30,7 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
-{% set vpn_promo_enabled = switch('vpn-bundle-promo') and LANG.startswith('en-') and country_code == "US"  %}
-
-
 {% block experiments %}
-  {% if vpn_promo_enabled %}
-    {{ js_bundle('vpn-bundle-promo-experiment') }}
-  {% endif %}
 {% endblock %}
 
 {% block page_css %}
@@ -44,9 +38,7 @@
   {{ css_bundle('protocol-picto')}}
   {{ css_bundle('mozilla-vpn-common-refresh') }}
   {{ css_bundle('mozilla-vpn-landing-refresh') }}
-  {% if vpn_promo_enabled %}
-    {{ css_bundle('mozilla-vpn-bundle-promo') }}
-  {% endif %}
+  {{ css_bundle('mozilla-vpn-bundle-promo') }}
 {% endblock %}
 
 {% block site_header %}
@@ -152,21 +144,6 @@
           {% include 'products/vpn/includes/mobile-subscribe.html' %}
         {% endwith %}
       </div>
-    {% elif vpn_promo_enabled and entrypoint_variation == 'b' %}
-      <div id="pricing">
-        {% include 'products/vpn/includes/bundle-promo.html' %}
-      </div>
-    {% elif vpn_promo_enabled and entrypoint_variation == 'c' %}
-        {# do nothing for variation C #}
-    {% else %}
-      <div id="pricing">
-        <section class="mzp-l-content mzp-t-content-xl">
-          <header class="c-pricing-main-header">
-            <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
-          </header>
-          {% include 'products/vpn/includes/pricing-refresh.html' %}
-        </section>
-      </div>
     {% endif %}
   {% else %}
     <div id="pricing">
@@ -202,14 +179,10 @@
     </ul>
   </section>
 
-  {% if vpn_promo_enabled and entrypoint_variation == 'c' %}
-    {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-    <div id="pricing" class="bundle-container">
-      {% include 'products/vpn/includes/bundle-promo.html' %}
-    </div>
-  {% else %}
-    {{ vpn_conditional_cta_refresh('secondary') }}
-  {% endif %}
+  {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
+  <div id="pricing" class="bundle-container">
+    {% include 'products/vpn/includes/bundle-promo.html' %}
+  </div>
 
   <section class="c-features mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title t-large">{{ ftl('vpn-landing-features') }}</h2>
@@ -456,7 +429,5 @@
 {% block js %}
   {{ js_bundle('fxa_product_button') }}
   {{ js_bundle('data_begincheckout') }}
-  {% if vpn_promo_enabled and entrypoint_variation != 'a' %}
-    {{ js_bundle('vpn_promo_tabs') }}
-  {% endif %}
+  {{ js_bundle('vpn_promo_tabs') }}
 {% endblock %}
