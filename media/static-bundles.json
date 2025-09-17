@@ -1875,12 +1875,6 @@
     },
     {
       "files": [
-        "js/products/vpn/bundle-promo-experiment.es6.js"
-      ],
-      "name": "vpn-bundle-promo-experiment"
-    },
-    {
-      "files": [
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"
