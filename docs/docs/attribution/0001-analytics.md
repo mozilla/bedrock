@@ -65,18 +65,11 @@ CTA ("Call to Action") click is intented to track the one or two main actions th
 
 The attribute `data-cta-text` must be present to trigger the event. All links to accounts.mozilla.com must also use `data-cta-type`.
 
-| Data Attribute      | Expected Value                                                                                                                                                                                                                     |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `data-cta-text` *  | Text or name of the link (e.g. `Sign Up`, `Start Here`, `Get Relay`, `See your report`, `Read the Manifesto`).                                                                                                                     |
-|                     |                                                                                                                                                                                                                                    |
-|                     | -   This does not need to exactly match the text displayed to the user                                                                                                                                                             |
-|                     | -   Defining this is useful to group the link clicks across locales                                                                                                                                                                |
-|                     | -   -   this attribute is required                                                                                                                                                                                                 |
-| `data-cta-position` | Location of CTA on the page (e.g. `primary`, `secondary`, `banner`, `pricing`)                                                                                                                                                     |
-| `data-cta-type`     | fxa-servicename (e.g. `fxa-sync`, `fxa-monitor`, `fxa-vpn`, `monitor`, `relay`)                                                                                                                                          |
-|                     |                                                                                                                                                                                                                                    |
-|                     | -   This is to group CTAs by their destination                                                                                                                                                                                     |
-|                     | -   Do not use this to identify the element (ie. link, button)                                                                                                                                                                     |
+| Data Attribute | Expected Value |
+| -------------- | -------------- |
+| `data-cta-text` *  | Text or name of the link (e.g. `Sign Up`, `Start Here`, `Get Relay`, `See your report`, `Read the Manifesto`). <br>- This does not need to exactly match the text displayed to the user<br>-   Defining this is useful to group the link clicks across locales <br>* This attribute is required |
+| `data-cta-position` | Location of CTA on the page (e.g. `primary`, `secondary`, `banner`, `pricing`) |
+| `data-cta-type`     | fxa-servicename (e.g. `fxa-sync`, `fxa-monitor`, `fxa-vpn`, `monitor`, `relay`) <br>- This is to group CTAs by their destination  <br>- Do not use this to identify the element (ie. link, button) |
 | `data-cta-name`     | A identifier for this cta that is unique across the entire site. (e.g. `fx20-primarycta`, `wnp118-sfaq-so-special-features`). This is to help with reporting since it is difficult to filter on more than one parameter at a time. |
 
 ``` html
@@ -93,10 +86,10 @@ Link click is intended to track links that are of interest but not the focus of 
 
 The attribute `data-link-text` must be present to trigger the event.
 
-| Data Attribute       | Expected Value                                                                                                               |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Data Attribute | Expected Value |
+| -------------- | -------------- |
 | `data-link-text` *  | Text or name of the link (e.g. `Monitor`, `Features`, `Instagram (mozilla)`, `Mozilla VPN`). - * this attribute is required |
-| `data-link-position` | Location of CTA on the page (e.g. `topnav`, `subnav`, `body`, `features`)                                                    |
+| `data-link-position` | Location of CTA on the page (e.g. `topnav`, `subnav`, `body`, `features`) |
 
 ``` html
 <p>This is text with a <a href="#" data-link-text="simple">simple</a>example.</p>
@@ -293,46 +286,40 @@ TrackProductDownload.sendEvent(customEventObject);
 
 We are using the custom event `widget_action` to track the behaviour of javascript widgets.
 
-**How do you chose between \`\`widget_action\`\` and \`\`cta_click\`\`?**
+**How do you chose between `widget_action` and `cta_click`?**
 
-| widget_action                                               | cta_click                                                |
-| ----------------------------------------------------------- | -------------------------------------------------------- |
-| The action is specific or unique.                           | The action is \"click\".                                 |
-|                                                             |                                                          |
-| *(Only the language switcher changes* *the page language.)* |                                                          |
-| The user does not leave the page.                           | It sends the user somewhere else.                        |
-| It requires Javascript to work.                             | No JS required.                                          |
-| It can perform several actions.                             | It does one action.                                      |
-|                                                             |                                                          |
-| *(A modal can be opened and closed.)*                       |                                                          |
-| There could be several on the page doing different things.  | There could be several on the page doing the same thing. |
-|                                                             |                                                          |
-| *(An accordion list of FAQs)*                               | *(A download button in the header and footer.)*          |
+| widget_action | cta_click |
+| ------------- | --------- |
+| The action is specific or unique.<br>*(example: only the language switcher changes the page language.)* | The action is "click". |
+| The user does not leave the page. | It sends the user somewhere else. |
+| It requires Javascript to work. | No JS required. |
+| It can perform several actions. <br>*(example: modal can be opened and closed.)*  | It does one action.|
+| There could be several on the page doing different things. <br>*(An accordion list of FAQs)*  | There could be several on the page doing the same thing. <br> *(A download button in the header and footer.)*|
 
 Properties for use with ``widget_action`` (not all widgets will use all options):
 
 - type
     - **Required.**
     - The type of widget.
-    - Examples: \"modal\", \"protection report\", \"affiliate notification\", \"help icon\".
-    - *Avoid "button" or "link". If you want to track a link or button use \`cta_click\`.*
+    - Examples: "modal", "protection report", "affiliate notification", "help icon".
+    - *Avoid "button" or "link". If you want to track a link or button use `cta_click`.*
 
 - action
     - **Required.**
     - The thing that happened.
-    - Examples: \"open\", \"accept\", \"timeout\", \"vote up\".
+    - Examples: "open", "accept", "timeout", "vote up".
     - *Avoid "click". If you want to track a click use \`cta_click\`.*
 
 - text
     - How is this action labeled to the user?
-    - Examples: \"Okay\", \"Check your protection report\", \"Get the app\"
+    - Examples: "Okay", "Check your protection report", "Get the app"
 
 - name
     - Give the widget a name.
-    - You probably only need this optional attribute if the ``text`` value is not enough to tell the widgets apart.
+    - You probably only need this optional attribute if the `text` value is not enough to tell the widgets apart.
     - This can help you group actions from the same widget, or make it easier to find the widget in the reports.
     - The dashes are not required but they\'re allowed if you want to match the element class or ID.
-    - Examples: \"dad-joke-banner\", \"focus-qr-code\", \"Join Firefox Modal\"
+    - Examples: "dad-joke-banner", "focus-qr-code", "Join Firefox Modal"
 
 - non_interaction (boolean)
     - True if the action was triggered by something other than a user gesture.
