@@ -90,7 +90,7 @@ def vpn_landing_page(request):
         entrypoint_experiment = None
 
     if request.locale.startswith("en") and country == "US":
-        template_name = "products/vpn/landing-refresh-bundle-promo-experiment.html"
+        template_name = "products/vpn/landing-refresh-bundle-promo.html"
     else:
         template_name = "products/vpn/landing-refresh.html"
 
