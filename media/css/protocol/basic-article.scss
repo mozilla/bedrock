@@ -14,6 +14,17 @@
     }
 }
 
+.mzp-c-sidemenu {
+    ul li,
+    .mzp-c-sidemenu-title {
+        font-family: #{$font-stack-mozilla-text};
+    }
+
+    p {
+        font-family: #{$font-stack-mozilla-text};
+    }
+}
+
 .c-article-meta-updated {
     @include text-display-xs;
 }
@@ -59,7 +70,7 @@ blockquote.t-small {
 
 .side-reference-title {
     @include text-body-lg;
-    font-family: var(--body-font-family);
+    font-family: #{$font-stack-mozilla-text};
 }
 
 .t-love {
