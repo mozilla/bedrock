@@ -7,8 +7,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# We use a new base template introduced with WNP142 #}
 {% extends "firefox/whatsnew/base-new-theme.html" %}
 
-{% set params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp' ~ major_version %}
-
 {% if LANG == 'de' %}
   {% set hero_eyebrow = 'Was gibt’s Neues?' %}
   {% set hero_title = 'Suche, was du siehst mit visueller Suche' %}
@@ -201,7 +199,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
             <p class="wnp-body">{{ feature_2_body | safe }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}{{ params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}?{{ utm_params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
