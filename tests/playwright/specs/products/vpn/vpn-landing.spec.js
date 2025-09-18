@@ -9,15 +9,11 @@
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../scripts/open-page');
 const url = '/en-US/products/vpn/';
-const availableCountries = ['us', 'ca', 'gb', 'de', 'fr'];
+const availableCountries = ['ca', 'gb', 'de', 'fr'];
 const mobileOnlyCountries = ['au', 'in', 'mx', 'ua'];
 const androidOnlyCountries = ['br', 'ma'];
 const unavailableCountries = ['cn'];
 const vpnBundleAvailableCountry = ['us'];
-const experimentVariant =
-    '&entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=c';
-const experimenControltVariant =
-    '&entrypoint_experiment=vpn-landing-bundle-promo&entrypoint_variation=a';
 
 test.describe(
     `${url} page`,
@@ -27,23 +23,9 @@ test.describe(
     () => {
         for (const country of availableCountries) {
             test.describe('VPN available', () => {
-                if (country === 'us') {
-                    test.beforeEach(async ({ page, browserName }) => {
-                        await openPage(
-                            url + `?geo=${country}${experimenControltVariant}`,
-                            page,
-                            browserName
-                        );
-                    });
-                } else {
-                    test.beforeEach(async ({ page, browserName }) => {
-                        await openPage(
-                            url + `?geo=${country}`,
-                            page,
-                            browserName
-                        );
-                    });
-                }
+                test.beforeEach(async ({ page, browserName }) => {
+                    await openPage(url + `?geo=${country}`, page, browserName);
+                });
 
                 test(`Country code: ${country}`, async ({ page }) => {
                     const getVpnHeroButton = page.getByTestId(
@@ -339,8 +321,7 @@ test.describe(
             test.describe('VPN bundle available', () => {
                 test.beforeEach(async ({ page, browserName }) => {
                     await openPage(
-                        url +
-                            `?geo=${vpnBundleAvailableCountry}${experimentVariant}`,
+                        url + `?geo=${vpnBundleAvailableCountry}`,
                         page,
                         browserName
                     );
