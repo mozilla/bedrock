@@ -17,7 +17,7 @@
 .mzp-c-sidemenu {
     ul li,
     .mzp-c-sidemenu-title {
-        font-family: #{$font-stack-mozilla-headline};
+        font-family: #{$font-stack-mozilla-text};
     }
 
     p {
@@ -70,7 +70,7 @@ blockquote.t-small {
 
 .side-reference-title {
     @include text-body-lg;
-    font-family: #{$font-stack-mozilla-headline};
+    font-family: #{$font-stack-mozilla-text};
 }
 
 .t-love {
