@@ -11,7 +11,6 @@ from django_jinja import library
 from markupsafe import Markup
 
 from bedrock.base.urlresolvers import reverse
-from bedrock.base.waffle import switch
 from lib.l10n_utils.fluent import ftl
 
 FTL_FILES = ["products/vpn/shared"]
@@ -36,12 +35,10 @@ def _format_currency(price, currency, currency_locale):
 
 
 def _vpn_get_ga_data(selected_plan):
-    id = selected_plan.get("id")
     analytics = selected_plan.get("analytics")
 
     ga_data = (
         f"{{"
-        f"'id' : '{id}',"
         f"'brand' : '{analytics.get('brand')}',"
         f"'plan' : '{analytics.get('plan')}',"
         f"'period' : '{analytics.get('period')}',"
@@ -155,25 +152,21 @@ def vpn_subscribe_link(
 
     available_plans = _vpn_get_available_plans(country_code, lang, bundle_monitor_relay)
     selected_plan = available_plans.get(plan, VPN_12_MONTH_PLAN)
-    plan_id = selected_plan.get("id")
 
-    if switch("vpn-subplat-next"):
-        product_id = settings.VPN_PRODUCT_ID_NEXT
-        plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
+    product_id = settings.VPN_PRODUCT_ID_NEXT
+    plan_slug = "yearly" if plan == VPN_12_MONTH_PLAN else "monthly"
 
-        # For testing/QA we support a test 'daily' API endpoint on the staging API only
-        # We only want to override the monthly VPN option when in QA mode; annual remains unchanged
-        # https://mozilla-hub.atlassian.net/browse/VPN-6985
-        if plan_slug == "monthly" and settings.VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY:
-            plan_slug = "daily"
+    # For testing/QA we support a test 'daily' API endpoint on the staging API only
+    # We only want to override the monthly VPN option when in QA mode; annual remains unchanged
+    # https://mozilla-hub.atlassian.net/browse/VPN-6985
+    if plan_slug == "monthly" and settings.VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY:
+        plan_slug = "daily"
 
-        if bundle_monitor_relay:
-            product_id = "privacyprotectionplan"
-            plan_slug = "yearly"
+    if bundle_monitor_relay:
+        product_id = "privacyprotectionplan"
+        plan_slug = "yearly"
 
-        product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_id}/{plan_slug}/landing/"
-    else:
-        product_url = f"{settings.VPN_SUBSCRIPTION_URL}subscriptions/products/{product_id}?plan={plan_id}"
+    product_url = f"{settings.VPN_SUBSCRIPTION_URL_NEXT}{product_id}/{plan_slug}/landing/"
 
     if "analytics" in selected_plan:
         if class_name is None:
