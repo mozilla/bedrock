@@ -6,6 +6,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 {% set major_version = version.split('.')[0] %}
 
+{% set utm_params = 'utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp' ~ major_version %}
+
 {% if LANG == 'fr' %}
   {% set footer_portions_of_this_content = "Certaines parties de ce contenu sont ©1998–2025 par les contributeurs individuels de mozilla.org. <br> Ce contenu est disponible sous <a class='wnp-footer-link' rel='license' href='/fr/foundation/licensing/website-content/'>licence Creative Commons</a>." %}
   {% set donate_cta = "Faire un don à la Fondation Mozilla" %}
