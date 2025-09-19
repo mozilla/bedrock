@@ -150,9 +150,9 @@ class HomeView(L10nTemplateView):
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
-        if ftl_file_is_active("mozorg/home-m24") and experience != "legacy":
+        if ftl_file_is_active("mozorg/home-m24") and experience not in ["quantum", "trailhead"]:
             return [self.m24_template_name]
-        elif ftl_file_is_active("mozorg/home-new") and experience != "legacy":
+        elif ftl_file_is_active("mozorg/home-new") and experience != "quantum":
             return [self.template_name]
 
         return [self.old_template_name]
