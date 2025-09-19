@@ -1,0 +1,58 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-error.html" %}
+
+{% block page_title %}{{ ftl('page-gone-title') }}{% endblock %}
+
+{% block page_css %}
+{{ css_bundle('page_not_found') }}
+{% endblock %}
+
+{# 410 pages must not include canonical and hreflang x-default: https://github.com/mozilla/bedrock/issues/5895 #}
+{% block canonical_urls %}{% endblock %}
+
+{% block content %}
+<main class="mzp-l-content message-section">
+  <h1 class="error-title">{{ ftl('page-gone-title') }}</h1>
+  <p>{{ ftl('page-gone-body') }}</p>
+
+  <p class="hide-back" id="go-back">
+    <a class="back-button" data-testid="link-go-back">{{ ftl('gone-page-go-back') }}</a>
+  </p>
+
+  <ul class="content-list">
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/home.svg') }}" width="30" height="30">
+      <span>
+        {{ ftl('gone-page-go-home', home='href="/"') }}
+      </span>
+    </li>
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/mozilla.svg') }}" width="30" height="30">
+      <span>
+        {{ ftl('gone-page-browse-products', products='href="%s"'|safe|format(url('products.landing'))) }}
+      </span>
+    </li>
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/blog.svg') }}" width="30" height="30">
+      <span>
+        {{ ftl('gone-page-search-blog', blog='href="https://blog.mozilla.org/"') }}
+      </span>
+    </li>
+    <li>
+      <img class="list-icon" alt="" src="{{ static('protocol/img/icons/help.svg') }}" width="30" height="30">
+      <span>
+        {{ ftl('gone-page-visit-support', support='href="https://support.mozilla.org/"') }}
+      </span>
+    </li>
+  </ul>
+  </main>
+{% endblock %}
+
+{% block js %}
+{{ js_bundle('page_not_found') }}
+{% endblock %}

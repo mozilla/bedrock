@@ -10,6 +10,7 @@ from time import time
 
 from django.conf import settings
 from django.shortcuts import render
+from django.utils.decorators import decorator_from_middleware
 from django.utils.timezone import now as tz_now
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
@@ -18,6 +19,8 @@ import timeago
 from waffle.models import Switch
 
 from bedrock.base.geo import get_country_from_request
+from bedrock.base.i18n import get_language_from_headers
+from bedrock.base.middleware import BedrockLocaleMiddleware
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.utils import git
 from lib import l10n_utils
@@ -189,6 +192,23 @@ def server_error_view(request, template_name="500.html"):
 def page_not_found_view(request, exception=None, template_name="404.html"):
     """404 error handler that runs context processors."""
     return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)
+
+
+def page_gone_view(request, exception=None, template_name="410.html"):
+    """410 error handler that runs context processors."""
+
+    # In a normal request, this would happen in bedrock.base.middleware.BedrockLangCodeFixupMiddleware
+    # But requests that get here don't go through that middleware
+    lang_code = request.GET.get("lang", None) or get_language_from_headers(request)
+    request.locale = lang_code if lang_code else ""
+
+    locale_middleware = decorator_from_middleware(BedrockLocaleMiddleware)
+
+    @locale_middleware
+    def _view(request):
+        return l10n_utils.render(request, template_name, ftl_files=["410", "500"], status=410, non_locale_url=True)
+
+    return _view(request)
 
 
 def csrf_failure(request, reason="CSRF failure", template_name="403_csrf.html"):
