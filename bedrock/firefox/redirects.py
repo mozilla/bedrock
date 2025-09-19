@@ -83,78 +83,78 @@ releasenotes_redirectpatterns = (
         # issue 14467; 16381
         r"^firefox/125\.0/releasenotes/?$",
         f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/",
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         r"^firefox/38\.0\.3/releasenotes/$",
         f"{settings.FXC_BASE_URL}/firefox/38.0.5/releasenotes/",
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     # Redirects from Bedrock to Springfield in general
     offsite_redirect(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/nightly/notes/feed/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/(?:latest/)?releasenotes/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/android/releasenotes/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/ios/releasenotes/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         android_releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         ios_releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         android_sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         ios_sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/releases/$",
         f"{settings.FXC_BASE_URL}/releases/",  # leave Springfield to sort out the local redirect
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
 )
 
