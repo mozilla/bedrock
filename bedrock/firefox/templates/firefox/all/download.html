@@ -12,7 +12,7 @@
 <h2 {% if not (product and platform and locale) %} class="c-step-name t-step-disabled" aria-disabled="true" {% else %} class="c-step-name" aria-disabled="false" {% endif %}>
   {{ ftl('firefox-all-download') }}
   {% if product and platform and locale %}
-    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/caret-down.svg') }}" width="30" height="30">
   {% else %}
     <img alt="{{ current_step }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-left.svg') }}" width="30" height="30">
   {% endif %}

@@ -2,40 +2,43 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as lib;
+
 /* ------------------------------------------------------------------------------- */
 // hex code colors
 // do not reference these directly, use the $m24-color-* variables as they will adapt for dark mode
 
 // black and white
-$token-color-black: #000;
-$token-color-off-black: #161616;
-$token-color-white: #fff;
-$token-color-off-white: #fafafa;
+$token-color-black: lib.$color-moz-black-strong;
+$token-color-off-black: lib.$color-moz-black;
+$token-color-white: lib.$color-moz-white-strong;
+$token-color-off-white: lib.$color-moz-white;
 
 // grays
-$token-color-light-gray: #f4f4f4; // gray 1
-$token-color-light-mid-gray: #E8E8E8; // gray 2
-$token-color-mid-gray: #B3B3B3; // gray 3
-$token-color-dark-mid-gray: #6D6D6D; // gray 4
-$token-color-dark-gray: #414141; // gray 5
+// names seems to have shifted between when these variables were named and final colours were decided on
+$token-color-light-gray: lib.$color-moz-white;
+$token-color-light-mid-gray: lib.$color-moz-gray-light;
+$token-color-mid-gray: lib.$color-moz-gray; // gray 3
+$token-color-dark-mid-gray: lib.$color-moz-gray-mid; // gray 4
+$token-color-dark-gray: lib.$color-moz-gray-dark; // gray 5
 
 // greens
-$token-color-green: #00D230;
-$token-color-light-green: #D6FFCD;
-$token-color-dark-green: #022611;
-$token-color-mid-green: #28733F;
+$token-color-green: lib.$color-moz-green;
+$token-color-light-green: lib.$color-moz-green-light;
+$token-color-dark-green: lib.$color-moz-green-dark;
+$token-color-mid-green: lib.$color-moz-green-mid;
 
 // oranges
-$token-color-orange: #FF9456;
-$token-color-light-orange: #FAF0E6;
-$token-color-dark-orange: #330505;
-$token-color-red: #FF453F;
+$token-color-orange: lib.$color-moz-orange;
+$token-color-light-orange: lib.$color-moz-orange-light;
+$token-color-dark-orange: lib.$color-moz-orange-dark;
+$token-color-red: lib.$color-moz-orange-mid;
 
 // pinks
-$token-color-pink: #FF97E2;
-$token-color-light-pink: #FFF1F8;
-$token-color-dark-pink: #210340;
-$token-color-purple: #AE49EC;
+$token-color-pink: lib.$color-moz-pink;
+$token-color-light-pink: lib.$color-moz-pink-light;
+$token-color-dark-pink: lib.$color-moz-pink-dark;
+$token-color-purple: lib.$color-moz-pink-mid;
 
 /* ------------------------------------------------------------------------------- */
 // define sass variables to hold CSS variables
