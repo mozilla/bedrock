@@ -158,7 +158,7 @@ The data can be rendered in `mozorg/test_page.html` as follows:
 {% block content %}
     <header>
     <h1>{{ page.heading }}</h1>
-    <div class="w-rich-text">
+    <div class="mzp-u-richtext">
         {{ page.body|richtext }}
     </div>
     </header>
