@@ -79,8 +79,7 @@ a:visited {
         text-decoration: none;
     }
 
-    &:link:hover,
-    &:link:hover:visited {
+    &:link:hover {
         --cta-bg-position: 0%;
         transition: $slow $bezier;
     }
