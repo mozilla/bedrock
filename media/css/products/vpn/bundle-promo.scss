@@ -202,6 +202,19 @@
                         padding: $spacing-md;
                         text-decoration: none;
 
+                        // preload hover icons
+                        &:has(.option-vpn) {
+                            background: url('/media/img/logos/vpn/logo-blue.svg') no-repeat -9999px -9999px;
+                        }
+
+                        &:has(.option-monitor) {
+                            background: url('/media/img/logos/monitor/logo-blue.svg') no-repeat -9999px -9999px;
+                        }
+
+                        &:has(.option-relay) {
+                            background: url('/media/img/logos/relay/logo-blue.svg') no-repeat -9999px -9999px;
+                        }
+
                         &:hover,
                         &:focus,
                         &:active {
