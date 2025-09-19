@@ -19,6 +19,8 @@ updates:
       - dependency-name: '@mozmeao/cookie-helper'
       - dependency-name: '@mozmeao/dnt-helper'
       - dependency-name: '@mozmeao/trafficcop'
+      # Pin sass at 1.91.0 until mozilla/protocol#982
+      - dependency-name: 'sass'
       # Need to be kept in sync with pre-commit-config.yaml.
       - dependency-name: 'eslint'
       - dependency-name: 'eslint-config-prettier'
