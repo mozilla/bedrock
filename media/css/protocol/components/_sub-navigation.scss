@@ -89,7 +89,7 @@
             }
 
             button::before {
-                background: $url-image-arrow-down-form top left no-repeat;
+                background: $url-image-caret-down-form top left no-repeat;
                 @include background-size(24px, 24px);
                 @include bidi(((right, $spacing-xs, left, auto),));
                 @include transition(transform 100ms ease-in-out);

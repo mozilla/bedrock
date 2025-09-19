@@ -7,7 +7,7 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 
 .mzp-c-callout.mzp-t-hero {
-    background: $color-moz-neon-green url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
+    background: $color-moz-green-light url('/media/img/foundation/reimagine-open/bg-header.png') left bottom no-repeat;
     @include background-size(469px, 195px);
 
     .mzp-c-callout-desc {
@@ -74,7 +74,7 @@
     }
 
     .case-study {
-        background: color.adjust($color-moz-warm-red, $alpha: 0.95);
+        background: #f15b6aa0; // this colour matches the image that appears with this section
     }
 
     @media #{$mq-md} {
@@ -84,11 +84,11 @@
 
 // Section III: The Future of Open: 2020 and Beyond
 .section-three {
-    background: color.adjust($color-moz-lemon-yellow, $lightness: 20%) url('/media/img/foundation/reimagine-open/section-three.svg') right -20% top 10% no-repeat;
+    background: color.adjust($color-moz-seed, $lightness: 20%) url('/media/img/foundation/reimagine-open/section-three.svg') right -20% top 10% no-repeat;
     @include background-size(600px, 514px);
 
     .case-study {
-        background: color.adjust($color-moz-lemon-yellow, $alpha: 0.8);
+        background: color.adjust($color-moz-seed, $alpha: 0.8);
     }
 
     @media #{$mq-md} {
