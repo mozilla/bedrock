@@ -28,7 +28,7 @@ env:
 
 jobs:
   build_and_publish_public_images:
-    name: Build public Bedrock images and push to Docker hub
+    name: Build and push public images
     runs-on: ubuntu-latest
     if: github.repository == 'mozilla/bedrock'
     outputs:
@@ -75,7 +75,7 @@ jobs:
         if: github.ref == 'refs/heads/stage'
         run: |
             echo TAG="stage-$(git rev-parse HEAD)" >> $GITHUB_ENV
-            # Updates to the main branch are deployed to stage.
+            # Updates to the stage branch are deployed to stage.
             echo DEPLOYMENT_ENV=stage >> $GITHUB_ENV
             echo DEPLOYMENT_REALM=nonprod >> $GITHUB_ENV
 
@@ -88,20 +88,18 @@ jobs:
           echo DEPLOYMENT_ENV=prod >> $GITHUB_ENV
           echo DEPLOYMENT_REALM=prod >> $GITHUB_ENV
 
-      - id: docker-login
-        name: Docker login
+      - name: Docker login for public images
         uses: docker/login-action@v3
         with:
            username: ${{ secrets.DOCKERHUB_USERNAME }}
            password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - id: build_and_push_docker_hub_images
-        name: Build and push public images to Docker hub
+      - name: Build and push public images to Docker Hub
         run: |
             # FIXME: GitHub provides compose version enabling bake but timing out
             export COMPOSE_BAKE=false
             ./bin/build-release-image.sh --push
-        timeout-minutes: 45
+        timeout-minutes: 90
         env:
             GIT_COMMIT: ${{ env.LONG_SHA }}
 
@@ -116,20 +114,17 @@ jobs:
       id-token: write
 
     steps:
-      - id: gcp_auth
-        uses: google-github-actions/auth@v2
+      - uses: google-github-actions/auth@v2
         with:
           token_format: access_token
           service_account: artifact-writer@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com
           workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
 
-      - id: setup-gcloud
-        uses: google-github-actions/setup-gcloud@v2
+      - uses: google-github-actions/setup-gcloud@v2
         with:
           version: 413.0.0
 
-      - id: upload-assets
-        name: Generate hashes and rsync to gs://
+      - name: Generate hashes and rsync to gs://
         run: |-
             TMP_DIR=static-upload
             TMP_DIR_HASHED=static-upload-hashed
@@ -153,7 +148,7 @@ jobs:
 
 
   push_image_to_gar:
-    name: Push Image to GAR
+    name: Push bedrock image to GAR
     needs: [build_and_publish_public_images, upload_static_assets]
     runs-on: ubuntu-latest
     permissions:
@@ -164,23 +159,20 @@ jobs:
       - uses: docker/setup-buildx-action@v3
 
       - id: gcp_auth
-        name: GCP authentication
         uses: google-github-actions/auth@v2
         with:
             token_format: access_token
             service_account: artifact-writer@${{ env.GCP_PROJECT_ID }}.iam.gserviceaccount.com
             workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
 
-      - id: docker_login
-        uses: docker/login-action@v3
-        name: Docker login
+      - uses: docker/login-action@v3
+        name: Docker login to GAR
         with:
            registry: ${{ env.GAR_LOCATION }}-docker.pkg.dev
            username: oauth2accesstoken
            password: ${{ steps.gcp_auth.outputs.access_token }}
 
-      - id: push-existing-image-to-gar
-        name: Push existing image to GAR
+      - name: Push existing image to GAR
         run: |-
              docker pull mozmeao/bedrock:${{ needs.build_and_publish_public_images.outputs.long_sha }}
              docker tag mozmeao/bedrock:${{ needs.build_and_publish_public_images.outputs.long_sha }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
