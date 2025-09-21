@@ -18,11 +18,11 @@ on:
         default: refs/heads/main
 env:
   APP: bedrock
-  APPLICATION_REPOSITORY: mozilla/bedrock
-  IMAGE: bedrock
   GAR_LOCATION: us
   GCP_PROJECT_ID: moz-fx-bedrock-prod
   GAR_REPOSITORY: bedrock-prod
+  IMAGE: bedrock
+  ORG: mozmeao
   REF_ID: ${{ github.event.inputs.ref || github.ref }}
 
 
@@ -49,42 +49,35 @@ jobs:
             ref: ${{ env.REF_ID }}
 
       - id: long-sha
+        name: Use full SHA for tagging images
         run: |-
           echo "LONG_SHA=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
-      - id: dev_image_tag
-        name: Set Docker dev image tag for updates of the main branch
-        if: github.ref == 'refs/heads/main'
+      - name: On main set dev-nonprod
+        if: github.ref == 'refs/heads/main'  # Updates to the main branch are deployed to dev.
         run: |
-          echo TAG="dev-$(git rev-parse HEAD)" >> $GITHUB_ENV
-          # Updates to the main branch are deployed to dev.
+          echo TAG="dev-$LONG_SHA" >> $GITHUB_ENV
           echo DEPLOYMENT_ENV=dev >> $GITHUB_ENV
           echo DEPLOYMENT_REALM=nonprod >> $GITHUB_ENV
 
-      - id: test_image_tag
-        name: Set Docker test image tag for updates of the run-integration-test branch
-        if: github.ref == 'refs/heads/run-integration-tests'
+      - name: On run-integration-tests set test-nonprod
+        if: github.ref == 'refs/heads/run-integration-tests'  # Updates to the run-integration-tests branch are deployed to test.
         run: |
-          echo TAG="test-$(git rev-parse HEAD)" >> $GITHUB_ENV
-          # Updates to the run-integration-test  branch are deployed to test.
+          echo TAG="test-$LONG_SHA" >> $GITHUB_ENV
           echo DEPLOYMENT_ENV=test >> $GITHUB_ENV
           echo DEPLOYMENT_REALM=nonprod >> $GITHUB_ENV
 
-      - id: stage_image_tag
-        name: Set Docker stage image tag for updates of the stage branch
-        if: github.ref == 'refs/heads/stage'
+      - name: On stage set stage-nonprod
+        if: github.ref == 'refs/heads/stage'  # Updates to the stage branch are deployed to stage.
         run: |
-            echo TAG="stage-$(git rev-parse HEAD)" >> $GITHUB_ENV
-            # Updates to the stage branch are deployed to stage.
+            echo TAG="stage-$LONG_SHA" >> $GITHUB_ENV
             echo DEPLOYMENT_ENV=stage >> $GITHUB_ENV
             echo DEPLOYMENT_REALM=nonprod >> $GITHUB_ENV
 
-      - id: prod_image_tag
-        name: Set Docker image tag to the git tag for tagged builds
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: On tag set prod-prod
+        if: startsWith(github.ref, 'refs/tags/')  # Version tags are deployed to prod.
         run: |
-          echo TAG="prod-$(git rev-parse HEAD)" >> $GITHUB_ENV
-          # Version tags are deployed to prod.
+          echo TAG="prod-$LONG_SHA" >> $GITHUB_ENV
           echo DEPLOYMENT_ENV=prod >> $GITHUB_ENV
           echo DEPLOYMENT_REALM=prod >> $GITHUB_ENV
 
@@ -129,7 +122,7 @@ jobs:
             TMP_DIR=static-upload
             TMP_DIR_HASHED=static-upload-hashed
 
-            docker run -d --name assets-tmp mozmeao/bedrock:${{ needs.build_and_publish_public_images.outputs.long_sha }}
+            docker run -d --name assets-tmp $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }}
 
             mkdir -p ./$TMP_DIR ./$TMP_DIR_HASHED
 
@@ -174,6 +167,6 @@ jobs:
 
       - name: Push existing image to GAR
         run: |-
-             docker pull mozmeao/bedrock:${{ needs.build_and_publish_public_images.outputs.long_sha }}
-             docker tag mozmeao/bedrock:${{ needs.build_and_publish_public_images.outputs.long_sha }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
+             docker pull $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }}
+             docker tag $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
              docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
