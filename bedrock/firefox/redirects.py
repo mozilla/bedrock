@@ -76,6 +76,16 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
     return f"{settings.FXC_BASE_URL}{request.path}"
 
 
+wnp_redirectpatterns = (
+    # Note not an offsite_redirect, so no additional querystring is injected
+    redirect(
+        # issue 16590
+        r"^en-US/firefox/144\.0/whatsnew/?$",
+        f"{settings.FXC_BASE_URL}/en-US/whatsnew/144.0/",
+        permanent=True,
+    ),
+)
+
 releasenotes_redirectpatterns = (
     # Special-case redirects that existed before the Bedrock->Springfield redirects;
     # pulled together here in one place
@@ -798,4 +808,4 @@ bedrock_redirectpatterns = (
     redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
-redirectpatterns = releasenotes_redirectpatterns + bedrock_redirectpatterns + springfield_redirectpatterns
+redirectpatterns = wnp_redirectpatterns + releasenotes_redirectpatterns + bedrock_redirectpatterns + springfield_redirectpatterns
