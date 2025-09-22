@@ -81,8 +81,16 @@ def test_vpn_available_android_sub_only_switch_active(country_code):
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNLandingPage(TestCase):
     def test_vpn_landing_page_template_us(self, render_mock):
-        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="CA")
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="US")
         req.locale = "en-US"
+        view = views.vpn_landing_page
+        view(req)
+        template = render_mock.call_args[0][1]
+        assert template == "products/vpn/landing-refresh-bundle-promo.html"
+
+    def test_vpn_landing_page_template_ca(self, render_mock):
+        req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="CA")
+        req.locale = "en-CA"
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
