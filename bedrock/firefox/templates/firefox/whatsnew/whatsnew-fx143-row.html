@@ -10,10 +10,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp143' %}
 
 {% if LANG == 'de' %}
-  {% set hero_eyebrow = 'Was gibt’s Neues?' %}
-  {% set hero_title = 'Suche, was du siehst mit visueller Suche' %}
-  {% set hero_body = "<p>Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder gehe auf Entdeckungsreise. Alles ganz ohne Tippen.</p><p>So geht’s: <ol><li>Klicke mit der rechten Maustaste auf ein beliebiges Bild in Firefox</li><li>Wähle „Mit Google Lens suchen“ (Google muss als Standardsuchmaschine festgelegt sein)</li><li>Dein Bild wird zu Antworten</li></ol></ol></p>" %}
-  {% set hero_link = 'https://www.firefox.com/favicon.png' %}
   {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
   {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
   {% set feature_2_eyebrow = 'Tab entladen' %}
@@ -37,16 +33,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_subscribe = 'Jetzt abonnieren' %}
   {% set try_it_now = 'Jetzt ausprobieren' %}
   {% set learn_more = 'Mehr erfahren' %}
-  {% set poster_src = 'img/l10n/de/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'Alle Versionshinweise anzeigen' %}
   {% set tag_privacy = 'Datenschutz' %}
   {% set tag_language = 'Sprache' %}
   {% set tag_design = 'Design' %}
 {% elif LANG == 'fr' %}
-  {% set hero_eyebrow = 'Quoi de neuf ?' %}
-  {% set hero_title = 'Recherchez ce que vous voyez grâce à la recherche visuelle' %}
-  {% set hero_body = "<p>Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.</p><p>Voici comment : <ol><li>Faites un clic droit sur n’importe quelle image dans Firefox</li><li>Sélectionnez « Rechercher avec Google Lens » (Google par défaut est requis)</li><li>Votre image se change en réponses</li></ol></ol></p>" %}
-  {% set hero_link = 'https://www.firefox.com/favicon.png' %}
   {% set features_title = 'Conservez vos onglets et votre rapidité' %}
   {% set features_subtitle = 'Libérez de la mémoire sans abandonner vos onglets utiles.' %}
   {% set feature_2_eyebrow = 'Décharger l’onglet' %}
@@ -70,16 +61,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_subscribe = 'Je m’inscris' %}
   {% set try_it_now = 'Essayer maintenant' %}
   {% set learn_more = 'En savoir plus ' %}
-  {% set poster_src = 'img/l10n/fr/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
   {% set tag_privacy = 'Confidentialité' %}
   {% set tag_language = 'Langue' %}
   {% set tag_design = 'Design' %}
 {% else %}
-  {% set hero_eyebrow = 'What’s New' %}
-  {% set hero_title = 'Search what you see with visual search' %}
-  {% set hero_body = "<p>Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.</p><p>Here’s how: <ol><li>Right-click any image in Firefox</li><li>Choose “Search with Google Lens” (requires Google as your default)</li><li>Your image turns into answers</li></ol></ol></p>" %}
-  {% set hero_link = 'https://www.firefox.com/favicon.png' %}
   {% set features_title = 'Stay fast, keep your tabs' %}
   {% set features_subtitle = 'Free up memory without giving up the tabs you need.' %}
   {% set feature_1_eyebrow = 'Shake to Summarize' %}
@@ -107,7 +93,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set newsletter_subscribe = 'Sign up to Firefox News' %}
   {% set try_it_now = 'Try it now' %}
   {% set learn_more = 'Learn more' %}
-  {% set poster_src = 'img/l10n/en-US/firefox/wnp-143/google-lens-high-res.png' %}
   {% set release_notes = 'See Full Release Notes' %}
   {% set tag_privacy = 'Privacy' %}
   {% set tag_language = 'Language' %}
@@ -131,7 +116,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
                 srcset={
                     "img/firefox/wnp-143/unload-tab-high-res.png": "2x",
                 },
-                optional_attributes={"l10n": True, "loading": "lazy"},
+                optional_attributes={"l10n": True},
             )}}
             </div>
           </div>
