@@ -36,9 +36,9 @@
           <select class="wnp-custom-select" name="{{ form.country.name }}" id="{{ form.country.id_for_label }}">
             <option value="" disabled selected>{{ ftl('newsletter-form-please-select-country') }}</option>
             {% for choice in form.country.field.choices %}
-            {% if choice.0 %}
-            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-            {% endif %}
+              {% if choice.0 %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endif %}
             {% endfor %}
           </select>
           <svg class="wnp-select-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -84,7 +84,7 @@
     </div>
     {% set submit_label = 'Sign Up' if LANG.startswith('en-') else ftl('newsletter-form-sign-me-up') %}
     <button id="newsletter-submit" class="wnp-button wnp-button-outline" type="submit" disabled>{{ submit_label }}</button>
-    <div id="newsletter-details" style="display:block;"></div>
+    <div id="newsletter-details"></div>
     <div class="wnp-body wnp-form-feedback wnp-form-error mzp-c-form-errors hidden" id="newsletter-errors" data-testid="newsletter-error-message">
       <ul class="wnp-form-error-list mzp-u-list-styled">
         <li class="error-email-invalid hidden">{{ ftl('newsletter-form-please-enter-a-valid') }}</li>
