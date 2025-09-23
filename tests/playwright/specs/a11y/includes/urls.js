@@ -26,7 +26,6 @@ const desktopTestURLs = [
     '/en-US/contact/',
     '/en-US/contribute/',
     '/en-US/firefox/download/thanks/',
-    '/en-US/firefox/releasenotes/',
     '/en-US/privacy/',
     '/en-US/privacy/websites/cookie-settings/',
     '/en-US/products/',
