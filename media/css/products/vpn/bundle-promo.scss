@@ -223,7 +223,7 @@
                             }
                         }
 
-                        @supports (mask-image: url('logo.svg')) {
+                        @supports (mask-image: url('/media/img/logos/vpn/logo.svg')) {
                             .bundle-option-icon {
                                 background-color: currentColor; // match the color property
                                 background-repeat: no-repeat;
