@@ -223,26 +223,31 @@
                             }
                         }
 
-                        .bundle-option-icon {
-                            background-repeat: no-repeat;
-                            background-size: 100%;
-                            display: inline-block;
-                            height: 20px;
-                            width: 20px;
+                        @supports (mask-image: url('logo.svg')) {
+                            .bundle-option-icon {
+                                background-color: currentColor; // match the color property
+                                background-repeat: no-repeat;
+                                background-size: 100%;
+                                display: inline-block;
+                                height: 20px;
+                                width: 20px;
 
-                            &.option-vpn {
-                                background-image: url('/media/img/logos/vpn/logo.svg');
-                            }
+                                &.option-vpn {
+                                    -webkit-mask-image: url('/media/img/logos/vpn/logo.svg');
+                                    mask-image: url('/media/img/logos/vpn/logo.svg');
+                                }
 
-                            &.option-monitor {
-                                background-image: url('/media/img/logos/monitor/logo.svg');
-                            }
+                                &.option-monitor {
+                                    -webkit-mask-image: url('/media/img/logos/monitor/logo.svg');
+                                    mask-image: url('/media/img/logos/monitor/logo.svg');
+                                }
 
-                            &.option-relay {
-                                background-image: url('/media/img/logos/relay/logo.svg');
+                                &.option-relay {
+                                    -webkit-mask-image: url('/media/img/logos/relay/logo.svg');
+                                    mask-image: url('/media/img/logos/relay/logo.svg');
+                                }
                             }
                         }
-
                     }
 
                     strong {
