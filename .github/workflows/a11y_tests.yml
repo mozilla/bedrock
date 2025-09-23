@@ -37,9 +37,6 @@ jobs:
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://dev.bedrock.nonprod.webservices.mozgcp.net' }}
       CI: true
-      CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: ""
-      LABEL: accessibility-tests
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
@@ -54,6 +51,7 @@ jobs:
       with:
         name: test-results-a11y-${{ github.sha }}
         path: tests/playwright/test-results-a11y/
+        if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
         retention-days: 30
 
   notify-of-test-run-completion:
