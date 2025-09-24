@@ -19,7 +19,7 @@ jobs:
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -37,11 +37,8 @@ jobs:
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://dev.bedrock.nonprod.webservices.mozgcp.net' }}
       CI: true
-      CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: ""
-      LABEL: accessibility-tests
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
         node-version: 20
@@ -54,6 +51,7 @@ jobs:
       with:
         name: test-results-a11y-${{ github.sha }}
         path: tests/playwright/test-results-a11y/
+        if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
         retention-days: 30
 
   notify-of-test-run-completion:
@@ -61,7 +59,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, accessibility-tests]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack
         with:

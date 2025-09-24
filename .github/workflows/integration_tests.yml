@@ -21,7 +21,7 @@ jobs:
   notify-of-test-run-start:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -69,7 +69,7 @@ jobs:
     steps:
       - name: Fetch codebase
         if: always()
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Sets specific env vars IF we're on testing against dev/main only
         if: ${{ github.event.inputs.branch == 'main'}}
         run: |
@@ -100,11 +100,8 @@ jobs:
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
       CI: true
-      CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: ""
-      LABEL: playwright-tests
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
     - uses: actions/setup-node@v4
       with:
         node-version: 20
@@ -112,13 +109,20 @@ jobs:
       run: cd tests/playwright && npm ci && npm run install-deps
     - name: Run Playwright tests
       run: cd tests/playwright && npm run integration-tests
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}
+      with:
+        name: test-results-${{ github.event.inputs.git_sha }}-${{ github.run_id }}
+        path: tests/playwright/test-results/
+        if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
+        retention-days: 30
 
   notify-of-test-run-completion:
     if: always()
     runs-on: ubuntu-latest
     needs: [integration-tests, playwright-tests]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Notify via Slack of test-run success
         if: ${{ needs.integration-tests.result == 'success' && needs.playwright-tests.result == 'success' }}
         uses: ./.github/actions/slack
