@@ -207,27 +207,11 @@
                         &:active {
                             border-color: $color-link;
                             color: $color-link;
-
-                            .bundle-option-icon {
-                                &.option-vpn {
-                                    background-image: url('/media/img/logos/vpn/logo-blue.svg');
-                                }
-
-                                &.option-monitor {
-                                    background-image: url('/media/img/logos/monitor/logo-blue.svg');
-                                }
-
-                                &.option-relay {
-                                    background-image: url('/media/img/logos/relay/logo-blue.svg');
-                                }
-                            }
                         }
 
                         @supports (mask-image: url('/media/img/logos/vpn/logo.svg')) {
                             .bundle-option-icon {
                                 background-color: currentColor; // match the color property
-                                background-repeat: no-repeat;
-                                background-size: 100%;
                                 display: inline-block;
                                 height: 20px;
                                 width: 20px;
