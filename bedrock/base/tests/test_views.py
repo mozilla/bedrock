@@ -11,7 +11,7 @@ from django.utils.timezone import now as tz_now
 
 import pytest
 
-from bedrock.base.views import GeoTemplateView, get_contentful_sync_info
+from bedrock.base.views import GeoTemplateView, get_contentful_sync_info, page_gone_view, page_not_found_view, server_error_view
 from bedrock.contentful.models import ContentfulEntry
 
 geo_template_view = GeoTemplateView.as_view(
@@ -44,6 +44,36 @@ class TestGeoTemplateView(TestCase):
     def test_no_country(self):
         template = self.get_template(None)
         assert template == "firefox-mobile.html"
+
+
+class TestErrorPages(TestCase):
+    """Test error page handlers by calling them directly with mocked dependencies."""
+
+    def check_error_handler(self, handler_func, expected_template, expected_status=200):
+        with patch("lib.l10n_utils.render") as render_mock:
+            rf = RequestFactory()
+            req = rf.get("/")
+
+            try:
+                handler_func(req, exception=None)
+            except TypeError:
+                handler_func(req)
+
+            args, kwargs = render_mock.call_args
+            self.assertEqual(args[1], expected_template)
+            self.assertEqual(kwargs.get("status"), expected_status)
+
+    def test_404_handler(self):
+        """Test 404 handler uses correct template and status."""
+        self.check_error_handler(page_not_found_view, "404.html", 404)
+
+    def test_410_handler(self):
+        """Test 410 handler uses correct template and status."""
+        self.check_error_handler(page_gone_view, "410.html", 410)
+
+    def test_500_handler(self):
+        """Test 500 handler uses correct template and status."""
+        self.check_error_handler(server_error_view, "500.html", 500)
 
 
 @patch("bedrock.base.views.tz_now")

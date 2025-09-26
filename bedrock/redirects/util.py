@@ -10,7 +10,6 @@ from urllib.parse import parse_qs, urlencode
 from django.conf import settings
 from django.http import (
     Http404,
-    HttpResponseGone,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
 )
@@ -326,7 +325,9 @@ def redirect(
 
 
 def gone_view(request, *args, **kwargs):
-    return HttpResponseGone()
+    from bedrock.base.views import page_gone_view
+
+    return page_gone_view(request)
 
 
 def gone(pattern):
