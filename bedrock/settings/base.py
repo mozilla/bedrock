@@ -431,7 +431,6 @@ SUPPORTED_NONLOCALES = [
     # from redirects.urls
     "media",
     "static",
-    "certs",
     "images",  # root_files
     "credits",
     "robots.txt",
