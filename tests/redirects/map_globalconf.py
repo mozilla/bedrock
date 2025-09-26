@@ -8,7 +8,7 @@ import requests
 
 from .base import flatten, url_test
 
-RELNOTES_REDIRECT_STATUS_CODE = 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
+RELNOTES_REDIRECT_STATUS_CODE = 301
 
 UA_ANDROID = {"User-Agent": "Mozilla/5.0 (Android 6.0.1; Mobile; rv:51.0) Gecko/51.0 Firefox/51.0"}
 UA_IOS = {"User-Agent": "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3 like Mac OS X; de-de) AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8F190"}
