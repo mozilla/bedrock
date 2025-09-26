@@ -7,7 +7,6 @@ from django.test.utils import override_settings
 
 import pytest
 from django_jinja.backend import Jinja2
-from waffle.testutils import override_switch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.products.templatetags.misc import vpn_supported_locale
@@ -23,7 +22,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "chf": {  # Swiss franc
         "de": {  # German
             "12-month": {
-                "id": "price_1J5JssJNcmPzuWtR616BH4aU",
                 "price": "5.99",
                 "total": "71.88",
                 "currency": "CHF",
@@ -31,7 +29,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5Ju3JNcmPzuWtR3GpNYSWj",
                 "price": "10.99",
                 "total": None,
                 "currency": "CHF",
@@ -41,7 +38,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "fr": {  # French
             "12-month": {
-                "id": "price_1J5JunJNcmPzuWtRo9dLxn6M",
                 "price": "5.99",
                 "total": "71.88",
                 "currency": "CHF",
@@ -49,7 +45,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5JvjJNcmPzuWtR3wwy1dcR",
                 "price": "10.99",
                 "currency": "CHF",
                 "total": None,
@@ -59,7 +54,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "it": {  # Italian
             "12-month": {
-                "id": "price_1J5JwWJNcmPzuWtRgrx5fjOc",
                 "price": "5.99",
                 "total": "71.88",
                 "currency": "CHF",
@@ -67,7 +61,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5JxGJNcmPzuWtRrp5e1SUB",
                 "price": "10.99",
                 "total": None,
                 "currency": "CHF",
@@ -79,7 +72,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "czk": {  # Czech koruna
         "cs": {  # Czech
             "12-month": {
-                "id": "price_1N7PDwJNcmPzuWtR1IxSkZ0c",
                 "price": "119",
                 "total": "1428",
                 "currency": "CZK",
@@ -87,7 +79,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "1416", "price": "1428", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PESJNcmPzuWtRTgmv8Ve4",
                 "price": "237",
                 "total": None,
                 "currency": "CZK",
@@ -99,7 +90,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "dkk": {  # Danish krone
         "da": {  # Dansk
             "12-month": {
-                "id": "price_1N7PCQJNcmPzuWtRNqtksScA",
                 "price": "37",
                 "total": "444",
                 "currency": "DKK",
@@ -107,7 +97,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "456", "price": "444", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PCsJNcmPzuWtRXIMBFQbq",
                 "price": "75",
                 "total": None,
                 "currency": "DKK",
@@ -119,7 +108,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "euro": {  # Euro
         "bg": {  # Bulgarian
             "12-month": {
-                "id": "price_1N7PGEJNcmPzuWtRzTe85nzw",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -127,7 +115,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PHRJNcmPzuWtRjZ8D8kwx",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -137,7 +124,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "de": {  # German
             "12-month": {
-                "id": "price_1IgwblJNcmPzuWtRynC7dqQa",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -145,7 +131,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1IgwZVJNcmPzuWtRg9Wssh2y",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -155,7 +140,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "el": {  # Greek
             "12-month": {
-                "id": "price_1N7PPyJNcmPzuWtRkUbirJmB",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -163,7 +147,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PQIJNcmPzuWtR2BQdQbtL",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -173,7 +156,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "en": {  # English
             "12-month": {
-                "id": "price_1JcdvBJNcmPzuWtROLbEH9d2",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -181,7 +163,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1JcdsSJNcmPzuWtRGF9Y5TMJ",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -191,7 +172,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "es": {  # Spanish
             "12-month": {
-                "id": "price_1J5JCdJNcmPzuWtRrvQMFLlP",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -199,7 +179,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5JDgJNcmPzuWtRqQtIbktk",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -209,7 +188,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "fr": {  # French
             "12-month": {
-                "id": "price_1IgnlcJNcmPzuWtRjrNa39W4",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -217,7 +195,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1IgowHJNcmPzuWtRzD7SgAYb",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -227,7 +204,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "hu": {  # Hungarian
             "12-month": {
-                "id": "price_1N7PF1JNcmPzuWtRujxNI9yh",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -235,7 +211,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PFbJNcmPzuWtRlVNtHvgG",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -245,7 +220,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "it": {  # Italian
             "12-month": {
-                "id": "price_1J4owvJNcmPzuWtRomVhWQFq",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -253,7 +227,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5J6iJNcmPzuWtRK5zfoguV",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -263,7 +236,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "nl": {  # Dutch
             "12-month": {
-                "id": "price_1J5JRGJNcmPzuWtRXwXA84cm",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -271,7 +243,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1J5JSkJNcmPzuWtR54LPH2zi",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -281,7 +252,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "pt": {  # Portuguese
             "12-month": {
-                "id": "price_1N7PBOJNcmPzuWtRykt8Uyzm",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -289,7 +259,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PBsJNcmPzuWtRzS5kTc5B",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -299,7 +268,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "ro": {  # Romanian
             "12-month": {
-                "id": "price_1N7PADJNcmPzuWtRxHjlrDiy",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -307,7 +275,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PAmJNcmPzuWtR1zOoPIao",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -317,7 +284,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "sk": {  # Slovak
             "12-month": {
-                "id": "price_1N7PKUJNcmPzuWtRrnyAM0wd",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -325,7 +291,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PKyJNcmPzuWtROTKgdgW0",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -335,7 +300,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
         },
         "sl": {  # Slovenian
             "12-month": {
-                "id": "price_1N7PMcJNcmPzuWtR8TWsjoHe",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "EUR",
@@ -343,7 +307,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7PN6JNcmPzuWtRpN8HAr7L",
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
@@ -355,7 +318,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "pln": {  # Polish złoty
         "en": {  # English
             "12-month": {
-                "id": "price_1N7P8TJNcmPzuWtRI7pI29bO",
                 "price": "22",
                 "total": "264",
                 "currency": "PLN",
@@ -363,7 +325,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "276", "price": "264", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1N7P98JNcmPzuWtRbUaI24OH",
                 "price": "45",
                 "total": None,
                 "currency": "PLN",
@@ -375,7 +336,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
     "usd": {  # US dollar
         "en": {  # English
             "12-month": {
-                "id": "price_1Iw85dJNcmPzuWtRyhMDdtM7",
                 "price": "4.99",
                 "total": "59.88",
                 "currency": "USD",
@@ -383,7 +343,6 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
             },
             "monthly": {
-                "id": "price_1Iw7qSJNcmPzuWtRMUZpOwLm",
                 "price": "9.99",
                 "total": None,
                 "currency": "USD",
@@ -537,711 +496,12 @@ def render(s, context=None):
 @override_settings(
     FXA_ENDPOINT=TEST_FXA_ENDPOINT,
     VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
-    VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
-    VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
-)
-@override_switch("VPN_SUBPLAT_NEXT", active=False)
-class TestVPNSubscribeLink(TestCase):
-    rf = RequestFactory()
-
-    def _render(
-        self,
-        entrypoint="www.mozilla.org-vpn-product-page",
-        link_text="Get Mozilla VPN",
-        plan="12-month",
-        class_name="mzp-c-button",
-        country_code=None,
-        lang=None,
-        optional_parameters=None,
-        optional_attributes=None,
-        bundle_monitor_relay=False,
-    ):
-        req = self.rf.get("/")
-        req.locale = "en-US"
-        return render(
-            f"""{{{{ vpn_subscribe_link('{entrypoint}', '{link_text}', '{plan}', '{class_name}', '{country_code}',
-                                        '{lang}', {optional_parameters}, {optional_attributes}, {bundle_monitor_relay}) }}}}""",
-            {"request": req},
-        )
-
-    def test_vpn_subscribe_link_variable_12_month(self):
-        """Should return expected markup for variable 12-month plan link"""
-        markup = self._render(
-            plan="12-month",
-            country_code="US",
-            lang="en-US",
-            bundle_monitor_relay=False,
-            optional_parameters={"utm_campaign": "vpn-product-page"},
-            optional_attributes={"data-cta-text": "Get Mozilla VPN yearly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
-        )
-        expected = (
-            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
-            '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
-            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
-            "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
-        )
-        self.assertEqual(markup, expected)
-
-    def test_vpn_subscribe_link_variable_12_month_no_options(self):
-        """Should return expected markup for variable 12-month plan link with analytics"""
-        markup = self._render(
-            plan="12-month",
-            country_code="US",
-            lang="en-US",
-        )
-        expected = (
-            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
-            '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
-            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
-            "'price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
-        )
-        self.assertEqual(markup, expected)
-
-    def test_vpn_subscribe_link_variable_monthly(self):
-        """Should return expected markup for variable monthly plan link"""
-        markup = self._render(
-            plan="monthly",
-            country_code="US",
-            lang="en-US",
-            optional_parameters={"utm_campaign": "vpn-product-page"},
-            optional_attributes={"data-cta-text": "Get Mozilla VPN monthly", "data-cta-type": "fxa-vpn", "data-cta-position": "primary"},
-        )
-        expected = (
-            '<a href="https://accounts.firefox.com/subscriptions/products/prod_FvnsFHIfezy3ZI?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm'
-            "&entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
-            '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
-            'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
-            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm','brand' : 'vpn',"
-            "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
-        )
-        self.assertEqual(markup, expected)
-
-    def test_vpn_subscribe_link_variable_12_month_us_en(self):
-        """Should contain expected 12-month plan ID (US / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="US",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_us_en(self):
-        """Should contain expected monthly plan ID (US / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="US",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ca_en(self):
-        """Should contain expected 12-month plan ID (CA / en-CA)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CA",
-            lang="en-CA",
-        )
-        self.assertIn("?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ca_en(self):
-        """Should contain expected monthly plan ID in (CA / en-CA)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CA",
-            lang="en-CA",
-        )
-        self.assertIn("?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_gb_en(self):
-        """Should contain expected 12-month plan ID (GB / en-GB)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="GB",
-            lang="en-GB",
-        )
-        self.assertIn("?plan=price_1Iw85dJNcmPzuWtRyhMDdtM7", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_gb_en(self):
-        """Should contain expected monthly plan ID (GB / en-GB)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="GB",
-            lang="en-GB",
-        )
-        self.assertIn("?plan=price_1Iw7qSJNcmPzuWtRMUZpOwLm", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_at_de(self):
-        """Should contain expected 12-month plan ID (AT / de)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="AT",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwblJNcmPzuWtRynC7dqQa", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_at_de(self):
-        """Should contain expected monthly plan ID (AT / de)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="AT",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_be_nl(self):
-        """Should contain expected 12-month plan ID (BE / nl)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="BE",
-            lang="nl",
-        )
-        self.assertIn("?plan=price_1J5JRGJNcmPzuWtRXwXA84cm", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_be_nl(self):
-        """Should contain expected monthly plan ID (BE / nl)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="BE",
-            lang="nl",
-        )
-        self.assertIn("?plan=price_1J5JSkJNcmPzuWtR54LPH2zi", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_be_de(self):
-        """Should contain expected 12-month plan ID (BE / de)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="BE",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwblJNcmPzuWtRynC7dqQa", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_be_de(self):
-        """Should contain expected monthly plan ID (BE / de)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="BE",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_be_fr(self):
-        """Should contain expected 12-month plan ID (BE / fr)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="BE",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1IgnlcJNcmPzuWtRjrNa39W4", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_be_fr(self):
-        """Should contain expected monthly plan ID (BE / fr)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="BE",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1IgowHJNcmPzuWtRzD7SgAYb", markup)
-
-    def test_vpn_default_language_selection_be_en(self):
-        """Should should select default language if no match is found (BE / en)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="BE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1J5JSkJNcmPzuWtR54LPH2zi", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ch_de(self):
-        """Should contain expected 12-month plan ID (CH / de)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CH",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1J5JssJNcmPzuWtR616BH4aU", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ch_de(self):
-        """Should contain expected monthly plan ID (CH / de)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CH",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1J5Ju3JNcmPzuWtR3GpNYSWj", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ch_fr(self):
-        """Should contain expected 12-month plan ID (CH / fr)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CH",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1J5JunJNcmPzuWtRo9dLxn6M", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ch_fr(self):
-        """Should contain expected monthly plan ID (CH / fr)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CH",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1J5JvjJNcmPzuWtR3wwy1dcR", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ch_it(self):
-        """Should contain expected 12-month plan ID (CH / it)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CH",
-            lang="it",
-        )
-        self.assertIn("?plan=price_1J5JwWJNcmPzuWtRgrx5fjOc", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ch_it(self):
-        """Should contain expected monthly plan ID (CH / it)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CH",
-            lang="it",
-        )
-        self.assertIn("?plan=price_1J5JxGJNcmPzuWtRrp5e1SUB", markup)
-
-    def test_vpn_default_language_selection_ch_en(self):
-        """Should should select default language if no match is found (CH / en)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CH",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1J5Ju3JNcmPzuWtR3GpNYSWj", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_de_de(self):
-        """Should contain expected 12-month plan ID (DE / de)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="DE",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwblJNcmPzuWtRynC7dqQa", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_de_de(self):
-        """Should contain expected monthly plan ID (DE / de)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="DE",
-            lang="de",
-        )
-        self.assertIn("?plan=price_1IgwZVJNcmPzuWtRg9Wssh2y", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_fr_fr(self):
-        """Should contain expected 12-month plan ID (FR / fr)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="FR",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1IgnlcJNcmPzuWtRjrNa39W4", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_fr_fr(self):
-        """Should contain expected monthly plan ID (FR / fr)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="FR",
-            lang="fr",
-        )
-        self.assertIn("?plan=price_1IgowHJNcmPzuWtRzD7SgAYb", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_es_es(self):
-        """Should contain expected 12-month plan ID (ES / es-ES)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="ES",
-            lang="es-ES",
-        )
-        self.assertIn("?plan=price_1J5JCdJNcmPzuWtRrvQMFLlP", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_es_es(self):
-        """Should contain expected monthly plan ID (ES / es-ES)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="ES",
-            lang="es-ES",
-        )
-        self.assertIn("?plan=price_1J5JDgJNcmPzuWtRqQtIbktk", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_it_it(self):
-        """Should contain expected 12-month plan ID (IT / it)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="IT",
-            lang="it",
-        )
-        self.assertIn("?plan=price_1J4owvJNcmPzuWtRomVhWQFq", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_it_it(self):
-        """Should contain expected monthly plan ID (IT / it)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="IT",
-            lang="it",
-        )
-        self.assertIn("?plan=price_1J5J6iJNcmPzuWtRK5zfoguV", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ie_en(self):
-        """Should contain expected 12-month plan ID (IE / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="IE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ie_en(self):
-        """Should contain expected monthly plan ID (IE / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="IE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_nl_nl(self):
-        """Should contain expected 12-month plan ID (NL / nl)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="NL",
-            lang="nl",
-        )
-        self.assertIn("?plan=price_1J5JRGJNcmPzuWtRXwXA84cm", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_nl_nl(self):
-        """Should contain expected monthly plan ID (NL / nl)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="NL",
-            lang="nl",
-        )
-        self.assertIn("?plan=price_1J5JSkJNcmPzuWtR54LPH2zi", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_se_en(self):
-        """Should contain expected 12-month plan ID (SE / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="SE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_se_en(self):
-        """Should contain expected monthly plan ID (SE / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="SE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_fi_en(self):
-        """Should contain expected 12-month plan ID (FI / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="FI",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_fi_en(self):
-        """Should contain expected monthly plan ID (FI / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="FI",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_bg_en(self):
-        """Should contain expected 12-month plan ID (BG / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="BG",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_bg_en(self):
-        """Should contain expected monthly plan ID (BG / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="BG",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_cy_el(self):
-        """Should contain expected 12-month plan ID (CY / el)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CY",
-            lang="el",
-        )
-        self.assertIn("?plan=price_1N7PPyJNcmPzuWtRkUbirJmB", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_cy_el(self):
-        """Should contain expected monthly plan ID (CY / el)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CY",
-            lang="el",
-        )
-        self.assertIn("?plan=price_1N7PQIJNcmPzuWtR2BQdQbtL", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_cy_en(self):
-        """Should contain expected 12-month plan ID (CY / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CY",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_cy_en(self):
-        """Should contain expected monthly plan ID (CY / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CY",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_cz_cs(self):
-        """Should contain expected 12-month plan ID (CZ / cs)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="CZ",
-            lang="cs",
-        )
-        self.assertIn("?plan=price_1N7PDwJNcmPzuWtR1IxSkZ0c", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_cz_cs(self):
-        """Should contain expected monthly plan ID (CZ / cs)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="CZ",
-            lang="cs",
-        )
-        self.assertIn("?plan=price_1N7PESJNcmPzuWtRTgmv8Ve4", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_dk_da(self):
-        """Should contain expected 12-month plan ID (DK / da)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="DK",
-            lang="da",
-        )
-        self.assertIn("?plan=price_1N7PCQJNcmPzuWtRNqtksScA", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_dk_da(self):
-        """Should contain expected monthly plan ID (DK / da)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="DK",
-            lang="da",
-        )
-        self.assertIn("?plan=price_1N7PCsJNcmPzuWtRXIMBFQbq", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_hu_hu(self):
-        """Should contain expected 12-month plan ID (HU / hu)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="HU",
-            lang="hu",
-        )
-        self.assertIn("?plan=price_1N7PF1JNcmPzuWtRujxNI9yh", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_hu_hu(self):
-        """Should contain expected monthly plan ID (HU / hu)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="HU",
-            lang="hu",
-        )
-        self.assertIn("?plan=price_1N7PFbJNcmPzuWtRlVNtHvgG", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_pl_en(self):
-        """Should contain expected 12-month plan ID (PL / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="PL",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1N7P8TJNcmPzuWtRI7pI29bO", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_pl_en(self):
-        """Should contain expected monthly plan ID (PL / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="PL",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1N7P98JNcmPzuWtRbUaI24OH", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ro_en(self):
-        """Should contain expected 12-month plan ID (RO / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="RO",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ro_en(self):
-        """Should contain expected monthly plan ID (RO / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="RO",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_ee_en(self):
-        """Should contain expected 12-month plan ID (EE / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="EE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_ee_en(self):
-        """Should contain expected monthly plan ID (EE / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="EE",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_hr_en(self):
-        """Should contain expected 12-month plan ID (HR / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="HR",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_hr_en(self):
-        """Should contain expected monthly plan ID (HR / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="HR",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_lt_en(self):
-        """Should contain expected 12-month plan ID (LT / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="LT",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_lt_en(self):
-        """Should contain expected monthly plan ID (LT / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="LT",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_lv_en(self):
-        """Should contain expected 12-month plan ID (LV / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="LV",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_lv_en(self):
-        """Should contain expected monthly plan ID (LV / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="LV",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_mt_en(self):
-        """Should contain expected 12-month plan ID (MT / en-US)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="MT",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdvBJNcmPzuWtROLbEH9d2", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_mt_en(self):
-        """Should contain expected monthly plan ID (MT / en-US)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="MT",
-            lang="en-US",
-        )
-        self.assertIn("?plan=price_1JcdsSJNcmPzuWtRGF9Y5TMJ", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_si_sl(self):
-        """Should contain expected 12-month plan ID (SI / sl)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="SI",
-            lang="sl",
-        )
-        self.assertIn("?plan=price_1N7PMcJNcmPzuWtR8TWsjoHe", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_si_sl(self):
-        """Should contain expected monthly plan ID (SI / sl)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="SI",
-            lang="sl",
-        )
-        self.assertIn("?plan=price_1N7PN6JNcmPzuWtRpN8HAr7L", markup)
-
-    def test_vpn_subscribe_link_variable_12_month_sk_sk(self):
-        """Should contain expected 12-month plan ID (SK / sk)"""
-        markup = self._render(
-            plan="12-month",
-            country_code="SK",
-            lang="sk",
-        )
-        self.assertIn("?plan=price_1N7PKUJNcmPzuWtRrnyAM0wd", markup)
-
-    def test_vpn_subscribe_link_variable_monthly_sk_sk(self):
-        """Should contain expected monthly plan ID (SK / sk)"""
-        markup = self._render(
-            plan="monthly",
-            country_code="SK",
-            lang="sk",
-        )
-        self.assertIn("?plan=price_1N7PKyJNcmPzuWtROTKgdgW0", markup)
-
-
-@override_settings(
-    FXA_ENDPOINT=TEST_FXA_ENDPOINT,
-    VPN_PRODUCT_ID=TEST_VPN_PRODUCT_ID,
     VPN_SUBSCRIPTION_URL_NEXT=TEST_VPN_SUBSCRIPTION_URL_NEXT,
     VPN_PRODUCT_ID_NEXT=TEST_VPN_PRODUCT_ID_NEXT,
     VPN_SUBSCRIPTION_URL=TEST_VPN_SUBSCRIPTION_URL,
     VPN_VARIABLE_PRICING=TEST_VPN_VARIABLE_PRICING,
     VPN_SUBSCRIPTION_USE_DAILY_MODE__QA_ONLY=False,
 )
-@override_switch("VPN_SUBPLAT_NEXT", active=True)
 class TestVPNSubscribeLinkNext(TestCase):
     rf = RequestFactory()
 
@@ -1278,7 +538,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
-            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
+            'data-cta-type="fxa-vpn" data-cta-position="primary" data-ga-item="{\'brand\' : \'vpn\','
             "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
@@ -1294,7 +554,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             '<a href="https://payments.firefox.com/vpn/yearly/landing/'
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral" data-action="https://accounts.firefox.com/" class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button '
-            "ga-begin-checkout\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
+            "ga-begin-checkout\" data-ga-item=\"{'brand' : 'vpn','plan' : 'vpn','period' : 'yearly',"
             "'price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
@@ -1313,7 +573,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
-            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm','brand' : 'vpn',"
+            'data-cta-type="fxa-vpn" data-cta-position="primary" data-ga-item="{\'brand\' : \'vpn\','
             "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
@@ -1336,7 +596,7 @@ class TestVPNSubscribeLinkNext(TestCase):
             "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
             '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN monthly" '
-            "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw7qSJNcmPzuWtRMUZpOwLm','brand' : 'vpn',"
+            'data-cta-type="fxa-vpn" data-cta-position="primary" data-ga-item="{\'brand\' : \'vpn\','
             "'plan' : 'vpn','period' : 'monthly','price' : '9.99','discount' : '0','currency' : 'USD'}\">Get Mozilla VPN</a>"
         )
         self.assertEqual(markup, expected)
@@ -1361,7 +621,7 @@ class TestVPNSubscribeLinkNext(TestCase):
                 "?entrypoint=www.mozilla.org-vpn-product-page&form_type=button&service=e6eb0d1e856335fc&utm_source=www.mozilla.org-vpn-product-page"
                 '&utm_medium=referral&utm_campaign=vpn-product-page&data_cta_position=primary" data-action="https://accounts.firefox.com/" '
                 'class="js-fxa-product-cta-link js-fxa-product-button mzp-c-button ga-begin-checkout" data-cta-text="Get Mozilla VPN yearly" '
-                "data-cta-type=\"fxa-vpn\" data-cta-position=\"primary\" data-ga-item=\"{'id' : 'price_1Iw85dJNcmPzuWtRyhMDdtM7','brand' : 'vpn',"
+                'data-cta-type="fxa-vpn" data-cta-position="primary" data-ga-item="{\'brand\' : \'vpn\','
                 "'plan' : 'vpn','period' : 'yearly','price' : '59.88','discount' : '60.00','currency' : 'USD'}\">Get Mozilla VPN</a>"
             )
 
