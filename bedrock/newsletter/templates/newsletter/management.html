@@ -108,6 +108,12 @@
               <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('mozorg.account')) }}</p>
 
               <p>{{ ftl('newsletters-there-are-many-ways-to', url=url('mozorg.about.forums.forums')) }}</p>
+
+              {% if switch('foundation-separate-newsletter') %}
+                <p>{{ ftl('newsletters-newsletter-subscriptions-for', foundation="https://www.mozillafoundation.org") }}</p>
+                <p>{{ ftl('newsletters-to-unsubscribe', unsubscribe="https://www.mozillafoundation.org/newsletter/unsubscribe") }}</p>
+                <p>{{ ftl('newsletters-if-you-arent-already-subscribed', subscribe="https://www.mozillafoundation.org/newsletter/subscribe") }}</p>
+              {% endif %}
             </aside>
           </div> <!-- close .basic-settings -->
         </div>
