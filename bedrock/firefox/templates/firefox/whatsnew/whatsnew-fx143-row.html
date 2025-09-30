@@ -7,8 +7,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# We use a new base template introduced with WNP142 #}
 {% extends "firefox/whatsnew/base-new-theme.html" %}
 
-{% set params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp143' %}
-
 {% if LANG == 'de' %}
   {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
   {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
@@ -124,7 +122,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
             <p class="wnp-body">{{ feature_2_body | safe }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}{{ params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}?{{ utm_params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -181,7 +179,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-qr">
           <div class="wnp-qr-layout">
             <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-143", 12) }}</div>
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
             </div>
             <div class="wnp-qr-content">
               <div class="wnp-qr-content-inner">
