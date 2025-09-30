@@ -774,5 +774,5 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
 )
 def test_wnp144_redirects_to_fxc(client, source_path, dest_path):
     resp = client.get(source_path)
-    assert resp.status_code == 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
+    assert resp.status_code == 301
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}"
