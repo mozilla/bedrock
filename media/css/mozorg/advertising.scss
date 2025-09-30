@@ -119,6 +119,10 @@ $color-ads-off-black: #161616;
                 right: 0;
                 height: 50%;
                 z-index: 2;
+                mask:
+                    linear-gradient(#000 0 0),
+                    linear-gradient(#000 50%, #0000 0) content-box 0% 0%/200%
+                        200% no-repeat;
                 -webkit-mask:
                     linear-gradient(#000 0 0),
                     linear-gradient(#000 50%, #0000 0) content-box 0% 0%/200%
@@ -128,6 +132,9 @@ $color-ads-off-black: #161616;
                 transition: 300ms ease-in;
 
                 &.active {
+                    mask-position:
+                        0% 0%,
+                        100% 100%;
                     -webkit-mask-position:
                         0% 0%,
                         100% 100%;
