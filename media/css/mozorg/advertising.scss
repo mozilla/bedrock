@@ -7,6 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@import '../m24/vars/_spacing';
+@import '../m24/vars/_text';
 
 $color-ads-off-black: #161616;
 
@@ -15,11 +17,147 @@ $color-ads-off-black: #161616;
 }
 
 .c-sub-navigation-list {
-    a[href*="anonymco.com"],
-    a[href*="mozilla.formstack.com"] {
+    a[href*='anonymco.com'],
+    a[href*='mozilla.formstack.com'] {
         padding-right: 1.2em;
-        background: url("/media/protocol/img/icons/external-link.svg") right center no-repeat;
+        background: url('/media/protocol/img/icons/external-link.svg') right
+            center no-repeat;
         background-size: 1em auto;
+    }
+}
+
+#mozads-main {
+    box-sizing: border-box;
+
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.mozads-c-callout {
+    text-align: center;
+    font-weight: 300;
+    background-color: $color-ads-off-black;
+    position: relative;
+
+    > * {
+        margin: 0 auto;
+        padding: 0 $container-padding;
+        max-width: $content-max;
+        z-index: 1;
+        position: relative;
+    }
+
+    h1 {
+        font-size: $text-title-2xl;
+        font-family: $font-stack-mozilla-text;
+        line-height: 0.9;
+        color: white;
+        font-weight: 300;
+        letter-spacing: -2%;
+    }
+
+    .mozads-c-callout-button {
+        font-weight: 300;
+        border-radius: 0;
+    }
+
+    .mozads-c-callout-section {
+        height: 92vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mozads-c-callout-card {
+        font-weight: 300;
+        border: 2px solid $color-ads-off-black;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        background-color: $background-color;
+        padding: $spacing-lg;
+        margin: $spacing-md;
+        font-size: $text-title-sm;
+
+        a {
+            font-size: $text-button-sm;
+        }
+    }
+
+    .mozads-c-callout-bg {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        z-index: 0;
+
+        .mozads-c-callout-bg-inner {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .bg-image {
+            position: absolute;
+            display: grid;
+
+            > * {
+                grid-area: 1/1;
+                margin: 0;
+            }
+
+            .layer-1 {
+                z-index: 1;
+            }
+            .layer-2 {
+                position: absolute;
+                top: 0;
+                right: 0;
+                height: 50%;
+                z-index: 2;
+                -webkit-mask:
+                    linear-gradient(#000 0 0),
+                    linear-gradient(#000 50%, #0000 0) content-box 0% 0%/200%
+                        200% no-repeat;
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+                transition: 300ms ease-in;
+
+                &.active {
+                    -webkit-mask-position:
+                        0% 0%,
+                        100% 100%;
+                }
+            }
+            .layer-3 {
+                z-index: 3;
+            }
+
+            &:nth-child(1) {
+                top: 2vh;
+                left: 0;
+                max-width: 50%;
+            }
+            &:nth-child(2) {
+                bottom: 2vh;
+                right: 0;
+                max-width: 50%;
+            }
+            &:nth-child(3) {
+                bottom: 2vh;
+                left: 0;
+                display: none;
+            }
+            &:nth-child(4) {
+                top: 2vh;
+                right: 0;
+                display: none;
+            }
+        }
     }
 }
 
@@ -109,6 +247,28 @@ $color-ads-off-black: #161616;
             display: block;
             margin-bottom: $spacing-sm;
         }
+    }
+}
+
+@media #{$mq-md} {
+    .mozads-c-callout {
+        h1 {
+            font-size: 8rem;
+        }
+
+            .mozads-c-callout-card {
+                min-height: 24rem;
+                max-width: $content-md;
+            }
+
+            .mozads-c-callout-bg {
+                .bg-image {
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                        display: grid;
+                    }
+                }
+            }
     }
 }
 
