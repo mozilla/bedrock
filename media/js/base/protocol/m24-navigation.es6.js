@@ -306,27 +306,6 @@ MzpNavigation.init = (options) => {
     }
 
     MzpNavigation.bindEvents();
-
-    /**
-     * Init (optional) sticky navigation.
-     * If there are multiple navigation organisms on a single page,
-     * assume only the first (and hence top-most) instance can and
-     * will be sticky.
-     *
-     * Do not init sticky navigation if user prefers reduced motion
-     */
-
-    _navElem = document.querySelector('.m24-navigation-refresh');
-    const _navIsSticky =
-        _navElem &&
-        _navElem.classList.contains('m24-mzp-is-sticky') &&
-        MzpNavigation.supportsSticky();
-
-    if (_navIsSticky && matchMedia('(prefers-reduced-motion)').matches) {
-        _navElem.classList.remove('m24-mzp-is-sticky');
-    } else if (_navIsSticky) {
-        MzpNavigation.initSticky();
-    }
 };
 
 export default MzpNavigation;
