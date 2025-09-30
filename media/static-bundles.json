@@ -1528,6 +1528,12 @@
     },
     {
       "files": [
+        "js/mozorg/advertising/callout.js"
+      ],
+      "name": "mozorg-advertising-callout"
+    },
+    {
+      "files": [
         "js/base/gtm/gtm-snippet-init.es6.js"
       ],
       "name": "gtm-snippet"
