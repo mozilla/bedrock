@@ -7,8 +7,8 @@ $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '../m24/vars/_spacing';
-@import '../m24/vars/_text';
+@import '../m24/vars/spacing';
+@import '../m24/vars/text';
 
 $color-ads-off-black: #161616;
 
@@ -113,6 +113,7 @@ $color-ads-off-black: #161616;
             .layer-1 {
                 z-index: 1;
             }
+
             .layer-2 {
                 position: absolute;
                 top: 0;
@@ -121,11 +122,11 @@ $color-ads-off-black: #161616;
                 z-index: 2;
                 mask:
                     linear-gradient(#000 0 0),
-                    linear-gradient(#000 50%, #0000 0) content-box 0% 0%/200%
+                    linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
                         200% no-repeat;
                 -webkit-mask:
                     linear-gradient(#000 0 0),
-                    linear-gradient(#000 50%, #0000 0) content-box 0% 0%/200%
+                    linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
                         200% no-repeat;
                 -webkit-mask-composite: xor;
                 mask-composite: exclude;
@@ -140,6 +141,7 @@ $color-ads-off-black: #161616;
                         100% 100%;
                 }
             }
+
             .layer-3 {
                 z-index: 3;
             }
@@ -150,16 +152,19 @@ $color-ads-off-black: #161616;
                 left: 0;
                 max-width: 50%;
             }
+
             &:nth-child(2) {
                 bottom: 2vh;
                 right: 0;
                 max-width: 50%;
             }
+
             &:nth-child(3) {
                 bottom: 2vh;
                 left: 0;
                 display: none;
             }
+
             &:nth-child(4) {
                 top: 2vh;
                 right: 0;
@@ -168,6 +173,7 @@ $color-ads-off-black: #161616;
 
             // mobile images
             --bg-image-height-width: 10vh;
+
             &:nth-child(5),
             &:nth-child(6) {
                 .layer-2 {
@@ -175,12 +181,14 @@ $color-ads-off-black: #161616;
                     width: var(--bg-image-height-width);
                 }
             }
+
             &:nth-child(5) {
                 bottom: 2vh;
                 left: 0;
                 height: var(--bg-image-height-width);
                 width: var(--bg-image-height-width);
             }
+
             &:nth-child(6) {
                 top: 2vh;
                 right: 0;
@@ -297,6 +305,7 @@ $color-ads-off-black: #161616;
                 &:nth-child(4) {
                     display: grid;
                 }
+
                 &:nth-child(5),
                 &:nth-child(6) {
                     display: none;
