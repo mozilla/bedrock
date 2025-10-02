@@ -1,17 +1,17 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../m24/vars/lib' as *;
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 @import '~@mozilla-protocol/core/protocol/css/includes/lib';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '../m24/vars/spacing';
-@import '../m24/vars/text';
-@import '../m24/vars/color';
+@import '../m24/base';
 
 $color-ads-off-black: #161616;
+
 
 .mzp-t-dark.mozads-t-dark {
     background-color: $color-ads-off-black;
@@ -256,7 +256,11 @@ $color-ads-off-black: #161616;
     }
 
     &.c-sub-navigation .c-sub-navigation-title a:link,
-    &.c-sub-navigation .c-sub-navigation-item a:link {
+    &.c-sub-navigation .c-sub-navigation-item a:link,
+    &.c-sub-navigation .c-sub-navigation-title a:hover,
+    &.c-sub-navigation .c-sub-navigation-item a:hover,
+    &.c-sub-navigation .c-sub-navigation-title a:visited,
+    &.c-sub-navigation .c-sub-navigation-item a:visited {
         color: white;
         text-decoration: none;
         vertical-align: middle;
