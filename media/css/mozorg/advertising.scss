@@ -161,17 +161,16 @@ $color-ads-off-black: #161616;
 
             &:nth-child(3) {
                 bottom: 2vh;
-                left: 0;
+                left: 12vh;
                 display: none;
             }
 
             &:nth-child(4) {
                 top: 2vh;
-                right: 0;
+                right: 12vh;
                 display: none;
             }
 
-            // mobile images
             --bg-image-height-width: 10vh;
 
             &:nth-child(5),
@@ -304,11 +303,6 @@ $color-ads-off-black: #161616;
                 &:nth-child(3),
                 &:nth-child(4) {
                     display: grid;
-                }
-
-                &:nth-child(5),
-                &:nth-child(6) {
-                    display: none;
                 }
             }
         }
