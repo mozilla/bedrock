@@ -106,7 +106,7 @@ $color-ads-off-black: #161616;
         .mozads-c-callout-bg-inner {
             position: sticky;
             top: var(--sub-nav-height);
-            height: 100vh;
+            height: 96vh;
         }
 
         .bg-image {
@@ -156,7 +156,7 @@ $color-ads-off-black: #161616;
 
             // desktop images
             &:nth-child(1) {
-                top: 2vh;
+                top: 1vh;
                 left: 0;
                 max-width: 50%;
             }
@@ -170,12 +170,14 @@ $color-ads-off-black: #161616;
             &:nth-child(3) {
                 bottom: 2vh;
                 left: 12vh;
+                max-width: 50%;
                 display: none;
             }
 
             &:nth-child(4) {
-                top: 2vh;
-                right: 12vh;
+                top: 1vh;
+                right: 0;
+                max-width: 50%;
                 display: none;
             }
 
@@ -198,7 +200,7 @@ $color-ads-off-black: #161616;
 
             &:nth-child(6) {
                 top: 2vh;
-                right: 0;
+                right: 18vh;
                 height: var(--bg-image-height-width);
                 width: var(--bg-image-height-width);
             }
