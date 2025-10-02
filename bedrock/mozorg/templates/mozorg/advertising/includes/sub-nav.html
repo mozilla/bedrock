@@ -5,33 +5,54 @@
   file, You can obtain one at https://mozilla.org/MPL/2.0/.
  #}
 
-{% from "macros.html" import sub_nav with context %}
-
-{{ sub_nav(
-  title={
-    'text':  'Mozilla Advertising',
-    'href':  url('mozorg.advertising.landing')
-  },
-  links=[
-    {
-      'text':  'Ad Formats & Audiences',
-      'href':  url('mozorg.advertising.formats'),
-      'cta_name': 'Ad Formats & Audiences'
-    },
-    {
-      'text': 'Principles',
-      'href': url('mozorg.advertising.principles'),
-      'cta_name': 'Principles'
-    },
-    {
-      'text': 'Anonym',
-      'href': 'https://www.anonymco.com/',
-      'cta_name': 'Anonym'
-    },
-    {
-      'text': 'Contact',
-      'href': 'https://mozilla.formstack.com/forms/advertising',
-      'cta_name': 'Contact'
-    }
-  ]
-) }}
+<nav class="c-sub-navigation mozads-c-sub-navigation is-absolute" aria-labelledby="c-sub-navigation-title">
+  <div class="mzp-l-content">
+    <div class="c-sub-navigation-content">
+      <h2 id="c-sub-navigation-title" class="c-sub-navigation-title">
+          <a
+            href="/advertising"
+            data-link-position="subnav"
+            data-link-text="Mozilla Ads"
+          >
+            <img
+              src="{{ static('img/mozorg/advertising/ads-logo.svg') }}"
+              alt="Mozilla Ads"
+            />
+          </a>
+      </h2>
+      <div class="c-sub-navigation-mobile-toggle is-summary" data-testid="sub-navigation-mobile-toggle">
+        <span>{{ ftl('ui-menu')}}</span>
+      </div>
+      <ul class="c-sub-navigation-list is-details is-closed" data-testid="sub-navigation-menu">
+        <li class="c-sub-navigation-item">
+          <a
+            href="#solutions"
+            data-link-position="subnav"
+            data-link-text="Solutions"
+          >
+            Solutions
+          </a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a
+            href="#why-mozilla"
+            data-link-position="subnav"
+            data-link-text="Why Mozilla"
+          >
+            Why Mozilla
+          </a>
+        </li>
+        <li class="c-sub-navigation-item">
+          <a
+            class="mozads-c-contact-sales-button"
+            href="#contact-sales"
+            data-link-position="subnav"
+            data-link-text="Contact Sales"
+          >
+            Contact Sales
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

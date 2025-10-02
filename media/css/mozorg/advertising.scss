@@ -9,6 +9,7 @@ $image-path: '/media/protocol/img';
 @import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @import '../m24/vars/spacing';
 @import '../m24/vars/text';
+@import '../m24/vars/color';
 
 $color-ads-off-black: #161616;
 
@@ -27,13 +28,20 @@ $color-ads-off-black: #161616;
 }
 
 #mozads-main {
+    --sub-nav-height: 66px;
+    margin-top: var(--sub-nav-height);
     box-sizing: border-box;
+
+    &.no-padding {
+        margin-top: 0;
+    }
 
     * {
         box-sizing: border-box;
     }
 }
 
+// Mozilla Ads callout component
 .mozads-c-callout {
     text-align: center;
     font-weight: 300;
@@ -97,7 +105,7 @@ $color-ads-off-black: #161616;
 
         .mozads-c-callout-bg-inner {
             position: sticky;
-            top: 0;
+            top: var(--sub-nav-height);
             height: 100vh;
         }
 
@@ -198,6 +206,88 @@ $color-ads-off-black: #161616;
     }
 }
 
+@media #{$mq-md} {
+    .mozads-c-callout {
+        h1 {
+            font-size: 8rem;
+        }
+
+        .mozads-c-callout-card {
+            min-height: 24rem;
+            max-width: $content-md;
+        }
+
+        .mozads-c-callout-bg {
+            .bg-image {
+                &:nth-child(3),
+                &:nth-child(4) {
+                    display: grid;
+                }
+            }
+        }
+    }
+}
+
+.mozads-c-sub-navigation {
+    box-sizing: border-box;
+    background-color: $color-ads-off-black;
+    border-bottom: 1px solid #fafafa1a;
+    top: 0;
+    width: 100%;
+    z-index: 1001;
+
+    &.is-absolute {
+        position: absolute;
+        margin-top: 54px;
+    }
+
+    &.is-sticky {
+        position: sticky;
+    }
+
+    & * {
+        box-sizing: border-box;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title {
+        line-height: 1;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title a:link,
+    &.c-sub-navigation .c-sub-navigation-item a:link {
+        color: white;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-item a:link {
+        font-size: $text-body-sm;
+    }
+
+    .c-sub-navigation-content {
+        width: 100%;
+        padding: $spacing-lg 0;
+    }
+
+    .mzp-l-content {
+        // based on .m24-c-navigation-container
+        margin: 0 auto;
+        max-width: $content-max;
+        padding: 0 $spacer-md;
+        position: relative;
+        width: 100%;
+
+        @media #{$mq-md} {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            position: static;
+            padding: 0 $container-padding;
+            box-sizing: border-box;
+        }
+    }
+}
+
 .mozads-header {
     text-align: start;
     padding: $layout-md 0;
@@ -283,28 +373,6 @@ $color-ads-off-black: #161616;
             @include text-title-md;
             display: block;
             margin-bottom: $spacing-sm;
-        }
-    }
-}
-
-@media #{$mq-md} {
-    .mozads-c-callout {
-        h1 {
-            font-size: 8rem;
-        }
-
-        .mozads-c-callout-card {
-            min-height: 24rem;
-            max-width: $content-md;
-        }
-
-        .mozads-c-callout-bg {
-            .bg-image {
-                &:nth-child(3),
-                &:nth-child(4) {
-                    display: grid;
-                }
-            }
         }
     }
 }
