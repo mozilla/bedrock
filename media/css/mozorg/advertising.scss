@@ -269,6 +269,13 @@ $color-ads-off-black: #161616;
         padding: $spacing-lg 0;
     }
 
+    &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
+        padding: $spacer-xs;
+        color: $color-ads-off-black;
+        background-color: $token-color-green;
+        display: inline-block;
+    }
+
     .mzp-l-content {
         // based on .m24-c-navigation-container
         margin: 0 auto;
@@ -284,6 +291,14 @@ $color-ads-off-black: #161616;
             position: static;
             padding: 0 $container-padding;
             box-sizing: border-box;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .mozads-c-sub-navigation {
+        &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
+            display: inline;
         }
     }
 }
