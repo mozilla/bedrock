@@ -18,7 +18,21 @@
     border-top: 1px solid advars.$color-ads-off-black;
 
     .mozads-hgroup {
-        margin-top: 1rem;
+        margin-top: 2rem;
+    }
+
+    .cell.justify-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .mzp-c-button.mozads-c-contact-button {
+        margin-top: 2rem;
+
+        &:hover {
+            background-color: white;
+        }
     }
 }
 
@@ -31,9 +45,5 @@
         .mozads-figure {
             margin-top: -1px;
         }
-    }
-
-    .mzp-c-button.mozads-c-contact-button {
-        margin-top: 5rem;
     }
 }

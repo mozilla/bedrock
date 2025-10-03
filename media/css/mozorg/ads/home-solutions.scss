@@ -123,13 +123,16 @@
     @include text-title-2xs;
 
     &.has-extra-pad {
-        padding-left: 4.8%;
+        @media #{$mq-md} {
+            padding-left: 4.8%;
+        }
     }
 }
 
 .mozads-stat {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: $spacing-2xl;
 }
 

@@ -6,7 +6,7 @@
 
 .mozads-notification {
     background: advars.$color-ads-secondary-pink;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
 
     p {
         @include text-body-lg;
@@ -14,21 +14,16 @@
         font-weight: 600;
         margin: 0;
     }
-}
 
-.mozads-icon-arrow {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    background-color: currentColor;
-    mask: url('/media/protocol/img/icons/arrow-right.svg') no-repeat center/16px 16px;
+    svg {
+        flex: 0 0 auto;
+    }
 }
-
 
 .mozads-notification-container {
-@include container;
-display: flex;
-justify-content: space-between;
-align-items: center;
-gap: 1rem;
+    @include container;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
