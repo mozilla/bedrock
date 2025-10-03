@@ -38,9 +38,6 @@ function isScriptLoaded() {
 }
 
 function playVideo() {
-    const title = document.querySelector(
-        '.mzp-c-modal-inner > header > h2'
-    ).innerText;
     const videoLink = document.querySelector(
         '.mzp-c-modal-inner .video-player-frame'
     );
@@ -63,37 +60,12 @@ function playVideo() {
             cc_load_policy: 1 // show captions.
         },
         events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange
+            onReady: onPlayerReady
         }
     });
 
     function onPlayerReady(event) {
         event.target.playVideo();
-    }
-
-    function onPlayerStateChange(event) {
-        let state;
-
-        switch (event.data) {
-            case window.YT.PlayerState.PLAYING:
-                state = 'video play';
-                break;
-            case window.YT.PlayerState.PAUSED:
-                state = 'video paused';
-                break;
-            case window.YT.PlayerState.ENDED:
-                state = 'video complete';
-                break;
-        }
-
-        if (state) {
-            window.dataLayer.push({
-                event: 'video-interaction',
-                videoTitle: title,
-                interaction: state
-            });
-        }
     }
 }
 

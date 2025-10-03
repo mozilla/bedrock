@@ -744,3 +744,35 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
     resp = client.get(source_path)
     assert resp.status_code == 301
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path, dest_path",
+    (
+        (
+            "/en-US/firefox/144.0/whatsnew/",
+            "/en-US/whatsnew/144.0/",
+        ),
+        (
+            "/en-US/firefox/144.0.1/whatsnew/",
+            "/en-US/whatsnew/144.0.1/",
+        ),
+        (
+            "/en-US/firefox/144.1.2/whatsnew/",
+            "/en-US/whatsnew/144.1.2/",
+        ),
+        (
+            "/en-US/firefox/144.0/whatsnew/?query=string.here",
+            "/en-US/whatsnew/144.0/?query=string.here",
+        ),
+        (
+            "/en-US/firefox/144.0/whatsnew/?query=string.here&with=extra",
+            "/en-US/whatsnew/144.0/?query=string.here&with=extra",
+        ),
+    ),
+)
+def test_wnp144_redirects_to_fxc(client, source_path, dest_path):
+    resp = client.get(source_path)
+    assert resp.status_code == 301
+    assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}"

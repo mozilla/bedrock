@@ -11,10 +11,6 @@
 
 $border: 2px solid $color-marketing-gray-20;
 
-.mzp-c-sidemenu .mzp-c-sidemenu-title {
-    font-family: var(--body-font-family);
-}
-
 @media #{$mq-md} {
     .mzp-l-sidebar {
         padding-top: 156px; // height of privacy-title
