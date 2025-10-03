@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Mozilla Sans Headline';
+    src: url('/media/fonts/mozilla-sans-headline/MozillaSansHd-ExtraLight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mozilla Sans Headline';
+    src: url('/media/fonts/mozilla-sans-headline/MozillaSansHd-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mozilla Sans Headline';
+    src: url('/media/fonts/mozilla-sans-headline/MozillaSansHd-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mozilla Sans Headline';
+    src: url('/media/fonts/mozilla-sans-headline/MozillaSansHd-SemiBold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mozilla Sans Headline';
+    src: url('/media/fonts/mozilla-sans-headline/MozillaSansHd-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}

@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../m24/vars/lib' as *;
 @use './ads/vars' as advars;
+@use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
@@ -38,9 +39,11 @@ $image-path: '/media/protocol/img';
     * {
         box-sizing: border-box;
     }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Mozilla Sans Headline', sans-serif;
+    }
 }
-
-
 
 // Mozilla Ads callout component
 .mozads-c-callout {
@@ -59,7 +62,6 @@ $image-path: '/media/protocol/img';
 
     h1 {
         font-size: $text-title-2xl;
-        font-family: $font-stack-mozilla-text;
         line-height: 0.9;
         color: white;
         font-weight: 300;
