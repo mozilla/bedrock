@@ -1,3 +1,39 @@
-.mozads-c-home-contact {
-    margin: 0;
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
+
+.mzp-c-button.mozads-c-contact-button {
+    border-radius: 0;
+    color: #fff;
+    margin-top: 2rem;
+}
+
+.mozads-c-home-contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-top: 1px solid advars.$color-ads-off-black;
+
+    .mozads-hgroup {
+        margin-top: 1rem;
+    }
+}
+
+@media #{$mq-md} {
+    .mozads-c-home-contact-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: $spacing-2xl;
+
+        .mozads-figure {
+            margin-top: -1px;
+        }
+    }
+
+    .mzp-c-button.mozads-c-contact-button {
+        margin-top: 5rem;
+    }
 }
