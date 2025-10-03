@@ -5,7 +5,7 @@
     background-color: advars.$color-ads-off-black;
     color: white;
     text-align: center;
-    padding: $spacer-xl 0;
+    padding: $spacer-2xl 0;
 
     .mozads-c-brands-container {
         margin: 0 auto;
@@ -19,22 +19,10 @@
         margin-top: $spacer-md;
         margin-inline: calc(var(--container-padding) * -1);
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
-        gap: 2rem;
-        max-width: calc(100% + (var(--container-padding) * 2));
-        overflow-x: auto;
-
-        li {
-            &:first-child {
-                padding-left: var(--container-padding);
-            }
-
-            &:last-child {
-                padding-right: var(--container-padding);
-            }
-        }
+        gap: $spacer-md;
 
         img {
             max-height: 40px;
