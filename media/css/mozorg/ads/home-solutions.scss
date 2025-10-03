@@ -39,6 +39,15 @@
     }
 }
 
+.mozads-section-subheading {
+    @include text-body-lg;
+    margin: 0;
+
+    @media #{$mq-md} {
+        @include text-title-2xs;
+    }
+}
+
 .mozads-figure-grid {
     display: flex;
     flex-direction: column;

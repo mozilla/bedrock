@@ -1,3 +1,79 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
 .mozads-c-home-why-moz {
+    border-top: 1px solid advars.$color-ads-off-black;
+}
+
+.mozads-half-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &.is-list-item {
+        gap: 0;
+        border-top: 1px solid advars.$color-ads-off-black;
+        padding: 1.5rem 0;
+        align-items: start;
+    }
+}
+
+.mozads-home-why-moz-list {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.mozads-home-why-moz-list-heading {
+    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
     margin: 0;
+    max-width: 550px;
+    font-size: var(--title-xs-size);
+    line-height: var(--title-xs-line-height);
+    font-weight: 300;
+    text-wrap: balance;
+
+}
+
+.mozads-home-why-moz-list-text {
+    @include text-body-md;
+    margin: 0;
+    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
+    padding-left: 1rem;
+}
+
+
+@media #{$mq-md} {
+    .mozads-c-home-why-moz {
+        padding-top: 3rem;
+    }
+
+    .mozads-home-why-moz-list-text {
+        padding-right: 17%;
+        border-left: 0 none;
+        padding-left: 0;
+    }
+
+    .mozads-half-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &.is-list-item {
+            gap: 2rem;
+            align-items: center;
+        }
+    }
+
+    .mozads-home-why-moz-list-heading {
+        border-left-width: 1rem;
+        padding-left: 2rem;
+        font-size: var(--title-md-size);
+        line-height: var(--title-md-line-height);
+    }
+
 }
