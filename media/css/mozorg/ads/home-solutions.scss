@@ -1,0 +1,116 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
+.mozads-c-home-solutions {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+
+    @media #{$mq-md} {
+        gap: 100px;
+    }
+}
+
+.mozads-hgroup {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    margin-bottom: 0;
+
+}
+.mozads-eyebrow {
+    @include text-title-2xs;
+    font-family: var(--title-font-family);
+    margin-bottom: 0;
+}
+
+.mozads-section-heading {
+    font-weight: 300;
+    leading-trim: NONE;
+    line-height: 100%;
+    letter-spacing: -1%;
+    margin: 0;
+
+    @media #{$mq-md} {
+        @include text-title-2xl;
+    }
+}
+
+.mozads-figure-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+
+    .mozads-figure {
+        grid-area: figure;
+        position: relative;
+        z-index: 1;
+    }
+
+    .mozads-stat {
+        grid-area: stat;
+        justify-self: center;
+        position: relative;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            height: 1px;
+            background-color: advars.$color-ads-off-black;
+            z-index: 0;
+        }
+    }
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "stat figure";
+        align-items: center;
+        gap: $spacing-2xl;
+
+        &.reversed-on-large {
+            grid-template-columns: 2fr 1fr;
+            grid-template-areas: "figure stat";
+
+            .mozads-stat:before {
+                inset: 73% 105% auto auto;
+            }
+        }
+
+        .mozads-stat:before {
+            width: min(50vh, 600px);
+            height: 1px;
+            inset: 73% auto auto 105%;
+        }
+    }
+}
+
+.mozads-figure {
+
+}
+
+.mozads-figcaption {
+    margin-top: $spacing-sm;
+    @include text-title-2xs;
+}
+
+.mozads-stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.mozads-stat-icon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: $spacing-lg;
+}
+.mozads-stat-number {
+    @include text-title-2xl;
+}
+
+.mozads-stat-label {
+    @include text-body-md;
+}

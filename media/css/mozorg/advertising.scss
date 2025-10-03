@@ -2,29 +2,22 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../m24/vars/lib' as *;
-
+@use './ads/vars' as advars ;
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-@import '../m24/base';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@use '../m24/base';
 
-$color-ads-off-black: #161616;
+@use './ads/home-solutions';
+@use './ads/subnav';
+@use './ads/home-why-moz';
+@use './ads/home-contact';
 
 
 .mzp-t-dark.mozads-t-dark {
-    background-color: $color-ads-off-black;
-}
-
-.c-sub-navigation-list {
-    a[href*='anonymco.com'],
-    a[href*='mozilla.formstack.com'] {
-        padding-right: 1.2em;
-        background: url('/media/protocol/img/icons/external-link.svg') right
-            center no-repeat;
-        background-size: 1em auto;
-    }
+    background-color: advars.$color-ads-off-black;
 }
 
 #mozads-main {
@@ -45,7 +38,7 @@ $color-ads-off-black: #161616;
 .mozads-c-callout {
     text-align: center;
     font-weight: 300;
-    background-color: $color-ads-off-black;
+    background-color: advars.$color-ads-off-black;
     position: relative;
 
     > * {
@@ -80,7 +73,7 @@ $color-ads-off-black: #161616;
 
     .mozads-c-callout-card {
         font-weight: 300;
-        border: 2px solid $color-ads-off-black;
+        border: 2px solid advars.$color-ads-off-black;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -230,84 +223,6 @@ $color-ads-off-black: #161616;
     }
 }
 
-.mozads-c-sub-navigation {
-    box-sizing: border-box;
-    background-color: $color-ads-off-black;
-    border-bottom: 1px solid #fafafa1a;
-    top: 0;
-    width: 100%;
-    z-index: 1001;
-
-    &.is-absolute {
-        position: absolute;
-        margin-top: 54px;
-    }
-
-    &.is-sticky {
-        position: sticky;
-    }
-
-    & * {
-        box-sizing: border-box;
-    }
-
-    &.c-sub-navigation .c-sub-navigation-title {
-        line-height: 1;
-    }
-
-    &.c-sub-navigation .c-sub-navigation-title a:link,
-    &.c-sub-navigation .c-sub-navigation-item a:link,
-    &.c-sub-navigation .c-sub-navigation-title a:hover,
-    &.c-sub-navigation .c-sub-navigation-item a:hover,
-    &.c-sub-navigation .c-sub-navigation-title a:visited,
-    &.c-sub-navigation .c-sub-navigation-item a:visited {
-        color: white;
-        text-decoration: none;
-        vertical-align: middle;
-    }
-
-    &.c-sub-navigation .c-sub-navigation-item a:link {
-        font-size: $text-body-sm;
-    }
-
-    .c-sub-navigation-content {
-        width: 100%;
-        padding: $spacing-lg 0;
-    }
-
-    &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
-        padding: $spacer-xs;
-        color: $color-ads-off-black;
-        background-color: $token-color-green;
-        display: inline-block;
-    }
-
-    .mzp-l-content {
-        // based on .m24-c-navigation-container
-        margin: 0 auto;
-        max-width: $content-max;
-        padding: 0 $spacer-md;
-        position: relative;
-        width: 100%;
-
-        @media #{$mq-md} {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            position: static;
-            padding: 0 $container-padding;
-            box-sizing: border-box;
-        }
-    }
-}
-
-@media #{$mq-md} {
-    .mozads-c-sub-navigation {
-        &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
-            display: inline;
-        }
-    }
-}
 
 .mozads-header {
     text-align: start;
