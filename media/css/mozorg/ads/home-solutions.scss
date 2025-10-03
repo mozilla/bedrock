@@ -7,10 +7,10 @@
 .mozads-c-home-solutions {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 4rem;
 
     @media #{$mq-md} {
-        gap: 100px;
+        gap: 8rem;
     }
 }
 

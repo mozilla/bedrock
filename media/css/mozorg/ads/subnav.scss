@@ -21,7 +21,7 @@
     border-bottom: 1px solid #fafafa1a;
     top: 0;
     width: 100%;
-    z-index: 1001;
+    z-index: 999;
 
     &.is-absolute {
         position: absolute;
@@ -43,13 +43,17 @@
 
     &.c-sub-navigation .c-sub-navigation-title a:link,
     &.c-sub-navigation .c-sub-navigation-item a:link,
-    &.c-sub-navigation .c-sub-navigation-title a:hover,
-    &.c-sub-navigation .c-sub-navigation-item a:hover,
     &.c-sub-navigation .c-sub-navigation-title a:visited,
     &.c-sub-navigation .c-sub-navigation-item a:visited {
         color: white;
         text-decoration: none;
         vertical-align: middle;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title a:hover,
+    &.c-sub-navigation .c-sub-navigation-item a:hover {
+        color: white;
+        text-decoration: underline;
     }
 
     &.c-sub-navigation .c-sub-navigation-item a:link {
@@ -61,11 +65,15 @@
         padding: $spacing-lg 0;
     }
 
-    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:link {
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:link,
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:hover,
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:visited,
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:active {
         padding: $spacer-xs;
         color: advars.$color-ads-off-black;
         background-color: $token-color-green;
         display: inline-block;
+
     }
 
     .mzp-l-content {

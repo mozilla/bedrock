@@ -30,6 +30,10 @@ $image-path: '/media/protocol/img';
     scroll-margin-top: 73px;
 }
 
+:root {
+    --title-font-family: 'Mozilla Sans Headline', sans-serif;
+}
+
 #mozads-main {
     --sub-nav-height: 64px;
     margin-top: -4px; // prevents flash of body's bg color when scrolling up with a sticky navbar
@@ -38,6 +42,11 @@ $image-path: '/media/protocol/img';
 
     * {
         box-sizing: border-box;
+    }
+
+    p,
+    figcaption {
+        line-height: 1.2;
     }
 
     h1, h2, h3, h4, h5, h6 {
@@ -66,6 +75,8 @@ $image-path: '/media/protocol/img';
         color: white;
         font-weight: 300;
         letter-spacing: -2%;
+        text-shadow: 0px 1px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.1), 0px 2px 4px rgb(0 0 0 / 0.1);
+
     }
 
     .mozads-c-callout-action,
@@ -76,23 +87,72 @@ $image-path: '/media/protocol/img';
     }
 
     .mozads-c-callout-section {
-        height: 92vh;
+        height: 60vh;
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
+        padding-block: 2rem;
+
+        &.is-bottom {
+            height: 70vh;
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
     }
 
     .mozads-c-callout-card {
         font-weight: 300;
-        font-size: $text-title-sm;
+        font-size: 1.25rem;
         color: white;
+        text-shadow: 0px 1px 1px rgb(0 0 0 / 0.1), 0px 1px 2px rgb(0 0 0 / 0.1), 0px 2px 4px rgb(0 0 0 / 0.1);
+
+        p {
+            margin-bottom: $spacing-md;
+        }
 
         a {
             font-size: $text-button-sm;
             color: white;
         }
     }
+
+    .middle-mobile-images {
+        position: relative;
+        height: 50vh;
+        margin-top: 2rem;
+
+        img {
+            position: absolute;
+
+            &.image-4 {
+                top: 0;
+                right: 5%;
+                max-width: 40%;
+                z-index: 1;
+            }
+
+            &.image-5 {
+                top: 39%;
+                left: 15%;
+                max-width: 22%;
+            }
+
+            &.image-6 {
+                bottom: 0;
+                left: 2%;
+                max-width: 20%;
+            }
+
+            &.rectangle-h {
+                top: 62%;
+                right: -10%;
+                max-width: 40%;
+                z-index: 0;
+            }
+        }
+    }
+
 
     .mozads-c-callout-bg {
         position: absolute;
@@ -105,56 +165,40 @@ $image-path: '/media/protocol/img';
         padding: 0 $container-padding;
         max-width: $content-max;
 
+        .mobile-helper {
+            display: contents;
+        }
+
         img {
             position: absolute;
 
-            &:nth-child(1) {
+            &.large-only {
+                display: none;
+            }
+
+            &.image-1 {
                 top: 3%;
                 left: 2%;
                 max-width: 40%;
             }
 
-            &:nth-child(2) {
+            &.image-2 {
                 top: 10%;
                 right: 5%;
                 max-width: 20%;
             }
 
-            &:nth-child(3) {
+            &.image-3 {
                 top: 15%;
                 right: -5%;
                 max-width: 15%;
                 z-index: -1;
             }
 
-            &:nth-child(4) {
-                top: 35%;
-                right: 5%;
-                max-width: 40%;
-            }
-
-            &:nth-child(5) {
-                top: 52%;
-                left: 15%;
-                max-width: 35%;
-            }
-
-            &:nth-child(6) {
-                top: 58%;
-                left: 2%;
-                max-width: 30%;
-            }
-
-            &:nth-child(7) {
+            &.image-7 {
                 bottom: 2%;
                 right: 2%;
-                max-height: 15%;
-            }
-
-            &.rectangle-h {
-                top: 62%;
-                right: -10%;
-                max-width: 40%;
+                max-height: 12%;
             }
 
             &.rectangle-v {
@@ -281,54 +325,70 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-md} {
     .mozads-c-callout {
+        .mozads-c-callout-section,
+        .mozads-c-callout-section.is-bottom {
+            height: 92vh;
+            justify-content: center;
+            align-items: center;
+        }
+
         h1 {
             font-size: 8rem;
         }
 
         .mozads-c-callout-card {
             max-width: $content-md;
+            font-size: 2rem;
         }
+
+        .middle-mobile-images {
+                display: none;
+            }
 
         .mozads-c-callout-bg {
             img {
-                &:nth-child(1) {
+                &.large-only {
+                    display: block;
+                }
+
+                &.image-1 {
                     top: 0;
                     left: 10%;
                     max-width: 15%;
                 }
 
-                &:nth-child(2) {
+                &.image-2 {
                     top: 3%;
                     right: 5%;
                     max-width: 20%;
                 }
 
-                &:nth-child(3) {
+                &.image-3 {
                     top: 12%;
                     right: -2%;
                     max-width: 15%;
                     z-index: -1;
                 }
 
-                &:nth-child(4) {
+                &.image-4 {
                     top: 40%;
                     right: 5%;
                     max-width: 20%;
                 }
 
-                &:nth-child(5) {
+                &.image-5 {
                     top: 52%;
                     left: 15%;
                     max-width: 20%;
                 }
 
-                &:nth-child(6) {
+                &.image-6 {
                     top: 58%;
                     left: 2%;
                     max-width: 15%;
                 }
 
-                &:nth-child(7) {
+                &.image-7 {
                     bottom: 2%;
                     right: 2%;
                     max-height: 15%;
