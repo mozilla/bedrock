@@ -25,6 +25,10 @@ $image-path: '/media/protocol/img';
     background-color: advars.$color-ads-off-black;
 }
 
+.has-scroll-padding {
+    scroll-margin-top: 73px;
+}
+
 #mozads-main {
     --sub-nav-height: 64px;
     margin-top: var(--sub-nav-height);
@@ -39,6 +43,8 @@ $image-path: '/media/protocol/img';
         box-sizing: border-box;
     }
 }
+
+
 
 // Mozilla Ads callout component
 .mozads-c-callout {

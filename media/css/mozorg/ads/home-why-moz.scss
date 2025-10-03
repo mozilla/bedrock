@@ -18,6 +18,11 @@
         padding: 1.5rem 0;
         align-items: start;
     }
+
+    &.has-border-top {
+        border-top: 1px solid advars.$color-ads-off-black;
+        padding-top: 2rem;
+    }
 }
 
 .section-has-border-top {
@@ -53,10 +58,6 @@
 
 
 @media #{$mq-md} {
-    .mozads-c-home-why-moz {
-        padding-top: 3rem;
-    }
-
     .mozads-home-why-moz-list-text {
         padding-right: 17%;
         border-left: 0 none;
