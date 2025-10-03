@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../m24/vars/lib' as *;
-@use './ads/vars' as advars ;
+@use './ads/vars' as advars;
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
@@ -18,13 +18,12 @@ $image-path: '/media/protocol/img';
 @use './ads/home-why-moz';
 @use './ads/home-contact';
 
-
 .mzp-t-dark.mozads-t-dark {
     background-color: advars.$color-ads-off-black;
 }
 
 #mozads-main {
-    --sub-nav-height: 66px;
+    --sub-nav-height: 64px;
     margin-top: var(--sub-nav-height);
     box-sizing: border-box;
 
@@ -61,9 +60,10 @@ $image-path: '/media/protocol/img';
         letter-spacing: -2%;
     }
 
-    .mozads-c-callout-button {
+    .mozads-c-callout-action {
+        color: white;
         font-weight: 300;
-        border-radius: 0;
+        font-size: $text-button-md;
     }
 
     .mozads-c-callout-section {
@@ -76,18 +76,12 @@ $image-path: '/media/protocol/img';
 
     .mozads-c-callout-card {
         font-weight: 300;
-        border: 2px solid advars.$color-ads-off-black;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        text-align: left;
-        background-color: $background-color;
-        padding: $spacing-lg;
-        margin: $spacing-md;
         font-size: $text-title-sm;
+        color: white;
 
         a {
             font-size: $text-button-sm;
+            color: white;
         }
     }
 
@@ -212,7 +206,6 @@ $image-path: '/media/protocol/img';
         }
 
         .mozads-c-callout-card {
-            min-height: 24rem;
             max-width: $content-md;
         }
 
