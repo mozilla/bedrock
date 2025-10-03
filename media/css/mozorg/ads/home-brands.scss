@@ -17,13 +17,28 @@
 
     .mozads-c-brands-logos {
         margin-top: $spacer-md;
+        margin-inline: calc(var(--container-padding) * -1);
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        gap: 2rem;
+        max-width: calc(100% + (var(--container-padding) * 2));
+        overflow-x: auto;
+
+        li {
+            &:first-child {
+                padding-left: var(--container-padding);
+            }
+
+            &:last-child {
+                padding-right: var(--container-padding);
+            }
+        }
 
         img {
             max-height: 40px;
+            max-width: 120px;
         }
     }
 }
