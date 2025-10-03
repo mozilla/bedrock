@@ -70,7 +70,8 @@ $image-path: '/media/protocol/img';
         letter-spacing: -2%;
     }
 
-    .mozads-c-callout-action {
+    .mozads-c-callout-action,
+    .mozads-c-callout-action:hover {
         color: white;
         font-weight: 300;
         font-size: $text-button-md;

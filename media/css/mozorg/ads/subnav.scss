@@ -8,9 +8,9 @@
     a[href*='anonymco.com'],
     a[href*='mozilla.formstack.com'] {
         padding-right: 1.2em;
-        background: url('/media/protocol/img/icons/external-link.svg') right
-            center no-repeat;
-        background-size: 1em auto;
+        // background: url('/media/protocol/img/icons/external-link.svg') right
+        //     center no-repeat;
+        // background-size: 1em auto;
     }
 }
 
@@ -60,7 +60,7 @@
         padding: $spacing-lg 0;
     }
 
-    &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:link {
         padding: $spacer-xs;
         color: advars.$color-ads-off-black;
         background-color: $token-color-green;
@@ -88,7 +88,7 @@
 
 @media #{$mq-md} {
     .mozads-c-sub-navigation {
-        &.c-sub-navigation .c-sub-navigation-item a:link.mozads-c-contact-sales-button {
+        &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:link {
             display: inline;
         }
     }
