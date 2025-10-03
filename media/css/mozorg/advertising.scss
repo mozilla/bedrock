@@ -91,117 +91,118 @@ $image-path: '/media/protocol/img';
         }
     }
 
-    .mozads-c-callout-bg {
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 100%;
-        max-width: 100%;
-        z-index: 0;
+    // uncomment for dynamic scroll effect
+    // .mozads-c-callout-bg {
+    //     position: absolute;
+    //     top: 0;
+    //     height: 100%;
+    //     width: 100%;
+    //     max-width: 100%;
+    //     z-index: 0;
 
-        .mozads-c-callout-bg-inner {
-            position: sticky;
-            top: var(--sub-nav-height);
-            height: 96vh;
-        }
+    //     .mozads-c-callout-bg-inner {
+    //         position: sticky;
+    //         top: var(--sub-nav-height);
+    //         height: 96vh;
+    //     }
 
-        .bg-image {
-            position: absolute;
-            display: grid;
+    //     .bg-image {
+    //         position: absolute;
+    //         display: grid;
 
-            > * {
-                grid-area: 1/1;
-                margin: 0;
-            }
+    //         > * {
+    //             grid-area: 1/1;
+    //             margin: 0;
+    //         }
 
-            .layer-1 {
-                z-index: 1;
-            }
+    //         .layer-1 {
+    //             z-index: 1;
+    //         }
 
-            .layer-2 {
-                position: absolute;
-                top: 0;
-                right: 0;
-                height: 50%;
-                z-index: 2;
-                mask:
-                    linear-gradient(#000 0 0),
-                    linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
-                        200% no-repeat;
-                -webkit-mask:
-                    linear-gradient(#000 0 0),
-                    linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
-                        200% no-repeat;
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-                transition: 300ms ease-in;
+    //         .layer-2 {
+    //             position: absolute;
+    //             top: 0;
+    //             right: 0;
+    //             height: 50%;
+    //             z-index: 2;
+    //             mask:
+    //                 linear-gradient(#000 0 0),
+    //                 linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
+    //                     200% no-repeat;
+    //             -webkit-mask:
+    //                 linear-gradient(#000 0 0),
+    //                 linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
+    //                     200% no-repeat;
+    //             -webkit-mask-composite: xor;
+    //             mask-composite: exclude;
+    //             transition: 300ms ease-in;
 
-                &.active {
-                    mask-position:
-                        0% 0%,
-                        100% 100%;
-                    -webkit-mask-position:
-                        0% 0%,
-                        100% 100%;
-                }
-            }
+    //             &.active {
+    //                 mask-position:
+    //                     0% 0%,
+    //                     100% 100%;
+    //                 -webkit-mask-position:
+    //                     0% 0%,
+    //                     100% 100%;
+    //             }
+    //         }
 
-            .layer-3 {
-                z-index: 3;
-            }
+    //         .layer-3 {
+    //             z-index: 3;
+    //         }
 
-            // desktop images
-            &:nth-child(1) {
-                top: 1vh;
-                left: 0;
-                max-width: 50%;
-            }
+    //         // desktop images
+    //         &:nth-child(1) {
+    //             top: 1vh;
+    //             left: 0;
+    //             max-width: 50%;
+    //         }
 
-            &:nth-child(2) {
-                bottom: 2vh;
-                right: 0;
-                max-width: 50%;
-            }
+    //         &:nth-child(2) {
+    //             bottom: 2vh;
+    //             right: 0;
+    //             max-width: 50%;
+    //         }
 
-            &:nth-child(3) {
-                bottom: 2vh;
-                left: 12vh;
-                max-width: 50%;
-                display: none;
-            }
+    //         &:nth-child(3) {
+    //             bottom: 2vh;
+    //             left: 12vh;
+    //             max-width: 50%;
+    //             display: none;
+    //         }
 
-            &:nth-child(4) {
-                top: 1vh;
-                right: 0;
-                max-width: 50%;
-                display: none;
-            }
+    //         &:nth-child(4) {
+    //             top: 1vh;
+    //             right: 0;
+    //             max-width: 50%;
+    //             display: none;
+    //         }
 
-            --bg-image-height-width: 10vh;
+    //         --bg-image-height-width: 10vh;
 
-            &:nth-child(5),
-            &:nth-child(6) {
-                .layer-2 {
-                    height: var(--bg-image-height-width);
-                    width: var(--bg-image-height-width);
-                }
-            }
+    //         &:nth-child(5),
+    //         &:nth-child(6) {
+    //             .layer-2 {
+    //                 height: var(--bg-image-height-width);
+    //                 width: var(--bg-image-height-width);
+    //             }
+    //         }
 
-            &:nth-child(5) {
-                bottom: 2vh;
-                left: 0;
-                height: var(--bg-image-height-width);
-                width: var(--bg-image-height-width);
-            }
+    //         &:nth-child(5) {
+    //             bottom: 2vh;
+    //             left: 0;
+    //             height: var(--bg-image-height-width);
+    //             width: var(--bg-image-height-width);
+    //         }
 
-            &:nth-child(6) {
-                top: 2vh;
-                right: 18vh;
-                height: var(--bg-image-height-width);
-                width: var(--bg-image-height-width);
-            }
-        }
-    }
+    //         &:nth-child(6) {
+    //             top: 2vh;
+    //             right: 18vh;
+    //             height: var(--bg-image-height-width);
+    //             width: var(--bg-image-height-width);
+    //         }
+    //     }
+    // }
 }
 
 @media #{$mq-md} {
