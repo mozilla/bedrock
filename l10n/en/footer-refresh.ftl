@@ -4,7 +4,7 @@
 
 footer-refresh-discover-mozilla-products =Discover { -brand-name-mozilla } products and initiatives. We promise to keep your email private and secure — no sharing, no selling, just great updates.
 footer-refresh-leadership = Leadership
-footer-refresh-mozilla-ads = { -brand-name-mozilla } Ads
+footer-refresh-mozilla-ads = { -brand-name-mozilla-ads }
 # The content inside the <span> is added to provide information for screen reader users only, and it is visually hidden
 footer-refresh-learn-more-about-mozilla-ads = Learn more <span>about { footer-refresh-mozilla-ads }</span>
 footer-refresh-firefox-release-notes = { -brand-name-firefox } Release Notes
