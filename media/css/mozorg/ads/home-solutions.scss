@@ -21,6 +21,7 @@
     margin-bottom: 0;
 
 }
+
 .mozads-eyebrow {
     @include text-title-2xs;
     font-family: var(--title-font-family);
@@ -29,7 +30,8 @@
 
 .mozads-section-heading {
     font-weight: 300;
-    leading-trim: NONE;
+    /* stylelint-disable-next-line property-no-unknown */
+    leading-trim: none;
     line-height: 100%;
     letter-spacing: -1%;
     margin: 0;
@@ -61,7 +63,7 @@
     .mozads-stat {
         position: relative;
 
-        &:before {
+        &::before {
             content: '';
             position: absolute;
             inset: 110% auto auto 113px;
@@ -98,7 +100,7 @@
             .mozads-stat {
                 align-items: start;
 
-                &:before {
+                &::before {
                     inset: 73% 105% auto auto;
                 }
             }
@@ -106,7 +108,7 @@
 
         }
 
-        .mozads-stat:before {
+        .mozads-stat::before {
             width: min(50vh, 600px);
             height: 1px;
             inset: 73% auto auto 105%;

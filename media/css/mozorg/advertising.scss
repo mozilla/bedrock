@@ -11,6 +11,7 @@ $image-path: '/media/protocol/img';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @use '../m24/base';
 
+@use './ads/home-brands';
 @use './ads/home-solutions';
 @use './ads/subnav';
 @use './ads/home-why-moz';
