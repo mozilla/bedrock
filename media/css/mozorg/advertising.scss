@@ -29,6 +29,7 @@ $image-path: '/media/protocol/img';
     --sub-nav-height: 64px;
     margin-top: var(--sub-nav-height);
     box-sizing: border-box;
+    overflow: hidden;
 
     &.no-padding {
         margin-top: 0;
@@ -85,6 +86,77 @@ $image-path: '/media/protocol/img';
         a {
             font-size: $text-button-sm;
             color: white;
+        }
+    }
+
+    .mozads-c-callout-bg {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        padding: 0 $container-padding;
+        max-width: $content-max;
+
+        img {
+            position: absolute;
+
+            &:nth-child(1) {
+                top: 3%;
+                left: 2%;
+                max-width: 40%;
+            }
+
+            &:nth-child(2) {
+                top: 10%;
+                right: 5%;
+                max-width: 20%;
+            }
+
+            &:nth-child(3) {
+                top: 15%;
+                right: -5%;
+                max-width: 15%;
+                z-index: -1;
+            }
+
+            &:nth-child(4) {
+                top: 35%;
+                right: 5%;
+                max-width: 40%;
+            }
+
+            &:nth-child(5) {
+                top: 52%;
+                left: 15%;
+                max-width: 35%;
+            }
+
+            &:nth-child(6) {
+                top: 58%;
+                left: 2%;
+                max-width: 30%;
+            }
+
+            &:nth-child(7) {
+                bottom: 2%;
+                right: 2%;
+                max-height: 15%;
+            }
+
+            &.rectangle-h {
+                top: 62%;
+                right: -10%;
+                max-width: 40%;
+            }
+
+            &.rectangle-v {
+                left: 2%;
+                max-width: 10%;
+                top: 40%;
+            }
         }
     }
 
@@ -213,10 +285,60 @@ $image-path: '/media/protocol/img';
         }
 
         .mozads-c-callout-bg {
-            .bg-image {
-                &:nth-child(3),
+            img {
+                &:nth-child(1) {
+                    top: 0;
+                    left: 10%;
+                    max-width: 15%;
+                }
+
+                &:nth-child(2) {
+                    top: 3%;
+                    right: 5%;
+                    max-width: 20%;
+                }
+
+                &:nth-child(3) {
+                    top: 12%;
+                    right: -2%;
+                    max-width: 15%;
+                    z-index: -1;
+                }
+
                 &:nth-child(4) {
-                    display: grid;
+                    top: 40%;
+                    right: 5%;
+                    max-width: 20%;
+                }
+
+                &:nth-child(5) {
+                    top: 52%;
+                    left: 15%;
+                    max-width: 20%;
+                }
+
+                &:nth-child(6) {
+                    top: 58%;
+                    left: 2%;
+                    max-width: 15%;
+                }
+
+                &:nth-child(7) {
+                    bottom: 2%;
+                    right: 2%;
+                    max-height: 15%;
+                }
+
+                &.rectangle-h {
+                    top: 62%;
+                    right: -10%;
+                    max-width: 20%;
+                }
+
+                &.rectangle-v {
+                    left: 2%;
+                    max-width: 10%;
+                    top: 20%;
                 }
             }
         }
