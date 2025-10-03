@@ -1,0 +1,22 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
+.mozads-subpage-header {
+    background-color: advars.$color-ads-off-black;
+
+    h1 {
+        color: #fff;
+        font-size: 4rem;
+        font-weight: 300;
+        margin: 0;
+    }
+}
+
+@media #{$mq-md} {
+    .mozads-subpage-header h1 {
+        font-size: 8rem;
+    }
+}

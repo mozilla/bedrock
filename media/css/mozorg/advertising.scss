@@ -18,6 +18,8 @@ $image-path: '/media/protocol/img';
 @use './ads/home-why-moz';
 @use './ads/home-contact';
 @use './ads/home-notification';
+@use './ads/subpage-header';
+@use './ads/principles';
 
 .mzp-t-dark.mozads-t-dark {
     background-color: advars.$color-ads-off-black;
