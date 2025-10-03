@@ -31,13 +31,9 @@ $image-path: '/media/protocol/img';
 
 #mozads-main {
     --sub-nav-height: 64px;
-    margin-top: var(--sub-nav-height);
+    margin-top: -4px; // prevents flash of body's bg color when scrolling up with a sticky navbar
     box-sizing: border-box;
     overflow: hidden;
-
-    &.no-padding {
-        margin-top: 0;
-    }
 
     * {
         box-sizing: border-box;
