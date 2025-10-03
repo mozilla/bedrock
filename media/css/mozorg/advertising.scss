@@ -6,14 +6,15 @@
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
-
+@use './ads/mozilla-headline-light-font';
 @use '~@mozilla-protocol/core/protocol/css/includes/lib';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @use '../m24/base';
 
+@use './ads/subnav';
 @use './ads/home-brands';
 @use './ads/home-solutions';
-@use './ads/subnav';
+@use './ads/home-approach';
 @use './ads/home-why-moz';
 @use './ads/home-contact';
 

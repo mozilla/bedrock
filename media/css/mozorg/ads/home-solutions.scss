@@ -26,6 +26,7 @@
     @include text-title-2xs;
     font-family: var(--title-font-family);
     margin-bottom: 0;
+    font-weight: 400;
 }
 
 .mozads-section-heading {
@@ -35,6 +36,7 @@
     line-height: 100%;
     letter-spacing: -1%;
     margin: 0;
+    font-family: var(--title-font-family);
 
     @media #{$mq-md} {
         @include text-title-2xl;
@@ -50,15 +52,15 @@
     }
 }
 
+.mozads-figure {
+    position: relative;
+    z-index: 1;
+}
+
 .mozads-figure-grid {
     display: flex;
     flex-direction: column;
     gap: 3rem;
-
-    .mozads-figure {
-        position: relative;
-        z-index: 1;
-    }
 
     .mozads-stat {
         position: relative;

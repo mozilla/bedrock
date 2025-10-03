@@ -4,9 +4,8 @@
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
 
-.mozads-c-home-why-moz {
-    border-top: 1px solid advars.$color-ads-off-black;
-}
+// .mozads-c-home-why-moz {
+// }
 
 .mozads-half-grid {
     display: flex;
@@ -19,6 +18,11 @@
         padding: 1.5rem 0;
         align-items: start;
     }
+}
+
+.section-has-border-top {
+    border-top: 1px solid advars.$color-ads-off-black;
+    padding-top: 2rem;
 }
 
 .mozads-home-why-moz-list {
