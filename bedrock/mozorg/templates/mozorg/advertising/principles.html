@@ -17,6 +17,13 @@
   {{ css_bundle('mozilla-ads') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with has_subnav=true %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+    {% endwith %}
+{% endblock %}
+
+
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
 
 {% block sub_navigation %}
