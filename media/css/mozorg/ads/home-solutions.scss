@@ -37,7 +37,11 @@
     letter-spacing: -1%;
     margin: 0;
     font-family: var(--title-font-family);
-    @include text-title-2xl;
+    @include text-title-md;
+
+    @media #{$mq-md} {
+        @include text-title-2xl;
+    }
 }
 
 .mozads-section-subheading {
@@ -65,7 +69,7 @@
         &::before {
             content: '';
             position: absolute;
-            inset: 110% auto auto 0;
+            inset: 110% auto auto 1px;
             height: 100px;
             width: 1px;
             background-color: advars.$color-ads-off-black;
