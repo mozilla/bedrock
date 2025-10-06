@@ -37,6 +37,34 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     }
 }
 
+// * -------------------------------------------------------------------------- */
+// Sticky navigation styles
+@supports (position: sticky) {
+    html.mzp-has-sticky-navigation {
+        .m24-navigation-refresh.m24-mzp-is-sticky {
+            position: sticky;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            @include transition(transform 300ms ease-in-out, box-shadow 300ms ease-in-out);
+
+            &.mzp-is-scrolling {
+                // Shadow colors are equivalent to $color-ink-90, $color-blue-90, $color-ink-90
+                // We can't use a $box-shadow token here because it needs a different size and offset
+                box-shadow: 0 0 6px 1px rgba(29, 17, 51, 0.04), 0 0 8px $border-width rgba(9, 32, 77, 0.12), 0 0 5px -3px rgba(29, 17, 51, 0.12);
+            }
+
+            &.mzp-is-hidden {
+                @include transform(translate(0, -110%));
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                position: static;
+            }
+        }
+    }
+}
+
 // Common navigation styles
 .m24-c-navigation-l-content {
     display: flex;
