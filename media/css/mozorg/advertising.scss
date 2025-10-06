@@ -1,25 +1,412 @@
 // This Source Code Form is subject to the terms of the Mozilla Public
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../m24/vars/lib' as *;
+@use './ads/vars' as advars;
+@use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
+@use './ads/mozilla-headline-light-font';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@use '../m24/base';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/templates/multi-column';
-
-$color-ads-off-black: #161616;
+@use './ads/subnav';
+@use './ads/home-brands';
+@use './ads/home-solutions';
+@use './ads/home-approach';
+@use './ads/home-why-moz';
+@use './ads/home-contact';
+@use './ads/home-notification';
+@use './ads/subpage-header';
+@use './ads/principles';
 
 .mzp-t-dark.mozads-t-dark {
-    background-color: $color-ads-off-black;
+    background-color: advars.$color-ads-off-black;
 }
 
-.c-sub-navigation-list {
-    a[href*="anonymco.com"],
-    a[href*="mozilla.formstack.com"] {
-        padding-right: 1.2em;
-        background: url("/media/protocol/img/icons/external-link.svg") right center no-repeat;
-        background-size: 1em auto;
+.has-scroll-padding {
+    scroll-margin-top: 73px;
+}
+
+:root {
+    --title-font-family: 'Mozilla Sans Headline', sans-serif;
+}
+
+#mozads-main {
+    --sub-nav-height: 64px;
+    margin-top: -4px; // prevents flash of body's bg color when scrolling up with a sticky navbar
+    box-sizing: border-box;
+    overflow: hidden;
+
+    * {
+        box-sizing: border-box;
+    }
+
+    p,
+    figcaption {
+        line-height: 1.2;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Mozilla Sans Headline', sans-serif;
+    }
+}
+
+// Mozilla Ads callout component
+.mozads-c-callout {
+    text-align: center;
+    font-weight: 300;
+    background-color: advars.$color-ads-off-black;
+    position: relative;
+
+    > * {
+        margin: 0 auto;
+        padding: 0 $container-padding;
+        max-width: $content-max;
+        z-index: 1;
+        position: relative;
+    }
+
+    h1 {
+        font-size: $text-title-2xl;
+        line-height: 0.9;
+        color: white;
+        font-weight: 300;
+        letter-spacing: -2%;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .mozads-c-callout-action,
+    .mozads-c-callout-action:hover {
+        color: white;
+        font-weight: 300;
+        font-size: $text-button-md;
+    }
+
+    .mozads-c-callout-section {
+        height: 60vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        padding-block: 2rem;
+
+        &.is-bottom {
+            height: 70vh;
+            justify-content: flex-start;
+            padding-top: 4rem;
+        }
+    }
+
+    .mozads-c-callout-card {
+        font-weight: 300;
+        font-size: 1.25rem;
+        color: white;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        p {
+            margin-bottom: $spacing-md;
+        }
+
+        a {
+            font-size: $text-button-sm;
+            color: white;
+        }
+    }
+
+    .middle-mobile-images {
+        position: relative;
+        height: 50vh;
+        margin-top: 2rem;
+
+        img {
+            position: absolute;
+
+            &.image-4 {
+                top: 0;
+                right: 5%;
+                max-width: 40%;
+                z-index: 1;
+            }
+
+            &.image-5 {
+                top: 39%;
+                left: 15%;
+                max-width: 22%;
+            }
+
+            &.image-6 {
+                bottom: 0;
+                left: 2%;
+                max-width: 20%;
+            }
+
+            &.rectangle-h {
+                top: 62%;
+                right: -10%;
+                max-width: 40%;
+                z-index: 0;
+            }
+        }
+    }
+
+
+    .mozads-c-callout-bg {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        padding: 0 $container-padding;
+        max-width: $content-max;
+
+        .mobile-helper {
+            display: contents;
+        }
+
+        img {
+            position: absolute;
+
+            &.large-only {
+                display: none;
+            }
+
+            &.image-1 {
+                top: 3%;
+                left: 2%;
+                max-width: 40%;
+            }
+
+            &.image-2 {
+                top: 10%;
+                right: 5%;
+                max-width: 20%;
+            }
+
+            &.image-3 {
+                top: 15%;
+                right: -5%;
+                max-width: 15%;
+                z-index: -1;
+            }
+
+            &.image-7 {
+                bottom: 2%;
+                right: 2%;
+                max-height: 12%;
+            }
+
+            &.rectangle-v {
+                left: 2%;
+                max-width: 10%;
+                top: 40%;
+            }
+        }
+    }
+
+    // uncomment for dynamic scroll effect
+    // .mozads-c-callout-bg {
+    //     position: absolute;
+    //     top: 0;
+    //     height: 100%;
+    //     width: 100%;
+    //     max-width: 100%;
+    //     z-index: 0;
+
+    //     .mozads-c-callout-bg-inner {
+    //         position: sticky;
+    //         top: var(--sub-nav-height);
+    //         height: 96vh;
+    //     }
+
+    //     .bg-image {
+    //         position: absolute;
+    //         display: grid;
+
+    //         > * {
+    //             grid-area: 1/1;
+    //             margin: 0;
+    //         }
+
+    //         .layer-1 {
+    //             z-index: 1;
+    //         }
+
+    //         .layer-2 {
+    //             position: absolute;
+    //             top: 0;
+    //             right: 0;
+    //             height: 50%;
+    //             z-index: 2;
+    //             mask:
+    //                 linear-gradient(#000 0 0),
+    //                 linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
+    //                     200% no-repeat;
+    //             -webkit-mask:
+    //                 linear-gradient(#000 0 0),
+    //                 linear-gradient(#000 50%, #0000 0) content-box 0% 0% / 200%
+    //                     200% no-repeat;
+    //             -webkit-mask-composite: xor;
+    //             mask-composite: exclude;
+    //             transition: 300ms ease-in;
+
+    //             &.active {
+    //                 mask-position:
+    //                     0% 0%,
+    //                     100% 100%;
+    //                 -webkit-mask-position:
+    //                     0% 0%,
+    //                     100% 100%;
+    //             }
+    //         }
+
+    //         .layer-3 {
+    //             z-index: 3;
+    //         }
+
+    //         // desktop images
+    //         &:nth-child(1) {
+    //             top: 1vh;
+    //             left: 0;
+    //             max-width: 50%;
+    //         }
+
+    //         &:nth-child(2) {
+    //             bottom: 2vh;
+    //             right: 0;
+    //             max-width: 50%;
+    //         }
+
+    //         &:nth-child(3) {
+    //             bottom: 2vh;
+    //             left: 12vh;
+    //             max-width: 50%;
+    //             display: none;
+    //         }
+
+    //         &:nth-child(4) {
+    //             top: 1vh;
+    //             right: 0;
+    //             max-width: 50%;
+    //             display: none;
+    //         }
+
+    //         --bg-image-height-width: 10vh;
+
+    //         &:nth-child(5),
+    //         &:nth-child(6) {
+    //             .layer-2 {
+    //                 height: var(--bg-image-height-width);
+    //                 width: var(--bg-image-height-width);
+    //             }
+    //         }
+
+    //         &:nth-child(5) {
+    //             bottom: 2vh;
+    //             left: 0;
+    //             height: var(--bg-image-height-width);
+    //             width: var(--bg-image-height-width);
+    //         }
+
+    //         &:nth-child(6) {
+    //             top: 2vh;
+    //             right: 18vh;
+    //             height: var(--bg-image-height-width);
+    //             width: var(--bg-image-height-width);
+    //         }
+    //     }
+    // }
+}
+
+@media #{$mq-md} {
+    .mozads-c-callout {
+        .mozads-c-callout-section,
+        .mozads-c-callout-section.is-bottom {
+            height: 92vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 8rem;
+        }
+
+        .mozads-c-callout-card {
+            max-width: $content-md;
+            font-size: 2rem;
+        }
+
+        .middle-mobile-images {
+                display: none;
+            }
+
+        .mozads-c-callout-bg {
+            img {
+                &.large-only {
+                    display: block;
+                }
+
+                &.image-1 {
+                    top: 0;
+                    left: 10%;
+                    max-width: 15%;
+                }
+
+                &.image-2 {
+                    top: 3%;
+                    right: 5%;
+                    max-width: 20%;
+                }
+
+                &.image-3 {
+                    top: 12%;
+                    right: -2%;
+                    max-width: 15%;
+                    z-index: -1;
+                }
+
+                &.image-4 {
+                    top: 40%;
+                    right: 5%;
+                    max-width: 20%;
+                }
+
+                &.image-5 {
+                    top: 52%;
+                    left: 15%;
+                    max-width: 20%;
+                }
+
+                &.image-6 {
+                    top: 58%;
+                    left: 2%;
+                    max-width: 15%;
+                }
+
+                &.image-7 {
+                    bottom: 2%;
+                    right: 2%;
+                    max-height: 15%;
+                }
+
+                &.rectangle-h {
+                    top: 62%;
+                    right: -10%;
+                    max-width: 20%;
+                }
+
+                &.rectangle-v {
+                    left: 2%;
+                    max-width: 10%;
+                    top: 20%;
+                }
+            }
+        }
     }
 }
 

@@ -17,6 +17,13 @@
   {{ css_bundle('mozilla-ads') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with has_subnav=true %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+    {% endwith %}
+{% endblock %}
+
+
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
 
 {% block sub_navigation %}
@@ -24,100 +31,46 @@
 {% endblock %}
 
 {% block content %}
-  {{ callout(
-    class='mozads-header mzp-t-dark mozads-t-dark',
-    title='Built on principles',
-    desc='At Mozilla, we believe in a world where a healthy advertising industry and individual privacy can co-exist. We’re advancing the technology to make it happen.',
-    heading_level=1,
-    brand=False,
-    content_width='xl',
-  ) }}
 
-  <ul class="mozads-principles mzp-l-content mzp-t-content-xl mzp-l-columns mzp-t-columns-two mzp-t-picto-side">
-    {% call picto(
-      base_el='li',
-      title='Privacy',
-      heading_level=2,
-      image=resp_img(
-        url='img/mozorg/advertising/principle-privacy.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'width': '135',
-          'height': '135',
-        }
-      ),
-      body=True,
-    ) %}
-      <p>A core tenet of the <a href="{{ url('mozorg.about.manifesto') }}">Mozilla Manifesto</a>
-        is that user privacy is fundamental and non-optional. Common practices in
-        digital advertising today are problematic — putting personal data at risk
-        and tracking people across websites without their knowledge or permission.</p>
-    {% endcall %}
+<header class="mozads-subpage-header">
+  <div class="m24-c-content">
+    <h1>Principles</h1>
+  </div>
+</header>
 
-    {% call picto(
-      base_el='li',
-      title='Safe data practices',
-      heading_level=2,
-      image=resp_img(
-        url='img/mozorg/advertising/principle-safe.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'width': '135',
-          'height': '135',
-        }
-      ),
-      body=True,
-    ) %}
-      <p>With strong data practices and technologies, it’s possible to target,
-        optimize and measure ads while preserving people’s privacy. Data is a
-        critical ingredient in driving effective advertising. Other industries,
-        like healthcare and financial services, have evolved their data practices
-        and embraced privacy — the advertising industry can too.</p>
-    {% endcall %}
+<section class="m24-c-content">
+  <div class="mozads-half-grid">
+    <div class="principles-intro">
+      <h2>Ads that work for you </h2>
+      <p>The internet relies on advertising to fund the sites and apps people care about, but today’s system favors big tech—often at the expense of your privacy. We’re building a new approach to advertising that is a fair deal for everyone.</p>
 
-    {% call picto(
-      base_el='li',
-      title='Community + collaboration',
-      heading_level=2,
-      image=resp_img(
-        url='img/mozorg/advertising/principle-community.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'width': '135',
-          'height': '135',
-        }
-      ),
-      body=True,
-    ) %}
-      <p>No single company can or should be able to change the entire ecosystem.
-        We invite collaboration with and innovation from governments, civil
-        society, advertisers, publishers and ad tech companies to achieve these
-        goals together.</p>
-    {% endcall %}
+    </div>
 
-    {% call picto(
-      base_el='li',
-      title='Advertising on the internet',
-      heading_level=2,
-      image=resp_img(
-        url='img/mozorg/advertising/principle-advertising.svg',
-        optional_attributes={
-          'class': 'mzp-c-picto-image',
-          'loading': 'lazy',
-          'width': '135',
-          'height': '135',
-        }
-      ),
-      body=True,
-    ) %}
-      <p>Commercial involvement in the development of the internet brings many
-        benefits; a balance between commercial profit and public benefit is critical.</p>
-    {% endcall %}
-  </ul>
+      <ul class="principles-detail-list">
+        <li>
+          <h3>No creepy ads</h3>
+          <p>We don't allow cross-site tracking in our ads—no third-party cookies or device identifiers are shared with advertisers—so our ads won't follow you around the internet. And if you use Firefox, we’ll keep others from tracking you, too.</p>
+        </li>
+        <li>
+          <h3>No annoying ad formats</h3>
+          <p>We won’t serve ads that get in your way of using Firefox. All our ads are also clearly labeled, because we’re not trying to trick you.</p>
+        </li>
+        <li>
+          <h3>We treat your data like YOUR data</h3>
+          <p>We do not sell your personal data. And unlike big tech, we don’t use your age, gender, or precise location for ads.</p>
+          <p>We do need some information to make ads work, so we apply the same <a href="/privacy/principles/">data privacy principles</a> we use for the rest of Mozilla to ads. This means we’ll limit data collection, keep you in control of your data, and protect it with strong privacy tools like encryption and differential privacy.</p>
+        </li>
+        <li>
+          <h3>Don’t like it? Turn it off.</h3>
+          <p>You always have control over your ads experience. You can choose the data you’re okay to share or even opt-out of ads completely. And unlike big tech, our browser still supports the most powerful ad blockers available.</p>
+        </li>
+        <li>
+          <h3>See for yourself</h3>
+            <p>Firefox is open-source, so the community can verify that we’re keeping the data and privacy promises that we make.</p>
+        </li>
+      </ul>
+  </div>
+</section>
 
-  {% include 'mozorg/advertising/includes/blog-articles.html' %}
 
 {% endblock %}

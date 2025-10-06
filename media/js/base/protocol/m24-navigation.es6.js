@@ -316,7 +316,7 @@ MzpNavigation.init = (options) => {
      * Do not init sticky navigation if user prefers reduced motion
      */
 
-    _navElem = document.querySelector('.m24-navigation-refresh');
+    _navElem = document.querySelector('.enable-main-nav-sticky');
     const _navIsSticky =
         _navElem &&
         _navElem.classList.contains('m24-mzp-is-sticky') &&

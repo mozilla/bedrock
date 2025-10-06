@@ -1,0 +1,32 @@
+@use './vars' as advars;
+@use '../../m24/vars/lib' as *;
+
+.mozads-c-brands {
+    background-color: advars.$color-ads-off-black;
+    color: white;
+    text-align: center;
+    padding: $spacer-2xl 0;
+
+    .mozads-c-brands-container {
+        margin: 0 auto;
+        padding: 0 var(--container-padding);
+        max-width: 1440px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .mozads-c-brands-logos {
+        margin-top: $spacer-md;
+        margin-inline: calc(var(--container-padding) * -1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: $spacer-md;
+
+        img {
+            max-height: 40px;
+            max-width: 120px;
+        }
+    }
+}
