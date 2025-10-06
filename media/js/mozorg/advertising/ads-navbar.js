@@ -29,11 +29,11 @@
         });
     };
 
-    Mozilla.Utils.onDocumentReady(() =>{
+    Mozilla.Utils.onDocumentReady(() => {
         const footer = document.querySelector('.moz24-footer');
 
         const observer = new IntersectionObserver(callback, options);
         observer.observe(mainNavBar);
         observer.observe(footer);
-    })
+    });
 })();
