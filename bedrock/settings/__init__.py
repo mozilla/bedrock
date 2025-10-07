@@ -51,7 +51,7 @@ _csp_connect_src = {
     "www.mozilla.org/submit/bedrock/",
     BASKET_URL,
     FXA_ENDPOINT,
-    FOUNDATION_SUBSCRIBE_URL,
+    FOUNDATION_URL,
 }
 _csp_font_src = {
     csp.constants.SELF,
@@ -63,7 +63,7 @@ _csp_form_action = {
     # progressively enhance forms by using Javascript.
     BASKET_URL,
     FXA_ENDPOINT,
-    FOUNDATION_SUBSCRIBE_URL,
+    FOUNDATION_URL,
 }
 # On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
 _csp_frame_ancestors = {

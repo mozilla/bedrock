@@ -886,7 +886,8 @@ BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
 BASKET_SUBSCRIBE_URL = f"{BASKET_URL}/news/subscribe/"
 
 # Foundation newsletters are handled through Campaign Monitor
-FOUNDATION_SUBSCRIBE_URL = "https://kmq73rfvbh.execute-api.us-east-2.amazonaws.com/api/newsletter/mozillaorg"
+FOUNDATION_URL = "https://kmq73rfvbh.execute-api.us-east-2.amazonaws.com"
+FOUNDATION_SUBSCRIBE_URL = f"{FOUNDATION_URL}/api/newsletter/mozillaorg"
 
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 
