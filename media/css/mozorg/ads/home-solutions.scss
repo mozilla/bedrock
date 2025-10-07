@@ -122,12 +122,6 @@
 .mozads-figcaption {
     margin-top: $spacing-sm;
     @include text-title-2xs;
-
-    &.has-extra-pad {
-        @media #{$mq-md} {
-            padding-left: 4.8%;
-        }
-    }
 }
 
 .mozads-stat {
