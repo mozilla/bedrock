@@ -65,7 +65,7 @@
       <div class="newsletter-content">
         {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
           {{ email_newsletter_form(
-            newsletters='mozilla-foundation, mozilla-and-you',
+            newsletters='mozilla-foundation' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
             button_class='button-dark'
           )}}
         {% elif LANG.startswith('en-') %}
