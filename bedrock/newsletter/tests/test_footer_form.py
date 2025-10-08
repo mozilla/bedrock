@@ -4,9 +4,11 @@
 
 from unittest.mock import patch
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
@@ -62,18 +64,19 @@ class TestNewsletterFooter(TestCase):
         assert doc('#id_lang option[selected="selected"]').val() == ""
 
     @override_settings(DEV=True)
-    def test_newsletters_selected(self):
+    def test_newsletter_action(self):
         """
-        By default both newsletters should be checked.
+        Newsletter points to correct POST URL.
         """
-        with self.activate_locale("en-US"):
-            resp = self.client.get(reverse(self.view_name))
-        doc = pq(resp.content)
-        assert doc('#id_newsletters_0[checked="checked"]').length == 1
-        assert doc('#id_newsletters_1[checked="checked"]').length == 1
 
-        with self.activate_locale("en-US"):
-            resp = self.client.get(reverse("firefox.nothing-personal.index"))
-        doc = pq(resp.content)
-        assert doc('#id_newsletters_0[checked="checked"]').length == 0
-        assert doc('#id_newsletters_1[checked="checked"]').length == 0
+        with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=True):
+            with self.activate_locale("en-US"):
+                resp = self.client.get(reverse(self.view_name))
+            doc = pq(resp.content)
+            assert doc("#newsletter-form").attr("action") == settings.FOUNDATION_SUBSCRIBE_URL
+
+        with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=False):
+            with self.activate_locale("en-US"):
+                resp = self.client.get(reverse(self.view_name))
+            doc = pq(resp.content)
+            assert doc("#newsletter-form").attr("action") == settings.BASKET_SUBSCRIBE_URL
