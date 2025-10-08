@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
+{% extends "mozorg/advertising/base-advertising.html" %}
 
 {% from "macros-protocol.html" import callout, picto, split with context %}
 
@@ -14,11 +14,7 @@
   {{ css_bundle('protocol-callout') }}
   {{ css_bundle('protocol-picto') }}
   {{ css_bundle('protocol-split') }}
-  {{ css_bundle('mozilla-ads') }}
-{% endblock %}
-
-{% block sub_navigation %}
-  {% include 'mozorg/advertising/includes/sub-nav.html' %}
+  {{ super() }}
 {% endblock %}
 
 {% block content %}
