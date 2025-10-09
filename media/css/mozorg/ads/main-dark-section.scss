@@ -2,12 +2,7 @@
 @use './vars' as advars;
 
 .mozads-c-main-dark-section {
-    font-weight: 300;
     background-color: advars.$color-ads-off-black;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
 
     * {
         color: white;
@@ -15,36 +10,6 @@
 
     hr {
         margin: $spacer-lg 0;
-    }
-
-    .mozads-c-main-dark-section-container {
-        margin: 0 auto;
-        padding: 0 $container-padding;
-        max-width: $content-max;
-        z-index: 1;
-        position: relative;
-    }
-
-    h1 {
-        font-family: 'Mozilla Sans Headline', sans-serif;
-        font-weight: 300;
-        font-style: light;
-        font-size: $text-title-2xl;
-        /* stylelint-disable-next-line property-no-unknown */
-        leading-trim: none;
-        line-height: 90%;
-        letter-spacing: -2%;
-    }
-
-    h2 {
-        font-size: $text-title-xl;
-        line-height: 1;
-        font-weight: 300;
-        letter-spacing: -1%;
-        text-shadow:
-            0 1px 1px rgba(0, 0, 0, 0.1),
-            0 1px 2px rgba(0, 0, 0, 0.1),
-            0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
 
