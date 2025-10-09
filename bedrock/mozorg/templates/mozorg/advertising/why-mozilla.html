@@ -20,24 +20,25 @@
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
 
 {% block content %}
+<main id="mozads-main">
+  <header class="mozads-subpage-header">
+    <div class="m24-c-content mozads-c-main-dark-section">
+      <h1>Why Mozilla</h1>
 
-<header class="mozads-subpage-header">
-  <div class="m24-c-content mozads-c-main-dark-section">
-    <h1>Why Mozilla</h1>
+      <p class="mozads-highlight-text">
+        We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
+      </p>
+    </div>
+  </header>
 
-    <p class="mozads-highlight-text">
-      We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
-    </p>
+  <div class="mozads-c-main-dark-section">
+    <section class="m24-c-content">
+    </section>
   </div>
-</header>
 
-<div class="mozads-c-main-dark-section">
-  <section class="m24-c-content">
-  </section>
-</div>
-
-{% include "mozorg/advertising/includes/home-ads-why-moz.html" %}
-{% include "mozorg/advertising/includes/home-ads-contact.html" %}
-{% include 'mozorg/advertising/includes/home-ads-notification.html' %}
+  {% include "mozorg/advertising/includes/home-ads-why-moz.html" %}
+  {% include "mozorg/advertising/includes/home-ads-contact.html" %}
+  {% include 'mozorg/advertising/includes/home-ads-notification.html' %}
+</main>
 
 {% endblock %}
