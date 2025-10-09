@@ -22,8 +22,12 @@
 {% block content %}
 
 <header class="mozads-subpage-header">
-  <div class="m24-c-content">
+  <div class="m24-c-content mozads-c-main-dark-section">
     <h1>Why Mozilla</h1>
+
+    <p class="mozads-highlight-text">
+      We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
+    </p>
   </div>
 </header>
 
@@ -32,5 +36,8 @@
   </section>
 </div>
 
+{% include "mozorg/advertising/includes/home-ads-why-moz.html" %}
+{% include "mozorg/advertising/includes/home-ads-contact.html" %}
+{% include 'mozorg/advertising/includes/home-ads-notification.html' %}
 
 {% endblock %}
