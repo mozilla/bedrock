@@ -142,8 +142,9 @@ urlpatterns = [
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     page("advertising/", "mozorg/advertising/landing.html"),
     page("advertising/formats/", "mozorg/advertising/formats.html"),
-    page("advertising/principles/", "mozorg/advertisin≠g/principles.html"),
+    page("advertising/principles/", "mozorg/advertising/principles.html"),
     path("advertising/why-mozilla/", views.why_mozilla_view, name="why-mozilla"),
+    page("advertising/solutions/", "mozorg/advertising/solutions.html"),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
 ]

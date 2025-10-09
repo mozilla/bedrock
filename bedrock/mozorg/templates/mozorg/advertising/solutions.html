@@ -1,0 +1,76 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Mozilla Advertising - Solutions{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-ads') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% include 'mozorg/advertising/includes/sub-nav.html' %}
+{% endblock %}
+
+{% block content %}
+<main id="mozads-main">
+  <section class="mozads-c-main-dark-section">
+    <div class="m24-c-content has-scroll-padding">
+      <div>
+        <h1>Solutions</h1>
+        <hr/>
+        <h2>Firefox</h2>
+        <p class="mozads-highlight-text">Firefox stands as the most trusted alternative to one-size-fits-all, privacy-invading default browsers. Driven by Mozilla’s mission to ensure the internet is open and accessible to everyone, Firefox gives users total control.</p>
+      </div>
+
+      <div class="mozads-figure-grid reversed-on-large">
+        <aside class="mozads-stat">
+          <span class="mozads-stat-text">
+            <span class="mozads-stat-number">200M+</span>
+            <span class="mozads-stat-label">monthly active Firefox users</span>
+          </span>
+        </aside>
+        <figure class="mozads-figure">
+          {{ resp_img(
+            url="img/mozorg/advertising/solutions/ads-solutions-page-1.png",
+            optional_attributes={
+              'loading': 'lazy',
+              'alt': 'stylized screenshot of Firefox browser'
+            }
+          ) }}
+        </figure>
+      </div>
+
+      <div>
+        <h3>Who you'll reach</h3>
+        <p class="mozads-highlight-text">Firefox’s New Tab experience offers a variety of display and native ad formats. Your brand will be showcased alongside curated content from top-tier publishers. </p>
+      </div>
+
+      <div class="mozads-stat-group">
+        <div class="mozads-stat">
+          <span class="mozads-stat-text">
+            <span class="mozads-stat-number">6+</span>
+            <span class="mozads-stat-label">hours average daily use</span>
+          </span>
+        </div>
+        <div class="mozads-stat">
+          <span class="mozads-stat-text">
+            <span class="mozads-stat-number">100%</span>
+            <span class="mozads-stat-label">of our users choose us on purpose (we’re never the default)</span>
+          </span>
+        </div>
+        <div class="mozads-stat">
+          <span class="mozads-stat-text">
+            <span class="mozads-stat-number">60%</span>
+            <span class="mozads-stat-label">of our users consider themselves to be tech-savvy</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock %}
