@@ -4,17 +4,9 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
+{% extends "mozorg/advertising/base-advertising.html" %}
 
 {% block page_title %}Mozilla Advertising - Solutions{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('mozilla-ads') }}
-{% endblock %}
-
-{% block sub_navigation %}
-  {% include 'mozorg/advertising/includes/sub-nav.html' %}
-{% endblock %}
 
 {% block content %}
 <main id="mozads-main">
