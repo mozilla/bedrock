@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../m24/vars/lib' as *;
 @use './ads/vars' as advars;
+@use './ads/mixins' as admixins;
 @use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
 
 $font-path: '/media/protocol/fonts';
@@ -29,10 +30,6 @@ $image-path: '/media/protocol/img';
 
 .has-scroll-padding {
     scroll-margin-top: 73px;
-}
-
-:root {
-    --title-font-family: 'Mozilla Sans Headline', sans-serif;
 }
 
 #mozads-main {
@@ -89,34 +86,24 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-eyebrow {
-    @include text-title-2xs;
+    @include admixins.text-body-lg;
     font-family: var(--title-font-family);
     margin-bottom: 0;
     font-weight: 400;
 }
 
 .mozads-section-heading {
+    @include admixins.text-title-xl;
+    font-family: var(--title-font-family);
     font-weight: 300;
-    /* stylelint-disable-next-line property-no-unknown */
-    leading-trim: none;
     line-height: 100%;
     letter-spacing: -1%;
     margin: 0;
-    font-family: var(--title-font-family);
-    @include text-title-md;
-
-    @media #{$mq-md} {
-        @include text-title-2xl;
-    }
 }
 
 .mozads-section-subheading {
-    @include text-body-lg;
+    @include admixins.text-body-lg;
     margin: 0;
-
-    @media #{$mq-md} {
-        @include text-title-2xs;
-    }
 }
 
 .mozads-figure {
@@ -184,13 +171,7 @@ $image-path: '/media/protocol/img';
 
 .mozads-figcaption {
     margin-top: $spacing-sm;
-    @include text-title-2xs;
-
-    &.has-extra-pad {
-        @media #{$mq-md} {
-            padding-left: 4.8%;
-        }
-    }
+    @include admixins.text-body-lg;
 }
 
 .mozads-stat-group {
@@ -199,10 +180,10 @@ $image-path: '/media/protocol/img';
     align-items: center;
     justify-content: space-between;
     gap: $spacing-2xl;
+}
 
-    .mozads-stat-number {
-        font-size: $text-title-2xl;
-    }
+.mozads-stat-number {
+    @include admixins.text-title-xl;
 }
 
 .mozads-stat {
@@ -222,20 +203,14 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
 }
 
-.mozads-stat-number {
-    font-size: var(--title-md-size);
-    line-height: var(--title-md-line-height);
-}
-
 .mozads-stat-label {
-    @include text-body-md;
+    @include admixins.text-body-md;
 }
 
 .mozads-large-link {
+    @include admixins.text-title-md;
     display: block;
     text-align: right;
-    font-size: var(--title-xs-size);
-    line-height: var(--title-xs-line-height);
     margin: 0;
 
     &.white {
@@ -250,6 +225,11 @@ $image-path: '/media/protocol/img';
     &.with-top-margin {
         margin-top: $spacer-xl;
     }
+}
+
+.mozads-highlight-text {
+    @include admixins.text-body-lg;
+    max-width: 800px;
 }
 
 @media #{$mq-md} {
@@ -268,21 +248,6 @@ $image-path: '/media/protocol/img';
         width: 90px;
         height: 90px;
         margin-bottom: $spacing-lg;
-    }
-
-    .mozads-stat-number {
-        font-size: var(--title-2xl-size);
-        line-height: var(--title-2xl-line-height);
-    }
-
-    .mozads-large-link {
-        font-size: var(--title-md-size);
-        line-height: var(--title-md-line-height);
-    }
-
-    .mozads-highlight-text {
-        font-size: $text-body-lg;
-        max-width: 800px;
     }
 
     .mozads-gallery-tile-padding-top {
@@ -306,8 +271,7 @@ $image-path: '/media/protocol/img';
     }
 
     h1 {
-        font-size: $text-title-2xl;
-        line-height: 0.9;
+        @include admixins.text-title-2xl;
         color: white;
         font-weight: 300;
         letter-spacing: -2%;
@@ -341,8 +305,9 @@ $image-path: '/media/protocol/img';
 
     .mozads-c-callout-card {
         font-weight: 300;
-        font-size: 1.25rem;
+        @include admixins.text-title-sm;
         color: white;
+        max-width: $content-md;
         text-shadow:
             0 1px 1px rgba(0, 0, 0, 0.1),
             0 1px 2px rgba(0, 0, 0, 0.1),
@@ -350,11 +315,6 @@ $image-path: '/media/protocol/img';
 
         p {
             margin-bottom: $spacing-md;
-        }
-
-        a {
-            font-size: $text-button-sm;
-            color: white;
         }
     }
 
@@ -572,15 +532,6 @@ $image-path: '/media/protocol/img';
             align-items: center;
         }
 
-        h1 {
-            font-size: 8rem;
-        }
-
-        .mozads-c-callout-card {
-            max-width: $content-md;
-            font-size: 2rem;
-        }
-
         .middle-mobile-images {
             display: none;
         }
@@ -655,17 +606,14 @@ $image-path: '/media/protocol/img';
     padding: $layout-md 0;
 
     .mzp-c-callout-desc {
-        @include text-body-xl;
+        @include admixins.text-body-xl;
+    }
+    .mzp-c-callout-title {
+        @include admixins.text-title-2xl;
     }
 
-    @media #{$mq-lg} {
-        .mzp-c-callout-title {
-            @include text-title-2xl;
-        }
-
-        .mzp-c-callout-desc {
-            max-width: 60ch;
-        }
+    .mzp-c-callout-desc {
+        max-width: 60ch;
     }
 }
 
@@ -678,7 +626,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-content-intro {
-    @include text-body-xl;
+    @include admixins.text-body-xl;
 
     @media #{$mq-lg} {
         .ads-section-header & {
@@ -714,7 +662,7 @@ $image-path: '/media/protocol/img';
     }
 
     @media #{$mq-lg} {
-        @include text-body-sm;
+        @include admixins.text-body-sm;
         display: flex;
         text-align: center;
         padding: 0;
@@ -732,7 +680,7 @@ $image-path: '/media/protocol/img';
 
         strong {
             @include font-mozilla-headline;
-            @include text-title-md;
+            @include admixins.text-title-md;
             display: block;
             margin-bottom: $spacing-sm;
         }

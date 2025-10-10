@@ -1,0 +1,59 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+// These mixins mimic the behavior of Protocol mixins, while allowing the CSS variables
+// to do the responsive font size changes. Fewer media queries, less repetition.
+@mixin text-title-2xl {
+    font-size: var(--text-title-2xl);
+    line-height: var(--text-title-2xl-line-height);
+}
+
+@mixin text-title-xl {
+    font-size: var(--text-title-xl);
+    line-height: var(--text-title-xl-line-height);
+}
+
+@mixin text-title-lg {
+    font-size: var(--text-title-lg);
+    line-height: var(--text-title-lg-line-height);
+}
+
+@mixin text-title-md {
+    font-size: var(--text-title-md);
+    line-height: var(--text-title-md-line-height);
+}
+
+@mixin text-title-sm {
+    font-size: var(--text-title-sm);
+    line-height: var(--text-title-sm-line-height);
+}
+
+@mixin text-title-xs {
+    font-size: var(--text-title-xs);
+    line-height: var(--text-title-xs-line-height);
+}
+
+// body mixins all get the same line height. #TODO: this line height could be added
+// as a default to `body`, but that's a global change that would need thorough testing.
+
+@mixin text-body-xl {
+    font-size: var(--text-body-xl);
+    line-height: var(--text-body-line-height);
+}
+
+@mixin text-body-lg {
+    font-size: var(--text-body-lg);
+    line-height: var(--text-body-line-height);
+}
+
+@mixin text-body-md {
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-line-height);
+}
+
+@mixin text-body-sm {
+    font-size: var(--text-body-sm);
+    line-height: var(--text-body-line-height);
+}
