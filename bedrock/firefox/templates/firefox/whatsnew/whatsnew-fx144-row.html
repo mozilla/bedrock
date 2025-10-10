@@ -43,6 +43,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set card_3_url = 'https://relay.firefox.com/' %}
   {% set qr_title = 'Nimm Firefox immer mit' %}
   {% set qr_body = 'Scanne den QR-Code, hol dir Firefox Mobile und browse überall entspannt, fokussiert und kontrolliert.' %}
+  {% set newsletter_title = 'Mach das Beste aus Firefox' %}
+  {% set newsletter_body = 'Melde dich für monatliche Updates von Firefox und den neuesten Internet-Trends an und gestalte dein Online-Leben.' %}
+  {% set google_lens_eyebrow = 'Google Lens' %}
+  {% set perplexity_eyebrow = 'Perplexity' %}
+  {% set web_apps_eyebrow = 'Web-Apps' %}
+  {% set mobile_title = 'Mobile Firefox' %}
+  {% set shake_to_summarize_eyebrow = 'Zusammenfassung' %}
   {% set learn_more = 'Mehr erfahren' %}
   {% set release_notes = 'Alle Versionshinweise anzeigen' %}
 {% elif LANG == 'fr' %}
@@ -76,6 +83,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set card_3_url = 'https://relay.firefox.com/' %}
   {% set qr_title = 'Emportez Firefox avec vous' %}
   {% set qr_body = 'Scannez le QR code pour accéder à Firefox Mobile et naviguez avec tranquillité, concentration et contrôle, où que vous soyez.' %}
+  {% set newsletter_title = 'Révélez tout le potentiel de Firefox' %}
+  {% set newsletter_body = 'Abonnez-vous et retrouvez les dernières actualités et astuces pour améliorer votre expérience internet.' %}
+  {% set google_lens_eyebrow = 'Google Lens' %}
+  {% set perplexity_eyebrow = 'Perplexity' %}
+  {% set web_apps_eyebrow = 'Applis web' %}
+  {% set mobile_title = 'Mobile Firefox' %}
+  {% set shake_to_summarize_eyebrow = 'Résumé' %}
   {% set learn_more = 'En savoir plus' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
 {% else %}
@@ -134,6 +148,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set card_3_url = 'https://relay.firefox.com/' %}
   {% set qr_title = 'Take Firefox with you' %}
   {% set qr_body = 'Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.' %}
+  {% set newsletter_title = 'Keep up with all things Firefox' %}
+  {% set newsletter_body = 'Get monthly how-tos, advice and news to make your Firefox experience work best for you.' %}
+  {% set google_lens_eyebrow = 'Google Lens' %}
+  {% set perplexity_eyebrow = 'Perplexity' %}
+  {% set web_apps_eyebrow = 'Web apps' %}
+  {% set mobile_title = 'Mobile Firefox' %}
+  {% set shake_to_summarize_eyebrow = 'Summary' %}
   {% set learn_more = 'Learn more' %}
   {% set release_notes = 'See Full Release Notes' %}
 {% endif %}
@@ -191,7 +212,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">Google Lens</p>
+            <p class="wnp-feature-eyebrow">{{ google_lens_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ google_lens_headline }}</h3>
             <p class="wnp-body">{{ google_lens_body | safe }}</p>
             <div class="wnp-btn-wrap">
@@ -215,7 +236,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">Perplexity</p>
+            <p class="wnp-feature-eyebrow">{{ perplexity_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ perplexity_headline }}</h3>
             <p class="wnp-body">{{ perplexity_body }}</p>
             <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/perplexity-firefox/?{{ utm_params }}" aria-label="Learn more about Perplexity" data-cta-text="Learn more - perplexity">{{ learn_more }}
@@ -238,7 +259,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">Web apps</p>
+            <p class="wnp-feature-eyebrow">{{ web_apps_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ web_apps_headline }}</h3>
             <p class="wnp-body">{{ web_apps_body | safe }}</p>
             <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="Learn more about web apps" data-cta-text="Learn more - web apps">{{ learn_more }}
@@ -263,9 +284,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <article class="wnp-card">
             <div class="wnp-card-content">
               {% if LANG in ['de', 'fr'] %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true">
               {% else %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" alt="" aria-hidden="true">
               {% endif %}
               <h3 class="wnp-subtitle">
                 {% if LANG in ['de', 'fr'] %}
@@ -289,9 +310,9 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <article class="wnp-card">
             <div class="wnp-card-content">
               {% if LANG in ['de', 'fr'] %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/custom-wallpapers-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/custom-wallpapers-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker-dark.svg" alt="" aria-hidden="true">
               {% else %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true">
               {% endif %}
               <h3 class="wnp-subtitle">
                 {% if LANG in ['de', 'fr'] %}
@@ -314,7 +335,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </article>
           <article class="wnp-card">
             <div class="wnp-card-content">
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" alt="" aria-hidden="true">
               <h3 class="wnp-subtitle">
                 <a href="{{ card_3_url }}?{{ utm_params }}" data-cta-text="Card 3" aria-describedby="desc-card-3">{{ card_3_headline }}</a>
               </h3>
@@ -331,15 +352,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <!-- Mobile Features - Shake to Summarize (iOS only) -->
     <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
       <div class="wnp-container">
-        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">
-          {% if LANG == 'de' %}
-            Mobile Firefox
-          {% elif LANG == 'fr' %}
-            Mobile Firefox
-          {% else %}
-            Mobile Firefox
-          {% endif %}
-        </h2>
+        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">{{ mobile_title }}</h2>
         <div class="wnp-feature">
           <div class="wnp-feature-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
@@ -356,15 +369,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <div>
               <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span>
             </div>
-            <p class="wnp-feature-eyebrow">
-              {% if LANG == 'de' %}
-                Zusammenfassung
-              {% elif LANG == 'fr' %}
-                Résumé
-              {% else %}
-                Summary
-              {% endif %}
-            </p>
+            <p class="wnp-feature-eyebrow">{{ shake_to_summarize_eyebrow }}</p>
             <h3 class="wnp-subtitle">
               {% if LANG == 'de' %}
                 Schüttle dein Gerät für eine Zusammenfassung
@@ -415,8 +420,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
     <!-- Subscribe Banner -->
     <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
       <div class="wnp-container">
-        <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
-        <p class="wnp-body wnp-is-centered">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">{{ newsletter_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ newsletter_body }}</p>
         {{ email_newsletter_form(
         template="firefox/whatsnew/includes/newsletter_form.html",
         include_country=true,
