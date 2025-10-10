@@ -219,7 +219,8 @@ When you come back, your tab will reload just where you left off.</p>
         <div class="wnp-qr">
           <div class="wnp-qr-layout">
             <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
+              {% set mobile_app_url = "https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version %}
+              <div class="wnp-qr-qr" data-href="{{ mobile_app_url }}" aria-label="{{ ftl('whatsnew-fx144-qr-alt') }}" role="img">{{ qrcode(mobile_app_url, 12) }}</div>
             </div>
             <div class="wnp-qr-content">
               <div class="wnp-qr-content-inner">

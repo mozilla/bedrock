@@ -47,6 +47,7 @@ function init() {
 }
 
 if (
+    typeof window.Mozilla !== 'undefined' &&
     typeof window.Mozilla.Client !== 'undefined' &&
     typeof window.Mozilla.UITour !== 'undefined' &&
     window.Mozilla.Client.isFirefoxDesktop
