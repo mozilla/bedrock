@@ -349,55 +349,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-    <!-- Mobile Features - Shake to Summarize (iOS only) -->
-    <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
-      <div class="wnp-container">
-        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">{{ mobile_title }}</h2>
-        <div class="wnp-feature">
-          <div class="wnp-feature-media" aria-hidden="true">
-            <div class="wnp-media-frame wnp-media-frame--settings">
-              {{resp_img(
-                url="img/firefox/whatsnew/whatsnew144/shake-to-summarize.png",
-                srcset={
-                    "img/firefox/whatsnew/whatsnew144/shake-to-summarize@2x.png": "2x",
-                },
-                optional_attributes={"l10n": True, "alt": "Shake to summarize illustration"}
-            )}}
-            </div>
-          </div>
-          <div class="wnp-feature-content">
-            <div>
-              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span>
-            </div>
-            <p class="wnp-feature-eyebrow">{{ shake_to_summarize_eyebrow }}</p>
-            <h3 class="wnp-subtitle">
-              {% if LANG == 'de' %}
-                Schüttle dein Gerät für eine Zusammenfassung
-              {% elif LANG == 'fr' %}
-                Secouez pour résumer
-              {% else %}
-                Shake to summarize
-              {% endif %}
-            </h3>
-            <p class="wnp-body">
-              {% if LANG == 'de' %}
-                Erhalte mit einem Schütteln eine KI-gestützte Zusammenfassung jeder Webseite auf deinem iPhone.
-              {% elif LANG == 'fr' %}
-                Secouez votre iPhone pour obtenir un résumé alimenté par l'IA de n'importe quelle page web.
-              {% else %}
-                Get an AI-powered summary of any webpage with a shake on your iPhone.
-              {% endif %}
-            </p>
-            <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-text="Learn more - shake to summarize">{{ learn_more }}
-                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- QR Code Banner -->
     <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
       <div class="wnp-container">
