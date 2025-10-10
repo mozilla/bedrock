@@ -15,6 +15,18 @@ body.wnp-uitour .wnp144-uitour {
     display: inline-block;
 }
 
+.wnp-section-shake-to-summarize {
+    display: none;
+}
+
+body.is-firefox-ios .wnp-section-shake-to-summarize {
+    display: block;
+}
+
 .wnp-qr-media {
     background-image: url('/media/img/firefox/whatsnew/whatsnew144/qr-background-simple.png');
+}
+
+.wnp-tag {
+    background-color: #fff;
 }

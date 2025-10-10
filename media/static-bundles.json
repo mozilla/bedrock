@@ -1686,9 +1686,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-144-uitour-us.es6.js"
+        "js/firefox/whatsnew/whatsnew-144.es6.js"
       ],
-      "name": "firefox_whatsnew_144_us"
+      "name": "firefox_whatsnew_144"
     },
     {
       "files": [

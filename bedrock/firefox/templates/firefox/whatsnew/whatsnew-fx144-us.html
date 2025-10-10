@@ -140,7 +140,7 @@ Each profile has its own extensions, themes and logins so you stay private, orga
         <div class="wnp-grid">
           <article class="wnp-card">
             <div class="wnp-card-content">
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" alt="" aria-hidden="true">
               <h3 class="wnp-subtitle">
                 <a href="#new-tab" data-cta-text="Personalize new tab" aria-describedby="desc-new-tab">Your new tab, your way</a>
               </h3>
@@ -152,7 +152,7 @@ Each profile has its own extensions, themes and logins so you stay private, orga
           </article>
           <article class="wnp-card">
             <div class="wnp-card-content">
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true">
               <h3 class="wnp-subtitle">
                 <a href="https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox?{{ utm_params }}" data-cta-text="Learn more - unload tabs" aria-describedby="desc-unload-tabs">Keep your tabs. Free up memory.</a>
               </h3>
@@ -168,7 +168,7 @@ When you come back, your tab will reload just where you left off.</p>
           </article>
           <article class="wnp-card">
             <div class="wnp-card-content">
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker-dark.svg" alt="" aria-hidden="true">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" alt="" aria-hidden="true">
               <h3 class="wnp-subtitle">
                 <a href="https://relay.firefox.com/?{{ utm_params }}" data-cta-text="Try Relay" aria-describedby="desc-relay">Keep your email address to yourself.</a>
               </h3>
@@ -182,7 +182,7 @@ When you come back, your tab will reload just where you left off.</p>
       </div>
     </section>
 
-    <section class="wnp-section wnp-section-mobile" aria-labelledby="wnp-mobile-heading">
+    <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
       <div class="wnp-container">
         <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">What's New on Firefox Mobile?</h2>
         <div class="wnp-feature">
@@ -198,6 +198,9 @@ When you come back, your tab will reload just where you left off.</p>
             </div>
           </div>
           <div class="wnp-feature-content">
+            <div>
+              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span>
+            </div>
             <p class="wnp-feature-eyebrow">Shake to Summarize</p>
             <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
             <p class="wnp-body">Quickly summarize long reads with a shake or tap. Available now on Firefox for iOS.</p>
@@ -248,5 +251,5 @@ When you come back, your tab will reload just where you left off.</p>
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox_whatsnew_144_us') }}
+  {{ js_bundle('firefox_whatsnew_144') }}
 {% endblock %}

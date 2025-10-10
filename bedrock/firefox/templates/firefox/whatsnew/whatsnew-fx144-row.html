@@ -7,6 +7,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# We use a new base template introduced with WNP142 #}
 {% extends "firefox/whatsnew/base-new-theme.html" %}
 
+{% block site_css %}
+  {{ super() }}
+  {{ css_bundle('firefox_whatsnew_144') }}
+{% endblock %}
+
 {% if LANG == 'de' %}
   {% set hero_headline = 'Profile helfen dir, Arbeit, Alltag und Freizeit zu trennen.' %}
   {% set hero_body = 'Profile bringen Ordnung in dein Online-Leben. Ein Profil für die Arbeit, ein anderes für Freizeit, Schule, Shopping oder Gaming. <br><br>Jedes Profil kommt mit eigenen Erweiterungen, Designs und Logins. So bleibst du privat, behältst den Überblick und hast jederzeit die Kontrolle.' %}
@@ -153,13 +158,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           </div>
           <div class="wnp-intro-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
-              {{resp_img(
-                url="img/firefox/whatsnew/whatsnew144/profiles-hero.png",
-                srcset={
-                    "img/firefox/whatsnew/whatsnew144/profiles-hero@2x.png": "2x",
-                },
-                optional_attributes={"l10n": True, "alt": "Illustration of profile management feature"}
-            )}}
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew144/profiles-hero.png"
+                alt="Illustration of profile management feature"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew144/profiles-hero@2x.png 2x
+                "
+              />
             </div>
           </div>
         </div>
@@ -186,9 +191,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <div>
-              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Tag</span><span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Tag</span>
-            </div>
             <p class="wnp-feature-eyebrow">Google Lens</p>
             <h3 class="wnp-subtitle">{{ google_lens_headline }}</h3>
             <p class="wnp-body">{{ google_lens_body | safe }}</p>
@@ -213,9 +215,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           <div class="wnp-feature-content">
-            <div>
-              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Tag</span><span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Tag</span>
-            </div>
             <p class="wnp-feature-eyebrow">Perplexity</p>
             <h3 class="wnp-subtitle">{{ perplexity_headline }}</h3>
             <p class="wnp-body">{{ perplexity_body }}</p>
@@ -229,43 +228,16 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-feature">
           <div class="wnp-feature-media" aria-hidden="true">
             <div class="wnp-media-frame wnp-media-frame--settings">
-              {{resp_img(
-                url="img/firefox/whatsnew/whatsnew144/page-summary.png",
-                srcset={
-                    "img/firefox/whatsnew/whatsnew144/page-summary@2x.png": "2x",
-                },
-                optional_attributes={"l10n": True, "alt": "Page summary illustration"}
-            )}}
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew144/web-apps.png"
+                alt="Web apps illustration"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew144/web-apps@2x.png 2x
+                "
+              />
             </div>
           </div>
           <div class="wnp-feature-content">
-            <p class="wnp-feature-eyebrow">One-click page summary</p>
-            <h3 class="wnp-subtitle">{{ page_summary_headline }}</h3>
-            <p class="wnp-body">{{ page_summary_body | safe }}</p>
-            <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/shake-to-summarize/#summarize-desktop?{{ utm_params }}" aria-label="Learn more about page summaries" data-cta-text="Learn more - page summary">{{ learn_more }}
-                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="wnp-feature wnp-feature--reverse">
-          <div class="wnp-feature-media" aria-hidden="true">
-            <div class="wnp-media-frame wnp-media-frame--settings">
-              {{resp_img(
-                url="img/firefox/whatsnew/whatsnew144/web-apps.png",
-                srcset={
-                    "img/firefox/whatsnew/whatsnew144/web-apps@2x.png": "2x",
-                },
-                optional_attributes={"l10n": True, "alt": "Web apps illustration"}
-            )}}
-            </div>
-          </div>
-          <div class="wnp-feature-content">
-            <div>
-              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Windows</span><span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="12" height="12" alt="" aria-hidden="true">Tag</span>
-            </div>
             <p class="wnp-feature-eyebrow">Web apps</p>
             <h3 class="wnp-subtitle">{{ web_apps_headline }}</h3>
             <p class="wnp-body">{{ web_apps_body | safe }}</p>
@@ -282,41 +254,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
-    <!-- QR Code Banner -->
-    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
-      <div class="wnp-container">
-        <div class="wnp-qr">
-          <div class="wnp-qr-layout">
-            <div class="wnp-qr-media" aria-hidden="true">
-              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
-            </div>
-            <div class="wnp-qr-content">
-              <div class="wnp-qr-content-inner">
-                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
-                <p class="wnp-body">{{ qr_body }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Subscribe Banner -->
-    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
-      <div class="wnp-container">
-        <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
-        <p class="wnp-body wnp-is-centered">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
-        {{ email_newsletter_form(
-        template="firefox/whatsnew/includes/newsletter_form.html",
-        include_country=true,
-        include_language=true,
-        footer=false,
-        include_title=false
-        ) }}
-      </div>
-    </section>
-
-    <!-- Section 3: Desktop Feature Panels -->
+    <!-- Section 3: Feature Cards -->
     <section class="wnp-section wnp-section-highlights" aria-labelledby="highlights-heading">
       <div class="wnp-container">
         <h2 id="highlights-heading" class="wnp-subtitle text-center">{{ feature_cards_title }}</h2>
@@ -390,6 +328,109 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
+    <!-- Mobile Features - Shake to Summarize (iOS only) -->
+    <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
+      <div class="wnp-container">
+        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">
+          {% if LANG == 'de' %}
+            Mobile Firefox
+          {% elif LANG == 'fr' %}
+            Mobile Firefox
+          {% else %}
+            Mobile Firefox
+          {% endif %}
+        </h2>
+        <div class="wnp-feature">
+          <div class="wnp-feature-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              {{resp_img(
+                url="img/firefox/whatsnew/whatsnew144/shake-to-summarize.png",
+                srcset={
+                    "img/firefox/whatsnew/whatsnew144/shake-to-summarize@2x.png": "2x",
+                },
+                optional_attributes={"l10n": True, "alt": "Shake to summarize illustration"}
+            )}}
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <div>
+              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span>
+            </div>
+            <p class="wnp-feature-eyebrow">
+              {% if LANG == 'de' %}
+                Zusammenfassung
+              {% elif LANG == 'fr' %}
+                Résumé
+              {% else %}
+                Summary
+              {% endif %}
+            </p>
+            <h3 class="wnp-subtitle">
+              {% if LANG == 'de' %}
+                Schüttle dein Gerät für eine Zusammenfassung
+              {% elif LANG == 'fr' %}
+                Secouez pour résumer
+              {% else %}
+                Shake to summarize
+              {% endif %}
+            </h3>
+            <p class="wnp-body">
+              {% if LANG == 'de' %}
+                Erhalte mit einem Schütteln eine KI-gestützte Zusammenfassung jeder Webseite auf deinem iPhone.
+              {% elif LANG == 'fr' %}
+                Secouez votre iPhone pour obtenir un résumé alimenté par l'IA de n'importe quelle page web.
+              {% else %}
+                Get an AI-powered summary of any webpage with a shake on your iPhone.
+              {% endif %}
+            </p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-text="Learn more - shake to summarize">{{ learn_more }}
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QR Code Banner -->
+    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+      <div class="wnp-container">
+        <div class="wnp-qr">
+          <div class="wnp-qr-layout">
+            <div class="wnp-qr-media" aria-hidden="true">
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
+            </div>
+            <div class="wnp-qr-content">
+              <div class="wnp-qr-content-inner">
+                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
+                <p class="wnp-body">{{ qr_body }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe Banner -->
+    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+      <div class="wnp-container">
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
+        <p class="wnp-body wnp-is-centered">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
+        {{ email_newsletter_form(
+        template="firefox/whatsnew/includes/newsletter_form.html",
+        include_country=true,
+        include_language=true,
+        footer=false,
+        include_title=false
+        ) }}
+      </div>
+    </section>
+
   </main>
 </div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_144') }}
 {% endblock %}
