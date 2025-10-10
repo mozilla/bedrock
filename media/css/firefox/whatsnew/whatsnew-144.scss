@@ -1,0 +1,16 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+// Page-specific styles for Firefox 144 What's New Page
+
+// only include WNP cta if UITour JS runs
+.wnp144-uitour {
+    display: none;
+}
+
+body.wnp-uitour .wnp144-uitour {
+    display: inline-block;
+}
