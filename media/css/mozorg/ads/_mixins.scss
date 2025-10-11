@@ -35,6 +35,12 @@
     line-height: var(--text-title-xs-line-height);
 }
 
+// These use variables directly from protocol, hence the different syntax.
+@mixin text-title-2xs {
+    font-size: var(--title-2xs-size);
+    line-height: var(--title-2xs-line-height);
+}
+
 // body mixins all get the same line height. #TODO: this line height could be added
 // as a default to `body`, but that's a global change that would need thorough testing.
 

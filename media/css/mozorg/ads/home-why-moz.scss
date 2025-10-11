@@ -3,9 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
-
-// .mozads-c-home-why-moz {
-// }
+@use './mixins' as admixins;
 
 .mozads-half-grid {
     display: flex;
@@ -37,20 +35,18 @@
 }
 
 .mozads-home-why-moz-list-heading {
+    @include admixins.text-title-md;
+    font-weight: 300;
+    text-wrap: balance;
     border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
     padding-bottom: 1rem;
     padding-left: 1rem;
     margin: 0;
     max-width: 550px;
-    font-size: var(--title-xs-size);
-    line-height: var(--title-xs-line-height);
-    font-weight: 300;
-    text-wrap: balance;
-
 }
 
 .mozads-home-why-moz-list-text {
-    @include text-body-md;
+    @include admixins.text-body-md;
     margin: 0;
     border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
     padding-left: 1rem;
@@ -78,8 +74,6 @@
         border-left-width: 1rem;
         padding-left: 2rem;
         padding-bottom: 0;
-        font-size: var(--title-md-size);
-        line-height: var(--title-md-line-height);
     }
 
 }

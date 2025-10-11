@@ -3,15 +3,16 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 .principles-intro {
     h2 {
-        @include text-title-md;
+        @include admixins.text-title-md;
         font-weight: 300;
     }
 
     p {
-        @include text-title-2xs;
+        @include admixins.text-title-2xs;
     }
 
     @media #{$mq-md} {
@@ -28,10 +29,10 @@
     gap: 1rem;
 
     h3 {
-        @include text-title-2xs;
+        @include admixins.text-title-2xs;
     }
 
     p {
-        @include text-body-lg;
+        @include admixins.text-body-lg;
     }
 }
