@@ -6,16 +6,7 @@
 
 {% extends "mozorg/advertising/base-advertising.html" %}
 
-{% from "macros-protocol.html" import callout, picto with context %}
-
 {% block page_title %}Mozilla Advertising — Built on principles{% endblock %}
-
-{% block page_css %}
-  {{ css_bundle('protocol-callout') }}
-  {{ css_bundle('protocol-card') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ super() }}
-{% endblock %}
 
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
 
@@ -29,13 +20,13 @@
 
 <section class="m24-c-content">
   <div class="mozads-half-grid">
-    <div class="principles-intro">
+    <div class="two-column-intro">
       <h2>Ads that work for you </h2>
       <p>The internet relies on advertising to fund the sites and apps people care about, but today’s system favors big tech—often at the expense of your privacy. We’re building a new approach to advertising that is a fair deal for everyone.</p>
 
     </div>
 
-      <ul class="principles-detail-list">
+      <ul class="two-column-detail-list">
         <li>
           <h3>No creepy ads</h3>
           <p>We don't allow cross-site tracking in our ads—no third-party cookies or device identifiers are shared with advertisers—so our ads won't follow you around the internet. And if you use Firefox, we’ll keep others from tracking you, too.</p>
