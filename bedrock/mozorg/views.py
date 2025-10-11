@@ -297,3 +297,10 @@ def why_mozilla_view(request):
     context = {}
     template = "mozorg/advertising/why-mozilla.html"
     return l10n_utils.render(request, template, context)
+
+
+@require_safe
+def contact(request):
+    context = {}
+    template = "mozorg/advertising/contact.html"
+    return l10n_utils.render(request, template, context)
