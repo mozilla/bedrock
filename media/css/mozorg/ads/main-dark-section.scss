@@ -8,8 +8,31 @@
         color: white;
     }
 
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited,
+    a:visited:hover {
+        color: white;
+    }
+
     hr {
         margin: $spacer-lg 0;
+    }
+
+    .mozads-figure-grid .mozads-stat::before {
+        background-color: white;
+    }
+
+    .mozads-bordered-list {
+        li {
+            border-color: advars.$color-ads-light-gray;
+
+            button {
+                color: advars.$color-ads-dark-gray;
+            }
+        }
     }
 }
 
@@ -17,6 +40,10 @@
     .mozads-c-main-dark-section {
         hr {
             margin: $spacer-xl 0;
+        }
+
+        .m24-c-content + .m24-c-content {
+            padding-top: 0;
         }
     }
 }
