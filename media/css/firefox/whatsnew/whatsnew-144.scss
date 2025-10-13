@@ -22,3 +22,81 @@ body.wnp-uitour .wnp144-uitour {
 .wnp-tag {
     background-color: #fff;
 }
+
+// Note: This notification should only display for logged-in users on Windows 10+
+// This is handled *here* by helper classes that have been added to the body tag globally.
+.windows-10-plus .state-fxa-supported-signed-out .wnp-page-header-notification.wnp-144-is-inline {
+    display: flex;
+}
+
+.wnp-page-header-notification.wnp-144-is-inline {
+    display: none;
+    position: relative;
+    justify-content: center;
+
+    .wnp-notification-bar {
+        background: var(--fds-color-blue-light);
+    }
+
+    .notification-icon-section {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 40px;
+        flex-shrink: 0;
+        align-self: stretch;
+        background: var(--fds-color-gray-90);
+        border-radius: calc(var(--fds-border-radius-md) - 1px) 0 0 calc(var(--fds-border-radius-md) - 1px);
+    }
+
+    .notification-icon {
+        color: var(--fds-color-blue-light);
+        width: 24px;
+        height: 24px;
+    }
+
+    .notification-icon-section.notification-icon-inverted {
+        justify-content: center;
+    }
+
+    a:link,
+    a:hover,
+    a:visited,
+    a:active {
+        font-weight: bold;
+        color: var(--fds-color-gray-90);
+        text-decoration: underline;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .notification-close {
+        appearance: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: calc(var(--scale-4) * 1px);
+        color: currentColor;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+        flex-shrink: 0;
+        margin: 0;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}
+
+

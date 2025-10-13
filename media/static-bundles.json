@@ -1686,7 +1686,9 @@
     },
     {
       "files": [
-        "js/firefox/whatsnew/whatsnew-144.es6.js"
+        "js/firefox/whatsnew/whatsnew-144.es6.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js"
       ],
       "name": "firefox_whatsnew_144"
     },

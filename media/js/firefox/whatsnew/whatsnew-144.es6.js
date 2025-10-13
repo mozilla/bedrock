@@ -35,6 +35,16 @@ function init() {
             );
         }
     });
+
+    document.body.querySelectorAll('[data-close-notification]').forEach((button) => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();
+            const notification = button.closest('.wnp-page-header-notification');
+            if (notification) {
+                notification.style.display = 'none';
+            }
+        });
+    });
 }
 
 if (

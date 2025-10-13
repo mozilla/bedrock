@@ -7,12 +7,17 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {# We use a new base template introduced with WNP142 #}
 {% extends "firefox/whatsnew/base-new-theme.html" %}
 
+{% block body_class %}state-fxa-default{% endblock %}
+
 {% block site_css %}
   {{ super() }}
   {{ css_bundle('firefox_whatsnew_144') }}
 {% endblock %}
 
 {# Set en-US strings as defaults for all locales #}
+{% set windows_before_link = "New PC in your future?" %}
+{% set windows_link_text   = "Make sure you're syncing data" %}
+{% set windows_after_link  = "for an easier move" %}
 {% set hero_headline = 'Profiles let you separate work, life, and play.' %}
 {% set hero_body = 'Profiles keep your online life organized. Use one for work and others for personal time, school, shopping or gaming. <br><br>Each profile has its own extensions, themes and logins so you stay private, organized and in control.' %}
 {% set hero_cta = 'Learn more' %}
@@ -51,8 +56,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set learn_more = 'Learn more' %}
 {% set release_notes = 'See Full Release Notes' %}
 
+
 {# Locale-specific overrides #}
 {% if LANG == 'de' %}
+  {% set windows_before_link = "Bald ein neuer PC?" %}
+  {% set windows_link_text   = "Synchronisiere deine Daten" %}
+  {% set windows_after_link  = ", damit beim Wechsel alles glatt läuft" %}
   {% set hero_headline = 'Profile helfen dir, Arbeit, Alltag und Freizeit zu trennen.' %}
   {% set hero_body = 'Profile bringen Ordnung in dein Online-Leben. Ein Profil für die Arbeit, ein anderes für Freizeit, Schule, Shopping oder Gaming. <br><br>Jedes Profil kommt mit eigenen Erweiterungen, Designs und Logins. So bleibst du privat, behältst den Überblick und hast jederzeit die Kontrolle.' %}
   {% set hero_cta = 'Mehr erfahren' %}
@@ -91,7 +100,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set shake_to_summarize_eyebrow = 'Zusammenfassung' %}
   {% set learn_more = 'Mehr erfahren' %}
   {% set release_notes = 'Alle Versionshinweise anzeigen' %}
+  {% set windows_notification = 'Bald ein neuer PC? <b><u>Synchronisiere deine Daten</u></b>, damit beim Wechsel alles glatt läuft.' %}
 {% elif LANG == 'fr' %}
+  {% set windows_before_link = "Un nouveau PC vous attend?" %}
+  {% set windows_link_text   = "Pensez à synchroniser vos données" %}
+  {% set windows_after_link  = "pour une transition plus fluide" %}
+
   {% set hero_headline = 'Grâce aux profils séparez travail, vie privée et jeux.' %}
   {% set hero_body = 'Les profils gardent votre vie en ligne organisée : un pour le travail, et les autres pour le perso, l\'école, le shopping ou les jeux. <br><br>Chaque profil possède ses propres extensions, thèmes et identifiants pour un maximum de confidentialité, d\'organisation et de contrôle.' %}
   {% set hero_cta = 'En savoir plus' %}
@@ -130,6 +144,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set shake_to_summarize_eyebrow = 'Résumé' %}
   {% set learn_more = 'En savoir plus' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
+  {% set windows_notification = 'Un nouveau PC vous attend ? <b><u>Pensez à synchroniser vos données</u></b> pour une transition plus fluide.' %}
 {% elif LANG == 'en-GB' %}
   {# Only override strings that differ from en-US #}
   {% set hero_body = 'Profiles help keep your online life organised. Use one for work and others for personal time, school, shopping or gaming.<br><br>Each profile has its own extensions, themes and logins, so you remain private, organised and in control.' %}
@@ -139,6 +154,36 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% block wnp_content %}
 <div class="wnp-page">
   <main class="wnp-main">
+
+    <div class="wnp-page-header-notification wnp-144-is-inline">
+      <div class="wnp-notification-bar wnp-t-success">
+        <div class="notification-icon-section notification-icon-inverted">
+          <svg class="notification-icon" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 25">
+            <path fill="currentColor" d="M4.215 20.075a10.63 10.63 0 0 0 7.575 3.135h.225l-.045-2.25c-2.34.06-4.515-.825-6.165-2.475-3.075-3.075-3.24-7.935-.585-11.25v4.26h2.25V4.01H0v2.25h3.09c-3 4.185-2.625 10.065 1.125 13.815M19.38 4.926a10.63 10.63 0 0 0-7.575-3.135v2.25c2.265 0 4.395.885 5.985 2.475 2.925 2.925 3.24 7.47.99 10.77v-3.765h-2.25v7.47H24v-2.25h-3.495c3-4.185 2.625-10.05-1.125-13.815" />
+          </svg>
+        </div>
+        <div class="notification-content">
+          <p>{{ windows_before_link }}
+            {{ fxa_button(
+              entrypoint='www.mozilla.org-wnp144-page',
+              button_text=windows_link_text,
+              optional_parameters={'utm_campaign': 'win10-eos'},
+              optional_attributes={'data-cta-text': 'Make sure you’re syncing data', 'data-cta-type': 'fxa-sync'}
+          ) }}
+
+          {{ windows_after_link }}.</p>
+        </div>
+        <button class="notification-close" aria-label="{{ ftl('ui-close') }}" data-close-notification>
+          <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 11">
+            <path fill="currentColor" d="M1.58 10.98 6 6.56l4.42 4.42 1.06-1.06L7.06 5.5l4.42-4.42L10.42.02 6 4.44 1.58.02.52 1.08 4.94 5.5.52 9.92z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+
+
+
     <!-- Hero Section -->
     <section class="wnp-section wnp-section-intro">
       <div class="wnp-container">
