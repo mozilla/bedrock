@@ -14,7 +14,7 @@
     background-color: #fff;
 }
 
-// Note: This notification should only display for logged-in users on Windows 10+
+// Note: This notification should only display for logged-out users on Windows 10+
 // This is handled *here* by helper classes that have been added to the body tag globally.
 .windows-10-plus .state-fxa-supported-signed-out .wnp-page-header-notification.wnp-144-is-inline {
     display: flex;
