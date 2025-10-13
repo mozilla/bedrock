@@ -746,6 +746,7 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
 
 
+@pytest.mark.skip("Disabled because bedrock.firefox.redirects.WNP_144_PLUS_RE is not in use")
 @pytest.mark.django_db
 @pytest.mark.parametrize(
     "source_path, expected_status_code, dest_path",

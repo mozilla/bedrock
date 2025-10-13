@@ -84,13 +84,13 @@ WNP_144_PLUS_RE = (
 )
 
 wnp_redirectpatterns = (
-    # Note not an offsite_redirect, so no additional querystring is injected
-    redirect(
-        # Issues 16590 and 16791 for WNP 144+
-        WNP_144_PLUS_RE,
-        f"{settings.FXC_BASE_URL}/" + "{wnp_locale}/whatsnew/{major_version}/",
-        permanent=True,
-    ),
+    # # Note not an offsite_redirect, so no additional querystring is injected
+    # redirect(
+    #     # Issues 16590 and 16791 for WNP 144+
+    #     WNP_144_PLUS_RE,
+    #     f"{settings.FXC_BASE_URL}/" + "{wnp_locale}/whatsnew/{major_version}/",
+    #     permanent=True,
+    # ),
 )
 
 releasenotes_redirectpatterns = (
