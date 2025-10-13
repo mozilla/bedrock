@@ -29,8 +29,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set feature_cards_subtitle = 'Personalize your tab, save memory, protect your email.' %}
 {% set card_1_headline = 'Your new tab, your way' %}
 {% set card_1_body = 'Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.' %}
-{% set card_1_cta = 'Personalize my new tab' %}
-{% set card_1_action = 'newtab' %}
+{% set card_1_url = 'https://support.mozilla.org/en-US/kb/customize-items-on-firefox-new-tab-page' %}
+{% set card_1_anchor = 'w_wallpapers' %}
 {% set card_2_headline = 'Keep your tabs. Free up memory.' %}
 {% set card_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU.<br><br>Right-click a tab or multiple tabs and choose Unload Tab to help Firefox stay fast.<br><br>When you come back, your tab will reload just where you left off.' %}
 {% set card_2_cta = 'Learn more' %}
@@ -71,12 +71,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set feature_cards_subtitle = 'Spare Speicher, schütze deine E-Mails und mach Firefox zu deinem Browser.' %}
   {% set card_1_headline = 'Tabs sichern, Speicher zurückholen.' %}
   {% set card_1_body = 'Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht verwendest. Im Hintergrund verbraucht er keine Ressourcen und macht dein Surfen dadurch schneller.<br><br>So funktioniert\'s:<br>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen". Wenn du zurückkehrst, öffnet sich der Tab genau an der Stelle, an der du aufgehört hast.' %}
-  {% set card_1_cta = 'Mehr erfahren' %}
-  {% set card_1_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+  {% set card_1_url = 'https://support.mozilla.org/de/kb/die-elemente-der-seite-neuer-tab-anpassen' %}
+  {% set card_1_anchor = 'w_hintergrundbilder' %}
   {% set card_2_headline = 'Dein Tab, deine Regeln' %}
   {% set card_2_body = 'Mach deinen Browser zu deinem Ort. Passe die Atmosphäre mit Firefox-Hintergründen, eigenen Farben oder einem Foto an.<br><br>Öffne einfach einen neuen Tab und klicke auf das Icon, um loszulegen.' %}
   {% set card_2_cta = 'Jetzt ausprobieren' %}
-  {% set card_2_action = 'newtab' %}
   {% set card_3_headline = 'Behalte deine E-Mail-Adresse für dich.' %}
   {% set card_3_body = 'Firefox Relay erstellt sichere E-Mail-Aliasse, wenn du dich für neue Online-Konten anmeldest. So bleibst du anonym und bekommst weniger Spam in deinen Posteingang.' %}
   {% set card_3_cta = 'Relay ausprobieren' %}
@@ -111,12 +110,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set feature_cards_subtitle = 'Économisez de la mémoire, protégez vos emails, appropriez-vous Firefox' %}
   {% set card_1_headline = 'Conservez vos onglets. Libérez de la mémoire.' %}
   {% set card_1_body = 'Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.<br><br>Faites un clic droit sur un ou plusieurs onglets et choisissez Décharger Onglet pour aider Firefox à rester rapide.<br><br>Revenez et retrouvez votre onglet, où vous l\'avez laissé.' %}
-  {% set card_1_cta = 'En savoir plus' %}
-  {% set card_1_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+  {% set card_1_url = 'https://support.mozilla.org/fr/kb/personnaliser-page-nouvel-onglet' %}
+  {% set card_1_anchor = 'w_fonds-decran' %}
   {% set card_2_headline = 'Votre nouvel onglet, à votre façon' %}
   {% set card_2_body = 'Créez un espace qui vous ressemble. Donnez le ton avec des fonds d\'écran Firefox, des coloris personnalisés ou vos propres photos.<br><br>Ouvrez un nouvel onglet et cliquez sur l\'icône pour lancer la personnalisation.' %}
   {% set card_2_cta = 'Essayer maintenant' %}
-  {% set card_2_action = 'newtab' %}
   {% set card_3_headline = 'Gardez votre adresse email personnelle.' %}
   {% set card_3_body = 'Firefox Relay génère des alias de messagerie sécurisés quand vous vous inscrivez à de nouveaux comptes en ligne. Vous gardez ainsi l\'anonymat et limitez les spams dans votre boîte de réception.' %}
   {% set card_3_cta = 'Essayer Relay' %}
@@ -150,7 +148,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h1 class="wnp-title">{{ hero_headline }}</h1>
             <p class="wnp-subtitle-5">{{ hero_body | safe }}</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-secondary" href="{{ hero_url }}?{{ utm_params }}" data-cta-text="Learn more - profiles">
+              <a class="wnp-button wnp-button-secondary" href="{{ hero_url }}?{{ utm_params }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Learn more - profiles">
+
+
+
+
+
                 {{ hero_cta }}
                 <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true" loading="lazy">
               </a>
@@ -196,7 +199,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h3 class="wnp-subtitle">{{ google_lens_headline }}</h3>
             <p class="wnp-body">{{ google_lens_body | safe }}</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/search-web-images-firefox-google-lens?{{ utm_params }}" aria-label="{{ learn_more }} {{ google_lens_eyebrow }}" data-cta-text="Learn more - google lens">{{ learn_more }}
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/search-web-images-firefox-google-lens?{{ utm_params }}" aria-label="{{ learn_more }} {{ google_lens_eyebrow }}" data-cta-priority="outline" data-cta-position="section_1.row_1.button_1" data-cta-text="{{ learn_more }} - {{ google_lens_eyebrow }}">{{ learn_more}}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -219,7 +222,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ perplexity_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ perplexity_headline }}</h3>
             <p class="wnp-body">{{ perplexity_body }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/perplexity-firefox/?{{ utm_params }}" aria-label="{{ learn_more }} {{ perplexity_eyebrow }}" data-cta-text="Learn more - perplexity">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/perplexity-firefox/?{{ utm_params }}" aria-label="{{ learn_more }} {{ perplexity_eyebrow }}" data-cta-priority="outline" data-cta-position="section_1.row_2.button_1" data-cta-text="{{ learn_more }} - {{ perplexity_eyebrow }}">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -243,7 +246,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ web_apps_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ web_apps_headline }}</h3>
             <p class="wnp-body">{{ web_apps_body | safe }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="Learn more about web apps" data-cta-text="Learn more - web apps">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="Learn more about web apps" data-cta-priority="outline" data-cta-position="section_1.row_3.button_1" data-cta-text="{{ learn_more }} - {{ web_apps_eyebrow }}">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -251,7 +254,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </div>
 
         <p class="wnp-link-wrap">
-          <a class="wnp-link" href="/firefox/{{ version }}/releasenotes/" data-cta-text="See full release notes">{{ release_notes }}</a>
+          <a class="wnp-link" href="/firefox/{{ version }}/releasenotes/" data-cta-priority="link" data-cta-position="section_1.button_1" data-cta-text="{{ release_notes }}">{{ release_notes }}</a>
         </p>
       </div>
     </section>
@@ -264,64 +267,36 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-grid">
           <article class="wnp-card">
             <div class="wnp-card-content">
-              {% if LANG in ['de', 'fr'] %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true" loading="lazy">
-              {% else %}
               <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" alt="" aria-hidden="true" loading="lazy">
-              {% endif %}
               <h3 class="wnp-subtitle">
-                {% if LANG in ['de', 'fr'] %}
-                  <a href="{{ card_1_url }}?{{ utm_params }}" data-cta-text="Card 1" aria-describedby="desc-card-1">{{ card_1_headline }}</a>
-                {% else %}
-                  <a href="#new-tab" data-cta-text="Card 1" aria-describedby="desc-card-1">{{ card_1_headline }}</a>
-                {% endif %}
+                  <a href="{{ card_1_url }}?{{ utm_params }}#{{ card_1_anchor }}" data-cta-priority="link" data-cta-position="section_2.card_1.title_1" data-cta-text="{{ card_1_headline }}" aria-describedby="desc-card-1">{{ card_1_headline }}</a>
               </h3>
               <p class="wnp-body">{{ card_1_body | safe }}</p>
-              {% if LANG in ['de', 'fr'] %}
-              <a class="wnp-button wnp-button-outline" href="{{ card_1_url }}?{{ utm_params }}" aria-label="{{ card_1_cta }}" data-cta-text="Card 1" id="desc-card-1">
-                {{ card_1_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              <a class="wnp-button wnp-button-outline" href="{{ card_1_url }}?{{ utm_params }}#{{ card_1_anchor }}" id="desc-card-1" aria-label="{{ learn_more }} - {{ card_1_headline }}" data-cta-position="section_2.card_1.button_1" data-cta-text="{{ learn_more }} - {{ card_1_headline }}">
+                {{ learn_more }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
-              {% else %}
-              <button class="wnp-button wnp-button-outline wnp144-uitour wnp144-uitour-newtab" data-cta-text="Card 1" id="desc-card-1">
-                {{ card_1_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
-              </button>
-              {% endif %}
             </div>
           </article>
           <article class="wnp-card">
             <div class="wnp-card-content">
-              {% if LANG in ['de', 'fr'] %}
-              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker-dark.svg" alt="" aria-hidden="true" loading="lazy">
-              {% else %}
               <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true" loading="lazy">
-              {% endif %}
               <h3 class="wnp-subtitle">
-                {% if LANG in ['de', 'fr'] %}
-                  <a href="#new-tab" data-cta-text="Card 2" aria-describedby="desc-card-2">{{ card_2_headline }}</a>
-                {% else %}
-                  <a href="{{ card_2_url }}?{{ utm_params }}" data-cta-text="Card 2" aria-describedby="desc-card-2">{{ card_2_headline }}</a>
-                {% endif %}
+                  <a href="{{ card_2_url }}?{{ utm_params }}" data-cta-priority="link" data-cta-position="section_2.card_2.title_1" data-cta-text="{{ card_2_headline }}"  aria-describedby="desc-card-2">{{ card_2_headline }}</a>
               </h3>
               <p class="wnp-body">{{ card_2_body | safe }}</p>
-              {% if LANG in ['de', 'fr'] %}
-              <button class="wnp-button wnp-button-outline wnp144-uitour wnp144-uitour-newtab" data-cta-text="Card 2" id="desc-card-2">
-                {{ card_2_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
-              </button>
-              {% else %}
-              <a class="wnp-button wnp-button-outline" href="{{ card_2_url }}?{{ utm_params }}" aria-label="{{ card_2_cta }}" data-cta-text="Card 2" id="desc-card-2">
+              <a class="wnp-button wnp-button-outline" href="{{ card_2_url }}?{{ utm_params }}" id="desc-card-2" aria-label="{{ learn_more }} - {{ card_2_headline }}" data-cta-position="section_2.card_2.button_1" data-cta-text="{{ learn_more }} - {{ card_2_headline }}">
                 {{ card_2_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
-              {% endif %}
             </div>
           </article>
           <article class="wnp-card">
             <div class="wnp-card-content">
               <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" alt="" aria-hidden="true" loading="lazy">
               <h3 class="wnp-subtitle">
-                <a href="{{ card_3_url }}?{{ utm_params }}" data-cta-text="Card 3" aria-describedby="desc-card-3">{{ card_3_headline }}</a>
+                <a href="{{ card_3_url }}?{{ utm_params }}" aria-describedby="desc-card-3" data-cta-priority="link" data-cta-position="section_2.card_3.title_1" data-cta-text="{{ card_3_headline }}">{{ card_3_headline }}</a>
               </h3>
               <p class="wnp-body">{{ card_3_body }}</p>
-              <a class="wnp-button wnp-button-outline" href="{{ card_3_url }}?{{ utm_params }}" aria-label="{{ card_3_cta }}" data-cta-text="Card 3" id="desc-card-3">
+              <a class="wnp-button wnp-button-outline" href="{{ card_3_url }}?{{ utm_params }}" id="desc-card-3" aria-label="{{ learn_more }} - {{ card_3_headline }}" data-cta-position="section_2.card_3.button_1" data-cta-text="{{ learn_more }} - {{ card_3_headline }}">
                 {{ card_3_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
