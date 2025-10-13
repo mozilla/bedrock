@@ -50,3 +50,8 @@ vpn-download-from-the-maker = From the maker of { -brand-name-firefox }, { -bran
 vpn-download-we-never-log = We never log, track, or share your network data.
 
 vpn-download-previous-versions = Download previous versions for { -brand-name-windows } and { -brand-name-mac-short }
+
+vpn-download-install-via-flathub = Install via Flathub
+vpn-download-install-via-apt = Install via APT
+vpn-download-flathub = Flathub
+vpn-download-apt = APT
