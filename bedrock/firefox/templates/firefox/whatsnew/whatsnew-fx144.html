@@ -16,7 +16,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set hero_headline = 'Profiles let you separate work, life, and play.' %}
 {% set hero_body = 'Profiles keep your online life organized. Use one for work and others for personal time, school, shopping or gaming. <br><br>Each profile has its own extensions, themes and logins so you stay private, organized and in control.' %}
 {% set hero_cta = 'Learn more' %}
-{% set hero_url = 'https://blog.mozilla.org/en/firefox/profile-management/' %}
+{% set hero_url = 'https://blog.mozilla.org/firefox/profile-management/' %}
 {% set features_title = 'Search smarter, stay organized, and explore more' %}
 {% set features_subtitle = 'Search what you see, ask Perplexity, use sites as apps.' %}
 {% set google_lens_headline = 'Search what you see with visual search' %}
@@ -179,14 +179,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <p class="wnp-body wnp-is-centered">{{ features_subtitle }}</p>
 
         <div class="wnp-feature">
-          <div class="wnp-feature-media" aria-hidden="true">
+          <div class="wnp-feature-media">
             <div class="wnp-media-frame wnp-media-frame--settings">
               {{resp_img(
                 url="img/firefox/whatsnew/whatsnew144/google-lens.png",
                 srcset={
                     "img/firefox/whatsnew/whatsnew144/google-lens@2x.png": "2x",
                 },
-                optional_attributes={"l10n": True, "alt": "Google Lens visual search illustration", "loading": "lazy"}
+                optional_attributes={"l10n": True, "alt": "", "role": "presentation", "loading": "lazy"}
             )}}
             </div>
           </div>
@@ -195,7 +195,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h3 class="wnp-subtitle">{{ google_lens_headline }}</h3>
             <p class="wnp-body">{{ google_lens_body | safe }}</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/search-google-lens-firefox?{{ utm_params }}" aria-label="Learn more about Google Lens" data-cta-text="Learn more - google lens">{{ learn_more }}
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/search-google-lens-firefox?{{ utm_params }}" aria-label="{{ learn_more }} {{ google_lens_eyebrow }}" data-cta-text="Learn more - google lens">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -203,14 +203,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </div>
 
         <div class="wnp-feature wnp-feature--reverse">
-          <div class="wnp-feature-media" aria-hidden="true">
+          <div class="wnp-feature-media">
             <div class="wnp-media-frame wnp-media-frame--settings">
               {{resp_img(
                 url="img/firefox/whatsnew/whatsnew144/perplexity.png",
                 srcset={
                     "img/firefox/whatsnew/whatsnew144/perplexity@2x.png": "2x",
                 },
-                optional_attributes={"l10n": True, "alt": "Perplexity AI search illustration"}
+                optional_attributes={"l10n": True, "alt": "", "role": "presentation", "loading": "lazy"}
             )}}
             </div>
           </div>
@@ -218,7 +218,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ perplexity_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ perplexity_headline }}</h3>
             <p class="wnp-body">{{ perplexity_body }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/perplexity-firefox/?{{ utm_params }}" aria-label="Learn more about Perplexity" data-cta-text="Learn more - perplexity">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/perplexity-firefox/?{{ utm_params }}" aria-label="{{ learn_more }} {{ perplexity_eyebrow }}" data-cta-text="Learn more - perplexity">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -226,7 +226,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         </div>
 
         <div class="wnp-feature">
-          <div class="wnp-feature-media" aria-hidden="true">
+          <div class="wnp-feature-media">
             <div class="wnp-media-frame wnp-media-frame--settings">
               <img
                 src="/media/img/firefox/whatsnew/whatsnew144/web-apps.png"
@@ -241,7 +241,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-feature-eyebrow">{{ web_apps_eyebrow }}</p>
             <h3 class="wnp-subtitle">{{ web_apps_headline }}</h3>
             <p class="wnp-body">{{ web_apps_body | safe }}</p>
-            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="Learn more about web apps" data-cta-text="Learn more - web apps">{{ learn_more }}
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="Learn more about web apps" data-cta-text="Learn more - web apps">{{ learn_more }}
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
@@ -334,7 +334,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       <div class="wnp-container">
         <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">What's New on Firefox Mobile?</h2>
         <div class="wnp-feature">
-          <div class="wnp-feature-media" aria-hidden="true">
+          <div class="wnp-feature-media">
             <div class="wnp-media-frame wnp-media-frame--settings">
               <img
                 src="/media/img/firefox/whatsnew/whatsnew144/shake-to-summarize.png"
@@ -353,7 +353,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
             <p class="wnp-body">Quickly summarize long reads with a shake or tap. Available now on Firefox for iOS.</p>
             <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-text="Learn more - shake to summarize">Learn more
+              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-text="Learn more - shake to summarize">Learn more
                 <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
