@@ -5,37 +5,6 @@
  */
 
 function init() {
-    Mozilla.UITour.ping(() => {
-        // show new tab CTA
-        document.body.classList.add('wnp-uitour');
-
-        // new tab CTA should open new tab
-        const newtabCta = document.querySelector('.wnp144-uitour-newtab');
-
-        if (typeof window.dataLayer === 'undefined') {
-            window.dataLayer = [];
-        }
-
-        if (newtabCta) {
-            newtabCta.addEventListener(
-                'click',
-                (e) => {
-                    e.preventDefault();
-
-                    window.dataLayer.push({
-                        event: 'widget_action',
-                        type: 'new tab',
-                        action: 'open',
-                        label: 'Personalize my new tab'
-                    });
-
-                    Mozilla.UITour.showNewTab();
-                },
-                false
-            );
-        }
-    });
-
     document.body
         .querySelectorAll('[data-close-notification]')
         .forEach((button) => {
@@ -54,7 +23,6 @@ function init() {
 if (
     typeof window.Mozilla !== 'undefined' &&
     typeof window.Mozilla.Client !== 'undefined' &&
-    typeof window.Mozilla.UITour !== 'undefined' &&
     window.Mozilla.Client.isFirefoxDesktop
 ) {
     init();
