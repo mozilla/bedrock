@@ -4,15 +4,6 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-// Show Shake to Summarize section only on Firefox for iOS
-if (
-    typeof window.Mozilla !== 'undefined' &&
-    typeof window.Mozilla.Client !== 'undefined' &&
-    window.Mozilla.Client.isFirefoxiOS
-) {
-    document.body.classList.add('is-firefox-ios');
-}
-
 function init() {
     Mozilla.UITour.ping(() => {
         // show new tab CTA

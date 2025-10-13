@@ -12,6 +12,46 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {{ css_bundle('firefox_whatsnew_144') }}
 {% endblock %}
 
+{# Set en-US strings as defaults for all locales #}
+{% set hero_headline = 'Profiles let you separate work, life, and play.' %}
+{% set hero_body = 'Profiles keep your online life organized. Use one for work and others for personal time, school, shopping or gaming. <br><br>Each profile has its own extensions, themes and logins so you stay private, organized and in control.' %}
+{% set hero_cta = 'Learn more' %}
+{% set hero_url = 'https://blog.mozilla.org/en/firefox/profile-management/' %}
+{% set features_title = 'Search smarter, stay organized, and explore more' %}
+{% set features_subtitle = 'Search what you see, ask Perplexity, use sites as apps.' %}
+{% set google_lens_headline = 'Search what you see with visual search' %}
+{% set google_lens_body = 'Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.<br><br><strong>Here\'s how:</strong><br>1. Right-click any image in Firefox<br>2. Choose "Search with Google Lens" (requires Google as your default)<br>3. Your image turns into answers' %}
+{% set perplexity_headline = 'AI-powered answers, directly from your search bar' %}
+{% set perplexity_body = 'Perplexity is now a search option in Firefox. Ask your question and get cited results without switching tabs. Fast, intuitive, and your choice, every time.' %}
+{% set web_apps_headline = 'Turn your favorite sites into web apps' %}
+{% set web_apps_body = 'Launch Gmail, YouTube, Instagram, Facebook, and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between the apps and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
+{% set feature_cards_title = 'New features you may have missed' %}
+{% set feature_cards_subtitle = 'Personalize your tab, save memory, protect your email.' %}
+{% set card_1_headline = 'Your new tab, your way' %}
+{% set card_1_body = 'Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.' %}
+{% set card_1_cta = 'Personalize my new tab' %}
+{% set card_1_action = 'newtab' %}
+{% set card_2_headline = 'Keep your tabs. Free up memory.' %}
+{% set card_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU.<br><br>Right-click a tab or multiple tabs and choose Unload Tab to help Firefox stay fast.<br><br>When you come back, your tab will reload just where you left off.' %}
+{% set card_2_cta = 'Learn more' %}
+{% set card_2_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+{% set card_3_headline = 'Keep your email address to yourself.' %}
+{% set card_3_body = 'Firefox Relay generates secure email masks when you sign up for new online accounts, so you can stay anonymous and get less spam in your inbox.' %}
+{% set card_3_cta = 'Try Relay' %}
+{% set card_3_url = 'https://relay.firefox.com/' %}
+{% set qr_title = 'Take Firefox with you' %}
+{% set qr_body = 'Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.' %}
+{% set newsletter_title = 'Keep up with all things Firefox' %}
+{% set newsletter_body = 'Get monthly how-tos, advice and news to make your Firefox experience work best for you.' %}
+{% set google_lens_eyebrow = 'Google Lens' %}
+{% set perplexity_eyebrow = 'Perplexity' %}
+{% set web_apps_eyebrow = 'Web apps' %}
+{% set mobile_title = 'Mobile Firefox' %}
+{% set shake_to_summarize_eyebrow = 'Summary' %}
+{% set learn_more = 'Learn more' %}
+{% set release_notes = 'See Full Release Notes' %}
+
+{# Locale-specific overrides #}
 {% if LANG == 'de' %}
   {% set hero_headline = 'Profile helfen dir, Arbeit, Alltag und Freizeit zu trennen.' %}
   {% set hero_body = 'Profile bringen Ordnung in dein Online-Leben. Ein Profil für die Arbeit, ein anderes für Freizeit, Schule, Shopping oder Gaming. <br><br>Jedes Profil kommt mit eigenen Erweiterungen, Designs und Logins. So bleibst du privat, behältst den Überblick und hast jederzeit die Kontrolle.' %}
@@ -92,71 +132,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set shake_to_summarize_eyebrow = 'Résumé' %}
   {% set learn_more = 'En savoir plus' %}
   {% set release_notes = 'Voir la totalité des notes de version' %}
-{% else %}
-  {# Default English for EN-CA and EN-GB #}
-  {% set hero_headline = 'Profiles let you separate work, life, and play.' %}
-  {% set hero_body_ca = 'Profiles keep your online life organized. Use one for work and others for personal time, school, shopping or gaming. <br><br>Each profile has its own extensions, themes and logins so you stay private, organized and in control.' %}
-  {% set hero_body_gb = 'Profiles help keep your online life organised. Use one for work and others for personal time, school, shopping or gaming.<br><br>Each profile has its own extensions, themes and logins, so you remain private, organised and in control.' %}
-  {% if LANG == 'en-GB' %}
-    {% set hero_body = hero_body_gb %}
-  {% else %}
-    {% set hero_body = hero_body_ca %}
-  {% endif %}
-  {% set hero_cta = 'Learn more' %}
-  {% set hero_url = 'https://blog.mozilla.org/en/firefox/profile-management/' %}
-  {% set features_title = 'Search smarter, stay organized, and explore more' %}
-  {% set features_subtitle = 'Search what you see, ask Perplexity, use sites as apps.' %}
-  {% set google_lens_headline = 'Search what you see with visual search' %}
-  {% set google_lens_body = 'Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.<br><br><strong>Here\'s how:</strong><br>1. Right-click any image in Firefox<br>2. Choose "Search with Google Lens" (requires Google as your default)<br>3. Your image turns into answers' %}
-  {% set perplexity_headline = 'AI-powered answers, directly from your search bar' %}
-  {% set perplexity_body = 'Perplexity is now a search option in Firefox. Ask your question and get cited results without switching tabs. Fast, intuitive, and your choice, every time.' %}
-  {% set page_summary_headline_ca = 'Summarize any page in one click' %}
-  {% set page_summary_headline_gb = 'Summarise any page in one click' %}
-  {% if LANG == 'en-GB' %}
-    {% set page_summary_headline = page_summary_headline_gb %}
-  {% else %}
-    {% set page_summary_headline = page_summary_headline_ca %}
-  {% endif %}
-  {% set page_summary_body_ca = 'Save time with instant webpage summaries powered by the AI you choose.<br><br>Stay productive and in control with key takeaways delivered right to your sidebar.' %}
-  {% set page_summary_body_gb = 'Save time with instant web page summaries powered by the AI of your choice.<br><br>Stay productive and in control with key takeaways delivered straight to your sidebar.' %}
-  {% if LANG == 'en-GB' %}
-    {% set page_summary_body = page_summary_body_gb %}
-  {% else %}
-    {% set page_summary_body = page_summary_body_ca %}
-  {% endif %}
-  {% set web_apps_headline = 'Turn your favorite sites into web apps' %}
-  {% set web_apps_body_ca = 'Launch Gmail, YouTube, Instagram, Facebook, and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between the apps and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
-  {% set web_apps_body_gb = 'Launch Gmail, YouTube, Instagram, Facebook and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between them and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
-  {% if LANG == 'en-GB' %}
-    {% set web_apps_body = web_apps_body_gb %}
-  {% else %}
-    {% set web_apps_body = web_apps_body_ca %}
-  {% endif %}
-  {% set feature_cards_title = 'New features you may have missed' %}
-  {% set feature_cards_subtitle = 'Personalize your tab, save memory, protect your email.' %}
-  {% set card_1_headline = 'Your new tab, your way' %}
-  {% set card_1_body = 'Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.' %}
-  {% set card_1_cta = 'Personalize my new tab' %}
-  {% set card_1_action = 'newtab' %}
-  {% set card_2_headline = 'Keep your tabs. Free up memory.' %}
-  {% set card_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU.<br><br>Right-click a tab or multiple tabs and choose Unload Tab to help Firefox stay fast.<br><br>When you come back, your tab will reload just where you left off.' %}
-  {% set card_2_cta = 'Learn more' %}
-  {% set card_2_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
-  {% set card_3_headline = 'Keep your email address to yourself.' %}
-  {% set card_3_body = 'Firefox Relay generates secure email masks when you sign up for new online accounts, so you can stay anonymous and get less spam in your inbox.' %}
-  {% set card_3_cta = 'Try Relay' %}
-  {% set card_3_url = 'https://relay.firefox.com/' %}
-  {% set qr_title = 'Take Firefox with you' %}
-  {% set qr_body = 'Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.' %}
-  {% set newsletter_title = 'Keep up with all things Firefox' %}
-  {% set newsletter_body = 'Get monthly how-tos, advice and news to make your Firefox experience work best for you.' %}
-  {% set google_lens_eyebrow = 'Google Lens' %}
-  {% set perplexity_eyebrow = 'Perplexity' %}
-  {% set web_apps_eyebrow = 'Web apps' %}
-  {% set mobile_title = 'Mobile Firefox' %}
-  {% set shake_to_summarize_eyebrow = 'Summary' %}
-  {% set learn_more = 'Learn more' %}
-  {% set release_notes = 'See Full Release Notes' %}
+{% elif LANG == 'en-GB' %}
+  {# Only override strings that differ from en-US #}
+  {% set hero_body = 'Profiles help keep your online life organised. Use one for work and others for personal time, school, shopping or gaming.<br><br>Each profile has its own extensions, themes and logins, so you remain private, organised and in control.' %}
+  {% set web_apps_body = 'Launch Gmail, YouTube, Instagram, Facebook and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between them and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
 {% endif %}
 
 {% block wnp_content %}
@@ -349,6 +328,41 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
       </div>
     </section>
 
+    {% if LANG == 'en-US' %}
+    <!-- iOS Section (en-US only) -->
+    <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
+      <div class="wnp-container">
+        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">What's New on Firefox Mobile?</h2>
+        <div class="wnp-feature">
+          <div class="wnp-feature-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew144/shake-to-summarize.png"
+                alt="Shake to summarize illustration"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew144/shake-to-summarize@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <div>
+              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span>
+            </div>
+            <p class="wnp-feature-eyebrow">Shake to Summarize</p>
+            <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
+            <p class="wnp-body">Quickly summarize long reads with a shake or tap. Available now on Firefox for iOS.</p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/en/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-text="Learn more - shake to summarize">Learn more
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
     <!-- QR Code Banner -->
     <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
       <div class="wnp-container">
@@ -356,7 +370,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="wnp-qr-layout">
             <div class="wnp-qr-media" aria-hidden="true">
               {% set mobile_app_url = "https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version %}
-              <div class="wnp-qr-qr" data-href="{{ mobile_app_url }}" aria-label="{{ ftl('whatsnew-fx144-qr-alt') }}" role="img">{{ qrcode(mobile_app_url, 12) }}</div>
+              <div class="wnp-qr-qr" data-href="{{ mobile_app_url }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode(mobile_app_url, 12) }}</div>
             </div>
             <div class="wnp-qr-content">
               <div class="wnp-qr-content-inner">
