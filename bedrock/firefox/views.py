@@ -517,6 +517,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx143-row.html": ["firefox/whatsnew/whatsnew", "footer-refresh"],
         "firefox/whatsnew/whatsnew-fx143-us.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx144.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -626,6 +627,11 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx142beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("144."):
+            if locale in ["en-US", "en-CA", "en-GB", "de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx144.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("143."):

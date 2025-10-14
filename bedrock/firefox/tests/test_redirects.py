@@ -751,29 +751,19 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
     "source_path, expected_status_code, dest_path",
     (
         (
-            "/de/firefox/144.0/whatsnew/",
+            "/de/firefox/145.0/whatsnew/",
             301,
-            "/de/whatsnew/144/",
+            "/de/whatsnew/145/",
         ),
         (
-            "/en-CA/firefox/144.0/whatsnew/",
+            "/en-CA/firefox/145.0/whatsnew/",
             301,
-            "/en-CA/whatsnew/144/",
+            "/en-CA/whatsnew/145/",
         ),
         (
-            "/en-GB/firefox/144.0/whatsnew/",
+            "/en-GB/firefox/145.0/whatsnew/",
             301,
-            "/en-GB/whatsnew/144/",
-        ),
-        (
-            "/en-US/firefox/144.0/whatsnew/",
-            301,
-            "/en-US/whatsnew/144/",
-        ),
-        (
-            "/fr/firefox/144.0/whatsnew/",
-            301,
-            "/fr/whatsnew/144/",
+            "/en-GB/whatsnew/145/",
         ),
         (
             "/en-US/firefox/145.0/whatsnew/",
@@ -781,19 +771,29 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
             "/en-US/whatsnew/145/",
         ),
         (
-            "/en-US/firefox/144.0.1/whatsnew/",
+            "/fr/firefox/145.0/whatsnew/",
             301,
-            "/en-US/whatsnew/144/",
+            "/fr/whatsnew/145/",
         ),
         (
-            "/en-US/firefox/144.0.1.2/whatsnew/",
+            "/en-US/firefox/146.0/whatsnew/",
             301,
-            "/en-US/whatsnew/144/",
+            "/en-US/whatsnew/146/",
         ),
         (
-            "/en-US/firefox/144.1.2/whatsnew/",
+            "/en-US/firefox/145.0.1/whatsnew/",
             301,
-            "/en-US/whatsnew/144/",
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/145.1.2/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
         ),
         (
             "/en-US/firefox/154.1.2/whatsnew/",
@@ -801,33 +801,34 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
             "/en-US/whatsnew/154/",
         ),
         (
-            "/en-US/firefox/144.0/whatsnew/?query=string.here",
+            "/en-US/firefox/145.0/whatsnew/?query=string.here",
             301,
-            "/en-US/whatsnew/144/?query=string.here",
+            "/en-US/whatsnew/145/?query=string.here",
         ),
         (
-            "/en-US/firefox/144.0/whatsnew/?query=string.here&with=extra",
+            "/en-US/firefox/145.0/whatsnew/?query=string.here&with=extra",
             301,
-            "/en-US/whatsnew/144/?query=string.here&with=extra",
+            "/en-US/whatsnew/145/?query=string.here&with=extra",
         ),
         # Routes NOT matching the redirect
         # Only en-US, en-GB, en-CA, fr and de should redirect
-        ("/es-ES/firefox/144.0/whatsnew/", 200, None),
-        ("/uk/firefox/144.0/whatsnew/", 200, None),
-        ("/ru/firefox/144.0/whatsnew/", 200, None),
+        ("/es-ES/firefox/145.0/whatsnew/", 200, None),
+        ("/uk/firefox/145.0/whatsnew/", 200, None),
+        ("/ru/firefox/145.0/whatsnew/", 200, None),
         # And Nightly, Beta/Developer and ESR should not redirect
-        ("/en-US/firefox/144.0a/whatsnew/", 200, None),
-        ("/en-US/firefox/145.0b/whatsnew/", 200, None),
-        ("/en-US/firefox/145.0beta/whatsnew/", 200, None),
-        ("/en-US/firefox/144.0.1a/whatsnew/", 200, None),
-        ("/en-US/firefox/144.1.2b/whatsnew/", 200, None),
-        ("/en-US/firefox/144.0esr/whatsnew/", 200, None),
-        # And lower than 143 is not redirected
+        ("/en-US/firefox/145.0a/whatsnew/", 200, None),
+        ("/en-US/firefox/146.0b/whatsnew/", 200, None),
+        ("/en-US/firefox/146.0beta/whatsnew/", 200, None),
+        ("/en-US/firefox/145.0.1a/whatsnew/", 200, None),
+        ("/en-US/firefox/145.1.2b/whatsnew/", 200, None),
+        ("/en-US/firefox/145.0esr/whatsnew/", 200, None),
+        # And lower than 145 is not redirected
+        ("/en-US/firefox/144.0/whatsnew/", 200, None),
         ("/en-US/firefox/143.0/whatsnew/", 200, None),
         ("/en-US/firefox/142.0.1/whatsnew/", 200, None),
     ),
 )
-def test_wnp144_redirects_to_fxc_when_appropriate(client, source_path, expected_status_code, dest_path):
+def test_wnp145_redirects_to_fxc_when_appropriate(client, source_path, expected_status_code, dest_path):
     resp = client.get(source_path)
     assert resp.status_code == expected_status_code
     if expected_status_code == 301:
