@@ -4,7 +4,14 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
+import FxaLink from '../../base/fxa-link.es6.js';
+
 function init() {
+    // Configure FxA links for Sync etc.
+    if (typeof window._SearchParams !== 'undefined') {
+        FxaLink.init();
+    }
+
     document.body
         .querySelectorAll('[data-close-notification]')
         .forEach((button) => {
