@@ -40,6 +40,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% set card_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU.<br><br>Right-click a tab or multiple tabs and choose Unload Tab to help Firefox stay fast.<br><br>When you come back, your tab will reload just where you left off.' %}
 {% set card_2_cta = 'Learn more' %}
 {% set card_2_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+{% set card_2_anchor = '' %}
 {% set card_3_headline = 'Keep your email address to yourself.' %}
 {% set card_3_body = 'Firefox Relay generates secure email masks when you sign up for new online accounts, so you can stay anonymous and get less spam in your inbox.' %}
 {% set card_3_cta = 'Try Relay' %}
@@ -337,10 +338,10 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true" loading="lazy">
               {% endif %}
               <h3 class="wnp-subtitle">
-                  <a href="{{ card_2_url }}?{{ utm_params }}" data-cta-priority="link" data-cta-position="section_2.card_2.title_1" data-cta-text="{{ card_2_headline }}"  aria-describedby="desc-card-2">{{ card_2_headline }}</a>
+                  <a href="{{ card_2_url }}#{{ card_2_anchor }}?{{ utm_params }}" data-cta-priority="link" data-cta-position="section_2.card_2.title_1" data-cta-text="{{ card_2_headline }}"  aria-describedby="desc-card-2">{{ card_2_headline }}</a>
               </h3>
               <p class="wnp-body">{{ card_2_body | safe }}</p>
-              <a class="wnp-button wnp-button-outline" href="{{ card_2_url }}?{{ utm_params }}" id="desc-card-2" aria-label="{{ learn_more }} - {{ card_2_headline }}" data-cta-position="section_2.card_2.button_1" data-cta-text="{{ learn_more }} - {{ card_2_headline }}">
+              <a class="wnp-button wnp-button-outline" href="{{ card_2_url }}#{{ card_2_anchor }}?{{ utm_params }}" id="desc-card-2" aria-label="{{ learn_more }} - {{ card_2_headline }}" data-cta-position="section_2.card_2.button_1" data-cta-text="{{ learn_more }} - {{ card_2_headline }}">
                 {{ card_2_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
               </a>
             </div>
