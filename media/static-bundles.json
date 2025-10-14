@@ -1276,6 +1276,12 @@
         "css/firefox/whatsnew/whatsnew-143.scss"
       ],
       "name": "firefox_whatsnew_143"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-144.scss"
+      ],
+      "name": "firefox_whatsnew_144"
     }
   ],
   "js": [
@@ -1677,6 +1683,14 @@
         "js/firefox/whatsnew/whatsnew-143-uitour-us.es6.js"
       ],
       "name": "firefox_whatsnew_143_us"
+    },
+    {
+      "files": [
+        "js/firefox/whatsnew/whatsnew-144.es6.js",
+        "js/base/mozilla-fxa.js",
+        "js/base/mozilla-fxa-init.js"
+      ],
+      "name": "firefox_whatsnew_144"
     },
     {
       "files": [
