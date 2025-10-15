@@ -78,3 +78,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/about/leadership.html"
+
+
+class AdvertisingIndexPage(AbstractBedrockCMSPage):
+    template = "mozorg/cms/advertising/advertising_index_page.html"
