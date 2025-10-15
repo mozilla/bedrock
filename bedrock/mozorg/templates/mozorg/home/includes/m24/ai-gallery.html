@@ -258,15 +258,35 @@
         {{ gallery_tile(
           class='m24-l-grid-quarter',
           image=picture(
-            url="img/home/2024/ai-gallery/mozfest-800.jpg",
+            url="img/home/2024/ai-gallery/mozfest-mobile-720.jpg",
             sources=[
               {
+                'media': '(max-width: 1311px)',
                 "srcset" : {
-                  "img/home/2024/ai-gallery/mozfest-400.jpg": "400w",
-                  "img/home/2024/ai-gallery/mozfest-800.jpg": "800w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-375.png": "375w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-720.png": "720w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-976.png": "976w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-1232.png": "1232w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-1450.png": "1450w",
                 },
-                'width' : '800',
-                'height' : '800'
+                'sizes': {
+                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                  "default": "calc(100vw - 32px)"
+                },
+                'width' : '1450',
+                'height' : '723'
+              },
+              {
+                'srcset': {
+                  "img/home/2024/ai-gallery/mozfest-desktop-344.jpg": "344w",
+                  "img/home/2024/ai-gallery/mozfest-desktop-664.jpg": "664w",
+                },
+                'sizes': {
+                  "(min-width: 1440px)": "332px",
+                  "default": "calc((100vw - 64px) / 4)",
+                },
+                'width' : '664',
+                'height' : '664'
               },
             ],
             optional_attributes={
