@@ -94,6 +94,16 @@ $image-path: '/media/protocol/img';
     .modal-trigger {
         cursor: pointer;
     }
+
+    .accordion-content {
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 100ms ease-in-out;
+
+        &.open {
+            transform: scaleY(1);
+        }
+    }
 }
 
 .mozads-hgroup {
@@ -601,7 +611,8 @@ $image-path: '/media/protocol/img';
         padding-top: $spacer-xl;
     }
 
-    li {
+    li,
+    details {
         display: flex;
         flex-direction: column;
         padding: $spacer-xs 0;
@@ -619,6 +630,14 @@ $image-path: '/media/protocol/img';
             padding: 0;
             padding-top: $spacer-xs;
         }
+    }
+
+    details summary {
+        transition: margin 150ms ease-out;
+    }
+
+    details[open] summary {
+        margin-bottom: $spacer-xs;
     }
 }
 
