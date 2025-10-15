@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("advertising_hero_block", 4)],
+                        [("advertising_hero_block", 4), ("section_header_block", 7)],
                         blank=True,
                         block_lookup={
                             0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
@@ -49,6 +49,13 @@ class Migration(migrations.Migration):
                                         ("secondary_cta_link", 3),
                                     ]
                                 ],
+                                {},
+                            ),
+                            5: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
+                            6: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
+                            7: (
+                                "wagtail.blocks.StructBlock",
+                                [[("superheading_text", 5), ("heading_text", 0), ("subheading_text", 5), ("image", 6), ("image_alt_text", 5)]],
                                 {},
                             ),
                         },

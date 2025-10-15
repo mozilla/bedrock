@@ -1,0 +1,20 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mozads-c-home-solutions m24-c-content has-scroll-padding" id="solutions">
+  <div class="{% if value.image %}mozads-half-grid{% endif %}">
+
+    <hgroup class="mozads-hgroup">
+      {% if value.superheading_text %}<p class="mozads-eyebrow">{{ value.superheading_text }}</p>{% endif %}
+      <h2 class="mozads-section-heading">{{ value.heading_text }}</h2>
+      {% if value.subheading_text %}<p class="mozads-section-subheading">{{ value.subheading_text }}</p>{% endif %}
+    </hgroup>
+
+    {% if value.image %}
+      {{ image(value.image, "original", class="mozads-figure", alt=value.image_alt_text) }}
+    {% endif %}
+  </div>
+</section>
