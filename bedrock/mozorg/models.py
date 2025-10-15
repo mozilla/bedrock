@@ -11,7 +11,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, SectionHeaderBlock
+from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FigureWithStatisticBlock, SectionHeaderBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
@@ -85,7 +85,11 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
     subpage_types = []  # This page type cannot have any children
 
     content = StreamField(
-        [("advertising_hero_block", AdvertisingHeroBlock()), ("section_header_block", SectionHeaderBlock())],
+        [
+            ("advertising_hero_block", AdvertisingHeroBlock()),
+            ("section_header_block", SectionHeaderBlock()),
+            ("figure_with_statistic_block", FigureWithStatisticBlock()),
+        ],
         blank=True,
         null=True,
         collapsed=True,

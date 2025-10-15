@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mozads-c-home-solutions m24-c-content has-scroll-padding">
+    <div class="mozads-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
+      <div class="mozads-stat">
+        <span class="mozads-stat-text">
+          <span class="mozads-stat-number">{{ value.statistic_value }}</span>
+          <span class="mozads-stat-label">{{ value.statistic_label }}</span>
+        </span>
+      </div>
+      <figure class="mozads-figure">
+        {{ image(value.image, "original", class="", loading="lazy", alt=value.image_alt_text) }}
+        <figcaption class="mozads-figcaption">
+          {{ value.image_caption }}
+        </figcaption>
+      </figure>
+    </div>
+</section>

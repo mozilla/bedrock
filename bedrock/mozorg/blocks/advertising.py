@@ -5,6 +5,16 @@
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
+CAPTION_TEXT_FEATURES = [
+    "bold",
+    "italic",
+    "link",
+    "superscript",
+    "subscript",
+    "strikethrough",
+    "link",
+]
+
 
 class AdvertisingHeroBlock(blocks.StructBlock):
     """Advertising page hero block."""
@@ -43,4 +53,27 @@ class SectionHeaderBlock(blocks.StructBlock):
         label = "Section Heading"
         label_format = "{heading_text}"
         template = "mozorg/cms/advertising/blocks/section_heading_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class FigureWithStatisticBlock(blocks.StructBlock):
+    """Figure with a statistic block."""
+
+    image = ImageChooserBlock(required=False)
+    image_alt_text = blocks.CharBlock(char_max_length=255)
+    image_caption = blocks.RichTextBlock(char_max_length=255)
+    statistic_value = blocks.CharBlock(char_max_length=255)
+    statistic_label = blocks.CharBlock(char_max_length=255)
+    align_image_on_right = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the image be to the right of the statistic?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "decimal"
+        label = "Figure With Statistic"
+        label_format = "{statistic_value} {statistic_label}"
+        template = "mozorg/cms/advertising/blocks/figure_with_statistic_block.html"
         form_classname = "compact-form struct-block"

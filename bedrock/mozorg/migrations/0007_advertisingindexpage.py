@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("advertising_hero_block", 4), ("section_header_block", 7)],
+                        [("advertising_hero_block", 4), ("section_header_block", 7), ("figure_with_statistic_block", 10)],
                         blank=True,
                         block_lookup={
                             0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
@@ -56,6 +56,31 @@ class Migration(migrations.Migration):
                             7: (
                                 "wagtail.blocks.StructBlock",
                                 [[("superheading_text", 5), ("heading_text", 0), ("subheading_text", 5), ("image", 6), ("image_alt_text", 5)]],
+                                {},
+                            ),
+                            8: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
+                            9: (
+                                "wagtail.blocks.BooleanBlock",
+                                (),
+                                {
+                                    "default": False,
+                                    "inline_form": True,
+                                    "label": "Should the image be to the right of the statistic?",
+                                    "required": False,
+                                },
+                            ),
+                            10: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("image", 6),
+                                        ("image_alt_text", 0),
+                                        ("image_caption", 8),
+                                        ("statistic_value", 0),
+                                        ("statistic_label", 0),
+                                        ("align_image_on_right", 9),
+                                    ]
+                                ],
                                 {},
                             ),
                         },
