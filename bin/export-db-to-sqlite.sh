@@ -161,6 +161,7 @@ python manage.py dumpdata \
     legal_docs.LegalDoc \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
+    mozorg.AdvertisingIndexPage \
     newsletter.Newsletter \
     products.VPNCallToActionSnippet \
     products.VPNResourceCenterIndexPage \
