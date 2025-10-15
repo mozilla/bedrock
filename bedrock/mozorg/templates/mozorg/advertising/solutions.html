@@ -8,6 +8,12 @@
 
 {% block page_title %}Mozilla Advertising - Solutions{% endblock %}
 
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('protocol-modal') }}
+  {{ js_bundle('mozorg-advertising-solutions') }}
+{% endblock %}
+
 {% block content %}
 <main id="mozads-main">
   <section class="mozads-c-main-dark-section">
@@ -68,17 +74,26 @@
       <p class="mozads-highlight-text">Firefox’s New Tab experience offers a variety of display and native ad formats. Your brand will be showcased alongside curated content from top-tier publishers. </p>
 
       <ul class="mozads-bordered-list">
-        <li>
+        <li class="modal-wrapper">
           Sponsored tiles on Firefox homepage
-          <button type="button">See example +</button>
+          <button type="button" class="modal-trigger">See example +</button>
+          <div class="mzp-u-modal-content">
+            Placeholder content
+          </div>
         </li>
-        <li>
+        <li class="modal-wrapper">
           Native ads on Firefox homepage
-          <button type="button">See example +</button>
+          <button type="button" class="modal-trigger">See example +</button>
+          <div class="mzp-u-modal-content">
+            Placeholder content
+          </div>
         </li>
-        <li>
+        <li class="modal-wrapper">
           Standard IAB formats
-          <button type="button">See example +</button>
+          <button type="button" class="modal-trigger">See example +</button>
+          <div class="mzp-u-modal-content">
+            Placeholder content
+          </div>
         </li>
       </ul>
     </div>
@@ -143,13 +158,19 @@
       <p class="mozads-highlight-text">Reach developers and managers through contextual placement on MDN Webdocs, with exclusive opportunities for prominent homepage visibility.</p>
 
       <ul class="mozads-bordered-list">
-        <li>
+        <li class="modal-wrapper">
           Placeholder copy describing the ad placement
-          <button type="button">See example +</button>
+          <button type="button" class="modal-trigger">See example +</button>
+          <div class="mzp-u-modal-content">
+            Placeholder content
+          </div>
         </li>
-        <li>
+        <li class="modal-wrapper">
           Placeholder copy describing the ad placement
-          <button type="button">See example +</button>
+          <button type="button" class="modal-trigger">See example +</button>
+          <div class="mzp-u-modal-content">
+            Placeholder content
+          </div>
         </li>
       </ul>
       <div class="mozads-section-footer">
