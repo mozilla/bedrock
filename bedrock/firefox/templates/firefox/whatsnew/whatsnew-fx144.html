@@ -287,14 +287,13 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <div class="wnp-feature">
           <div class="wnp-feature-media">
             <div class="wnp-media-frame wnp-media-frame--settings">
-              <img
-                src="/media/img/firefox/whatsnew/whatsnew144/web-apps.png"
-                alt="Web apps illustration"
-                loading="lazy"
-                srcset="
-                  /media/img/firefox/whatsnew/whatsnew144/web-apps@2x.png 2x
-                "
-              />
+              {{ resp_img(
+                  url="img/firefox/whatsnew/whatsnew144/web-apps.png",
+                  srcset={
+                      "img/firefox/whatsnew/whatsnew144/web-apps@2x.png": "2x",
+                  },
+                  optional_attributes={"loading": 'lazy'}
+              ) }}
             </div>
           </div>
           <div class="wnp-feature-content">
