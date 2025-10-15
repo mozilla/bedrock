@@ -1522,7 +1522,7 @@
     },
     {
       "files": [
-        "js/mozorg/advertising/ads-solutions.js"
+        "js/mozorg/advertising/ads-solutions.es6.js"
       ],
       "name": "mozorg-advertising-solutions"
     },
