@@ -3,6 +3,8 @@
 import django.db.models.deletion
 from django.db import migrations, models
 
+import wagtail.fields
+
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -23,6 +25,34 @@ class Migration(migrations.Migration):
                         primary_key=True,
                         serialize=False,
                         to="wagtailcore.page",
+                    ),
+                ),
+                (
+                    "content",
+                    wagtail.fields.StreamField(
+                        [("advertising_hero_block", 4)],
+                        blank=True,
+                        block_lookup={
+                            0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
+                            1: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the primary CTA."}),
+                            2: ("wagtail.blocks.TextBlock", (), {}),
+                            3: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the secondary CTA."}),
+                            4: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("heading_text", 0),
+                                        ("primary_cta_text", 0),
+                                        ("primary_cta_link", 1),
+                                        ("supporting_text", 2),
+                                        ("secondary_cta_text", 0),
+                                        ("secondary_cta_link", 3),
+                                    ]
+                                ],
+                                {},
+                            ),
+                        },
+                        null=True,
                     ),
                 ),
             ],

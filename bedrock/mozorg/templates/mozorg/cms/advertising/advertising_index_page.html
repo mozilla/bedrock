@@ -26,7 +26,10 @@
 
 {% block content %}
 <main id="mozads-main">
-  {% include 'mozorg/advertising/includes/home-ads-hero.html' %}
+  {% for block in page.content %}
+    {% include_block block %}
+  {% endfor %}
+
   {# {% include 'mozorg/advertising/includes/home-ads-brands.html' %} #}
   {% include 'mozorg/advertising/includes/home-ads-solutions.html' %}
   {% include 'mozorg/advertising/includes/home-ads-why-moz.html' %}
