@@ -279,27 +279,6 @@ class TestWhatsNew(TestCase):
 
     # end nightly whatsnew tests
 
-    # begin nightly 145 whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_nightly_145_0_a1_whatsnew(self, render_mock):
-        """Should show nightly 145 whatsnew template"""
-        req = self.rf.get("/en-US/firefox/whatsnew/")
-        self.view(req, version="145.0a1")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/nightly/whatsnew-fx145.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_nightly_145_0_a1_whatsnew_ro(self, render_mock):
-        """Should show default nightly whatsnew template"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "ro"
-        self.view(req, version="145.0a1")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/nightly/whatsnew.html"]
-
-    # end nightly 145 whatsnew tests
-
     # begin dev edition whatsnew tests
 
     @override_settings(DEV=True)
@@ -341,28 +320,6 @@ class TestWhatsNew(TestCase):
         assert template == ["firefox/whatsnew/index.html"]
 
     # end 142 beta whatsnew tests
-
-    # begin 144 beta whatsnew tests
-
-    @override_settings(DEV=True)
-    def test_fx_144_0_0beta_en_US(self, render_mock):
-        """Should use whatsnew-fx144beta template for en-US locale"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "en-US"
-        self.view(req, version="144.0beta")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/whatsnew-fx144beta.html"]
-
-    @override_settings(DEV=True)
-    def test_fx_144_0_0beta_ro(self, render_mock):
-        """Should use default template for ro locale"""
-        req = self.rf.get("/firefox/whatsnew/")
-        req.locale = "ro"
-        self.view(req, version="144.0beta")
-        template = render_mock.call_args[0][1]
-        assert template == ["firefox/whatsnew/index.html"]
-
-    # end 144 beta whatsnew tests
 
     # begin 135 na whatsnew tests
 

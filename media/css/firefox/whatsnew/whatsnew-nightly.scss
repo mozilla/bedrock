@@ -47,8 +47,8 @@ body {
         color: var(--body-text-color);
     }
 
-    a:link:not(.mzp-t-product),
-    a:visited:not(.mzp-t-product) {
+    a:link,
+    a:visited {
         color: $color-ink-80;
 
         &:hover,
