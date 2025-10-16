@@ -77,3 +77,29 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         label_format = "{statistic_value} {statistic_label}"
         template = "mozorg/cms/advertising/blocks/figure_with_statistic_block.html"
         form_classname = "compact-form struct-block"
+
+
+class FeatureListItemBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    supporting_text = blocks.TextBlock()
+
+    class Meta:
+        label = "Feature Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/feature_list_item_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class FeatureListBlock(blocks.StructBlock):
+    """Feature list block."""
+
+    feature_list_items = blocks.ListBlock(FeatureListItemBlock(), min_num=1)
+
+    class Meta:
+        icon = "list-ul"
+        label = "Feature List"
+        label_format = "Feature List"
+        template = "mozorg/cms/advertising/blocks/feature_list_block.html"
+        form_classname = "compact-form struct-block"

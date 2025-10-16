@@ -11,7 +11,7 @@ from wagtail.admin.panels import FieldPanel
 from wagtail.fields import StreamField
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FigureWithStatisticBlock, SectionHeaderBlock
+from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, SectionHeaderBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
@@ -89,6 +89,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
             ("advertising_hero_block", AdvertisingHeroBlock()),
             ("section_header_block", SectionHeaderBlock()),
             ("figure_with_statistic_block", FigureWithStatisticBlock()),
+            ("feature_list_block", FeatureListBlock()),
         ],
         blank=True,
         null=True,
