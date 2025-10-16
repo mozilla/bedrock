@@ -30,9 +30,12 @@
     {% include_block block %}
   {% endfor %}
 
-  {# {% include 'mozorg/advertising/includes/home-ads-brands.html' %} #}
-  {# {% include 'mozorg/advertising/includes/home-ads-approach.html' %} #}
-  {% include 'mozorg/advertising/includes/home-ads-contact.html' %}
+  {% if page.contact_banner %}
+    {% with value=page.contact_banner %}
+      {% include 'mozorg/cms/snippets/contact_bannet_snippet.html' %}
+    {% endwith %}
+  {% endif %}
+
   {% include 'mozorg/advertising/includes/home-ads-notification.html' %}
 
   {# Leaving this here for the next round. This might be useful. {% include 'mozorg/advertising/includes/blog-articles.html' %} #}
