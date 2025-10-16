@@ -90,6 +90,7 @@ class Migration(migrations.Migration):
                         null=True,
                     ),
                 ),
+                ("notification_text", wagtail.fields.RichTextField(blank=True)),
             ],
             options={
                 "abstract": False,

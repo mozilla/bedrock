@@ -8,7 +8,7 @@ from django.db import models, transaction
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
-from wagtail.fields import StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
@@ -154,10 +154,15 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
+    notification_text = RichTextField(
+        blank=True,
+        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+    )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
         FieldPanel("contact_banner"),
+        FieldPanel("notification_text"),
     ]
 
     template = "mozorg/cms/advertising/advertising_index_page.html"
