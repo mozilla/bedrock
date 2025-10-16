@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models, transaction
 
 import markdown
@@ -15,6 +16,7 @@ from wagtail.snippets.models import register_snippet
 from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, SectionHeaderBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
+from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
 
 def process_md_file(file_path):
@@ -136,6 +138,13 @@ class LeadershipPage(AbstractBedrockCMSPage):
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
     subpage_types = []  # This page type cannot have any children
 
+    sub_navigation = StreamField(
+        [("link", NavigationLinkBlock())],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Configure the sub-navigation menu items. Leave empty to use the default navigation.",
+    )
     content = StreamField(
         [
             ("advertising_hero_block", AdvertisingHeroBlock()),
@@ -164,5 +173,50 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         FieldPanel("contact_banner"),
         FieldPanel("notification_text"),
     ]
+    settings_panels = AbstractBedrockCMSPage.settings_panels + [
+        FieldPanel("sub_navigation"),
+    ]
 
     template = "mozorg/cms/advertising/advertising_index_page.html"
+
+    def clean(self):
+        """
+        Validate that:
+        1. Anchor IDs in content blocks are unique
+        2. Sub-navigation links reference valid sections
+        """
+        super().clean()
+
+        # Get available section anchors and check for duplicates
+        available_sections = []
+        for block in self.content:
+            anchor_id = block.value.get("anchor_id")
+            if anchor_id:
+                available_sections.append(anchor_id)
+
+        # Check for duplicate anchor IDs
+        if len(available_sections) != len(set(available_sections)):
+            # Find duplicates
+            seen = set()
+            duplicates = set()
+            for anchor_id in available_sections:
+                if anchor_id in seen:
+                    duplicates.add(anchor_id)
+                seen.add(anchor_id)
+
+            raise ValidationError(f"Duplicate anchor ID(s) found: {', '.join(sorted(duplicates))}. Each anchor ID must be unique.")
+
+        # Validate navigation links reference valid sections
+        if self.sub_navigation:
+            available_sections_set = set(available_sections)
+            invalid_anchors = []
+            for nav_item in self.sub_navigation:
+                if nav_item.value.get("link_type") == "section":
+                    anchor = nav_item.value.get("section_anchor")
+                    if anchor and anchor not in available_sections_set:
+                        invalid_anchors.append(anchor)
+
+            if invalid_anchors:
+                available_text = ", ".join(available_sections) if available_sections else "None"
+                invalid_text = ", ".join(invalid_anchors)
+                raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")

@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mozads-c-home-solutions m24-c-content has-scroll-padding">
+<section class="mozads-c-home-solutions m24-c-content has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
     <div class="mozads-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
       <div class="mozads-stat">
         <span class="mozads-stat-text">
