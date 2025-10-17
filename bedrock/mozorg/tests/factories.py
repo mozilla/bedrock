@@ -6,7 +6,7 @@ import factory
 import wagtail_factories
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import leadership
+from bedrock.mozorg.blocks import advertising, leadership
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -63,3 +63,48 @@ class LeadershipPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.LeadershipPage
+
+
+class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
+    heading = "Contact Us"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    button_text = "Get in touch"
+    button_link = "https://example.com/contact"
+
+    class Meta:
+        model = models.ContactBannerSnippet
+
+
+class AdvertisingHeroBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+    primary_cta_text = wagtail_factories.CharBlockFactory
+    primary_cta_link = wagtail_factories.CharBlockFactory
+    supporting_text = wagtail_factories.CharBlockFactory
+    secondary_cta_text = wagtail_factories.CharBlockFactory
+    secondary_cta_link = wagtail_factories.CharBlockFactory
+
+    class Meta:
+        model = advertising.AdvertisingHeroBlock
+
+
+class SectionHeaderBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+
+    class Meta:
+        model = advertising.SectionHeaderBlock
+
+
+class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
+    title = "Test Advertising Index Page"
+    live = True
+    slug = "advertising"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "advertising_hero_block": factory.SubFactory(AdvertisingHeroBlockFactory),
+            "section_header_block": factory.SubFactory(SectionHeaderBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.AdvertisingIndexPage
