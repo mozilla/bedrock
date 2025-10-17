@@ -29,7 +29,7 @@
     </div>
 
     <figure class="mozads-figure">
-      {{ image(value.image, "original", class="", loading="lazy", role="presentation") }}
+      {{ srcset_image(value.image, "width-{1000,1200,1400}", class="", loading="lazy", role="presentation") }}
     </figure>
 
 </div>
