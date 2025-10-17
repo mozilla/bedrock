@@ -11,6 +11,7 @@ import jinja2
 from django_jinja import library
 from markupsafe import Markup
 
+from bedrock.base.waffle import switch
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib.l10n_utils import get_locale
 
@@ -43,7 +44,11 @@ def email_newsletter_form(
 ):
     request = ctx["request"]
     context = ctx.get_all()
-    action = settings.BASKET_SUBSCRIBE_URL
+
+    if switch("foundation-separate-newsletter") and newsletters == "mozilla-foundation":
+        action = settings.FOUNDATION_SUBSCRIBE_URL
+    else:
+        action = settings.BASKET_SUBSCRIBE_URL
 
     success = bool(ctx.get("success"))
     if success and not use_thankyou:
