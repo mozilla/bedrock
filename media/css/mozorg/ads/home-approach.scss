@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 .mozads-c-home-approach {
     display: flex;
@@ -24,8 +25,7 @@
 }
 
 .mozads-approach-headline {
-    font-size: var(--title-2xs-size);
-    line-height: var(--title-2xs-line-height);
+    @include admixins.text-title-2xs;
     font-family: var(--title-font-family);
     margin-bottom: $spacing-sm;
     font-weight: 300;
