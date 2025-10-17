@@ -3,6 +3,8 @@
 import django.db.models.deletion
 from django.db import migrations, models
 
+import wagtail.fields
+
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -23,6 +25,21 @@ class Migration(migrations.Migration):
                         primary_key=True,
                         serialize=False,
                         to="wagtailcore.page",
+                    ),
+                ),
+                ("heading", models.CharField(blank=True, max_length=255)),
+                ("subheading", models.CharField(blank=True, max_length=255)),
+                (
+                    "list_items",
+                    wagtail.fields.StreamField(
+                        [("list_item", 2)],
+                        blank=True,
+                        block_lookup={
+                            0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
+                            1: ("wagtail.blocks.RichTextBlock", (), {"features": ["bold", "italic", "link"]}),
+                            2: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 1)]], {}),
+                        },
+                        null=True,
                     ),
                 ),
             ],

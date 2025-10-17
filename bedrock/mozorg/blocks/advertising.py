@@ -103,3 +103,18 @@ class FeatureListBlock(blocks.StructBlock):
         label_format = "Feature List"
         template = "mozorg/cms/advertising/blocks/feature_list_block.html"
         form_classname = "compact-form struct-block"
+
+
+class ListItemBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    supporting_text = blocks.RichTextBlock(
+        features=["bold", "italic", "link"],
+    )
+
+    class Meta:
+        label = "List Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/list_item_block.html"
+        form_classname = "compact-form struct-block"

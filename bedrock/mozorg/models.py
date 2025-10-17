@@ -13,7 +13,13 @@ from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, SectionHeaderBlock
+from bedrock.mozorg.blocks.advertising import (
+    AdvertisingHeroBlock,
+    FeatureListBlock,
+    FigureWithStatisticBlock,
+    ListItemBlock,
+    SectionHeaderBlock,
+)
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
@@ -170,5 +176,26 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
 
 class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
     subpage_types = []  # This page type cannot have any children
+
+    heading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+    subheading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+    list_items = StreamField(
+        [("list_item", ListItemBlock())],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("heading"),
+        FieldPanel("subheading"),
+        FieldPanel("list_items"),
+    ]
 
     template = "mozorg/cms/advertising/advertising_principles_page.html"
