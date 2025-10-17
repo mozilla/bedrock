@@ -136,7 +136,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = []  # This page type cannot have any children
+    subpage_types = ["AdvertisingPrinciplesPage"]
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -220,3 +220,9 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
                 available_text = ", ".join(available_sections) if available_sections else "None"
                 invalid_text = ", ".join(invalid_anchors)
                 raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
+
+
+class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
+    subpage_types = []  # This page type cannot have any children
+
+    template = "mozorg/cms/advertising/advertising_principles_page.html"
