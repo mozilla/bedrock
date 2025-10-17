@@ -86,7 +86,7 @@ class TestVPNLandingPage(TestCase):
         view = views.vpn_landing_page
         view(req)
         template = render_mock.call_args[0][1]
-        assert template == "products/vpn/landing-refresh-bundle-promo.html"
+        assert template == "products/vpn/landing-refresh.html"
 
     def test_vpn_landing_page_template_ca(self, render_mock):
         req = RequestFactory().get("/products/vpn/", HTTP_CF_IPCOUNTRY="CA")
