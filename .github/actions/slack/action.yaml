@@ -53,7 +53,7 @@ runs:
       env:
         STATUS: ${{ inputs.status }}
       run: >-
-        eval "case $SATUS in
+        eval "case $STATUS in
             info)
                 echo 'STATUS_COLOR=#00FFFF';;
             success)
