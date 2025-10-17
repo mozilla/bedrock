@@ -23,7 +23,11 @@ class Migration(migrations.Migration):
                         "wagtail.blocks.ChoiceBlock",
                         [],
                         {
-                            "choices": [("section", "Link to Section on this Page"), ("page", "Internal Page"), ("external", "External URL")],
+                            "choices": [
+                                ("section", "Link to section on advertising index Page"),
+                                ("page", "Internal Page"),
+                                ("external", "External URL"),
+                            ],
                             "help_text": "Choose the type of link",
                         },
                     ),
@@ -38,14 +42,19 @@ class Migration(migrations.Migration):
                     ),
                     3: ("wagtail.blocks.PageChooserBlock", (), {"help_text": "Choose an internal page to link to", "required": False}),
                     4: ("wagtail.blocks.URLBlock", (), {"help_text": "Full URL for external links", "max_length": 255, "required": False}),
-                    5: (
-                        "wagtail.blocks.CharBlock",
-                        (),
-                        {"help_text": "Optional CSS class (e.g., 'mozads-c-contact-sales-button')", "max_length": 100, "required": False},
-                    ),
+                    5: ("wagtail.blocks.BooleanBlock", (), {"default": False, "help_text": "This link should look like a button", "required": False}),
                     6: (
                         "wagtail.blocks.StructBlock",
-                        [[("link_text", 0), ("link_type", 1), ("section_anchor", 2), ("internal_page", 3), ("external_url", 4), ("style_class", 5)]],
+                        [
+                            [
+                                ("link_text", 0),
+                                ("link_type", 1),
+                                ("section_anchor", 2),
+                                ("internal_page", 3),
+                                ("external_url", 4),
+                                ("has_button_appearance", 5),
+                            ]
+                        ],
                         {},
                     ),
                 },

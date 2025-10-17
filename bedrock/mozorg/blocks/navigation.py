@@ -42,10 +42,10 @@ class NavigationLinkBlock(blocks.StructBlock):
         help_text="Full URL for external links",
     )
 
-    style_class = blocks.CharBlock(
+    has_button_appearance = blocks.BooleanBlock(
         required=False,
-        max_length=100,
-        help_text="Optional CSS class (e.g., 'mozads-c-contact-sales-button')",
+        default=False,
+        help_text="This link should look like a button",
     )
 
     def clean(self, value):

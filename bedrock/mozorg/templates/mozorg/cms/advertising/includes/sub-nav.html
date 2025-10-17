@@ -30,7 +30,7 @@
                 href="{% if link.link_type == 'section' %}{{ advertising_index_page.url }}#{{ link.section_anchor }}{% elif link.link_type == 'page' %}{{ link.internal_page.url }}{% else %}{{ link.external_url }}{% endif %}"
                 data-link-position="subnav"
                 data-link-text="{{ link.link_text }}"
-                {% if link.style_class %}class="{{ link.style_class }}"{% endif %}
+                {% if link.has_button_appearance %}class="mozads-c-contact-sales-button"{% endif %}
               >
                 {{ link.link_text }}
               </a>
