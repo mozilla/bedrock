@@ -175,6 +175,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 
     heading = models.CharField(
