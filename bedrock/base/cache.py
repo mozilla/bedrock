@@ -2,9 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import logging
+
 from django.core.cache.backends.locmem import DEFAULT_TIMEOUT, LocMemCache
 
 from bedrock.base import metrics
+
+logger = logging.getLogger(__name__)
 
 
 class SimpleDictCache(LocMemCache):
