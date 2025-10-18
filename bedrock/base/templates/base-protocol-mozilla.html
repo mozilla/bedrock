@@ -7,12 +7,3 @@
 {% extends 'base-protocol.html' %}
 
 {% block body_class %}mzp-t-mozilla{% endblock %}
-
-{% block site_css %}
-    {{ css_bundle('protocol-mozilla') }}
-    {% if ftl_file_is_active('navigation_refresh') and ftl_file_is_active('footer-refresh') %}
-      {{ css_bundle('m24-navigation-and-footer') }}
-    {% else %}
-      {{ css_bundle('legacy-navigation-and-footer') }}
-    {% endif %}
-{% endblock %}

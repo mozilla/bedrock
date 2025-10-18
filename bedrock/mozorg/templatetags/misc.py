@@ -131,8 +131,7 @@ def l10n_css(ctx):
 
     For a locale that has locale-specific stylesheet, this would output:
 
-        <link rel="stylesheet" media="screen,projection,tv"
-              href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
 
     For a locale that doesn't have any locale-specific stylesheet, this would
     output nothing.
@@ -149,7 +148,7 @@ def l10n_css(ctx):
     locale = getattr(ctx["request"], "locale", "en-US")
 
     if _l10n_media_exists("css", locale, "intl.css"):
-        markup = '<link rel="stylesheet" media="screen,projection,tv" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
+        markup = '<link rel="stylesheet" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
     else:
         markup = ""
 
