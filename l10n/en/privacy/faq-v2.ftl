@@ -27,7 +27,7 @@ privacy-faq-v2-following-questions = The following questions and answers should 
 
 privacy-faq-v2-i-use-firefox = I use { -brand-name-firefox } for almost everything on the web. You folks at { -brand-name-mozilla } must know a ton of stuff about me, right?
 privacy-faq-v2-mozilla-does-not-know = { -brand-name-mozilla } doesn’t know as much as you’d expect about how people browse the web. { -brand-name-firefox }, the web browser that runs on your device or computer, is your gateway to the internet. Your browser will manage a lot of information about the websites you visit, but that information generally stays on your device.
-privacy-faq-v2-it-seems-like = It seems like every company on the web is buying and selling my data. You're probably no different.
+privacy-faq-v2-it-seems-like = It seems like every company on the web is buying and selling my data. You’re probably no different.
 
 privacy-faq-v2-we-never-sell-your = We never sell your personal data. Unlike other big tech companies that collect and profit off your personal information, we’re built with privacy as the default. We don’t know your age, gender, precise location, or other information Big Tech collects and profits from.
 # Obsolete string (expires: 2025-12-08)
