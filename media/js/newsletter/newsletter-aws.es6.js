@@ -136,7 +136,7 @@ const MzpNewsletter = {
         const xhr = new XMLHttpRequest();
 
         // Emails used in automation for page-level integration tests
-        // should avoid hitting basket directly.
+        // should avoid hitting server directly.
         if (email === 'success@example.com') {
             successCallback();
             return;
