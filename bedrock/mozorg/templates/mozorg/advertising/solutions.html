@@ -76,46 +76,64 @@
       <ul class="mozads-bordered-list">
         <li class="modal-wrapper">
           <button type="button" class="modal-trigger">
-            <span class="modal-label">Sponsored tiles on Firefox homepage</span>
+            <span class="modal-label">Sponsored tiles</span>
             <span class="action-text">See example +</span>
           </button>
           <div class="mzp-u-modal-content">
-            <div class="carousel">
-              <div class="carousel-wrapper">
-                <button class="carousel-prev"><</button>
-                <div class="carousel-viewport">
-                  <div class="carousel-container">
-                    <div class="carousel-slide">Slide 1</div>
-                    <div class="carousel-slide">Slide 2</div>
-                    <div class="carousel-slide">Slide 3</div>
-                  </div>
-                </div>
-                <button class="carousel-next">></button>
-              </div>
-              <div class="carousel-dots"></div>
-            </div>
+            <!-- no carousel wrapper. -->
+            <figure class="mozads-figure">
+              {{ resp_img(
+                url="img/mozorg/advertising/solutions/example-ad-sponsored-tiles.png",
+                optional_attributes={
+                  'loading': 'lazy',
+                  'alt': 'screenshot showing placement of sponsored tiles in Firefox New Tab page'
+                }
+              ) }}
+
+            <figcaption class="modal-figure-caption">
+              <p>
+                <span class="modal-figure-caption-heading">Sponsored Tiles</span>
+                <span class="modal-figure-caption-text">Contact for more details</span>
+              </p>
+              <a
+                href="/advertising/contact/"
+                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+              >
+                Contact Sales
+              </a>
+            </figcaption>
+          </figure>
           </div>
         </li>
         <li class="modal-wrapper">
           <button type="button" class="modal-trigger">
-            <span class="modal-label">Native ads on Firefox homepage</span>
+            <span class="modal-label">Native ads</span>
             <span class="action-text">See example +</span>
           </button>
           <div class="mzp-u-modal-content">
-            <div class="carousel">
-              <div class="carousel-wrapper">
-                <button class="carousel-prev"><</button>
-                <div class="carousel-viewport">
-                  <div class="carousel-container">
-                    <div class="carousel-slide">Slide 1</div>
-                    <div class="carousel-slide">Slide 2</div>
-                    <div class="carousel-slide">Slide 3</div>
-                  </div>
-                </div>
-                <button class="carousel-next">></button>
-              </div>
-              <div class="carousel-dots"></div>
-            </div>
+            <figure class="mozads-figure">
+              {{ resp_img(
+                url="img/mozorg/advertising/solutions/example-ad-native-ad.png",
+                optional_attributes={
+                  'loading': 'lazy',
+                  'alt': 'screenshot showing placement of sponsored tiles in Firefox New Tab page'
+                }
+              ) }}
+
+            <figcaption class="modal-figure-caption">
+              <p>
+                <span class="modal-figure-caption-heading">Native Ads</span>
+                <span class="modal-figure-caption-text">Contact for more details</span>
+              </p>
+              <a
+                href="/advertising/contact/"
+                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+              >
+                Contact Sales
+              </a>
+            </figcaption>
+          </figure>
+
           </div>
         </li>
         <li class="modal-wrapper">
@@ -127,29 +145,79 @@
           <div class="mzp-u-modal-content">
             <div class="carousel">
               <div class="carousel-wrapper">
-                <button class="carousel-prev"><</button>
                 <div class="carousel-viewport">
                   <div class="carousel-container">
-                    <div class="carousel-slide">Slide 1</div>
-                    <div class="carousel-slide">Slide 2</div>
-                    <div class="carousel-slide">Slide 3</div>
+                    <div class="carousel-slide">
+                      {{ resp_img(
+                        url="img/mozorg/advertising/solutions/example-ad-iab-1.png",
+                        optional_attributes={
+                          'loading': 'lazy',
+                          'alt': 'screenshot showing placement of sponsored tiles in Firefox New Tab page'
+                        }
+                      ) }}
+                    </div>
+                    <div class="carousel-slide">
+                      {{ resp_img(
+                        url="img/mozorg/advertising/solutions/example-ad-iab-1.png",
+                        optional_attributes={
+                          'loading': 'lazy',
+                          'alt': 'screenshot showing placement of sponsored tiles in Firefox New Tab page'
+                        }
+                      ) }}
+                    </div>
+                    <div class="carousel-slide">
+                      {{ resp_img(
+                        url="img/mozorg/advertising/solutions/example-ad-iab-1.png",
+                        optional_attributes={
+                          'loading': 'lazy',
+                          'alt': 'screenshot showing placement of sponsored tiles in Firefox New Tab page'
+                        }
+                      ) }}
+                    </div>
                   </div>
                 </div>
-                <button class="carousel-next">></button>
+
               </div>
-              <div class="carousel-dots"></div>
+              <div class="carousel-controls">
+                <div class="carousel-nav">
+                  <button class="carousel-prev">
+                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                      <path d="M6.57 1.02 2.153 5.437H12v1.125H2.153L6.57 10.98l-.795.795L0 6 5.775.225z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                    <button class="carousel-next">
+                      <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                        <path d="m5.43 1.02 4.418 4.417H0v1.125h9.848L5.43 10.98l.795.795L12 6 6.225.225z" fill="currentColor"/>
+                      </svg>
+
+                    </button>
+                </div>
+                <div class="carousel-snap-display">-</div>
+              </div>
+
+
+
+              <div class="modal-figure-caption">
+                <p>
+                  <span class="modal-figure-caption-heading">Native Ads</span>
+                  <span class="modal-figure-caption-text">Contact for more details</span>
+                </p>
+                <a
+                  href="/advertising/contact/"
+                  class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+                >
+                  Contact Sales
+                </a>
+              </div>
             </div>
           </div>
         </li>
       </ul>
     </div>
 
-    <div class="m24-c-content no-bottom-padding">
-      <hr/>
-    </div>
-
     <div class="mozads-subpage-header">
-      <div class="m24-c-content">
+      <div class="m24-c-content no-bottom-padding">
+        <hr/>
         <h2>MDN WebDocs</h2>
         <p class="mozads-highlight-text">MDN WebDocs is trusted content created by developers, for developers. We’re known as the go-to resource for documentation and education on topics such as HTML, JavaScript, CSS, HTTP, Web APIs, accessibility, and web technology.</p>
       </div>

@@ -20,6 +20,7 @@ modalWrappers.forEach((wrapperEl) => {
     }
 });
 
+
 const emblaNodes = document.querySelectorAll('.carousel');
 const options = { loop: false };
 
@@ -61,6 +62,23 @@ const addDotBtnsAndClickHandlers = (emblaApi, dotsNode) => {
     };
 };
 
+
+const updateSelectedSnapDisplay = (emblaApi, snapDisplay) => {
+  const updateSnapDisplay = (emblaApi) => {
+    const selectedSnap = emblaApi.selectedScrollSnap()
+    const snapCount = emblaApi.scrollSnapList().length
+    snapDisplay.innerHTML = `${selectedSnap + 1} / ${snapCount}`
+  }
+
+  emblaApi.on('select', updateSnapDisplay).on('reInit', updateSnapDisplay)
+
+  updateSnapDisplay(emblaApi)
+}
+
+
+
+
+
 emblaNodes.forEach((node) => {
     const viewport = node.querySelector('.carousel-viewport');
     const emblaApi = EmblaCarousel(viewport, options);
@@ -74,8 +92,13 @@ emblaNodes.forEach((node) => {
     }
 
     const carouselDots = node.querySelector('.carousel-dots');
+    const snapDisplay = node.querySelector('.carousel-snap-display');
 
     if (carouselDots) {
         addDotBtnsAndClickHandlers(emblaApi, carouselDots);
+    }
+
+    if (snapDisplay) {
+        updateSelectedSnapDisplay(emblaApi, snapDisplay);
     }
 });
