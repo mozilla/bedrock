@@ -30,7 +30,11 @@
             border-color: advars.$color-ads-light-gray;
 
             button {
-                color: advars.$color-ads-dark-gray;
+                color: white;
+
+                .action-text {
+                    color: advars.$color-ads-dark-gray;
+                }
             }
         }
     }

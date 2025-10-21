@@ -10,11 +10,19 @@
     flex-direction: column;
     gap: 2rem;
 
+    &.has-margin-bottom {
+        margin-bottom: $spacer-xl;;
+    }
+
     &.is-list-item {
         gap: 0;
         border-top: 1px solid advars.$color-ads-off-black;
         padding: 1.5rem 0;
         align-items: start;
+
+        > p:last-child {
+            margin-bottom: 0;
+        }
     }
 
     &.has-border-top {

@@ -25,6 +25,10 @@ $image-path: '/media/protocol/img';
 @use './ads/subpage-header';
 @use './ads/two-column';
 
+:root {
+    --moz-sans-headline: 'Mozilla Sans Headline', sans-serif;
+}
+
 .mzp-t-dark.mozads-t-dark {
     background-color: advars.$color-ads-off-black;
 }
@@ -59,7 +63,7 @@ $image-path: '/media/protocol/img';
     h4,
     h5,
     h6 {
-        font-family: 'Mozilla Sans Headline', sans-serif;
+        font-family: var(--moz-sans-headline);
         font-weight: 300;
     }
 
@@ -205,7 +209,9 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-stat-number {
-    @include admixins.text-title-xl;
+    @include admixins.text-title-2xl;
+    font-family: var(--moz-sans-headline);
+    font-weight: 300;
 }
 
 .mozads-stat {
@@ -252,6 +258,12 @@ $image-path: '/media/protocol/img';
 .mozads-highlight-text {
     @include admixins.text-body-lg;
     max-width: 800px;
+}
+
+.m24-c-gallery-tile.mozads-size-override {
+    .m24-c-gallery-tile-title {
+        @include admixins.text-title-xs;
+    }
 }
 
 @media #{$mq-md} {
@@ -615,8 +627,9 @@ $image-path: '/media/protocol/img';
     details {
         display: flex;
         flex-direction: column;
-        padding: $spacer-xs 0;
+        padding: 0;
         border-bottom: 1px solid advars.$color-ads-tertiary-gray;
+        @include admixins.text-body-lg;
 
         &:first-child {
             border-top: 1px solid advars.$color-ads-tertiary-gray;
@@ -625,10 +638,34 @@ $image-path: '/media/protocol/img';
         button {
             border: none;
             background: transparent;
-            color: black;
             text-align: left;
-            padding: 0;
-            padding-top: $spacer-xs;
+            padding: $spacer-xs 0;
+
+            @include admixins.text-body-lg;
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            width: 100%;
+
+            &:hover {
+                .modal-label {
+                    text-decoration: underline;
+                }
+
+                .action-text {
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    details {
+        border-bottom-width: 4px;
+        padding: $spacer-xs 0;
+
+        &:first-child {
+            border-top-width: 4px;
         }
     }
 
@@ -638,20 +675,6 @@ $image-path: '/media/protocol/img';
 
     details[open] summary {
         margin-bottom: $spacer-xs;
-    }
-}
-
-@media #{$mq-xl} {
-    .mozads-bordered-list {
-        li {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-
-            button {
-                padding: 0;
-            }
-        }
     }
 }
 
@@ -712,7 +735,7 @@ $image-path: '/media/protocol/img';
 
     .mozads-home-big-list-heading {
         border-left-width: 1rem;
-        max-width: 10ch;
+        // max-width: 10ch;
         padding-left: 2rem;
         padding-bottom: 0;
         line-height: 1;

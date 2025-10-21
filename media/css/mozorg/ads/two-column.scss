@@ -20,7 +20,7 @@
     }
 }
 
-.two-column-detail-list {
+#mozads-main .two-column-detail-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -30,10 +30,11 @@
 
     h3 {
         @include admixins.text-title-2xs;
+        font-weight: 600;
     }
 
     p {
-        @include admixins.text-body-lg;
+        @include admixins.text-body-md;
     }
 }
 
