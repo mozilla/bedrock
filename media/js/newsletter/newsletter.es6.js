@@ -33,10 +33,17 @@ const MzpNewsletter = {
     },
 
     /**
-     * Add disabled property to all form fields.
+     * Add disabled property to all form fields. Show loading indicator.
      * @param {HTMLFormElement} form
      */
     disableFormFields: (form) => {
+        const submitText = form.querySelector('.submit-text');
+        const submitLoading = form.querySelector('.submit-loading');
+
+        // Hide text and show loader
+        submitText.style.opacity = 0;
+        submitLoading.removeAttribute('hidden');
+
         const formFields = form.querySelectorAll('input, button, select');
 
         for (let i = 0; i < formFields.length; i++) {
@@ -45,10 +52,17 @@ const MzpNewsletter = {
     },
 
     /**
-     * Remove disabled property to all form fields.
+     * Remove disabled property to all form fields. Hide loading indicator.
      * @param {HTMLFormElement} form
      */
     enableFormFields: (form) => {
+        const submitText = form.querySelector('.submit-text');
+        const submitLoading = form.querySelector('.submit-loading');
+
+        // Hide loader and show text
+        submitLoading.hidden = true;
+        submitText.style.opacity = 1;
+
         const formFields = form.querySelectorAll('input, button, select');
 
         for (let i = 0; i < formFields.length; i++) {
