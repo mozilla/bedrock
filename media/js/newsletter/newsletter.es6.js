@@ -60,7 +60,7 @@ const MzpNewsletter = {
         const submitLoading = form.querySelector('.submit-loading');
 
         // Hide loader and show text
-        submitLoading.hidden = true;
+        submitLoading.setAttribute('hidden', true);
         submitText.style.opacity = 1;
 
         const formFields = form.querySelectorAll('input, button, select');
