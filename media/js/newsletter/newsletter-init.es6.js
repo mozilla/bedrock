@@ -4,7 +4,7 @@
  * file, You can obtain one at https://mozilla.org/MPL/2.0/.
  */
 
-import MzpNewsletter from './newsletter-aws.es6.js';
+import MzpNewsletter from './newsletter.es6.js';
 
 const successCustomCallback = () => {
     const newsletters = Array.from(
