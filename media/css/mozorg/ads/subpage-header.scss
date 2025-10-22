@@ -3,18 +3,20 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
-@use './mixins' as admixins;
 
 .mozads-subpage-header {
     background-color: advars.$color-ads-off-black;
 
     h1 {
         color: #fff;
-        @include admixins.text-title-2xl;
+        font-size: 4rem;
+        font-weight: 300;
         margin: 0;
     }
+}
 
-    h2 {
-        @include admixins.text-title-xl;
+@media #{$mq-md} {
+    .mozads-subpage-header h1 {
+        font-size: 8rem;
     }
 }

@@ -9,23 +9,12 @@ inputs:
   env_name:
     description: Name of env involved - one of dev, test, stage or prod
     required: true
-    type: choice
-    options:
-      - dev
-      - test
-      - stage
-      - prod
   label:
     description: Very brief summary of what this notification is for - e.g. 'Integration tests'
     required: true
   status:
     description: Status of message type to be sent, supported values 'info', 'success', 'failure'
     required: true
-    type: choice
-    options:
-      - info
-      - success
-      - failure
   channel_id:
     description: Slack channel id to send messages
     required: true
@@ -50,10 +39,8 @@ runs:
   steps:
     - id: set-build-status-color
       shell: bash
-      env:
-        STATUS: ${{ inputs.status }}
       run: >-
-        eval "case $STATUS in
+        eval "case ${{ inputs.status }} in
             info)
                 echo 'STATUS_COLOR=#00FFFF';;
             success)
