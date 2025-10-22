@@ -142,6 +142,10 @@ $image-path: '/media/protocol/img';
 .mozads-figure {
     position: relative;
     z-index: 1;
+
+    img {
+        width: 100%;
+    }
 }
 
 .mozads-figure-grid {
@@ -330,6 +334,10 @@ $image-path: '/media/protocol/img';
         justify-content: flex-end;
         align-items: center;
         padding-block: 2rem;
+
+        h1 {
+            max-width: 10ch;
+        }
 
         &.is-bottom {
             height: 70vh;
