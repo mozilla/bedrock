@@ -9,11 +9,10 @@
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../scripts/open-page');
 const url = '/en-US/products/vpn/';
-const availableCountries = ['ca', 'gb', 'de', 'fr'];
+const availableCountries = ['ca', 'gb', 'de', 'fr', 'us'];
 const mobileOnlyCountries = ['au', 'in', 'mx', 'ua'];
 const androidOnlyCountries = ['br', 'ma'];
 const unavailableCountries = ['cn'];
-const vpnBundleAvailableCountry = ['us'];
 
 test.describe(
     `${url} page`,
@@ -305,104 +304,6 @@ test.describe(
                     await expect(getVpnAppStorebutton).not.toBeVisible();
                     await expect(getVpnPlayStorebutton).not.toBeVisible();
                     await expect(getVpnQrCode).not.toBeVisible();
-                });
-            });
-        }
-    }
-);
-
-test.describe(
-    `${url} page`,
-    {
-        tag: '@vpn'
-    },
-    () => {
-        for (const country of vpnBundleAvailableCountry) {
-            test.describe('VPN bundle available', () => {
-                test.beforeEach(async ({ page, browserName }) => {
-                    await openPage(
-                        url + `?geo=${vpnBundleAvailableCountry}`,
-                        page,
-                        browserName
-                    );
-                });
-
-                test(`Country code: ${country}`, async ({ page }) => {
-                    const getVpnHeroButton = page.getByTestId(
-                        'get-mozilla-vpn-hero-button'
-                    );
-
-                    // tab yearly
-                    const getVpnTwelveMonthButton = page.getByTestId(
-                        'vpn-pricing-grid-12-month-button'
-                    );
-
-                    // tab monthly
-                    const getVpnMonthlyButton = page.getByTestId(
-                        'vpn-pricing-grid-monthly-button'
-                    );
-
-                    // banner bundle button
-                    const privacyProductBundleBannerButton = page.getByTestId(
-                        'privacy-product-bundle-banner-button'
-                    );
-                    // pricing grid bundle button
-                    const privacyProductBundlePricingGridButton =
-                        page.getByTestId(
-                            'privacy-product-bundle-pricing-grid-button'
-                        );
-
-                    const getVpnFooterButton = page.getByTestId(
-                        'get-mozilla-vpn-footer-button'
-                    );
-                    const getVpnAppStorebutton = page.getByTestId(
-                        'get-vpn-ios-app-store'
-                    );
-                    const getVpnPlayStorebutton = page.getByTestId(
-                        'get-vpn-google-play-store'
-                    );
-                    const getVpnQrCode = page.getByTestId('get-vpn-qr-code');
-                    const waitlistHeroButton = page.getByTestId(
-                        'join-waitlist-hero-button'
-                    );
-                    const waitlistNotAvailableButton = page.getByTestId(
-                        'join-waitlist-not-available-button'
-                    );
-                    const waitlistSecondaryButton = page.getByTestId(
-                        'join-waitlist-secondary-button'
-                    );
-                    const waitlistTertiaryButton = page.getByTestId(
-                        'join-waitlist-tertiary-button'
-                    );
-                    const waitlistFooterButton = page.getByTestId(
-                        'join-waitlist-footer-button'
-                    );
-
-                    // Assert Get Mozilla VPN buttons are displayed.
-                    await expect(getVpnHeroButton).toBeVisible();
-                    await expect(getVpnTwelveMonthButton).toBeVisible();
-                    await expect(
-                        privacyProductBundleBannerButton
-                    ).toBeVisible();
-                    await expect(
-                        privacyProductBundlePricingGridButton
-                    ).toBeVisible();
-                    await expect(getVpnFooterButton).toBeVisible();
-
-                    // tab monthly is hidden by default
-                    await expect(getVpnMonthlyButton).not.toBeVisible();
-
-                    // Assert mobile only CTAs are not displayed.
-                    await expect(getVpnAppStorebutton).not.toBeVisible();
-                    await expect(getVpnPlayStorebutton).not.toBeVisible();
-                    await expect(getVpnQrCode).not.toBeVisible();
-
-                    // Assert Join Waitlist buttons are not displayed.
-                    await expect(waitlistHeroButton).not.toBeVisible();
-                    await expect(waitlistNotAvailableButton).not.toBeVisible();
-                    await expect(waitlistSecondaryButton).not.toBeVisible();
-                    await expect(waitlistTertiaryButton).not.toBeVisible();
-                    await expect(waitlistFooterButton).not.toBeVisible();
                 });
             });
         }

@@ -8,12 +8,6 @@
     },
     {
       "files": [
-        "css/firefox/whatsnew/whatsnew-nightly-145.scss"
-      ],
-      "name": "nightly_whatsnew_145"
-    },
-    {
-      "files": [
         "css/mozorg/locales.scss"
       ],
       "name": "locales"
@@ -398,12 +392,6 @@
         "css/firefox/whatsnew/whatsnew-142beta.scss"
       ],
       "name": "firefox_whatsnew_142beta"
-    },
-    {
-      "files": [
-        "css/firefox/whatsnew/whatsnew-144beta.scss"
-      ],
-      "name": "firefox_whatsnew_144beta"
     },
     {
       "files": [
@@ -1155,6 +1143,12 @@
         "css/mozorg/advertising.scss"
       ],
       "name": "mozilla-ads"
+    },
+    {
+      "files": [
+        "css/mozorg/advertising-format.scss"
+      ],
+      "name": "mozilla-ads-format"
     },
     {
       "files": [
