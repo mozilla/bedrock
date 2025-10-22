@@ -72,7 +72,7 @@
           <p>{{ form.country|safe }}</p>
         {% endif %}
 
-        {% if include_language %}
+        {% if include_language and not id =='mozilla-foundation' %}
           {{ form.lang.label_tag() }}
           <p>{{ form.lang|safe }}</p>
         {% else %}
@@ -92,7 +92,7 @@
           </fieldset>
         {% endif %}
 
-        <p>
+        <p class="c-checkbox-container">
           <label for="privacy" class="mzp-u-inline">
             <input type="checkbox" id="privacy" name="privacy" required aria-required="true" data-testid="newsletter-privacy-checkbox"> {{ ftl('newsletter-form-im-okay-with-mozilla', url=url('privacy.notices.websites')) }}
           </label>
