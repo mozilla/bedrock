@@ -27,6 +27,8 @@ privacy-faq-really-you-dont-collect-my-browsing = Really, you don’t collect my
 privacy-faq-mozilla-doesnt-know-as-much-v2 = { -brand-name-mozilla } doesn’t know as much as you’d expect about how people browse the web. As a browser maker, that’s actually a big challenge for us. That is why we’ve built opt-in tools, which allow interested users to give us insight into their web browsing. If you sync your browsing history across { -brand-name-firefox } installations, we don’t know what that history is — because it’s encrypted by your device.
 
 privacy-faq-it-seems-like-every-company = It seems like every company on the web is buying and selling my data. You’re probably no different.
+privacy-faq-we-never-sell-your = We never sell your personal data. Unlike other big tech companies that collect and profit off your personal information, we’re built with privacy as the default. We don’t know your age, gender, precise location, or other information Big Tech collects and profits from.
+# Obsolete string (expires: 2025-12-08)
 privacy-faq-mozilla-doesnt-sell-data-about = { -brand-name-mozilla } doesn’t sell data about you, and we don’t buy data about you.
 privacy-faq-wait-so-how-do-you-make-money = Wait, so how do you make money?
 

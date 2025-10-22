@@ -118,11 +118,15 @@ jobs:
           version: 413.0.0
 
       - name: Generate hashes and rsync to gs://
+        env:
+          LONG_SHA: ${{ needs.build_and_publish_public_images.outputs.long_sha }}
+          DEPLOYMENT_REALM: ${{ needs.build_and_publish_public_images.outputs.deployment_realm }}
+          DEPLOYMENT_ENV: ${{ needs.build_and_publish_public_images.outputs.deployment_env }}
         run: |-
             TMP_DIR=static-upload
             TMP_DIR_HASHED=static-upload-hashed
 
-            docker run -d --name assets-tmp $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }}
+            docker run -d --name assets-tmp $ORG/$IMAGE:$LONG_SHA
 
             mkdir -p ./$TMP_DIR ./$TMP_DIR_HASHED
 
@@ -133,8 +137,8 @@ jobs:
             docker cp assets-tmp:app/static/ ./$TMP_DIR/
             docker cp assets-tmp:app/static-upload-hashed ./$TMP_DIR_HASHED/
 
-            gsutil -m rsync -r ./$TMP_DIR_HASHED/* gs://$APP-${{ needs.build_and_publish_public_images.outputs.deployment_realm }}-${{ needs.build_and_publish_public_images.outputs.deployment_env }}-media/media/
-            gsutil -m rsync -r ./$TMP_DIR/* gs://$APP-${{ needs.build_and_publish_public_images.outputs.deployment_realm }}-${{ needs.build_and_publish_public_images.outputs.deployment_env }}-media/media/
+            gsutil -m rsync -r ./$TMP_DIR_HASHED/* gs://$APP-$DEPLOYMENT_REALM-$DEPLOYMENT_ENV-media/media/
+            gsutil -m rsync -r ./$TMP_DIR/* gs://$APP-$DEPLOYMENT_REALM-$DEPLOYMENT_ENV-media/media/
             rm -rf ./$TMP_DIR/ ./$TMP_DIR_HASHED/
             docker kill assets-tmp
             docker rm assets-tmp
@@ -166,7 +170,10 @@ jobs:
            password: ${{ steps.gcp_auth.outputs.access_token }}
 
       - name: Add deployment tag to existing image and push to GAR
+        env:
+          LONG_SHA: ${{ needs.build_and_publish_public_images.outputs.long_sha }}
+          IMAGE_TAG: ${{ needs.build_and_publish_public_images.outputs.image_tag }}
         run: |-
-             docker pull $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }}
-             docker tag $ORG/$IMAGE:${{ needs.build_and_publish_public_images.outputs.long_sha }} ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
-             docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:${{ needs.build_and_publish_public_images.outputs.image_tag }}
+             docker pull $ORG/$IMAGE:$LONG_SHA
+             docker tag $ORG/$IMAGE:$LONG_SHA ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:$IMAGE_TAG
+             docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:$IMAGE_TAG

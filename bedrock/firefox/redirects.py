@@ -76,12 +76,19 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
     return f"{settings.FXC_BASE_URL}{request.path}"
 
 
+WNP_145_PLUS_RE = (
+    # Issues 16590 and 16791 for WNP 145+ Release (not Nightly, Beta/Developer or ESR)
+    r"^(?P<wnp_locale>en-US|en-GB|en-CA|fr|de)/firefox/"
+    r"(?P<major_version>1(?:4[5-9]|[5-9]\d|\d{3,4})|[2-9]\d{2,4})"
+    r"\.\d{1,3}(?:\.\d{1,3}){0,2}/whatsnew/?$"
+)
+
 wnp_redirectpatterns = (
     # Note not an offsite_redirect, so no additional querystring is injected
     redirect(
-        # issue 16590 for WNP 144
-        r"^en-US/firefox/(?P<version>144\.\d+[.\d]*)/whatsnew/?$",
-        f"{settings.FXC_BASE_URL}/en-US/whatsnew/" + "{version}/",
+        # Issues 16590 and 16791 for WNP 145+
+        WNP_145_PLUS_RE,
+        f"{settings.FXC_BASE_URL}/" + "{wnp_locale}/whatsnew/{major_version}/",
         permanent=True,
     ),
 )

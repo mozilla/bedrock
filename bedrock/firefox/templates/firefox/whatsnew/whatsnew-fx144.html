@@ -1,0 +1,447 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# We use a new base template introduced with WNP142 #}
+{% extends "firefox/whatsnew/base-new-theme.html" %}
+
+{% block body_class %}state-fxa-default{% endblock %}
+
+{% block site_css %}
+  {{ super() }}
+  {{ css_bundle('firefox_whatsnew_144') }}
+{% endblock %}
+
+{# Set en-US strings as defaults for all locales #}
+{% set windows_before_link = "New PC in your future?" %}
+{% set windows_link_text   = "Make sure you're syncing data" %}
+{% set windows_after_link  = "for an easier move" %}
+{% set hero_headline = 'Profiles let you separate work, life, and play.' %}
+{% set hero_body = 'Profiles keep your online life organized. Use one for work and others for personal time, school, shopping or gaming. <br><br>Each profile has its own extensions, themes and logins so you stay private, organized and in control.' %}
+{% set hero_cta = 'Learn more' %}
+{% set hero_url = 'https://blog.mozilla.org/firefox/profile-management/' %}
+{% set features_title = 'Search smarter, stay organized, and explore more' %}
+{% set features_subtitle = 'Search what you see, ask Perplexity, use sites as apps.' %}
+{% set google_lens_headline = 'Search what you see with visual search' %}
+{% set google_lens_body = 'Shop similar items, identify objects or places, translate text, or explore what you see. All without typing.<br><br><strong>Here’s how:</strong><br>1. Right-click any image in Firefox<br>2. Choose “Search with Google Lens“ (requires Google as your default)<br>3. Your image turns into answers' %}
+{% set perplexity_headline = 'AI-powered answers, directly from your search bar' %}
+{% set perplexity_body = 'Perplexity is now a search option in Firefox. Ask your question and get cited results without switching tabs. Fast, intuitive, and your choice, every time.' %}
+{% set web_apps_headline = 'Turn your favorite sites into web apps' %}
+{% set web_apps_body = 'Launch Gmail, YouTube, Instagram, Facebook, and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between the apps and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
+{% set feature_cards_title = 'New features you may have missed' %}
+{% set feature_cards_subtitle = 'Personalize your tab, save memory, protect your email.' %}
+{% set card_1_headline = 'Your new tab, your way' %}
+{% set card_1_body = 'Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.' %}
+{% set card_1_url = 'https://support.mozilla.org/en-US/kb/customize-items-on-firefox-new-tab-page' %}
+{% set card_1_anchor = 'w_wallpapers' %}
+{% set card_2_headline = 'Keep your tabs. Free up memory.' %}
+{% set card_2_body = 'Unloading a tab keeps it visible while freeing up memory and CPU.<br><br>Right-click a tab or multiple tabs and choose Unload Tab to help Firefox stay fast.<br><br>When you come back, your tab will reload just where you left off.' %}
+{% set card_2_cta = 'Learn more' %}
+{% set card_2_url = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+{% set card_2_anchor = '' %}
+{% set card_3_headline = 'Keep your email address to yourself.' %}
+{% set card_3_body = 'Firefox Relay generates secure email masks when you sign up for new online accounts, so you can stay anonymous and get less spam in your inbox.' %}
+{% set card_3_cta = 'Try Relay' %}
+{% set card_3_url = 'https://relay.firefox.com/' %}
+{% set qr_title = 'Take Firefox with you' %}
+{% set qr_body = 'Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.' %}
+{% set newsletter_title = 'Keep up with all things Firefox' %}
+{% set newsletter_body = 'Get monthly how-tos, advice and news to make your Firefox experience work best for you.' %}
+{% set google_lens_eyebrow = 'Google Lens' %}
+{% set perplexity_eyebrow = 'Perplexity' %}
+{% set web_apps_eyebrow = 'Web apps · Firefox for Windows' %}
+{% set mobile_title = 'Mobile Firefox' %}
+{% set shake_to_summarize_eyebrow = 'Summary' %}
+{% set learn_more = 'Learn more' %}
+{% set release_notes = 'See Full Release Notes' %}
+
+
+{# Locale-specific overrides #}
+{% if LANG == 'de' %}
+  {% set windows_before_link = "Bald ein neuer PC?" %}
+  {% set windows_link_text   = "Synchronisiere deine Daten" %}
+  {% set windows_after_link  = ", damit beim Wechsel alles glatt läuft" %}
+  {% set hero_headline = 'Profile helfen dir, Arbeit, Alltag und Freizeit zu trennen.' %}
+  {% set hero_body = 'Profile bringen Ordnung in dein Online-Leben. Ein Profil für die Arbeit, ein anderes für Freizeit, Schule, Shopping oder Gaming. <br><br>Jedes Profil kommt mit eigenen Erweiterungen, Designs und Logins. So bleibst du privat, behältst den Überblick und hast jederzeit die Kontrolle.' %}
+  {% set hero_cta = 'Mehr erfahren' %}
+  {% set hero_url = 'https://blog.mozilla.org/de/firefox-de/profile-management/' %}
+  {% set features_title = 'Such weniger. Entdecke mehr' %}
+  {% set features_subtitle = 'Suche, was du siehst. Frag Perplexity und nutze Websites wie Apps.' %}
+  {% set google_lens_headline = 'Suche, was du siehst mit visueller Suche' %}
+  {% set google_lens_body = 'Finde ähnliche Produkte, erkenne Objekte oder Orte, übersetze Texte oder starte einfach deine persönliche Entdeckungsreise. Das alles ganz ohne Tippen.<br><br><strong>So einfach geht’s:</strong><br>1. Rechtsklick auf ein beliebiges Bild in Firefox<br>2. „Mit Google Lens suchen“ auswählen (Google muss als Standardsuchmaschine festgelegt sein)<br>3. Dein Bild verwandelt sich in Antworten' %}
+  {% set perplexity_headline = 'KI-gestützte Antworten, direkt in deiner Suchleiste.' %}
+  {% set perplexity_body = 'Perplexity ist jetzt als Suchoption in Firefox verfügbar. Stelle deine Frage und erhalte Antworten mit Quellenangaben. Direkt im selben Tab. Schnell, intuitiv und so wie du willst.' %}
+  {% set page_summary_headline = 'Fasse jede Seite mit einem Klick zusammen' %}
+  {% set page_summary_body = 'Spare Zeit mit sofortigen Webseiten-Zusammenfassungen. Einfach erstellt von der KI deiner Wahl.<br><br>So bleibst du produktiv und hast die wichtigsten Infos direkt in deiner Seitenleiste.' %}
+  {% set web_apps_headline = 'Verwandel deine Lieblingsseiten in Web-Apps.' %}
+  {% set web_apps_body = 'Starte Gmail, YouTube, Instagram, Facebook und andere Apps direkt über die Taskleiste.<br><br>Jede App öffnet sich in einem eigenen Fenster mit einer übersichtlichen Oberfläche. So behältst du den Überblick, kannst einfach wechseln und bleibst fokussiert.<br><br><strong>Probier’s aus:</strong> Klick auf „Zur Taskleiste hinzufügen“ in der Adressleiste.' %}
+  {% set feature_cards_title = 'Neue Features zum Entdecken' %}
+  {% set feature_cards_subtitle = 'Spare Speicher, schütze deine E-Mails und mach Firefox zu deinem Browser.' %}
+  {% set card_1_headline = 'Tabs sichern, Speicher zurückholen.' %}
+  {% set card_1_body = 'Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht verwendest. Im Hintergrund verbraucht er keine Ressourcen und macht dein Surfen dadurch schneller.<br><br>So funktioniert’s:<br>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“. Wenn du zurückkehrst, öffnet sich der Tab genau an der Stelle, an der du aufgehört hast.' %}
+  {% set card_1_url = 'https://support.mozilla.org/de/kb/tabs-entladen-systemspeicherverbrauch-reduzieren' %}
+  {% set card_1_anchor = '' %}
+  {% set card_2_headline = 'Dein Tab, deine Regeln' %}
+  {% set card_2_body = 'Mach deinen Browser zu deinem Ort. Passe die Atmosphäre mit Firefox-Hintergründen, eigenen Farben oder einem Foto an.<br><br>Öffne einfach einen neuen Tab und klicke auf das Icon, um loszulegen.' %}
+  {% set card_2_cta = 'Jetzt ausprobieren' %}
+  {% set card_2_url = 'https://support.mozilla.org/de/kb/die-elemente-der-seite-neuer-tab-anpassen' %}
+  {% set card_2_anchor = 'w_hintergrundbilder' %}
+  {% set card_3_headline = 'Behalte deine E-Mail-Adresse für dich.' %}
+  {% set card_3_body = 'Firefox Relay erstellt sichere E-Mail-Aliasse, wenn du dich für neue Online-Konten anmeldest. So bleibst du anonym und bekommst weniger Spam in deinen Posteingang.' %}
+  {% set card_3_cta = 'Relay ausprobieren' %}
+  {% set card_3_url = 'https://relay.firefox.com/' %}
+  {% set qr_title = 'Nimm Firefox immer mit' %}
+  {% set qr_body = 'Scanne den QR-Code, hol dir Firefox Mobile und browse überall entspannt, fokussiert und kontrolliert.' %}
+  {% set newsletter_title = 'Mach das Beste aus Firefox' %}
+  {% set newsletter_body = 'Melde dich für monatliche Updates von Firefox und den neuesten Internet-Trends an und gestalte dein Online-Leben.' %}
+  {% set google_lens_eyebrow = 'Google Lens' %}
+  {% set perplexity_eyebrow = 'Perplexity' %}
+  {% set web_apps_eyebrow = 'Web-Apps · Firefox für Windows' %}
+  {% set mobile_title = 'Mobile Firefox' %}
+  {% set shake_to_summarize_eyebrow = 'Zusammenfassung' %}
+  {% set learn_more = 'Mehr erfahren' %}
+  {% set release_notes = 'Alle Versionshinweise anzeigen' %}
+{% elif LANG == 'fr' %}
+  {% set windows_before_link = "Un nouveau PC vous attend?" %}
+  {% set windows_link_text   = "Pensez à synchroniser vos données" %}
+  {% set windows_after_link  = "pour une transition plus fluide" %}
+
+  {% set hero_headline = 'Grâce aux profils séparez travail, vie privée et jeux.' %}
+  {% set hero_body = 'Les profils gardent votre vie en ligne organisée : un pour le travail, et les autres pour le perso, l’école, le shopping ou les jeux. <br><br>Chaque profil possède ses propres extensions, thèmes et identifiants pour un maximum de confidentialité, d’organisation et de contrôle.' %}
+  {% set hero_cta = 'En savoir plus' %}
+  {% set hero_url = 'https://blog.mozilla.org/fr/firefox-fr/profile-management/' %}
+  {% set features_title = 'Recherchez malin, maintenez votre organisation, et explorez davantage' %}
+  {% set features_subtitle = 'Recherchez ce que vous voyez, demandez à Perplexity, utilisez les sites en tant qu’applis.' %}
+  {% set google_lens_headline = 'Recherchez ce que vous voyez grâce à la recherche visuelle' %}
+  {% set google_lens_body = 'Commander des articles similaires, identifier des objets ou des lieux, traduire du texte ou explorer ce que vous voyez : tout cela, sans rien taper.<br><br><strong>Voici comment :</strong><br>1. Faites un clic droit sur n’importe quelle image dans Firefox<br>2. Sélectionnez « Rechercher avec Google Lens » (Google par défaut est requis)<br>3. Votre image se change en réponses' %}
+  {% set perplexity_headline = 'Des réponses générées par l’IA, directement depuis votre barre de recherche' %}
+  {% set perplexity_body = 'Perplexity est désormais une option de recherche dans Firefox. Posez votre question et recevez des réponses sourcées, sans basculer entre les onglets. Rapide, intuitif et adapté à vos choix, à chaque fois.' %}
+  {% set page_summary_headline = 'Résumez n’importe quelle page en un clic' %}
+  {% set page_summary_body = 'Gagnez du temps grâce aux résumés instantanés de pages web, alimentés par l’IA de votre choix.<br><br>Conservez contrôle et productivité en recevant les points importants directement dans votre panneau latéral.' %}
+  {% set web_apps_headline = 'Transformez vos sites préférés en applis web' %}
+  {% set web_apps_body = 'Ouvrez Gmail, YouTube, Instagram, Facebook et d’autres applis depuis votre barre des tâches.<br><br>Chaque appli s’ouvre dans sa propre fenêtre à l’interface simplifiée pour faciliter le passage d’une appli à l’autre et conserver sa concentration.<br><br><strong>Essayez</strong> en cliquant sur le bouton Ajouter à la barre des tâches dans la barre d’adresse.' %}
+  {% set feature_cards_title = 'Avez-vous raté ces nouvelles fonctionnalités ?' %}
+  {% set feature_cards_subtitle = 'Économisez de la mémoire, protégez vos emails, appropriez-vous Firefox' %}
+  {% set card_1_headline = 'Conservez vos onglets. Libérez de la mémoire.' %}
+  {% set card_1_body = 'Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.<br><br>Faites un clic droit sur un ou plusieurs onglets et choisissez Décharger Onglet pour aider Firefox à rester rapide.<br><br>Revenez et retrouvez votre onglet, où vous l’avez laissé.' %}
+  {% set card_1_url = 'https://support.mozilla.org/fr/kb/decharger-onglets-reduire-utilisation-memoire-firefox' %}
+  {% set card_1_anchor = '' %}
+  {% set card_2_headline = 'Votre nouvel onglet, à votre façon' %}
+  {% set card_2_url = 'https://support.mozilla.org/fr/kb/personnaliser-page-nouvel-onglet' %}
+  {% set card_2_anchor = 'w_fonds-decran' %}
+  {% set card_2_body = 'Créez un espace qui vous ressemble. Donnez le ton avec des fonds d’écran Firefox, des coloris personnalisés ou vos propres photos.<br><br>Ouvrez un nouvel onglet et cliquez sur l’icône pour lancer la personnalisation.' %}
+  {% set card_2_cta = 'Essayer maintenant' %}
+  {% set card_3_headline = 'Gardez votre adresse email personnelle.' %}
+  {% set card_3_body = 'Firefox Relay génère des alias de messagerie sécurisés quand vous vous inscrivez à de nouveaux comptes en ligne. Vous gardez ainsi l’anonymat et limitez les spams dans votre boîte de réception.' %}
+  {% set card_3_cta = 'Essayer Relay' %}
+  {% set card_3_url = 'https://relay.firefox.com/' %}
+  {% set qr_title = 'Emportez Firefox avec vous' %}
+  {% set qr_body = 'Scannez le QR code pour accéder à Firefox Mobile et naviguez avec tranquillité, concentration et contrôle, où que vous soyez.' %}
+  {% set newsletter_title = 'Révélez tout le potentiel de Firefox' %}
+  {% set newsletter_body = 'Abonnez-vous et retrouvez les dernières actualités et astuces pour améliorer votre expérience internet.' %}
+  {% set google_lens_eyebrow = 'Google Lens' %}
+  {% set perplexity_eyebrow = 'Perplexity' %}
+  {% set web_apps_eyebrow = 'Applis web · Firefox pour Windows' %}
+  {% set mobile_title = 'Mobile Firefox' %}
+  {% set shake_to_summarize_eyebrow = 'Résumé' %}
+  {% set learn_more = 'En savoir plus' %}
+  {% set release_notes = 'Voir la totalité des notes de version' %}
+{% elif LANG == 'en-GB' %}
+  {# Only override strings that differ from en-US #}
+  {% set hero_headline = 'Profiles let you separate work, life and leisure.' %}
+  {% set hero_body = 'Profiles help keep your online life organised. Use one for work and others for personal time, school, shopping or gaming.<br><br>Each profile has its own extensions, themes and logins, so you remain private, organised and in control.' %}
+  {% set web_apps_body = 'Launch Gmail, YouTube, Instagram, Facebook and other apps from your taskbar.<br><br>Each app opens in its own window with a simplified interface, making it easy to switch between them and stay focused.<br><br><strong>Try it:</strong> Click the Add to Taskbar button in the address bar.' %}
+{% endif %}
+
+{% block wnp_content %}
+<div class="wnp-page">
+  <main class="wnp-main">
+
+    <div class="wnp-page-header-notification wnp-144-is-inline">
+      <div class="wnp-notification-bar wnp-t-success">
+        <div class="notification-icon-section notification-icon-inverted">
+          <svg class="notification-icon" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 25">
+            <path fill="currentColor" d="M4.215 20.075a10.63 10.63 0 0 0 7.575 3.135h.225l-.045-2.25c-2.34.06-4.515-.825-6.165-2.475-3.075-3.075-3.24-7.935-.585-11.25v4.26h2.25V4.01H0v2.25h3.09c-3 4.185-2.625 10.065 1.125 13.815M19.38 4.926a10.63 10.63 0 0 0-7.575-3.135v2.25c2.265 0 4.395.885 5.985 2.475 2.925 2.925 3.24 7.47.99 10.77v-3.765h-2.25v7.47H24v-2.25h-3.495c3-4.185 2.625-10.05-1.125-13.815" />
+          </svg>
+        </div>
+        <div class="notification-content">
+          <p>{{ windows_before_link }}
+            {{ fxa_button(
+              entrypoint='www.mozilla.org-wnp144-page',
+              button_text=windows_link_text,
+              optional_parameters={'utm_campaign': 'win10-eos'},
+              optional_attributes={'data-cta-text': 'Make sure you’re syncing data', 'data-cta-type': 'fxa-sync'}
+          ) }}
+
+          {{ windows_after_link }}.</p>
+        </div>
+        <button class="notification-close" aria-label="{{ ftl('ui-close') }}" data-close-notification>
+          <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 11">
+            <path fill="currentColor" d="M1.58 10.98 6 6.56l4.42 4.42 1.06-1.06L7.06 5.5l4.42-4.42L10.42.02 6 4.44 1.58.02.52 1.08 4.94 5.5.52 9.92z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+
+
+
+    <!-- Hero Section -->
+    <section class="wnp-section wnp-section-intro">
+      <div class="wnp-container">
+        <div class="wnp-intro-layout">
+          <div class="wnp-intro-content">
+            <p class="wnp-eyebrow">What’s New | Firefox {{ major_version }}</p>
+            <h1 class="wnp-title">{{ hero_headline }}</h1>
+            <p class="wnp-subtitle-5">{{ hero_body | safe }}</p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-secondary" href="{{ hero_url }}?{{ utm_params }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Learn more - profiles">
+
+
+
+
+
+                {{ hero_cta }}
+                <img class="wnp-button-icon" src="/media/img/firefox/whatsnew/whatsnew142/arrow-right.svg" width="16" height="16" alt="" aria-hidden="true" loading="lazy">
+              </a>
+            </div>
+          </div>
+          <div class="wnp-intro-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew144/profiles-hero.png"
+                alt="Illustration of profile management feature"
+                loading="lazy"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew144/profiles-hero@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+<!-- Section 2: Headlines / Sub Features -->
+    <section class="wnp-section" aria-labelledby="features-heading">
+      <div class="wnp-container">
+        {% if switch('wnp144-google-lens') and switch('wnp144-perplexity') %}
+          <h2 id="features-heading" class="wnp-subtitle text-center">{{ features_title }}</h2>
+          <p class="wnp-body wnp-is-centered">{{ features_subtitle }}</p>
+        {% endif %}
+
+        {% if switch('wnp144-google-lens') %}
+          <div class="wnp-feature">
+            <div class="wnp-feature-media">
+              <div class="wnp-media-frame wnp-media-frame--settings">
+                {{resp_img(
+                  url="img/firefox/wnp-144/google-lens.png",
+                  srcset={
+                      "img/firefox/wnp-144/google-lens@2x.png": "2x",
+                  },
+                  optional_attributes={"l10n": True, "alt": "", "role": "presentation", "loading": "lazy"}
+              )}}
+              </div>
+            </div>
+            <div class="wnp-feature-content">
+              <p class="wnp-feature-eyebrow">{{ google_lens_eyebrow }}</p>
+              <h3 class="wnp-subtitle">{{ google_lens_headline }}</h3>
+              <p class="wnp-body">{{ google_lens_body | safe }}</p>
+              <div class="wnp-btn-wrap">
+                <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/search-web-images-firefox-google-lens?{{ utm_params }}" aria-label="{{ learn_more }} {{ google_lens_eyebrow }}" data-cta-priority="outline" data-cta-position="section_1.row_1.button_1" data-cta-text="{{ learn_more }} - {{ google_lens_eyebrow }}">{{ learn_more}}
+                  <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if switch('wnp144-perplexity') %}
+          <div class="wnp-feature {% if switch('wnp144-google-lens') %}wnp-feature--reverse{% endif %}">
+            <div class="wnp-feature-media">
+              <div class="wnp-media-frame wnp-media-frame--settings">
+                {{resp_img(
+                  url="img/firefox/wnp-144/perplexity.png",
+                  srcset={
+                      "img/firefox/wnp-144/perplexity@2x.png": "2x",
+                  },
+                  optional_attributes={"l10n": True, "alt": "", "role": "presentation", "loading": "lazy"}
+              )}}
+              </div>
+            </div>
+            <div class="wnp-feature-content">
+              <p class="wnp-feature-eyebrow">{{ perplexity_eyebrow }}</p>
+              <h3 class="wnp-subtitle">{{ perplexity_headline }}</h3>
+              <p class="wnp-body">{{ perplexity_body }}</p>
+              <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/firefox-144?{{ utm_params }}" aria-label="{{ learn_more }} {{ perplexity_eyebrow }}" data-cta-priority="outline" data-cta-position="section_1.row_2.button_1" data-cta-text="{{ learn_more }} - {{ perplexity_eyebrow }}">{{ learn_more }}
+                  <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="wnp-feature">
+          <div class="wnp-feature-media">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              {{ resp_img(
+                  url="img/firefox/whatsnew/whatsnew144/web-apps.png",
+                  srcset={
+                      "img/firefox/whatsnew/whatsnew144/web-apps@2x.png": "2x",
+                  },
+                  optional_attributes={"loading": 'lazy'}
+              ) }}
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <p class="wnp-feature-eyebrow">{{ web_apps_eyebrow }}</p>
+            <h3 class="wnp-subtitle">{{ web_apps_headline }}</h3>
+            <p class="wnp-body">{{ web_apps_body | safe }}</p>
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/web-apps-firefox-windows?{{ utm_params }}" aria-label="{{ learn_more }} {{ web_apps_eyebrow }}" data-cta-priority="outline" data-cta-position="section_1.row_3.button_1" data-cta-text="{{ learn_more }} - {{ web_apps_eyebrow }}">{{ learn_more }}
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="wnp-link-wrap">
+          <a class="wnp-link" href="/firefox/{{ version }}/releasenotes/" data-cta-priority="link" data-cta-position="section_1.button_1" data-cta-text="{{ release_notes }}">{{ release_notes }}</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Feature Cards -->
+    <section class="wnp-section wnp-section-highlights" aria-labelledby="highlights-heading">
+      <div class="wnp-container">
+        <h2 id="highlights-heading" class="wnp-subtitle text-center">{{ feature_cards_title }}</h2>
+        <p class="wnp-body wnp-has-subhead-spacing wnp-is-centered">{{ feature_cards_subtitle }}</p>
+        <div class="wnp-grid">
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              {% if LANG in ['de', 'fr'] %}
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true" loading="lazy">
+              {% else %}
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/new-tab-sections-sticker.svg" alt="" aria-hidden="true" loading="lazy">
+              {% endif %}
+              <h3 class="wnp-subtitle">
+                  <a href="{{ card_1_url }}?{{ utm_params }}#{{ card_1_anchor }}" data-cta-priority="link" data-cta-position="section_2.card_1.title_1" data-cta-text="{{ card_1_headline }}" aria-describedby="desc-card-1">{{ card_1_headline }}</a>
+              </h3>
+              <p class="wnp-body">{{ card_1_body | safe }}</p>
+              <a class="wnp-button wnp-button-outline" href="{{ card_1_url }}?{{ utm_params }}#{{ card_1_anchor }}" id="desc-card-1" aria-label="{{ learn_more }} - {{ card_1_headline }}" data-cta-position="section_2.card_1.button_1" data-cta-text="{{ learn_more }} - {{ card_1_headline }}">
+                {{ learn_more }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              {% if LANG in ['de', 'fr'] %}
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/tab-wallpapers-sticker-dark.svg" alt="" aria-hidden="true" loading="lazy">
+              {% else %}
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/unload-tabs-sticker.svg" alt="" aria-hidden="true" loading="lazy">
+              {% endif %}
+              <h3 class="wnp-subtitle">
+                  <a href="{{ card_2_url }}?{{ utm_params }}#{{ card_2_anchor }}" data-cta-priority="link" data-cta-position="section_2.card_2.title_1" data-cta-text="{{ card_2_headline }}"  aria-describedby="desc-card-2">{{ card_2_headline }}</a>
+              </h3>
+              <p class="wnp-body">{{ card_2_body | safe }}</p>
+              <a class="wnp-button wnp-button-outline" href="{{ card_2_url }}?{{ utm_params }}#{{ card_2_anchor }}" id="desc-card-2" aria-label="{{ learn_more }} - {{ card_2_headline }}" data-cta-position="section_2.card_2.button_1" data-cta-text="{{ learn_more }} - {{ card_2_headline }}">
+                {{ card_2_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew144/relay-sticker.svg" alt="" aria-hidden="true" loading="lazy">
+              <h3 class="wnp-subtitle">
+                <a href="{{ card_3_url }}?{{ utm_params }}" aria-describedby="desc-card-3" data-cta-priority="link" data-cta-position="section_2.card_3.title_1" data-cta-text="{{ card_3_headline }}">{{ card_3_headline }}</a>
+              </h3>
+              <p class="wnp-body">{{ card_3_body }}</p>
+              <a class="wnp-button wnp-button-outline" href="{{ card_3_url }}?{{ utm_params }}" id="desc-card-3" aria-label="{{ learn_more }} - {{ card_3_headline }}" data-cta-position="section_2.card_3.button_1" data-cta-text="{{ learn_more }} - {{ card_3_headline }}">
+                {{ card_3_cta }} <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    {% if LANG == 'en-US' %}
+    <!-- iOS Section (en-US only) -->
+    <section class="wnp-section wnp-section-mobile wnp-section-shake-to-summarize" aria-labelledby="wnp-mobile-heading">
+      <div class="wnp-container">
+        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">What’s New on Firefox Mobile?</h2>
+        <div class="wnp-feature">
+          <div class="wnp-feature-media">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew144/shake-to-summarize.png"
+                alt="Shake to summarize illustration"
+                loading="lazy"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew144/shake-to-summarize@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <div>
+              <span class="wnp-tag"><img src="/media/img/firefox/whatsnew/whatsnew144/apple-icon.png" width="12" height="12" alt="" aria-hidden="true" loading="lazy">iOS</span>
+            </div>
+            <p class="wnp-feature-eyebrow">Shake to Summarize</p>
+            <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
+            <p class="wnp-body">Quickly summarize long reads with a shake or tap. Available now on Firefox for iOS.</p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-outline" href="https://blog.mozilla.org/firefox/shake-to-summarize/?{{ utm_params }}" data-cta-priority="outline" data-cta-position="section_3.button_1" data-cta-text="Learn more – Shake to Summarize">Learn more
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- QR Code Banner -->
+    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+      <div class="wnp-container">
+        <div class="wnp-qr">
+          <div class="wnp-qr-layout">
+            <div class="wnp-qr-media" aria-hidden="true">
+              {% set mobile_app_url = "https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version %}
+              <div class="wnp-qr-qr" data-href="{{ mobile_app_url }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode(mobile_app_url, 12) }}</div>
+            </div>
+            <div class="wnp-qr-content">
+              <div class="wnp-qr-content-inner">
+                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
+                <p class="wnp-body">{{ qr_body }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe Banner -->
+    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+      <div class="wnp-container">
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">{{ newsletter_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ newsletter_body }}</p>
+        {{ email_newsletter_form(
+        template="firefox/whatsnew/includes/newsletter_form.html",
+        include_country=true,
+        include_language=true,
+        footer=false,
+        include_title=false
+        ) }}
+      </div>
+    </section>
+
+  </main>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_144') }}
+{% endblock %}
