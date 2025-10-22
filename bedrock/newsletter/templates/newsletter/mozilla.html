@@ -36,10 +36,11 @@
         {{ email_newsletter_form(
           newsletters='mozilla-foundation' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
           include_title=False,
-          button_class='button-dark'
+          button_class='button-dark',
+          include_language=False
         )}}
       {% else %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832') }}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', include_title=False, spinner_color='#c13832', include_language=False) }}
       {% endif %}
     </div>
   </section>

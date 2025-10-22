@@ -153,10 +153,11 @@
       {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
         {{ email_newsletter_form(
           newsletters='mozilla-foundation' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
-          button_class='button-dark'
+          button_class='button-dark',
+          include_language=False
         )}}
       {% elif LANG.startswith('en-') %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff') }}
+        {{ email_newsletter_form(newsletters='mozilla-foundation', title='Love the web?', desc='Get the Mozilla newsletter and help us keep it open and free.', spinner_color='#fff', include_language=False) }}
       {% else %}
         {{ email_newsletter_form(spinner_color='#fff') }}
       {% endif %}

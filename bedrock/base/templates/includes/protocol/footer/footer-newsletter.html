@@ -14,7 +14,8 @@
     <div class="moz24-newsletter">
       {{ email_newsletter_form(
         newsletters='mozilla-foundation' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
-        title=None
+        title=None,
+        include_language=False
         )}}
       </div>
     </div>

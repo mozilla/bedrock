@@ -18,13 +18,15 @@
     {% if ftl_has_messages('multi-newsletter-form-title', 'multi-newsletter-form-desc', 'multi-newsletter-form-checkboxes-legend') %}
       {{ email_newsletter_form(
         newsletters='mozilla-foundation' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
-        button_class='button-dark'
+        button_class='button-dark',
+        include_language=False
       ) }}
     {% else %}
       {{ email_newsletter_form(
         title=ftl('newsletters-read-all-about-it-in-our-newsletter'),
         desc=ftl('newsletters-subscribe-here-to-keep-current'),
-        newsletters='mozilla-foundation'
+        newsletters='mozilla-foundation',
+        include_language=False
       ) }}
     {% endif %}
   </div>
