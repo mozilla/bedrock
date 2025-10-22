@@ -30,3 +30,12 @@
         padding-top: 2rem;
     }
 }
+
+.mozads-c-main-dark-section {
+    .mozads-half-grid {
+        &.is-list-item,
+        &.has-border-top {
+            border-color: advars.$color-ads-dark-gray;
+        }
+    }
+}

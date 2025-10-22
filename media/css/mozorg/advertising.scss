@@ -204,7 +204,7 @@ $image-path: '/media/protocol/img';
 .mozads-stat-group {
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     gap: $spacing-2xl;
 }
@@ -230,10 +230,17 @@ $image-path: '/media/protocol/img';
 .mozads-stat-text {
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .mozads-stat-label {
     @include admixins.text-body-md;
+
+    &.is-top-left {
+        position: absolute;
+        top: -0.5rem;
+        left: 0;
+    }
 }
 
 .mozads-large-link {
@@ -710,6 +717,10 @@ $image-path: '/media/protocol/img';
     max-width: 550px;
 }
 
+.mozads-c-main-dark-section .mozads-home-big-list-heading {
+    border-left-color: advars.$color-ads-border-over-black;
+}
+
 .mozads-home-big-list-text {
     @include admixins.text-body-md;
     margin: 0;
@@ -736,7 +747,6 @@ $image-path: '/media/protocol/img';
 
     .mozads-home-big-list-heading {
         border-left-width: 1rem;
-        // max-width: 10ch;
         padding-left: 2rem;
         padding-bottom: 0;
         line-height: 1;
