@@ -14,7 +14,7 @@ from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
 
 
-@patch("bedrock.newsletter.forms.get_lang_choices", lambda *x: [["en", "English"], ["fr", "French"], ["pt", "Portuguese"]])
+@patch("bedrock.newsletter.forms.get_lang_choices", lambda *args, **kwargs: [["en", "English"], ["fr", "French"], ["pt", "Portuguese"]])
 class TestNewsletterFooter(TestCase):
     def setUp(self):
         self.view_name = "newsletter.subscribe"
@@ -46,22 +46,25 @@ class TestNewsletterFooter(TestCase):
         The correct language for the locale should be initially selected or
         'en' if it's not an option.
         """
-        with self.activate_locale("fr"):
-            resp = self.client.get(reverse(self.view_name))
-        doc = pq(resp.content)
-        assert doc('#id_lang option[selected="selected"]').val() == "fr"
+        for foundation_separate_newsletter_enabled in (True, False):
+            with self.subTest(foundation_separate_newsletter_enabled=foundation_separate_newsletter_enabled):
+                with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=foundation_separate_newsletter_enabled):
+                    with self.activate_locale("fr"):
+                        resp = self.client.get(reverse(self.view_name))
+                    doc = pq(resp.content)
+                    assert doc('#id_lang option[selected="selected"]').val() == "fr"
 
-        # with hyphenated regional locale, should have only lang
-        with self.activate_locale("pt-BR"):
-            resp = self.client.get(reverse(self.view_name))
-        doc = pq(resp.content)
-        assert doc('#id_lang option[selected="selected"]').val() == "pt"
+                    # with hyphenated regional locale, should have only lang
+                    with self.activate_locale("pt-BR"):
+                        resp = self.client.get(reverse(self.view_name))
+                    doc = pq(resp.content)
+                    assert doc('#id_lang option[selected="selected"]').val() == "pt"
 
-        # not supported. should default to ''
-        with self.activate_locale("af"):
-            resp = self.client.get(reverse(self.view_name))
-        doc = pq(resp.content)
-        assert doc('#id_lang option[selected="selected"]').val() == ""
+                    # not supported. should default to ''
+                    with self.activate_locale("af"):
+                        resp = self.client.get(reverse(self.view_name))
+                    doc = pq(resp.content)
+                    assert doc('#id_lang option[selected="selected"]').val() == ""
 
     @override_settings(DEV=True)
     def test_newsletter_action(self):
