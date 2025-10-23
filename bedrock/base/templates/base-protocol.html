@@ -55,6 +55,8 @@
     {# keep the verification for the previous official mastodon profile #}
     <link href="https://mastodon.social/@mozilla" rel="me">
 
+    {{ l10n_css() }}
+
     <!--[if lt IE 9]>
       {# Only needed for IE before v9 #}
       <script src="{{ static('js/ie/libs/html5shiv.js') }}"></script>
@@ -76,7 +78,6 @@
       {% else %}
         {{ css_bundle('legacy-navigation-and-footer') }}
       {% endif %}
-      {{ l10n_css() }}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE9 and lower #}
