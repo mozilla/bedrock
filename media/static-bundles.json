@@ -1522,15 +1522,9 @@
     },
     {
       "files": [
-        "js/mozorg/advertising/ads-navbar.js"
+        "js/mozorg/advertising/ads-solutions.es6.js"
       ],
-      "name": "mozorg-advertising-navbar"
-    },
-    {
-      "files": [
-        "js/mozorg/advertising/callout.js"
-      ],
-      "name": "mozorg-advertising-callout"
+      "name": "mozorg-advertising-solutions"
     },
     {
       "files": [
