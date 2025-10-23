@@ -44,9 +44,11 @@ def email_newsletter_form(
 ):
     request = ctx["request"]
     context = ctx.get_all()
+    languages_override = None
 
     if switch("foundation-separate-newsletter") and newsletters == "mozilla-foundation":
         action = settings.FOUNDATION_SUBSCRIBE_URL
+        languages_override = settings.FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES
     else:
         action = settings.BASKET_SUBSCRIBE_URL
 
@@ -56,7 +58,12 @@ def email_newsletter_form(
 
     form = ctx.get("newsletter_form", None)
     if not form:
-        form = NewsletterFooterForm(newsletters, get_locale(request), multi_opt_in_required=multi_opt_in_required)
+        form = NewsletterFooterForm(
+            newsletters,
+            get_locale(request),
+            multi_opt_in_required=multi_opt_in_required,
+            languages_override=languages_override,
+        )
 
     if isinstance(newsletters, list):
         newsletters = ", ".join(newsletters)
