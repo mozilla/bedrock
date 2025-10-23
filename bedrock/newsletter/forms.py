@@ -10,7 +10,7 @@ from django.forms import widgets
 
 from product_details import product_details
 
-from bedrock.mozorg.forms import EmailInput, PrivacyWidget, strip_parenthetical
+from bedrock.mozorg.forms import EmailInput, HoneyPotWidget, PrivacyWidget, strip_parenthetical
 from bedrock.newsletter import utils
 from lib.l10n_utils.fluent import ftl, ftl_lazy
 
@@ -193,6 +193,8 @@ class NewsletterFooterForm(forms.Form):
     privacy = forms.BooleanField(widget=PrivacyWidget(attrs={"data-testid": "newsletter-privacy-checkbox"}))
     source_url = forms.CharField(required=False)
     newsletters = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple())
+    # office_fax is a honeypot field
+    office_fax = forms.CharField(widget=HoneyPotWidget(attrs={"tabindex": "-1"}), required=False, empty_value="")
 
     # has to take a newsletters argument so it can figure
     # out which languages to list in the form.
@@ -266,6 +268,11 @@ class NewsletterFooterForm(forms.Form):
             return su[:255]
 
         return su
+
+    def clean_office_fax(self):
+        honeypot = self.cleaned_data.pop("office_fax", None)
+        if honeypot:
+            raise forms.ValidationError("Your submission could not be processed")
 
 
 class EmailForm(forms.Form):

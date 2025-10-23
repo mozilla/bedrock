@@ -15,6 +15,9 @@
     {% endif %}
     <input type="hidden" name="source_url" value="{{ request.build_absolute_uri() }}">
 
+    {# Honeypot field #}
+    {{ form.office_fax|safe }}
+
     {% if include_title and is_multi_newsletter_form %}
     <header class="mzp-c-newsletter-header">
       <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('multi-newsletter-form-title'), true) }}</h3>
