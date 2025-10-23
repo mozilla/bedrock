@@ -120,14 +120,13 @@ $image-path: '/media/protocol/img';
 
 .mozads-eyebrow {
     @include admixins.text-body-lg;
-    font-family: var(--title-font-family);
+    font-family: var(--moz-sans-headline);
     margin-bottom: 0;
     font-weight: 400;
 }
 
 .mozads-section-heading {
     @include admixins.text-title-xl;
-    font-family: var(--title-font-family);
     font-weight: 300;
     line-height: 100%;
     letter-spacing: -1%;
@@ -151,6 +150,16 @@ $image-path: '/media/protocol/img';
 
     .mozads-stat {
         position: relative;
+
+        &:before {
+            background-color: #161616;
+            content: "";
+            height: 100px;
+            inset: 110% auto auto 1px;
+            position: absolute;
+            width: 1px;
+            z-index: 0;
+        }
     }
 
     @media #{$mq-md} {
@@ -171,13 +180,9 @@ $image-path: '/media/protocol/img';
             align-items: end;
 
             &::before {
-                content: '';
-                position: absolute;
-                width: min(50vh, 600px);
                 height: 1px;
                 inset: 42% auto auto 105%;
-                background-color: advars.$color-ads-off-black;
-                z-index: 0;
+                width: min(50vh,600px);
             }
         }
 
@@ -202,23 +207,33 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-stat-group {
-    display: flex;
-    flex-flow: row wrap;
+    display: grid;
+    grid-template-columns: 1fr;
     align-items: start;
     justify-content: space-between;
-    gap: $spacing-2xl;
+    gap: 1.5rem;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
 .mozads-stat-number {
     @include admixins.text-title-2xl;
     font-family: var(--moz-sans-headline);
+    letter-spacing: -5%;
     font-weight: 300;
+
+    @media #{$mq-xl} {
+        &.is-smaller {
+            @include admixins.text-title-xl;
+        }
+    }
 }
 
 .mozads-stat {
     display: flex;
     flex-direction: row;
-    align-items: center;
     gap: $spacing-2xl;
 }
 
@@ -235,6 +250,8 @@ $image-path: '/media/protocol/img';
 
 .mozads-stat-label {
     @include admixins.text-body-md;
+    line-height: 1.2; // design-directed override.
+    text-wrap: pretty;
 
     &.is-top-left {
         position: absolute;
@@ -275,12 +292,6 @@ $image-path: '/media/protocol/img';
 }
 
 @media #{$mq-md} {
-    .mozads-stat-group {
-        .mozads-stat {
-            max-width: 20%;
-        }
-    }
-
     .mozads-stat {
         flex-direction: column;
         gap: 0;
@@ -314,6 +325,7 @@ $image-path: '/media/protocol/img';
 
     h1 {
         @include admixins.text-title-2xl;
+        line-height: 0.9;
         color: white;
         font-weight: 300;
         letter-spacing: -2%;
@@ -357,6 +369,11 @@ $image-path: '/media/protocol/img';
 
         p {
             margin-bottom: $spacing-md;
+        }
+
+        a {
+            color: #fff;
+            font-size: var(--text-button-sm);
         }
     }
 
@@ -650,10 +667,16 @@ $image-path: '/media/protocol/img';
             padding: $spacer-xs 0;
 
             @include admixins.text-body-lg;
+            line-height: 1.2; // design-directed override.
             display: flex;
             gap: 2rem;
             justify-content: space-between;
+            align-items: center;
             width: 100%;
+
+            .action-text {
+                white-space: nowrap;
+            }
 
             &:hover {
                 .modal-label {
@@ -707,7 +730,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-home-big-list-heading {
-    @include admixins.text-title-md;
+    @include admixins.text-title-lg;
     font-weight: 300;
     text-wrap: balance;
     border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
@@ -715,9 +738,18 @@ $image-path: '/media/protocol/img';
     padding-left: 1rem;
     margin: 0;
     max-width: 550px;
+
+    br {
+        display: none;
+
+        @media #{$mq-md} {
+            display: initial;
+        }
+    }
 }
 
-.mozads-c-main-dark-section .mozads-home-big-list-heading {
+.mozads-c-main-dark-section .mozads-home-big-list-heading,
+.mozads-c-main-dark-section .mozads-home-big-list-text {
     border-left-color: advars.$color-ads-border-over-black;
 }
 
@@ -750,5 +782,12 @@ $image-path: '/media/protocol/img';
         padding-left: 2rem;
         padding-bottom: 0;
         line-height: 1;
+    }
+}
+
+// override font size to match design spec
+@media #{$mq-xl} {
+    .mozads-home-big-list-heading {
+        @include admixins.text-title-md;
     }
 }

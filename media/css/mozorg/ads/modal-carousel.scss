@@ -9,8 +9,8 @@
 .modal-figure-caption {
     display: flex;
     gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     margin-top: $spacer-md;
     flex-direction: column;
 
@@ -23,7 +23,9 @@
     }
 
     @media #{$mq-md} {
+        justify-content: space-between;
         flex-direction: row;
+        align-items: center;
     }
 }
 
@@ -34,6 +36,12 @@
 
 .modal-figure-caption-text {
     font-weight: 300;
+}
+
+.mozads-figure,
+.carousel {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .carousel-controls {

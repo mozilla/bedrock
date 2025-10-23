@@ -25,7 +25,7 @@
 }
 
 .mozads-approach-headline {
-    @include admixins.text-title-2xs;
+    @include admixins.text-body-lg;
     font-family: var(--title-font-family);
     margin-bottom: $spacing-sm;
     font-weight: 300;
