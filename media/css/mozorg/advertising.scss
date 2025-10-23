@@ -151,7 +151,7 @@ $image-path: '/media/protocol/img';
     .mozads-stat {
         position: relative;
 
-        &:before {
+        &::before {
             background-color: #161616;
             content: "";
             height: 100px;
