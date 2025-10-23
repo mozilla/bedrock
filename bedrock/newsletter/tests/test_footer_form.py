@@ -12,6 +12,7 @@ from waffle.testutils import override_switch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
+from bedrock.newsletter.forms import get_lang_choices
 
 
 @patch("bedrock.newsletter.forms.get_lang_choices", lambda *args, **kwargs: [["en", "English"], ["fr", "French"], ["pt", "Portuguese"]])
@@ -83,3 +84,22 @@ class TestNewsletterFooter(TestCase):
                 resp = self.client.get(reverse(self.view_name))
             doc = pq(resp.content)
             assert doc("#newsletter-form").attr("action") == settings.BASKET_SUBSCRIBE_URL
+
+
+@patch(
+    "bedrock.newsletter.utils.get_languages_for_newsletters",
+    lambda x: ["en", "ru", "it"],
+)
+class TestNewsletterFormGetLangChoicesHelper(TestCase):
+    def test_get_lang_choices__no_override(self):
+        fake_newsletters_param = [1, 2, 3]
+        lang_choices = get_lang_choices(fake_newsletters_param)
+        self.assertEqual(lang_choices, [["en", "English"], ["it", "Italiano"], ["ru", "Русский"]])
+
+    def test_get_lang_choices__with_override(self):
+        fake_newsletters_param = [1, 2, 3]
+        lang_choices = get_lang_choices(
+            fake_newsletters_param,
+            languages_override=["it", "pt-BR", "sv"],
+        )
+        self.assertEqual(lang_choices, [["it", "Italiano"], ["pt-BR", "Português"], ["sv", "Svenska"]])
