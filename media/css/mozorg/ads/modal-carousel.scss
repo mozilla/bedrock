@@ -36,6 +36,10 @@
 
 .modal-figure-caption-text {
     font-weight: 300;
+
+    &.is-hidden {
+        display: none;
+    }
 }
 
 .mozads-figure,

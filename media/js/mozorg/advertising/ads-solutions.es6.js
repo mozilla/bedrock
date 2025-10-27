@@ -73,6 +73,52 @@ const updateSelectedSnapDisplay = (emblaApi, snapDisplay) => {
     updateSnapDisplay(emblaApi);
 };
 
+// Toggle caption visibility based on Embla's selected slide.
+const toggleSlideCaptions = (emblaApi, rootNode) => {
+    // Note: we query caption elements from the DOM each update; no
+    // cached snapCount is required here.
+
+    // Find the nearest ancestor that contains caption elements. Captions
+    // are often outside the .carousel element (e.g. sibling modal caption
+    // containers). Walk up the DOM until we find an ancestor that
+    // contains [data-slide-caption] nodes, or fall back to document.
+    let captionRoot = rootNode;
+    while (captionRoot && captionRoot !== document.body) {
+        if (captionRoot.querySelector && captionRoot.querySelector('[data-slide-caption]')) {
+            break;
+        }
+        captionRoot = captionRoot.parentElement;
+    }
+    if (!captionRoot || captionRoot === document.body) {
+        captionRoot = document;
+    }
+
+    const update = () => {
+        const idx = emblaApi.selectedScrollSnap();
+        // Query the live DOM for caption elements and toggle per-element.
+        const all = Array.from(captionRoot.querySelectorAll('[data-slide-caption]'));
+        all.forEach((el) => {
+            const val = parseInt(el.getAttribute('data-slide-caption'), 10);
+            if (Number.isNaN(val)) return;
+            if (val - 1 === idx) {
+                el.classList.remove('is-hidden');
+            } else {
+                el.classList.add('is-hidden');
+            }
+        });
+    };
+
+    emblaApi.on('init', update).on('select', update).on('reInit', update);
+
+    // initialize visibility
+    update();
+
+    return () => {
+        const all = Array.from(captionRoot.querySelectorAll('[data-slide-caption]'));
+        all.forEach((el) => el.classList.remove('is-hidden'));
+    };
+};
+
 emblaNodes.forEach((node) => {
     const viewport = node.querySelector('.carousel-viewport');
     const emblaApi = EmblaCarousel(viewport, options);
@@ -81,8 +127,10 @@ emblaNodes.forEach((node) => {
     const nextButton = node.querySelector('.carousel-next');
 
     if (prevButton && nextButton) {
-        prevButton.addEventListener('click', emblaApi.scrollPrev, false);
-        nextButton.addEventListener('click', emblaApi.scrollNext, false);
+        // Call Embla methods inside wrappers so the click event isn't passed
+        // as an argument to the Embla API methods.
+        prevButton.addEventListener('click', () => emblaApi.scrollPrev(), false);
+        nextButton.addEventListener('click', () => emblaApi.scrollNext(), false);
     }
 
     const carouselDots = node.querySelector('.carousel-dots');
@@ -95,4 +143,7 @@ emblaNodes.forEach((node) => {
     if (snapDisplay) {
         updateSelectedSnapDisplay(emblaApi, snapDisplay);
     }
+
+    // Wire up caption toggling for this carousel instance
+    toggleSlideCaptions(emblaApi, node);
 });
