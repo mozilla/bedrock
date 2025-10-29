@@ -9,7 +9,8 @@ from django.db import models, transaction
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
-from wagtail.fields import RichTextField, StreamField
+from wagtail.blocks import RichTextBlock
+from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
@@ -19,6 +20,7 @@ from bedrock.mozorg.blocks.advertising import (
     FeatureListBlock,
     FigureWithStatisticBlock,
     ListItemBlock,
+    NotificationBlock,
     SectionHeaderBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -142,7 +144,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["AdvertisingPrinciplesPage"]
+    subpage_types = ["TwoColumnSubpage"]
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -169,15 +171,18 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    notification_text = RichTextField(
+    notifications = StreamField(
+        [("notification_block", NotificationBlock())],
         blank=True,
-        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+        null=True,
+        max_num=1,
+        use_json_field=True,
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
         FieldPanel("contact_banner"),
-        FieldPanel("notification_text"),
+        FieldPanel("notifications"),
     ]
     settings_panels = AbstractBedrockCMSPage.settings_panels + [
         FieldPanel("sub_navigation"),
@@ -228,7 +233,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
                 raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
 
 
-class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
+class TwoColumnSubpage(AbstractBedrockCMSPage):
     parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 
@@ -240,8 +245,11 @@ class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
         max_length=255,
         blank=True,
     )
-    list_items = StreamField(
-        [("list_item", ListItemBlock())],
+    second_column = StreamField(
+        [
+            ("list_item", ListItemBlock()),
+            ("rich_text", RichTextBlock()),
+        ],
         blank=True,
         null=True,
         collapsed=True,
@@ -250,7 +258,7 @@ class AdvertisingPrinciplesPage(AbstractBedrockCMSPage):
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("heading"),
         FieldPanel("subheading"),
-        FieldPanel("list_items"),
+        FieldPanel("second_column"),
     ]
 
-    template = "mozorg/cms/advertising/advertising_principles_page.html"
+    template = "mozorg/cms/advertising/two_column_subpage.html"

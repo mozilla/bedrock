@@ -4,6 +4,7 @@
 
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail_link_block.blocks import LinkBlock
 
 CAPTION_TEXT_FEATURES = [
     "bold",
@@ -26,16 +27,10 @@ class AdvertisingHeroBlock(blocks.StructBlock):
     )
     heading_text = blocks.CharBlock(char_max_length=255)
     primary_cta_text = blocks.CharBlock(char_max_length=255)
-    primary_cta_link = blocks.URLBlock(
-        char_max_length=255,
-        help_text="Link URL for the primary CTA.",
-    )
+    primary_cta_link = LinkBlock(label="Primary CTA Link")
     supporting_text = blocks.TextBlock()
     secondary_cta_text = blocks.CharBlock(char_max_length=255)
-    secondary_cta_link = blocks.URLBlock(
-        char_max_length=255,
-        help_text="Link URL for the secondary CTA.",
-    )
+    secondary_cta_link = LinkBlock(label="Secondary CTA Link")
 
     class Meta:
         label = "Hero"
@@ -52,11 +47,16 @@ class SectionHeaderBlock(blocks.StructBlock):
         max_length=100,
         help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'solutions', 'why-mozilla')",
     )
+    has_top_divider = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a divider line on top?",
+        inline_form=True,
+    )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
     heading_text = blocks.CharBlock(char_max_length=255)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
-    image_alt_text = blocks.CharBlock(char_max_length=255, required=False)
 
     class Meta:
         icon = "title"
@@ -75,7 +75,6 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable from navigation",
     )
     image = ImageChooserBlock(required=False)
-    image_alt_text = blocks.CharBlock(char_max_length=255)
     image_caption = blocks.RichTextBlock(char_max_length=255)
     statistic_value = blocks.CharBlock(char_max_length=255)
     statistic_label = blocks.CharBlock(char_max_length=255)
@@ -138,3 +137,14 @@ class ListItemBlock(blocks.StructBlock):
         label_format = "{heading_text}"
         template = "mozorg/cms/advertising/blocks/list_item_block.html"
         form_classname = "compact-form struct-block"
+
+
+class NotificationBlock(blocks.StructBlock):
+    notification_text = blocks.RichTextBlock(
+        char_max_length=255,
+        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+    )
+    link = LinkBlock()
+
+    class Meta:
+        template = "mozorg/cms/advertising/blocks/notification_block.html"

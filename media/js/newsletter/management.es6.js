@@ -8,6 +8,15 @@ import FormUtils from './form-utils.es6';
 
 const FXA_NEWSLETTERS = ['firefox-accounts-journey', 'test-pilot'];
 
+const FOUNDATION_NEWSLETTERS = [
+    'mozilla-foundation',
+    'take-action-for-the-internet',
+    'mozilla-festival',
+    'internet-health-report',
+    'common-voice',
+    'mozilla-fellowship-awardee-alumni'
+];
+
 const FXA_NEWSLETTERS_LOCALES = ['en', 'de', 'fr'];
 
 const UNSUB_UNSUBSCRIBED_ALL = 1;
@@ -220,7 +229,11 @@ const NewsletterManagementForm = {
                     NewsletterManagementForm.isFxANewsletter(newsletter) &&
                     isFxALocale);
 
-            if (!shouldDisplayNewsletter) {
+            // Temporary filter for Foundation newsletters, they are handled in separate system
+            if (
+                !shouldDisplayNewsletter ||
+                FOUNDATION_NEWSLETTERS.includes(obj.slug)
+            ) {
                 continue;
             }
 

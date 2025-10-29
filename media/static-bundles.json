@@ -1158,6 +1158,12 @@
     },
     {
       "files": [
+        "css/mozorg/advertising-format.scss"
+      ],
+      "name": "mozilla-ads-format"
+    },
+    {
+      "files": [
         "css/mozorg/webvision.scss"
       ],
       "name": "webvision"

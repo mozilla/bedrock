@@ -8,12 +8,12 @@
     <div class="mozads-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
       <div class="mozads-stat">
         <span class="mozads-stat-text">
-          <span class="mozads-stat-number">{{ value.statistic_value }}</span>
+          <span class="mozads-stat-number is-smaller">{{ value.statistic_value }}</span>
           <span class="mozads-stat-label">{{ value.statistic_label }}</span>
         </span>
       </div>
       <figure class="mozads-figure">
-        {{ srcset_image(value.image, "width-{800,1000,1200,1400}", class="", loading="lazy", alt=value.image_alt_text) }}
+        {{ srcset_image(value.image, "width-{800,1000,1200,1400}", class="", loading="lazy", alt=value.image.description) }}
         <figcaption class="mozads-figcaption">
           {{ value.image_caption }}
         </figcaption>

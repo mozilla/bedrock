@@ -66,7 +66,7 @@ class Migration(migrations.Migration):
             model_name="advertisingindexpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("advertising_hero_block", 5), ("section_header_block", 9), ("figure_with_statistic_block", 13), ("feature_list_block", 16)],
+                [("advertising_hero_block", 13), ("section_header_block", 18), ("figure_with_statistic_block", 22), ("feature_list_block", 25)],
                 blank=True,
                 block_lookup={
                     0: (
@@ -79,25 +79,67 @@ class Migration(migrations.Migration):
                         },
                     ),
                     1: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
-                    2: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the primary CTA."}),
-                    3: ("wagtail.blocks.TextBlock", (), {}),
-                    4: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the secondary CTA."}),
+                    2: (
+                        "wagtail.blocks.ChoiceBlock",
+                        [],
+                        {
+                            "choices": [
+                                ("page", "Page"),
+                                ("file", "File"),
+                                ("custom_url", "Custom URL"),
+                                ("email", "Email"),
+                                ("anchor", "Anchor"),
+                                ("phone", "Phone"),
+                            ],
+                            "classname": "link_choice_type_selector",
+                            "label": "Link to",
+                            "required": False,
+                        },
+                    ),
+                    3: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                    4: ("wagtail.documents.blocks.DocumentChooserBlock", (), {"form_classname": "file_link", "label": "File", "required": False}),
                     5: (
+                        "wagtail.blocks.CharBlock",
+                        (),
+                        {
+                            "form_classname": "custom_url_link url_field",
+                            "label": "Custom URL",
+                            "max_length": 300,
+                            "required": False,
+                            "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                        },
+                    ),
+                    6: ("wagtail.blocks.CharBlock", (), {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False}),
+                    7: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                    8: ("wagtail.blocks.CharBlock", (), {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False}),
+                    9: ("wagtail.blocks.BooleanBlock", (), {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False}),
+                    10: (
+                        "wagtail.blocks.StructBlock",
+                        [[("link_to", 2), ("page", 3), ("file", 4), ("custom_url", 5), ("anchor", 6), ("email", 7), ("phone", 8), ("new_window", 9)]],
+                        {"label": "Primary CTA Link"},
+                    ),
+                    11: ("wagtail.blocks.TextBlock", (), {}),
+                    12: (
+                        "wagtail.blocks.StructBlock",
+                        [[("link_to", 2), ("page", 3), ("file", 4), ("custom_url", 5), ("anchor", 6), ("email", 7), ("phone", 8), ("new_window", 9)]],
+                        {"label": "Secondary CTA Link"},
+                    ),
+                    13: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
                                 ("anchor_id", 0),
                                 ("heading_text", 1),
                                 ("primary_cta_text", 1),
-                                ("primary_cta_link", 2),
-                                ("supporting_text", 3),
+                                ("primary_cta_link", 10),
+                                ("supporting_text", 11),
                                 ("secondary_cta_text", 1),
-                                ("secondary_cta_link", 4),
+                                ("secondary_cta_link", 12),
                             ]
                         ],
                         {},
                     ),
-                    6: (
+                    14: (
                         "wagtail.blocks.CharBlock",
                         (),
                         {
@@ -106,51 +148,55 @@ class Migration(migrations.Migration):
                             "required": False,
                         },
                     ),
-                    7: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
-                    8: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
-                    9: (
+                    15: (
+                        "wagtail.blocks.BooleanBlock",
+                        (),
+                        {"default": False, "inline_form": True, "label": "Should the section have a divider line on top?", "required": False},
+                    ),
+                    16: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
+                    17: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
+                    18: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
-                                ("anchor_id", 6),
-                                ("superheading_text", 7),
+                                ("anchor_id", 14),
+                                ("has_top_divider", 15),
+                                ("superheading_text", 16),
                                 ("heading_text", 1),
-                                ("subheading_text", 7),
-                                ("image", 8),
-                                ("image_alt_text", 7),
+                                ("subheading_text", 16),
+                                ("image", 17),
                             ]
                         ],
                         {},
                     ),
-                    10: (
+                    19: (
                         "wagtail.blocks.CharBlock",
                         (),
                         {"help_text": "Optional: Add an ID to make this section linkable from navigation", "max_length": 100, "required": False},
                     ),
-                    11: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
-                    12: (
+                    20: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
+                    21: (
                         "wagtail.blocks.BooleanBlock",
                         (),
                         {"default": False, "inline_form": True, "label": "Should the image be to the right of the statistic?", "required": False},
                     ),
-                    13: (
+                    22: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
-                                ("anchor_id", 10),
-                                ("image", 8),
-                                ("image_alt_text", 1),
-                                ("image_caption", 11),
+                                ("anchor_id", 19),
+                                ("image", 17),
+                                ("image_caption", 20),
                                 ("statistic_value", 1),
                                 ("statistic_label", 1),
-                                ("align_image_on_right", 12),
+                                ("align_image_on_right", 21),
                             ]
                         ],
                         {},
                     ),
-                    14: ("wagtail.blocks.StructBlock", [[("heading_text", 1), ("supporting_text", 3)]], {}),
-                    15: ("wagtail.blocks.ListBlock", (14,), {"min_num": 1}),
-                    16: ("wagtail.blocks.StructBlock", [[("anchor_id", 10), ("feature_list_items", 15)]], {}),
+                    23: ("wagtail.blocks.StructBlock", [[("heading_text", 1), ("supporting_text", 11)]], {}),
+                    24: ("wagtail.blocks.ListBlock", (23,), {"min_num": 1}),
+                    25: ("wagtail.blocks.StructBlock", [[("anchor_id", 19), ("feature_list_items", 24)]], {}),
                 },
                 null=True,
             ),

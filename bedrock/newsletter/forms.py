@@ -29,16 +29,23 @@ def validate_newsletters(newsletters):
     return newsletters
 
 
-def get_lang_choices(newsletters=None):
+def get_lang_choices(newsletters=None, *, languages_override=None):
     """
     Return a localized list of choices for language.
 
     List looks like: [[lang_code, lang_name], [lang_code, lang_name], ...]
 
     :param newsletters: Either a comma separated string or a list of newsletter ids.
+    :param languages_override: A list of language code strings. If this is present, we
+            don't try to look up the available locales, just trust the list
+
     """
     lang_choices = []
-    languages = utils.get_languages_for_newsletters(newsletters)
+
+    if languages_override:
+        languages = languages_override
+    else:
+        languages = utils.get_languages_for_newsletters(newsletters)
 
     for lang in languages:
         if lang in product_details.languages:
@@ -209,8 +216,17 @@ class NewsletterFooterForm(forms.Form):
         else:
             country = ""
             regions.insert(0, ("", ftl_lazy("newsletter-form-select-country-or-region", fallback="newsletter-form-select-country")))
-        lang_choices = get_lang_choices(newsletters)
-        languages = [x[0] for x in lang_choices]
+
+        # Most newsletters define their language in the data from Basket, but we need to support ones which
+        # do not, and they must pass in the acceptable lang codes via the `languages_override`
+        languages_override = kwargs.pop("languages_override", None)
+        if languages_override is not None:
+            languages = languages_override
+            lang_choices = get_lang_choices(languages_override=languages)
+        else:
+            lang_choices = get_lang_choices(newsletters)
+            languages = [x[0] for x in lang_choices]
+
         if lang not in languages:
             # The lang from their locale is not one that our newsletters
             # are translated into. Initialize the language field to no
