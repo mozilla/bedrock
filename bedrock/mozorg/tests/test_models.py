@@ -66,14 +66,24 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
     advertising_page = factories.AdvertisingIndexPageFactory(
         parent=root_page,
         contact_banner=contact_banner,
-        notification_text=RichText("<p>Test notification text</p>"),
+        notifications__0__notification_block__notification_text=RichText("<p>Test notification text</p>"),
+        notifications__0__notification_block__link=factories.LinkBlockFactory(
+            link_to="custom_url",
+            custom_url="https://example.com/notification",
+        ),
         content__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
             primary_cta_text="Primary CTA",
-            primary_cta_link="https://example.com/primary",
+            primary_cta_link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/primary",
+            ),
             supporting_text="Test supporting text",
             secondary_cta_text="Secondary CTA",
-            secondary_cta_link="https://example.com/secondary",
+            secondary_cta_link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/secondary",
+            ),
         ),
         content__1__section_header_block=factories.SectionHeaderBlockFactory(
             heading_text="Test Section Header",
