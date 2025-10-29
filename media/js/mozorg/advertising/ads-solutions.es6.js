@@ -84,7 +84,10 @@ const toggleSlideCaptions = (emblaApi, rootNode) => {
     // contains [data-slide-caption] nodes, or fall back to document.
     let captionRoot = rootNode;
     while (captionRoot && captionRoot !== document.body) {
-        if (captionRoot.querySelector && captionRoot.querySelector('[data-slide-caption]')) {
+        if (
+            captionRoot.querySelector &&
+            captionRoot.querySelector('[data-slide-caption]')
+        ) {
             break;
         }
         captionRoot = captionRoot.parentElement;
@@ -96,7 +99,9 @@ const toggleSlideCaptions = (emblaApi, rootNode) => {
     const update = () => {
         const idx = emblaApi.selectedScrollSnap();
         // Query the live DOM for caption elements and toggle per-element.
-        const all = Array.from(captionRoot.querySelectorAll('[data-slide-caption]'));
+        const all = Array.from(
+            captionRoot.querySelectorAll('[data-slide-caption]')
+        );
         all.forEach((el) => {
             const val = parseInt(el.getAttribute('data-slide-caption'), 10);
             if (Number.isNaN(val)) return;
@@ -114,7 +119,9 @@ const toggleSlideCaptions = (emblaApi, rootNode) => {
     update();
 
     return () => {
-        const all = Array.from(captionRoot.querySelectorAll('[data-slide-caption]'));
+        const all = Array.from(
+            captionRoot.querySelectorAll('[data-slide-caption]')
+        );
         all.forEach((el) => el.classList.remove('is-hidden'));
     };
 };
@@ -129,8 +136,16 @@ emblaNodes.forEach((node) => {
     if (prevButton && nextButton) {
         // Call Embla methods inside wrappers so the click event isn't passed
         // as an argument to the Embla API methods.
-        prevButton.addEventListener('click', () => emblaApi.scrollPrev(), false);
-        nextButton.addEventListener('click', () => emblaApi.scrollNext(), false);
+        prevButton.addEventListener(
+            'click',
+            () => emblaApi.scrollPrev(),
+            false
+        );
+        nextButton.addEventListener(
+            'click',
+            () => emblaApi.scrollNext(),
+            false
+        );
     }
 
     const carouselDots = node.querySelector('.carousel-dots');
