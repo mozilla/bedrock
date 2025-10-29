@@ -88,7 +88,7 @@ class Migration(migrations.Migration):
                                 [
                                     [
                                         ("image", 7),
-                                        ("image_alt_text", 0),
+                                        ("image_alt_text", 6),
                                         ("image_caption", 9),
                                         ("statistic_value", 0),
                                         ("statistic_label", 0),

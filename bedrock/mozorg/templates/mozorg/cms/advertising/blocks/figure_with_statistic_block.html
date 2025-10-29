@@ -13,7 +13,7 @@
         </span>
       </div>
       <figure class="mozads-figure">
-        {{ srcset_image(value.image, "width-{800,1000,1200,1400}", class="", loading="lazy", alt=value.image_alt_text) }}
+        {{ srcset_image(value.image, "width-{800,1000,1200,1400}", class="", loading="lazy", alt=value.image_alt_text or value.image.description) }}
         <figcaption class="mozads-figcaption">
           {{ value.image_caption }}
         </figcaption>

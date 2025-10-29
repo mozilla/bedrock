@@ -13,7 +13,7 @@
     </hgroup>
 
     {% if value.image %}
-      {{ srcset_image(value.image, "width-{1200,1400,1600}", class="mozads-figure", alt=value.image_alt_text) }}
+      {{ srcset_image(value.image, "width-{1200,1400,1600}", class="mozads-figure", alt=value.image_alt_text or value.image.description) }}
     {% endif %}
   </div>
 </section>
