@@ -108,3 +108,29 @@ class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.AdvertisingIndexPage
+
+
+class ListItemBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+    supporting_text = wagtail_factories.CharBlockFactory
+
+    class Meta:
+        model = advertising.ListItemBlock
+
+
+class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
+    title = "Test Two Column Subpage"
+    live = True
+    slug = "two-column-subpage"
+
+    heading = "Test Heading"
+    subheading = "Test Subheading"
+
+    second_column = wagtail_factories.StreamFieldFactory(
+        {
+            "list_item": factory.SubFactory(ListItemBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.TwoColumnSubpage

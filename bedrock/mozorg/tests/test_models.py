@@ -107,3 +107,40 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
 
     # Assert notification text
     assert "Test notification text" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
+    root_page = minimal_site.root_page
+
+    # Create an AdvertisingIndexPage as the parent
+    advertising_page = factories.AdvertisingIndexPageFactory(
+        parent=root_page,
+    )
+    advertising_page.save()
+
+    # Create the TwoColumnSubpage with content
+    two_column_page = factories.TwoColumnSubpageFactory(
+        parent=advertising_page,
+        heading="Test Heading",
+        subheading="Test Subheading",
+        second_column__0__list_item__heading_text="Test List Item Heading",
+        second_column__0__list_item__supporting_text=RichText("<p>Test list item supporting text</p>"),
+    )
+
+    two_column_page.save()
+
+    _relative_url = two_column_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/advertising/two-column-subpage/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(two_column_page, serving_method)(request)
+    page_content = resp.text
+
+    # Assert page heading and subheading
+    assert "Test Heading" in page_content
+    assert "Test Subheading" in page_content
+
+    # Assert content from the list item block
+    assert "Test List Item Heading" in page_content
+    assert "Test list item supporting text" in page_content
