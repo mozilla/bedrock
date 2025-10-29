@@ -154,3 +154,72 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     # Assert content from the list item block
     assert "Test List Item Heading" in page_content
     assert "Test list item supporting text" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_advertising_index_page_sub_navigation(minimal_site, rf, serving_method):  # noqa
+    root_page = minimal_site.root_page
+
+    # Create a simple page to link to
+    linked_page = factories.TwoColumnSubpageFactory(
+        parent=root_page,
+        title="Test Linked Page",
+        slug="linked-page",
+    )
+    linked_page.save()
+
+    # Create the AdvertisingIndexPage with sub-navigation and content with section IDs
+    advertising_page = factories.AdvertisingIndexPageFactory(
+        parent=root_page,
+        # Add content block with anchor ID for anchor link testing
+        content__0__section_header_block=factories.SectionHeaderBlockFactory(
+            heading_text="Test Section",
+            anchor_id="test-section",
+        ),
+        # Custom URL link
+        sub_navigation__0__link=factories.NavigationLinkBlockFactory(
+            link_text="Custom URL Link",
+            link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/custom",
+            ),
+        ),
+        # Internal page link
+        sub_navigation__1__link=factories.NavigationLinkBlockFactory(
+            link_text="Internal Page Link",
+            link=factories.LinkBlockFactory(
+                link_to="page",
+                page=linked_page,
+                custom_url="",
+                anchor="",
+            ),
+        ),
+        # Anchor link
+        sub_navigation__2__link=factories.NavigationLinkBlockFactory(
+            link_text="Anchor Link",
+            link=factories.LinkBlockFactory(
+                link_to="anchor",
+                anchor="test-section",
+                custom_url="",
+            ),
+        ),
+    )
+
+    advertising_page.save()
+
+    _relative_url = advertising_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/advertising/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(advertising_page, serving_method)(request)
+    page_content = resp.text
+
+    # Assert navigation link texts are present
+    assert "Custom URL Link" in page_content
+    assert "Internal Page Link" in page_content
+    assert "Anchor Link" in page_content
+
+    # Assert URLs are correctly resolved
+    assert 'href="https://example.com/custom"' in page_content
+    assert 'href="/en-US/linked-page/"' in page_content
+    assert f'href="{advertising_page.url}#test-section"' in page_content

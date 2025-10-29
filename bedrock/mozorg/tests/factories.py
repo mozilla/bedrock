@@ -7,7 +7,7 @@ import wagtail_factories
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import advertising, leadership
+from bedrock.mozorg.blocks import advertising, leadership, navigation
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -78,7 +78,6 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
 
 class LinkBlockFactory(wagtail_factories.StructBlockFactory):
     link_to = "custom_url"
-    custom_url = wagtail_factories.CharBlockFactory
     new_window = False
 
     class Meta:
@@ -112,6 +111,15 @@ class NotificationBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.NotificationBlock
 
 
+class NavigationLinkBlockFactory(wagtail_factories.StructBlockFactory):
+    link_text = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+    has_button_appearance = False
+
+    class Meta:
+        model = navigation.NavigationLinkBlock
+
+
 class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     title = "Test Advertising Index Page"
     live = True
@@ -127,6 +135,12 @@ class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     notifications = wagtail_factories.StreamFieldFactory(
         {
             "notification_block": factory.SubFactory(NotificationBlockFactory),
+        }
+    )
+
+    sub_navigation = wagtail_factories.StreamFieldFactory(
+        {
+            "link": factory.SubFactory(NavigationLinkBlockFactory),
         }
     )
 
