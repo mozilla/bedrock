@@ -24,15 +24,16 @@
       </div>
       <ul class="c-sub-navigation-list is-details is-closed" data-testid="sub-navigation-menu">
         {% for link_block in advertising_index_page.sub_navigation %}
-          {% with link=link_block.value %}
+          {% with link_block=link_block.value %}
             <li class="c-sub-navigation-item">
               <a
-                href="{% if link.link_type == 'section' %}{{ advertising_index_page.url }}#{{ link.section_anchor }}{% elif link.link_type == 'page' %}{{ link.internal_page.url }}{% else %}{{ link.external_url }}{% endif %}"
+                href="{{ link_block.get_resolved_url(anchor_page_url=advertising_index_page.url) }}"
                 data-link-position="subnav"
-                data-link-text="{{ link.link_text }}"
-                {% if link.has_button_appearance %}class="mozads-c-contact-sales-button"{% endif %}
+                data-link-text="{{ link_block.link_text }}"
+                {% if link_block.has_button_appearance %}class="mozads-c-contact-sales-button"{% endif %}
+                {% if link_block.link.new_window %}target="_blank"{% endif %}
               >
-                {{ link.link_text }}
+                {{ link_block.link_text }}
               </a>
             </li>
           {% endwith %}

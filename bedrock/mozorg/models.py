@@ -222,8 +222,9 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
             available_sections_set = set(available_sections)
             invalid_anchors = []
             for nav_item in self.sub_navigation:
-                if nav_item.value.get("link_type") == "section":
-                    anchor = nav_item.value.get("section_anchor")
+                link = nav_item.value.get("link", {})
+                if link.get("link_to") == "anchor":
+                    anchor = link.get("anchor", "")
                     if anchor and anchor not in available_sections_set:
                         invalid_anchors.append(anchor)
 

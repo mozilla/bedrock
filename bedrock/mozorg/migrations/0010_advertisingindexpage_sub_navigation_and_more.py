@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             model_name="advertisingindexpage",
             name="sub_navigation",
             field=wagtail.fields.StreamField(
-                [("link", 6)],
+                [("link", 11)],
                 blank=True,
                 block_lookup={
                     0: ("wagtail.blocks.CharBlock", (), {"help_text": "Text to display for this navigation link", "max_length": 50}),
@@ -24,39 +24,46 @@ class Migration(migrations.Migration):
                         [],
                         {
                             "choices": [
-                                ("section", "Link to section on advertising index Page"),
-                                ("page", "Internal Page"),
-                                ("external", "External URL"),
+                                ("page", "Page"),
+                                ("file", "File"),
+                                ("custom_url", "Custom URL"),
+                                ("email", "Email"),
+                                ("anchor", "Anchor"),
+                                ("phone", "Phone"),
                             ],
-                            "help_text": "Choose the type of link",
-                        },
-                    ),
-                    2: (
-                        "wagtail.blocks.CharBlock",
-                        (),
-                        {
-                            "help_text": "Enter the Anchor ID from one of the content sections.",
-                            "max_length": 100,
+                            "classname": "link_choice_type_selector",
+                            "label": "Link to",
                             "required": False,
                         },
                     ),
-                    3: ("wagtail.blocks.PageChooserBlock", (), {"help_text": "Choose an internal page to link to", "required": False}),
-                    4: ("wagtail.blocks.URLBlock", (), {"help_text": "Full URL for external links", "max_length": 255, "required": False}),
-                    5: ("wagtail.blocks.BooleanBlock", (), {"default": False, "help_text": "This link should look like a button", "required": False}),
-                    6: (
+                    2: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                    3: ("wagtail.documents.blocks.DocumentChooserBlock", (), {"form_classname": "file_link", "label": "File", "required": False}),
+                    4: (
+                        "wagtail.blocks.CharBlock",
+                        (),
+                        {
+                            "form_classname": "custom_url_link url_field",
+                            "label": "Custom URL",
+                            "max_length": 300,
+                            "required": False,
+                            "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                        },
+                    ),
+                    5: ("wagtail.blocks.CharBlock", (), {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False}),
+                    6: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                    7: ("wagtail.blocks.CharBlock", (), {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False}),
+                    8: ("wagtail.blocks.BooleanBlock", (), {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False}),
+                    9: (
                         "wagtail.blocks.StructBlock",
-                        [
-                            [
-                                ("link_text", 0),
-                                ("link_type", 1),
-                                ("section_anchor", 2),
-                                ("internal_page", 3),
-                                ("external_url", 4),
-                                ("has_button_appearance", 5),
-                            ]
-                        ],
+                        [[("link_to", 1), ("page", 2), ("file", 3), ("custom_url", 4), ("anchor", 5), ("email", 6), ("phone", 7), ("new_window", 8)]],
                         {},
                     ),
+                    10: (
+                        "wagtail.blocks.BooleanBlock",
+                        (),
+                        {"default": False, "help_text": "This link should look like a button", "required": False},
+                    ),
+                    11: ("wagtail.blocks.StructBlock", [[("link_text", 0), ("link", 9), ("has_button_appearance", 10)]], {}),
                 },
                 help_text="Configure the sub-navigation menu items. Leave empty to use the default navigation.",
                 null=True,

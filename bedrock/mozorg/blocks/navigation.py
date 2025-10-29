@@ -5,6 +5,21 @@
 from django.core.exceptions import ValidationError
 
 from wagtail import blocks
+from wagtail.blocks import StructValue
+from wagtail_link_block.blocks import LinkBlock
+
+
+class NavigationLinkValue(StructValue):
+    """Custom StructValue for NavigationLinkBlock with URL resolution."""
+
+    def get_resolved_url(self, anchor_page_url=""):
+        """Return the resolved URL for this navigation link."""
+        link = self.get("link")
+        if link.get("link_to") == "anchor":
+            return f"{anchor_page_url}{link.get_url()}"
+        elif link:
+            return link.get_url()
+        return None
 
 
 class NavigationLinkBlock(blocks.StructBlock):
@@ -15,32 +30,7 @@ class NavigationLinkBlock(blocks.StructBlock):
         help_text="Text to display for this navigation link",
     )
 
-    link_type = blocks.ChoiceBlock(
-        choices=[
-            ("section", "Link to section on advertising index Page"),
-            ("page", "Internal Page"),
-            ("external", "External URL"),
-        ],
-        help_text="Choose the type of link",
-    )
-
-    # For section links - editor manually enters the anchor ID
-    section_anchor = blocks.CharBlock(
-        required=False,
-        max_length=100,
-        help_text="Enter the Anchor ID from one of the content sections.",
-    )
-
-    internal_page = blocks.PageChooserBlock(
-        required=False,
-        help_text="Choose an internal page to link to",
-    )
-
-    external_url = blocks.URLBlock(
-        required=False,
-        max_length=255,
-        help_text="Full URL for external links",
-    )
+    link = LinkBlock()
 
     has_button_appearance = blocks.BooleanBlock(
         required=False,
@@ -50,18 +40,12 @@ class NavigationLinkBlock(blocks.StructBlock):
 
     def clean(self, value):
         errors = {}
-        link_type = value.get("link_type")
+        link = value.get("link", {})
 
         # Validate that the appropriate field is filled based on link_type
-        if link_type == "section":
-            if not value.get("section_anchor"):
-                errors["section_anchor"] = ValidationError("Section anchor is required when linking to a section")
-        elif link_type == "page":
-            if not value.get("internal_page"):
-                errors["internal_page"] = ValidationError("Internal page is required when linking to a page")
-        elif link_type == "external":
-            if not value.get("external_url"):
-                errors["external_url"] = ValidationError("External URL is required when linking to an external URL")
+        if link.get("link_to") == "anchor":
+            if not link.get("anchor"):
+                errors["link"] = ValidationError("Section anchor is required when linking to a section")
 
         if errors:
             raise blocks.StructBlockValidationError(errors)
@@ -71,3 +55,4 @@ class NavigationLinkBlock(blocks.StructBlock):
     class Meta:
         icon = "link"
         label = "Navigation Link"
+        value_class = NavigationLinkValue
