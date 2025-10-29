@@ -4,6 +4,7 @@
 
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail_link_block.blocks import LinkBlock
 
 CAPTION_TEXT_FEATURES = [
     "bold",
@@ -21,16 +22,10 @@ class AdvertisingHeroBlock(blocks.StructBlock):
 
     heading_text = blocks.CharBlock(char_max_length=255)
     primary_cta_text = blocks.CharBlock(char_max_length=255)
-    primary_cta_link = blocks.URLBlock(
-        char_max_length=255,
-        help_text="Link URL for the primary CTA.",
-    )
+    primary_cta_link = LinkBlock(label="Primary CTA Link")
     supporting_text = blocks.TextBlock()
     secondary_cta_text = blocks.CharBlock(char_max_length=255)
-    secondary_cta_link = blocks.URLBlock(
-        char_max_length=255,
-        help_text="Link URL for the secondary CTA.",
-    )
+    secondary_cta_link = LinkBlock(label="Secondary CTA Link")
 
     class Meta:
         label = "Hero"
@@ -107,3 +102,14 @@ class FeatureListBlock(blocks.StructBlock):
         label_format = "Feature List"
         template = "mozorg/cms/advertising/blocks/feature_list_block.html"
         form_classname = "compact-form struct-block"
+
+
+class NotificationBlock(blocks.StructBlock):
+    notification_text = blocks.RichTextBlock(
+        char_max_length=255,
+        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+    )
+    link = LinkBlock()
+
+    class Meta:
+        template = "mozorg/cms/advertising/blocks/notification_block.html"

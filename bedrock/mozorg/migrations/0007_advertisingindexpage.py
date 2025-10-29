@@ -30,49 +30,126 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("advertising_hero_block", 4), ("section_header_block", 8), ("figure_with_statistic_block", 11), ("feature_list_block", 14)],
+                        [
+                            ("advertising_hero_block", 12),
+                            ("section_header_block", 16),
+                            ("figure_with_statistic_block", 19),
+                            ("feature_list_block", 22),
+                        ],
                         blank=True,
                         block_lookup={
                             0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
-                            1: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the primary CTA."}),
-                            2: ("wagtail.blocks.TextBlock", (), {}),
-                            3: ("wagtail.blocks.URLBlock", (), {"char_max_length": 255, "help_text": "Link URL for the secondary CTA."}),
+                            1: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("page", "Page"),
+                                        ("file", "File"),
+                                        ("custom_url", "Custom URL"),
+                                        ("email", "Email"),
+                                        ("anchor", "Anchor"),
+                                        ("phone", "Phone"),
+                                    ],
+                                    "classname": "link_choice_type_selector",
+                                    "label": "Link to",
+                                    "required": False,
+                                },
+                            ),
+                            2: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            3: (
+                                "wagtail.documents.blocks.DocumentChooserBlock",
+                                (),
+                                {"form_classname": "file_link", "label": "File", "required": False},
+                            ),
                             4: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {
+                                    "form_classname": "custom_url_link url_field",
+                                    "label": "Custom URL",
+                                    "max_length": 300,
+                                    "required": False,
+                                    "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                                },
+                            ),
+                            5: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
+                            ),
+                            6: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            7: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
+                            ),
+                            8: (
+                                "wagtail.blocks.BooleanBlock",
+                                (),
+                                {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
+                            ),
+                            9: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("link_to", 1),
+                                        ("page", 2),
+                                        ("file", 3),
+                                        ("custom_url", 4),
+                                        ("anchor", 5),
+                                        ("email", 6),
+                                        ("phone", 7),
+                                        ("new_window", 8),
+                                    ]
+                                ],
+                                {"label": "Primary CTA Link"},
+                            ),
+                            10: ("wagtail.blocks.TextBlock", (), {}),
+                            11: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("link_to", 1),
+                                        ("page", 2),
+                                        ("file", 3),
+                                        ("custom_url", 4),
+                                        ("anchor", 5),
+                                        ("email", 6),
+                                        ("phone", 7),
+                                        ("new_window", 8),
+                                    ]
+                                ],
+                                {"label": "Secondary CTA Link"},
+                            ),
+                            12: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
                                         ("heading_text", 0),
                                         ("primary_cta_text", 0),
-                                        ("primary_cta_link", 1),
-                                        ("supporting_text", 2),
+                                        ("primary_cta_link", 9),
+                                        ("supporting_text", 10),
                                         ("secondary_cta_text", 0),
-                                        ("secondary_cta_link", 3),
+                                        ("secondary_cta_link", 11),
                                     ]
                                 ],
                                 {},
                             ),
-                            5: (
+                            13: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"default": False, "inline_form": True, "label": "Should the section have a divider line on top?", "required": False},
                             ),
-                            6: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
-                            7: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
-                            8: (
+                            14: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
+                            15: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
+                            16: (
                                 "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("has_top_divider", 5),
-                                        ("superheading_text", 6),
-                                        ("heading_text", 0),
-                                        ("subheading_text", 6),
-                                        ("image", 7),
-                                    ]
-                                ],
+                                [[("has_top_divider", 13), ("superheading_text", 14), ("heading_text", 0), ("subheading_text", 14), ("image", 15)]],
                                 {},
                             ),
-                            9: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
-                            10: (
+                            17: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
+                            18: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {
@@ -82,27 +159,108 @@ class Migration(migrations.Migration):
                                     "required": False,
                                 },
                             ),
-                            11: (
+                            19: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
-                                        ("image", 7),
-                                        ("image_caption", 9),
+                                        ("image", 15),
+                                        ("image_caption", 17),
                                         ("statistic_value", 0),
                                         ("statistic_label", 0),
-                                        ("align_image_on_right", 10),
+                                        ("align_image_on_right", 18),
                                     ]
                                 ],
                                 {},
                             ),
-                            12: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 2)]], {}),
-                            13: ("wagtail.blocks.ListBlock", (12,), {"min_num": 1}),
-                            14: ("wagtail.blocks.StructBlock", [[("feature_list_items", 13)]], {}),
+                            20: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 10)]], {}),
+                            21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
+                            22: ("wagtail.blocks.StructBlock", [[("feature_list_items", 21)]], {}),
                         },
                         null=True,
                     ),
                 ),
-                ("notification_text", wagtail.fields.RichTextField(blank=True)),
+                (
+                    "notifications",
+                    wagtail.fields.StreamField(
+                        [("notification_block", 10)],
+                        blank=True,
+                        block_lookup={
+                            0: (
+                                "wagtail.blocks.RichTextBlock",
+                                (),
+                                {"char_max_length": 255, "features": ["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"]},
+                            ),
+                            1: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("page", "Page"),
+                                        ("file", "File"),
+                                        ("custom_url", "Custom URL"),
+                                        ("email", "Email"),
+                                        ("anchor", "Anchor"),
+                                        ("phone", "Phone"),
+                                    ],
+                                    "classname": "link_choice_type_selector",
+                                    "label": "Link to",
+                                    "required": False,
+                                },
+                            ),
+                            2: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            3: (
+                                "wagtail.documents.blocks.DocumentChooserBlock",
+                                (),
+                                {"form_classname": "file_link", "label": "File", "required": False},
+                            ),
+                            4: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {
+                                    "form_classname": "custom_url_link url_field",
+                                    "label": "Custom URL",
+                                    "max_length": 300,
+                                    "required": False,
+                                    "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                                },
+                            ),
+                            5: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
+                            ),
+                            6: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            7: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
+                            ),
+                            8: (
+                                "wagtail.blocks.BooleanBlock",
+                                (),
+                                {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
+                            ),
+                            9: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("link_to", 1),
+                                        ("page", 2),
+                                        ("file", 3),
+                                        ("custom_url", 4),
+                                        ("anchor", 5),
+                                        ("email", 6),
+                                        ("phone", 7),
+                                        ("new_window", 8),
+                                    ]
+                                ],
+                                {},
+                            ),
+                            10: ("wagtail.blocks.StructBlock", [[("notification_text", 0), ("link", 9)]], {}),
+                        },
+                        null=True,
+                    ),
+                ),
             ],
             options={
                 "abstract": False,

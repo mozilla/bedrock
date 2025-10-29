@@ -8,12 +8,12 @@ from django.db import models, transaction
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
-from wagtail.fields import RichTextField, StreamField
+from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, SectionHeaderBlock
+from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, NotificationBlock, SectionHeaderBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
@@ -154,15 +154,18 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    notification_text = RichTextField(
+    notifications = StreamField(
+        [("notification_block", NotificationBlock())],
         blank=True,
-        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+        null=True,
+        max_num=1,
+        use_json_field=True,
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
         FieldPanel("contact_banner"),
-        FieldPanel("notification_text"),
+        FieldPanel("notifications"),
     ]
 
     template = "mozorg/cms/advertising/advertising_index_page.html"
