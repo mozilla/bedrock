@@ -57,8 +57,9 @@
       </h1>
 
       <a
-        href="{{ value.primary_cta_link }}"
+        href="{{ value.primary_cta_link.get_url() }}"
         class="mozads-c-callout-action"
+        {% if value.primary_cta_link.new_window %}target="_blank"{% endif %}
       >
         {{ value.primary_cta_text }}
       </a>
@@ -74,7 +75,7 @@
     <div class="mozads-c-callout-section is-bottom">
       <div id="callout-image-trigger" class="mozads-c-callout-card">
         <p>{{ value.supporting_text }}</p>
-        <a href="{{ value.secondary_cta_link }}">{{ value.secondary_cta_text }}</a>
+        <a class="mozads-c-callout-action" href="{{ value.secondary_cta_link.get_url() }}" {% if value.primary_cta_link.new_window %}target="_blank"{% endif %}>{{ value.secondary_cta_text }}</a>
       </div>
     </div>
   </header>

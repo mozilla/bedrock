@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 .c-sub-navigation-list {
     a[href*='anonymco.com'],
@@ -57,7 +58,7 @@
     }
 
     &.c-sub-navigation .c-sub-navigation-item a:link {
-        font-size: $text-body-sm;
+        @include admixins.text-body-sm;
     }
 
     .c-sub-navigation-content {
@@ -66,7 +67,7 @@
     }
 
     &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:link,
-    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:visited,
+    &.c-sub-navigation .c-sub-navigation-item a.mozads-c-contact-sales-button:visited
      {
         padding: $spacer-xs;
         color: advars.$color-ads-off-black;

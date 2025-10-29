@@ -90,6 +90,11 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
         padding: $spacing-xl;
         display: none;
 
+        .platform-link-container {
+            display: flex;
+            gap: $spacing-sm;
+        }
+
         .platform-image {
             margin-bottom: $spacing-xl;
         }
@@ -177,6 +182,26 @@ $vpn-download-mq-2xl: '(min-width: 1450px)';
             p {
                 margin-bottom: 0;
             }
+        }
+
+        .platform-link-container {
+            display: flex;
+            flex-direction: column;
+            gap: $spacing-sm;
+        }
+
+        .platform-link-container .mzp-c-button:has(.platform-download-linux-arrow) {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .platform-download-linux-arrow {
+            background-color: currentColor;
+            -webkit-mask: url('/media/img/products/vpn/download/vpn-download-icon-simple.svg') no-repeat center/16px 16px;
+            mask: url('/media/img/products/vpn/download/vpn-download-icon-simple.svg') no-repeat center/16px 16px;
+            height: 16px;
+            width: 16px;
         }
 
         .platform-download-link {
