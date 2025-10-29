@@ -56,6 +56,10 @@ $image-path: '/media/protocol/img';
     p,
     figcaption {
         line-height: 1.2;
+
+        &.mozads-home-big-list-text {
+            line-height: 1.25;
+        }
     }
 
     h1,
@@ -121,8 +125,12 @@ $image-path: '/media/protocol/img';
 .mozads-hgroup {
     display: flex;
     flex-direction: column;
-    gap: $spacing-md;
+    gap: 1rem;
     margin-bottom: 0;
+
+    @media #{$mq-md} {
+        gap: 1.5rem;
+    }
 }
 
 .mozads-eyebrow {
@@ -137,13 +145,15 @@ $image-path: '/media/protocol/img';
     font-weight: 300;
     line-height: 100%;
     letter-spacing: -1%;
-    margin: 0;
+    margin-bottom: 1.5rem;
 }
 
 .mozads-section-subheading {
-    @include admixins.text-body-lg;
+    @include admixins.text-title-sm;
     margin: 0;
 }
+
+
 
 .mozads-figure {
     position: relative;
