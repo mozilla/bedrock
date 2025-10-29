@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ("heading", models.CharField(blank=True, max_length=255)),
                 ("subheading", models.CharField(blank=True, max_length=255)),
                 (
-                    "list_items",
+                    "second_column",
                     wagtail.fields.StreamField(
                         [("list_item", 2)],
                         blank=True,

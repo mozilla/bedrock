@@ -190,7 +190,7 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
         max_length=255,
         blank=True,
     )
-    list_items = StreamField(
+    second_column = StreamField(
         [("list_item", ListItemBlock())],
         blank=True,
         null=True,
@@ -200,7 +200,7 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("heading"),
         FieldPanel("subheading"),
-        FieldPanel("list_items"),
+        FieldPanel("second_column"),
     ]
 
     template = "mozorg/cms/advertising/two_column_subpage.html"

@@ -35,15 +35,15 @@
   </header>
 
   <section class="m24-c-content">
-    <div class="{% if page.list_items %}mozads-half-grid{% endif %}">
+    <div class="{% if page.second_column %}mozads-half-grid{% endif %}">
       <div class="principles-intro">
         <h2>{{ page.heading }}</h2>
         <p>{{ page.subheading }}</p>
       </div>
 
-      {% if page.list_items %}
+      {% if page.second_column %}
       <ul class="principles-detail-list">
-        {% for item in page.list_items %}
+        {% for item in page.second_column %}
           {% include_block item %}
         {% endfor %}
       </ul>
