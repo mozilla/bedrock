@@ -27,6 +27,7 @@
     flex-direction: column;
     gap: 1rem;
 
+.principles-detail-list, .priciples-right-column {
     h3 {
         @include text-title-2xs;
     }

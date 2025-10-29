@@ -8,6 +8,7 @@ from django.db import models, transaction
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
+from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
@@ -191,7 +192,10 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
         blank=True,
     )
     second_column = StreamField(
-        [("list_item", ListItemBlock())],
+        [
+            ("list_item", ListItemBlock()),
+            ("rich_text", RichTextBlock()),
+        ],
         blank=True,
         null=True,
         collapsed=True,

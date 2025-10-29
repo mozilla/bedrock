@@ -42,9 +42,11 @@
       </div>
 
       {% if page.second_column %}
-        {% for item in page.second_column %}
-          {% include_block item %}
-        {% endfor %}
+        <div class="priciples-right-column">
+          {% for item in page.second_column %}
+            {% include_block item %}
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
   </section>

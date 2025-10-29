@@ -32,12 +32,13 @@ class Migration(migrations.Migration):
                 (
                     "second_column",
                     wagtail.fields.StreamField(
-                        [("list_item", 2)],
+                        [("list_item", 2), ("rich_text", 3)],
                         blank=True,
                         block_lookup={
                             0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
                             1: ("wagtail.blocks.RichTextBlock", (), {"features": ["bold", "italic", "link"]}),
                             2: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 1)]], {}),
+                            3: ("wagtail.blocks.RichTextBlock", (), {}),
                         },
                         null=True,
                     ),
