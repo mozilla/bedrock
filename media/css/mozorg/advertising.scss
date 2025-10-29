@@ -510,3 +510,128 @@ $image-path: '/media/protocol/img';
         }
     }
 }
+
+.mozads-bordered-list {
+    &.has-padding-top {
+        padding-top: $spacer-xl;
+    }
+
+    li,
+    details {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        border-bottom: 1px solid advars.$color-ads-tertiary-gray;
+        @include admixins.text-body-lg;
+
+        &:first-child {
+            border-top: 1px solid advars.$color-ads-tertiary-gray;
+        }
+
+        button {
+            border: none;
+            background: transparent;
+            text-align: left;
+            padding: $spacer-xs 0;
+
+            @include admixins.text-body-lg;
+            display: flex;
+            gap: 2rem;
+            justify-content: space-between;
+            width: 100%;
+
+            &:hover {
+                .modal-label {
+                    text-decoration: underline;
+                }
+
+                .action-text {
+                    text-decoration: none;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    details {
+        border-bottom-width: 4px;
+        padding: $spacer-xs 0;
+
+        &:first-child {
+            border-top-width: 4px;
+        }
+    }
+
+    details summary {
+        transition: margin 150ms ease-out;
+    }
+
+    details[open] summary {
+        margin-bottom: $spacer-xs;
+    }
+}
+
+.mozads-section-footer {
+    display: flex;
+    flex-direction: column;
+    @include admixins.text-title-sm;
+}
+
+@media #{$mq-xl} {
+    .mozads-section-footer {
+        padding-top: $spacer-xl;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.mozads-home-big-list {
+    list-style: none;
+    margin: 2rem 0;
+    padding: 0;
+}
+
+.mozads-home-big-list-heading {
+    @include admixins.text-title-md;
+    font-weight: 300;
+    text-wrap: balance;
+    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
+    padding-bottom: 1rem;
+    padding-left: 1rem;
+    margin: 0;
+    max-width: 550px;
+}
+
+.mozads-home-big-list-text {
+    @include admixins.text-body-md;
+    margin: 0;
+    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
+    padding-left: 1rem;
+}
+
+@media #{$mq-md} {
+    .mozads-home-big-list-text {
+        padding-right: 17%;
+        border-left: 0 none;
+        padding-left: 0;
+    }
+
+    .mozads-half-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &.is-list-item {
+            gap: 2rem;
+            align-items: center;
+        }
+    }
+
+    .mozads-home-big-list-heading {
+        border-left-width: 1rem;
+
+        // max-width: 10ch;
+        padding-left: 2rem;
+        padding-bottom: 0;
+        line-height: 1;
+    }
+}
