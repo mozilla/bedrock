@@ -49,8 +49,7 @@
     gap: 1rem;
 
     h3 {
-        @include admixins.text-body-lg;
-        font-weight: 600;
+        @include admixins.text-title-xs;
     }
 
     p {

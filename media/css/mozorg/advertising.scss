@@ -9,6 +9,7 @@
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 @use './ads/mozilla-headline-light-font';
+@use './ads/ads-root';
 @use '~@mozilla-protocol/core/protocol/css/includes/lib';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @use '~@mozilla-protocol/core/protocol/css/components/modal';
@@ -51,15 +52,6 @@ $image-path: '/media/protocol/img';
 
     * {
         box-sizing: border-box;
-    }
-
-    p,
-    figcaption {
-        line-height: 1.2;
-
-        &.mozads-home-big-list-text {
-            line-height: 1.25;
-        }
     }
 
     h1,
@@ -134,7 +126,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-eyebrow {
-    @include admixins.text-body-lg;
+    @include admixins.text-title-xs;
     font-family: var(--moz-sans-headline);
     margin-bottom: 0;
     font-weight: 400;
@@ -143,14 +135,17 @@ $image-path: '/media/protocol/img';
 .mozads-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
-    line-height: 100%;
-    letter-spacing: -1%;
     margin-bottom: 1.5rem;
 }
 
 .mozads-section-subheading {
     @include admixins.text-title-sm;
-    margin: 0;
+    margin-bottom: 1.5rem;
+}
+
+.mozads-section-text-lg {
+    @include admixins.text-body-lg;
+    margin-bottom: 1.5rem;
 }
 
 
@@ -270,8 +265,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-stat-label {
-    font-size: 1rem; // override
-    line-height: 1.2; // design-directed override.
+    @include admixins.text-body-sm;
     text-wrap: pretty;
 
     &.is-top-left {
@@ -282,7 +276,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-large-link {
-    @include admixins.text-title-md;
+    @include admixins.text-button-xl;
     display: block;
     text-align: right;
     margin: 0;
@@ -304,12 +298,6 @@ $image-path: '/media/protocol/img';
 .mozads-highlight-text {
     @include admixins.text-body-lg;
     max-width: 800px;
-}
-
-.mozads-highlight-subheading {
-    @include admixins.text-title-sm;
-    font-weight: 300;
-    padding-right: 5%;
 }
 
 .m24-c-gallery-tile.mozads-size-override {
@@ -366,7 +354,7 @@ $image-path: '/media/protocol/img';
     .mozads-c-callout-action:hover {
         color: white;
         font-weight: 300;
-        font-size: var(--text-button-md);
+        @include admixins.text-button-lg;
     }
 
     .mozads-c-callout-section {
@@ -386,7 +374,7 @@ $image-path: '/media/protocol/img';
 
     .mozads-c-callout-card {
         font-weight: 300;
-        @include admixins.text-title-sm;
+        @include admixins.text-body-xl;
         color: white;
         max-width: $content-md;
         text-shadow:
@@ -395,12 +383,7 @@ $image-path: '/media/protocol/img';
             0 2px 4px rgba(0, 0, 0, 0.1);
 
         p {
-            margin-bottom: $spacing-md;
-        }
-
-        a {
-            color: #fff;
-            font-size: var(--text-button-sm);
+            margin-bottom: 1.5rem;
         }
     }
 
@@ -744,9 +727,16 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-xl} {
     .mozads-section-footer {
-        padding-top: $spacer-xl;
         flex-direction: row;
         justify-content: space-between;
+
+        &.pad-top {
+            padding-top: $spacer-xl;
+        }
+
+        .mozads-large-link { // For when there is no initial text.
+            margin-left: auto;
+        }
     }
 }
 
@@ -757,7 +747,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-home-big-list-heading {
-    @include admixins.text-title-lg;
+    @include admixins.text-title-md;
     line-height: 1;
     font-weight: 300;
     text-wrap: balance;
@@ -782,7 +772,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-home-big-list-text {
-    @include admixins.text-body-md;
+    @include admixins.text-body-sm;
     margin: 0;
     border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
     padding-left: 1rem;
@@ -809,14 +799,6 @@ $image-path: '/media/protocol/img';
         border-left-width: 1rem;
         padding-left: 2rem;
         padding-bottom: 0;
-        line-height: 1;
-    }
-}
-
-// override font size to match design spec
-@media #{$mq-xl} {
-    .mozads-home-big-list-heading {
-        @include admixins.text-title-md;
         line-height: 1;
     }
 }

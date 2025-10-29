@@ -7,6 +7,7 @@
 
 
 .modal-figure-caption {
+    @include admixins.text-body-sm;
     display: flex;
     gap: 1.5rem;
     justify-content: start;
@@ -20,6 +21,7 @@
 
     .mzp-c-button.mozads-c-contact-button {
         margin: 0;
+        @include admixins.text-button-sm;
     }
 
     @media #{$mq-md} {
