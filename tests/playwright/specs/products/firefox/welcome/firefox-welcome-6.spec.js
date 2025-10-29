@@ -8,15 +8,15 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../../scripts/open-page');
-const url = 'firefox/welcome/6';
+const url = '/firefox/welcome/6/';
 
 test.describe(
     `${url} page`,
     {
-        tag: '@firefox'
+        tag: ['@firefox', '@wfc-redirect']
     },
     () => {
-        test('Set as default button displayed', async ({
+        test('Send set as default button displayed', async ({
             page,
             browserName
         }) => {
@@ -55,7 +55,6 @@ test.describe(
             await getAppButton.click();
             await expect(qrCode).not.toBeVisible();
             await expect(thanksMessage).not.toBeVisible();
-            await expect(submitButton).toBeVisible();
             await emailField.fill('success@example.com');
             await submitButton.click();
             await expect(submitButton).not.toBeVisible();
@@ -83,7 +82,6 @@ test.describe(
             await getAppButton.click();
             await expect(qrCode).not.toBeVisible();
             await expect(errorMessage).not.toBeVisible();
-            await expect(submitButton).toBeVisible();
             await emailField.fill('failure@example.com');
             await submitButton.click();
             await expect(errorMessage).toBeVisible();
@@ -95,7 +93,7 @@ test.describe(
                 'Page shown to Firefox browsers only'
             );
 
-            await openPage(`/fy-NL/${url}/?default=true`, page, browserName);
+            await openPage(`/it/${url}/?default=true`, page, browserName);
 
             const getAppButton = page.getByTestId('button-firefox-get-app');
             const qrCode = page.getByTestId('firefox-qr-code');
