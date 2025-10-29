@@ -28,7 +28,7 @@ class NavigationLinkBlock(blocks.StructBlock):
     section_anchor = blocks.CharBlock(
         required=False,
         max_length=100,
-        help_text="Enter the Anchor ID from one of the content sections below. Available anchors will be shown when you save.",
+        help_text="Enter the Anchor ID from one of the content sections.",
     )
 
     internal_page = blocks.PageChooserBlock(

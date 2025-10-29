@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                         "wagtail.blocks.CharBlock",
                         (),
                         {
-                            "help_text": "Enter the Anchor ID from one of the content sections below. Available anchors will be shown when you save.",
+                            "help_text": "Enter the Anchor ID from one of the content sections.",
                             "max_length": 100,
                             "required": False,
                         },
