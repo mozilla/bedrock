@@ -41,8 +41,12 @@ const MzpNewsletter = {
         const submitLoading = form.querySelector('.submit-loading');
 
         // Hide text and show loader
-        submitText.style.opacity = 0;
-        submitLoading.removeAttribute('hidden');
+        if (submitText) {
+            submitText.style.opacity = 0;
+        }
+        if (submitLoading) {
+            submitLoading.removeAttribute('hidden');
+        }
 
         const formFields = form.querySelectorAll('input, button, select');
 
@@ -60,8 +64,12 @@ const MzpNewsletter = {
         const submitLoading = form.querySelector('.submit-loading');
 
         // Hide loader and show text
-        submitLoading.setAttribute('hidden', true);
-        submitText.style.opacity = 1;
+        if (submitLoading) {
+            submitLoading.setAttribute('hidden', true);
+        }
+        if (submitText) {
+            submitText.style.opacity = 1;
+        }
 
         const formFields = form.querySelectorAll('input, button, select');
 
@@ -96,9 +104,7 @@ const MzpNewsletter = {
                 error = form.querySelector('.error-email-invalid');
                 break;
             case ERROR_LIST.NEWSLETTER_ERROR:
-                form.querySelector(
-                    '.error-newsletter-checkbox'
-                ).classList.remove('hidden');
+                error = form.querySelector('.error-newsletter-checkbox');
                 break;
             case ERROR_LIST.COUNTRY_ERROR:
                 error = form.querySelector('.error-select-country');
