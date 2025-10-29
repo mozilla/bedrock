@@ -42,11 +42,9 @@
       </div>
 
       {% if page.second_column %}
-      <ul class="principles-detail-list">
         {% for item in page.second_column %}
           {% include_block item %}
         {% endfor %}
-      </ul>
       {% endif %}
     </div>
   </section>
