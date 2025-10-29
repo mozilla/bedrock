@@ -80,6 +80,13 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .m24-c-content.extra-top-padding {
+        @media #{$mq-md} {
+           padding-top: 8rem;
+        }
+
+    }
+
     .m24-c-content.no-bottom-padding {
         padding-bottom: 0;
 
@@ -141,6 +148,10 @@ $image-path: '/media/protocol/img';
 .mozads-figure {
     position: relative;
     z-index: 1;
+
+    img {
+        display: block;
+    }
 }
 
 .mozads-figure-grid {
@@ -221,7 +232,7 @@ $image-path: '/media/protocol/img';
 .mozads-stat-number {
     @include admixins.text-title-2xl;
     font-family: var(--moz-sans-headline);
-    letter-spacing: -5%;
+    letter-spacing: -1%;
     font-weight: 300;
 
     @media #{$mq-xl} {
@@ -249,7 +260,7 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-stat-label {
-    @include admixins.text-body-md;
+    font-size: 1rem; // override
     line-height: 1.2; // design-directed override.
     text-wrap: pretty;
 
@@ -283,6 +294,12 @@ $image-path: '/media/protocol/img';
 .mozads-highlight-text {
     @include admixins.text-body-lg;
     max-width: 800px;
+}
+
+.mozads-highlight-subheading {
+    @include admixins.text-title-sm;
+    font-weight: 300;
+    padding-right: 5%;
 }
 
 .m24-c-gallery-tile.mozads-size-override {
@@ -731,6 +748,7 @@ $image-path: '/media/protocol/img';
 
 .mozads-home-big-list-heading {
     @include admixins.text-title-lg;
+    line-height: 1;
     font-weight: 300;
     text-wrap: balance;
     border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
@@ -789,5 +807,6 @@ $image-path: '/media/protocol/img';
 @media #{$mq-xl} {
     .mozads-home-big-list-heading {
         @include admixins.text-title-md;
+        line-height: 1;
     }
 }

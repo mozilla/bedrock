@@ -8,10 +8,10 @@
 
 .modal-figure-caption {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: start;
     align-items: start;
-    margin-top: $spacer-md;
+    margin-top: 1.5rem;
     flex-direction: column;
 
     p {
@@ -158,4 +158,12 @@ color: advars.$color-ads-dark-gray;
 // black-on-black modals need more delineation between modal background and page background
 .mzp-c-modal {
     background:rgba(47, 47, 47, 0.89);
+}
+
+.mzp-c-modal-window {
+    padding: 1.5rem 1rem;
+}
+
+.mzp-c-modal-inner {
+    padding: 2rem 1.5rem;
 }

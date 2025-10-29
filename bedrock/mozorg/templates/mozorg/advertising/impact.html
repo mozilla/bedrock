@@ -22,29 +22,32 @@
 
 {% block content %}
 <main id="mozads-main">
+  <header class="mozads-subpage-header">
+    <div class="m24-c-content">
+      <h1>Impact</h1>
+    </div>
+  </header>
 
-<div class="mozads-c-main-dark-section">
-    <header class="mozads-subpage-header">
-      <div class="m24-c-content no-bottom-padding">
-        <div class="mozads-half-grid">
-          <div>
-            <h1>Impact</h1>
-            <p class="mozads-highlight-text">
-              We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
-            </p>
-          </div>
 
-          <figure class="mozads-figure" role="presentation">
-            {{ resp_img(
-              url="img/mozorg/advertising/solutions/ads-solutions-page-3.png",
-              optional_attributes={
-                'loading': 'lazy',
-              }
-            ) }}
-          </figure>
-        </div>
+  <section class="m24-c-content no-bottom-padding">
+    <div class="mozads-half-grid">
+      <div>
+        <p class="mozads-highlight-subheading">
+          Mozilla’s industry-challenging technologies prove once and for all that performance doesn't have to come at the expense of trust.
+        </p>
       </div>
-    </header>
+
+      <figure class="mozads-figure" role="presentation">
+        {{ resp_img(
+          url="img/mozorg/advertising/solutions/ads-solutions-page-3.png",
+          optional_attributes={
+            'loading': 'lazy',
+          }
+        ) }}
+      </figure>
+    </div>
+  </section>
+
 
 
   <section class="m24-c-content has-scroll-padding">
@@ -63,7 +66,6 @@
       </li>
     </ol>
   </section>
-</div>
 
 
 
