@@ -4,6 +4,7 @@
 
 import factory
 import wagtail_factories
+from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
 from bedrock.mozorg.blocks import advertising, leadership
@@ -75,13 +76,22 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
         model = models.ContactBannerSnippet
 
 
+class LinkBlockFactory(wagtail_factories.StructBlockFactory):
+    link_to = "custom_url"
+    custom_url = wagtail_factories.CharBlockFactory
+    new_window = False
+
+    class Meta:
+        model = LinkBlock
+
+
 class AdvertisingHeroBlockFactory(wagtail_factories.StructBlockFactory):
     heading_text = wagtail_factories.CharBlockFactory
     primary_cta_text = wagtail_factories.CharBlockFactory
-    primary_cta_link = wagtail_factories.CharBlockFactory
+    primary_cta_link = factory.SubFactory(LinkBlockFactory)
     supporting_text = wagtail_factories.CharBlockFactory
     secondary_cta_text = wagtail_factories.CharBlockFactory
-    secondary_cta_link = wagtail_factories.CharBlockFactory
+    secondary_cta_link = factory.SubFactory(LinkBlockFactory)
 
     class Meta:
         model = advertising.AdvertisingHeroBlock
@@ -94,6 +104,14 @@ class SectionHeaderBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.SectionHeaderBlock
 
 
+class NotificationBlockFactory(wagtail_factories.StructBlockFactory):
+    notification_text = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = advertising.NotificationBlock
+
+
 class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     title = "Test Advertising Index Page"
     live = True
@@ -103,6 +121,12 @@ class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
         {
             "advertising_hero_block": factory.SubFactory(AdvertisingHeroBlockFactory),
             "section_header_block": factory.SubFactory(SectionHeaderBlockFactory),
+        }
+    )
+
+    notifications = wagtail_factories.StreamFieldFactory(
+        {
+            "notification_block": factory.SubFactory(NotificationBlockFactory),
         }
     )
 
