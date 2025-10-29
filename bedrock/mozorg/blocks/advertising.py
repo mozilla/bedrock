@@ -42,6 +42,12 @@ class AdvertisingHeroBlock(blocks.StructBlock):
 class SectionHeaderBlock(blocks.StructBlock):
     """Section header block."""
 
+    has_top_divider = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a divider line on top?",
+        inline_form=True,
+    )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
     heading_text = blocks.CharBlock(char_max_length=255)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
