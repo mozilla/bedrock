@@ -52,7 +52,6 @@ class SectionHeaderBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(char_max_length=255)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
-    image_alt_text = blocks.CharBlock(char_max_length=255, required=False)
 
     class Meta:
         icon = "title"
@@ -66,7 +65,6 @@ class FigureWithStatisticBlock(blocks.StructBlock):
     """Figure with a statistic block."""
 
     image = ImageChooserBlock(required=False)
-    image_alt_text = blocks.CharBlock(char_max_length=255, required=False)
     image_caption = blocks.RichTextBlock(char_max_length=255)
     statistic_value = blocks.CharBlock(char_max_length=255)
     statistic_label = blocks.CharBlock(char_max_length=255)
