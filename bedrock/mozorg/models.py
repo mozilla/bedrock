@@ -8,7 +8,6 @@ from django.db import models, transaction
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
-from wagtail.blocks import RichTextBlock
 from wagtail.fields import StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
@@ -18,9 +17,9 @@ from bedrock.mozorg.blocks.advertising import (
     AdvertisingHeroBlock,
     FeatureListBlock,
     FigureWithStatisticBlock,
-    ListItemBlock,
     NotificationBlock,
     SectionHeaderBlock,
+    TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
@@ -183,18 +182,9 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
     parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 
-    heading = models.CharField(
-        max_length=255,
-        blank=True,
-    )
-    subheading = models.CharField(
-        max_length=255,
-        blank=True,
-    )
-    second_column = StreamField(
+    content = StreamField(
         [
-            ("list_item", ListItemBlock()),
-            ("rich_text", RichTextBlock()),
+            ("two_column_block", TwoColumnDetailBlock()),
         ],
         blank=True,
         null=True,
@@ -202,9 +192,7 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("heading"),
-        FieldPanel("subheading"),
-        FieldPanel("second_column"),
+        FieldPanel("content"),
     ]
 
     template = "mozorg/cms/advertising/two_column_subpage.html"

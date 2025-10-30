@@ -119,6 +119,25 @@ class ListItemBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class TwoColumnDetailBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    subheading = blocks.TextBlock()
+    second_column = blocks.StreamBlock(
+        [
+            ("list_item", ListItemBlock()),
+        ],
+        required=False,
+    )
+
+    class Meta:
+        label = "Two Column Detail"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/two_column_detail_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class NotificationBlock(blocks.StructBlock):
     notification_text = blocks.RichTextBlock(
         char_max_length=255,
