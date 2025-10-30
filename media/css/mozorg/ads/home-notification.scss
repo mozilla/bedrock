@@ -18,6 +18,50 @@
     svg {
         flex: 0 0 auto;
     }
+
+    .moz24-footer-social-links {
+        background: transparent;
+
+        li {
+            a {
+                opacity: .9;
+
+
+                &:hover,
+                &:focus {
+                    opacity: 1;
+                }
+
+                &.linkedin {
+                    background-image: url('/media/protocol/img/icons/social/linkedin/black.svg');
+                }
+
+                &.tiktok {
+                    background-image: url('/media/protocol/img/icons/social/tiktok/black.svg');
+                }
+
+                &.spotify {
+                    background-image: url('/media/protocol/img/icons/social/spotify/black.svg');
+                }
+
+                &.twitter {
+                    background-image: url('/media/protocol/img/icons/social/x/black.svg');
+                }
+
+                &.bluesky {
+                    background-image: url('/media/img/icons/social/bluesky/black.svg');
+                }
+
+                &.instagram {
+                    background-image: url('/media/protocol/img/icons/social/instagram/black.svg');
+                }
+
+                &.youtube {
+                    background-image: url('/media/protocol/img/icons/social/youtube/black.svg');
+                }
+            }
+        }
+    }
 }
 
 .mozads-notification-container {

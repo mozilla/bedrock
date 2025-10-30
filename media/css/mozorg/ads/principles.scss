@@ -6,16 +6,36 @@
 
 .two-column-intro {
     h2 {
-        @include text-title-md;
+        @include admixins.text-title-xl;
         font-weight: 300;
     }
 
     p {
-        @include text-title-2xs;
+        @include admixins.text-body-lg;
     }
 
     @media #{$mq-md} {
        padding-right: 15%;
+
+        h2 {
+            @include admixins.text-title-lg;
+        }
+
+        p {
+            @include admixins.text-body-lg;
+        }
+    }
+
+    @media #{$mq-xl} {
+       padding-right: 5%;
+
+        h2 {
+            @include admixins.text-title-md;
+        }
+
+        p {
+            @include admixins.text-body-lg;
+        }
     }
 }
 
@@ -30,7 +50,7 @@
 
 .two-column-detail-list, .two-column-right-column {
     h3 {
-        @include text-title-2xs;
+        @include admixins.text-title-xs;
     }
 
     p {
