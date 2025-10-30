@@ -73,7 +73,7 @@ class Migration(migrations.Migration):
             model_name="advertisingindexpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("advertising_hero_block", 13), ("section_header_block", 18), ("figure_with_statistic_block", 22), ("feature_list_block", 25)],
+                [("advertising_hero_block", 13), ("section_header_block", 18), ("figure_with_statistic_block", 23), ("feature_list_block", 26)],
                 blank=True,
                 block_lookup={
                     0: (
@@ -189,6 +189,11 @@ class Migration(migrations.Migration):
                     ),
                     22: (
                         "wagtail.blocks.StructBlock",
+                        [[("link_to", 2), ("page", 3), ("file", 4), ("custom_url", 5), ("anchor", 6), ("email", 7), ("phone", 8), ("new_window", 9)]],
+                        {"label": "Link", "required": False},
+                    ),
+                    23: (
+                        "wagtail.blocks.StructBlock",
                         [
                             [
                                 ("anchor_id", 19),
@@ -197,13 +202,15 @@ class Migration(migrations.Migration):
                                 ("statistic_value", 1),
                                 ("statistic_label", 1),
                                 ("align_image_on_right", 21),
+                                ("cta_text", 16),
+                                ("cta_link", 22),
                             ]
                         ],
                         {},
                     ),
-                    23: ("wagtail.blocks.StructBlock", [[("heading_text", 1), ("supporting_text", 11)]], {}),
-                    24: ("wagtail.blocks.ListBlock", (23,), {"min_num": 1}),
-                    25: ("wagtail.blocks.StructBlock", [[("anchor_id", 19), ("feature_list_items", 24)]], {}),
+                    24: ("wagtail.blocks.StructBlock", [[("heading_text", 1), ("supporting_text", 11)]], {}),
+                    25: ("wagtail.blocks.ListBlock", (24,), {"min_num": 1}),
+                    26: ("wagtail.blocks.StructBlock", [[("anchor_id", 19), ("feature_list_items", 25)]], {}),
                 },
                 null=True,
             ),
