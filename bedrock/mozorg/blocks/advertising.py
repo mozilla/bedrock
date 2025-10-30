@@ -69,6 +69,8 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         label="Should the image be to the right of the statistic?",
         inline_form=True,
     )
+    cta_text = blocks.CharBlock(char_max_length=255, required=False)
+    cta_link = LinkBlock(label="Link", required=False)
 
     class Meta:
         icon = "decimal"
