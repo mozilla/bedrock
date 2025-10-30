@@ -42,7 +42,7 @@ jobs:
         with:
           buildkitd-flags: "cache-from: type=gha cache-to: type=gha,mode=max"
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
             fetch-depth: 10 # get enough so we have a Git history, but not everything
             fetch-tags: true
@@ -89,8 +89,6 @@ jobs:
 
       - name: Build and push public images to Docker Hub
         run: |
-            # FIXME: GitHub provides compose version enabling bake but timing out
-            export COMPOSE_BAKE=false
             ./bin/build-release-image.sh --push
         timeout-minutes: 90
         env:
@@ -153,8 +151,6 @@ jobs:
       id-token: write
 
     steps:
-      - uses: docker/setup-buildx-action@v3
-
       - id: gcp_auth
         uses: google-github-actions/auth@v2
         with:
