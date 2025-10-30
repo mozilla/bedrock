@@ -17,6 +17,17 @@ CAPTION_TEXT_FEATURES = [
 ]
 
 
+SOCIAL_MEDIA_ICON_CHOICES = [
+    ("linkedin", "LinkedIn"),
+    ("tiktok", "TikTok"),
+    ("spotify", "Spotify"),
+    ("twitter", "Twitter"),
+    ("bluesky", "BlueSky"),
+    ("instagram", "Instagram"),
+    ("youtube", "YouTube"),
+]
+
+
 class AdvertisingHeroBlock(blocks.StructBlock):
     """Advertising page hero block."""
 
@@ -84,6 +95,8 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         label="Should the image be to the right of the statistic?",
         inline_form=True,
     )
+    cta_text = blocks.CharBlock(char_max_length=255, required=False)
+    cta_link = LinkBlock(label="Link", required=False)
 
     class Meta:
         icon = "decimal"
@@ -139,12 +152,63 @@ class ListItemBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class ListBlock(blocks.StructBlock):
+    """A block containing a list of items."""
+
+    list_items = blocks.ListBlock(ListItemBlock())
+
+    class Meta:
+        icon = "list-ul"
+        label = "List"
+        label_format = "List"
+        template = "mozorg/cms/advertising/blocks/list_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class TwoColumnDetailBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    subheading = blocks.TextBlock()
+    second_column = blocks.StreamBlock(
+        [
+            ("list", ListBlock()),
+        ],
+        required=False,
+    )
+
+    class Meta:
+        label = "Two Column Detail"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/two_column_detail_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class LinkWithIcon(blocks.StructBlock):
+    """Link with an icon."""
+
+    icon = blocks.ChoiceBlock(required=False, choices=SOCIAL_MEDIA_ICON_CHOICES, inline_form=True)
+    link = LinkBlock()
+
+    class Meta:
+        icon = "link"
+        label = "Link With Icon"
+        label_format = "Link With Icon"
+        template = "mozorg/cms/advertising/blocks/link_with_icon_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class NotificationBlock(blocks.StructBlock):
     notification_text = blocks.RichTextBlock(
         char_max_length=255,
         features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
     )
-    link = LinkBlock()
+    links = blocks.StreamBlock(
+        [
+            ("link_with_icon", LinkWithIcon()),
+        ],
+        required=False,
+    )
 
     class Meta:
         template = "mozorg/cms/advertising/blocks/notification_block.html"

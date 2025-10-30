@@ -33,8 +33,8 @@ class Migration(migrations.Migration):
                         [
                             ("advertising_hero_block", 12),
                             ("section_header_block", 16),
-                            ("figure_with_statistic_block", 19),
-                            ("feature_list_block", 22),
+                            ("figure_with_statistic_block", 20),
+                            ("feature_list_block", 23),
                         ],
                         blank=True,
                         block_lookup={
@@ -163,18 +163,36 @@ class Migration(migrations.Migration):
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
+                                        ("link_to", 1),
+                                        ("page", 2),
+                                        ("file", 3),
+                                        ("custom_url", 4),
+                                        ("anchor", 5),
+                                        ("email", 6),
+                                        ("phone", 7),
+                                        ("new_window", 8),
+                                    ]
+                                ],
+                                {"label": "Link", "required": False},
+                            ),
+                            20: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
                                         ("image", 15),
                                         ("image_caption", 17),
                                         ("statistic_value", 0),
                                         ("statistic_label", 0),
                                         ("align_image_on_right", 18),
+                                        ("cta_text", 14),
+                                        ("cta_link", 19),
                                     ]
                                 ],
                                 {},
                             ),
-                            20: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 10)]], {}),
-                            21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
-                            22: ("wagtail.blocks.StructBlock", [[("feature_list_items", 21)]], {}),
+                            21: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 10)]], {}),
+                            22: ("wagtail.blocks.ListBlock", (21,), {"min_num": 1}),
+                            23: ("wagtail.blocks.StructBlock", [[("feature_list_items", 22)]], {}),
                         },
                         null=True,
                     ),
@@ -182,7 +200,7 @@ class Migration(migrations.Migration):
                 (
                     "notifications",
                     wagtail.fields.StreamField(
-                        [("notification_block", 10)],
+                        [("notification_block", 13)],
                         blank=True,
                         block_lookup={
                             0: (
@@ -191,6 +209,23 @@ class Migration(migrations.Migration):
                                 {"char_max_length": 255, "features": ["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"]},
                             ),
                             1: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("linkedin", "LinkedIn"),
+                                        ("tiktok", "TikTok"),
+                                        ("spotify", "Spotify"),
+                                        ("twitter", "Twitter"),
+                                        ("bluesky", "BlueSky"),
+                                        ("instagram", "Instagram"),
+                                        ("youtube", "YouTube"),
+                                    ],
+                                    "inline_form": True,
+                                    "required": False,
+                                },
+                            ),
+                            2: (
                                 "wagtail.blocks.ChoiceBlock",
                                 [],
                                 {
@@ -207,13 +242,13 @@ class Migration(migrations.Migration):
                                     "required": False,
                                 },
                             ),
-                            2: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
-                            3: (
+                            3: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            4: (
                                 "wagtail.documents.blocks.DocumentChooserBlock",
                                 (),
                                 {"form_classname": "file_link", "label": "File", "required": False},
                             ),
-                            4: (
+                            5: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {
@@ -224,39 +259,41 @@ class Migration(migrations.Migration):
                                     "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
                                 },
                             ),
-                            5: (
+                            6: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
                             ),
-                            6: ("wagtail.blocks.EmailBlock", (), {"required": False}),
-                            7: (
+                            7: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            8: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
                             ),
-                            8: (
+                            9: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
                             ),
-                            9: (
+                            10: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
-                                        ("link_to", 1),
-                                        ("page", 2),
-                                        ("file", 3),
-                                        ("custom_url", 4),
-                                        ("anchor", 5),
-                                        ("email", 6),
-                                        ("phone", 7),
-                                        ("new_window", 8),
+                                        ("link_to", 2),
+                                        ("page", 3),
+                                        ("file", 4),
+                                        ("custom_url", 5),
+                                        ("anchor", 6),
+                                        ("email", 7),
+                                        ("phone", 8),
+                                        ("new_window", 9),
                                     ]
                                 ],
                                 {},
                             ),
-                            10: ("wagtail.blocks.StructBlock", [[("notification_text", 0), ("link", 9)]], {}),
+                            11: ("wagtail.blocks.StructBlock", [[("icon", 1), ("link", 10)]], {}),
+                            12: ("wagtail.blocks.StreamBlock", [[("link_with_icon", 11)]], {"required": False}),
+                            13: ("wagtail.blocks.StructBlock", [[("notification_text", 0), ("links", 12)]], {}),
                         },
                         null=True,
                     ),

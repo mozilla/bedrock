@@ -67,9 +67,12 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
         parent=root_page,
         contact_banner=contact_banner,
         notifications__0__notification_block__notification_text=RichText("<p>Test notification text</p>"),
-        notifications__0__notification_block__link=factories.LinkBlockFactory(
-            link_to="custom_url",
-            custom_url="https://example.com/notification",
+        notifications__0__notification_block__links__0__link_with_icon=factories.LinkWithIconFactory(
+            icon="linkedin",
+            link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/notification",
+            ),
         ),
         content__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
@@ -129,13 +132,36 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     )
     advertising_page.save()
 
-    # Create the TwoColumnSubpage with content
+    # Build the second_column StreamBlock data for the TwoColumnSubpage
+    list_item_heading_text = "Test List Item Heading"
+    list_item_supporting_text = "Test list item supporting text"
+    second_column_data = [
+        (
+            "list",
+            {
+                "list_items": [
+                    {
+                        "heading_text": list_item_heading_text,
+                        "supporting_text": RichText(f"<p>{list_item_supporting_text}</p>"),
+                    }
+                ]
+            },
+        )
+    ]
+
+    # Create the TwoColumnSubpage with properly formatted StreamField data
     two_column_page = factories.TwoColumnSubpageFactory(
         parent=advertising_page,
-        heading="Test Heading",
-        subheading="Test Subheading",
-        second_column__0__list_item__heading_text="Test List Item Heading",
-        second_column__0__list_item__supporting_text=RichText("<p>Test list item supporting text</p>"),
+        content=[
+            (
+                "two_column_block",
+                {
+                    "heading_text": "Test Heading",
+                    "subheading": "Test Subheading",
+                    "second_column": second_column_data,
+                },
+            )
+        ],
     )
 
     two_column_page.save()
@@ -152,8 +178,8 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     assert "Test Subheading" in page_content
 
     # Assert content from the list item block
-    assert "Test List Item Heading" in page_content
-    assert "Test list item supporting text" in page_content
+    assert list_item_heading_text in page_content
+    assert list_item_supporting_text in page_content
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))

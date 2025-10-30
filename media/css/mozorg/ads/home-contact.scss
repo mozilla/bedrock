@@ -3,12 +3,15 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 
 .mzp-c-button.mozads-c-contact-button {
+    @include admixins.text-button-md;
     border-radius: 0;
     color: #fff;
     margin-top: 2rem;
+    padding-block: 0.75rem;
 }
 
 .mozads-c-home-contact-grid {

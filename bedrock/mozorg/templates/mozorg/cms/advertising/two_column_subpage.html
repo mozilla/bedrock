@@ -28,6 +28,7 @@
 {% endblock %}
 
 {% block content %}
+<main id="mozads-main">
   <header class="mozads-subpage-header">
     <div class="m24-c-content">
       <h1>{{ page.title }}</h1>
@@ -35,19 +36,9 @@
   </header>
 
   <section class="m24-c-content">
-    <div class="{% if page.second_column %}mozads-half-grid{% endif %}">
-      <div class="principles-intro">
-        <h2>{{ page.heading }}</h2>
-        <p>{{ page.subheading }}</p>
-      </div>
-
-      {% if page.second_column %}
-        <div class="priciples-right-column">
-          {% for item in page.second_column %}
-            {% include_block item %}
-          {% endfor %}
-        </div>
-      {% endif %}
-    </div>
+    {% for block in page.content %}
+      {% include_block block %}
+    {% endfor %}
   </section>
+</main>
 {% endblock %}

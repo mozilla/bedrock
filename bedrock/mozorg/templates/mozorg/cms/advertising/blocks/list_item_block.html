@@ -4,8 +4,6 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<ul class="principles-detail-list">
-  {% with li_class='', h3_class='', p_class='' %}
-    {% include 'mozorg/cms/advertising/includes/list_item.html' %}
-  {% endwith %}
-</ul>
+{% with li_class='', h3_class='mozads-section-subheading', p_class='' %}
+  {% include 'mozorg/cms/advertising/includes/list_item.html' %}
+{% endwith %}

@@ -143,6 +143,10 @@ urlpatterns = [
     page("advertising/", "mozorg/advertising/landing.html"),
     page("advertising/formats/", "mozorg/advertising/formats.html"),
     page("advertising/principles/", "mozorg/advertising/principles.html"),
+    path("advertising/why-mozilla/", views.why_mozilla_view, name="why-mozilla"),
+    path("advertising/contact/", views.contact, name="advertising-contact"),
+    page("advertising/solutions/", "mozorg/advertising/solutions.html"),
+    page("advertising/impact/", "mozorg/advertising/impact.html"),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
 ]
