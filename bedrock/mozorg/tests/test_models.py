@@ -132,13 +132,36 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     )
     advertising_page.save()
 
-    # Create the TwoColumnSubpage with content
+    # Build the second_column StreamBlock data for the TwoColumnSubpage
+    list_item_heading_text = "Test List Item Heading"
+    list_item_supporting_text = "Test list item supporting text"
+    second_column_data = [
+        (
+            "list",
+            {
+                "list_items": [
+                    {
+                        "heading_text": list_item_heading_text,
+                        "supporting_text": RichText(f"<p>{list_item_supporting_text}</p>"),
+                    }
+                ]
+            },
+        )
+    ]
+
+    # Create the TwoColumnSubpage with properly formatted StreamField data
     two_column_page = factories.TwoColumnSubpageFactory(
         parent=advertising_page,
-        heading="Test Heading",
-        subheading="Test Subheading",
-        second_column__0__list_item__heading_text="Test List Item Heading",
-        second_column__0__list_item__supporting_text=RichText("<p>Test list item supporting text</p>"),
+        content=[
+            (
+                "two_column_block",
+                {
+                    "heading_text": "Test Heading",
+                    "subheading": "Test Subheading",
+                    "second_column": second_column_data,
+                },
+            )
+        ],
     )
 
     two_column_page.save()
@@ -155,5 +178,5 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     assert "Test Subheading" in page_content
 
     # Assert content from the list item block
-    assert "Test List Item Heading" in page_content
-    assert "Test list item supporting text" in page_content
+    assert list_item_heading_text in page_content
+    assert list_item_supporting_text in page_content

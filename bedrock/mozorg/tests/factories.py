@@ -150,17 +150,30 @@ class ListItemBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.ListItemBlock
 
 
+class ListBlockFactory(wagtail_factories.StructBlockFactory):
+    list_items = wagtail_factories.ListBlockFactory(ListItemBlockFactory)
+
+    class Meta:
+        model = advertising.ListBlock
+
+
+class TwoColumnDetailBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+    subheading = wagtail_factories.CharBlockFactory
+    second_column = []
+
+    class Meta:
+        model = advertising.TwoColumnDetailBlock
+
+
 class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
     title = "Test Two Column Subpage"
     live = True
     slug = "two-column-subpage"
 
-    heading = "Test Heading"
-    subheading = "Test Subheading"
-
-    second_column = wagtail_factories.StreamFieldFactory(
+    content = wagtail_factories.StreamFieldFactory(
         {
-            "list_item": factory.SubFactory(ListItemBlockFactory),
+            "two_column_block": factory.SubFactory(TwoColumnDetailBlockFactory),
         }
     )
 
