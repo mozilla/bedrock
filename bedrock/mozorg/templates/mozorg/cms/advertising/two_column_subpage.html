@@ -24,7 +24,9 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% include 'mozorg/advertising/includes/sub-nav.html' %}
+  {% with advertising_index_page=page.get_parent() %}
+    {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block content %}
