@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 .mozads-c-home-approach {
     display: flex;

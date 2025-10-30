@@ -4,6 +4,7 @@
 @use '../m24/vars/lib' as *;
 @use './ads/vars' as advars;
 @use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
+@use './ads/mixins' as admixins;
 
 $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
