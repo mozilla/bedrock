@@ -33,8 +33,8 @@ class Migration(migrations.Migration):
                         [
                             ("advertising_hero_block", 12),
                             ("section_header_block", 16),
-                            ("figure_with_statistic_block", 19),
-                            ("feature_list_block", 22),
+                            ("figure_with_statistic_block", 20),
+                            ("feature_list_block", 23),
                         ],
                         blank=True,
                         block_lookup={
@@ -163,18 +163,36 @@ class Migration(migrations.Migration):
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
+                                        ("link_to", 1),
+                                        ("page", 2),
+                                        ("file", 3),
+                                        ("custom_url", 4),
+                                        ("anchor", 5),
+                                        ("email", 6),
+                                        ("phone", 7),
+                                        ("new_window", 8),
+                                    ]
+                                ],
+                                {"label": "Link", "required": False},
+                            ),
+                            20: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
                                         ("image", 15),
                                         ("image_caption", 17),
                                         ("statistic_value", 0),
                                         ("statistic_label", 0),
                                         ("align_image_on_right", 18),
+                                        ("cta_text", 14),
+                                        ("cta_link", 19),
                                     ]
                                 ],
                                 {},
                             ),
-                            20: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 10)]], {}),
-                            21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
-                            22: ("wagtail.blocks.StructBlock", [[("feature_list_items", 21)]], {}),
+                            21: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 10)]], {}),
+                            22: ("wagtail.blocks.ListBlock", (21,), {"min_num": 1}),
+                            23: ("wagtail.blocks.StructBlock", [[("feature_list_items", 22)]], {}),
                         },
                         null=True,
                     ),
