@@ -6,18 +6,14 @@
 
 <div class="mozads-notification">
     <div class="mozads-notification-container">
-      {{ value.notification_text|safe }}
+      {{ value.notification_text|richtext }}
 
-      {% if value.link.get_url() %}
-        <a
-          href="{{ value.link.get_url() }}"
-          {% if value.link.new_window %}target="_blank"{% endif %}
-        >
-          <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 17" width="16" height="17" role="presentation">
-            <path d="m7.24 1.758 5.89 5.89H0v1.5h13.13l-5.89 5.89 1.06 1.06 7.7-7.7-7.7-7.7z" fill="#000"/>
-          </svg>
-
-        </a>
+      {% if value.links %}
+        <ul class="moz24-footer-social-links">
+          {% for item in value.links %}
+            {% include_block item %}
+          {% endfor %}
+        </ul>
       {% endif %}
     </div>
 </div>

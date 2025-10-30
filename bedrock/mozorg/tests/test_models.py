@@ -67,9 +67,12 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
         parent=root_page,
         contact_banner=contact_banner,
         notifications__0__notification_block__notification_text=RichText("<p>Test notification text</p>"),
-        notifications__0__notification_block__link=factories.LinkBlockFactory(
-            link_to="custom_url",
-            custom_url="https://example.com/notification",
+        notifications__0__notification_block__links__0__link_with_icon=factories.LinkWithIconFactory(
+            icon="linkedin",
+            link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/notification",
+            ),
         ),
         content__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
