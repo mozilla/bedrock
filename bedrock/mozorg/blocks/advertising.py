@@ -121,6 +121,19 @@ class ListItemBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class ListBlock(blocks.StructBlock):
+    """A block containing a list of items."""
+
+    list_items = blocks.ListBlock(ListItemBlock())
+
+    class Meta:
+        icon = "list-ul"
+        label = "List"
+        label_format = "List"
+        template = "mozorg/cms/advertising/blocks/list_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class TwoColumnDetailBlock(blocks.StructBlock):
     """Feature list item block."""
 
@@ -128,7 +141,7 @@ class TwoColumnDetailBlock(blocks.StructBlock):
     subheading = blocks.TextBlock()
     second_column = blocks.StreamBlock(
         [
-            ("list_item", ListItemBlock()),
+            ("list", ListBlock()),
         ],
         required=False,
     )

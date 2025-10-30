@@ -4,7 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<li class="{{ li_class }}">
-  <h3 class="{{ h3_class }}">{{ value.heading_text }}</h3>
-  <div class="{{ p_class }}">{{ value.supporting_text|richtext }}</div>
-</li>
+<ul class="two-column-detail-list">
+  {% for item in value.list_items %}
+    {% include_block item %}
+  {% endfor %}
+</ul>

@@ -4,7 +4,7 @@
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
 
-.principles-intro {
+.two-column-intro {
     h2 {
         @include text-title-md;
         font-weight: 300;
@@ -19,7 +19,7 @@
     }
 }
 
-.principles-detail-list {
+.two-column-detail-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@
     gap: 1rem;
 }
 
-.principles-detail-list, .principles-right-column {
+.two-column-detail-list, .two-column-right-column {
     h3 {
         @include text-title-2xs;
     }

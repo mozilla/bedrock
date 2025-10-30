@@ -30,15 +30,17 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("two_column_block", 5)],
+                        [("two_column_block", 7)],
                         blank=True,
                         block_lookup={
                             0: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
                             1: ("wagtail.blocks.TextBlock", (), {}),
                             2: ("wagtail.blocks.RichTextBlock", (), {"features": ["bold", "italic", "link"]}),
                             3: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("supporting_text", 2)]], {}),
-                            4: ("wagtail.blocks.StreamBlock", [[("list_item", 3)]], {"required": False}),
-                            5: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("subheading", 1), ("second_column", 4)]], {}),
+                            4: ("wagtail.blocks.ListBlock", (3,), {}),
+                            5: ("wagtail.blocks.StructBlock", [[("list_items", 4)]], {}),
+                            6: ("wagtail.blocks.StreamBlock", [[("list", 5)]], {"required": False}),
+                            7: ("wagtail.blocks.StructBlock", [[("heading_text", 0), ("subheading", 1), ("second_column", 6)]], {}),
                         },
                         null=True,
                     ),

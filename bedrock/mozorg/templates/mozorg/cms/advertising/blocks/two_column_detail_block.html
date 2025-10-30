@@ -5,17 +5,15 @@
 #}
 
 <div class="{% if value.second_column %}mozads-half-grid{% endif %}">
-  <div class="principles-intro">
+  <div class="two-column-intro">
     <h2 class="mozads-section-heading">{{ value.heading_text }}</h2>
     <p class="mozads-section-text-lg">{{ value.subheading }}</p>
   </div>
 
   {% if value.second_column %}
-    <div class="principles-right-column">
-      {% for item in value.second_column %}
-        {% include_block item %}
-      {% endfor %}
-    </div>
+    {% for item in value.second_column %}
+      {% include_block item %}
+    {% endfor %}
   {% endif %}
 
 </div>
