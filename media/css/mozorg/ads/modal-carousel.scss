@@ -7,11 +7,12 @@
 
 
 .modal-figure-caption {
+    @include admixins.text-body-sm;
     display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: $spacer-md;
+    gap: 1.5rem;
+    justify-content: start;
+    align-items: start;
+    margin-top: 1.5rem;
     flex-direction: column;
 
     p {
@@ -20,10 +21,13 @@
 
     .mzp-c-button.mozads-c-contact-button {
         margin: 0;
+        @include admixins.text-button-sm;
     }
 
     @media #{$mq-md} {
+        justify-content: space-between;
         flex-direction: row;
+        align-items: center;
     }
 }
 
@@ -34,6 +38,16 @@
 
 .modal-figure-caption-text {
     font-weight: 300;
+
+    &.is-hidden {
+        display: none;
+    }
+}
+
+.mozads-figure,
+.carousel {
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .carousel-controls {
@@ -146,4 +160,12 @@ color: advars.$color-ads-dark-gray;
 // black-on-black modals need more delineation between modal background and page background
 .mzp-c-modal {
     background:rgba(47, 47, 47, 0.89);
+}
+
+.mzp-c-modal-window {
+    padding: 1.5rem 1rem;
+}
+
+.mzp-c-modal-inner {
+    padding: 2rem 1.5rem;
 }

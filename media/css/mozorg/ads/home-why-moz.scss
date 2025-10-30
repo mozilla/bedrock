@@ -28,5 +28,18 @@
     &.has-border-top {
         border-top: 1px solid advars.$color-ads-off-black;
         padding-top: 2rem;
+
+        @media #{$mq-md} {
+            padding-top: 3rem;
+        }
+    }
+}
+
+.mozads-c-main-dark-section {
+    .mozads-half-grid {
+        &.is-list-item,
+        &.has-border-top {
+            border-color: advars.$color-ads-dark-gray;
+        }
     }
 }

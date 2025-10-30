@@ -7,16 +7,36 @@
 
 .two-column-intro {
     h2 {
-        @include admixins.text-title-md;
+        @include admixins.text-title-xl;
         font-weight: 300;
     }
 
     p {
-        @include admixins.text-title-2xs;
+        @include admixins.text-body-lg;
     }
 
     @media #{$mq-md} {
        padding-right: 15%;
+
+        h2 {
+            @include admixins.text-title-lg;
+        }
+
+        p {
+            @include admixins.text-body-lg;
+        }
+    }
+
+    @media #{$mq-xl} {
+       padding-right: 5%;
+
+        h2 {
+            @include admixins.text-title-md;
+        }
+
+        p {
+            @include admixins.text-body-lg;
+        }
     }
 }
 
@@ -29,8 +49,7 @@
     gap: 1rem;
 
     h3 {
-        @include admixins.text-title-2xs;
-        font-weight: 600;
+        @include admixins.text-title-xs;
     }
 
     p {
