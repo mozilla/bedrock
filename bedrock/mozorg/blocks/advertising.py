@@ -68,6 +68,12 @@ class SectionHeaderBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(char_max_length=255)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
+    colors_should_match_header = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section colors match the colors of the header?",
+        inline_form=True,
+    )
 
     class Meta:
         icon = "title"
