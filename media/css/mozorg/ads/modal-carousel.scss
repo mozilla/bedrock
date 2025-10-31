@@ -38,11 +38,14 @@
 
 .modal-figure-caption-text {
     font-weight: 300;
+}
 
+[data-slide-caption] {
     &.is-hidden {
         display: none;
     }
 }
+
 
 .mozads-figure,
 .carousel {
