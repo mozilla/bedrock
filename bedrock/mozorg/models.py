@@ -260,6 +260,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
     content = StreamField(
         [
             ("section_header_block", SectionHeaderBlock()),
+            ("figure_with_statistic_block", FigureWithStatisticBlock()),
         ],
         blank=True,
         null=True,

@@ -92,7 +92,7 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable from navigation",
     )
     image = ImageChooserBlock(required=False)
-    image_caption = blocks.RichTextBlock(char_max_length=255)
+    image_caption = blocks.RichTextBlock(char_max_length=255, required=False)
     statistic_value = blocks.CharBlock(char_max_length=255)
     statistic_label = blocks.CharBlock(char_max_length=255)
     align_image_on_right = blocks.BooleanBlock(
@@ -103,6 +103,12 @@ class FigureWithStatisticBlock(blocks.StructBlock):
     )
     cta_text = blocks.CharBlock(char_max_length=255, required=False)
     cta_link = LinkBlock(label="Link", required=False)
+    colors_should_match_header = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section colors match the colors of the header?",
+        inline_form=True,
+    )
 
     class Meta:
         icon = "decimal"

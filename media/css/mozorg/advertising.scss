@@ -731,6 +731,10 @@ $image-path: '/media/protocol/img';
     &.pad-top {
         padding-top: $spacer-xl;
     }
+
+    &.full-width {
+        width: 100%;
+    }
 }
 
 @media #{$mq-md} {

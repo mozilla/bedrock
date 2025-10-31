@@ -135,7 +135,7 @@ class Migration(migrations.Migration):
                         (),
                         {"help_text": "Optional: Add an ID to make this section linkable from navigation", "max_length": 100, "required": False},
                     ),
-                    21: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255}),
+                    21: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255, "required": False}),
                     22: (
                         "wagtail.blocks.BooleanBlock",
                         (),
@@ -158,6 +158,7 @@ class Migration(migrations.Migration):
                                 ("align_image_on_right", 22),
                                 ("cta_text", 16),
                                 ("cta_link", 23),
+                                ("colors_should_match_header", 18),
                             ]
                         ],
                         {},
@@ -173,7 +174,7 @@ class Migration(migrations.Migration):
             model_name="contentsubpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("section_header_block", 6)],
+                [("section_header_block", 6), ("figure_with_statistic_block", 19)],
                 blank=True,
                 block_lookup={
                     0: (
@@ -213,6 +214,88 @@ class Migration(migrations.Migration):
                                 ("heading_text", 3),
                                 ("subheading_text", 2),
                                 ("image", 4),
+                                ("colors_should_match_header", 5),
+                            ]
+                        ],
+                        {},
+                    ),
+                    7: (
+                        "wagtail.blocks.CharBlock",
+                        (),
+                        {"help_text": "Optional: Add an ID to make this section linkable from navigation", "max_length": 100, "required": False},
+                    ),
+                    8: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255, "required": False}),
+                    9: (
+                        "wagtail.blocks.BooleanBlock",
+                        (),
+                        {"default": False, "inline_form": True, "label": "Should the image be to the right of the statistic?", "required": False},
+                    ),
+                    10: (
+                        "wagtail.blocks.ChoiceBlock",
+                        [],
+                        {
+                            "choices": [
+                                ("page", "Page"),
+                                ("file", "File"),
+                                ("custom_url", "Custom URL"),
+                                ("email", "Email"),
+                                ("anchor", "Anchor"),
+                                ("phone", "Phone"),
+                            ],
+                            "classname": "link_choice_type_selector",
+                            "label": "Link to",
+                            "required": False,
+                        },
+                    ),
+                    11: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                    12: ("wagtail.documents.blocks.DocumentChooserBlock", (), {"form_classname": "file_link", "label": "File", "required": False}),
+                    13: (
+                        "wagtail.blocks.CharBlock",
+                        (),
+                        {
+                            "form_classname": "custom_url_link url_field",
+                            "label": "Custom URL",
+                            "max_length": 300,
+                            "required": False,
+                            "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                        },
+                    ),
+                    14: ("wagtail.blocks.CharBlock", (), {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False}),
+                    15: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                    16: ("wagtail.blocks.CharBlock", (), {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False}),
+                    17: (
+                        "wagtail.blocks.BooleanBlock",
+                        (),
+                        {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
+                    ),
+                    18: (
+                        "wagtail.blocks.StructBlock",
+                        [
+                            [
+                                ("link_to", 10),
+                                ("page", 11),
+                                ("file", 12),
+                                ("custom_url", 13),
+                                ("anchor", 14),
+                                ("email", 15),
+                                ("phone", 16),
+                                ("new_window", 17),
+                            ]
+                        ],
+                        {"label": "Link", "required": False},
+                    ),
+                    19: (
+                        "wagtail.blocks.StructBlock",
+                        [
+                            [
+                                ("anchor_id", 7),
+                                ("image", 4),
+                                ("image_caption", 8),
+                                ("statistic_value", 3),
+                                ("statistic_label", 3),
+                                ("align_image_on_right", 9),
+                                ("cta_text", 2),
+                                ("cta_link", 18),
                                 ("colors_should_match_header", 5),
                             ]
                         ],
