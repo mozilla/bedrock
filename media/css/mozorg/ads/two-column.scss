@@ -40,7 +40,7 @@
     }
 }
 
-.two-column-detail-list {
+#mozads-main .two-column-detail-list {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -54,6 +54,16 @@
     }
 
     p {
-        @include text-body-lg;
+        @include admixins.text-body-md;
+    }
+}
+
+.two-column-form {
+    input:not([type='checkbox']), textarea {
+        width: 100%;
+    }
+
+    button {
+        margin-top: $spacer-md;
     }
 }
