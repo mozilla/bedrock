@@ -58,7 +58,7 @@
     }
 
     &.c-sub-navigation .c-sub-navigation-item a:link {
-        @include admixins.text-body-sm;
+        @include admixins.text-button-md;
     }
 
     .c-sub-navigation-content {

@@ -117,11 +117,11 @@ $image-path: '/media/protocol/img';
 .mozads-hgroup {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     margin-bottom: 0;
 
-    @media #{$mq-md} {
-        gap: 1.5rem;
+    .mozads-section-heading {
+        margin: 0;
     }
 }
 
@@ -218,8 +218,12 @@ $image-path: '/media/protocol/img';
 }
 
 .mozads-figcaption {
-    margin-top: $spacing-sm;
+    margin-top: 1rem;
     @include admixins.text-body-lg;
+
+    b, strong {
+        font-weight: 600;
+    }
 }
 
 .mozads-stat-group {
@@ -266,20 +270,21 @@ $image-path: '/media/protocol/img';
 
 .mozads-stat-label {
     @include admixins.text-body-sm;
-    text-wrap: pretty;
+    text-wrap: balance;
+    max-width: 26ch;
 
-    &.is-top-left {
-        position: absolute;
-        top: -0.5rem;
-        left: 0;
+    @media #{$mq-md} {
+        &.is-top-left {
+            position: absolute;
+            top: -1.5rem;
+            left: 0;
+        }
     }
 }
 
 .mozads-large-link {
     @include admixins.text-button-xl;
     display: block;
-    text-align: right;
-    margin: 0;
 
     &.white {
         color: white;
@@ -450,9 +455,9 @@ $image-path: '/media/protocol/img';
             }
 
             &.image-1 {
-                top: 3%;
+                top: 1%;
                 left: 2%;
-                max-width: 40%;
+                max-width: 36%;
             }
 
             &.image-2 {
@@ -465,7 +470,6 @@ $image-path: '/media/protocol/img';
                 top: 15%;
                 right: -5%;
                 max-width: 15%;
-                z-index: -1;
             }
 
             &.image-7 {
@@ -518,7 +522,6 @@ $image-path: '/media/protocol/img';
                     top: 12%;
                     right: -2%;
                     max-width: 15%;
-                    z-index: -1;
                 }
 
                 &.image-4 {
@@ -726,17 +729,18 @@ $image-path: '/media/protocol/img';
 .mozads-section-footer {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
     @include admixins.text-title-sm;
+
+    &.pad-top {
+        padding-top: $spacer-xl;
+    }
 }
 
-@media #{$mq-xl} {
+@media #{$mq-md} {
     .mozads-section-footer {
         flex-direction: row;
         justify-content: space-between;
-
-        &.pad-top {
-            padding-top: $spacer-xl;
-        }
 
         .mozads-large-link { // For when there is no initial text.
             margin-left: auto;
@@ -784,8 +788,9 @@ $image-path: '/media/protocol/img';
 
 @media #{$mq-md} {
     .mozads-home-big-list-text {
-        padding-right: 17%;
+        max-width: 54ch;
         border-left: 0 none;
+        padding-right: 5%;
         padding-left: 0;
     }
 
@@ -795,7 +800,7 @@ $image-path: '/media/protocol/img';
 
         &.is-list-item {
             gap: 2rem;
-            align-items: center;
+
         }
     }
 
