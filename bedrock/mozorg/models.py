@@ -143,7 +143,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["TwoColumnSubpage"]
+    subpage_types = ["TwoColumnSubpage", "ContentSubpage"]
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -251,3 +251,23 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/two_column_subpage.html"
+
+
+class ContentSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
+    subpage_types = []  # This page type cannot have any children
+
+    content = StreamField(
+        [
+            ("section_header_block", SectionHeaderBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/advertising/content_subpage.html"
