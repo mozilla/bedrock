@@ -139,12 +139,12 @@
             color: $color-black;
             font-family: var(--body-font-family);
             text-decoration: none;
+        }
 
-            &:hover,
-            &:focus,
-            &:active {
-                text-decoration: underline;
-            }
+        a:hover,
+        a:focus,
+        a:active {
+            text-decoration: underline;
         }
 
         .mzp-c-button.mzp-t-product {

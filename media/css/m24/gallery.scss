@@ -93,8 +93,7 @@
 
     &:hover,
     &:focus,
-    &:active,
-    &:visited:hover {
+    &:active {
         color: inherit;
         text-decoration: underline;
     }
