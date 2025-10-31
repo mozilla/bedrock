@@ -86,7 +86,7 @@
         text-decoration: none;
 
         &::before {
-            background: $url-image-arrow-down-form top left no-repeat;
+            background: $url-image-caret-down-form top left no-repeat;
             @include background-size(20px, 20px);
             @include bidi(((right, 8px, left, auto),));
             @include transition(transform 100ms ease-in-out);
