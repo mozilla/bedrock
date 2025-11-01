@@ -6,7 +6,7 @@
 
 {% extends "mozorg/advertising/base-advertising.html" %}
 
-{% block page_title %}Mozilla Advertising - Solutions{% endblock %}
+{% block page_title %}Mozilla Ads - Solutions{% endblock %}
 
 {% block js %}
   {{ super() }}
@@ -15,26 +15,26 @@
 {% endblock %}
 
 {% block content %}
-<main id="mozads-main">
-  <section class="mozads-c-main-dark-section">
-    <header class="mozads-subpage-header">
+<main id="mza-main">
+  <section class="mza-c-main-dark-section">
+    <header class="mza-subpage-header">
       <div class="m24-c-content">
         <h1>Solutions</h1>
         <hr/>
-        <h2 class="mozads-section-heading">Firefox</h2>
-        <p class="mozads-highlight-text">Firefox stands as the most trusted alternative to one-size-fits-all, privacy-invading default browsers. Driven by Mozilla’s mission to ensure the internet is open and accessible to everyone, Firefox puts users in control.</p>
+        <h2 class="mza-section-heading">Firefox</h2>
+        <p class="mza-highlight-text">Firefox stands as the most trusted alternative to one-size-fits-all, privacy-invading default browsers. Driven by Mozilla’s mission to ensure the internet is open and accessible to everyone, Firefox puts users in control.</p>
       </div>
     </header>
 
     <div class="m24-c-content padding-top-0">
-      <div class="mozads-figure-grid reversed-on-large">
-        <aside class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number is-smaller">210M+</span>
-            <span class="mozads-stat-label">monthly active Firefox users</span>
+      <div class="mza-figure-grid reversed-on-large">
+        <aside class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number is-smaller">210M+</span>
+            <span class="mza-stat-label">monthly active Firefox users</span>
           </span>
         </aside>
-        <figure class="mozads-figure">
+        <figure class="mza-figure">
           {{ resp_img(
             url="img/mozorg/advertising/solutions/ads-solutions-page-1.png",
             optional_attributes={
@@ -46,24 +46,24 @@
       </div>
     </div>
     <div class="m24-c-content">
-      <h3 class="mozads-section-subheading">Who you'll reach</h3>
-      <div class="mozads-stat-group">
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number">60%</span>
-            <span class="mozads-stat-label">consider themselves to be tech-savvy</span>
+      <h3 class="mza-section-subheading">Who you'll reach</h3>
+      <div class="mza-stat-group">
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number">60%</span>
+            <span class="mza-stat-label">consider themselves to be tech-savvy</span>
           </span>
         </div>
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number">52%</span>
-            <span class="mozads-stat-label">have Bachelors or advanced degrees (vs. 31% gen pop)</span>
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number">52%</span>
+            <span class="mza-stat-label">have Bachelors or advanced degrees (vs. 31% gen pop)</span>
           </span>
         </div>
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number">6+</span>
-            <span class="mozads-stat-label">hours average daily use</span>
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number">6+</span>
+            <span class="mza-stat-label">hours average daily use</span>
           </span>
         </div>
 
@@ -72,10 +72,10 @@
     </div>
 
     <div class="m24-c-content">
-      <h3 class="mozads-section-subheading">Advertising Options</h3>
-      <p class="mozads-highlight-text">Firefox’s New Tab experience offers a variety of display and native ad formats. Your brand is showcased when and where it matters most, alongside curated content from top-tier publishers. </p>
+      <h3 class="mza-section-subheading">Advertising Options</h3>
+      <p class="mza-highlight-text">Firefox’s New Tab experience offers a variety of display and native ad formats. Your brand is showcased when and where it matters most, alongside curated content from top-tier publishers. </p>
 
-      <ul class="mozads-bordered-list">
+      <ul class="mza-bordered-list">
         <li class="modal-wrapper">
           <button type="button" class="modal-trigger">
             <span class="modal-label">Sponsored Tiles</span>
@@ -83,7 +83,7 @@
           </button>
           <div class="mzp-u-modal-content">
             <!-- no carousel wrapper. -->
-            <figure class="mozads-figure">
+            <figure class="mza-figure">
               {{ resp_img(
                 url="img/mozorg/advertising/solutions/example-ad-sponsored-tiles.png",
                 optional_attributes={
@@ -95,11 +95,11 @@
             <figcaption class="modal-figure-caption">
               <p>
                 <span class="modal-figure-caption-heading">Sponsored Tiles</span>
-                <span class="modal-figure-caption-text">Contact for more details</span>
+                <span class="modal-figure-caption-text">Logo spotlight at the beginning of a user’s journey.</span>
               </p>
               <a
                 href="https://mozilla.formstack.com/forms/advertising"
-                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
               >
                 Contact Sales
               </a>
@@ -113,7 +113,7 @@
             <span class="action-text">See example +</span>
           </button>
           <div class="mzp-u-modal-content">
-            <figure class="mozads-figure">
+            <figure class="mza-figure">
               {{ resp_img(
                 url="img/mozorg/advertising/solutions/example-ad-native-ad.png",
                 optional_attributes={
@@ -125,11 +125,11 @@
             <figcaption class="modal-figure-caption">
               <p>
                 <span class="modal-figure-caption-heading">Native Ads</span>
-                <span class="modal-figure-caption-text">Contact for more details</span>
+                <span class="modal-figure-caption-text">Branded content alongside editor-selected articles.</span>
               </p>
               <a
                 href="https://mozilla.formstack.com/forms/advertising"
-                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
               >
                 Contact Sales
               </a>
@@ -200,14 +200,29 @@
 
 
               <div class="modal-figure-caption">
-                <p>
-                  <span data-slide-caption="1" class="modal-figure-caption-text">Medium Rectangle - 300x250</span>
-                  <span data-slide-caption="2" class="modal-figure-caption-text is-hidden">Billboard - 970x250</span>
-                  <span data-slide-caption="3" class="modal-figure-caption-text is-hidden">Leaderboard 728x90</span>
+                <p data-slide-caption="1">
+                  <span class="modal-figure-caption-heading">Medium Rectangle</span>
+                  <span class="modal-figure-caption-text">300x250</span>
                 </p>
+                <p data-slide-caption="2" class="is-hidden">
+                  <span class="modal-figure-caption-heading">Billboard</span>
+                  <span class="modal-figure-caption-text">970x250</span>
+                </p>
+                <p data-slide-caption="3" class="is-hidden">
+                  <span class="modal-figure-caption-heading">Leaderboard</span>
+                  <span class="modal-figure-caption-text">728x90</span>
+                </p>
+
+
+
+
+
+
+
+
                 <a
                   href="https://mozilla.formstack.com/forms/advertising"
-                  class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+                  class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
                 >
                   Contact Sales
                 </a>
@@ -218,88 +233,188 @@
       </ul>
     </div>
 
-    <div class="mozads-subpage-header">
+    <div class="mza-subpage-header">
       <div class="m24-c-content no-bottom-padding">
         <hr/>
-        <h2 class="mozads-section-heading">MDN WebDocs</h2>
-        <p class="mozads-highlight-text">MDN WebDocs is trusted content created by developers, for developers. We’re known as the go-to resource for documentation and education on topics such as HTML, JavaScript, CSS, HTTP, Web APIs, accessibility, and web technology.</p>
+        <h2 class="mza-section-heading">MDN Web Docs</h2>
+        <p class="mza-highlight-text">MDN Web Docs is trusted content created by developers, for developers. We’re known as the go-to resource for documentation and education on topics such as HTML, JavaScript, CSS, HTTP, Web APIs, accessibility, and web technology.</p>
       </div>
     </div>
 
     <div class="m24-c-content">
-      <div class="mozads-figure-grid">
-        <aside class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number is-smaller">16.2M</span>
-            <span class="mozads-stat-label">monthly active MDN users</span>
+      <div class="mza-figure-grid">
+        <aside class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number is-smaller">16.2M</span>
+            <span class="mza-stat-label">monthly active MDN users</span>
           </span>
         </aside>
 
-        <figure class="mozads-figure">
+        <figure class="mza-figure">
           {{ resp_img(
             url="img/mozorg/advertising/solutions/ads-solutions-page-2.png",
             optional_attributes={
               'loading': 'lazy',
-              'alt': 'stylized screenshot of MDN WebDocs'
+              'alt': 'stylized screenshot of MDN Web Docs'
             }
           ) }}
         </figure>
       </div>
     </div>
     <div class="m24-c-content">
-      <h3 class="mozads-section-subheading">Who you'll reach</h3>
-      <div class="mozads-stat-group">
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number">80%</span>
-            <span class="mozads-stat-label">are developers and their leaders</span>
+      <h3 class="mza-section-subheading">Who you'll reach</h3>
+      <div class="mza-stat-group">
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number">80%</span>
+            <span class="mza-stat-label">are developers and their leaders</span>
           </span>
         </div>
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-label is-top-left">Nearly</span>
-            <span class="mozads-stat-number">60%</span>
-            <span class="mozads-stat-label">work for companies with &lt;100 employees (ideal audience for efficiency solutions)</span>
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-label is-top-left">Nearly</span>
+            <span class="mza-stat-number">60%</span>
+            <span class="mza-stat-label">work for companies with &lt;100 employees (ideal audience for efficiency solutions)</span>
           </span>
         </div>
-        <div class="mozads-stat">
-          <span class="mozads-stat-text">
-            <span class="mozads-stat-number">70%</span>
-            <span class="mozads-stat-label">work for firms with &lt;$1M annual revenue (ideal audience for business growth tools)</span>
+        <div class="mza-stat">
+          <span class="mza-stat-text">
+            <span class="mza-stat-number">70%</span>
+            <span class="mza-stat-label">work for firms with &lt;$1M annual revenue (ideal audience for business growth tools)</span>
           </span>
         </div>
       </div>
     </div>
 
     <div class="m24-c-content">
-      <h3 class="mozads-section-subheading">Advertising Options</h3>
-      <p class="mozads-highlight-text">MDN WebDocs offers a variety of contextual placements throughout the site as well as exclusive opportunities for prominent homepage visibility.</p>
+      <h3 class="mza-section-subheading">Advertising Options</h3>
+      <p class="mza-highlight-text">MDN Web Docs offers a variety of contextual placements throughout the site as well as exclusive opportunities for prominent homepage visibility.</p>
 
-      <ul class="mozads-bordered-list">
+
+
+      <ul class="mza-bordered-list">
         <li class="modal-wrapper">
-
           <button type="button" class="modal-trigger">
-            <span class="modal-label">Placeholder copy describing the ad placement</span>
+            <span class="modal-label">Native Ads</span>
             <span class="action-text">See example +</span>
           </button>
-
           <div class="mzp-u-modal-content">
-            todo
+            <!-- no carousel wrapper. -->
+            <figure class="mza-figure">
+              {{ resp_img(
+                url="img/mozorg/advertising/example-ad-mdn-1.png",
+                optional_attributes={
+                  'loading': 'lazy',
+                  'alt': 'screenshot showing placement of Native ads in MDN page'
+                }
+              ) }}
+
+            <figcaption class="modal-figure-caption">
+              <p>
+                <span class="modal-figure-caption-heading">Top Bar</span>
+                <span class="modal-figure-caption-text">Persistent brand spotlight throughout a user’s journey.</span>
+              </p>
+              <a
+                href="https://mozilla.formstack.com/forms/advertising"
+                class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
+              >
+                Contact Sales
+              </a>
+            </figcaption>
+          </figure>
           </div>
         </li>
+
         <li class="modal-wrapper">
           <button type="button" class="modal-trigger">
-            <span class="modal-label">Placeholder copy describing the ad placement</span>
+            <span class="modal-label">Standard IAB Formats</span>
             <span class="action-text">See example +</span>
           </button>
           <div class="mzp-u-modal-content">
-            todo
+            <div class="carousel">
+              <div class="carousel-wrapper">
+                <div class="carousel-viewport">
+                  <div class="carousel-container">
+                    <div class="carousel-slide">
+                      {{ resp_img(
+                        url="img/mozorg/advertising/example-ad-mdn-2.png",
+                        optional_attributes={
+                          'loading': 'lazy',
+                          'alt': 'screenshot showing placement of Top Banner ad in MDN page'
+                        }
+                      ) }}
+                    </div>
+                    <div class="carousel-slide">
+                      {{ resp_img(
+                        url="img/mozorg/advertising/example-ad-mdn-3.png",
+                        optional_attributes={
+                          'loading': 'lazy',
+                          'alt': 'screenshot showing placement of Side Banner ad in MDN page'
+                        }
+                      ) }}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="carousel-controls">
+                <div class="carousel-nav">
+                  <button class="carousel-prev" aria-label="Previous Slide">
+                    <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                      <path d="M6.57 1.02 2.153 5.437H12v1.125H2.153L6.57 10.98l-.795.795L0 6 5.775.225z" fill="currentColor"/>
+                    </svg>
+                  </button>
+                    <button class="carousel-next" aria-label="Next Slide">
+                      <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                        <path d="m5.43 1.02 4.418 4.417H0v1.125h9.848L5.43 10.98l.795.795L12 6 6.225.225z" fill="currentColor"/>
+                      </svg>
+
+                    </button>
+                </div>
+                <div class="carousel-snap-display">-</div>
+              </div>
+
+
+
+              <div class="modal-figure-caption">
+                <p data-slide-caption="1">
+                  <span class="modal-figure-caption-heading">Top Banner</span>
+                  <span class="modal-figure-caption-text">728x90</span>
+                </p>
+
+                <p data-slide-caption="2" class="is-hidden">
+                  <span class="modal-figure-caption-heading">Side Banner</span>
+                  <span class="modal-figure-caption-text">160x600</span>
+                </p>
+
+
+
+                <a
+                  href="https://mozilla.formstack.com/forms/advertising"
+                  class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
+                >
+                  Contact Sales
+                </a>
+              </div>
+            </div>
+
           </div>
         </li>
       </ul>
-      <div class="mozads-section-footer pad-top">
+
+
+
+
+
+
+
+
+
+
+
+      <div class="mza-section-footer pad-top">
         <span>Our Ad Standards & Guidelines</span>
-        <a class="mozads-large-link" href="https://assets.mozilla.net/pdf/Mozilla_Advertising_Standards_October_2025.pdf">Download PDF</a>
+        <a class="mza-large-link" href="https://assets.mozilla.net/pdf/Mozilla_Advertising_Standards_October_2025.pdf">Download PDF</a>
       </div>
     </div>
   </section>
@@ -308,11 +423,11 @@
 {# keeping this section here for reference. We'll build the Accordion component in the CMS to be added later.
   <section class="m24-c-content has-scroll-padding no-top-padding">
     <div class="section-has-border-top">
-      <hgroup class="mozads-hgroup">
-        <h2 class="mozads-section-heading">FAQ</h2>
+      <hgroup class="mza-hgroup">
+        <h2 class="mza-section-heading">FAQ</h2>
       </hgroup>
 
-      <div class="mozads-bordered-list has-padding-top">
+      <div class="mza-bordered-list has-padding-top">
         <details>
           <summary>
             Placeholder copy describing the ad placement

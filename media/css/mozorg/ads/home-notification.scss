@@ -5,7 +5,21 @@
 @use './vars' as advars;
 @use './mixins' as admixins;
 
-.mozads-notification {
+.mza-notification-container {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}
+
+.mza-notification {
     background: advars.$color-ads-secondary-pink;
     padding: 1.5rem 0;
 
@@ -21,6 +35,7 @@
 
     .moz24-footer-social-links {
         background: transparent;
+        margin-left: -4px;
 
         li {
             a {
@@ -61,13 +76,9 @@
                 }
             }
         }
-    }
-}
 
-.mozads-notification-container {
-    @include container;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+        @media #{$mq-md} {
+            margin-left: 0;
+        }
+    }
 }

@@ -9,7 +9,7 @@
 {% from "macros-protocol.html" import callout, picto with context %}
 {% from "macros-m24.html" import gallery_tile with context %}
 
-{% block page_title %}Mozilla Advertising — Built on principles{% endblock %}
+{% block page_title %}Mozilla Ads — Built on principles{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-callout') }}
@@ -21,14 +21,14 @@
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
 
 {% block content %}
-<main id="mozads-main">
-  <div class="mozads-c-main-dark-section">
+<main id="mza-main">
+  <div class="mza-c-main-dark-section">
 
-    <header class="mozads-subpage-header">
+    <header class="mza-subpage-header">
       <div class="m24-c-content no-bottom-padding">
         <h1>Why Mozilla</h1>
 
-        <p class="mozads-highlight-text">
+        <p class="mza-highlight-text">
           We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
         </p>
       </div>
@@ -39,7 +39,7 @@
 
 
         {{ gallery_tile(
-          class='m24-l-grid-seven m24-l-gallery-no-desc mozads-size-override',
+          class='m24-l-grid-seven m24-l-gallery-no-desc mza-size-override',
           image=picture(
             url='img/mozorg/advertising/why-moz/article-hand.png',
             optional_attributes={
@@ -57,7 +57,7 @@
 
 
         {{ gallery_tile(
-          class='m24-l-gallery-no-desc mozads-gallery-tile-padding-top mozads-size-override',
+          class='m24-l-gallery-no-desc mza-gallery-tile-padding-top mza-size-override',
           image=picture(
             url="img/mozorg/advertising/why-moz/blurred-road.png",
             optional_attributes={
@@ -72,7 +72,7 @@
         ) }}
 
         {{ gallery_tile(
-          class='m24-l-grid-five m24-l-gallery-no-desc mozads-size-override',
+          class='m24-l-grid-five m24-l-gallery-no-desc mza-size-override',
           image=picture(
             url="img/mozorg/advertising/why-moz/google-collage.png",
             optional_attributes={
@@ -87,7 +87,7 @@
         ) }}
 
         {{ gallery_tile(
-          class='m24-l-gallery-no-desc mozads-size-override',
+          class='m24-l-gallery-no-desc mza-size-override',
           image=picture(
             url="img/mozorg/advertising/why-moz/square.png",
             optional_attributes={
@@ -103,7 +103,7 @@
 
       </div>
 
-      <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/" class="mozads-large-link white with-top-margin">
+      <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/" class="mza-large-link white with-top-margin">
         All Articles
       </a>
     </section>
