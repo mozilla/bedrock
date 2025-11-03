@@ -12,7 +12,7 @@
   <div class="mzp-u-modal-content">
     <!-- no carousel wrapper. -->
     {% if value.figures|length == 1 %}
-      <figure class="mozads-figure">
+      <figure class="mza-figure">
         {{ srcset_image(value.figures.0.image, "width-{1000,1200,1400}", class="", loading="lazy", alt=value.figures.0.image.description) }}
         <figcaption class="modal-figure-caption">
           <p>
@@ -22,7 +22,7 @@
           {% if value.cta_text %}
             <a
               href="{{ value.cta_link.get_url() }}"
-              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
               {% if value.cta_link.new_window %}target="_blank" rel="external noopener" {% endif %}
             >
               {{ value.cta_text }}
@@ -72,7 +72,7 @@
           {% if value.cta_text %}
             <a
               href="{{ value.cta_link.get_url() }}"
-              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mozads-c-contact-button"
+              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
               {% if value.cta_link.new_window %}target="_blank" rel="external noopener" {% endif %}
             >
               {{ value.cta_text }}

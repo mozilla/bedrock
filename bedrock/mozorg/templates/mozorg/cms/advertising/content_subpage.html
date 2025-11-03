@@ -33,14 +33,14 @@
 {% endblock %}
 
 {% block content %}
-  <header class="mozads-subpage-header">
+  <header class="mza-subpage-header">
     <div class="m24-c-content">
       <h1>{{ page.title }}</h1>
     </div>
   </header>
 
 
-  <main id="mozads-main">
+  <main id="mza-main">
     {% for block in page.content %}
       {% include_block block %}
     {% endfor %}
