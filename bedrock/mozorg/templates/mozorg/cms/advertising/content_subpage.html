@@ -44,6 +44,16 @@
     {% for block in page.content %}
       {% include_block block %}
     {% endfor %}
+
+    {% if page.contact_banner %}
+      {% with value=page.contact_banner %}
+        {% include 'mozorg/cms/snippets/contact_bannet_snippet.html' %}
+      {% endwith %}
+    {% endif %}
+
+    {% for notification in page.notifications %}
+      {% include_block notification %}
+    {% endfor %}
   </main>
 {% endblock %}
 

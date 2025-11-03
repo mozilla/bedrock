@@ -273,8 +273,25 @@ class ContentSubpage(AbstractBedrockCMSPage):
         collapsed=True,
     )
 
+    contact_banner = models.ForeignKey(
+        "mozorg.ContactBannerSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    notifications = StreamField(
+        [("notification_block", NotificationBlock())],
+        blank=True,
+        null=True,
+        max_num=1,
+        use_json_field=True,
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
+        FieldPanel("contact_banner"),
+        FieldPanel("notifications"),
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"
