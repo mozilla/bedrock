@@ -1,0 +1,117 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/advertising/base-advertising.html" %}
+
+{% from "macros-protocol.html" import callout, picto with context %}
+{% from "macros-m24.html" import gallery_tile with context %}
+
+{% block page_title %}Mozilla Ads — Built on principles{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-picto') }}
+  {{ super() }}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
+
+{% block content %}
+<main id="mza-main">
+  <div class="mza-c-main-dark-section">
+
+    <header class="mza-subpage-header">
+      <div class="m24-c-content no-bottom-padding">
+        <h1>Why Mozilla</h1>
+
+        <p class="mza-highlight-text">
+          We believe in a world where a healthy advertising industry and individual privacy can co-exist, and we’re advancing the technology to make it happen.
+        </p>
+      </div>
+    </header>
+
+    <section class="m24-c-content no-top-padding">
+      <div class="m24-c-gallery-container">
+
+
+        {{ gallery_tile(
+          class='m24-l-grid-seven m24-l-gallery-no-desc mza-size-override',
+          image=picture(
+            url='img/mozorg/advertising/why-moz/article-hand.png',
+            optional_attributes={
+              "loading": "lazy",
+              'alt': 'Tim Jaeryang Baek shows a demo of Open WebUI to several attendees of Mozilla Builders Demo Day.'
+            }
+          ),
+          title="Introducing Anonym: Raising the bar for privacy-preserving digital advertising",
+          link_url='https://builders.mozilla.org/' + utm_params,
+          cta_text='Read more',
+          link_attributes='rel="external" target="_blank" data-link-text="Read more (Builders Program)"'
+        ) }}
+
+        <div class="m24-l-grid-one md-only"></div>
+
+
+        {{ gallery_tile(
+          class='m24-l-gallery-no-desc mza-gallery-tile-padding-top mza-size-override',
+          image=picture(
+            url="img/mozorg/advertising/why-moz/blurred-road.png",
+            optional_attributes={
+              "loading": "lazy",
+              "alt": "todo",
+            }
+          ),
+          title="Total Cookie Protection stops companies from keeping tabs on your moves",
+          link_url='https://blog.mozilla.org/en/mozilla/rise25-dublin/' + utm_params,
+          cta_text="Read more",
+          link_attributes='rel="external" target="_blank" data-link-text="Read more (Rise25 Dublin)"'
+        ) }}
+
+        {{ gallery_tile(
+          class='m24-l-grid-five m24-l-gallery-no-desc mza-size-override',
+          image=picture(
+            url="img/mozorg/advertising/why-moz/google-collage.png",
+            optional_attributes={
+              "loading": "lazy",
+              "alt": "todo",
+            }
+          ),
+          title="Google’s Protected Audience protects advertisers (and Google) more than it protects you",
+          link_url='https://blog.mozilla.org/en/mozilla/chicago-small-businesses-solo-ai/' + utm_params,
+          cta_text="Read more",
+          link_attributes='rel="external" target="_blank" data-link-text="Read more (Chicago)"'
+        ) }}
+
+        {{ gallery_tile(
+          class='m24-l-gallery-no-desc mza-size-override',
+          image=picture(
+            url="img/mozorg/advertising/why-moz/square.png",
+            optional_attributes={
+              "loading": "lazy",
+              "alt": "todo",
+            }
+          ),
+          title="Building a more privacy preserving ads-based ecosystem",
+          link_url='https://blog.mozilla.org/en/mozilla/chicago-small-businesses-solo-ai/' + utm_params,
+          cta_text="Read more",
+          link_attributes='rel="external" target="_blank" data-link-text="Read more (Chicago)"'
+        ) }}
+
+      </div>
+
+      <a target="_blank" rel="external noopener" href="https://blog.mozilla.org/" class="mza-large-link white with-top-margin">
+        All Articles
+      </a>
+    </section>
+  </div>
+
+  {% include "mozorg/advertising/includes/home-ads-why-moz.html" %}
+  {% include "mozorg/advertising/includes/home-ads-contact.html" %}
+  {% include 'mozorg/advertising/includes/home-ads-notification.html' %}
+</main>
+
+{% endblock %}

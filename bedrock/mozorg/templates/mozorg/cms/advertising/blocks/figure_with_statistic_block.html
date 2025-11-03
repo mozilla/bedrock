@@ -4,25 +4,25 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mozads-c-home-solutions m24-c-content has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
-    <div class="mozads-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
-      <div class="mozads-stat">
-        <span class="mozads-stat-text">
-          <span class="mozads-stat-number is-smaller">{{ value.statistic_value }}</span>
-          <span class="mozads-stat-label">{{ value.statistic_label }}</span>
+<section class="mza-c-home-solutions m24-c-content has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+    <div class="mza-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
+      <div class="mza-stat">
+        <span class="mza-stat-text">
+          <span class="mza-stat-number is-smaller">{{ value.statistic_value }}</span>
+          <span class="mza-stat-label">{{ value.statistic_label }}</span>
         </span>
       </div>
-      <figure class="mozads-figure">
+      <figure class="mza-figure">
         {{ srcset_image(value.image, "width-{1000,1200,1400}", class="", loading="lazy", alt=value.image.description) }}
-        <figcaption class="mozads-figcaption">
+        <figcaption class="mza-figcaption">
           {{ value.image_caption }}
         </figcaption>
       </figure>
     </div>
 
     {% if value.cta_link %}
-      <div class="mozads-section-footer">
-        <a class="mozads-large-link" href="{{ value.cta_link.get_url() }}" {% if value.cta_link.new_window %}target="_blank"{% endif %}>{{ value.cta_text }}</a>
+      <div class="mza-section-footer">
+        <a class="mza-large-link" href="{{ value.cta_link.get_url() }}" {% if value.cta_link.new_window %}target="_blank"{% endif %}>{{ value.cta_text }}</a>
       </div>
     {% endif %}
 

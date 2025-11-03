@@ -4,7 +4,7 @@
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
 
-.mozads-notification-container {
+.mza-notification-container {
     @include container;
     display: flex;
     flex-direction: column;
@@ -18,7 +18,7 @@
     }
 }
 
-.mozads-notification {
+.mza-notification {
     background: advars.$color-ads-secondary-pink;
     padding: 1.5rem 0;
 

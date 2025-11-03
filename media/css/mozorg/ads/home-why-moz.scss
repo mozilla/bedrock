@@ -7,7 +7,7 @@
 // .mozads-c-home-why-moz {
 // }
 
-.mozads-half-grid {
+.mza-half-grid {
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -29,8 +29,8 @@
     }
 }
 
-.mozads-c-main-dark-section {
-    .mozads-half-grid {
+.mza-c-main-dark-section {
+    .mza-half-grid {
         &.is-list-item,
         &.has-border-top {
             border-color: advars.$color-ads-dark-gray;
