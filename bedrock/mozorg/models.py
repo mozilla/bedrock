@@ -17,6 +17,7 @@ from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.mozorg.blocks.advertising import (
     AdvertisingHeroBlock,
     FeatureListBlock,
+    FeatureListWithModalsBlock,
     FigureWithStatisticBlock,
     NotificationBlock,
     SectionHeaderBlock,
@@ -263,6 +264,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
             ("section_header_block", SectionHeaderBlock()),
             ("figure_with_statistic_block", FigureWithStatisticBlock()),
             ("statistic_callout_block", StatisticCalloutBlock()),
+            ("features_with_modals", FeatureListWithModalsBlock()),
         ],
         blank=True,
         null=True,

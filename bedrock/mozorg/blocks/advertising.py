@@ -216,6 +216,60 @@ class StatisticCalloutBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class FigureBlock(blocks.StructBlock):
+    """Figure block."""
+
+    image = ImageChooserBlock(required=False)
+    image_caption_heading = blocks.TextBlock(char_max_length=255, required=False)
+    image_caption_text = blocks.TextBlock(char_max_length=255, required=False)
+
+    class Meta:
+        label = "Feature Item"
+        label_format = "{image_caption}"
+        form_classname = "compact-form struct-block"
+
+
+class FeatureItemWithModalBlock(blocks.StructBlock):
+    """Block for a feature item with a modal."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    figures = blocks.ListBlock(FigureBlock(), min_num=1)
+    cta_text = blocks.CharBlock(char_max_length=255, required=False)
+    cta_link = LinkBlock(label="CTA Link", required=False)
+
+    class Meta:
+        label = "Feature Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/feature_item_with_modal_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class FeatureListWithModalsBlock(blocks.StructBlock):
+    """A block for a list of features, each with a modal."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+    heading_text = blocks.CharBlock(char_max_length=255)
+    supporting_text = blocks.TextBlock()
+    feature_list_items = blocks.ListBlock(FeatureItemWithModalBlock(), min_num=1)
+    colors_should_match_header = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section colors match the colors of the header?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = "Feature List With Modals Block"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/feature_list_with_modals_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class TwoColumnDetailBlock(blocks.StructBlock):
     """Feature list item block."""
 

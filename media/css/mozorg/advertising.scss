@@ -656,6 +656,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.mozads-c-main-dark-section .mozads-bordered-list li button:hover {
+  .action-text {
+    color: white;
+  }
+}
+
 .mozads-bordered-list {
     &.has-padding-top {
         padding-top: $spacer-xl;
@@ -698,7 +704,6 @@ $image-path: '/media/protocol/img';
 
                 .action-text {
                     text-decoration: none;
-                    color: white;
                 }
             }
         }

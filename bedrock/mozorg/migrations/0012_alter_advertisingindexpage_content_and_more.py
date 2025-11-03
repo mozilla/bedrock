@@ -174,7 +174,7 @@ class Migration(migrations.Migration):
             model_name="contentsubpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("section_header_block", 6), ("figure_with_statistic_block", 19), ("statistic_callout_block", 22)],
+                [("section_header_block", 6), ("figure_with_statistic_block", 19), ("statistic_callout_block", 22), ("features_with_modals", 30)],
                 blank=True,
                 block_lookup={
                     0: (
@@ -306,6 +306,41 @@ class Migration(migrations.Migration):
                     22: (
                         "wagtail.blocks.StructBlock",
                         [[("anchor_id", 7), ("heading_text", 3), ("statistics", 21), ("colors_should_match_header", 5)]],
+                        {},
+                    ),
+                    23: ("wagtail.blocks.TextBlock", (), {}),
+                    24: ("wagtail.blocks.TextBlock", (), {"char_max_length": 255, "required": False}),
+                    25: ("wagtail.blocks.StructBlock", [[("image", 4), ("image_caption_heading", 24), ("image_caption_text", 24)]], {}),
+                    26: ("wagtail.blocks.ListBlock", (25,), {"min_num": 1}),
+                    27: (
+                        "wagtail.blocks.StructBlock",
+                        [
+                            [
+                                ("link_to", 10),
+                                ("page", 11),
+                                ("file", 12),
+                                ("custom_url", 13),
+                                ("anchor", 14),
+                                ("email", 15),
+                                ("phone", 16),
+                                ("new_window", 17),
+                            ]
+                        ],
+                        {"label": "CTA Link", "required": False},
+                    ),
+                    28: ("wagtail.blocks.StructBlock", [[("heading_text", 3), ("figures", 26), ("cta_text", 2), ("cta_link", 27)]], {}),
+                    29: ("wagtail.blocks.ListBlock", (28,), {"min_num": 1}),
+                    30: (
+                        "wagtail.blocks.StructBlock",
+                        [
+                            [
+                                ("anchor_id", 7),
+                                ("heading_text", 3),
+                                ("supporting_text", 23),
+                                ("feature_list_items", 29),
+                                ("colors_should_match_header", 5),
+                            ]
+                        ],
                         {},
                     ),
                 },
