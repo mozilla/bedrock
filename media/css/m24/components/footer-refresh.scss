@@ -119,6 +119,10 @@ $max-footer-content-width: $content-max;
         }
     }
 
+    .mzp-c-button-icon-end {
+        width: 24px;
+    }
+
     .mzp-c-button-icon-text span {
         @include visually-hidden;
     }
