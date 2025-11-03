@@ -20,6 +20,7 @@ from bedrock.mozorg.blocks.advertising import (
     FigureWithStatisticBlock,
     NotificationBlock,
     SectionHeaderBlock,
+    StatisticCalloutBlock,
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -261,6 +262,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
         [
             ("section_header_block", SectionHeaderBlock()),
             ("figure_with_statistic_block", FigureWithStatisticBlock()),
+            ("statistic_callout_block", StatisticCalloutBlock()),
         ],
         blank=True,
         null=True,

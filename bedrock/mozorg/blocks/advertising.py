@@ -177,6 +177,45 @@ class ListBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class StatisticBlock(blocks.StructBlock):
+    """Statistic block."""
+
+    statistic_value = blocks.CharBlock(char_max_length=255)
+    statistic_label = blocks.CharBlock(char_max_length=255)
+
+    class Meta:
+        icon = "decimal"
+        label = "Statistic Block"
+        label_format = "{statistic_value} {statistic_label}"
+        template = "mozorg/cms/advertising/blocks/statistic_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class StatisticCalloutBlock(blocks.StructBlock):
+    """Block for statistics with a callout."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+    heading_text = blocks.CharBlock(char_max_length=255)
+    statistics = blocks.ListBlock(StatisticBlock(), min_num=1)
+    colors_should_match_header = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section colors match the colors of the header?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "decimal"
+        label = "Statistic Callout Block"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/statistic_callout_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class TwoColumnDetailBlock(blocks.StructBlock):
     """Feature list item block."""
 
