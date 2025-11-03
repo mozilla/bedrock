@@ -24,14 +24,14 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% with advertising_index_page=page.get_parent() %}
+  {% with advertising_index_page=page.get_parent().specific %}
     {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
   {% endwith %}
 {% endblock %}
 
 {% block content %}
-<main id="mozads-main">
-  <header class="mozads-subpage-header">
+<main id="mza-main">
+  <header class="mza-subpage-header">
     <div class="m24-c-content">
       <h1>{{ page.title }}</h1>
     </div>

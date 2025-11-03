@@ -5,7 +5,7 @@
 @use './vars' as advars;
 @use './mixins' as admixins;
 
-.mozads-subpage-header {
+.mza-subpage-header {
     background-color: advars.$color-ads-off-black;
 
     h1 {

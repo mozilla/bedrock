@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<nav class="c-sub-navigation mozads-c-sub-navigation is-sticky" aria-labelledby="c-sub-navigation-title">
+<nav class="c-sub-navigation mza-c-sub-navigation is-sticky" aria-labelledby="c-sub-navigation-title">
   <div class="mzp-l-content">
     <div class="c-sub-navigation-content">
       <h2 id="c-sub-navigation-title" class="c-sub-navigation-title">
@@ -30,7 +30,7 @@
                 href="{{ link_block.get_resolved_url(anchor_page_url=advertising_index_page.url) }}"
                 data-link-position="subnav"
                 data-link-text="{{ link_block.link_text }}"
-                {% if link_block.has_button_appearance %}class="mozads-c-contact-sales-button"{% endif %}
+                {% if link_block.has_button_appearance %}class="mza-c-contact-sales-button"{% endif %}
                 {% if link_block.link.new_window %}target="_blank"{% endif %}
               >
                 {{ link_block.link_text }}

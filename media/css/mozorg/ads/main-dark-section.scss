@@ -1,7 +1,7 @@
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
 
-.mozads-c-main-dark-section {
+.mza-c-main-dark-section {
     background-color: advars.$color-ads-off-black;
 
     * {
@@ -21,11 +21,11 @@
         margin: $spacer-lg 0;
     }
 
-    .mozads-figure-grid .mozads-stat::before {
+    .mza-figure-grid .mza-stat::before {
         background-color: white;
     }
 
-    .mozads-bordered-list {
+    .mza-bordered-list {
         li {
             border-color: advars.$color-ads-light-gray;
 
@@ -41,7 +41,7 @@
 }
 
 @media #{$mq-md} {
-    .mozads-c-main-dark-section {
+    .mza-c-main-dark-section {
         hr {
             margin: $spacer-xl 0;
         }
