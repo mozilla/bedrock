@@ -180,6 +180,7 @@ class ListBlock(blocks.StructBlock):
 class StatisticBlock(blocks.StructBlock):
     """Statistic block."""
 
+    statistic_superlabel = blocks.CharBlock(char_max_length=255, required=False)
     statistic_value = blocks.CharBlock(char_max_length=255)
     statistic_label = blocks.CharBlock(char_max_length=255)
 

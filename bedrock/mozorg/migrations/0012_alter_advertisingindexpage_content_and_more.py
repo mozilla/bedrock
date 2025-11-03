@@ -301,7 +301,7 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    20: ("wagtail.blocks.StructBlock", [[("statistic_value", 3), ("statistic_label", 3)]], {}),
+                    20: ("wagtail.blocks.StructBlock", [[("statistic_superlabel", 2), ("statistic_value", 3), ("statistic_label", 3)]], {}),
                     21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
                     22: (
                         "wagtail.blocks.StructBlock",

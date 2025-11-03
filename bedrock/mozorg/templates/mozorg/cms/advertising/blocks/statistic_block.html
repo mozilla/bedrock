@@ -6,6 +6,7 @@
 
 <div class="mozads-stat">
   <span class="mozads-stat-text">
+    {% if value.statistic_superlabel %}<span class="mozads-stat-label is-top-left">{{ value.statistic_superlabel }}</span>{% endif %}
   <span class="mozads-stat-number">{{ value.statistic_value }}</span>
   <span class="mozads-stat-label">{{ value.statistic_label }}</span>
   </span>
