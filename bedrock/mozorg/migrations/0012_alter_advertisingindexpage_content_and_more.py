@@ -174,7 +174,13 @@ class Migration(migrations.Migration):
             model_name="contentsubpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("section_header_block", 6), ("figure_with_statistic_block", 19), ("statistic_callout_block", 22), ("features_with_modals", 30)],
+                [
+                    ("section_header_block", 6),
+                    ("figure_with_statistic_block", 19),
+                    ("statistic_callout_block", 22),
+                    ("features_with_modals", 30),
+                    ("text_and_link", 32),
+                ],
                 blank=True,
                 block_lookup={
                     0: (
@@ -343,6 +349,23 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
+                    31: (
+                        "wagtail.blocks.StructBlock",
+                        [
+                            [
+                                ("link_to", 10),
+                                ("page", 11),
+                                ("file", 12),
+                                ("custom_url", 13),
+                                ("anchor", 14),
+                                ("email", 15),
+                                ("phone", 16),
+                                ("new_window", 17),
+                            ]
+                        ],
+                        {"label": "Link"},
+                    ),
+                    32: ("wagtail.blocks.StructBlock", [[("text", 3), ("link_text", 3), ("link", 31), ("colors_should_match_header", 5)]], {}),
                 },
                 null=True,
             ),

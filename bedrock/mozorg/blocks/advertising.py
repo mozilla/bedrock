@@ -271,6 +271,27 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class RowTextAndLinkBlock(blocks.StructBlock):
+    """Block for text and a link."""
+
+    text = blocks.CharBlock(char_max_length=255)
+    link_text = blocks.CharBlock(char_max_length=255)
+    link = LinkBlock(label="Link")
+    colors_should_match_header = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section colors match the colors of the header?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "decimal"
+        label = "Text and Link Block"
+        label_format = "{text}"
+        template = "mozorg/cms/advertising/blocks/row_text_and_link_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class TwoColumnDetailBlock(blocks.StructBlock):
     """Feature list item block."""
 
