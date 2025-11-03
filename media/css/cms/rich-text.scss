@@ -3,7 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
-@import '~@mozilla-protocol/core/protocol/css/base/utilities/rich-text';
+@use '~@mozilla-protocol/core/protocol/css/base/utilities/rich-text';
 
 
 .mzp-u-rich-text {
