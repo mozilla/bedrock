@@ -112,7 +112,7 @@ class Migration(migrations.Migration):
                         {
                             "default": False,
                             "inline_form": True,
-                            "label": "Should the section colors match the colors of the header?",
+                            "label": "Should the section have a dark background?",
                             "required": False,
                         },
                     ),
@@ -126,7 +126,7 @@ class Migration(migrations.Migration):
                                 ("heading_text", 1),
                                 ("subheading_text", 16),
                                 ("image", 17),
-                                ("colors_should_match_header", 18),
+                                ("display_on_dark_background", 18),
                             ]
                         ],
                         {},
@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
                                 ("align_image_on_right", 22),
                                 ("cta_text", 16),
                                 ("cta_link", 23),
-                                ("colors_should_match_header", 18),
+                                ("display_on_dark_background", 18),
                             ]
                         ],
                         {},
@@ -207,7 +207,7 @@ class Migration(migrations.Migration):
                         {
                             "default": False,
                             "inline_form": True,
-                            "label": "Should the section colors match the colors of the header?",
+                            "label": "Should the section have a dark background?",
                             "required": False,
                         },
                     ),
@@ -221,7 +221,7 @@ class Migration(migrations.Migration):
                                 ("heading_text", 3),
                                 ("subheading_text", 2),
                                 ("image", 4),
-                                ("colors_should_match_header", 5),
+                                ("display_on_dark_background", 5),
                             ]
                         ],
                         {},
@@ -303,7 +303,7 @@ class Migration(migrations.Migration):
                                 ("align_image_on_right", 9),
                                 ("cta_text", 2),
                                 ("cta_link", 18),
-                                ("colors_should_match_header", 5),
+                                ("display_on_dark_background", 5),
                             ]
                         ],
                         {},
@@ -312,7 +312,7 @@ class Migration(migrations.Migration):
                     21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
                     22: (
                         "wagtail.blocks.StructBlock",
-                        [[("anchor_id", 7), ("heading_text", 3), ("statistics", 21), ("colors_should_match_header", 5)]],
+                        [[("anchor_id", 7), ("heading_text", 3), ("statistics", 21), ("display_on_dark_background", 5)]],
                         {},
                     ),
                     23: ("wagtail.blocks.TextBlock", (), {}),
@@ -345,7 +345,7 @@ class Migration(migrations.Migration):
                                 ("heading_text", 3),
                                 ("supporting_text", 23),
                                 ("feature_list_items", 29),
-                                ("colors_should_match_header", 5),
+                                ("display_on_dark_background", 5),
                             ]
                         ],
                         {},
@@ -366,7 +366,7 @@ class Migration(migrations.Migration):
                         ],
                         {"label": "Link"},
                     ),
-                    32: ("wagtail.blocks.StructBlock", [[("text", 3), ("link_text", 3), ("link", 31), ("colors_should_match_header", 5)]], {}),
+                    32: ("wagtail.blocks.StructBlock", [[("text", 3), ("link_text", 3), ("link", 31), ("display_on_dark_background", 5)]], {}),
                 },
                 null=True,
             ),

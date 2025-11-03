@@ -4,13 +4,13 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="{% if value.colors_should_match_header %}mza-c-main-dark-section mza-subpage-header mza-c-home-solutions{% else %}mza-c-home-solutions m24-c-content{% endif %} extra-top-padding has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+<section class="{% if value.display_on_dark_background %}mza-c-main-dark-section mza-subpage-header mza-c-home-solutions{% else %}mza-c-home-solutions m24-c-content{% endif %} extra-top-padding has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
   <div class="has-margin-bottom{% if value.image %} mza-half-grid{% if value.has_top_divider %} has-border-top{% endif %}{% elif value.has_top_divider %} section-has-border-top{% endif %}">
-    <hgroup class="mza-hgroup{% if value.colors_should_match_header %} m24-c-content{% endif %}{% if value.has_top_divider %} no-bottom-padding padding-top-0{% endif %}">
-      {% if value.colors_should_match_header and value.has_top_divider %}<hr />{% endif %}
+    <hgroup class="mza-hgroup{% if value.display_on_dark_background %} m24-c-content{% endif %}{% if value.has_top_divider %} no-bottom-padding padding-top-0{% endif %}">
+      {% if value.display_on_dark_background and value.has_top_divider %}<hr />{% endif %}
       {% if value.superheading_text %}<p class="mza-eyebrow">{{ value.superheading_text }}</p>{% endif %}
         <h2 class="mza-section-heading">{{ value.heading_text }}</h2>
-      {% if value.subheading_text %}<p class="mza-section-text-lg{% if value.colors_should_match_header %} mza-highlight-text{% endif %}">{{ value.subheading_text }}</p>{% endif %}
+      {% if value.subheading_text %}<p class="mza-section-text-lg{% if value.display_on_dark_background %} mza-highlight-text{% endif %}">{{ value.subheading_text }}</p>{% endif %}
     </hgroup>
 
     {% if value.image %}

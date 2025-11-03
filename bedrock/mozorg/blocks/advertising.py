@@ -68,10 +68,10 @@ class SectionHeaderBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(char_max_length=255)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
-    colors_should_match_header = blocks.BooleanBlock(
+    display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the section colors match the colors of the header?",
+        label="Should the section have a dark background?",
         inline_form=True,
     )
 
@@ -103,10 +103,10 @@ class FigureWithStatisticBlock(blocks.StructBlock):
     )
     cta_text = blocks.CharBlock(char_max_length=255, required=False)
     cta_link = LinkBlock(label="Link", required=False)
-    colors_should_match_header = blocks.BooleanBlock(
+    display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the section colors match the colors of the header?",
+        label="Should the section have a dark background?",
         inline_form=True,
     )
 
@@ -202,10 +202,10 @@ class StatisticCalloutBlock(blocks.StructBlock):
     )
     heading_text = blocks.CharBlock(char_max_length=255)
     statistics = blocks.ListBlock(StatisticBlock(), min_num=1)
-    colors_should_match_header = blocks.BooleanBlock(
+    display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the section colors match the colors of the header?",
+        label="Should the section have a dark background?",
         inline_form=True,
     )
 
@@ -256,10 +256,10 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(char_max_length=255)
     supporting_text = blocks.TextBlock()
     feature_list_items = blocks.ListBlock(FeatureItemWithModalBlock(), min_num=1)
-    colors_should_match_header = blocks.BooleanBlock(
+    display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the section colors match the colors of the header?",
+        label="Should the section have a dark background?",
         inline_form=True,
     )
 
@@ -277,10 +277,10 @@ class RowTextAndLinkBlock(blocks.StructBlock):
     text = blocks.CharBlock(char_max_length=255)
     link_text = blocks.CharBlock(char_max_length=255)
     link = LinkBlock(label="Link")
-    colors_should_match_header = blocks.BooleanBlock(
+    display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the section colors match the colors of the header?",
+        label="Should the section have a dark background?",
         inline_form=True,
     )
 
