@@ -4,16 +4,16 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mozads-c-home-solutions m24-c-content extra-top-padding has-scroll-padding" id="solutions">
-  <div class="has-margin-bottom{% if value.image %} mozads-half-grid{% if value.has_top_divider %} has-border-top{% endif %}{% elif value.has_top_divider %} section-has-border-top{% endif %}">
-    <hgroup class="mozads-hgroup">
-      {% if value.superheading_text %}<p class="mozads-eyebrow">{{ value.superheading_text }}</p>{% endif %}
-        <h2 class="mozads-section-heading">{{ value.heading_text }}</h2>
-      {% if value.subheading_text %}<p class="mozads-section-text-lg">{{ value.subheading_text }}</p>{% endif %}
+<section class="mza-c-home-solutions m24-c-content extra-top-padding has-scroll-padding" id="solutions">
+  <div class="has-margin-bottom{% if value.image %} mza-half-grid{% if value.has_top_divider %} has-border-top{% endif %}{% elif value.has_top_divider %} section-has-border-top{% endif %}">
+    <hgroup class="mza-hgroup">
+      {% if value.superheading_text %}<p class="mza-eyebrow">{{ value.superheading_text }}</p>{% endif %}
+        <h2 class="mza-section-heading">{{ value.heading_text }}</h2>
+      {% if value.subheading_text %}<p class="mza-section-text-lg">{{ value.subheading_text }}</p>{% endif %}
     </hgroup>
 
     {% if value.image %}
-      <figure class="mozads-figure">
+      <figure class="mza-figure">
         {{ srcset_image(value.image, "width-{1200,1400,1600}", class="", alt=value.image.description) }}
       </figure>
     {% endif %}

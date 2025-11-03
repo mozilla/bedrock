@@ -3,10 +3,10 @@
  License, v. 2.0. If a copy of the MPL was not distributed with this
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
-<header class="mozads-c-callout">
-    <div class="mozads-c-callout-bg">
+<header class="mza-c-callout">
+    <div class="mza-c-callout-bg">
 
-      <div class="mozads-c-callout-bg-inner">
+      <div class="mza-c-callout-bg-inner">
         <img class="image-1" role="presentation" src="{{ static('img/mozorg/advertising/callout/1.jpg') }}"/>
         <img class="image-2" role="presentation" src="{{ static('img/mozorg/advertising/callout/2.jpg') }}"/>
         <img class="image-3" role="presentation" src="{{ static('img/mozorg/advertising/callout/3.jpg') }}"/>
@@ -19,7 +19,7 @@
       </div>
 
       {# uncomment for dynamic scroll effect
-      <div class="mozads-c-callout-bg-inner">
+      <div class="mza-c-callout-bg-inner">
         <div class="bg-image">
           <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-1.png') }}" class="layer-1"/>
           <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-2.svg') }}" class="layer-2"/>
@@ -51,14 +51,14 @@
 
     </div>
 
-    <div class="mozads-c-callout-section">
+    <div class="mza-c-callout-section">
       <h1>
         {{ value.heading_text }}
       </h1>
 
       <a
         href="{{ value.primary_cta_link.get_url() }}"
-        class="mozads-c-callout-action"
+        class="mza-c-callout-action"
         {% if value.primary_cta_link.new_window %}target="_blank"{% endif %}
       >
         {{ value.primary_cta_text }}
@@ -72,10 +72,10 @@
         <img class="image-8 large-only rectangle-h" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-h.svg') }}" />
     </div>
 
-    <div class="mozads-c-callout-section is-bottom">
-      <div id="callout-image-trigger" class="mozads-c-callout-card">
+    <div class="mza-c-callout-section is-bottom">
+      <div id="callout-image-trigger" class="mza-c-callout-card">
         <p>{{ value.supporting_text }}</p>
-        <a class="mozads-c-callout-action" href="{{ value.secondary_cta_link.get_url() }}" {% if value.secondary_cta_link.new_window %}target="_blank"{% endif %}>{{ value.secondary_cta_text }}</a>
+        <a class="mza-c-callout-action" href="{{ value.secondary_cta_link.get_url() }}" {% if value.secondary_cta_link.new_window %}target="_blank"{% endif %}>{{ value.secondary_cta_text }}</a>
       </div>
     </div>
   </header>
