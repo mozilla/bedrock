@@ -302,7 +302,7 @@ class RowTextAndLinkBlock(blocks.StructBlock):
     )
 
     class Meta:
-        icon = "decimal"
+        icon = "doc-full"
         label = "Text and Link Block"
         label_format = "{text}"
         template = "mozorg/cms/advertising/blocks/row_text_and_link_block.html"
