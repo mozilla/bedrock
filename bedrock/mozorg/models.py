@@ -266,6 +266,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
             ("figure_with_statistic_block", FigureWithStatisticBlock()),
             ("statistic_callout_block", StatisticCalloutBlock()),
             ("features_with_modals", FeatureListWithModalsBlock()),
+            ("feature_list_block", FeatureListBlock()),
             ("text_and_link", RowTextAndLinkBlock()),
         ],
         blank=True,

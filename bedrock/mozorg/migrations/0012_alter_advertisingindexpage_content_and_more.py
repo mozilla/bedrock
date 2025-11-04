@@ -175,7 +175,8 @@ class Migration(migrations.Migration):
                     ("figure_with_statistic_block", 19),
                     ("statistic_callout_block", 22),
                     ("features_with_modals", 30),
-                    ("text_and_link", 32),
+                    ("feature_list_block", 33),
+                    ("text_and_link", 35),
                 ],
                 blank=True,
                 block_lookup={
@@ -340,7 +341,10 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    31: (
+                    31: ("wagtail.blocks.StructBlock", [[("heading_text", 8), ("supporting_text", 23)]], {}),
+                    32: ("wagtail.blocks.ListBlock", (31,), {"min_num": 1}),
+                    33: ("wagtail.blocks.StructBlock", [[("anchor_id", 6), ("feature_list_items", 32)]], {}),
+                    34: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
@@ -356,7 +360,7 @@ class Migration(migrations.Migration):
                         ],
                         {"label": "Link"},
                     ),
-                    32: ("wagtail.blocks.StructBlock", [[("text", 8), ("link_text", 8), ("link", 31), ("display_on_dark_background", 4)]], {}),
+                    35: ("wagtail.blocks.StructBlock", [[("text", 8), ("link_text", 8), ("link", 34), ("display_on_dark_background", 4)]], {}),
                 },
                 null=True,
             ),
