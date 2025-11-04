@@ -138,7 +138,7 @@ class FigureWithStatisticBlock(blocks.StructBlock):
 class FeatureListItemBlock(blocks.StructBlock):
     """Feature list item block."""
 
-    heading_text = blocks.CharBlock(char_max_length=255)
+    heading_text = blocks.TextBlock()
     supporting_text = blocks.TextBlock()
 
     class Meta:

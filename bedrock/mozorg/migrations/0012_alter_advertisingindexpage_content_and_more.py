@@ -159,7 +159,7 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    25: ("wagtail.blocks.StructBlock", [[("heading_text", 1), ("supporting_text", 11)]], {}),
+                    25: ("wagtail.blocks.StructBlock", [[("heading_text", 11), ("supporting_text", 11)]], {}),
                     26: ("wagtail.blocks.ListBlock", (25,), {"min_num": 1}),
                     27: ("wagtail.blocks.StructBlock", [[("anchor_id", 20), ("feature_list_items", 26)]], {}),
                 },
@@ -341,7 +341,7 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    31: ("wagtail.blocks.StructBlock", [[("heading_text", 8), ("supporting_text", 23)]], {}),
+                    31: ("wagtail.blocks.StructBlock", [[("heading_text", 23), ("supporting_text", 23)]], {}),
                     32: ("wagtail.blocks.ListBlock", (31,), {"min_num": 1}),
                     33: ("wagtail.blocks.StructBlock", [[("anchor_id", 6), ("feature_list_items", 32)]], {}),
                     34: (
