@@ -139,7 +139,7 @@ class FeatureListItemBlock(blocks.StructBlock):
     """Feature list item block."""
 
     heading_text = blocks.TextBlock()
-    supporting_text = blocks.TextBlock()
+    supporting_text = blocks.RichTextBlock(features=["bold", "italic", "link"])
 
     class Meta:
         label = "Feature Item"

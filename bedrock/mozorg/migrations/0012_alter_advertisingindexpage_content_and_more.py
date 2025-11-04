@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             model_name="advertisingindexpage",
             name="content",
             field=wagtail.fields.StreamField(
-                [("advertising_hero_block", 13), ("section_header_block", 19), ("figure_with_statistic_block", 24), ("feature_list_block", 27)],
+                [("advertising_hero_block", 13), ("section_header_block", 19), ("figure_with_statistic_block", 24), ("feature_list_block", 28)],
                 blank=True,
                 block_lookup={
                     0: (
@@ -159,9 +159,10 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    25: ("wagtail.blocks.StructBlock", [[("heading_text", 11), ("supporting_text", 11)]], {}),
-                    26: ("wagtail.blocks.ListBlock", (25,), {"min_num": 1}),
-                    27: ("wagtail.blocks.StructBlock", [[("anchor_id", 20), ("feature_list_items", 26)]], {}),
+                    25: ("wagtail.blocks.RichTextBlock", (), {"features": ["bold", "italic", "link"]}),
+                    26: ("wagtail.blocks.StructBlock", [[("heading_text", 11), ("supporting_text", 25)]], {}),
+                    27: ("wagtail.blocks.ListBlock", (26,), {"min_num": 1}),
+                    28: ("wagtail.blocks.StructBlock", [[("anchor_id", 20), ("feature_list_items", 27)]], {}),
                 },
                 null=True,
             ),
@@ -175,8 +176,8 @@ class Migration(migrations.Migration):
                     ("figure_with_statistic_block", 19),
                     ("statistic_callout_block", 22),
                     ("features_with_modals", 30),
-                    ("feature_list_block", 33),
-                    ("text_and_link", 35),
+                    ("feature_list_block", 34),
+                    ("text_and_link", 36),
                 ],
                 blank=True,
                 block_lookup={
@@ -341,10 +342,11 @@ class Migration(migrations.Migration):
                         ],
                         {},
                     ),
-                    31: ("wagtail.blocks.StructBlock", [[("heading_text", 23), ("supporting_text", 23)]], {}),
-                    32: ("wagtail.blocks.ListBlock", (31,), {"min_num": 1}),
-                    33: ("wagtail.blocks.StructBlock", [[("anchor_id", 6), ("feature_list_items", 32)]], {}),
-                    34: (
+                    31: ("wagtail.blocks.RichTextBlock", (), {"features": ["bold", "italic", "link"]}),
+                    32: ("wagtail.blocks.StructBlock", [[("heading_text", 23), ("supporting_text", 31)]], {}),
+                    33: ("wagtail.blocks.ListBlock", (32,), {"min_num": 1}),
+                    34: ("wagtail.blocks.StructBlock", [[("anchor_id", 6), ("feature_list_items", 33)]], {}),
+                    35: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
@@ -360,7 +362,7 @@ class Migration(migrations.Migration):
                         ],
                         {"label": "Link"},
                     ),
-                    35: ("wagtail.blocks.StructBlock", [[("text", 8), ("link_text", 8), ("link", 34), ("display_on_dark_background", 4)]], {}),
+                    36: ("wagtail.blocks.StructBlock", [[("text", 8), ("link_text", 8), ("link", 35), ("display_on_dark_background", 4)]], {}),
                 },
                 null=True,
             ),
