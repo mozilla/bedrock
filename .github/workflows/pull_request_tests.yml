@@ -17,7 +17,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install chromium-browser xvfb
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -29,19 +29,14 @@ jobs:
   test-python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"  # matches current Python in production
+      - uses: actions/checkout@v5
       - name: "Run Python tests (on Docker)"
         run: |
-            # FIXME: GitHub provides compose version enabling bake but timing out
-            export COMPOSE_BAKE=false
             make clean test-image
             CONTAINER_ID=$(docker ps -alq)
             docker cp $CONTAINER_ID:/app/python_coverage .
-        timeout-minutes: 30
-      - name: Store coverage as an artifact
+        timeout-minutes: 60
+      - name: "Store coverage as an artifact"
         uses: actions/upload-artifact@v4
         with:
           name: coverage-results
