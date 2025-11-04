@@ -16,16 +16,28 @@
 
 {% block content %}
 <main id="mza-main">
-  <section class="mza-c-main-dark-section">
+  <!-- A page-level checkbox in the settings called "display page
+   components on dark background." toggles the existence of this div. -->
+  <div class="mza-c-main-dark-section">
     <header class="mza-subpage-header">
-      <div class="m24-c-content">
+      <!-- the dark background toggle will flip on the `no-bottom-padding`
+       class here as well, since this h1 container should be in the template,
+       not the streamfield. -->
+      <div class="m24-c-content no-bottom-padding">
         <h1>Solutions</h1>
+      </div>
+    </header>
+
+    <!-- "Subheading" Component. As a streamfield block, this is always an h2. -->
+    <div class="mza-subpage-header">
+      <div class="m24-c-content no-bottom-padding">
         <hr/>
         <h2 class="mza-section-heading">Firefox</h2>
         <p class="mza-highlight-text">Firefox stands as the most trusted alternative to one-size-fits-all, privacy-invading default browsers. Driven by Mozilla’s mission to ensure the internet is open and accessible to everyone, Firefox puts users in control.</p>
       </div>
-    </header>
+    </div>
 
+    <!-- existing figure plus stat block from homepage -->
     <div class="m24-c-content padding-top-0">
       <div class="mza-figure-grid reversed-on-large">
         <aside class="mza-stat">
@@ -45,6 +57,8 @@
         </figure>
       </div>
     </div>
+
+    <!-- Statistics List Component -->
     <div class="m24-c-content">
       <h3 class="mza-section-subheading">Who you'll reach</h3>
       <div class="mza-stat-group">
@@ -66,11 +80,11 @@
             <span class="mza-stat-label">hours average daily use</span>
           </span>
         </div>
-
-
       </div>
     </div>
 
+
+    <!-- Modal List Component -->
     <div class="m24-c-content">
       <h3 class="mza-section-subheading">Advertising Options</h3>
       <p class="mza-highlight-text">Firefox’s New Tab experience offers a variety of display and native ad formats. Your brand is showcased when and where it matters most, alongside curated content from top-tier publishers. </p>
@@ -233,6 +247,7 @@
       </ul>
     </div>
 
+
     <div class="mza-subpage-header">
       <div class="m24-c-content no-bottom-padding">
         <hr/>
@@ -261,6 +276,8 @@
         </figure>
       </div>
     </div>
+
+
     <div class="m24-c-content">
       <h3 class="mza-section-subheading">Who you'll reach</h3>
       <div class="mza-stat-group">
@@ -417,33 +434,7 @@
         <a class="mza-large-link" href="https://assets.mozilla.net/pdf/Mozilla_Advertising_Standards_October_2025.pdf">Download PDF</a>
       </div>
     </div>
-  </section>
-
-
-{# keeping this section here for reference. We'll build the Accordion component in the CMS to be added later.
-  <section class="m24-c-content has-scroll-padding no-top-padding">
-    <div class="section-has-border-top">
-      <hgroup class="mza-hgroup">
-        <h2 class="mza-section-heading">FAQ</h2>
-      </hgroup>
-
-      <div class="mza-bordered-list has-padding-top">
-        <details>
-          <summary>
-            Placeholder copy describing the ad placement
-          </summary>
-          Placeholder content
-        </details>
-        <details>
-          <summary>
-            Placeholder copy describing the ad placement
-          </summary>
-          Placeholder content
-        </details>
-      </div>
-    </div>
-  </section>
-  #}
+  </div>
 
   {% include 'mozorg/advertising/includes/home-ads-contact.html' %}
   {% include 'mozorg/advertising/includes/home-ads-notification.html' %}
