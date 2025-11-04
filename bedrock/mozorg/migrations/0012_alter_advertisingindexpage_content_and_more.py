@@ -109,12 +109,7 @@ class Migration(migrations.Migration):
                     18: (
                         "wagtail.blocks.BooleanBlock",
                         (),
-                        {
-                            "default": False,
-                            "inline_form": True,
-                            "label": "Should the section have a dark background?",
-                            "required": False,
-                        },
+                        {"default": False, "inline_form": True, "label": "Should the section have a dark background?", "required": False},
                     ),
                     19: (
                         "wagtail.blocks.StructBlock",
@@ -123,7 +118,7 @@ class Migration(migrations.Migration):
                                 ("anchor_id", 14),
                                 ("has_top_divider", 15),
                                 ("superheading_text", 16),
-                                ("heading_text", 1),
+                                ("heading_text", 16),
                                 ("subheading_text", 16),
                                 ("image", 17),
                                 ("display_on_dark_background", 18),
@@ -176,7 +171,7 @@ class Migration(migrations.Migration):
             name="content",
             field=wagtail.fields.StreamField(
                 [
-                    ("section_header_block", 6),
+                    ("section_header_block", 5),
                     ("figure_with_statistic_block", 19),
                     ("statistic_callout_block", 22),
                     ("features_with_modals", 30),
@@ -199,39 +194,34 @@ class Migration(migrations.Migration):
                         {"default": False, "inline_form": True, "label": "Should the section have a divider line on top?", "required": False},
                     ),
                     2: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255, "required": False}),
-                    3: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
-                    4: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
-                    5: (
+                    3: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
+                    4: (
                         "wagtail.blocks.BooleanBlock",
                         (),
-                        {
-                            "default": False,
-                            "inline_form": True,
-                            "label": "Should the section have a dark background?",
-                            "required": False,
-                        },
+                        {"default": False, "inline_form": True, "label": "Should the section have a dark background?", "required": False},
                     ),
-                    6: (
+                    5: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
                                 ("anchor_id", 0),
                                 ("has_top_divider", 1),
                                 ("superheading_text", 2),
-                                ("heading_text", 3),
+                                ("heading_text", 2),
                                 ("subheading_text", 2),
-                                ("image", 4),
-                                ("display_on_dark_background", 5),
+                                ("image", 3),
+                                ("display_on_dark_background", 4),
                             ]
                         ],
                         {},
                     ),
-                    7: (
+                    6: (
                         "wagtail.blocks.CharBlock",
                         (),
                         {"help_text": "Optional: Add an ID to make this section linkable from navigation", "max_length": 100, "required": False},
                     ),
-                    8: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255, "required": False}),
+                    7: ("wagtail.blocks.RichTextBlock", (), {"char_max_length": 255, "required": False}),
+                    8: ("wagtail.blocks.CharBlock", (), {"char_max_length": 255}),
                     9: (
                         "wagtail.blocks.BooleanBlock",
                         (),
@@ -295,29 +285,29 @@ class Migration(migrations.Migration):
                         "wagtail.blocks.StructBlock",
                         [
                             [
-                                ("anchor_id", 7),
-                                ("image", 4),
-                                ("image_caption", 8),
-                                ("statistic_value", 3),
-                                ("statistic_label", 3),
+                                ("anchor_id", 6),
+                                ("image", 3),
+                                ("image_caption", 7),
+                                ("statistic_value", 8),
+                                ("statistic_label", 8),
                                 ("align_image_on_right", 9),
                                 ("cta_text", 2),
                                 ("cta_link", 18),
-                                ("display_on_dark_background", 5),
+                                ("display_on_dark_background", 4),
                             ]
                         ],
                         {},
                     ),
-                    20: ("wagtail.blocks.StructBlock", [[("statistic_superlabel", 2), ("statistic_value", 3), ("statistic_label", 3)]], {}),
+                    20: ("wagtail.blocks.StructBlock", [[("statistic_superlabel", 2), ("statistic_value", 8), ("statistic_label", 8)]], {}),
                     21: ("wagtail.blocks.ListBlock", (20,), {"min_num": 1}),
                     22: (
                         "wagtail.blocks.StructBlock",
-                        [[("anchor_id", 7), ("heading_text", 3), ("statistics", 21), ("display_on_dark_background", 5)]],
+                        [[("anchor_id", 6), ("heading_text", 8), ("statistics", 21), ("display_on_dark_background", 4)]],
                         {},
                     ),
                     23: ("wagtail.blocks.TextBlock", (), {}),
                     24: ("wagtail.blocks.TextBlock", (), {"char_max_length": 255, "required": False}),
-                    25: ("wagtail.blocks.StructBlock", [[("image", 4), ("image_caption_heading", 24), ("image_caption_text", 24)]], {}),
+                    25: ("wagtail.blocks.StructBlock", [[("image", 3), ("image_caption_heading", 24), ("image_caption_text", 24)]], {}),
                     26: ("wagtail.blocks.ListBlock", (25,), {"min_num": 1}),
                     27: (
                         "wagtail.blocks.StructBlock",
@@ -335,17 +325,17 @@ class Migration(migrations.Migration):
                         ],
                         {"label": "CTA Link", "required": False},
                     ),
-                    28: ("wagtail.blocks.StructBlock", [[("heading_text", 3), ("figures", 26), ("cta_text", 2), ("cta_link", 27)]], {}),
+                    28: ("wagtail.blocks.StructBlock", [[("heading_text", 8), ("figures", 26), ("cta_text", 2), ("cta_link", 27)]], {}),
                     29: ("wagtail.blocks.ListBlock", (28,), {"min_num": 1}),
                     30: (
                         "wagtail.blocks.StructBlock",
                         [
                             [
-                                ("anchor_id", 7),
-                                ("heading_text", 3),
+                                ("anchor_id", 6),
+                                ("heading_text", 8),
                                 ("supporting_text", 23),
                                 ("feature_list_items", 29),
-                                ("display_on_dark_background", 5),
+                                ("display_on_dark_background", 4),
                             ]
                         ],
                         {},
@@ -366,7 +356,7 @@ class Migration(migrations.Migration):
                         ],
                         {"label": "Link"},
                     ),
-                    32: ("wagtail.blocks.StructBlock", [[("text", 3), ("link_text", 3), ("link", 31), ("display_on_dark_background", 5)]], {}),
+                    32: ("wagtail.blocks.StructBlock", [[("text", 8), ("link_text", 8), ("link", 31), ("display_on_dark_background", 4)]], {}),
                 },
                 null=True,
             ),

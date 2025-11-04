@@ -65,7 +65,7 @@ class SectionHeaderBlock(blocks.StructBlock):
         inline_form=True,
     )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
-    heading_text = blocks.CharBlock(char_max_length=255)
+    heading_text = blocks.CharBlock(char_max_length=255, required=False)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
     display_on_dark_background = blocks.BooleanBlock(
