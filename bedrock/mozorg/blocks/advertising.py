@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.exceptions import ValidationError
+
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -74,6 +76,21 @@ class SectionHeaderBlock(blocks.StructBlock):
         label="Should the section have a dark background?",
         inline_form=True,
     )
+
+    def clean(self, value):
+        errors = {}
+
+        superheading = value.get("superheading_text", "").strip()
+        heading = value.get("heading_text", "").strip()
+        subheading = value.get("subheading_text", "").strip()
+
+        if not superheading and not heading and not subheading:
+            errors["heading_text"] = ValidationError("You must provide either superheading, or heading, or subheading.")
+
+        if errors:
+            raise blocks.StructBlockValidationError(errors)
+
+        return super().clean(value)
 
     class Meta:
         icon = "title"
