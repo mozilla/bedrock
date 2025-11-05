@@ -31,7 +31,7 @@
                 data-link-position="subnav"
                 data-link-text="{{ link_block.link_text }}"
                 {% if link_block.has_button_appearance %}class="mza-c-contact-sales-button"{% endif %}
-                {% if link_block.link.new_window %}target="_blank"{% endif %}
+                {% if link_block.link.new_window %}target="_blank" rel="noopener"{% endif %}
               >
                 {{ link_block.link_text }}
               </a>
