@@ -4,31 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "base-protocol-mozilla.html" %}
-
-{% from "macros-protocol.html" import callout, picto with context %}
+{% extends "mozorg/advertising/base-advertising.html" %}
 
 {% block page_title %}Mozilla Ads — Built on principles{% endblock %}
 
-{% block page_css %}
-  {{ css_bundle('protocol-callout') }}
-  {{ css_bundle('protocol-card') }}
-  {{ css_bundle('protocol-picto') }}
-  {{ css_bundle('mozilla-ads') }}
-{% endblock %}
-
-{% block site_header %}
-  {% with has_subnav=true %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-    {% endwith %}
-{% endblock %}
-
-
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=advertising-principles' %}
-
-{% block sub_navigation %}
-  {% include 'mozorg/advertising/includes/sub-nav.html' %}
-{% endblock %}
 
 {% block content %}
 
@@ -37,11 +17,12 @@
     <div class="m24-c-content">
       <h1>Principles</h1>
     </div>
+  </header>
 
   <section class="m24-c-content">
     <div class="mza-half-grid">
       <div class="two-column-intro">
-        <h2 class="mza-section-heading">Ads that work for you </h2>
+        <h2 class="mza-section-heading">Ads that work for you </h2>
         <p class="mza-section-text-lg">The internet relies on advertising to fund the sites and apps people care about, but today’s system favors big tech—often at the expense of your privacy. We’re building a new approach to advertising that is a fair deal for everyone.</p>
 
       </div>

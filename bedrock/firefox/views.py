@@ -476,14 +476,12 @@ class WhatsnewView(L10nTemplateView):
             "firefox/nightly/whatsnew",
             "firefox/whatsnew/whatsnew",
         ],
-        "firefox/nightly/whatsnew-fx145.html": ["firefox/nightly/whatsnew", "firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/index.html": [
             "firefox/whatsnew/whatsnew-s2d",
             "firefox/whatsnew/whatsnew",
         ],
         "firefox/whatsnew/index-thanks.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142beta.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx144beta.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx130.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-na.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx131-eu.html": ["firefox/whatsnew/whatsnew"],
@@ -610,19 +608,14 @@ class WhatsnewView(L10nTemplateView):
         channel = detect_channel(version)
 
         if channel == "nightly":
-            if version.startswith("145.") and locale.startswith("en-"):
-                template = "firefox/nightly/whatsnew-fx145.html"
-            else:
-                template = "firefox/nightly/whatsnew.html"
+            template = "firefox/nightly/whatsnew.html"
         elif channel == "developer":
             if show_57_dev_whatsnew(version):
                 template = "firefox/developer/whatsnew.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif channel == "beta":
-            if version.startswith("144.") and locale.startswith("en-"):
-                template = "firefox/whatsnew/whatsnew-fx144beta.html"
-            elif version.startswith("142."):
+            if version.startswith("142."):
                 if locale.startswith("en-"):
                     template = "firefox/whatsnew/whatsnew-fx142beta.html"
                 else:

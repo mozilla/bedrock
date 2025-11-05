@@ -30,6 +30,9 @@
 {% set _utm_campaign = 'vpn-product-page' %}
 {% set _params = '?utm_source=' ~ _utm_source ~ '&utm_medium=referral&utm_campaign=' ~ _utm_campaign %}
 
+{% block experiments %}
+{% endblock %}
+
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
   {{ css_bundle('protocol-picto')}}
@@ -133,32 +136,35 @@
   {% endcall %}
 
   {# note: `id=#pricing` is used as an anchor link from android in-product subscription flows, so do not remove (issue 10039) #}
-  <div id="pricing">
-    {% if vpn_available %}
-      {% if mobile_sub_only %}
+  {% if vpn_available %}
+    {% if mobile_sub_only %}
+      <div id="pricing">
         {% with heading = ftl('vpn-landing-one-subscription-for-all-your'), campaign = 'vpn-landing-page' %}
           {% include 'products/vpn/includes/mobile-subscribe.html' %}
         {% endwith %}
-      {% else %}
+      </div>
+    {% else %}
+      <div id="pricing">
         <section class="mzp-l-content mzp-t-content-xl">
           <header class="c-pricing-main-header">
             <h3 class="c-section-title">{{ ftl('vpn-landing-one-subscription-for-all-your') }}</h3>
           </header>
           {% include 'products/vpn/includes/pricing-refresh.html' %}
         </section>
-      {% endif %}
-    {% else %}
+      </div>
+    {% endif %}
+  {% else %}
+    <div id="pricing">
       <section class="mzp-l-content mzp-t-content-xl">
         <header class="c-pricing-main-header">
           <h2 class="c-section-title">{{ ftl('vpn-shared-mozilla-vpn-is-not-yet-available') }}</h2>
-
           <a class="mzp-c-button mzp-t-product mzp-t-xl" href="{{ url('products.vpn.invite') }}" data-cta-text="Join the VPN Waitlist" data-testid="join-waitlist-not-available-button">
             {{ ftl('vpn-shared-waitlist-link') }}
           </a>
         </header>
       </section>
-    {% endif %}
-  </div>
+    </div>
+  {% endif %}
 
   <section class="c-how-vpn-helps mzp-l-content mzp-t-content-xl">
     <h2 class="c-section-title">{{ ftl('vpn-landing-how-a-vpn-helps-you-v2', fallback='vpn-landing-how-a-vpn-helps-you') }}</h2>

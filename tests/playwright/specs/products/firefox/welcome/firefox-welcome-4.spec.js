@@ -8,12 +8,12 @@
 
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../../../scripts/open-page');
-const url = '/firefox/welcome/4/';
+const url = 'firefox/welcome/4';
 
 test.describe(
     `${url} page`,
     {
-        tag: ['@firefox', '@wfc-redirect']
+        tag: '@firefox'
     },
     () => {
         test('Send to device form success', async ({ page, browserName }) => {
@@ -22,7 +22,7 @@ test.describe(
                 'Page shown to Firefox browsers only'
             );
 
-            await openPage('/en-US/' + url, page, browserName);
+            await openPage(`/en-US/${url}/`, page, browserName);
 
             const qrCode = page.getByTestId('firefox-qr-code');
             const emailField = page.getByTestId(
@@ -37,6 +37,7 @@ test.describe(
 
             await expect(qrCode).not.toBeVisible();
             await expect(thanksMessage).not.toBeVisible();
+            await expect(submitButton).toBeVisible();
             await emailField.fill('success@example.com');
             await submitButton.click();
             await expect(submitButton).not.toBeVisible();
@@ -49,7 +50,7 @@ test.describe(
                 'Page shown to Firefox browsers only'
             );
 
-            await openPage('/en-US/' + url, page, browserName);
+            await openPage(`/en-US/${url}/`, page, browserName);
 
             const qrCode = page.getByTestId('firefox-qr-code');
             const emailField = page.getByTestId(
@@ -62,6 +63,7 @@ test.describe(
 
             await expect(qrCode).not.toBeVisible();
             await expect(errorMessage).not.toBeVisible();
+            await expect(submitButton).toBeVisible();
             await emailField.fill('failure@example.com');
             await submitButton.click();
             await expect(errorMessage).toBeVisible();
@@ -73,7 +75,7 @@ test.describe(
                 'Page shown to Firefox browsers only'
             );
 
-            await openPage('/sv-SE/' + url, page, browserName);
+            await openPage(`/fy-NL/${url}/`, page, browserName);
 
             const qrCode = page.getByTestId('firefox-qr-code');
             const emailField = page.getByTestId(

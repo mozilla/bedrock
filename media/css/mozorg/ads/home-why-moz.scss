@@ -3,20 +3,26 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
-
-// .mozads-c-home-why-moz {
-// }
+@use './mixins' as admixins;
 
 .mza-half-grid {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 
+    &.has-margin-bottom {
+        margin-bottom: $spacer-xl;;
+    }
+
     &.is-list-item {
         gap: 0;
         border-top: 1px solid advars.$color-ads-off-black;
         padding: 1.5rem 0;
         align-items: start;
+
+        > p:last-child {
+            margin-bottom: 0;
+        }
     }
 
     &.has-border-top {
@@ -36,63 +42,4 @@
             border-color: advars.$color-ads-dark-gray;
         }
     }
-}
-
-.section-has-border-top {
-    border-top: 1px solid advars.$color-ads-off-black;
-    padding-top: 2rem;
-}
-
-.mozads-home-why-moz-list {
-    list-style: none;
-    margin: 2rem 0;
-    padding: 0;
-}
-
-.mozads-home-why-moz-list-heading {
-    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
-    padding-bottom: 1rem;
-    padding-left: 1rem;
-    margin: 0;
-    max-width: 550px;
-    font-size: var(--title-xs-size);
-    line-height: var(--title-xs-line-height);
-    font-weight: 300;
-    text-wrap: balance;
-
-}
-
-.mozads-home-why-moz-list-text {
-    @include text-body-md;
-    margin: 0;
-    border-left: 0.5rem solid advars.$color-ads-tertiary-gray;
-    padding-left: 1rem;
-}
-
-
-@media #{$mq-md} {
-    .mozads-home-why-moz-list-text {
-        padding-right: 17%;
-        border-left: 0 none;
-        padding-left: 0;
-    }
-
-    .mozads-half-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        &.is-list-item {
-            gap: 2rem;
-            align-items: center;
-        }
-    }
-
-    .mozads-home-why-moz-list-heading {
-        border-left-width: 1rem;
-        padding-left: 2rem;
-        padding-bottom: 0;
-        font-size: var(--title-md-size);
-        line-height: var(--title-md-line-height);
-    }
-
 }

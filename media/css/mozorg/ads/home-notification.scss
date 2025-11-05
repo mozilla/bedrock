@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 .mza-notification-container {
     @include container;
@@ -23,8 +24,7 @@
     padding: 1.5rem 0;
 
     p {
-        @include text-body-lg;
-        font-family: var(--title-font-family);
+	 @include admixins.text-body-md;
         font-weight: 600;
         margin: 0;
     }
