@@ -24,7 +24,7 @@
     padding: 1.5rem 0;
 
     p {
-	 @include admixins.text-body-md;
+        @include admixins.text-body-md;
         font-weight: 600;
         margin: 0;
     }
