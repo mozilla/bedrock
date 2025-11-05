@@ -118,7 +118,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     text-decoration-thickness: 1px;
 
     &.mzp-is-active {
-        background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
+        background: transparent url('/media/protocol/img/icons/close.svg') center center / 20px 20px no-repeat;
         width: 40px;
         @include image-replaced;
 
@@ -248,7 +248,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
     // Arrow styles for mobile menu items.
     &::after {
-        background: transparent url('/media/img/icons/m24-small/up-arrow.svg') center center no-repeat;
+        background: transparent url('/media/protocol/img/icons/arrow-up.svg') center center no-repeat;
         content: '';
         height: 20px;
         position: absolute;
@@ -566,6 +566,7 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 .m24-c-menu-panel .m24-c-menu-category-link a,
 .m24-c-menu-panel .m24-c-menu-category-link a:visited,
 .m24-c-menu-panel .m24-c-menu-category-link a:link {
+    align-items: center;
     border: none;
     color: $color-black;
     display: flex;
@@ -577,15 +578,14 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
     svg {
         @include bidi((
             (left, auto, 0),
-            (margin-left, $spacing-xs, 0),
-            (margin-right, 0, $spacing-xs),
+            (margin-left, $spacing-sm, 0),
+            (margin-right, 0, $spacing-sm),
             (right, 0, auto),
             (transition-property, right, left),
             (transform, none, rotate(-180deg)),
         ));
-        height: 0.8em;
+        height: 16px;
         position: relative;
-        top: 0.15em;
         transition-duration: $fast;
         transition-timing-function: $bezier;
         width: auto;
@@ -640,17 +640,16 @@ $margin-top: 54px; // top margin offset for mobile navigation menu
 
 // Menu panel close button shown on desktop sized view ports.
 .m24-c-menu-button-close {
-    @include bidi(((right, 15px, left, auto), (left, auto, right, 15px)));
+    @include bidi(((right, 4px, left, auto), (left, auto, right, 4px)));
     @include image-replaced;
-    background: $color-white url('/media/protocol/img/icons/close.svg') center center no-repeat;
-    @include background-size(20px, 20px);
+    background: $color-white url('/media/protocol/img/icons/close.svg') center center / 20px 20px no-repeat;
     border: $border-width solid transparent;
     cursor: pointer;
     display: none;
     height: 24px;
     padding: var(--spacer-xs);
     position: absolute;
-    top: 15px;
+    top: 4px;
     width: 24px;
     transition: border-color $fast $bezier;
 

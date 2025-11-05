@@ -6,8 +6,10 @@
 
 
 .mzp-c-button.mozads-c-contact-button {
+    background-color: $m24-color-black;
+    border-color: currentColor;
     border-radius: 0;
-    color: #fff;
+    color: $m24-color-white;
     margin-top: 2rem;
 }
 
@@ -30,8 +32,14 @@
     .mzp-c-button.mozads-c-contact-button {
         margin-top: 2rem;
 
+        svg {
+            position: relative;
+            top: -2px;
+        }
+
         &:hover {
-            background-color: white;
+            background-color: $m24-color-white;
+            color: $m24-color-black;
         }
     }
 }
