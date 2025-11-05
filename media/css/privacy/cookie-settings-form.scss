@@ -5,6 +5,12 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
+.mzp-c-breadcrumb {
+    &.is-hidden {
+        display: none;
+    }
+}
+
 main {
     .mzp-l-content {
         background: $color-white;
