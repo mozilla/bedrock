@@ -22,7 +22,7 @@
 
     {% if value.cta_text %}
         <div class="m24-c-content full-width mza-section-footer">
-          <a class="mza-large-link" href="{{ value.cta_link.get_url() }}" {% if value.cta_link.new_window %}target="_blank"{% endif %}>{{ value.cta_text }}</a>
+          <a class="mza-large-link" href="{{ value.cta_link.get_url() }}" {% if value.cta_link.new_window %}target="_blank" rel="noopener" {% endif %}>{{ value.cta_text }}</a>
         </div>
     {% endif %}
 
