@@ -42,11 +42,17 @@
         <section class="leadership-section" id="{{ section.value.id }}">
           {% set first_group = section.value.leadership_group[0] %}
           <h2 class="leadership-title{% if first_group.title %} compact{% endif %}">{{ section.value.title }}</h2>
+          {% if first_group.description %}
+            <p class="leadership-description">{{ first_group.description }}</p>
+          {% endif %}
 
           {% for group in section.value.leadership_group %}
             <section>
               {% if group.title %}
                 <h2 class="group-title">{{ group.title }}</h2>
+              {% endif %}
+              {% if group.description %}
+                <p class="group-description">{{ group.description }}</p>
               {% endif %}
               <div class="gallery mgmt-corp">
                 {% for leader in group.leaders %}
