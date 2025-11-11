@@ -273,13 +273,14 @@ $image-path: '/media/protocol/img';
     text-wrap: balance;
     max-width: 26ch;
 
-    @media #{$mq-md} {
-        &.is-top-left {
-            position: absolute;
-            top: -1.5rem;
-            left: 0;
-        }
-    }
+    // This was for "nearly" above a stat, and is no longer used.
+    // @media #{$mq-md} {
+    //     &.is-top-left {
+    //         position: absolute;
+    //         top: -1.5rem;
+    //         left: 0;
+    //     }
+    // }
 }
 
 .mza-large-link {
