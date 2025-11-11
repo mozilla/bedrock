@@ -31,6 +31,11 @@ SOCIAL_MEDIA_ICON_CHOICES = [
 class AdvertisingHeroBlock(blocks.StructBlock):
     """Advertising page hero block."""
 
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'hero', 'overview')",
+    )
     heading_text = blocks.CharBlock(char_max_length=255)
     primary_cta_text = blocks.CharBlock(char_max_length=255)
     primary_cta_link = LinkBlock(label="Primary CTA Link")
@@ -48,6 +53,11 @@ class AdvertisingHeroBlock(blocks.StructBlock):
 class SectionHeaderBlock(blocks.StructBlock):
     """Section header block."""
 
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'solutions', 'why-mozilla')",
+    )
     has_top_divider = blocks.BooleanBlock(
         default=False,
         required=False,
@@ -70,6 +80,11 @@ class SectionHeaderBlock(blocks.StructBlock):
 class FigureWithStatisticBlock(blocks.StructBlock):
     """Figure with a statistic block."""
 
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
     image = ImageChooserBlock(required=False)
     image_caption = blocks.RichTextBlock(char_max_length=255)
     statistic_value = blocks.CharBlock(char_max_length=255)
@@ -107,6 +122,11 @@ class FeatureListItemBlock(blocks.StructBlock):
 class FeatureListBlock(blocks.StructBlock):
     """Feature list block."""
 
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
     feature_list_items = blocks.ListBlock(FeatureListItemBlock(), min_num=1)
 
     class Meta:

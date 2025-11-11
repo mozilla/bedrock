@@ -21,7 +21,11 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% include 'mozorg/advertising/includes/sub-nav.html' %}
+  {% if page.sub_navigation %}
+    {% with advertising_index_page=page %}
+      {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
+    {% endwith %}
+  {% endif %}
 {% endblock %}
 
 {% block content %}
