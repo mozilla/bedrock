@@ -14,10 +14,10 @@
     font-size: $text-body-md;
 
     &::before {
-        background-image: url('/media/img/icons/m24-small/arrow-left.svg');
+        background-image: url('/media/protocol/img/icons/arrow-left.svg');
         background-position: center left;
         background-repeat: no-repeat;
-        background-size: 18px auto;
+        background-size: 16px auto;
         bottom: 0;
         content: '';
         display: block;

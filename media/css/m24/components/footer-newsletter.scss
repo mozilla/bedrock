@@ -178,7 +178,7 @@ $max-footer-content-width: $content-max;
         select {
             width: 100%;
             @include bidi(((background-position, right 8px center, 8px center),));
-            background: $m24-color-light-gray url('/media/img/icons/m24-small/down-caret-white.svg') no-repeat;
+            background: $m24-color-light-gray url('/media/protocol/img/icons/caret-down-white.svg') no-repeat;
             background-size: 16px 16px;
 
             @media #{$mq-lg} {
@@ -191,7 +191,7 @@ $max-footer-content-width: $content-max;
             &:focus-within {
                 color: $m24-color-alt-white;
                 @include bidi(((background-position, right 8px center, 8px center),));
-                background: $m24-color-alt-black url('/media/img/icons/m24-small/down-caret.svg') no-repeat;
+                background: $m24-color-alt-black url('/media/protocol/img/icons/caret-down.svg') no-repeat;
                 background-size: 16px 16px;
             }
         }

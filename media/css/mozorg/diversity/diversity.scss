@@ -221,15 +221,15 @@ $image-path: '/media/protocol/img';
     a:link,
     a:visited {
         color: $color-black;
+    }
 
-        &:hover,
-        &:focus,
-        &:active {
-            color: $link-color-hover;
+    a:hover,
+    a:focus,
+    a:active {
+        color: $link-color-hover;
 
-            @supports (--css: variables) {
-                color: var(--link-color-hover);
-            }
+        @supports (--css: variables) {
+            color: var(--link-color-hover);
         }
     }
 
