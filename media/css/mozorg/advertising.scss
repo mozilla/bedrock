@@ -224,6 +224,10 @@ $image-path: '/media/protocol/img';
     b, strong {
         font-weight: 600;
     }
+
+    p {
+        margin: 0;
+    }
 }
 
 .mza-stat-group {
@@ -737,6 +741,7 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
     gap: 1rem;
     @include admixins.text-title-sm;
+    padding-block: 0;
 
     &.pad-top {
         padding-top: $spacer-xl;
