@@ -50,11 +50,11 @@ body {
     a:link,
     a:visited {
         color: $color-ink-80;
+    }
 
-        &:hover,
-        &:focus {
-            color: inherit;
-        }
+    a:hover,
+    a:focus {
+        color: inherit;
     }
 
     abbr {
