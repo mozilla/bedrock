@@ -6,10 +6,13 @@
 @use './mixins' as admixins;
 
 
+
 .mzp-c-button.mza-c-contact-button {
     @include admixins.text-button-md;
+    background-color: $m24-color-black;
+    border-color: currentColor;
     border-radius: 0;
-    color: #fff;
+    color: $m24-color-white;
     margin-top: 2rem;
     padding-block: 0.75rem;
 }
@@ -33,8 +36,14 @@
     .mzp-c-button.mza-c-contact-button {
         margin-top: 2rem;
 
+        svg {
+            position: relative;
+            top: -2px;
+        }
+
         &:hover {
-            background-color: white;
+            background-color: $m24-color-white;
+            color: $m24-color-black;
         }
     }
 }
