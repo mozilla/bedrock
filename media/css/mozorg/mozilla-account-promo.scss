@@ -128,12 +128,12 @@ $promo-sm-mq: 400px;
     a:link,
     a:visited {
         color: $color-white;
+    }
 
-        &:hover,
-        &:focus,
-        &:active {
-            color: $color-white;
-        }
+    a:hover,
+    a:focus,
+    a:active {
+        color: $color-white;
     }
 
     .products-list {

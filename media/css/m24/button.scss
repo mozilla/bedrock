@@ -21,16 +21,16 @@
     &:link,
     &:visited {
         color: $m24-color-white;
+    }
 
-        &:hover,
-        &:active,
-        &:focus {
-            background-color: $m24-color-white;
-            color: $m24-color-black;
-            transition-duration: $fast;
-            transition-property: background-color, border-color, color;
-            transition-timing-function: $bezier;
-        }
+    &:hover,
+    &:active,
+    &:focus {
+        background-color: $m24-color-white;
+        color: $m24-color-black;
+        transition-duration: $fast;
+        transition-property: background-color, border-color, color;
+        transition-timing-function: $bezier;
     }
 
     &.m24-t-alt {
@@ -41,13 +41,13 @@
         &:link,
         &:visited {
             color: $m24-color-black;
+        }
 
-            &:hover,
-            &:active,
-            &:focus {
-                background-color: $m24-color-black;
-                color: $m24-color-white;
-            }
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: $m24-color-black;
+            color: $m24-color-white;
         }
     }
 }
