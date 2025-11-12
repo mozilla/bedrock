@@ -57,5 +57,5 @@ wagtaildraftsharing==0.3.0
 wagtail-localize-smartling==0.10.3
 wagtail-localize==1.12.2
 Wand==0.6.13  # For animated GIF support
-Wagtail==7.1.1
+Wagtail==7.1.2
 whitenoise==6.11.0
