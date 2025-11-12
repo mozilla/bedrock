@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="{% if value.display_on_dark_background %}mza-c-main-dark-section mza-subpage-header{% endif %}">
+<div class="{% if value.display_on_dark_background %}mza-c-main-dark-section mza-subpage-header{% endif %}">
     <div class="m24-c-content mza-section-footer {% if value.display_on_dark_background %}pad-bottom{% else %}pad-top{% endif %}">
       <span>{{ value.text }}</span>
 
@@ -12,4 +12,4 @@
         <a class="mza-large-link" href="{{ value.link.get_url() }}" {% if value.link.new_window %}target="_blank"{% endif %}>{{ value.link_text }}</a>
       {% endif %}
     </div>
-</section>
+</div>

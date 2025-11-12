@@ -118,8 +118,6 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         label="Should the image be to the right of the statistic?",
         inline_form=True,
     )
-    cta_text = blocks.CharBlock(char_max_length=255, required=False)
-    cta_link = LinkBlock(label="Link", required=False)
     display_on_dark_background = blocks.BooleanBlock(
         default=False,
         required=False,
@@ -291,7 +289,7 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
 class RowTextAndLinkBlock(blocks.StructBlock):
     """Block for text and a link."""
 
-    text = blocks.CharBlock(char_max_length=255)
+    text = blocks.CharBlock(char_max_length=255, required=False)
     link_text = blocks.CharBlock(char_max_length=255)
     link = LinkBlock(label="Link")
     display_on_dark_background = blocks.BooleanBlock(
@@ -356,3 +354,22 @@ class NotificationBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/advertising/blocks/notification_block.html"
+
+
+class SectionBlock(blocks.StructBlock):
+    header = SectionHeaderBlock()
+    content = blocks.StreamBlock(
+        [
+            ("section_header_block", SectionHeaderBlock()),
+            ("figure_with_statistic_block", FigureWithStatisticBlock()),
+            ("statistic_callout_block", StatisticCalloutBlock()),
+            ("features_with_modals", FeatureListWithModalsBlock()),
+            ("feature_list_block", FeatureListBlock()),
+        ]
+    )
+    call_to_action = blocks.ListBlock(RowTextAndLinkBlock(), min_num=0, max_num=1, default=[], label="Call to Action")
+
+    class Meta:
+        template = "mozorg/cms/advertising/blocks/section.html"
+        label = "Section"
+        label_format = "{header}"

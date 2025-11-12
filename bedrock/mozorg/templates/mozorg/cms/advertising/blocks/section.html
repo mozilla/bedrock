@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="{% if value.display_on_dark_background %} mza-c-main-dark-section{% endif %}"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+  {% include_block value.header %}
+
+  {% for block in value.content %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% if value.call_to_action %}
+    {% for cta in value.call_to_action %}
+      {% include_block cta %}
+    {% endfor %}
+  {% endif %}
+</section>
