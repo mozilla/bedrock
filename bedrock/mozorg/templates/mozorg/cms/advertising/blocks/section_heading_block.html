@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mza-section-heading {% if value.display_on_dark_background %}mza-c-main-dark-section{% else %}m24-c-content{% endif %} {% if value.has_top_divider %}no-top-padding{% endif %} no-bottom-padding has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+<section class="mza-section-header {% if value.display_on_dark_background %}mza-c-main-dark-section{% else %}m24-c-content{% endif %} {% if value.has_top_divider %}no-top-padding{% endif %} no-bottom-padding has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
   <div class="{% if value.image %} mza-half-grid{% if value.has_top_divider %} has-border-top{% endif %}{% elif value.has_top_divider %} section-has-border-top{% endif %}">
     <hgroup class="mza-hgroup{% if value.display_on_dark_background %} m24-c-content{% endif %}{% if value.has_top_divider %} no-bottom-padding padding-top-0{% endif %}">
       {% if value.display_on_dark_background and value.has_top_divider %}<hr />{% endif %}

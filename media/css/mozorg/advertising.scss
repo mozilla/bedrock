@@ -142,6 +142,9 @@ $image-path: '/media/protocol/img';
 .mza-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
+}
+
+.mza-section-header {
     padding-bottom: 1.5rem;
 }
 
