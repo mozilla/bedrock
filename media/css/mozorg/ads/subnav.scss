@@ -66,16 +66,15 @@
         padding: $spacing-lg 0;
     }
 
-    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button {
-        padding: 0.75rem 1.5rem;
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:link,
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:visited
+     {
+        padding: $spacer-xs;
         color: advars.$color-ads-off-black;
         background-color: $token-color-green;
         display: inline-block;
-        border: 2px solid currentColor;
-        @include admixins.text-button-md;
-        font-weight: 600;
+        border: 2px solid $token-color-green;
     }
-
 
     &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:hover,
     &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:active {
