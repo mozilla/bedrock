@@ -6,7 +6,7 @@
 
 {% if value.feature_list_items %}
   <section class="m24-c-content mza-c-home-why-moz has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
-    <ol class="mza-home-why-moz-list">
+    <ol class="mza-home-big-list">
       {% for item in value.feature_list_items %}
         {% include_block item %}
       {% endfor %}

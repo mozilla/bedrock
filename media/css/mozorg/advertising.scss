@@ -41,7 +41,6 @@ $image-path: '/media/protocol/img';
 
 .section-has-border-top {
     border-top: 1px solid advars.$color-ads-off-black;
-    padding-top: 2rem;
 }
 
 #mza-main {
@@ -91,6 +90,14 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .m24-c-content.bottom-padding-sm {
+        padding-bottom: 2rem;
+
+        hr {
+            margin-top: 4rem;
+        }
+    }
+
     .md-only {
         display: none;
 
@@ -135,7 +142,7 @@ $image-path: '/media/protocol/img';
 .mza-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
-    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
 }
 
 .mza-section-subheading {
@@ -747,10 +754,24 @@ $image-path: '/media/protocol/img';
         padding-top: $spacer-xl;
     }
 
+    &.pad-bottom {
+        padding-bottom: $spacer-xl;
+    }
+
     &.full-width {
         width: 100%;
     }
 }
+
+.mza-feature-list-modals {
+    padding-bottom: 2rem;
+
+    @media #{$mq-md} {
+        padding-bottom: 4rem;
+    }
+}
+
+
 
 @media #{$mq-md} {
     .mza-section-footer {
