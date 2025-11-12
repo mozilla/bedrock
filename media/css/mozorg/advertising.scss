@@ -41,7 +41,6 @@ $image-path: '/media/protocol/img';
 
 .section-has-border-top {
     border-top: 1px solid advars.$color-ads-off-black;
-    padding-top: 2rem;
 }
 
 #mza-main {
@@ -91,6 +90,14 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .m24-c-content.bottom-padding-sm {
+        padding-bottom: 2rem;
+
+        hr {
+            margin-top: 4rem;
+        }
+    }
+
     .md-only {
         display: none;
 
@@ -135,7 +142,10 @@ $image-path: '/media/protocol/img';
 .mza-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
-    margin-bottom: 1.5rem;
+}
+
+.mza-section-header {
+    padding-bottom: 1.5rem;
 }
 
 .mza-section-subheading {
@@ -223,6 +233,10 @@ $image-path: '/media/protocol/img';
 
     b, strong {
         font-weight: 600;
+    }
+
+    p {
+        margin: 0;
     }
 }
 
@@ -661,6 +675,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.mza-c-main-dark-section .mza-bordered-list li button:hover {
+  .action-text {
+    color: white;
+  }
+}
+
 .mza-bordered-list {
     &.has-padding-top {
         padding-top: $spacer-xl;
@@ -703,7 +723,6 @@ $image-path: '/media/protocol/img';
 
                 .action-text {
                     text-decoration: none;
-                    color: white;
                 }
             }
         }
@@ -732,11 +751,30 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
     gap: 1rem;
     @include admixins.text-title-sm;
+    padding-block: 0;
 
     &.pad-top {
         padding-top: $spacer-xl;
     }
+
+    &.pad-bottom {
+        padding-bottom: $spacer-xl;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
 }
+
+.mza-feature-list-modals {
+    padding-bottom: 2rem;
+
+    @media #{$mq-md} {
+        padding-bottom: 4rem;
+    }
+}
+
+
 
 @media #{$mq-md} {
     .mza-section-footer {

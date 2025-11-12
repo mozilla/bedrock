@@ -20,6 +20,12 @@
   {{ css_bundle('mozilla-ads') }}
 {% endblock %}
 
+{% block site_header %}
+  {% with has_subnav=true %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
 {% block sub_navigation %}
   {% if page.sub_navigation %}
     {% with advertising_index_page=page %}

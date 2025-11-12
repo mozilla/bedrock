@@ -17,9 +17,12 @@ from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.mozorg.blocks.advertising import (
     AdvertisingHeroBlock,
     FeatureListBlock,
+    FeatureListWithModalsBlock,
     FigureWithStatisticBlock,
     NotificationBlock,
+    RowTextAndLinkBlock,
     SectionHeaderBlock,
+    StatisticCalloutBlock,
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -143,7 +146,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["TwoColumnSubpage"]
+    subpage_types = ["TwoColumnSubpage", "ContentSubpage"]
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -251,3 +254,45 @@ class TwoColumnSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/two_column_subpage.html"
+
+
+class ContentSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
+    subpage_types = []  # This page type cannot have any children
+
+    content = StreamField(
+        [
+            ("section_header_block", SectionHeaderBlock()),
+            ("figure_with_statistic_block", FigureWithStatisticBlock()),
+            ("statistic_callout_block", StatisticCalloutBlock()),
+            ("features_with_modals", FeatureListWithModalsBlock()),
+            ("feature_list_block", FeatureListBlock()),
+            ("text_and_link", RowTextAndLinkBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    contact_banner = models.ForeignKey(
+        "mozorg.ContactBannerSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    notifications = StreamField(
+        [("notification_block", NotificationBlock())],
+        blank=True,
+        null=True,
+        max_num=1,
+        use_json_field=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+        FieldPanel("contact_banner"),
+        FieldPanel("notifications"),
+    ]
+
+    template = "mozorg/cms/advertising/content_subpage.html"

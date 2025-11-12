@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.exceptions import ValidationError
+
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -65,9 +67,30 @@ class SectionHeaderBlock(blocks.StructBlock):
         inline_form=True,
     )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
-    heading_text = blocks.CharBlock(char_max_length=255)
+    heading_text = blocks.CharBlock(char_max_length=255, required=False)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
+
+    def clean(self, value):
+        errors = {}
+
+        superheading = value.get("superheading_text", "").strip()
+        heading = value.get("heading_text", "").strip()
+        subheading = value.get("subheading_text", "").strip()
+
+        if not superheading and not heading and not subheading:
+            errors["heading_text"] = ValidationError("You must provide either superheading, or heading, or subheading.")
+
+        if errors:
+            raise blocks.StructBlockValidationError(errors)
+
+        return super().clean(value)
 
     class Meta:
         icon = "title"
@@ -86,7 +109,7 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable from navigation",
     )
     image = ImageChooserBlock(required=False)
-    image_caption = blocks.RichTextBlock(char_max_length=255)
+    image_caption = blocks.RichTextBlock(char_max_length=255, required=False)
     statistic_value = blocks.CharBlock(char_max_length=255)
     statistic_label = blocks.CharBlock(char_max_length=255)
     align_image_on_right = blocks.BooleanBlock(
@@ -97,6 +120,12 @@ class FigureWithStatisticBlock(blocks.StructBlock):
     )
     cta_text = blocks.CharBlock(char_max_length=255, required=False)
     cta_link = LinkBlock(label="Link", required=False)
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
 
     class Meta:
         icon = "decimal"
@@ -109,8 +138,8 @@ class FigureWithStatisticBlock(blocks.StructBlock):
 class FeatureListItemBlock(blocks.StructBlock):
     """Feature list item block."""
 
-    heading_text = blocks.CharBlock(char_max_length=255)
-    supporting_text = blocks.TextBlock()
+    heading_text = blocks.TextBlock()
+    supporting_text = blocks.RichTextBlock(features=["bold", "italic", "link"])
 
     class Meta:
         label = "Feature Item"
@@ -162,6 +191,121 @@ class ListBlock(blocks.StructBlock):
         label = "List"
         label_format = "List"
         template = "mozorg/cms/advertising/blocks/list_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class StatisticBlock(blocks.StructBlock):
+    """Statistic block."""
+
+    statistic_superlabel = blocks.CharBlock(char_max_length=255, required=False)
+    statistic_value = blocks.CharBlock(char_max_length=255)
+    statistic_label = blocks.CharBlock(char_max_length=255)
+
+    class Meta:
+        icon = "decimal"
+        label = "Statistic Block"
+        label_format = "{statistic_value} {statistic_label}"
+        template = "mozorg/cms/advertising/blocks/statistic_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class StatisticCalloutBlock(blocks.StructBlock):
+    """Block for statistics with a callout."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+    heading_text = blocks.CharBlock(char_max_length=255)
+    statistics = blocks.ListBlock(StatisticBlock(), min_num=1)
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "decimal"
+        label = "Statistic Callout Block"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/statistic_callout_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class FigureBlock(blocks.StructBlock):
+    """Figure block."""
+
+    image = ImageChooserBlock(required=False)
+    image_caption_heading = blocks.TextBlock(char_max_length=255, required=False)
+    image_caption_text = blocks.TextBlock(char_max_length=255, required=False)
+
+    class Meta:
+        label = "Feature Item"
+        label_format = "{image_caption}"
+        form_classname = "compact-form struct-block"
+
+
+class FeatureItemWithModalBlock(blocks.StructBlock):
+    """Block for a feature item with a modal."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    figures = blocks.ListBlock(FigureBlock(), min_num=1)
+    cta_text = blocks.CharBlock(char_max_length=255, required=False)
+    cta_link = LinkBlock(label="CTA Link", required=False)
+
+    class Meta:
+        label = "Feature Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/feature_item_with_modal_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class FeatureListWithModalsBlock(blocks.StructBlock):
+    """A block for a list of features, each with a modal."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+    heading_text = blocks.CharBlock(char_max_length=255)
+    supporting_text = blocks.TextBlock()
+    feature_list_items = blocks.ListBlock(FeatureItemWithModalBlock(), min_num=1)
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "list-ul"
+        label = "Feature List With Modals Block"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/feature_list_with_modals_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class RowTextAndLinkBlock(blocks.StructBlock):
+    """Block for text and a link."""
+
+    text = blocks.CharBlock(char_max_length=255)
+    link_text = blocks.CharBlock(char_max_length=255)
+    link = LinkBlock(label="Link")
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "doc-full"
+        label = "Text and Link Block"
+        label_format = "{text}"
+        template = "mozorg/cms/advertising/blocks/row_text_and_link_block.html"
         form_classname = "compact-form struct-block"
 
 

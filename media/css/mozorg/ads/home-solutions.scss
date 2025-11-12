@@ -9,7 +9,15 @@
     flex-direction: column;
     gap: 4rem;
 
+    & + & {
+        margin-top: 4rem;
+    }
+
     @media #{$mq-md} {
         gap: 8rem;
+
+        & + & {
+            margin-top: 8rem;
+        }
     }
 }
