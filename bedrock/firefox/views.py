@@ -256,7 +256,7 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
         "win-store": "Microsoft Store",
         "osx": "macOS",
         "linux64": "Linux 64-bit",
-        "linux": "Linux 32-bit",
+        # "linux": "Linux 32-bit",
         "linux64-aarch64": "Linux ARM64/AArch64",
     }
 

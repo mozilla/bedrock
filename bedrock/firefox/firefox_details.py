@@ -35,7 +35,7 @@ class FirefoxDesktop(_ProductDetails):
             ("osx", "macOS"),
             ("linux64", "Linux 64-bit"),
             ("linux64-aarch64", "Linux ARM64/AArch64"),
-            ("linux", "Linux 32-bit"),
+            # ("linux", "Linux 32-bit"),
         ]
     )
 
@@ -86,9 +86,9 @@ class FirefoxDesktop(_ProductDetails):
         else:
             platforms = self.platform_labels.copy()
 
-        # Linux ARM64/AArch64 installers not available for ESR builds.
-        if channel == "esr":
-            del platforms["linux64-aarch64"]
+        # Support for linux32 "i686" platform ends with v145 (see issue mozmeao/springfield#466)
+        if self.latest_major_version(channel) >= 145:
+            del platforms["linux"]
 
         return list(platforms.items())
 
