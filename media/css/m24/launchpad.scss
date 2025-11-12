@@ -65,7 +65,7 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
             (right, $container-padding, auto),
             (left, auto, $container-padding),
             (transition-property, right, left),
-            (background-image, url('/media/img/icons/m24-small/arrow-right.svg'), url('/media/img/icons/m24-small/arrow-left.svg'))
+            (background-image, url('/media/protocol/img/icons/arrow-right.svg'), url('/media/protocol/img/icons/arrow-left.svg'))
         ));
         background-size: 18px auto;
         transition-duration: $fast;

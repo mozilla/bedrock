@@ -106,7 +106,7 @@ class TestL10nCSS(TestCase):
     static_url_dev = "/static/"
     cdn_url = "//mozorg.cdn.mozilla.net"
     static_url_prod = cdn_url + static_url_dev
-    markup = '<link rel="stylesheet" media="screen,projection,tv" href="%scss/l10n/%s/intl.css">'
+    markup = '<link rel="stylesheet" href="%scss/l10n/%s/intl.css">'
 
     def _render(self, locale):
         req = self.rf.get("/")

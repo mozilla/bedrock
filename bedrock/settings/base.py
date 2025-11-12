@@ -885,6 +885,23 @@ BASKET_API_KEY = config("BASKET_API_KEY", default="")
 BASKET_TIMEOUT = config("BASKET_TIMEOUT", parser=int, default="10")
 BASKET_SUBSCRIBE_URL = f"{BASKET_URL}/news/subscribe/"
 
+# Foundation newsletters are handled through Campaign Monitor, via a proxy
+# run by Foundation, rather than going through Basket
+FOUNDATION_URL = config(
+    "FOUNDATION_URL",
+    default="https://kmq73rfvbh.execute-api.us-east-2.amazonaws.com" if DEV else "https://abdri3ttkb.execute-api.us-east-2.amazonaws.com",
+)
+FOUNDATION_SUBSCRIBE_URL = f"{FOUNDATION_URL}/api/newsletter/mozillaorg"
+
+# Custom languages for the Foundation signup form; need specifying directly
+# because the form config is not provided by Basket
+FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES = config(
+    "FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES",
+    default="en,de,fr,es,pl,pt",
+    parser=ListOf(str),
+)
+
+
 BOUNCER_URL = config("BOUNCER_URL", default="https://download.mozilla.org/")
 
 # Use a message storage mechanism that doesn't need a database.

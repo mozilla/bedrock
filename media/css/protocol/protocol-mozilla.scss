@@ -59,6 +59,17 @@
     max-width: 30em;
 }
 
+#newsletter-submit {
+    position: relative;
+}
+
+#newsletter-submit .submit-loading {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
 // style classes automatically added by python to match Protocol form error styles
 .errorlist {
     @include white-links;

@@ -31,14 +31,11 @@ strong {
 }
 
 a:link,
-a:visited {
+a:visited,
+a:hover,
+a:focus,
+a:active {
     color: $m24-color-black;
-
-    &:hover,
-    &:focus,
-    &:active {
-        color: $m24-color-black;
-    }
 }
 
 *:focus,
@@ -79,8 +76,7 @@ a:visited {
         text-decoration: none;
     }
 
-    &:link:hover,
-    &:link:hover:visited {
+    &:link:hover {
         --cta-bg-position: 0%;
         transition: $slow $bezier;
     }

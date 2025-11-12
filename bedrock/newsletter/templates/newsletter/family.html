@@ -37,7 +37,7 @@
     {{ email_newsletter_form(
       title=newsletter_title|safe,
       desc='Firefox is made in part by lots of real-life, tired yet strangely optimistic parents, and we’re backed by an awesome non-profit too.',
-      newsletters='mozilla-foundation, mozilla-and-you',
+      newsletters='mozilla-and-you' if switch('foundation-separate-newsletter') else 'mozilla-foundation, mozilla-and-you',
       button_class='mzp-t-dark',
       include_title=True,
       include_country=False,
