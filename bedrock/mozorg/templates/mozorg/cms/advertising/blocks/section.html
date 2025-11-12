@@ -4,16 +4,20 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="{% if value.display_on_dark_background %} mza-c-main-dark-section{% endif %}"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
-  {% include_block value.header %}
+<section class="{% if value.settings.display_on_dark_background %} mza-subpage-header mza-c-main-dark-section{% endif %}"{% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
+  <div class="m24-c-content no-bottom-padding">
+    {% if value.settings.has_top_divider %}<hr />{% endif %}
 
-  {% for block in value.content %}
-    {% include_block block %}
-  {% endfor %}
+    {% include_block value.header %}
 
-  {% if value.call_to_action %}
-    {% for cta in value.call_to_action %}
-      {% include_block cta %}
+    {% for block in value.content %}
+        {% include_block block %}
     {% endfor %}
-  {% endif %}
+
+    {% if value.call_to_action %}
+      {% for cta in value.call_to_action %}
+        {% include_block cta %}
+      {% endfor %}
+    {% endif %}
+  </div>
 </section>
