@@ -208,9 +208,23 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
             if anchor_id:
                 available_sections.append(anchor_id)
         for block in self.sections:
-            anchor_id = block.value.get("anchor_id")
+            # SectionBlock has anchor_id nested under settings
+            settings = block.value.get("settings", {})
+            anchor_id = settings.get("anchor_id") if settings else None
+
             if anchor_id:
                 available_sections.append(anchor_id)
+
+            # Also, check for an anchor id in the section's header.
+            header_anchor_id = block.value.get("header").get("anchor_id")
+            if header_anchor_id:
+                available_sections.append(header_anchor_id)
+
+            # Also, check for anchor ids in each block of the sections' content.
+            for section_block in block.value.get("content"):
+                section_block_anchor_id = section_block.value.get("anchor_id")
+                if section_block_anchor_id:
+                    available_sections.append(section_block_anchor_id)
 
         # Check for duplicate anchor IDs
         if len(available_sections) != len(set(available_sections)):
