@@ -135,6 +135,12 @@ m24-home-mozilla-create-curate-control = Create. Curate. Control.
 m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and  for the community in a transparent and ethical way.
 m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 
+## Data Collective
+
+m24-home-the-validation-machines = The Validation Machines
+m24-home-in-the-atlatic = In The Atlantic, Mozilla CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
+# Used as an accessible text alternative for an image
+m24-home-alt-validation = A miniature person looking at a big keyboard key and a hypnotizing computer screen
 ## Issues
 
 # Used as an accessible text alternative for an image
