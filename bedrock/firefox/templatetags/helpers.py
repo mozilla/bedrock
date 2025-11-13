@@ -257,8 +257,8 @@ def download_firefox_desktop_list(ctx, channel="release", dom_id=None, locale=No
             if plat["os"] == "win":
                 plat["os_pretty"] = "Windows 32-bit"
 
-        # if plat["os"] == "linux":
-        #     plat["os_pretty"] = "Linux 32-bit"
+        if plat["os"] == "linux":
+            plat["os_pretty"] = "Linux 32-bit"
 
         if plat["os"] in firefox_desktop.platform_classification["recommended"] or channel == "nightly" and plat["os"] == "win":
             recommended_builds.append(plat)

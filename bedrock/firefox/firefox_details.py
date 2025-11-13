@@ -35,7 +35,7 @@ class FirefoxDesktop(_ProductDetails):
             ("osx", "macOS"),
             ("linux64", "Linux 64-bit"),
             ("linux64-aarch64", "Linux ARM64/AArch64"),
-            # ("linux", "Linux 32-bit"),
+            ("linux", "Linux 32-bit"),
         ]
     )
 
