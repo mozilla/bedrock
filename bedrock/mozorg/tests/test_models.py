@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.exceptions import ValidationError
+
 import pytest
 from wagtail.rich_text import RichText
 
@@ -74,7 +76,7 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
                 custom_url="https://example.com/notification",
             ),
         ),
-        content__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
+        hero__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
             primary_cta_text="Primary CTA",
             primary_cta_link=factories.LinkBlockFactory(
@@ -88,9 +90,12 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
                 custom_url="https://example.com/secondary",
             ),
         ),
-        content__1__section_header_block=factories.SectionHeaderBlockFactory(
-            heading_text="Test Section Header",
-            subheading_text="Test subheading",
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id=""),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Test Section Header",
+                subheading_text="Test subheading",
+            ),
         ),
     )
 
@@ -197,10 +202,12 @@ def test_advertising_index_page_sub_navigation(minimal_site, rf, serving_method)
     # Create the AdvertisingIndexPage with sub-navigation and content with section IDs
     advertising_page = factories.AdvertisingIndexPageFactory(
         parent=root_page,
-        # Add content block with anchor ID for anchor link testing
-        content__0__section_header_block=factories.SectionHeaderBlockFactory(
-            heading_text="Test Section",
-            anchor_id="test-section",
+        # Add section block with anchor ID for anchor link testing
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="test-section"),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Test Section",
+            ),
         ),
         # Custom URL link
         sub_navigation__0__link=factories.NavigationLinkBlockFactory(
@@ -249,3 +256,170 @@ def test_advertising_index_page_sub_navigation(minimal_site, rf, serving_method)
     assert 'href="https://example.com/custom"' in page_content
     assert 'href="/en-US/linked-page/"' in page_content
     assert f'href="{advertising_page.url}#test-section"' in page_content
+
+
+def test_advertising_index_page_duplicate_anchor_ids_in_settings(minimal_site):  # noqa
+    """Test that duplicate anchor IDs in section settings raise ValidationError"""
+    root_page = minimal_site.root_page
+
+    # Build page without saving (use .build instead of create)
+    advertising_page = factories.AdvertisingIndexPageFactory.build(
+        parent=root_page,
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="duplicate-id"),
+            header=factories.SectionHeaderBlockFactory(heading_text="Section 1"),
+        ),
+        sections__1__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="duplicate-id"),
+            header=factories.SectionHeaderBlockFactory(heading_text="Section 2"),
+        ),
+    )
+
+    # Should raise ValidationError on clean
+    with pytest.raises(ValidationError) as exc_info:
+        advertising_page.clean()
+
+    assert "Duplicate anchor ID(s) found" in str(exc_info.value)
+    assert "duplicate-id" in str(exc_info.value)
+
+
+def test_advertising_index_page_duplicate_anchor_ids_across_hero_and_sections(minimal_site):  # noqa
+    """Test that duplicate anchor IDs between hero and sections raise ValidationError"""
+    root_page = minimal_site.root_page
+
+    # Build page without saving
+    advertising_page = factories.AdvertisingIndexPageFactory.build(
+        parent=root_page,
+        hero__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
+            anchor_id="my-anchor",
+            heading_text="Hero Section",
+        ),
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="my-anchor"),
+            header=factories.SectionHeaderBlockFactory(heading_text="Section 1"),
+        ),
+    )
+
+    # Should raise ValidationError on clean
+    with pytest.raises(ValidationError) as exc_info:
+        advertising_page.clean()
+
+    assert "Duplicate anchor ID(s) found" in str(exc_info.value)
+    assert "my-anchor" in str(exc_info.value)
+
+
+def test_advertising_index_page_duplicate_anchor_ids_in_section_header(minimal_site):  # noqa
+    """Test that duplicate anchor IDs in section headers raise ValidationError"""
+    root_page = minimal_site.root_page
+
+    # Build page without saving
+    advertising_page = factories.AdvertisingIndexPageFactory.build(
+        parent=root_page,
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id=""),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Section 1",
+                anchor_id="header-duplicate",
+            ),
+        ),
+        sections__1__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id=""),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Section 2",
+                anchor_id="header-duplicate",
+            ),
+        ),
+    )
+
+    # Should raise ValidationError on clean
+    with pytest.raises(ValidationError) as exc_info:
+        advertising_page.clean()
+
+    assert "Duplicate anchor ID(s) found" in str(exc_info.value)
+    assert "header-duplicate" in str(exc_info.value)
+
+
+def test_advertising_index_page_invalid_navigation_anchor_reference(minimal_site):  # noqa
+    """Test that navigation links referencing non-existent anchors raise ValidationError"""
+    root_page = minimal_site.root_page
+
+    # Build page without saving
+    advertising_page = factories.AdvertisingIndexPageFactory.build(
+        parent=root_page,
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="valid-section"),
+            header=factories.SectionHeaderBlockFactory(heading_text="Valid Section"),
+        ),
+        sub_navigation__0__link=factories.NavigationLinkBlockFactory(
+            link_text="Invalid Anchor Link",
+            link=factories.LinkBlockFactory(
+                link_to="anchor",
+                anchor="non-existent-section",
+                custom_url="",
+            ),
+        ),
+    )
+
+    # Should raise ValidationError on clean
+    with pytest.raises(ValidationError) as exc_info:
+        advertising_page.clean()
+
+    assert "Navigation links reference unknown section(s)" in str(exc_info.value)
+    assert "non-existent-section" in str(exc_info.value)
+
+
+def test_advertising_index_page_valid_navigation_anchor_reference(minimal_site):  # noqa
+    """Test that navigation links referencing valid anchors pass validation"""
+    root_page = minimal_site.root_page
+
+    # Create page with navigation link to valid anchor in section settings
+    advertising_page = factories.AdvertisingIndexPageFactory(
+        parent=root_page,
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="valid-section"),
+            header=factories.SectionHeaderBlockFactory(heading_text="Valid Section"),
+        ),
+        sub_navigation__0__link=factories.NavigationLinkBlockFactory(
+            link_text="Valid Anchor Link",
+            link=factories.LinkBlockFactory(
+                link_to="anchor",
+                anchor="valid-section",
+                custom_url="",
+            ),
+        ),
+    )
+
+    # Should save successfully (clean is called automatically)
+    assert advertising_page.id is not None
+    # Should not raise ValidationError
+    advertising_page.clean()  # No exception expected
+
+
+def test_advertising_index_page_valid_navigation_anchor_reference_in_header(minimal_site):  # noqa
+    """Test that navigation links can reference anchors in section headers"""
+    root_page = minimal_site.root_page
+
+    # Create page with navigation link to valid anchor in section header
+    advertising_page = factories.AdvertisingIndexPageFactory(
+        parent=root_page,
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id=""),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Header Section",
+                anchor_id="header-anchor",
+            ),
+        ),
+        sub_navigation__0__link=factories.NavigationLinkBlockFactory(
+            link_text="Header Anchor Link",
+            link=factories.LinkBlockFactory(
+                link_to="anchor",
+                anchor="header-anchor",
+                custom_url="",
+            ),
+        ),
+    )
+
+    # Should save successfully (clean is called automatically)
+    assert advertising_page.id is not None
+    # Should not raise ValidationError
+    advertising_page.clean()  # No exception expected

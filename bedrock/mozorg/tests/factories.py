@@ -103,6 +103,34 @@ class SectionHeaderBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.SectionHeaderBlock
 
 
+class SectionSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = wagtail_factories.CharBlockFactory
+    has_top_divider = False
+    display_on_dark_background = False
+
+    class Meta:
+        model = advertising.SectionSettings
+
+
+class RowTextAndLinkBlockFactory(wagtail_factories.StructBlockFactory):
+    text = wagtail_factories.CharBlockFactory
+    link_text = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = advertising.RowTextAndLinkBlock
+
+
+class SectionBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(SectionSettingsFactory)
+    header = factory.SubFactory(SectionHeaderBlockFactory)
+    content = []
+    call_to_action = []
+
+    class Meta:
+        model = advertising.SectionBlock
+
+
 class LinkWithIconFactory(wagtail_factories.StructBlockFactory):
     icon = wagtail_factories.CharBlockFactory
     link = factory.SubFactory(LinkBlockFactory)
@@ -133,10 +161,15 @@ class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     live = True
     slug = "advertising"
 
-    content = wagtail_factories.StreamFieldFactory(
+    hero = wagtail_factories.StreamFieldFactory(
         {
             "advertising_hero_block": factory.SubFactory(AdvertisingHeroBlockFactory),
-            "section_header_block": factory.SubFactory(SectionHeaderBlockFactory),
+        }
+    )
+
+    sections = wagtail_factories.StreamFieldFactory(
+        {
+            "section": factory.SubFactory(SectionBlockFactory),
         }
     )
 
@@ -193,3 +226,18 @@ class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.TwoColumnSubpage
+
+
+class ContentSubpageFactory(wagtail_factories.PageFactory):
+    title = "Test Content Subpage"
+    live = True
+    slug = "content-subpage"
+
+    sections = wagtail_factories.StreamFieldFactory(
+        {
+            "section": factory.SubFactory(SectionBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.ContentSubpage

@@ -36,7 +36,11 @@
 
 {% block content %}
 <main id="mza-main">
-  {% for block in page.content %}
+  {% for block in page.hero %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% for block in page.sections %}
     {% include_block block %}
   {% endfor %}
 

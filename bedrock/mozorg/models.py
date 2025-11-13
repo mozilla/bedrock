@@ -16,13 +16,8 @@ from wagtail.snippets.models import register_snippet
 from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.mozorg.blocks.advertising import (
     AdvertisingHeroBlock,
-    FeatureListBlock,
-    FeatureListWithModalsBlock,
-    FigureWithStatisticBlock,
     NotificationBlock,
-    RowTextAndLinkBlock,
-    SectionHeaderBlock,
-    StatisticCalloutBlock,
+    SectionBlock,
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -155,12 +150,17 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         use_json_field=True,
         help_text="Configure the sub-navigation menu items. Leave empty to use the default navigation.",
     )
-    content = StreamField(
+    hero = StreamField(
+        [("advertising_hero_block", AdvertisingHeroBlock())],
+        blank=True,
+        null=True,
+        max_num=1,
+        collapsed=True,
+        use_json_field=True,
+    )
+    sections = StreamField(
         [
-            ("advertising_hero_block", AdvertisingHeroBlock()),
-            ("section_header_block", SectionHeaderBlock()),
-            ("figure_with_statistic_block", FigureWithStatisticBlock()),
-            ("feature_list_block", FeatureListBlock()),
+            ("section", SectionBlock()),
         ],
         blank=True,
         null=True,
@@ -182,7 +182,8 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("content"),
+        FieldPanel("hero"),
+        FieldPanel("sections"),
         FieldPanel("contact_banner"),
         FieldPanel("notifications"),
     ]
@@ -202,10 +203,28 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
 
         # Get available section anchors and check for duplicates
         available_sections = []
-        for block in self.content:
+        for block in self.hero:
             anchor_id = block.value.get("anchor_id")
             if anchor_id:
                 available_sections.append(anchor_id)
+        for block in self.sections:
+            # SectionBlock has anchor_id nested under settings
+            settings = block.value.get("settings", {})
+            anchor_id = settings.get("anchor_id") if settings else None
+
+            if anchor_id:
+                available_sections.append(anchor_id)
+
+            # Also, check for an anchor id in the section's header.
+            header_anchor_id = block.value.get("header").get("anchor_id")
+            if header_anchor_id:
+                available_sections.append(header_anchor_id)
+
+            # Also, check for anchor ids in each block of the sections' content.
+            for section_block in block.value.get("content"):
+                section_block_anchor_id = section_block.value.get("anchor_id")
+                if section_block_anchor_id:
+                    available_sections.append(section_block_anchor_id)
 
         # Check for duplicate anchor IDs
         if len(available_sections) != len(set(available_sections)):
@@ -260,14 +279,9 @@ class ContentSubpage(AbstractBedrockCMSPage):
     parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 
-    content = StreamField(
+    sections = StreamField(
         [
-            ("section_header_block", SectionHeaderBlock()),
-            ("figure_with_statistic_block", FigureWithStatisticBlock()),
-            ("statistic_callout_block", StatisticCalloutBlock()),
-            ("features_with_modals", FeatureListWithModalsBlock()),
-            ("feature_list_block", FeatureListBlock()),
-            ("text_and_link", RowTextAndLinkBlock()),
+            ("section", SectionBlock()),
         ],
         blank=True,
         null=True,
@@ -290,7 +304,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("content"),
+        FieldPanel("sections"),
         FieldPanel("contact_banner"),
         FieldPanel("notifications"),
     ]

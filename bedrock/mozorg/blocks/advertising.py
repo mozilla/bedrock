@@ -60,22 +60,10 @@ class SectionHeaderBlock(blocks.StructBlock):
         max_length=100,
         help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'solutions', 'why-mozilla')",
     )
-    has_top_divider = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a divider line on top?",
-        inline_form=True,
-    )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
     heading_text = blocks.CharBlock(char_max_length=255, required=False)
     subheading_text = blocks.CharBlock(char_max_length=255, required=False)
     image = ImageChooserBlock(required=False)
-    display_on_dark_background = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a dark background?",
-        inline_form=True,
-    )
 
     def clean(self, value):
         errors = {}
@@ -116,14 +104,6 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         default=False,
         required=False,
         label="Should the image be to the right of the statistic?",
-        inline_form=True,
-    )
-    cta_text = blocks.CharBlock(char_max_length=255, required=False)
-    cta_link = LinkBlock(label="Link", required=False)
-    display_on_dark_background = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a dark background?",
         inline_form=True,
     )
 
@@ -219,12 +199,6 @@ class StatisticCalloutBlock(blocks.StructBlock):
     )
     heading_text = blocks.CharBlock(char_max_length=255)
     statistics = blocks.ListBlock(StatisticBlock(), min_num=1)
-    display_on_dark_background = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a dark background?",
-        inline_form=True,
-    )
 
     class Meta:
         icon = "decimal"
@@ -273,12 +247,6 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(char_max_length=255)
     supporting_text = blocks.TextBlock()
     feature_list_items = blocks.ListBlock(FeatureItemWithModalBlock(), min_num=1)
-    display_on_dark_background = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a dark background?",
-        inline_form=True,
-    )
 
     class Meta:
         icon = "list-ul"
@@ -291,15 +259,9 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
 class RowTextAndLinkBlock(blocks.StructBlock):
     """Block for text and a link."""
 
-    text = blocks.CharBlock(char_max_length=255)
+    text = blocks.CharBlock(char_max_length=255, required=False)
     link_text = blocks.CharBlock(char_max_length=255)
     link = LinkBlock(label="Link")
-    display_on_dark_background = blocks.BooleanBlock(
-        default=False,
-        required=False,
-        label="Should the section have a dark background?",
-        inline_form=True,
-    )
 
     class Meta:
         icon = "doc-full"
@@ -356,3 +318,51 @@ class NotificationBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/advertising/blocks/notification_block.html"
+
+
+class SectionSettings(blocks.StructBlock):
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'solutions', 'why-mozilla')",
+    )
+    has_top_divider = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a divider line on top?",
+        inline_form=True,
+    )
+    display_on_dark_background = blocks.BooleanBlock(
+        default=False,
+        required=False,
+        label="Should the section have a dark background?",
+        inline_form=True,
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id} - Divider: {has_top_divider} - Dark background: {display_on_dark_background}"
+        form_classname = "compact-form struct-block"
+
+
+class SectionBlock(blocks.StructBlock):
+    settings = SectionSettings()
+
+    header = SectionHeaderBlock()
+    content = blocks.StreamBlock(
+        [
+            ("section_header_block", SectionHeaderBlock()),
+            ("figure_with_statistic_block", FigureWithStatisticBlock()),
+            ("statistic_callout_block", StatisticCalloutBlock()),
+            ("features_with_modals", FeatureListWithModalsBlock()),
+            ("feature_list_block", FeatureListBlock()),
+        ]
+    )
+    call_to_action = blocks.ListBlock(RowTextAndLinkBlock(), min_num=0, max_num=1, default=[], label="Call to Action")
+
+    class Meta:
+        template = "mozorg/cms/advertising/blocks/section.html"
+        label = "Section"
+        label_format = "{header}"
