@@ -206,6 +206,53 @@
           cta_text=ftl('m24-home-watch-now'),
           link_attributes='rel="external" target="_blank" data-link-text="Watch now"'
         ) }}
+      {% else %}
+        {{ gallery_tile(
+          class='m24-l-grid-quarter',
+          image=picture(
+            url="img/home/2024/ai-gallery/lumigator-mobile-720.jpg",
+            sources=[
+              {
+                'media': '(max-width: 1311px)',
+                "srcset" : {
+                  "img/home/2024/ai-gallery/lumigator-mobile-375.jpg": "375w",
+                  "img/home/2024/ai-gallery/lumigator-mobile-720.jpg": "720w",
+                  "img/home/2024/ai-gallery/lumigator-mobile-976.jpg": "976w",
+                  "img/home/2024/ai-gallery/lumigator-mobile-1232.jpg": "1232w",
+                  "img/home/2024/ai-gallery/lumigator-mobile-1450.jpg": "1450w",
+                },
+                'sizes': {
+                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                  "default": "calc(100vw - 32px)",
+                },
+                'width' : '1450',
+                'height' : '723'
+              },
+              {
+                'srcset': {
+                  "img/home/2024/ai-gallery/lumigator-desktop-344.jpg": "344w",
+                  "img/home/2024/ai-gallery/lumigator-desktop-664.jpg": "664w",
+                },
+                'sizes': {
+                  "(min-width: 1440px)": "332px",
+                  "default": "calc((100vw - 64px) / 4)",
+                },
+                'width' : '664',
+                'height' : '664'
+              },
+            ],
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ftl('m24-home-alt-lumigator-logo'),
+            }
+          ),
+          tag=ftl('m24-home-tag-product'),
+          title=ftl('m24-home-lumigator'),
+          desc=ftl('m24-home-find-the-just'),
+          link_url='https://blog.mozilla.ai/introducing-lumigator-2/' + utm_params,
+          cta_text=ftl('m24-home-get-started'),
+          link_attributes='rel="external" target="_blank" data-link-text="Get started (Lumigator)"'
+        ) }}
       {% endif %}
 
       {% if ftl_has_messages('m24-home-any-agent', 'm24-home-stop-wiring-tools', 'm24-home-get-started' ) %}
@@ -254,6 +301,53 @@
           link_url='https://www.mozilla.ai/product/agent-platform' + utm_params,
           cta_text=ftl('m24-home-get-started'),
           link_attributes='rel="external" target="_blank" data-link-text="Get started (Any Agent)"'
+        ) }}
+      {% else %}
+        {{ gallery_tile(
+          class='m24-l-grid-quarter',
+          image=picture(
+            url="img/home/2024/ai-gallery/mozfest-mobile-720.jpg",
+            sources=[
+              {
+                'media': '(max-width: 1311px)',
+                "srcset" : {
+                  "img/home/2024/ai-gallery/mozfest-mobile-375.png": "375w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-720.png": "720w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-976.png": "976w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-1232.png": "1232w",
+                  "img/home/2024/ai-gallery/mozfest-mobile-1450.png": "1450w",
+                },
+                'sizes': {
+                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                  "default": "calc(100vw - 32px)"
+                },
+                'width' : '1450',
+                'height' : '723'
+              },
+              {
+                'srcset': {
+                  "img/home/2024/ai-gallery/mozfest-desktop-344.jpg": "344w",
+                  "img/home/2024/ai-gallery/mozfest-desktop-664.jpg": "664w",
+                },
+                'sizes': {
+                  "(min-width: 1440px)": "332px",
+                  "default": "calc((100vw - 64px) / 4)",
+                },
+                'width' : '664',
+                'height' : '664'
+              },
+            ],
+            optional_attributes={
+              "loading": "lazy",
+              "alt": ftl('m24-home-alt-mozfest'),
+            }
+          ),
+          tag=ftl('m24-home-tag-event'),
+          title=ftl('m24-home-mozfest-join-us'),
+          desc=ftl('m24-home-mozfest-the-future'),
+          link_url='https://www.mozillafestival.org/' + utm_params,
+          cta_text=ftl('m24-home-mozfest-get-your'),
+          link_attributes='rel="external" target="_blank" data-link-text="Get your badge today"'
         ) }}
       {% endif %}
 
