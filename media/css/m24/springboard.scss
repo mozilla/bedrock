@@ -99,16 +99,19 @@ $springboard-thumb-width: 32px;
 // icons
 .m24-c-springboard-icon-article {
     background-image: url('/media/img/icons/m24-small/glasses.svg');
+    background-color: $color-moz-green;
 }
 
 .m24-c-springboard-icon-podcast {
     background-image: url('/media/protocol/img/icons/headphone.svg');
-    background-size: 18px 18px;
+    background-size: 16px 16px;
+    background-color: $color-moz-orange;
 }
 
 .m24-c-springboard-icon-video {
     background-image: url('/media/protocol/img/icons/arrow-right.svg');
     background-size: 16px 16px;
+    background-color: $color-moz-pink;
 }
 
 

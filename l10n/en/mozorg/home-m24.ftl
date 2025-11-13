@@ -99,19 +99,23 @@ m24-home-alt-transformation = Change Signal with Mark Surman and MBS
 # Used as an accessible text alternative for an image
 m24-home-alt-pink-cloud = Cloud with pink background
 m24-home-any-agent = Any Agent
-m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla }.ai Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
+m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla-ai-v2 } Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
 
 ## Media Springboard
 
 m24-home-type = Type
+# Obsolete string (expires 2026-03-13)
 m24-home-author = Author
+m24-home-author-v2 = Author(s)
 m24-home-topic = Topic
 m24-home-intro = Intro
 m24-home-tag-article = Article
 m24-home-tag-podcast = Podcast
 m24-home-tag-video = Video
 m24-home-topic-news = News
+m24-home-topic-products = Products
 m24-home-topic-ai = Artificial Intelligence
+m24-home-topic-open-source-ai = Open Source AI
 m24-home-topic-ps = Privacy & Security
 m24-home-headline-you-ai-v2 = You, AI and the internet — what’s really going on?
 m24-home-introducing-anonym = Introducing { -brand-name-anonym }: Raising the bar for privacy-preserving digital advertising.
@@ -163,3 +167,27 @@ m24-home-irl-listen-now = Listen now
 m24-home-outside-the-fox = Outside the Fox
 m24-home-this-is-where = This is where we explore what’s happening online and why it matters, from why slop is taking over the internet to viral internet culture.
 m24-home-fox-listen-now = Listen Now
+
+m24-home-shake-to-summarize = Shake to Summarize in TIME’s Best Inventions of 2025
+m24-home-mozilla-welcomes-raffi = { -brand-name-mozilla } welcomes Raffi Krikorian as Chief Technology Officer
+m24-home-tech-target = Tech Target
+m24-home-mozilla-ai-ceo = { -brand-name-mozilla-ai-v2 } CEO talks open source AI advantages
+m24-home-introducing-thundermail-and = Introducing Thundermail and Thunderbird Pro
+m24-home-what-comes-next = What comes next in tech is a choice. Choose with us.
+m24-home-how-ventures-investee = How Ventures Investee Germ is Strengthening Encryption
+m24-home-tech-crunch = Tech Crunch
+m24-home-a-good-moment = ‘A good moment in time for us’: Firefox head on AI browsers and what’s next for the web
+m24-home-the-guardian = The Guardian
+m24-home-interview-take-open = Interview: Taking Open Source Into the AI Era
+m24-home-mit-sloan-review = MIT Sloan Review
+m24-home-mozilla-ventures-funds = { -brand-name-mozilla-ventures } funds Filament networking platform
+m24-home-axios = Axios
+m24-home-mozillas-new-message = { -brand-name-mozilla }’s new message: We’re the only browser not backed by billionaires
+m24-home-fast-company = Fast Company
+m24-home-will-agi-be = Will AGI Be a Reality—and Are We Ready?
+m24-home-conversation-charting-a = Conversation: Charting a future to access and agency
+m24-home-tech-policy-press = Tech Policy Press
+m24-home-open-by-design = Open By Design: How Nations Can Compete in the Age of AI
+m24-home-mozilla = { -brand-name-mozilla }
+m24-home-mozilla-ai-charts = { -brand-name-mozilla-ai-v2 } charts a new course with a turn toward profitability
+m24-home-silicon-angle = Silicon Angle
