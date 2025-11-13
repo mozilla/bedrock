@@ -54,6 +54,7 @@ m24-home-tag-product = Product
 m24-home-tag-project = Project
 m24-home-tag-program = Program
 m24-home-tag-event = Event
+m24-home-tag-video = Video
 m24-home-read-more = Read more
 m24-home-get-started = Get started
 m24-home-join-the-movement = Join the movement:<br> AI for the people
@@ -89,6 +90,16 @@ m24-home-got-an-earlystage = Got an early-stage startup? Pitch your company to {
 m24-home-common-voice = { -brand-name-common-voice }
 m24-home-donate-your-voice-to-make = Donate your voice to make speech technology more inclusive and accessible for everyone.
 m24-home-donate-your-voice = Donate your voice
+
+m24-home-our-transformation = Our Transformation
+m24-home-why-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
+m24-home-watch-now = Watch now
+# Used as an accessible text alternative for an image
+m24-home-alt-transformation = Change Signal with Mark Surman and MBS
+# Used as an accessible text alternative for an image
+m24-home-alt-pink-cloud = Cloud with pink background
+m24-home-any-agent = Any Agent
+m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla }.ai Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
 
 ## Media Springboard
 
