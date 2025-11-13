@@ -74,7 +74,7 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
                 custom_url="https://example.com/notification",
             ),
         ),
-        content__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
+        hero__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
             primary_cta_text="Primary CTA",
             primary_cta_link=factories.LinkBlockFactory(
@@ -88,9 +88,12 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
                 custom_url="https://example.com/secondary",
             ),
         ),
-        content__1__section_header_block=factories.SectionHeaderBlockFactory(
-            heading_text="Test Section Header",
-            subheading_text="Test subheading",
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id=""),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Test Section Header",
+                subheading_text="Test subheading",
+            ),
         ),
     )
 
@@ -197,10 +200,12 @@ def test_advertising_index_page_sub_navigation(minimal_site, rf, serving_method)
     # Create the AdvertisingIndexPage with sub-navigation and content with section IDs
     advertising_page = factories.AdvertisingIndexPageFactory(
         parent=root_page,
-        # Add content block with anchor ID for anchor link testing
-        content__0__section_header_block=factories.SectionHeaderBlockFactory(
-            heading_text="Test Section",
-            anchor_id="test-section",
+        # Add section block with anchor ID for anchor link testing
+        sections__0__section=factories.SectionBlockFactory(
+            settings=factories.SectionSettingsFactory(anchor_id="test-section"),
+            header=factories.SectionHeaderBlockFactory(
+                heading_text="Test Section",
+            ),
         ),
         # Custom URL link
         sub_navigation__0__link=factories.NavigationLinkBlockFactory(
