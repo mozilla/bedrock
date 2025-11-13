@@ -135,22 +135,20 @@ m24-home-mozilla-create-curate-control = Create. Curate. Control.
 m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and  for the community in a transparent and ethical way.
 m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 
-## Data Collective
+## Issues
 
 m24-home-the-validation-machines = The Validation Machines
 m24-home-in-the-atlatic = In The Atlantic, Mozilla CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
 # Used as an accessible text alternative for an image
 m24-home-alt-validation = A miniature person looking at a big keyboard key and a hypnotizing computer screen
-## Issues
-
-# Used as an accessible text alternative for an image
-m24-home-alt-pni = Smart devices with caution icon.
-m24-home-explore-issues-shaping = Explore issues shaping the future of the internet
-m24-home-privacy-not-included = *Privacy Not Included
-m24-home-search-our-reviews = Search our reviews to see which tech gadgets and apps are stealthily sneaking your data.
-m24-home-pni-search-now = Search now
 # Used as an accessible text alternative for an image
 m24-home-alt-irl-host = Bridget Todd, host of IRL Podcast.
 m24-home-irl-podcast = { -brand-name-irl-podcast }
 m24-home-our-multiaward-winning = Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.
 m24-home-irl-listen-now = Listen now
+
+## Outside the Fox
+
+m24-home-outside-the-fox = Outside the Fox
+m24-home-this-is-where = This is where we explore what’s happening online and why it matters, from why slop is taking over the internet to viral internet culture.
+m24-home-fox-listen-now = Listen Now

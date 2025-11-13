@@ -1,0 +1,21 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+.m24-c-callout {
+    background-color: $color-moz-white;
+    text-align: center;
+}
+
+.m24-c-callout-icon {
+    background-image: url('/media/protocol/img/icons/headphone.svg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    margin: $spacer-md auto;
+}
