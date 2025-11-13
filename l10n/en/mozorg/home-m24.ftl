@@ -54,7 +54,6 @@ m24-home-tag-product = Product
 m24-home-tag-project = Project
 m24-home-tag-program = Program
 m24-home-tag-event = Event
-m24-home-tag-video = Video
 m24-home-read-more = Read more
 m24-home-get-started = Get started
 m24-home-join-the-movement = Join the movement:<br> AI for the people
@@ -93,7 +92,6 @@ m24-home-donate-your-voice = Donate your voice
 
 m24-home-our-transformation = Our Transformation
 m24-home-why-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
-m24-home-watch-now = Watch now
 # Used as an accessible text alternative for an image
 m24-home-alt-transformation = Change Signal with Mark Surman and MBS
 # Used as an accessible text alternative for an image
@@ -153,7 +151,7 @@ m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 ## Issues
 
 m24-home-the-validation-machines = The Validation Machines
-m24-home-in-the-atlatic = In The Atlantic, Mozilla CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
+m24-home-in-the-atlatic = In The Atlantic, { -brand-name-mozilla } CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
 # Used as an accessible text alternative for an image
 m24-home-alt-validation = A miniature person looking at a big keyboard key and a hypnotizing computer screen
 # Used as an accessible text alternative for an image
@@ -176,7 +174,7 @@ m24-home-introducing-thundermail-and = Introducing Thundermail and Thunderbird P
 m24-home-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-home-how-ventures-investee = How Ventures Investee Germ is Strengthening Encryption
 m24-home-tech-crunch = Tech Crunch
-m24-home-a-good-moment = ‘A good moment in time for us’: Firefox head on AI browsers and what’s next for the web
+m24-home-a-good-moment = ‘A good moment in time for us’: { -brand-name-firefox } head on AI browsers and what’s next for the web
 m24-home-the-guardian = The Guardian
 m24-home-interview-take-open = Interview: Taking Open Source Into the AI Era
 m24-home-mit-sloan-review = MIT Sloan Review
