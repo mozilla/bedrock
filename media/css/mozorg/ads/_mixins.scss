@@ -1,0 +1,79 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+
+// These mixins mimic the behavior of Protocol mixins, while allowing the CSS variables
+// to do the responsive font size changes. Fewer media queries, less repetition.
+@mixin text-title-2xl {
+    font-size: var(--mza-text-title-2xl);
+    line-height: var(--mza-text-title-2xl-line-height);
+    letter-spacing: -2%;
+}
+
+@mixin text-title-xl {
+    font-size: var(--mza-text-title-xl);
+    line-height: var(--mza-text-title-xl-line-height);
+    letter-spacing: -1%;
+}
+
+@mixin text-title-lg {
+    font-size: var(--mza-text-title-lg);
+    line-height: var(--mza-text-title-lg-line-height);
+    letter-spacing: -2%;
+}
+
+@mixin text-title-md {
+    font-size: var(--mza-text-title-md);
+    line-height: var(--mza-text-title-md-line-height);
+}
+
+@mixin text-title-sm {
+    font-size: var(--mza-text-title-sm);
+    line-height: var(--mza-text-title-sm-line-height);
+}
+
+@mixin text-title-xs {
+    font-size: var(--mza-text-title-xs);
+    line-height: var(--mza-text-title-xs-line-height);
+}
+
+@mixin text-body-xl {
+    font-size: var(--mza-text-body-xl);
+    line-height: var(--mza-text-body-xl-line-height);
+}
+
+@mixin text-body-lg {
+    font-size: var(--mza-text-body-lg);
+    line-height: var(--mza-text-body-lg-line-height);
+}
+
+@mixin text-body-md {
+    font-size: var(--mza-text-body-md);
+    line-height: var(--mza-text-body-md-line-height);
+}
+
+@mixin text-body-sm {
+    font-size: var(--mza-text-body-sm);
+    line-height: var(--mza-text-body-sm-line-height);
+}
+
+@mixin text-button-xl {
+    font-size: var(--mza-text-button-xl);
+    line-height: var(--mza-text-button-xl-line-height);
+}
+
+@mixin text-button-lg {
+    font-size: var(--mza-text-button-lg);
+    line-height: var(--mza-text-button-lg-line-height);
+}
+
+@mixin text-button-md {
+    font-size: var(--mza-text-button-md);
+    line-height: var(--mza-text-button-md-line-height);
+}
+
+@mixin text-button-sm {
+    font-size: var(--mza-text-button-sm);
+    line-height: var(--mza-text-button-sm-line-height);
+}

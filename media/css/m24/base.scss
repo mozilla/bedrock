@@ -48,6 +48,10 @@ a:active {
     @include container;
     padding-top: $spacer-xl;
     padding-bottom: $spacer-xl;
+
+    &.padding-top-0 {
+        padding-top: 0;
+    }
 }
 
 /* ------------------------------------------------------------------------------- */

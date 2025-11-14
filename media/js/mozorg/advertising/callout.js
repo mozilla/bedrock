@@ -15,7 +15,7 @@
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 document
-                    .querySelectorAll('.mozads-c-callout-bg .layer-2')
+                    .querySelectorAll('.mza-c-callout-bg .layer-2')
                     .forEach((image) => image.classList.add('active'));
             }
         });

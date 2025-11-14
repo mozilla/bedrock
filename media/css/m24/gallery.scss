@@ -38,6 +38,10 @@
     @media #{$mq-xl} {
         grid-column: auto / span 3;
 
+        &.m24-l-grid-one {
+            grid-column: auto / span;
+        }
+
         &.m24-l-grid-third {
             grid-column: auto / span 4;
         }
@@ -48,6 +52,10 @@
 
         &.m24-l-grid-half {
             grid-column: auto / span 6;
+        }
+
+        &.m24-l-grid-seven {
+            grid-column: auto / span 7;
         }
 
         &.m24-l-grid-two-thirds {

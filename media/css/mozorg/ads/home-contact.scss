@@ -3,23 +3,28 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
 
-.mzp-c-button.mozads-c-contact-button {
+
+.mzp-c-button.mza-c-contact-button {
+    @include admixins.text-button-md;
     background-color: $m24-color-black;
     border-color: currentColor;
     border-radius: 0;
     color: $m24-color-white;
     margin-top: 2rem;
+    padding-block: 0.75rem;
+    font-weight: 600;
 }
 
-.mozads-c-home-contact-grid {
+.mza-c-home-contact-grid {
     display: flex;
     flex-direction: column;
     gap: 3rem;
     border-top: 1px solid advars.$color-ads-off-black;
 
-    .mozads-hgroup {
+    .mza-hgroup {
         margin-top: 2rem;
     }
 
@@ -29,7 +34,7 @@
         justify-content: space-between;
     }
 
-    .mzp-c-button.mozads-c-contact-button {
+    .mzp-c-button.mza-c-contact-button {
         margin-top: 2rem;
 
         svg {
@@ -45,12 +50,12 @@
 }
 
 @media #{$mq-md} {
-    .mozads-c-home-contact-grid {
+    .mza-c-home-contact-grid {
         display: grid;
         grid-template-columns: 2fr 1fr;
         gap: $spacing-2xl;
 
-        .mozads-figure {
+        .mza-figure {
             margin-top: -1px;
         }
     }

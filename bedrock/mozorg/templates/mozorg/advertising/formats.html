@@ -8,7 +8,7 @@
 
 {% from "macros-protocol.html" import callout, picto, split with context %}
 
-{% block page_title %}Mozilla Advertising — Formats and solutions{% endblock %}
+{% block page_title %}Mozilla Ads — Formats and solutions{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-callout') }}
@@ -24,7 +24,7 @@
 
 {% block content %}
 {{ callout(
-  class='mozads-header mzp-t-dark mozads-t-dark',
+  class='mza-header mzp-t-dark mza-t-dark',
   title='Advertise with Mozilla',
   desc='Reach unique audiences while protecting your brand’s safety and your users’ privacy with the Mozilla network.',
   heading_level=1,
@@ -32,7 +32,7 @@
   content_width='xl',
 ) }}
 
-<section class="mozads-product">
+<section class="mza-product">
   {% call split(
     base_el='div',
     block_class='mzp-t-content-xl',
@@ -41,7 +41,7 @@
     media_after=True,
   ) %}
     <h2>Firefox</h2>
-    <p class="mozads-content-intro">Firefox stands as the most trusted alternative
+    <p class="mza-content-intro">Firefox stands as the most trusted alternative
       to default browsers, driven by a mission to ensure the internet is a global
       public resource — open and accessible to all.</p>
 
@@ -70,7 +70,7 @@
     </p>
   {% endcall %}
 
-  <ul class="mozads-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
+  <ul class="mza-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
     {% call picto(
       base_el='li',
       image=resp_img(
@@ -123,7 +123,7 @@
 
 <hr>
 
-<section class="mozads-product">
+<section class="mza-product">
   {% call split(
     base_el='div',
     block_class='mzp-t-content-xl',
@@ -132,7 +132,7 @@
     media_after=True,
   ) %}
     <h2>Mozilla Developer Network</h2>
-    <p class="mozads-content-intro">The go-to resource for millions of engaged web
+    <p class="mza-content-intro">The go-to resource for millions of engaged web
       developers monthly, providing open-source documentation on a number of
       reference and educational topics such as HTML, JavaScript, CSS and Web APIs.</p>
 
@@ -158,7 +158,7 @@
     </p>
   {% endcall %}
 
-  <ul class="mozads-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
+  <ul class="mza-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
     {% call picto(
       base_el='li',
       image=resp_img(
@@ -211,7 +211,7 @@
 
 <hr>
 
-<section class="mozads-product">
+<section class="mza-product">
   {% call split(
     base_el='div',
     block_class='mzp-t-content-xl',
@@ -220,7 +220,7 @@
     media_after=False,
   ) %}
     <h2>Ten Tabs Newsletter</h2>
-    <p class="mozads-content-intro">The Ten Tabs newsletter provides premium editorial content delivered directly to users’ inboxes. Our mission is to enable users to enjoy articles from around the web on their own schedule — saving content to personal libraries that can be accessed whenever and wherever.</p>
+    <p class="mza-content-intro">The Ten Tabs newsletter provides premium editorial content delivered directly to users’ inboxes. Our mission is to enable users to enjoy articles from around the web on their own schedule — saving content to personal libraries that can be accessed whenever and wherever.</p>
 
     <p>Our editor-curated newsletter highlights popular stories and saves the second placement for your brand.</p>
 
@@ -242,7 +242,7 @@
     </p>
   {% endcall %}
 
-  <ul class="mozads-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
+  <ul class="mza-valueprops mzp-l-content mzp-t-content-xl mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
     {% call picto(
       base_el='li',
       image=resp_img(
@@ -295,7 +295,7 @@
 </section>
 
 {% call callout(
-  class='mzp-t-l-compact mzp-t-background-secondary mozads-footer',
+  class='mzp-t-l-compact mzp-t-background-secondary mza-footer',
   title='Download our Ad Standards & Guidelines',
   heading_level=3,
   brand=False,
