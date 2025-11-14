@@ -26,10 +26,14 @@ jobs:
         run: docker pull mozmeao/bedrock:${{ inputs.git_sha }}
 
       - name: Verify deployed assets are available
+        env:
+          GIT_SHA: ${{ inputs.git_sha }}
+          ORIGIN_HOSTNAME: ${{ inputs.origin_hostname }}
+          CDN_HOSTNAME: ${{ inputs.cdn_hostname }}
         run: |
           docker run --rm \
-            mozmeao/bedrock:${{ inputs.git_sha }} \
+            mozmeao/bedrock:$GIT_SHA \
             python manage.py check_static_assets \
-              --origin-host "${{ inputs.origin_hostname }}" \
-              --cdn-host "${{ inputs.cdn_hostname }}" \
+              --origin-host "$ORIGIN_HOSTNAME" \
+              --cdn-host "$CDN_HOSTNAME" \
               --manifest-path static/staticfiles.json
