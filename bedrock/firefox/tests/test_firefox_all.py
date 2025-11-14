@@ -71,7 +71,7 @@ def test_all_step_1(client):
     "product_slug, name, count",
     (
         ("desktop-release", "Firefox", 10),
-        ("desktop-esr", "Firefox Extended Support Release", 8),
+        ("desktop-esr", "Firefox Extended Support Release", 9),
         ("desktop-beta", "Firefox Beta", 10),
         ("desktop-developer", "Firefox Developer Edition", 9),
         ("desktop-nightly", "Firefox Nightly", 9),
