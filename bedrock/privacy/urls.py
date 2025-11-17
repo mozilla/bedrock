@@ -108,4 +108,9 @@ urlpatterns = (
         ftl_files=["privacy/index"],
         active_locales=["en-US"],
     ),
+    page(
+        "firefox/update/dec2025/",
+        "privacy/firefox-update-dec2025.html",
+        active_locales=["en-US", "cs", "de", "es-ES", "fr", "hu", "id", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
+    ),
 )
