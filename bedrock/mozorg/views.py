@@ -290,10 +290,3 @@ def anti_harassment_tool_view(request):
     ctx = {"action": action, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "mozorg/antiharassment-tool.html", ctx)
-
-
-@require_safe
-def contact(request):
-    context = {}
-    template = "mozorg/advertising/contact.html"
-    return l10n_utils.render(request, template, context)
