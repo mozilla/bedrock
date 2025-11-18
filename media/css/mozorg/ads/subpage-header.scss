@@ -18,7 +18,7 @@
         @include admixins.text-title-xl;
     }
 
-    & + .section-has-border-top {
+    & + .has-border-top {
         padding-top: 0;
     }
 }

@@ -18,7 +18,7 @@ $image-path: '/media/protocol/img';
 @use './ads/subnav';
 @use './ads/main-dark-section';
 @use './ads/home-brands';
-@use './ads/home-solutions';
+@use './ads/sections';
 @use './ads/home-approach';
 @use './ads/home-why-moz';
 @use './ads/home-contact';
@@ -65,6 +65,7 @@ $image-path: '/media/protocol/img';
 
     hr {
         border-top-width: 1px;
+        border-color: advars.$color-ads-off-black;
     }
 
     .m24-c-content.no-top-padding {
@@ -142,10 +143,6 @@ $image-path: '/media/protocol/img';
 .mza-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
-}
-
-.mza-section-header {
-    padding-bottom: 1.5rem;
 }
 
 .mza-section-subheading {
@@ -767,10 +764,8 @@ $image-path: '/media/protocol/img';
 }
 
 .mza-feature-list-modals {
-    padding-bottom: 2rem;
-
-    @media #{$mq-md} {
-        padding-bottom: 4rem;
+    .m24-c-content {
+        padding-block: 0;
     }
 }
 
@@ -789,7 +784,7 @@ $image-path: '/media/protocol/img';
 
 .mza-home-big-list {
     list-style: none;
-    margin: 2rem 0;
+    margin: 0;
     padding: 0;
 }
 

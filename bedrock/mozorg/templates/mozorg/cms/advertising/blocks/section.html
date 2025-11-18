@@ -4,9 +4,14 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="{% if value.settings.display_on_dark_background %} mza-subpage-header mza-c-main-dark-section{% endif %}"{% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
-  <div class="m24-c-content no-bottom-padding">
-    {% if value.settings.has_top_divider %}<hr />{% endif %}
+<section
+  class="
+    mza-c-section
+    {% if value.settings.display_on_dark_background %} mza-subpage-header mza-c-main-dark-section{% endif %}
+    {% if value.settings.has_top_divider %}has-border-top{% endif %}
+    "
+  {% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}
+  >
 
     {% include_block value.header %}
 
@@ -19,5 +24,4 @@
         {% include_block cta %}
       {% endfor %}
     {% endif %}
-  </div>
 </section>
