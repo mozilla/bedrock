@@ -1,13 +1,17 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 @use './vars' as advars;
 @use '../../m24/vars/lib' as *;
 
-.mozads-c-brands {
+.mza-c-brands {
     background-color: advars.$color-ads-off-black;
     color: white;
     text-align: center;
     padding: $spacer-2xl 0;
 
-    .mozads-c-brands-container {
+    .mza-c-brands-container {
         margin: 0 auto;
         padding: 0 var(--container-padding);
         max-width: 1440px;
@@ -15,7 +19,7 @@
         position: relative;
     }
 
-    .mozads-c-brands-logos {
+    .mza-c-brands-logos {
         margin-top: $spacer-md;
         margin-inline: calc(var(--container-padding) * -1);
         display: flex;

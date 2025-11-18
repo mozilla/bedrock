@@ -19,6 +19,7 @@
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
     "css-minimizer-webpack-plugin": "^7.0.2",
+    "embla-carousel": "^8.6.0",
     "mini-css-extract-plugin": "^2.9.4",
     "sass": "1.91.0",
     "sass-loader": "^16.0.6",

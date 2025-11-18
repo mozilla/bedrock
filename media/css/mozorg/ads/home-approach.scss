@@ -3,8 +3,9 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 @use '../../m24/vars/lib' as *;
 @use './vars' as advars;
+@use './mixins' as admixins;
 
-.mozads-c-home-approach {
+.mza-c-home-approach {
     display: flex;
     flex-direction: column;
     gap: 3.5rem;
@@ -19,13 +20,12 @@
     max-width: 330px;
 }
 
-.mozads-approach-text-block {
+.mza-approach-text-block {
     margin-top: 1rem;
 }
 
-.mozads-approach-headline {
-    font-size: var(--title-2xs-size);
-    line-height: var(--title-2xs-line-height);
+.mza-approach-headline {
+    @include admixins.text-body-lg;
     font-family: var(--title-font-family);
     margin-bottom: $spacing-sm;
     font-weight: 300;
