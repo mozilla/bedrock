@@ -75,5 +75,10 @@
   "browserslist": [
     "defaults",
     "IE 8"
-  ]
+  ],
+  "overrides": {
+    "jasmine-browser-runner": {
+      "glob": "10.3.0"
+    }
+  }
 }
