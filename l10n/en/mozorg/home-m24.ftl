@@ -91,7 +91,7 @@ m24-home-donate-your-voice-to-make = Donate your voice to make speech technology
 m24-home-donate-your-voice = Donate your voice
 
 m24-home-our-transformation = Our Transformation
-m24-home-why-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
+m24-home-how-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
 # Used as an accessible text alternative for an image
 m24-home-alt-transformation = Change Signal with Mark Surman and MBS
 # Used as an accessible text alternative for an image
@@ -132,7 +132,7 @@ m24-home-mozilla-ventures-funds = { -brand-name-mozilla-ventures } funds Filamen
 m24-home-axios = Axios
 m24-home-mozillas-new-message = { -brand-name-mozilla }’s new message: We’re the only browser not backed by billionaires
 m24-home-fast-company = Fast Company
-m24-home-will-agi-be = Will AGI Be a Reality—and Are We Ready?
+m24-home-will-agi-be = Will AGI Be a Reality — and Are We Ready?
 m24-home-conversation-charting-a = Conversation: Charting a future to access and agency
 m24-home-tech-policy-press = Tech Policy Press
 m24-home-open-by-design = Open By Design: How Nations Can Compete in the Age of AI
@@ -167,7 +167,7 @@ m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 ## Issues
 
 m24-home-the-validation-machines = The Validation Machines
-m24-home-in-the-atlatic = In The Atlantic, { -brand-name-mozilla } CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
+m24-home-in-the-atlantic = In The Atlantic, { -brand-name-mozilla } CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
 # Used as an accessible text alternative for an image
 m24-home-alt-validation = A miniature person looking at a big keyboard key and a hypnotizing computer screen
 # Used as an accessible text alternative for an image
