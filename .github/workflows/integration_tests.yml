@@ -109,7 +109,6 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 20
-        cache: npm
     - name: Install dependencies
       run: cd tests/playwright && npm ci && npm run install-deps
     - name: Run Playwright tests
