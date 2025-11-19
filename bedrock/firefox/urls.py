@@ -189,7 +189,7 @@ urlpatterns = (
     page(
         "firefox/welcome/26/",
         "firefox/welcome/page26.html",
-        active_locales=["en-US", "en-CA", "en-GB", "fr", "de", "pt-BR", "jp", "es-AR", "es-CL", "es-ES", "es-MX", "pl", "it"],
+        active_locales=["en-US", "en-CA", "en-GB", "fr", "de", "pt-BR", "ja", "es-AR", "es-CL", "es-ES", "es-MX", "pl", "it"],
     ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
