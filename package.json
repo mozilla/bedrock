@@ -79,7 +79,7 @@
   ],
   "overrides": {
     "jasmine-browser-runner": {
-      "glob": "10.3.0"
+      "glob": "10.5.0"
     }
   }
 }
