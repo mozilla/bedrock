@@ -1,0 +1,78 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/basic.html' %}
+
+{% block banner_id %}fundraising-banner-eoy2025{% endblock %}
+
+{% block banner_class %}c-banner-fundraising{% endblock %}
+
+{% if LANG =="de" %}
+  {% set banner_title = 'Spende jetzt an die Mozilla Foundation' %}
+  {% set banner_tagline = 'Hilf zum „Giving Tuesday“ mit, die digitale Zukunft zu gestalten, die wir alle uns wünschen.' %}
+  {% set banner_button = 'Spenden' %}
+{% elif LANG.startswith('es-') %}
+  {% set banner_title = 'Dona a la Fundación Mozilla' %}
+  {% set banner_tagline = 'Este Día para Dar, ayuda a construir el futuro digital que merecemos.' %}
+  {% set banner_button = 'Donar' %}
+{% elif LANG == "fr" %}
+  {% set banner_title = 'Faites un don à la Fondation Mozilla' %}
+  {% set banner_tagline = 'Profitez du Giving Tuesday pour contribuer à créer l’avenir numérique que nous méritons.' %}
+  {% set banner_button = 'Je fais un don' %}
+{% elif LANG == "it" %}
+  {% set banner_title = 'Dona a Mozilla Foundation' %}
+  {% set banner_tagline = 'Per la giornata del dono, aiutaci a creare il futuro digitale che tutti meritiamo.' %}
+  {% set banner_button = 'Dona' %}
+{% elif LANG == "nl" %}
+  {% set banner_title = 'Doneer aan de Mozilla Foundation' %}
+  {% set banner_tagline = 'Deze Giving Tuesday kun je helpen bij het bouwen aan de digitale toekomst die we verdienen.' %}
+  {% set banner_button = 'Doneer' %}
+{% elif LANG == "pl" %}
+  {% set banner_title = 'Wesprzyj Fundację Mozilla' %}
+  {% set banner_tagline = 'Z okazji Giving Tuesday pomóż nam tworzyć przyszłość cyfrową, na którą wszyscy zasługujemy.' %}
+  {% set banner_button = 'Wpłać datek ' %}
+{% elif LANG == "pt-BR" %}
+  {% set banner_title = 'Doe para a Fundação Mozilla' %}
+  {% set banner_tagline = 'Neste Dia de Doar, ajude a criar o futuro digital que merecemos.' %}
+  {% set banner_button = 'Doe agora' %}
+{% else %}
+  {% set banner_title = 'Donate to Mozilla Foundation' %}
+  {% set banner_tagline = 'This Giving Tuesday, help build the digital future we deserve.' %}
+  {% set banner_button = 'Donate' %}
+{% endif %}
+
+{% set banner_ga_label = 'Donate' %}
+
+{% block banner_content %}
+  <div class="c-banner-outer">
+    <div class="c-banner-inner">
+      <div class="c-banner-copy">
+        <h2 class="c-banner-title">{{ banner_title|safe }}</h2>
+        <p class="c-banner-tagline">{{ banner_tagline }}</p>
+        <a class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="{{ banner_ga_label }}">
+          {{ banner_button }}
+        </a>
+      </div>
+      {{ picture(
+        url='img/banners/fundraiser/eoy-2025-photo-200.png',
+        sources=[
+          {
+            'media': '(min-width: 688px)',
+            'srcset': {
+              'img/banners/fundraiser/eoy-2025-photo-200.png': '200w',
+              'img/banners/fundraiser/eoy-2025-photo-400.png': '400w',
+            }
+          },
+        ],
+        optional_attributes={
+          'height': '200',
+          'width': '200',
+          'class': 'c-banner-media'
+        }
+      ) }}
+    </div>
+  </div>
+{% endblock %}
