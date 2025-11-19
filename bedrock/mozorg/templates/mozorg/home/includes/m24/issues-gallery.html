@@ -11,44 +11,45 @@
     <h2 class="m24-c-intro-title">{{ ftl('m24-home-explore-issues-shaping') }}</h2>
   </header>
   <div class="m24-c-gallery-container">
-
-    {{ gallery_tile(
-      class='m24-l-grid-half',
-      image=picture(
-        url="img/home/2024/issues/pni-720.jpg",
-        sources=[
-          {
-            "srcset" : {
-              "img/home/2024/issues/pni-1024.jpg": "1024w",
-              "img/home/2024/issues/pni-1232.jpg": "1232w",
-              "img/home/2024/issues/pni-1360.jpg": "1360w",
-              "img/home/2024/issues/pni-1450.jpg": "1450w",
-              "img/home/2024/issues/pni-375.jpg": "375w",
-              "img/home/2024/issues/pni-688.jpg": "688w",
-              "img/home/2024/issues/pni-720.jpg": "720w",
-              "img/home/2024/issues/pni-976.jpg": "976w",
+    {% if ftl_has_messages('m24-home-the-validation-machines', 'm24-home-in-the-atlantic', 'm24-home-read-more' ) %}
+      {{ gallery_tile(
+        class='m24-l-grid-half',
+        image=picture(
+          url="img/home/2024/issues/validation-720.jpg",
+          sources=[
+            {
+              "srcset" : {
+                "img/home/2024/issues/validation-1024.jpg": "1024w",
+                "img/home/2024/issues/validation-1232.jpg": "1232w",
+                "img/home/2024/issues/validation-1360.jpg": "1360w",
+                "img/home/2024/issues/validation-1450.jpg": "1450w",
+                "img/home/2024/issues/validation-375.jpg": "375w",
+                "img/home/2024/issues/validation-688.jpg": "688w",
+                "img/home/2024/issues/validation-720.jpg": "720w",
+                "img/home/2024/issues/validation-976.jpg": "976w",
+              },
+              'sizes': {
+                "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
+                "(min-width: 1440px)": "680px",
+                "default": "calc(100vw - 32px)",
+              },
             },
-            'sizes': {
-              "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-              "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
-              "(min-width: 1440px)": "680px",
-              "default": "calc(100vw - 32px)",
-            },
-          },
-        ],
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ftl('m24-home-alt-pni'),
-          "width": "1450",
-          "height": "725",
-        }
-      ),
-      title=ftl('m24-home-privacy-not-included'),
-      desc=ftl('m24-home-search-our-reviews'),
-      link_url='https://foundation.mozilla.org/privacynotincluded/' + utm_params,
-      cta_text=ftl('m24-home-pni-search-now'),
-      link_attributes='rel="external" target="_blank" data-link-text="Search now"',
-    ) }}
+          ],
+          optional_attributes={
+            "loading": "lazy",
+            "alt": ftl('m24-home-alt-validation'),
+            "width": "1450",
+            "height": "725",
+          }
+        ),
+        title=ftl('m24-home-the-validation-machines'),
+        desc=ftl('m24-home-in-the-atlantic'),
+        link_url='https://www.theatlantic.com/ideas/archive/2025/10/validation-ai-raffi-krikorian/684764/' + utm_params,
+        cta_text=ftl('m24-home-read-more'),
+        link_attributes='rel="external" target="_blank" data-link-text="Read more about The Validation Machines"',
+      ) }}
+    {% endif %}
 
     {{ gallery_tile(
       class='m24-l-grid-half',
@@ -90,5 +91,3 @@
 
   </div>
 </section>
-
-<div class="m24-c-transition m24-t-top-light m24-t-bottom-dark-alt"><hr></div>
