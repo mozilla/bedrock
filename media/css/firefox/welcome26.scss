@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-fundraiser-container {
+    .c-fundraiser-media-container {
+        width: auto;
+        justify-self: end;
+    }
+}
+
+// make button full width below $screen-sm
+@media (max-width: 447px) {
+    .c-fundraiser-button {
+        width: 100%;
+    }
+}
+
+// keep centered single column until max-width of image
+@media (max-width: 1023px) {
+    .c-fundraiser-container {
+        display: block;
+        max-width: 585px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .mzp-c-split-body + .mzp-c-split-media {
+            margin-top: var(--v-grid-xs);
+        }
+    }
+}

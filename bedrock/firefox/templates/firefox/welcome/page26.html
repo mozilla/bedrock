@@ -1,0 +1,43 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set heading = 'You power Firefox. Now donate to make good tech the default.' %}
+{% set body = '<p>Mozilla Foundation — the non-profit behind Firefox — is building a future where technology serves people, not power.</p><p>Your donation to Mozilla Foundation keeps the internet open, private, and built for people. Donate for Giving Tuesday to make good on the promise of the internet.</p>' %}
+{% set button_text = 'Donate to Mozilla Foundation' %}
+
+ {% extends "firefox/welcome/base.html" %}
+
+{% block page_title %}{{ button_text }}{% endblock page_title %}
+{% block page_desc %}{% endblock page_desc %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_welcome_page26') }}
+{% endblock %}
+
+{% block content %}
+<section class="mzp-c-split">
+    <div class="c-fundraiser-container mzp-c-split-container">
+        <div class="mzp-c-split-body ">
+            <h1 class="mzp-u-title-md">{{ heading }}</h1>
+            {{ body | safe }}
+            <p><a class="c-fundraiser-button mzp-c-button mzp-t-product" href="#TODO" data-cta-text="Donate">{{ button_text }}</a></p>
+        </div>
+        <div class="c-fundraiser-media-container mzp-c-split-media ">
+            {{ resp_img('img/firefox/welcome/page26/computer-585.jpeg',
+                srcset={
+                  'img/firefox/welcome/page26/computer-1170.jpeg': '2x'
+                },
+                optional_attributes={
+                  "width": "585",
+                  "height": "397",
+                  "class": "mzp-c-split-media-asset"
+                }
+            ) }}
+          </div>
+    </div>
+</section>
+{% endblock %}
