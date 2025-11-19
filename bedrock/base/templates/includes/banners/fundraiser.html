@@ -46,24 +46,27 @@
 
 {% set banner_ga_label = 'Donate' %}
 
+{% set banner_link = '#TODO' %}
+
 {% block banner_content %}
   <div class="c-banner-outer">
     <div class="c-banner-inner">
       <div class="c-banner-copy">
         <h2 class="c-banner-title">{{ banner_title|safe }}</h2>
         <p class="c-banner-tagline">{{ banner_tagline }}</p>
-        <a class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="https://foundation.mozilla.org/?form=eoy-2025" data-cta-text="{{ banner_ga_label }}">
+        <a id="fundraising-banner-eoy2025-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="{{ banner_ga_label }}">
           {{ banner_button }}
         </a>
       </div>
+      <a href="{{ banner_link }}" aria-labelledby="fundraising-banner-eoy2025-link">
       {{ picture(
-        url='img/banners/fundraiser/eoy-2025-photo-200.png',
+        url='img/banners/fundraiser/computer-200.png',
         sources=[
           {
             'media': '(min-width: 688px)',
             'srcset': {
-              'img/banners/fundraiser/eoy-2025-photo-200.png': '200w',
-              'img/banners/fundraiser/eoy-2025-photo-400.png': '400w',
+              'img/banners/fundraiser/computer-200.png': '200w',
+              'img/banners/fundraiser/computer-400.png': '400w',
             }
           },
         ],
@@ -73,6 +76,7 @@
           'class': 'c-banner-media'
         }
       ) }}
+      </a>
     </div>
   </div>
 {% endblock %}
