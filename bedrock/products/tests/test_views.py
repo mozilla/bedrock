@@ -478,17 +478,6 @@ class TestMonitorScanWaitlistPage(TestCase):
         template = render_mock.call_args[0][1]
         assert template == "products/monitor/waitlist/scan.html"
 
-    @override_settings(DEV=False)
-    def test_monitor_plus_waitlist_template(self, render_mock):
-        req = RequestFactory().get("/products/monitor/waitlist-plus/")
-        req.locale = "en-US"
-        view = views.monitor_waitlist_plus_page
-        view(req)
-        ctx = render_mock.call_args[0][2]
-        self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
-        template = render_mock.call_args[0][1]
-        assert template == "products/monitor/waitlist/plus.html"
-
 
 @patch("bedrock.products.views.l10n_utils.render", return_value=HttpResponse())
 class TestVPNMorePages(TestCase):

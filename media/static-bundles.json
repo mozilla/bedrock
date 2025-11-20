@@ -966,12 +966,6 @@
     },
     {
       "files": [
-        "css/products/vpn/bundle-promo.scss"
-      ],
-      "name": "mozilla-vpn-bundle-promo"
-    },
-    {
-      "files": [
         "css/products/vpn/features.scss"
       ],
       "name": "mozilla-vpn-features"
@@ -1878,12 +1872,6 @@
         "js/products/vpn/thanks.js"
       ],
       "name": "vpn_platform_download"
-    },
-    {
-      "files": [
-        "js/products/vpn/promo-tabs.js"
-      ],
-      "name": "vpn_promo_tabs"
     },
     {
       "files": [

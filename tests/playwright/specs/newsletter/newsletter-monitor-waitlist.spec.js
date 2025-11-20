@@ -11,7 +11,6 @@ const openPage = require('../../scripts/open-page');
 const url = '/en-US/';
 const slugs = [
     'newsletter/monitor-waitlist',
-    'products/monitor/waitlist-plus',
     'products/monitor/waitlist-scan'
 ];
 
