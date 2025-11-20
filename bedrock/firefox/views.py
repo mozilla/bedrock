@@ -343,6 +343,9 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
                 # ESR115 builds do not exist for "sat" ans "skr" languages (see issue #15437).
                 if locale in ["sat", "skr"]:
                     download_esr_115_url = None
+                # ESR115 builds do not exist for "linux64-aarch64" platform (see issue mozmeao/springfield#467)
+                if platform == "linux64-aarch64":
+                    download_esr_115_url = None
                 context.update(
                     download_esr_115_url=download_esr_115_url,
                 )
