@@ -13,136 +13,129 @@
       <div class="m24-c-springboard-link">
         <div class="m24-c-springboard-thumb"></div>
         <div class="m24-c-springboard-type">{{ ftl('m24-home-type') }}</div>
-        <div class="m24-c-springboard-author">{{ ftl('m24-home-author-v2', fallback='m24-home-author') }}</div>
+        <div class="m24-c-springboard-author">{{ ftl('m24-home-author') }}</div>
         <div class="m24-c-springboard-topic">{{ ftl('m24-home-topic') }}</div>
         <div class="m24-c-springboard-preview">{{ ftl('m24-home-intro') }}</div>
       </div>
     </li>
     {{ springboard_item(
-      link_url='https://blog.mozilla.org/en/firefox/shake-to-summarize-time-best-inventions/' + utm_params,
-      link_attributes='data-link-text="Shake to Summarize in TIME’s Best Inventions of 2025" data-link-position="springboard"',
+      link_url='https://blog.mozilla.org/en/mozilla/mozilla-anonym-raising-the-bar-for-privacy-preserving-digital-advertising/' + utm_params,
+      link_attributes='data-link-text="Introducing Anonym" data-link-position="springboard"',
       type=ftl('m24-home-tag-article'),
       type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author='Christina Petrova',
-      preview=ftl('m24-home-shake-to-summarize')
-    ) }}
-    {{ springboard_item(
-      link_url='https://blog.mozilla.org/en/mozilla/leadership/mozilla-welcomes-raffi-krikorian-chief-technology-officer/' + utm_params,
-      link_attributes='data-link-text="Mozilla welcomes Raffi Krikorian as Chief Technology Officer" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-mozilla'),
-      preview=ftl('m24-home-mozilla-welcomes-raffi')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.techtarget.com/searchenterpriseai/news/366629900/Mozillaai-CEO-Dickerson-talks-open-source-AI-advantages" + utm_params,
-      link_attributes='data-link-text="Mozilla.ai CEO talks open source AI advantages" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-open-source-ai'),
-      author=ftl('m24-home-tech-target'),
-      preview=ftl('m24-home-mozilla-ai-ceo')
-    ) }}
-    {{ springboard_item(
-      link_url="https://blog.thunderbird.net/2025/04/thundermail-and-thunderbird-pro-services/" + utm_params,
-      link_attributes='data-link-text="Introducing Thundermail and Thunderbird Pro" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-products'),
-      author='Ryan Sipes',
-      preview=ftl('m24-home-introducing-thundermail-and')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.youtube.com/watch?v=HiZGWrN1zrU" + utm_params,
-      link_attributes='data-link-text="What comes next in tech is a choice. Choose with us." data-link-position="springboard"',
-      type=ftl('m24-home-tag-video'),
-      type_icon='video',
       topic=ftl('m24-home-topic-ps'),
-      author='Nabiha Syed ',
-      preview=ftl('m24-home-what-comes-next')
+      author='Laura Chambers',
+      preview=ftl('m24-home-introducing-anonym'),
+      image=resp_img(
+        url="img/home/2024/media/chambers-72.jpg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "Laura Chambers",
+          "height": "36",
+          "width": "36"
+        })
     ) }}
     {{ springboard_item(
-      link_url="https://techcrunch.com/2025/07/30/germ-brings-end-to-end-encrypted-messages-to-bluesky/" + utm_params,
-      link_attributes='data-link-text="How Ventures Investee Germ is Strengthening Encryption" data-link-position="springboard"',
+      link_url='https://blog.mozilla.org/en/mozilla/keeping-genai-technologies-secure-is-a-shared-responsibility/' + utm_params,
+      link_attributes='data-link-text="Keeping GenAI tech secure" data-link-position="springboard"',
       type=ftl('m24-home-tag-article'),
       type_icon='article',
-      topic=ftl('m24-home-topic-open-source-ai'),
-      author=ftl('m24-home-tech-crunch'),
-      preview=ftl('m24-home-how-ventures-investee')
+      topic=ftl('m24-home-topic-ai'),
+      author='Saoud Khalifah',
+      preview=ftl('m24-home-keeping-genai-technologies'),
+      image=resp_img(
+        url="img/home/2024/media/khalifah-72.jpg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "Saoud Khalifah",
+          "height": "36",
+          "width": "36"
+        })
     ) }}
     {{ springboard_item(
-      link_url="https://www.theguardian.com/technology/2025/oct/28/firefox-ai-internet-anthony-enzor-demeo" + utm_params,
-      link_attributes='data-link-text="A good moment in time for us" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-the-guardian'),
-      preview=ftl('m24-home-a-good-moment')
-    ) }}
-    {{ springboard_item(
-      link_url="https://archive.is/kj2u7" + utm_params,
-      link_attributes='data-link-text="Interview: Taking Open Source Into the AI Era " data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-mit-sloan-management-review', fallback='m24-home-mit-sloan-review'),
-      preview=ftl('m24-home-interview-take-open')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.axios.com/2025/09/30/tony-haile-new-startup-filament" + utm_params,
-      link_attributes='data-link-text="Mozilla Ventures funds Filament networking platform" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-axios'),
-      preview=ftl('m24-home-mozilla-ventures-funds')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.fastcompany.com/91289057/mozilla-browser-not-backed-by-billionaires" + utm_params,
-      link_attributes='data-link-text="Mozilla’s new message" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-fast-company'),
-      preview=ftl('m24-home-mozillas-new-message')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.youtube.com/watch?v=W5AEfgY6kq4" + utm_params,
-      link_attributes='data-link-text="Will AGI Be a Reality" data-link-position="springboard"',
-      type=ftl('m24-home-tag-video'),
-      type_icon='video',
-      topic=ftl('m24-home-topic-open-source-ai'),
-      author='Ziyyad Bhorat',
-      preview=ftl('m24-home-will-agi-be')
-    ) }}
-    {{ springboard_item(
-      link_url="https://www.youtube.com/watch?v=XbZPQKFIyoE" + utm_params,
-      link_attributes='data-link-text="Conversation: Charting a future to access and agency" data-link-position="springboard"',
+      link_url="https://irlpodcast.org/season7/episode5/" + utm_params,
+      link_attributes='data-link-text="IRL 7.05" data-link-position="springboard"',
       type=ftl('m24-home-tag-podcast'),
       type_icon='podcast',
       topic=ftl('m24-home-topic-ai'),
-      author=ftl('m24-home-tech-policy-press'),
-      preview=ftl('m24-home-conversation-charting-a')
+      author=ftl('m24-home-irl-podcast'),
+      preview=ftl('m24-home-from-hollywood-to'),
+      image=resp_img(
+        url="img/home/2024/media/irl-green-72.png",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": ftl('m24-home-irl-podcast'),
+          "height": "36",
+          "width": "36"
+        })
     ) }}
     {{ springboard_item(
-      link_url="https://blog.mozilla.org/netpolicy/2025/07/30/open-by-design-how-nations-can-compete-in-the-age-of-ai/" + utm_params,
-      link_attributes='data-link-text="Open By Design" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
-      topic=ftl('m24-home-topic-ai'),
-      author=ftl('m24-home-mozilla'),
-      preview=ftl('m24-home-open-by-design')
-    ) }}
-    {{ springboard_item(
-      link_url="https://siliconangle.com/2025/08/22/mozilla-ai-charts-new-course-turn-toward-profitability/" + utm_params,
-      link_attributes='data-link-text="Mozilla.ai charts a new course with a turn toward profitability" data-link-position="springboard"',
-      type=ftl('m24-home-tag-article'),
-      type_icon='article',
+      link_url="https://blog.mozilla.org/en/products/firefox/new-mozilla-docuseries-firefox-presents-launch/" + utm_params,
+      link_attributes='data-link-text="Firefox presents" data-link-position="springboard"',
+      type=ftl('m24-home-tag-video'),
+      type_icon='video',
       topic=ftl('m24-home-topic-news'),
-      author=ftl('m24-home-silicon-angle'),
-      preview=ftl('m24-home-mozilla-ai-charts')
+      author='Rebecca Smith',
+      preview=ftl('m24-home-mozilla-celebrates-groundbreaking'),
+      image=resp_img(
+        url="img/home/2024/media/smith-72.jpg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "Rebecca Smith",
+          "height": "36",
+          "width": "36"
+        })
+    ) }}
+    {{ springboard_item(
+      link_url="https://irlpodcast.org/season7/episode4/" + utm_params,
+      link_attributes='data-link-text="IRL 7.04" data-link-position="springboard"',
+      type=ftl('m24-home-tag-podcast'),
+      type_icon='podcast',
+      topic=ftl('m24-home-topic-ai'),
+      author=ftl('m24-home-irl-podcast'),
+      preview=ftl('m24-home-big-techs-power'),
+      image=resp_img(
+        url="img/home/2024/media/irl-pink-72.png",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": ftl('m24-home-irl-podcast'),
+          "height": "36",
+          "width": "36"
+        })
+    ) }}
+    {{ springboard_item(
+      link_url="https://irlpodcast.org/season7/episode3/" + utm_params,
+      link_attributes='data-link-text="IRL 7.03" data-link-position="springboard"',
+      type=ftl('m24-home-tag-podcast'),
+      type_icon='podcast',
+      topic=ftl('m24-home-topic-ai'),
+      author=ftl('m24-home-irl-podcast'),
+      preview=ftl('m24-home-why-does-it'),
+      image=resp_img(
+        url="img/home/2024/media/irl-orange-72.png",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": ftl('m24-home-irl-podcast'),
+          "height": "36",
+          "width": "36"
+        })
+    ) }}
+    {{ springboard_item(
+      link_url="https://blog.mozilla.org/en/internet-culture/kids-mental-health-screen-time-technology/" + utm_params,
+      link_attributes='data-link-text="Kids mental health" data-link-position="springboard"',
+      type=ftl('m24-home-tag-article'),
+      type_icon='article',
+      topic=ftl('m24-home-topic-ps'),
+      author='Kristina Bravo',
+      preview=ftl('m24-home-kids-are-growing'),
+      image=resp_img(
+        url="img/home/2024/media/bravo-72.jpg",
+        optional_attributes={
+          "loading": "lazy",
+          "alt": "Kristina Bravo",
+          "height": "36",
+          "width": "36"
+        })
     ) }}
   </ul>
 </section>

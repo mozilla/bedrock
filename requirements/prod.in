@@ -2,7 +2,7 @@ APScheduler==3.11.0
 babis==0.2.4
 basket-client==1.2.0
 bleach[css]==6.1.0
-boto3==1.40.55
+boto3==1.40.43
 chardet==5.2.0
 commonware==0.6.0
 contentful==2.5.0
@@ -58,5 +58,5 @@ wagtail-localize-smartling==0.10.3
 wagtail-localize==1.12.2
 wagtail-link-block==1.1.7
 Wand==0.6.13  # For animated GIF support
-Wagtail==7.2
+Wagtail==6.4.2
 whitenoise==6.11.0

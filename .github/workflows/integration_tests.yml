@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: The branch of mozilla/bedrock to test against - main|stage|prod|run-integration-tests
+        description: The branch of mozilla/bedrock we're testing against - main|stage|prod|run-integration-tests
         required: true
       git_sha:
         description: The git SHA just deployed to the service we want to test
@@ -17,17 +17,11 @@ on:
       mozorg_service_hostname:
         description: The root URL of the Mozorg service to run tests against
         required: true
-
-permissions:
-  contents: read
-
 jobs:
   notify-of-test-run-start:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with:
-          sparse-checkout: .github/actions/slack
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -42,6 +36,7 @@ jobs:
   integration-tests:
     if: always()
     runs-on: ubuntu-latest
+    needs: notify-of-test-run-start
     strategy:
       matrix:
         include:
@@ -75,7 +70,7 @@ jobs:
       - name: Fetch codebase
         if: always()
         uses: actions/checkout@v5
-      - name: Sets specific env vars IF testing against dev/main only
+      - name: Sets specific env vars IF we're on testing against dev/main only
         if: ${{ github.event.inputs.branch == 'main'}}
         run: |
           echo "BOUNCER_URL=https://bouncer-bouncer.stage.mozaws.net/" >> $GITHUB_ENV
@@ -101,6 +96,7 @@ jobs:
   playwright-tests:
     if: always()
     runs-on: ubuntu-latest
+    needs: [notify-of-test-run-start]
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
       CI: true
@@ -127,8 +123,6 @@ jobs:
     needs: [integration-tests, playwright-tests]
     steps:
       - uses: actions/checkout@v5
-        with:
-          sparse-checkout: .github/actions/slack
       - name: Notify via Slack of test-run success
         if: ${{ needs.integration-tests.result == 'success' && needs.playwright-tests.result == 'success' }}
         uses: ./.github/actions/slack

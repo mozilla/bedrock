@@ -70,6 +70,7 @@
   Macro Parameters:
     author: Author of the media.
     class: String providing modifier class(es) to the item.
+    image: Thumbnail image. Can pass an <img> element, resp_img or picture Python helpers.
     link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
     link_url (Required): String or url helper function provides href value for item.
     preview: Blurb / summary of the media. (usually a translation id wrapped in ftl function).
@@ -80,6 +81,7 @@
 {% macro springboard_item(
   author=None,
   class=None,
+  image=None,
   link_attributes=None,
   link_url=None,
   preview=None,
@@ -91,11 +93,10 @@
 <li class="m24-c-springboard-item {{ class }}">
   <a href="{{ link_url }}" class="m24-c-springboard-link" {{ link_attributes }}>
     <div class="m24-c-springboard-thumb">
-      {% if type_icon %}
-        <span class="m24-c-springboard-icon m24-c-springboard-icon-{{ type_icon|lower }}"></span>
-      {% endif %}
+      {{ image }}
     </div>
     <div class="m24-c-springboard-type">
+      {% if type_icon %}<span class="m24-c-springboard-icon m24-c-springboard-icon-{{ type_icon|lower }}"></span>{% endif %}
       {{ type }}
     </div>
     <div class="m24-c-springboard-author">{{ author }}</div>

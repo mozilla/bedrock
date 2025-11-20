@@ -74,14 +74,11 @@
 {% macro firefox_download_desktop_button_linux(cta_copy=ftl('download-button-download-now'), id='download-button-desktop-release-linux', position='primary cta') -%}
   <div class="firefox-platform-button-linux">
     <div class="firefox-platform-button">
-
-      {% comment %}
       <a class="download-link os_linux mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux&lang={{ LANG }}" data-download-version="linux" data-cta-text="Download for Linux 32-bit" data-cta-position="{{ position }}" data-testid="{{ id }}">
         <strong class="download-title">
           {{ ftl('download-button-linux-32-v2') }}
         </strong>
       </a>
-      {% endcomment %}
 
       <a class="download-link os_linux64 mzp-t-xl mzp-c-button mzp-t-product ga-product-download" id="{{ id }}-64" href="{{ settings.BOUNCER_URL }}?product=firefox-latest-ssl&os=linux64&lang={{ LANG }}" data-download-version="linux64" data-cta-text="Download for Linux 64-bit" data-cta-position="{{ position }}" data-testid="{{ id }}-64">
         <strong class="download-title">

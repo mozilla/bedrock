@@ -15,8 +15,8 @@
     color: $m24-color-white;
     margin-top: 2rem;
     padding-block: 0.75rem;
-    font-weight: 600;
 }
+
 
 .m24-c-content.mza-c-home-contact {
     padding-top: 0;
@@ -25,6 +25,8 @@
 .mza-c-main-dark-section + .m24-c-content.mza-c-home-contact {
     padding-top: 4rem;
 }
+
+
 
 .mza-c-home-contact-grid {
     display: flex;

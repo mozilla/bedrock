@@ -72,9 +72,9 @@ $springboard-thumb-width: 32px;
     background-repeat: no-repeat;
     background-size: 24px 24px;
     display: inline-block;
-    height: 32px;
+    height: 24px;
     vertical-align: middle;
-    width: 32px;
+    width: 24px;
 }
 
 .m24-c-springboard-topic {
@@ -99,17 +99,16 @@ $springboard-thumb-width: 32px;
 // icons
 .m24-c-springboard-icon-article {
     background-image: url('/media/img/icons/m24-small/glasses.svg');
-    background-color: $color-moz-green;
 }
 
 .m24-c-springboard-icon-podcast {
-    background-image: url('/media/img/icons/m24-small/headphone.svg');
-    background-color: $color-moz-orange;
+    background-image: url('/media/protocol/img/icons/headphone.svg');
+    background-size: 18px 18px;
 }
 
 .m24-c-springboard-icon-video {
-    background-image: url('/media/img/icons/m24-small/arrow-right.svg');
-    background-color: $color-moz-pink;
+    background-image: url('/media/protocol/img/icons/arrow-right.svg');
+    background-size: 16px 16px;
 }
 
 

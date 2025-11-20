@@ -7,14 +7,14 @@ from unittest import mock
 from django.test import override_settings
 
 import pytest
-from wagtail.models import Locale, Page
+from wagtail.models import Page
 
 from bedrock.cms.models import (
     AbstractBedrockCMSPage,
     SimpleRichTextPage,
     StructuralPage,
 )
-from bedrock.cms.tests.factories import LocaleFactory, StructuralPageFactory
+from bedrock.cms.tests.factories import StructuralPageFactory
 
 pytestmark = [
     pytest.mark.django_db,
@@ -124,56 +124,3 @@ def test__patch_request_for_bedrock_annotates_is_cms_page(tiny_localized_site, r
 
     patched_request = en_us_test_page.specific._patch_request_for_bedrock(request)
     assert patched_request.is_cms_page is True
-
-
-@pytest.mark.parametrize(
-    "django_locale,expected_locale_code",
-    [
-        ("en-gb", "en-GB"),  # Lowercase from Django -> mixed-case
-        ("en-ca", "en-CA"),  # Another mixed-case example
-        ("pt-br", "pt-BR"),  # Another mixed-case example
-        ("es-es", "es-ES"),  # Another mixed-case example
-        ("es-ar", "es-AR"),  # Another mixed-case example
-        ("de", "de"),  # Simple code stays the same
-    ],
-)
-def test_bedrock_locale_get_active_normalizes_case(django_locale, expected_locale_code):
-    """
-    Test that BedrockLocale.get_active() normalizes Django's lowercase
-    language codes to match Bedrock's mixed-case Locale records.
-    This is a unit test for the BedrockLocale.get_active() method that
-    verifies it properly handles the case mismatch between Django's internal
-    lowercase language codes (e.g., 'en-gb') and Bedrock's mixed-case
-    Locale records (e.g., 'en-GB').
-    Without this normalization, Wagtail's routing would fail to find the
-    correct Locale and fall back to the default locale.
-    """
-    # Create the Locale record with mixed-case code
-    locale = LocaleFactory(language_code=expected_locale_code)
-    assert locale.language_code == expected_locale_code
-
-    # Mock Django's translation.get_language() to return lowercase
-    with mock.patch("django.utils.translation.get_language", return_value=django_locale):
-        # Call BedrockLocale.get_active() (which is patched onto Locale)
-        active_locale = Locale.get_active()
-
-        # Verify it found the correct Locale despite the case mismatch
-        assert active_locale.id == locale.id
-        assert active_locale.language_code == expected_locale_code
-
-
-def test_bedrock_locale_get_active_falls_back_to_default():
-    """
-    Test that BedrockLocale.get_active() falls back to the default locale
-    when the requested locale doesn't exist.
-    """
-    # Ensure en-US exists as the default
-    default_locale = Locale.objects.get(language_code="en-US")
-
-    # Mock Django returning a locale that doesn't exist
-    with mock.patch("django.utils.translation.get_language", return_value="xx-YY"):
-        active_locale = Locale.get_active()
-
-        # Should fall back to en-US
-        assert active_locale.id == default_locale.id
-        assert active_locale.language_code == "en-US"

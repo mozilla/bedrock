@@ -63,16 +63,9 @@ $image-path: '/media/protocol/img';
         font-weight: 300;
     }
 
-    h3.mza-section-subheading {
-        font-weight: 400;
-    }
-
-    b, strong {
-        font-weight: 600;
-    }
-
     hr {
         border-top-width: 1px;
+        border-color: advars.$color-ads-off-black;
     }
 
     .m24-c-content.no-top-padding {
@@ -290,6 +283,15 @@ $image-path: '/media/protocol/img';
     @include admixins.text-body-sm;
     text-wrap: balance;
     max-width: 26ch;
+
+    // This was for "nearly" above a stat, and is no longer used.
+    // @media #{$mq-md} {
+    //     &.is-top-left {
+    //         position: absolute;
+    //         top: -1.5rem;
+    //         left: 0;
+    //     }
+    // }
 }
 
 .mza-large-link {
@@ -718,7 +720,6 @@ $image-path: '/media/protocol/img';
 
                 .action-text {
                     text-decoration: none;
-                    color: white;
                 }
             }
         }

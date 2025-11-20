@@ -43,3 +43,15 @@
         }
     }
 }
+
+@media #{$mq-md} {
+    .mza-c-main-dark-section {
+        // hr {
+        //     margin: $spacer-xl 0;
+        // }
+
+        // .m24-c-content + .m24-c-content {
+        //     padding-top: 0;
+        // }
+    }
+}
