@@ -4,14 +4,30 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% set heading = 'You power Firefox. Now donate to make good tech the default.' %}
-{% set body = '<p>Mozilla Foundation — the non-profit behind Firefox — is building a future where technology serves people, not power.</p><p>Your donation to Mozilla Foundation keeps the internet open, private, and built for people. Donate for Giving Tuesday to make good on the promise of the internet.</p>' %}
-{% set button_text = 'Donate to Mozilla Foundation' %}
+{% extends "firefox/welcome/base.html" %}
 
- {% extends "firefox/welcome/base.html" %}
+{% if LANG =="de" %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-de' %}
+{% elif LANG == "fr" %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-fr' %}
+{% elif LANG == "it" %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-it' %}
+{% elif LANG == "ja" %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-ja' %}
+{% elif LANG == "pl" %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-pl' %}
+{% elif LANG.startswith('es-') %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-sp' %}
+{% elif LANG.startswith('pt-') %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-pt-BR' %}
+{% else %}
+  {% set heading = 'You power Firefox. Now donate to make good tech the default.' %}
+  {% set body = '<p>Mozilla Foundation — the non-profit behind Firefox — is building a future where technology serves people, not power.</p><p>Your donation to Mozilla Foundation keeps the internet open, private, and built for people. Donate for Giving Tuesday to make good on the promise of the internet.</p>' %}
+  {% set button_text = 'Donate to Mozilla Foundation' %}
+  {% set button_link = 'https://mozillafoundation.org/?form=25-fxm-gt-en' %}
+{% endif %}
 
-{% block page_title %}{{ button_text }}{% endblock page_title %}
-{% block page_desc %}{% endblock page_desc %}
+{% block page_title %}{{ button_text }}{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-split') }}
@@ -22,24 +38,24 @@
 
 {% block content_body %}
 <section class="mzp-c-split">
-    <div class="c-fundraiser-container mzp-c-split-container">
-        <div class="mzp-c-split-body ">
-            <h1 class="mzp-u-title-md">{{ heading }}</h1>
-            {{ body | safe }}
-            <p><a class="c-fundraiser-button mzp-c-button mzp-t-product" href="#TODO" data-cta-text="Donate">{{ button_text }}</a></p>
-        </div>
-        <div class="c-fundraiser-media-container mzp-c-split-media ">
-            {{ resp_img('img/firefox/welcome/page26/computer-585.jpeg',
-                srcset={
-                  'img/firefox/welcome/page26/computer-1170.jpeg': '2x'
-                },
-                optional_attributes={
-                  "width": "585",
-                  "height": "397",
-                  "class": "mzp-c-split-media-asset"
-                }
-            ) }}
-          </div>
+  <div class="c-fundraiser-container mzp-c-split-container">
+    <div class="mzp-c-split-body ">
+      <h1 class="mzp-u-title-md">{{ heading }}</h1>
+      {{ body | safe }}
+      <p><a class="c-fundraiser-button mzp-c-button mzp-t-product" href="{{ button_link }}" data-cta-text="Donate">{{ button_text }}</a></p>
     </div>
+    <div class="c-fundraiser-media-container mzp-c-split-media ">
+      {{ resp_img('img/firefox/welcome/page26/computer-585.jpeg',
+        srcset={
+          'img/firefox/welcome/page26/computer-1170.jpeg': '2x'
+        },
+        optional_attributes={
+          "width": "585",
+          "height": "397",
+          "class": "mzp-c-split-media-asset"
+        }
+      ) }}
+    </div>
+  </div>
 </section>
 {% endblock %}
