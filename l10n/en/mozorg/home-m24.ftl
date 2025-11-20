@@ -165,8 +165,6 @@ m24-home-mozilla-data-collective = { -brand-name-mozilla } Data Collective
 m24-home-mozilla-create-curate-control = Create. Curate. Control.
 # Obsolete string (expires 2026-03-20)
 m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and  for the community in a transparent and ethical way.
-# Obsolete string (expires 2026-03-20)
-m24-home-mozilla-data-collective-is-v2 = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and for the community in a transparent and ethical way.
 m24-home-mozilla-data-collective-is-v3 = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the center. Access over 300 high-quality global datasets, built by and for the community in a transparent and ethical way.
 m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 
