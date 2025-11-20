@@ -22,7 +22,7 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
-{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'nl', 'pl', 'pt-BR'] %}
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'nl', 'pl', 'pt-PT', 'pt-BR'] %}
 {% set show_fundraising_banner = switch('fundraising-banner-2025eoy') and LANG in fundraising_banner_langs %}
 
 {% block experiments %}

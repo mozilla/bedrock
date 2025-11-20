@@ -34,7 +34,7 @@
   {% set banner_title = 'Wesprzyj Fundację Mozilla' %}
   {% set banner_tagline = 'Z okazji Giving Tuesday pomóż nam tworzyć przyszłość cyfrową, na którą wszyscy zasługujemy.' %}
   {% set banner_button = 'Wpłać datek ' %}
-{% elif LANG == "pt-BR" %}
+{% elif LANG.startswith('pt-') %}
   {% set banner_title = 'Doe para a Fundação Mozilla' %}
   {% set banner_tagline = 'Neste Dia de Doar, ajude a criar o futuro digital que merecemos.' %}
   {% set banner_button = 'Doe agora' %}
@@ -44,9 +44,7 @@
   {% set banner_button = 'Donate' %}
 {% endif %}
 
-{% set banner_ga_label = 'Donate' %}
-
-{% set banner_link = '#TODO' %}
+{% set banner_link = 'https://mozillafoundation.org/?form=gt25-moco-banner ' %}
 
 {% block banner_content %}
   <div class="c-banner-outer">
@@ -54,7 +52,7 @@
       <div class="c-banner-copy">
         <h2 class="c-banner-title">{{ banner_title|safe }}</h2>
         <p class="c-banner-tagline">{{ banner_tagline }}</p>
-        <a id="fundraising-banner-eoy2025-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="{{ banner_ga_label }}">
+        <a id="fundraising-banner-eoy2025-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="Donate" data-cta-position="banner">
           {{ banner_button }}
         </a>
       </div>
