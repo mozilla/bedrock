@@ -16,8 +16,8 @@
             <h2>
               <img src="{{ static('img/logos/mozilla/ads/Mozilla_Ads_Logo.svg') }}" alt="{{ ftl('footer-refresh-mozilla-ads') }}" width="250" height="33" class="moz24-footer-advertising-logo">
             </h2>
-            {% if ftl_has_messages('footer-refresh-extend-reach') %}
-              <p>{{ ftl('footer-refresh-extend-reach') }}</p>
+            {% if ftl_has_messages('footer-refresh-add-trust-to') or ftl_has_messages('footer-refresh-extend-reach') %}
+              <p>{{ ftl('footer-refresh-add-trust-to', fallback='footer-refresh-extend-reach') }}</p>
             {% endif %}
             <a class="moz24-footer-advertising-link" href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Learn more">
               <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-learn-more-about-mozilla-ads', fallback='footer-refresh-learn-more-about-mozilla-advertising') }}</span>

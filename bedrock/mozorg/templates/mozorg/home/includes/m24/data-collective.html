@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="m24-t-gray" id="data-collective">
+  <div class="m24-c-donate">
+    <h2 class="m24-c-donate-title">{{ ftl('m24-home-mozilla-data-collective') }}</h2>
+    <div class="m24-c-donate-info">
+      <p>{{ ftl('m24-home-mozilla-create-curate-control') }}</p>
+      <p>{{ ftl('m24-home-mozilla-data-collective-is-v2', fallback='m24-home-mozilla-data-collective-is') }}</p>
+      <p><a href="https://datacollective.mozillafoundation.org/{{ utm_params }}" class="m24-c-cta" data-cta-text="Join Mozilla Data Collective">{{ ftl('m24-home-join-mozilla-data') }}</a></p>
+    </div>
+    <div class="m24-c-donate-media">
+      {{ resp_img(
+        url='img/home/2024/collective-1450.png',
+        srcset={
+          "img/home/2024/collective-375.png": "375w",
+          "img/home/2024/collective-573.png": "573w",
+          "img/home/2024/collective-720.png": "720w",
+          "img/home/2024/collective-976.png": "976w",
+          "img/home/2024/collective-1128.png": "1128w",
+          "img/home/2024/collective-1232.png": "1232w",
+          "img/home/2024/collective-1450.png": "1450w",
+        },
+        sizes={
+          "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+          "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
+          "(min-width: 1440px)": "680px",
+          "default": "calc(100vw - 32px)",
+        },
+        optional_attributes={
+          'width': '1450',
+          'height': '725',
+        }
+      ) }}
+      </div>
+  </div>
+</div>
+
+<div class="m24-c-transition m24-t-top-gray m24-t-bottom-pink"><hr></div>
