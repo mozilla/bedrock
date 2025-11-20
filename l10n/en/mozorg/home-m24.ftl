@@ -127,7 +127,9 @@ m24-home-tech-crunch = Tech Crunch
 m24-home-a-good-moment = ‘A good moment in time for us’: { -brand-name-firefox } head on AI browsers and what’s next for the web
 m24-home-the-guardian = The Guardian
 m24-home-interview-take-open = Interview: Taking Open Source Into the AI Era
+# Obsolete string (expires 2026-03-20)
 m24-home-mit-sloan-review = MIT Sloan Review
+m24-home-mit-sloan-management-review = MIT Sloan Management Review
 m24-home-mozilla-ventures-funds = { -brand-name-mozilla-ventures } funds Filament networking platform
 m24-home-axios = Axios
 m24-home-mozillas-new-message = { -brand-name-mozilla }’s new message: We’re the only browser not backed by billionaires
@@ -161,7 +163,9 @@ m24-home-read-the-report = Read the report
 
 m24-home-mozilla-data-collective = { -brand-name-mozilla } Data Collective
 m24-home-mozilla-create-curate-control = Create. Curate. Control.
+# Obsolete string (expires 2026-03-20)
 m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and  for the community in a transparent and ethical way.
+m24-home-mozilla-data-collective-is-v2 = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and for the community in a transparent and ethical way.
 m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 
 ## Issues
