@@ -9,10 +9,7 @@
 const { test, expect } = require('@playwright/test');
 const openPage = require('../../scripts/open-page');
 const url = '/en-US/';
-const slugs = [
-    'newsletter/monitor-waitlist',
-    'products/monitor/waitlist-scan'
-];
+const slugs = ['newsletter/monitor-waitlist', 'products/monitor/waitlist-scan'];
 
 test.describe(
     `${url} page`,
