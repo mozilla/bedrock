@@ -38,6 +38,24 @@
         width: auto;
         justify-self: end;
     }
+
+    .c-fundraiser-button {
+        border-radius: $border-radius-md;
+        display: inline-flex;
+
+        &:hover,
+        &:active {
+            path {
+                fill: #0360DF;
+            }
+        }
+
+        .c-fundraiser-button-icon {
+            @include bidi(((margin-left, $spacing-sm, margin-right, 0),));
+            display: flex;
+            align-items: center;
+        }
+    }
 }
 
 // make button full width below $screen-sm

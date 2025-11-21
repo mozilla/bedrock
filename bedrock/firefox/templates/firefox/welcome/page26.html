@@ -72,7 +72,16 @@
       <h1 class="mzp-u-title-md">{{ heading }}</h1>
       <p>{{ body_1 }}</p>
       {% if body_2 %}<p>{{ body_2 }}</p>{% endif %}
-      <p><a class="c-fundraiser-button mzp-c-button mzp-t-product" href="{{ button_link }}" data-cta-text="Donate">{{ button_text }}</a></p>
+      <p>
+        <a class="c-fundraiser-button mzp-c-button mzp-t-product" href="{{ button_link }}" data-cta-text="Donate">
+          {{ button_text }}
+          <span class="c-fundraiser-button-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+              <path d="M5.44994 6.28789L5.44994 8.09414L-2.74887e-07 8.09414L-3.5384e-07 6.2879L5.44994 6.28789ZM14 7.19102L5.44994 -0.000774622L5.44994 6.28789L7.25619 6.28789L7.25619 3.8788L11.194 7.19102L7.25619 10.5032L7.25619 8.09414L5.44994 8.09414L5.44994 14.3828L14 7.19102Z" fill="white"/>
+            </svg>
+          </span>
+        </a>
+      </p>
     </div>
     <div class="c-fundraiser-media-container mzp-c-split-media ">
       {{ resp_img('img/firefox/welcome/page26/computer-585.jpeg',
