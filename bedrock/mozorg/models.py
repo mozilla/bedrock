@@ -16,7 +16,6 @@ from wagtail.snippets.models import register_snippet
 from bedrock.cms.models.base import AbstractBedrockCMSPage
 from bedrock.mozorg.blocks.advertising import (
     AdvertisingHeroBlock,
-    NotificationBlock,
     SectionBlock,
     TwoColumnDetailBlock,
 )
@@ -122,6 +121,64 @@ class ContactBannerSnippet(TranslatableMixin):
         return f"{self.heading} - Contact Banner Snippet"
 
 
+@register_snippet
+class NotificationSnippet(models.Model):
+    notification_text = models.CharField(
+        max_length=255,
+        blank=False,
+    )
+    linkedin_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    tiktok_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    spotify_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    twitter_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    bluesky_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    instagram_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    youtube_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "notification_text",
+                    heading="Notification Text",
+                ),
+                FieldPanel("linkedin_link", heading="Linkedin Link"),
+                FieldPanel("tiktok_link", heading="Tiktok Link"),
+                FieldPanel("spotify_link", heading="Spotify Link"),
+                FieldPanel("twitter_link", heading="Twitter Link"),
+                FieldPanel("bluesky_link", heading="Bluesky Link"),
+                FieldPanel("instagram_link", heading="Instagram Link"),
+                FieldPanel("youtube_link", heading="Youtube Link"),
+            ],
+            heading="Notifications Block",
+        ),
+    ]
+
+    def __str__(self):
+        return f"{self.notification_text} - Notification Snippet"
+
+
 class LeadershipPage(AbstractBedrockCMSPage):
     max_count = 1  # Ensure there's only one instance of this page
     subpage_types = []  # This page type cannot have any children
@@ -173,19 +230,19 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    notifications = StreamField(
-        [("notification_block", NotificationBlock())],
-        blank=True,
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
         null=True,
-        max_num=1,
-        use_json_field=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("hero"),
         FieldPanel("sections"),
         FieldPanel("contact_banner"),
-        FieldPanel("notifications"),
+        FieldPanel("notification"),
     ]
     settings_panels = AbstractBedrockCMSPage.settings_panels + [
         FieldPanel("sub_navigation"),
@@ -295,18 +352,18 @@ class ContentSubpage(AbstractBedrockCMSPage):
         on_delete=models.SET_NULL,
         related_name="+",
     )
-    notifications = StreamField(
-        [("notification_block", NotificationBlock())],
-        blank=True,
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
         null=True,
-        max_num=1,
-        use_json_field=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("sections"),
         FieldPanel("contact_banner"),
-        FieldPanel("notifications"),
+        FieldPanel("notification"),
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"

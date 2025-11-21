@@ -64,18 +64,20 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
         button_link="https://example.com/contact-sales",
     )
 
+    # Create a NitificationSnippet
+    notification_snippet = factories.NotificationSnippetFactory(
+        notification_text="Follow Mozilla Ads to get the latest secure advertising trends.",
+        linkedin_link="https://www.linkedin.com/showcase/mozilla-ads/",
+        bluesky_link="https://bsky.app/profile/mozilla_ads",
+        instagram_link="https://www.instagram.com/mozilla_ads/",
+        youtube_link="https://www.youtube.com/@mozilla_ads",
+    )
+
     # Create the AdvertisingIndexPage with content blocks and contact banner
     advertising_page = factories.AdvertisingIndexPageFactory(
         parent=root_page,
         contact_banner=contact_banner,
-        notifications__0__notification_block__notification_text=RichText("<p>Test notification text</p>"),
-        notifications__0__notification_block__links__0__link_with_icon=factories.LinkWithIconFactory(
-            icon="linkedin",
-            link=factories.LinkBlockFactory(
-                link_to="custom_url",
-                custom_url="https://example.com/notification",
-            ),
-        ),
+        notification=notification_snippet,
         hero__0__advertising_hero_block=factories.AdvertisingHeroBlockFactory(
             heading_text="Test Hero Heading",
             primary_cta_text="Primary CTA",
@@ -123,8 +125,8 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
     assert "Contact Sales" in page_content
     assert "https://example.com/contact-sales" in page_content
 
-    # Assert notification text
-    assert "Test notification text" in page_content
+    # Assert notification snippet text
+    assert "Follow Mozilla Ads to get the latest secure advertising trends." in page_content
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))

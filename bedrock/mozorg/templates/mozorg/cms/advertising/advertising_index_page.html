@@ -50,9 +50,11 @@
     {% endwith %}
   {% endif %}
 
-  {% for notification in page.notifications %}
-    {% include_block notification %}
-  {% endfor %}
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+    {% endwith %}
+  {% endif %}
 
   {# Leaving this here for the next round. This might be useful. {% include 'mozorg/advertising/includes/blog-articles.html' %} #}
 </main>

@@ -76,6 +76,20 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
         model = models.ContactBannerSnippet
 
 
+class NotificationSnippetFactory(factory.django.DjangoModelFactory):
+    notification_text = wagtail_factories.CharBlockFactory
+    linkedin_link = "https://www.example.com/test"
+    tiktok_link = "https://www.example.com/test"
+    spotify_link = "https://www.example.com/test"
+    twitter_link = "https://www.example.com/test"
+    bluesky_link = "https://www.example.com/test"
+    instagram_link = "https://www.example.com/test"
+    youtube_link = "https://www.example.com/test"
+
+    class Meta:
+        model = models.NotificationSnippet
+
+
 class LinkBlockFactory(wagtail_factories.StructBlockFactory):
     link_to = "custom_url"
     new_window = False
@@ -170,12 +184,6 @@ class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     sections = wagtail_factories.StreamFieldFactory(
         {
             "section": factory.SubFactory(SectionBlockFactory),
-        }
-    )
-
-    notifications = wagtail_factories.StreamFieldFactory(
-        {
-            "notification_block": factory.SubFactory(NotificationBlockFactory),
         }
     )
 
