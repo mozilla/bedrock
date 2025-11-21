@@ -7,7 +7,7 @@ import wagtail_factories
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import advertising, leadership
+from bedrock.mozorg.blocks import advertising, leadership, navigation
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -76,9 +76,22 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
         model = models.ContactBannerSnippet
 
 
+class NotificationSnippetFactory(factory.django.DjangoModelFactory):
+    notification_text = wagtail_factories.CharBlockFactory
+    linkedin_link = "https://www.example.com/test"
+    tiktok_link = "https://www.example.com/test"
+    spotify_link = "https://www.example.com/test"
+    twitter_link = "https://www.example.com/test"
+    bluesky_link = "https://www.example.com/test"
+    instagram_link = "https://www.example.com/test"
+    youtube_link = "https://www.example.com/test"
+
+    class Meta:
+        model = models.NotificationSnippet
+
+
 class LinkBlockFactory(wagtail_factories.StructBlockFactory):
     link_to = "custom_url"
-    custom_url = wagtail_factories.CharBlockFactory
     new_window = False
 
     class Meta:
@@ -104,6 +117,34 @@ class SectionHeaderBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.SectionHeaderBlock
 
 
+class SectionSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = wagtail_factories.CharBlockFactory
+    has_top_divider = False
+    display_on_dark_background = False
+
+    class Meta:
+        model = advertising.SectionSettings
+
+
+class RowTextAndLinkBlockFactory(wagtail_factories.StructBlockFactory):
+    text = wagtail_factories.CharBlockFactory
+    link_text = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = advertising.RowTextAndLinkBlock
+
+
+class SectionBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(SectionSettingsFactory)
+    header = factory.SubFactory(SectionHeaderBlockFactory)
+    content = []
+    call_to_action = []
+
+    class Meta:
+        model = advertising.SectionBlock
+
+
 class LinkWithIconFactory(wagtail_factories.StructBlockFactory):
     icon = wagtail_factories.CharBlockFactory
     link = factory.SubFactory(LinkBlockFactory)
@@ -120,21 +161,35 @@ class NotificationBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.NotificationBlock
 
 
+class NavigationLinkBlockFactory(wagtail_factories.StructBlockFactory):
+    link_text = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+    has_button_appearance = False
+
+    class Meta:
+        model = navigation.NavigationLinkBlock
+
+
 class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
     title = "Test Advertising Index Page"
     live = True
     slug = "advertising"
 
-    content = wagtail_factories.StreamFieldFactory(
+    hero = wagtail_factories.StreamFieldFactory(
         {
             "advertising_hero_block": factory.SubFactory(AdvertisingHeroBlockFactory),
-            "section_header_block": factory.SubFactory(SectionHeaderBlockFactory),
         }
     )
 
-    notifications = wagtail_factories.StreamFieldFactory(
+    sections = wagtail_factories.StreamFieldFactory(
         {
-            "notification_block": factory.SubFactory(NotificationBlockFactory),
+            "section": factory.SubFactory(SectionBlockFactory),
+        }
+    )
+
+    sub_navigation = wagtail_factories.StreamFieldFactory(
+        {
+            "link": factory.SubFactory(NavigationLinkBlockFactory),
         }
     )
 
@@ -179,3 +234,18 @@ class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.TwoColumnSubpage
+
+
+class ContentSubpageFactory(wagtail_factories.PageFactory):
+    title = "Test Content Subpage"
+    live = True
+    slug = "content-subpage"
+
+    sections = wagtail_factories.StreamFieldFactory(
+        {
+            "section": factory.SubFactory(SectionBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.ContentSubpage

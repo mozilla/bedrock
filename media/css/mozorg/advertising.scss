@@ -18,7 +18,7 @@ $image-path: '/media/protocol/img';
 @use './ads/subnav';
 @use './ads/main-dark-section';
 @use './ads/home-brands';
-@use './ads/home-solutions';
+@use './ads/sections';
 @use './ads/home-approach';
 @use './ads/home-why-moz';
 @use './ads/home-contact';
@@ -41,7 +41,6 @@ $image-path: '/media/protocol/img';
 
 .section-has-border-top {
     border-top: 1px solid advars.$color-ads-off-black;
-    padding-top: 2rem;
 }
 
 #mza-main {
@@ -99,6 +98,14 @@ $image-path: '/media/protocol/img';
         }
     }
 
+    .m24-c-content.bottom-padding-sm {
+        padding-bottom: 2rem;
+
+        hr {
+            margin-top: 4rem;
+        }
+    }
+
     .md-only {
         display: none;
 
@@ -143,7 +150,6 @@ $image-path: '/media/protocol/img';
 .mza-section-heading {
     @include admixins.text-title-xl;
     font-weight: 300;
-    margin-bottom: 1.5rem;
 }
 
 .mza-section-subheading {
@@ -232,6 +238,10 @@ $image-path: '/media/protocol/img';
     b, strong {
         font-weight: 600;
     }
+
+    p {
+        margin: 0;
+    }
 }
 
 .mza-stat-group {
@@ -280,15 +290,6 @@ $image-path: '/media/protocol/img';
     @include admixins.text-body-sm;
     text-wrap: balance;
     max-width: 26ch;
-
-    // This was for "nearly" above a stat, and is no longer used.
-    // @media #{$mq-md} {
-    //     &.is-top-left {
-    //         position: absolute;
-    //         top: -1.5rem;
-    //         left: 0;
-    //     }
-    // }
 }
 
 .mza-large-link {
@@ -669,6 +670,12 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.mza-c-main-dark-section .mza-bordered-list li button:hover {
+  .action-text {
+    color: white;
+  }
+}
+
 .mza-bordered-list {
     &.has-padding-top {
         padding-top: $spacer-xl;
@@ -740,11 +747,28 @@ $image-path: '/media/protocol/img';
     flex-direction: column;
     gap: 1rem;
     @include admixins.text-title-sm;
+    padding-block: 0;
 
     &.pad-top {
         padding-top: $spacer-xl;
     }
+
+    &.pad-bottom {
+        padding-bottom: $spacer-xl;
+    }
+
+    &.full-width {
+        width: 100%;
+    }
 }
+
+.mza-feature-list-modals {
+    .m24-c-content {
+        padding-block: 0;
+    }
+}
+
+
 
 @media #{$mq-md} {
     .mza-section-footer {
@@ -759,7 +783,7 @@ $image-path: '/media/protocol/img';
 
 .mza-home-big-list {
     list-style: none;
-    margin: 2rem 0;
+    margin: 0;
     padding: 0;
 }
 

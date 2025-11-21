@@ -17,4 +17,8 @@
     h2 {
         @include admixins.text-title-xl;
     }
+
+    & + .has-border-top {
+        padding-top: 0;
+    }
 }
