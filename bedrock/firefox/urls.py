@@ -186,6 +186,11 @@ urlpatterns = (
     page("firefox/welcome/23/", "firefox/welcome/page23.html", ftl_files=["firefox/welcome/page23"]),
     page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
     page("firefox/welcome/25/", "firefox/welcome/page25.html", active_locales=["en-US", "fr", "de"]),
+    page(
+        "firefox/welcome/26/",
+        "firefox/welcome/page26.html",
+        active_locales=["en-US", "en-CA", "en-GB", "fr", "de", "pt-BR", "ja", "es-AR", "es-CL", "es-ES", "es-MX", "pl", "it"],
+    ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
     page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
