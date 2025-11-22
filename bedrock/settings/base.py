@@ -729,6 +729,7 @@ INSTALLED_APPS = [
     "modelcluster",
     "taggit",
     "csp",
+    "wagtail_link_block",
     # Local apps
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
@@ -2428,6 +2429,7 @@ _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
     "mozorg.LeadershipPage",
+    "mozorg.AdvertisingIndexPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",

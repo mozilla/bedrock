@@ -1,0 +1,81 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+<header class="mza-c-callout">
+    <div class="mza-c-callout-bg">
+
+      <div class="mza-c-callout-bg-inner">
+        <img class="image-1" role="presentation" src="{{ static('img/mozorg/advertising/callout/1.jpg') }}"/>
+        <img class="image-2" role="presentation" src="{{ static('img/mozorg/advertising/callout/2.jpg') }}"/>
+        <img class="image-3" role="presentation" src="{{ static('img/mozorg/advertising/callout/3.jpg') }}"/>
+        <img class="image-4 large-only" role="presentation" src="{{ static('img/mozorg/advertising/callout/4.jpg') }}"/>
+        <img class="image-5 large-only" role="presentation" src="{{ static('img/mozorg/advertising/callout/5.jpg') }}"/>
+        <img class="image-6 large-only" role="presentation" src="{{ static('img/mozorg/advertising/callout/6.jpg') }}"/>
+        <img class="image-7" role="presentation" src="{{ static('img/mozorg/advertising/callout/7.jpg') }}"/>
+        <img class="image-8 large-only rectangle-h" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-h.svg') }}" />
+        <img class="image-9 rectangle-v" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-v.svg') }}" />
+      </div>
+
+      {# uncomment for dynamic scroll effect
+      <div class="mza-c-callout-bg-inner">
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-1.png') }}" class="layer-1"/>
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-2.svg') }}" class="layer-2"/>
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-3.png') }}" class="layer-3"/>
+        </div>
+
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-1.png') }}" class="layer-1"/>
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-2.svg') }}" class="layer-2"/>
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-3.png') }}" class="layer-3"/>
+        </div>
+
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-3/layer-1.png') }}" class="layer-1"/>
+        </div>
+
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-4/layer-1.png') }}" class="layer-1"/>
+        </div>
+
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/ad.svg') }}" class="layer-2"/>
+        </div>
+
+        <div class="bg-image">
+          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/ad.svg') }}" class="layer-2"/>
+        </div>
+      </div> #}
+
+    </div>
+
+    <div class="mza-c-callout-section">
+      <h1>
+        {{ value.heading_text }}
+      </h1>
+
+      <a
+        href="{{ value.primary_cta_link.get_url() }}"
+        class="mza-c-callout-action"
+        {% if value.primary_cta_link.new_window %}target="_blank" rel="noopener"{% endif %}
+      >
+        {{ value.primary_cta_text }}
+      </a>
+    </div>
+
+    <div class="middle-mobile-images">
+        <img class="image-4" role="presentation" src="{{ static('img/mozorg/advertising/callout/4.jpg') }}"/>
+        <img class="image-5" role="presentation" src="{{ static('img/mozorg/advertising/callout/5.jpg') }}"/>
+        <img class="image-6" role="presentation" src="{{ static('img/mozorg/advertising/callout/6.jpg') }}"/>
+        <img class="image-8 large-only rectangle-h" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-h.svg') }}" />
+    </div>
+
+    <div class="mza-c-callout-section is-bottom">
+      <div id="callout-image-trigger" class="mza-c-callout-card">
+        <p>{{ value.supporting_text }}</p>
+        <a class="mza-c-callout-action" href="{{ value.secondary_cta_link.get_url() }}" {% if value.secondary_cta_link.new_window %}target="_blank" rel="noopener"{% endif %}>{{ value.secondary_cta_text }}</a>
+      </div>
+    </div>
+  </header>

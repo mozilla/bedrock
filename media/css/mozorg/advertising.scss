@@ -379,6 +379,10 @@ $image-path: '/media/protocol/img';
         align-items: center;
         padding-block: 2rem;
 
+        h1 {
+            max-width: 10ch;
+        }
+
         &.is-bottom {
             height: 70vh;
             justify-content: flex-start;

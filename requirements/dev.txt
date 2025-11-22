@@ -607,6 +607,7 @@ django==5.2.8 \
     #   modelsearch
     #   mozilla-django-oidc
     #   wagtail
+    #   wagtail-link-block
     #   wagtail-localize
     #   wagtail-localize-smartling
 django-cors-headers==4.9.0 \
@@ -2451,9 +2452,14 @@ wagtail==7.2 \
     # via
     #   -r requirements/prod.txt
     #   wagtail-factories
+    #   wagtail-link-block
     #   wagtail-localize
     #   wagtail-localize-smartling
     #   wagtaildraftsharing
+wagtail-link-block==1.1.7 \
+    --hash=sha256:5b7346bd60b65b00d7bafa48ab3b54b09c97abd085c0afd8f691be3219ff7a1c \
+    --hash=sha256:e2f0c9dedd8e1116fc347e8d5a28164376d121fa95b9c87a85ca408fc426846e
+    # via -r requirements/prod.in
 wagtail-factories==4.3.0 \
     --hash=sha256:27c19078ceade5e408aef0edfa3378b7992e5bed4d4c7e8216cbdd53f9732464 \
     --hash=sha256:6d3129244642a400462344e35168e5eb89598d5b63a4cfb7f26a5a6052f50d95
