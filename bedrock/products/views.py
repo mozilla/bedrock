@@ -380,15 +380,6 @@ def monitor_waitlist_scan_page(request):
 
 
 @require_safe
-def monitor_waitlist_plus_page(request):
-    template_name = "products/monitor/waitlist/plus.html"
-    newsletter_id = "monitor-waitlist"
-    ctx = {"newsletter_id": newsletter_id}
-
-    return l10n_utils.render(request, template_name, ctx)
-
-
-@require_safe
 def vpn_resource_center_redirect(request, slug):
     # When a /more url is requested the user should be forwarded to the /resource-centre url
     # If the rc article is not available in their requested language bedrock should display the /more/ article if it is available in their language.
