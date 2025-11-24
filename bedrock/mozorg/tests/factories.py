@@ -144,22 +144,6 @@ class SectionBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.SectionBlock
 
 
-class LinkWithIconFactory(wagtail_factories.StructBlockFactory):
-    icon = wagtail_factories.CharBlockFactory
-    link = factory.SubFactory(LinkBlockFactory)
-
-    class Meta:
-        model = advertising.LinkWithIcon
-
-
-class NotificationBlockFactory(wagtail_factories.StructBlockFactory):
-    notification_text = wagtail_factories.CharBlockFactory
-    links = []
-
-    class Meta:
-        model = advertising.NotificationBlock
-
-
 class NavigationLinkBlockFactory(wagtail_factories.StructBlockFactory):
     link_text = wagtail_factories.CharBlockFactory
     link = factory.SubFactory(LinkBlockFactory)

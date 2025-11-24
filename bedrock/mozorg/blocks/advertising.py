@@ -289,36 +289,6 @@ class TwoColumnDetailBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class LinkWithIcon(blocks.StructBlock):
-    """Link with an icon."""
-
-    icon = blocks.ChoiceBlock(required=False, choices=SOCIAL_MEDIA_ICON_CHOICES, inline_form=True)
-    link = LinkBlock()
-
-    class Meta:
-        icon = "link"
-        label = "Link With Icon"
-        label_format = "Link With Icon"
-        template = "mozorg/cms/advertising/blocks/link_with_icon_block.html"
-        form_classname = "compact-form struct-block"
-
-
-class NotificationBlock(blocks.StructBlock):
-    notification_text = blocks.RichTextBlock(
-        char_max_length=255,
-        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
-    )
-    links = blocks.StreamBlock(
-        [
-            ("link_with_icon", LinkWithIcon()),
-        ],
-        required=False,
-    )
-
-    class Meta:
-        template = "mozorg/cms/advertising/blocks/notification_block.html"
-
-
 class SectionSettings(blocks.StructBlock):
     anchor_id = blocks.CharBlock(
         required=False,
