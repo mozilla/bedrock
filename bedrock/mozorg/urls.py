@@ -161,22 +161,6 @@ urlpatterns = [
         name="mozorg.advertising.principles",
     ),
     path(
-        "advertising/why-mozilla/",
-        prefer_cms(
-            views.why_mozilla_view,
-            fallback_ftl_files=["ui.ftl"],
-        ),
-        name="why-mozilla",
-    ),
-    path(
-        "advertising/contact/",
-        prefer_cms(
-            views.contact,
-            fallback_ftl_files=["ui.ftl"],
-        ),
-        name="advertising-contact",
-    ),
-    path(
         "advertising/solutions/",
         prefer_cms(
             views.advertising_solutions_view,

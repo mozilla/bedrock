@@ -293,20 +293,6 @@ def anti_harassment_tool_view(request):
 
 
 @require_safe
-def why_mozilla_view(request):
-    context = {}
-    template = "mozorg/advertising/why-mozilla.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
-
-
-@require_safe
-def contact(request):
-    context = {}
-    template = "mozorg/advertising/contact.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
-
-
-@require_safe
 def advertising_landing_view(request):
     context = {}
     template = "mozorg/advertising/landing.html"
