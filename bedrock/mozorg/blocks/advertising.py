@@ -19,16 +19,6 @@ CAPTION_TEXT_FEATURES = [
 ]
 
 
-SOCIAL_MEDIA_ICON_CHOICES = [
-    ("linkedin", "LinkedIn"),
-    ("tiktok", "TikTok"),
-    ("spotify", "Spotify"),
-    ("bluesky", "BlueSky"),
-    ("instagram", "Instagram"),
-    ("youtube", "YouTube"),
-]
-
-
 class AdvertisingHeroBlock(blocks.StructBlock):
     """Advertising page hero block."""
 
