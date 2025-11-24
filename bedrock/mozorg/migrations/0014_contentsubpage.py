@@ -8,7 +8,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0010_advertisingindexpage_sub_navigation_and_more"),
+        ("mozorg", "0013_advertisingindexpage_sub_navigation_and_more"),
         ("wagtailcore", "0094_alter_page_locale"),
     ]
 

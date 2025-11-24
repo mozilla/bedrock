@@ -7,7 +7,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0009_advertisingprinciplespage"),
+        ("mozorg", "0012_rename_twocolumnsubpage_advertisingtwocolumnsubpage"),
     ]
 
     operations = [

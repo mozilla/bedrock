@@ -8,7 +8,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0013_remove_advertisingindexpage_content_and_more"),
+        ("mozorg", "0016_remove_advertisingindexpage_content_and_more"),
     ]
 
     operations = [

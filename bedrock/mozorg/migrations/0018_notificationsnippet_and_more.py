@@ -6,7 +6,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0014_alter_advertisingindexpage_sections_and_more"),
+        ("mozorg", "0017_alter_advertisingindexpage_sections_and_more"),
     ]
 
     operations = [
