@@ -116,6 +116,53 @@ class FeatureListBlock(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
+class ListItemBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    supporting_text = blocks.RichTextBlock(
+        features=["bold", "italic", "link"],
+    )
+
+    class Meta:
+        label = "List Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/list_item_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class ListBlock(blocks.StructBlock):
+    """A block containing a list of items."""
+
+    list_items = blocks.ListBlock(ListItemBlock())
+
+    class Meta:
+        icon = "list-ul"
+        label = "List"
+        label_format = "List"
+        template = "mozorg/cms/advertising/blocks/list_block.html"
+        form_classname = "compact-form struct-block"
+
+
+class TwoColumnDetailBlock(blocks.StructBlock):
+    """Feature list item block."""
+
+    heading_text = blocks.CharBlock(char_max_length=255)
+    subheading = blocks.TextBlock()
+    second_column = blocks.StreamBlock(
+        [
+            ("list", ListBlock()),
+        ],
+        required=False,
+    )
+
+    class Meta:
+        label = "Two Column Detail"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/advertising/blocks/two_column_detail_block.html"
+        form_classname = "compact-form struct-block"
+
+
 class LinkWithIcon(blocks.StructBlock):
     """Link with an icon."""
 
@@ -133,7 +180,15 @@ class LinkWithIcon(blocks.StructBlock):
 class NotificationBlock(blocks.StructBlock):
     notification_text = blocks.RichTextBlock(
         char_max_length=255,
-        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+        features=[
+            "bold",
+            "italic",
+            "superscript",
+            "subscript",
+            "strikethrough",
+            "code",
+            "link",
+        ],
     )
     links = blocks.StreamBlock(
         [

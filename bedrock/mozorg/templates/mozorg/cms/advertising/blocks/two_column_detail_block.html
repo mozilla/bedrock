@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="{% if value.second_column %}mza-half-grid{% endif %}">
+  <div class="two-column-intro">
+    <h2 class="mza-section-heading">{{ value.heading_text }}</h2>
+    <p class="mza-section-text-lg">{{ value.subheading }}</p>
+  </div>
+
+  {% if value.second_column %}
+    {% for item in value.second_column %}
+      {% include_block item %}
+    {% endfor %}
+  {% endif %}
+
+</div>

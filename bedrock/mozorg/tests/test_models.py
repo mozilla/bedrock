@@ -120,3 +120,63 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
 
     # Assert notification text
     assert "Test notification text" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
+    root_page = minimal_site.root_page
+
+    # Create an AdvertisingIndexPage as the parent
+    advertising_page = factories.AdvertisingIndexPageFactory(
+        parent=root_page,
+    )
+    advertising_page.save()
+
+    # Build the second_column StreamBlock data for the AdvertisingTwoColumnSubpage
+    list_item_heading_text = "Test List Item Heading"
+    list_item_supporting_text = "Test list item supporting text"
+    second_column_data = [
+        (
+            "list",
+            {
+                "list_items": [
+                    {
+                        "heading_text": list_item_heading_text,
+                        "supporting_text": RichText(f"<p>{list_item_supporting_text}</p>"),
+                    }
+                ]
+            },
+        )
+    ]
+
+    # Create the AdvertisingTwoColumnSubpage with properly formatted StreamField data
+    two_column_page = factories.AdvertisingTwoColumnSubpageFactory(
+        parent=advertising_page,
+        content=[
+            (
+                "two_column_block",
+                {
+                    "heading_text": "Test Heading",
+                    "subheading": "Test Subheading",
+                    "second_column": second_column_data,
+                },
+            )
+        ],
+    )
+
+    two_column_page.save()
+
+    _relative_url = two_column_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/advertising/two-column-subpage/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(two_column_page, serving_method)(request)
+    page_content = resp.text
+
+    # Assert page heading and subheading
+    assert "Test Heading" in page_content
+    assert "Test Subheading" in page_content
+
+    # Assert content from the list item block
+    assert list_item_heading_text in page_content
+    assert list_item_supporting_text in page_content

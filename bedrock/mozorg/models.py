@@ -13,7 +13,14 @@ from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.advertising import AdvertisingHeroBlock, FeatureListBlock, FigureWithStatisticBlock, NotificationBlock, SectionHeaderBlock
+from bedrock.mozorg.blocks.advertising import (
+    AdvertisingHeroBlock,
+    FeatureListBlock,
+    FigureWithStatisticBlock,
+    NotificationBlock,
+    SectionHeaderBlock,
+    TwoColumnDetailBlock,
+)
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 
 
@@ -24,7 +31,10 @@ def process_md_file(file_path):
             input = f.read()
 
         md = markdown.Markdown(
-            extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2, toc_depth="2-3", separator="")],
+            extensions=[
+                "markdown.extensions.attr_list",
+                TocExtension(permalink=True, baselevel=2, toc_depth="2-3", separator=""),
+            ],
             output_format="html5",
         )
         content = md.convert(input)
@@ -134,7 +144,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = []  # This page type cannot have any children
+    subpage_types = ["AdvertisingTwoColumnSubpage"]
 
     content = StreamField(
         [
@@ -169,3 +179,23 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/advertising_index_page.html"
+
+
+class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
+    subpage_types = []  # This page type cannot have any children
+
+    content = StreamField(
+        [
+            ("two_column_block", TwoColumnDetailBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/advertising/two_column_subpage.html"
