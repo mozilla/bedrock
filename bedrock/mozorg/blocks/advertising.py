@@ -180,7 +180,15 @@ class LinkWithIcon(blocks.StructBlock):
 class NotificationBlock(blocks.StructBlock):
     notification_text = blocks.RichTextBlock(
         char_max_length=255,
-        features=["bold", "italic", "superscript", "subscript", "strikethrough", "code", "link"],
+        features=[
+            "bold",
+            "italic",
+            "superscript",
+            "subscript",
+            "strikethrough",
+            "code",
+            "link",
+        ],
     )
     links = blocks.StreamBlock(
         [
