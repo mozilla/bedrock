@@ -8,7 +8,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0008_contactbannersnippet_and_more"),
+        ("mozorg", "0010_alter_advertisingindexpage_notifications"),
         ("wagtailcore", "0094_alter_page_locale"),
     ]
 
