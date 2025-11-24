@@ -7,7 +7,7 @@ from django.core.exceptions import ValidationError
 import pytest
 from wagtail.rich_text import RichText
 
-from bedrock.cms.tests.conftest import minimal_site  # noqa
+from bedrock.cms.tests.conftest import minimal_site  # noqa: F401, F811
 from bedrock.mozorg.tests import factories
 
 pytestmark = [
@@ -285,7 +285,9 @@ def test_advertising_index_page_duplicate_anchor_ids_in_settings(minimal_site): 
     assert "duplicate-id" in str(exc_info.value)
 
 
-def test_advertising_index_page_duplicate_anchor_ids_across_hero_and_sections(minimal_site):  # noqa
+def test_advertising_index_page_duplicate_anchor_ids_across_hero_and_sections(
+    minimal_site,  # noqa: F811
+):
     """Test that duplicate anchor IDs between hero and sections raise ValidationError"""
     root_page = minimal_site.root_page
 
@@ -397,7 +399,9 @@ def test_advertising_index_page_valid_navigation_anchor_reference(minimal_site):
     advertising_page.clean()  # No exception expected
 
 
-def test_advertising_index_page_valid_navigation_anchor_reference_in_header(minimal_site):  # noqa
+def test_advertising_index_page_valid_navigation_anchor_reference_in_header(
+    minimal_site,  # noqa: F811
+):
     """Test that navigation links can reference anchors in section headers"""
     root_page = minimal_site.root_page
 
