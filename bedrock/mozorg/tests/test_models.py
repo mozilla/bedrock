@@ -132,7 +132,7 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
     )
     advertising_page.save()
 
-    # Build the second_column StreamBlock data for the TwoColumnSubpage
+    # Build the second_column StreamBlock data for the AdvertisingTwoColumnSubpage
     list_item_heading_text = "Test List Item Heading"
     list_item_supporting_text = "Test list item supporting text"
     second_column_data = [
@@ -149,8 +149,8 @@ def test_two_column_subpage(minimal_site, rf, serving_method):  # noqa
         )
     ]
 
-    # Create the TwoColumnSubpage with properly formatted StreamField data
-    two_column_page = factories.TwoColumnSubpageFactory(
+    # Create the AdvertisingTwoColumnSubpage with properly formatted StreamField data
+    two_column_page = factories.AdvertisingTwoColumnSubpageFactory(
         parent=advertising_page,
         content=[
             (

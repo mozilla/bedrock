@@ -141,7 +141,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["TwoColumnSubpage"]
+    subpage_types = ["AdvertisingTwoColumnSubpage"]
 
     content = StreamField(
         [
@@ -178,7 +178,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
     template = "mozorg/cms/advertising/advertising_index_page.html"
 
 
-class TwoColumnSubpage(AbstractBedrockCMSPage):
+class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):
     parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 

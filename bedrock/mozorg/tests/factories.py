@@ -166,7 +166,7 @@ class TwoColumnDetailBlockFactory(wagtail_factories.StructBlockFactory):
         model = advertising.TwoColumnDetailBlock
 
 
-class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
+class AdvertisingTwoColumnSubpageFactory(wagtail_factories.PageFactory):
     title = "Test Two Column Subpage"
     live = True
     slug = "two-column-subpage"
@@ -178,4 +178,4 @@ class TwoColumnSubpageFactory(wagtail_factories.PageFactory):
     )
 
     class Meta:
-        model = models.TwoColumnSubpage
+        model = models.AdvertisingTwoColumnSubpage
