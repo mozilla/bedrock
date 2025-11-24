@@ -1,0 +1,56 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
+.mza-c-section {
+    padding-block: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+
+    > .m24-c-content {
+        padding-block: 0;
+    }
+
+    &.has-border-top {
+        > .m24-c-content:first-of-type {
+            position: relative;
+            padding-top: 2rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: var(--container-padding);
+                width: calc(100% - 2 * var(--container-padding));
+                border-top: 1px solid advars.$color-ads-off-black;
+            }
+        }
+    }
+
+    &.mza-c-main-dark-section.has-border-top > .m24-c-content:first-of-type {
+        &::before {
+            border-top-color: $m24-color-white;
+        }
+    }
+
+    & + & {
+        padding-top: 0;
+    }
+
+
+
+    @media #{$mq-md} {
+        padding-block: 8rem;
+
+        &.has-border-top > .m24-c-content:first-of-type {
+            padding-top: 4rem;
+        }
+    }
+}
+
+.mza-subpage-header + .mza-c-section {
+    padding-top: 4rem;
+}

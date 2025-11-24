@@ -17,36 +17,28 @@
 {% block body_class %}{{ super() }} advertising{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-callout') }}
-  {{ css_bundle('protocol-card') }}
-  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('mozilla-ads') }}
 {% endblock %}
 
-{% block site_header %}
-  {% with has_subnav=true %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
-  {% endwith %}
-{% endblock %}
-
 {% block sub_navigation %}
-  {% with advertising_index_page=page.get_parent().specific %}
+  {% with advertising_index_page=page.get_parent() %}
     {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
   {% endwith %}
 {% endblock %}
 
 {% block content %}
-<main id="mza-main">
   <header class="mza-subpage-header">
     <div class="m24-c-content">
       <h1>{{ page.title }}</h1>
     </div>
   </header>
 
-  <section class="m24-c-content">
+
+  <main id="mza-main">
     {% for block in page.content %}
       {% include_block block %}
     {% endfor %}
-  </section>
-</main>
+  </main>
 {% endblock %}
+
+

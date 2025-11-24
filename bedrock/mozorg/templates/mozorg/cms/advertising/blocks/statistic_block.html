@@ -1,0 +1,13 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mza-stat">
+  <span class="mza-stat-text">
+    {% if value.statistic_superlabel %}<span class="mza-stat-label is-top-left">{{ value.statistic_superlabel }}</span>{% endif %}
+  <span class="mza-stat-number">{{ value.statistic_value }}</span>
+  <span class="mza-stat-label">{{ value.statistic_label }}</span>
+  </span>
+</div>

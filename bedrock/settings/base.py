@@ -2431,6 +2431,7 @@ _allowed_page_models = [
     "mozorg.LeadershipPage",
     "mozorg.AdvertisingIndexPage",
     "mozorg.AdvertisingTwoColumnSubpage",
+    "mozorg.ContentSubpage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",

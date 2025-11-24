@@ -17,10 +17,13 @@
 {% block body_class %}{{ super() }} advertising{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('protocol-callout') }}
-  {{ css_bundle('protocol-card') }}
-  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('mozilla-ads') }}
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('protocol-modal') }}
+  {{ js_bundle('mozorg-advertising-solutions') }}
 {% endblock %}
 
 {% block site_header %}
@@ -30,7 +33,7 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% with advertising_index_page=page.get_parent().specific %}
+  {% with advertising_index_page=page.get_parent() %}
     {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
   {% endwith %}
 {% endblock %}
@@ -43,10 +46,22 @@
     </div>
   </header>
 
-  <section class="m24-c-content">
-    {% for block in page.content %}
-      {% include_block block %}
-    {% endfor %}
-  </section>
+  {% for block in page.sections %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% if page.contact_banner %}
+    {% with value=page.contact_banner %}
+      {% include 'mozorg/cms/snippets/contact_bannet_snippet.html' %}
+    {% endwith %}
+  {% endif %}
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+    {% endwith %}
+  {% endif %}
 </main>
 {% endblock %}
+
+

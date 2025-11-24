@@ -5,6 +5,6 @@
 #}
 
 <li class="{{ li_class }}">
-  <h3 class="{{ h3_class }}">{{ value.heading_text }}</h3>
+  <h3 class="{{ h3_class }}">{{ value.heading_text|linebreaksbr }}</h3>
   <div class="{{ p_class }}">{{ value.supporting_text|richtext }}</div>
 </li>

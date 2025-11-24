@@ -4,8 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mza-c-home-solutions m24-c-content has-scroll-padding">
-    <div class="mza-figure-grid {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
+<div class="mza-c-home-solutions has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+    <div class="mza-figure-grid m24-c-content padding-top-0 no-bottom-padding {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
       <div class="mza-stat">
         <span class="mza-stat-text">
           <span class="mza-stat-number is-smaller">{{ value.statistic_value }}</span>
@@ -19,11 +19,4 @@
         </figcaption>
       </figure>
     </div>
-
-    {% if value.cta_link %}
-      <div class="mza-section-footer">
-        <a class="mza-large-link" href="{{ value.cta_link.get_url() }}" {% if value.cta_link.new_window %}target="_blank" rel="noopener"{% endif %}>{{ value.cta_text }}</a>
-      </div>
-    {% endif %}
-
-</section>
+</div>

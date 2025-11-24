@@ -1,0 +1,85 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<li class="modal-wrapper">
+  <button type="button" class="modal-trigger">
+    <span class="modal-label">{{ value.heading_text }}</span>
+    <span class="action-text">See example +</span>
+  </button>
+  <div class="mzp-u-modal-content">
+    <!-- no carousel wrapper. -->
+    {% if value.figures|length == 1 %}
+      <figure class="mza-figure">
+        {{ srcset_image(value.figures.0.image, "width-{1000,1200,1400}", class="", loading="lazy", alt=value.figures.0.image.description) }}
+        <figcaption class="modal-figure-caption">
+          <p>
+            <span class="modal-figure-caption-heading">{{ value.figures.0.image_caption_heading }}</span>
+            <span class="modal-figure-caption-text">{{ value.figures.0.image_caption_text }}</span>
+          </p>
+          {% if value.cta_text %}
+            <a
+              href="{{ value.cta_link.get_url() }}"
+              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
+              {% if value.cta_link.new_window %}target="_blank" rel="external noopener" {% endif %}
+            >
+              {{ value.cta_text }}
+            </a>
+          {% endif %}
+        </figcaption>
+      </figure>
+    {% else %}
+      <!-- carousel wrapper. -->
+      <div class="carousel">
+        <div class="carousel-wrapper">
+          <div class="carousel-viewport">
+            <div class="carousel-container" style="transform: translate3d(0px, 0px, 0px);">
+              {% for figure in value.figures %}
+                <div class="carousel-slide">
+                  {{ srcset_image(figure.image, "width-{1000,1200,1400}", class="", loading="lazy", alt=figure.image.description) }}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <div class="carousel-nav">
+            <button class="carousel-prev" aria-label="Previous Slide">
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                <path d="M6.57 1.02 2.153 5.437H12v1.125H2.153L6.57 10.98l-.795.795L0 6 5.775.225z" fill="currentColor"></path>
+              </svg>
+            </button>
+            <button class="carousel-next" aria-label="Next Slide">
+              <svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12">
+                <path d="m5.43 1.02 4.418 4.417H0v1.125h9.848L5.43 10.98l.795.795L12 6 6.225.225z" fill="currentColor"></path>
+              </svg>
+
+            </button>
+          </div>
+          <div class="carousel-snap-display">1 / 1</div>
+        </div>
+
+        <div class="modal-figure-caption">
+          {% for figure in value.figures %}
+            <p data-slide-caption="{{ loop.index }}">
+              <span class="modal-figure-caption-heading">{{ figure.image_caption_heading }}</span>
+              <span class="modal-figure-caption-text">{{ figure.image_caption_text }}</span>
+            </p>
+          {% endfor %}
+
+          {% if value.cta_text %}
+            <a
+              href="{{ value.cta_link.get_url() }}"
+              class="mzp-c-button mzp-t-secondary mzp-t-dark mzp-t-xl mza-c-contact-button"
+              {% if value.cta_link.new_window %}target="_blank" rel="external noopener" {% endif %}
+            >
+              {{ value.cta_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</li>

@@ -1,0 +1,46 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mza-notification">
+  <div class="mza-notification-container">
+    <p>{{ value.notification_text }}</p>
+
+    {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
+      <ul class="moz24-footer-social-links">
+        {% if value.linkedin_link %}
+        <li>
+          <a class="linkedin" href="{{ value.linkedin_link }}"></a>
+        </li>
+        {% endif %}
+        {% if value.tiktok_link %}
+        <li>
+          <a class="tiktok" href="{{ value.tiktok_link }}"></a>
+        </li>
+        {% endif %}
+        {% if value.spotify_link %}
+        <li>
+          <a class="spotify" href="{{ value.spotify_link }}"></a>
+        </li>
+        {% endif %}
+        {% if value.bluesky_link %}
+        <li>
+          <a class="bluesky" href="{{ value.bluesky_link }}"></a>
+        </li>
+        {% endif %}
+        {% if value.instagram_link %}
+        <li>
+          <a class="instagram" href="{{ value.instagram_link }}"></a>
+        </li>
+        {% endif %}
+        {% if value.youtube_link %}
+        <li>
+          <a class="youtube" href="{{ value.youtube_link }}"></a>
+        </li>
+        {% endif %}
+      </ul>
+    {% endif %}
+    </div>
+</div>

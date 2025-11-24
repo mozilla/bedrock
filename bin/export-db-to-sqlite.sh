@@ -163,6 +163,7 @@ python manage.py dumpdata \
     mozorg.LeadershipPage \
     mozorg.AdvertisingIndexPage \
     mozorg.AdvertisingTwoColumnSubpage \
+    mozorg.ContentSubpage \
     mozorg.ContactBannerSnippet \
     newsletter.Newsletter \
     products.VPNCallToActionSnippet \
