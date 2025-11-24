@@ -8,7 +8,7 @@
   <div class="mza-notification-container">
     <p>{{ value.notification_text }}</p>
 
-    {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.twitter_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
+    {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
       <ul class="moz24-footer-social-links">
         {% if value.linkedin_link %}
         <li>
@@ -23,11 +23,6 @@
         {% if value.spotify_link %}
         <li>
           <a class="spotify" href="{{ value.spotify_link }}"></a>
-        </li>
-        {% endif %}
-        {% if value.twitter_link %}
-        <li>
-          <a class="twitter" href="{{ value.twitter_link }}"></a>
         </li>
         {% endif %}
         {% if value.bluesky_link %}

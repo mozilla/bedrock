@@ -81,7 +81,6 @@ class NotificationSnippetFactory(factory.django.DjangoModelFactory):
     linkedin_link = "https://www.example.com/test"
     tiktok_link = "https://www.example.com/test"
     spotify_link = "https://www.example.com/test"
-    twitter_link = "https://www.example.com/test"
     bluesky_link = "https://www.example.com/test"
     instagram_link = "https://www.example.com/test"
     youtube_link = "https://www.example.com/test"

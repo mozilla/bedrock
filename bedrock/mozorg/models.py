@@ -139,10 +139,6 @@ class NotificationSnippet(models.Model):
         max_length=255,
         blank=True,
     )
-    twitter_link = models.URLField(
-        max_length=255,
-        blank=True,
-    )
     bluesky_link = models.URLField(
         max_length=255,
         blank=True,
@@ -166,7 +162,6 @@ class NotificationSnippet(models.Model):
                 FieldPanel("linkedin_link", heading="Linkedin Link"),
                 FieldPanel("tiktok_link", heading="Tiktok Link"),
                 FieldPanel("spotify_link", heading="Spotify Link"),
-                FieldPanel("twitter_link", heading="Twitter Link"),
                 FieldPanel("bluesky_link", heading="Bluesky Link"),
                 FieldPanel("instagram_link", heading="Instagram Link"),
                 FieldPanel("youtube_link", heading="Youtube Link"),
