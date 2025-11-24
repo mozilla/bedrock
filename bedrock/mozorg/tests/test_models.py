@@ -194,7 +194,7 @@ def test_advertising_index_page_sub_navigation(minimal_site, rf, serving_method)
     root_page = minimal_site.root_page
 
     # Create a simple page to link to
-    linked_page = factories.TwoColumnSubpageFactory(
+    linked_page = factories.AdvertisingTwoColumnSubpageFactory(
         parent=root_page,
         title="Test Linked Page",
         slug="linked-page",
