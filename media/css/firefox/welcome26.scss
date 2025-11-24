@@ -1,0 +1,80 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+
+.c-page-header {
+    padding-top: $spacing-md;
+    padding-bottom: $spacing-md;
+
+    .c-page-header-inner {
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-top: $spacing-md;
+        padding-bottom: $spacing-md;
+
+        img {
+            margin: 0 auto;
+        }
+    }
+
+    @media #{$mq-lg} {
+        .c-page-header-inner {
+            @include grid-column-gap($spacing-lg);
+            display: grid;
+            grid-template-columns: 1fr max-content 1fr;
+
+            img {
+                margin: unset;
+            }
+        }
+    }
+}
+
+.c-fundraiser-container {
+    .c-fundraiser-media-container {
+        width: auto;
+        justify-self: end;
+    }
+
+    .c-fundraiser-button {
+        border-radius: $border-radius-md;
+        display: inline-flex;
+
+        &:hover,
+        &:active {
+            path {
+                fill: #0360DF;
+            }
+        }
+
+        .c-fundraiser-button-icon {
+            @include bidi(((margin-left, $spacing-sm, margin-right, 0),));
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+// make button full width below $screen-sm
+@media screen and (max-width: #{$screen-md - 1px}) {
+    .c-fundraiser-button {
+        width: 100%;
+    }
+}
+
+// keep centered single column until max-width of image
+@media screen and (max-width: #{$screen-lg - 1px}) {
+    .c-fundraiser-container {
+        display: block;
+        max-width: 585px;
+        margin-right: auto;
+        margin-left: auto;
+
+        .mzp-c-split-body + .mzp-c-split-media {
+            margin-top: var(--v-grid-xs);
+        }
+    }
+}
