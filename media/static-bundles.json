@@ -924,6 +924,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome26.scss"
+      ],
+      "name": "firefox_welcome_page26"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -1276,6 +1282,12 @@
         "css/firefox/whatsnew/whatsnew-144.scss"
       ],
       "name": "firefox_whatsnew_144"
+    },
+    {
+      "files": [
+        "css/base/banners/fundraising-banner.scss"
+      ],
+      "name": "fundraising-banner"
     }
   ],
   "js": [
@@ -1982,6 +1994,12 @@
         "js/base/article-toc.es6.js"
       ],
       "name": "monitor_article"
+    },
+    {
+      "files": [
+        "js/base/banners/fundraising-banner-eoy2025-init.es6.js"
+      ],
+      "name": "fundraising_banner_eoy2025"
     }
   ]
 }
