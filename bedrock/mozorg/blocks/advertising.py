@@ -21,7 +21,6 @@ SOCIAL_MEDIA_ICON_CHOICES = [
     ("linkedin", "LinkedIn"),
     ("tiktok", "TikTok"),
     ("spotify", "Spotify"),
-    ("twitter", "Twitter"),
     ("bluesky", "BlueSky"),
     ("instagram", "Instagram"),
     ("youtube", "YouTube"),
