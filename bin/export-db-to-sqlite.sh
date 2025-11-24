@@ -162,7 +162,7 @@ python manage.py dumpdata \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
     mozorg.AdvertisingIndexPage \
-    mozorg.TwoColumnSubpage \
+    mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
     mozorg.ContactBannerSnippet \
     newsletter.Newsletter \

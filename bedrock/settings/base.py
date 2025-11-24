@@ -2430,7 +2430,7 @@ _allowed_page_models = [
     "cms.StructuralPage",
     "mozorg.LeadershipPage",
     "mozorg.AdvertisingIndexPage",
-    "mozorg.TwoColumnSubpage",
+    "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",

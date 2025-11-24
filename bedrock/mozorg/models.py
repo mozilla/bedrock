@@ -198,7 +198,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
 
 
 class AdvertisingIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["TwoColumnSubpage", "ContentSubpage"]
+    subpage_types = ["AdvertisingTwoColumnSubpage", "ContentSubpage"]
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -312,7 +312,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
                 raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
 
 
-class TwoColumnSubpage(AbstractBedrockCMSPage):
+class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):
     parent_page_types = ["AdvertisingIndexPage"]
     subpage_types = []  # This page type cannot have any children
 
