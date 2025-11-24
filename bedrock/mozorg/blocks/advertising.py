@@ -77,7 +77,7 @@ class FigureWithStatisticBlock(blocks.StructBlock):
     align_image_on_right = blocks.BooleanBlock(
         default=False,
         required=False,
-        label="Should the image be to the right of the statistic?",
+        label="Position the image to the right of the statistic",
         inline_form=True,
     )
     cta_text = blocks.CharBlock(char_max_length=255, required=False)
