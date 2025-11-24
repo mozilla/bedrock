@@ -1,0 +1,19 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mza-c-home-solutions m24-c-content has-scroll-padding" id="solutions">
+  <div class="{% if value.image %}mza-half-grid{% if value.has_top_divider %} has-border-top{% endif %}{% elif value.has_top_divider %} section-has-border-top{% endif %}">
+    <hgroup class="mza-hgroup">
+      {% if value.superheading_text %}<p class="mza-eyebrow">{{ value.superheading_text }}</p>{% endif %}
+      <h2 class="mza-section-heading">{{ value.heading_text }}</h2>
+      {% if value.subheading_text %}<p class="mza-section-subheading">{{ value.subheading_text }}</p>{% endif %}
+    </hgroup>
+
+    {% if value.image %}
+      {{ srcset_image(value.image, "width-{1200,1400,1600}", class="mza-figure", alt=value.image.description) }}
+    {% endif %}
+  </div>
+</section>

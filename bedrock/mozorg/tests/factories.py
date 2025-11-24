@@ -4,9 +4,10 @@
 
 import factory
 import wagtail_factories
+from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import leadership
+from bedrock.mozorg.blocks import advertising, leadership
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -63,3 +64,79 @@ class LeadershipPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.LeadershipPage
+
+
+class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
+    heading = "Contact Us"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    button_text = "Get in touch"
+    button_link = "https://example.com/contact"
+
+    class Meta:
+        model = models.ContactBannerSnippet
+
+
+class LinkBlockFactory(wagtail_factories.StructBlockFactory):
+    link_to = "custom_url"
+    custom_url = wagtail_factories.CharBlockFactory
+    new_window = False
+
+    class Meta:
+        model = LinkBlock
+
+
+class AdvertisingHeroBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+    primary_cta_text = wagtail_factories.CharBlockFactory
+    primary_cta_link = factory.SubFactory(LinkBlockFactory)
+    supporting_text = wagtail_factories.CharBlockFactory
+    secondary_cta_text = wagtail_factories.CharBlockFactory
+    secondary_cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = advertising.AdvertisingHeroBlock
+
+
+class SectionHeaderBlockFactory(wagtail_factories.StructBlockFactory):
+    heading_text = wagtail_factories.CharBlockFactory
+
+    class Meta:
+        model = advertising.SectionHeaderBlock
+
+
+class LinkWithIconFactory(wagtail_factories.StructBlockFactory):
+    icon = wagtail_factories.CharBlockFactory
+    link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = advertising.LinkWithIcon
+
+
+class NotificationBlockFactory(wagtail_factories.StructBlockFactory):
+    notification_text = wagtail_factories.CharBlockFactory
+    links = []
+
+    class Meta:
+        model = advertising.NotificationBlock
+
+
+class AdvertisingIndexPageFactory(wagtail_factories.PageFactory):
+    title = "Test Advertising Index Page"
+    live = True
+    slug = "advertising"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "advertising_hero_block": factory.SubFactory(AdvertisingHeroBlockFactory),
+            "section_header_block": factory.SubFactory(SectionHeaderBlockFactory),
+        }
+    )
+
+    notifications = wagtail_factories.StreamFieldFactory(
+        {
+            "notification_block": factory.SubFactory(NotificationBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.AdvertisingIndexPage

@@ -1,0 +1,15 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if value.feature_list_items %}
+  <section class="m24-c-content mza-c-home-why-moz has-scroll-padding">
+    <ol class="mza-home-why-moz-list">
+      {% for item in value.feature_list_items %}
+        {% include_block item %}
+      {% endfor %}
+    </ol>
+  </section>
+{% endif %}
