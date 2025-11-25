@@ -7,7 +7,7 @@ for development, as well as how to format your code and commit messages.
 Following these guidelines will very much increase the chances of a pleasant
 code-review experience.
 
-[bedrock docs]: https://mozilla.github.io/bedrock/contribute/
+[bedrock docs]: https://mozmeao.github.io/platform-docs/contribute/
 
 ## How to Get Started
 
@@ -16,7 +16,7 @@ If this is your first time contributing then we suggest you first
 a little. This will help you familiarize yourself with the layout of files and
 how they relate to different pages of the website.
 
-[install bedrock]: https://mozilla.github.io/bedrock/install/
+[install bedrock]: https://mozmeao.github.io/platform-docs/install/
 
 ## Finding an Issue to Work On
 
