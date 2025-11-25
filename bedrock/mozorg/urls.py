@@ -148,7 +148,7 @@ urlpatterns = [
         "advertising/",
         prefer_cms(
             views.advertising_landing_view,
-            fallback_ftl_files=["ui.ftl"],
+            fallback_lang_codes=["en-US"],
         ),
         name="mozorg.advertising.landing",
     ),
@@ -156,7 +156,7 @@ urlpatterns = [
         "advertising/principles/",
         prefer_cms(
             views.advertising_principles_view,
-            fallback_ftl_files=["ui.ftl"],
+            fallback_lang_codes=["en-US"],
         ),
         name="mozorg.advertising.principles",
     ),
@@ -164,7 +164,7 @@ urlpatterns = [
         "advertising/solutions/",
         prefer_cms(
             views.advertising_solutions_view,
-            fallback_ftl_files=["ui.ftl"],
+            fallback_lang_codes=["en-US"],
         ),
         name="mozorg.advertising.solutions",
     ),
@@ -172,7 +172,7 @@ urlpatterns = [
         "advertising/impact/",
         prefer_cms(
             views.advertising_impact_view,
-            fallback_ftl_files=["ui.ftl"],
+            fallback_lang_codes=["en-US"],
         ),
         name="mozorg.advertising.impact",
     ),
