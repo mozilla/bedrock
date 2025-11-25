@@ -296,25 +296,25 @@ def anti_harassment_tool_view(request):
 def advertising_landing_view(request):
     context = {}
     template = "mozorg/advertising/landing.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
+    return l10n_utils.render(request, template, context)
 
 
 @require_safe
 def advertising_solutions_view(request):
     context = {}
     template = "mozorg/advertising/solutions.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
+    return l10n_utils.render(request, template, context)
 
 
 @require_safe
 def advertising_principles_view(request):
     context = {}
     template = "mozorg/advertising/principles.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
+    return l10n_utils.render(request, template, context)
 
 
 @require_safe
 def advertising_impact_view(request):
     context = {}
     template = "mozorg/advertising/impact.html"
-    return l10n_utils.render(request, template, context, ftl_files=["ui.ftl"])
+    return l10n_utils.render(request, template, context)
