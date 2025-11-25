@@ -170,6 +170,7 @@ m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
 
 ## Issues
 
+m24-home-explore-issues-shaping = Explore issues shaping the future of the internet
 m24-home-the-validation-machines = The Validation Machines
 m24-home-in-the-atlantic = In The Atlantic, { -brand-name-mozilla } CTO Raffi Krikorian asks why chatbots and generative AI are so eager to please us, and what it means for humanity. (image courtesy The Atlantic)
 # Used as an accessible text alternative for an image
