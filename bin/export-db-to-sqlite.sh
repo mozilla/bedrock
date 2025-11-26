@@ -165,6 +165,7 @@ python manage.py dumpdata \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
     mozorg.ContactBannerSnippet \
+    mozorg.NotificationSnippet \
     newsletter.Newsletter \
     products.VPNCallToActionSnippet \
     products.VPNResourceCenterIndexPage \
