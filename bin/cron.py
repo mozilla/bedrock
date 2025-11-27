@@ -36,7 +36,7 @@ JOB_DEFAULTS = {
 schedule = BlockingScheduler(job_defaults=JOB_DEFAULTS)
 
 HOSTNAME = platform.node()
-DB_UPDATE_MINUTES = config("DB_UPDATE_MINUTES", default="5", parser=int)
+DATA_UPDATE_MINUTES = config("DATA_UPDATE_MINUTES", default="5", parser=int)
 LOCAL_DB_UPDATE = config("LOCAL_DB_UPDATE", default="False", parser=bool)
 DB_DOWNLOAD_IGNORE_GIT = config("DB_DOWNLOAD_IGNORE_GIT", default="False", parser=bool)
 RUN_TIMES = {}
@@ -50,7 +50,8 @@ HEALTH_FILE_BASE = f"{DATA_PATH}/last-run"
 # The jobs are run every five minutes, so should all normally complete within that
 # timeframe. If they don't (eg, they've hung), we set a timeout just before then,
 # so that they are killed and we will try again.
-TIMEOUT_SECS = 290  # Just shy of five minutes.
+# We make this configurable so we can allow more time for the jobs on demos, which are slower
+TIMEOUT_SECS = config("DATA_UPDATE_TIMEOUT_SECS", default="290", parser=int)  # Just shy of five minutes.
 
 
 sentry_dsn = config("SENTRY_DSN", raise_error=False)
@@ -127,7 +128,7 @@ def get_time_since(name):
 
 
 def schedule_database_jobs():
-    @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
+    @scheduled_job("interval", minutes=DATA_UPDATE_MINUTES)
     @babis.decorator(ping_after=DEAD_MANS_SNITCH_URL)
     def update_upload_database():
         fn_name = "update_upload_database"
@@ -153,13 +154,13 @@ def schedule_database_jobs():
 def schedule_file_jobs():
     call_command("l10n_update --clean")
 
-    @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
+    @scheduled_job("interval", minutes=DATA_UPDATE_MINUTES)
     def update_locales():
         call_command("l10n_update")
 
     if not LOCAL_DB_UPDATE:
 
-        @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
+        @scheduled_job("interval", minutes=DATA_UPDATE_MINUTES)
         def download_database():
             command = "python bin/run-db-download.py"
             if DB_DOWNLOAD_IGNORE_GIT:

@@ -18,12 +18,16 @@ from django.views.decorators.http import require_safe
 import timeago
 from waffle.models import Switch
 
+from bedrock.base.config_manager import config
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.i18n import get_language_from_headers
 from bedrock.base.middleware import BedrockLocaleMiddleware
 from bedrock.contentful.models import ContentfulEntry
 from bedrock.utils import git
 from lib import l10n_utils
+
+_DATA_UPDATE_MINUTES = config("DATA_UPDATE_MINUTES", default="10", parser=int)
+DATA_REFRESH_TIME_SECS = _DATA_UPDATE_MINUTES * 60
 
 
 class GeoTemplateView(l10n_utils.L10nTemplateView):
@@ -51,13 +55,13 @@ SQLITE_DB_IN_USE = settings.DATABASES["default"]["ENGINE"] == "django.db.backend
 
 HEALTH_FILES = [
     # Format: (file name, max seconds since last run)
-    ("update_locales", 600),
+    ("update_locales", DATA_REFRESH_TIME_SECS),
 ]
 
 if SQLITE_DB_IN_USE:
     HEALTH_FILES.insert(
         0,
-        ("download_database", 600),
+        ("download_database", DATA_REFRESH_TIME_SECS),
     )
 
 DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
