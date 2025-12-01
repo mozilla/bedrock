@@ -120,10 +120,14 @@ m24-home-shake-to-summarize = Shake to Summarize in TIME’s Best Inventions of 
 m24-home-mozilla-welcomes-raffi = { -brand-name-mozilla } welcomes Raffi Krikorian as Chief Technology Officer
 m24-home-tech-target = Tech Target
 m24-home-mozilla-ai-ceo = { -brand-name-mozilla-ai-v2 } CEO talks open source AI advantages
+# Obsolete string (expires 2026-03-01)
 m24-home-introducing-thundermail-and = Introducing Thundermail and Thunderbird Pro
+m24-home-introducing-thundermail-and-v2 = Introducing { -brand-name-thundermail } and { -brand-name-thunderbird-pro }
 m24-home-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-home-how-ventures-investee = How Ventures Investee Germ is Strengthening Encryption
+# Obsolete string (expires 2026-03-01)
 m24-home-tech-crunch = Tech Crunch
+m24-home-tech-crunch-v2 = TechCrunch
 m24-home-a-good-moment = ‘A good moment in time for us’: { -brand-name-firefox } head on AI browsers and what’s next for the web
 m24-home-the-guardian = The Guardian
 m24-home-interview-take-open = Interview: Taking Open Source Into the AI Era

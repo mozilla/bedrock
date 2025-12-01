@@ -52,7 +52,7 @@
       type_icon='article',
       topic=ftl('m24-home-topic-products'),
       author='Ryan Sipes',
-      preview=ftl('m24-home-introducing-thundermail-and')
+      preview=ftl('m24-home-introducing-thundermail-and-v2', fallback='m24-home-introducing-thundermail-and')
     ) }}
     {{ springboard_item(
       link_url="https://www.youtube.com/watch?v=HiZGWrN1zrU" + utm_params,
@@ -69,7 +69,7 @@
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-open-source-ai'),
-      author=ftl('m24-home-tech-crunch'),
+      author=ftl('m24-home-tech-crunch-v2', fallback='m24-home-tech-crunch'),
       preview=ftl('m24-home-how-ventures-investee')
     ) }}
     {{ springboard_item(
