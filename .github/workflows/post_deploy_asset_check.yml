@@ -41,15 +41,14 @@ jobs:
 
   asset-check:
     runs-on: ubuntu-latest
+    env:
+      GIT_SHA: ${{ inputs.git_sha }}
+      ORIGIN_HOSTNAME: ${{ inputs.origin_hostname }}
+      CDN_HOSTNAME: ${{ inputs.cdn_hostname }}
     steps:
       - name: Pull release image
-        run: docker pull mozmeao/bedrock:${{ inputs.git_sha }}
-
+        run: docker pull mozmeao/bedrock:$GIT_SHA
       - name: Verify deployed assets are available
-        env:
-          GIT_SHA: ${{ inputs.git_sha }}
-          ORIGIN_HOSTNAME: ${{ inputs.origin_hostname }}
-          CDN_HOSTNAME: ${{ inputs.cdn_hostname }}
         run: |
           docker run --rm \
             mozmeao/bedrock:$GIT_SHA \
