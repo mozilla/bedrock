@@ -17,38 +17,6 @@
         <img class="image-8 large-only rectangle-h" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-h.svg') }}" />
         <img class="image-9 rectangle-v" role="presentation" src="{{ static('img/mozorg/advertising/callout/rectangle-v.svg') }}" />
       </div>
-
-      {# uncomment for dynamic scroll effect
-      <div class="mza-c-callout-bg-inner">
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-1.png') }}" class="layer-1"/>
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-2.svg') }}" class="layer-2"/>
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-1/layer-3.png') }}" class="layer-3"/>
-        </div>
-
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-1.png') }}" class="layer-1"/>
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-2.svg') }}" class="layer-2"/>
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-2/layer-3.png') }}" class="layer-3"/>
-        </div>
-
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-3/layer-1.png') }}" class="layer-1"/>
-        </div>
-
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/image-4/layer-1.png') }}" class="layer-1"/>
-        </div>
-
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/ad.svg') }}" class="layer-2"/>
-        </div>
-
-        <div class="bg-image">
-          <img role="presentation" src="{{ static('img/mozorg/advertising/callout/ad.svg') }}" class="layer-2"/>
-        </div>
-      </div> #}
-
     </div>
 
     <div class="mza-c-callout-section">
@@ -73,7 +41,7 @@
     </div>
 
     <div class="mza-c-callout-section is-bottom">
-      <div id="callout-image-trigger" class="mza-c-callout-card">
+      <div class="mza-c-callout-card">
         <p>{{ value.supporting_text }}</p>
         <a class="mza-c-callout-action" href="{{ value.secondary_cta_link.get_url() }}" {% if value.secondary_cta_link.new_window %}target="_blank" rel="noopener"{% endif %}>{{ value.secondary_cta_text }}</a>
       </div>

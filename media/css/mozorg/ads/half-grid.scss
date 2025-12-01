@@ -28,8 +28,18 @@
     &.has-border-top {
         border-top: 1px solid advars.$color-ads-off-black;
         padding-top: 2rem;
+    }
 
-        @media #{$mq-md} {
+    @media #{$mq-md} {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        &.is-list-item {
+            gap: 2rem;
+
+        }
+
+        &.has-border-top {
             padding-top: 3rem;
         }
     }
