@@ -4,11 +4,9 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('mozorg', '0007_alter_leadershippage_leadership_sections'),
-        ('mozorg', '0019_remove_notificationsnippet_twitter_link_and_more'),
+        ("mozorg", "0007_alter_leadershippage_leadership_sections"),
+        ("mozorg", "0019_remove_notificationsnippet_twitter_link_and_more"),
     ]
 
-    operations = [
-    ]
+    operations = []
