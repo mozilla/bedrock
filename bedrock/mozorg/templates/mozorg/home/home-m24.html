@@ -25,12 +25,6 @@
 {% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'nl', 'pl', 'pt-PT', 'pt-BR'] %}
 {% set show_fundraising_banner = switch('fundraising-banner-2025eoy') and LANG in fundraising_banner_langs %}
 
-{% block experiments %}
-  {% if not show_fundraising_banner and switch('show-pencil-banner') and not hide_pencil_banner and is_homepage and (LANG  in ['fr', 'de', 'es-ES', 'pt-BR', 'pl', 'it'] or LANG.startswith('en-')) %}
-    {{ js_bundle('pencil-banner-mofo-experiment') }}
-  {% endif %}
-{% endblock %}
-
 {% block page_css %}
   {{ css_bundle('m24-root') }}
   {{ css_bundle('m24-base') }}
