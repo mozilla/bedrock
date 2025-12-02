@@ -253,8 +253,10 @@ LOCALES_BY_REGION = {
 
 
 def _put_default_lang_first(langs, default_lang=LANGUAGE_CODE):
-    if langs.index(default_lang):
-        langs.pop(langs.index(default_lang))
+    # Handle case where default_lang might not be in the list yet
+    # (e.g., when locale data hasn't been downloaded cleanly somehow)
+    if default_lang in langs:
+        langs.remove(default_lang)
     langs.insert(0, default_lang)
     return langs
 
