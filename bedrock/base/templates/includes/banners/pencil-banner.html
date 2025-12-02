@@ -42,7 +42,7 @@
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <aside class="m24-pencil-banner" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
     <div class="m24-pencil-banner-copy">
-      <p>{{banner_content}} – <strong><a href={{cta_link}}>{{cta_text}}</a></strong></p>
+      <p>{{banner_content}} – <strong><a href={{cta_link}} data-cta-text="Donate" data-cta-position="banner">{{cta_text}}</a></strong></p>
     </div>
     <button class="m24-pencil-banner-close" type="button">{{ ftl('ui-close') }}</button>
   </aside>
