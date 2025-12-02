@@ -39,6 +39,25 @@ class PrivacyDocView(LegalDocView):
 
 
 class FirefoxPrivacyDocView(PrivacyDocView):
+    # The current/effective PN for Firefox
+    # Uses the same templates as the preview/upcoming version
+    ftl_files = ["privacy/firefox"]
+
+    def get_legal_doc(self):
+        doc = super().get_legal_doc()
+        variant = self.request.GET.get("v", None)
+
+        if variant == "product":
+            self.template_name = "privacy/notices/firefox-simple.html"
+        else:
+            self.template_name = "privacy/notices/firefox-intro.html"
+        return doc
+
+
+class FirefoxPrivacyPreviewDocView(PrivacyDocView):
+    # A preview/upcoming PN for Firefox
+    # Uses the same templates as the current/effective version,
+    # but draws content from a dedicated preview file
     ftl_files = ["privacy/firefox"]
 
     def get_legal_doc(self):
@@ -67,6 +86,8 @@ class FirefoxFocusPrivacyDocView(PrivacyDocView):
 
 
 firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice")
+
+firefox_notices_preview = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice_preview")
 
 firefox_focus_notices = FirefoxFocusPrivacyDocView.as_view(legal_doc_name="focus_privacy_notice")
 

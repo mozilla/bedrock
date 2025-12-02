@@ -13,6 +13,7 @@ urlpatterns = (
     path("faq/", views.FAQView.as_view(), name="privacy.faq"),
     page("email/", "privacy/email.html", active_locales=["en-US", "de", "fr"]),
     path("firefox/", views.firefox_notices, name="privacy.notices.firefox"),
+    path("firefox/preview/", views.firefox_notices_preview, name="privacy.notices.firefox_preview"),
     path("firefox-focus/", views.firefox_focus_notices, name="privacy.notices.firefox-focus"),
     # bug 1319207 - special URL for Firefox Focus in de locale
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
