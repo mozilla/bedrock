@@ -1752,12 +1752,6 @@
     },
     {
       "files": [
-        "js/base/banners/m24-pencil-banner-mofo-experiment.es6.js"
-      ],
-      "name": "pencil-banner-mofo-experiment"
-    },
-    {
-      "files": [
         "js/base/banners/firefox-newsletter-banner-init.es6.js",
         "js/base/banners/firefox-newsletter-banner-check.js"
       ],
