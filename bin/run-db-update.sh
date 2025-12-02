@@ -38,16 +38,16 @@ failure_detected=false
 # make sure l10n files are here for use in other commands
 python manage.py l10n_update || failure_detected=true
 python manage.py update_product_details_files || failure_detected=true
-python manage.py update_security_advisories --quiet || failure_detected=true
-python manage.py update_wordpress --quiet || failure_detected=true
-python manage.py update_release_notes --quiet || failure_detected=true
-python manage.py update_content_cards --quiet || failure_detected=true
-python manage.py update_externalfiles --quiet || failure_detected=true
-python manage.py update_newsletter_data --quiet || failure_detected=true
-python manage.py update_legal_docs --quiet || failure_detected=true
-python manage.py update_webvision_docs --quiet || failure_detected=true
-DEV=False python manage.py update_sitemaps_data --quiet || failure_detected=true
-python manage.py sync_greenhouse --quiet || failure_detected=true
+python manage.py update_security_advisories || failure_detected=true
+python manage.py update_wordpress || failure_detected=true
+python manage.py update_release_notes || failure_detected=true
+python manage.py update_content_cards || failure_detected=true
+python manage.py update_externalfiles || failure_detected=true
+python manage.py update_newsletter_data || failure_detected=true
+python manage.py update_legal_docs || failure_detected=true
+python manage.py update_webvision_docs || failure_detected=true
+DEV=False python manage.py update_sitemaps_data || failure_detected=true
+python manage.py sync_greenhouse || failure_detected=true
 
 # if [[ "$AUTH" == true ]]; then
 #     # Some jobs require some auth. Don't run these during build of the Docker images
