@@ -4,21 +4,25 @@ License, v. 2.0. If a copy of the MPL was not distributed with this
 file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_146_donate') }}
+{% endblock %}
+
 {% if LANG.startswith('es-') %}
-  {% set cta_text = "Donar ♥" %}
+  {% set cta_text = "Donar" %}
   {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-sp" %}
 {% elif LANG.startswith('pt-') %}
-  {% set cta_text = "Doe agora ♥" %}
+  {% set cta_text = "Doe agora" %}
   {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pt-BR" %}
 {% elif LANG == 'pl' %}
-  {% set cta_text = "Wpłać datek ♥" %}
+  {% set cta_text = "Wpłać datek" %}
   {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pl" %}
 {% elif LANG == 'it' %}
-  {% set cta_text = "Dona ♥" %}
+  {% set cta_text = "Dona" %}
   {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-it" %}
 {% else %}
 <!-- TODO: Japanese translation -->
-  {% set cta_text = "Donate ♥" %}
+  {% set cta_text = "Donate" %}
   {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-ja" %}
 {% endif %}
 
@@ -33,12 +37,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <h1 class="wnp-title">{{ ftl('whatsnew-donate-donate-to') }}</h1>
             <p class="wnp-subtitle-5">
               <p>{{ ftl('whatsnew-donate-you-chose') }}</p>
-              <p>{{ ftl('whatsnew-you-can-help') }}</p>
+              <p>{{ ftl('whatsnew-donate-you-can-help') }}</p>
             </p>
-            <div class="wnp-btn-wrap">
-              <a class="wnp-button wnp-button-secondary" href="{{ cta_link }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Donate">
-                {{ cta_text }}
+            <div class="c-button-container">
+              <a class="c-button-has-icon wnp-button wnp-button-secondary" href="{{ cta_link }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Donate">
+                <span>{{ cta_text }}</span><span>♥</span>
               </a>
+              {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+              <a href="{{ releasenotes_url }}" target="_blank" class="wnp-button wnp-button-outline">{{ ftl('whatsnew-donate-release-notes')}}</a>
             </div>
           </div>
           <div class="wnp-intro-media">

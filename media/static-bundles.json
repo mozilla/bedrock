@@ -1279,6 +1279,12 @@
     },
     {
       "files": [
+        "css/firefox/whatsnew/whatsnew-146-donate.scss"
+      ],
+      "name": "firefox_whatsnew_146_donate"
+    },
+    {
+      "files": [
         "css/base/banners/fundraising-banner.scss"
       ],
       "name": "fundraising-banner"
