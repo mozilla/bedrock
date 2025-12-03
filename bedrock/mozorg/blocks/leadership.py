@@ -115,7 +115,7 @@ class LeadershipGroupBlock(blocks.StructBlock):
     )
 
     description = blocks.CharBlock(
-        char_max_length=255,
+        char_max_length=1000,
         help_text="A couple of sentences describes what the group is and some helpful context.",
         required=False,
     )
@@ -146,7 +146,7 @@ class LeadershipSectionBlock(blocks.StructBlock):
     )
 
     description = blocks.CharBlock(
-        char_max_length=255,
+        char_max_length=1000,
         help_text="Description for the leadership section.",
         required=False,
     )

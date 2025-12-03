@@ -59,6 +59,7 @@ $image-path: '/media/protocol/img';
     @include text-title-sm;
     margin: 1em 0;
     padding-top: 0.75em;
+    margin-bottom: $spacing-xs;
     border-top: 2px solid $color-marketing-gray-30;
 
     a {
