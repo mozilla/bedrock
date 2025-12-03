@@ -1,0 +1,61 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if LANG.startswith('es-') %}
+  {% set cta_text = "Donar ♥" %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-sp" %}
+{% elif LANG.startswith('pt-') %}
+  {% set cta_text = "Doe agora ♥" %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pt-BR" %}
+{% elif LANG == 'pl' %}
+  {% set cta_text = "Wpłać datek ♥" %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pl" %}
+{% elif LANG == 'it' %}
+  {% set cta_text = "Dona ♥" %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-it" %}
+{% else %}
+<!-- TODO: Japanese translation -->
+  {% set cta_text = "Donate ♥" %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-ja" %}
+{% endif %}
+
+{% extends "firefox/whatsnew/base-new-theme.html" %}
+
+{% block wnp_content %}
+<section class="wnp-section wnp-section-intro">
+      <div class="wnp-container">
+        <div class="wnp-intro-layout">
+          <div class="wnp-intro-content">
+            <p class="wnp-eyebrow">What’s New | Firefox {{ major_version }}</p>
+            <h1 class="wnp-title">Donate to Mozilla Foundation, the non-profit behind Firefox</h1>
+            <p class="wnp-subtitle-5">
+              <p>You chose Firefox because you know the Internet should serve people, not power. Let’s take it further.</p>
+              <p>You can help make good on the promise of the Internet. Make an end-of-year donation to Mozilla Foundation by Dec 31 to support people-first tech.</p>
+            </p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-secondary" href="{{ cta_link }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Donate">
+                {{ cta_text }}
+              </a>
+            </div>
+          </div>
+          <div class="wnp-intro-media">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                width="600"
+                height="320"
+                src="/media/img/firefox/whatsnew/whatsnew146/donate.jpeg"
+                alt=""
+                loading="eager"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew146/donate@2x.jpeg 2x
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock wnp_content %}
