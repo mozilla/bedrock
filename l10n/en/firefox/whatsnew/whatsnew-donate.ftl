@@ -9,5 +9,8 @@ whatsnew-donate-donate-to = Donate to { -brand-name-mozilla-foundation }, the no
 whatsnew-donate-you-chose = You chose { -brand-name-firefox } because you know the Internet should serve people, not power. Let’s take it further.
 whatsnew-donate-you-can-help = You can help make good on the promise of the Internet. Make an end-of-year donation to { -brand-name-mozilla-foundation } by Dec 31 to support people-first tech.
 
+# link to https://mozillafoundation.org/ with donation form modal open
+whatsnew-donate = Donate
+
 # link to https://www.firefox.com/firefox/notes/
 whatsnew-donate-release-notes = Release notes
