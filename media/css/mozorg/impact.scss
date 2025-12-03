@@ -81,6 +81,14 @@ header {
     h3 {
         text-align: center;
     }
+
+    .mzp-l-card-quarter {
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: center;
+        }
+
+    }
 }
 
 .c-past-reports {

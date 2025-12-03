@@ -37,9 +37,9 @@
       {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed c-foundation',
         image=resp_img(
-          url='img/mozorg/impact/report-cover.jpg',
+          url='img/mozorg/impact/sheet-cover.jpg',
           srcset={
-            'img/mozorg/impact/report-cover-high-res.jpg': '1.5x'
+            'img/mozorg/impact/sheet-cover-high-res.jpg': '1.5x'
           },
           optional_attributes={
             'class': 'mzp-c-split-media-asset',
@@ -48,9 +48,16 @@
         ),
         media_after=False
       ) %}
-        <h3>Our 2024 report</h3>
-        <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
-        <p><a href="https://assets.mozilla.net/pdf/Impact_Report_2024.pdf" class="mzp-c-button">View the report</a></p>
+        <h3>Our 2025 Fact Sheet</h3>
+        <p>This Fact Sheet offers a snapshot of Mozilla’s Social and Environmental Impact in 2024, highlighting how we’re working to reduce our environmental footprint and foster a culture of belonging across our global teams.</p>
+        <p>
+          <a href="#" class="mzp-c-button">
+            View the Fact Sheet
+            <span class="mzp-c-button-icon-end">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="m7.24 1.36 5.89 5.89H0v1.5h13.13l-5.89 5.89L8.3 15.7 16 8 8.3.3z"/></svg>
+            </span>
+          </a>
+        </p>
       {% endcall %}
     </section>
 
@@ -58,22 +65,6 @@
       <h3>Join us in making an impact!</h3>
 
       <div class="mzp-l-card-quarter">
-        {{ card(
-          title='Help the planet',
-          ga_title='Help the planet',
-          image=resp_img('img/mozorg/impact/green-planet.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-          desc='Ways each of us can protect and preserve Earth',
-          link_url='https://getpocket.com/collections/how-to-help-the-planet-environment'
-        )}}
-
-        {{ card(
-          title='Fight anti-Black racism',
-          ga_title='Fight anti-Black racism',
-          image=resp_img('img/mozorg/impact/fight-racism.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-          desc='A resource list compiled by Afrozilla',
-          link_url='https://getpocket.com/collections/moving-from-ally-to-accomplice-in-the-anti-racist-fight-an-afrozilla-resource-list'
-        )}}
-
         {{ card(
           title='Make your website more accessible',
           ga_title='Make your website more accessible',
