@@ -484,7 +484,6 @@ NOINDEX_URLS = [
     r"^newsletter/country/success/",
     r"^newsletter/newsletter-strings\.json",
     r"^products/vpn/invite/waitlist/",
-    r"^products/monitor/waitlist-plus/",
     r"^products/monitor/waitlist-scan/",
     r"/system-requirements/$",
     r".*/(firstrun|thanks)/$",
@@ -2139,45 +2138,6 @@ VPN_SUPPORTED_LOCALES = [
 RELAY_PRODUCT_URL = config(
     "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
 )
-
-# VPN, Monitor, and Relay bundle ====================================================================
-
-# Product ID for VPN, Monitor, and Relay bundle subscriptions.
-VPN_MONITOR_RELAY_BUNDLE_PRODUCT_ID = config("VPN_MONITOR_RELAY_BUNDLE_PRODUCT_ID", default="prod_SFb8iVuZIOPREe" if DEV else "prod_SOYBYCOWallcgz")
-
-# VPN, Monitor, and Relay bundle plan IDs by currency/language.
-VPN_MONITOR_RELAY_BUNDLE_PLAN_ID_MATRIX = {
-    "usd": {
-        "en": {
-            "12-month": {
-                "price": "8.25",
-                "total": "99",
-                "currency": "USD",
-                "saving": 40,
-                "analytics": {
-                    "brand": "vpn",
-                    "plan": "vpn + monitor + relay",
-                    "currency": "USD",
-                    "discount": "80.88",
-                    "price": "99",
-                    "period": "yearly",
-                },
-            },
-        }
-    },
-}
-
-# Map of country codes to allocated VPN Monitor, and Relay bundle currency/language plan IDs.
-VPN_MONITOR_RELAY_BUNDLE_PRICING = {
-    "US": {
-        "default": VPN_MONITOR_RELAY_BUNDLE_PLAN_ID_MATRIX["usd"]["en"],
-    },
-}
-
-# Countries where VPN Monitor, and Relay bundle is available.
-VPN_MONITOR_RELAY_BUNDLE_COUNTRY_CODES = [
-    "US",  # United States of America
-]
 
 # Authentication with Mozilla OpenID Connect / Auth0 ============================================
 
