@@ -937,6 +937,8 @@ body {
     grid-column: 1;
 }
 
+// element selector due to fact we cannot adjust fluent string to add class
+.wnp-footer-copy a,
 .wnp-footer-link {
     color: inherit;
     text-decoration: none;

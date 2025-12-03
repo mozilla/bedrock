@@ -18,11 +18,12 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   {% set donate_cta = "Spende an die Mozilla Foundation" %}
   {% set signoff_heading = "Powered by Mozilla" %}
   {% set signoff_body = "Für dich und das Web. Schon seit 1998." %}
-{% else %}
+{% elif LANG.startswith('en-') %}
   {% set footer_portions_of_this_content = "Portions of this content are ©1998–2025 by individual mozilla.org contributors. <br> Content available under a <a class='wnp-footer-link' rel='license' href='/en-US/foundation/licensing/website-content/'>Creative Commons license</a>." %}
   {% set donate_cta = "Donate to Mozilla Foundation" %}
   {% set signoff_heading = "Powered by Mozilla" %}
   {% set signoff_body = "Putting people before profits since 1998" %}
+{% else %}
 {% endif %}
 
 <!doctype html>
@@ -111,7 +112,11 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
               {% set moco_link = 'href="%s" class="wnp-footer-link" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
               {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp%s" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe|format(version) %}
               {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
-              {{ footer_portions_of_this_content | safe }}
+              {% if footer_portions_of_this_content %}
+                {{ footer_portions_of_this_content | safe }}
+              {% else %}
+                {{ ftl('footer-refresh-portions-of-this-content', href='href="%s"'|safe|format(url('foundation.licensing.website-content')), current_year=current_year|string) }}
+              {% endif %}
             </p>
             <nav class="wnp-footer-links" aria-label="Footer">
               <ul>
@@ -137,17 +142,18 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <div class="wnp-footer-logo" aria-hidden="true"></div>
           </div>
 
-          <hr class="wnp-footer-divider">
-
-          <div class="wnp-footer-bottom">
-            <div class="wnp-footer-brand">
-              <h3 class="wnp-footer-title">{{ signoff_heading }}</h3>
-              <p class="wnp-footer-subtitle">{{ signoff_body }}</p>
+          {% if signoff_heading and signoff_body %}
+            <hr class="wnp-footer-divider">
+            <div class="wnp-footer-bottom">
+              <div class="wnp-footer-brand">
+                <h3 class="wnp-footer-title">{{ signoff_heading }}</h3>
+                <p class="wnp-footer-subtitle">{{ signoff_body }}</p>
+              </div>
+              <div class="wnp-footer-cta">
+                <a class="wnp-button wnp-button-outline" href="https://www.mozillafoundation.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true">{{ donate_cta }}</a>
+              </div>
             </div>
-            <div class="wnp-footer-cta">
-              <a class="wnp-button wnp-button-outline" href="https://www.mozillafoundation.org/?form=whats-new-product"><img src="/media/img/firefox/whatsnew/whatsnew142/heart_filled.svg" width="12" height="12" alt="" aria-hidden="true">{{ donate_cta }}</a>
-            </div>
-          </div>
+          {% endif%}
         </div>
       </footer>
       {% endblock %}
