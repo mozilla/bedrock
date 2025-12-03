@@ -519,7 +519,7 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx143-row.html": ["firefox/whatsnew/whatsnew", "footer-refresh"],
         "firefox/whatsnew/whatsnew-fx143-us.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx144.html": ["firefox/whatsnew/whatsnew"],
-        "firefox/whatsnew/whatsnew-fx146-donate.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx146-donate.html": ["firefox/whatsnew/whatsnew-donate", "firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
