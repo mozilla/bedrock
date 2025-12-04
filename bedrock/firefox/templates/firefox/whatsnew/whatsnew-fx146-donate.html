@@ -31,8 +31,8 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             <p class="wnp-eyebrow">{{ ftl('whatsnew-donate-whatsnew') }} | Firefox {{ major_version }}</p>
             <h1 class="wnp-title">{{ ftl('whatsnew-donate-donate-to') }}</h1>
             <div class="wnp-subtitle-5">
-              <p>{{ ftl('whatsnew-donate-you-chose') }}</p>
-              <p>{{ ftl('whatsnew-donate-you-can-help') }}</p>
+              <p>{{ ftl('whatsnew-donate-you-chose-v2', fallback='whatsnew-donate-you-chose') }}</p>
+              <p>{{ ftl('whatsnew-donate-you-can-help-v2', fallback='whatsnew-donate-you-can-help') }}</p>
             </div>
             <div class="c-button-container">
               <a class="c-button-has-icon wnp-button wnp-button-secondary" href="{{ cta_link }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Donate">

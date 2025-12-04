@@ -15,13 +15,7 @@ locales = [
 
 [[paths]]
     reference = "en/**/*.ftl"
-    l10n = "{locale}/**/*.ftl"
-[[paths]]
-    reference = "en/firefox/whatsnew/whatsnew-donate.ftl"
-    l10n = "{locale}/firefox/whatsnew/whatsnew-donate.ftl"
-    locales = [
-        "ja",
-    ]
+    l10n = "{locale}/**/*.ftl
 
 ## Examples:
 
