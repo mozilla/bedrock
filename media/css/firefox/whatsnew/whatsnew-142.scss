@@ -217,8 +217,8 @@ body {
     font-family: var(--fds-font-family-secondary);
     font-size: var(--fds-font-size-base);
     line-height: 1.6;
-    color: var(--fds-color-gray-90);
-    background-color: var(--fds-color-ash);
+    background: light-dark(var(--fds-color-ash), var(--fds-color-black));
+    color: light-dark(var(--fds-color-gray-90), var(--fds-color-white));
 }
 
 // ============================================================================
