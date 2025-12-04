@@ -1,0 +1,62 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% block page_css %}
+  {{ css_bundle('firefox_whatsnew_146_donate') }}
+{% endblock %}
+
+{% if LANG.startswith('es-') %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-sp" %}
+{% elif LANG.startswith('pt-') %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pt-BR" %}
+{% elif LANG == 'pl' %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pl" %}
+{% elif LANG == 'it' %}
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-it" %}
+{% else %}
+  <!-- Japanese locale -->
+  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-ja" %}
+{% endif %}
+
+{% extends "firefox/whatsnew/base-new-theme.html" %}
+
+{% block wnp_content %}
+<section class="wnp-section wnp-section-intro">
+      <div class="wnp-container">
+        <div class="wnp-intro-layout">
+          <div class="wnp-intro-content">
+            <p class="wnp-eyebrow">{{ ftl('whatsnew-donate-whatsnew') }} | Firefox {{ major_version }}</p>
+            <h1 class="wnp-title">{{ ftl('whatsnew-donate-donate-to') }}</h1>
+            <div class="wnp-subtitle-5">
+              <p>{{ ftl('whatsnew-donate-you-chose') }}</p>
+              <p>{{ ftl('whatsnew-donate-you-can-help') }}</p>
+            </div>
+            <div class="c-button-container">
+              <a class="c-button-has-icon wnp-button wnp-button-secondary" href="{{ cta_link }}" data-cta-priority="primary" data-cta-position="hero_1.button_1" data-cta-text="Donate">
+                <span>{{ ftl('whatsnew-donate') }}</span><span>♥</span>
+              </a>
+              {% set releasenotes_url = url('firefox.releases.index') if not version else '/firefox/%s/releasenotes/'|format(version) %}
+              <a href="{{ releasenotes_url }}" target="_blank" class="wnp-button wnp-button-outline">{{ ftl('whatsnew-donate-release-notes')}}</a>
+            </div>
+          </div>
+          <div class="wnp-intro-media">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                width="600"
+                height="320"
+                src="/media/img/firefox/whatsnew/whatsnew146/donate.jpeg"
+                alt=""
+                loading="eager"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew146/donate@2x.jpeg 2x
+                "
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock wnp_content %}
