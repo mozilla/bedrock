@@ -133,5 +133,6 @@ header {
 
     @media #{$mq-md} {
         width: 790px;
+        max-width: 100%;
     }
 }
