@@ -7,8 +7,8 @@
 (function () {
     'use strict';
     const mainNavBar = document.querySelector('.m24-navigation-refresh');
-    const subNavBar = document.querySelector('.mozads-c-sub-navigation');
-    const mainSection = document.querySelector('#mozads-main');
+    const subNavBar = document.querySelector('.mza-c-sub-navigation');
+    const mainSection = document.querySelector('#mza-main');
 
     const options = {
         root: null,

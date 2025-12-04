@@ -924,6 +924,12 @@
     },
     {
       "files": [
+        "css/firefox/welcome26.scss"
+      ],
+      "name": "firefox_welcome_page26"
+    },
+    {
+      "files": [
         "css/firefox/faq.scss"
       ],
       "name": "firefox-faq"
@@ -963,12 +969,6 @@
         "css/products/vpn/landing-refresh.scss"
       ],
       "name": "mozilla-vpn-landing-refresh"
-    },
-    {
-      "files": [
-        "css/products/vpn/bundle-promo.scss"
-      ],
-      "name": "mozilla-vpn-bundle-promo"
     },
     {
       "files": [
@@ -1276,6 +1276,18 @@
         "css/firefox/whatsnew/whatsnew-144.scss"
       ],
       "name": "firefox_whatsnew_144"
+    },
+    {
+      "files": [
+        "css/firefox/whatsnew/whatsnew-146-donate.scss"
+      ],
+      "name": "firefox_whatsnew_146_donate"
+    },
+    {
+      "files": [
+        "css/base/banners/fundraising-banner.scss"
+      ],
+      "name": "fundraising-banner"
     }
   ],
   "js": [
@@ -1522,15 +1534,9 @@
     },
     {
       "files": [
-        "js/mozorg/advertising/ads-navbar.js"
+        "js/mozorg/advertising/ads-solutions.es6.js"
       ],
-      "name": "mozorg-advertising-navbar"
-    },
-    {
-      "files": [
-        "js/mozorg/advertising/callout.js"
-      ],
-      "name": "mozorg-advertising-callout"
+      "name": "mozorg-advertising-solutions"
     },
     {
       "files": [
@@ -1746,12 +1752,6 @@
     },
     {
       "files": [
-        "js/base/banners/m24-pencil-banner-mofo-experiment.es6.js"
-      ],
-      "name": "pencil-banner-mofo-experiment"
-    },
-    {
-      "files": [
         "js/base/banners/firefox-newsletter-banner-init.es6.js",
         "js/base/banners/firefox-newsletter-banner-check.js"
       ],
@@ -1881,12 +1881,6 @@
     },
     {
       "files": [
-        "js/products/vpn/promo-tabs.js"
-      ],
-      "name": "vpn_promo_tabs"
-    },
-    {
-      "files": [
         "js/products/vpn/resource-center-article.es6.js"
       ],
       "name": "vpn-resource-center-article"
@@ -1988,6 +1982,12 @@
         "js/base/article-toc.es6.js"
       ],
       "name": "monitor_article"
+    },
+    {
+      "files": [
+        "js/base/banners/fundraising-banner-eoy2025-init.es6.js"
+      ],
+      "name": "fundraising_banner_eoy2025"
     }
   ]
 }

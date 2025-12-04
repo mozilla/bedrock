@@ -20,85 +20,29 @@
   {% set cta_text = "Donate ♥" %}
 {% endif %}
 
-{% if variant == 'a' %}
-  {% set cta_link = "https://mozillafoundation.org/?form=pencil-banner-A" %}
+{% set cta_link = "https://mozillafoundation.org/?form=eoy25-moco-banner" %}
 
-  {% if LANG == 'fr' %}
-    {% set banner_content = "Faites un don à la Fondation Mozilla avant le 30 juin" %}
-  {% elif LANG == 'de' %}
-    {% set banner_content = "Spenden Sie bis 30. Juni an die Mozilla Foundation" %}
-  {% elif LANG == 'es-ES' %}
-    {% set banner_content = "Dona a la Fundación Mozilla antes del 30 de junio" %}
-  {% elif LANG == 'pt-BR' %}
-    {% set banner_content = "Doe para a Fundação Mozilla até 30 de junho" %}
-  {% elif LANG == 'pl' %}
-    {% set banner_content = "Przekaż datek Fundacji Mozilla do 30 czerwca" %}
-  {% elif LANG == 'it' %}
-    {% set banner_content = "Dona a Mozilla Foundation entro il 30 giugno" %}
-  {% else %}
-    {% set banner_content = "Donate to Mozilla Foundation by June 30" %}
-  {% endif %}
-{% elif variant == 'b' %}
-  {% set cta_link = "https://mozillafoundation.org/?form=pencil-banner-B" %}
-
-  {% if LANG == 'fr' %}
-    {% set banner_content = "Faites un don à la Fondation Mozilla aujourd’hui" %}
-  {% elif LANG == 'de' %}
-    {% set banner_content = "Spenden Sie noch heute an die Mozilla Foundation" %}
-  {% elif LANG == 'es-ES' %}
-    {% set banner_content = "Dona a la Fundación Mozilla hoy" %}
-  {% elif LANG == 'pt-BR' %}
-    {% set banner_content = "Doe para a Fundação Mozilla hoje" %}
-  {% elif LANG == 'pl' %}
-    {% set banner_content = "Przekaż datek Fundacji Mozilla jeszcze dzisiaj" %}
-  {% elif LANG == 'it' %}
-    {% set banner_content = "Dona oggi stesso a Mozilla Foundation" %}
-  {% else %}
-    {% set banner_content = "Donate to Mozilla Foundation today" %}
-  {% endif %}
-{% elif variant == 'c' %}
-  {% set cta_link = "https://mozillafoundation.org/?form=pencil-banner-C" %}
-
-  {% if LANG == 'fr' %}
-    {% set banner_content = "Faites un don pour un meilleur futur technologique" %}
-  {% elif LANG == 'de' %}
-    {% set banner_content = "Spenden Sie für eine bessere Technologiezukunft" %}
-  {% elif LANG == 'es-ES' %}
-    {% set banner_content = "Dona para construir un mejor futuro tecnológico" %}
-  {% elif LANG == 'pt-BR' %}
-    {% set banner_content = "Doe e ajude a melhorar o futuro da tecnologia" %}
-  {% elif LANG == 'pl' %}
-    {% set banner_content = "Przekaż datek i zadbaj o lepszą przyszłość technologii" %}
-  {% elif LANG == 'it' %}
-    {% set banner_content = "Dona e crea un futuro migliore in ambito tecnologico" %}
-  {% else %}
-    {% set banner_content = "Donate to build a better tech future" %}
-  {% endif %}
+{% if LANG == 'fr' %}
+  {% set banner_content = "Faites un don à la Fondation Mozilla avant le 31 décembre" %}
+{% elif LANG == 'de' %}
+  {% set banner_content = "Spenden Sie bis zum 31. Dezember an die Mozilla Foundation" %}
+{% elif LANG == 'es-ES' %}
+  {% set banner_content = "Dona a la Fundación Mozilla antes del 31 de diciembre" %}
+{% elif LANG == 'pt-BR' %}
+  {% set banner_content = "Doe para a Fundação Mozilla até 31 de dezembro" %}
+{% elif LANG == 'pl' %}
+  {% set banner_content = "Przekaż datek Fundacji Mozilla do 31 grudnia" %}
+{% elif LANG == 'it' %}
+  {% set banner_content = "Dona a Mozilla Foundation entro il 31 dicembre" %}
 {% else %}
-  {% set cta_link = "https://mozillafoundation.org/?form=pencil-banner-mid-year" %}
-
-  {% if LANG == 'fr' %}
-    {% set banner_content = "Faites un don à la Fondation Mozilla aujourd’hui" %}
-  {% elif LANG == 'de' %}
-    {% set banner_content = "Spenden Sie noch heute an die Mozilla Foundation" %}
-  {% elif LANG == 'es-ES' %}
-    {% set banner_content = "Dona a la Fundación Mozilla hoy" %}
-  {% elif LANG == 'pt-BR' %}
-    {% set banner_content = "Doe para a Fundação Mozilla hoje" %}
-  {% elif LANG == 'pl' %}
-    {% set banner_content = "Przekaż datek Fundacji Mozilla jeszcze dzisiaj" %}
-  {% elif LANG == 'it' %}
-    {% set banner_content = "Dona oggi stesso a Mozilla Foundation" %}
-  {% else %}
-    {% set banner_content = "Donate to Mozilla Foundation today" %}
-  {% endif %}
+  {% set banner_content = "Donate to Mozilla Foundation by December 31" %}
 {% endif %}
 
 {% if switch('show-pencil-banner') and not hide_pencil_banner and is_homepage and (LANG  in ['fr', 'de', 'es-ES', 'pt-BR', 'pl', 'it'] or LANG.startswith('en-')) %}
   {# Exclude banners from search result snippets using `data-nosnippet` (issue 8739) #}
   <aside class="m24-pencil-banner" aria-label="{{ ftl('ui-promo-label') }}" data-nosnippet="true">
     <div class="m24-pencil-banner-copy">
-      <p>{{banner_content}}. – <strong><a href={{cta_link}}>{{cta_text}}</a></strong></p>
+      <p>{{banner_content}} – <strong><a href={{cta_link}} data-cta-text="Donate" data-cta-position="banner">{{cta_text}}</a></strong></p>
     </div>
     <button class="m24-pencil-banner-close" type="button">{{ ftl('ui-close') }}</button>
   </aside>

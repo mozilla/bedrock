@@ -1,0 +1,52 @@
+name: Unit tests
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: "Install JS dependencies"
+        run: npm ci
+      - name: "Run JS tests"
+        run: xvfb-run npm test
+
+  test-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: "Run Python tests (on Docker)"
+        run: |
+            make clean test-image
+            CONTAINER_ID=$(docker ps -alq)
+            docker cp $CONTAINER_ID:/app/python_coverage .
+        timeout-minutes: 60
+      - name: "Store coverage as an artifact"
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-results
+          path: python_coverage
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v4
+        with:
+          # A CodeCov token is normally NOT needed for public repos, but this workaround is suggested here:
+          # https://community.codecov.com/t/upload-issues-unable-to-locate-build-via-github-actions-api/3954/18
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: python_coverage/coverage.xml
+          fail_ci_if_error: false  # optional (default = false)
+          verbose: true  # optional (default = false)

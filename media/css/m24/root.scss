@@ -58,11 +58,22 @@
     --text-title-sm: 16px;
     --text-title-xs: 14px;
 
+    // titles line height
+    --text-title-2xl-line-height: 1.166;
+    --text-title-xl-line-height: 1.125;
+    --text-title-lg-line-height: 1.166;
+    --text-title-md-line-height: 1.25;
+    --text-title-sm-line-height: 1.25;
+    --text-title-xs-line-height: 1.25;
+
     // body
     --text-body-xl: 24px;
     --text-body-lg: 18px;
     --text-body-md: 16px;
     --text-body-sm: 14px;
+
+    // body line height
+    --text-body-line-height: 1.5;
 
     // buttons
     --text-button-xl: 24px;

@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.c-button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--fds-spacing-sm);
+    margin-block-start: var(--fds-spacing-3xl);
+
+    // when layout is single column
+    @media (max-width: 1023px) {
+        justify-content: center;
+
+        > * {
+            flex-basis: fit-content;
+            flex-grow: 1;
+        }
+    }
+
+    // when layout is two column
+    @media (min-width: 1024px) {
+        margin-block-start: var(--fds-spacing-2xl);
+    }
+}
+
+.c-button-has-icon {
+    display: flex;
+    gap: var(--fds-spacing-md);
+    justify-content: center;
+}

@@ -114,6 +114,12 @@ class LeadershipGroupBlock(blocks.StructBlock):
         required=False,
     )
 
+    description = blocks.CharBlock(
+        char_max_length=1000,
+        help_text="A couple of sentences describes what the group is and some helpful context.",
+        required=False,
+    )
+
     leaders = blocks.ListBlock(
         LeadershipBioBlock(),
         min_num=1,
@@ -137,6 +143,12 @@ class LeadershipSectionBlock(blocks.StructBlock):
 
     title = blocks.CharBlock(
         max_length=255, blank=True, null=True, help_text="Title for the section of the page e.g. 'Mozilla Corporation' or 'Mozilla Foundation."
+    )
+
+    description = blocks.CharBlock(
+        char_max_length=1000,
+        help_text="Description for the leadership section.",
+        required=False,
     )
 
     leadership_group = blocks.ListBlock(

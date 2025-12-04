@@ -131,7 +131,7 @@ def prefer_cms(
             path = remove_lang_prefix(request.path_info)
 
             # Annotate the request with the Django/fallback locales, as we'll
-            # need them for the language picket in the footer when rendering
+            # need them for the language picker in the footer when rendering
             # the Wagtail response IF there is a Wagtail match
 
             request._locales_for_django_fallback_view = _get_django_locales_available(

@@ -1,0 +1,174 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+@use './mixins' as admixins;
+
+
+.modal-figure-caption {
+    @include admixins.text-body-sm;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: start;
+    align-items: start;
+    margin-top: 1.5rem;
+    flex-direction: column;
+
+    p {
+        margin: 0;
+    }
+
+    .mzp-c-button.mza-c-contact-button {
+        margin: 0;
+        @include admixins.text-button-sm;
+    }
+
+    @media #{$mq-md} {
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.modal-figure-caption-heading {
+    display: block;
+    font-weight: 600;
+}
+
+.modal-figure-caption-text {
+    font-weight: 300;
+}
+
+[data-slide-caption] {
+    &.is-hidden {
+        display: none;
+    }
+}
+
+
+.mza-figure,
+.carousel {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: $spacer-xs;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    padding-bottom: $spacer-xs;
+}
+
+.carousel-nav {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.carousel-prev,
+.carousel-next {
+    width: 2rem;
+    height: 2rem;
+    appearance: none;
+    margin: 0;
+    padding: 0.5rem;
+    color: white;
+    background: transparent;
+    border: 0 none;
+    opacity: 0.7;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.carousel-snap-display {
+color: advars.$color-ads-dark-gray;
+}
+
+.carousel {
+    .carousel-wrapper {
+        display: flex;
+    }
+
+    .carousel-viewport {
+        overflow: hidden;
+        flex-grow: 1;
+    }
+
+    .carousel-container {
+        display: flex;
+    }
+
+    .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+    }
+
+    .carousel-dots {
+        // based on https://www.embla-carousel.com/examples/predefined/
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
+
+        .dot {
+            -webkit-tap-highlight-color: rgba(
+                255, 255, 255,
+                0.5
+            );
+            -webkit-appearance: none;
+            appearance: none;
+            background-color: transparent;
+            touch-action: manipulation;
+            text-decoration: none;
+            cursor: pointer;
+            border: 0;
+            padding: 0;
+            margin: 0;
+            width: 2.6rem;
+            height: 2.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .dot::after {
+            box-shadow: inset 0 0 0 0.2rem white;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            content: '';
+        }
+
+        .dot-selected::after {
+            box-shadow: inset 0 0 0 0.2rem white;
+            background: white;
+        }
+    }
+}
+
+// black-on-black modals need more delineation between modal background and page background
+.mzp-c-modal {
+    background:rgba(47, 47, 47, 0.89);
+}
+
+.mzp-c-modal-window {
+    padding: 1.5rem 1rem;
+}
+
+.mzp-c-modal-inner {
+    padding: 2rem 1.5rem;
+}
