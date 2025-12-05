@@ -38,6 +38,15 @@ jobs:
       image_tag: ${{ env.TAG }}
 
     steps:
+      - name: Reclaim disk space
+        run: |
+          sudo rm -rf /home/runner/.rustup
+          sudo rm -rf /usr/local/.ghcup
+          sudo rm -rf /usr/share/swift
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          docker system df
+          df -h
+
       - uses: docker/setup-buildx-action@v3
         with:
           buildkitd-flags: "cache-from: type=gha cache-to: type=gha,mode=max"
