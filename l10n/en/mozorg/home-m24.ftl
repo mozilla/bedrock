@@ -116,7 +116,6 @@ m24-home-topic-ai = Artificial Intelligence
 m24-home-topic-open-source-ai = Open Source AI
 m24-home-topic-ps = Privacy & Security
 m24-home-headline-you-ai-v2 = You, AI and the internet — what’s really going on?
-m24-home-shake-to-summarize = Shake to Summarize in TIME’s Best Inventions of 2025
 m24-home-mozilla-welcomes-raffi = { -brand-name-mozilla } welcomes Raffi Krikorian as Chief Technology Officer
 m24-home-tech-target = Tech Target
 m24-home-mozilla-ai-ceo = { -brand-name-mozilla-ai-v2 } CEO talks open source AI advantages
@@ -124,28 +123,17 @@ m24-home-mozilla-ai-ceo = { -brand-name-mozilla-ai-v2 } CEO talks open source AI
 m24-home-introducing-thundermail-and = Introducing Thundermail and Thunderbird Pro
 m24-home-introducing-thundermail-and-v2 = Introducing { -brand-name-thundermail } and { -brand-name-thunderbird-pro }
 m24-home-what-comes-next = What comes next in tech is a choice. Choose with us.
-m24-home-how-ventures-investee = How Ventures Investee Germ is Strengthening Encryption
-# Obsolete string (expires 2026-03-01)
-m24-home-tech-crunch = Tech Crunch
-m24-home-tech-crunch-v2 = TechCrunch
 m24-home-a-good-moment = ‘A good moment in time for us’: { -brand-name-firefox } head on AI browsers and what’s next for the web
 m24-home-the-guardian = The Guardian
-m24-home-interview-take-open = Interview: Taking Open Source Into the AI Era
-# Obsolete string (expires 2026-03-20)
-m24-home-mit-sloan-review = MIT Sloan Review
-m24-home-mit-sloan-management-review = MIT Sloan Management Review
-m24-home-mozilla-ventures-funds = { -brand-name-mozilla-ventures } funds Filament networking platform
 m24-home-axios = Axios
 m24-home-mozillas-new-message = { -brand-name-mozilla }’s new message: We’re the only browser not backed by billionaires
 m24-home-fast-company = Fast Company
-m24-home-will-agi-be = Will AGI Be a Reality — and Are We Ready?
-m24-home-conversation-charting-a = Conversation: Charting a future to access and agency
-m24-home-tech-policy-press = Tech Policy Press
-m24-home-open-by-design = Open By Design: How Nations Can Compete in the Age of AI
 m24-home-mozilla = { -brand-name-mozilla }
-m24-home-mozilla-ai-charts = { -brand-name-mozilla-ai-v2 } charts a new course with a turn toward profitability
-m24-home-silicon-angle = Silicon Angle
-
+m24-home-the-ft = The FT
+m24-home-rewiring-mozilla = Rewiring { -brand-name-mozilla }: Doing for AI what we did for the web
+m24-home-interview-with-mark = Interview with Mark Surman: How { -brand-name-mozilla } is adapting to the AI age
+m24-home-women-in-product = Women In Product conversation: Adding GenAI Without Losing the Plot
+m24-home-scaling-open-source = Scaling Open Source AI: Mark Surman & Tim Bradshaw
 ## Showcase
 
 m24-home-rise25-awards = { -brand-name-rise25 } Awards
