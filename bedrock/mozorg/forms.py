@@ -45,11 +45,12 @@ class HoneyPotWidget(widgets.TextInput):
         # semi-randomized in case we have more than one per page.
         # this is maybe/probably overthought
         honeypot_id = "office-fax-" + str(randrange(1001)) + "-" + str(datetime.now().strftime("%Y%m%d%H%M%S%f"))
+        tabindex_attr = 'tabindex="-1"'
         return mark_safe(
             '<div class="super-priority-field">'
             '<label for="%s">%s</label>'
-            '<input type="text" name="office_fax" id="%s">'
-            "</div>" % (honeypot_id, honeypot_txt, honeypot_id)
+            '<input type="text" name="office_fax" id="%s" %s>'
+            "</div>" % (honeypot_id, honeypot_txt, honeypot_id, tabindex_attr)
         )
 
 
