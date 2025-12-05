@@ -58,10 +58,6 @@ m24-home-read-more = Read more
 m24-home-get-started = Get started
 m24-home-join-the-movement = Join the movement:<br> AI for the people
 m24-home-our-mission-is = Our mission is to make it easy for people to build with, and collaborate on, open-source, trustworthy AI.
-# Used as an accessible text alternative for an image
-m24-home-alt-solo-ai-logo = { -brand-name-solo-ai } logo
-m24-home-solo-ai = { -brand-name-solo-ai }
-m24-home-create-your-website = Create your website and connect your custom domain for free
 m24-home-alt-builders = Builders
 m24-home-alt-builders-v2 = { -brand-name-builders }
 m24-home-mozilla-builders= { -brand-name-mozilla } Builders
@@ -77,18 +73,21 @@ m24-home-mozfest-get-your = Get your badge today
 m24-home-alt-lumigator-logo = { -brand-name-lumigator} logo.
 m24-home-lumigator = { -brand-name-lumigator}
 m24-home-find-the-just = Find the right LLM for your needs, use case and data.
-# Used as an accessible text alternative for an image
-m24-home-alt-trustworthy =  Mark Surman, President of { -brand-name-mozilla }.
-m24-home-can-ai-be = Can AI be trustworthy?
-m24-home-in-a-world = In a world where AI innovation is driven by a select few, we’re risking monopolization of this technology. Applying open-source concepts to AI could change that.
+m24-home-own-what-you = Own What You Build
+m24-home-do-we-need-a = Do we need a “LAMP Stack” for the AI era? We need tech that’s transparent, accountable, and owned by the people who use it.
 m24-home-watch-now = Watch now
+m24-home-choice-first-stack = Choice First Stack
+m24-home-your-tools-your = Your tools, your choice. A unified open-source stack that simplifies building and testing modern AI agents and apps.
+m24-home-get-started-now = Get started now
 # Used as an accessible text alternative for an image
 m24-home-alt-ventures = Speaker on stage with multiple product logos.
 m24-home-mozilla-ventures = { -brand-name-mozilla-ventures }
 m24-home-got-an-earlystage = Got an early-stage startup? Pitch your company to { -brand-name-mozilla-ventures } and secure funding to drive positive change for the future of AI and the internet.
-m24-home-common-voice = { -brand-name-common-voice }
-m24-home-donate-your-voice-to-make = Donate your voice to make speech technology more inclusive and accessible for everyone.
-m24-home-donate-your-voice = Donate your voice
+m24-home-mozilla-data-collective = { -brand-name-mozilla } Data Collective
+m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the center.
+m24-home-join-today = Join today
+m24-home-a-double-bottom = A Double Bottom Line for Tech
+m24-home-mark-surman-discusses = Mark Surman discusses how we can build a tech ecosystem with a double bottom line—one that values both mission and money.
 
 m24-home-our-transformation = Our Transformation
 m24-home-how-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
@@ -96,8 +95,11 @@ m24-home-how-do-legacy = How do legacy values collide with innovation? In this c
 m24-home-alt-transformation = Change Signal with Mark Surman and MBS
 # Used as an accessible text alternative for an image
 m24-home-alt-pink-cloud = Cloud with pink background
+m24-home-agent-platform = Agent Platform
+# Obsolete string (expires 2026-04-05)
 m24-home-any-agent = Any Agent
 m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla-ai-v2 } Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
+
 
 ## Media Springboard
 
@@ -169,9 +171,3 @@ m24-home-alt-irl-host = Bridget Todd, host of IRL Podcast.
 m24-home-irl-podcast = { -brand-name-irl-podcast }
 m24-home-our-multiaward-winning = Our multi-award winning podcast introduces the change-makers working to make the internet safer and AI more trustworthy.
 m24-home-irl-listen-now = Listen now
-
-## Outside the Fox
-
-m24-home-outside-the-fox = Outside the Fox
-m24-home-this-is-where = This is where we explore what’s happening online and why it matters, from why slop is taking over the internet to viral internet culture.
-m24-home-fox-listen-now = Listen Now
