@@ -151,14 +151,11 @@ m24-home-mozilla-is-reinventing-itself = { -brand-name-mozilla } is reinventing 
 m24-home-state-of-mozilla-alt = Abstract pixel art in shades of green, orange and pink
 m24-home-read-the-report = Read the report
 
-## Data Collective
+## Nothing Personal
 
-m24-home-mozilla-data-collective = { -brand-name-mozilla } Data Collective
-m24-home-mozilla-create-curate-control = Create. Curate. Control.
-# Obsolete string (expires 2026-03-20)
-m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the centre. Access over 300 high-quality global datasets, built by and  for the community in a transparent and ethical way.
-m24-home-mozilla-data-collective-is-v3 = { -brand-name-mozilla } Data Collective is rebuilding the AI data ecosystem with communities at the center. Access over 300 high-quality global datasets, built by and for the community in a transparent and ethical way.
-m24-home-join-mozilla-data = Join { -brand-name-mozilla } Data Collective
+m24-home-mozilla-nothing-personal = Nothing Personal
+m24-home-our-new-magazine = Our new magazine for independent thinkers, technologists, and creatives on the front lines of digital culture.
+m24-home-read-now = Read Now
 
 ## Issues
 
