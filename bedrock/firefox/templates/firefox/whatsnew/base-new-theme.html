@@ -71,26 +71,6 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
             </div>
           </div>
           {% endif %}
-        {# Navigation functionality built for future versions - not part of current design, but useful for debugging dark mode #}
-        {% if settings.DEBUG %}
-        <button class="wnp-hamburger" type="button" aria-label="{{ ftl('ui-menu') }}" data-label-closed="{{ ftl('ui-menu') }}" data-label-open="{{ ftl('ui-close') }}" aria-controls="wnp-nav" aria-expanded="false" aria-haspopup="true">
-          <span aria-hidden="true"></span>
-        </button>
-        <nav id="wnp-nav" class="wnp-nav" aria-label="Primary">
-          <ul class="wnp-nav-menu">
-            <li><a class="wnp-nav-link wnp-nav-link-active" href="#">What’s New</a></li>
-            <li><a class="wnp-nav-link" href="https://www.firefox.com/releases/">Archive</a></li>
-            <li><a class="wnp-nav-link" href="https://www.firefox.com/firefox/{{ version }}/releasenotes/">Release Notes</a></li>
-          </ul>
-          <div class="wnp-theme-toggle" role="group" aria-label="Themes">
-            <button type="button" class="wnp-theme-btn is-light" data-theme="light">Light Mode</button>
-            <button type="button" class="wnp-theme-btn is-dark" data-theme="dark">Dark Mode</button>
-          </div>
-        </nav>
-        <button class="wnp-nav-toggle" type="button" aria-label="Toggle Dark Mode" aria-pressed="false">
-          <span>Toggle Dark Mode</span>
-        </button>
-        {% endif %}
       </div>
     </header>
     {% endblock %}
