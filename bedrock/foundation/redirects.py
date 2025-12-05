@@ -5,12 +5,12 @@
 from bedrock.redirects.util import redirect
 
 redirectpatterns = (
-    redirect(r"^foundation/?$", "https://foundation.mozilla.org/"),
-    redirect(r"^foundation/about/?$", "https://foundation.mozilla.org/about/"),
-    redirect(r"^foundation/documents/?$", "https://foundation.mozilla.org/about/public-records/"),
-    redirect(r"^foundation/issues/?$", "https://foundation.mozilla.org/initiatives/"),
-    redirect(r"^foundation/leadership-network/?$", "https://foundation.mozilla.org/"),
-    redirect(r"^foundation/advocacy/?$", "https://foundation.mozilla.org/"),
+    redirect(r"^foundation/?$", "https://mozillafoundation.org/"),
+    redirect(r"^foundation/about/?$", "https://mozillafoundation.org/about/"),
+    redirect(r"^foundation/documents/?$", "https://mozillafoundation.org/about/public-records/"),
+    redirect(r"^foundation/issues/?$", "https://mozillafoundation.org/initiatives/"),
+    redirect(r"^foundation/leadership-network/?$", "https://mozillafoundation.org/"),
+    redirect(r"^foundation/advocacy/?$", "https://mozillafoundation.org/"),
     redirect(r"^foundation/trademarks/?$", "/foundation/trademarks/policy/"),
     redirect(r"^foundation/trademarks/faq/?$", "/foundation/trademarks/policy/"),
     redirect(r"^foundation/documents/domain-name-license\.pdf$", "/foundation/trademarks/policy/"),
