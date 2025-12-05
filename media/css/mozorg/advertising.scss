@@ -17,10 +17,8 @@ $image-path: '/media/protocol/img';
 
 @use './ads/subnav';
 @use './ads/main-dark-section';
-@use './ads/home-brands';
 @use './ads/sections';
-@use './ads/home-approach';
-@use './ads/home-why-moz';
+@use './ads/half-grid';
 @use './ads/home-contact';
 @use './ads/home-notification';
 @use './ads/subpage-header';
@@ -825,16 +823,6 @@ $image-path: '/media/protocol/img';
         border-left: 0 none;
         padding-right: 5%;
         padding-left: 0;
-    }
-
-    .mza-half-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-
-        &.is-list-item {
-            gap: 2rem;
-
-        }
     }
 
     .mza-home-big-list-heading {
