@@ -29,7 +29,7 @@
       </div>
 
       <div class="c-subheader mzp-l-content">
-        <h2>Learn how Mozilla is making the internet more equitable, inclusive, and sustainable</h2>
+        <h2>Learn how Mozilla is making the internet more open, accessible, and sustainable</h2>
       </div>
     </header>
 
@@ -37,9 +37,9 @@
       {% call split(
         block_class='mzp-l-split-center-on-sm-md mzp-l-split-reversed c-foundation',
         image=resp_img(
-          url='img/mozorg/impact/report-cover.jpg',
+          url='img/mozorg/impact/sheet-cover.jpg',
           srcset={
-            'img/mozorg/impact/report-cover-high-res.jpg': '1.5x'
+            'img/mozorg/impact/sheet-cover-high-res.jpg': '1.5x'
           },
           optional_attributes={
             'class': 'mzp-c-split-media-asset',
@@ -48,9 +48,16 @@
         ),
         media_after=False
       ) %}
-        <h3>Our 2024 report</h3>
-        <p>This holistic report by the Mozilla Corporation and Mozilla Foundation provides transparency to our employees, customers, and community on the progress of our Sustainability and Diversity, Equity, Inclusion, and Belonging commitments in 2023.</p>
-        <p><a href="https://assets.mozilla.net/pdf/Impact_Report_2024.pdf" class="mzp-c-button">View the report</a></p>
+        <h3>Our 2025 Fact Sheet</h3>
+        <p>This Fact Sheet offers a snapshot of Mozilla’s Social and Environmental Impact in 2024, highlighting how we’re working to reduce our environmental footprint and foster a culture of belonging across our global teams.</p>
+        <p>
+          <a href="https://assets.mozilla.net/pdf/Mozilla_Impact_Report_2025.pdf" class="mzp-c-button">
+            View the Fact Sheet
+            <span class="mzp-c-button-icon-end">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-labelledby="fact-sheet-icon"><title id="fact-sheet-icon">Download PDF</title><path fill="currentColor" d="m7.24 1.36 5.89 5.89H0v1.5h13.13l-5.89 5.89L8.3 15.7 16 8 8.3.3z"/></svg>
+            </span>
+          </a>
+        </p>
       {% endcall %}
     </section>
 
@@ -58,22 +65,6 @@
       <h3>Join us in making an impact!</h3>
 
       <div class="mzp-l-card-quarter">
-        {{ card(
-          title='Help the planet',
-          ga_title='Help the planet',
-          image=resp_img('img/mozorg/impact/green-planet.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-          desc='Ways each of us can protect and preserve Earth',
-          link_url='https://getpocket.com/collections/how-to-help-the-planet-environment'
-        )}}
-
-        {{ card(
-          title='Fight anti-Black racism',
-          ga_title='Fight anti-Black racism',
-          image=resp_img('img/mozorg/impact/fight-racism.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
-          desc='A resource list compiled by Afrozilla',
-          link_url='https://getpocket.com/collections/moving-from-ally-to-accomplice-in-the-anti-racist-fight-an-afrozilla-resource-list'
-        )}}
-
         {{ card(
           title='Make your website more accessible',
           ga_title='Make your website more accessible',
@@ -87,7 +78,7 @@
           ga_title='Become a Fellow',
           image=resp_img('img/mozorg/impact/mofo-fellows.jpg', optional_attributes={"loading": "lazy", "class": "mzp-c-card-image"}),
           desc='Address challenges facing a healthy internet',
-          link_url='https://foundation.mozilla.org/en/what-we-fund/fellowships/'
+          link_url='https://www.mozillafoundation.org/what-we-do/grantmaking/fellowship/'
         )}}
       </div>
     </section>
@@ -98,38 +89,54 @@
       <table class="mzp-u-data-table c-past-reports-table">
         <thead>
           <tr>
-            <th>Diversity & Inclusion</th>
-            <th>Sustainability</th>
+            <th>Year</th>
+            <th>Title</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><a href="{{ url('mozorg.diversity.2022.index') }}">2023 Diversity & Inclusion Report</a></td>
-            <td><a href="{{ url('mozorg.sustainability.index') }}">2023 Sustainability Report</a> (2020-2022 data)</td>
+            <td>2024</td>
+            <td><a href="https://assets.mozilla.net/pdf/Impact_Report_2024.pdf" aria-label="2024 Mozilla Social & Environmental Impact Report">Mozilla Social &amp; Environmental Impact Report</a></td>
           </tr>
           <tr>
-            <td><a href="{{ url('mozorg.diversity.2021.index') }}">2022 Diversity & Inclusion Report</a></td>
+            <td>2023</td>
+            <td><a href="{{ url('mozorg.diversity.2022.index') }}" aria-label="2023 Diversity & Inclusion Report">Diversity & Inclusion Report</a></td>
+          </tr>
+          <tr>
+            <td>2023</td>
+            <td><a href="{{ url('mozorg.sustainability.index') }}" aria-label="">Sustainability Report (2020-2022 data)</a></td>
+          </tr>
+          <tr>
+            <td>2022</td>
+            <td><a href="{{ url('mozorg.diversity.2021.index') }}" aria-label="2022 Diversity & Inclusion Report">Diversity & Inclusion Report</a></td>
+          </tr>
+          <tr>
+            <td>2020</td>
+            <td><a href="https://foundation.mozilla.org/en/blog/mozilla-foundation-2020-diversity-disclosure/" aria-label="2020 Mozilla Foundation D&I Report">Mozilla Foundation D&I Report</a></td>
+          </tr>
+          <tr>
+            <td>2020</td>
+            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2019-results/" aria-label="2020 Mozilla Corporation D&I Report">Mozilla Corporation D&I Report</a></td>
+          </tr>
+          <tr>
+            <td>2019</td>
+            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2018-results/" aria-label="2019 Mozilla Corporation D&I Report">Mozilla Corporation D&I Report</a></td>
+          </tr>
+          <tr>
+            <td>2019</td>
             <td><a href="https://blog.mozilla.org/en/mozilla/release-mozillas-greenhouse-gas-emissions-baseline/">Blog: Mozilla’s 2019 Greenhouse Gas Emissions</a></td>
           </tr>
           <tr>
-            <td><a href="https://foundation.mozilla.org/en/blog/mozilla-foundation-2020-diversity-disclosure/">2020 Mozilla Foundation D&I Report</a></td>
+            <td>2019</td>
             <td><a href="https://blog.mozilla.org/wp-content/blogs.dir/278/files/2021/02/Mozillas-2019-Greenhouse-Gas-emissions-baseline_2020-11-18.pdf">Detailed 2019 Greenhouse Gas Emissions Inventory</a></td>
           </tr>
           <tr>
-            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2019-results/">2020 Mozilla Corporation D&I Report</a></td>
-            <td></td>
+            <td>2018</td>
+            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla/" aria-label="2018 Mozilla Corporation D&I Report">Mozilla Corporation D&I Report</a></td>
           </tr>
           <tr>
-            <td><a href="https://blog.mozilla.org/careers/mozilla-diversity-inclusion-2018-results/">2019 Mozilla Corporation D&I Report</a></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla/">2018 Mozilla Corporation D&I Report</a></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla-foundation/">2018 Mozilla Foundation D&I Report</a></td>
-            <td></td>
+           <td>2018</td>
+            <td><a href="https://blog.mozilla.org/careers/diversity-and-inclusion-at-mozilla-foundation/" aria-label="2018 Mozilla Foundation D&I Report">Mozilla Foundation D&I Report</a></td>
           </tr>
         </tbody>
       </table>
