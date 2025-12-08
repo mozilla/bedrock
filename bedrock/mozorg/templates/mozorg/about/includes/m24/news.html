@@ -12,145 +12,150 @@
       <h2 class="m24-c-intro-title">{{ ftl('m24-about-read-the-latest') }}</h2>
     </header>
     <div class="m24-c-gallery-container">
-      {{ gallery_tile(
-        class='m24-l-grid-three-quarters m24-l-gallery-no-desc',
-        image=picture(
-          url='img/mozorg/about/m24/news/builders-mobile-1450.jpg',
-          sources=[
-            {
-              'media': '(max-width: 767px)',
-              'srcset': {
-                "img/mozorg/about/m24/news/builders-mobile-375.jpg": "375w",
-                "img/mozorg/about/m24/news/builders-mobile-720.jpg": "720w",
-                "img/mozorg/about/m24/news/builders-mobile-976.jpg": "976w",
-                "img/mozorg/about/m24/news/builders-mobile-1232.jpg": "1232w",
-                "img/mozorg/about/m24/news/builders-mobile-1450.jpg": "1450w",
+      {% if ftl_has_messages('m24-about-rewiring-mozilla') %}
+        {{ gallery_tile(
+          class='m24-l-grid-three-quarters m24-l-gallery-no-desc',
+          image=picture(
+            url='img/mozorg/about/m24/news/rewiring-mobile-1450.jpg',
+            sources=[
+              {
+                'media': '(max-width: 767px)',
+                'srcset': {
+                  "img/mozorg/about/m24/news/rewiring-mobile-375.jpg": "375w",
+                  "img/mozorg/about/m24/news/rewiring-mobile-720.jpg": "720w",
+                  "img/mozorg/about/m24/news/rewiring-mobile-976.jpg": "976w",
+                  "img/mozorg/about/m24/news/rewiring-mobile-1232.jpg": "1232w",
+                  "img/mozorg/about/m24/news/rewiring-mobile-1450.jpg": "1450w",
+                },
+                'sizes': {
+                  "default": "calc(100vw - 16px)",
+                },
+                'width' : '1450',
+                'height' : '723'
               },
-              'sizes': {
-                "default": "calc(100vw - 16px)",
+              {
+                'srcset': {
+                  "img/mozorg/about/m24/news/rewiring-desktop-1032.jpg": "1032w",
+                  "img/mozorg/about/m24/news/rewiring-desktop-1953.jpg": "1953w",
+                  "img/mozorg/about/m24/news/rewiring-desktop-2056.jpg": "2056w",
+                },
+                'sizes': {
+                  "(min-width: 768px)": "calc(83wv - 24px)",
+                  "(min-width: 1312px)": "calc(75vw - 32px)",
+                  "(min-width: 1440px)": "1028px",
+                  "default": "calc(75vw - 32px)",
+                },
+                'width' : '2056',
+                'height' : '882'
               },
-              'width' : '1450',
-              'height' : '723'
-            },
-            {
-              'srcset': {
-                "img/mozorg/about/m24/news/builders-desktop-1032.jpg": "1032w",
-                "img/mozorg/about/m24/news/builders-desktop-1953.jpg": "1953w",
-                "img/mozorg/about/m24/news/builders-desktop-2056.jpg": "2056w",
-              },
-              'sizes': {
-                "(min-width: 768px)": "calc(83wv - 24px)",
-                "(min-width: 1312px)": "calc(75vw - 32px)",
-                "(min-width: 1440px)": "1028px",
-                "default": "calc(75vw - 32px)",
-              },
-              'width' : '2056',
-              'height' : '882'
-            },
-          ],
-          optional_attributes={
-            "loading": "lazy",
-            'alt': 'Tim Jaeryang Baek shows a demo of Open WebUI to several attendees of Mozilla Builders Demo Day.'
-          }
-        ),
-        title=ftl('m24-about-builders-program'),
-        link_url='https://builders.mozilla.org/' + utm_params,
-        cta_text=ftl('m24-about-read-more'),
-        link_attributes='rel="external" target="_blank" data-link-text="Read more (Builders Program)"'
-      ) }}
+            ],
+            optional_attributes={
+              "loading": "lazy",
+              'alt': 'Mozilla'
+            }
+          ),
+          title=ftl('m24-about-rewiring-mozilla'),
+          link_url='https://blog.mozilla.org/en/mozilla/rewiring-mozilla-ai-and-web/' + utm_params,
+          cta_text=ftl('m24-about-read-more'),
+          link_attributes='rel="external" target="_blank" data-link-text="Read more (Rewiring Mozilla)"'
+        ) }}
+      {% endif %}
 
+      {% if ftl_has_messages('m24-about-what-comes-next') %}
+        {{ gallery_tile(
+          class='m24-l-grid-five m24-l-gallery-no-desc',
+          image=picture(
+            url="img/mozorg/about/m24/news/next-mobile-720.jpg",
+            sources=[
+              {
+                'media': '(max-width: 1311px)',
+                'srcset': {
+                  "img/mozorg/about/m24/news/next-mobile-375.jpg": "375w",
+                  "img/mozorg/about/m24/news/next-mobile-720.jpg": "720w",
+                  "img/mozorg/about/m24/news/next-mobile-976.jpg": "976w",
+                  "img/mozorg/about/m24/news/next-mobile-1232.jpg": "1232w",
+                  "img/mozorg/about/m24/news/next-mobile-1450.jpg": "1450w",
+                },
+                'sizes': {
+                  "(min-width: 768px)": "calc(50vw - 32px)",
+                  "default": "calc(100vw - 16px)",
+                },
+                'width' : '1450',
+                'height' : '723'
+              },
+              {
+                'srcset': {
+                  "img/mozorg/about/m24/news/next-desktop-573.jpg": "573w",
+                  "img/mozorg/about/m24/news/next-desktop-1085.jpg": "1085w",
+                  "img/mozorg/about/m24/news/next-desktop-1128.jpg": "1128w",
+                },
+                'sizes': {
+                  "(min-width: 1440px)": "564px",
+                  "default": "calc(41vw - 32px)",
+                },
+                'width' : '1128',
+                'height' : '1410'
+              },
+            ],
+            optional_attributes={
+              "loading": "lazy",
+              "alt": '',
+            }
+          ),
+          title=ftl('m24-about-what-comes-next'),
+          link_url='https://www.youtube.com/watch?v=HiZGWrN1zrU',
+          cta_text=ftl('m24-about-watch-here'),
+          link_attributes='rel="external" target="_blank" data-link-text="Watch here (What comes next)"'
+        ) }}
+      {% endif %}
 
-      {{ gallery_tile(
-        class='m24-l-grid-five m24-l-gallery-no-desc',
-        image=picture(
-          url="img/mozorg/about/m24/news/rise25-mobile-720.jpg",
-          sources=[
-            {
-              'media': '(max-width: 1311px)',
-              'srcset': {
-                "img/mozorg/about/m24/news/rise25-mobile-375.jpg": "375w",
-                "img/mozorg/about/m24/news/rise25-mobile-720.jpg": "720w",
-                "img/mozorg/about/m24/news/rise25-mobile-976.jpg": "976w",
-                "img/mozorg/about/m24/news/rise25-mobile-1232.jpg": "1232w",
-                "img/mozorg/about/m24/news/rise25-mobile-1450.jpg": "1450w",
+      {% if ftl_has_messages('m24-about-can-wen-have') %}
+        {{ gallery_tile(
+          class='m24-l-grid-third m24-l-gallery-no-desc',
+          image=picture(
+            url="img/mozorg/about/m24/news/socap-mobile-720.jpg",
+            sources=[
+              {
+                'media': '(max-width: 1311px)',
+                'srcset': {
+                  "img/mozorg/about/m24/news/socap-mobile-375.jpg": "375w",
+                  "img/mozorg/about/m24/news/socap-mobile-720.jpg": "720w",
+                  "img/mozorg/about/m24/news/socap-mobile-976.jpg": "976w",
+                  "img/mozorg/about/m24/news/socap-mobile-1232.jpg": "1232w",
+                  "img/mozorg/about/m24/news/socap-mobile-1450.jpg": "1450w",
+                },
+                'sizes': {
+                  "(min-width: 768px)": "calc(50vw - 32px)",
+                  "default": "calc(100vw - 16px)",
+                },
+                'width' : '1450',
+                'height' : '723'
               },
-              'sizes': {
-                "(min-width: 768px)": "calc(50vw - 32px)",
-                "default": "calc(100vw - 16px)",
+              {
+                'srcset': {
+                  "img/mozorg/about/m24/news/socap-desktop-434.jpg": "434w",
+                  "img/mozorg/about/m24/news/socap-desktop-868.jpg": "868w",
+                  "img/mozorg/about/m24/news/socap-desktop-896.jpg": "896w",
+                },
+                'sizes': {
+                  "(min-width: 1440px)": "448px",
+                  "default": "calc(33vw - 32px)",
+                },
+                'width' : '896',
+                'height' : '894'
               },
-              'width' : '1450',
-              'height' : '723'
-            },
-            {
-              'srcset': {
-                "img/mozorg/about/m24/news/rise25-desktop-573.jpg": "573w",
-                "img/mozorg/about/m24/news/rise25-desktop-1085.jpg": "1085w",
-                "img/mozorg/about/m24/news/rise25-desktop-1128.jpg": "1128w",
-              },
-              'sizes': {
-                "(min-width: 1440px)": "564px",
-                "default": "calc(41vw - 32px)",
-              },
-              'width' : '1128',
-              'height' : '1410'
-            },
-          ],
-          optional_attributes={
-            "loading": "lazy",
-            "alt": ftl('m24-about-rise25-award'),
-          }
-        ),
-        title=ftl('m24-about-at-our-rise25'),
-        link_url='https://blog.mozilla.org/en/mozilla/rise25-dublin/' + utm_params,
-        cta_text=ftl('m24-about-read-more'),
-        link_attributes='rel="external" target="_blank" data-link-text="Read more (Rise25 Dublin)"'
-      ) }}
-
-      {{ gallery_tile(
-        class='m24-l-grid-third m24-l-gallery-no-desc',
-        image=picture(
-          url="img/mozorg/about/m24/news/chicago-mobile-720.jpg",
-          sources=[
-            {
-              'media': '(max-width: 1311px)',
-              'srcset': {
-                "img/mozorg/about/m24/news/chicago-mobile-375.jpg": "375w",
-                "img/mozorg/about/m24/news/chicago-mobile-720.jpg": "720w",
-                "img/mozorg/about/m24/news/chicago-mobile-976.jpg": "976w",
-                "img/mozorg/about/m24/news/chicago-mobile-1232.jpg": "1232w",
-                "img/mozorg/about/m24/news/chicago-mobile-1450.jpg": "1450w",
-              },
-              'sizes': {
-                "(min-width: 768px)": "calc(50vw - 32px)",
-                "default": "calc(100vw - 16px)",
-              },
-              'width' : '1450',
-              'height' : '723'
-            },
-            {
-              'srcset': {
-                "img/mozorg/about/m24/news/chicago-desktop-434.jpg": "434w",
-                "img/mozorg/about/m24/news/chicago-desktop-868.jpg": "868w",
-                "img/mozorg/about/m24/news/chicago-desktop-896.jpg": "896w",
-              },
-              'sizes': {
-                "(min-width: 1440px)": "448px",
-                "default": "calc(33vw - 32px)",
-              },
-              'width' : '896',
-              'height' : '894'
-            },
-          ],
-          optional_attributes={
-            "loading": "lazy",
-            "alt": ftl('m24-about-chicago'),
-          }
-        ),
-        title=ftl('m24-about-empowering-chicagos-entrepreneurs'),
-        link_url='https://blog.mozilla.org/en/mozilla/chicago-small-businesses-solo-ai/' + utm_params,
-        cta_text=ftl('m24-about-read-more'),
-        link_attributes='rel="external" target="_blank" data-link-text="Read more (Chicago)"'
-      ) }}
+            ],
+            optional_attributes={
+              "loading": "lazy",
+              "alt":'',
+            }
+          ),
+          title=ftl('m24-about-can-wen-have'),
+          link_url='https://www.youtube.com/watch?v=BoFUABRULxg',
+          cta_text=ftl('m24-about-watch-here'),
+          link_attributes='rel="external" target="_blank" data-link-text="Watch here (SOCAP)"'
+        ) }}
+      {% endif %}
 
     </div>
 </section>
