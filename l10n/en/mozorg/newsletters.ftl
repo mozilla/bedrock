@@ -60,6 +60,8 @@ newsletters-please-select-country = Please select a country or region
 # Form field error message
 newsletters-please-select-language = Please select a language
 
+newsletters-it-may-take = It may take up to an hour for newly subscribed information to be reflected on this page.
+
 # Variables:
 #   $url (url) - link to https://support.mozilla.org/kb/managing-account-data
 
