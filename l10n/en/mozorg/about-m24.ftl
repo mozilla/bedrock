@@ -41,6 +41,7 @@ m24-about-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-about-watch-here = Watch here
 m24-about-can-wen-have = Can We Have a  Double Bottom Line for Tech? Mark Surman discusses how we can build a tech ecosystem with a double bottom line—one that values both mission and money.
 m24-about-watch-now = Watch now
+
 ## Showcase
 
 m24-about-lets-build-a = Let’s build a fairer future
