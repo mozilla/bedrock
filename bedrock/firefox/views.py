@@ -627,7 +627,17 @@ class WhatsnewView(L10nTemplateView):
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("146."):
-            if locale in ["es-AR", "es-CL", "es-ES", "es-MX", "it", "ja", "pl", "pt-PT", "pt-BR"]:
+            if ftl_file_is_active("firefox/whatsnew/whatsnew-donate") and locale in [
+                "es-AR",
+                "es-CL",
+                "es-ES",
+                "es-MX",
+                "it",
+                "ja",
+                "pl",
+                "pt-PT",
+                "pt-BR",
+            ]:
                 template = "firefox/whatsnew/whatsnew-fx146-donate.html"
             else:
                 template = "firefox/whatsnew/index.html"
