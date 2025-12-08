@@ -9,16 +9,16 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
 {% endblock %}
 
 {% if LANG.startswith('es-') %}
-  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-sp" %}
+  {% set cta_link = "https://www.mozillafoundation.org/?form=25-wnp-eoy-sp" %}
 {% elif LANG.startswith('pt-') %}
-  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pt-BR" %}
+  {% set cta_link = "https://www.mozillafoundation.org/?form=25-wnp-eoy-pt-BR" %}
 {% elif LANG == 'pl' %}
-  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-pl" %}
+  {% set cta_link = "https://www.mozillafoundation.org/?form=25-wnp-eoy-pl" %}
 {% elif LANG == 'it' %}
-  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-it" %}
+  {% set cta_link = "https://www.mozillafoundation.org/?form=25-wnp-eoy-it" %}
 {% else %}
   <!-- Japanese locale -->
-  {% set cta_link = "https://mozillafoundation.org/?form=25-wnp-eoy-ja" %}
+  {% set cta_link = "https://www.mozillafoundation.org/?form=25-wnp-eoy-ja" %}
 {% endif %}
 
 {% extends "firefox/whatsnew/base-new-theme.html" %}

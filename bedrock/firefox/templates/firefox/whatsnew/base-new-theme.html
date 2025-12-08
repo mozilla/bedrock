@@ -110,7 +110,7 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
           <div class="wnp-footer-top">
             <p class="wnp-footer-copy">
               {% set moco_link = 'href="%s" class="wnp-footer-link" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-              {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp%s" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe|format(version) %}
+              {% set mofo_link = 'href="https://www.mozillafoundation.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=wnp%s" class="wnp-footer-link" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe|format(version) %}
               {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
               {% if footer_portions_of_this_content %}
                 {{ footer_portions_of_this_content | safe }}

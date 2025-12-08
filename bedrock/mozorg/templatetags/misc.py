@@ -362,13 +362,13 @@ def donate_url(ctx, location=""):
 
     This would output:
 
-        https://foundation.mozilla.org/donate/
+        https://www.mozillafoundation.org/donate/
 
         {{ donate(location='contribute')}}
 
     This would output:
 
-        https://foundation.mozilla.org/?form=contribute
+        https://www.mozillafoundation.org/?form=contribute
 
     """
 
