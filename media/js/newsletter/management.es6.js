@@ -726,7 +726,8 @@ const NewsletterManagementForm = {
 
         if (FormUtils.isWellFormedURL(recoveryUrl)) {
             if (options.expired) {
-                recoveryUrl += (recoveryUrl.includes('?') ? '&' : '?') + 'expired=1';
+                recoveryUrl +=
+                    (recoveryUrl.includes('?') ? '&' : '?') + 'expired=1';
             }
             window.location.href = recoveryUrl;
         } else {
