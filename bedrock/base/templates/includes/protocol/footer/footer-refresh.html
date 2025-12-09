@@ -107,7 +107,7 @@
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
           {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
+          {% set mofo_link = 'href="https://www.mozillafoundation.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
           {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
           {{ ftl('footer-refresh-portions-of-this-content', href='href="%s"'|safe|format(url('foundation.licensing.website-content')), current_year=current_year|string) }}
         </p>

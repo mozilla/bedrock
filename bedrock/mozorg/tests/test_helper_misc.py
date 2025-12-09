@@ -205,11 +205,11 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_with_location_param(self):
         """Should include location parameter when supplied"""
-        assert self._render(location="moco-donate-footer") == ("https://foundation.mozilla.org/?form=moco-donate-footer")
+        assert self._render(location="moco-donate-footer") == ("https://www.mozillafoundation.org/?form=moco-donate-footer")
 
     def test_donate_url_no_params(self):
         """Should link to /donate/ when no location parameter is supplied"""
-        assert self._render() == ("https://foundation.mozilla.org/donate/")
+        assert self._render() == ("https://www.mozillafoundation.org/donate/")
 
     rf = RequestFactory()
 

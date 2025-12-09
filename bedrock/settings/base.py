@@ -939,7 +939,7 @@ EXTERNAL_FILES = {
 # e.g. '//mozorg.cdn.mozilla.net'
 CDN_BASE_URL = config("CDN_BASE_URL", default="")
 
-DONATE_LINK = "https://foundation.mozilla.org/{location}"
+DONATE_LINK = "https://www.mozillafoundation.org/{location}"
 
 # Official Firefox Instagram accounts
 MOZILLA_INSTAGRAM_ACCOUNTS = {
