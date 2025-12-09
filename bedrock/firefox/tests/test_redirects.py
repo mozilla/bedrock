@@ -294,6 +294,12 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
             False,
         ),
         (
+            "/fr/firefox/features/complete-pdf/",
+            f"{settings.FXC_BASE_URL}/fr/features/complete-pdf/{EXPECTED_REDIRECT_QS}",
+            301,
+            False,
+        ),
+        (
             "/en-US/firefox/features/customize/",
             f"{settings.FXC_BASE_URL}/en-US/features/customize/{EXPECTED_REDIRECT_QS}",
             301,
@@ -308,6 +314,12 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         (
             "/en-US/firefox/features/fast/",
             f"{settings.FXC_BASE_URL}/en-US/features/fast/{EXPECTED_REDIRECT_QS}",
+            301,
+            False,
+        ),
+        (
+            "/fr/firefox/features/free-pdf-editor/",
+            f"{settings.FXC_BASE_URL}/fr/features/free-pdf-editor/{EXPECTED_REDIRECT_QS}",
             301,
             False,
         ),
