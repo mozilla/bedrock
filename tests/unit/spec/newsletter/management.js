@@ -841,8 +841,8 @@ describe('management.es6.js', function () {
             });
         });
 
-        it('should render an error message for an invalid / expired token', function () {
-            const error = { statusText: 'Not Found' };
+        it('should redirect to recovery page for an invalid / expired token (403)', function () {
+            const error = { status: 403, statusText: 'Forbidden' };
 
             spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
             spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
@@ -851,19 +851,41 @@ describe('management.es6.js', function () {
             spyOn(
                 NewsletterManagementForm,
                 'getNewsletterData'
-            ).and.returnValue(window.Promise.reject(newsletterData));
+            ).and.returnValue(window.Promise.reject(error));
             spyOn(
                 NewsletterManagementForm,
                 'getNewsletterStrings'
             ).and.returnValue(window.Promise.resolve(stringData));
+            spyOn(NewsletterManagementForm, 'redirectToRecoveryPage');
 
             return NewsletterManagementForm.init().then(() => {
-                const error = document
-                    .querySelector('.mzp-c-form-errors li:nth-child(1)')
-                    .innerHTML.trim();
-                expect(error).toEqual(
-                    'The supplied link has expired. Please <a href="/en-US/newsletter/recovery/">request a new link here</a>.'
-                );
+                expect(
+                    NewsletterManagementForm.redirectToRecoveryPage
+                ).toHaveBeenCalledWith({ expired: true });
+            });
+        });
+
+        it('should redirect to recovery page for an invalid / expired token (404)', function () {
+            const error = { status: 404, statusText: 'Not Found' };
+
+            spyOn(FormUtils, 'getUserToken').and.returnValue(TOKEN_MOCK);
+            spyOn(NewsletterManagementForm, 'getUserData').and.returnValue(
+                window.Promise.reject(error)
+            );
+            spyOn(
+                NewsletterManagementForm,
+                'getNewsletterData'
+            ).and.returnValue(window.Promise.reject(error));
+            spyOn(
+                NewsletterManagementForm,
+                'getNewsletterStrings'
+            ).and.returnValue(window.Promise.resolve(stringData));
+            spyOn(NewsletterManagementForm, 'redirectToRecoveryPage');
+
+            return NewsletterManagementForm.init().then(() => {
+                expect(
+                    NewsletterManagementForm.redirectToRecoveryPage
+                ).toHaveBeenCalledWith({ expired: true });
             });
         });
 
