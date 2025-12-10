@@ -1,8 +1,8 @@
-APScheduler==3.11.0
+APScheduler==3.11.1
 babis==0.2.4
 basket-client==1.2.0
 bleach[css]==6.1.0
-boto3==1.40.55
+boto3==1.42.6
 chardet==5.2.0
 commonware==0.6.0
 contentful==2.5.0
@@ -23,10 +23,10 @@ django-rq-email-backend==2.0.0
 django-storages[google]==1.14.4
 django-waffle==4.2.0
 django-watchman==1.3.0
-Django==5.2.8
-docutils==0.22.2
+Django==5.2.9
+docutils==0.22.3
 envcat==0.1.1
-everett==3.4.0
+everett==3.5.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==14.5.0  # Must match the required version in the Glean NPM package.
@@ -44,13 +44,13 @@ Pillow==11.3.0
 psycopg[binary]==3.2.8
 PyGithub==2.8.1
 pyOpenSSL==25.3.0
-PyYAML==6.0.2
+PyYAML==6.0.3
 qrcode==8.2
 querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests==2.32.5
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
-sentry-sdk==2.39.0
+sentry-sdk==2.47.0
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
@@ -58,5 +58,5 @@ wagtail-localize-smartling==0.10.3
 wagtail-localize==1.12.2
 wagtail-link-block==1.1.7
 Wand==0.6.13  # For animated GIF support
-Wagtail==7.2
+Wagtail==7.2.1
 whitenoise==6.11.0
