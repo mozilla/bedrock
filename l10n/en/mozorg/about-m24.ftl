@@ -36,7 +36,7 @@ m24-about-we-fund-and = We fund and invest in the people and efforts taking tech
 
 m24-about-read-more = Read more
 m24-about-read-the-latest = Read the latest { -brand-name-mozilla } news & articles
-m24-about-rewiring-mozilla = Doing for AI What We Did for the Web. Read about our next generation strategy and how we’re transforming { -brand-name-mozilla } for the Era of AI.
+m24-about-rewiring-mozilla = Rewiring { -brand-name-mozilla }: Doing for AI What We Did for the Web. Read about our next generation strategy and how we’re transforming { -brand-name-mozilla } for the Era of AI.
 m24-about-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-about-watch-here = Watch here
 m24-about-can-wen-have = Can We Have a  Double Bottom Line for Tech? Mark Surman discusses how we can build a tech ecosystem with a double bottom line—one that values both mission and money.
