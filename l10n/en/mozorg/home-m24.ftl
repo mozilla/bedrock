@@ -98,7 +98,6 @@ m24-home-agent-platform = Agent Platform
 m24-home-any-agent = Any Agent
 m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla-ai-v2 } Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
 
-
 ## Media Springboard
 
 m24-home-type = Type
@@ -134,6 +133,7 @@ m24-home-rewiring-mozilla = Rewiring { -brand-name-mozilla }: Doing for AI what 
 m24-home-interview-with-mark = Interview with Mark Surman: How { -brand-name-mozilla } is adapting to the AI age
 m24-home-women-in-product = Women In Product conversation: Adding GenAI Without Losing the Plot
 m24-home-scaling-open-source = Scaling Open Source AI: Mark Surman & Tim Bradshaw
+
 ## Showcase
 
 m24-home-rise25-awards = { -brand-name-rise25 } Awards
