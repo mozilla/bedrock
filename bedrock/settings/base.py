@@ -1101,6 +1101,9 @@ ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
 GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
 
+# Transcend Consent Management - airgap.js script URL
+TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
+
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
 STUB_ATTRIBUTION_RATE = config("STUB_ATTRIBUTION_RATE", default=str(1 if DEV else 0), parser=float)
