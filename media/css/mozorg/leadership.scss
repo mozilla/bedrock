@@ -87,6 +87,14 @@ $image-path: '/media/protocol/img';
     }
 }
 
+.leadership-section {
+    scroll-margin-top: $layout-sm;
+
+     @media #{$mq-md} {
+        scroll-margin-top: $layout-lg;
+    }
+}
+
 main .leadership-section:first-of-type .leadership-title:first-of-type {
     margin-top: 0;
 }
