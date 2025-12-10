@@ -51,43 +51,83 @@
       ) }}
     {% endif %}
 
-    {{ gallery_tile(
-      class='m24-l-grid-half',
-      image=picture(
-        url="img/home/2024/issues/irl-720.jpg",
-        sources=[
-          {
-            "srcset" : {
-              "img/home/2024/issues/irl-1024.jpg": "1024w",
-              "img/home/2024/issues/irl-1232.jpg": "1232w",
-              "img/home/2024/issues/irl-1360.jpg": "1360w",
-              "img/home/2024/issues/irl-1450.jpg": "1450w",
-              "img/home/2024/issues/irl-375.jpg": "375w",
-              "img/home/2024/issues/irl-688.jpg": "688w",
-              "img/home/2024/issues/irl-720.jpg": "720w",
-              "img/home/2024/issues/irl-976.jpg": "976w",
+    {% if ftl_has_messages('m24-home-mozilla-nothing-personal', 'm24-home-our-new-magazine', 'm24-home-read-now' ) %}
+      {{ gallery_tile(
+        class='m24-l-grid-half',
+        image=picture(
+          url="img/home/2024/issues/np-720.jpg",
+          sources=[
+            {
+              "srcset" : {
+                "img/home/2024/issues/np-1024.jpg": "1024w",
+                "img/home/2024/issues/np-1232.jpg": "1232w",
+                "img/home/2024/issues/np-1360.jpg": "1360w",
+                "img/home/2024/issues/np-1450.jpg": "1450w",
+                "img/home/2024/issues/np-375.jpg": "375w",
+                "img/home/2024/issues/np-688.jpg": "688w",
+                "img/home/2024/issues/np-720.jpg": "720w",
+                "img/home/2024/issues/np-976.jpg": "976w",
+              },
+              'sizes': {
+                "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
+                "(min-width: 1440px)": "680px",
+                "default": "calc(100vw - 32px)",
+              },
             },
-            'sizes': {
-              "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-              "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
-              "(min-width: 1440px)": "680px",
-              "default": "calc(100vw - 32px)",
+          ],
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+            "width": "1450",
+            "height": "725",
+          }
+        ),
+        title=ftl('m24-home-mozilla-nothing-personal'),
+        desc=ftl('m24-home-our-new-magazine'),
+        link_url='https://www.mozillafoundation.org/en/nothing-personal/' + utm_params,
+        cta_text=ftl('m24-home-read-now'),
+        link_attributes='rel="external" target="_blank" data-link-text="Read Now about Nothing Personal"',
+      ) }}
+    {% else %}
+      {{ gallery_tile(
+        class='m24-l-grid-half',
+        image=picture(
+          url="img/home/2024/issues/irl-720.jpg",
+          sources=[
+            {
+              "srcset" : {
+                "img/home/2024/issues/irl-1024.jpg": "1024w",
+                "img/home/2024/issues/irl-1232.jpg": "1232w",
+                "img/home/2024/issues/irl-1360.jpg": "1360w",
+                "img/home/2024/issues/irl-1450.jpg": "1450w",
+                "img/home/2024/issues/irl-375.jpg": "375w",
+                "img/home/2024/issues/irl-688.jpg": "688w",
+                "img/home/2024/issues/irl-720.jpg": "720w",
+                "img/home/2024/issues/irl-976.jpg": "976w",
+              },
+              'sizes': {
+                "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
+                "(min-width: 1440px)": "680px",
+                "default": "calc(100vw - 32px)",
+              },
             },
-          },
-        ],
-        optional_attributes={
-          "loading": "lazy",
-          "alt": ftl('m24-home-alt-irl-host'),
-          "width": "1450",
-          "height": "725",
-        }
-      ),
-      title=ftl('m24-home-irl-podcast'),
-      desc=ftl('m24-home-our-multiaward-winning'),
-      link_url='https://irlpodcast.org/' + utm_params,
-      cta_text=ftl('m24-home-irl-listen-now'),
-      link_attributes='rel="external" data-link-text="Listen"',
-    ) }}
+          ],
+          optional_attributes={
+            "loading": "lazy",
+            "alt": ftl('m24-home-alt-irl-host'),
+            "width": "1450",
+            "height": "725",
+          }
+        ),
+        title=ftl('m24-home-irl-podcast'),
+        desc=ftl('m24-home-our-multiaward-winning'),
+        link_url='https://irlpodcast.org/' + utm_params,
+        cta_text=ftl('m24-home-irl-listen-now'),
+        link_attributes='rel="external" data-link-text="Listen"',
+      ) }}
+    {% endif %}
 
   </div>
 </section>
