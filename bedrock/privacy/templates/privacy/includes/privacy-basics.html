@@ -46,8 +46,8 @@
     ),
     ) %}
       {{ title|safe }}
-      <p class="c-subtitle">{{ ftl('privacy-firefox-youre-in-control') }}</p>
-      <p>{{ ftl('privacy-firefox-privacy-isnt-just') }}</p>
+      <p class="c-subtitle">{{ ftl('privacy-firefox-youre-in-control-v2', fallback='privacy-firefox-youre-in-control') }}</p>
+      <p>{{ ftl('privacy-firefox-privacy-isnt-just-v2', fallback='privacy-firefox-privacy-isnt-just') }}</p>
       <p>
         <a href="#notice" class="mzp-c-button mzp-t-secondary">
         {{ ftl('privacy-firefox-read-our-privacy') }}
@@ -88,7 +88,7 @@
 
         {% call picto(
           base_el='li',
-          title=ftl('privacy-firefox-how-we-use'),
+          title=ftl('privacy-firefox-how-we-use-v2', fallback='privacy-firefox-how-we-use'),
           image=resp_img(
             url='img/privacy/firefox/data.svg',
             optional_attributes={
@@ -102,7 +102,7 @@
           ),
           body=True,
         ) %}
-            {{ ftl('privacy-firefox-we-use-data') }}
+            {{ ftl('privacy-firefox-we-use-data-v2', attrs='href="https://firefox-source-docs.mozilla.org/contributing/data-collection.html?utm_source=www.firefox.com&utm_medium=referral#browsing-data"', fallback='privacy-firefox-we-use-data') }}
         {% endcall %}
 
         {% call picto(
