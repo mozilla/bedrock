@@ -39,7 +39,7 @@ m24-about-read-the-latest = Read the latest { -brand-name-mozilla } news & artic
 m24-about-rewiring-mozilla = Rewiring { -brand-name-mozilla }: Doing for AI What We Did for the Web. Read about our next generation strategy and how we’re transforming { -brand-name-mozilla } for the Era of AI.
 m24-about-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-about-watch-here = Watch here
-m24-about-can-we-have = Can We Have a  Double Bottom Line for Tech? Mark Surman discusses how we can build a tech ecosystem with a double bottom line—one that values both mission and money.
+m24-about-can-we-have = Can We Have a Double Bottom Line for Tech? Mark Surman discusses how we can build a tech ecosystem with a double bottom line—one that values both mission and money.
 m24-about-watch-now = Watch now
 
 ## Showcase
