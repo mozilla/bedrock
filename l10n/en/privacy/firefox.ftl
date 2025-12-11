@@ -7,11 +7,11 @@
 # hidden heading for the sections at the top of the page
 privacy-firefox-basics = Privacy basics
 # Obsolete string (expires: 2026-02-10)
-privacy-firefox-youre-in-control = You're in control
-privacy-firefox-youre-in-control-v2 = You're in control of your data
+privacy-firefox-youre-in-control = You’re in control
+privacy-firefox-youre-in-control-v2 = You’re in control of your data
 # Obsolete string (expires: 2026-02-10)
-privacy-firefox-privacy-isnt-just = Privacy isn't just a setting — it's your right. The { -brand-name-firefox } Privacy Notice is built on clarity, control and responsible defaults. We believe you should always be in charge of what happens with your data. You can count on us to clearly explain what { -brand-name-firefox } does by default and adjust your settings so you can browse the way you want.
-privacy-firefox-privacy-isnt-just-v2 = Here's the big picture: { -brand-name-firefox } is built with privacy and protection as the default. We don't know that much about you. What little we do know, we never sell. And unlike other browsers, we give you the choice to turn off the stuff that annoys you. The { -brand-name-firefox } Privacy Notice is built on clarity, control and responsible defaults. You can count on us to clearly explain what { -brand-name-firefox } does by default and adjust your settings so you can browse the way you want.
+privacy-firefox-privacy-isnt-just = Privacy isn’t just a setting — it’s your right. The { -brand-name-firefox } Privacy Notice is built on clarity, control and responsible defaults. We believe you should always be in charge of what happens with your data. You can count on us to clearly explain what { -brand-name-firefox } does by default and adjust your settings so you can browse the way you want.
+privacy-firefox-privacy-isnt-just-v2 = Here’s the big picture: { -brand-name-firefox } is built with privacy and protection as the default. We don’t know that much about you. What little we do know, we never sell. And unlike other browsers, we give you the choice to turn off the stuff that annoys you. The { -brand-name-firefox } Privacy Notice is built on clarity, control and responsible defaults. You can count on us to clearly explain what { -brand-name-firefox } does by default and adjust your settings so you can browse the way you want.
 privacy-firefox-read-our-privacy = Read our Privacy Notice
 
 privacy-firefox-keeping-you-informed = Keeping you informed, every step of the way
