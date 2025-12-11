@@ -64,15 +64,6 @@ m24-home-mozilla-builders= { -brand-name-mozilla } Builders
 m24-home-mozilla-builders-v2= { -brand-name-mozilla-builders }
 m24-home-builders-helps-independent = Builders helps independent developers create transformative open-source AI projects through bespoke collaborations, programming, and community.
 m24-home-builders-helps-independent-v2 = { -brand-name-mozilla-builders } helps independent developers create transformative open-source AI projects through bespoke collaborations, programming, and community.
-# Used as an accessible text alternative for an image
-m24-home-alt-mozfest = A large group of people gathered in a busy indoor event space, viewed from above.
-m24-home-mozfest-join-us = Join us at { -brand-name-mozilla-festival }
-m24-home-mozfest-the-future = The future of tech isn’t set — it’s ours to shape. Join us in Barcelona Nov 7–9 to unlearn defaults, imagine boldly and build what’s next.
-m24-home-mozfest-get-your = Get your badge today
-# Used as an accessible text alternative for an image
-m24-home-alt-lumigator-logo = { -brand-name-lumigator} logo.
-m24-home-lumigator = { -brand-name-lumigator}
-m24-home-find-the-just = Find the right LLM for your needs, use case and data.
 m24-home-own-what-you = Own What You Build
 m24-home-do-we-need-a = Do we need a “LAMP Stack” for the AI era? We need tech that’s transparent, accountable, and owned by the people who use it.
 m24-home-watch-now = Watch now
@@ -88,7 +79,6 @@ m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is
 m24-home-join-today = Join today
 m24-home-a-double-bottom = A Double Bottom Line for Tech
 m24-home-mark-surman-discusses = Mark Surman discusses how we can build a tech ecosystem with a double bottom line — one that values both mission and money.
-m24-home-how-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
 m24-home-agent-platform = Agent Platform
 # Obsolete string (expires 2026-04-05)
 m24-home-any-agent = Any Agent
