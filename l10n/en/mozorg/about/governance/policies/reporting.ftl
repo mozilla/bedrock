@@ -16,7 +16,7 @@ reporting-how-to-give-a-report = How to Give a Report
 reporting-if-you-believe-someone = If you believe someone is in physical danger, call your local emergency number.
 reporting-if-you-have-a-report-by = If you have a report <strong>by <em>and</em> about</strong> a contributor (for example, the report is made <strong>by</strong> one contributor <strong>about</strong> another contributor), then you should make your report at the <a href="{ $community_hotline }">Community Participation Guidelines hotline</a>.
 reporting-if-you-have-a-report-by-email = If you have a report <strong>by <em>and</em> about</strong> a contributor (for example, the report is made <strong>by</strong> one contributor <strong>about</strong> another contributor), then you should make your report at the <a href="{ $mailto_report }">cpg-report@mozilla.com</a>.
-reporting-if-you-have-a-report-involving = If you have a report by a contributor about <strong>an employee</strong>, then you should report at the <a href="{ $employee_hotline }">{ -brand-name-mozilla } Employee hotline</a>. If you are an employee and need to submit a report, please consult { -brand-name-mozilla }'s internal policies and procedures to understand the reporting options available to you.
+reporting-if-you-have-a-report-involving-v2 = If you have a report by a contributor about <strong>an employee</strong>, then you should report at the <a href="{ $employee_hotline }">{ -brand-name-mozilla } Employee hotline</a>. If you are an employee and need to submit a report, please consult { -brand-name-mozilla }'s internal policies and procedures to understand the reporting options available to you.
 reporting-put-another-way = Put another way…
 reporting-by = By
 reporting-employee = Employee
