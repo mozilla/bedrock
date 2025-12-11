@@ -88,11 +88,7 @@ m24-home-mozilla-data-collective-is = { -brand-name-mozilla } Data Collective is
 m24-home-join-today = Join today
 m24-home-a-double-bottom = A Double Bottom Line for Tech
 m24-home-mark-surman-discusses = Mark Surman discusses how we can build a tech ecosystem with a double bottom line — one that values both mission and money.
-
-m24-home-our-transformation = Our Transformation
 m24-home-how-do-legacy = How do legacy values collide with innovation? In this conversation, Mark Surman previews how we’re transforming { -brand-name-mozilla } for the era of AI.
-# Used as an accessible text alternative for an image
-m24-home-alt-transformation = Change Signal with Mark Surman and MBS
 m24-home-agent-platform = Agent Platform
 # Obsolete string (expires 2026-04-05)
 m24-home-any-agent = Any Agent

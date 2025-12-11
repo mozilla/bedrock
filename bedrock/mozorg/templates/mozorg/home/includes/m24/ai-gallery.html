@@ -205,150 +205,99 @@
           link_attributes='rel="external" target="_blank" data-link-text="Read more (Ventures)"'
         ) }}
 
-      {% if ftl_has_messages('m24-home-a-double-bottom', 'm24-home-mark-surman-discusses' ) %}
-        {{ gallery_tile(
-          class='m24-l-grid-quarter',
-          image=picture(
-            url="img/home/2024/ai-gallery/ecosystem-mobile-720.jpg",
-            sources=[
-              {
-                'media': '(max-width: 1311px)',
-                "srcset" : {
-                  "img/home/2024/ai-gallery/ecosystem-mobile-375.jpg": "375w",
-                  "img/home/2024/ai-gallery/ecosystem-mobile-720.jpg": "720w",
-                  "img/home/2024/ai-gallery/ecosystem-mobile-976.jpg": "976w",
-                  "img/home/2024/ai-gallery/ecosystem-mobile-1232.jpg": "1232w",
-                  "img/home/2024/ai-gallery/ecosystem-mobile-1450.jpg": "1450w",
-                },
-                'sizes': {
-                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-                  "default": "calc(100vw - 32px)",
-                },
-                'width' : '1450',
-                'height' : '723'
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image=picture(
+          url="img/home/2024/ai-gallery/ecosystem-mobile-720.jpg",
+          sources=[
+            {
+              'media': '(max-width: 1311px)',
+              "srcset" : {
+                "img/home/2024/ai-gallery/ecosystem-mobile-375.jpg": "375w",
+                "img/home/2024/ai-gallery/ecosystem-mobile-720.jpg": "720w",
+                "img/home/2024/ai-gallery/ecosystem-mobile-976.jpg": "976w",
+                "img/home/2024/ai-gallery/ecosystem-mobile-1232.jpg": "1232w",
+                "img/home/2024/ai-gallery/ecosystem-mobile-1450.jpg": "1450w",
               },
-              {
-                'srcset': {
-                  "img/home/2024/ai-gallery/ecosystem-desktop-344.jpg": "344w",
-                  "img/home/2024/ai-gallery/ecosystem-desktop-664.jpg": "664w",
-                },
-                'sizes': {
-                  "(min-width: 1440px)": "680px",
-                  "default": "calc((100vw - 64px) / 2)",
-                },
-                'width' : '1360',
-                'height' : '1088'
+              'sizes': {
+                "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                "default": "calc(100vw - 32px)",
               },
-            ],
-            optional_attributes={
-              "loading": "lazy",
-              "alt": "",
-            }
-          ),
-          tag=ftl('m24-home-tag-event'),
-          title=ftl('m24-home-a-double-bottom'),
-          desc=ftl('m24-home-mark-surman-discusses'),
-          link_url='https://www.youtube.com/watch?v=BoFUABRULxg',
-          cta_text=ftl('m24-home-watch-now'),
-          link_attributes='rel="external" target="_blank" data-link-text="Watch now (A Double Bottom Line for Tech )"'
-        ) }}
-      {% else %}
-        {{ gallery_tile(
-          class='m24-l-grid-quarter',
-          image=picture(
-            url="img/home/2024/ai-gallery/change-signal-mobile-720.jpg",
-            sources=[
-              {
-                'media': '(max-width: 1311px)',
-                "srcset" : {
-                  "img/home/2024/ai-gallery/change-signal-mobile-375.jpg": "375w",
-                  "img/home/2024/ai-gallery/change-signal-mobile-720.jpg": "720w",
-                  "img/home/2024/ai-gallery/change-signal-mobile-976.jpg": "976w",
-                  "img/home/2024/ai-gallery/change-signal-mobile-1232.jpg": "1232w",
-                  "img/home/2024/ai-gallery/change-signal-mobile-1450.jpg": "1450w",
-                },
-                'sizes': {
-                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-                  "default": "calc(100vw - 32px)"
-                },
-                'width' : '1450',
-                'height' : '723'
+              'width' : '1450',
+              'height' : '723'
+            },
+            {
+              'srcset': {
+                "img/home/2024/ai-gallery/ecosystem-desktop-344.jpg": "344w",
+                "img/home/2024/ai-gallery/ecosystem-desktop-664.jpg": "664w",
               },
-              {
-                'srcset': {
-                  "img/home/2024/ai-gallery/change-signal-desktop-344.jpg": "344w",
-                  "img/home/2024/ai-gallery/change-signal-desktop-664.jpg": "664w",
-                },
-                'sizes': {
-                  "(min-width: 1440px)": "332px",
-                  "default": "calc((100vw - 64px) / 4)",
-                },
-                'width' : '664',
-                'height' : '664'
+              'sizes': {
+                "(min-width: 1440px)": "680px",
+                "default": "calc((100vw - 64px) / 2)",
               },
-            ],
-            optional_attributes={
-              "loading": "lazy",
-              "alt": ftl('m24-home-alt-transformation'),
-            }
-          ),
-          tag=ftl('m24-home-tag-video'),
-          title=ftl('m24-home-our-transformation'),
-          desc=ftl('m24-home-how-do-legacy'),
-          link_url='https://www.youtube.com/watch?v=fIVj45F9dfI&utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-homepage',
-          cta_text=ftl('m24-home-watch-now'),
-          link_attributes='rel="external" target="_blank" data-link-text="Watch now"'
-        ) }}
-      {% endif %}
+              'width' : '1360',
+              'height' : '1088'
+            },
+          ],
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+          }
+        ),
+        tag=ftl('m24-home-tag-event'),
+        title=ftl('m24-home-a-double-bottom'),
+        desc=ftl('m24-home-mark-surman-discusses'),
+        link_url='https://www.youtube.com/watch?v=BoFUABRULxg',
+        cta_text=ftl('m24-home-watch-now'),
+        link_attributes='rel="external" target="_blank" data-link-text="Watch now (A Double Bottom Line for Tech )"'
+      ) }}
 
-      {% if ftl_has_messages('m24-home-any-agent', 'm24-home-stop-wiring-tools', 'm24-home-get-started' ) %}
-        {{ gallery_tile(
-          class='m24-l-grid-quarter',
-          image=picture(
-            url="img/home/2024/ai-gallery/agent-platform-mobile-720.jpg",
-            sources=[
-              {
-                'media': '(max-width: 1311px)',
-                "srcset" : {
-                  "img/home/2024/ai-gallery/agent-platform-mobile-375.jpg": "375w",
-                  "img/home/2024/ai-gallery/agent-platform-mobile-720.jpg": "720w",
-                  "img/home/2024/ai-gallery/agent-platform-mobile-976.jpg": "976w",
-                  "img/home/2024/ai-gallery/agent-platform-mobile-1232.jpg": "1232w",
-                  "img/home/2024/ai-gallery/agent-platform-mobile-1450.jpg": "1450w",
-                },
-                'sizes': {
-                  "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-                  "default": "calc(100vw - 32px)",
-                },
-                'width' : '1450',
-                'height' : '723'
+      {{ gallery_tile(
+        class='m24-l-grid-quarter',
+        image=picture(
+          url="img/home/2024/ai-gallery/agent-platform-mobile-720.jpg",
+          sources=[
+            {
+              'media': '(max-width: 1311px)',
+              "srcset" : {
+                "img/home/2024/ai-gallery/agent-platform-mobile-375.jpg": "375w",
+                "img/home/2024/ai-gallery/agent-platform-mobile-720.jpg": "720w",
+                "img/home/2024/ai-gallery/agent-platform-mobile-976.jpg": "976w",
+                "img/home/2024/ai-gallery/agent-platform-mobile-1232.jpg": "1232w",
+                "img/home/2024/ai-gallery/agent-platform-mobile-1450.jpg": "1450w",
               },
-              {
-                'srcset': {
-                  "img/home/2024/ai-gallery/agent-platform-desktop-344.jpg": "344w",
-                  "img/home/2024/ai-gallery/agent-platform-desktop-664.jpg": "664w",
-                },
-                'sizes': {
-                  "(min-width: 1440px)": "332px",
-                  "default": "calc((100vw - 64px) / 4)",
-                },
-                'width' : '664',
-                'height' : '664'
+              'sizes': {
+                "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+                "default": "calc(100vw - 32px)",
               },
-            ],
-            optional_attributes={
-              "loading": "lazy",
-              "alt": "",
-            }
-          ),
-          tag=ftl('m24-home-tag-product'),
-          title=ftl('m24-home-agent-platform', fallback='m24-home-any-agent'),
-          desc=ftl('m24-home-stop-wiring-tools'),
-          link_url='https://www.mozilla.ai/product/agent-platform' + utm_params,
-          cta_text=ftl('m24-home-get-started'),
-          link_attributes='rel="external" target="_blank" data-link-text="Get started (Agent Platform)"'
-        ) }}
-      {% endif %}
+              'width' : '1450',
+              'height' : '723'
+            },
+            {
+              'srcset': {
+                "img/home/2024/ai-gallery/agent-platform-desktop-344.jpg": "344w",
+                "img/home/2024/ai-gallery/agent-platform-desktop-664.jpg": "664w",
+              },
+              'sizes': {
+                "(min-width: 1440px)": "332px",
+                "default": "calc((100vw - 64px) / 4)",
+              },
+              'width' : '664',
+              'height' : '664'
+            },
+          ],
+          optional_attributes={
+            "loading": "lazy",
+            "alt": "",
+          }
+        ),
+        tag=ftl('m24-home-tag-product'),
+        title=ftl('m24-home-agent-platform', fallback='m24-home-any-agent'),
+        desc=ftl('m24-home-stop-wiring-tools'),
+        link_url='https://www.mozilla.ai/product/agent-platform' + utm_params,
+        cta_text=ftl('m24-home-get-started'),
+        link_attributes='rel="external" target="_blank" data-link-text="Get started (Agent Platform)"'
+      ) }}
     </div>
   </div>
 </section>
