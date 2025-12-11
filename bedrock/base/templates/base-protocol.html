@@ -10,6 +10,8 @@
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
+    {% include 'includes/transcend-consent.html' %}
+
     <!--[if !IE]><!-->
     {{ js_bundle('site') }}
 

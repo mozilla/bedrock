@@ -45,6 +45,8 @@ _csp_connect_src = {
     "o1069899.ingest.sentry.io",
     "o1069899.sentry.io",
     "region1.google-analytics.com",
+    "telemetry.transcend.io",  # Transcend Consent Management
+    "telemetry.us.transcend.io",  # Transcend Consent Management
     "www.google-analytics.com",
     "www.googletagmanager.com",
     # This is for glean pings and deletion requests.
@@ -96,9 +98,11 @@ _csp_media_src = {
 _csp_script_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
+    "cdn.transcend.io",  # Transcend Consent Management
     "js.stripe.com",
     "s.ytimg.com",
     "tagmanager.google.com",
+    "transcend-cdn.com",  # Transcend Consent Management
     "www.google-analytics.com",
     "www.googletagmanager.com",
     "www.youtube.com",
