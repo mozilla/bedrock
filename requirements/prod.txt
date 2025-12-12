@@ -49,9 +49,9 @@ boto3==1.42.6 \
     --hash=sha256:11dab889a24f378af6c93afd4aa06d7cace3866cbf02e78c7a77e9a7fb41967a \
     --hash=sha256:69ff5cf6431fe7870da009f23aceabb20d56b4c9852ba9a808eaf6cc30ae02a5
     # via -r requirements/prod.in
-botocore==1.42.6 \
-    --hash=sha256:ab389c6874dfbdc4c18de9b4a02d300cb6c7f6f2d4622c73e5965aeef80e570d \
-    --hash=sha256:c4aebdc391f3542270ebea8b8f0060fde514f6441de207dce862ed759887607e
+botocore==1.42.9 \
+    --hash=sha256:74f69bfd116cc7c8215481284957eecdb48580e071dd50cb8c64356a866abd8c \
+    --hash=sha256:f99ba2ca34e24c4ebec150376c815646970753c032eb84f230874b2975a185a8
     # via
     #   boto3
     #   s3transfer
@@ -408,6 +408,7 @@ django==5.2.9 \
     #   wagtail-link-block
     #   wagtail-localize
     #   wagtail-localize-smartling
+    #   wagtail-thumbnail-choice-block
 django-cors-headers==4.9.0 \
     --hash=sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449 \
     --hash=sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8
@@ -1718,9 +1719,9 @@ tzlocal==5.3.1 \
     --hash=sha256:cceffc7edecefea1f595541dbd6e990cb1ea3d19bf01b2809f362a03dd7921fd \
     --hash=sha256:eb1a66c3ef5847adf7a834f1be0800581b683b5608e74f86ecbcef8ab91bb85d
     # via apscheduler
-urllib3==2.6.1 \
-    --hash=sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f \
-    --hash=sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b
+urllib3==2.6.2 \
+    --hash=sha256:016f9c98bb7e98085cb2b4b17b87d2c702975664e4f060c6532e64d1c1a5e797 \
+    --hash=sha256:ec21cddfe7724fc7cb4ba4bea7aa8e2ef36f607a4bab81aa6ce42a13dc3f03dd
     # via
     #   botocore
     #   pygithub
@@ -1734,6 +1735,7 @@ wagtail==7.2.1 \
     #   wagtail-link-block
     #   wagtail-localize
     #   wagtail-localize-smartling
+    #   wagtail-thumbnail-choice-block
     #   wagtaildraftsharing
 wagtail-link-block==1.1.7 \
     --hash=sha256:5b7346bd60b65b00d7bafa48ab3b54b09c97abd085c0afd8f691be3219ff7a1c \
@@ -1748,6 +1750,10 @@ wagtail-localize==1.12.2 \
 wagtail-localize-smartling==0.10.3 \
     --hash=sha256:5f3d7b7fa97c075023f711786cccd761d340488f29ac8bcbb168db1b6a5a4341 \
     --hash=sha256:8fad0510319918cc57071d4ef6a07f8ab5a7fa16040b399e6bc084fec1f232ae
+    # via -r requirements/prod.in
+wagtail-thumbnail-choice-block==0.1.2 \
+    --hash=sha256:8d42f6e188250dfe4f8b1f3b6215cbe881563e6f612c3cadd4b495c280ae4234 \
+    --hash=sha256:a77064d74660ec2a9affafec1d7417b39663693fbaebe48c6c52b8830b0eccbd
     # via -r requirements/prod.in
 wagtaildraftsharing==0.3.0 \
     --hash=sha256:2e77b46df0b164c089d25ff146e25fa3601e52de7ccaa9226925e6e6357fdeab \

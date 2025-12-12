@@ -729,6 +729,7 @@ INSTALLED_APPS = [
     "taggit",
     "csp",
     "wagtail_link_block",
+    "wagtail_thumbnail_choice_block",
     # Local apps
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
