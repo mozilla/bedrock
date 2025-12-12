@@ -25,6 +25,8 @@
 {% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'pl', 'pt-PT', 'pt-BR'] %}
 {% set show_fundraising_banner = switch('fundraising-banner-2025eoy') and LANG in fundraising_banner_langs %}
 
+{% set show_state_of_mozilla_2025 = switch('state-of-mozilla-2025') %}
+
 {% block page_css %}
   {{ css_bundle('m24-root') }}
   {{ css_bundle('m24-base') }}
@@ -57,7 +59,11 @@
   {% include 'mozorg/home/includes/m24/media-springboard.html'%}
   {% include 'mozorg/home/includes/m24/data-collective.html'%}
   {% if ftl_has_messages('m24-home-state-of-mozilla', 'm24-home-mozilla-is-reinventing-itself', 'm24-home-read-the-report') %}
-    {% include 'mozorg/home/includes/m24/showcase-som.html'%}
+    {% if show_state_of_mozilla_2025 %}
+      {% include 'mozorg/home/includes/m24/showcase-som-2025.html'%}
+    {% else %}
+      {% include 'mozorg/home/includes/m24/showcase-som.html'%}
+    {% endif %}
   {% else %}
     {% include 'mozorg/home/includes/m24/showcase.html'%}
   {% endif %}
