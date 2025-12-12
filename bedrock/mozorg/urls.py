@@ -15,7 +15,6 @@ it must go in mozorg.nonlocale_urls, not this file
 from django.conf import settings
 from django.urls import path
 
-from bedrock.cms.decorators import prefer_cms
 from bedrock.redirects.util import redirect
 
 from . import views
@@ -143,40 +142,6 @@ urlpatterns = [
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
     path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
-    # Advertising pages which are now Wagtail Pages.
-    path(
-        "advertising/",
-        prefer_cms(
-            views.advertising_landing_view,
-            fallback_lang_codes=["en-US"],
-        ),
-        name="mozorg.advertising.landing",
-    ),
-    path(
-        "advertising/principles/",
-        prefer_cms(
-            views.advertising_principles_view,
-            fallback_lang_codes=["en-US"],
-        ),
-        name="mozorg.advertising.principles",
-    ),
-    path(
-        "advertising/solutions/",
-        prefer_cms(
-            views.advertising_solutions_view,
-            fallback_lang_codes=["en-US"],
-        ),
-        name="mozorg.advertising.solutions",
-    ),
-    path(
-        "advertising/impact/",
-        prefer_cms(
-            views.advertising_impact_view,
-            fallback_lang_codes=["en-US"],
-        ),
-        name="mozorg.advertising.impact",
-    ),
-    # End of advertising pages.
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
     redirect("advertising/formats/", "/advertising/solutions/", prepend_locale=False),
