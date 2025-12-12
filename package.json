@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
+  "engines": {
+    "node": "^24.0.0",
+    "npm": "^11.6.4"
+  },
   "dependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
