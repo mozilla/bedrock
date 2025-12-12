@@ -5,4 +5,3 @@
 ### URL: https://www-dev.allizom.org/
 
 m24-home-go-chaosfree-with = Go chaos-free with one app for all your emails, calendars and contacts.
-m24-home-find-the-just = Find the “just right” LLM for your needs, use case and data — like Goldilocks, but with sharper teeth.
