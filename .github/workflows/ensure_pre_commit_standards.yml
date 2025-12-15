@@ -1,0 +1,35 @@
+name: Enforce pre-commit standards
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: "Install npm dependencies"
+        run: npm ci
+      - name: "Cache pre-commit environments"
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: "Install pre-commit"
+        run: pip install pre-commit
+      - name: "Run pre-commit hooks"
+        run: pre-commit run --all-files --show-diff-on-failure
+        env:
+          SKIP: check-untracked-migrations,check-unapplied-migrations,check-absent-migrations
