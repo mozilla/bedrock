@@ -47,6 +47,8 @@ _csp_connect_src = {
     "region1.google-analytics.com",
     "telemetry.transcend.io",  # Transcend Consent Management
     "telemetry.us.transcend.io",  # Transcend Consent Management
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
     "www.google-analytics.com",
     "www.googletagmanager.com",
     # This is for glean pings and deletion requests.
@@ -113,6 +115,8 @@ _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
     csp.constants.UNSAFE_INLINE,
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
 }
 
 # 2. TEST-SPECIFIC SETTINGS
