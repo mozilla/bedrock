@@ -59,6 +59,7 @@
     max-width: 30em;
 }
 
+// Protocol issue: https://github.com/mozilla/protocol/issues/1102
 #newsletter-submit {
     position: relative;
 }
@@ -68,6 +69,24 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+@keyframes pulse {
+    93.75%,
+    100% {opacity:.2}
+}
+
+.submit-loading circle {
+    animation: pulse .8s linear infinite;
+    animation-delay:-.8s
+}
+
+.submit-loading circle:nth-child(2) {
+    animation-delay:-.65s
+}
+
+.submit-loading circle:nth-child(3) {
+    animation-delay:-.5s
 }
 
 // style classes automatically added by python to match Protocol form error styles
