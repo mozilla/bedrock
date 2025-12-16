@@ -19,6 +19,9 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
+from bedrock.mozorg.blocks.anonym import (
+    SectionBlock as AnonymSectionBlock,
+)
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -365,3 +368,22 @@ class ContentSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"
+
+
+class AnonymIndexPage(AbstractBedrockCMSPage):
+    subpage_types = []
+
+    sections = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("sections"),
+    ]
+
+    template = "mozorg/cms/anonym/anonym_index_page.html"

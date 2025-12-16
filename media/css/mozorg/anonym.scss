@@ -1,0 +1,16 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../m24/vars/lib' as *;
+@use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '../m24/base';
+
+:root {
+    --moz-sans-headline: 'Mozilla Sans Headline', sans-serif;
+}
