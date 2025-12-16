@@ -119,6 +119,10 @@ _csp_style_src = {
     "transcend-cdn.com",  # Transcend Consent Management
 }
 
+# Transcend Consent Management UI uses CSS-in-JS which requires inline styles.
+if TRANSCEND_AIRGAP_URL:  # noqa: F405
+    _csp_style_src.add(csp.constants.UNSAFE_INLINE)
+
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
