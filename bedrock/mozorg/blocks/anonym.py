@@ -330,6 +330,32 @@ class CTABlock(blocks.StructBlock):
         label_format = "Link - {label}"
 
 
+class StatBlock(blocks.StructBlock):
+    image = ImageChooserBlock(required=False)
+    heading = blocks.CharBlock(label="Heading")
+    statistic1_value = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    statistic1_label = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    statistic2_value = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    statistic2_label = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/stat-item.html"
+        label = "Statistic"
+        label_format = "Statistic - {heading}"
+
+
+class StatsListBlock(blocks.StructBlock):
+    stats = blocks.StreamBlock(
+        [
+            ("stat", StatBlock()),
+        ]
+    )
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/stats-list.html"
+        label = "Stats List"
+
+
 class SectionBlockSettings(blocks.StructBlock):
     theme = ThumbnailChoiceBlock(
         choices=(
@@ -364,6 +390,7 @@ class SectionBlock(blocks.StructBlock):
     content = blocks.StreamBlock(
         [
             ("figure_block", FigureBlock()),
+            ("stats_list_block", StatsListBlock()),
         ]
     )
     action = blocks.ListBlock(CTABlock(), min_num=0, max_num=1, default=[])
