@@ -176,11 +176,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
-    # CSP directive updates we're testing that we hope to move to the enforced policy.
-    # Only remove unsafe-inline from style-src if Transcend is not enabled,
-    # as Transcend's CSS-in-JS requires inline styles.
-    if not TRANSCEND_AIRGAP_URL:  # noqa: F405
-        CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
