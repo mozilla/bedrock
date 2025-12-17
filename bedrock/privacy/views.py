@@ -3,8 +3,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import re
 
+from django.shortcuts import redirect
+
 from bs4 import BeautifulSoup
 
+from bedrock.base.waffle import switch
 from bedrock.legal_docs.views import LegalDocView, load_legal_doc
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl_file_is_active
@@ -58,7 +61,15 @@ class FirefoxPrivacyPreviewDocView(PrivacyDocView):
     # A preview/upcoming PN for Firefox
     # Uses the same templates as the current/effective version,
     # but draws content from a dedicated preview file
+    #
+    # If ENABLE_FIREFOX_PRIVACY_NEXT is Off/False, then this
+    # will redirect to the main Firefox Privacy note
     ftl_files = ["privacy/firefox"]
+
+    def dispatch(self, *args, **kwargs):
+        if not switch("enable-firefox-privacy-next"):
+            return redirect("privacy.notices.firefox")
+        return super().dispatch(*args, **kwargs)
 
     def get_legal_doc(self):
         doc = super().get_legal_doc()
@@ -87,7 +98,7 @@ class FirefoxFocusPrivacyDocView(PrivacyDocView):
 
 firefox_notices = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice")
 
-firefox_notices_preview = FirefoxPrivacyDocView.as_view(legal_doc_name="firefox_privacy_notice_preview")
+firefox_notices_preview = FirefoxPrivacyPreviewDocView.as_view(legal_doc_name="firefox_privacy_notice_preview")
 
 firefox_focus_notices = FirefoxFocusPrivacyDocView.as_view(legal_doc_name="focus_privacy_notice")
 
