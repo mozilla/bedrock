@@ -3,6 +3,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from django.templatetags.static import static
+
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -16,6 +18,280 @@ HEADING_TEXT_FEATURES = [
     "subscript",
     "strikethrough",
 ]
+
+
+ICON_CHOICES = [
+    ("IRL", "IRL"),
+    ("accessibility", "Accessibility"),
+    ("accounts", "Accounts"),
+    ("add-search-engine", "Add Search Engine"),
+    ("ai", "AI"),
+    ("alert", "Alert"),
+    ("arrow-down", "Arrow Down"),
+    ("arrow-left-white", "Arrow Left White"),
+    ("arrow-left", "Arrow Left"),
+    ("arrow-right-white", "Arrow Right White"),
+    ("arrow-right", "Arrow Right"),
+    ("arrow-up", "Arrow Up"),
+    ("audio-card", "Audio Card"),
+    ("audio-mute", "Audio Mute"),
+    ("audio", "Audio"),
+    ("auto-play-block", "Auto Play Block"),
+    ("back", "Back"),
+    ("bell", "Bell"),
+    ("beta", "Beta"),
+    ("blog", "Blog"),
+    ("bookmark-menu", "Bookmark Menu"),
+    ("bookmark-narrow", "Bookmark Narrow"),
+    ("bookmark-remove", "Bookmark Remove"),
+    ("bookmark", "Bookmark"),
+    ("brightness", "Brightness"),
+    ("browser", "Browser"),
+    ("calendar", "Calendar"),
+    ("careers", "Careers"),
+    ("caret-down-white", "Caret Down White"),
+    ("caret-down", "Caret Down"),
+    ("caret-up", "Caret Up"),
+    ("chat", "Chat"),
+    ("check", "Check"),
+    ("close-white", "Close White"),
+    ("close", "Close"),
+    ("cloud", "Cloud"),
+    ("command-console", "Command Console"),
+    ("command-noautohide", "Command Noautohide"),
+    ("common-voice", "Common Voice"),
+    ("copy", "Copy"),
+    ("customize", "Customize"),
+    ("cut", "Cut"),
+    ("data-collection", "Data Collection"),
+    ("data-insights", "Data Insights"),
+    ("data-pie", "Data Pie"),
+    ("default-browser", "Default Browser"),
+    ("delete", "Delete"),
+    ("desktop", "Desktop"),
+    ("dev-edition", "Dev Edition"),
+    ("developer-innovations", "Developer Innovations"),
+    ("developer", "Developer"),
+    ("dictionaries", "Dictionaries"),
+    ("dock-bottom", "Dock Bottom"),
+    ("dock-left", "Dock Left"),
+    ("dock-right", "Dock Right"),
+    ("dock-undock", "Dock Undock"),
+    ("download-white", "Download White"),
+    ("download", "Download"),
+    ("earth", "Earth"),
+    ("edit-write", "Edit Write"),
+    ("email", "Email"),
+    ("enterprise", "Enterprise"),
+    ("event", "Event"),
+    ("expand-white", "Expand White"),
+    ("expand", "Expand"),
+    ("experiments", "Experiments"),
+    ("extension-available-update", "Extension Available Update"),
+    ("extension-recent-updates", "Extension Recent Updates"),
+    ("extensions-legacy", "Extensions Legacy"),
+    ("extensions", "Extensions"),
+    ("external-link-white", "External Link White"),
+    ("external-link", "External Link"),
+    ("eye-closed", "Eye Closed"),
+    ("eye-open", "Eye Open"),
+    ("facebook-container", "Facebook Container"),
+    ("features", "Features"),
+    ("feeback", "Feeback"),
+    ("file-code", "File Code"),
+    ("file-image", "File Image"),
+    ("file-lock", "File Lock"),
+    ("file-music", "File Music"),
+    ("file-text", "File Text"),
+    ("file", "File"),
+    ("fire-tv", "Fire TV"),
+    ("firefox-reality", "Firefox Reality"),
+    ("folder-open", "Folder Open"),
+    ("folder-plus", "Folder Plus"),
+    ("folder-save", "Folder Save"),
+    ("folder", "Folder"),
+    ("font", "Font"),
+    ("forget", "Forget"),
+    ("form fill", "Form Fill"),
+    ("forward", "Forward"),
+    ("full-screen-disabled", "Full Screen Disabled"),
+    ("full-screen-exit", "Full Screen Exit"),
+    ("full-screen", "Full Screen"),
+    ("gear", "Gear"),
+    ("get-involved", "Get Involved"),
+    ("globe-white", "Globe White"),
+    ("globe", "Globe"),
+    ("hashtag-narrow", "Hashtag Narrow"),
+    ("hashtag", "Hashtag"),
+    ("headphone", "Headphone"),
+    ("heart-white", "Heart White"),
+    ("heart", "Heart"),
+    ("help", "Help"),
+    ("highlight", "Highlight"),
+    ("history", "History"),
+    ("home", "Home"),
+    ("hubs", "Hubs"),
+    ("identity-notification", "Identity Notification"),
+    ("identity", "Identity"),
+    ("image", "Image"),
+    ("import", "Import"),
+    ("inbox", "Inbox"),
+    ("info", "Info"),
+    ("labs", "Labs"),
+    ("language", "Language"),
+    ("library", "Library"),
+    ("link", "Link"),
+    ("listen", "Listen"),
+    ("lite", "Lite"),
+    ("location-disabled", "Location Disabled"),
+    ("location-macos-disabled", "Location Macos Disabled"),
+    ("location-macos", "Location Macos"),
+    ("location-pin", "Location Pin"),
+    ("location-windows-disabled", "Location Windows Disabled"),
+    ("location-windows", "Location Windows"),
+    ("location", "Location"),
+    ("lock", "Lock"),
+    ("lockbox", "Lockbox"),
+    ("login", "Login"),
+    ("mail", "Mail"),
+    ("maximize", "Maximize"),
+    ("megaphone", "Megaphone"),
+    ("menu-white", "Menu White"),
+    ("menu", "Menu"),
+    ("microphone-disabled", "Microphone Disabled"),
+    ("microphone", "Microphone"),
+    ("midi", "Midi"),
+    ("minimize", "Minimize"),
+    ("minus", "Minus"),
+    ("mobile-narrow", "Mobile Narrow"),
+    ("mobile", "Mobile"),
+    ("monitor", "Monitor"),
+    ("more-horizontal", "More Horizontal"),
+    ("more-vertical", "More Vertical"),
+    ("mountain", "Mountain"),
+    ("mouse-pointer-disabled", "Mouse Pointer Disabled"),
+    ("mouse-pointer", "Mouse Pointer"),
+    ("mozilla", "Mozilla"),
+    ("new", "New"),
+    ("nightly", "Nightly"),
+    ("notes", "Notes"),
+    ("notifications-disabled", "Notifications Disabled"),
+    ("notifications", "Notifications"),
+    ("open-in-new", "Open In New"),
+    ("open", "Open"),
+    ("opensource", "Opensource"),
+    ("overflow", "Overflow"),
+    ("paperclip-narrow", "Paperclip Narrow"),
+    ("paperclip", "Paperclip"),
+    ("paste", "Paste"),
+    ("pause-white", "Pause White"),
+    ("pause", "Pause"),
+    ("performance", "Performance"),
+    ("photon", "Photon"),
+    ("pin-remove", "Pin Remove"),
+    ("pin", "Pin"),
+    ("play-white", "Play White"),
+    ("play", "Play"),
+    ("plugin-disabled", "Plugin Disabled"),
+    ("plugin", "Plugin"),
+    ("plus", "Plus"),
+    ("pocket-list", "Pocket List"),
+    ("pocket-remove", "Pocket Remove"),
+    ("pocket", "Pocket"),
+    ("popular", "Popular"),
+    ("popup-block", "Popup Block"),
+    ("preferences", "Preferences"),
+    ("printer", "Printer"),
+    ("privacy", "Privacy"),
+    ("private-browsing", "Private Browsing"),
+    ("protocol", "Protocol"),
+    ("proton", "Proton"),
+    ("query", "Query"),
+    ("quit", "Quit"),
+    ("quote", "Quote"),
+    ("read", "Read"),
+    ("reader-mode", "Reader Mode"),
+    ("redo", "Redo"),
+    ("refresh", "Refresh"),
+    ("release-notes", "Release Notes"),
+    ("reminders", "Reminders"),
+    ("report-narrow", "Report Narrow"),
+    ("report", "Report"),
+    ("resources", "Resources"),
+    ("restore-session", "Restore Session"),
+    ("screen-share-disabled", "Screen Share Disabled"),
+    ("screen-share", "Screen Share"),
+    ("screenshot", "Screenshot"),
+    ("search-white", "Search White"),
+    ("search", "Search"),
+    ("secure-broken", "Secure Broken"),
+    ("secure-mixed", "Secure Mixed"),
+    ("secure", "Secure"),
+    ("security", "Security"),
+    ("send-to-device", "Send To Device"),
+    ("send", "Send"),
+    ("settings", "Settings"),
+    ("share-windows", "Share Windows"),
+    ("share", "Share"),
+    ("shield", "Shield"),
+    ("sidebar", "Sidebar"),
+    ("sign-in", "Sign In"),
+    ("sign-up", "Sign Up"),
+    ("sound-off", "Sound Off"),
+    ("sound-on", "Sound On"),
+    ("star", "Star"),
+    ("stop", "Stop"),
+    ("store-data-disabled", "Store Data Disabled"),
+    ("store-data", "Store Data"),
+    ("sub-item", "Sub Item"),
+    ("subscribe", "Subscribe"),
+    ("sync", "Sync"),
+    ("tab-mobile", "Tab Mobile"),
+    ("tab-new", "Tab New"),
+    ("tab", "Tab"),
+    ("tablet", "Tablet"),
+    ("thumbs-up-narrow", "Thumbs Up Narrow"),
+    ("thumbs-up", "Thumbs Up"),
+    ("toggle-off", "Toggle Off"),
+    ("toggle-on", "Toggle On"),
+    ("toolbar", "Toolbar"),
+    ("top-sites", "Top Sites"),
+    ("tracing-protection-disabled", "Tracing Protection Disabled"),
+    ("tracking-protection", "Tracking Protection"),
+    ("trash-narrow", "Trash Narrow"),
+    ("trash", "Trash"),
+    ("turbo-mode", "Turbo Mode"),
+    ("undo", "Undo"),
+    ("update", "Update"),
+    ("user", "User"),
+    ("video-card", "Video Card"),
+    ("video-recoder-disabled", "Video Recoder Disabled"),
+    ("video-recorder", "Video Recorder"),
+    ("warning", "Warning"),
+    ("watch", "Watch"),
+    ("web-of-things", "Web Of Things"),
+    ("web-vr", "Web Vr"),
+    ("window-new", "Window New"),
+    ("window", "Window"),
+    ("zoom-in", "Zoom In"),
+    ("zoom-out", "Zoom Out"),
+]
+
+
+def get_icon_choices():
+    """
+    Get the icon choices for a ThumbnailChoiceBlock.
+    """
+    return [(icon_choice[0], icon_choice[1]) for icon_choice in ICON_CHOICES]
+
+
+def get_icon_thumbnails():
+    """
+    Get the icon thumbnails for a ThumbnailChoiceBlock.
+    """
+    # return {icon_choice[0]: f"/media/img/firefox/flare/icons/{icon_choice[0]}.svg" for icon_choice in ICON_CHOICES}
+    # static('protocol/img/icons/desktop.svg')
+    return {icon_choice[0]: static(f"protocol/img/icons/{icon_choice[0]}.svg") for icon_choice in ICON_CHOICES}
 
 
 class FigureBlockSettings(blocks.StructBlock):
@@ -96,3 +372,50 @@ class SectionBlock(blocks.StructBlock):
         template = "mozorg/cms/anonym/blocks/section.html"
         label = "Section"
         label_format = "{heading}"
+
+
+class CardListSettings(blocks.StructBlock):
+    scrollable_on_mobile = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="The default behavior is stacked",
+    )
+    dividers_between_cards_on_desktop = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Add divider lines between cards on desktop",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Scroll on mobile: {scrollable_on_mobile} - Dividers on desktop: {dividers_between_cards_on_desktop}"
+        form_classname = "compact-form struct-block"
+
+
+class IconCardBlock(blocks.StructBlock):
+    icon = ThumbnailChoiceBlock(
+        required=False,
+        choices=get_icon_choices,
+        thumbnails=get_icon_thumbnails,
+        default="outlined",
+        inline_form=True,
+    )
+    heading = blocks.CharBlock(label="Heading")
+    text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/icon-card.html"
+        label = "Icon Card"
+        label_format = "Icon Card - {heading}"
+
+
+class CardsListBlock(blocks.StructBlock):
+    settings = CardListSettings()
+    cards = blocks.ListBlock(IconCardBlock(), min_num=1, max_num=4, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/cards-list.html"
+        label = "Cards List"
+        label_format = "Cards List - {heading}"

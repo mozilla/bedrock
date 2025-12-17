@@ -20,6 +20,7 @@ from bedrock.mozorg.blocks.advertising import (
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.anonym import (
+    CardsListBlock as AnonymCardsListBlock,
     SectionBlock as AnonymSectionBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -376,6 +377,7 @@ class AnonymIndexPage(AbstractBedrockCMSPage):
     sections = StreamField(
         [
             ("section", AnonymSectionBlock()),
+            ("cards", AnonymCardsListBlock()),
         ],
         blank=True,
         null=True,
