@@ -356,6 +356,15 @@ class StatsListBlock(blocks.StructBlock):
         label = "Stats List"
 
 
+class PeopleListBlock(blocks.StructBlock):
+    people_photos = blocks.ListBlock(ImageChooserBlock(), min_num=1, max_num=8, default=[])
+    text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/people-list.html"
+        label = "People List"
+
+
 class SectionBlockSettings(blocks.StructBlock):
     theme = ThumbnailChoiceBlock(
         choices=(
@@ -391,6 +400,7 @@ class SectionBlock(blocks.StructBlock):
         [
             ("figure_block", FigureBlock()),
             ("stats_list_block", StatsListBlock()),
+            ("people_list", PeopleListBlock()),
         ]
     )
     action = blocks.ListBlock(CTABlock(), min_num=0, max_num=1, default=[])
