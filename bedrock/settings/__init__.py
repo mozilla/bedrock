@@ -177,7 +177,6 @@ if csp_ro_report_uri:
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
 
 
-
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
 # for CMS admin, but can override other paths.  Works in conjunction with the
 # `bedrock.base.middleware.CSPMiddlewareByPathPrefix` middleware.
