@@ -297,7 +297,7 @@ def get_icon_thumbnails():
     """
     result = {}
     for icon_choice in ICON_CHOICES:
-        icon_key = icon_choice[0]
+        icon_key = icon_choice[0].lower()
         try:
             result[icon_key] = static(f"protocol/img/icons/{icon_key}.svg")
         except (ValueError, IOError):
