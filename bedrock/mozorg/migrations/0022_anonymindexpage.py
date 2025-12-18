@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("section", 29), ("cards", 36), ("call_to_action", 37)],
+                        [("section", 29), ("cards", 36), ("call_to_action", 38)],
                         blank=True,
                         block_lookup={
                             0: (
@@ -455,7 +455,15 @@ class Migration(migrations.Migration):
                             34: ("wagtail.blocks.StructBlock", [[("icon", 33), ("heading", 9), ("text", 10)]], {}),
                             35: ("wagtail.blocks.ListBlock", (34,), {"default": [], "max_num": 4, "min_num": 1}),
                             36: ("wagtail.blocks.StructBlock", [[("settings", 32), ("cards", 35)]], {}),
-                            37: ("wagtail.blocks.StructBlock", [[("heading", 10), ("button", 28)]], {}),
+                            37: (
+                                "wagtail.blocks.RichTextBlock",
+                                (),
+                                {
+                                    "features": ["bold", "italic", "link", "superscript", "subscript", "strikethrough"],
+                                    "help_text": "Use <strong>bold</strong> to make parts of this text black.",
+                                },
+                            ),
+                            38: ("wagtail.blocks.StructBlock", [[("heading", 37), ("button", 28)]], {}),
                         },
                         null=True,
                     ),

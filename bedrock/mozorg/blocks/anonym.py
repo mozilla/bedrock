@@ -458,7 +458,10 @@ class CardsListBlock(blocks.StructBlock):
 
 
 class CallToActionBlock(blocks.StructBlock):
-    heading = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    heading = blocks.RichTextBlock(
+        features=HEADING_TEXT_FEATURES,
+        help_text="Use <strong>bold</strong> to make parts of this text black.",
+    )
     button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
