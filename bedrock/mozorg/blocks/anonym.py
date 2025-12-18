@@ -288,8 +288,22 @@ def get_icon_choices():
 def get_icon_thumbnails():
     """
     Get the icon thumbnails for a ThumbnailChoiceBlock.
+
+    This function is called during ThumbnailChoiceBlock initialization at module import time.
+    We use try/except because static() requires the staticfiles manifest, which doesn't
+    exist during migrations. The expected behavior is:
+      - During runtime: URLs via static()
+      - During migrations: Direct paths that work without the manifest
     """
-    return {icon_choice[0]: static(f"protocol/img/icons/{icon_choice[0]}.svg") for icon_choice in ICON_CHOICES}
+    result = {}
+    for icon_choice in ICON_CHOICES:
+        icon_key = icon_choice[0]
+        try:
+            result[icon_key] = static(f"protocol/img/icons/{icon_key}.svg")
+        except (ValueError, IOError):
+            # Fallback when staticfiles manifest doesn't exist (during migrations/collectstatic)
+            result[icon_key] = f"/static/protocol/img/icons/{icon_key}.svg"
+    return result
 
 
 class FigureBlockSettings(blocks.StructBlock):
