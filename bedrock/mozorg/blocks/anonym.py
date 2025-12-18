@@ -321,7 +321,7 @@ class FigureBlock(blocks.StructBlock):
         label_format = "{heading}"
 
 
-class CTABlock(blocks.StructBlock):
+class LinkWithTextBlock(blocks.StructBlock):
     label = blocks.CharBlock(label="Link Text")
     link = LinkBlock()
 
@@ -403,7 +403,7 @@ class SectionBlock(blocks.StructBlock):
             ("people_list", PeopleListBlock()),
         ]
     )
-    action = blocks.ListBlock(CTABlock(), min_num=0, max_num=1, default=[])
+    action = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/section.html"
@@ -456,3 +456,13 @@ class CardsListBlock(blocks.StructBlock):
         template = "mozorg/cms/anonym/blocks/cards-list.html"
         label = "Cards List"
         label_format = "Cards List - {heading}"
+
+
+class CallToActionBlock(blocks.StructBlock):
+    heading = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/call-to-action.html"
+        label = "Call To Action"
+        label_format = "Call To Action - {headline}"

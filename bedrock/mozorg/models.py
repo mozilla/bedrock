@@ -20,6 +20,7 @@ from bedrock.mozorg.blocks.advertising import (
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.anonym import (
+    CallToActionBlock as AnonymCallToActionBlock,
     CardsListBlock as AnonymCardsListBlock,
     SectionBlock as AnonymSectionBlock,
 )
@@ -378,6 +379,7 @@ class AnonymIndexPage(AbstractBedrockCMSPage):
         [
             ("section", AnonymSectionBlock()),
             ("cards", AnonymCardsListBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,
         null=True,
