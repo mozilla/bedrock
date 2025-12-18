@@ -300,7 +300,7 @@ def get_icon_thumbnails():
         icon_key = icon_choice[0].lower()
         try:
             result[icon_key] = static(f"protocol/img/icons/{icon_key}.svg")
-        except (ValueError, IOError):
+        except (ValueError, OSError):
             # Fallback when staticfiles manifest doesn't exist (during migrations/collectstatic)
             result[icon_key] = f"/static/protocol/img/icons/{icon_key}.svg"
     return result
