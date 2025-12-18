@@ -170,7 +170,7 @@ class Migration(migrations.Migration):
                                         ("superheading_text", 2),
                                         ("heading_text", 3),
                                         ("subheading_text", 2),
-                                        ("content", 16),
+                                        ("section_content", 16),
                                         ("action", 28),
                                     ]
                                 ],

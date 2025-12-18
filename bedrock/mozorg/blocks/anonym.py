@@ -317,8 +317,7 @@ class FigureBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/figure.html"
-        label = "Section"
-        label_format = "{heading}"
+        label = "Figure"
 
 
 class LinkWithTextBlock(blocks.StructBlock):
@@ -396,7 +395,7 @@ class SectionBlock(blocks.StructBlock):
     )
     subheading_text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES, required=False)
 
-    content = blocks.StreamBlock(
+    section_content = blocks.StreamBlock(
         [
             ("figure_block", FigureBlock()),
             ("stats_list_block", StatsListBlock()),
