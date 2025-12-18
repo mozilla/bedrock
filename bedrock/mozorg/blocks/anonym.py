@@ -10,7 +10,7 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
 from wagtail_thumbnail_choice_block import ThumbnailChoiceBlock
 
-HEADING_TEXT_FEATURES = [
+BASIC_TEXT_FEATURES = [
     "bold",
     "italic",
     "link",
@@ -332,10 +332,10 @@ class LinkWithTextBlock(blocks.StructBlock):
 class StatBlock(blocks.StructBlock):
     image = ImageChooserBlock(required=False)
     heading = blocks.CharBlock(label="Heading")
-    statistic1_value = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
-    statistic1_label = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
-    statistic2_value = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
-    statistic2_label = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    statistic1_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    statistic1_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    statistic2_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    statistic2_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/stat-item.html"
@@ -357,7 +357,7 @@ class StatsListBlock(blocks.StructBlock):
 
 class PeopleListBlock(blocks.StructBlock):
     people_photos = blocks.ListBlock(ImageChooserBlock(), min_num=1, max_num=8, default=[])
-    text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/people-list.html"
@@ -388,12 +388,12 @@ class SectionBlockSettings(blocks.StructBlock):
 
 class SectionBlock(blocks.StructBlock):
     settings = SectionBlockSettings()
-    superheading_text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES, required=False)
+    superheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
     heading_text = blocks.RichTextBlock(
-        features=HEADING_TEXT_FEATURES,
+        features=BASIC_TEXT_FEATURES,
         help_text="Use Bold to make parts of this text black.",
     )
-    subheading_text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES, required=False)
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
 
     section_content = blocks.StreamBlock(
         [
@@ -439,7 +439,7 @@ class IconCardBlock(blocks.StructBlock):
         inline_form=True,
     )
     heading = blocks.CharBlock(label="Heading")
-    text = blocks.RichTextBlock(features=HEADING_TEXT_FEATURES)
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/icon-card.html"
@@ -459,7 +459,7 @@ class CardsListBlock(blocks.StructBlock):
 
 class CallToActionBlock(blocks.StructBlock):
     heading = blocks.RichTextBlock(
-        features=HEADING_TEXT_FEATURES,
+        features=BASIC_TEXT_FEATURES,
         help_text="Use <strong>bold</strong> to make parts of this text black.",
     )
     button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
