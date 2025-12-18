@@ -289,8 +289,6 @@ def get_icon_thumbnails():
     """
     Get the icon thumbnails for a ThumbnailChoiceBlock.
     """
-    # return {icon_choice[0]: f"/media/img/firefox/flare/icons/{icon_choice[0]}.svg" for icon_choice in ICON_CHOICES}
-    # static('protocol/img/icons/desktop.svg')
     return {icon_choice[0]: static(f"protocol/img/icons/{icon_choice[0]}.svg") for icon_choice in ICON_CHOICES}
 
 
