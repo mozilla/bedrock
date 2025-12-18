@@ -7,10 +7,8 @@
 (function () {
     const storageKey = 'wnp-theme';
     const root = document.documentElement;
-    const toggle = document.querySelector('.wnp-nav-toggle');
     const hamburger = document.querySelector('.wnp-hamburger');
     const nav = document.getElementById('wnp-nav');
-    const themeButtons = document.querySelectorAll('.wnp-theme-btn');
 
     function swapStickerSourcesForTheme(theme) {
         const stickers = document.querySelectorAll(
@@ -38,13 +36,6 @@
         const stored = localStorage.getItem(storageKey);
         if (stored === 'light' || stored === 'dark') {
             root.setAttribute('data-theme', stored);
-            if (toggle) toggle.setAttribute('aria-pressed', stored === 'dark');
-            themeButtons.forEach(function (btn) {
-                btn.classList.toggle(
-                    'is-active',
-                    btn.getAttribute('data-theme') === stored
-                );
-            });
             swapStickerSourcesForTheme(stored);
         } else {
             const sys =
@@ -53,37 +44,8 @@
                     ? 'dark'
                     : 'light';
             root.setAttribute('data-theme', sys);
-
-            if (toggle) {
-                toggle.setAttribute('aria-pressed', sys === 'dark');
-            }
-            themeButtons.forEach(function (btn) {
-                btn.classList.toggle(
-                    'is-active',
-                    btn.getAttribute('data-theme') === sys
-                );
-            });
             swapStickerSourcesForTheme(sys);
         }
-    }
-
-    function toggleTheme() {
-        const forced = root.getAttribute('data-theme');
-        if (!forced) {
-            const isSystemDark =
-                window.matchMedia &&
-                window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const next = isSystemDark ? 'light' : 'dark';
-            localStorage.setItem(storageKey, next);
-        } else {
-            const nextForced = forced === 'dark' ? 'light' : 'dark';
-            localStorage.setItem(storageKey, nextForced);
-        }
-        applyStoredTheme();
-    }
-
-    if (toggle) {
-        toggle.addEventListener('click', toggleTheme);
     }
 
     function toggleMobileNav() {
@@ -104,18 +66,6 @@
             if (e.key === 'Escape' && nav.classList.contains('is-open')) {
                 toggleMobileNav();
             }
-        });
-    }
-
-    if (themeButtons.length) {
-        themeButtons.forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const choice = btn.getAttribute('data-theme');
-                if (choice === 'light' || choice === 'dark') {
-                    localStorage.setItem(storageKey, choice);
-                    applyStoredTheme();
-                }
-            });
         });
     }
 

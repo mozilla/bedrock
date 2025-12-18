@@ -47,6 +47,8 @@ _csp_connect_src = {
     "region1.google-analytics.com",
     "telemetry.transcend.io",  # Transcend Consent Management
     "telemetry.us.transcend.io",  # Transcend Consent Management
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
     "www.google-analytics.com",
     "www.googletagmanager.com",
     # This is for glean pings and deletion requests.
@@ -113,7 +115,13 @@ _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
     csp.constants.UNSAFE_INLINE,
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
 }
+
+# Transcend Consent Management UI uses CSS-in-JS which requires inline styles.
+if TRANSCEND_AIRGAP_URL:  # noqa: F405
+    _csp_style_src.add(csp.constants.UNSAFE_INLINE)
 
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
@@ -167,9 +175,6 @@ if csp_ro_report_uri:
     # Copy CSP and override report-uri for report-only.
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
-
-    # CSP directive updates we're testing that we hope to move to the enforced policy.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings

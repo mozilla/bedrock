@@ -36,13 +36,13 @@ m24-about-we-fund-and = We fund and invest in the people and efforts taking tech
 
 m24-about-read-more = Read more
 m24-about-read-the-latest = Read the latest { -brand-name-mozilla } news & articles
-m24-about-builders-program = { -brand-name-mozilla-builders } helps developers create transformative open-source AI projects through collaborations, programming, and community
-m24-about-at-our-rise25 = At our { -brand-name-rise25 } Awards, the future of AI is trustworthy, inclusive and accountable
-# Used as an accessible text alternative for an image
-m24-about-rise25-award = { -brand-name-rise25 } award recipient pointing at her trophy.
-m24-about-empowering-chicagos-entrepreneurs = Empowering Chicago’s entrepreneurs for generational change
-# Used as an accessible text alternative for an image
-m24-about-chicago = A Chicago based Entrepreneur.
+m24-about-rewiring-mozilla = Rewiring { -brand-name-mozilla }: Doing for AI What We Did for the Web. Read about our next generation strategy and how we’re transforming { -brand-name-mozilla } for the Era of AI.
+m24-about-what-comes-next = What comes next in tech is a choice. Choose with us.
+m24-about-watch-here = Watch here
+
+# "Double Bottom Line" refers to accounting for both money and mission values
+m24-about-can-we-have = Can We Have a Double Bottom Line for Tech? Mark Surman discusses how we can build a tech ecosystem with a double bottom line — one that values both mission and money.
+m24-about-watch-now = Watch now
 
 ## Showcase
 

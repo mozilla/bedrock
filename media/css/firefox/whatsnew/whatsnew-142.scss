@@ -403,70 +403,6 @@ body {
     cursor: default;
 }
 
-.wnp-nav-toggle {
-    position: relative;
-    width: 52px;
-    height: 28px;
-    padding: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    @media (max-width: 1024px) {
-        display: none;
-    }
-
-    span {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border: 0;
-    }
-
-    /* Track */
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        margin: auto;
-        width: 44px;
-        height: 24px;
-        border-radius: 999px;
-        background: var(--fds-color-ash);
-        box-shadow: inset 0 0 0 1px var(--fds-color-gray-40);
-        transition: background var(--fds-transition-base);
-    }
-
-    /* Thumb */
-    &::after {
-        content: "";
-        position: absolute;
-        top: 5px;
-        left: 8px;
-        width: 18px;
-        height: 18px;
-        border-radius: 50%;
-        background: var(--fds-color-charcoal);
-        box-shadow: var(--fds-shadow-md);
-        transform: translateX(0);
-        transition: transform var(--fds-transition-base);
-    }
-
-    &:focus-visible {
-        outline: 2px solid var(--fds-color-info);
-        outline-offset: 2px;
-        border-radius: 999px;
-    }
-}
-
-.wnp-nav-toggle[aria-pressed="true"] {
-    &::after { transform: translateX(18px); }
-}
-
 /* Mobile nav overlay */
 @media (max-width: 1024px) {
     .wnp-nav.is-open {
@@ -503,23 +439,6 @@ body {
         overflow: hidden;
         background: var(--fds-color-ash);
         padding: 8px;
-    }
-
-    .wnp-theme-btn {
-        flex: 1 1 0;
-        padding: var(--fds-spacing-md) var(--fds-spacing-xl);
-        font-family: var(--fds-font-family-secondary);
-        font-size: var(--fds-font-size-base);
-        color: var(--fds-color-gray-90);
-        background: transparent;
-        border: 0;
-        cursor: pointer;
-        border-radius: 16px;
-    }
-
-    .wnp-theme-btn.is-active {
-        background: var(--fds-color-charcoal);
-        color: var(--fds-color-white);
     }
 }
 
