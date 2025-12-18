@@ -375,7 +375,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
 class AnonymIndexPage(AbstractBedrockCMSPage):
     subpage_types = []
 
-    sections = StreamField(
+    content = StreamField(
         [
             ("section", AnonymSectionBlock()),
             ("cards", AnonymCardsListBlock()),
@@ -387,7 +387,7 @@ class AnonymIndexPage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("sections"),
+        FieldPanel("content"),
     ]
 
     template = "mozorg/cms/anonym/anonym_index_page.html"

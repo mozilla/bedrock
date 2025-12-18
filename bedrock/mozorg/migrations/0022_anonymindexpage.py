@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "sections",
+                    "content",
                     wagtail.fields.StreamField(
                         [("section", 29), ("cards", 36), ("call_to_action", 37)],
                         blank=True,
