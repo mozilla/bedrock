@@ -33,5 +33,7 @@ urlpatterns = bedrock_i18n_patterns(
     # path("url/path/here/", dummy_view, name="route.name.here"),
     path("about/leadership/", dummy_view, name="mozorg.about.leadership.index"),
     path("products/monitor/", dummy_view, name="products.monitor.landing"),
+    path("products/vpn/resource-center/", dummy_view, name="products.vpn.resource-center.landing"),
+    path("products/vpn/resource-center/<slug:slug>/", dummy_view, name="products.vpn.resource-center.article"),
     path("advertising/", dummy_view, name="mozorg.advertising.landing"),
 )

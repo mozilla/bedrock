@@ -12,13 +12,11 @@ it must go in mozorg.nonlocale_urls, not this file
 
 """
 
-from django.conf import settings
 from django.urls import path
 
 from bedrock.redirects.util import redirect
 
 from . import views
-from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = [
@@ -146,6 +144,3 @@ urlpatterns = [
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
     redirect("advertising/formats/", "/advertising/solutions/", prepend_locale=False),
 ]
-
-if settings.DEV:
-    urlpatterns += dev_only_urlpatterns

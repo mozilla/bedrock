@@ -9,15 +9,12 @@ from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
 from django.template.loader import render_to_string
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
 from jsonview.decorators import json_view
 from product_details import product_details
 
-from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
 from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
@@ -170,28 +167,6 @@ class AboutView(L10nTemplateView):
             return [self.m24_template_name]
 
         return [self.template_name]
-
-
-@method_decorator(never_cache, name="dispatch")
-class ContentfulPreviewView(L10nTemplateView):
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        content_id = ctx["content_id"]
-        page = ContentfulPage(self.request, content_id)
-        ctx.update(page.get_content())
-        return ctx
-
-    def render_to_response(self, context, **response_kwargs):
-        page_type = context["page_type"]
-        theme = context["info"]["theme"]
-        if page_type == "pagePageResourceCenter":
-            template = "products/vpn/resource-center/article.html"
-        elif theme == "firefox":
-            template = "firefox/contentful-all.html"
-        else:
-            template = "mozorg/contentful-all.html"
-
-        return l10n_utils.render(self.request, template, context, **response_kwargs)
 
 
 class WebvisionDocView(RequireSafeMixin, TemplateView):
