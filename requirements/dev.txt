@@ -326,10 +326,6 @@ compare-locales==9.0.4 \
     # via
     #   -r requirements/dev.in
     #   cl-ext-lang
-contentful==2.5.0 \
-    --hash=sha256:827f61a0a987f7fb2e9c7e633cea2ffbe06fe9658a52f1f57cf195efaf9ddcd0 \
-    --hash=sha256:a26df95481ba1ee38829544e3f31ba473fb2946cf65794190561c6de6540716a
-    # via -r requirements/prod.txt
 contextlib2==21.6.0 \
     --hash=sha256:3fbdb64466afd23abaf6c977627b75b6139a5a3e8ce38405c5b413aed7a0471f \
     --hash=sha256:ab1e2bfe1d01d968e1b7e8d9023bc51ef3509bba217bb730cee3827e1ee82869
@@ -1951,7 +1947,6 @@ python-dateutil==2.9.0.post0 \
     # via
     #   -r requirements/prod.txt
     #   botocore
-    #   contentful
     #   croniter
     #   freezegun
 pytz==2025.2 \
@@ -2188,7 +2183,6 @@ requests==2.32.5 \
     #   -r requirements/prod.txt
     #   basket-client
     #   bpython
-    #   contentful
     #   datadog
     #   django-mozilla-product-details
     #   google-api-core
