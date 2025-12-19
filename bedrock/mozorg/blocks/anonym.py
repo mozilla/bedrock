@@ -467,7 +467,7 @@ class SectionBlock(blocks.StructBlock):
     class Meta:
         template = "mozorg/cms/anonym/blocks/section.html"
         label = "Section"
-        label_format = "{heading}"
+        label_format = "{heading_text}"
 
 
 class CallToActionBlock(blocks.StructBlock):
@@ -480,4 +480,4 @@ class CallToActionBlock(blocks.StructBlock):
     class Meta:
         template = "mozorg/cms/anonym/blocks/call-to-action.html"
         label = "Call To Action"
-        label_format = "Call To Action - {headline}"
+        label_format = "{heading}"
