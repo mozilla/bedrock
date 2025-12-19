@@ -20,6 +20,10 @@ BASIC_TEXT_FEATURES = [
 ]
 
 
+SECTION_THEME_INDEX = "index"
+SECTION_THEME_TOP_GLOW = "top_glow"
+
+
 ICON_CHOICES = [
     ("IRL", "IRL"),
     ("accessibility", "Accessibility"),
@@ -423,15 +427,27 @@ class CardsListBlock(blocks.StructBlock):
         label_format = "Cards List - {heading}"
 
 
+class SectionBlockSettingsValue(blocks.StructValue):
+    """Custom value class to make properties available in templates."""
+
+    @property
+    def has_index_theme(self) -> bool:
+        return self.get("theme") == SECTION_THEME_INDEX
+
+    @property
+    def has_top_glow_theme(self) -> bool:
+        return self.get("theme") == SECTION_THEME_TOP_GLOW
+
+
 class SectionBlockSettings(blocks.StructBlock):
     theme = ThumbnailChoiceBlock(
         choices=(
-            ("index", "Index"),
-            ("top_glow", "Top Glow"),
+            (SECTION_THEME_INDEX, "Index"),
+            (SECTION_THEME_TOP_GLOW, "Top Glow"),
         ),
         thumbnails={
-            "index": "/media/img/icons/index.svg",
-            "top_glow": "/media/img/icons/top_glow.svg",
+            SECTION_THEME_INDEX: "/media/img/icons/index.svg",
+            SECTION_THEME_TOP_GLOW: "/media/img/icons/top_glow.svg",
         },
         inline_form=True,
         required=False,
@@ -443,6 +459,7 @@ class SectionBlockSettings(blocks.StructBlock):
         label = "Settings"
         label_format = "Theme: {theme}"
         form_classname = "compact-form struct-block"
+        value_class = SectionBlockSettingsValue
 
 
 class SectionBlock(blocks.StructBlock):

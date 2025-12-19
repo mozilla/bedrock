@@ -397,3 +397,17 @@ $image-path: '/media/protocol/img';
 .icon-window { --icon-src: url('/media/protocol/img/icons/window.svg'); }
 .icon-zoom-in { --icon-src: url('/media/protocol/img/icons/zoom-in.svg'); }
 .icon-zoom-out { --icon-src: url('/media/protocol/img/icons/zoom-out.svg'); }
+
+// CSS Counter for index-themed sections
+.mzan-top-container,
+.mzan-bottom-container {
+    counter-reset: index-sections;
+}
+
+.mzan-section-index-theme {
+    counter-increment: index-sections;
+}
+
+.mzan-section-index-theme::before {
+    content: counter(index-sections, decimal-leading-zero);
+}
