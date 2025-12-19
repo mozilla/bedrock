@@ -460,7 +460,8 @@ class SectionBlock(blocks.StructBlock):
             ("cards_list", CardsListBlock()),
             ("stats_list_block", StatsListBlock()),
             ("people_list", PeopleListBlock()),
-        ]
+        ],
+        required=False,
     )
     action = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 

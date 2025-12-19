@@ -378,7 +378,7 @@ class Migration(migrations.Migration):
                             23: (
                                 "wagtail.blocks.StreamBlock",
                                 [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22)]],
-                                {},
+                                {"required": False},
                             ),
                             24: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
                             25: (
