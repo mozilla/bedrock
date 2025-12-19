@@ -11,8 +11,8 @@
     {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
   </hgroup>
 
-  {% if value.content %}
-    {{ value.content }}
+  {% if value.section_content %}
+    {{ value.section_content }}
   {% endif %}
 
   {% if value.action %}
