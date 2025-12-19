@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 (
                     "content",
                     wagtail.fields.StreamField(
-                        [("section", 29), ("cards", 36), ("call_to_action", 38)],
+                        [("section", 36), ("call_to_action", 38)],
                         blank=True,
                         block_lookup={
                             0: (
@@ -71,127 +71,18 @@ class Migration(migrations.Migration):
                             5: ("wagtail.blocks.StructBlock", [[("make_full_width", 4)]], {}),
                             6: ("wagtail.images.blocks.ImageChooserBlock", (), {}),
                             7: ("wagtail.blocks.StructBlock", [[("settings", 5), ("image", 6)]], {}),
-                            8: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
-                            9: ("wagtail.blocks.CharBlock", (), {"label": "Heading"}),
-                            10: (
-                                "wagtail.blocks.RichTextBlock",
-                                (),
-                                {"features": ["bold", "italic", "link", "superscript", "subscript", "strikethrough"]},
-                            ),
-                            11: (
-                                "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("image", 8),
-                                        ("heading", 9),
-                                        ("statistic1_value", 10),
-                                        ("statistic1_label", 10),
-                                        ("statistic2_value", 10),
-                                        ("statistic2_label", 10),
-                                    ]
-                                ],
-                                {},
-                            ),
-                            12: ("wagtail.blocks.StreamBlock", [[("stat", 11)]], {}),
-                            13: ("wagtail.blocks.StructBlock", [[("stats", 12)]], {}),
-                            14: ("wagtail.blocks.ListBlock", (6,), {"default": [], "max_num": 8, "min_num": 1}),
-                            15: ("wagtail.blocks.StructBlock", [[("people_photos", 14), ("text", 10)]], {}),
-                            16: ("wagtail.blocks.StreamBlock", [[("figure_block", 7), ("stats_list_block", 13), ("people_list", 15)]], {}),
-                            17: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
-                            18: (
-                                "wagtail.blocks.ChoiceBlock",
-                                [],
-                                {
-                                    "choices": [
-                                        ("page", "Page"),
-                                        ("file", "File"),
-                                        ("custom_url", "Custom URL"),
-                                        ("email", "Email"),
-                                        ("anchor", "Anchor"),
-                                        ("phone", "Phone"),
-                                    ],
-                                    "classname": "link_choice_type_selector",
-                                    "label": "Link to",
-                                    "required": False,
-                                },
-                            ),
-                            19: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
-                            20: (
-                                "wagtail.documents.blocks.DocumentChooserBlock",
-                                (),
-                                {"form_classname": "file_link", "label": "File", "required": False},
-                            ),
-                            21: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {
-                                    "form_classname": "custom_url_link url_field",
-                                    "label": "Custom URL",
-                                    "max_length": 300,
-                                    "required": False,
-                                    "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
-                                },
-                            ),
-                            22: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
-                            ),
-                            23: ("wagtail.blocks.EmailBlock", (), {"required": False}),
-                            24: (
-                                "wagtail.blocks.CharBlock",
-                                (),
-                                {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
-                            ),
-                            25: (
-                                "wagtail.blocks.BooleanBlock",
-                                (),
-                                {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
-                            ),
-                            26: (
-                                "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("link_to", 18),
-                                        ("page", 19),
-                                        ("file", 20),
-                                        ("custom_url", 21),
-                                        ("anchor", 22),
-                                        ("email", 23),
-                                        ("phone", 24),
-                                        ("new_window", 25),
-                                    ]
-                                ],
-                                {},
-                            ),
-                            27: ("wagtail.blocks.StructBlock", [[("label", 17), ("link", 26)]], {}),
-                            28: ("wagtail.blocks.ListBlock", (27,), {"default": [], "max_num": 1, "min_num": 0}),
-                            29: (
-                                "wagtail.blocks.StructBlock",
-                                [
-                                    [
-                                        ("settings", 1),
-                                        ("superheading_text", 2),
-                                        ("heading_text", 3),
-                                        ("subheading_text", 2),
-                                        ("section_content", 16),
-                                        ("action", 28),
-                                    ]
-                                ],
-                                {},
-                            ),
-                            30: (
+                            8: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"default": False, "help_text": "The default behavior is stacked", "required": False},
                             ),
-                            31: (
+                            9: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"default": False, "help_text": "Add divider lines between cards on desktop", "required": False},
                             ),
-                            32: ("wagtail.blocks.StructBlock", [[("scrollable_on_mobile", 30), ("dividers_between_cards_on_desktop", 31)]], {}),
-                            33: (
+                            10: ("wagtail.blocks.StructBlock", [[("scrollable_on_mobile", 8), ("dividers_between_cards_on_desktop", 9)]], {}),
+                            11: (
                                 "wagtail.blocks.ChoiceBlock",
                                 [],
                                 {
@@ -456,9 +347,122 @@ class Migration(migrations.Migration):
                                     "required": False,
                                 },
                             ),
-                            34: ("wagtail.blocks.StructBlock", [[("icon", 33), ("heading", 9), ("text", 10)]], {}),
-                            35: ("wagtail.blocks.ListBlock", (34,), {"default": [], "max_num": 4, "min_num": 1}),
-                            36: ("wagtail.blocks.StructBlock", [[("settings", 32), ("cards", 35)]], {}),
+                            12: ("wagtail.blocks.CharBlock", (), {"label": "Heading"}),
+                            13: (
+                                "wagtail.blocks.RichTextBlock",
+                                (),
+                                {"features": ["bold", "italic", "link", "superscript", "subscript", "strikethrough"]},
+                            ),
+                            14: ("wagtail.blocks.StructBlock", [[("icon", 11), ("heading", 12), ("text", 13)]], {}),
+                            15: ("wagtail.blocks.ListBlock", (14,), {"default": [], "max_num": 4, "min_num": 1}),
+                            16: ("wagtail.blocks.StructBlock", [[("settings", 10), ("cards", 15)]], {}),
+                            17: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
+                            18: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("image", 17),
+                                        ("heading", 12),
+                                        ("statistic1_value", 13),
+                                        ("statistic1_label", 13),
+                                        ("statistic2_value", 13),
+                                        ("statistic2_label", 13),
+                                    ]
+                                ],
+                                {},
+                            ),
+                            19: ("wagtail.blocks.StreamBlock", [[("stat", 18)]], {}),
+                            20: ("wagtail.blocks.StructBlock", [[("stats", 19)]], {}),
+                            21: ("wagtail.blocks.ListBlock", (6,), {"default": [], "max_num": 8, "min_num": 1}),
+                            22: ("wagtail.blocks.StructBlock", [[("people_photos", 21), ("text", 13)]], {}),
+                            23: (
+                                "wagtail.blocks.StreamBlock",
+                                [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22)]],
+                                {},
+                            ),
+                            24: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
+                            25: (
+                                "wagtail.blocks.ChoiceBlock",
+                                [],
+                                {
+                                    "choices": [
+                                        ("page", "Page"),
+                                        ("file", "File"),
+                                        ("custom_url", "Custom URL"),
+                                        ("email", "Email"),
+                                        ("anchor", "Anchor"),
+                                        ("phone", "Phone"),
+                                    ],
+                                    "classname": "link_choice_type_selector",
+                                    "label": "Link to",
+                                    "required": False,
+                                },
+                            ),
+                            26: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            27: (
+                                "wagtail.documents.blocks.DocumentChooserBlock",
+                                (),
+                                {"form_classname": "file_link", "label": "File", "required": False},
+                            ),
+                            28: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {
+                                    "form_classname": "custom_url_link url_field",
+                                    "label": "Custom URL",
+                                    "max_length": 300,
+                                    "required": False,
+                                    "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
+                                },
+                            ),
+                            29: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
+                            ),
+                            30: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            31: (
+                                "wagtail.blocks.CharBlock",
+                                (),
+                                {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
+                            ),
+                            32: (
+                                "wagtail.blocks.BooleanBlock",
+                                (),
+                                {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
+                            ),
+                            33: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("link_to", 25),
+                                        ("page", 26),
+                                        ("file", 27),
+                                        ("custom_url", 28),
+                                        ("anchor", 29),
+                                        ("email", 30),
+                                        ("phone", 31),
+                                        ("new_window", 32),
+                                    ]
+                                ],
+                                {},
+                            ),
+                            34: ("wagtail.blocks.StructBlock", [[("label", 24), ("link", 33)]], {}),
+                            35: ("wagtail.blocks.ListBlock", (34,), {"default": [], "max_num": 1, "min_num": 0}),
+                            36: (
+                                "wagtail.blocks.StructBlock",
+                                [
+                                    [
+                                        ("settings", 1),
+                                        ("superheading_text", 2),
+                                        ("heading_text", 3),
+                                        ("subheading_text", 2),
+                                        ("section_content", 23),
+                                        ("action", 35),
+                                    ]
+                                ],
+                                {},
+                            ),
                             37: (
                                 "wagtail.blocks.RichTextBlock",
                                 (),
@@ -467,7 +471,7 @@ class Migration(migrations.Migration):
                                     "help_text": "Use <strong>bold</strong> to make parts of this text black.",
                                 },
                             ),
-                            38: ("wagtail.blocks.StructBlock", [[("heading", 37), ("button", 28)]], {}),
+                            38: ("wagtail.blocks.StructBlock", [[("heading", 37), ("button", 35)]], {}),
                         },
                         null=True,
                     ),

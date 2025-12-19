@@ -21,7 +21,6 @@ from bedrock.mozorg.blocks.advertising import (
 )
 from bedrock.mozorg.blocks.anonym import (
     CallToActionBlock as AnonymCallToActionBlock,
-    CardsListBlock as AnonymCardsListBlock,
     SectionBlock as AnonymSectionBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
@@ -378,7 +377,6 @@ class AnonymIndexPage(AbstractBedrockCMSPage):
     content = StreamField(
         [
             ("section", AnonymSectionBlock()),
-            ("cards", AnonymCardsListBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,

@@ -376,52 +376,6 @@ class PeopleListBlock(blocks.StructBlock):
         label = "People List"
 
 
-class SectionBlockSettings(blocks.StructBlock):
-    theme = ThumbnailChoiceBlock(
-        choices=(
-            ("index", "Index"),
-            ("top_glow", "Top Glow"),
-        ),
-        thumbnails={
-            "index": "/media/img/icons/index.svg",
-            "top_glow": "/media/img/icons/top_glow.svg",
-        },
-        inline_form=True,
-        required=False,
-    )
-
-    class Meta:
-        icon = "cog"
-        collapsed = True
-        label = "Settings"
-        label_format = "Theme: {theme}"
-        form_classname = "compact-form struct-block"
-
-
-class SectionBlock(blocks.StructBlock):
-    settings = SectionBlockSettings()
-    superheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
-    heading_text = blocks.RichTextBlock(
-        features=BASIC_TEXT_FEATURES,
-        help_text="Use Bold to make parts of this text black.",
-    )
-    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
-
-    section_content = blocks.StreamBlock(
-        [
-            ("figure_block", FigureBlock()),
-            ("stats_list_block", StatsListBlock()),
-            ("people_list", PeopleListBlock()),
-        ]
-    )
-    action = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
-
-    class Meta:
-        template = "mozorg/cms/anonym/blocks/section.html"
-        label = "Section"
-        label_format = "{heading}"
-
-
 class CardListSettings(blocks.StructBlock):
     scrollable_on_mobile = blocks.BooleanBlock(
         required=False,
@@ -467,6 +421,53 @@ class CardsListBlock(blocks.StructBlock):
         template = "mozorg/cms/anonym/blocks/cards-list.html"
         label = "Cards List"
         label_format = "Cards List - {heading}"
+
+
+class SectionBlockSettings(blocks.StructBlock):
+    theme = ThumbnailChoiceBlock(
+        choices=(
+            ("index", "Index"),
+            ("top_glow", "Top Glow"),
+        ),
+        thumbnails={
+            "index": "/media/img/icons/index.svg",
+            "top_glow": "/media/img/icons/top_glow.svg",
+        },
+        inline_form=True,
+        required=False,
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Theme: {theme}"
+        form_classname = "compact-form struct-block"
+
+
+class SectionBlock(blocks.StructBlock):
+    settings = SectionBlockSettings()
+    superheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
+    heading_text = blocks.RichTextBlock(
+        features=BASIC_TEXT_FEATURES,
+        help_text="Use Bold to make parts of this text black.",
+    )
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
+
+    section_content = blocks.StreamBlock(
+        [
+            ("figure_block", FigureBlock()),
+            ("cards_list", CardsListBlock()),
+            ("stats_list_block", StatsListBlock()),
+            ("people_list", PeopleListBlock()),
+        ]
+    )
+    action = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/section.html"
+        label = "Section"
+        label_format = "{heading}"
 
 
 class CallToActionBlock(blocks.StructBlock):
