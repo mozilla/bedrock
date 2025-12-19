@@ -1,25 +1,12 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from html import escape
-from urllib.parse import quote_plus, unquote_plus
 
 from django.conf import settings
-from django.http import Http404
 from django.shortcuts import redirect
-from django.urls import reverse
 from django.views.decorators.http import require_safe
 
-from sentry_sdk import capture_exception
-
 from bedrock.base.geo import get_country_from_request
-from bedrock.contentful.constants import (
-    ARTICLE_CATEGORY_LABEL,
-    CONTENT_CLASSIFICATION_VPN,
-    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-)
-from bedrock.contentful.models import ContentfulEntry
-from bedrock.contentful.utils import locales_with_available_content
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
 from lib.l10n_utils.fluent import ftl_file_is_active
@@ -63,12 +50,10 @@ def vpn_available_android_sub_only(request):
 
 
 def active_locale_available(slug, locale):
-    active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
-        classification=CONTENT_CLASSIFICATION_VPN,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-        slug=slug,
-    )
-    return locale in active_locales_for_this_article
+    # Import inside function to avoid circular import (models.py imports from views.py)
+    from bedrock.products.models import VPNResourceCenterDetailPage
+
+    return VPNResourceCenterDetailPage.objects.filter(slug=slug, locale__language_code=locale, live=True).exists()
 
 
 @require_safe
@@ -211,163 +196,6 @@ def vpn_invite_page(request):
     ctx = {"action": action, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "products/vpn/invite.html", ctx, ftl_files=ftl_files)
-
-
-def _build_category_list(entry_list):
-    # Template is expecting this format:
-    # category_list = [
-    #   {"name": "Cat1", "url": "/full/path/to/category"}, ...
-    # ]
-    categories_seen = set()
-    category_list = []
-    root_url = reverse("products.vpn.resource-center.landing")
-    for entry in entry_list:
-        category = entry.category
-        if category and category not in categories_seen:
-            category_list.append(
-                {
-                    "name": category,
-                    "url": f"{root_url}?{ARTICLE_CATEGORY_LABEL}={quote_plus(category)}",
-                }
-            )
-            categories_seen.add(category)
-
-    category_list = sorted(category_list, key=lambda x: x["name"])
-    return category_list
-
-
-def _filter_articles(articles_list, category):
-    if not category:
-        return articles_list
-
-    return [article for article in articles_list if article.category == category]
-
-
-@require_safe
-def resource_center_landing_view(request):
-    ARTICLE_GROUP_SIZE = 6
-    template_name = "products/vpn/resource-center/landing.html"
-    vpn_available_in_country = vpn_available(request)
-    mobile_sub_only = vpn_available_mobile_sub_only(request)
-    active_locales = locales_with_available_content(
-        classification=CONTENT_CLASSIFICATION_VPN,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-    )
-    requested_locale = l10n_utils.get_locale(request)
-
-    if requested_locale not in active_locales:
-        return l10n_utils.redirect_to_best_locale(
-            request,
-            translations=active_locales,
-        )
-
-    resource_articles = ContentfulEntry.objects.get_entries_by_type(
-        locale=requested_locale,
-        classification=CONTENT_CLASSIFICATION_VPN,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-    )
-    category_list = _build_category_list(resource_articles)
-    selected_category = unquote_plus(request.GET.get(ARTICLE_CATEGORY_LABEL, ""))
-
-    filtered_articles = _filter_articles(
-        resource_articles,
-        category=selected_category,
-    )
-
-    # The resource_articles are ContentfulEntry objects at the moment, but
-    # we really only need their JSON data from here on
-    filtered_article_data = [x.data for x in filtered_articles]
-
-    first_article_group, second_article_group = (
-        filtered_article_data[:ARTICLE_GROUP_SIZE],
-        filtered_article_data[ARTICLE_GROUP_SIZE:],
-    )
-
-    ctx = {
-        "active_locales": active_locales,
-        "vpn_available": vpn_available_in_country,
-        "mobile_sub_only": mobile_sub_only,
-        "category_list": category_list,
-        "first_article_group": first_article_group,
-        "second_article_group": second_article_group,
-        "selected_category": escape(selected_category),
-    }
-    return l10n_utils.render(
-        request,
-        template_name,
-        ctx,
-        ftl_files=["products/vpn/resource-center", "products/vpn/shared"],
-    )
-
-
-@require_safe
-def resource_center_article_view(request, slug):
-    """Individual detail pages for the VPN Resource Center"""
-
-    template_name = "products/vpn/resource-center/article.html"
-    requested_locale = l10n_utils.get_locale(request)
-    vpn_available_in_country = vpn_available(request)
-
-    active_locales_for_this_article = ContentfulEntry.objects.get_active_locales_for_slug(
-        classification=CONTENT_CLASSIFICATION_VPN,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-        slug=slug,
-    )
-
-    if not active_locales_for_this_article:
-        # ie, this article just isn't available in any locale
-        raise Http404()
-
-    if requested_locale not in active_locales_for_this_article:
-        # Calling render() early will redirect the user to the most
-        # appropriate default/alternative locale for their browser
-        return l10n_utils.redirect_to_best_locale(
-            request,
-            translations=active_locales_for_this_article,
-        )
-    ctx = {}
-    try:
-        article = ContentfulEntry.objects.get_entry_by_slug(
-            slug=slug,
-            locale=requested_locale,
-            classification=CONTENT_CLASSIFICATION_VPN,
-            content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-        )
-        ctx.update(article.data)
-    except ContentfulEntry.DoesNotExist as ex:
-        # We shouldn't get this far, given active_locales_for_this_article,
-        # should only show up viable locales etc, so log it loudly before 404ing.
-        capture_exception(ex)
-        raise Http404()
-
-    ctx.update(
-        {
-            "active_locales": active_locales_for_this_article,
-            "vpn_available": vpn_available_in_country,
-            "related_articles": [x.data for x in article.get_related_entries()],
-        }
-    )
-
-    return l10n_utils.render(
-        request,
-        template_name,
-        ctx,
-        ftl_files=[
-            "products/vpn/resource-center",
-            "products/vpn/shared",
-        ],
-    )
-
-
-def resource_center_article_available_locales_lookup(*, slug: str) -> list[str]:
-    # Helper func to get a list of language codes available for the given
-    # Contentful-powered VPN RC slug
-    return list(
-        ContentfulEntry.objects.filter(
-            localisation_complete=True,
-            slug=slug,
-        ).values_list("locale", flat=True)
-    )
 
 
 @require_safe
