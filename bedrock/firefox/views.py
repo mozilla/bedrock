@@ -19,7 +19,6 @@ from product_details.version_compare import Version
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
-from bedrock.contentful.api import ContentfulPage
 from bedrock.firefox.firefox_details import (
     firefox_android,
     firefox_desktop,
@@ -1012,20 +1011,3 @@ class firefox_features_adblocker(L10nTemplateView):
             template_name = "firefox/features/adblocker.html"
 
         return [template_name]
-
-
-class FirefoxContentful(L10nTemplateView):
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        content_id = ctx["content_id"]
-        locale = l10n_utils.get_locale(self.request)
-        page = ContentfulPage(content_id, locale)
-        content = page.get_content()
-        self.request.page_info = content["info"]
-        ctx.update(content)
-        return ctx
-
-    def render_to_response(self, context, **response_kwargs):
-        template = "firefox/contentful-all.html"
-
-        return l10n_utils.render(self.request, template, context, **response_kwargs)
