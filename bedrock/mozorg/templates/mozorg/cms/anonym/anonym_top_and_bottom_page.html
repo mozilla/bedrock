@@ -29,12 +29,22 @@
 {% block content %}
   <main id="mzan-main">
     <div class="mzan-top-container">
+      {% set ns_top_content = namespace(headings=0) %}
       {% for block in page.top_content %}
+        {% if block.block.is_section_block %}
+          {% set block_level = 1 if ns_top_content.headings == 0 else 2 %}
+          {% set ns_top_content.headings = ns_top_content.headings + 1 %}
+        {% endif %}
         {% include_block block %}
       {% endfor %}
     </div>
     <div class="mzan-bottom-container">
+      {% set ns_bottom_content = namespace(headings=ns_top_content.headings) %}
       {% for block in page.bottom_content %}
+        {% if block.block.is_section_block %}
+          {% set block_level = 1 if ns_bottom_content.headings == 0 else 2 %}
+          {% set ns_bottom_content.headings = ns_bottom_content.headings + 1 %}
+        {% endif %}
         {% include_block block %}
       {% endfor %}
     </div>
