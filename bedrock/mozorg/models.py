@@ -372,7 +372,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
 
 
 class AnonymIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage"]
 
     content = StreamField(
         [
@@ -420,3 +420,23 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/anonym/anonym_top_and_bottom_page.html"
+
+
+class AnonymContentSubPage(AbstractBedrockCMSPage):
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/anonym/anonym_content_sub_page.html"
