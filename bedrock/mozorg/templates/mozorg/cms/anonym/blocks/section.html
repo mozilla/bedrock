@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="mzan-section{% if value.settings.has_index_theme %} mzan-section-index-theme{% endif %}">
+<section class="mzan-section{% if value.settings.has_index_theme %} mzan-section-index-theme{% endif %}{% if value.settings.has_top_glow_theme %} mzan-section-topglow-theme{% endif %}">
   <hgroup class="mzan-hgroup">
     {% if value.superheading_text %}<p class="mzan-superheading">{{ value.superheading_text|richtext|remove_p_tag }}</p>{% endif %}
     <h1 class="mzan-heading">{{ value.heading_text|richtext|remove_p_tag }}</h1>
