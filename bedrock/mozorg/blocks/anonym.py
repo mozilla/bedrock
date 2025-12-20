@@ -464,6 +464,8 @@ class SectionBlockSettings(blocks.StructBlock):
 
 
 class SectionBlock(blocks.StructBlock):
+    is_section_block = True
+
     settings = SectionBlockSettings()
     superheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
     heading_text = blocks.RichTextBlock(

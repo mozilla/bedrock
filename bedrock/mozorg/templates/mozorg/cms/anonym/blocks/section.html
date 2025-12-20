@@ -7,7 +7,7 @@
 <section class="mzan-section{% if value.settings.has_index_theme %} mzan-section-index-theme{% endif %}{% if value.settings.has_top_glow_theme %} mzan-section-topglow-theme{% endif %}">
   <hgroup class="mzan-hgroup">
     {% if value.superheading_text %}<p class="mzan-superheading">{{ value.superheading_text|richtext|remove_p_tag }}</p>{% endif %}
-    <h1 class="mzan-heading">{{ value.heading_text|richtext|remove_p_tag }}</h1>
+    <h{{ block_level }} class="mzan-heading">{{ value.heading_text|richtext|remove_p_tag }}</h{{ block_level }}>
     {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
   </hgroup>
 
