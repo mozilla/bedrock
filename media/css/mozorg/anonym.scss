@@ -411,3 +411,60 @@ $image-path: '/media/protocol/img';
 .mzan-section-index-theme::before {
     content: counter(index-sections, decimal-leading-zero);
 }
+
+.block-table {
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    @media screen and (max-width: 768px) {
+        // Keep table as table for proper structure
+        table {
+            display: block;
+        }
+
+        // Make thead, tbody, and rows block elements
+        thead, tbody {
+            display: block;
+            width: 100%;
+        }
+
+        // Header row stays in one line
+        thead tr {
+            display: flex;
+            width: 100%;
+
+            // Don't show the (empty) header in the first column.
+            th:first-child {
+                display: none;
+            }
+        }
+
+        thead th {
+            flex: 1;
+            text-align: center;
+
+        }
+
+        tbody tr {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        // First cell (th with scope="row") takes full width
+        tbody th[scope="row"] {
+            flex: 0 0 100%;
+            width: 100%;
+            display: block;
+        }
+
+        // Remaining cells (td) share the width equally
+        tbody td {
+            flex: 1;
+            min-width: 0; // Allow shrinking
+        }
+    }
+
+}

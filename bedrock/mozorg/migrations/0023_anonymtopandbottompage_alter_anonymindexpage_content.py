@@ -35,7 +35,7 @@ class Migration(migrations.Migration):
                 (
                     "top_content",
                     wagtail.fields.StreamField(
-                        [("section", 36), ("call_to_action", 38)],
+                        [("section", 37), ("call_to_action", 39)],
                         blank=True,
                         block_lookup={
                             0: (
@@ -375,13 +375,14 @@ class Migration(migrations.Migration):
                             20: ("wagtail.blocks.StructBlock", [[("stats", 19)]], {}),
                             21: ("wagtail.blocks.ListBlock", (6,), {"default": [], "max_num": 8, "min_num": 1}),
                             22: ("wagtail.blocks.StructBlock", [[("people_photos", 21), ("text", 13)]], {}),
-                            23: (
+                            23: ("wagtail.contrib.table_block.blocks.TableBlock", (), {}),
+                            24: (
                                 "wagtail.blocks.StreamBlock",
-                                [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22)]],
+                                [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22), ("table", 23)]],
                                 {"required": False},
                             ),
-                            24: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
-                            25: (
+                            25: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
+                            26: (
                                 "wagtail.blocks.ChoiceBlock",
                                 [],
                                 {
@@ -398,13 +399,13 @@ class Migration(migrations.Migration):
                                     "required": False,
                                 },
                             ),
-                            26: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
-                            27: (
+                            27: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            28: (
                                 "wagtail.documents.blocks.DocumentChooserBlock",
                                 (),
                                 {"form_classname": "file_link", "label": "File", "required": False},
                             ),
-                            28: (
+                            29: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {
@@ -415,41 +416,41 @@ class Migration(migrations.Migration):
                                     "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
                                 },
                             ),
-                            29: (
+                            30: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
                             ),
-                            30: ("wagtail.blocks.EmailBlock", (), {"required": False}),
-                            31: (
+                            31: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            32: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
                             ),
-                            32: (
+                            33: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
                             ),
-                            33: (
+                            34: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
-                                        ("link_to", 25),
-                                        ("page", 26),
-                                        ("file", 27),
-                                        ("custom_url", 28),
-                                        ("anchor", 29),
-                                        ("email", 30),
-                                        ("phone", 31),
-                                        ("new_window", 32),
+                                        ("link_to", 26),
+                                        ("page", 27),
+                                        ("file", 28),
+                                        ("custom_url", 29),
+                                        ("anchor", 30),
+                                        ("email", 31),
+                                        ("phone", 32),
+                                        ("new_window", 33),
                                     ]
                                 ],
                                 {},
                             ),
-                            34: ("wagtail.blocks.StructBlock", [[("label", 24), ("link", 33)]], {}),
-                            35: ("wagtail.blocks.ListBlock", (34,), {"default": [], "max_num": 1, "min_num": 0}),
-                            36: (
+                            35: ("wagtail.blocks.StructBlock", [[("label", 25), ("link", 34)]], {}),
+                            36: ("wagtail.blocks.ListBlock", (35,), {"default": [], "max_num": 1, "min_num": 0}),
+                            37: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
@@ -457,13 +458,13 @@ class Migration(migrations.Migration):
                                         ("superheading_text", 2),
                                         ("heading_text", 3),
                                         ("subheading_text", 2),
-                                        ("section_content", 23),
-                                        ("action", 35),
+                                        ("section_content", 24),
+                                        ("action", 36),
                                     ]
                                 ],
                                 {},
                             ),
-                            37: (
+                            38: (
                                 "wagtail.blocks.RichTextBlock",
                                 (),
                                 {
@@ -471,7 +472,7 @@ class Migration(migrations.Migration):
                                     "help_text": "Use <strong>bold</strong> to make parts of this text black.",
                                 },
                             ),
-                            38: ("wagtail.blocks.StructBlock", [[("heading", 37), ("button", 35)]], {}),
+                            39: ("wagtail.blocks.StructBlock", [[("heading", 38), ("button", 36)]], {}),
                         },
                         null=True,
                     ),
@@ -479,7 +480,7 @@ class Migration(migrations.Migration):
                 (
                     "bottom_content",
                     wagtail.fields.StreamField(
-                        [("section", 36), ("call_to_action", 38)],
+                        [("section", 37), ("call_to_action", 39)],
                         blank=True,
                         block_lookup={
                             0: (
@@ -819,13 +820,14 @@ class Migration(migrations.Migration):
                             20: ("wagtail.blocks.StructBlock", [[("stats", 19)]], {}),
                             21: ("wagtail.blocks.ListBlock", (6,), {"default": [], "max_num": 8, "min_num": 1}),
                             22: ("wagtail.blocks.StructBlock", [[("people_photos", 21), ("text", 13)]], {}),
-                            23: (
+                            23: ("wagtail.contrib.table_block.blocks.TableBlock", (), {}),
+                            24: (
                                 "wagtail.blocks.StreamBlock",
-                                [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22)]],
+                                [[("figure_block", 7), ("cards_list", 16), ("stats_list_block", 20), ("people_list", 22), ("table", 23)]],
                                 {"required": False},
                             ),
-                            24: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
-                            25: (
+                            25: ("wagtail.blocks.CharBlock", (), {"label": "Link Text"}),
+                            26: (
                                 "wagtail.blocks.ChoiceBlock",
                                 [],
                                 {
@@ -842,13 +844,13 @@ class Migration(migrations.Migration):
                                     "required": False,
                                 },
                             ),
-                            26: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
-                            27: (
+                            27: ("wagtail.blocks.PageChooserBlock", (), {"form_classname": "page_link", "label": "Page", "required": False}),
+                            28: (
                                 "wagtail.documents.blocks.DocumentChooserBlock",
                                 (),
                                 {"form_classname": "file_link", "label": "File", "required": False},
                             ),
-                            28: (
+                            29: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {
@@ -859,41 +861,41 @@ class Migration(migrations.Migration):
                                     "validators": [wagtail.admin.forms.choosers.URLOrAbsolutePathValidator()],
                                 },
                             ),
-                            29: (
+                            30: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "anchor_link", "label": "#", "max_length": 300, "required": False},
                             ),
-                            30: ("wagtail.blocks.EmailBlock", (), {"required": False}),
-                            31: (
+                            31: ("wagtail.blocks.EmailBlock", (), {"required": False}),
+                            32: (
                                 "wagtail.blocks.CharBlock",
                                 (),
                                 {"form_classname": "phone_link", "label": "Phone", "max_length": 30, "required": False},
                             ),
-                            32: (
+                            33: (
                                 "wagtail.blocks.BooleanBlock",
                                 (),
                                 {"form_classname": "new_window_toggle", "label": "Open in new window", "required": False},
                             ),
-                            33: (
+                            34: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
-                                        ("link_to", 25),
-                                        ("page", 26),
-                                        ("file", 27),
-                                        ("custom_url", 28),
-                                        ("anchor", 29),
-                                        ("email", 30),
-                                        ("phone", 31),
-                                        ("new_window", 32),
+                                        ("link_to", 26),
+                                        ("page", 27),
+                                        ("file", 28),
+                                        ("custom_url", 29),
+                                        ("anchor", 30),
+                                        ("email", 31),
+                                        ("phone", 32),
+                                        ("new_window", 33),
                                     ]
                                 ],
                                 {},
                             ),
-                            34: ("wagtail.blocks.StructBlock", [[("label", 24), ("link", 33)]], {}),
-                            35: ("wagtail.blocks.ListBlock", (34,), {"default": [], "max_num": 1, "min_num": 0}),
-                            36: (
+                            35: ("wagtail.blocks.StructBlock", [[("label", 25), ("link", 34)]], {}),
+                            36: ("wagtail.blocks.ListBlock", (35,), {"default": [], "max_num": 1, "min_num": 0}),
+                            37: (
                                 "wagtail.blocks.StructBlock",
                                 [
                                     [
@@ -901,13 +903,13 @@ class Migration(migrations.Migration):
                                         ("superheading_text", 2),
                                         ("heading_text", 3),
                                         ("subheading_text", 2),
-                                        ("section_content", 23),
-                                        ("action", 35),
+                                        ("section_content", 24),
+                                        ("action", 36),
                                     ]
                                 ],
                                 {},
                             ),
-                            37: (
+                            38: (
                                 "wagtail.blocks.RichTextBlock",
                                 (),
                                 {
@@ -915,7 +917,7 @@ class Migration(migrations.Migration):
                                     "help_text": "Use <strong>bold</strong> to make parts of this text black.",
                                 },
                             ),
-                            38: ("wagtail.blocks.StructBlock", [[("heading", 37), ("button", 35)]], {}),
+                            39: ("wagtail.blocks.StructBlock", [[("heading", 38), ("button", 36)]], {}),
                         },
                         null=True,
                     ),
