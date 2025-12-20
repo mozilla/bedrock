@@ -28,7 +28,12 @@
 
 {% block content %}
   <main id="mzan-main">
+    {% set ns = namespace(headings=0) %}
     {% for block in page.content %}
+      {% if block.block.is_section_block %}
+        {% set block_level = 1 if ns.headings == 0 else 2 %}
+        {% set ns.headings = ns.headings + 1 %}
+      {% endif %}
       {% include_block block %}
     {% endfor %}
   </main>
