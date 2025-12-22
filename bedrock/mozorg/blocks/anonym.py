@@ -420,7 +420,13 @@ class IconCardBlock(blocks.StructBlock):
 
 class CardsListBlock(blocks.StructBlock):
     settings = CardListSettings()
-    cards = blocks.ListBlock(IconCardBlock(), min_num=1, max_num=4, default=[])
+    cards = blocks.StreamBlock(
+        [
+            ("icon_card", IconCardBlock()),
+        ],
+        min_num=1,
+        max_num=4,
+    )
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/cards-list.html"

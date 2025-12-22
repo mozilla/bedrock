@@ -354,7 +354,7 @@ class Migration(migrations.Migration):
                                 {"features": ["bold", "italic", "link", "superscript", "subscript", "strikethrough"]},
                             ),
                             14: ("wagtail.blocks.StructBlock", [[("icon", 11), ("heading", 12), ("text", 13)]], {}),
-                            15: ("wagtail.blocks.ListBlock", (14,), {"default": [], "max_num": 4, "min_num": 1}),
+                            15: ("wagtail.blocks.StreamBlock", [[("icon_card", 14)]], {"max_num": 4, "min_num": 1}),
                             16: ("wagtail.blocks.StructBlock", [[("settings", 10), ("cards", 15)]], {}),
                             17: ("wagtail.images.blocks.ImageChooserBlock", (), {"required": False}),
                             18: (
