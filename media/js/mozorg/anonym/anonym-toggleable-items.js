@@ -11,9 +11,42 @@
         const toggleButtons = document.querySelectorAll('.mzan-toggle');
         const contentDivs = document.querySelectorAll('.mzan-toggle-content');
 
+        // Helper function to swap icon between regular and white version
+        function updateToggleIcon(toggle, isSelected) {
+            const iconElement = toggle.querySelector('.mzan-icon');
+            if (!iconElement) return;
+
+            // Get all classes from the icon element
+            const classes = Array.from(iconElement.classList);
+
+            // Find the icon class (starts with 'icon-')
+            const iconClass = classes.find(function (cls) {
+                return cls.startsWith('icon-') && cls !== 'icon';
+            });
+
+            if (!iconClass) return;
+
+            if (isSelected) {
+                // Switch to white version if not already
+                if (!iconClass.endsWith('-white')) {
+                    iconElement.classList.remove(iconClass);
+                    iconElement.classList.add(iconClass + '-white');
+                }
+            } else {
+                // Switch to regular version
+                if (iconClass.endsWith('-white')) {
+                    const regularIcon = iconClass.replace(/-white$/, '');
+                    iconElement.classList.remove(iconClass);
+                    iconElement.classList.add(regularIcon);
+                }
+            }
+        }
+
         // Show first item by default
         if (toggleButtons.length > 0 && contentDivs.length > 0) {
             toggleButtons[0].setAttribute('aria-expanded', 'true');
+            toggleButtons[0].classList.add('is-selected');
+            updateToggleIcon(toggleButtons[0], true);
             contentDivs[0].hidden = false;
         }
 
@@ -32,11 +65,15 @@
                     });
                     toggleButtons.forEach(function (btn) {
                         btn.setAttribute('aria-expanded', 'false');
+                        btn.classList.remove('is-selected');
+                        updateToggleIcon(btn, false);
                     });
 
                     // Show the clicked toggle's content
                     contentDiv.hidden = false;
                     this.setAttribute('aria-expanded', 'true');
+                    this.classList.add('is-selected');
+                    updateToggleIcon(this, true);
                 }
             });
         });

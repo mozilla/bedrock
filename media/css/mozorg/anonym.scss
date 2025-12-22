@@ -416,6 +416,17 @@ $image-path: '/media/protocol/img';
     content: counter(index-sections, decimal-leading-zero);
 }
 
+.mzan-toggle {
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+
+    &.is-selected {
+        background-color: black;
+        color: white;
+    }
+}
+
 .block-table {
     table {
         width: 100%;
