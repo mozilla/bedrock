@@ -438,9 +438,28 @@ class IconCardBlock(blocks.StructBlock):
         label_format = "Icon Card - {heading}"
 
 
+class LogoCardBlock(blocks.StructBlock):
+    logo = ImageChooserBlock()
+    heading = blocks.CharBlock(label="Heading")
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/logo-card.html"
+        label = "Logo Card"
+        label_format = "Logo Card - {heading}"
+
+
 class CardsListBlock(blocks.StructBlock):
     settings = CardListSettings()
-    cards = blocks.ListBlock(IconCardBlock(), min_num=1, max_num=4, default=[])
+    cards = blocks.StreamBlock(
+        [
+            ("icon_card", IconCardBlock()),
+            ("logo_card", LogoCardBlock()),
+        ],
+        min_num=1,
+        max_num=4,
+    )
 
     class Meta:
         template = "mozorg/cms/anonym/blocks/cards-list.html"
