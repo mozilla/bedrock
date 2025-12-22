@@ -20,6 +20,11 @@
   {{ css_bundle('mozilla-anonym') }}
 {% endblock %}
 
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym-toggleable-items') }}
+{% endblock %}
+
 {% block site_header %}
   {% with has_subnav=true %}
     {% include 'includes/protocol/navigation/navigation.html' %}

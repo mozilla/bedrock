@@ -22,6 +22,7 @@ from bedrock.mozorg.blocks.advertising import (
 from bedrock.mozorg.blocks.anonym import (
     CallToActionBlock as AnonymCallToActionBlock,
     SectionBlock as AnonymSectionBlock,
+    ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
@@ -429,6 +430,7 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
     content = StreamField(
         [
             ("section", AnonymSectionBlock()),
+            ("toggle_items", AnonymToggleableItemsBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,
