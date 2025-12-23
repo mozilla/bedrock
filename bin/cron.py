@@ -50,7 +50,8 @@ HEALTH_FILE_BASE = f"{DATA_PATH}/last-run"
 # The jobs are run every five minutes, so should all normally complete within that
 # timeframe. If they don't (eg, they've hung), we set a timeout just before then,
 # so that they are killed and we will try again.
-TIMEOUT_SECS = 290  # Just shy of five minutes.
+# We make this configurable so we can allow more time for the jobs on demos, which are slower
+TIMEOUT_SECS = config("DB_UPDATE_TIMEOUT_SECS", default="290", parser=int)  # Just shy of five minutes.
 
 
 sentry_dsn = config("SENTRY_DSN", raise_error=False)
