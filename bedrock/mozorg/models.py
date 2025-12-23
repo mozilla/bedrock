@@ -389,3 +389,6 @@ class AnonymIndexPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/anonym/anonym_index_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Index Page"
