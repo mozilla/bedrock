@@ -466,6 +466,8 @@ class AnonymStaticPage(AbstractBedrockCMSPage):
 class AnonymNewsPage(AnonymStaticPage):
     """Static news page for Anonym."""
 
+    max_count = 1
+
     template = "mozorg/cms/anonym/anonym_news.html"
 
     class Meta:
@@ -474,6 +476,8 @@ class AnonymNewsPage(AnonymStaticPage):
 
 class AnonymContactPage(AnonymStaticPage):
     """Static contact page for Anonym."""
+
+    max_count = 1
 
     template = "mozorg/cms/anonym/anonym_contact.html"
 
