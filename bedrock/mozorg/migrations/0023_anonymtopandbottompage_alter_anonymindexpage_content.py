@@ -923,9 +923,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={
-                "abstract": False,
-            },
+            options={"abstract": False, "verbose_name": "Anonym Top And Bottom Page"},
             bases=("wagtailcore.page",),
         ),
     ]
