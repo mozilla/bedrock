@@ -1146,6 +1146,12 @@
     },
     {
       "files": [
+        "css/mozorg/anonym.scss"
+      ],
+      "name": "mozilla-anonym"
+    },
+    {
+      "files": [
         "css/mozorg/advertising-format.scss"
       ],
       "name": "mozilla-ads-format"
