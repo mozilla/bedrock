@@ -21,5 +21,87 @@
 {% block content %}
   <main id="mzan-main">
     <h1>News</h1>
+
+    {# Featured Article #}
+    <article class="mzan-news-featured">
+      <div class="mzan-news-featured-content">
+        <div class="mzan-news-source">
+          <span class="mzan-news-logo">
+            <img src="{{ static('img/logos/wsj/wsj-logo.svg') }}" alt="Wall Street Journal" width="40" height="40">
+          </span>
+          <a href="#" class="mzan-news-external-link" aria-label="External link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <h2>Anonym and Snap partner to unlock increased performance for advertisers</h2>
+        <div class="mzan-news-meta">
+          <span class="mzan-news-category">Press</span>
+          <span class="mzan-news-date">Sept 10</span>
+        </div>
+      </div>
+      <div class="mzan-news-featured-image">
+        <img src="#" alt="Two business executives in suits standing in an archway">
+      </div>
+    </article>
+
+    {# News Grid #}
+    <div class="mzan-news-grid">
+      {# Article 1 - New York Times #}
+      <article class="mzan-news-card">
+        <div class="mzan-news-source">
+          <span class="mzan-news-logo mzan-news-logo-nyt">
+            <img src="{{ static('img/logos/nyt/nyt-logo.svg') }}" alt="New York Times" width="40" height="40">
+          </span>
+          <a href="#" class="mzan-news-external-link" aria-label="External link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <h3>Former Facebook Execs Launch Startup, Adding to Efforts to Improve Ad Measurement</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
+        <div class="mzan-news-meta">
+          <span class="mzan-news-category">Press</span>
+          <span class="mzan-news-date">Sept 10</span>
+        </div>
+      </article>
+
+      {# Article 2 - Anonym Blog #}
+      <article class="mzan-news-card">
+        <div class="mzan-news-source">
+          <span class="mzan-news-logo">
+            <img src="{{ static('img/logos/anonym/anonym-logo.svg') }}" alt="Anonym" width="100">
+          </span>
+        </div>
+        <h3>Consequat orci et in non pharetra egestas non</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
+        <div class="mzan-news-meta">
+          <span class="mzan-news-category">Blog</span>
+          <span class="mzan-news-date">Sept 10</span>
+        </div>
+      </article>
+
+      {# Article 3 - Snapchat #}
+      <article class="mzan-news-card">
+        <div class="mzan-news-source">
+          <span class="mzan-news-logo mzan-news-logo-snapchat">
+            <img src="{{ static('img/logos/snapchat/snapchat-logo.svg') }}" alt="Snapchat" width="40" height="40">
+          </span>
+        </div>
+        <h3>Ac posuere tellus adipiscing nam sem cras egestas non ateam velit integer sagittis</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
+        <div class="mzan-news-meta">
+          <span class="mzan-news-category">Press</span>
+          <span class="mzan-news-date">Sept 10</span>
+        </div>
+      </article>
+    </div>
+
+    {# View All Posts Button #}
+    <div class="mzan-news-view-all">
+      <a href="#" class="mzan-button mzan-button-outline">View all posts</a>
+    </div>
   </main>
 {% endblock %}
