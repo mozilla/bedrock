@@ -206,6 +206,8 @@ ICON_CHOICES = [
     ("popular", "Popular"),
     ("popup-block", "Popup Block"),
     ("preferences", "Preferences"),
+    ("pricetag", "Pricetag"),
+    ("pricetag-white", "Pricetag White"),
     ("printer", "Printer"),
     ("privacy", "Privacy"),
     ("private-browsing", "Private Browsing"),
@@ -224,6 +226,8 @@ ICON_CHOICES = [
     ("report", "Report"),
     ("resources", "Resources"),
     ("restore-session", "Restore Session"),
+    ("rhombus-layers", "Rhombus Layers"),
+    ("rhombus-layers-white", "Rhombus Layers White"),
     ("screen-share-disabled", "Screen Share Disabled"),
     ("screen-share", "Screen Share"),
     ("screenshot", "Screenshot"),
@@ -283,6 +287,15 @@ ICON_CHOICES = [
 ]
 
 
+# The location of non-mozilla-protocal icons.
+NON_PROTOCOL_ICONS_DIRS = {
+    "pricetag": "img/icons",
+    "pricetag-white": "img/icons",
+    "rhombus-layers": "img/icons",
+    "rhombus-layers-white": "img/icons",
+}
+
+
 def get_icon_choices():
     """
     Get the icon choices for a ThumbnailChoiceBlock.
@@ -302,12 +315,19 @@ def get_icon_thumbnails():
     """
     result = {}
     for icon_choice in ICON_CHOICES:
-        icon_key = icon_choice[0].lower()
+        icon_key = icon_choice[0]
+
+        # Determine the icon base_url.
+        base_url = "protocol/img/icons"
+        if icon_key in NON_PROTOCOL_ICONS_DIRS:
+            base_url = NON_PROTOCOL_ICONS_DIRS[icon_key]
+
+        icon_key = icon_key.lower()
         try:
-            result[icon_key] = static(f"protocol/img/icons/{icon_key}.svg")
+            result[icon_key] = static(f"{base_url}/{icon_key}.svg")
         except (ValueError, OSError):
             # Fallback when staticfiles manifest doesn't exist (during migrations/collectstatic)
-            result[icon_key] = f"/static/protocol/img/icons/{icon_key}.svg"
+            result[icon_key] = f"/static/{base_url}/{icon_key}.svg"
     return result
 
 
@@ -418,11 +438,24 @@ class IconCardBlock(blocks.StructBlock):
         label_format = "Icon Card - {heading}"
 
 
+class LogoCardBlock(blocks.StructBlock):
+    logo = ImageChooserBlock()
+    heading = blocks.CharBlock(label="Heading")
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/logo-card.html"
+        label = "Logo Card"
+        label_format = "Logo Card - {heading}"
+
+
 class CardsListBlock(blocks.StructBlock):
     settings = CardListSettings()
     cards = blocks.StreamBlock(
         [
             ("icon_card", IconCardBlock()),
+            ("logo_card", LogoCardBlock()),
         ],
         min_num=1,
         max_num=4,
@@ -496,6 +529,49 @@ class SectionBlock(blocks.StructBlock):
         template = "mozorg/cms/anonym/blocks/section.html"
         label = "Section"
         label_format = "{heading_text}"
+
+
+class TwoSectionBlock(blocks.StructBlock):
+    first_section = SectionBlock()
+    second_section = SectionBlock()
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/two-sections.html"
+        label = "Two Sections"
+
+
+class ToggleableItemBlock(blocks.StructBlock):
+    icon = ThumbnailChoiceBlock(
+        required=True,
+        choices=get_icon_choices,
+        thumbnails=get_icon_thumbnails,
+        default="outlined",
+        inline_form=True,
+    )
+    toggle_text = blocks.CharBlock()
+    toggle_content = blocks.StreamBlock(
+        [
+            ("two_column_block", TwoSectionBlock()),
+        ],
+        required=True,
+    )
+
+    class Meta:
+        label = "Toggle Item"
+        label_format = "Toggle Item - {toggle_text}"
+
+
+class ToggleableItemsBlock(blocks.StructBlock):
+    toggle_items = blocks.StreamBlock(
+        [
+            ("toggle_items", ToggleableItemBlock()),
+        ],
+        required=True,
+    )
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/toggleable-items.html"
+        label = "Toggle Items"
 
 
 class CallToActionBlock(blocks.StructBlock):

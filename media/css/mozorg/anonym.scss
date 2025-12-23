@@ -286,6 +286,8 @@ $image-path: '/media/protocol/img';
 .icon-popular { --icon-src: url('/media/protocol/img/icons/popular.svg'); }
 .icon-popup-block { --icon-src: url('/media/protocol/img/icons/popup-block.svg'); }
 .icon-preferences { --icon-src: url('/media/protocol/img/icons/preferences.svg'); }
+.icon-pricetag { --icon-src: url('/media/img/icons/pricetag.svg'); }
+.icon-pricetag-white { --icon-src: url('/media/img/icons/pricetag-white.svg'); }
 .icon-printer { --icon-src: url('/media/protocol/img/icons/printer.svg'); }
 .icon-privacy { --icon-src: url('/media/protocol/img/icons/privacy.svg'); }
 .icon-private-browsing { --icon-src: url('/media/protocol/img/icons/private-browsing.svg'); }
@@ -304,6 +306,8 @@ $image-path: '/media/protocol/img';
 .icon-report { --icon-src: url('/media/protocol/img/icons/report.svg'); }
 .icon-resources { --icon-src: url('/media/protocol/img/icons/resources.svg'); }
 .icon-restore-session { --icon-src: url('/media/protocol/img/icons/restore-session.svg'); }
+.icon-rhombus-layers { --icon-src: url('/media/img/icons/rhombus-layers.svg'); }
+.icon-rhombus-layers-white { --icon-src: url('/media/img/icons/rhombus-layers-white.svg'); }
 .icon-screen-share-disabled { --icon-src: url('/media/protocol/img/icons/screen-share-disabled.svg'); }
 .icon-screen-share { --icon-src: url('/media/protocol/img/icons/screen-share.svg'); }
 .icon-screenshot { --icon-src: url('/media/protocol/img/icons/screenshot.svg'); }
@@ -410,6 +414,17 @@ $image-path: '/media/protocol/img';
 
 .mzan-section-index-theme::before {
     content: counter(index-sections, decimal-leading-zero);
+}
+
+.mzan-toggle {
+    cursor: pointer;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+
+    &.is-selected {
+        background-color: black;
+        color: white;
+    }
 }
 
 .block-table {
