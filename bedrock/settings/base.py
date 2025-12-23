@@ -2400,6 +2400,7 @@ _allowed_page_models = [
     "mozorg.AnonymIndexPage",
     "mozorg.AnonymTopAndBottomPage",
     "mozorg.AnonymContentSubPage",
+    "mozorg.AnonymStaticPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",
