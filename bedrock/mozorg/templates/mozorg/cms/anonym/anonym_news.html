@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Mozilla Anonym News{% endblock %}
+{% block page_desc %}Mozilla Anonym News{% endblock %}
+{% block body_class %}mzan{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-anonym') }}
+{% endblock %}
+
+{% block site_header %}
+  {% include 'mozorg/cms/anonym/includes/navigation.html' %}
+{% endblock %}
+
+{% block content %}
+  <main id="mzan-main">
+    <h1>News</h1>
+  </main>
+{% endblock %}

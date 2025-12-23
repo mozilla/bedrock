@@ -444,8 +444,45 @@ class ContentSubpage(AbstractBedrockCMSPage):
     template = "mozorg/cms/advertising/content_subpage.html"
 
 
+class AnonymStaticPage(AbstractBedrockCMSPage):
+    """
+    Abstract base class for static Anonym pages.
+    Subclasses only need to define the template path.
+    """
+
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        # Add the parent AnonymIndexPage to context
+        context["anonym_index_page"] = self.get_parent().specific
+        return context
+
+    class Meta:
+        abstract = True
+
+
+class AnonymNewsPage(AnonymStaticPage):
+    """Static news page for Anonym."""
+
+    template = "mozorg/cms/anonym/anonym_news.html"
+
+    class Meta:
+        verbose_name = "Anonym News Page"
+
+
+class AnonymContactPage(AnonymStaticPage):
+    """Static contact page for Anonym."""
+
+    template = "mozorg/cms/anonym/anonym_contact.html"
+
+    class Meta:
+        verbose_name = "Anonym Contact Page"
+
+
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage"]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
