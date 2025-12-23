@@ -22,6 +22,26 @@ BASIC_TEXT_FEATURES = [
 ]
 
 
+FULL_RICHTEXT_FEATURES = [
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "bold",
+    "italic",
+    "ol",
+    "ul",
+    "hr",
+    "link",
+    "image",
+    "embed",
+    "superscript",
+    "subscript",
+    "strikethrough",
+    "blockquote",
+]
+
+
 SECTION_THEME_INDEX = "index"
 SECTION_THEME_TOP_GLOW = "top_glow"
 
@@ -561,6 +581,7 @@ class SectionBlock(blocks.StructBlock):
             ("people_list", PeopleListBlock()),
             ("table", TableBlock()),
             ("two_column", TwoColumnBlock()),
+            ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
         ],
         required=False,
     )

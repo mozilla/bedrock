@@ -486,7 +486,7 @@ class AnonymContactPage(AnonymStaticPage):
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymArticlePage"]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
@@ -579,3 +579,35 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/anonym/anonym_content_sub_page.html"
+
+
+class AnonymArticlePage(AbstractBedrockCMSPage):
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+        FieldPanel("notification"),
+    ]
+
+    template = "mozorg/cms/anonym/anonym_article_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Article Page"
