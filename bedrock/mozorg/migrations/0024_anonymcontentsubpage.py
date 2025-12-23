@@ -749,6 +749,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 "abstract": False,
+                "verbose_name": "Anonym Content Subpage",
             },
             bases=("wagtailcore.page",),
         ),
