@@ -528,6 +528,9 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
 
         return available_sections
 
+    class Meta:
+        verbose_name = "Anonym Index Page"
+
 
 class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
     parent_page_types = ["AnonymIndexPage"]
@@ -559,6 +562,9 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
 
     template = "mozorg/cms/anonym/anonym_top_and_bottom_page.html"
 
+    class Meta:
+        verbose_name = "Anonym Top And Bottom Page"
+
 
 class AnonymContentSubPage(AbstractBedrockCMSPage):
     parent_page_types = ["AnonymIndexPage"]
@@ -579,6 +585,9 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/anonym/anonym_content_sub_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Content Subpage"
 
 
 class AnonymArticlePage(AbstractBedrockCMSPage):

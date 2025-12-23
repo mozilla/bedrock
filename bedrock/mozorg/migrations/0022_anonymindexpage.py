@@ -480,6 +480,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 "abstract": False,
+                "verbose_name": "Anonym Index Page",
             },
             bases=("wagtailcore.page",),
         ),
