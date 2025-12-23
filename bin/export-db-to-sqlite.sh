@@ -164,6 +164,9 @@ python manage.py dumpdata \
     mozorg.AdvertisingIndexPage \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
+    mozorg.AnonymIndexPage \
+    mozorg.AnonymTopAndBottomPage \
+    mozorg.AnonymContentSubPage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \
