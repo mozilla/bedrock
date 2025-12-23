@@ -8,6 +8,7 @@ from django.templatetags.static import static
 from wagtail import blocks
 from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
 from wagtail_thumbnail_choice_block import ThumbnailChoiceBlock
 
@@ -450,12 +451,23 @@ class LogoCardBlock(blocks.StructBlock):
         label_format = "Logo Card - {heading}"
 
 
+class PersonCardBlock(blocks.StructBlock):
+    person = SnippetChooserBlock("mozorg.Person")
+    link = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
+
+    class Meta:
+        template = "mozorg/cms/anonym/blocks/person-card.html"
+        label = "Person Card"
+        label_format = "Person Card - {person}"
+
+
 class CardsListBlock(blocks.StructBlock):
     settings = CardListSettings()
     cards = blocks.StreamBlock(
         [
             ("icon_card", IconCardBlock()),
             ("logo_card", LogoCardBlock()),
+            ("person_card", PersonCardBlock()),
         ],
         min_num=1,
         max_num=4,
