@@ -519,6 +519,29 @@ class SectionBlockSettings(blocks.StructBlock):
         value_class = SectionBlockSettingsValue
 
 
+class ListItemBlock(blocks.StructBlock):
+    heading_text = blocks.CharBlock(label="Heading")
+    supporting_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+
+    class Meta:
+        label = "List Item"
+        label_format = "{heading_text}"
+        template = "mozorg/cms/anonym/blocks/list-item.html"
+        form_classname = "compact-form struct-block"
+
+
+class TwoColumnBlock(blocks.StructBlock):
+    heading_text = blocks.CharBlock(label="Heading")
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    second_column = blocks.ListBlock(ListItemBlock(), min_num=0)
+
+    class Meta:
+        label = "Two Column Block"
+        label_format = "Two Column - {heading_text}"
+        template = "mozorg/cms/anonym/blocks/two-column.html"
+        form_classname = "compact-form struct-block"
+
+
 class SectionBlock(blocks.StructBlock):
     is_section_block = True
 
@@ -537,6 +560,7 @@ class SectionBlock(blocks.StructBlock):
             ("stats_list_block", StatsListBlock()),
             ("people_list", PeopleListBlock()),
             ("table", TableBlock()),
+            ("two_column", TwoColumnBlock()),
         ],
         required=False,
     )
