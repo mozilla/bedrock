@@ -5,7 +5,7 @@
 #}
 
 <li class="mzan-card">
-  {% if card.icon %}<span class="mzan-icon icon-{{ card.icon }}"></span>{% endif %}
-  <h2 class="mzan-card-heading">{{ card.heading }}</h2>
-  <p>{{ card.text|remove_p_tag }}</p>
+  {% if value.icon %}<span class="mzan-icon icon-{{ value.icon }}"></span>{% endif %}
+  <h2 class="mzan-card-heading">{{ value.heading }}</h2>
+  <p>{{ value.text|remove_p_tag }}</p>
 </li>
