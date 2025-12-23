@@ -448,3 +448,6 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/anonym/anonym_content_sub_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Content Subpage"
