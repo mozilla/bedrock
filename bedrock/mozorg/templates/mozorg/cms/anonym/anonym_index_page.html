@@ -21,8 +21,8 @@
 {% endblock %}
 
 {% block site_header %}
-  {% with has_subnav=true %}
-    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% with anonym_index_page=page %}
+    {% include 'mozorg/cms/anonym/includes/navigation.html' %}
   {% endwith %}
 {% endblock %}
 
