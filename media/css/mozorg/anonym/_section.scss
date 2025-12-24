@@ -1,0 +1,68 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+
+.mzan-section {
+    padding: 50px 0;
+
+    @media #{$mq-md} {
+        padding: 75px 0;
+    }
+}
+
+.mzan-hgroup {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 24px;
+    text-align: center;
+
+    @media #{$mq-md} {
+        margin-bottom: 32px;
+    }
+}
+
+.mzan-superheading {
+    font-size: var(--mza-text-body-sm);
+    line-height: var(--mza-text-body-sm-line-height);
+    margin: 0 0 12px;
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+.mzan-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -1.92px;
+    line-height: 0.98;
+    margin: 0 0 16px;
+
+    @media #{$mq-md} {
+        font-size: 64px;
+        letter-spacing: -3px;
+    }
+}
+
+.mzan-subheading {
+    color: #6d6d6d;
+    font-size: var(--mza-text-body-md);
+    line-height: var(--mza-text-body-md-line-height);
+    margin: 0;
+    max-width: 662px;
+}
+
+.mzan-section-link {
+    color: #161616;
+    display: inline-flex;
+    font-size: var(--mza-text-button-sm);
+    font-weight: 600;
+    line-height: var(--mza-text-button-sm-line-height);
+    margin-top: 24px;
+    text-decoration: underline;
+}

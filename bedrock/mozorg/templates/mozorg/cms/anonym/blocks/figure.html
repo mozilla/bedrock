@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<figure class="mzan-hero-figure {% if value.full_width %}is-full-width{% endif %}">
+<figure class="mzan-hero-figure{% if value.settings.make_full_width %} is-full-width{% endif %}">
   {{ srcset_image(
       value.image,
       "width-{200,400,600,800,1000,1200,1400}",
