@@ -414,7 +414,7 @@ class StatsListBlock(blocks.StructBlock):
 
 
 class PeopleListBlock(blocks.StructBlock):
-    people_photos = blocks.ListBlock(ImageChooserBlock(), min_num=1, max_num=8, default=[])
+    people = blocks.ListBlock(SnippetChooserBlock("mozorg.Person"), min_num=1, max_num=8, default=[])
     text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:

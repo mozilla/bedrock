@@ -6,9 +6,9 @@
 
 <div class="mzan-people">
   <ul class="mzan-people-list">
-    {% for photo in value.people_photos %}
+    {% for person in value.people %}
       <li>
-        <img src="{{ photo.file.url }}" alt="" width="64" height="64" loading="lazy">
+        <img src="{{ person.image.file.url }}" alt="{{ person.name }}" width="64" height="64" loading="lazy">
       </li>
     {% endfor %}
   </ul>
