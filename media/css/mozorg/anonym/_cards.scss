@@ -6,57 +6,26 @@
 
 .mzan-cards {
     margin: 24px 0 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
 }
 
 .mzan-card-list {
-    display: grid;
+    display: flex;
     gap: 16px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    justify-content: safe center;
     list-style: none;
     margin: 0;
     padding: 0;
-
-    @media #{$mq-md} {
-        gap: 24px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
-
-.mzan-cards.will-scroll {
-    overflow-x: auto;
-    padding-bottom: 8px;
-
-    .mzan-card-list {
-        display: flex;
-        gap: 12px;
-        scroll-snap-type: x mandatory;
-    }
-
-    .mzan-card {
-        flex: 0 0 280px;
-        scroll-snap-align: start;
-    }
-
-    @media #{$mq-md} {
-        overflow: visible;
-        padding-bottom: 0;
-
-        .mzan-card-list {
-            display: grid;
-            scroll-snap-type: none;
-        }
-
-        .mzan-card {
-            flex: initial;
-        }
-    }
+    scroll-snap-type: x mandatory;
 }
 
 .mzan-card {
     padding: 16px;
-
-    @media #{$mq-md} {
-        padding: 16px;
-    }
+    flex: 0 0 251px;
+    scroll-snap-align: start;
 
     p {
         margin: 8px 0 0;
@@ -85,7 +54,6 @@
     text-decoration: underline;
 }
 
-// Divider-style cards (used by icon cards in the Figma design)
 .mzan-cards.dividers {
     .mzan-card-list {
         @media #{$mq-md} {
@@ -102,14 +70,10 @@
     }
 }
 
-// Default (boxed) cards
 .mzan-cards:not(.dividers) .mzan-card {
-    background: #fff;
-    border: 1px solid #e8e8e8;
-    border-radius: 16px;
-    padding: 20px;
-
-    @media #{$mq-md} {
-        padding: 24px;
-    }
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #e8e8e8;
+    border-radius: 0;
+    padding: 16px 0 16px 16px;
 }

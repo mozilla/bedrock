@@ -12,10 +12,10 @@
 #mzan-main {
     margin: 0 auto;
     max-width: 1440px;
-    padding: 0 16px 96px;
+    padding: 0 0 96px;
 
     @media #{$mq-md} {
-        padding: 0 32px 128px;
+        padding: 0 0 128px;
     }
 }
 
