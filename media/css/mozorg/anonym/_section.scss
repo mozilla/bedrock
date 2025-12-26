@@ -16,11 +16,18 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    gap: 75px;
     margin: 0 0 24px;
     text-align: center;
 
     @media #{$mq-md} {
         margin-bottom: 32px;
+    }
+
+    .mzan-superheading,
+    .mzan-heading,
+    .mzan-subheading {
+        margin: 0;
     }
 }
 
@@ -31,7 +38,37 @@
 
     a {
         color: inherit;
-        text-decoration: underline;
+        text-decoration: none;
+    }
+
+    a::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: currentColor;
+        vertical-align: middle;
+        -webkit-mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
+        mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
+        margin: 0 0 0 0.5em;
+    }
+
+    a > i,
+    a > em {
+        align-items: center;
+        background: #161616;
+        color: #fff;
+        display: inline-flex;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        justify-content: center;
+        letter-spacing: 0.24px;
+        line-height: 1.2;
+        padding: 6px;
+        margin: 0 0.5em 0 0;
+        text-decoration: none;
+        text-transform: uppercase;
     }
 }
 
