@@ -11,7 +11,7 @@
 
   {% if value.button %}
     {% for button in value.button %}
-      <a class=""
+      <a class="mzan-card-link"
         href="{{ button.link.get_url() }}"
         {% if button.link.new_window %}target="_blank" rel="external noopener"{% endif %}
       >{{ button.label }}</a>

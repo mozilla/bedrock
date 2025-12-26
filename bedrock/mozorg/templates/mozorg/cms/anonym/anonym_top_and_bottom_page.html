@@ -20,6 +20,11 @@
   {{ css_bundle('mozilla-anonym') }}
 {% endblock %}
 
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym') }}
+{% endblock %}
+
 {% block site_header %}
   {% with anonym_index_page=page.get_parent() %}
     {% include 'mozorg/cms/anonym/includes/navigation.html' %}

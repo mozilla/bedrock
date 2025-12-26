@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+
+.mzan-stats-list {
+    display: grid;
+    gap: 16px;
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+
+    @media #{$mq-md} {
+        gap: 24px;
+    }
+}
+
+.mzan-stat-item {
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 16px;
+    display: grid;
+    gap: 16px;
+    padding: 20px;
+
+    @media #{$mq-md} {
+        gap: 24px;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        padding: 24px;
+    }
+}
+
+.mzan-stat-intro {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+
+    img {
+        border-radius: 12px;
+        flex: 0 0 auto;
+    }
+}
+
+.mzan-stat-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: var(--mza-text-title-xs);
+    font-weight: 500;
+    line-height: var(--mza-text-title-xs-line-height);
+    margin: 0;
+}
+
+.mzan-stat-stat {
+    display: grid;
+    gap: 4px;
+}
+
+.mzan-stat-value {
+    font-family: var(--moz-sans-headline);
+    font-size: var(--mza-text-title-md);
+    font-weight: 300;
+    line-height: var(--mza-text-title-md-line-height);
+    margin: 0;
+}
+
+.mzan-stat-label {
+    font-size: var(--mza-text-body-sm);
+    line-height: var(--mza-text-body-sm-line-height);
+    margin: 0;
+}

@@ -1,0 +1,19 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+.mzan-hero-figure {
+    margin: 50px 0 0;
+
+    img {
+        border-radius: 0;
+        display: block;
+        height: auto;
+        width: 100%;
+    }
+
+    &.is-full-width {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+}

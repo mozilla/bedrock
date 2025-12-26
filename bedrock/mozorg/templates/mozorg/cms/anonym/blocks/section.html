@@ -17,7 +17,7 @@
 
   {% if value.action %}
     {% for cta in value.action %}
-      <a class=""
+      <a class="mzan-section-link"
         href="{{ cta.link.get_url() }}"
         {% if cta.link.new_window %}target="_blank" rel="external noopener"{% endif %}
       >{{ cta.label }}</a>
