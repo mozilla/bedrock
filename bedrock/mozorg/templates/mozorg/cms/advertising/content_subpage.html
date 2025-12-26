@@ -58,7 +58,11 @@
 
   {% if page.notification %}
     {% with value=page.notification %}
-      {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+      {% with outer_container_class='mza-notification' %}
+        {% with container_class='mza-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
     {% endwith %}
   {% endif %}
 </main>
