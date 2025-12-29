@@ -2,20 +2,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-// CSS Counter for index-themed sections
-.mzan-top-container,
-.mzan-bottom-container {
-    counter-reset: index-sections;
-}
-
-.mzan-section-index-theme {
-    counter-increment: index-sections;
-}
-
-.mzan-section-index-theme::before {
-    content: counter(index-sections, decimal-leading-zero);
-}
-
 .mzan-toggle {
     cursor: pointer;
     background-color: transparent;

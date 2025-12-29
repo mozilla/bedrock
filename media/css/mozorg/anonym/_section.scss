@@ -4,11 +4,29 @@
 
 @use '../../m24/vars/lib' as *;
 
+#mzan-main {
+    counter-reset: mzan-section-index;
+}
+
 .mzan-section {
     padding: 50px 0;
 
     @media #{$mq-md} {
         padding: 75px 0;
+    }
+}
+
+.mzan-section-topglow-theme {
+    position: relative;
+
+    &::before {
+        background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
+        content: "";
+        height: auto;
+        aspect-ratio: 1311/218;
+        pointer-events: none;
+        width: min(1311px, 100%);
+        display: block;
     }
 }
 
@@ -69,6 +87,35 @@
         margin: 0 0.5em 0 0;
         text-decoration: none;
         text-transform: uppercase;
+    }
+}
+
+.mzan-section-index-theme {
+    .mzan-superheading {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        font-family: var(--moz-sans-headline);
+        font-size: 14px;
+        text-transform: uppercase;
+
+        &::before {
+            counter-increment: mzan-section-index;
+            align-items: center;
+            background: linear-gradient(90deg, #B8FFF5 0%, #63F4EE 42%, #49F3A5 100%);
+            border-radius: 0;
+            color: #161616;
+            content: counter(mzan-section-index, decimal-leading-zero);
+            display: inline-flex;
+            font-size: 12px;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 1;
+            height: 28px;
+            width: 28px;
+            padding: 0;
+        }
     }
 }
 
