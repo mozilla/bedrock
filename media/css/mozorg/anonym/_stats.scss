@@ -5,66 +5,262 @@
 @use '../../m24/vars/lib' as *;
 
 .mzan-stats-list {
-    display: grid;
-    gap: 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     list-style: none;
     margin: 24px 0 0;
     padding: 0;
+    width: 100%;
 
-    @media #{$mq-md} {
-        gap: 24px;
+    @media (max-width: 767px) {
+        border-bottom: 1px solid #e8e8e8;
+        border-top: 1px solid #e8e8e8;
+        flex-direction: row;
+        overflow: auto hidden;
+        overscroll-behavior-x: contain;
+        padding: 0 25px 0 16px;
+        scroll-padding-left: 16px;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
     }
 }
 
 .mzan-stat-item {
-    background: #fff;
+    box-sizing: border-box;
     border: 1px solid #e8e8e8;
-    border-radius: 16px;
+    border-radius: 0;
+    background: var(--mzan-stat-row-bg);
     display: grid;
     gap: 16px;
-    padding: 20px;
+    padding: 24px 16px;
+    overflow: visible;
+    position: relative;
+    isolation: isolate;
+
+    --mzan-stat-row-bg: transparent;
+
+    & + & {
+        border-top: 0;
+    }
 
     @media #{$mq-md} {
-        gap: 24px;
-        grid-template-columns: 1.2fr 1fr 1fr;
-        padding: 24px;
+        align-items: stretch;
+        column-gap: 0;
+        grid-template-columns: minmax(0, 60%) minmax(0, 1fr) minmax(0, 1fr);
+        min-height: 234px;
+        padding: 0 max(16px, calc((100% - 1136px) / 2));
+    }
+
+    &:nth-child(even) {
+        --mzan-stat-row-bg: linear-gradient(90deg, #49F3A5 0%, #B8FFF5 100%);
+
+        @media #{$mq-md} {
+            .mzan-stat-intro,
+            .mzan-stat-stat {
+                border-color: #fff;
+            }
+        }
+    }
+
+    @media #{$mq-lg} {
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            left: 50%;
+            width: 100vw;
+            transform: translateX(-50%);
+            background: var(--mzan-stat-row-bg);
+            z-index: -1;
+        }
+    }
+
+    @media (max-width: 767px) {
+        --mzan-stat-row-bg: transparent;
+
+        &:nth-child(even) {
+            --mzan-stat-row-bg: transparent;
+        }
+        border: 0;
+        border-right: 1px solid #e8e8e8;
+
+        &:first-child {
+            border-left: 1px solid #e8e8e8;
+        }
+        flex: 0 0 333px;
+        padding: 0;
+        scroll-snap-align: start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 288px 140px;
+        gap: 0;
     }
 }
 
 .mzan-stat-intro {
-    align-items: center;
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    min-width: 0;
+
+    @media #{$mq-md} {
+        height: 100%;
+        justify-content: center;
+        padding: 0;
+    }
 
     img {
-        border-radius: 12px;
         flex: 0 0 auto;
+        mix-blend-mode: multiply;
+        width: 63.25px;
+        height: 63.25px;
+        max-width: 63.25px;
+        max-height: 63.25px;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    @media (max-width: 767px) {
+        border-bottom: 1px solid #e8e8e8;
+        gap: 32px;
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding: 50px 16px;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: 16px;
+            width: 28px;
+            height: 28px;
+            background-color: #b3b3b3;
+            -webkit-mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 28px 28px;
+            mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 28px 28px;
+        }
     }
 }
 
 .mzan-stat-heading {
     font-family: var(--moz-sans-headline);
-    font-size: var(--mza-text-title-xs);
-    font-weight: 500;
-    line-height: var(--mza-text-title-xs-line-height);
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 1.2;
     margin: 0;
+    color: #000;
+    min-width: 0;
+    overflow-wrap: anywhere;
+
+    @media (max-width: 767px) {
+        font-family: var(--moz-sans-headline);
+        font-size: 22px;
+        font-weight: 300;
+        line-height: 1.2;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+    }
 }
 
 .mzan-stat-stat {
-    display: grid;
-    gap: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    min-width: 0;
+
+    @media #{$mq-md} {
+        border-left: 1px solid #e8e8e8;
+        height: 100%;
+        justify-content: flex-start;
+        padding: 50px 25px 0 16px;
+    }
+
+    @media (max-width: 767px) {
+        border-left: 0;
+        gap: 12px;
+        height: 100%;
+        justify-content: flex-start;
+        padding: 32px 16px;
+    }
+    @media (max-width: 767px) {
+        &:nth-of-type(2) {
+            border-left: 1px solid #e8e8e8;
+        }
+    }
 }
 
 .mzan-stat-value {
-    font-family: var(--moz-sans-headline);
-    font-size: var(--mza-text-title-md);
-    font-weight: 300;
-    line-height: var(--mza-text-title-md-line-height);
     margin: 0;
+
+    > p {
+        color: #000;
+        font-family: var(--moz-sans-headline);
+        font-size: 48px;
+        font-weight: 300;
+        letter-spacing: -1.44px;
+        line-height: 0.98;
+        margin: 0;
+        display: inline-flex;
+        align-items: flex-end;
+        white-space: nowrap;
+    }
+
+    sup,
+    sub {
+        display: inline-block;
+        font-size: 32px;
+        font-weight: 300;
+        letter-spacing: -0.64px;
+        line-height: 1.15;
+        margin-left: 0;
+    }
+
+    sup {
+        align-self: flex-start;
+    }
+
+    sub {
+        align-self: flex-end;
+        transform: translateY(0.06em);
+    }
+
+    @media (max-width: 767px) {
+        > p {
+            font-size: 40px;
+            letter-spacing: -1.2px;
+        }
+
+        sup,
+        sub {
+            font-size: 24px;
+            letter-spacing: -0.48px;
+        }
+    }
 }
 
 .mzan-stat-label {
-    font-size: var(--mza-text-body-sm);
-    line-height: var(--mza-text-body-sm-line-height);
+    font-family: 'Mozilla Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
     margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+
+    > p {
+        margin: 0;
+    }
+
+    @media (max-width: 767px) {
+        > p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+    }
 }
