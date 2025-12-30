@@ -13,6 +13,11 @@
     margin: 0 auto;
     max-width: 1440px;
     padding: 0 0 96px;
+    background-color: #fff;
+    background-image: url('/media/img/mozorg/anonym/bottom-glow.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
 
     @media #{$mq-md} {
         padding: 0 0 128px;

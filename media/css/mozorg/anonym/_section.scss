@@ -18,6 +18,7 @@
 
 .mzan-section-topglow-theme {
     position: relative;
+    text-align: center;
 
     &::before {
         background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
@@ -25,8 +26,99 @@
         height: auto;
         aspect-ratio: 1311/218;
         pointer-events: none;
-        width: min(1311px, 100%);
+        max-width: 738px;
+        margin: 0 auto;
         display: block;
+    }
+
+    .mzan-hgroup {
+        margin: 0;
+    }
+
+    .mzan-heading {
+        font-size: 40px;
+        letter-spacing: -0.8px;
+        line-height: 1;
+        margin: 0;
+        max-width: 1144px;
+    }
+
+    .mzan-subheading {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 472px;
+    }
+
+    .mzan-section-link {
+        align-items: center;
+        border-bottom: 1px solid #161616;
+        color: #161616;
+        display: inline-flex;
+        gap: 4px;
+        font-family: var(--moz-sans-headline);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 0;
+        padding-bottom: 2px;
+        text-decoration: none;
+        justify-content: center;
+
+        &:link,
+        &:visited,
+        &:hover,
+        &:focus,
+        &:active {
+            color: #161616;
+            text-decoration: none;
+        }
+
+        &::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-color: currentColor;
+            -webkit-mask: url('/media/img/mozorg/anonym/anonym-arrow-right.svg') no-repeat center / 24px 24px;
+            mask: url('/media/img/mozorg/anonym/anonym-arrow-right.svg') no-repeat center / 24px 24px;
+        }
+    }
+
+    .mzan-people {
+        flex-direction: column;
+        gap: 50px;
+
+        @media #{$mq-md} {
+            flex-direction: column;
+        }
+    }
+
+    .mzan-people-list {
+        justify-content: center;
+
+        li + li {
+            margin-left: -4px;
+        }
+
+        img {
+            border: 0;
+            height: 60px;
+            width: 60px;
+        }
+    }
+
+    .mzan-people-list-text {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 472px;
+        text-align: center;
+        margin-bottom: 50px;
+
+        p {
+            margin: 0;
+        }
     }
 }
 
@@ -126,6 +218,20 @@
     letter-spacing: -1.92px;
     line-height: 0.98;
     margin: 0 0 16px;
+    color: #161616;
+    text-align: center;
+
+    &:has(b, strong) {
+        color: rgba(22, 22, 22, 0.5);
+    }
+
+    b,
+    strong {
+        color: #161616;
+        font-weight: inherit;
+        padding: 0;
+        margin: 0;
+    }
 
     @media #{$mq-md} {
         font-size: 64px;
