@@ -13,9 +13,9 @@ backrefs==5.9 \
     --hash=sha256:df5e169836cc8acb5e440ebae9aad4bf9d15e226d3bad049cf3f6a5c20cc8dc9 \
     --hash=sha256:f48ee18f6252b8f5777a22a00a09a85de0ca931658f1dd96d4406a34f3748c60
     # via mkdocs-material
-certifi==2025.11.12 \
-    --hash=sha256:97de8790030bbd5c2d96b7ec782fc2f7820ef8dba6db909ccf95449f2d062d4b \
-    --hash=sha256:d8ab5478f2ecd78af242878415affce761ca6bc54a22a27e026d7c25357c3316
+certifi==2026.1.4 \
+    --hash=sha256:9943707519e4add1115f44c2bc244f782c0249876bf51b6599fee1ffbedd685c \
+    --hash=sha256:ac726dd470482006e014ad384921ed6438c457018f4b3d204aea4281258b2120
     # via requests
 charset-normalizer==3.4.4 \
     --hash=sha256:027f6de494925c0ab2a55eab46ae5129951638a49a34d87f4c3eda90f696b4ad \
@@ -296,9 +296,9 @@ pygments==2.19.2 \
     --hash=sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887 \
     --hash=sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b
     # via mkdocs-material
-pymdown-extensions==10.18 \
-    --hash=sha256:090bca72be43f7d3186374e23c782899dbef9dc153ef24c59dcd3c346f9ffcae \
-    --hash=sha256:20252abe6367354b24191431617a072ee6be9f68c5afcc74ea5573508a61f9e5
+pymdown-extensions==10.20 \
+    --hash=sha256:5c73566ab0cf38c6ba084cb7c5ea64a119ae0500cce754ccb682761dfea13a52 \
+    --hash=sha256:ea9e62add865da80a271d00bfa1c0fa085b20d133fb3fc97afdc88e682f60b2f
     # via mkdocs-material
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
@@ -395,9 +395,9 @@ six==1.17.0 \
     --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
     --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
     # via python-dateutil
-urllib3==2.6.1 \
-    --hash=sha256:5379eb6e1aba4088bae84f8242960017ec8d8e3decf30480b3a1abdaa9671a3f \
-    --hash=sha256:e67d06fe947c36a7ca39f4994b08d73922d40e6cca949907be05efa6fd75110b
+urllib3==2.6.2 \
+    --hash=sha256:016f9c98bb7e98085cb2b4b17b87d2c702975664e4f060c6532e64d1c1a5e797 \
+    --hash=sha256:ec21cddfe7724fc7cb4ba4bea7aa8e2ef36f607a4bab81aa6ce42a13dc3f03dd
     # via requests
 watchdog==6.0.0 \
     --hash=sha256:07df1fdd701c5d4c8e55ef6cf55b8f0120fe1aef7ef39a1c6fc6bc2e606d517a \
