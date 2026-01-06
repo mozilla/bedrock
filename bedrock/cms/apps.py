@@ -4,8 +4,6 @@
 
 
 from django.apps import AppConfig
-from django.utils.text import capfirst
-from django.utils.translation import gettext as _
 
 
 class CmsConfig(AppConfig):
@@ -60,6 +58,9 @@ class CmsConfig(AppConfig):
         This is similar to the _patch_locale_get_active approach - we replace
         a Wagtail function with our enhanced version at app startup.
         """
+
+        from django.utils.text import capfirst
+        from django.utils.translation import gettext as _
 
         import wagtail.images.forms
         from wagtail.admin.forms.collections import CollectionChoiceField

@@ -44,6 +44,11 @@ DANGEROUS_ATTRIBUTES = {
 }
 
 
+ALLOWED_DATA_URL_MIME_TYPES = {"image": ["jpeg", "png", "gif", "webp"]}
+
+ALLOWED_SVG_CONTENT_TYPES = ("image/svg+xml", "image/svg", "text/xml")
+
+
 class SanitizingWagtailImageField(WagtailImageField):
     """
     Custom image field that sanitizes SVG files before validation.
@@ -84,7 +89,7 @@ class SanitizingWagtailImageField(WagtailImageField):
 
         # Check content type if available
         if hasattr(f, "content_type") and f.content_type:
-            if f.content_type in ("image/svg+xml", "image/svg", "text/xml"):
+            if f.content_type in ALLOWED_SVG_CONTENT_TYPES:
                 return True
 
         return False
@@ -221,7 +226,7 @@ class SanitizingWagtailImageField(WagtailImageField):
                 # Allow common image data URLs in SVGs
                 filter_svg(
                     original_content,
-                    keep_data_url_mime_types={"image": ["jpeg", "png", "gif", "webp"]},
+                    keep_data_url_mime_types=ALLOWED_DATA_URL_MIME_TYPES,
                 )
                 # If py-svg-hush succeeds without errors, the SVG structure is valid
                 # We accept it regardless of normalization changes
