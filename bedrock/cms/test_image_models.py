@@ -105,3 +105,18 @@ class BedrockImageTestCase(TestCase):
         with patch.object(image, "_pre_generate_expected_renditions") as pre_generate_mock:
             image.save()
             pre_generate_mock.assert_called_once_with()
+
+    def test_bedrock_image_uses_sanitizing_field(self):
+        """Verify that BedrockImage forms use SanitizingWagtailImageField."""
+        from wagtail.images.forms import get_image_form
+
+        from bedrock.cms.fields import SanitizingWagtailImageField
+
+        ImageForm = get_image_form(BedrockImage)
+        form = ImageForm()
+
+        # Check that the 'file' field is our custom sanitizing field
+        self.assertIsInstance(
+            form.fields["file"],
+            SanitizingWagtailImageField,
+        )

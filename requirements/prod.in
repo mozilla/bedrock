@@ -7,6 +7,7 @@ chardet==5.2.0
 commonware==0.6.0
 contentful==2.5.0
 contextlib2==21.6.0
+defusedxml==0.7.1
 dirsync==2.2.6
 dj-database-url==3.0.1
 django-cors-headers==4.9.0
@@ -42,6 +43,7 @@ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibil
 mozilla-django-oidc==5.0.2
 Pillow==11.3.0
 psycopg[binary]==3.2.8
+py-svg-hush==0.2.0
 PyGithub==2.8.1
 pyOpenSSL==25.3.0
 PyYAML==6.0.3
