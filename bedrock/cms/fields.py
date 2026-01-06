@@ -230,20 +230,20 @@ class SanitizingWagtailImageField(WagtailImageField):
                 )
                 # If py-svg-hush succeeds without errors, the SVG structure is valid
                 # We accept it regardless of normalization changes
-            except Exception:
+            except (ValueError, ET.ParseError) as ex:
                 # py-svg-hush failed to process it - SVG might be malformed
                 return ValidationError(
-                    self.error_messages["svg_sanitization_error"],
+                    f"{self.error_messages['svg_sanitization_error']}: {ex}",
                     code="svg_sanitization_error",
                 )
 
             # All checks passed - file is safe
             return None
 
-        except Exception:
-            # Unexpected error during validation
+        except OSError as ex:
+            # File reading or I/O error during validation
             return ValidationError(
-                self.error_messages["svg_sanitization_error"],
+                f"{self.error_messages['svg_sanitization_error']}: {ex}",
                 code="svg_sanitization_error",
             )
 
