@@ -43,4 +43,12 @@ redirectpatterns = (
     redirect(r"^products/vpn/mobile/app/?$", mobile_app, cache_timeout=0, query=False),
     # Issue 15386
     redirect(r"^products/vpn/resource-center/no-Logging-vpn-from-mozilla/$", "/products/vpn/resource-center/no-logging-vpn-from-mozilla/"),
+    # Issue 15843
+    redirect("/products/vpn/more/what-is-an-ip-address/", "/products/vpn/resource-center/what-is-an-ip-address/"),
+    redirect(
+        "/products/vpn/more/the-difference-between-a-vpn-and-a-web-proxy/",
+        "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/",
+    ),
+    redirect("/products/vpn/more/what-is-a-vpn/", "/products/vpn/resource-center/what-is-a-vpn/"),
+    redirect("/products/vpn/more/5-reasons-you-should-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
 )
