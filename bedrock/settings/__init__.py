@@ -109,12 +109,12 @@ _csp_script_src = {
     "www.googletagmanager.com",
     "www.youtube.com",
     csp.constants.UNSAFE_EVAL,
-    # Don't allow csp.constants.UNSAFE_INLINE wholesale in the default CSP. Only allow hashed/nonced inline scripts, r
+    # Don't allow csp.constants.UNSAFE_INLINE wholesale in the default CSP. Be more targetted with it
 }
+
 _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
-    csp.constants.UNSAFE_INLINE,
     "cdn.transcend.io",  # Transcend Consent Management
     "transcend-cdn.com",  # Transcend Consent Management
 }
@@ -211,14 +211,10 @@ CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_P
 
 
 # The CMS admin frames itself for page previews and needs script-src: allow-inline
-cms_admin_script_src = deepcopy(_csp_script_src)
-cms_admin_script_src.add(csp.constants.UNSAFE_INLINE)
 CMS_ADMIN_CSP = _override_csp(
     CONTENT_SECURITY_POLICY,
-    replace={
-        "frame-ancestors": {csp.constants.SELF},
-        "script-src": cms_admin_script_src,
-    },
+    replace={"frame-ancestors": {csp.constants.SELF}},
+    append={"script-src": {csp.constants.UNSAFE_INLINE}},
 )
 CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": {csp.constants.SELF}})
 
