@@ -109,7 +109,7 @@ _csp_script_src = {
     "www.googletagmanager.com",
     "www.youtube.com",
     csp.constants.UNSAFE_EVAL,
-    csp.constants.UNSAFE_INLINE,
+    # Don't allow csp.constants.UNSAFE_INLINE wholesale in the default CSP. Only allow hashed/nonced inline scripts, r
 }
 _csp_style_src = {
     csp.constants.SELF,
@@ -208,8 +208,18 @@ def _override_csp(
 # /cms-admin/images/ loads just-uploaded images as blobs.
 CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": {"blob:"}})
 CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": {"blob:"}})
-# The CMS admin frames itself for page previews.
-CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": {csp.constants.SELF}})
+
+
+# The CMS admin frames itself for page previews and needs script-src: allow-inline
+cms_admin_script_src = deepcopy(_csp_script_src)
+cms_admin_script_src.add(csp.constants.UNSAFE_INLINE)
+CMS_ADMIN_CSP = _override_csp(
+    CONTENT_SECURITY_POLICY,
+    replace={
+        "frame-ancestors": {csp.constants.SELF},
+        "script-src": cms_admin_script_src,
+    },
+)
 CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": {csp.constants.SELF}})
 
 CSP_PATH_OVERRIDES = {
