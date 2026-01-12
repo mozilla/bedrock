@@ -444,8 +444,49 @@ class ContentSubpage(AbstractBedrockCMSPage):
     template = "mozorg/cms/advertising/content_subpage.html"
 
 
+class AnonymStaticPage(AbstractBedrockCMSPage):
+    """
+    Abstract base class for static Anonym pages.
+    Subclasses only need to define the template path.
+    """
+
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        # Add the parent AnonymIndexPage to context
+        context["anonym_index_page"] = self.get_parent().specific
+        return context
+
+    class Meta:
+        abstract = True
+
+
+class AnonymNewsPage(AnonymStaticPage):
+    """Static news page for Anonym."""
+
+    max_count = 1
+
+    template = "mozorg/cms/anonym/anonym_news.html"
+
+    class Meta:
+        verbose_name = "Anonym News Page"
+
+
+class AnonymContactPage(AnonymStaticPage):
+    """Static contact page for Anonym."""
+
+    max_count = 1
+
+    template = "mozorg/cms/anonym/anonym_contact.html"
+
+    class Meta:
+        verbose_name = "Anonym Contact Page"
+
+
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymArticlePage"]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
@@ -547,3 +588,35 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Content Subpage"
+
+
+class AnonymArticlePage(AbstractBedrockCMSPage):
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+        FieldPanel("notification"),
+    ]
+
+    template = "mozorg/cms/anonym/anonym_article_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Article Page"
