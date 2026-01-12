@@ -4,8 +4,8 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="mza-notification">
-  <div class="mza-notification-container">
+<div class="{{ outer_container_class }}">
+  <div class="{{ container_class }}">
     <p>{{ value.notification_text }}</p>
 
     {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
