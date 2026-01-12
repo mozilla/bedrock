@@ -279,10 +279,6 @@ commonware==0.6.0 \
     --hash=sha256:0e9520986e292f2bf8cdf80b32f21ef01e4058fd7baa61d2d282d21ed7085b1f \
     --hash=sha256:f596962fd11bc53b5453ffa766dc99f297895021946096d3e6b4826f9ae075ea
     # via -r requirements/prod.in
-contentful==2.5.0 \
-    --hash=sha256:827f61a0a987f7fb2e9c7e633cea2ffbe06fe9658a52f1f57cf195efaf9ddcd0 \
-    --hash=sha256:a26df95481ba1ee38829544e3f31ba473fb2946cf65794190561c6de6540716a
-    # via -r requirements/prod.in
 contextlib2==21.6.0 \
     --hash=sha256:3fbdb64466afd23abaf6c977627b75b6139a5a3e8ce38405c5b413aed7a0471f \
     --hash=sha256:ab1e2bfe1d01d968e1b7e8d9023bc51ef3509bba217bb730cee3827e1ee82869
@@ -1487,7 +1483,6 @@ python-dateutil==2.9.0.post0 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
     # via
     #   botocore
-    #   contentful
     #   croniter
 pytz==2025.2 \
     --hash=sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3 \
@@ -1597,7 +1592,6 @@ requests==2.32.5 \
     # via
     #   -r requirements/prod.in
     #   basket-client
-    #   contentful
     #   datadog
     #   django-mozilla-product-details
     #   google-api-core

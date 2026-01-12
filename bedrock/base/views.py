@@ -11,7 +11,6 @@ from time import time
 from django.conf import settings
 from django.shortcuts import render
 from django.utils.decorators import decorator_from_middleware
-from django.utils.timezone import now as tz_now
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 
@@ -21,7 +20,6 @@ from waffle.models import Switch
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.i18n import get_language_from_headers
 from bedrock.base.middleware import BedrockLocaleMiddleware
-from bedrock.contentful.models import ContentfulEntry
 from bedrock.utils import git
 from lib import l10n_utils
 
@@ -108,24 +106,6 @@ def get_extra_server_info():
     return server_info
 
 
-def get_contentful_sync_info():
-    data = {}
-    latest = ContentfulEntry.objects.order_by("last_modified").last()
-    if latest:
-        latest_sync = latest.last_modified
-        time_since_latest_sync = timeago.format(
-            latest_sync,
-            now=tz_now(),
-        )
-        data.update(
-            {
-                "latest_sync": latest_sync,
-                "time_since_latest_sync": time_since_latest_sync,
-            }
-        )
-    return data
-
-
 @require_safe
 @never_cache
 def cron_health_check(request):
@@ -172,7 +152,6 @@ def cron_health_check(request):
         {
             "results": results,
             "server_info": get_extra_server_info(),
-            "contentful_info": get_contentful_sync_info(),
             "success": check_pass,
             "git_repos": unique_repos.values(),
             "fluent_repo": get_l10n_repo_info(),

@@ -1,7 +1,6 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from django.conf import settings
 from django.urls import path, re_path
 
 import bedrock.releasenotes.views
@@ -278,7 +277,3 @@ urlpatterns = (
     page("firefox/landing/gaming/", "firefox/landing/gaming.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
     page("firefox/landing/get/", "firefox/landing/get.html", ftl_files="firefox/new/desktop"),
 )
-
-# Contentful
-if settings.DEV:
-    urlpatterns += (path("firefox/more/<content_id>/", views.FirefoxContentful.as_view()),)
