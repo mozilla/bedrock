@@ -1994,6 +1994,12 @@
         "js/base/banners/fundraising-banner-eoy2025-init.es6.js"
       ],
       "name": "fundraising_banner_eoy2025"
+    },
+    {
+      "files": [
+        "js/mozorg/anonym/anonym-toggleable-items.js"
+      ],
+      "name": "anonym-toggleable-items"
     }
   ]
 }

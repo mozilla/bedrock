@@ -22,6 +22,7 @@ from bedrock.mozorg.blocks.advertising import (
 from bedrock.mozorg.blocks.anonym import (
     CallToActionBlock as AnonymCallToActionBlock,
     SectionBlock as AnonymSectionBlock,
+    ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
@@ -372,7 +373,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
 
 
 class AnonymIndexPage(AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage"]
 
     content = StreamField(
         [
@@ -426,3 +427,27 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Top And Bottom Page"
+
+
+class AnonymContentSubPage(AbstractBedrockCMSPage):
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("toggle_items", AnonymToggleableItemsBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/anonym/anonym_content_sub_page.html"
+
+    class Meta:
+        verbose_name = "Anonym Content Subpage"
