@@ -480,6 +480,11 @@ class SectionBlockSettingsValue(blocks.StructValue):
 
 
 class SectionBlockSettings(blocks.StructBlock):
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation (e.g., 'overview', 'features')",
+    )
     theme = ThumbnailChoiceBlock(
         choices=(
             (SECTION_THEME_INDEX, "Index"),
@@ -497,7 +502,7 @@ class SectionBlockSettings(blocks.StructBlock):
         icon = "cog"
         collapsed = True
         label = "Settings"
-        label_format = "Theme: {theme}"
+        label_format = "ID: {anchor_id} - Theme: {theme}"
         form_classname = "compact-form struct-block"
         value_class = SectionBlockSettingsValue
 
@@ -561,7 +566,23 @@ class ToggleableItemBlock(blocks.StructBlock):
         label_format = "Toggle Item - {toggle_text}"
 
 
+class ToggleableItemsBlockSettings(blocks.StructBlock):
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id}"
+        form_classname = "compact-form struct-block"
+
+
 class ToggleableItemsBlock(blocks.StructBlock):
+    settings = ToggleableItemsBlockSettings()
     toggle_items = blocks.StreamBlock(
         [
             ("toggle_items", ToggleableItemBlock()),
@@ -574,7 +595,23 @@ class ToggleableItemsBlock(blocks.StructBlock):
         label = "Toggle Items"
 
 
+class CallToActionBlockSettings(blocks.StructBlock):
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable from navigation",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id}"
+        form_classname = "compact-form struct-block"
+
+
 class CallToActionBlock(blocks.StructBlock):
+    settings = CallToActionBlockSettings()
     heading = blocks.RichTextBlock(
         features=BASIC_TEXT_FEATURES,
         help_text="Use <strong>bold</strong> to make parts of this text black.",
