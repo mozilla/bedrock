@@ -732,6 +732,7 @@ INSTALLED_APPS = [
     "wagtail_thumbnail_choice_block",
     "wagtail.contrib.table_block",
     # Local apps
+    "bedrock.anonym",
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
