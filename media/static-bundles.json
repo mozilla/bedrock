@@ -1146,7 +1146,7 @@
     },
     {
       "files": [
-        "css/mozorg/anonym.scss"
+        "css/anonym/anonym.scss"
       ],
       "name": "mozilla-anonym"
     },
@@ -1997,8 +1997,8 @@
     },
     {
       "files": [
-        "js/mozorg/anonym/anonym-toggleable-items.js",
-        "js/mozorg/anonym/anonym-card-list-center.js"
+        "js/anonym/anonym-toggleable-items.js",
+        "js/anonym/anonym-card-list-center.js"
       ],
       "name": "anonym"
     }

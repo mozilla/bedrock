@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<li class="mzan-stat-item">
+  <div class="mzan-stat-intro">
+    {% if value.image %}
+      <img src="{{ value.image.file.url }}" alt="" width="64" height="64" loading="lazy">
+    {% endif %}
+    <h2 class="mzan-stat-heading">{{ value.heading }}</h2>
+  </div>
+  <div class="mzan-stat-stat">
+    <div class="mzan-stat-value">{{ value.statistic1_value|richtext }}</div>
+    <div class="mzan-stat-label">{{ value.statistic1_label|richtext }}</div>
+  </div>
+  <div class="mzan-stat-stat">
+    <div class="mzan-stat-value">{{ value.statistic2_value|richtext }}</div>
+    <div class="mzan-stat-label">{{ value.statistic2_label|richtext }}</div>
+  </div>
+</li>

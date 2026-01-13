@@ -1,0 +1,15 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzan-call-to-action">
+  <h2 class="mzan-heading">{{ value.heading|richtext|remove_p_tag }}</h2>
+  {% for button in value.button %}
+    <a class="mzan-cta-button"
+      href="{{ button.link.get_url() }}"
+      {% if button.link.new_window %}target="_blank" rel="external noopener"{% endif %}
+    >{{ button.label }}</a>
+  {% endfor %}
+</div>

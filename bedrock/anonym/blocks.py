@@ -374,7 +374,7 @@ class FigureBlock(blocks.StructBlock):
     image = ImageChooserBlock()
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/figure.html"
+        template = "anonym/blocks/figure.html"
         label = "Figure"
 
 
@@ -396,7 +396,7 @@ class StatBlock(blocks.StructBlock):
     statistic2_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/stat-item.html"
+        template = "anonym/blocks/stat-item.html"
         label = "Statistic"
         label_format = "Statistic - {heading}"
 
@@ -409,7 +409,7 @@ class StatsListBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/stats-list.html"
+        template = "anonym/blocks/stats-list.html"
         label = "Stats List"
 
 
@@ -418,7 +418,7 @@ class PeopleListBlock(blocks.StructBlock):
     text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/people-list.html"
+        template = "anonym/blocks/people-list.html"
         label = "People List"
 
 
@@ -454,7 +454,7 @@ class IconCardBlock(blocks.StructBlock):
     text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/icon-card.html"
+        template = "anonym/blocks/icon-card.html"
         label = "Icon Card"
         label_format = "Icon Card - {heading}"
 
@@ -466,7 +466,7 @@ class LogoCardBlock(blocks.StructBlock):
     button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/logo-card.html"
+        template = "anonym/blocks/logo-card.html"
         label = "Logo Card"
         label_format = "Logo Card - {heading}"
 
@@ -476,7 +476,7 @@ class PersonCardBlock(blocks.StructBlock):
     link = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/person-card.html"
+        template = "anonym/blocks/person-card.html"
         label = "Person Card"
         label_format = "Person Card - {person}"
 
@@ -494,7 +494,7 @@ class CardsListBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/cards-list.html"
+        template = "anonym/blocks/cards-list.html"
         label = "Cards List"
         label_format = "Cards List - {heading}"
 
@@ -546,7 +546,7 @@ class ListItemBlock(blocks.StructBlock):
     class Meta:
         label = "List Item"
         label_format = "{heading_text}"
-        template = "mozorg/cms/anonym/blocks/list-item.html"
+        template = "anonym/blocks/list-item.html"
         form_classname = "compact-form struct-block"
 
 
@@ -558,7 +558,7 @@ class TwoColumnBlock(blocks.StructBlock):
     class Meta:
         label = "Two Column Block"
         label_format = "Two Column - {heading_text}"
-        template = "mozorg/cms/anonym/blocks/two-column.html"
+        template = "anonym/blocks/two-column.html"
         form_classname = "compact-form struct-block"
 
 
@@ -588,7 +588,7 @@ class SectionBlock(blocks.StructBlock):
     action = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/section.html"
+        template = "anonym/blocks/section.html"
         label = "Section"
         label_format = "{heading_text}"
 
@@ -598,7 +598,7 @@ class TwoSectionBlock(blocks.StructBlock):
     second_section = SectionBlock()
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/two-sections.html"
+        template = "anonym/blocks/two-sections.html"
         label = "Two Sections"
 
 
@@ -648,7 +648,7 @@ class ToggleableItemsBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/toggleable-items.html"
+        template = "anonym/blocks/toggleable-items.html"
         label = "Toggle Items"
 
 
@@ -676,6 +676,6 @@ class CallToActionBlock(blocks.StructBlock):
     button = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
-        template = "mozorg/cms/anonym/blocks/call-to-action.html"
+        template = "anonym/blocks/call-to-action.html"
         label = "Call To Action"
         label_format = "{heading}"
