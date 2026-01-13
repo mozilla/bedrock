@@ -1,0 +1,258 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+
+#mzan-main {
+    counter-reset: mzan-section-index;
+}
+
+.mzan-section {
+    padding: 50px 0;
+
+    @media #{$mq-md} {
+        padding: 75px 0;
+    }
+}
+
+.mzan-section-topglow-theme {
+    position: relative;
+    text-align: center;
+
+    &::before {
+        background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
+        content: "";
+        height: auto;
+        aspect-ratio: 1311/218;
+        pointer-events: none;
+        max-width: 738px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .mzan-hgroup {
+        margin: 0;
+    }
+
+    .mzan-heading {
+        font-size: 40px;
+        letter-spacing: -0.8px;
+        line-height: 1;
+        margin: 0;
+        max-width: 1144px;
+    }
+
+    .mzan-subheading {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 472px;
+    }
+
+    .mzan-section-link {
+        align-items: center;
+        border-bottom: 1px solid #161616;
+        color: #161616;
+        display: inline-flex;
+        gap: 4px;
+        font-family: var(--moz-sans-headline);
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 0;
+        padding-bottom: 2px;
+        text-decoration: none;
+        justify-content: center;
+
+        &:link,
+        &:visited,
+        &:hover,
+        &:focus,
+        &:active {
+            color: #161616;
+            text-decoration: none;
+        }
+
+        &::after {
+            content: '';
+            width: 24px;
+            height: 24px;
+            background-color: currentColor;
+            -webkit-mask: url('/media/img/mozorg/anonym/anonym-arrow-right.svg') no-repeat center / 24px 24px;
+            mask: url('/media/img/mozorg/anonym/anonym-arrow-right.svg') no-repeat center / 24px 24px;
+        }
+    }
+
+    .mzan-people {
+        flex-direction: column;
+        gap: 50px;
+
+        @media #{$mq-md} {
+            flex-direction: column;
+        }
+    }
+
+    .mzan-people-list {
+        justify-content: center;
+
+        li + li {
+            margin-left: -4px;
+        }
+
+        img {
+            border: 0;
+            height: 60px;
+            width: 60px;
+        }
+    }
+
+    .mzan-people-list-text {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 1.5;
+        max-width: 472px;
+        text-align: center;
+        margin-bottom: 50px;
+
+        p {
+            margin: 0;
+        }
+    }
+}
+
+.mzan-hgroup {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 75px;
+    margin: 0 0 24px;
+    text-align: center;
+
+    @media #{$mq-md} {
+        margin-bottom: 32px;
+    }
+
+    .mzan-superheading,
+    .mzan-heading,
+    .mzan-subheading {
+        margin: 0;
+    }
+}
+
+.mzan-superheading {
+    font-size: var(--mza-text-body-sm);
+    line-height: var(--mza-text-body-sm-line-height);
+    margin: 0 0 12px;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    a::after {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: currentColor;
+        vertical-align: middle;
+        -webkit-mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
+        mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
+        margin: 0 0 0 0.5em;
+    }
+
+    a > i,
+    a > em {
+        align-items: center;
+        background: #161616;
+        color: #fff;
+        display: inline-flex;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        justify-content: center;
+        letter-spacing: 0.24px;
+        line-height: 1.2;
+        padding: 6px;
+        margin: 0 0.5em 0 0;
+        text-decoration: none;
+        text-transform: uppercase;
+    }
+}
+
+.mzan-section-index-theme {
+    .mzan-superheading {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        font-family: var(--moz-sans-headline);
+        font-size: 14px;
+        text-transform: uppercase;
+
+        &::before {
+            counter-increment: mzan-section-index;
+            align-items: center;
+            background: linear-gradient(90deg, #B8FFF5 0%, #63F4EE 42%, #49F3A5 100%);
+            border-radius: 0;
+            color: #161616;
+            content: counter(mzan-section-index, decimal-leading-zero);
+            display: inline-flex;
+            font-size: 12px;
+            font-weight: 700;
+            justify-content: center;
+            line-height: 1;
+            height: 28px;
+            width: 28px;
+            padding: 0;
+        }
+    }
+}
+
+.mzan-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: -1.92px;
+    line-height: 0.98;
+    margin: 0 0 16px;
+    color: #161616;
+    text-align: center;
+
+    &:has(b, strong) {
+        color: rgba(22, 22, 22, 0.5);
+    }
+
+    b,
+    strong {
+        color: #161616;
+        font-weight: inherit;
+        padding: 0;
+        margin: 0;
+    }
+
+    @media #{$mq-md} {
+        font-size: 64px;
+        letter-spacing: -3px;
+    }
+}
+
+.mzan-subheading {
+    color: #6d6d6d;
+    font-size: var(--mza-text-body-md);
+    line-height: var(--mza-text-body-md-line-height);
+    margin: 0;
+    max-width: 662px;
+}
+
+.mzan-section-link {
+    color: #161616;
+    display: inline-flex;
+    font-size: var(--mza-text-button-sm);
+    font-weight: 600;
+    line-height: var(--mza-text-button-sm-line-height);
+    margin-top: 24px;
+    text-decoration: underline;
+}

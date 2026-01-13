@@ -1997,9 +1997,10 @@
     },
     {
       "files": [
-        "js/mozorg/anonym/anonym-toggleable-items.js"
+        "js/mozorg/anonym/anonym-toggleable-items.js",
+        "js/mozorg/anonym/anonym-card-list-center.js"
       ],
-      "name": "anonym-toggleable-items"
+      "name": "anonym"
     }
   ]
 }

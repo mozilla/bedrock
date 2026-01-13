@@ -11,7 +11,7 @@
   <div>{{ value.person.description }}</div>
   {% if value.link %}
     {% for link in value.link %}
-      <a class=""
+      <a class="mzan-card-link"
         href="{{ link.link.get_url() }}"
         {% if link.link.new_window %}target="_blank" rel="external noopener"{% endif %}
       >{{ link.label }}</a>
