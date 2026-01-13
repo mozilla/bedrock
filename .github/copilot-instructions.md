@@ -85,7 +85,7 @@ Heavily flag changes that add risks to uptime or functionality that do not appea
 
 * When suggesting a change, always explain _why_ it improves the code
 
-* Use code snippets in suggestions when helpful
+* Use code snippets in suggestions when helpful and would change less than 10 lines of code.
 
 
 # Overall Review Summary
