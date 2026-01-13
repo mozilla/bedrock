@@ -1,0 +1,79 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+
+.mzan-cards {
+    margin: 24px 0 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.mzan-card-list {
+    display: flex;
+    gap: 16px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    justify-content: safe center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    scroll-snap-type: x mandatory;
+}
+
+.mzan-card {
+    padding: 16px;
+    flex: 0 0 251px;
+    scroll-snap-align: start;
+
+    p {
+        margin: 8px 0 0;
+    }
+}
+
+.mzan-card-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 0;
+}
+
+.mzan-card .mzan-icon {
+    color: #161616;
+    font-size: 24px;
+}
+
+.mzan-card-link {
+    color: #161616;
+    display: inline-flex;
+    font-size: var(--mza-text-button-sm);
+    font-weight: 600;
+    margin-top: 16px;
+    text-decoration: underline;
+}
+
+.mzan-cards.dividers {
+    .mzan-card-list {
+        @media #{$mq-md} {
+            gap: 0;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    .mzan-card {
+        @media #{$mq-md} {
+            border-left: 1px solid #e8e8e8;
+            padding: 16px 0 16px 16px;
+        }
+    }
+}
+
+.mzan-cards:not(.dividers) .mzan-card {
+    background: transparent;
+    border: 0;
+    border-left: 1px solid #e8e8e8;
+    border-radius: 0;
+    padding: 16px 0 16px 16px;
+}
