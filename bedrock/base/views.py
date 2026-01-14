@@ -17,6 +17,7 @@ from django.views.decorators.http import require_safe
 import timeago
 from waffle.models import Switch
 
+from bedrock.base.config_manager import config
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.i18n import get_language_from_headers
 from bedrock.base.middleware import BedrockLocaleMiddleware
@@ -46,13 +47,16 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
 
 
 SQLITE_DB_IN_USE = settings.DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3"
+LOCAL_DB_UPDATE = config("LOCAL_DB_UPDATE", default="False", parser=bool)
 
 HEALTH_FILES = [
     # Format: (file name, max seconds since last run)
     ("update_locales", 600),
 ]
 
-if SQLITE_DB_IN_USE:
+# Only check download_database health when using SQLite AND downloading from S3
+# (not when doing local DB updates)
+if SQLITE_DB_IN_USE and not LOCAL_DB_UPDATE:
     HEALTH_FILES.insert(
         0,
         ("download_database", 600),
