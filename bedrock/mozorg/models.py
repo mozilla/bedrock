@@ -236,47 +236,6 @@ class NotificationSnippet(models.Model):
         return f"{self.notification_text} - Notification Snippet"
 
 
-@register_snippet
-class Person(TranslatableMixin):
-    image = models.ForeignKey(
-        "cms.BedrockImage",
-        null=True,
-        blank=False,
-        on_delete=models.SET_NULL,
-        related_name="+",
-    )
-    name = models.CharField(
-        max_length=255,
-        blank=False,
-    )
-    position = models.CharField(
-        max_length=255,
-        blank=False,
-    )
-    description = models.TextField(
-        blank=True,
-    )
-
-    panels = [
-        MultiFieldPanel(
-            [
-                FieldPanel("image", heading="Image"),
-                FieldPanel("name", heading="Name"),
-                FieldPanel("position", heading="Position"),
-                FieldPanel("description", heading="Description"),
-            ],
-            heading="Person",
-        ),
-    ]
-
-    class Meta(TranslatableMixin.Meta):
-        verbose_name = "Person"
-        verbose_name_plural = "People"
-
-    def __str__(self):
-        return f"{self.name} - {self.position}"
-
-
 class LeadershipPage(AbstractBedrockCMSPage):
     max_count = 1  # Ensure there's only one instance of this page
     subpage_types = []  # This page type cannot have any children

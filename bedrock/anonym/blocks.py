@@ -413,7 +413,7 @@ class StatsListBlock(blocks.StructBlock):
 
 
 class PeopleListBlock(blocks.StructBlock):
-    people = blocks.ListBlock(SnippetChooserBlock("mozorg.Person"), min_num=1, max_num=8, default=[])
+    people = blocks.ListBlock(SnippetChooserBlock("anonym.Person"), min_num=1, max_num=8, default=[])
     text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
@@ -471,7 +471,7 @@ class LogoCardBlock(blocks.StructBlock):
 
 
 class PersonCardBlock(blocks.StructBlock):
-    person = SnippetChooserBlock("mozorg.Person")
+    person = SnippetChooserBlock("anonym.Person")
     link = blocks.ListBlock(LinkWithTextBlock(), min_num=0, max_num=1, default=[])
 
     class Meta:
