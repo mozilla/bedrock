@@ -4,8 +4,10 @@
 
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import StreamField
+from wagtail.models import TranslatableMixin
+from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
     CallToActionBlock as AnonymCallToActionBlock,
@@ -217,3 +219,48 @@ class AnonymArticlePage(AbstractBedrockCMSPage):
         # the Django model was moved to the anonym app. To preserve data, we
         # refer to the original database table here.
         db_table = "mozorg_anonymarticlepage"
+
+
+@register_snippet
+class Person(TranslatableMixin):
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    name = models.CharField(
+        max_length=255,
+        blank=False,
+    )
+    position = models.CharField(
+        max_length=255,
+        blank=False,
+    )
+    description = models.TextField(
+        blank=True,
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel("image", heading="Image"),
+                FieldPanel("name", heading="Name"),
+                FieldPanel("position", heading="Position"),
+                FieldPanel("description", heading="Description"),
+            ],
+            heading="Person",
+        ),
+    ]
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "Person"
+        verbose_name_plural = "People"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
+        db_table = "mozorg_person"
+
+    def __str__(self):
+        return f"{self.name} - {self.position}"
