@@ -6,7 +6,6 @@
 from django.templatetags.static import static
 
 from wagtail import blocks
-from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -579,7 +578,6 @@ class SectionBlock(blocks.StructBlock):
             ("cards_list", CardsListBlock()),
             ("stats_list_block", StatsListBlock()),
             ("people_list", PeopleListBlock()),
-            ("table", TableBlock()),
             ("two_column", TwoColumnBlock()),
             ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
         ],
