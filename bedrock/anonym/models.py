@@ -45,6 +45,9 @@ class AnonymNewsPage(AnonymStaticPage):
 
     class Meta:
         verbose_name = "Anonym News Page"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymnewspage"
 
 
@@ -57,6 +60,9 @@ class AnonymContactPage(AnonymStaticPage):
 
     class Meta:
         verbose_name = "Anonym Contact Page"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymcontactpage"
 
 
@@ -105,6 +111,9 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Index Page"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymindexpage"
 
 
@@ -140,6 +149,9 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Top And Bottom Page"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymtopandbottompage"
 
 
@@ -165,6 +177,9 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Content Subpage"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymcontentsubpage"
 
 
@@ -198,4 +213,7 @@ class AnonymArticlePage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Article Page"
+        # This database table was originally created in the mozorg app, then
+        # the Django model was moved to the anonym app. To preserve data, we
+        # refer to the original database table here.
         db_table = "mozorg_anonymarticlepage"
