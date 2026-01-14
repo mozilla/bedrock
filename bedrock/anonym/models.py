@@ -9,6 +9,7 @@ from wagtail.fields import StreamField
 
 from bedrock.anonym.blocks import (
     CallToActionBlock as AnonymCallToActionBlock,
+    CompetitorComparisonTableBlock as AnonymCompetitorComparisonTableBlock,
     SectionBlock as AnonymSectionBlock,
     ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
@@ -133,6 +134,7 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
     bottom_content = StreamField(
         [
             ("section", AnonymSectionBlock()),
+            ("competitor_table", AnonymCompetitorComparisonTableBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,

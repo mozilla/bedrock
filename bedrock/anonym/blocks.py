@@ -593,6 +593,47 @@ class SectionBlock(blocks.StructBlock):
         label_format = "{heading_text}"
 
 
+class CompetitorComparisonItemBlock(blocks.StructBlock):
+    text = blocks.CharBlock(label="Row text")
+
+    # Boolean fields
+    tags_pixels_sdks = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Tags, Pixels, & SDKs",
+    )
+    conversions_event_apis = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Conversions & Event APIs",
+    )
+    clean_rooms = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Clean Rooms",
+    )
+    anonym = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Anonym",
+    )
+
+    class Meta:
+        label = "Competitor Item"
+        label_format = "Competitor Item - {text}"
+
+
+class CompetitorComparisonTableBlock(blocks.StructBlock):
+    heading_text = blocks.CharBlock(label="Heading")
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    rows = blocks.ListBlock(CompetitorComparisonItemBlock(), min_num=1)
+
+    class Meta:
+        template = "anonym/blocks/competitor_comparison_table_block.html"
+        label = "Competitor Table"
+        label_format = "{heading_text}"
+
+
 class TwoSectionBlock(blocks.StructBlock):
     first_section = SectionBlock()
     second_section = SectionBlock()
