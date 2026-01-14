@@ -8,21 +8,21 @@ $font-path: '/media/protocol/fonts';
 $image-path: '/media/protocol/img';
 
 /* Anonym uses the same root variables as advertising, so we can use the same file */
-@use './ads/ads-root';
+@use '../mozorg/ads/ads-root';
 @use '~@mozilla-protocol/core/protocol/css/includes/lib';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @use '~@mozilla-protocol/core/protocol/css/components/modal';
 @use '../m24/base';
-@use './anonym/icons';
-@use './anonym/header';
-@use './anonym/misc';
-@use './anonym/layout';
-@use './anonym/section';
-@use './anonym/figure';
-@use './anonym/cards';
-@use './anonym/stats';
-@use './anonym/people';
-@use './anonym/cta';
+@use './icons';
+@use './header';
+@use './misc';
+@use './layout';
+@use './section';
+@use './figure';
+@use './cards';
+@use './stats';
+@use './people';
+@use './cta';
 
 :root {
     --moz-sans-headline: 'Mozilla Sans Headline', sans-serif;

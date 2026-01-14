@@ -2,7 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '../../m24/vars/lib' as *;
+@use '../m24/vars/lib' as *;
 
 // Anonym header styles applied to existing M24 navigation markup.
 // Scope to `.anonym` so we don't accidentally restyle other M24 pages.
