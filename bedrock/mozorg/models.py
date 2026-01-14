@@ -437,5 +437,3 @@ class ContentSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"
-
-
