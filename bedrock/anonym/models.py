@@ -243,6 +243,10 @@ class Person(TranslatableMixin):
     description = RichTextField(
         blank=True,
     )
+    learn_more_link = models.URLField(
+        verbose_name="Learn More Link",
+        blank=True,
+    )
 
     panels = [
         MultiFieldPanel(
@@ -251,6 +255,7 @@ class Person(TranslatableMixin):
                 FieldPanel("name", heading="Name"),
                 FieldPanel("position", heading="Position"),
                 FieldPanel("description", heading="Description"),
+                FieldPanel("learn_more_link", heading="Learn More Link"),
             ],
             heading="Person",
         ),

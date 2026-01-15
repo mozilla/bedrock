@@ -10,6 +10,11 @@
       <li>
         <img src="{{ person.image.file.url }}" alt="{{ person.name }}" width="64" height="64" loading="lazy">
         {{ person.description|richtext }}
+        {% if person.learn_more_link %}
+          <a href="{{ person.learn_more_link }}" target="_blank" rel="external noopener">
+            Learn more
+          </a>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
