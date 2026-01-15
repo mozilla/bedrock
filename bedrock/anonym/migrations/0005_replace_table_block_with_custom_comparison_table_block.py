@@ -12,7 +12,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0002_update_anonym_pages_to_new_contenttypes"),
+        ("anonym", "0004_alter_anonymarticlepage_content_and_more"),
     ]
 
     operations = [
