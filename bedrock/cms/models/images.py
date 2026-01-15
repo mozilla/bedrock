@@ -19,6 +19,13 @@ AUTOMATIC_RENDITION_FILTER_SPECS = [
     # regenerate it, if needed, so that the image library is updated locally after
     # downloading images from Dev, Stage or Prod
     "max-165x165",
+    # 2:1 aspect ratio renditions for homepage donate block (and similar uses)
+    "fill-400x200",
+    "fill-600x300",
+    "fill-800x400",
+    "fill-1000x500",
+    "fill-1200x600",
+    "fill-1400x700",
 ]
 
 
