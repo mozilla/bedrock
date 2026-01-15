@@ -9,6 +9,7 @@
     {% for person in value.people %}
       <li>
         <img src="{{ person.image.file.url }}" alt="{{ person.name }}" width="64" height="64" loading="lazy">
+        {{ person.description|richtext }}
       </li>
     {% endfor %}
   </ul>
