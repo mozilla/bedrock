@@ -414,7 +414,6 @@ class StatsListBlock(blocks.StructBlock):
 
 class PeopleListBlock(blocks.StructBlock):
     people = blocks.ListBlock(SnippetChooserBlock("anonym.Person"), min_num=1, max_num=8, default=[])
-    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
         template = "anonym/blocks/people-list.html"
