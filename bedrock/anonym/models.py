@@ -5,7 +5,7 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.fields import StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
@@ -240,7 +240,7 @@ class Person(TranslatableMixin):
         max_length=255,
         blank=False,
     )
-    description = models.TextField(
+    description = RichTextField(
         blank=True,
     )
 
