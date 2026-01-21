@@ -9,9 +9,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-import bleach
 import requests
-from html5lib.filters.base import Filter
+from justhtml import JustHTML, SanitizationPolicy
 
 from bedrock.careers.models import Position
 from bedrock.utils.management.decorators import alert_sentry_on_exception
@@ -21,61 +20,45 @@ GREENHOUSE_URL = "https://api.greenhouse.io/v1/boards/{}/jobs/?content=true"
 # curl 'https://api.greenhouse.io/v1/boards/mozilla/jobs/?content=true' | \
 # jq -r .jobs[0].content | sed 's/&lt;/</g' | sed 's/&quot;/"/g' | sed 's/&gt;/>/g'
 
-# based on bleach.sanitizer.ALLOWED_TAGS
-ALLOWED_TAGS = {
-    "a",
-    "abbr",
-    "acronym",
-    "b",
-    "blockquote",
-    "button",
-    "code",
-    "div",
-    "em",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "i",
-    "img",
-    "li",
-    "ol",
-    "p",
-    "small",
-    "span",
-    "strike",
-    "strong",
-    "ul",
-}
-ALLOWED_ATTRS = [
-    "alt",
-    "class",
-    "href",
-    "id",
-    "src",
-    "srcset",
-    "rel",
-    "title",
-]
 
-
-class HeaderConverterFilter(Filter):
-    def __iter__(self):
-        for token in Filter.__iter__(self):
-            if token["type"] in ["StartTag", "EndTag"]:
-                if token["name"] in ["h1", "h2", "h3"]:
-                    token["name"] = "h4"
-            yield token
-
-
-cleaner = bleach.sanitizer.Cleaner(
-    tags=ALLOWED_TAGS,
-    attributes=ALLOWED_ATTRS,
-    strip=True,
-    filters=[HeaderConverterFilter],
+# Sanitization policy for job descriptions
+_SANITIZE_POLICY = SanitizationPolicy(
+    allowed_tags={
+        "a",
+        "abbr",
+        "acronym",
+        "b",
+        "blockquote",
+        "button",
+        "code",
+        "div",
+        "em",
+        "h4",
+        "h5",
+        "h6",
+        "i",
+        "img",
+        "li",
+        "ol",
+        "p",
+        "small",
+        "span",
+        "strike",
+        "strong",
+        "ul",
+    },
+    allowed_attributes={"*": ["alt", "class", "id", "rel", "title"], "a": ["href"], "img": ["src", "srcset"]},
+    disallowed_tag_handling="unwrap",
 )
+# Regex to convert h1/h2/h3 to h4
+_HEADER_RE = re.compile(r"<(/?)(h[123])(\s|>)", re.IGNORECASE)
+
+
+def _sanitize_job_description(content: str) -> str:
+    """Sanitize Greenhouse job description HTML."""
+    # Convert h1/h2/h3 to h4 for consistent heading levels
+    content = _HEADER_RE.sub(r"<\1h4\3", content)
+    return JustHTML(content, safe=True, policy=_SANITIZE_POLICY, fragment=True).to_html(pretty=False)
 
 
 @alert_sentry_on_exception
@@ -131,7 +114,7 @@ class Command(BaseCommand):
             jobLocations = job.get("location", {}).get("name", "")
 
             description = html.unescape(job.get("content", ""))
-            description = cleaner.clean(description)
+            description = _sanitize_job_description(description)
             # Remove empty paragraphs and h4s and paragraphs with \xa0
             # (no-brake space). I ♥ regex
             description = re.sub(r"<(p|h4)>([ ]*|(\xa0)+)</(p|h4)>", "", description)

@@ -1,7 +1,7 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-bleach[css]==6.1.0
+justhtml>=0.14.0
 boto3==1.42.21
 chardet==5.2.0
 commonware==0.6.0
