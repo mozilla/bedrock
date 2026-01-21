@@ -1,7 +1,7 @@
 [tool.ruff]
 line-length = 150
 target-version = 'py313'
-extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache"]
+extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache", "*/migrations/*"]
 
 [tool.ruff.lint]
 # Set what ruff should check for.

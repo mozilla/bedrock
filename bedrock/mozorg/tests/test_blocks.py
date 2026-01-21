@@ -74,9 +74,9 @@ def assert_donate_block_content(donate_element: BeautifulSoup, variant_data: dic
     # Check CTA text
     assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
 
-    # Check CTA href
+    # Check CTA href (may have UTM parameters appended for Mozilla properties)
     expected_url = value["cta_link"]["custom_url"]
-    assert cta_link["href"] == expected_url, f"Expected href '{expected_url}', got '{cta_link['href']}'"
+    assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
 
     # Check data-cta-text attribute exists (slugified version of cta_text)
     assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
@@ -94,8 +94,8 @@ def assert_donate_block_attributes(wrapper_element: BeautifulSoup, variant_data:
     settings = value["settings"]
 
     # Check background color class
-    bg_color = settings["background_color"] or "gray"
-    expected_class = f"m24-t-{bg_color}"
+    bg_color = settings["background_color"] or "m24-t-gray"
+    expected_class = bg_color
     assert expected_class in wrapper_element.get("class", []), f"Expected class '{expected_class}' not found"
 
     # Check anchor ID if set
@@ -107,7 +107,8 @@ def assert_donate_block_attributes(wrapper_element: BeautifulSoup, variant_data:
     cta_link = wrapper_element.find("a", class_="m24-c-cta")
     if value["cta_link"].get("new_window"):
         assert cta_link.get("target") == "_blank", "Expected target='_blank' for new_window=True"
-        assert "noopener" in cta_link.get("rel", []), "Expected rel='noopener' for new_window=True"
+        assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel for new_window=True"
+        assert "external" in cta_link.get("rel", []), "Expected 'external' in rel for new_window=True"
     else:
         assert cta_link.get("target") is None, "Expected no target attribute for new_window=False"
 
@@ -172,8 +173,8 @@ def test_donate_block_wrapper_attributes(minimal_site, rf, serving_method):  # n
 
     # Find wrapper divs (parent of .m24-c-donate with m24-t-* class)
     for index, variant in enumerate(variants):
-        bg_color = variant["value"]["settings"]["background_color"] or "gray"
-        wrapper_class = f"m24-t-{bg_color}"
+        bg_color = variant["value"]["settings"]["background_color"] or "m24-t-gray"
+        wrapper_class = bg_color
 
         # Find the wrapper by its background color class
         wrapper = soup.find("div", class_=wrapper_class)
@@ -197,11 +198,13 @@ def test_donate_block_new_window(minimal_site, rf, serving_method):  # noqa: F81
 
     # Find the variant with new_window=True (variant 4)
     new_window_variant = next(v for v in variants if v["value"]["cta_link"].get("new_window"))
-    expected_url = new_window_variant["value"]["cta_link"]["custom_url"]
+    expected_cta_text = new_window_variant["value"]["cta_text"]
 
-    # Find the link by its href
-    cta_link = soup.find("a", class_="m24-c-cta", href=expected_url)
-    assert cta_link is not None, f"CTA link with href '{expected_url}' not found"
+    # Find the link by its CTA text (href may have UTM parameters appended)
+    cta_links = soup.find_all("a", class_="m24-c-cta")
+    cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
+    assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"
 
     assert cta_link.get("target") == "_blank", "Expected target='_blank'"
-    assert "noopener" in cta_link.get("rel", []), "Expected rel='noopener'"
+    assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
+    assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"

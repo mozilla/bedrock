@@ -7,7 +7,7 @@ import wagtail_factories
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import advertising, home, leadership, navigation
+from bedrock.mozorg.blocks import advertising, common, leadership, navigation
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -239,7 +239,7 @@ class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     anchor_id = ""
 
     class Meta:
-        model = home.DonateBlockSettings
+        model = common.DonateBlockSettings
 
 
 class DonateBlockFactory(wagtail_factories.StructBlockFactory):
@@ -252,7 +252,7 @@ class DonateBlockFactory(wagtail_factories.StructBlockFactory):
     cta_link = factory.SubFactory(LinkBlockFactory)
 
     class Meta:
-        model = home.DonateBlock
+        model = common.DonateBlock
 
 
 class HomePageFactory(wagtail_factories.PageFactory):
@@ -260,7 +260,7 @@ class HomePageFactory(wagtail_factories.PageFactory):
     live = True
     slug = "home"
 
-    donate = wagtail_factories.StreamFieldFactory(
+    content = wagtail_factories.StreamFieldFactory(
         {
             "donate_block": factory.SubFactory(DonateBlockFactory),
         }

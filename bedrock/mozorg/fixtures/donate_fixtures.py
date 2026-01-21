@@ -22,7 +22,7 @@ def get_donate_variants(image_id: int) -> list[dict]:
             "type": "donate_block",
             "value": {
                 "settings": {
-                    "background_color": "gray",
+                    "background_color": "m24-t-gray",
                     "anchor_id": "",
                 },
                 "heading": "Support Mozilla",
@@ -43,7 +43,7 @@ def get_donate_variants(image_id: int) -> list[dict]:
             "type": "donate_block",
             "value": {
                 "settings": {
-                    "background_color": "pink",
+                    "background_color": "m24-t-pink",
                     "anchor_id": "",
                 },
                 "heading": "Join the Movement",
@@ -64,7 +64,7 @@ def get_donate_variants(image_id: int) -> list[dict]:
             "type": "donate_block",
             "value": {
                 "settings": {
-                    "background_color": "green",
+                    "background_color": "m24-t-green",
                     "anchor_id": "donate-section",
                 },
                 "heading": "Make a Difference",
@@ -85,7 +85,7 @@ def get_donate_variants(image_id: int) -> list[dict]:
             "type": "donate_block",
             "value": {
                 "settings": {
-                    "background_color": "orange",
+                    "background_color": "m24-t-orange",
                     "anchor_id": "",
                 },
                 "heading": "Support Our Work",
@@ -128,7 +128,7 @@ def get_donate_test_page() -> HomePage:
     test_page = HomePage(
         title="Donate Block Test Page",
         slug="donate-block-test",
-        donate=variants,
+        content=variants,
     )
 
     index_page.add_child(instance=test_page)
