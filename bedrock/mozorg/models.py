@@ -19,6 +19,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
+from bedrock.mozorg.blocks.home import DonateBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -365,3 +366,27 @@ class ContentSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"
+
+
+class HomePage(AbstractBedrockCMSPage):
+    """CMS-managed homepage for mozilla.org."""
+
+    max_count = 1  # Ensure there's only one instance of this page
+    subpage_types = []  # This page type cannot have any children
+    ftl_files = ["mozorg/home-m24"]
+
+    donate = StreamField(
+        [("donate_block", DonateBlock())],
+        blank=True,
+        null=True,
+        max_num=1,
+        use_json_field=True,
+        help_text="The donate section of the homepage.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("donate"),
+    ]
+
+    template = "mozorg/cms/home/home.html"

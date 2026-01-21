@@ -4,40 +4,40 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros-m24.html" import m24_donate with context %}
+
 <div class="m24-t-pink" id="donate">
-  <div class="m24-c-donate">
-    <h2 class="m24-c-donate-title">{{ ftl('m24-home-donate-to-v2', fallback="m24-home-donate-to-the") }}</h2>
-    <div class="m24-c-donate-info">
-      <p>{{ ftl('m24-home-mozilla-foundation-is-building-v2', fallback='m24-home-mozilla-is-building') }}</p>
-      <p>{{ ftl('m24-home-were-proudly-nonprofit') }}</p>
-    </div>
-    <div class="m24-c-donate-media">
-      {{ resp_img(
-        url='img/home/2024/donate-1450.jpg',
-        srcset={
-          "img/home/2024/donate-375.jpg": "375w",
-          "img/home/2024/donate-573.jpg": "573w",
-          "img/home/2024/donate-720.jpg": "720w",
-          "img/home/2024/donate-976.jpg": "976w",
-          "img/home/2024/donate-1128.jpg": "1128w",
-          "img/home/2024/donate-1232.jpg": "1232w",
-          "img/home/2024/donate-1450.jpg": "1450w",
-        },
-        sizes={
-          "(min-width: 768px)": "calc((100vw - 32px) / 2)",
-          "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
-          "(min-width: 1440px)": "680px",
-          "default": "calc(100vw - 32px)",
-        },
-        optional_attributes={
-          'width': '1450',
-          'height': '725',
-          'alt': ''
-        }
-      ) }}
-      </div>
-    <p class="m24-c-donate-cta"><a href="https://www.mozillafoundation.org/?form=Mozilla-Website-Homepage" class="m24-c-cta" data-cta-text="Donate">{{ ftl('m24-home-donate') }}</a></p>
-  </div>
+  {% call m24_donate(
+    heading=ftl('m24-home-donate-to-v2', fallback="m24-home-donate-to-the"),
+    image=resp_img(
+      url='img/home/2024/donate-1450.jpg',
+      srcset={
+        "img/home/2024/donate-375.jpg": "375w",
+        "img/home/2024/donate-573.jpg": "573w",
+        "img/home/2024/donate-720.jpg": "720w",
+        "img/home/2024/donate-976.jpg": "976w",
+        "img/home/2024/donate-1128.jpg": "1128w",
+        "img/home/2024/donate-1232.jpg": "1232w",
+        "img/home/2024/donate-1450.jpg": "1450w",
+      },
+      sizes={
+        "(min-width: 768px)": "calc((100vw - 32px) / 2)",
+        "(min-width: 1311px)": "calc((100vw - 64px) / 2)",
+        "(min-width: 1440px)": "680px",
+        "default": "calc(100vw - 32px)",
+      },
+      optional_attributes={
+        'width': '1450',
+        'height': '725',
+        'alt': ''
+      }
+    ),
+    link_text=ftl('m24-home-donate'),
+    link_url="https://www.mozillafoundation.org/?form=Mozilla-Website-Homepage"
+  ) %}
+    <p>{{ ftl('m24-home-mozilla-foundation-is-building-v2', fallback='m24-home-mozilla-is-building') }}</p>
+    <p>{{ ftl('m24-home-were-proudly-nonprofit') }}</p>
+  {% endcall %}
 </div>
 
 <div class="m24-c-transition m24-t-top-pink m24-t-bottom-dark"><hr></div>

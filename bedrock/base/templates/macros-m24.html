@@ -104,3 +104,38 @@
   </a>
 </li>
 {%- endmacro %}
+
+{#
+  Donate Section
+  HTML Import: {% from "macros-m24.html" import m24_donate with context %}
+  CSS Bundle: Requires m24-home CSS bundle
+  Usage: Use with {% call %} block to pass body content.
+  Macro Parameters:
+    heading (Required): String for the section heading.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling. Defaults to 2.
+    image (Required): Pre-rendered image HTML (from resp_img, srcset_image, or raw img tag).
+    link_new_window: Boolean to open link in new window. Defaults to False.
+    link_text (Required): String for the call-to-action button text.
+    link_url (Required): String URL for the call-to-action button.
+#}
+{% macro m24_donate(
+  heading,
+  image,
+  link_text,
+  link_url,
+  link_new_window=False,
+  heading_level=2
+) -%}
+<div class="m24-c-donate">
+  <h{{ heading_level }} class="m24-c-donate-heading">{{ heading }}</h{{ heading_level }}>
+  <div class="m24-c-donate-body">
+    {{ caller() }}
+  </div>
+  <div class="m24-c-donate-media">
+    {{ image }}
+  </div>
+  <p class="m24-c-donate-cta">
+    <a href="{{ link_url }}" class="m24-c-cta" data-cta-text="{{ link_text|slugify }}"{% if link_new_window %} target="_blank" rel="noopener"{% endif %}>{{ link_text }}</a>
+  </p>
+</div>
+{%- endmacro %}

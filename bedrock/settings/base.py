@@ -2358,14 +2358,15 @@ WAGTAILIMAGES_EXTENSIONS = [
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
-    "mozorg.LeadershipPage",
     "mozorg.AdvertisingIndexPage",
     "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
-    "products.VPNResourceCenterDetailPage",
-    "products.VPNResourceCenterIndexPage",
+    "mozorg.HomePage",
+    "mozorg.LeadershipPage",
     "products.MonitorArticleIndexPage",
     "products.MonitorArticlePage",
+    "products.VPNResourceCenterDetailPage",
+    "products.VPNResourceCenterIndexPage",
 ]
 
 if DEV is True:
