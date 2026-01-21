@@ -11,8 +11,13 @@ from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
     CallToActionBlock as AnonymCallToActionBlock,
+    CheckboxGroupFieldBlock,
     CompetitorComparisonTableBlock as AnonymCompetitorComparisonTableBlock,
+    EmailFieldBlock,
+    PhoneFieldBlock,
     SectionBlock as AnonymSectionBlock,
+    SelectFieldBlock,
+    TextFieldBlock,
     ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
 from bedrock.cms.models.base import AbstractBedrockCMSPage
@@ -56,6 +61,7 @@ class AnonymNewsPage(AnonymStaticPage):
 
 class AnonymContactPage(AbstractBedrockCMSPage):
     """Contact page for Anonym."""
+
     parent_page_types = ["AnonymIndexPage"]
     subpage_types = []
     max_count = 1
@@ -67,8 +73,23 @@ class AnonymContactPage(AbstractBedrockCMSPage):
         help_text="Optional subheading for the contact page",
     )
 
+    form_fields = StreamField(
+        [
+            ("text_field", TextFieldBlock()),
+            ("email_field", EmailFieldBlock()),
+            ("phone_field", PhoneFieldBlock()),
+            ("select_field", SelectFieldBlock()),
+            ("checkbox_group_field", CheckboxGroupFieldBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Define the form fields that will appear on the contact page.",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("subheading"),
+        FieldPanel("form_fields"),
     ]
 
     class Meta:

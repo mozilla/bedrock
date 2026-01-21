@@ -717,3 +717,115 @@ class CallToActionBlock(blocks.StructBlock):
         template = "anonym/blocks/call-to-action.html"
         label = "Call To Action"
         label_format = "{heading}"
+
+
+class FieldSettings(blocks.StructBlock):
+    internal_identifier = blocks.CharBlock(
+        label="Internal Identifier",
+        help_text="Internal name for the field (e.g., 'name', 'email', 'phone_number')",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {internal_identifier}"
+        form_classname = "compact-form struct-block"
+
+
+class TextFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/text_field.html"
+        label = "Text Field"
+        label_format = "Text - {label}"
+
+
+class EmailFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/email_field.html"
+        label = "Email Field"
+        label_format = "Email - {label}"
+
+
+class PhoneFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/phone_field.html"
+        label = "Phone Field"
+        label_format = "Phone - {label}"
+
+
+class SelectOptionBlock(blocks.StructBlock):
+    value = blocks.CharBlock(label="Option Value")
+    label = blocks.CharBlock(label="Option Label")
+
+    class Meta:
+        label = "Select Option"
+        label_format = "{label}"
+
+
+class SelectFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+    options = blocks.ListBlock(
+        SelectOptionBlock(),
+        min_num=1,
+        label="Options",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/select_field.html"
+        label = "Select Field"
+        label_format = "Select - {label}"
+
+
+class CheckboxOptionBlock(blocks.StructBlock):
+    value = blocks.CharBlock(label="Option Value")
+    label = blocks.CharBlock(label="Option Label")
+
+    class Meta:
+        label = "Checkbox Option"
+        label_format = "{label}"
+
+
+class CheckboxGroupFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    options = blocks.ListBlock(
+        CheckboxOptionBlock(),
+        min_num=1,
+        label="Options",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/checkbox_group_field.html"
+        label = "Checkbox Group Field"
+        label_format = "Checkbox Group - {label}"
