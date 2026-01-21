@@ -34,7 +34,7 @@ class DonateBlockSettings(blocks.StructBlock):
         icon = "cog"
         collapsed = True
         label = "Settings"
-        label_format = "Background: {background_color} - ID: {anchor_id}"
+        label_format = "Background: {background_color}"
         form_classname = "compact-form struct-block"
 
 
