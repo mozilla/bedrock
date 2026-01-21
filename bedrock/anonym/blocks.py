@@ -550,7 +550,7 @@ class ListItemBlock(blocks.StructBlock):
 
 class TwoColumnBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(label="Heading")
-    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
     second_column = blocks.ListBlock(ListItemBlock(), min_num=0)
 
     class Meta:
