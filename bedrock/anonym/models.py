@@ -54,12 +54,22 @@ class AnonymNewsPage(AnonymStaticPage):
         db_table = "mozorg_anonymnewspage"
 
 
-class AnonymContactPage(AnonymStaticPage):
-    """Static contact page for Anonym."""
-
+class AnonymContactPage(AbstractBedrockCMSPage):
+    """Contact page for Anonym."""
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
     max_count = 1
-
     template = "anonym/anonym_contact.html"
+
+    subheading = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Optional subheading for the contact page",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("subheading"),
+    ]
 
     class Meta:
         verbose_name = "Anonym Contact Page"
