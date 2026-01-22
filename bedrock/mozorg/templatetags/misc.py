@@ -16,12 +16,12 @@ from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_str
 
-import bleach
 import jinja2
 from django_jinja import library
 from markupsafe import Markup
 from product_details import product_details
 
+from bedrock.base.sanitization import strip_all_tags
 from bedrock.base.templatetags.helpers import static, urlparams
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
@@ -476,7 +476,11 @@ def slugify(text):
 
 @library.filter
 def bleach_tags(text):
-    return bleach.clean(text, tags=set(), strip=True).replace("&amp;", "&")
+    """Strip all HTML tags and convert entities to characters for plain text output.
+
+    Used in .txt email templates where HTML entities should become real characters.
+    """
+    return strip_all_tags(text).replace("&amp;", "&")
 
 
 # from jingo
