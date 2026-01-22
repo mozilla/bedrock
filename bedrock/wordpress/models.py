@@ -14,11 +14,11 @@ from django.db.utils import DatabaseError
 from django.utils.dateparse import parse_datetime
 from django.utils.timezone import make_aware
 
-import bleach
 from django_extensions.db.fields.json import JSONField
 from markupsafe import Markup
 from sentry_sdk import capture_exception
 
+from bedrock.base.sanitization import strip_all_tags
 from bedrock.wordpress.api import complete_posts_data, get_posts_data
 
 
@@ -27,7 +27,7 @@ def make_datetime(datestr):
 
 
 def strip_tags(text):
-    return bleach.clean(text, tags=set(), strip=True).strip()
+    return strip_all_tags(text).strip()
 
 
 def post_to_dict(blog_slug, post):
