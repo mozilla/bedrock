@@ -4,10 +4,9 @@
 
 from django.db import models
 
-from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import Orderable, TranslatableMixin
+from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
@@ -48,6 +47,7 @@ class AnonymStaticPage(AbstractBedrockCMSPage):
 
 class AnonymNewsItemPage(AbstractBedrockCMSPage):
     """News item page for Anonym."""
+
     parent_page_types = ["AnonymNewsPage"]
     subpage_types = []
 
@@ -78,10 +78,7 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
     )
     link = models.URLField(
         blank=True,
-        help_text=(
-            "External link for this news item. If set, this (Wagtail) page will ."
-            "not be accessible to users."
-        ),
+        help_text=("External link for this news item. If set, this (Wagtail) page will .not be accessible to users."),
     )
     stats = StreamField(
         [
