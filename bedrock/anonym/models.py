@@ -115,6 +115,11 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
 
     template = "anonym/anonym_news_item_page.html"
 
+    @property
+    def exclude_from_sitemap(self):
+        """Exclude from sitemap if this is an external link."""
+        return bool(self.link)
+
     class Meta:
         verbose_name = "Anonym News Item Page"
         verbose_name_plural = "Anonym News Item Pages"

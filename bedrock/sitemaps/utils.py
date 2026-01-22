@@ -185,6 +185,8 @@ def get_wagtail_urls():
             or cms_page.is_site_root()
             # not all pages have the is_structural_page attribute, so default those to False
             or getattr(cms_page.specific, "is_structural_page", False) is True
+            # not all pages have the exclude_from_sitemap attribute, so default those to False
+            or getattr(cms_page.specific, "exclude_from_sitemap", False) is True
         ):
             # Don't include these pages in the sitemap
             continue
