@@ -6,6 +6,7 @@
 from django.templatetags.static import static
 
 from wagtail import blocks
+from wagtail.blocks import PageChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -386,30 +387,26 @@ class LinkWithTextBlock(blocks.StructBlock):
         label_format = "Link - {label}"
 
 
-class StatBlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=False)
-    heading = blocks.CharBlock(label="Heading")
-    statistic1_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic1_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic2_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic2_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+class NewsItemListBlock(blocks.StructBlock):
+    """
+    Display a list of news items with their statistics.
 
-    class Meta:
-        template = "anonym/blocks/stat-item.html"
-        label = "Statistic"
-        label_format = "Statistic - {heading}"
+    This block allows content editors to select existing AnonymNewsItemPage
+    instances to display their title, logo, and statistics.
+    """
 
-
-class StatsListBlock(blocks.StructBlock):
-    stats = blocks.StreamBlock(
-        [
-            ("stat", StatBlock()),
-        ]
+    news_items = blocks.ListBlock(
+        PageChooserBlock("anonym.AnonymNewsItemPage"),
+        min_num=1,
+        max_num=6,
+        default=[],
+        help_text="Select news items to display. Statistics from each news item will be shown.",
     )
 
     class Meta:
-        template = "anonym/blocks/stats-list.html"
-        label = "Stats List"
+        template = "anonym/blocks/news-item-list.html"
+        label = "News Item List"
+        icon = "doc-full"
 
 
 class PeopleListBlock(blocks.StructBlock):
@@ -575,7 +572,7 @@ class SectionBlock(blocks.StructBlock):
         [
             ("figure_block", FigureBlock()),
             ("cards_list", CardsListBlock()),
-            ("stats_list_block", StatsListBlock()),
+            ("news_item_list_block", NewsItemListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
             ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
