@@ -77,3 +77,22 @@
     border-radius: 0;
     padding: 16px 0 16px 16px;
 }
+
+// Case Study Card Link Wrapper
+.mzan-card-link-wrapper {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    height: 100%;
+
+    &:hover {
+        .mzan-card-heading {
+            text-decoration: underline;
+        }
+    }
+
+    &:focus {
+        outline: 2px solid #0060df;
+        outline-offset: 2px;
+    }
+}

@@ -300,6 +300,24 @@ class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
     parent_page_types = ["AnonymIndexPage"]
     subpage_types = []
 
+    logo = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Logo or image for the case study (displays in card view)",
+    )
+    client = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Client name (displays as heading in card view)",
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Brief description of the case study (displays in card view)",
+    )
+
     content = StreamField(
         [
             ("section", AnonymSectionBlock()),
@@ -318,6 +336,9 @@ class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("logo"),
+        FieldPanel("client"),
+        FieldPanel("description"),
         FieldPanel("content"),
         FieldPanel("notification"),
     ]

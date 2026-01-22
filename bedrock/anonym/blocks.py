@@ -409,6 +409,28 @@ class NewsItemListBlock(blocks.StructBlock):
         icon = "doc-full"
 
 
+class CaseStudyListBlock(blocks.StructBlock):
+    """
+    Display a list of case study items with their logos, client names, and descriptions.
+
+    This block allows content editors to select existing AnonymCaseStudyItemPage
+    instances to display as cards that link to the full case study.
+    """
+
+    case_study_items = blocks.ListBlock(
+        PageChooserBlock("anonym.AnonymCaseStudyItemPage"),
+        min_num=1,
+        max_num=3,
+        default=[],
+        help_text="Select case study pages to display. Each will show as a card with logo, client name, and description.",
+    )
+
+    class Meta:
+        template = "anonym/blocks/case-study-item-list.html"
+        label = "Case Study Item List"
+        icon = "doc-full"
+
+
 class PeopleListBlock(blocks.StructBlock):
     people = blocks.ListBlock(SnippetChooserBlock("anonym.Person"), min_num=1, max_num=8, default=[])
 
@@ -573,6 +595,7 @@ class SectionBlock(blocks.StructBlock):
             ("figure_block", FigureBlock()),
             ("cards_list", CardsListBlock()),
             ("news_item_list_block", NewsItemListBlock()),
+            ("case_study_item_list_block", CaseStudyListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
             ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
