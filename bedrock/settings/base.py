@@ -2401,7 +2401,7 @@ _allowed_page_models = [
     "anonym.AnonymTopAndBottomPage",
     "anonym.AnonymContentSubPage",
     "anonym.AnonymStaticPage",
-    "anonym.AnonymArticlePage",
+    "anonym.AnonymCaseStudyItemPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",

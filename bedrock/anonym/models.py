@@ -179,7 +179,7 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymArticlePage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymCaseStudyItemPage"]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
@@ -296,7 +296,7 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         db_table = "mozorg_anonymcontentsubpage"
 
 
-class AnonymArticlePage(AbstractBedrockCMSPage):
+class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
     parent_page_types = ["AnonymIndexPage"]
     subpage_types = []
 
@@ -322,10 +322,10 @@ class AnonymArticlePage(AbstractBedrockCMSPage):
         FieldPanel("notification"),
     ]
 
-    template = "anonym/anonym_article_page.html"
+    template = "anonym/anonym_case_study_item_page.html"
 
     class Meta:
-        verbose_name = "Anonym Article Page"
+        verbose_name = "Anonym Case Study Item Page"
         # This database table was originally created in the mozorg app, then
         # the Django model was moved to the anonym app. To preserve data, we
         # refer to the original database table here.
