@@ -121,7 +121,11 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = set(render.call_args[0][2]["translations"].keys())
+                context = render.call_args[0][2]
+                if "translations" not in context:
+                    # If translations key is missing, skip this URL
+                    continue
+                locales = set(context["translations"].keys())
 
                 # Firefox Focus has a different URL in German
                 if path == "/privacy/firefox-focus/":
