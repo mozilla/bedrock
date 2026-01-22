@@ -829,3 +829,12 @@ class CheckboxGroupFieldBlock(blocks.StructBlock):
         template = "anonym/blocks/form_fields/checkbox_group_field.html"
         label = "Checkbox Group Field"
         label_format = "Checkbox Group - {label}"
+
+
+class StatItemBlock(blocks.StructBlock):
+    statistic_value = blocks.CharBlock(label="Statistic Value")
+    statistic_label = blocks.CharBlock(label="Statistic Label")
+
+    class Meta:
+        label = "Statistic"
+        label_format = "{statistic_value} - {statistic_label}"

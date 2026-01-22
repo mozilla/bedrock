@@ -4,9 +4,10 @@
 
 from django.db import models
 
-from wagtail.admin.panels import FieldPanel, MultiFieldPanel
+from modelcluster.fields import ParentalKey
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
-from wagtail.models import TranslatableMixin
+from wagtail.models import Orderable, TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
@@ -17,6 +18,7 @@ from bedrock.anonym.blocks import (
     PhoneFieldBlock,
     SectionBlock as AnonymSectionBlock,
     SelectFieldBlock,
+    StatItemBlock,
     TextFieldBlock,
     ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
@@ -44,11 +46,85 @@ class AnonymStaticPage(AbstractBedrockCMSPage):
         abstract = True
 
 
+class AnonymNewsItemPage(AbstractBedrockCMSPage):
+    """News item page for Anonym."""
+    parent_page_types = ["AnonymNewsPage"]
+    subpage_types = []
+
+    description = models.TextField(
+        blank=True,
+        help_text="Description of the news item",
+    )
+    category = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Category (e.g., 'Press', 'Blog')",
+    )
+    logo = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Logo (e.g., publication logo like WSJ, NYT)",
+    )
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Image for the news item",
+    )
+    link = models.URLField(
+        blank=True,
+        help_text=(
+            "External link for this news item. If set, this (Wagtail) page will ."
+            "not be accessible to users."
+        ),
+    )
+    stats = StreamField(
+        [
+            ("stat", StatItemBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        max_num=3,
+        help_text="Statistics that will display if this news item is shown on the homepage",
+    )
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("category"),
+        FieldPanel("logo"),
+        FieldPanel("image"),
+        FieldPanel("link"),
+        FieldPanel("stats"),
+        FieldPanel("content"),
+    ]
+
+    template = "anonym/anonym_news_item_page.html"
+
+    class Meta:
+        verbose_name = "Anonym News Item Page"
+        verbose_name_plural = "Anonym News Item Pages"
+
+
 class AnonymNewsPage(AnonymStaticPage):
     """Static news page for Anonym."""
 
     max_count = 1
-
+    subpage_types = ["AnonymNewsItemPage"]
     template = "anonym/anonym_news.html"
 
     class Meta:

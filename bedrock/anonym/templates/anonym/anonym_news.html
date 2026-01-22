@@ -22,86 +22,93 @@
   <main id="mzan-main">
     <h1>News</h1>
 
-    {# Featured Article #}
-    <article class="mzan-news-featured">
-      <div class="mzan-news-featured-content">
-        <div class="mzan-news-source">
-          <span class="mzan-news-logo">
-            <img src="{{ static('img/logos/wsj/wsj-logo.svg') }}" alt="Wall Street Journal" width="40" height="40">
-          </span>
-          <a href="#" class="mzan-news-external-link" aria-label="External link">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <h2>Anonym and Snap partner to unlock increased performance for advertisers</h2>
-        <div class="mzan-news-meta">
-          <span class="mzan-news-category">Press</span>
-          <span class="mzan-news-date">Sept 10</span>
-        </div>
-      </div>
-      <div class="mzan-news-featured-image">
-        <img src="#" alt="Two business executives in suits standing in an archway">
-      </div>
-    </article>
+    {% set news_items = page.get_children().live().order_by('-first_published_at') %}
 
-    {# News Grid #}
-    <div class="mzan-news-grid">
-      {# Article 1 - New York Times #}
-      <article class="mzan-news-card">
-        <div class="mzan-news-source">
-          <span class="mzan-news-logo mzan-news-logo-nyt">
-            <img src="{{ static('img/logos/nyt/nyt-logo.svg') }}" alt="New York Times" width="40" height="40">
-          </span>
-          <a href="#" class="mzan-news-external-link" aria-label="External link">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </a>
-        </div>
-        <h3>Former Facebook Execs Launch Startup, Adding to Efforts to Improve Ad Measurement</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
-        <div class="mzan-news-meta">
-          <span class="mzan-news-category">Press</span>
-          <span class="mzan-news-date">Sept 10</span>
-        </div>
-      </article>
+    {% if news_items %}
+      {% set first_item = news_items.first().specific %}
+      {% set has_featured = first_item and first_item.image %}
 
-      {# Article 2 - Anonym Blog #}
-      <article class="mzan-news-card">
-        <div class="mzan-news-source">
-          <span class="mzan-news-logo">
-            <img src="{{ static('img/logos/anonym/anonym-logo.svg') }}" alt="Anonym" width="100">
-          </span>
-        </div>
-        <h3>Consequat orci et in non pharetra egestas non</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
-        <div class="mzan-news-meta">
-          <span class="mzan-news-category">Blog</span>
-          <span class="mzan-news-date">Sept 10</span>
-        </div>
-      </article>
+      {# Featured Item (if first item has an image) #}
+      {% if has_featured %}
+        {% set item_url = first_item.link if first_item.link else first_item.url %}
+        <article class="mzan-news-featured">
+          <div class="mzan-news-featured-content">
+            <div class="mzan-news-source">
+              {% if first_item.logo %}
+                <span class="mzan-news-logo">
+                  <img src="{{ first_item.logo.file.url }}" alt="{{ first_item.logo.title }}" width="40" height="40">
+                </span>
+              {% endif %}
+              {% if first_item.link %}
+                <a href="{{ first_item.link }}" class="mzan-news-external-link" aria-label="External link">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+            <h2>
+              <a href="{{ item_url }}">{{ first_item.title }}</a>
+            </h2>
+            {% if first_item.description %}
+              <p>{{ first_item.description }}</p>
+            {% endif %}
+            <div class="mzan-news-meta">
+              {% if first_item.category %}
+                <span class="mzan-news-category">{{ first_item.category }}</span>
+              {% endif %}
+              <span class="mzan-news-date">{{ first_item.first_published_at|date("M d, Y") }}</span>
+            </div>
+          </div>
+          <div class="mzan-news-featured-image">
+            <img src="{{ first_item.image.file.url }}" alt="{{ first_item.image.title }}">
+          </div>
+        </article>
+      {% endif %}
 
-      {# Article 3 - Snapchat #}
-      <article class="mzan-news-card">
-        <div class="mzan-news-source">
-          <span class="mzan-news-logo mzan-news-logo-snapchat">
-            <img src="{{ static('img/logos/snapchat/snapchat-logo.svg') }}" alt="Snapchat" width="40" height="40">
-          </span>
+      {# News Grid #}
+      {% set grid_items = news_items[1:] if has_featured else news_items %}
+      {% if grid_items %}
+        <div class="mzan-news-grid">
+          {% for page_item in grid_items %}
+            {% set item = page_item.specific %}
+            {% set item_url = item.link if item.link else item.url %}
+            <article class="mzan-news-card">
+              <div class="mzan-news-source">
+                {% if item.logo %}
+                  <span class="mzan-news-logo">
+                    <img src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" width="40" height="40">
+                  </span>
+                {% endif %}
+                {% if item.link %}
+                  <a href="{{ item.link }}" class="mzan-news-external-link" aria-label="External link">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                {% endif %}
+              </div>
+              <h3>
+                <a href="{{ item_url }}">{{ item.title }}</a>
+              </h3>
+              {% if item.description %}
+                <p>{{ item.description }}</p>
+              {% endif %}
+              <div class="mzan-news-meta">
+                {% if item.category %}
+                  <span class="mzan-news-category">{{ item.category }}</span>
+                {% endif %}
+                <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
+              </div>
+            </article>
+          {% endfor %}
         </div>
-        <h3>Ac posuere tellus adipiscing nam sem cras egestas non ateam velit integer sagittis</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce hendrerit justo id massa iaculis sagittis. Nulla ante ex, lobortis sit amet...</p>
-        <div class="mzan-news-meta">
-          <span class="mzan-news-category">Press</span>
-          <span class="mzan-news-date">Sept 10</span>
-        </div>
-      </article>
-    </div>
+      {% endif %}
+    {% endif %}
 
-    {# View All Posts Button #}
-    <div class="mzan-news-view-all">
+    {# View All Posts Button - can be enabled later if needed #}
+    {# <div class="mzan-news-view-all">
       <a href="#" class="mzan-button mzan-button-outline">View all posts</a>
-    </div>
+    </div> #}
   </main>
 {% endblock %}
