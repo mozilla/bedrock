@@ -181,43 +181,6 @@ class GalleryTileBlock(blocks.StructBlock):
         help_text="Width of the tile in the gallery grid at desktop sizes.",
     )
 
-    text_divider = DividerBlock(label="Text")
-
-    tag = blocks.ChoiceBlock(
-        choices=[
-            ("", "None"),
-            ("community", "Community"),
-            ("event", "Event"),
-            ("impact", "Impact"),
-            ("partnership", "Partnership"),
-            ("policy", "Policy"),
-            ("product", "Product"),
-            ("program", "Program"),
-            ("project", "Project"),
-            ("research", "Research"),
-        ],
-        required=False,
-        default="",
-        help_text="Category tag for this gallery tile.",
-    )
-
-    heading = blocks.CharBlock(
-        max_length=255,
-        help_text="Use sentence case.",
-    )
-
-    body = blocks.TextBlock(
-        required=False,
-        help_text="Short description for the tile.",
-    )
-
-    cta_text = blocks.CharBlock(
-        max_length=100,
-        required=False,
-        label="Call to action",
-        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
-    )
-
     link_divider = DividerBlock(label="Link")
 
     cta_link = LinkBlock(
@@ -252,6 +215,42 @@ class GalleryTileBlock(blocks.StructBlock):
             "A concise description of the image for someone who can't see it. "
             "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
         ),
+    )
+
+    text_divider = DividerBlock(label="Text")
+
+    tag = blocks.ChoiceBlock(
+        choices=[
+            ("", "None"),
+            ("community", "Community"),
+            ("event", "Event"),
+            ("impact", "Impact"),
+            ("partnership", "Partnership"),
+            ("policy", "Policy"),
+            ("product", "Product"),
+            ("program", "Program"),
+            ("project", "Project"),
+            ("research", "Research"),
+        ],
+        required=False,
+        default="",
+    )
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Use sentence case.",
+    )
+
+    body = blocks.TextBlock(
+        required=False,
+        help_text="Short blurb about what you're linking to.",
+    )
+
+    cta_text = blocks.CharBlock(
+        max_length=100,
+        required=False,
+        label="Call to action text (optional)",
+        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
     )
 
     class Meta:
