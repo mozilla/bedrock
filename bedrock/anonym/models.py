@@ -137,6 +137,18 @@ class AnonymNewsPage(AnonymStaticPage):
         db_table = "mozorg_anonymnewspage"
 
 
+class AnonymCaseStudyPage(AnonymStaticPage):
+    """Static case study page for Anonym."""
+
+    max_count = 1
+    subpage_types = ["AnonymCaseStudyItemPage"]
+    template = "anonym/anonym_case_study.html"
+
+    class Meta:
+        verbose_name = "Anonym Case Study Page"
+        verbose_name_plural = "Anonym Case Study Pages"
+
+
 class AnonymContactPage(AbstractBedrockCMSPage):
     """Contact page for Anonym."""
 
@@ -179,7 +191,7 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymCaseStudyItemPage"]
+    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymCaseStudyPage"]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
@@ -297,7 +309,7 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
 
 
 class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
-    parent_page_types = ["AnonymIndexPage"]
+    parent_page_types = ["AnonymCaseStudyPage"]
     subpage_types = []
 
     logo = models.ForeignKey(
