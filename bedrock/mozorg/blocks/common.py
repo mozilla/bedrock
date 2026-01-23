@@ -10,15 +10,13 @@ from wagtail_link_block.blocks import LinkBlock
 
 
 class DividerBlock(blocks.StaticBlock):
-    """A visual divider for grouping fields in the admin."""
+    """A visual divider for grouping fields in the admin.
+
+    Styles for this block are in media/css/cms/wagtail_admin.css
+    """
 
     def get_admin_text(self):
-        return mark_safe(
-            "<style>"
-            '[data-contentpath$="_divider"] > .w-field__label { font-size: calc(1em + 2px); }'
-            "</style>"
-            '<hr style="margin: 0.5rem 0 1rem; border: 0; border-top: 1px solid #888;">'
-        )
+        return mark_safe('<hr class="cms-divider-hr">')
 
     class Meta:
         admin_text = ""
