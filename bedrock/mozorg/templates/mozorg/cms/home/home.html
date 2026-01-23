@@ -55,12 +55,11 @@
   {% include 'mozorg/home/includes/m24/hero.html'%}
   {% include 'mozorg/home/includes/m24/products.html'%}
 
-  {# Donate section - CMS managed #}
-  {% for block in page.donate %}
+  {# CMS managed content blocks #}
+  {% for block in page.content %}
     {% include_block block %}
   {% endfor %}
 
-  {% include 'mozorg/home/includes/m24/ai-gallery.html'%}
   {% include 'mozorg/home/includes/m24/media-springboard.html'%}
   {% if ftl_has_messages('m24-home-state-of-mozilla', 'm24-home-mozilla-is-reinventing-itself', 'm24-home-read-the-report') %}
     {% if show_state_of_mozilla_2025 %}
@@ -71,7 +70,6 @@
   {% else %}
     {% include 'mozorg/home/includes/m24/showcase.html'%}
   {% endif %}
-  {% include 'mozorg/home/includes/m24/issues-gallery.html'%}
 </main>
 
 {% endblock %}

@@ -11,27 +11,27 @@
   Macro Parameters:
     class: String providing modifier class(es) to the tile component.
     cta_text: String indicating CTA text (usually a translation id wrapped in an ftl function).
-    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
+    body: String indicating paragraph text (usually a translation id wrapped in ftl function).
     heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
     image_desktop: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
     image_mobile: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
     link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
     link_url (Required): String or url helper function provides href value for the tile link.
-    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+    heading (Required): String indicating heading text (usually a translation id wrapped in ftl function).
 #}
 {% macro ar_gallery_tile(
   author_name=None,
   author_role=None,
   class=None,
   cta_text=None,
-  desc=None,
+  body=None,
   heading_level=3,
   image=None,
   link_attributes=None,
   link_url=None,
   read_time=None,
   tile_number=None,
-  title=''
+  heading=''
 ) -%}
 <div class="m24-c-ar-gallery-tile {% if class %} {{ class }}{% endif %}">
   {% if tile_number or read_time %}
@@ -39,9 +39,9 @@
       {% if tile_number %}<span>{{ tile_number }}</span>{% endif %} {% if read_time %}<span>{{ read_time }}</span>{% endif %}
     </div>
   {% endif %}
-  <h{{ heading_level }} class="m24-c-ar-gallery-tile-title">
+  <h{{ heading_level }} class="m24-c-ar-gallery-tile-heading">
     <a href="{{ link_url }}" class="m24-c-ar-gallery-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
-      <span>{{ title }}</span>
+      <span>{{ heading }}</span>
     </a>
   </h{{ heading_level }}>
   {% if image %}
@@ -55,8 +55,8 @@
         {{ author_name }}{% if author_role %} <br>{{ author_role }}{% endif %}
       </div>
     {% endif %}
-    {% if desc %}
-      <p class="m24-c-ar-gallery-tile-desc">{{ desc }}</p>
+    {% if body %}
+      <p class="m24-c-ar-gallery-tile-body">{{ body }}</p>
     {% endif %}
     {% if cta_text %}
       <p class="m24-c-ar-gallery-tile-cta">
@@ -106,8 +106,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Evolving Together: Redefining Mozilla in the AI Era',
-    desc='Mozilla stands for putting people and communities in control of how technology shows up in their lives. In 1998, that meant taking the web in a better direction. In 2024, it means doing the same for AI, and making sure that open source wins again in the AI era.',
+    heading='Evolving Together: Redefining Mozilla in the AI Era',
+    body='Mozilla stands for putting people and communities in control of how technology shows up in their lives. In 1998, that meant taking the web in a better direction. In 2024, it means doing the same for AI, and making sure that open source wins again in the AI era.',
     link_url=url('foundation.annualreport.2024.article.0-1-mark-surman'),
     cta_text='Read more',
     link_attributes='data-cta-text="Evolving Together: Redefining Mozilla in the AI Era"',
@@ -155,8 +155,8 @@
         'loading': 'lazy'
       }
     ),
-    title='For the sake of our digital future, open source must win',
-    desc='As part of Mozilla’s 25-year-long dedication to ensuring a healthy, safe and trustworthy internet for all, we have learned that when you’re part of a technology movement designed to change society for the better, results don’t happen overnight.',
+    heading='For the sake of our digital future, open source must win',
+    body='As part of Mozilla’s 25-year-long dedication to ensuring a healthy, safe and trustworthy internet for all, we have learned that when you’re part of a technology movement designed to change society for the better, results don’t happen overnight.',
     link_url=url('foundation.annualreport.2024.article.1-1-mitchell-baker'),
     cta_text='Read more',
     link_attributes='data-cta-text="For the sake of our digital future, open source must win"',
@@ -204,8 +204,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Financing an Open Internet: Mozilla’s path forward',
-    desc='Mozilla has shifted much of its philanthropic and advocacy work toward AI, experimenting with different approaches and learning what it takes to make a real impact. Early successes like the Common Voice project and the Responsible Computing Challenge proved that building more inclusive, values-driven AI is possible.',
+    heading='Financing an Open Internet: Mozilla’s path forward',
+    body='Mozilla has shifted much of its philanthropic and advocacy work toward AI, experimenting with different approaches and learning what it takes to make a real impact. Early successes like the Common Voice project and the Responsible Computing Challenge proved that building more inclusive, values-driven AI is possible.',
     link_url=url('foundation.annualreport.2024.article.1-2-eric-angela'),
     cta_text='Read more',
     link_attributes='data-cta-text="Financing an Open Internet: Mozilla’s path forward"',
@@ -253,8 +253,8 @@
         'loading': 'lazy'
       }
     ),
-    title='How Mozilla is meeting the challenge of transformation on the internet',
-    desc='The tech landscape has changed significantly since Mozilla’s founding. What the world needs from us today is different from back then, but no less important. People deserve choice and agency over the way they engage with the internet, even more so now with AI in the picture. ',
+    heading='How Mozilla is meeting the challenge of transformation on the internet',
+    body='The tech landscape has changed significantly since Mozilla’s founding. What the world needs from us today is different from back then, but no less important. People deserve choice and agency over the way they engage with the internet, even more so now with AI in the picture. ',
     link_url=url('foundation.annualreport.2024.article.1-3-suba-vasudevan'),
     cta_text='Read more',
     link_attributes='data-cta-text="How Mozilla is meeting the challenge of transformation on the internet"',
@@ -302,8 +302,8 @@
         'loading': 'lazy'
       }
     ),
-    title='A rebrand and a call to action: Reclaim the internet',
-    desc='For years Mozilla has been incorrectly thought of by many as "the Firefox company." This perception left too much of our great work in the shadows. To bring some more light, we’ve started the process of reinvigorating and elevating the Mozilla brand itself.',
+    heading='A rebrand and a call to action: Reclaim the internet',
+    body='For years Mozilla has been incorrectly thought of by many as "the Firefox company." This perception left too much of our great work in the shadows. To bring some more light, we’ve started the process of reinvigorating and elevating the Mozilla brand itself.',
     link_url=url('foundation.annualreport.2024.article.1-4-lindsey-obrien'),
     cta_text='Read more',
     link_attributes='data-cta-text="A rebrand and a call to action: Reclaim the internet"',
@@ -351,8 +351,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Imagining, co-creating and translating our way to a better tech future',
-    desc='I remember the first time I connected to the internet in the 1990s. That distinctive dial-up tone wasn’t just noise – it was the sound of possibility. It was a time when we weren’t “users” or “consumers;” we were creators, dreamers, and builders of digital worlds.',
+    heading='Imagining, co-creating and translating our way to a better tech future',
+    body='I remember the first time I connected to the internet in the 1990s. That distinctive dial-up tone wasn’t just noise – it was the sound of possibility. It was a time when we weren’t “users” or “consumers;” we were creators, dreamers, and builders of digital worlds.',
     link_url=url('foundation.annualreport.2024.article.2-1-nabiha-syed'),
     cta_text='Read more',
     link_attributes='data-cta-text="Imagining, co-creating and translating our way to a better tech future"',
@@ -400,8 +400,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Strategic innovation: A 25-year mission',
-    desc='At the heart of everything we do lies our commitment to improving the internet — not just for today, but for future generations. This core commitment shapes every decision we make, as we navigate and lead through an ever-changing technological and regulatory landscape.',
+    heading='Strategic innovation: A 25-year mission',
+    body='At the heart of everything we do lies our commitment to improving the internet — not just for today, but for future generations. This core commitment shapes every decision we make, as we navigate and lead through an ever-changing technological and regulatory landscape.',
     link_url=url('foundation.annualreport.2024.article.2-2-laura-chambers'),
     cta_text='Read more',
     link_attributes='data-cta-text="Strategic innovation: A 25-year mission"',
@@ -449,8 +449,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Empowering developers with open AI tools for a trustworthy future',
-    desc='The artificial intelligence landscape is evolving rapidly, with a growing number of tools and large language models (LLMs) to choose from. This can be both exciting and overwhelming, for developers who are working on AI projects. ',
+    heading='Empowering developers with open AI tools for a trustworthy future',
+    body='The artificial intelligence landscape is evolving rapidly, with a growing number of tools and large language models (LLMs) to choose from. This can be both exciting and overwhelming, for developers who are working on AI projects. ',
     link_url=url('foundation.annualreport.2024.article.2-3-jane-silber'),
     cta_text='Read more',
     link_attributes='data-cta-text="Empowering developers with open AI tools for a trustworthy future"',
@@ -498,8 +498,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Backing bold ideas: Mozilla Ventures and responsible innovation',
-    desc='Two years ago we announced Mozilla Ventures and its core mission of investing in companies building technology designed to have a positive impact on people’s lives and society as a whole.',
+    heading='Backing bold ideas: Mozilla Ventures and responsible innovation',
+    body='Two years ago we announced Mozilla Ventures and its core mission of investing in companies building technology designed to have a positive impact on people’s lives and society as a whole.',
     link_url=url('foundation.annualreport.2024.article.2-4-mohamed-nanabhay'),
     cta_text='Read more',
     link_attributes='data-cta-text="Backing bold ideas: Mozilla Ventures and responsible innovation"',
@@ -547,8 +547,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Success through two-way conversations with our community',
-    desc='When I first joined the Thunderbird team in 2017, my focus was on keeping it alive. In the early days, it was governed solely by the Thunderbird Council, which is an elected group of contributors dedicated to the project.',
+    heading='Success through two-way conversations with our community',
+    body='When I first joined the Thunderbird team in 2017, my focus was on keeping it alive. In the early days, it was governed solely by the Thunderbird Council, which is an elected group of contributors dedicated to the project.',
     link_url=url('foundation.annualreport.2024.article.2-5-ryan-sipes'),
     cta_text='Read more',
     link_attributes='data-cta-text="Success through two-way conversations with our community"',
@@ -596,8 +596,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Products built for people: A vision for internet safety and privacy',
-    desc='I’m uniquely positioned as the top person overseeing new product strategy and execution at the Mozilla Corporation. As a product builder in this area, I don’t have to focus on what’s happening tomorrow; I get to lock in on the long game.',
+    heading='Products built for people: A vision for internet safety and privacy',
+    body='I’m uniquely positioned as the top person overseeing new product strategy and execution at the Mozilla Corporation. As a product builder in this area, I don’t have to focus on what’s happening tomorrow; I get to lock in on the long game.',
     link_url=url('foundation.annualreport.2024.article.3-1-adam-fishman'),
     cta_text='Read more',
     link_attributes='data-cta-text="Products built for people: A vision for internet safety and privacy"',
@@ -645,8 +645,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Leading browsing innovation for a complex web',
-    desc='Even as it turns 20 years old, Firefox remains an essential option for experiencing a better internet. Firefox has always been about giving users choice and real user control over their online experience, and this vision is more relevant than ever. ',
+    heading='Leading browsing innovation for a complex web',
+    body='Even as it turns 20 years old, Firefox remains an essential option for experiencing a better internet. Firefox has always been about giving users choice and real user control over their online experience, and this vision is more relevant than ever. ',
     link_url=url('foundation.annualreport.2024.article.3-2-vicky-chin'),
     cta_text='Read more',
     link_attributes='data-cta-text="Leading browsing innovation for a complex web"',
@@ -694,8 +694,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Shaping AI we can trust: Mozilla’s portfolio at work',
-    desc='People want a positive relationship with technology. A relationship we can be excited about, one where AI, phones and other devices delight us, make life easier and enrich our work lives. In the AI era, this is not how it feels.',
+    heading='Shaping AI we can trust: Mozilla’s portfolio at work',
+    body='People want a positive relationship with technology. A relationship we can be excited about, one where AI, phones and other devices delight us, make life easier and enrich our work lives. In the AI era, this is not how it feels.',
     link_url=url('foundation.annualreport.2024.article.4-1-ayah-bdeir'),
     cta_text='Read more',
     link_attributes='data-cta-text="Shaping AI we can trust: Mozilla’s portfolio at work"',
@@ -743,8 +743,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Scaling local AI innovation for real-world impact',
-    desc='At Mozilla, we’re always looking for ways to make technology that empowers people and solves real world problems. We’re excited about the technology shift being created by AI, but need to make sure it benefits more people than just those with the most resources.',
+    heading='Scaling local AI innovation for real-world impact',
+    body='At Mozilla, we’re always looking for ways to make technology that empowers people and solves real world problems. We’re excited about the technology shift being created by AI, but need to make sure it benefits more people than just those with the most resources.',
     link_url=url('foundation.annualreport.2024.article.4-2-imo-udom'),
     cta_text='Read more',
     link_attributes='data-cta-text="Scaling local AI innovation for real-world impact"',
@@ -793,8 +793,8 @@
         'width': '322'
       }
     ),
-    title='Reimagining the ad ecosystem: Balancing privacy and relevance',
-    desc='Can online advertising thrive without exploiting your personal data? At Mozilla, we believe it not only can, but must. ',
+    heading='Reimagining the ad ecosystem: Balancing privacy and relevance',
+    body='Can online advertising thrive without exploiting your personal data? At Mozilla, we believe it not only can, but must. ',
     link_url=url('foundation.annualreport.2024.article.5-1-orville-mcdonald'),
     cta_text='Read more',
     link_attributes='data-cta-text="Reimagining the ad ecosystem: Balancing privacy and relevance"',
@@ -842,8 +842,8 @@
         'loading': 'lazy'
       }
     ),
-    title='A privacy-first solution that meets advertisers’ needs',
-    desc='Whenever the topic of online privacy arises, the common refrain from Big Tech is that targeted ads are an essential mechanism for funding the online services we all enjoy, so there’s no choice but to let them vacuum up our personal data.',
+    heading='A privacy-first solution that meets advertisers’ needs',
+    body='Whenever the topic of online privacy arises, the common refrain from Big Tech is that targeted ads are an essential mechanism for funding the online services we all enjoy, so there’s no choice but to let them vacuum up our personal data.',
     link_url=url('foundation.annualreport.2024.article.5-2-brad-graham'),
     cta_text='Read more',
     link_attributes='data-cta-text="A privacy-first solution that meets advertisers’ needs"',
@@ -891,8 +891,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Building in public with community and openness',
-    desc='Innovation at Mozilla isn’t just about creating better tools — it’s about reimagining how we interact with the internet and putting the power back into people’s hands. We have a long history of building in public, learning through building, and iterating in community to achieve that goal.',
+    heading='Building in public with community and openness',
+    body='Innovation at Mozilla isn’t just about creating better tools — it’s about reimagining how we interact with the internet and putting the power back into people’s hands. We have a long history of building in public, learning through building, and iterating in community to achieve that goal.',
     link_url=url('foundation.annualreport.2024.article.6-1-monica-chambers'),
     cta_text='Read more',
     link_attributes='data-cta-text="Building in public with community and openness"',
@@ -940,8 +940,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Global collaboration for a fairer, healthier internet',
-    desc='Humans are innate toolmakers, and the tools we create have always shaped who we become and how we adapt. Information technology is one expression of this legacy which has become essential to how we connect and live our lives.',
+    heading='Global collaboration for a fairer, healthier internet',
+    body='Humans are innate toolmakers, and the tools we create have always shaped who we become and how we adapt. Information technology is one expression of this legacy which has become essential to how we connect and live our lives.',
     link_url=url('foundation.annualreport.2024.article.6-2-zeina-abi-assy'),
     cta_text='Read more',
     link_attributes='data-cta-text="Global collaboration for a fairer, healthier internet"',
@@ -989,8 +989,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Mozilla Venture Companies',
-    desc='Building Mozilla is a balance of philanthropic vision and commercial strategy, united under a mission to serve the public good. Mozilla Ventures embodies this commitment, investing in startups aligned with our values and the Mozilla Manifesto. In doing so, we help foster a generation of tech companies that prioritize public benefit alongside profit, ultimately strengthening the internet’s health.',
+    heading='Mozilla Venture Companies',
+    body='Building Mozilla is a balance of philanthropic vision and commercial strategy, united under a mission to serve the public good. Mozilla Ventures embodies this commitment, investing in startups aligned with our values and the Mozilla Manifesto. In doing so, we help foster a generation of tech companies that prioritize public benefit alongside profit, ultimately strengthening the internet’s health.',
     link_url=url('foundation.annualreport.2024.article.7-1-mozilla-venture-companies'),
     cta_text='Read more',
     link_attributes='data-cta-text="Mozilla Venture Companies"',
@@ -1036,8 +1036,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Why I Joined Mozilla',
-    desc='At Mozilla, we have big ambitions for the future, we want to build impactful products that are different — that are built with more respect for the people using them and help us explore new forms of openness. It’s going to take hard work that Mozilla is uniquely suited to take on. It’s why we’re here. It’s who we are. And it’s our future.',
+    heading='Why I Joined Mozilla',
+    body='At Mozilla, we have big ambitions for the future, we want to build impactful products that are different — that are built with more respect for the people using them and help us explore new forms of openness. It’s going to take hard work that Mozilla is uniquely suited to take on. It’s why we’re here. It’s who we are. And it’s our future.',
     link_url=url('foundation.annualreport.2024.article.7-2-why-i-joined-mozilla'),
     cta_text='Read more',
     link_attributes='data-cta-text="Why I Joined Mozilla"',
@@ -1083,8 +1083,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Mozilla Fellows',
-    desc='The Mozilla Fellowship program invests in people who champion a free and open internet—those who challenge the status quo, defend digital rights, and shape policies that promote online privacy and transparency. ',
+    heading='Mozilla Fellows',
+    body='The Mozilla Fellowship program invests in people who champion a free and open internet—those who challenge the status quo, defend digital rights, and shape policies that promote online privacy and transparency. ',
     link_url=url('foundation.annualreport.2024.article.7-3-mozilla-fellows'),
     cta_text='Read more',
     link_attributes='data-cta-text="Mozilla Fellows"',
@@ -1130,8 +1130,8 @@
         'loading': 'lazy'
       }
     ),
-    title='Rise25 Winners',
-    desc='Launched as part of Mozilla’s 25th anniversary celebrations, Rise 25 honors a remarkable cohort of visionaries working to improve the internet’s future. These leaders—spanning continents and disciplines—bring fresh perspectives to pressing challenges like digital inclusion, algorithmic transparency, data ethics, and community-driven innovation.',
+    heading='Rise25 Winners',
+    body='Launched as part of Mozilla’s 25th anniversary celebrations, Rise 25 honors a remarkable cohort of visionaries working to improve the internet’s future. These leaders—spanning continents and disciplines—bring fresh perspectives to pressing challenges like digital inclusion, algorithmic transparency, data ethics, and community-driven innovation.',
     link_url=url('foundation.annualreport.2024.article.7-4-rise25-winners'),
     cta_text='Read more',
     link_attributes='data-cta-text="Rise25 Winners"',

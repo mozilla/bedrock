@@ -9,33 +9,32 @@
   HTML Import: {% from "macros-m24.html" import gallery_tile with context %}
   CSS Import: @import '[path to]/m24/grid';
   Macro Parameters:
+    body: String indicating paragraph text (usually a translation id wrapped in ftl function).
     class: String providing modifier class(es) to the tile component.
     cta_text: String indicating CTA text (usually a translation id wrapped in an ftl function).
-    desc: String indicating paragraph text (usually a translation id wrapped in ftl function).
-    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling.
+    heading (Required): String indicating heading text (usually a translation id wrapped in ftl function).
+    heading_level: Number indicating heading level. Should be based on semantic meaning, not presentational styling.
     image_desktop: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
     image_mobile: Image to be used in the tile at desktop sizes. Can pass an <img> element, resp_img or picture Python helpers.
     link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
     link_url (Required): String or url helper function provides href value for the tile link.
     tag: A category tag for this gallery tile (e.g. product, program, event) (usually a translation id wrapped in ftl function).
-    tag_icon: (Do not translate) Last word of the icon class. Must be configured in the CSS. Currently supports: product, program, event.
-    title (Required): String indicating heading text (usually a translation id wrapped in ftl function).
 #}
 {% macro gallery_tile(
+  body=None,
   class=None,
   cta_text=None,
-  desc=None,
+  heading='',
   heading_level=3,
   image=None,
   link_attributes=None,
   link_url=None,
-  tag='',
-  title=''
+  tag=''
 ) -%}
 <div class="m24-c-gallery-tile {% if class %} {{ class }}{% endif %}">
-    <h{{ heading_level }} class="m24-c-gallery-tile-title">
+    <h{{ heading_level }} class="m24-c-gallery-tile-heading">
       <a href="{{ link_url }}" class="m24-c-gallery-tile-link"{% if link_attributes %} {{ link_attributes|safe }}{% endif %}>
-        <span>{{ title }}</span>
+        <span>{{ heading }}</span>
       </a>
   </h{{ heading_level }}>
   {% if image %}
@@ -45,13 +44,12 @@
   {% endif %}
   {% if tag %}
     <div class="m24-c-gallery-tile-tag">
-      {% if tag_icon %}<span class="m24-c-gallery-tile-icon m24-c-gallery-tile-icon-{{ tag_icon|lower }}"></span>{% endif %}
       {{ tag }}
     </div>
   {% endif %}
   <div class="m24-c-gallery-tile-content">
-    {% if desc %}
-      <p class="m24-c-gallery-tile-desc">{{ desc }}</p>
+    {% if body %}
+      <p class="m24-c-gallery-tile-body">{{ body }}</p>
     {% endif %}
     {% if cta_text %}
       <p class="m24-c-gallery-tile-cta">
@@ -135,7 +133,7 @@
     {{ image }}
   </div>
   <p class="m24-c-donate-cta">
-    <a href="{{ link_url }}" class="m24-c-cta" data-cta-text="{{ link_text|slugify }}"{% if link_new_window %} target="_blank" rel="noopener"{% endif %}>{{ link_text }}</a>
+    <a href="{{ link_url }}" class="m24-c-cta" data-cta-text="{{ link_text|slugify }}"{% if link_new_window %} target="_blank" rel="external noopener"{% endif %}>{{ link_text }}</a>
   </p>
 </div>
 {%- endmacro %}

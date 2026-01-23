@@ -6,10 +6,10 @@
 
 {% from "macros-m24.html" import m24_donate with context %}
 
-{% set bg_color = value.settings.background_color|default("gray", true) %}
+{% set bg_color = value.settings.background_color %}
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
 
-<div class="m24-t-{{ bg_color }}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+<div{% if bg_color %} class="{{ bg_color }}"{% endif %}{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
   {% call m24_donate(
     heading=value.heading,
     image=srcset_image(
@@ -21,11 +21,9 @@
       alt=value.image_alt|default("", true)
     ),
     link_text=value.cta_text,
-    link_url=value.cta_link.get_url(),
+    link_url=value.cta_link.get_url()|add_utm_parameters,
     link_new_window=value.cta_link.new_window
   ) %}
     {{ value.body|richtext }}
   {% endcall %}
 </div>
-
-<div class="m24-c-transition m24-t-top-{{ bg_color }} m24-t-bottom-dark"><hr></div>

@@ -314,7 +314,7 @@ $image-path: '/media/protocol/img';
 }
 
 .m24-c-gallery-tile.mza-size-override {
-    .m24-c-gallery-tile-title {
+    .m24-c-gallery-tile-heading {
         @include admixins.text-title-xs;
     }
 }
