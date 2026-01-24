@@ -12,3 +12,15 @@
     {% endfor %}
   </ul>
 </div>
+
+{% set all_case_studies=anonym_case_studies() %}
+{% if all_case_studies.count() > 3 %}
+  <div class="mzan-casestudies=view-all">
+    <a
+      href="{{ all_case_studies.first().get_parent().url }}"
+      class="mzan-button mzan-button-outline"
+    >
+      See more case studies
+    </a>
+  </div>
+{% endif %}

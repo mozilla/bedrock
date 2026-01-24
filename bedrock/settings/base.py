@@ -842,6 +842,7 @@ TEMPLATES = [
                 "wagtail.jinja2tags.core",
                 "wagtail.images.jinja2tags.images",
             ],
+            "environment": "bedrock.jinja2.bedrock_environment",
         },
     },
     {
