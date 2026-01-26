@@ -6,7 +6,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0014_alter_anonymcasestudyitempage_content_and_more"),
+        ("anonym", "0015_alter_anonymcasestudyitempage_content_and_more"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
 

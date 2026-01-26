@@ -11,7 +11,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0008_make_anonymcontactpage_editable"),
+        ("anonym", "0009_make_anonymcontactpage_editable"),
     ]
 
     operations = [

@@ -8,7 +8,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0013_add_fields_to_case_study_item"),
+        ("anonym", "0014_add_fields_to_case_study_item"),
     ]
 
     operations = [
