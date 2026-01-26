@@ -19,6 +19,7 @@ Areas to consider when reviewing:
 * Security concerns (e.g., injection risks, unsafe deserialization, secrets handling)
 
 Heavily flag changes that add risks to uptime or functionality that do not appear to have been considered in the changeset.
+Be particularly aware of CMS-backed content that is not richtext. Ensure it's escaped properly when used in templates.
 
 
 ## 2. Design & Architecture
