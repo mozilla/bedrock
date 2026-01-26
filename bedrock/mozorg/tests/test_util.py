@@ -6,7 +6,10 @@ import os
 from unittest.mock import ANY, patch
 
 from django.conf import settings
+from django.http import Http404
 from django.test import RequestFactory
+
+from waffle.testutils import override_switch
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.mozorg.util import page
@@ -56,3 +59,29 @@ class TestProdLocales(TestCase):
         # Make sure all locales are included in `PROD_LANGUAGES`.
         # We add 1 for the "ja-JP-mac" exception.
         assert sum([len(locales) for locales in settings.LOCALES_BY_REGION.values()]) + 1 == len(settings.PROD_LANGUAGES)
+
+
+@patch("bedrock.mozorg.util.l10n_utils")
+class TestPageUtilEnablingSwitch(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_page_returns_404_when_switch_is_off(self, l10n_mock):
+        """Page should return 404 when enabling_switch is provided and switch is OFF."""
+        with override_switch("TEST_SWITCH", active=False):
+            url = page("test/", "test.html", enabling_switch="test-switch")
+            with self.assertRaises(Http404):
+                url.callback(self.rf.get("/test/"))
+
+    def test_page_renders_when_switch_is_on(self, l10n_mock):
+        """Page should render when enabling_switch is provided and switch is ON."""
+        with override_switch("TEST_SWITCH", active=True):
+            url = page("test/", "test.html", enabling_switch="test-switch")
+            url.callback(self.rf.get("/test/"))
+            l10n_mock.render.assert_called_with(ANY, "test.html", {"urlname": "test"}, ftl_files=None)
+
+    def test_page_renders_when_no_switch_provided(self, l10n_mock):
+        """Page should render normally when enabling_switch is not provided."""
+        url = page("test/", "test.html")
+        url.callback(self.rf.get("/test/"))
+        l10n_mock.render.assert_called()

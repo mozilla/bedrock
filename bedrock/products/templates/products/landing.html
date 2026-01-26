@@ -186,6 +186,46 @@
       <p>{{ ftl('firefox-products-access-all') }}</p>
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://www.thunderbird.net/download/{{ referrals }}" rel="external noopener" data-cta-text="Thunderbird Download">{{ ftl('firefox-products-download-thunderbird') }} {{ icon_download|safe }}</a></p>
     {% endcall %}
+
+    {% if ftl_has_messages('firefox-products-solo-desc') %}
+    <!-- Solo -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/solo/logo-solo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h2 class="mzp-c-picto-heading"><a href="https://soloist.ai/{{ referrals }}" data-cta-text="Solo" data-cta-position="heading">{{ ftl('firefox-products-solo') }}</a></h2>
+      <p>{{ ftl('firefox-products-solo-desc') }}</p>
+      <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://soloist.ai/{{ referrals }}" rel="external noopener" data-cta-text="Solo Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-solo') }}">{{ ftl('ui-learn-more') }} {{ icon_external|safe }}</a></p>
+    {% endcall %}
+    {% endif %}
+
+    {% if ftl_has_messages('firefox-products-0din-desc') %}
+    <!-- 0DIN -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/0din/logo-0din.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h2 class="mzp-c-picto-heading"><a href="https://0din.ai/{{ referrals }}" data-cta-text="0DIN" data-cta-position="heading">{{ ftl('firefox-products-0din') }}</a></h2>
+      <p>{{ ftl('firefox-products-0din-desc') }}</p>
+      <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://0din.ai/{{ referrals }}" rel="external noopener" data-cta-text="0DIN Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-0din') }}">{{ ftl('ui-learn-more') }} {{ icon_external|safe }}</a></p>
+    {% endcall %}
+    {% endif %}
   </section>
 
 

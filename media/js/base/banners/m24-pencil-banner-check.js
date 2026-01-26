@@ -8,6 +8,6 @@ var cookiesEnabled =
     typeof window.Mozilla.Cookies !== 'undefined' &&
     window.Mozilla.Cookies.enabled();
 
-if (cookiesEnabled && window.Mozilla.Cookies.hasItem('pencil-banner')) {
+if (cookiesEnabled && window.Mozilla.Cookies.hasItem('moz-banner-pencil')) {
     document.documentElement.setAttribute('data-pencil-banner-closed', 'true');
 }

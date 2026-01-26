@@ -8,7 +8,7 @@ from django.test import TestCase, override_settings
 
 import pytest
 
-from bedrock.cms.models.images import BedrockImage, _make_renditions
+from bedrock.cms.models.images import AUTOMATIC_RENDITION_FILTER_SPECS, BedrockImage, _make_renditions
 
 pytestmark = [pytest.mark.django_db]
 
@@ -17,46 +17,14 @@ class BedrockImageTestCase(TestCase):
     @override_settings(TASK_QUEUE_AVAILABLE=False)
     def test_pre_generate_expected_renditions__no_queue_available(self):
         image = BedrockImage(width=1, height=1)
-        expected_filter_specs = [
-            "width-2400",
-            "width-2200",
-            "width-2000",
-            "width-1800",
-            "width-1600",
-            "width-1400",
-            "width-1200",
-            "width-1000",
-            "width-800",
-            "width-600",
-            "width-400",
-            "width-200",
-            "width-100",
-            "max-165x165",
-        ]
 
         with patch("bedrock.cms.models.images._make_renditions") as _make_renditions_mock:
             image._pre_generate_expected_renditions()
-            _make_renditions_mock.assert_called_once_with(image_id=image.id, filter_specs=expected_filter_specs)
+            _make_renditions_mock.assert_called_once_with(image_id=image.id, filter_specs=AUTOMATIC_RENDITION_FILTER_SPECS)
 
     @override_settings(TASK_QUEUE_AVAILABLE=True)
     def test_pre_generate_expected_renditions__queue_available(self):
         image = BedrockImage(width=1, height=1)
-        expected_filter_specs = [
-            "width-2400",
-            "width-2200",
-            "width-2000",
-            "width-1800",
-            "width-1600",
-            "width-1400",
-            "width-1200",
-            "width-1000",
-            "width-800",
-            "width-600",
-            "width-400",
-            "width-200",
-            "width-100",
-            "max-165x165",
-        ]
 
         with patch("bedrock.base.tasks.django_rq") as mock_django_rq:
             mock_queue = Mock(name="mocked_queue")
@@ -68,27 +36,12 @@ class BedrockImageTestCase(TestCase):
             mock_queue.enqueue.assert_called_once_with(
                 _make_renditions,
                 image_id=image.id,
-                filter_specs=expected_filter_specs,
+                filter_specs=AUTOMATIC_RENDITION_FILTER_SPECS,
             )
 
     def test_pre_generate_expected_renditions_uses_defer_task(self):
         image = BedrockImage(width=1, height=1)
-        expected_filter_specs = [
-            "width-2400",
-            "width-2200",
-            "width-2000",
-            "width-1800",
-            "width-1600",
-            "width-1400",
-            "width-1200",
-            "width-1000",
-            "width-800",
-            "width-600",
-            "width-400",
-            "width-200",
-            "width-100",
-            "max-165x165",
-        ]
+
         with patch("bedrock.cms.models.images.defer_task") as mock_defer_task:
             image._pre_generate_expected_renditions()
             mock_defer_task.assert_called_once_with(
@@ -96,7 +49,7 @@ class BedrockImageTestCase(TestCase):
                 queue_name="image_renditions",
                 func_kwargs={
                     "image_id": image.id,
-                    "filter_specs": expected_filter_specs,
+                    "filter_specs": AUTOMATIC_RENDITION_FILTER_SPECS,
                 },
             )
 
@@ -105,3 +58,18 @@ class BedrockImageTestCase(TestCase):
         with patch.object(image, "_pre_generate_expected_renditions") as pre_generate_mock:
             image.save()
             pre_generate_mock.assert_called_once_with()
+
+    def test_bedrock_image_uses_sanitizing_field(self):
+        """Verify that BedrockImage forms use SanitizingWagtailImageField."""
+        from wagtail.images.forms import get_image_form
+
+        from bedrock.cms.fields import SanitizingWagtailImageField
+
+        ImageForm = get_image_form(BedrockImage)
+        form = ImageForm()
+
+        # Check that the 'file' field is our custom sanitizing field
+        self.assertIsInstance(
+            form.fields["file"],
+            SanitizingWagtailImageField,
+        )

@@ -1,0 +1,91 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/home/base.html" %}
+
+{# Bug 1438302, Issue 13019: Avoid duplicate content for English pages. #}
+{%- block page_title_full -%}
+  {%- if LANG == 'en-US' -%}
+    Mozilla - Internet for people, not profit (US)
+  {%- elif LANG == 'en-GB' -%}
+    Mozilla - Internet for people, not profit (UK)
+  {%- else -%}
+    {{ ftl('m24-home-page-title-v2', fallback='m24-home-page-title') }}
+  {%- endif -%}
+{%- endblock -%}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}{{ ftl('m24-home-page-desc-v2', fallback='m24-home-page-desc') }}{% endblock %}
+
+{% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
+
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'it', 'pl', 'pt-PT', 'pt-BR'] %}
+{% set show_fundraising_banner = switch('fundraising-banner-2025eoy') and LANG in fundraising_banner_langs %}
+
+{% set show_state_of_mozilla_2025 = switch('state-of-mozilla-2025') %}
+
+{% block page_css %}
+  {{ css_bundle('m24-root') }}
+  {{ css_bundle('m24-base') }}
+  {{ css_bundle('m24-home') }}
+  {% if show_fundraising_banner %}
+    {{ css_bundle('fundraising-banner') }}
+  {% endif %}
+{% endblock %}
+
+{% block site_header %}
+  {% with hide_pencil_banner=show_fundraising_banner %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-homepage' %}
+
+{% block page_banner %}
+  {% if show_fundraising_banner %}
+    {% include 'includes/banners/fundraiser.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main>
+  {% include 'mozorg/home/includes/m24/hero.html'%}
+  {% include 'mozorg/home/includes/m24/products.html'%}
+
+  {# CMS managed content blocks #}
+  {% for block in page.content %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% include 'mozorg/home/includes/m24/media-springboard.html'%}
+  {% if ftl_has_messages('m24-home-state-of-mozilla', 'm24-home-mozilla-is-reinventing-itself', 'm24-home-read-the-report') %}
+    {% if show_state_of_mozilla_2025 %}
+      {% include 'mozorg/home/includes/m24/showcase-som-2025.html'%}
+    {% else %}
+      {% include 'mozorg/home/includes/m24/showcase-som.html'%}
+    {% endif %}
+  {% else %}
+    {% include 'mozorg/home/includes/m24/showcase.html'%}
+  {% endif %}
+</main>
+
+{% endblock %}
+
+{% block site_footer %}
+  {% with show_newsletter=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
+{% endblock %}
+
+
+{% block js %}
+  {% if switch('m24-hero-animation') %}
+    {{ js_bundle('m24-animation') }}
+  {% endif %}
+  {% if show_fundraising_banner %}
+    {{ js_bundle('fundraising_banner_eoy2025') }}
+  {% endif %}
+{% endblock %}

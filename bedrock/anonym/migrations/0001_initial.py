@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ("mozorg", "0032_alter_anonymarticlepage_content_and_more"),
+        ("mozorg", "0035_alter_anonymarticlepage_content_and_more"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
 

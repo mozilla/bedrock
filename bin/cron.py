@@ -39,6 +39,8 @@ HOSTNAME = platform.node()
 DB_UPDATE_MINUTES = config("DB_UPDATE_MINUTES", default="5", parser=int)
 LOCAL_DB_UPDATE = config("LOCAL_DB_UPDATE", default="False", parser=bool)
 DB_DOWNLOAD_IGNORE_GIT = config("DB_DOWNLOAD_IGNORE_GIT", default="False", parser=bool)
+DATABASE_URL = config("DATABASE_URL", default="")
+USING_POSTGRES = DATABASE_URL.startswith("postgres")
 RUN_TIMES = {}
 
 # Dead Man's Snitch
@@ -157,7 +159,7 @@ def schedule_file_jobs():
     def update_locales():
         call_command("l10n_update")
 
-    if not LOCAL_DB_UPDATE:
+    if not LOCAL_DB_UPDATE and not USING_POSTGRES:
 
         @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
         def download_database():
