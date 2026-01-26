@@ -62,3 +62,5 @@ wagtail-thumbnail-choice-block==0.1.2
 Wand==0.6.13  # For animated GIF support
 Wagtail==7.2.1
 whitenoise==6.11.0
+wagtail-localize-dashboard==0.1.2
+wagtail-localize-intentional-blanks==0.2.2
