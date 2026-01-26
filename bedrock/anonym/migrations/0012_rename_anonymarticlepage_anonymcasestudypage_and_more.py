@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ("anonym", "0011_alter_anonymarticlepage_content_and_more"),
         ("contenttypes", "0002_remove_content_type_name"),
-        ("mozorg", "0034_remove_person"),
+        ("mozorg", "0037_remove_person"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
 

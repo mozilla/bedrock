@@ -101,6 +101,14 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     &.m24-t-product-relay::before {
         background-image: url('/media/protocol/img/logos/firefox/relay/logo.svg');
     }
+
+    &.m24-t-product-solo::before {
+        background-image: url('/media/img/logos/solo/logo-solo.svg');
+    }
+
+    &.m24-t-product-0din::before {
+        background-image: url('/media/img/logos/0din/logo-0din.svg');
+    }
 }
 
 .m24-c-launchpad-title {

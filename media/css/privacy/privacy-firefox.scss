@@ -9,7 +9,7 @@
 @use '~@mozilla-protocol/core/protocol/css/components/section-heading';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 
-@import '../protocol/components/legal-toc';
+@use '../protocol/components/legal-toc';
 
 // * -------------------------------------------------------------------------- */
 // Smooth Scroll

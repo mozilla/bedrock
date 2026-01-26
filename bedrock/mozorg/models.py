@@ -19,8 +19,14 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
+
+BASE_UTM_PARAMETERS = {
+    "utm_source": "www.mozilla.org",
+    "utm_medium": "referral",
+}
 
 
 class SubNavigationMixin:
@@ -396,3 +402,41 @@ class ContentSubpage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/advertising/content_subpage.html"
+
+
+class HomePage(AbstractBedrockCMSPage):
+    """CMS-managed homepage for mozilla.org."""
+
+    max_count = 1  # Ensure there's only one instance of this page
+    subpage_types = []  # This page type cannot have any children
+    ftl_files = ["mozorg/home-m24"]
+
+    content = StreamField(
+        [
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for the homepage. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/home/home.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "homepage",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context

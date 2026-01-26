@@ -1369,5 +1369,13 @@ URLS = flatten(
             "/firefox/",
             "https://www.firefox.com/",
         ),
+        # Issue 15843
+        url_test("/products/vpn/more/what-is-an-ip-address/", "/products/vpn/resource-center/what-is-an-ip-address/"),
+        url_test(
+            "/products/vpn/more/the-difference-between-a-vpn-and-a-web-proxy/",
+            "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/",
+        ),
+        url_test("/products/vpn/more/what-is-a-vpn/", "/products/vpn/resource-center/what-is-a-vpn/"),
+        url_test("/products/vpn/more/5-reasons-you-should-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
     )
 )
