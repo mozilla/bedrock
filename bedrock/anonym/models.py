@@ -357,7 +357,7 @@ class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
         FieldPanel("notification"),
     ]
 
-    template = "anonym/anonym_article_item_page.html"
+    template = "anonym/anonym_case_study_item_page.html"
 
     class Meta:
         verbose_name = "Anonym Case Study Item Page"
