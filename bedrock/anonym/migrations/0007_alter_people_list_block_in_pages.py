@@ -12,7 +12,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0005_replace_table_block_with_custom_comparison_table_block"),
+        ("anonym", "0006_alter_anonymarticlepage_content_and_more"),
     ]
 
     operations = [

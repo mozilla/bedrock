@@ -9,7 +9,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0007_alter_anonymarticlepage_content_and_more"),
+        ("anonym", "0008_alter_anonymarticlepage_content_and_more"),
     ]
 
     operations = [

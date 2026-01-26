@@ -5,7 +5,6 @@
 from unittest.mock import patch
 
 import pytest
-import wagtail_factories
 from wagtail.models import Locale, Page, PageViewRestriction, Site
 
 from bedrock.anonym.models import AnonymNewsItemPage, AnonymNewsPage
@@ -161,7 +160,6 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
 
 def test_get_wagtail_urls__exclude_from_sitemap(dummy_wagtail_pages):
     """Test that pages with exclude_from_sitemap=True are excluded from sitemap."""
-    en_us_locale = Locale.objects.get(language_code="en-US")
     site = Site.objects.get(is_default_site=True)
     en_us_root_page = site.root_page
 

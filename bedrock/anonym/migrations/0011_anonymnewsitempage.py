@@ -13,7 +13,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("anonym", "0009_anonymcontactpage_form_fields"),
+        ("anonym", "0010_anonymcontactpage_form_fields"),
         ("cms", "0004_bedrocklocale"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
