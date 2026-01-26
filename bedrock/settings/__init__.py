@@ -210,7 +210,7 @@ CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src":
 CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": {"blob:"}})
 
 
-# The CMS admin frames itself for page previews and needs script-src: allow-inline
+# The CMS admin frames itself for page previews and needs script-src: 'unsafe-inline'
 CMS_ADMIN_CSP = _override_csp(
     CONTENT_SECURITY_POLICY,
     replace={"frame-ancestors": {csp.constants.SELF}},
