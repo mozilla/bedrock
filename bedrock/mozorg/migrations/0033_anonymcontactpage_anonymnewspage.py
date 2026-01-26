@@ -10,7 +10,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0029_alter_anonymcontentsubpage_content_and_more"),
+        ("mozorg", "0032_alter_anonymcontentsubpage_content_and_more"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
 
