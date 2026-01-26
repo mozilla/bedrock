@@ -13,7 +13,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0022_anonymindexpage"),
+        ("mozorg", "0025_anonymindexpage"),
         ("wagtailcore", "0096_referenceindex_referenceindex_source_object_and_more"),
     ]
 

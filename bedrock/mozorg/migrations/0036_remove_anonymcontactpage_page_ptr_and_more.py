@@ -10,7 +10,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
     dependencies = [
         ("anonym", "0001_initial"),
-        ("mozorg", "0032_alter_anonymarticlepage_content_and_more"),
+        ("mozorg", "0035_alter_anonymarticlepage_content_and_more"),
     ]
 
     operations = [
