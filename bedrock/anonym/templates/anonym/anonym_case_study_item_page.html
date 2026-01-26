@@ -22,7 +22,7 @@
 {% endblock %}
 
 {% block site_header %}
-  {% with anonym_index_page=page.get_parent() %}
+  {% with anonym_index_page=page.get_parent().get_parent() %}
     {% include 'anonym/includes/navigation.html' %}
   {% endwith %}
 {% endblock %}

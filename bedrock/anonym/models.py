@@ -110,7 +110,9 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
         FieldPanel("content"),
     ]
 
-    template = "anonym/anonym_news_item_page.html"
+    # Since the concept of a AnonymNewsItemPage is similar to an
+    # AnonymCaseStudyItemPage, use the AnonymCaseStudyItemPage template.
+    template = "anonym/anonym_case_study_item_page.html"
 
     @property
     def exclude_from_sitemap(self):
@@ -355,7 +357,7 @@ class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
         FieldPanel("notification"),
     ]
 
-    template = "anonym/anonym_case_study_item_page.html"
+    template = "anonym/anonym_article_item_page.html"
 
     class Meta:
         verbose_name = "Anonym Case Study Item Page"
