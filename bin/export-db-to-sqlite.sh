@@ -164,6 +164,7 @@ python manage.py dumpdata \
     mozorg.AdvertisingIndexPage \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
+    mozorg.HomePage \
     mozorg.AnonymIndexPage \
     mozorg.AnonymArticlePage \
     mozorg.AnonymTopAndBottomPage \
@@ -185,7 +186,6 @@ python manage.py dumpdata \
     security.MitreCVE \
     releasenotes.ProductRelease \
     contentcards.ContentCard \
-    contentful.ContentfulEntry \
     utils.GitRepoState \
     wordpress.BlogPost \
     sitemaps.SitemapURL \

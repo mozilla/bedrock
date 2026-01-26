@@ -94,7 +94,7 @@ describe('mozilla-banner.es6.js', function () {
             spyOn(window.Mozilla.Cookies, 'setItem');
             MozBanner.setCookie('some-id');
             expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                'some-id',
+                'moz-banner-some-id',
                 true,
                 jasmine.any(String),
                 '/',

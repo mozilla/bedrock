@@ -4,8 +4,8 @@
 
 @use 'sass:math';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
 // * -------------------------------------------------------------------------- */
 // Index

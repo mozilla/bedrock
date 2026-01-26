@@ -7,15 +7,15 @@
 .m24-c-gallery-container {
     display: grid;
     gap: $spacer-xl $grid-gutter;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     margin-top: $spacer-xl;
 
     @media #{$mq-md} {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     @media #{$mq-xl} {
-        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: repeat(12, minmax(0, 1fr));
     }
 
     & + .m24-c-section-cta {
@@ -69,7 +69,7 @@
     }
 }
 
-.m24-c-gallery-tile-title {
+.m24-c-gallery-tile-heading {
     font-size: 24px;
     margin-bottom: 4px;
     order: 2;
@@ -149,7 +149,7 @@
     order: 4;
 }
 
-.m24-c-gallery-tile-desc {
+.m24-c-gallery-tile-body {
     margin-bottom: 4px;
 }
 

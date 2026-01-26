@@ -46,3 +46,5 @@ navigation-refresh-mozilla-monitor-v2 = { -brand-name-mozilla-monitor }
 navigation-refresh-mozilla-vpn-v2 = { -brand-name-mozilla-vpn }
 navigation-refresh-mdn-plus = { -brand-name-mdn-plus }
 navigation-refresh-thunderbird = { -brand-name-thunderbird }
+navigation-refresh-solo = { -brand-name-solo }
+navigation-refresh-0din = { -brand-name-0din }

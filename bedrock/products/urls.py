@@ -4,7 +4,6 @@
 
 from django.urls import path
 
-from bedrock.cms.decorators import prefer_cms
 from bedrock.mozorg.util import page
 from bedrock.products import views
 
@@ -31,23 +30,6 @@ urlpatterns = (
         "vpn/more/<slug:slug>/",
         views.vpn_resource_center_redirect,
         name="products.vpn.more.redirect",
-    ),
-    # VPN Resource Center
-    path(
-        "vpn/resource-center/",
-        prefer_cms(
-            views.resource_center_landing_view,
-            fallback_lang_codes=["de", "en-US", "es-ES", "fr", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
-        ),
-        name="products.vpn.resource-center.landing",
-    ),
-    path(
-        "vpn/resource-center/<slug:slug>/",
-        prefer_cms(
-            views.resource_center_article_view,
-            fallback_callable=views.resource_center_article_available_locales_lookup,
-        ),
-        name="products.vpn.resource-center.article",
     ),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )

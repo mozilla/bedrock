@@ -1,0 +1,29 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import m24_donate with context %}
+
+{% set bg_color = value.settings.background_color %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+<div{% if bg_color %} class="{{ bg_color }}"{% endif %}{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+  {% call m24_donate(
+    heading=value.heading,
+    image=srcset_image(
+      value.image, "fill-{400x200,600x300,800x400,1000x500,1200x600,1400x700}",
+      sizes="(min-width: 1440px) 680px, (min-width: 1311px) calc((100vw - 64px) / 2), (min-width: 768px) calc((100vw - 32px) / 2), calc(100vw - 32px)",
+      width="1400",
+      height="700",
+      loading="lazy",
+      alt=value.image_alt|default("", true)
+    ),
+    link_text=value.cta_text,
+    link_url=value.cta_link.get_url()|add_utm_parameters,
+    link_new_window=value.cta_link.new_window
+  ) %}
+    {{ value.body|richtext }}
+  {% endcall %}
+</div>
