@@ -47,6 +47,22 @@
           <span class="m24-c-launchpad-info">{{ ftl('m24-home-mask-your-email') }}</span>
         </a>
       </li>
+      {% if ftl_has_messages('m24-home-solo-desc') %}
+      <li class="m24-c-launchpad-item">
+        <a class="m24-c-launchpad-link m24-t-product-solo" href="https://soloist.ai/{{ utm_params }}" data-cta-text="Solo" data-cta-position="product-list">
+          <strong class="m24-c-launchpad-title">{{ ftl('m24-home-solo') }}<b>:</b></strong>
+          <span class="m24-c-launchpad-info">{{ ftl('m24-home-solo-desc') }}</span>
+        </a>
+      </li>
+      {% endif %}
+      {% if ftl_has_messages('m24-home-0din-desc') %}
+      <li class="m24-c-launchpad-item">
+        <a class="m24-c-launchpad-link m24-t-product-0din" href="https://0din.ai/{{ utm_params }}" data-cta-text="0DIN" data-cta-position="product-list">
+          <strong class="m24-c-launchpad-title">{{ ftl('m24-home-0din') }}<b>:</b></strong>
+          <span class="m24-c-launchpad-info">{{ ftl('m24-home-0din-desc') }}</span>
+        </a>
+      </li>
+      {% endif %}
     </ul>
     <p class="m24-c-section-cta"><a href="{{ url('products.landing') }}" class="m24-c-cta" data-cta-text="Explore our products">{{ ftl('m24-home-explore-our-products') }}</a></p>
   </section>

@@ -25,9 +25,6 @@ from sentry_sdk.integrations.redis import RedisIntegration
 from sentry_sdk.integrations.rq import RqIntegration
 
 from bedrock.base.config_manager import config
-from bedrock.contentful.constants import (
-    DEFAULT_CONTENT_TYPES as CONTENTFUL_DEFAULT_CONTENT_TYPES,
-)
 
 # ROOT path of the project. A pathlib.Path object.
 DATA_PATH = config("DATA_PATH", default="data")
@@ -748,7 +745,6 @@ INSTALLED_APPS = [
     "bedrock.security",
     "bedrock.releasenotes",
     "bedrock.contentcards",
-    "bedrock.contentful",
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
@@ -1011,35 +1007,6 @@ CONTENT_CARDS_PATH = config("CONTENT_CARDS_PATH", default=data_path("content_car
 CONTENT_CARDS_REPO = config("CONTENT_CARDS_REPO", default="https://github.com/mozmeao/www-admin.git")
 CONTENT_CARDS_BRANCH = config("CONTENT_CARDS_BRANCH", default=content_cards_default_branch)
 CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
-
-CONTENTFUL_SPACE_ID = config("CONTENTFUL_SPACE_ID", raise_error=False)
-CONTENTFUL_SPACE_KEY = config("CONTENTFUL_SPACE_KEY", raise_error=False)
-CONTENTFUL_ENVIRONMENT = config("CONTENTFUL_ENVIRONMENT", default="master")
-CONTENTFUL_SPACE_API = ("preview" if DEV else "cdn") + ".contentful.com"
-CONTENTFUL_API_TIMEOUT = config("CONTENTFUL_API_TIMEOUT", default="5", parser=int)
-CONTENTFUL_CONTENT_TYPES_TO_SYNC = config(
-    "CONTENTFUL_CONTENT_TYPES_TO_SYNC",
-    default=CONTENTFUL_DEFAULT_CONTENT_TYPES,
-    parser=ListOf(str),
-)
-
-CONTENTFUL_NOTIFICATION_QUEUE_URL = config("CONTENTFUL_NOTIFICATION_QUEUE_URL", default="", raise_error=False)
-CONTENTFUL_NOTIFICATION_QUEUE_REGION = config("CONTENTFUL_NOTIFICATION_QUEUE_REGION", default="", raise_error=False)
-CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID = config("CONTENTFUL_NOTIFICATION_QUEUE_ACCESS_KEY_ID", default="", raise_error=False)
-CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY = config("CONTENTFUL_NOTIFICATION_QUEUE_SECRET_ACCESS_KEY", default="", raise_error=False)
-CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME = config("CONTENTFUL_NOTIFICATION_QUEUE_WAIT_TIME", default="10", parser=int, raise_error=False)
-
-CONTENTFUL_HOMEPAGE_LOOKUP = {
-    # TEMPORARY lookup table for which Contentful `connectHomepage` page ID to get for which locale
-    "en-US": "58YIvwDmzSDjtvpSqstDcL",
-    "de": "4k3CxqZGjxXOjR1I0dhyto",
-}
-
-CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE = config(
-    "CONTENTFUL_LOCALE_SUFFICIENT_CONTENT_PERCENTAGE",
-    default="1" if DEV is True else "10",
-    parser=float,
-)
 
 RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
 RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
@@ -2394,7 +2361,6 @@ WAGTAILIMAGES_EXTENSIONS = [
 _allowed_page_models = [
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
-    "mozorg.LeadershipPage",
     "mozorg.AdvertisingIndexPage",
     "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
@@ -2403,10 +2369,14 @@ _allowed_page_models = [
     "anonym.AnonymContentSubPage",
     "anonym.AnonymStaticPage",
     "anonym.AnonymArticlePage",
+    "mozorg.HomePage",
+    "mozorg.LeadershipPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",
     "products.MonitorArticlePage",
+    "products.VPNResourceCenterDetailPage",
+    "products.VPNResourceCenterIndexPage",
 ]
 
 if DEV is True:

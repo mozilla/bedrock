@@ -4,15 +4,12 @@
 
 @use 'sass:color';
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/components/modal';
-@import '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
-@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
-@import '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
-@import '../cms/rich-text';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@use '~@mozilla-protocol/core/protocol/css/templates/main-with-sidebar';
+@use '../cms/rich-text';
 
 @font-face {
     font-family: FA-Icons-Contact;

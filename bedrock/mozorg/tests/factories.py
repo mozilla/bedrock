@@ -7,7 +7,7 @@ import wagtail_factories
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
-from bedrock.mozorg.blocks import advertising, leadership, navigation
+from bedrock.mozorg.blocks import advertising, common, leadership, navigation
 
 
 class LeadershipHeadshotBlockFactory(wagtail_factories.StructBlockFactory):
@@ -232,3 +232,39 @@ class ContentSubpageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.ContentSubpage
+
+
+class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = "gray"
+    anchor_id = ""
+
+    class Meta:
+        model = common.DonateBlockSettings
+
+
+class DonateBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(DonateBlockSettingsFactory)
+    heading = "Support Mozilla"
+    body = "<p>Help us build a better internet.</p>"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+    cta_text = "Donate"
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.DonateBlock
+
+
+class HomePageFactory(wagtail_factories.PageFactory):
+    title = "Test Home Page"
+    live = True
+    slug = "home"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "donate_block": factory.SubFactory(DonateBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.HomePage
