@@ -718,6 +718,7 @@ INSTALLED_APPS = [
     "wagtail_localize_smartling",  # Has to come before wagtail_localize
     "wagtail_localize",
     "wagtail_localize.locales",  # This replaces "wagtail.locales"
+    "wagtail_localize_dashboard",  # Add after wagtail-localize
     "wagtail.search",
     "wagtaildraftsharing",  # has to come before wagtail.admin due to template overriding; also needs wagtail.snippets
     "wagtail.admin",
