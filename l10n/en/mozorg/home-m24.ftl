@@ -141,11 +141,13 @@ m24-home-state-of-mozilla = State of { -brand-name-mozilla }
 m24-home-mozilla-is-reinventing-itself = { -brand-name-mozilla } is reinventing itself, diversifying around a constellation of organizations, reimagining advertising and creating an open source AI ecosystem. Read about it in the State of { -brand-name-mozilla } 2024 Report.
 
 # Variables
+# Obsolete string (expires: 2026-03-27)
 #   $year - year of report
 m24-home-mozilla-is-reinventing-itself-v2 = { -brand-name-mozilla } is reinventing itself, diversifying around a constellation of organizations, reimagining advertising and creating an open source AI ecosystem. Read about it in the State of { -brand-name-mozilla } { $year } Report.
 # Variables
 #   $year - year of report
 m24-home-mozilla-is-reinventing-itself-v3 = We’re at a crossroads for the future of technology, with Big AI companies consolidating power. The { $year } State of { -brand-name-mozilla } report is an invitation to choose a different future together.
+# Obsolete string (expires: 2026-03-27)
 # Used as an accessible text alternative for an image
 m24-home-state-of-mozilla-alt = Abstract pixel art in shades of green, orange and pink
 # Used as an accessible text alternative for an image
