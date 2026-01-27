@@ -1050,13 +1050,13 @@
     },
     {
       "files": [
-        "css/mozorg/advertising.scss"
+        "css/advertising/advertising.scss"
       ],
       "name": "mozilla-ads"
     },
     {
       "files": [
-        "css/mozorg/advertising-format.scss"
+        "css/advertising/advertising-format.scss"
       ],
       "name": "mozilla-ads-format"
     },
@@ -1444,9 +1444,9 @@
     },
     {
       "files": [
-        "js/mozorg/advertising/ads-solutions.es6.js"
+        "js/advertising/ads-solutions.es6.js"
       ],
-      "name": "mozorg-advertising-solutions"
+      "name": "advertising-solutions"
     },
     {
       "files": [

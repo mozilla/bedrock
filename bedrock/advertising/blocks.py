@@ -37,7 +37,7 @@ class AdvertisingHeroBlock(blocks.StructBlock):
     class Meta:
         label = "Hero"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/advertising_hero_block.html"
+        template = "advertising/blocks/advertising_hero_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -73,7 +73,7 @@ class SectionHeaderBlock(blocks.StructBlock):
         icon = "title"
         label = "Section Heading"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/section_heading_block.html"
+        template = "advertising/blocks/section_heading_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -100,7 +100,7 @@ class FigureWithStatisticBlock(blocks.StructBlock):
         icon = "decimal"
         label = "Figure With Statistic"
         label_format = "{statistic_value} {statistic_label}"
-        template = "mozorg/cms/advertising/blocks/figure_with_statistic_block.html"
+        template = "advertising/blocks/figure_with_statistic_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -113,7 +113,7 @@ class FeatureListItemBlock(blocks.StructBlock):
     class Meta:
         label = "Feature Item"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/feature_list_item_block.html"
+        template = "advertising/blocks/feature_list_item_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -131,7 +131,7 @@ class FeatureListBlock(blocks.StructBlock):
         icon = "list-ul"
         label = "Feature List"
         label_format = "Feature List"
-        template = "mozorg/cms/advertising/blocks/feature_list_block.html"
+        template = "advertising/blocks/feature_list_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -146,7 +146,7 @@ class ListItemBlock(blocks.StructBlock):
     class Meta:
         label = "List Item"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/list_item_block.html"
+        template = "advertising/blocks/list_item_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -159,7 +159,7 @@ class ListBlock(blocks.StructBlock):
         icon = "list-ul"
         label = "List"
         label_format = "List"
-        template = "mozorg/cms/advertising/blocks/list_block.html"
+        template = "advertising/blocks/list_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -174,7 +174,7 @@ class StatisticBlock(blocks.StructBlock):
         icon = "decimal"
         label = "Statistic Block"
         label_format = "{statistic_value} {statistic_label}"
-        template = "mozorg/cms/advertising/blocks/statistic_block.html"
+        template = "advertising/blocks/statistic_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -193,7 +193,7 @@ class StatisticCalloutBlock(blocks.StructBlock):
         icon = "decimal"
         label = "Statistic Callout Block"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/statistic_callout_block.html"
+        template = "advertising/blocks/statistic_callout_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -221,7 +221,7 @@ class FeatureItemWithModalBlock(blocks.StructBlock):
     class Meta:
         label = "Feature Item"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/feature_item_with_modal_block.html"
+        template = "advertising/blocks/feature_item_with_modal_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -241,7 +241,7 @@ class FeatureListWithModalsBlock(blocks.StructBlock):
         icon = "list-ul"
         label = "Feature List With Modals Block"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/feature_list_with_modals_block.html"
+        template = "advertising/blocks/feature_list_with_modals_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -256,7 +256,7 @@ class RowTextAndLinkBlock(blocks.StructBlock):
         icon = "doc-full"
         label = "Text and Link Block"
         label_format = "{text}"
-        template = "mozorg/cms/advertising/blocks/row_text_and_link_block.html"
+        template = "advertising/blocks/row_text_and_link_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -275,7 +275,7 @@ class TwoColumnDetailBlock(blocks.StructBlock):
     class Meta:
         label = "Two Column Detail"
         label_format = "{heading_text}"
-        template = "mozorg/cms/advertising/blocks/two_column_detail_block.html"
+        template = "advertising/blocks/two_column_detail_block.html"
         form_classname = "compact-form struct-block"
 
 
@@ -322,6 +322,6 @@ class SectionBlock(blocks.StructBlock):
     call_to_action = blocks.ListBlock(RowTextAndLinkBlock(), min_num=0, max_num=1, default=[], label="Call to Action")
 
     class Meta:
-        template = "mozorg/cms/advertising/blocks/section.html"
+        template = "advertising/blocks/section.html"
         label = "Section"
         label_format = "{header}"

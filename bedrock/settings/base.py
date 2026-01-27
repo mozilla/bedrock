@@ -727,6 +727,7 @@ INSTALLED_APPS = [
     "csp",
     "wagtail_link_block",
     # Local apps
+    "bedrock.advertising",
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
@@ -2356,11 +2357,11 @@ WAGTAILIMAGES_EXTENSIONS = [
 # may break things like demos and integration tests. See bin/export-db-to-sqlite.sh
 
 _allowed_page_models = [
+    "advertising.AdvertisingIndexPage",
+    "advertising.AdvertisingTwoColumnSubpage",
+    "advertising.ContentSubpage",
     "cms.SimpleRichTextPage",
     "cms.StructuralPage",
-    "mozorg.AdvertisingIndexPage",
-    "mozorg.AdvertisingTwoColumnSubpage",
-    "mozorg.ContentSubpage",
     "mozorg.HomePage",
     "mozorg.LeadershipPage",
     "products.MonitorArticleIndexPage",

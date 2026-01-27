@@ -17,6 +17,9 @@
 {% block body_class %}{{ super() }} advertising{% endblock %}
 
 {% block page_css %}
+  {{ css_bundle('protocol-callout') }}
+  {{ css_bundle('protocol-card') }}
+  {{ css_bundle('protocol-picto') }}
   {{ css_bundle('mozilla-ads') }}
 {% endblock %}
 
@@ -27,35 +30,23 @@
 {% endblock %}
 
 {% block sub_navigation %}
-  {% if page.sub_navigation %}
-    {% with advertising_index_page=page %}
-      {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
-    {% endwith %}
-  {% endif %}
+  {% with advertising_index_page=page.get_parent().specific %}
+    {% include 'advertising/includes/sub-nav.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block content %}
 <main id="mza-main">
-  {% for block in page.hero %}
-    {% include_block block %}
-  {% endfor %}
+  <header class="mza-subpage-header">
+    <div class="m24-c-content">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </header>
 
-  {% for block in page.sections %}
-    {% include_block block %}
-  {% endfor %}
-
-  {% if page.contact_banner %}
-    {% with value=page.contact_banner %}
-      {% include 'mozorg/cms/snippets/contact_bannet_snippet.html' %}
-    {% endwith %}
-  {% endif %}
-
-  {% if page.notification %}
-    {% with value=page.notification %}
-      {% include 'mozorg/cms/snippets/notification_snippet.html' %}
-    {% endwith %}
-  {% endif %}
-
-  {# Leaving this here for the next round. This might be useful. {% include 'mozorg/advertising/includes/blog-articles.html' %} #}
+  <section class="m24-c-content">
+    {% for block in page.content %}
+      {% include_block block %}
+    {% endfor %}
+  </section>
 </main>
 {% endblock %}
