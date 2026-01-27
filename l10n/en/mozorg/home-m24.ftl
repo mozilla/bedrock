@@ -148,6 +148,8 @@ m24-home-mozilla-is-reinventing-itself-v2 = { -brand-name-mozilla } is reinventi
 m24-home-mozilla-is-reinventing-itself-v3 = We’re at a crossroads for the future of technology, with Big AI companies consolidating power. The { $year } State of { -brand-name-mozilla } report is an invitation to choose a different future together.
 # Used as an accessible text alternative for an image
 m24-home-state-of-mozilla-alt = Abstract pixel art in shades of green, orange and pink
+# Used as an accessible text alternative for an image
+m24-home-state-of-mozilla-alt-v2 = The text ‘Choose Your Future’ on a yellow, pixelated background
 m24-home-read-the-report = Read the report
 
 ## Nothing Personal

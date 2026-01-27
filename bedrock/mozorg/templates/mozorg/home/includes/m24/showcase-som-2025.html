@@ -15,7 +15,7 @@
 
     <div class="m24-c-showcase">
       <div class="m24-c-showcase-media">
-        <img loading="lazy" src="{{ static('img/home/2024/showcase/showcase-som-2025.png') }}" class="m24-c-menu-item-icon" width="1376" height="515" alt="{{ ftl('m24-home-state-of-mozilla-alt') }}">
+        <img loading="lazy" src="{{ static('img/home/2024/showcase/showcase-som-2025.png') }}" class="m24-c-menu-item-icon" width="1376" height="515" alt="{% if ftl_has_messages('m24-home-state-of-mozilla-alt-v2') %}{{ ftl('m24-home-state-of-mozilla-alt-v2') }}{% endif %}">
       </div>
     </div>
 
