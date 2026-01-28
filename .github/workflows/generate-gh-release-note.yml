@@ -2,6 +2,8 @@ name: Generate Github Release entry
 
 on:
   push:
+    # YYYY-MM-DD or YYYY-MM-DD.integer for times when there are multiple releases in a day
+    # (Repetition here is safer than a wildcard glob)
     tags:
       - '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]'
       - '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].[0-9]'
