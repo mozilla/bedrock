@@ -1,4 +1,4 @@
-name: Generate Github Release entry
+name: Generate GitHub Release entry
 
 on:
   push:
