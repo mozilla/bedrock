@@ -339,6 +339,7 @@ cryptography==46.0.3 \
     --hash=sha256:ef639cb3372f69ec44915fafcd6698b6cc78fbe0c2ea41be867f6ed612811963 \
     --hash=sha256:f260d0d41e9b4da1ed1e0f1ce571f97fe370b152ab18778e9e8f67d6af432018
     # via
+    #   google-auth
     #   mozilla-django-oidc
     #   pyjwt
     #   pyopenssl
@@ -396,6 +397,8 @@ django==5.2.9 \
     #   wagtail
     #   wagtail-link-block
     #   wagtail-localize
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
     #   wagtail-thumbnail-choice-block
 django-cors-headers==4.9.0 \
@@ -537,9 +540,9 @@ google-api-core==2.29.0 \
     # via
     #   google-cloud-core
     #   google-cloud-storage
-google-auth==2.47.0 \
-    --hash=sha256:833229070a9dfee1a353ae9877dcd2dec069a8281a4e72e72f77d4a70ff945da \
-    --hash=sha256:c516d68336bfde7cf0da26aab674a36fedcf04b37ac4edd59c597178760c3498
+google-auth==2.48.0 \
+    --hash=sha256:2e2a537873d449434252a9632c28bfc268b0adb1e53f9fb62afc5333a975903f \
+    --hash=sha256:4f7e706b0cd3208a3d940a19a822c37a476ddba5450156c3e6624a71f7c841ce
     # via
     #   google-api-core
     #   google-cloud-core
@@ -1789,6 +1792,8 @@ wagtail==7.2.1 \
     #   -r requirements/prod.in
     #   wagtail-link-block
     #   wagtail-localize
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
     #   wagtail-thumbnail-choice-block
     #   wagtaildraftsharing
@@ -1801,7 +1806,17 @@ wagtail-localize==1.12.2 \
     --hash=sha256:a2006793571ae35d3118f091f25c5072eb501a30911b17d98fad028162b63902
     # via
     #   -r requirements/prod.in
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
+wagtail-localize-dashboard==0.1.2 \
+    --hash=sha256:071ecdc1d3bbec2155a28a843238eb2b28aaf4589cfeee5c20042d284c680264 \
+    --hash=sha256:56e7577eb883e3949b5e37ccad959d7356c27fb6449ea460b0da7f926929bcd0
+    # via -r requirements/prod.in
+wagtail-localize-intentional-blanks==0.2.2 \
+    --hash=sha256:4b5f4861ee3508df53192c2665d14a2d5bc5f222b16fa41eb9d3aed2ef80f1a9 \
+    --hash=sha256:d0f38354d7c9e91868b3b1892c056ddb64e0e066781947de5b98c5610473762b
+    # via -r requirements/prod.in
 wagtail-localize-smartling==0.10.3 \
     --hash=sha256:5f3d7b7fa97c075023f711786cccd761d340488f29ac8bcbb168db1b6a5a4341 \
     --hash=sha256:8fad0510319918cc57071d4ef6a07f8ab5a7fa16040b399e6bc084fec1f232ae
