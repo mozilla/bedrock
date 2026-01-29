@@ -68,6 +68,8 @@ if settings.WAGTAIL_ENABLE_ADMIN:
     # that bedrock doesn't try to prepend a locale onto requests for the path
     urlpatterns += (
         path("oidc/", include("mozilla_django_oidc.urls")),
+        path("cms-admin/translations/", include("wagtail_localize_dashboard.urls")),  # Must come before wagtailadmin_urls
+        path("intentional-blanks/", include("wagtail_localize_intentional_blanks.urls")),
         path("cms-admin/", include(wagtailadmin_urls)),
         path("django-admin/", admin.site.urls),  # needed to show django-rq UI
         path("django-rq/", include("django_rq.urls")),  # task queue management

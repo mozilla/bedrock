@@ -5,14 +5,20 @@
 from django.db import models
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
-from wagtail.fields import StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
     CallToActionBlock as AnonymCallToActionBlock,
+    CheckboxGroupFieldBlock,
     CompetitorComparisonTableBlock as AnonymCompetitorComparisonTableBlock,
+    EmailFieldBlock,
+    PhoneFieldBlock,
     SectionBlock as AnonymSectionBlock,
+    SelectFieldBlock,
+    StatItemBlock,
+    TextFieldBlock,
     ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
 from bedrock.cms.models.base import AbstractBedrockCMSPage
@@ -39,11 +45,90 @@ class AnonymStaticPage(AbstractBedrockCMSPage):
         abstract = True
 
 
+class AnonymNewsItemPage(AbstractBedrockCMSPage):
+    """News item page for Anonym."""
+
+    parent_page_types = ["AnonymNewsPage"]
+    subpage_types = []
+
+    description = models.TextField(
+        blank=True,
+        help_text="Description of the news item",
+    )
+    category = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Category (e.g., 'Press', 'Blog')",
+    )
+    logo = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Logo (e.g., publication logo like WSJ, NYT)",
+    )
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Image for the news item",
+    )
+    link = models.URLField(
+        blank=True,
+        help_text=("External link for this news item. If set, this (Wagtail) page will .not be accessible to users."),
+    )
+    stats = StreamField(
+        [
+            ("stat", StatItemBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        max_num=3,
+        help_text="Statistics that will display if this news item is shown on the homepage",
+    )
+    content = StreamField(
+        [
+            ("section", AnonymSectionBlock()),
+            ("call_to_action", AnonymCallToActionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("category"),
+        FieldPanel("logo"),
+        FieldPanel("image"),
+        FieldPanel("link"),
+        FieldPanel("stats"),
+        FieldPanel("content"),
+    ]
+
+    # Since the concept of a AnonymNewsItemPage is similar to an
+    # AnonymCaseStudyItemPage, use the AnonymCaseStudyItemPage template.
+    template = "anonym/anonym_case_study_item_page.html"
+
+    @property
+    def exclude_from_sitemap(self):
+        """Exclude from sitemap if this is an external link."""
+        return bool(self.link)
+
+    class Meta:
+        verbose_name = "Anonym News Item Page"
+        verbose_name_plural = "Anonym News Item Pages"
+
+
 class AnonymNewsPage(AnonymStaticPage):
     """Static news page for Anonym."""
 
     max_count = 1
-
+    subpage_types = ["AnonymNewsItemPage"]
     template = "anonym/anonym_news.html"
 
     class Meta:
@@ -54,12 +139,50 @@ class AnonymNewsPage(AnonymStaticPage):
         db_table = "mozorg_anonymnewspage"
 
 
-class AnonymContactPage(AnonymStaticPage):
-    """Static contact page for Anonym."""
+class AnonymCaseStudyPage(AnonymStaticPage):
+    """Static case study page for Anonym."""
 
     max_count = 1
+    subpage_types = ["AnonymCaseStudyItemPage"]
+    template = "anonym/anonym_case_study.html"
 
+    class Meta:
+        verbose_name = "Anonym Case Study Page"
+        verbose_name_plural = "Anonym Case Study Pages"
+
+
+class AnonymContactPage(AbstractBedrockCMSPage):
+    """Contact page for Anonym."""
+
+    parent_page_types = ["AnonymIndexPage"]
+    subpage_types = []
+    max_count = 1
     template = "anonym/anonym_contact.html"
+
+    subheading = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Optional subheading for the contact page",
+    )
+
+    form_fields = StreamField(
+        [
+            ("text_field", TextFieldBlock()),
+            ("email_field", EmailFieldBlock()),
+            ("phone_field", PhoneFieldBlock()),
+            ("select_field", SelectFieldBlock()),
+            ("checkbox_group_field", CheckboxGroupFieldBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Define the form fields that will appear on the contact page.",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("subheading"),
+        FieldPanel("form_fields"),
+    ]
 
     class Meta:
         verbose_name = "Anonym Contact Page"
@@ -75,7 +198,7 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
         "AnonymContentSubPage",
         "AnonymNewsPage",
         "AnonymContactPage",
-        "AnonymArticlePage",
+        "AnonymCaseStudyPage",
     ]
     navigation_field_name = "navigation"
 
@@ -193,9 +316,27 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         db_table = "mozorg_anonymcontentsubpage"
 
 
-class AnonymArticlePage(AbstractBedrockCMSPage):
-    parent_page_types = ["AnonymIndexPage"]
+class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
+    parent_page_types = ["AnonymCaseStudyPage"]
     subpage_types = []
+
+    logo = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Logo or image for the case study (displays in card view)",
+    )
+    client = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Client name (displays as heading in card view)",
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Brief description of the case study (displays in card view)",
+    )
 
     content = StreamField(
         [
@@ -215,14 +356,17 @@ class AnonymArticlePage(AbstractBedrockCMSPage):
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("logo"),
+        FieldPanel("client"),
+        FieldPanel("description"),
         FieldPanel("content"),
         FieldPanel("notification"),
     ]
 
-    template = "anonym/anonym_article_page.html"
+    template = "anonym/anonym_case_study_item_page.html"
 
     class Meta:
-        verbose_name = "Anonym Article Page"
+        verbose_name = "Anonym Case Study Item Page"
         # This database table was originally created in the mozorg app, then
         # the Django model was moved to the anonym app. To preserve data, we
         # refer to the original database table here.
@@ -246,7 +390,11 @@ class Person(TranslatableMixin):
         max_length=255,
         blank=False,
     )
-    description = models.TextField(
+    description = RichTextField(
+        blank=True,
+    )
+    learn_more_link = models.URLField(
+        verbose_name="Learn More Link",
         blank=True,
     )
 
@@ -257,6 +405,7 @@ class Person(TranslatableMixin):
                 FieldPanel("name", heading="Name"),
                 FieldPanel("position", heading="Position"),
                 FieldPanel("description", heading="Description"),
+                FieldPanel("learn_more_link", heading="Learn More Link"),
             ],
             heading="Person",
         ),

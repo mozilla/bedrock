@@ -6,6 +6,7 @@
 from django.templatetags.static import static
 
 from wagtail import blocks
+from wagtail.blocks import PageChooserBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -386,35 +387,52 @@ class LinkWithTextBlock(blocks.StructBlock):
         label_format = "Link - {label}"
 
 
-class StatBlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=False)
-    heading = blocks.CharBlock(label="Heading")
-    statistic1_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic1_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic2_value = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
-    statistic2_label = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+class NewsItemListBlock(blocks.StructBlock):
+    """
+    Display a list of news items with their statistics.
 
-    class Meta:
-        template = "anonym/blocks/stat-item.html"
-        label = "Statistic"
-        label_format = "Statistic - {heading}"
+    This block allows content editors to select existing AnonymNewsItemPage
+    instances to display their title, logo, and statistics.
+    """
 
-
-class StatsListBlock(blocks.StructBlock):
-    stats = blocks.StreamBlock(
-        [
-            ("stat", StatBlock()),
-        ]
+    news_items = blocks.ListBlock(
+        PageChooserBlock("anonym.AnonymNewsItemPage"),
+        min_num=1,
+        max_num=6,
+        default=[],
+        help_text="Select news items to display. Statistics from each news item will be shown.",
     )
 
     class Meta:
-        template = "anonym/blocks/stats-list.html"
-        label = "Stats List"
+        template = "anonym/blocks/news-item-list.html"
+        label = "News Item List"
+        icon = "doc-full"
+
+
+class CaseStudyListBlock(blocks.StructBlock):
+    """
+    Display a list of case study items with their logos, client names, and descriptions.
+
+    This block allows content editors to select existing AnonymCaseStudyItemPage
+    instances to display as cards that link to the full case study.
+    """
+
+    case_study_items = blocks.ListBlock(
+        PageChooserBlock("anonym.AnonymCaseStudyItemPage"),
+        min_num=1,
+        max_num=3,
+        default=[],
+        help_text="Select case study pages to display. Each will show as a card with logo, client name, and description.",
+    )
+
+    class Meta:
+        template = "anonym/blocks/case-study-item-list.html"
+        label = "Case Study Item List"
+        icon = "doc-full"
 
 
 class PeopleListBlock(blocks.StructBlock):
     people = blocks.ListBlock(SnippetChooserBlock("anonym.Person"), min_num=1, max_num=8, default=[])
-    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
         template = "anonym/blocks/people-list.html"
@@ -551,7 +569,7 @@ class ListItemBlock(blocks.StructBlock):
 
 class TwoColumnBlock(blocks.StructBlock):
     heading_text = blocks.CharBlock(label="Heading")
-    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False)
     second_column = blocks.ListBlock(ListItemBlock(), min_num=0)
 
     class Meta:
@@ -576,7 +594,8 @@ class SectionBlock(blocks.StructBlock):
         [
             ("figure_block", FigureBlock()),
             ("cards_list", CardsListBlock()),
-            ("stats_list_block", StatsListBlock()),
+            ("news_item_list_block", NewsItemListBlock()),
+            ("case_study_item_list_block", CaseStudyListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
             ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
@@ -718,3 +737,124 @@ class CallToActionBlock(blocks.StructBlock):
         template = "anonym/blocks/call-to-action.html"
         label = "Call To Action"
         label_format = "{heading}"
+
+
+class FieldSettings(blocks.StructBlock):
+    internal_identifier = blocks.CharBlock(
+        label="Internal Identifier",
+        help_text="Internal name for the field (e.g., 'name', 'email', 'phone_number')",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {internal_identifier}"
+        form_classname = "compact-form struct-block"
+
+
+class TextFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/text_field.html"
+        label = "Text Field"
+        label_format = "Text - {label}"
+
+
+class EmailFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/email_field.html"
+        label = "Email Field"
+        label_format = "Email - {label}"
+
+
+class PhoneFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/phone_field.html"
+        label = "Phone Field"
+        label_format = "Phone - {label}"
+
+
+class SelectOptionBlock(blocks.StructBlock):
+    value = blocks.CharBlock(label="Option Value")
+    label = blocks.CharBlock(label="Option Label")
+
+    class Meta:
+        label = "Select Option"
+        label_format = "{label}"
+
+
+class SelectFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    required = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Required field",
+    )
+    options = blocks.ListBlock(
+        SelectOptionBlock(),
+        min_num=1,
+        label="Options",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/select_field.html"
+        label = "Select Field"
+        label_format = "Select - {label}"
+
+
+class CheckboxOptionBlock(blocks.StructBlock):
+    value = blocks.CharBlock(label="Option Value")
+    label = blocks.CharBlock(label="Option Label")
+
+    class Meta:
+        label = "Checkbox Option"
+        label_format = "{label}"
+
+
+class CheckboxGroupFieldBlock(blocks.StructBlock):
+    settings = FieldSettings()
+    label = blocks.CharBlock(label="Field Label")
+    options = blocks.ListBlock(
+        CheckboxOptionBlock(),
+        min_num=1,
+        label="Options",
+    )
+
+    class Meta:
+        template = "anonym/blocks/form_fields/checkbox_group_field.html"
+        label = "Checkbox Group Field"
+        label_format = "Checkbox Group - {label}"
+
+
+class StatItemBlock(blocks.StructBlock):
+    statistic_value = blocks.CharBlock(label="Statistic Value")
+    statistic_label = blocks.CharBlock(label="Statistic Label")
+
+    class Meta:
+        label = "Statistic"
+        label_format = "{statistic_value} - {statistic_label}"

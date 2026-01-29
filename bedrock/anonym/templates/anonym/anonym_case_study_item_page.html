@@ -22,7 +22,11 @@
 {% endblock %}
 
 {% block site_header %}
+<<<<<<<< HEAD:bedrock/anonym/templates/anonym/anonym_case_study_item_page.html
+  {% with anonym_index_page=page.get_parent().get_parent() %}
+========
   {% with anonym_index_page=page.get_parent() %}
+>>>>>>>> WT-514-anonym-homepage-cms:bedrock/anonym/templates/anonym/anonym_article_page.html
     {% include 'anonym/includes/navigation.html' %}
   {% endwith %}
 {% endblock %}

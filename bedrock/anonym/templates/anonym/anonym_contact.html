@@ -6,8 +6,14 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
-{% block page_title %}Mozilla Anonym News{% endblock %}
-{% block page_desc %}Mozilla Anonym News{% endblock %}
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
 {% block body_class %}mzan{% endblock %}
 
 {% block page_css %}
@@ -15,58 +21,24 @@
 {% endblock %}
 
 {% block site_header %}
-  {% include 'anonym/includes/navigation.html' %}
+  {% with anonym_index_page=page.get_parent() %}
+    {% include 'anonym/includes/navigation.html' %}
+  {% endwith %}
 {% endblock %}
 
 {% block content %}
   <main id="mzan-main">
-    <h1>Contact</h1>
-    <p>Anonym is the only solution that delivers advertising measurement and performance without exposing sensitive or proprietary information. Let us show you how.</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.subheading %}
+      <p>{{ page.subheading }}</p>
+    {% endif %}
 
     <form method="post" action="#" class="mzan-contact-form">
       {% csrf_token %}
 
-      <div class="mzan-form-field">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" required>
-      </div>
-
-      <div class="mzan-form-field">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-      </div>
-
-      <div class="mzan-form-field">
-        <label for="phone_number">Phone Number</label>
-        <input type="tel" id="phone_number" name="phone_number">
-      </div>
-
-      <div class="mzan-form-field">
-        <label for="organization">Organization or Brand</label>
-        <input type="text" id="organization" name="organization">
-      </div>
-
-      <div class="mzan-form-field">
-        <label for="company">Company/Organization Type</label>
-        <select id="company" name="company">
-          <option value="">Select an option</option>
-        </select>
-      </div>
-
-      <div class="mzan-form-field">
-        <label for="where_advertise">Where are you interested in advertising?</label>
-        <select id="where_advertise" name="where_advertise">
-          <option value="">Select an option</option>
-        </select>
-      </div>
-
-      <div class="mzan-form-field">
-        <label>What are your advertising goals? (Select all that apply)</label>
-        <div class="mzan-checkbox-group">
-          <label class="mzan-checkbox-label">
-            <input type="checkbox" name="goals" value="test">
-        </div>
-      </div>
+      {% for field in page.form_fields %}
+        {% include_block field %}
+      {% endfor %}
 
       <div class="mzan-form-submit">
         <button type="submit" class="mzan-button">Submit</button>
