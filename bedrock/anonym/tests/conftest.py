@@ -3,25 +3,85 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import pytest
-from wagtail.models import Site
 
-from bedrock.anonym.models import AnonymIndexPage
+from bedrock.anonym.fixtures.base_fixtures import (
+    get_placeholder_image,
+    get_test_anonym_index_page,
+    get_test_person,
+)
+from bedrock.anonym.fixtures.page_fixtures import (
+    get_anonym_case_study_item_test_page,
+    get_anonym_case_study_test_page,
+    get_anonym_contact_test_page,
+    get_anonym_content_sub_test_page,
+    get_anonym_index_test_page,
+    get_anonym_news_item_test_page,
+    get_anonym_news_test_page,
+    get_anonym_top_and_bottom_test_page,
+)
 
 
-def get_test_anonym_index_page():
-    site = Site.objects.get(is_default_site=True)
-    root_page = site.root_page
-    anonym_index_page = AnonymIndexPage.objects.filter(slug="tests-anonym-index-page").first()
-    if not anonym_index_page:
-        anonym_index_page = AnonymIndexPage(
-            slug="tests-anonym-index-page",
-            title="Tests Anonym Index Page",
-        )
-        root_page.add_child(instance=anonym_index_page)
-        anonym_index_page.save_revision().publish()
-    return anonym_index_page
+@pytest.fixture
+def placeholder_image():
+    """Fixture providing a placeholder image for testing."""
+    return get_placeholder_image()
+
+
+@pytest.fixture
+def test_person(placeholder_image):
+    """Fixture providing a test Person snippet."""
+    return get_test_person()
 
 
 @pytest.fixture
 def anonym_index_page():
+    """Fixture providing a test AnonymIndexPage (basic, without content)."""
     return get_test_anonym_index_page()
+
+
+@pytest.fixture
+def anonym_index_page_with_content():
+    """Fixture providing a test AnonymIndexPage with full content."""
+    return get_anonym_index_test_page()
+
+
+@pytest.fixture
+def anonym_top_and_bottom_page(anonym_index_page):
+    """Fixture providing a test AnonymTopAndBottomPage."""
+    return get_anonym_top_and_bottom_test_page()
+
+
+@pytest.fixture
+def anonym_content_sub_page(anonym_index_page):
+    """Fixture providing a test AnonymContentSubPage."""
+    return get_anonym_content_sub_test_page()
+
+
+@pytest.fixture
+def anonym_news_page(anonym_index_page):
+    """Fixture providing a test AnonymNewsPage."""
+    return get_anonym_news_test_page()
+
+
+@pytest.fixture
+def anonym_news_item_page(anonym_news_page):
+    """Fixture providing a test AnonymNewsItemPage."""
+    return get_anonym_news_item_test_page(news_page=anonym_news_page)
+
+
+@pytest.fixture
+def anonym_case_study_page(anonym_index_page):
+    """Fixture providing a test AnonymCaseStudyPage."""
+    return get_anonym_case_study_test_page()
+
+
+@pytest.fixture
+def anonym_case_study_item_page(anonym_case_study_page):
+    """Fixture providing a test AnonymCaseStudyItemPage."""
+    return get_anonym_case_study_item_test_page(case_study_page=anonym_case_study_page)
+
+
+@pytest.fixture
+def anonym_contact_page(anonym_index_page):
+    """Fixture providing a test AnonymContactPage."""
+    return get_anonym_contact_test_page()
