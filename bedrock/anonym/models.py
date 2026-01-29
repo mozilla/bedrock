@@ -193,7 +193,13 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymCaseStudyPage"]
+    subpage_types = [
+        "AnonymTopAndBottomPage",
+        "AnonymContentSubPage",
+        "AnonymNewsPage",
+        "AnonymContactPage",
+        "AnonymCaseStudyPage",
+    ]
     navigation_field_name = "navigation"
 
     navigation = StreamField(

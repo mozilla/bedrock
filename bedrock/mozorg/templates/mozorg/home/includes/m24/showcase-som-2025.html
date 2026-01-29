@@ -4,18 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="m24-c-showcase m24-t-pink">
+<section class="m24-c-showcase m24-t-dark">
   <div class="m24-c-content">
     <header class="m24-c-showcase-text">
       <h2 class="m24-c-showcase-title">{{ ftl('m24-home-state-of-mozilla') }}</h2>
-      {% if ftl_has_messages('m24-home-mozilla-is-reinventing-itself-v2') %}
-        <p class="m24-c-showcase-body">{{ ftl('m24-home-mozilla-is-reinventing-itself-v2', year='2025') }}</p>
+      {% if ftl_has_messages('m24-home-mozilla-is-reinventing-itself-v3') %}
+        <p class="m24-c-showcase-body">{{ ftl('m24-home-mozilla-is-reinventing-itself-v3', year='2025') }}</p>
       {% endif %}
     </header>
 
     <div class="m24-c-showcase">
       <div class="m24-c-showcase-media">
-        <img loading="lazy" src="{{ static('img/home/2024/showcase/showcase-som-2025.svg') }}" class="m24-c-menu-item-icon" width="1376" height="590" alt="{{ ftl('m24-home-state-of-mozilla-alt') }}">
+        <img loading="lazy" src="{{ static('img/home/2024/showcase/showcase-som-2025.png') }}" class="m24-c-menu-item-icon" width="1376" height="515" alt="{% if ftl_has_messages('m24-home-state-of-mozilla-alt-v2') %}{{ ftl('m24-home-state-of-mozilla-alt-v2') }}{% endif %}">
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       <h3 class="m24-c-showcase-subtitle">2025</h3>
 
       <p class="m24-c-showcase-body m24-c-section-cta">
-        <a href="https://stateof.mozilla.org" class="m24-c-cta" rel="external noopener" data-cta-text="Read the report">{{ ftl('m24-home-read-the-report') }}</a>
+        <a href="https://stateof.mozilla.org{{ utm_params }}" class="m24-c-cta" rel="external noopener" data-cta-text="Read the report">{{ ftl('m24-home-read-the-report') }}</a>
       </p>
     </footer>
 
