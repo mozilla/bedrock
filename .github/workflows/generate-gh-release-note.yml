@@ -1,0 +1,56 @@
+name: Generate GitHub Release entry
+
+on:
+  push:
+    # YYYY-MM-DD or YYYY-MM-DD.integer for times when there are multiple releases in a day
+    # (Repetition here is safer than a wildcard glob)
+    tags:
+      - '20[0-9][0-9]-[01][0-9]-[0-3][0-9]'
+      - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9]'
+      - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9]'
+      - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9][0-9]'
+
+jobs:
+  create-release:
+    name: Generate GitHub Release entry
+    runs-on: ubuntu-slim
+    if: github.repository == 'mozilla/bedrock'
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - name: Validate tag format
+        id: validate
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+
+          # Validate tag matches production format YYYY-MM-DD or YYYY-MM-DD.integer
+          if [[ $TAG_NAME =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9]{1,3})?$ ]]; then
+            echo "Current tag: $TAG_NAME"
+            echo "valid=true" >> $GITHUB_OUTPUT
+            echo "tag_name=$TAG_NAME" >> $GITHUB_OUTPUT
+          else
+            echo "Tag does not match production format, skipping release creation"
+            echo "valid=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+      - name: Create GitHub Release
+        if: steps.validate.outputs.valid == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          CURRENT_TAG="${{ steps.validate.outputs.tag_name }}"
+
+          # Create the release with auto-generated notes
+          gh release create "$CURRENT_TAG" \
+            --title "Production Release $CURRENT_TAG" \
+            --generate-notes \
+            --verify-tag
+
+          echo "✅ Successfully created release for $CURRENT_TAG"

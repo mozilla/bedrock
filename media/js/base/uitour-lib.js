@@ -234,6 +234,16 @@ if (typeof window.Mozilla === 'undefined') {
         });
     };
 
+    /**
+     * Trigger the Firefox Accounts sign-in flow for the AI Window feature.
+     * This will prompt the user to sign in and then open the AI Window
+     * upon successful authentication.
+     * @since 149
+     */
+    Mozilla.UITour.showFirefoxAccountsForAIWindow = function () {
+        _sendEvent('showFirefoxAccountsForAIWindow');
+    };
+
     Mozilla.UITour.resetFirefox = function () {
         _sendEvent('resetFirefox');
     };
