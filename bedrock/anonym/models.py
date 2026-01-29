@@ -11,6 +11,7 @@ from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
     CallToActionBlock as AnonymCallToActionBlock,
+    CompetitorComparisonTableBlock as AnonymCompetitorComparisonTableBlock,
     SectionBlock as AnonymSectionBlock,
     ToggleableItemsBlock as AnonymToggleableItemsBlock,
 )
@@ -69,7 +70,13 @@ class AnonymContactPage(AnonymStaticPage):
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
-    subpage_types = ["AnonymTopAndBottomPage", "AnonymContentSubPage", "AnonymNewsPage", "AnonymContactPage", "AnonymArticlePage"]
+    subpage_types = [
+        "AnonymTopAndBottomPage",
+        "AnonymContentSubPage",
+        "AnonymNewsPage",
+        "AnonymContactPage",
+        "AnonymArticlePage",
+    ]
     navigation_field_name = "navigation"
 
     navigation = StreamField(
@@ -135,6 +142,7 @@ class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
     bottom_content = StreamField(
         [
             ("section", AnonymSectionBlock()),
+            ("competitor_table", AnonymCompetitorComparisonTableBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,

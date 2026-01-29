@@ -1,0 +1,36 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mzan-section">
+  <hgroup class="mzan-hgroup">
+    <h2 class="mzan-heading">{{ value.heading_text }}</h2>
+    {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
+  </hgroup>
+
+  {% if value.rows %}
+    <table>
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Tags, Pixels, & SDKs</th>
+          <th scope="col">Conversions & Event APIs</th>
+          <th scope="col">Clean Rooms</th>
+          <th scope="col">Anonym</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in value.rows %}
+          <tr>
+            <td>{{ row.text }}</td>
+            <td>{{ row.tags_pixels_sdks }}</td>
+            <td>{{ row.conversions_event_apis }}</td>
+            <td>{{ row.clean_rooms }}</td>
+            <td>{{ row.anonym }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}

@@ -6,7 +6,6 @@
 from django.templatetags.static import static
 
 from wagtail import blocks
-from wagtail.contrib.table_block.blocks import TableBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
@@ -579,7 +578,6 @@ class SectionBlock(blocks.StructBlock):
             ("cards_list", CardsListBlock()),
             ("stats_list_block", StatsListBlock()),
             ("people_list", PeopleListBlock()),
-            ("table", TableBlock()),
             ("two_column", TwoColumnBlock()),
             ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
         ],
@@ -590,6 +588,47 @@ class SectionBlock(blocks.StructBlock):
     class Meta:
         template = "anonym/blocks/section.html"
         label = "Section"
+        label_format = "{heading_text}"
+
+
+class CompetitorComparisonItemBlock(blocks.StructBlock):
+    text = blocks.CharBlock(label="Row text")
+
+    # Boolean fields
+    tags_pixels_sdks = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Tags, Pixels, & SDKs",
+    )
+    conversions_event_apis = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Conversions & Event APIs",
+    )
+    clean_rooms = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Clean Rooms",
+    )
+    anonym = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        help_text="Anonym",
+    )
+
+    class Meta:
+        label = "Competitor Item"
+        label_format = "Competitor Item - {text}"
+
+
+class CompetitorComparisonTableBlock(blocks.StructBlock):
+    heading_text = blocks.CharBlock(label="Heading")
+    subheading_text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    rows = blocks.ListBlock(CompetitorComparisonItemBlock(), min_num=1)
+
+    class Meta:
+        template = "anonym/blocks/competitor_comparison_table_block.html"
+        label = "Competitor Table"
         label_format = "{heading_text}"
 
 

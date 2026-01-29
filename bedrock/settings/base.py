@@ -727,7 +727,6 @@ INSTALLED_APPS = [
     "csp",
     "wagtail_link_block",
     "wagtail_thumbnail_choice_block",
-    "wagtail.contrib.table_block",
     # Local apps
     "bedrock.anonym",
     "bedrock.base",
