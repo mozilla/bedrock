@@ -8,7 +8,6 @@ on:
       - run-integration-tests
     tags:
       - '*'
-
   workflow_dispatch:
     inputs:
       ref:
@@ -16,6 +15,7 @@ on:
         type: string
         required: true
         default: refs/heads/main
+
 env:
   APP: bedrock
   GAR_LOCATION: us
@@ -25,6 +25,8 @@ env:
   ORG: mozmeao
   REF_ID: ${{ github.event.inputs.ref || github.ref }}
 
+permissions:
+  contents: read
 
 jobs:
   build_and_publish_public_images:
@@ -43,6 +45,7 @@ jobs:
           sudo rm -rf /home/runner/.rustup
           sudo rm -rf /usr/local/.ghcup
           sudo rm -rf /usr/share/swift
+          sudo rm -rf /usr/lib/jvm
           sudo rm -rf /opt/hostedtoolcache/CodeQL
           docker system df
           df -h
@@ -51,7 +54,7 @@ jobs:
         with:
           buildkitd-flags: "cache-from: type=gha cache-to: type=gha,mode=max"
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
             fetch-depth: 10 # get enough so we have a Git history, but not everything
             fetch-tags: true
@@ -156,7 +159,6 @@ jobs:
     needs: [build_and_publish_public_images, upload_static_assets]
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       id-token: write
 
     steps:
