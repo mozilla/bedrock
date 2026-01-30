@@ -139,7 +139,6 @@ ICON_CHOICES = [
     ("folder", "Folder"),
     ("font", "Font"),
     ("forget", "Forget"),
-    ("form fill", "Form Fill"),
     ("forward", "Forward"),
     ("full-screen-disabled", "Full Screen Disabled"),
     ("full-screen-exit", "Full Screen Exit"),
