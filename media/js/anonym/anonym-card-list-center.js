@@ -13,7 +13,9 @@
         const cardLists = document.querySelectorAll('.mzan-cards');
 
         cardLists.forEach(function (cardsEl) {
-            const listEl = cardsEl.querySelector('.mzan-card-list');
+            const listEl = cardsEl.querySelector(
+                '.mzan-card-list.scroll-on-mobile'
+            );
             if (
                 cardsEl.dataset.mzanUserScrolled === 'true' ||
                 !listEl ||

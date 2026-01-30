@@ -192,7 +192,9 @@
 .icon-gear { --icon-src: url('/media/protocol/img/icons/gear.svg'); }
 .icon-get-involved { --icon-src: url('/media/protocol/img/icons/get-involved.svg'); }
 .icon-globe-white { --icon-src: url('/media/protocol/img/icons/globe-white.svg'); }
-.icon-globe { --icon-src: url('/media/protocol/img/icons/globe.svg'); }
+
+// .icon-globe { --icon-src: url('/media/protocol/img/icons/globe.svg'); }
+
 .icon-hashtag-narrow { --icon-src: url('/media/protocol/img/icons/hashtag-narrow.svg'); }
 .icon-hashtag { --icon-src: url('/media/protocol/img/icons/hashtag.svg'); }
 .icon-headphone { --icon-src: url('/media/protocol/img/icons/headphone.svg'); }
@@ -223,7 +225,9 @@
 .icon-location-windows-disabled { --icon-src: url('/media/protocol/img/icons/location-windows-disabled.svg'); }
 .icon-location-windows { --icon-src: url('/media/protocol/img/icons/location-windows.svg'); }
 .icon-location { --icon-src: url('/media/protocol/img/icons/location.svg'); }
-.icon-lock { --icon-src: url('/media/protocol/img/icons/lock.svg'); }
+
+// .icon-lock { --icon-src: url('/media/protocol/img/icons/lock.svg'); }
+
 .icon-lockbox { --icon-src: url('/media/protocol/img/icons/lockbox.svg'); }
 .icon-login { --icon-src: url('/media/protocol/img/icons/login.svg'); }
 .icon-mail { --icon-src: url('/media/protocol/img/icons/mail.svg'); }
@@ -389,3 +393,11 @@
 .icon-window { --icon-src: url('/media/protocol/img/icons/window.svg'); }
 .icon-zoom-in { --icon-src: url('/media/protocol/img/icons/zoom-in.svg'); }
 .icon-zoom-out { --icon-src: url('/media/protocol/img/icons/zoom-out.svg'); }
+
+
+/* Adding one-off icons for Anonym. These should be systemized at some point. */
+
+.icon-lock { --icon-src: url('/media/img/mozorg/anonym/lock.svg'); }
+.icon-sparkles { --icon-src: url('/media/img/mozorg/anonym/sparkles.svg'); }
+.icon-globe { --icon-src: url('/media/img/mozorg/anonym/globe.svg'); }
+.icon-dashboard { --icon-src: url('/media/img/mozorg/anonym/dashboard.svg'); }

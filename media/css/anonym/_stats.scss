@@ -26,22 +26,69 @@
     }
 }
 
+@property --green1 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+@property --green2 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
 .mzan-stat-item {
     box-sizing: border-box;
     border: 1px solid #e8e8e8;
-    border-radius: 0;
-    background: var(--mzan-stat-row-bg);
+    border-top: 0 none;
+    border-bottom: 0 none;
     display: grid;
     gap: 16px;
     padding: 24px 16px;
     overflow: visible;
     position: relative;
     isolation: isolate;
+    transition: border-color 0.4s;
 
-    --mzan-stat-row-bg: transparent;
 
     & + & {
-        border-top: 0;
+        margin-top: -1px;
+    }
+
+    & > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        z-index: -1;
+        background: linear-gradient(90deg, var(--green1) 0%, var(--green2) 100%);
+        transition: --green1 1s ease-in-out, --green2 0.5s ease-in-out, border-color 0.4s ease-in-out;
+        border: 1px solid #e8e8e8;
+        border-left: 0 none;
+        border-right: 0 none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        transition: border-color 0.4s ease-in-out;
+    }
+
+    &:hover::after {
+        border-color: white;
+
     }
 
     @media #{$mq-md} {
@@ -68,27 +115,19 @@
         }
     }
 
-    &:nth-child(even) {
-        --mzan-stat-row-bg: linear-gradient(90deg, #49F3A5 0%, #B8FFF5 100%);
+    &:hover {
+        &::before {
+            --green1: rgb(73, 243, 165);
+            --green2: rgb(184, 255, 245);
+            border-color: #fff;
+        }
+
 
         @media #{$mq-md} {
             .mzan-stat-intro,
             .mzan-stat-stat {
                 border-color: #fff;
             }
-        }
-    }
-
-    @media #{$mq-lg} {
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            left: 50%;
-            width: 100vw;
-            transform: translateX(-50%);
-            background: var(--mzan-stat-row-bg);
-            z-index: -1;
         }
     }
 
@@ -188,10 +227,10 @@
     flex-direction: column;
     gap: 13px;
     min-width: 0;
+    transition: border-color 0.4s ease-in-out;
 
     @media #{$mq-md} {
         border-left: 1px solid #e8e8e8;
-        height: 100%;
         justify-content: flex-start;
         padding: 50px 25px 0 16px;
     }

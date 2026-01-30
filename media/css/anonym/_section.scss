@@ -10,9 +10,13 @@
 
 .mzan-section {
     padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
 
     @media #{$mq-md} {
         padding: 75px 0;
+        gap: 75px;
     }
 }
 
@@ -24,9 +28,10 @@
         background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
         content: "";
         height: auto;
+        width: 100%;
         aspect-ratio: 1311/218;
         pointer-events: none;
-        max-width: 738px;
+        max-width: 840px;
         margin: 0 auto;
         display: block;
     }
@@ -161,10 +166,15 @@
         -webkit-mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
         mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 16px 16px;
         margin: 0 0 0 0.5em;
+        transition: transform 0.2s ease-in-out;
     }
 
-    a > i,
-    a > em {
+    a:hover::after {
+        transform: translateX(4px);
+    }
+
+    i,
+    em {
         align-items: center;
         background: #161616;
         color: #fff;
@@ -255,4 +265,5 @@
     line-height: var(--mza-text-button-sm-line-height);
     margin-top: 24px;
     text-decoration: underline;
+    margin-inline: auto;
 }
