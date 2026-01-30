@@ -295,6 +295,7 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
     content = StreamField(
         [
             ("section", AnonymSectionBlock()),
+            ("competitor_table", AnonymCompetitorComparisonTableBlock()),
             ("toggle_items", AnonymToggleableItemsBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],

@@ -72,6 +72,7 @@
 .mzan-cards.dividers {
     .mzan-card-list {
         @media #{$mq-md} {
+            display: grid;
             gap: 0;
             grid-template-columns: repeat(4, minmax(0, 1fr));
         }
@@ -80,7 +81,7 @@
     .mzan-card {
         @media #{$mq-md} {
             border-left: 1px solid #e8e8e8;
-            padding: 16px 0 16px 16px;
+            padding: 16px;
         }
     }
 }
@@ -88,13 +89,8 @@
 .mzan-cards:not(.dividers) .mzan-card {
     background: transparent;
     border: 0;
-    border-left: 1px solid #e8e8e8;
     border-radius: 0;
     padding: 16px 0 16px 16px;
-
-    &:first-child {
-        border-left: 0;
-    }
 }
 
 // Case Study Card Link Wrapper

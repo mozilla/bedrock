@@ -469,7 +469,10 @@ class IconCardBlock(blocks.StructBlock):
         default="outlined",
         inline_form=True,
     )
-    heading = blocks.CharBlock(label="Heading")
+    heading = blocks.CharBlock(
+        label="Heading",
+        required=False,
+    )
     text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
 
     class Meta:
@@ -854,7 +857,10 @@ class CheckboxGroupFieldBlock(blocks.StructBlock):
 
 
 class StatItemBlock(blocks.StructBlock):
-    statistic_value = blocks.CharBlock(label="Statistic Value")
+    statistic_value = blocks.RichTextBlock(
+        features=BASIC_TEXT_FEATURES,
+        label="Statistic Value",
+    )
     statistic_label = blocks.CharBlock(label="Statistic Label")
 
     class Meta:

@@ -99,19 +99,19 @@
         padding: 0 max(16px, calc((100% - 1136px) / 2));
 
         // Support for 1-3 stats dynamically
-        &:has(.mzan-stat-stat:nth-of-type(1):last-of-type) {
+        &:has(.mzan-stat-stat:nth-of-type(2):last-of-type) {
             // 1 stat: single column after intro
             grid-template-columns: minmax(0, 60%) minmax(0, 40%);
         }
 
-        &:has(.mzan-stat-stat:nth-of-type(2):last-of-type) {
+        &:has(.mzan-stat-stat:nth-of-type(3):last-of-type) {
             // 2 stats: current layout (default)
             grid-template-columns: minmax(0, 60%) minmax(0, 1fr) minmax(0, 1fr);
         }
 
-        &:has(.mzan-stat-stat:nth-of-type(3)) {
-            // 3 stats: four column layout
-            grid-template-columns: minmax(0, 45%) repeat(3, minmax(0, 1fr));
+        &:has(.mzan-stat-stat:nth-of-type(4)) {
+            // 3 stats
+            grid-template-columns: minmax(0, 54%) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
         }
     }
 
@@ -133,16 +133,6 @@
 
     @media (max-width: 767px) {
         --mzan-stat-row-bg: transparent;
-
-        &:nth-child(even) {
-            --mzan-stat-row-bg: transparent;
-        }
-        border: 0;
-        border-right: 1px solid #e8e8e8;
-
-        &:first-child {
-            border-left: 1px solid #e8e8e8;
-        }
         flex: 0 0 333px;
         padding: 0;
         scroll-snap-align: start;
@@ -150,6 +140,16 @@
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 288px 140px;
         gap: 0;
+        border: 0;
+        border-right: 1px solid #e8e8e8;
+
+        &:nth-child(even) {
+            --mzan-stat-row-bg: transparent;
+        }
+
+        &:first-child {
+            border-left: 1px solid #e8e8e8;
+        }
     }
 }
 
@@ -202,25 +202,22 @@
 
 .mzan-stat-heading {
     font-family: var(--moz-sans-headline);
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 300;
     line-height: 1.2;
     margin: 0;
-    color: #000;
-    min-width: 0;
-    overflow-wrap: anywhere;
 
-    @media (max-width: 767px) {
-        font-family: var(--moz-sans-headline);
-        font-size: 22px;
-        font-weight: 300;
-        line-height: 1.2;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 4;
-        overflow: hidden;
+    @media (min-width: 768px) {
+        font-size: 40px;
     }
 }
+
+.mzan-stat-description {
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0;
+}
+
 
 .mzan-stat-stat {
     display: flex;
@@ -242,6 +239,7 @@
         justify-content: flex-start;
         padding: 32px 16px;
     }
+
     @media (max-width: 767px) {
         &:nth-of-type(2) {
             border-left: 1px solid #e8e8e8;

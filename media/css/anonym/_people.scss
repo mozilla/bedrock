@@ -5,16 +5,10 @@
 @use '../m24/vars/lib' as *;
 
 .mzan-people {
-    align-items: center;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-top: 24px;
-
-    @media #{$mq-md} {
-        flex-direction: row;
-        gap: 24px;
-    }
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .mzan-people-list {
@@ -24,7 +18,7 @@
     padding: 0;
 
     li + li {
-        margin-left: -12px;
+        margin-left: -8px;
     }
 
     img {
@@ -34,6 +28,16 @@
         height: 48px;
         width: 48px;
     }
+}
+
+.mzan-hgroup + div:has(> .mzan-people) {
+    margin-top: -24px;
+}
+
+
+div:has(> .mzan-people) + div > .rich-text-block {
+    max-width: 600px;
+    margin: -24px auto 0;
 }
 
 .mzan-people-list-text {

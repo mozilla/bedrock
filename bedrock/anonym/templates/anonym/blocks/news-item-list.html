@@ -13,6 +13,9 @@
           <img src="{{ news_item.logo.file.url }}" alt="{{ news_item.logo.title }}" width="64" height="64" loading="lazy">
         {% endif %}
         <h2 class="mzan-stat-heading">{{ news_item.title }}</h2>
+
+        <p class="mzan-stat-description">{{ news_item.description | richtext }}</p>
+
       </div>
       {% for stat_block in news_item.stats %}
         <div class="mzan-stat-stat">
