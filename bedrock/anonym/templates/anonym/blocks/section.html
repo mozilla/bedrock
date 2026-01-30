@@ -12,7 +12,9 @@
   </hgroup>
 
   {% if value.section_content %}
-    {{ value.section_content }}
+    {% for block in value.section_content %}
+      {% include_block block %}
+    {% endfor %}
   {% endif %}
 
   {% if value.action %}
