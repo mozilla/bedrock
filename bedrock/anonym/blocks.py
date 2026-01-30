@@ -598,7 +598,13 @@ class SectionBlock(blocks.StructBlock):
             ("case_study_item_list_block", CaseStudyListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
-            ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)),
+            (
+                "rich_text",
+                blocks.RichTextBlock(
+                    features=FULL_RICHTEXT_FEATURES,
+                    template="anonym/blocks/rich-text.html"
+                )
+            ),
         ],
         required=False,
     )
