@@ -68,7 +68,7 @@ class FraudReportForm(forms.Form):
         ),
     )
     input_specific_product = forms.CharField(max_length=254, required=False, widget=forms.TextInput(attrs={"size": 20, "class": "fill-width"}))
-    input_details = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}))
+    input_details = forms.CharField(max_length=5000, help_text="Maximum 5000 characters", required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}))
     input_attachment = forms.ImageField(required=False)
     input_attachment_desc = forms.CharField(
         max_length=254, required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"})
