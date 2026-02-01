@@ -46,11 +46,11 @@
     "jasmine-browser-runner": "^3.0.0",
     "jasmine-core": "^5.12.1",
     "prettier": "^3.3.3",
-    "sinon": "^21.0.0",
+    "sinon": "^21.0.1",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "svgo": "^4.0.0",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.3"
   },
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
