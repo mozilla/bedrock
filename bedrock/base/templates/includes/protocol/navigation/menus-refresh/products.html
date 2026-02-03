@@ -15,6 +15,14 @@ file, You can obtain one at https://mozilla.org/MPL/2.0/.
         <ul class="m24-mzp-l-content">
           <li>
             <section class="m24-c-menu-item mzp-has-icon">
+              <a class="m24-c-menu-item-link" href="{{ settings.FXC_BASE_URL }}?{{ utm_params }}" data-link-text="Firefox browsers" data-link-position="topnav - products" data-testid="m24-navigation-menu-link-firefox">
+                <img loading="lazy" src="{{ static('protocol/img/logos/firefox/browser/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
+                <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-firefox-browsers') }}</h2>
+              </a>
+            </section>
+          </li>
+          <li>
+            <section class="m24-c-menu-item mzp-has-icon">
               <a class="m24-c-menu-item-link" href="{{ url('products.vpn.landing') }}" data-link-text="Mozilla VPN" data-link-position="topnav - products" data-testid="m24-navigation-menu-link-products-vpn">
                 <img loading="lazy" src="{{ static('protocol/img/logos/mozilla/vpn/logo.svg') }}" class="m24-c-menu-item-icon" width="32" height="32" alt="">
                 <h2 class="m24-c-menu-item-title">{{ ftl('navigation-refresh-mozilla-vpn-v2') }}</h2>
