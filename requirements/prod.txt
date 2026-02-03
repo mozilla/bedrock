@@ -1793,9 +1793,9 @@ urllib3==2.6.3 \
     #   pygithub
     #   requests
     #   sentry-sdk
-wagtail==7.2.1 \
-    --hash=sha256:388bb42c4818c081a4ddf36e6f4529bfbc54ed262a91b65b0e5f951476f2cf74 \
-    --hash=sha256:b29f9fc226fadf744cf6fd5a24ee1c2b7a00ade5f801c72069af8b453d6a1241
+wagtail==7.2.2 \
+    --hash=sha256:2e62316717bd19c57de5e6cb7f800c8acdb51862b3067b9e788c0837bda9c9f0 \
+    --hash=sha256:bf6adaa3acd90d9ee7734756dd7031b0901eedb80a4aa4e5188ab1e481ce30be
     # via
     #   -r requirements/prod.in
     #   wagtail-link-block
