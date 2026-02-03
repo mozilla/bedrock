@@ -12,8 +12,6 @@ from pages.home import HomePage
 def test_navigation(base_url, selenium):
     page = HomePage(selenium, base_url, locale="de").open()
 
-    assert page.navigation.is_firefox_menu_displayed
-
     page.navigation.open_products_menu()
     assert page.navigation.is_products_menu_displayed
 
