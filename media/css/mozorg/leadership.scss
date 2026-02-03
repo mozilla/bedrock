@@ -80,8 +80,20 @@
     &.compact {
         border-bottom: 0;
         padding-bottom: 0;
-        margin-bottom: 0;
+        margin-bottom: $spacing-sm;
     }
+}
+
+.leadership-description {
+    @include text-body-lg;
+    margin-top: 0;
+    margin-bottom: $spacing-lg;
+}
+
+.group-description {
+    @include text-body-md;
+    margin-top: 0;
+    margin-bottom: $spacing-md;
 }
 
 .leadership-section {
