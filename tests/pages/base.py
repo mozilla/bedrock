@@ -42,7 +42,6 @@ class BasePage(ScrollElementIntoView, Page):
         _root_locator = (By.CLASS_NAME, "m24-navigation-refresh")
         _toggle_locator = (By.CLASS_NAME, "m24-c-navigation-menu-button")
         _menu_locator = (By.CLASS_NAME, "m24-c-navigation-items")
-        _firefox_menu_link_locator = (By.CSS_SELECTOR, '.m24-c-menu-title[data-testid="m24-navigation-link-firefox"]')
         _products_menu_link_locator = (By.CSS_SELECTOR, '.m24-c-menu-title[aria-controls="m24-c-menu-panel-products"]')
         _products_menu_locator = (By.ID, "m24-c-menu-panel-products")
         _about_menu_link_locator = (By.CSS_SELECTOR, '.m24-c-menu-title[aria-controls="m24-c-menu-panel-about"]')
@@ -56,10 +55,6 @@ class BasePage(ScrollElementIntoView, Page):
         def open_navigation_menu(self, locator):
             menu = self.find_element(*locator)
             menu.click()
-
-        @property
-        def is_firefox_menu_displayed(self):
-            return self.is_element_displayed(*self._firefox_menu_link_locator)
 
         @property
         def is_products_menu_displayed(self):
