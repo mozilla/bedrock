@@ -410,6 +410,28 @@ class NewsItemListBlock(blocks.StructBlock):
         icon = "doc-full"
 
 
+class LogoListBlock(blocks.StructBlock):
+    """
+    Display a list of news items with their statistics.
+
+    This block allows content editors to select existing AnonymNewsItemPage
+    instances to display their title, logo, and statistics.
+    """
+
+    news_items = blocks.ListBlock(
+        PageChooserBlock("anonym.AnonymNewsItemPage"),
+        min_num=1,
+        max_num=12,
+        default=[],
+        help_text="Logos will display in a list and link to the News item or Case Study",
+    )
+
+    class Meta:
+        template = "anonym/blocks/logo-list.html"
+        label = "Logo List"
+        icon = "doc-full"
+
+
 class CaseStudyListBlock(blocks.StructBlock):
     """
     Display a list of case study items with their logos, client names, and descriptions.
@@ -600,9 +622,16 @@ class SectionBlock(blocks.StructBlock):
             ("cards_list", CardsListBlock()),
             ("news_item_list_block", NewsItemListBlock()),
             ("case_study_item_list_block", CaseStudyListBlock()),
+            ("logo_list_block", LogoListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
-            ("rich_text", blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES, template="anonym/blocks/rich-text.html")),
+            (
+                "rich_text",
+                blocks.RichTextBlock(
+                    features=FULL_RICHTEXT_FEATURES,
+                    template="anonym/blocks/rich-text.html",
+                ),
+            ),
         ],
         required=False,
     )

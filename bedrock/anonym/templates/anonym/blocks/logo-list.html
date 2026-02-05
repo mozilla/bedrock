@@ -1,0 +1,18 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<ul class="mzan-logo-list">
+  {% for news_item_page in value.news_items %}
+    {% set news_item = news_item_page.specific %}
+    <li class="mzan-logo-item">
+      <a class="mzan-logo-link" href="{{ news_item.link or news_item.url }}" {% if news_item.link %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          {% if news_item.logo %}
+          <img class="mzan-logo-list-logo" src="{{ news_item.logo.file.url }}" alt="{{ news_item.logo.title }}" width="64" height="64" loading="lazy">
+          {% endif %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
