@@ -45,20 +45,17 @@ class AnonymStaticPage(AbstractBedrockCMSPage):
         abstract = True
 
 
-class AnonymNewsItemPage(AbstractBedrockCMSPage):
-    """News item page for Anonym."""
+class AbstractStatCardPage(AbstractBedrockCMSPage):
+    """Abstract base for pages that can appear in the StatCardListBlock.
 
-    parent_page_types = ["AnonymNewsPage"]
-    subpage_types = []
+    Provides the fields needed by the stat card display: company_name,
+    logo, link, and stats.  Title is inherited from Wagtail Page.
+    """
 
-    description = models.TextField(
+    company_name = models.CharField(
+        max_length=255,
         blank=True,
-        help_text="Description of the news item",
-    )
-    category = models.CharField(
-        max_length=100,
-        blank=True,
-        help_text="Category (e.g., 'Press', 'Blog')",
+        help_text="Company or client name",
     )
     logo = models.ForeignKey(
         "cms.BedrockImage",
@@ -66,19 +63,11 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
         blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-        help_text="Logo (e.g., publication logo like WSJ, NYT)",
-    )
-    image = models.ForeignKey(
-        "cms.BedrockImage",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        help_text="Image for the news item",
+        help_text="Logo image",
     )
     link = models.URLField(
         blank=True,
-        help_text=("External link for this news item. If set, this (Wagtail) page will .not be accessible to users."),
+        help_text="External link",
     )
     stats = StreamField(
         [
@@ -88,7 +77,42 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
         null=True,
         use_json_field=True,
         max_num=3,
-        help_text="Statistics that will display if this news item is shown on the homepage",
+        help_text="Statistics to display",
+    )
+
+    stat_card_panels = [
+        FieldPanel("company_name"),
+        FieldPanel("logo"),
+        FieldPanel("link"),
+        FieldPanel("stats"),
+    ]
+
+    class Meta:
+        abstract = True
+
+
+class AnonymNewsItemPage(AbstractStatCardPage):
+    """News item page for Anonym."""
+
+    parent_page_types = ["AnonymNewsPage"]
+    subpage_types = []
+
+    category = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Category (e.g., 'Press', 'Blog')",
+    )
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Image for the news item",
+    )
+    description = models.TextField(
+        blank=True,
+        help_text="Description of the news item",
     )
     content = StreamField(
         [
@@ -100,15 +124,16 @@ class AnonymNewsItemPage(AbstractBedrockCMSPage):
         collapsed=True,
     )
 
-    content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("description"),
-        FieldPanel("category"),
-        FieldPanel("logo"),
-        FieldPanel("image"),
-        FieldPanel("link"),
-        FieldPanel("stats"),
-        FieldPanel("content"),
-    ]
+    content_panels = (
+        AbstractBedrockCMSPage.content_panels
+        + AbstractStatCardPage.stat_card_panels
+        + [
+            FieldPanel("category"),
+            FieldPanel("image"),
+            FieldPanel("description"),
+            FieldPanel("content"),
+        ]
+    )
 
     # Since the concept of a AnonymNewsItemPage is similar to an
     # AnonymCaseStudyItemPage, use the AnonymCaseStudyItemPage template.
@@ -317,23 +342,10 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         db_table = "mozorg_anonymcontentsubpage"
 
 
-class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
+class AnonymCaseStudyItemPage(AbstractStatCardPage):
     parent_page_types = ["AnonymCaseStudyPage"]
     subpage_types = []
 
-    logo = models.ForeignKey(
-        "cms.BedrockImage",
-        null=True,
-        blank=True,
-        on_delete=models.SET_NULL,
-        related_name="+",
-        help_text="Logo or image for the case study (displays in card view)",
-    )
-    client = models.CharField(
-        max_length=255,
-        blank=True,
-        help_text="Client name (displays as heading in card view)",
-    )
     description = models.TextField(
         blank=True,
         help_text="Brief description of the case study (displays in card view)",
@@ -356,13 +368,15 @@ class AnonymCaseStudyItemPage(AbstractBedrockCMSPage):
         related_name="+",
     )
 
-    content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("logo"),
-        FieldPanel("client"),
-        FieldPanel("description"),
-        FieldPanel("content"),
-        FieldPanel("notification"),
-    ]
+    content_panels = (
+        AbstractBedrockCMSPage.content_panels
+        + AbstractStatCardPage.stat_card_panels
+        + [
+            FieldPanel("description"),
+            FieldPanel("content"),
+            FieldPanel("notification"),
+        ]
+    )
 
     template = "anonym/anonym_case_study_item_page.html"
 
