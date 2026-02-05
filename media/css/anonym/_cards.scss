@@ -26,6 +26,11 @@
         scroll-snap-type: x mandatory;
     }
 
+    &.will-wrap {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
     @media #{$mq-md} {
         flex-direction: row;
     }
@@ -123,6 +128,16 @@
             display: grid;
             gap: 0;
             grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .mzan-card-list.will-wrap {
+            .mzan-card {
+                border-bottom: 1px solid #e8e8e8;
+
+                &:nth-child(3n) {
+                    border-right: 1px solid #e8e8e8;
+                }
+            }
         }
 
         .mzan-card {

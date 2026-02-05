@@ -1,0 +1,77 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+.news-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .mzan-card-logo-wrap {
+        aspect-ratio: unset;
+        justify-content: start;
+        padding: 0;
+        height: 100px;
+        margin: 0;
+    }
+
+    .mzan-card-light {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+
+        p.mzan-news-meta {
+            margin-top: auto;
+        }
+    }
+}
+
+.mzan-news-source {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.mzan-news-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: var(--mza-text-body-sm);
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.mzan-news-external-link {
+    opacity: 0.6;
+
+    &::after {
+        content: "";
+        display: block;
+        inset: 0;
+        position: absolute;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.mzan-news-featured-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .mzan-news-meta {
+        margin-top: 0;
+    }
+}
+
+.mzan-news-featured .mzan-heading {
+    text-align: left;
+    font-size: var(--mza-text-title-lg);
+    margin-top: auto;
+}

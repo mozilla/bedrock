@@ -27,18 +27,10 @@
 
 {% block content %}
   <main id="mzan-main">
-
-
     <section class="mzan-section">
       <hgroup class="mzan-hgroup">
         <h1 class="mzan-heading">News</h1>
       </hgroup>
-
-
-
-
-
-
 
     {% set news_items = page.get_children().live().order_by('-first_published_at') %}
 
@@ -49,24 +41,27 @@
       {# Featured Item (if first item has an image) #}
       {% if has_featured %}
         {% set item_url = first_item.link if first_item.link else first_item.url %}
-        <article class="mzan-news-featured">
+        <article class="mzan-news-featured add-full-width-borders">
           <div class="mzan-news-featured-content">
             <div class="mzan-news-source">
-              {% if first_item.logo %}
-                <span class="mzan-news-logo">
-                  <img src="{{ first_item.logo.file.url }}" alt="{{ first_item.logo.title }}" width="40" height="40">
-                </span>
-              {% endif %}
-              {% if first_item.link %}
-                <a href="{{ first_item.link }}" class="mzan-news-external-link" aria-label="External link">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              {% endif %}
-            </div>
-            <h2>
-              <a href="{{ item_url }}">{{ first_item.title }}</a>
+                {% if first_item.logo %}
+                  <span class="mzan-news-logo">
+                    <img class="mzan-card-logo" src="{{ first_item.logo.file.url }}" alt="{{ first_item.logo.title }}" loading="lazy" />
+                  </span>
+                {% endif %}
+                  <a href="{{ item_url }}" class="mzan-news-external-linksss" aria-label="External link">
+                    {% if first_item.link %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {% else %}
+                    <span class="sr-only">Read more</span>
+                    {% endif %}
+                  </a>
+
+              </div>
+            <h2 class="mzan-heading">
+              {{ first_item.title }}
             </h2>
             {% if first_item.description %}
               <p>{{ first_item.description }}</p>
@@ -88,36 +83,42 @@
       {% set grid_items = news_items[1:] if has_featured else news_items %}
       {% if grid_items %}
         <div class="mzan-cards dividers add-full-width-borders">
-          <div class="mzan-card-list mzan-case-study-card-list">
+          <div class="mzan-card-list mzan-case-study-card-list will-wrap">
           {% for page_item in grid_items %}
             {% set item = page_item.specific %}
             {% set item_url = item.link if item.link else item.url %}
-            <article class="mzan-card mzan-case-study-card">
+            <article class="mzan-card news-card">
               <div class="mzan-news-source">
                 {% if item.logo %}
                   <div class="mzan-card-logo-wrap">
                     <img class="mzan-card-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" loading="lazy" />
                   </div>
                 {% endif %}
-                {% if item.link %}
-                  <a href="{{ item.link }}" class="mzan-news-external-link" aria-label="External link">
+                  <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
+                    {% if item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
+                    {% else %}
+                    <span class="sr-only">Read more</span>
+                    {% endif %}
                   </a>
-                {% endif %}
+
               </div>
               <h3 class="mzan-card-heading">
-                <a href="{{ item_url }}">{{ item.title }}</a>
+                {{ item.title }}
               </h3>
-              {% if item.description %}
+
+              <div class="mzan-card-light">
+                {% if item.description %}
                 <p>{{ item.description }}</p>
-              {% endif %}
-              <div class="mzan-news-meta">
-                {% if item.category %}
-                  <span class="mzan-news-category">{{ item.category }}</span>
                 {% endif %}
-                <!-- <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span> -->
+                <p class="mzan-news-meta">
+                  {% if item.category %}
+                    <span class="mzan-news-category">{{ item.category }}</span>
+                  {% endif %}
+                  <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
+                </p>
               </div>
             </article>
           {% endfor %}
