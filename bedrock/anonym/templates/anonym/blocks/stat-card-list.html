@@ -5,26 +5,26 @@
 #}
 
 <ul class="mzan-stats-list">
-  {% for news_item_page in value.news_items %}
-    {% set news_item = news_item_page.specific %}
+  {% for page in value.pages %}
+    {% set item = page.specific %}
     <li class="mzan-stat-item">
       <div class="mzan-stat-intro">
-        <div class="{% if news_item.logo %}mzan-stat-logo-heading-swap{% endif %}">
-          {% if news_item.logo %}
-          <img class="mzan-stat-logo" src="{{ news_item.logo.file.url }}" alt="{{ news_item.logo.title }}" width="64" height="64" loading="lazy">
+        <div class="{% if item.logo %}mzan-stat-logo-heading-swap{% endif %}">
+          {% if item.logo %}
+          <img class="mzan-stat-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" width="64" height="64" loading="lazy">
           {% endif %}
           <h2 class="mzan-stat-heading">
-              {{ news_item.company_name }}
+              {{ item.company_name }}
           </h2>
         </div>
         <div>
-        <p class="mzan-stat-description">{{ news_item.title }}</p>
-        <a class="mzan-stat-link" href="{{ news_item.link or news_item.url }}" {% if news_item.link %}target="_blank" rel="noopener noreferrer"{% endif %}>
-          <span class="sr-only">{{ news_item.title }}</span>
+        <p class="mzan-stat-description">{{ item.title }}</p>
+        <a class="mzan-stat-link" href="{{ item.link or item.url }}" {% if item.link %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span class="sr-only">{{ item.title }}</span>
         </a>
         </div>
       </div>
-      {% for stat_block in news_item.stats %}
+      {% for stat_block in item.stats %}
         <div class="mzan-stat-stat">
           <div class="mzan-stat-value"><p>{{ stat_block.value.statistic_value }}</p></div>
           <div class="mzan-stat-label"><p>{{ stat_block.value.statistic_label }}</p></div>
