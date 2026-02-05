@@ -45,9 +45,9 @@ boto3==1.42.40 \
     --hash=sha256:91d776b8b68006c1aca204d384be191883c2a36443f4a90561165986dae17b74 \
     --hash=sha256:e9e08059ae1bd47de411d361e9bfaaa6f35c8f996d68025deefff2b4dda79318
     # via -r requirements/prod.in
-botocore==1.42.40 \
-    --hash=sha256:6cfa07cf35ad477daef4920324f6d81b8d3a10a35baeafaa5fca22fb3ad225e2 \
-    --hash=sha256:b115cdfece8162cb30f387fdff2ee4693713744c97ebb4b89742e53675dc521c
+botocore==1.42.42 \
+    --hash=sha256:1c9df5fc31e9073a9aa956271c4007d72f5d342cafca5f4154ea099bc6f83085 \
+    --hash=sha256:cb75639f5ba7bf73b83ac18bcd87f07b7f484f302748da974dad2801a83a1d60
     # via
     #   boto3
     #   s3transfer
@@ -392,7 +392,10 @@ django==5.2.11 \
     #   wagtail
     #   wagtail-link-block
     #   wagtail-localize
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
+    #   wagtail-thumbnail-choice-block
 django-cors-headers==4.9.0 \
     --hash=sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449 \
     --hash=sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8
@@ -1784,7 +1787,10 @@ wagtail==7.2.2 \
     #   -r requirements/prod.in
     #   wagtail-link-block
     #   wagtail-localize
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
+    #   wagtail-thumbnail-choice-block
     #   wagtaildraftsharing
 wagtail-link-block==1.1.7 \
     --hash=sha256:5b7346bd60b65b00d7bafa48ab3b54b09c97abd085c0afd8f691be3219ff7a1c \
@@ -1795,10 +1801,24 @@ wagtail-localize==1.13 \
     --hash=sha256:48ecfcd6d002009697b84d77ebcb042451a68da916a1f5ca0e161b472c2b74c8
     # via
     #   -r requirements/prod.in
+    #   wagtail-localize-dashboard
+    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
+wagtail-localize-dashboard==0.1.2 \
+    --hash=sha256:071ecdc1d3bbec2155a28a843238eb2b28aaf4589cfeee5c20042d284c680264 \
+    --hash=sha256:56e7577eb883e3949b5e37ccad959d7356c27fb6449ea460b0da7f926929bcd0
+    # via -r requirements/prod.in
+wagtail-localize-intentional-blanks==0.2.4 \
+    --hash=sha256:185b6010b08dce9db7d22839fb6701bb3339310fbdfd31c8c6a8c0b4ed8d38d3 \
+    --hash=sha256:8557a1c4c565ffa950aee59c907981a92cb30c7c072f9866dd211ec87253479a
+    # via -r requirements/prod.in
 wagtail-localize-smartling==0.11.0 \
     --hash=sha256:2650f9467f1b9bc0879e9f9f9e13eb12074b26bf55f84a89e59c4613e454ecbe \
     --hash=sha256:a34f6927d128b1e18d1bb937d2cb5c22683488be7a7299364afb62d849e41fd8
+    # via -r requirements/prod.in
+wagtail-thumbnail-choice-block==0.1.4 \
+    --hash=sha256:95899544c4aeae38ca8beea5b9ce74db45fcde69e50156aeb47edd0ec3a69ad7 \
+    --hash=sha256:f285cd6db5ecbe1833d0ed0dd3bb77cd6f2dfe0e2e462a75b1dbe82a24777594
     # via -r requirements/prod.in
 wagtaildraftsharing==0.3.0 \
     --hash=sha256:2e77b46df0b164c089d25ff146e25fa3601e52de7ccaa9226925e6e6357fdeab \
