@@ -5,8 +5,20 @@
 @use '../m24/vars/lib' as *;
 @use '../mozorg/ads/vars' as advars;
 
+
+
 .mzan-content-toggle-wrap {
     display: flex;
+    position: sticky;
+    top: 0;
+    background: advars.$color-ads-off-white;
+    z-index: 2;
+
+    @media #{$mq-md} {
+        position: static;
+        top: unset;
+
+    }
 }
 
 .mzan-toggle-section {
@@ -43,7 +55,7 @@
 .mzan-toggle-content {
     position: relative;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
 
     &[hidden] {
         display: none;
@@ -62,5 +74,9 @@
     .mzan-hero-figure {
         max-width: 440px;
         margin: 0 auto;
+    }
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 1fr;
     }
 }

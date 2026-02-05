@@ -8,7 +8,7 @@
 .mzan-half-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 0;
     margin-top: 75px;
 
     .mzan-heading,
@@ -18,11 +18,8 @@
 
     .col {
         border-left: 1px solid #e8e8e8;
-        padding: 50px 25px;
-
-        &:last-child {
-            border-right: 1px solid #e8e8e8;
-        }
+        border-right: 1px solid #e8e8e8;
+        padding: 50px 25px 0;
     }
 
     .two-col-list {
@@ -45,9 +42,26 @@
         }
     }
 
+    & ~ & {
+        margin-top: 0;
+    }
+
     @media #{$mq-md} {
         grid-template-columns: 1fr 1fr;
         gap: 32px;
         margin-top: 150px;
+
+        .col {
+            padding-bottom: 50px;
+            border-right: 0 none;
+
+            &:last-child {
+                border-right: 1px solid #e8e8e8;
+            }
+        }
+
+        & ~ & {
+            margin-top: 150px;
+        }
     }
 }

@@ -16,13 +16,13 @@
 }
 
 .mzan-section {
-    padding: 50px 0;
+    padding: 50px var(--mzanon-h-pad);
     display: flex;
     flex-direction: column;
     gap: 36px;
 
     @media #{$mq-md} {
-        padding: 75px 0;
+        padding: 75px var(--mzanon-h-pad);
         gap: 75px;
     }
 
@@ -42,7 +42,7 @@
         font-size: 18px;
         font-weight: 400;
         line-height: normal;
-        margin-top: 0;
+        margin-top: 32px;
         padding-bottom: 2px;
         text-decoration: none;
         justify-content: center;
@@ -63,10 +63,12 @@
             background-color: currentColor;
             mask: url('/media/img/mozorg/anonym/anonym-arrow-right.svg') no-repeat center / 24px 24px;
         }
+
+        @media #{$mq-md} {
+            margin-top: 0;
+        }
     }
 }
-
-
 
 .mzan-section-topglow-theme {
     position: relative;
@@ -305,6 +307,12 @@
 
         ~ .mzan-section {
             border-left: 0 none;
+        }
+    }
+
+    &:not([hidden]) + &:not([hidden]) {
+        &::before {
+            content: none;
         }
     }
 }

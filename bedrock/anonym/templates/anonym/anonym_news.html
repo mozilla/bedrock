@@ -27,7 +27,7 @@
 
 {% block content %}
   <main id="mzan-main">
-    <section class="mzan-section">
+    <section class="mzan-news-section">
       <hgroup class="mzan-hgroup">
         <h1 class="mzan-heading">News</h1>
       </hgroup>
@@ -63,14 +63,13 @@
             <h2 class="mzan-heading">
               {{ first_item.title }}
             </h2>
-            {% if first_item.description %}
-              <p>{{ first_item.description }}</p>
-            {% endif %}
             <div class="mzan-news-meta">
               {% if first_item.category %}
                 <span class="mzan-news-category">{{ first_item.category }}</span>
               {% endif %}
-              <span class="mzan-news-date">{{ first_item.first_published_at|date("M d, Y") }}</span>
+              <span class="mzan-news-date">
+                {{ first_item.first_published_at|date("M d") }}
+              </span>
             </div>
           </div>
           <div class="mzan-news-featured-image">
@@ -83,7 +82,7 @@
       {% set grid_items = news_items[1:] if has_featured else news_items %}
       {% if grid_items %}
         <div class="mzan-cards dividers add-full-width-borders">
-          <div class="mzan-card-list mzan-case-study-card-list will-wrap">
+          <div class="mzan-card-list is-three-wide will-wrap">
           {% for page_item in grid_items %}
             {% set item = page_item.specific %}
             {% set item_url = item.link if item.link else item.url %}
@@ -117,7 +116,7 @@
                   {% if item.category %}
                     <span class="mzan-news-category">{{ item.category }}</span>
                   {% endif %}
-                  <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
+                  <span class="mzan-news-date">{{ item.first_published_at|date("M d") }}</span>
                 </p>
               </div>
             </article>

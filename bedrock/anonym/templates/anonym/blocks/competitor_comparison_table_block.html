@@ -5,7 +5,6 @@
 #}
 
 <section class="mzan-section is-comparison-table-block">
-  <div class="m24-c-content">
   <hgroup class="mzan-hgroup">
     <h2 class="mzan-heading">{{ value.heading_text }}</h2>
     {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
@@ -35,5 +34,4 @@
       </tbody>
     </table>
   {% endif %}
-  </div>
 </section>

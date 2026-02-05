@@ -12,18 +12,6 @@
     margin: 24px 0 0;
     padding: 0;
     width: 100%;
-
-    @media (max-width: 767px) {
-        border-bottom: 1px solid #e8e8e8;
-        border-top: 1px solid #e8e8e8;
-        flex-direction: row;
-        overflow: auto hidden;
-        overscroll-behavior-x: contain;
-        padding: 0 25px 0 16px;
-        scroll-padding-left: 16px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
 }
 
 .sr-only {
@@ -269,10 +257,6 @@
         height: 100%;
         justify-content: flex-start;
         padding: 32px 16px;
-
-        &:nth-of-type(2) {
-            border-left: 1px solid #e8e8e8;
-        }
     }
 }
 

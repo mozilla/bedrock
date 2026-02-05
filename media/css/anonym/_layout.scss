@@ -29,20 +29,3 @@
     font-size: var(--mza-text-body-md);
     line-height: var(--mza-text-body-md-line-height);
 }
-
-
-.mzan-news-featured {
-  display: flex;
-
-  > * {
-    flex: 1;
-  }
-}
-
-.mzan-news-grid {
-  display: flex;
-
-  > * {
-    flex: 1;
-  }
-}

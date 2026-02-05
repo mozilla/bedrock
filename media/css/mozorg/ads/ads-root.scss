@@ -46,6 +46,9 @@
     --mza-text-button-lg-line-height: 1;
     --mza-text-button-md-line-height: 1.2;
     --mza-text-button-sm-line-height: 1.2;
+
+    // horizontal page padding
+    --mzanon-h-pad: 20px;
 }
 
 @media #{$mq-md} {

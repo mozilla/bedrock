@@ -31,13 +31,21 @@
         gap: 0;
     }
 
+    &.is-three-wide {
+        @media #{$mq-md} {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+    }
+
     @media #{$mq-md} {
         flex-direction: row;
     }
 }
 
 .mzan-card {
-    padding: 16px;
+    padding: 16px 0;
     flex: 0 0 auto;
     scroll-snap-align: start;
 
@@ -63,6 +71,7 @@
 
     @media #{$mq-md} {
         flex-basis: calc(25% - 32px);
+        padding-inline: 16px;
     }
 }
 
@@ -155,7 +164,11 @@
     background: transparent;
     border: 0;
     border-radius: 0;
-    padding: 16px 0 16px 16px;
+    padding: 8px 0;
+
+    @media #{$mq-md} {
+        padding: 16px 0 16px 16px;
+    }
 }
 
 .mzan-card-logo-wrap {
