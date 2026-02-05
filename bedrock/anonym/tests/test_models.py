@@ -396,6 +396,95 @@ def test_anonym_news_item_page_serve(
     assert "News Item Serve Test" in page_content
 
 
+def test_anonym_news_page_get_context_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that AnonymNewsPage.get_context selects the most recent featured item."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-context-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    # Create three news items — only the middle one is featured
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a")
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b", is_featured=True)
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    item_c = AnonymNewsItemPage(title="Item C", slug="item-c")
+    news_page.add_child(instance=item_c)
+    item_c.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    assert context["featured_item"].pk == item_b.pk
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_c.pk}
+
+
+def test_anonym_news_page_get_context_no_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that get_context returns no featured item when none is marked."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-no-featured-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a-nf")
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b-nf")
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    assert context["featured_item"] is None
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_b.pk}
+
+
+def test_anonym_news_page_get_context_multiple_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that only the most recent featured item is selected when multiple are marked."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-multi-featured-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    # Create three featured items — the most recently published should win
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a-mf", is_featured=True)
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b-mf", is_featured=True)
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    item_c = AnonymNewsItemPage(title="Item C", slug="item-c-mf", is_featured=True)
+    news_page.add_child(instance=item_c)
+    item_c.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    # Most recently published featured item is selected
+    assert context["featured_item"].pk == item_c.pk
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_b.pk}
+
+
 # ============================================================================
 # AnonymCaseStudyPage Tests
 # ============================================================================

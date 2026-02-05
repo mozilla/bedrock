@@ -32,25 +32,19 @@
         <h1 class="mzan-heading">News</h1>
       </hgroup>
 
-    {% set news_items = page.get_children().live().order_by('-first_published_at') %}
-
-    {% if news_items %}
-      {% set first_item = news_items.first().specific %}
-      {% set has_featured = first_item and first_item.image %}
-
-      {# Featured Item (if first item has an image) #}
-      {% if has_featured %}
-        {% set item_url = first_item.link if first_item.link else first_item.url %}
+      {# Featured Item (most recent news item with is_featured checked) #}
+      {% if featured_item %}
+        {% set item_url = featured_item.link if featured_item.link else featured_item.url %}
         <article class="mzan-news-featured add-full-width-borders">
           <div class="mzan-news-featured-content">
             <div class="mzan-news-source">
-                {% if first_item.logo %}
+                {% if featured_item.logo %}
                   <span class="mzan-news-logo">
-                    <img class="mzan-card-logo" src="{{ first_item.logo.file.url }}" alt="{{ first_item.logo.title }}" loading="lazy" />
+                    <img class="mzan-card-logo" src="{{ featured_item.logo.file.url }}" alt="{{ featured_item.logo.title }}" loading="lazy" />
                   </span>
                 {% endif %}
                   <a href="{{ item_url }}" class="mzan-news-external-linksss" aria-label="External link">
-                    {% if first_item.link %}
+                    {% if featured_item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -61,30 +55,30 @@
 
               </div>
             <h2 class="mzan-heading">
-              {{ first_item.title }}
+              {{ featured_item.title }}
             </h2>
             <div class="mzan-news-meta">
-              {% if first_item.category %}
-                <span class="mzan-news-category">{{ first_item.category }}</span>
+              {% if featured_item.category %}
+                <span class="mzan-news-category">{{ featured_item.category }}</span>
               {% endif %}
               <span class="mzan-news-date">
-                {{ first_item.first_published_at|date("M d") }}
+                {{ featured_item.first_published_at|date("M d") }}
               </span>
             </div>
           </div>
+          {% if featured_item.image %}
           <div class="mzan-news-featured-image">
-            <img src="{{ first_item.image.file.url }}" alt="{{ first_item.image.title }}">
+            <img src="{{ featured_item.image.file.url }}" alt="{{ featured_item.image.title }}">
           </div>
+          {% endif %}
         </article>
       {% endif %}
 
       {# News Grid #}
-      {% set grid_items = news_items[1:] if has_featured else news_items %}
-      {% if grid_items %}
+      {% if nonfeatured_items %}
         <div class="mzan-cards dividers add-full-width-borders">
           <div class="mzan-card-list is-three-wide will-wrap">
-          {% for page_item in grid_items %}
-            {% set item = page_item.specific %}
+          {% for item in nonfeatured_items %}
             {% set item_url = item.link if item.link else item.url %}
             <article class="mzan-card news-card">
               <div class="mzan-news-source">
@@ -124,7 +118,6 @@
         </div>
         </div>
       {% endif %}
-    {% endif %}
 
     {# View All Posts Button - can be enabled later if needed #}
     {# <div class="mzan-news-view-all">

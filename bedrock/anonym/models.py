@@ -97,6 +97,10 @@ class AnonymNewsItemPage(AbstractStatCardPage):
     parent_page_types = ["AnonymNewsPage"]
     subpage_types = []
 
+    is_featured = models.BooleanField(
+        default=False,
+        help_text="Feature this news item at the top of the news page",
+    )
     category = models.CharField(
         max_length=100,
         blank=True,
@@ -126,6 +130,9 @@ class AnonymNewsItemPage(AbstractStatCardPage):
 
     content_panels = (
         AbstractBedrockCMSPage.content_panels
+        + [
+            FieldPanel("is_featured"),
+        ]
         + AbstractStatCardPage.stat_card_panels
         + [
             FieldPanel("first_published_at"),
@@ -156,6 +163,18 @@ class AnonymNewsPage(AnonymStaticPage):
     max_count = 1
     subpage_types = ["AnonymNewsItemPage"]
     template = "anonym/anonym_news.html"
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        news_items = AnonymNewsItemPage.objects.child_of(self).live().order_by("-first_published_at")
+        featured_item = news_items.filter(is_featured=True).first()
+        if featured_item:
+            grid_items = news_items.exclude(pk=featured_item.pk)
+        else:
+            grid_items = news_items
+        context["featured_item"] = featured_item
+        context["nonfeatured_items"] = grid_items
+        return context
 
     class Meta:
         verbose_name = "Anonym News Page"
