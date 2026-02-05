@@ -12,9 +12,9 @@ apscheduler==3.11.2 \
     --hash=sha256:2a9966b052ec805f020c8c4c3ae6e6a06e24b1bf19f2e11d91d8cca0473eef41 \
     --hash=sha256:ce005177f741409db4e4dd40a7431b76feb856b9dd69d57e0da49d6715bfd26d
     # via -r requirements/prod.in
-asgiref==3.11.0 \
-    --hash=sha256:13acff32519542a1736223fb79a715acdebe24286d98e8b164a73085f40da2c4 \
-    --hash=sha256:1db9021efadb0d9512ce8ffaf72fcef601c7b73a8807a1bb2ef143dc6b14846d
+asgiref==3.11.1 \
+    --hash=sha256:5f184dc43b7e763efe848065441eac62229c9f7b0475f41f80e207a114eda4ce \
+    --hash=sha256:e8667a091e69529631969fd45dc268fa79b99c92c5fcdda727757e52146ec133
     # via
     #   django
     #   django-cors-headers
@@ -25,9 +25,9 @@ attrs==25.4.0 \
     #   fluent-runtime
     #   jsonschema
     #   referencing
-babel==2.17.0 \
-    --hash=sha256:0c54cffb19f690cdcc52a3b50bcbf71e07a808d1c80d549f2459b9d2cf0afb9d \
-    --hash=sha256:4d0b53093fdfb4b21c92b5213dba5a1b23885afa8383709427046b21c366e5f2
+babel==2.18.0 \
+    --hash=sha256:b80b99a14bd085fcacfa15c9165f651fbb3406e66cc603abf11c5750937c992d \
+    --hash=sha256:e2b422b277c2b9a9630c1d7903c2a00d0830c409c59ac8cae9081c92f1aeba35
     # via fluent-runtime
 babis==0.2.4 \
     --hash=sha256:a901e8c27a47dfe22077f60c3f2daf324909a9f3f9838ecfa4100af346703fff \
@@ -41,13 +41,13 @@ beautifulsoup4==4.14.3 \
     --hash=sha256:0918bfe44902e6ad8d57732ba310582e98da931428d231a5ecb9e7c703a735bb \
     --hash=sha256:6292b1c5186d356bba669ef9f7f051757099565ad9ada5dd630bd9de5fa7fb86
     # via wagtail
-boto3==1.42.21 \
-    --hash=sha256:1885f252d715a5810bb4e0c5bbebfa8e9018b025febf5be3d58540626e7b43d2 \
-    --hash=sha256:9b92943d253bc837323079fe88460e741cb2eb80abaebcb558b2446bdb4049d6
+boto3==1.42.40 \
+    --hash=sha256:91d776b8b68006c1aca204d384be191883c2a36443f4a90561165986dae17b74 \
+    --hash=sha256:e9e08059ae1bd47de411d361e9bfaaa6f35c8f996d68025deefff2b4dda79318
     # via -r requirements/prod.in
-botocore==1.42.39 \
-    --hash=sha256:0f00355050821e91a5fe6d932f7bf220f337249b752899e3e4cf6ed54326249e \
-    --hash=sha256:9e0d0fed9226449cc26fcf2bbffc0392ac698dd8378e8395ce54f3ec13f81d58
+botocore==1.42.40 \
+    --hash=sha256:6cfa07cf35ad477daef4920324f6d81b8d3a10a35baeafaa5fca22fb3ad225e2 \
+    --hash=sha256:b115cdfece8162cb30f387fdff2ee4693713744c97ebb4b89742e53675dc521c
     # via
     #   boto3
     #   s3transfer
@@ -356,13 +356,13 @@ diskcache==5.6.3 \
     --hash=sha256:2c3a3fa2743d8535d832ec61c2054a1641f41775aa7c556758a109941e33e4fc \
     --hash=sha256:5e31b2d5fbad117cc363ebaf6b689474db18a1f6438bc82358b024abd4c2ca19
     # via glean-parser
-dj-database-url==3.0.1 \
-    --hash=sha256:43950018e1eeea486bf11136384aec0fe55b29fe6fd8a44553231b85661d9383 \
-    --hash=sha256:8994961efb888fc6bf8c41550870c91f6f7691ca751888ebaa71442b7f84eff8
+dj-database-url==3.1.0 \
+    --hash=sha256:155a56fbbecbaaf1348ccd73bf29138b4c9988363ba08261a0f0145e392e638c \
+    --hash=sha256:d80218426b83f9302c8d27d4fccf52de5cf0cab179f0645fb2839f37605d1353
     # via -r requirements/prod.in
-django==5.2.9 \
-    --hash=sha256:16b5ccfc5e8c27e6c0561af551d2ea32852d7352c67d452ae3e76b4f6b2ca495 \
-    --hash=sha256:3a4ea88a70370557ab1930b332fd2887a9f48654261cdffda663fef5976bb00a
+django==5.2.11 \
+    --hash=sha256:7f2d292ad8b9ee35e405d965fbbad293758b858c34bbf7f3df551aeeac6f02d3 \
+    --hash=sha256:e7130df33ada9ab5e5e929bc19346a20fe383f5454acb2cc004508f242ee92c0
     # via
     #   -r requirements/prod.in
     #   dj-database-url
@@ -392,10 +392,7 @@ django==5.2.9 \
     #   wagtail
     #   wagtail-link-block
     #   wagtail-localize
-    #   wagtail-localize-dashboard
-    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
-    #   wagtail-thumbnail-choice-block
 django-cors-headers==4.9.0 \
     --hash=sha256:15c7f20727f90044dcee2216a9fd7303741a864865f0c3657e28b7056f61b449 \
     --hash=sha256:fe5d7cb59fdc2c8c646ce84b727ac2bca8912a247e6e68e1fb507372178e59e8
@@ -546,9 +543,9 @@ google-cloud-core==2.5.0 \
     --hash=sha256:67d977b41ae6c7211ee830c7912e41003ea8194bff15ae7d72fd6f51e57acabc \
     --hash=sha256:7c1b7ef5c92311717bd05301aa1a91ffbc565673d3b0b4163a52d8413a186963
     # via google-cloud-storage
-google-cloud-storage==3.8.0 \
-    --hash=sha256:78cfeae7cac2ca9441d0d0271c2eb4ebfa21aa4c6944dd0ccac0389e81d955a7 \
-    --hash=sha256:cc67952dce84ebc9d44970e24647a58260630b7b64d72360cedaf422d6727f28
+google-cloud-storage==3.9.0 \
+    --hash=sha256:2dce75a9e8b3387078cbbdad44757d410ecdb916101f8ba308abf202b6968066 \
+    --hash=sha256:f2d8ca7db2f652be757e92573b2196e10fbc09649b5c016f8b422ad593c641cc
     # via django-storages
 google-crc32c==1.8.0 \
     --hash=sha256:014a7e68d623e9a4222d663931febc3033c5c7c9730785727de2a81f87d5bab8 \
@@ -792,9 +789,9 @@ jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
     # via jsonschema
-justhtml==1.4.0 \
-    --hash=sha256:2e490796b026d8a9f4b811690d29fb46de2d6b8481d1ff66aa1c27d90da3bff4 \
-    --hash=sha256:cc5f0508675ed7740e6147aaf3729433c482bd9a61eade731a095eded715e905
+justhtml==1.5.0 \
+    --hash=sha256:3bdab5af41845de7c315814e90d729a5632b9c289934795fe32ecc61d4181067 \
+    --hash=sha256:62efb0c641f15371ca67ac677515de65a0ef1042cdb8b5b0848d82eb69960729
     # via -r requirements/prod.in
 laces==0.1.2 \
     --hash=sha256:3218e09c1889ae5cf3fc7a82f5bb63ec0c7879889b6a9760bfc42323c694b84d \
@@ -1215,9 +1212,9 @@ polib==1.2.0 \
     --hash=sha256:1c77ee1b81feb31df9bca258cbc58db1bbb32d10214b173882452c73af06d62d \
     --hash=sha256:f3ef94aefed6e183e342a8a269ae1fc4742ba193186ad76f175938621dbfc26b
     # via wagtail-localize
-proto-plus==1.27.0 \
-    --hash=sha256:1baa7f81cf0f8acb8bc1f6d085008ba4171eaf669629d1b6d1673b21ed1c0a82 \
-    --hash=sha256:873af56dd0d7e91836aee871e5799e1c6f1bda86ac9a983e0bb9f0c266a568c4
+proto-plus==1.27.1 \
+    --hash=sha256:912a7460446625b792f6448bade9e55cd4e41e6ac10e27009ef71a7f317fa147 \
+    --hash=sha256:e4643061f3a4d0de092d62aa4ad09fa4756b2cbb89d4627f3985018216f9fefc
     # via google-api-core
 protobuf==6.33.5 \
     --hash=sha256:3093804752167bcab3998bec9f1048baae6e29505adaf1afd14a37bddede533c \
@@ -1727,9 +1724,9 @@ s3transfer==0.16.0 \
 sentry-processor==0.0.1 \
     --hash=sha256:fd7a30fb57aaf05c01cd04cf7d949c628376b2b55d7a0aaa222efe58a8f122bc
     # via -r requirements/prod.in
-sentry-sdk==2.48.0 \
-    --hash=sha256:5213190977ff7fdff8a58b722fb807f8d5524a80488626ebeda1b5676c0c1473 \
-    --hash=sha256:6b12ac256769d41825d9b7518444e57fa35b5642df4c7c5e322af4d2c8721172
+sentry-sdk==2.51.0 \
+    --hash=sha256:b89d64577075fd8c13088bc3609a2ce77a154e5beb8cba7cc16560b0539df4f7 \
+    --hash=sha256:e21016d318a097c2b617bb980afd9fc737e1efc55f9b4f0cdc819982c9717d5f
     # via -r requirements/prod.in
 six==1.17.0 \
     --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
@@ -1780,45 +1777,28 @@ urllib3==2.6.3 \
     #   pygithub
     #   requests
     #   sentry-sdk
-wagtail==7.2.1 \
-    --hash=sha256:388bb42c4818c081a4ddf36e6f4529bfbc54ed262a91b65b0e5f951476f2cf74 \
-    --hash=sha256:b29f9fc226fadf744cf6fd5a24ee1c2b7a00ade5f801c72069af8b453d6a1241
+wagtail==7.2.2 \
+    --hash=sha256:2e62316717bd19c57de5e6cb7f800c8acdb51862b3067b9e788c0837bda9c9f0 \
+    --hash=sha256:bf6adaa3acd90d9ee7734756dd7031b0901eedb80a4aa4e5188ab1e481ce30be
     # via
     #   -r requirements/prod.in
     #   wagtail-link-block
     #   wagtail-localize
-    #   wagtail-localize-dashboard
-    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
-    #   wagtail-thumbnail-choice-block
     #   wagtaildraftsharing
 wagtail-link-block==1.1.7 \
     --hash=sha256:5b7346bd60b65b00d7bafa48ab3b54b09c97abd085c0afd8f691be3219ff7a1c \
     --hash=sha256:e2f0c9dedd8e1116fc347e8d5a28164376d121fa95b9c87a85ca408fc426846e
     # via -r requirements/prod.in
-wagtail-localize==1.12.2 \
-    --hash=sha256:42d4a3b6eafac30c87740f8d914da3f9587ec57f934872bde93a42edce449e8e \
-    --hash=sha256:a2006793571ae35d3118f091f25c5072eb501a30911b17d98fad028162b63902
+wagtail-localize==1.13 \
+    --hash=sha256:48296cb90eb3317bea62ecd5f23cc57088c9c9d39aca3b2261e4f19fa15de2cf \
+    --hash=sha256:48ecfcd6d002009697b84d77ebcb042451a68da916a1f5ca0e161b472c2b74c8
     # via
     #   -r requirements/prod.in
-    #   wagtail-localize-dashboard
-    #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
-wagtail-localize-dashboard==0.1.2 \
-    --hash=sha256:071ecdc1d3bbec2155a28a843238eb2b28aaf4589cfeee5c20042d284c680264 \
-    --hash=sha256:56e7577eb883e3949b5e37ccad959d7356c27fb6449ea460b0da7f926929bcd0
-    # via -r requirements/prod.in
-wagtail-localize-intentional-blanks==0.2.4 \
-    --hash=sha256:185b6010b08dce9db7d22839fb6701bb3339310fbdfd31c8c6a8c0b4ed8d38d3 \
-    --hash=sha256:8557a1c4c565ffa950aee59c907981a92cb30c7c072f9866dd211ec87253479a
-    # via -r requirements/prod.in
-wagtail-localize-smartling==0.10.3 \
-    --hash=sha256:5f3d7b7fa97c075023f711786cccd761d340488f29ac8bcbb168db1b6a5a4341 \
-    --hash=sha256:8fad0510319918cc57071d4ef6a07f8ab5a7fa16040b399e6bc084fec1f232ae
-    # via -r requirements/prod.in
-wagtail-thumbnail-choice-block==0.1.4 \
-    --hash=sha256:95899544c4aeae38ca8beea5b9ce74db45fcde69e50156aeb47edd0ec3a69ad7 \
-    --hash=sha256:f285cd6db5ecbe1833d0ed0dd3bb77cd6f2dfe0e2e462a75b1dbe82a24777594
+wagtail-localize-smartling==0.11.0 \
+    --hash=sha256:2650f9467f1b9bc0879e9f9f9e13eb12074b26bf55f84a89e59c4613e454ecbe \
+    --hash=sha256:a34f6927d128b1e18d1bb937d2cb5c22683488be7a7299364afb62d849e41fd8
     # via -r requirements/prod.in
 wagtaildraftsharing==0.3.0 \
     --hash=sha256:2e77b46df0b164c089d25ff146e25fa3601e52de7ccaa9226925e6e6357fdeab \

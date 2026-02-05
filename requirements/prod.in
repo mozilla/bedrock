@@ -1,14 +1,13 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-justhtml>=0.14.0
-boto3==1.42.21
+boto3==1.42.40
 chardet==5.2.0
 commonware==0.6.0
 contextlib2==21.6.0
 defusedxml==0.7.1
 dirsync==2.2.6
-dj-database-url==3.0.1
+dj-database-url==3.1.0
 django-cors-headers==4.9.0
 django-crum==0.7.9
 django-csp==4.0
@@ -23,7 +22,7 @@ django-rq-email-backend==2.0.0
 django-storages[google]==1.14.4
 django-waffle==4.2.0
 django-watchman==1.3.0
-Django==5.2.9
+Django==5.2.11
 docutils==0.22.4
 envcat==0.1.1
 everett==3.5.0
@@ -35,6 +34,7 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.10.0
+justhtml>=1.5.0
 lxml==5.4.0  # Needed for BeautifulSoup.
 Markdown==3.8
 markus[datadog]==5.0.0
@@ -51,16 +51,16 @@ querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures 
 requests==2.32.5
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
-sentry-sdk==2.48.0
+sentry-sdk==2.51.0
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
-wagtail-localize-smartling==0.10.3
-wagtail-localize==1.12.2
+wagtail-localize-smartling==0.11.0
+wagtail-localize==1.13
 wagtail-link-block==1.1.7
 wagtail-thumbnail-choice-block==0.1.4
 Wand==0.6.13  # For animated GIF support
-Wagtail==7.2.1
+Wagtail==7.2.2
 whitenoise==6.11.0
 wagtail-localize-dashboard==0.1.2
 wagtail-localize-intentional-blanks==0.2.4
