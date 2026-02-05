@@ -413,14 +413,14 @@ class StatCardListBlock(blocks.StructBlock):
 
 class LogoListBlock(blocks.StructBlock):
     """
-    Display a list of news items with their statistics.
+    Display a list of logos linking to their pages.
 
     This block allows content editors to select existing AnonymNewsItemPage
-    instances to display their title, logo, and statistics.
+    or AnonymCaseStudyItemPage instances to display their logos as links.
     """
 
-    news_items = blocks.ListBlock(
-        PageChooserBlock("anonym.AnonymNewsItemPage"),
+    pages = blocks.ListBlock(
+        PageChooserBlock(page_type=["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]),
         min_num=1,
         max_num=12,
         default=[],
