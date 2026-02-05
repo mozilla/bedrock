@@ -96,7 +96,7 @@
         column-gap: 0;
         grid-template-columns: minmax(0, 60%) minmax(0, 1fr) minmax(0, 1fr);
         min-height: 234px;
-        padding: 0 max(16px, calc((100% - 1136px) / 2));
+        padding: 0 24px;
 
         // Support for 1-3 stats dynamically
         &:has(.mzan-stat-stat:nth-of-type(2):last-of-type) {
@@ -115,6 +115,19 @@
         }
     }
 
+    .mzan-stat-logo-heading-swap {
+        display: flex;
+        align-items: end;
+        position: relative;
+    }
+
+    .mzan-stat-logo {
+        opacity: 0;
+        max-height: 80px;
+        transition: 0.5s ease-in-out opacity;
+        position: absolute;
+    }
+
     &:hover {
         &::before {
             --green1: rgb(73, 243, 165);
@@ -122,6 +135,15 @@
             border-color: #fff;
         }
 
+        .mzan-stat-logo-heading-swap {
+            .mzan-stat-logo {
+                opacity: 1;
+            }
+
+            .mzan-stat-heading {
+                opacity: 0;
+            }
+        }
 
         @media #{$mq-md} {
             .mzan-stat-intro,
@@ -153,11 +175,17 @@
     }
 }
 
+
+
+
+
+
+
 .mzan-stat-intro {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 25px;
+    gap: 1rem;
     min-width: 0;
 
     @media #{$mq-md} {
@@ -206,6 +234,8 @@
     font-weight: 300;
     line-height: 1.2;
     margin: 0;
+    transition: 0.5s ease-in-out opacity;
+    opacity: 1;
 
     @media (min-width: 768px) {
         font-size: 40px;
@@ -216,25 +246,26 @@
     font-size: 24px;
     line-height: 1.2;
     margin: 0;
+    text-wrap: balance;
 }
 
 
 .mzan-stat-stat {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    justify-content: center;
+    gap: 0;
     min-width: 0;
     transition: border-color 0.4s ease-in-out;
 
+
     @media #{$mq-md} {
         border-left: 1px solid #e8e8e8;
-        justify-content: flex-start;
-        padding: 50px 25px 0 16px;
+        padding: 50px 25px;
     }
 
     @media (max-width: 767px) {
         border-left: 0;
-        gap: 12px;
         height: 100%;
         justify-content: flex-start;
         padding: 32px 16px;

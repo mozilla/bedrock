@@ -8,14 +8,21 @@
 
 {% block page_title %}Mozilla Anonym News{% endblock %}
 {% block page_desc %}Mozilla Anonym News{% endblock %}
-{% block body_class %}mzan{% endblock %}
+{% block body_class %}{{ super() }} anonym{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-anonym') }}
 {% endblock %}
 
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym') }}
+{% endblock %}
+
 {% block site_header %}
-  {% include 'anonym/includes/navigation.html' %}
+
+    {% include 'anonym/includes/navigation.html' %}
+
 {% endblock %}
 
 {% block content %}

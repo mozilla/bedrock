@@ -4,9 +4,10 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="mzan-form-field">
+<div class="mzan-form-field label-will-float">
+  <input type="tel" id="{{ value.settings.internal_identifier }}" name="{{ value.settings.internal_identifier }}"{% if value.required %} required{% endif %} placeholder=" ">
   <label for="{{ value.settings.internal_identifier }}">
     {{ value.label }}{% if value.required %} <span class="mzan-required">*</span>{% endif %}
   </label>
-  <input type="tel" id="{{ value.settings.internal_identifier }}" name="{{ value.settings.internal_identifier }}"{% if value.required %} required{% endif %}>
+
 </div>

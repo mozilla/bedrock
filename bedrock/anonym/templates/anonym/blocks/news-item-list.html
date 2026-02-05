@@ -9,10 +9,14 @@
     {% set news_item = news_item_page.specific %}
     <li class="mzan-stat-item">
       <div class="mzan-stat-intro">
-        {% if news_item.logo %}
-          <img src="{{ news_item.logo.file.url }}" alt="{{ news_item.logo.title }}" width="64" height="64" loading="lazy">
-        {% endif %}
-        <h2 class="mzan-stat-heading">{{ news_item.title }}</h2>
+        <div class="{% if news_item.logo %}mzan-stat-logo-heading-swap{% endif %}">
+          {% if news_item.logo %}
+          <img class="mzan-stat-logo" src="{{ news_item.logo.file.url }}" alt="{{ news_item.logo.title }}" width="64" height="64" loading="lazy">
+          {% endif %}
+          <h2 class="mzan-stat-heading">{{ news_item.title }}</h2>
+        </div>
+
+
 
         <p class="mzan-stat-description">{{ news_item.description | richtext }}</p>
 

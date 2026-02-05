@@ -24,13 +24,13 @@
 
     {% set case_studies=page.get_children().live() %}
     {% if case_studies %}
-      <div class="mzan-cards">
-        <ul class="mzan-card-list">
+      <div class="mzan-cards dividers">
+        <ul class="mzan-card-list mzan-case-study-card-list add-full-width-borders">
           {% for page in page.get_children().live() %}
             {% set case_study=page.specific %}
             {% include 'anonym/includes/case_study_list_item.html' %}
           {% endfor %}
-        </ul
+        </ul>
       </div>
     {% endif %}
 

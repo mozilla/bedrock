@@ -30,14 +30,14 @@
     }
 }
 
-.mzan-hgroup + div:has(> .mzan-people) {
-    margin-top: -24px;
-}
+// .mzan-hgroup + .mzan-people {
+//     margin-top: -24px;
+// }
 
 
-div:has(> .mzan-people) + div > .rich-text-block {
+.mzan-people + .mzan-rich-text {
     max-width: 600px;
-    margin: -24px auto 0;
+    margin: 0 auto;
 }
 
 .mzan-people-list-text {

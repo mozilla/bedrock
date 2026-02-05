@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
 
 #mzan-main {
     counter-reset: mzan-section-index;
@@ -30,36 +31,11 @@
         align-items: start;
         gap: 32px;
     }
-}
 
-
-
-.mzan-section-topglow-theme {
-    position: relative;
-    text-align: center;
-
-    &::before {
-        background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
-        content: "";
-        height: auto;
-        width: 100%;
-        aspect-ratio: 1311/218;
-        pointer-events: none;
-        max-width: 840px;
-        margin: 0 auto;
-        display: block;
-    }
-
-    .mzan-hgroup {
-        margin: 0;
-    }
-
-    .mzan-subheading {
-        color: rgba(0, 0, 0, 0.8);
-        font-size: 16px;
-        line-height: 1.5;
-        margin: 0;
-        max-width: 472px;
+    // reduce gap when there is no subheading.
+    // Found on /anonym/solutions/ and /anonym/about/.
+    &:not(.mzan-section-topglow-theme):not(:has(.mzan-hgroup .mzan-subheading)) {
+        gap: 0;
     }
 
     .mzan-section-link {
@@ -96,6 +72,38 @@
     }
 }
 
+
+
+.mzan-section-topglow-theme {
+    position: relative;
+    text-align: center;
+    gap: 36px;
+
+    &::before {
+        background: url("/media/img/mozorg/anonym/top-glow.png") no-repeat center/contain;
+        content: "";
+        height: auto;
+        width: 100%;
+        aspect-ratio: 1311/218;
+        pointer-events: none;
+        max-width: 840px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .mzan-hgroup {
+        margin: 0;
+    }
+
+    .mzan-subheading {
+        color: rgba(0, 0, 0, 0.8);
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        max-width: 472px;
+    }
+}
+
 .mzan-hgroup {
     align-items: center;
     display: flex;
@@ -103,10 +111,6 @@
     gap: 75px;
     margin: 0 0 24px;
     text-align: center;
-
-    @media #{$mq-md} {
-        margin-bottom: 32px;
-    }
 
     .mzan-superheading,
     .mzan-heading,
@@ -118,10 +122,9 @@
     &:not(:has(.mzan-superheading > a)) {
         gap: 24px;
 
-        .mzan-heading {
+        h1.mzan-heading {
             margin-bottom: 36px;
         }
-
     }
 }
 
@@ -178,6 +181,34 @@
 }
 
 .mzan-section-index-theme {
+    // exclude the first instance of the index theme for the line separators
+    & ~ & {
+        --gradient-line-height: 301px;
+        --section-padding-top: 25px;
+        position: relative;
+        padding-top: calc(var(--gradient-line-height) + var(--section-padding-top));
+
+        @media #{$mq-md} {
+            --section-padding-top: 50px;
+        }
+
+        &::before {
+            width: 6px;
+            height: var(--gradient-line-height);
+            position: absolute;
+            left: 50%;
+            top: calc(var(--section-padding-top) / 2);
+            transform: translateX(-50%);
+            content: '';
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 301"><defs><linearGradient id="a" x1="3" y1="-1038.289" x2="3" y2="-1338.289" gradientTransform="matrix(1 0 0 -1 0 -1038.29)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%23d6ffcd" stop-opacity="0"/><stop offset=".27" stop-color="%2300d230"/></linearGradient></defs><path fill="none" stroke="url(%23a)" d="M3 0v300"/><circle cx="3" cy="298" r="3" fill="%2300d230"/></svg>');
+            background-position: top left;
+            background-repeat: no-repeat;
+            background-size: 6px var(--gradient-line-height);
+        }
+
+    }
+
+
     .mzan-superheading {
         align-items: center;
         display: flex;
@@ -246,4 +277,38 @@
     margin-top: 24px;
     text-decoration: underline;
     margin-inline: auto;
+}
+
+
+.add-full-width-borders.add-full-width-borders {
+    position: relative;
+    overflow: visible;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        height: 1px;
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        background-color: advars.$color-ads-tertiary-gray;
+    }
+
+    &::after {
+        bottom: 0;
+        top: auto;
+    }
+
+    > .mzan-section {
+        border: 1px solid advars.$color-ads-tertiary-gray;
+        border-width: 0 1px;
+        padding: 50px 20px;
+
+        ~ .mzan-section {
+            border-left: 0 none;
+        }
+    }
 }

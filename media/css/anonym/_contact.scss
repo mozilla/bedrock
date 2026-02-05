@@ -1,0 +1,105 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+.mzan-contact-form-wrap .mzan-section {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+// todo: fix this abomination
+.contact-page .mzan-hgroup:not(:has(.mzan-superheading > a)) h1.mzan-heading {
+    margin-bottom: 0;
+}
+
+.mzan-contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+
+    textarea,
+    input[list],
+    input[type="date"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="text"],
+    input[type="time"],
+    input[type="url"],
+    select {
+        border: 1px solid advars.$color-ads-dark-gray;
+        border-radius: 0;
+        width: 100%;
+        margin: 0;
+    }
+
+    .mzan-form-field {
+        position: relative;
+
+        label {
+            top: -20px;
+            left: 0;
+            transform: translateY(0);
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        &.label-will-float {
+            label {
+                position: absolute;
+                left: 12px;
+                top: calc(50% + 4px);
+                transform: translateY(-50%);
+                color: rgba(0, 0, 0, 0.6);
+                font-size: 16px;
+                pointer-events: none;
+                transition: all 0.2s ease;
+            }
+
+            select:has(option[value=""]:checked) {
+                color: transparent;
+            }
+
+            input:focus + label,
+            input:not(:placeholder-shown) + label,
+            textarea:focus + label,
+            textarea:not(:placeholder-shown) + label,
+            select:focus + label,
+            select:has(option:not([value=""]):checked) + label {
+                top: -20px;
+                left: 0;
+                transform: translateY(0);
+                font-size: 14px;
+                color: rgba(0, 0, 0, 0.8);
+            }
+
+            input,
+            textarea {
+                padding: 12px;
+
+                &::placeholder {
+                    opacity: 0;
+                }
+
+                &:focus::placeholder {
+                    opacity: 0;
+                }
+            }
+
+            textarea + label {
+                top: 20px;
+                transform: translateY(0);
+            }
+        }
+    }
+
+    .mzan-checkbox-group label {
+        font-size: 16px;
+        font-weight: normal;
+    }
+}

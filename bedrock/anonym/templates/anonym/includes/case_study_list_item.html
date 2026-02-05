@@ -4,14 +4,18 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<li class="mzan-card">
-  <a href="{{ case_study.url }}" class="mzan-card-link-wrapper">
+<li class="mzan-card mzan-case-study-card">
     {% if case_study.logo %}
-      <img src="{{ case_study.logo.file.url }}" alt="{{ case_study.logo.title }}" loading="lazy">
+    <div class="mzan-card-logo-wrap">
+      <img class="mzan-card-logo" src="{{ case_study.logo.file.url }}" alt="{{ case_study.logo.title }}" loading="lazy">
+    </div>
     {% endif %}
-    <h2 class="mzan-card-heading">{{ case_study.client }}</h2>
+    <h2 class="mzan-card-heading">
+        {{ case_study.client }}
+    </h2>
     {% if case_study.description %}
       <p>{{ case_study.description }}</p>
     {% endif %}
-  </a>
+
+    <a href="{{ case_study.url }}" class="mzp-c-button mzp-t-secondary mzp-t-md">Case Study</a>
 </li>
