@@ -128,6 +128,7 @@ class AnonymNewsItemPage(AbstractStatCardPage):
         AbstractBedrockCMSPage.content_panels
         + AbstractStatCardPage.stat_card_panels
         + [
+            FieldPanel("first_published_at"),
             FieldPanel("category"),
             FieldPanel("image"),
             FieldPanel("description"),
