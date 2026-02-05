@@ -27,7 +27,18 @@
 
 {% block content %}
   <main id="mzan-main">
-    <h1>News</h1>
+
+
+    <section class="mzan-section">
+      <hgroup class="mzan-hgroup">
+        <h1 class="mzan-heading">News</h1>
+      </hgroup>
+
+
+
+
+
+
 
     {% set news_items = page.get_children().live().order_by('-first_published_at') %}
 
@@ -76,16 +87,17 @@
       {# News Grid #}
       {% set grid_items = news_items[1:] if has_featured else news_items %}
       {% if grid_items %}
-        <div class="mzan-news-grid">
+        <div class="mzan-cards dividers add-full-width-borders">
+          <div class="mzan-card-list mzan-case-study-card-list">
           {% for page_item in grid_items %}
             {% set item = page_item.specific %}
             {% set item_url = item.link if item.link else item.url %}
-            <article class="mzan-news-card">
+            <article class="mzan-card mzan-case-study-card">
               <div class="mzan-news-source">
                 {% if item.logo %}
-                  <span class="mzan-news-logo">
-                    <img src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" width="40" height="40">
-                  </span>
+                  <div class="mzan-card-logo-wrap">
+                    <img class="mzan-card-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" loading="lazy" />
+                  </div>
                 {% endif %}
                 {% if item.link %}
                   <a href="{{ item.link }}" class="mzan-news-external-link" aria-label="External link">
@@ -95,7 +107,7 @@
                   </a>
                 {% endif %}
               </div>
-              <h3>
+              <h3 class="mzan-card-heading">
                 <a href="{{ item_url }}">{{ item.title }}</a>
               </h3>
               {% if item.description %}
@@ -105,10 +117,11 @@
                 {% if item.category %}
                   <span class="mzan-news-category">{{ item.category }}</span>
                 {% endif %}
-                <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
+                <!-- <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span> -->
               </div>
             </article>
           {% endfor %}
+        </div>
         </div>
       {% endif %}
     {% endif %}
@@ -117,5 +130,7 @@
     {# <div class="mzan-news-view-all">
       <a href="#" class="mzan-button mzan-button-outline">View all posts</a>
     </div> #}
+
+  </section>
   </main>
 {% endblock %}

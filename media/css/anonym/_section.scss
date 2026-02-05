@@ -32,12 +32,6 @@
         gap: 32px;
     }
 
-    // reduce gap when there is no subheading.
-    // Found on /anonym/solutions/ and /anonym/about/.
-    &:not(.mzan-section-topglow-theme):not(:has(.mzan-hgroup .mzan-subheading)) {
-        gap: 0;
-    }
-
     .mzan-section-link {
         align-items: center;
         border-bottom: 1px solid #161616;
@@ -108,7 +102,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 75px;
+    gap: 24px;
     margin: 0 0 24px;
     text-align: center;
 
@@ -117,15 +111,20 @@
     .mzan-subheading {
         margin: 0;
     }
+}
 
-    // display superheading slightly differently if it doesn't have a link.
-    &:not(:has(.mzan-superheading > a)) {
-        gap: 24px;
+// give more space to first section on home page
+.anonym-home .mzan-section:first-of-type .mzan-hgroup {
+    gap: 75px;
 
-        h1.mzan-heading {
-            margin-bottom: 36px;
-        }
+    .mzan-heading {
+        margin-bottom: 0;
     }
+}
+
+// remove gap between sections on secondary sections on subpages
+.anonym-subpage #mzan-main > .mzan-section:not(:first-of-type) {
+    gap: 0;
 }
 
 .mzan-superheading {
@@ -141,8 +140,6 @@
         font-weight: normal;
         text-transform: none;
     }
-
-
 
     a::after {
         content: '';
@@ -207,7 +204,6 @@
         }
 
     }
-
 
     .mzan-superheading {
         align-items: center;

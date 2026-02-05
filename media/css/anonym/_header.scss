@@ -121,7 +121,7 @@
         color: #fafafa;
         display: inline-flex;
         font-weight: 600;
-        height: 28px;
+        height: 20px;
         padding: 5px 8px;
         text-decoration: none;
 
@@ -131,6 +131,7 @@
 
         @media #{$mq-md} {
             padding: 5px 10px;
+            height: 28px;
         }
     }
 
@@ -151,6 +152,7 @@
         overflow: hidden;
         text-indent: -9999px;
         white-space: nowrap;
+        margin: 0;
 
         &::before,
         &::after {
@@ -202,7 +204,7 @@
                 display: none;
             }
 
-            .m24-c-menu-category-list li:nth-last-child(-n + 2) {
+            .m24-c-menu-category-list li:nth-last-child(-n + 1) {
                 display: list-item;
             }
         }
@@ -284,25 +286,19 @@
                 width: 100%;
             }
 
-            .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:nth-last-child(2) {
-                grid-row: 1;
-                grid-column: 2;
-                justify-self: end;
-            }
-
             .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:nth-last-child(1) {
                 grid-row: 1;
                 grid-column: 3;
                 justify-self: end;
             }
 
-            .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:not(:nth-last-child(-n + 2)) {
+            .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:not(:nth-last-child(-n + 1)) {
                 grid-column: 1 / -1;
                 justify-self: center;
                 width: min(360px, 100%);
             }
 
-            .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:not(:nth-last-child(-n + 2)) a {
+            .m24-navigation-refresh:has(.m24-c-navigation-items.mzp-is-open) .m24-c-menu-category-list li:not(:nth-last-child(-n + 1)) a {
                 align-items: center;
                 display: flex;
                 justify-content: left;

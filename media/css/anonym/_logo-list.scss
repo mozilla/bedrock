@@ -12,7 +12,7 @@
     gap: 32px;
     list-style: none;
     margin: 0;
-    padding: 36px 0;
+    padding: 0;
 }
 
 .mzan-logo-list-logo {
@@ -24,10 +24,6 @@
 }
 
 @media #{$mq-md} {
-    .mzan-logo-list {
-        padding-block: 75px;
-    }
-
     .mzan-logo-list-logo {
         max-width: 120px;
         max-height: 80px;
