@@ -436,7 +436,7 @@ def test_anonym_case_study_item_page_creation(minimal_site: Site) -> None:  # no
     page = AnonymCaseStudyItemPage(
         title="Case Study Item Test",
         slug="case-study-item-test",
-        client="Test Client",
+        company_name="Test Client",
         description="A test case study",
         logo=image,
     )
@@ -445,7 +445,7 @@ def test_anonym_case_study_item_page_creation(minimal_site: Site) -> None:  # no
 
     assert page.id is not None
     assert page.title == "Case Study Item Test"
-    assert page.client == "Test Client"
+    assert page.company_name == "Test Client"
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
@@ -470,7 +470,7 @@ def test_anonym_case_study_item_page_serve(
     page = AnonymCaseStudyItemPage(
         title="Case Study Item Serve Test",
         slug="case-study-item-serve-test",
-        client="Acme Corp",
+        company_name="Acme Corp",
         description="Testing case study item serving",
         logo=image,
         content=section_variants[:1],
