@@ -388,7 +388,7 @@ class LinkWithTextBlock(blocks.StructBlock):
         label_format = "Link - {label}"
 
 
-class NewsItemListBlock(blocks.StructBlock):
+class StatCardListBlock(blocks.StructBlock):
     """
     Display a list of news items with their statistics.
 
@@ -405,8 +405,8 @@ class NewsItemListBlock(blocks.StructBlock):
     )
 
     class Meta:
-        template = "anonym/blocks/news-item-list.html"
-        label = "News Item List"
+        template = "anonym/blocks/stat-card-list.html"
+        label = "Stat Card List"
         icon = "doc-full"
 
 
@@ -620,7 +620,7 @@ class SectionBlock(blocks.StructBlock):
         [
             ("figure_block", FigureBlock()),
             ("cards_list", CardsListBlock()),
-            ("news_item_list_block", NewsItemListBlock()),
+            ("stat_card_list_block", StatCardListBlock()),
             ("case_study_item_list_block", CaseStudyListBlock()),
             ("logo_list_block", LogoListBlock()),
             ("people_list", PeopleListBlock()),

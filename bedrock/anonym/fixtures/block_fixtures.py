@@ -509,25 +509,25 @@ def get_toggleable_items_variants(image_id: int, person_id: int = None) -> list[
     ]
 
 
-def get_news_item_list_variants(news_item_page_ids: list[int]) -> list[dict]:
-    """Return NewsItemListBlock variants for testing.
+def get_stat_card_list_variants(news_item_page_ids: list[int]) -> list[dict]:
+    """Return StatCardListBlock variants for testing.
 
     Args:
         news_item_page_ids: List of AnonymNewsItemPage IDs to reference
 
     Returns:
-        List of news item list block data dictionaries
+        List of stat card list block data dictionaries
     """
     if not news_item_page_ids:
         return []
 
     return [
         {
-            "type": "news_item_list_block",
+            "type": "stat_card_list_block",
             "value": {
                 "news_items": news_item_page_ids[:3],
             },
-            "id": "news-item-list-variant-1",
+            "id": "stat-card-list-variant-1",
         },
     ]
 
