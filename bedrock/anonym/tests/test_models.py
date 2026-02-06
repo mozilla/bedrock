@@ -15,7 +15,6 @@ from bedrock.anonym.fixtures.base_fixtures import (
 )
 from bedrock.anonym.fixtures.block_fixtures import (
     get_call_to_action_variants,
-    get_competitor_comparison_table_variants,
     get_form_field_variants,
     get_navigation_link_variants,
     get_section_block_variants,
@@ -30,7 +29,6 @@ from bedrock.anonym.models import (
     AnonymIndexPage,
     AnonymNewsItemPage,
     AnonymNewsPage,
-    AnonymTopAndBottomPage,
     Person,
 )
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
@@ -162,61 +160,6 @@ def test_anonym_index_page_serve(
     page_text = page_soup.get_text()
     expected_heading_text = get_text_from_html(section_variants[0]["value"]["heading_text"])
     assert expected_heading_text in page_text
-
-
-# ============================================================================
-# AnonymTopAndBottomPage Tests
-# ============================================================================
-
-
-def test_anonym_top_and_bottom_page_creation(minimal_site: Site) -> None:  # noqa: F811
-    """Test that an AnonymTopAndBottomPage can be created."""
-    index_page = get_test_anonym_index_page()
-
-    page = AnonymTopAndBottomPage(
-        title="Top and Bottom Test",
-        slug="top-and-bottom-test",
-    )
-    index_page.add_child(instance=page)
-    page.save_revision().publish()
-
-    assert page.id is not None
-    assert page.title == "Top and Bottom Test"
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_anonym_top_and_bottom_page_serve(
-    minimal_site: Site,  # noqa: F811
-    rf: RequestFactory,
-    serving_method: str,
-) -> None:
-    """Test that AnonymTopAndBottomPage can be served."""
-    index_page = get_test_anonym_index_page()
-    image = get_placeholder_image()
-    person = get_test_person()
-
-    section_variants = get_section_block_variants(image.id, person.id)
-    comparison_variants = get_competitor_comparison_table_variants()
-
-    page = AnonymTopAndBottomPage(
-        title="Top and Bottom Serve Test",
-        slug="top-and-bottom-serve-test",
-        top_content=section_variants[:1],
-        bottom_content=comparison_variants[:1],
-    )
-    index_page.add_child(instance=page)
-    page.save_revision().publish()
-
-    _relative_url = page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-
-    resp = getattr(page, serving_method)(request)
-    page_content = resp.text
-
-    assert "Top and Bottom Serve Test" in page_content
-    # Verify content from comparison table block
-    heading_text = comparison_variants[0]["value"]["heading_text"]
-    assert heading_text in page_content
 
 
 # ============================================================================

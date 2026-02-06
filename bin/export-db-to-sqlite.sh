@@ -167,7 +167,6 @@ python manage.py dumpdata \
     mozorg.HomePage \
     mozorg.AnonymIndexPage \
     mozorg.AnonymArticlePage \
-    mozorg.AnonymTopAndBottomPage \
     mozorg.AnonymContentSubPage \
     mozorg.AnonymStaticPage \
     mozorg.ContactBannerSnippet \

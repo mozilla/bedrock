@@ -15,7 +15,6 @@ from bedrock.anonym.fixtures.base_fixtures import (
 )
 from bedrock.anonym.fixtures.block_fixtures import (
     get_call_to_action_variants,
-    get_competitor_comparison_table_variants,
     get_form_field_variants,
     get_navigation_link_variants,
     get_section_block_variants,
@@ -30,7 +29,6 @@ from bedrock.anonym.models import (
     AnonymIndexPage,
     AnonymNewsItemPage,
     AnonymNewsPage,
-    AnonymTopAndBottomPage,
 )
 
 
@@ -54,35 +52,6 @@ def get_anonym_index_test_page() -> AnonymIndexPage:
     index_page.save_revision().publish()
 
     return index_page
-
-
-def get_anonym_top_and_bottom_test_page() -> AnonymTopAndBottomPage:
-    """Get or create a test AnonymTopAndBottomPage with content.
-
-    Returns:
-        AnonymTopAndBottomPage instance with top and bottom content
-    """
-    placeholder_image = get_placeholder_image()
-    person = get_test_person()
-    index_page = get_test_anonym_index_page()
-
-    test_page = AnonymTopAndBottomPage.objects.filter(slug="test-top-and-bottom-page").first()
-    if not test_page:
-        test_page = AnonymTopAndBottomPage(
-            slug="test-top-and-bottom-page",
-            title="Test Top And Bottom Page",
-        )
-        index_page.add_child(instance=test_page)
-
-    section_variants = get_section_block_variants(placeholder_image.id, person.id)
-    cta_variants = get_call_to_action_variants()
-    comparison_variants = get_competitor_comparison_table_variants()
-
-    test_page.top_content = section_variants[:2] + cta_variants[:1]
-    test_page.bottom_content = section_variants[2:3] + comparison_variants[:1] + cta_variants[1:2]
-    test_page.save_revision().publish()
-
-    return test_page
 
 
 def get_anonym_content_sub_test_page() -> AnonymContentSubPage:
@@ -278,7 +247,6 @@ def create_all_test_pages() -> dict:
 
     # Create pages in order (respecting parent relationships)
     index_page = get_anonym_index_test_page()
-    top_and_bottom_page = get_anonym_top_and_bottom_test_page()
     content_sub_page = get_anonym_content_sub_test_page()
 
     # News pages
@@ -315,7 +283,6 @@ def create_all_test_pages() -> dict:
         "placeholder_image": placeholder_image,
         "person": person,
         "index_page": index_page,
-        "top_and_bottom_page": top_and_bottom_page,
         "content_sub_page": content_sub_page,
         "news_page": news_page,
         "news_item_pages": [news_item_page_1, news_item_page_2],

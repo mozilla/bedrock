@@ -2708,7 +2708,6 @@ _allowed_page_models = [
     "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
     "anonym.AnonymIndexPage",
-    "anonym.AnonymTopAndBottomPage",
     "anonym.AnonymContentSubPage",
     "anonym.AnonymStaticPage",
     "anonym.AnonymCaseStudyItemPage",

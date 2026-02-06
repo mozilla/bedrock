@@ -17,7 +17,6 @@ from bedrock.anonym.fixtures.page_fixtures import (
     get_anonym_index_test_page,
     get_anonym_news_item_test_page,
     get_anonym_news_test_page,
-    get_anonym_top_and_bottom_test_page,
 )
 
 
@@ -43,12 +42,6 @@ def anonym_index_page():
 def anonym_index_page_with_content():
     """Fixture providing a test AnonymIndexPage with full content."""
     return get_anonym_index_test_page()
-
-
-@pytest.fixture
-def anonym_top_and_bottom_page(anonym_index_page):
-    """Fixture providing a test AnonymTopAndBottomPage."""
-    return get_anonym_top_and_bottom_test_page()
 
 
 @pytest.fixture

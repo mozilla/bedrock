@@ -239,7 +239,6 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
     subpage_types = [
-        "AnonymTopAndBottomPage",
         "AnonymContentSubPage",
         "AnonymNewsPage",
         "AnonymContactPage",
@@ -292,45 +291,6 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
         # the Django model was moved to the anonym app. To preserve data, we
         # refer to the original database table here.
         db_table = "mozorg_anonymindexpage"
-
-
-class AnonymTopAndBottomPage(AbstractBedrockCMSPage):
-    parent_page_types = ["AnonymIndexPage"]
-    subpage_types = []
-
-    top_content = StreamField(
-        [
-            ("section", AnonymSectionBlock()),
-            ("call_to_action", AnonymCallToActionBlock()),
-        ],
-        blank=True,
-        null=True,
-        collapsed=True,
-    )
-    bottom_content = StreamField(
-        [
-            ("section", AnonymSectionBlock()),
-            ("competitor_table", AnonymCompetitorComparisonTableBlock()),
-            ("call_to_action", AnonymCallToActionBlock()),
-        ],
-        blank=True,
-        null=True,
-        collapsed=True,
-    )
-
-    content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("top_content"),
-        FieldPanel("bottom_content"),
-    ]
-
-    template = "anonym/anonym_top_and_bottom_page.html"
-
-    class Meta:
-        verbose_name = "Anonym Top And Bottom Page"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymtopandbottompage"
 
 
 class AnonymContentSubPage(AbstractBedrockCMSPage):
