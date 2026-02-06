@@ -178,10 +178,6 @@ class AnonymNewsPage(AnonymStaticPage):
 
     class Meta:
         verbose_name = "Anonym News Page"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymnewspage"
 
 
 class AnonymCaseStudyPage(AnonymStaticPage):
@@ -231,10 +227,6 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Contact Page"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymcontactpage"
 
 
 class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
@@ -287,10 +279,6 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Index Page"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymindexpage"
 
 
 class AnonymContentSubPage(AbstractBedrockCMSPage):
@@ -316,10 +304,6 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "Anonym Content Subpage"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymcontentsubpage"
 
 
 class AnonymCaseStudyItemPage(AbstractStatCardPage):
@@ -362,10 +346,6 @@ class AnonymCaseStudyItemPage(AbstractStatCardPage):
 
     class Meta:
         verbose_name = "Anonym Case Study Item Page"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_anonymarticlepage"
 
 
 @register_snippet
@@ -409,10 +389,6 @@ class Person(TranslatableMixin):
     class Meta(TranslatableMixin.Meta):
         verbose_name = "Person"
         verbose_name_plural = "People"
-        # This database table was originally created in the mozorg app, then
-        # the Django model was moved to the anonym app. To preserve data, we
-        # refer to the original database table here.
-        db_table = "mozorg_person"
 
     def __str__(self):
         return f"{self.name} - {self.position}"
