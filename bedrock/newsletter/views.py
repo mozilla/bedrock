@@ -262,6 +262,9 @@ def newsletter_subscribe(request):
                 errors.append(ftl("newsletter-form-please-enter-a-valid"))
             if "privacy" in form.errors:
                 errors.append(ftl("newsletter-form-you-must-agree-to"))
+            if "office_fax" in form.errors:
+                # Honeypot field was filled
+                errors.append(ftl("newsletter-form-we-are-sorry-but-there"))
             for fieldname in ("newsletters", "lang", "country"):
                 if fieldname in form.errors:
                     errors.extend(form.errors[fieldname])
