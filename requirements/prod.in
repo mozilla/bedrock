@@ -58,6 +58,9 @@ wagtaildraftsharing==0.3.0
 wagtail-localize-smartling==0.11.0
 wagtail-localize==1.13
 wagtail-link-block==1.1.7
+wagtail-thumbnail-choice-block==0.1.4
 Wand==0.6.13  # For animated GIF support
 Wagtail==7.2.2
 whitenoise==6.11.0
+wagtail-localize-dashboard==0.1.2
+wagtail-localize-intentional-blanks==0.2.4

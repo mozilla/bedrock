@@ -1,0 +1,21 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<li class="mzan-card mzan-case-study-card">
+    {% if case_study.logo %}
+    <div class="mzan-card-logo-wrap">
+      <img class="mzan-card-logo" src="{{ case_study.logo.file.url }}" alt="{{ case_study.logo.title }}" loading="lazy">
+    </div>
+    {% endif %}
+    <h2 class="mzan-card-heading">
+        {{ case_study.company_name }}
+    </h2>
+    {% if case_study.description %}
+      <p>{{ case_study.description }}</p>
+    {% endif %}
+
+    <a href="{{ case_study.url }}" class="mzp-c-button mzp-t-secondary mzp-t-md">Case Study</a>
+</li>

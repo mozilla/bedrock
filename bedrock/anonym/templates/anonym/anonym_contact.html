@@ -1,0 +1,62 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+{% block body_class %}{{ super() }} anonym contact-page{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-anonym') }}
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym') }}
+{% endblock %}
+
+
+{% block site_header %}
+  {% with anonym_index_page=page.get_parent() %}
+    {% include 'anonym/includes/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  <main id="mzan-main">
+    <section class="mzan-section">
+      <hgroup class="mzan-hgroup">
+        <h1 class="mzan-heading">{{ page.title }}</h1>
+        {% if page.subheading %}
+          <p class="mzan-subheading">{{ page.subheading }}</p>
+        {% endif %}
+    </hgroup>
+
+    <div class="mzan-contact-form-wrap add-full-width-borders">
+      <div class="mzan-section">
+        <form method="post" action="#" class="mzan-contact-form">
+          {% csrf_token %}
+
+          {% for field in page.form_fields %}
+            {% include_block field %}
+          {% endfor %}
+
+          <div class="mzan-form-submit">
+            <button type="submit" class="mzp-c-button">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </section>
+  </main>
+{% endblock %}

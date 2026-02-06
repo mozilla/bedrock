@@ -29,6 +29,65 @@ BASE_UTM_PARAMETERS = {
 }
 
 
+class SubNavigationMixin:
+    """
+    Mixin for pages with navigation that validates anchor IDs.
+
+    Pages using this mixin should:
+    1. Have a navigation StreamField (defaults to 'sub_navigation', configurable via navigation_field_name)
+    2. Implement get_available_sections() to return a list of all anchor IDs
+    """
+
+    navigation_field_name = "sub_navigation"
+
+    def get_available_sections(self):
+        """
+        Return a list of all anchor IDs available in the page's content.
+        Subclasses should override this method to collect anchor IDs from their specific content fields.
+        """
+        raise NotImplementedError("Subclasses must implement get_available_sections()")
+
+    def clean(self):
+        """
+        Validate that:
+        1. Anchor IDs in content blocks are unique
+        2. Navigation links reference valid sections
+        """
+        super().clean()
+
+        # Get available section anchors
+        available_sections = self.get_available_sections()
+
+        # Check for duplicate anchor IDs
+        if len(available_sections) != len(set(available_sections)):
+            # Find duplicates
+            seen = set()
+            duplicates = set()
+            for anchor_id in available_sections:
+                if anchor_id in seen:
+                    duplicates.add(anchor_id)
+                seen.add(anchor_id)
+
+            raise ValidationError(f"Duplicate anchor ID(s) found: {', '.join(sorted(duplicates))}. Each anchor ID must be unique.")
+
+        # Validate navigation links reference valid sections
+        navigation_field = getattr(self, self.navigation_field_name, None)
+        if navigation_field:
+            available_sections_set = set(available_sections)
+            invalid_anchors = []
+            for nav_item in navigation_field:
+                link = nav_item.value.get("link", {})
+                if link.get("link_to") == "anchor":
+                    anchor = link.get("anchor", "")
+                    if anchor and anchor not in available_sections_set:
+                        invalid_anchors.append(anchor)
+
+            if invalid_anchors:
+                available_text = ", ".join(available_sections) if available_sections else "None"
+                invalid_text = ", ".join(invalid_anchors)
+                raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
+
+
 def process_md_file(file_path):
     try:
         # Parse the Markdown file
@@ -201,8 +260,9 @@ class LeadershipPage(AbstractBedrockCMSPage):
     template = "mozorg/cms/about/leadership.html"
 
 
-class AdvertisingIndexPage(AbstractBedrockCMSPage):
+class AdvertisingIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
     subpage_types = ["AdvertisingTwoColumnSubpage", "ContentSubpage"]
+    navigation_field_name = "sub_navigation"
 
     sub_navigation = StreamField(
         [("link", NavigationLinkBlock())],
@@ -254,20 +314,17 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
 
     template = "mozorg/cms/advertising/advertising_index_page.html"
 
-    def clean(self):
-        """
-        Validate that:
-        1. Anchor IDs in content blocks are unique
-        2. Sub-navigation links reference valid sections
-        """
-        super().clean()
-
-        # Get available section anchors and check for duplicates
+    def get_available_sections(self):
+        """Collect all anchor IDs from hero and sections."""
         available_sections = []
+
+        # Check hero blocks
         for block in self.hero:
             anchor_id = block.value.get("anchor_id")
             if anchor_id:
                 available_sections.append(anchor_id)
+
+        # Check section blocks
         for block in self.sections:
             # SectionBlock has anchor_id nested under settings
             settings = block.value.get("settings", {})
@@ -287,33 +344,7 @@ class AdvertisingIndexPage(AbstractBedrockCMSPage):
                 if section_block_anchor_id:
                     available_sections.append(section_block_anchor_id)
 
-        # Check for duplicate anchor IDs
-        if len(available_sections) != len(set(available_sections)):
-            # Find duplicates
-            seen = set()
-            duplicates = set()
-            for anchor_id in available_sections:
-                if anchor_id in seen:
-                    duplicates.add(anchor_id)
-                seen.add(anchor_id)
-
-            raise ValidationError(f"Duplicate anchor ID(s) found: {', '.join(sorted(duplicates))}. Each anchor ID must be unique.")
-
-        # Validate navigation links reference valid sections
-        if self.sub_navigation:
-            available_sections_set = set(available_sections)
-            invalid_anchors = []
-            for nav_item in self.sub_navigation:
-                link = nav_item.value.get("link", {})
-                if link.get("link_to") == "anchor":
-                    anchor = link.get("anchor", "")
-                    if anchor and anchor not in available_sections_set:
-                        invalid_anchors.append(anchor)
-
-            if invalid_anchors:
-                available_text = ", ".join(available_sections) if available_sections else "None"
-                invalid_text = ", ".join(invalid_anchors)
-                raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
+        return available_sections
 
 
 class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):

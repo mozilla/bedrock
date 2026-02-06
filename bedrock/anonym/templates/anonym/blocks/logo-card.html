@@ -1,0 +1,20 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<li class="mzan-card">
+  <img src="{{ value.logo.file.url }}" alt="{{ value.logo.description }}" loading="lazy">
+  <h2 class="mzan-card-heading">{{ value.heading }}</h2>
+  <p>{{ value.text|remove_p_tag }}</p>
+
+  {% if value.button %}
+    {% for button in value.button %}
+      <a class="mzan-card-link"
+        href="{{ button.link.get_url() }}"
+        {% if button.link.new_window %}target="_blank" rel="external noopener"{% endif %}
+      >{{ button.label }}</a>
+    {% endfor %}
+  {% endif %}
+</li>

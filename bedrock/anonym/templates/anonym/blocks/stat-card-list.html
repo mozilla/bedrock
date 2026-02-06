@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<ul class="mzan-stats-list">
+  {% for page in value.pages %}
+    {% set item = page.specific %}
+    <li class="mzan-stat-item">
+      <div class="mzan-stat-intro">
+        <div class="{% if item.logo %}mzan-stat-logo-heading-swap{% endif %}">
+          {% if item.logo %}
+          <img class="mzan-stat-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" width="64" height="64" loading="lazy">
+          {% endif %}
+          <h2 class="mzan-stat-heading">
+              {{ item.company_name }}
+          </h2>
+        </div>
+        <div>
+        <p class="mzan-stat-description">{{ item.title }}</p>
+        <a class="mzan-stat-link" href="{{ item.link or item.url }}" {% if item.link %}target="_blank" rel="noopener noreferrer"{% endif %}>
+          <span class="sr-only">{{ item.title }}</span>
+        </a>
+        </div>
+      </div>
+      {% for stat_block in item.stats %}
+        <div class="mzan-stat-stat">
+          <div class="mzan-stat-value"><p>{{ stat_block.value.statistic_value }}</p></div>
+          <div class="mzan-stat-label"><p>{{ stat_block.value.statistic_label }}</p></div>
+        </div>
+      {% endfor %}
+    </li>
+  {% endfor %}
+</ul>

@@ -11,12 +11,14 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import NoReverseMatch
 from django.utils.encoding import smart_str
+from django.utils.safestring import mark_safe
 from django.utils.text import slugify
 
 import jinja2
 from bs4 import BeautifulSoup
 from django_jinja import library
 from markupsafe import Markup
+from wagtail.rich_text import RichText
 
 from bedrock.base import waffle
 from bedrock.utils import expand_locale_groups
@@ -206,3 +208,14 @@ def add_bedrock_attributes(html):
             link["target"] = "_blank"
 
     return str(soup)
+
+
+@library.filter
+def remove_p_tag(value: str) -> str:
+    rich_text = RichText(value)
+    html_content = str(rich_text.source)
+    soup = BeautifulSoup(html_content, "html.parser")
+    content = ""
+    if soup and soup.p:
+        content = "<br/>".join("".join(str(c) for c in tag.contents) for tag in soup.find_all("p"))
+    return mark_safe(content)

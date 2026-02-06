@@ -1,0 +1,27 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mzan-toggle-section">
+  <div class="mzan-content-toggle-wrap">
+    <div class="mzan-content-toggle-buttons">
+    {% for block in value.toggle_items %}
+      <button class="mzan-toggle" data-toggle-id="{{ loop.index }}" aria-expanded="false">
+        {% if block.value.icon %}<span class="mzan-icon icon-{{ block.value.icon }}"></span>{% endif %}
+        {{ block.value.toggle_text }}
+      </button>
+    {% endfor %}
+    </div>
+  </div>
+
+  {% for block in value.toggle_items %}
+    <div class="mzan-toggle-content add-full-width-borders" data-content-id="{{ loop.index }}" hidden>
+      {% for content_block in block.value.toggle_content %}
+        {% set block_level = 2 %}
+        {% include_block content_block %}
+      {% endfor %}
+    </div>
+  {% endfor %}
+</section>

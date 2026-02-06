@@ -1,0 +1,28 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mzan-section{% if value.settings.has_index_theme %} mzan-section-index-theme{% endif %}{% if value.settings.has_top_glow_theme %} mzan-section-topglow-theme{% endif %}">
+  <hgroup class="mzan-hgroup">
+    {% if value.superheading_text %}<p class="mzan-superheading">{{ value.superheading_text|richtext|remove_p_tag }}</p>{% endif %}
+    <h{{ block_level }} class="mzan-heading">{{ value.heading_text|richtext|remove_p_tag }}</h{{ block_level }}>
+    {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
+  </hgroup>
+
+  {% if value.section_content %}
+    {% for block in value.section_content %}
+      {% include_block block %}
+    {% endfor %}
+  {% endif %}
+
+  {% if value.action %}
+    {% for cta in value.action %}
+      <a class="mzan-section-link"
+        href="{{ cta.link.get_url() }}"
+        {% if cta.link.new_window %}target="_blank" rel="external noopener"{% endif %}
+      >{{ cta.label }}</a>
+    {% endfor %}
+  {% endif %}
+</section>

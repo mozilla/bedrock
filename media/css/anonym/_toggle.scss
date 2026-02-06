@@ -1,0 +1,82 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+
+
+.mzan-content-toggle-wrap {
+    display: flex;
+    position: sticky;
+    top: 0;
+    background: advars.$color-ads-off-white;
+    z-index: 2;
+
+    @media #{$mq-md} {
+        position: static;
+        top: unset;
+
+    }
+}
+
+.mzan-toggle-section {
+    padding-bottom: 36px;
+
+    @media #{$mq-md} {
+        padding-bottom: 75px;
+    }
+}
+
+.mzan-content-toggle-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid advars.$color-ads-tertiary-gray;
+    padding: 8px;
+    margin: 0 auto 24px;
+}
+
+.mzan-toggle {
+    cursor: pointer;
+    appearance: none;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+    padding: 8px 16px;
+    border: 0 none;
+
+    &.is-selected {
+        background-color: black;
+        color: white;
+    }
+}
+
+.mzan-toggle-content {
+    position: relative;
+    display: grid;
+
+
+    &[hidden] {
+        display: none;
+    }
+
+    .mzan-hgroup {
+        text-align: left;
+        align-items: start;
+    }
+
+    .mzan-cards:not(.dividers) .mzan-card {
+        flex-basis: calc(50% - 8px);
+        padding-inline: 0;
+    }
+
+    .mzan-hero-figure {
+        max-width: 440px;
+        margin: 0 auto;
+    }
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 1fr;
+    }
+}

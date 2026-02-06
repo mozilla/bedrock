@@ -1,0 +1,38 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Mozilla Anonym Case Studies{% endblock %}
+{% block page_desc %}Mozilla Anonym Case Studies{% endblock %}
+{% block body_class %}mzan{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-anonym') }}
+{% endblock %}
+
+{% block site_header %}
+  {% include 'anonym/includes/navigation.html' %}
+{% endblock %}
+
+{% block content %}
+  <main id="mzan-main">
+    <h1>{{ page.title }}</h1>
+
+    {% set case_studies=page.get_children().live() %}
+    {% if case_studies %}
+      <div class="mzan-cards dividers">
+        <ul class="mzan-card-list mzan-case-study-card-list add-full-width-borders">
+          {% for page in page.get_children().live() %}
+            {% set case_study=page.specific %}
+            {% include 'anonym/includes/case_study_list_item.html' %}
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+  </main>
+{% endblock %}

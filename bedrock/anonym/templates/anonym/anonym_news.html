@@ -1,0 +1,129 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Mozilla Anonym News{% endblock %}
+{% block page_desc %}Mozilla Anonym News{% endblock %}
+{% block body_class %}{{ super() }} anonym{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-anonym') }}
+{% endblock %}
+
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym') }}
+{% endblock %}
+
+{% block site_header %}
+
+    {% include 'anonym/includes/navigation.html' %}
+
+{% endblock %}
+
+{% block content %}
+  <main id="mzan-main">
+    <section class="mzan-news-section">
+      <hgroup class="mzan-hgroup">
+        <h1 class="mzan-heading">News</h1>
+      </hgroup>
+
+      {# Featured Item (most recent news item with is_featured checked) #}
+      {% if featured_item %}
+        {% set item_url = featured_item.link if featured_item.link else featured_item.url %}
+        <article class="mzan-news-featured add-full-width-borders">
+          <div class="mzan-news-featured-content">
+            <div class="mzan-news-source">
+                {% if featured_item.logo %}
+                  <span class="mzan-news-logo">
+                    <img class="mzan-card-logo" src="{{ featured_item.logo.file.url }}" alt="{{ featured_item.logo.title }}" loading="lazy" />
+                  </span>
+                {% endif %}
+                  <a href="{{ item_url }}" class="mzan-news-external-linksss" aria-label="External link">
+                    {% if featured_item.link %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {% else %}
+                    <span class="sr-only">Read more</span>
+                    {% endif %}
+                  </a>
+
+              </div>
+            <h2 class="mzan-heading">
+              {{ featured_item.title }}
+            </h2>
+            <div class="mzan-news-meta">
+              {% if featured_item.category %}
+                <span class="mzan-news-category">{{ featured_item.category }}</span>
+              {% endif %}
+              <span class="mzan-news-date">
+                {{ featured_item.first_published_at|date("M d") }}
+              </span>
+            </div>
+          </div>
+          {% if featured_item.image %}
+          <div class="mzan-news-featured-image">
+            <img src="{{ featured_item.image.file.url }}" alt="{{ featured_item.image.title }}">
+          </div>
+          {% endif %}
+        </article>
+      {% endif %}
+
+      {# News Grid #}
+      {% if nonfeatured_items %}
+        <div class="mzan-cards dividers add-full-width-borders">
+          <div class="mzan-card-list is-three-wide will-wrap">
+          {% for item in nonfeatured_items %}
+            {% set item_url = item.link if item.link else item.url %}
+            <article class="mzan-card news-card">
+              <div class="mzan-news-source">
+                {% if item.logo %}
+                  <div class="mzan-card-logo-wrap">
+                    <img class="mzan-card-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" loading="lazy" />
+                  </div>
+                {% endif %}
+                  <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
+                    {% if item.link %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    {% else %}
+                    <span class="sr-only">Read more</span>
+                    {% endif %}
+                  </a>
+
+              </div>
+              <h3 class="mzan-card-heading">
+                {{ item.title }}
+              </h3>
+
+              <div class="mzan-card-light">
+                {% if item.description %}
+                <p>{{ item.description }}</p>
+                {% endif %}
+                <p class="mzan-news-meta">
+                  {% if item.category %}
+                    <span class="mzan-news-category">{{ item.category }}</span>
+                  {% endif %}
+                  <span class="mzan-news-date">{{ item.first_published_at|date("M d") }}</span>
+                </p>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        </div>
+      {% endif %}
+
+    {# View All Posts Button - can be enabled later if needed #}
+    {# <div class="mzan-news-view-all">
+      <a href="#" class="mzan-button mzan-button-outline">View all posts</a>
+    </div> #}
+
+  </section>
+  </main>
+{% endblock %}

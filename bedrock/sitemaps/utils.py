@@ -115,7 +115,11 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = set(render.call_args[0][2]["translations"].keys())
+                context = render.call_args[0][2]
+                if "translations" not in context:
+                    # If translations key is missing, skip this URL
+                    continue
+                locales = set(context["translations"].keys())
 
                 # Firefox Focus has a different URL in German
                 if path == "/privacy/firefox-focus/":
@@ -156,6 +160,8 @@ def get_wagtail_urls():
             or cms_page.is_site_root()
             # not all pages have the is_structural_page attribute, so default those to False
             or getattr(cms_page.specific, "is_structural_page", False) is True
+            # not all pages have the exclude_from_sitemap attribute, so default those to False
+            or getattr(cms_page.specific, "exclude_from_sitemap", False) is True
         ):
             # Don't include these pages in the sitemap
             continue

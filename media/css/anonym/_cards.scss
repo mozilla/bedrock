@@ -1,0 +1,187 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+.mzan-cards {
+    margin: 24px 0 0;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.mzan-card-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    justify-content: safe center;
+    gap: 16px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &.scroll-on-mobile {
+        flex-flow: row nowrap;
+        scroll-snap-type: x mandatory;
+    }
+
+    &.will-wrap {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    &.is-three-wide {
+        @media #{$mq-md} {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+    }
+}
+
+.mzan-card {
+    padding: 16px 0;
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+
+    p {
+        margin: 8px 0 0;
+        font-size: var(--mza-text-body-sm)
+    }
+
+    // Case Study Card Link Wrapper
+    &.mzan-case-study-card {
+        position: relative;
+
+        .mzp-c-button {
+            margin-top: 24px;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        flex-basis: calc(25% - 32px);
+        padding-inline: 16px;
+    }
+}
+
+.mzan-card-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 12px 0 0;
+}
+
+.mzan-card .mzan-card-subheading {
+    margin-top: 0;
+    color: advars.$color-ads-light-text;
+}
+
+.mzan-card-light p {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: advars.$color-ads-light-text;
+}
+
+.mzan-card .mzan-icon {
+    color: #161616;
+    font-size: 24px;
+}
+
+.mzan-card-link {
+    color: #161616;
+    display: inline-flex;
+    font-size: var(--mza-text-button-sm);
+    font-weight: 600;
+    margin-top: 16px;
+    text-decoration: underline;
+}
+
+    // if three cards
+@media #{$mq-md} {
+    .mzan-cards.dividers {
+        padding-bottom: 0;
+        position: relative;
+        overflow: visible;
+
+        &::before,
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            height: 1px;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            background-color: advars.$color-ads-tertiary-gray;
+        }
+
+        &::after {
+            bottom: 0;
+            top: auto;
+        }
+
+        .mzan-card-list:has(.mzan-card:nth-child(4):last-child) {
+            display: grid;
+            gap: 0;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .mzan-card-list.will-wrap {
+            .mzan-card {
+                border-bottom: 1px solid #e8e8e8;
+
+                &:nth-child(3n) {
+                    border-right: 1px solid #e8e8e8;
+                }
+            }
+        }
+
+        .mzan-card {
+            border-left: 1px solid #e8e8e8;
+            padding: 50px 25px;
+
+            &:last-child {
+                border-right: 1px solid #e8e8e8;
+            }
+        }
+    }
+}
+
+.mzan-cards:not(.dividers) .mzan-card {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    padding: 8px 0;
+
+    @media #{$mq-md} {
+        padding: 16px 0 16px 16px;
+    }
+}
+
+.mzan-card-logo-wrap {
+    width: calc(100% - 80px);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.mzan-card-logo {
+    max-width: 120px;
+    max-height: 120px;
+    height: auto;
+}

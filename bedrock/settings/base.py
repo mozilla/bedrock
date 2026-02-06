@@ -11,7 +11,9 @@ from os.path import abspath
 from pathlib import Path
 from urllib.parse import urlparse
 
-from django.conf.locale import LANG_INFO  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
+from django.conf.locale import (
+    LANG_INFO,  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
+)
 from django.utils.functional import lazy
 
 import dj_database_url
@@ -153,14 +155,29 @@ PROD_DETAILS_CACHE_TIMEOUT = 60 * 15  # 15 min
 PROD_DETAILS_STORAGE = config("PROD_DETAILS_STORAGE", default="product_details.storage.PDDatabaseStorage")
 # path into which to clone the p-d json repo
 PROD_DETAILS_JSON_REPO_PATH = config("PROD_DETAILS_JSON_REPO_PATH", default=data_path("product_details_json"))
-PROD_DETAILS_JSON_REPO_URI = config("PROD_DETAILS_JSON_REPO_URI", default="https://github.com/mozilla-releng/product-details.git")
+PROD_DETAILS_JSON_REPO_URI = config(
+    "PROD_DETAILS_JSON_REPO_URI",
+    default="https://github.com/mozilla-releng/product-details.git",
+)
 PROD_DETAILS_JSON_REPO_BRANCH = config("PROD_DETAILS_JSON_REPO_BRANCH", default="production")
 # path to updated p-d data for testing before loading into DB
 PROD_DETAILS_TEST_DIR = str(Path(PROD_DETAILS_JSON_REPO_PATH).joinpath("public", "1.0"))
 
 # Regions defined on the `/locales/` page.
 LOCALES_BY_REGION = {
-    "Americas": ["azz", "cak", "en-CA", "en-US", "es-AR", "es-CL", "es-MX", "gn", "is", "pt-BR", "trs"],
+    "Americas": [
+        "azz",
+        "cak",
+        "en-CA",
+        "en-US",
+        "es-AR",
+        "es-CL",
+        "es-MX",
+        "gn",
+        "is",
+        "pt-BR",
+        "trs",
+    ],
     "Asia Pacific": [
         "bn",
         "gu-IN",
@@ -245,7 +262,19 @@ LOCALES_BY_REGION = {
         "uk",
         "uz",
     ],
-    "Middle East and Africa": ["ach", "af", "ar", "az", "fa", "ff", "he", "kab", "skr", "son", "xh"],
+    "Middle East and Africa": [
+        "ach",
+        "af",
+        "ar",
+        "az",
+        "fa",
+        "ff",
+        "he",
+        "kab",
+        "skr",
+        "son",
+        "xh",
+    ],
 }
 
 
@@ -547,14 +576,14 @@ STORAGES = {
     # it will not allow uploads for the Web deployment. You will have to
     # specify a different, dedicated storage backend for the file-upload process.
     "default": {
-        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage"
-        if GS_BUCKET_NAME and GS_PROJECT_ID
-        else "django.core.files.storage.FileSystemStorage",
+        "BACKEND": (
+            "storages.backends.gcloud.GoogleCloudStorage" if GS_BUCKET_NAME and GS_PROJECT_ID else "django.core.files.storage.FileSystemStorage"
+        ),
     },
     "staticfiles": {
-        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
-        if DEBUG
-        else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+        "BACKEND": (
+            "django.contrib.staticfiles.storage.StaticFilesStorage" if DEBUG else "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+        ),
     },
 }
 
@@ -715,9 +744,11 @@ INSTALLED_APPS = [
     "wagtail.users",
     "wagtail.snippets",
     "wagtail.images",
+    "wagtail_localize_intentional_blanks",  # Must be BEFORE wagtail_localize
     "wagtail_localize_smartling",  # Has to come before wagtail_localize
     "wagtail_localize",
     "wagtail_localize.locales",  # This replaces "wagtail.locales"
+    "wagtail_localize_dashboard",  # Add after wagtail-localize
     "wagtail.search",
     "wagtaildraftsharing",  # has to come before wagtail.admin due to template overriding; also needs wagtail.snippets
     "wagtail.admin",
@@ -726,7 +757,9 @@ INSTALLED_APPS = [
     "taggit",
     "csp",
     "wagtail_link_block",
+    "wagtail_thumbnail_choice_block",
     # Local apps
+    "bedrock.anonym",
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
@@ -836,6 +869,7 @@ TEMPLATES = [
                 "wagtail.jinja2tags.core",
                 "wagtail.images.jinja2tags.images",
             ],
+            "environment": "bedrock.jinja2.bedrock_environment",
         },
     },
     {
@@ -885,7 +919,7 @@ BASKET_SUBSCRIBE_URL = f"{BASKET_URL}/news/subscribe/"
 # run by Foundation, rather than going through Basket
 FOUNDATION_URL = config(
     "FOUNDATION_URL",
-    default="https://kmq73rfvbh.execute-api.us-east-2.amazonaws.com" if DEV else "https://abdri3ttkb.execute-api.us-east-2.amazonaws.com",
+    default=("https://kmq73rfvbh.execute-api.us-east-2.amazonaws.com" if DEV else "https://abdri3ttkb.execute-api.us-east-2.amazonaws.com"),
 )
 FOUNDATION_SUBSCRIBE_URL = f"{FOUNDATION_URL}/api/newsletter/mozillaorg"
 
@@ -945,7 +979,10 @@ MOZILLA_INSTAGRAM_ACCOUNTS = {
 
 # Mozilla accounts product links
 # ***This URL *MUST* end in a traling slash!***
-FXA_ENDPOINT = config("FXA_ENDPOINT", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+FXA_ENDPOINT = config(
+    "FXA_ENDPOINT",
+    default=("https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/"),
+)
 
 # Google Play and Apple App Store settings
 from .appstores import (  # noqa: E402, F401
@@ -970,7 +1007,21 @@ from .appstores import (  # noqa: E402, F401
 )
 
 # Locales that should display the 'Send to Device' widget
-SEND_TO_DEVICE_LOCALES = ["de", "en-GB", "en-US", "es-AR", "es-CL", "es-ES", "es-MX", "fr", "id", "pl", "pt-BR", "ru", "zh-TW"]
+SEND_TO_DEVICE_LOCALES = [
+    "de",
+    "en-GB",
+    "en-US",
+    "es-AR",
+    "es-CL",
+    "es-ES",
+    "es-MX",
+    "fr",
+    "id",
+    "pl",
+    "pt-BR",
+    "ru",
+    "zh-TW",
+]
 
 SEND_TO_DEVICE_MESSAGE_SETS = {
     "default": {
@@ -1019,7 +1070,10 @@ WEBVISION_DOCS_REPO = config("WEBVISION_DOCS_REPO", default="https://github.com/
 WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
 
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
-MOFO_SECURITY_ADVISORIES_REPO = config("MOFO_SECURITY_ADVISORIES_REPO", default="https://github.com/mozilla/foundation-security-advisories.git")
+MOFO_SECURITY_ADVISORIES_REPO = config(
+    "MOFO_SECURITY_ADVISORIES_REPO",
+    default="https://github.com/mozilla/foundation-security-advisories.git",
+)
 MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="master")
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -1145,7 +1199,10 @@ SENTRY_FRONTEND_DSN = config("SENTRY_FRONTEND_DSN", default=SENTRY_DSN)
 # Statsd metrics via markus
 if DEBUG or config("DISABLE_LOCAL_MARKUS", default="false", parser=bool):
     MARKUS_BACKENDS = [
-        {"class": "markus.backends.logging.LoggingMetrics", "options": {"logger_name": "metrics"}},
+        {
+            "class": "markus.backends.logging.LoggingMetrics",
+            "options": {"logger_name": "metrics"},
+        },
     ]
 else:
     STATSD_HOST = config("STATSD_HOST", default=get_default_gateway_linux())
@@ -1210,16 +1267,23 @@ DATA_CONSENT_COUNTRIES = [
 
 # URL for Mozilla VPN sign-in links
 # ***This URL *MUST* end in a traling slash!***
-VPN_ENDPOINT = config("VPN_ENDPOINT", default="https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/")
+VPN_ENDPOINT = config(
+    "VPN_ENDPOINT",
+    default=("https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
+)
 
 # URL for Mozilla VPN subscription links
 # ***This URL *MUST* end in a traling slash!***
-VPN_SUBSCRIPTION_URL = config("VPN_SUBSCRIPTION_URL", default="https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/")
+VPN_SUBSCRIPTION_URL = config(
+    "VPN_SUBSCRIPTION_URL",
+    default=("https://accounts.stage.mozaws.net/" if DEV else "https://accounts.firefox.com/"),
+)
 
 # New URL for VPN subscription links
 # ***This URL *MUST* end in a trailing slash!***
 VPN_SUBSCRIPTION_URL_NEXT = config(
-    "VPN_SUBSCRIPTION_URL_NEXT", default="https://payments-next.allizom.org/" if DEV else "https://payments.firefox.com/"
+    "VPN_SUBSCRIPTION_URL_NEXT",
+    default=("https://payments-next.allizom.org/" if DEV else "https://payments.firefox.com/"),
 )
 
 # For testing/QA we support a test 'daily' API endpoint on the staging API only
@@ -1238,14 +1302,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "71.88",
                 "currency": "CHF",
                 "saving": 45,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "60.00",
+                    "price": "71.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "10.99",
                 "total": None,
                 "currency": "CHF",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "10.99",
+                    "period": "monthly",
+                },
             },
         },
         "fr": {  # French
@@ -1254,14 +1332,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "71.88",
                 "currency": "CHF",
                 "saving": 45,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "60.00",
+                    "price": "71.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "10.99",
                 "currency": "CHF",
                 "total": None,
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "10.99",
+                    "period": "monthly",
+                },
             },
         },
         "it": {  # Italian
@@ -1270,14 +1362,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "71.88",
                 "currency": "CHF",
                 "saving": 45,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "60.00", "price": "71.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "60.00",
+                    "price": "71.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "10.99",
                 "total": None,
                 "currency": "CHF",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CHF", "discount": "0", "price": "10.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CHF",
+                    "discount": "0",
+                    "price": "10.99",
+                    "period": "monthly",
+                },
             },
         },
     },
@@ -1288,14 +1394,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "1428",
                 "currency": "CZK",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "1416", "price": "1428", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CZK",
+                    "discount": "1416",
+                    "price": "1428",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "237",
                 "total": None,
                 "currency": "CZK",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "CZK", "discount": "0", "price": "237", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "CZK",
+                    "discount": "0",
+                    "price": "237",
+                    "period": "monthly",
+                },
             },
         },
     },
@@ -1306,14 +1426,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "444",
                 "currency": "DKK",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "456", "price": "444", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "DKK",
+                    "discount": "456",
+                    "price": "444",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "75",
                 "total": None,
                 "currency": "DKK",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "DKK", "discount": "0", "price": "75", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "DKK",
+                    "discount": "0",
+                    "price": "75",
+                    "period": "monthly",
+                },
             },
         },
     },
@@ -1324,14 +1458,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "de": {  # German
@@ -1340,14 +1488,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "el": {  # Greek
@@ -1356,14 +1518,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "en": {  # English
@@ -1372,14 +1548,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "es": {  # Spanish
@@ -1388,14 +1578,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "fr": {  # French
@@ -1404,14 +1608,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "hu": {  # Hungarian
@@ -1420,14 +1638,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "it": {  # Italian
@@ -1436,14 +1668,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "nl": {  # Dutch
@@ -1452,14 +1698,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "pt": {  # Portuguese
@@ -1468,14 +1728,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "ro": {  # Romanian
@@ -1484,14 +1758,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "sk": {  # Slovak
@@ -1500,14 +1788,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
         "sl": {  # Slovenian
@@ -1516,14 +1818,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "EUR",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "EUR",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "EUR", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "EUR",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         },
     },
@@ -1534,14 +1850,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "264",
                 "currency": "PLN",
                 "saving": 48,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "276", "price": "264", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "PLN",
+                    "discount": "276",
+                    "price": "264",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "45",
                 "total": None,
                 "currency": "PLN",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "0", "price": "45", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "PLN",
+                    "discount": "0",
+                    "price": "45",
+                    "period": "monthly",
+                },
             },
         },
     },
@@ -1552,14 +1882,28 @@ VPN_PLAN_ID_MATRIX = {
                 "total": "59.88",
                 "currency": "USD",
                 "saving": 50,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "60.00", "price": "59.88", "period": "yearly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "USD",
+                    "discount": "60.00",
+                    "price": "59.88",
+                    "period": "yearly",
+                },
             },
             "monthly": {
                 "price": "9.99",
                 "total": None,
                 "currency": "USD",
                 "saving": None,
-                "analytics": {"brand": "vpn", "plan": "vpn", "currency": "USD", "discount": "0", "price": "9.99", "period": "monthly"},
+                "analytics": {
+                    "brand": "vpn",
+                    "plan": "vpn",
+                    "currency": "USD",
+                    "discount": "0",
+                    "price": "9.99",
+                    "period": "monthly",
+                },
             },
         }
     },
@@ -2106,7 +2450,8 @@ VPN_SUPPORTED_LOCALES = [
 # RELAY =========================================================================================
 
 RELAY_PRODUCT_URL = config(
-    "RELAY_PRODUCT_URL", default="https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"
+    "RELAY_PRODUCT_URL",
+    default=("https://stage.fxprivaterelay.nonprod.cloudops.mozgcp.net/" if DEV else "https://relay.firefox.com/"),
 )
 
 # Authentication with Mozilla OpenID Connect / Auth0 ============================================
@@ -2212,6 +2557,7 @@ if WAGTAIL_ENABLE_ADMIN:
             "django-rq",
             "oidc",
             "_internal_draft_preview",
+            "intentional-blanks",  # wagtail-localize-intentional-blanks
         ]
     )
 
@@ -2361,8 +2707,14 @@ _allowed_page_models = [
     "mozorg.AdvertisingIndexPage",
     "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
+    "anonym.AnonymIndexPage",
+    "anonym.AnonymContentSubPage",
+    "anonym.AnonymStaticPage",
+    "anonym.AnonymCaseStudyItemPage",
     "mozorg.HomePage",
     "mozorg.LeadershipPage",
+    "products.VPNResourceCenterDetailPage",
+    "products.VPNResourceCenterIndexPage",
     "products.MonitorArticleIndexPage",
     "products.MonitorArticlePage",
     "products.VPNResourceCenterDetailPage",

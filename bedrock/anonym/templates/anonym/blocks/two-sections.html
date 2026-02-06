@@ -4,4 +4,5 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="m24-c-transition m24-t-top-{{ value.top_color }} m24-t-bottom-{{ value.bottom_color }}"><hr></div>
+{% include_block value.first_section %}
+{% include_block value.second_section %}

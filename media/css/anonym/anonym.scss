@@ -1,0 +1,34 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../m24/vars/lib' as *;
+@use '../../fonts/mozilla-sans-headline/mozilla-sans-headline.css';
+
+$font-path: '/media/protocol/fonts';
+$image-path: '/media/protocol/img';
+
+/* Anonym uses the same root variables as advertising, so we can use the same file */
+@use '../mozorg/ads/ads-root';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '../m24/base';
+@use './icons';
+@use './header';
+@use './layout';
+@use './section';
+@use './table';
+@use './half-grid';
+@use './toggle';
+@use './logo-list';
+@use './figure';
+@use './cards';
+@use './news';
+@use './contact';
+@use './stats';
+@use './people';
+@use './cta';
+
+:root {
+    --moz-sans-headline: 'Mozilla Sans Headline', sans-serif;
+}

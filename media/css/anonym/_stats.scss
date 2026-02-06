@@ -1,0 +1,341 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+
+.mzan-stats-list {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 24px 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@property --green1 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+@property --green2 {
+  syntax: '<color>';
+  initial-value: transparent;
+  inherits: false;
+}
+
+.mzan-stat-item {
+    box-sizing: border-box;
+    border: 1px solid #e8e8e8;
+    border-top: 0 none;
+    border-bottom: 0 none;
+    display: grid;
+    gap: 16px;
+    padding: 24px 16px;
+    overflow: visible;
+    position: relative;
+    isolation: isolate;
+    transition: border-color 0.4s;
+
+    & + & {
+        margin-top: -1px;
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        left: 50%;
+        width: 100vw;
+        transform: translateX(-50%);
+        z-index: -1;
+        background: linear-gradient(90deg, var(--green1) 0%, var(--green2) 100%);
+        transition: --green1 1s ease-in-out, --green2 0.5s ease-in-out, border-color 0.4s ease-in-out;
+        border: 1px solid #e8e8e8;
+        border-left: 0 none;
+        border-right: 0 none;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        border-right: 1px solid transparent;
+        border-left: 1px solid transparent;
+        transition: border-color 0.4s ease-in-out;
+    }
+
+    &:hover::after {
+        border-color: white;
+
+    }
+
+    @media #{$mq-md} {
+        align-items: stretch;
+        column-gap: 0;
+        grid-template-columns: minmax(0, 60%) minmax(0, 1fr) minmax(0, 1fr);
+        min-height: 234px;
+        padding: 0 24px;
+
+        // Support for 1-3 stats dynamically
+        &:has(.mzan-stat-stat:nth-of-type(2):last-of-type) {
+            // 1 stat: single column after intro
+            grid-template-columns: minmax(0, 60%) minmax(0, 40%);
+        }
+
+        &:has(.mzan-stat-stat:nth-of-type(3):last-of-type) {
+            // 2 stats: current layout (default)
+            grid-template-columns: minmax(0, 60%) minmax(0, 1fr) minmax(0, 1fr);
+        }
+
+        &:has(.mzan-stat-stat:nth-of-type(4)) {
+            // 3 stats
+            grid-template-columns: minmax(0, 54%) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+        }
+    }
+
+    .mzan-stat-logo-heading-swap {
+        display: flex;
+        align-items: end;
+        position: relative;
+    }
+
+    .mzan-stat-logo {
+        opacity: 0;
+        max-height: 80px;
+        transition: 0.5s ease-in-out opacity;
+        position: absolute;
+    }
+
+    &:hover {
+        &::before {
+            --green1: rgb(73, 243, 165);
+            --green2: rgb(184, 255, 245);
+            border-color: #fff;
+        }
+
+        .mzan-stat-logo-heading-swap {
+            .mzan-stat-logo {
+                opacity: 1;
+            }
+
+            .mzan-stat-heading {
+                opacity: 0;
+            }
+        }
+
+        @media #{$mq-md} {
+            .mzan-stat-intro,
+            .mzan-stat-stat {
+                border-color: #fff;
+            }
+        }
+    }
+
+    @media (max-width: 767px) {
+        --mzan-stat-row-bg: transparent;
+        flex: 0 0 333px;
+        padding: 0;
+        scroll-snap-align: start;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 288px 140px;
+        gap: 0;
+        border: 0;
+        border-right: 1px solid #e8e8e8;
+
+        &:nth-child(even) {
+            --mzan-stat-row-bg: transparent;
+        }
+
+        &:first-child {
+            border-left: 1px solid #e8e8e8;
+        }
+    }
+}
+
+.mzan-stat-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    min-width: 0;
+
+    @media #{$mq-md} {
+        height: 100%;
+        justify-content: center;
+        padding: 0;
+    }
+
+    img {
+        flex: 0 0 auto;
+        mix-blend-mode: multiply;
+        width: 63.25px;
+        height: 63.25px;
+        max-width: 63.25px;
+        max-height: 63.25px;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    @media (max-width: 767px) {
+        border-bottom: 1px solid #e8e8e8;
+        gap: 32px;
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        padding: 50px 16px;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: 16px;
+            width: 28px;
+            height: 28px;
+            background-color: #b3b3b3;
+            -webkit-mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 28px 28px;
+            mask: url('/media/protocol/img/icons/forward.svg') no-repeat center / 28px 28px;
+        }
+    }
+}
+
+.mzan-stat-heading {
+    font-family: var(--moz-sans-headline);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0;
+    transition: 0.5s ease-in-out opacity;
+    opacity: 1;
+
+    @media #{$mq-md} {
+        font-size: 40px;
+    }
+}
+
+.mzan-stat-description {
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 0;
+    text-wrap: balance;
+}
+
+
+.mzan-stat-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    min-width: 0;
+    transition: border-color 0.4s ease-in-out;
+
+
+    @media #{$mq-md} {
+        border-left: 1px solid #e8e8e8;
+        padding: 50px 25px;
+    }
+
+    @media (max-width: 767px) {
+        border-left: 0;
+        height: 100%;
+        justify-content: flex-start;
+        padding: 32px 16px;
+    }
+}
+
+.mzan-stat-value {
+    margin: 0;
+
+    > p {
+        color: #000;
+        font-family: var(--moz-sans-headline);
+        font-size: 48px;
+        font-weight: 300;
+        letter-spacing: -1.44px;
+        line-height: 0.98;
+        margin: 0;
+        display: inline-flex;
+        align-items: flex-end;
+        white-space: nowrap;
+    }
+
+    sup,
+    sub {
+        display: inline-block;
+        font-size: 32px;
+        font-weight: 300;
+        letter-spacing: -0.64px;
+        line-height: 1.15;
+        margin-left: 0;
+    }
+
+    sup {
+        align-self: flex-start;
+    }
+
+    sub {
+        align-self: flex-end;
+        transform: translateY(0.06em);
+    }
+
+    @media (max-width: 767px) {
+        > p {
+            font-size: 40px;
+            letter-spacing: -1.2px;
+        }
+
+        sup,
+        sub {
+            font-size: 24px;
+            letter-spacing: -0.48px;
+        }
+    }
+}
+
+.mzan-stat-label {
+    font-family: 'Mozilla Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.5);
+
+    > p {
+        margin: 0;
+    }
+
+    @media (max-width: 767px) {
+        > p {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+    }
+}
+
+.mzan-stat-link {
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+}

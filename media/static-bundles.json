@@ -1056,6 +1056,12 @@
     },
     {
       "files": [
+        "css/anonym/anonym.scss"
+      ],
+      "name": "mozilla-anonym"
+    },
+    {
+      "files": [
         "css/mozorg/advertising-format.scss"
       ],
       "name": "mozilla-ads-format"
@@ -1898,6 +1904,13 @@
         "js/base/banners/fundraising-banner-eoy2025-init.es6.js"
       ],
       "name": "fundraising_banner_eoy2025"
+    },
+    {
+      "files": [
+        "js/anonym/anonym-toggleable-items.js",
+        "js/anonym/anonym-card-list-center.js"
+      ],
+      "name": "anonym"
     }
   ]
 }

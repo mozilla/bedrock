@@ -1,0 +1,13 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzan-form-field label-will-float">
+  <input type="tel" id="{{ value.settings.internal_identifier }}" name="{{ value.settings.internal_identifier }}"{% if value.required %} required{% endif %} placeholder=" ">
+  <label for="{{ value.settings.internal_identifier }}">
+    {{ value.label }}{% if value.required %} <span class="mzan-required">*</span>{% endif %}
+  </label>
+
+</div>
