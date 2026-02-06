@@ -109,12 +109,12 @@ _csp_script_src = {
     "www.googletagmanager.com",
     "www.youtube.com",
     csp.constants.UNSAFE_EVAL,
-    csp.constants.UNSAFE_INLINE,
+    # Don't allow csp.constants.UNSAFE_INLINE wholesale in the default CSP. Be more targetted with it
 }
+
 _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
-    csp.constants.UNSAFE_INLINE,
     "cdn.transcend.io",  # Transcend Consent Management
     "transcend-cdn.com",  # Transcend Consent Management
 }
@@ -208,8 +208,14 @@ def _override_csp(
 # /cms-admin/images/ loads just-uploaded images as blobs.
 CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": {"blob:"}})
 CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": {"blob:"}})
-# The CMS admin frames itself for page previews.
-CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": {csp.constants.SELF}})
+
+
+# The CMS admin frames itself for page previews and needs script-src: 'unsafe-inline'
+CMS_ADMIN_CSP = _override_csp(
+    CONTENT_SECURITY_POLICY,
+    replace={"frame-ancestors": {csp.constants.SELF}},
+    append={"script-src": {csp.constants.UNSAFE_INLINE}},
+)
 CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": {csp.constants.SELF}})
 
 CSP_PATH_OVERRIDES = {
