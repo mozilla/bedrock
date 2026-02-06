@@ -8,7 +8,6 @@
 
 .level-item {
     padding: 0.714rem 0 0.5rem;
-    position: relative;
 }
 
 .level {
@@ -23,6 +22,7 @@
     line-height: 1;
     padding: 4px;
     min-width: 90px;
+    margin-inline-end: 0.5rem;
 
     &.moderate {
         background: $color-yellow-10;
@@ -43,12 +43,14 @@
 // move levels to the left once there's enough space
 @media #{$mq-sm} {
     .level-item {
-        padding-left: 110px;
+        a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-        .level {
-            left: 0;
-            position: absolute;
-            top: 1rem;
+        span {
+            height: fit-content;
         }
     }
 }
