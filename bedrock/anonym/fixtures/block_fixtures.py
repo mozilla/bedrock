@@ -415,29 +415,25 @@ def get_competitor_comparison_table_variants() -> list[dict]:
                 "rows": [
                     {
                         "text": "Privacy-preserving attribution",
-                        "tags_pixels_sdks": False,
-                        "conversions_event_apis": False,
+                        "tradition_tracking": False,
                         "clean_rooms": True,
                         "anonym": True,
                     },
                     {
                         "text": "No user-level data exposure",
-                        "tags_pixels_sdks": False,
-                        "conversions_event_apis": False,
+                        "tradition_tracking": False,
                         "clean_rooms": False,
                         "anonym": True,
                     },
                     {
                         "text": "Works without third-party cookies",
-                        "tags_pixels_sdks": False,
-                        "conversions_event_apis": True,
+                        "tradition_tracking": True,
                         "clean_rooms": True,
                         "anonym": True,
                     },
                     {
                         "text": "Real-time measurement",
-                        "tags_pixels_sdks": True,
-                        "conversions_event_apis": True,
+                        "tradition_tracking": True,
                         "clean_rooms": False,
                         "anonym": True,
                     },

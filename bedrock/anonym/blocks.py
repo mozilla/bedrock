@@ -648,20 +648,15 @@ class CompetitorComparisonItemBlock(blocks.StructBlock):
     text = blocks.CharBlock(label="Row text")
 
     # Boolean fields
-    tags_pixels_sdks = blocks.BooleanBlock(
+    tradition_tracking = blocks.BooleanBlock(
         required=False,
         default=False,
-        help_text="Tags, Pixels, & SDKs",
-    )
-    conversions_event_apis = blocks.BooleanBlock(
-        required=False,
-        default=False,
-        help_text="Conversions & Event APIs",
+        help_text="Traditional Tracking & Measurement Technology",
     )
     clean_rooms = blocks.BooleanBlock(
         required=False,
         default=False,
-        help_text="Clean Rooms",
+        help_text="Data Clean Rooms",
     )
     anonym = blocks.BooleanBlock(
         required=False,

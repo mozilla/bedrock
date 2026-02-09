@@ -15,8 +15,7 @@
       <thead>
         <tr>
           <th></th>
-          <th>Tags, Pixels, & SDKs</th>
-          <th>Conversions & Event APIs</th>
+          <th>Traditional Tracking & Measurement Technology</th>
           <th>Clean Rooms</th>
           <th>Anonym</th>
         </tr>
@@ -25,8 +24,7 @@
         {% for row in value.rows %}
           <tr>
             <td>{{ row.text }}</td>
-            <td>{% if row.tags_pixels_sdks == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
-            <td>{% if row.conversions_event_apis == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
+            <td>{% if row.tradition_tracking == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
             <td>{% if row.clean_rooms == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
             <td>{% if row.anonym == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
           </tr>

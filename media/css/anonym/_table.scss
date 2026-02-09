@@ -24,6 +24,10 @@
             width: auto;
             text-align: left;
         }
+
+        &:nth-child(2) {
+            width: 180px;
+        }
     }
 
     th {
