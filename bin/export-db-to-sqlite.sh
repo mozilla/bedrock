@@ -166,6 +166,7 @@ python manage.py dumpdata \
     anonym.AnonymCaseStudyItemPage \
     anonym.AnonymCaseStudyPage \
     anonym.AnonymContactPage \
+    anonym.Person \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
     mozorg.AdvertisingIndexPage \
