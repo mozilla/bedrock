@@ -44,8 +44,18 @@
 
     <div class="mzan-contact-form-wrap add-full-width-borders">
       <div class="mzan-section">
-        <form method="post" action="#" class="mzan-contact-form">
+        <form method="post" action="" class="mzan-contact-form">
           {% csrf_token %}
+
+          {% if form_errors %}
+            <div class="mzan-form-errors">
+              <ul>
+                {% for error in form_errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
 
           {% for field in page.form_fields %}
             {% include_block field %}
