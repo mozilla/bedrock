@@ -13,6 +13,8 @@ $image-path: '/media/protocol/img';
 @use '~@mozilla-protocol/core/protocol/css/templates/multi-column';
 @use '~@mozilla-protocol/core/protocol/css/components/modal';
 @use '../m24/base';
+@use './article';
+@use './blockquote';
 @use './icons';
 @use './header';
 @use './layout';

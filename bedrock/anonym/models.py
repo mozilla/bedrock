@@ -10,6 +10,10 @@ from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
 from bedrock.anonym.blocks import (
+    ArticleBlockquoteBlock,
+    ArticleFigureBlock,
+    ArticleIntroTextBlock,
+    ArticleRichTextBlock,
     CallToActionBlock as AnonymCallToActionBlock,
     CheckboxGroupFieldBlock,
     CompetitorComparisonTableBlock as AnonymCompetitorComparisonTableBlock,
@@ -317,13 +321,17 @@ class AnonymCaseStudyItemPage(AbstractStatCardPage):
 
     content = StreamField(
         [
-            ("section", AnonymSectionBlock()),
+            ("intro_text", ArticleIntroTextBlock()),
+            ("rich_text", ArticleRichTextBlock()),
+            ("blockquote", ArticleBlockquoteBlock()),
+            ("figure", ArticleFigureBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,
         null=True,
         collapsed=True,
     )
+
     notification = models.ForeignKey(
         "mozorg.NotificationSnippet",
         null=True,

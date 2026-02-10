@@ -890,3 +890,42 @@ class StatItemBlock(blocks.StructBlock):
     class Meta:
         label = "Statistic"
         label_format = "{statistic_value} - {statistic_label}"
+
+
+class ArticleRichTextBlock(blocks.StructBlock):
+    text = blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)
+
+    class Meta:
+        template = "anonym/blocks/article/rich-text.html"
+        label = "Article Text"
+        icon = "doc-full"
+
+
+class ArticleIntroTextBlock(blocks.StructBlock):
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+
+    class Meta:
+        template = "anonym/blocks/article/intro-text.html"
+        label = "Intro Text"
+        icon = "doc-full"
+
+
+class ArticleBlockquoteBlock(blocks.StructBlock):
+    text = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES)
+    author = blocks.CharBlock(label="Author", required=False)
+
+    class Meta:
+        template = "anonym/blocks/article/blockquote.html"
+        label = "Quote"
+        icon = "openquote"
+
+
+class ArticleFigureBlock(blocks.StructBlock):
+    settings = FigureBlockSettings()
+    image = ImageChooserBlock()
+    caption = blocks.RichTextBlock(features=BASIC_TEXT_FEATURES, required=False, label="Caption")
+
+    class Meta:
+        template = "anonym/blocks/article/figure.html"
+        label = "Figure"
+        icon = "image"

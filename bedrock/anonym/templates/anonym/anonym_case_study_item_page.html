@@ -28,8 +28,24 @@
 {% endblock %}
 
 {% block content %}
-  <main id="mzan-main">
-    {% set ns = namespace(headings=0) %}
+  <main id="mzan-main" class="anonym-article-page">
+    <section class="mzan-section">
+      <hgroup class="mzan-hgroup">
+        {% if page.company_name %}<p class="mzan-superheading">{{ page.company_name }}</p>{% endif %}
+        <h1 class="mzan-heading">{{ page.title }}</h1>
+      </hgroup>
+    </section>
+
+  {% if page.link %}
+    <aside class="anonym-link-warning-cms-only">
+      <p>Note: When the external link field is populated, this page will never be visible.
+         The cards used to preview this data will show title, logo, etc. and will
+         open a new tab with <strong>{{ page.link }}</strong>.
+        </p>
+    </aside>
+  {% else %}
+
+  {% set ns = namespace(headings=0) %}
     {% for block in page.content %}
       {% if block.block.is_section_block %}
         {% set block_level = 1 if ns.headings == 0 else 2 %}
@@ -46,6 +62,10 @@
           {% endwith %}
         {% endwith %}
       {% endwith %}
+    {% endif %}
+
+    {# If there's a link, we don't show the case study content,
+       as it's being used as a redirect page. #}
     {% endif %}
   </main>
 {% endblock %}

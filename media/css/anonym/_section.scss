@@ -278,7 +278,8 @@
 }
 
 
-.add-full-width-borders.add-full-width-borders {
+.add-full-width-borders.add-full-width-borders,
+.anonym-article-page .mzan-call-to-action {
     position: relative;
     overflow: visible;
 
@@ -314,5 +315,18 @@
         &::before {
             content: none;
         }
+    }
+}
+
+.anonym-article-page .mzan-call-to-action {
+    margin-top: 0;
+    padding-top: 50px;
+
+    &::after {
+        content: none;
+    }
+
+    @media #{$mq-md} {
+        padding-top: 75px;
     }
 }
