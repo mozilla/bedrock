@@ -218,11 +218,23 @@ def get_anonym_contact_test_page() -> AnonymContactPage:
     """
     index_page = get_test_anonym_index_page()
 
+    # Create a thank-you page as the redirect target
+    thank_you_page = AnonymContentSubPage.objects.filter(slug="test-thank-you").first()
+    if not thank_you_page:
+        thank_you_page = AnonymContentSubPage(
+            slug="test-thank-you",
+            title="Thank You",
+        )
+        index_page.add_child(instance=thank_you_page)
+        thank_you_page.save_revision().publish()
+
     test_page = AnonymContactPage.objects.filter(slug="test-contact-page").first()
     if not test_page:
         test_page = AnonymContactPage(
             slug="test-contact-page",
             title="Test Contact Page",
+            to_email_address="contact@example.com",
+            redirect_to=thank_you_page,
         )
         index_page.add_child(instance=test_page)
 
