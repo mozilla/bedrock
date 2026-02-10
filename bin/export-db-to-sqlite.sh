@@ -159,16 +159,19 @@ python manage.py dumpdata \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
     legal_docs.LegalDoc \
+    anonym.AnonymIndexPage \
+    anonym.AnonymContentSubPage \
+    anonym.AnonymNewsPage \
+    anonym.AnonymNewsItemPage \
+    anonym.AnonymCaseStudyItemPage \
+    anonym.AnonymCaseStudyPage \
+    anonym.AnonymContactPage \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
     mozorg.AdvertisingIndexPage \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
     mozorg.HomePage \
-    mozorg.AnonymIndexPage \
-    mozorg.AnonymArticlePage \
-    mozorg.AnonymContentSubPage \
-    mozorg.AnonymStaticPage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \
