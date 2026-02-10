@@ -315,6 +315,10 @@ NON_PROTOCOL_ICONS_DIRS = {
     "pricetag-white": "img/icons",
     "rhombus-layers": "img/icons",
     "rhombus-layers-white": "img/icons",
+    "lock": "img/mozorg/anonym",
+    "sparkles": "img/mozorg/anonym",
+    "globe": "img/mozorg/anonym",
+    "dashboard": "img/mozorg/anonym",
 }
 
 
