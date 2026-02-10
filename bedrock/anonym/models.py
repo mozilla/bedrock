@@ -227,9 +227,30 @@ class AnonymContactPage(AbstractBedrockCMSPage):
         help_text="Define the form fields that will appear on the contact page.",
     )
 
+    to_email_address = models.EmailField(
+        help_text="Email address where form submissions will be sent.",
+    )
+
+    redirect_to = models.ForeignKey(
+        "wagtailcore.Page",
+        on_delete=models.PROTECT,
+        related_name="+",
+        help_text="Page to redirect to after a successful form submission (e.g. a thank-you page).",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("subheading"),
         FieldPanel("form_fields"),
+    ]
+
+    settings_panels = AbstractBedrockCMSPage.settings_panels + [
+        MultiFieldPanel(
+            [
+                FieldPanel("to_email_address"),
+                FieldPanel("redirect_to"),
+            ],
+            heading="Form Submission Settings",
+        ),
     ]
 
     class Meta:
