@@ -124,7 +124,10 @@ class AnonymNewsItemPage(AbstractStatCardPage):
     )
     content = StreamField(
         [
-            ("section", AnonymSectionBlock()),
+            ("intro_text", ArticleIntroTextBlock()),
+            ("rich_text", ArticleRichTextBlock()),
+            ("blockquote", ArticleBlockquoteBlock()),
+            ("figure", ArticleFigureBlock()),
             ("call_to_action", AnonymCallToActionBlock()),
         ],
         blank=True,
