@@ -6,7 +6,7 @@
 
 {% from "macros-m24.html" import springboard_item with context %}
 
-<section class="m24-c-content" {% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+<section class="m24-c-content" {% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
   {% if value.heading %}
     <h3 class="m24-c-intro-title m24-t-sm" itemprop="sectionTitle">{{ value.heading }}</h3>
   {% endif %}

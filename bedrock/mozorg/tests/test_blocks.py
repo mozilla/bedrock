@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
+from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
 
 pytestmark = [pytest.mark.django_db]
 
@@ -208,3 +209,260 @@ def test_donate_block_new_window(minimal_site, rf, serving_method):  # noqa: F81
     assert cta_link.get("target") == "_blank", "Expected target='_blank'"
     assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
     assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
+
+
+# Springboard Block Tests
+
+
+def assert_springboard_block_structure(springboard_element: BeautifulSoup):
+    """Verify the springboard block has the expected HTML structure.
+
+    Args:
+        springboard_element: BeautifulSoup element for the .m24-c-springboard ul
+    """
+    # Check it's a ul element
+    assert springboard_element.name == "ul", f"Expected ul element, got {springboard_element.name}"
+
+    # Check it has the correct class
+    assert "m24-c-springboard" in springboard_element.get("class", []), "Missing .m24-c-springboard class"
+
+    # Check for header row
+    header_item = springboard_element.find("li", class_="m24-c-springboard-headings")
+    assert header_item is not None, "Missing .m24-c-springboard-headings header row"
+
+    # Check header row structure
+    assert header_item.find(class_="m24-c-springboard-type") is not None, "Missing .m24-c-springboard-type in header"
+    assert header_item.find(class_="m24-c-springboard-author") is not None, "Missing .m24-c-springboard-author in header"
+    assert header_item.find(class_="m24-c-springboard-topic") is not None, "Missing .m24-c-springboard-topic in header"
+    assert header_item.find(class_="m24-c-springboard-preview") is not None, "Missing .m24-c-springboard-preview in header"
+
+
+def assert_springboard_block_content(section_element: BeautifulSoup, variant_data: dict):
+    """Verify the springboard block content matches the input data.
+
+    Args:
+        section_element: BeautifulSoup element for the section.m24-c-content
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+
+    # Check heading if it exists
+    if value.get("heading"):
+        heading = section_element.find("h3", class_="m24-c-intro-title")
+        assert heading is not None, "Heading element not found when heading text provided"
+        assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
+        assert heading.get("itemprop") == "sectionTitle", "Missing itemprop='sectionTitle' on heading"
+    else:
+        heading = section_element.find("h3", class_="m24-c-intro-title")
+        assert heading is None, "Heading element should not exist when no heading text provided"
+
+    # Check column headers
+    springboard = section_element.find("ul", class_="m24-c-springboard")
+    header_row = springboard.find("li", class_="m24-c-springboard-headings")
+
+    type_header = header_row.find(class_="m24-c-springboard-type")
+    assert value["column_one"] in type_header.get_text(), f"Column one text '{value['column_one']}' not found"
+    assert type_header.get("itemprop") == "columnOne", "Missing itemprop='columnOne'"
+
+    author_header = header_row.find(class_="m24-c-springboard-author")
+    assert value["column_two"] in author_header.get_text(), f"Column two text '{value['column_two']}' not found"
+    assert author_header.get("itemprop") == "columnTwo", "Missing itemprop='columnTwo'"
+
+    topic_header = header_row.find(class_="m24-c-springboard-topic")
+    assert value["column_three"] in topic_header.get_text(), f"Column three text '{value['column_three']}' not found"
+    assert topic_header.get("itemprop") == "columnThree", "Missing itemprop='columnThree'"
+
+    preview_header = header_row.find(class_="m24-c-springboard-preview")
+    assert value["column_four"] in preview_header.get_text(), f"Column four text '{value['column_four']}' not found"
+    assert preview_header.get("itemprop") == "columnFour", "Missing itemprop='columnFour'"
+
+    # Check springboard items
+    items = springboard.find_all("li", class_="m24-c-springboard-item")
+    # Subtract 1 for the header row
+    actual_items = [item for item in items if "m24-c-springboard-headings" not in item.get("class", [])]
+    expected_items = value["springboard_items"]
+
+    assert len(actual_items) == len(expected_items), f"Expected {len(expected_items)} items, found {len(actual_items)}"
+
+    # Check each item
+    for index, expected_item in enumerate(expected_items):
+        item = actual_items[index]
+
+        # Check link
+        link = item.find("a", class_="m24-c-springboard-link")
+        assert link is not None, f"Link not found in item {index}"
+        assert link.get("href") == expected_item["url"], f"Wrong URL in item {index}"
+
+        # Check link attributes if present
+        if expected_item.get("linkAttributes"):
+            # Parse expected attributes
+            if 'target="_blank"' in expected_item["linkAttributes"]:
+                assert link.get("target") == "_blank", f"Missing target='_blank' in item {index}"
+            if 'rel="noopener"' in expected_item["linkAttributes"]:
+                assert "noopener" in link.get("rel", []), f"Missing rel='noopener' in item {index}"
+            if 'data-custom=' in expected_item["linkAttributes"]:
+                assert link.get("data-custom") is not None, f"Missing data-custom attribute in item {index}"
+
+        # Check type
+        type_div = item.find(class_="m24-c-springboard-type")
+        assert type_div is not None, f"Type div not found in item {index}"
+        assert expected_item["type"] in type_div.get_text(), f"Wrong type text in item {index}"
+
+        # Check icon if present
+        if expected_item.get("icon"):
+            icon = item.find("span", class_=f"m24-c-springboard-icon-{expected_item['icon'].lower()}")
+            assert icon is not None, f"Icon with class 'm24-c-springboard-icon-{expected_item['icon'].lower()}' not found in item {index}"
+
+        # Check author
+        author_div = item.find(class_="m24-c-springboard-author")
+        assert author_div is not None, f"Author div not found in item {index}"
+        assert expected_item["author"] in author_div.get_text(), f"Wrong author text in item {index}"
+
+        # Check topic
+        topic_div = item.find(class_="m24-c-springboard-topic")
+        assert topic_div is not None, f"Topic div not found in item {index}"
+        assert expected_item["topic"] in topic_div.get_text(), f"Wrong topic text in item {index}"
+
+        # Check preview
+        preview_div = item.find(class_="m24-c-springboard-preview")
+        assert preview_div is not None, f"Preview div not found in item {index}"
+        assert expected_item["preview"] in preview_div.get_text(), f"Wrong preview text in item {index}"
+
+
+def assert_springboard_block_attributes(section_element: BeautifulSoup, variant_data: dict):
+    """Verify the springboard block section has correct attributes.
+
+    Args:
+        section_element: BeautifulSoup element for the section.m24-c-content
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+
+    # Check anchor ID if set
+    anchor_id = value.get("settings", {}).get("anchor_id")
+    if anchor_id:
+        assert section_element.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{section_element.get('id')}'"
+    else:
+        # ID attribute should not be present if anchor_id is empty
+        assert section_element.get("id") is None, "ID attribute should not be present when anchor_id is empty"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_springboard_block_renders(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that SpringboardBlock renders with correct structure."""
+    variants = get_springboard_variants()
+    test_page = get_springboard_test_page()
+
+    # Serve the page
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    assert response.status_code == 200
+
+    # Parse the HTML
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    # Find all springboard blocks
+    springboard_uls = soup.find_all("ul", class_="m24-c-springboard")
+    assert len(springboard_uls) == len(variants), f"Expected {len(variants)} springboard blocks, found {len(springboard_uls)}"
+
+    # Check each block has correct structure
+    for springboard_ul in springboard_uls:
+        assert_springboard_block_structure(springboard_ul)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_springboard_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that SpringboardBlock content matches input data."""
+    variants = get_springboard_variants()
+    test_page = get_springboard_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    sections = soup.find_all("section", class_="m24-c-content")
+
+    # Filter sections that contain springboard blocks
+    springboard_sections = [s for s in sections if s.find("ul", class_="m24-c-springboard")]
+    assert len(springboard_sections) == len(variants), f"Expected {len(variants)} springboard sections, found {len(springboard_sections)}"
+
+    for index, variant in enumerate(variants):
+        assert_springboard_block_content(springboard_sections[index], variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_springboard_block_attributes(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that SpringboardBlock section has correct anchor ID."""
+    variants = get_springboard_variants()
+    test_page = get_springboard_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    for variant in variants:
+        anchor_id = variant["value"].get("settings", {}).get("anchor_id")
+        if anchor_id:
+            # Find section by anchor ID
+            section = soup.find("section", id=anchor_id)
+            assert section is not None, f"Section with id '{anchor_id}' not found"
+            assert_springboard_block_attributes(section, variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_springboard_block_empty_items(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that SpringboardBlock handles empty items list correctly."""
+    variants = get_springboard_variants()
+    test_page = get_springboard_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    # Find the variant with empty items (variant 3)
+    empty_variant = next(v for v in variants if len(v["value"]["springboard_items"]) == 0)
+    anchor_id = empty_variant["value"]["settings"]["anchor_id"]
+
+    # Find the section
+    section = soup.find("section", id=anchor_id)
+    assert section is not None, f"Section with id '{anchor_id}' not found"
+
+    # Should still have the header row
+    springboard = section.find("ul", class_="m24-c-springboard")
+    header_row = springboard.find("li", class_="m24-c-springboard-headings")
+    assert header_row is not None, "Header row should exist even with empty items"
+
+    # Should only have the header row (no other items)
+    items = springboard.find_all("li", class_="m24-c-springboard-item")
+    actual_items = [item for item in items if "m24-c-springboard-headings" not in item.get("class", [])]
+    assert len(actual_items) == 0, "Should have no items when springboard_items is empty"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_springboard_block_link_attributes(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that SpringboardBlock correctly applies link attributes."""
+    variants = get_springboard_variants()
+    test_page = get_springboard_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    # Find the first variant which has items with target="_blank"
+    variant_with_target = variants[0]
+    first_item_url = variant_with_target["value"]["springboard_items"][0]["url"]
+
+    # Find the link with that URL
+    link = soup.find("a", href=first_item_url)
+    assert link is not None, f"Link with href '{first_item_url}' not found"
+    assert link.get("target") == "_blank", "Expected target='_blank'"
+    assert "noopener" in link.get("rel", []), "Expected 'noopener' in rel"
