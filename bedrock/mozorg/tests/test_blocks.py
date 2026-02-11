@@ -466,3 +466,17 @@ def test_springboard_block_link_attributes(minimal_site, rf, serving_method):  #
     assert link is not None, f"Link with href '{first_item_url}' not found"
     assert link.get("target") == "_blank", "Expected target='_blank'"
     assert "noopener" in link.get("rel", []), "Expected 'noopener' in rel"
+
+
+def test_springboard_fixture_returns_same_page_when_called_twice(minimal_site):  # noqa: F811
+    """Test that get_springboard_test_page() returns the same page on subsequent calls."""
+    # First call creates the page
+    first_page = get_springboard_test_page()
+    assert first_page is not None
+    assert first_page.slug == "springboard-block-test"
+
+    # Second call should return the same existing page
+    second_page = get_springboard_test_page()
+    assert second_page is not None
+    assert second_page.id == first_page.id
+    assert second_page.slug == first_page.slug
