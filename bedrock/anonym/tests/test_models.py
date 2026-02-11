@@ -747,3 +747,40 @@ def test_anonym_contact_page_post_empty_submission(
 
     assert resp.status_code == 200
     assert "Please fill in at least one field." in page_content
+
+
+def test_anonym_contact_page_post_honeypot(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a POST with the honeypot field filled is rejected."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Honeypot Test",
+        slug="contact-honeypot-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Bot Name",
+            "email": "bot@example.com",
+            "interest": "privacy",
+            "office_fax": "I am a bot",
+        },
+    )
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Form submission failed." in page_content

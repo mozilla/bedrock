@@ -107,3 +107,7 @@
 .mzan-form-errors {
     color: $token-color-red;
 }
+
+.mzan-contact-form .mzan-form-field.important-field {
+    display: none;
+}

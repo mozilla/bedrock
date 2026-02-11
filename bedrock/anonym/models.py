@@ -281,6 +281,10 @@ class AnonymContactPage(AbstractBedrockCMSPage):
 
         Returns a list of error messages. An empty list means the data is valid.
         """
+        # If the honeypot field has data, then form validation fails.
+        if post_data.get("office_fax", ""):
+            return ["Form submission failed."]
+
         errors = []
         has_any_data = False
 
