@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import springboard_item with context %}
+
+<section class="m24-c-content" {% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
+  {% if value.heading %}
+    <h3 class="m24-c-intro-title m24-t-sm" itemprop="sectionTitle">{{ value.heading }}</h3>
+  {% endif %}
+  <ul class="m24-c-springboard">
+    <li class="m24-c-springboard-item m24-c-springboard-headings">
+      <div class="m24-c-springboard-link">
+        <div class="m24-c-springboard-thumb"></div>
+        <div class="m24-c-springboard-type" itemprop="columnOne">{{ value.column_one }}</div>
+        <div class="m24-c-springboard-author" itemprop="columnTwo">{{ value.column_two }}</div>
+        <div class="m24-c-springboard-topic" itemprop="columnThree">{{ value.column_three }}</div>
+        <div class="m24-c-springboard-preview" itemprop="columnFour">{{ value.column_four}}</div>
+      </div>
+    </li>
+
+    {% for item in value.springboard_items %}
+      {{ springboard_item(
+      link_url=item.url,
+      link_attributes=item.link_attributes,
+      type=item.type,
+      type_icon=item.icon,
+      topic=item.topic,
+      author=item.author,
+      preview=item.preview
+    ) }}
+    {% endfor %}
+
+  </ul>
+</section>
