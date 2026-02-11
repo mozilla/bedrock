@@ -48,7 +48,7 @@ class TransitionBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/blocks/transition_block.html"
-        icon = "arrows-up-down"
+        icon = "grip"
         label = "Transition"
         label_format = "{top_color} → {bottom_color}"
 
@@ -113,7 +113,7 @@ class SpringboardItemBlock(blocks.StructBlock):
     )
 
     class Meta:
-        icon = "cog"
+        icon = "grip"
         label = "Springboard Item"
 
 
@@ -186,7 +186,7 @@ class SpringboardBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/blocks/springboard_block.html"
-        icon = "group"
+        icon = "grip"
         label = "Springboard Section"
         label_format = "{heading}"
 
@@ -267,7 +267,7 @@ class DonateBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/blocks/donate_block.html"
-        icon = "heart"
+        icon = "grip"
         label = "Donate Section"
         label_format = "{heading}"
 
