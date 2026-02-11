@@ -300,7 +300,7 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
                 assert link.get("target") == "_blank", f"Missing target='_blank' in item {index}"
             if 'rel="noopener"' in expected_item["linkAttributes"]:
                 assert "noopener" in link.get("rel", []), f"Missing rel='noopener' in item {index}"
-            if 'data-custom=' in expected_item["linkAttributes"]:
+            if "data-custom=" in expected_item["linkAttributes"]:
                 assert link.get("data-custom") is not None, f"Missing data-custom attribute in item {index}"
 
         # Check type

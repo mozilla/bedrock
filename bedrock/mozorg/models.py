@@ -19,7 +19,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import SpringboardBlock,DonateBlock, GalleryBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, SpringboardBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 

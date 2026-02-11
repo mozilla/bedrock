@@ -51,6 +51,8 @@ class TransitionBlock(blocks.StructBlock):
         icon = "arrows-up-down"
         label = "Transition"
         label_format = "{top_color} → {bottom_color}"
+
+
 class SpringboardItemBlock(blocks.StructBlock):
     """Block for a single media springboard row."""
 
@@ -114,6 +116,7 @@ class SpringboardItemBlock(blocks.StructBlock):
         icon = "cog"
         label = "Springboard Item"
 
+
 class SpringboardBlockSettings(blocks.StructBlock):
     """Settings for the media springboard block."""
 
@@ -142,6 +145,7 @@ class SpringboardBlockSettings(blocks.StructBlock):
         label = "Settings"
         label_format = "ID: {anchor_id} - Background: {background_color}"
         form_classname = "compact-form struct-block"
+
 
 class SpringboardBlock(blocks.StructBlock):
     """Block for the media sprinfboard section on the homepage."""
