@@ -32,8 +32,8 @@ def get_springboard_variants() -> list[dict]:
                         "url": "https://example.com/article1",
                         "link_attributes": 'target="_blank" rel="noopener"',
                         "type": "Article",
-                        "icon": "document",
-                        "topic": "Privacy",
+                        "icon": "article",
+                        "topic": "Privacy & Security",
                         "author": "Jane Doe",
                         "preview": "Understanding privacy in the digital age",
                     },
@@ -42,7 +42,7 @@ def get_springboard_variants() -> list[dict]:
                         "link_attributes": "",
                         "type": "Video",
                         "icon": "video",
-                        "topic": "Security",
+                        "topic": "Privacy & Security",
                         "author": "John Smith",
                         "preview": "How to secure your online accounts",
                     },
@@ -94,23 +94,6 @@ def get_springboard_variants() -> list[dict]:
                 ],
             },
             "id": "springboard-variant-2",
-        },
-        # Variant 3: Empty springboard items list
-        {
-            "type": "springboard_block",
-            "value": {
-                "settings": {
-                    "anchor_id": "empty-section",
-                    "background_color": "",
-                },
-                "heading": "No Items Yet",
-                "column_one": "Type",
-                "column_two": "Author",
-                "column_three": "Topic",
-                "column_four": "Summary",
-                "springboard_items": [],
-            },
-            "id": "springboard-variant-3",
         },
     ]
 

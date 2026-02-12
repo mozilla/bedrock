@@ -155,6 +155,7 @@ class SpringboardBlock(blocks.StructBlock):
     text_divider = DividerBlock(label="Text")
 
     heading = blocks.CharBlock(
+        required=False,
         max_length=255,
         help_text="Use sentence case.",
     )
