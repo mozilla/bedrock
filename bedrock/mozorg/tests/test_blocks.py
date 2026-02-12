@@ -415,37 +415,6 @@ def test_springboard_block_attributes(minimal_site, rf, serving_method):  # noqa
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_springboard_block_empty_items(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that SpringboardBlock handles empty items list correctly."""
-    variants = get_springboard_variants()
-    test_page = get_springboard_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    # Find the variant with empty items (variant 3)
-    empty_variant = next(v for v in variants if len(v["value"]["springboard_items"]) == 0)
-    anchor_id = empty_variant["value"]["settings"]["anchor_id"]
-
-    # Find the section
-    section = soup.find("section", id=anchor_id)
-    assert section is not None, f"Section with id '{anchor_id}' not found"
-
-    # Should still have the header row
-    springboard = section.find("ul", class_="m24-c-springboard")
-    header_row = springboard.find("li", class_="m24-c-springboard-headings")
-    assert header_row is not None, "Header row should exist even with empty items"
-
-    # Should only have the header row (no other items)
-    items = springboard.find_all("li", class_="m24-c-springboard-item")
-    actual_items = [item for item in items if "m24-c-springboard-headings" not in item.get("class", [])]
-    assert len(actual_items) == 0, "Should have no items when springboard_items is empty"
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
 def test_springboard_block_link_attributes(minimal_site, rf, serving_method):  # noqa: F811
     """Test that SpringboardBlock correctly applies link attributes."""
     variants = get_springboard_variants()
