@@ -236,7 +236,7 @@ class ContentSubpageFactory(wagtail_factories.PageFactory):
 
 class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
     url = "https://example.com/article"
-    linkAttributes = ""
+    link_attributes = ""
     type = "Article"
     icon = "article"
     topic = "News"

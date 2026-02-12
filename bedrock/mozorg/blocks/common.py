@@ -62,7 +62,7 @@ class SpringboardItemBlock(blocks.StructBlock):
         help_text="Link to the person's website or social media account with UTMs.",
     )
 
-    linkAttributes = blocks.CharBlock(
+    link_attributes = blocks.CharBlock(
         required=False,
         char_max_length=255,
         help_text="Link attributes, such as data-link-text, data-link-position",

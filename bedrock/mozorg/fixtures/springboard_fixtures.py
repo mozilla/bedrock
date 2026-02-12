@@ -30,7 +30,7 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/article1",
-                        "linkAttributes": 'target="_blank" rel="noopener"',
+                        "link_attributes": 'target="_blank" rel="noopener"',
                         "type": "Article",
                         "icon": "document",
                         "topic": "Privacy",
@@ -39,7 +39,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/video1",
-                        "linkAttributes": "",
+                        "link_attributes": "",
                         "type": "Video",
                         "icon": "video",
                         "topic": "Security",
@@ -66,7 +66,7 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/podcast1",
-                        "linkAttributes": "",
+                        "link_attributes": "",
                         "type": "Podcast",
                         "icon": "audio",
                         "topic": "Technology",
@@ -75,7 +75,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/blog1",
-                        "linkAttributes": "",
+                        "linkAttlink_attributesributes": "",
                         "type": "Blog Post",
                         "icon": "document",
                         "topic": "Open Source",
@@ -84,7 +84,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/webinar1",
-                        "linkAttributes": 'data-custom="test"',
+                        "link_attributes": 'data-custom="test"',
                         "type": "Webinar",
                         "icon": "presentation",
                         "topic": "Education",

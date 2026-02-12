@@ -294,13 +294,13 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
         assert link.get("href") == expected_item["url"], f"Wrong URL in item {index}"
 
         # Check link attributes if present
-        if expected_item.get("linkAttributes"):
+        if expected_item.get("link_attributes"):
             # Parse expected attributes
-            if 'target="_blank"' in expected_item["linkAttributes"]:
+            if 'target="_blank"' in expected_item["link_attributes"]:
                 assert link.get("target") == "_blank", f"Missing target='_blank' in item {index}"
-            if 'rel="noopener"' in expected_item["linkAttributes"]:
+            if 'rel="noopener"' in expected_item["link_attributes"]:
                 assert "noopener" in link.get("rel", []), f"Missing rel='noopener' in item {index}"
-            if "data-custom=" in expected_item["linkAttributes"]:
+            if "data-custom=" in expected_item["link_attributes"]:
                 assert link.get("data-custom") is not None, f"Missing data-custom attribute in item {index}"
 
         # Check type
