@@ -9,19 +9,19 @@ py==1.11.0
 Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
 pyquery==2.0.1
-pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
-pytest-cov==5.0.0
-pytest-datadir==1.7.2
+pytest==9.0.2  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
+pytest-cov==7.0.0
+pytest-datadir==1.8.0
 pytest-django==4.11.1
-pytest-mock==3.14.1
+pytest-mock==3.15.1
 pytest-parallel==0.1.1
-pytest-rerunfailures==15.1
-pytest-selenium==4.0.1
+pytest-rerunfailures==16.1
+pytest-selenium==4.1.0
 responses==0.25.8
 ruff==0.15.0
-selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
+selenium==4.40.0
 translate-toolkit==3.18.1
-uv==0.9.21
+uv==0.10.2
 wagtail-factories==4.4.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
