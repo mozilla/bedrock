@@ -161,22 +161,26 @@ class SpringboardBlock(blocks.StructBlock):
 
     column_one = blocks.CharBlock(
         max_length=255,
+        label="Title for column one",
         help_text="Column name, e.g.: Type",
     )
 
     column_two = blocks.CharBlock(
         max_length=255,
-        help_text="Column name, e.g: Author(s)",
+        label="Title for column two",
+        help_text="Column name, e.g.: Author(s)",
     )
 
     column_three = blocks.CharBlock(
         max_length=255,
-        help_text="Column name, e.g: Topic",
+        label="Title for column three",
+        help_text="Column name, e.g.: Topic",
     )
 
     column_four = blocks.CharBlock(
         max_length=255,
-        help_text="Column name, e.g: Intro",
+        label="Title for column four",
+        help_text="Column name, e.g.: Intro",
     )
 
     springboard_items = blocks.ListBlock(
