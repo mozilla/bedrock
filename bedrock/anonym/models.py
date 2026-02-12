@@ -133,6 +133,7 @@ class AnonymNewsItemPage(AbstractStatCardPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
 
     content_panels = (
@@ -302,6 +303,7 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
@@ -333,6 +335,7 @@ class AnonymCaseStudyItemPage(AbstractStatCardPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
 
     notification = models.ForeignKey(
