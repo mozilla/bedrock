@@ -1,6 +1,5 @@
 -r prod.txt
 
-bpython==0.26
 braceexpand==0.1.7
 django-silk==5.4.3
 factory-boy==3.3.3
@@ -19,11 +18,11 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==15.1
 pytest-selenium==4.0.1
 responses==0.25.8
-ruff==0.14.8
+ruff==0.15.0
 selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
-translate-toolkit==3.16.3
+translate-toolkit==3.18.1
 uv==0.9.21
-wagtail-factories==4.3.0
+wagtail-factories==4.4.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==9.0.4

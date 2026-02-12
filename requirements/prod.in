@@ -1,7 +1,7 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-boto3==1.42.40
+boto3==1.42.47
 chardet==5.2.0
 commonware==0.6.0
 contextlib2==21.6.0
@@ -34,13 +34,13 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.10.0
-justhtml>=1.5.0
+justhtml>=1.7.0
 lxml==5.4.0  # Needed for BeautifulSoup.
 Markdown==3.8
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==5.0.2
-Pillow==11.3.0
+Pillow==12.1.1
 psycopg[binary]==3.2.8
 py-svg-hush==0.2.0
 PyGithub==2.8.1
@@ -51,16 +51,16 @@ querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures 
 requests==2.32.5
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
-sentry-sdk==2.51.0
+sentry-sdk==2.52.0
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
 wagtail-localize-smartling==0.11.0
 wagtail-localize==1.13
 wagtail-link-block==1.1.7
-wagtail-thumbnail-choice-block==0.1.4
+wagtail-thumbnail-choice-block==0.1.5
 Wand==0.6.13  # For animated GIF support
-Wagtail==7.2.2
+Wagtail==7.3
 whitenoise==6.11.0
 wagtail-localize-dashboard==0.1.2
 wagtail-localize-intentional-blanks==0.2.4
