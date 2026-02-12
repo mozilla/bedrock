@@ -65,7 +65,7 @@ class SpringboardItemBlock(blocks.StructBlock):
     linkAttributes = blocks.CharBlock(
         required=False,
         char_max_length=255,
-        help_text="Link attributes, suck as data-link-text, data-link-position",
+        help_text="Link attributes, such as data-link-text, data-link-position",
     )
 
     type = blocks.ChoiceBlock(
@@ -85,7 +85,7 @@ class SpringboardItemBlock(blocks.StructBlock):
             ("podcast", "Podcast"),
             ("video", "Video"),
         ],
-        help_text="Selects a icon for the row.",
+        help_text="Selects an icon for the row.",
     )
 
     topic = blocks.ChoiceBlock(
@@ -109,7 +109,7 @@ class SpringboardItemBlock(blocks.StructBlock):
     preview = blocks.CharBlock(
         required=False,
         char_max_length=255,
-        help_text="short preview of the content",
+        help_text="Short preview of the content",
     )
 
     class Meta:
@@ -148,7 +148,7 @@ class SpringboardBlockSettings(blocks.StructBlock):
 
 
 class SpringboardBlock(blocks.StructBlock):
-    """Block for the media sprinfboard section on the homepage."""
+    """Block for the media springboard section on the homepage."""
 
     settings = SpringboardBlockSettings()
 
@@ -161,7 +161,7 @@ class SpringboardBlock(blocks.StructBlock):
 
     column_one = blocks.CharBlock(
         max_length=255,
-        help_text="Column name, e.g: Type",
+        help_text="Column name, e.g.: Type",
     )
 
     column_two = blocks.CharBlock(
