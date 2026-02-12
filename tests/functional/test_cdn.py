@@ -43,7 +43,6 @@ def get_ssl_json_results(tmp_filename):
 # end helper functions
 
 
-@pytest.mark.cdn
 @pytest.fixture(scope="session")
 def get_ssllabs_results(base_url):
     tmp_filename = "ssllabs_data.txt"
