@@ -24,7 +24,7 @@
           height="515"
           alt="{% if value.image_alt %}{{ value.image_alt }}{% endif %}"> -->
         <figure>
-          {{ srcset_image(value.image, "width-1376", class="", sizes="1376px", alt="{% if value.image_alt %}{{ value.image_alt }}{% endif %}") }}
+          {{ srcset_image(value.image, "width-1376", class="", sizes="1376px", alt=value.image_alt if value.image_alt else "") }}
         </figure>
       </div>
     </div>
@@ -33,7 +33,7 @@
       <h3 class="m24-c-showcase-subtitle">{{ value.sub_heading }}</h3>
 
       <p class="m24-c-showcase-body m24-c-section-cta">
-        <a href="{{ value.cta_link.get_url() }}" class="m24-c-cta" rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+        <a href="{{ value.cta_link.get_url() }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
       </p>
     </header>
 

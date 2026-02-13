@@ -255,6 +255,28 @@ class DonateBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.DonateBlock
 
 
+class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    anchor_id = ""
+
+    class Meta:
+        model = common.ShowcaseBlockSettings
+
+
+class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
+    heading = "State of Mozilla"
+    body = "<p>Read our annual report.</p>"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+    sub_heading = "Supporting a healthy internet"
+    cta_text = "Read the report"
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ShowcaseBlock
+
+
 class HomePageFactory(wagtail_factories.PageFactory):
     title = "Test Home Page"
     live = True
@@ -263,6 +285,7 @@ class HomePageFactory(wagtail_factories.PageFactory):
     content = wagtail_factories.StreamFieldFactory(
         {
             "donate_block": factory.SubFactory(DonateBlockFactory),
+            "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
         }
     )
 
