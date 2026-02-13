@@ -53,6 +53,92 @@ class TransitionBlock(blocks.StructBlock):
         label_format = "{top_color} → {bottom_color}"
 
 
+class ShowcaseBlockSettings(blocks.StructBlock):
+    """Settings for the showcase block."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable (e.g., 'showcase', 'support').",
+    )
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id} - Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class ShowcaseBlock(blocks.StructBlock):
+    """Block for the showcase section on the homepage."""
+
+    settings = ShowcaseBlockSettings()
+
+    text_divider = DividerBlock(label="Text")
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Section heading. Use sentence case.",
+    )
+
+    body = blocks.RichTextBlock(
+        features=["bold", "link"],
+        help_text="Keep this to 2 paragraphs or fewer.",
+    )
+
+    image_divider = DividerBlock(label="Image")
+
+    image = ImageChooserBlock(
+        help_text="Ideal image size is 1376 * 515.",
+    )
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=(
+            "A concise description of the image for someone who can't see it. "
+            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
+        ),
+    )
+
+    sub_heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Section sub heading heading. Use sentence case.",
+    )
+
+    cta_divider = DividerBlock(label="Call-to-action")
+
+    cta_text = blocks.CharBlock(
+        max_length=50,
+        label="Link text",
+        help_text="Use sentence case (e.g., 'Read the report', 'Read more').",
+    )
+
+    cta_link = LinkBlock(
+        label="Link destination",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/showcase_block.html"
+        icon = "grip"
+        label = "Showcase Section"
+        label_format = "{heading}"
+
+
 class DonateBlockSettings(blocks.StructBlock):
     """Settings for the donate block."""
 
