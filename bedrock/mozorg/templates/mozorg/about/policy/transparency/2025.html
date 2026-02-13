@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/about/policy/transparency/report-base.html" %}
+
+{% block page_title %}2025 Transparency Reports{% endblock %}
+
+{% block report_title %}
+<h1>2025 Transparency Reports</h1>
+{% endblock %}
+
+{% block report_body %}
+<div class="c-2025-back-link">
+  <img src="{{ static('protocol/img/icons/arrow-left.svg') }}" alt="Back" height="20" width="20">
+  <a href="{{ url('mozorg.about.policy.transparency.index') }}">Mozilla Transparency</a>
+</div>
+<section>
+  <p>
+   custom content placeholder
+  </p>
+  <ul class="c-2025-reports">
+    <li>
+      <a download class="mzp-c-button" href="https://assets.mozilla.net/pdf/transparency-report/2025-dsa.pdf">2025 DSA Transparency Report <span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>Download</title><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath><g fill="currentColor" clip-path="url(#a)"><path d="M7.25 0v10.21L3.53 6.49 2.47 7.55 8 13.08l5.53-5.53-1.06-1.06-3.72 3.72V0zM16 14.5H0V16h16z"/></g></svg></a>
+    </li>
+    <li>
+      <a class="mzp-c-button mzp-t-secondary" href="{{ url('mozorg.about.policy.transparency.2024') }}">2024 Transparency Reports</a>
+    </li>
+  </ul>
+</section>
+{% endblock%}
+
+{% block report_nav %}{% endblock%}
