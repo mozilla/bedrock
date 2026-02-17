@@ -82,8 +82,19 @@ ADVISORY_ALLOWED_ATTRS = {
 }
 
 
+def strip_html_comments(html):
+    """Remove HTML comments (<!-- ... -->) from advisory HTML.
+
+    Some older advisories contain HTML comments (e.g. commented-out CVE
+    placeholders).  The sanitizer escapes these into visible &lt;!-- … --&gt;
+    text, so we strip them before sanitization.
+    """
+    return re.sub(r"<!--.*?-->", "", html, flags=re.DOTALL)
+
+
 def sanitize_advisory_html(html):
     """Sanitize advisory HTML using an allowlist of tags and attributes."""
+    html = strip_html_comments(html)
     return sanitize_html(html, ADVISORY_ALLOWED_TAGS, ADVISORY_ALLOWED_ATTRS)
 
 
