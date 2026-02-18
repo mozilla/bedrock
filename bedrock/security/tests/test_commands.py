@@ -12,6 +12,38 @@ from bedrock.security.management.commands import update_security_advisories
 from bedrock.security.models import Product
 
 
+class TestStripHtmlComments:
+    """Verify strip_html_comments removes HTML comments from advisory HTML."""
+
+    def test_strips_single_line_comment(self):
+        html = "<ul><li>keep</li><!-- remove --></ul>"
+        result = update_security_advisories.strip_html_comments(html)
+        assert result == "<ul><li>keep</li></ul>"
+
+    def test_strips_multiline_comment(self):
+        html = '<ul>\n  <li>keep</li>\n<!--\n  <li><a href="http://example.com">CVE-2009-xxxx</a></li>\n-->\n</ul>'
+        result = update_security_advisories.strip_html_comments(html)
+        assert "<!--" not in result
+        assert "-->" not in result
+        assert "CVE-2009-xxxx" not in result
+        assert "<li>keep</li>" in result
+
+    def test_strips_multiple_comments(self):
+        html = "<p>a</p><!-- one --><p>b</p><!-- two --><p>c</p>"
+        result = update_security_advisories.strip_html_comments(html)
+        assert result == "<p>a</p><p>b</p><p>c</p>"
+
+    def test_no_comments_unchanged(self):
+        html = "<p>No comments here</p>"
+        result = update_security_advisories.strip_html_comments(html)
+        assert result == html
+
+    def test_empty_comment(self):
+        html = "<p>before</p><!----><p>after</p>"
+        result = update_security_advisories.strip_html_comments(html)
+        assert result == "<p>before</p><p>after</p>"
+
+
 class TestSanitizeAdvisoryHtml:
     """Verify advisory HTML sanitization strips dangerous content."""
 
@@ -93,6 +125,14 @@ class TestSanitizeAdvisoryHtml:
             assert tag in result
         assert 'src="https://example.com/pic.png"' in result
         assert 'alt="pic"' in result
+
+    def test_strips_html_comments(self):
+        html = "<ul><li>keep</li><!-- <li>commented out</li> --></ul>"
+        result = update_security_advisories.sanitize_advisory_html(html)
+        assert "<!--" not in result
+        assert "&lt;!--" not in result
+        assert "commented out" not in result
+        assert "<li>keep</li>" in result
 
     def test_strips_javascript_img_src(self):
         html = '<img src="javascript:alert(1)" alt="x">'

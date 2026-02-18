@@ -1908,7 +1908,8 @@
     {
       "files": [
         "js/anonym/anonym-toggleable-items.js",
-        "js/anonym/anonym-card-list-center.js"
+        "js/anonym/anonym-card-list-center.js",
+        "js/anonym/anonym-contact-form.js"
       ],
       "name": "anonym"
     }

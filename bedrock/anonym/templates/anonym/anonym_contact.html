@@ -44,12 +44,27 @@
 
     <div class="mzan-contact-form-wrap add-full-width-borders">
       <div class="mzan-section">
-        <form method="post" action="#" class="mzan-contact-form">
+        <form method="post" action="/page-not-found/" data-actn="" class="mzan-contact-form">
           {% csrf_token %}
+
+          {% if form_errors %}
+            <div class="mzan-form-errors">
+              <ul>
+                {% for error in form_errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
 
           {% for field in page.form_fields %}
             {% include_block field %}
           {% endfor %}
+
+          <div class="mzan-form-field important-field">
+            <label for="office-fax">Leave this field empty</label>
+            <input type="text" name="office_fax" id="office-fax">
+          </div>
 
           <div class="mzan-form-submit">
             <button type="submit" class="mzp-c-button">Submit</button>

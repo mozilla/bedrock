@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import patch
+
 from django.test import RequestFactory
 
 import pytest
@@ -524,14 +526,28 @@ def test_anonym_case_study_item_page_serve(
 # ============================================================================
 
 
+def _create_thank_you_page(index_page):
+    """Create a simple thank-you page as the redirect target for contact form tests."""
+    thank_you = AnonymContentSubPage(
+        title="Thank You",
+        slug="thank-you",
+    )
+    index_page.add_child(instance=thank_you)
+    thank_you.save_revision().publish()
+    return thank_you
+
+
 def test_anonym_contact_page_creation(minimal_site: Site) -> None:  # noqa: F811
     """Test that an AnonymContactPage can be created."""
     index_page = get_test_anonym_index_page()
+    thank_you_page = _create_thank_you_page(index_page)
 
     page = AnonymContactPage(
         title="Contact Test",
         slug="contact-test",
         subheading="Get in touch",
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
     )
     index_page.add_child(instance=page)
     page.save_revision().publish()
@@ -539,6 +555,8 @@ def test_anonym_contact_page_creation(minimal_site: Site) -> None:  # noqa: F811
     assert page.id is not None
     assert page.title == "Contact Test"
     assert page.subheading == "Get in touch"
+    assert page.to_email_address == "test@example.com"
+    assert page.redirect_to == thank_you_page
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
@@ -550,12 +568,15 @@ def test_anonym_contact_page_serve(
     """Test that AnonymContactPage can be served."""
     index_page = get_test_anonym_index_page()
     form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
 
     page = AnonymContactPage(
         title="Contact Serve Test",
         slug="contact-serve-test",
         subheading="Contact us today",
         form_fields=form_field_variants[:3],
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
     )
     index_page.add_child(instance=page)
     page.save_revision().publish()
@@ -570,3 +591,196 @@ def test_anonym_contact_page_serve(
     # Verify form field labels from fixture data
     assert form_field_variants[0]["value"]["label"] in page_content
     assert form_field_variants[2]["value"]["label"] in page_content
+
+
+@patch("bedrock.anonym.models.EmailMessage")
+def test_anonym_contact_page_post_valid(
+    mock_email_class,
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a valid POST sends an email and redirects."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Post Test",
+        slug="contact-post-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Jane Doe",
+            "company": "Acme",
+            "email": "jane@example.com",
+            "phone": "555-1234",
+            "interest": "privacy",
+            "services": ["consulting", "support"],
+        },
+    )
+
+    resp = page.serve(request)
+
+    assert resp.status_code == 302
+    assert resp["Location"] == thank_you_page.url
+    mock_email_class.assert_called_once()
+    call_args = mock_email_class.call_args
+    assert call_args[0][0] == "Contact form submission: Contact Post Test"
+    assert call_args[0][3] == ["recipient@example.com"]
+    mock_email_class.return_value.send.assert_called_once()
+
+
+def test_anonym_contact_page_post_missing_required(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a POST missing required fields re-renders with errors."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Validation Test",
+        slug="contact-validation-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    # POST with missing required fields (full_name, email, interest are required)
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "company": "Acme",
+            "phone": "555-1234",
+        },
+    )
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Full Name is required." in page_content
+    assert "Email Address is required." in page_content
+    assert "Area of Interest is required." in page_content
+
+
+@patch("bedrock.anonym.models.EmailMessage")
+def test_anonym_contact_page_post_checkbox_group(
+    mock_email_class,
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that checkbox group values are collected correctly."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Checkbox Test",
+        slug="contact-checkbox-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Jane Doe",
+            "email": "jane@example.com",
+            "interest": "privacy",
+            "services": ["consulting", "implementation"],
+        },
+    )
+
+    resp = page.serve(request)
+
+    assert resp.status_code == 302
+    # Verify the email body contains the joined checkbox values
+    call_args = mock_email_class.call_args
+    email_body = call_args[0][1]
+    assert "consulting, implementation" in email_body
+
+
+def test_anonym_contact_page_post_empty_submission(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that an empty POST (no fields filled in) is rejected."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    # Use only optional fields so required-field validation doesn't trigger
+    optional_fields = [form_field_variants[1], form_field_variants[3]]  # company, phone
+
+    page = AnonymContactPage(
+        title="Contact Empty Test",
+        slug="contact-empty-test",
+        form_fields=optional_fields,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(_relative_url, {})
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Please fill in at least one field." in page_content
+
+
+def test_anonym_contact_page_post_honeypot(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a POST with the honeypot field filled is rejected."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Honeypot Test",
+        slug="contact-honeypot-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Bot Name",
+            "email": "bot@example.com",
+            "interest": "privacy",
+            "office_fax": "I am a bot",
+        },
+    )
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Form submission failed." in page_content
