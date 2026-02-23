@@ -57,6 +57,12 @@
     <li><a href="#dos-bugs">Why won't you provide a reward for denial of
       service bugs?</a></li>
     <li><a href="#spoof-bugs">What type of spoofing bugs qualify for a reward?</a></li>
+    <li><a href="#cross-process-bugs">Does triggering memory corruption in
+      another non-parent process count as a sandbox escape?</a></li>
+    <li><a href="#parent-read-bugs">Does triggering a memory-read vulnerability
+      in the parent process count as a sandbox escape?</a></li>
+    <li><a href="#gpu-sandbox-bugs">Do GPU process vulnerabilities qualify
+      for a sandbox escape bounty?</a></li>
   </ul>
 
   <h3>Bug reporting, etc.</h3>
@@ -236,6 +242,32 @@
         discretion to elevate certain bugs to a sec-moderate.  Many of the bugs in these
         categories represent edge cases, partial obscuring of information, or unusual user
         interaction.</p>
+    </dd>
+
+    <dt id="cross-process-bugs">Does triggering memory corruption in another 
+      non-parent process count as a sandbox escape?</dt>
+    <dd>
+      <p>If the other process is sandboxed then it is not a sandbox escape. It
+        may be a useful intermediate step towards a sandbox escape if you
+        present it as part of an exploit chain, but on its own it will be
+        evaluated for a bounty without the sandbox escape enhancement.</p>
+    </dd>
+    
+    <dt id="parent-read-bugs">Does triggering a memory-read vulnerability in
+      the parent process count as a sandbox escape?</dt>
+    <dd>
+      <p>Not on its own. You need to show how that results in executing arbitrary
+        code in the non-sandboxed process. Otherwise it will be evaluated for
+        a bounty without the sandbox escape enhancement.</p>     
+    </dd>
+
+    <dt id="gpu-sandbox-bugs">Do GPU process vulnerabilities qualify
+      for a sandbox escape bounty?</dt>
+    <dd>
+      <p>As of February 24, 2026 vulnerabilities in the code that runs in the
+        GPU process no longer qualify for the sandbox escape bounty. Most Firefox
+        users now have a sandboxed GPU process, and we are working on enabling
+        it for all users whether or not addtional vulnerabilities are found.</p>
     </dd>
   </dl>
 
