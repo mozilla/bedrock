@@ -57,6 +57,12 @@
     <li><a href="#dos-bugs">Why won't you provide a reward for denial of
       service bugs?</a></li>
     <li><a href="#spoof-bugs">What type of spoofing bugs qualify for a reward?</a></li>
+    <li><a href="#cross-process-bugs">Does triggering memory corruption in
+      another non-parent process count as a sandbox escape?</a></li>
+    <li><a href="#parent-read-bugs">Does triggering a memory-read vulnerability
+      in the parent process count as a sandbox escape?</a></li>
+    <li><a href="#gpu-sandbox-bugs">Do GPU process vulnerabilities qualify
+      for a sandbox escape bounty?</a></li>
   </ul>
 
   <h3>Bug reporting, etc.</h3>
@@ -224,18 +230,44 @@
     <dd>
       <p>Spoofing bugs that are rated
         <a href="https://wiki.mozilla.org/Security_Severity_Ratings/Client">sec-high</a>
-        are elligible for a bounty.  The severity rating page is authoritative, but to
-        reiterate these bugs require a fairly high level of attacker control - specificaly
+        are eligible for a bounty.  The severity rating page is authoritative, but to
+        reiterate these bugs require a fairly high level of attacker control - specifically
         attacker controlled HTML with an attacker-controlled URL in the actual browser
         address bar, retaining normal badging and iconography. When a bug is limited in
         one aspect of this, we encourage you to explore ways to bypass that
         limitation - your proof of concept should include a fully functional
-        compelling example fo a high-quality spoof.</p>
+        compelling example for a high-quality spoof.</p>
       <p>Most URL, fullscreen, address bar, or browser chrome spoofing bugs will be rated
         as sec-low, and we do not plan to pay a bounty on them; even when we use our
         discretion to elevate certain bugs to a sec-moderate.  Many of the bugs in these
         categories represent edge cases, partial obscuring of information, or unusual user
         interaction.</p>
+    </dd>
+
+    <dt id="cross-process-bugs">Does triggering memory corruption in another
+      non-parent process count as a sandbox escape?</dt>
+    <dd>
+      <p>If the other process is sandboxed then it is not a sandbox escape. It
+        may be a useful intermediate step towards a sandbox escape if you
+        present it as part of an exploit chain, but on its own it will be
+        evaluated for a bounty without the sandbox escape enhancement.</p>
+    </dd>
+
+    <dt id="parent-read-bugs">Does triggering a memory-read vulnerability in
+      the parent process count as a sandbox escape?</dt>
+    <dd>
+      <p>Not on its own. You need to show how that results in executing arbitrary
+        code in the non-sandboxed process. Otherwise it will be evaluated for
+        a bounty without the sandbox escape enhancement.</p>
+    </dd>
+
+    <dt id="gpu-sandbox-bugs">Do GPU process vulnerabilities qualify
+      for a sandbox escape bounty?</dt>
+    <dd>
+      <p>As of February 24, 2026 vulnerabilities in the code that runs in the
+        GPU process no longer qualify for the sandbox escape bounty. Most Firefox
+        users now have a sandboxed GPU process, and we are working on enabling
+        it for all users whether or not additional vulnerabilities are found.</p>
     </dd>
   </dl>
 

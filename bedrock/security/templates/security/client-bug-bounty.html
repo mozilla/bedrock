@@ -23,7 +23,7 @@
 
   <p>The Mozilla Client Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us create the safest Internet software in existence.</p>
 
-  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, submissions must be either an <a href="#static-analysis-bounty">static analysis submission</a>, <a href="#exploit-mitigation-bounty">exploit mitigation bypass</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information.</p>
+  <p><strong>Guidelines:</strong> Our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a> apply to the Client Bug Bounty Program. Submissions must be either a <a href="#static-analysis-bounty">static analysis submission</a>, <a href="#exploit-mitigation-bounty">exploit mitigation bypass</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information. We recommend that you read our <a href="{{ url('security.bug-bounty.faq') }}">Frequently Asked Questions</a> before submitting.</p>
 
   <h2 id="security-vulnerability-bounty">Security Vulnerability Bounty</h2>
 
@@ -49,9 +49,8 @@
   <ul class="mzp-u-list-styled">
     <li>Sufficient information to diagnose the vulnerability and produce a fix.  Examples:</li>
     <ul class="mzp-u-list-styled">
-      <li>ASAN Stacktrace or Crash Dump (typically for Memory Trespassing/Corruption)</li>
+      <li>ASAN Stacktrace or Crash Dump (typically for Memory Trespassing/Corruption) including a testcase that reproduces that output</li>
       <li>Trigger point (for UXSS)</li>
-      <li>ASAN Nightly bug reports</li>
     </ul>
     <li>Notes:</li>
     <ul class="mzp-u-list-styled">
@@ -83,7 +82,7 @@
     <tr>
       <th></th>
       <th>High Quality Report</th>
-      <th>Baseline</th>
+      <th>Baseline: up to</th>
     </tr>
   </thead>
   <tbody>
@@ -132,6 +131,8 @@
       <td>
         <ul class="mzp-u-list-styled">
           <li>sec-high rated address bar spoofs</li>
+          <li>Memory corruption in the GPU process</li>
+          <li>Information disclosure from the parent to a less privileged process (e.g. out-of-bounds memory reads via IPC)</li>
         </ul>
       </td>
       <td class="two-col-cell" colspan="2">
@@ -183,7 +184,7 @@
 
   <p>Within Firefox, we have introduced vital security features, exploit mitigations, and defense in depth measures. If you are able to bypass one of these measures, even if you are operating from privileged access within the browser, you are eligible for a bounty.</p>
 
-  <p>Privileged access means bypassing the mitigation in a testing scenario; such as <a href="https://blog.mozilla.org/security/2019/12/02/help-test-firefoxs-built-in-html-sanitizer-to-protect-against-uxss-bugs/">directly testing the HTML Sanitizer</a>. However do note that as explained above in footnote <sup>1</sup>, direct calls to an IPC method from a compromised content process is an expected attack vector and not considered a testing scenario; these are eligible for a Highest Impact bounty as well as the Bounty Bonus described below.</p>
+  <p>Privileged access means bypassing the mitigation in a testing scenario; such as <a href="https://blog.mozilla.org/security/2019/12/02/help-test-firefoxs-built-in-html-sanitizer-to-protect-against-uxss-bugs/">directly testing the HTML Sanitizer</a>. However do note that as explained above in footnote <sup>0</sup>, direct calls to an IPC method from a compromised content process is an expected attack vector and not considered a testing scenario; these are eligible for a Highest Impact bounty as well as the Bounty Bonus described below.</p>
 
   <p>The mitigations we consider in scope for this bounty are:</p>
 
@@ -217,7 +218,7 @@
 
   <p><strong>Bounty</strong>: Assuming the mitigation is bypassed in a testing scenario, with privileged access, we will treat a bypass of the above listed mitigations as High Impact using the table above, with the same payout range for baseline to high quality report.</p>
 
-  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $18K - $20K plus an additional $9000.</p>
+  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $8K - $10K plus an additional $4000.</p>
 
   <p><em>Note</em>: If you’re in the Bounty Bonus category, you may think submitting them separately could earn you slightly more money than submitting them together. We’re pretty sure that doing so would make the second report bounty-ineligible, but if you think each issue is fully independent, you’re welcome to submit them separately and we’ll consider it.</p>
 
