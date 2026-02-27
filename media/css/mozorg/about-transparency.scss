@@ -137,7 +137,8 @@ main h3 {
 // Custom 2024 page
 $mzp-v-spacing: var(--v-grid-md);
 
-.c-2024-back-link {
+.c-2024-back-link,
+.c-2025-back-link {
     display: flex;
     gap: $spacing-xs;
     margin-bottom: $spacing-xl;
@@ -152,7 +153,8 @@ $mzp-v-spacing: var(--v-grid-md);
     }
 }
 
-.c-2024-reports {
+.c-2024-reports,
+.c-2025-reports {
     display: flex;
     flex-direction: column;
     gap: $spacing-md;

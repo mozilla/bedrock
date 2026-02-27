@@ -1,0 +1,41 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "mozorg/about/policy/transparency/report-base.html" %}
+
+{% block page_title %}2025 Transparency Reports{% endblock %}
+
+{% block report_title %}
+<h1>2025 Transparency Reports</h1>
+{% endblock %}
+
+{% block report_body %}
+<div class="c-2025-back-link">
+  <img src="{{ static('protocol/img/icons/arrow-left.svg') }}" alt="Back" height="20" width="20">
+  <a href="{{ url('mozorg.about.policy.transparency.index') }}">Mozilla Transparency</a>
+</div>
+<section>
+  <p>
+    Prior to 2024, Mozilla published Transparency reports on a biannual basis. In 2025 we moved to annual reporting in response to the European Union’s Digital Services Act (DSA), which introduced specific reporting requirements that are applicable to Mozilla platforms.
+  </p>
+  <p>
+    On February 27, 2026, we published our 2025 DSA Transparency Report, which follows the new DSA template.  Later this spring, we will publish our standard transparency report, which will follow our traditional format, and include additional data beyond what is required under DSA.  (In 2025 we issued the global report into two parts, but going forward we will publish a single global report each year.)
+  </p>
+  <p>
+    In order to comply with DSA formatting requirements, certain data in the first report — such as law enforcement requests — is limited to the EU (though those EU figures will also be included in the later report’s global totals). Other data in the DSA report — such as the number of copyright-related takedown notices we received and actioned — is not tracked country-by-country, and therefore reflects worldwide data.
+  </p>
+  <ul class="c-2025-reports">
+    <li>
+      <a download class="mzp-c-button" href="https://assets.mozilla.net/pdf/transparency-report/2025-dsa.pdf">2025 DSA Transparency Report <span class="mzp-c-button-icon-end"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>Download</title><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath><g fill="currentColor" clip-path="url(#a)"><path d="M7.25 0v10.21L3.53 6.49 2.47 7.55 8 13.08l5.53-5.53-1.06-1.06-3.72 3.72V0zM16 14.5H0V16h16z"/></g></svg></span></a>
+    </li>
+    <li>
+      <a class="mzp-c-button mzp-t-secondary" href="{{ url('mozorg.about.policy.transparency.2024') }}">2024 Transparency Reports</a>
+    </li>
+  </ul>
+</section>
+{% endblock%}
+
+{% block report_nav %}{% endblock%}
