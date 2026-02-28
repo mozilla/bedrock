@@ -486,11 +486,7 @@ if (typeof window.Mozilla === 'undefined') {
                     pollRetry += 1;
                     timeout = window.setTimeout(_checkGA, interval);
                 } else {
-                    if (clientIDGA4) {
-                        callback(true);
-                    } else {
-                        callback(false);
-                    }
+                    callback(false);
                 }
             }
         }
