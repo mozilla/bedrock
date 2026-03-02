@@ -109,6 +109,11 @@ $launchpad-logo-spacing: $launchpad-logo-width + $launchpad-logo-padding;
     &.m24-t-product-0din::before {
         background-image: url('/media/img/logos/0din/logo-0din.svg');
     }
+
+    // TODO: add tabstack logo
+    &.m24-t-product-tabstack::before {
+        background-image: url('/media/img/logos/0din/logo-0din.svg');
+    }
 }
 
 .m24-c-launchpad-title {

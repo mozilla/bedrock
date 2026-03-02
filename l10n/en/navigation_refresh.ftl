@@ -48,3 +48,4 @@ navigation-refresh-mdn-plus = { -brand-name-mdn-plus }
 navigation-refresh-thunderbird = { -brand-name-thunderbird }
 navigation-refresh-solo = { -brand-name-solo }
 navigation-refresh-0din = { -brand-name-0din }
+navigation-refresh-tabstack = { -brand-name-tabstack }
