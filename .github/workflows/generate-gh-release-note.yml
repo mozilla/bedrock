@@ -44,8 +44,8 @@ jobs:
         if: steps.validate.outputs.valid == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
+          CURRENT_TAG: ${{ steps.validate.outputs.tag_name }}
         run: |
-          CURRENT_TAG="${{ steps.validate.outputs.tag_name }}"
 
           # Create the release with auto-generated notes
           gh release create "$CURRENT_TAG" \
