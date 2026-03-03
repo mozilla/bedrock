@@ -251,6 +251,7 @@ class LeadershipPage(AbstractBedrockCMSPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
@@ -286,6 +287,7 @@ class AdvertisingIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
     contact_banner = models.ForeignKey(
         "mozorg.ContactBannerSnippet",
@@ -358,6 +360,7 @@ class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
@@ -378,6 +381,7 @@ class ContentSubpage(AbstractBedrockCMSPage):
         blank=True,
         null=True,
         collapsed=True,
+        use_json_field=True,
     )
 
     contact_banner = models.ForeignKey(
