@@ -80,6 +80,12 @@
   "overrides": {
     "jasmine-browser-runner": {
       "glob": "10.5.0"
+    },
+    "copy-webpack-plugin": {
+      "serialize-javascript": "7.0.3"
+    },
+    "css-minimizer-webpack-plugin": {
+      "serialize-javascript": "7.0.3"
     }
   }
 }
