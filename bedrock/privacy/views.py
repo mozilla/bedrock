@@ -104,6 +104,8 @@ firefox_focus_notices = FirefoxFocusPrivacyDocView.as_view(legal_doc_name="focus
 
 thunderbird_notices = PrivacyDocView.as_view(template_name="privacy/notices/thunderbird.html", legal_doc_name="thunderbird_privacy_policy")
 
+smart_window_notices = PrivacyDocView.as_view(template_name="privacy/notices/smart-window.html", legal_doc_name="smart_window_privacy_notice")
+
 websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/websites.html", legal_doc_name="websites_privacy_notice")
 
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
