@@ -19,7 +19,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ShowcaseBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -415,6 +415,7 @@ class HomePage(AbstractBedrockCMSPage):
         [
             ("donate_block", DonateBlock()),
             ("gallery_block", GalleryBlock()),
+            ("showcase_block", ShowcaseBlock()),
             ("transition_block", TransitionBlock()),
         ],
         blank=True,
