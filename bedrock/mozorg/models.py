@@ -19,7 +19,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, SpringboardBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -413,6 +413,7 @@ class HomePage(AbstractBedrockCMSPage):
 
     content = StreamField(
         [
+            ("springboard_block", SpringboardBlock()),
             ("donate_block", DonateBlock()),
             ("gallery_block", GalleryBlock()),
             ("transition_block", TransitionBlock()),

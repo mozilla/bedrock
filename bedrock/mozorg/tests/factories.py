@@ -234,6 +234,40 @@ class ContentSubpageFactory(wagtail_factories.PageFactory):
         model = models.ContentSubpage
 
 
+class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
+    url = "https://example.com/article"
+    link_attributes = ""
+    type = "Article"
+    icon = "article"
+    topic = "News"
+    author = "Test Author"
+    preview = "Test preview text"
+
+    class Meta:
+        model = common.SpringboardItemBlock
+
+
+class SpringboardBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = ""
+    background_color = ""
+
+    class Meta:
+        model = common.SpringboardBlockSettings
+
+
+class SpringboardBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(SpringboardBlockSettingsFactory)
+    heading = "Latest Resources"
+    column_one = "Type"
+    column_two = "Author"
+    column_three = "Topic"
+    column_four = "Preview"
+    springboard_items = wagtail_factories.ListBlockFactory(SpringboardItemBlockFactory)
+
+    class Meta:
+        model = common.SpringboardBlock
+
+
 class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     background_color = "gray"
     anchor_id = ""
@@ -263,6 +297,7 @@ class HomePageFactory(wagtail_factories.PageFactory):
     content = wagtail_factories.StreamFieldFactory(
         {
             "donate_block": factory.SubFactory(DonateBlockFactory),
+            "springboard_block": factory.SubFactory(SpringboardBlockFactory),
         }
     )
 

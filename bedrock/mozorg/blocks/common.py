@@ -48,9 +48,152 @@ class TransitionBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/blocks/transition_block.html"
-        icon = "arrows-up-down"
+        icon = "grip"
         label = "Transition"
         label_format = "{top_color} → {bottom_color}"
+
+
+class SpringboardItemBlock(blocks.StructBlock):
+    """Block for a single media springboard row."""
+
+    url = blocks.URLBlock(
+        required=False,
+        char_max_length=255,
+        help_text="Link to the person's website or social media account with UTMs.",
+    )
+
+    link_attributes = blocks.CharBlock(
+        required=False,
+        char_max_length=255,
+        help_text="Link attributes, such as data-link-text, data-link-position",
+    )
+
+    type = blocks.ChoiceBlock(
+        required=False,
+        choices=[
+            ("Article", "Article"),
+            ("Podcast", "Podcast"),
+            ("Video", "Video"),
+        ],
+        help_text="Selects a visual icon type for the link.",
+    )
+
+    icon = blocks.ChoiceBlock(
+        required=False,
+        choices=[
+            ("article", "Article"),
+            ("podcast", "Podcast"),
+            ("video", "Video"),
+        ],
+        help_text="Selects an icon for the row.",
+    )
+
+    topic = blocks.ChoiceBlock(
+        required=False,
+        choices=[
+            ("News", "News"),
+            ("Products", "Products"),
+            ("Artificial Intelligence", "Artificial Intelligence"),
+            ("Open Source AI", "Open Source AI"),
+            ("Privacy & Security", "Privacy & Security"),
+        ],
+        help_text="Selects a topic.",
+    )
+
+    author = blocks.CharBlock(
+        required=False,
+        char_max_length=255,
+        help_text="Author name(s), website name",
+    )
+
+    preview = blocks.CharBlock(
+        required=False,
+        char_max_length=255,
+        help_text="Short preview of the content",
+    )
+
+    class Meta:
+        icon = "grip"
+        label = "Springboard Item"
+
+
+class SpringboardBlockSettings(blocks.StructBlock):
+    """Settings for the media springboard block."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable (e.g., 'media', 'support').",
+    )
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id} - Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class SpringboardBlock(blocks.StructBlock):
+    """Block for the media springboard section on the homepage."""
+
+    settings = SpringboardBlockSettings()
+
+    text_divider = DividerBlock(label="Text")
+
+    heading = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Use sentence case.",
+    )
+
+    column_one = blocks.CharBlock(
+        max_length=255,
+        label="Title for column one",
+        help_text="Column name, e.g.: Type",
+    )
+
+    column_two = blocks.CharBlock(
+        max_length=255,
+        label="Title for column two",
+        help_text="Column name, e.g.: Author(s)",
+    )
+
+    column_three = blocks.CharBlock(
+        max_length=255,
+        label="Title for column three",
+        help_text="Column name, e.g.: Topic",
+    )
+
+    column_four = blocks.CharBlock(
+        max_length=255,
+        label="Title for column four",
+        help_text="Column name, e.g.: Intro",
+    )
+
+    springboard_items = blocks.ListBlock(
+        SpringboardItemBlock(),
+        min_num=1,
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/springboard_block.html"
+        icon = "grip"
+        label = "Springboard Section"
+        label_format = "{heading}"
 
 
 class DonateBlockSettings(blocks.StructBlock):
@@ -129,7 +272,7 @@ class DonateBlock(blocks.StructBlock):
 
     class Meta:
         template = "mozorg/cms/blocks/donate_block.html"
-        icon = "heart"
+        icon = "grip"
         label = "Donate Section"
         label_format = "{heading}"
 
