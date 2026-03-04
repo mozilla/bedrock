@@ -48,14 +48,15 @@ if (!Array.from) {
             // 16. Let k be 0.
             var k = 0;
 
-            // 17. Repeat, while k < len… or while iterator is done (also steps a - h)
-            while (k < len || isIterator) {
-                var item = getItem(k);
-                var kValue = isIterator ? item.value : item;
+            if (isIterator) {
+                // Iterator case: consume until done, enforcing maximum length.
+                while (true) {
+                    var item = getItem(k);
+                    if (item.done) {
+                        return A;
+                    }
+                    var kValue = item.value;
 
-                if (isIterator && item.done) {
-                    return A;
-                } else {
                     if (mapFn) {
                         A[k] =
                             typeof T === 'undefined'
@@ -64,19 +65,33 @@ if (!Array.from) {
                     } else {
                         A[k] = kValue;
                     }
-                }
-                k += 1;
-            }
 
-            if (isIterator) {
-                throw new TypeError(
-                    'Array.from: provided arrayLike or iterator has length more then 2 ** 52 - 1'
-                );
+                    k += 1;
+                    if (k >= len) {
+                        throw new TypeError(
+                            'Array.from: provided arrayLike or iterator has length more then 2 ** 52 - 1'
+                        );
+                    }
+                }
             } else {
+                // Array-like case: iterate up to len and then set length.
+                while (k < len) {
+                    var item = getItem(k);
+                    var kValue = item;
+
+                        if (mapFn) {
+                        A[k] =
+                            typeof T === 'undefined'
+                                ? mapFn(kValue, k)
+                                : mapFn.call(T, kValue, k);
+                    } else {
+                        A[k] = kValue;
+                    }
+                    k += 1;
+                }
+                return A;
                 A.length = len;
             }
-
-            return A;
         };
 
         // The length property of the from method is 1.
