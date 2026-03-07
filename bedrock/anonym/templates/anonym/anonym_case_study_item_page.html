@@ -6,6 +6,16 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+
+{% block shared_meta %}
+{# if an external link is provided, redirect to it. This page should
+   never be visible to the public. #}
+{{ super() }}
+{% if page.link %}
+<meta http-equiv="refresh" content="0; url='{{ page.link }}'" />
+{% endif %}
+{% endblock %}
+
 {% if page.seo_title %}
   {% set meta_title = page.seo_title %}
 {% else %}

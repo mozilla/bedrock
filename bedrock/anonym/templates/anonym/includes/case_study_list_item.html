@@ -11,11 +11,16 @@
     </div>
     {% endif %}
     <h2 class="mzan-card-heading">
+      {% if case_study.company_name %}
         {{ case_study.company_name }}
+      {% else %}
+        {{ case_study.title }}
+      {% endif %}
     </h2>
     {% if case_study.description %}
       <p>{{ case_study.description }}</p>
     {% endif %}
 
-    <a href="{{ case_study.url }}" class="mzp-c-button mzp-t-secondary mzp-t-md">Case Study</a>
+    {% set item_url = case_study.link if case_study.link else case_study.url %}
+    <a href="{{ item_url }}" class="mzp-c-button mzp-t-secondary mzp-t-md">Case Study</a>
 </li>

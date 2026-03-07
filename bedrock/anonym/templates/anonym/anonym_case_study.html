@@ -8,31 +8,51 @@
 
 {% block page_title %}Mozilla Anonym Case Studies{% endblock %}
 {% block page_desc %}Mozilla Anonym Case Studies{% endblock %}
-{% block body_class %}mzan{% endblock %}
+{% block body_class %}{{ super() }} anonym{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('mozilla-anonym') }}
 {% endblock %}
 
+{% block js %}
+  {{ super() }}
+  {{ js_bundle('anonym') }}
+{% endblock %}
+
+
 {% block site_header %}
   {% include 'anonym/includes/navigation.html' %}
 {% endblock %}
 
+
+
 {% block content %}
   <main id="mzan-main">
-    <h1>{{ page.title }}</h1>
+    <section class="mzan-news-section">
+      <hgroup class="mzan-hgroup">
+        <h1 class="mzan-heading">{{ page.title }}</h1>
+      </hgroup>
 
-    {% set case_studies=page.get_children().live() %}
-    {% if case_studies %}
-      <div class="mzan-cards dividers">
-        <ul class="mzan-card-list mzan-case-study-card-list add-full-width-borders">
-          {% for page in page.get_children().live() %}
-            {% set case_study=page.specific %}
-            {% include 'anonym/includes/case_study_list_item.html' %}
-          {% endfor %}
-        </ul>
-      </div>
-    {% endif %}
+      {# News Grid #}
+        <div class="mzan-cards dividers add-full-width-borders">
+          <div class="mzan-card-list mzan-case-study-card-list add-full-width-borders is-three-wide will-wrap">
 
+          {% set case_studies=page.get_children().live() %}
+          {% if case_studies %}
+            {% for page in page.get_children().live() %}
+              {% set case_study=page.specific %}
+              {% include 'anonym/includes/case_study_list_item.html' %}
+            {% endfor %}
+          {% endif %}
+        </div>
+        </div>
+
+
+    {# View All Posts Button - can be enabled later if needed #}
+    {# <div class="mzan-news-view-all">
+      <a href="#" class="mzan-button mzan-button-outline">View all posts</a>
+    </div> #}
+
+  </section>
   </main>
 {% endblock %}

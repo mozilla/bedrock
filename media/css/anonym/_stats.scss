@@ -115,6 +115,12 @@
         position: relative;
     }
 
+    .mzan-stat-category {
+        background: #E8E8E8;
+        font-size: 14px; // deviates from variables
+        padding: 4px 8px;
+    }
+
     .mzan-stat-logo {
         opacity: 0;
         max-height: 80px;
