@@ -20,9 +20,7 @@
 {% endblock %}
 
 {% block site_header %}
-
     {% include 'anonym/includes/navigation.html' %}
-
 {% endblock %}
 
 {% block content %}
@@ -82,11 +80,11 @@
             {% set item_url = item.link if item.link else item.url %}
             <article class="mzan-card news-card">
               <div class="mzan-news-source">
+              <div class="mzan-card-logo-wrap">
                 {% if item.logo %}
-                  <div class="mzan-card-logo-wrap">
                     <img class="mzan-card-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" loading="lazy" />
-                  </div>
                 {% endif %}
+                </div>
                   <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
                     {% if item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">

@@ -9,6 +9,7 @@
     {% set item = page.specific %}
     <li class="mzan-stat-item">
       <div class="mzan-stat-intro">
+        <span class="mzan-stat-category">{{ item.category_label }}</span>
         <div class="{% if item.logo %}mzan-stat-logo-heading-swap{% endif %}">
           {% if item.logo %}
           <img class="mzan-stat-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" width="64" height="64" loading="lazy">

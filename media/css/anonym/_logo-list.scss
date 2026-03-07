@@ -23,6 +23,19 @@
     height: auto;
 }
 
+.mzan-logo-item {
+    display: flex;
+    align-items: center;
+
+    &.is-label {
+        align-items: start;
+        text-transform: uppercase;
+        font-size: var(--mza-text-body-xs);
+        font-weight: 600;
+        padding-top: 1rem;
+    }
+}
+
 @media #{$mq-md} {
     .mzan-logo-list-logo {
         max-width: 120px;
