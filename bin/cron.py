@@ -110,7 +110,7 @@ class scheduled_job:
             self.log("finished successfully")
 
     def log(self, message):
-        msg = f"[{datetime.datetime.utcnow()}] Clock job {self.name}@{HOSTNAME}: {message}"
+        msg = f"[{datetime.datetime.now(datetime.timezone.utc)}] Clock job {self.name}@{HOSTNAME}: {message}"
         print(msg, file=sys.stderr)
 
 
