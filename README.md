@@ -26,7 +26,7 @@ Patches are welcome! Feel free to fork and contribute to [this project][gh-bedro
 GitHub. If you find a problem and wish to report it, please [file
 a bug][github-issue].
 
-Looking for a good first bug to work on? Take a look at our [contributing doc][contributing]
+Are you looking for a good first bug to work on? Take a look at our [contributing doc][contributing]
 to get started.
 
 [gh-bedrock]: https://github.com/mozilla/bedrock
