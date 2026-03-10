@@ -87,7 +87,7 @@
 ) -%}
 
 <li class="m24-c-springboard-item {{ class }}">
-  <a href="{{ link_url }}" class="m24-c-springboard-link" {{ link_attributes }}>
+  <a href="{{ link_url }}" class="m24-c-springboard-link" {% if link_attributes %}{{ link_attributes | safe }}{% endif %}>
     <div class="m24-c-springboard-thumb">
       {% if type_icon %}
         <span class="m24-c-springboard-icon m24-c-springboard-icon-{{ type_icon|lower }}"></span>
