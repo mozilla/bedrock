@@ -16,8 +16,8 @@ from bs4 import BeautifulSoup
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
-from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
+from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
 
 pytestmark = [pytest.mark.django_db]
 
