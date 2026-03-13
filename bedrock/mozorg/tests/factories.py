@@ -288,6 +288,7 @@ class DonateBlockFactory(wagtail_factories.StructBlockFactory):
     class Meta:
         model = common.DonateBlock
 
+
 class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     background_color = ""
     anchor_id = ""
@@ -308,6 +309,7 @@ class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
 
     class Meta:
         model = common.ShowcaseBlock
+
 
 class HomePageFactory(wagtail_factories.PageFactory):
     title = "Test Home Page"
