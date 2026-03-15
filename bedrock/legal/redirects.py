@@ -9,9 +9,9 @@ redirectpatterns = (
     redirect(r"^about/legal/report-abuse/?$", "legal.report-infringement"),
     # bug 1321033
     redirect(r"^about/legal/terms/firefox-hello", "privacy.archive.hello-2014-11"),
-    # issue 5816, issue 8418
-    redirect(r"^about/logo", "https://mozilla.design/"),
-    # issue 11092, issue 12156
+    # issue 5816, 8418, 17044
+    redirect(r"^about/logo", "https://brand.mozilla.com/"),
+    # issue 11092, 12156
     redirect(r"^about/legal/terms/(mozilla-vpn|vpn)/?$", "legal.terms.subscription-services"),
     # issue 12156
     redirect(r"^about/legal/terms/firefox-relay/?$", "legal.terms.subscription-services"),
