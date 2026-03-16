@@ -83,6 +83,11 @@ def main(args):
         update_live_db_file(new_db_file)
         set_db_data(db_info)
         print("Database successfully updated")
+        print("")
+        print("NOTE: To link translated pages so they appear connected in the Wagtail admin, run:")
+        print(f"  DATABASE_URL=sqlite:///{DB_FILE} python manage.py link_translations_after_export")
+        print("This takes a few minutes to complete.")
+        print("")
         return 0
 
     os.remove(new_db_file)
