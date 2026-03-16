@@ -47,7 +47,6 @@ PyGithub==2.8.1
 pyOpenSSL==25.3.0
 PyYAML==6.0.3
 qrcode==8.2
-querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests==2.32.5
 rich-text-renderer==0.2.8
 sentry-processor==0.0.1
