@@ -6,7 +6,6 @@ factory-boy==3.3.3
 freezegun==1.5.5
 markdown-it-py>=2.2.0
 py==1.11.0
-Pygments>=2.15.0  # to bring it up to a secure version
 PyPOM==2.2.4
 pyquery==2.0.1
 pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
