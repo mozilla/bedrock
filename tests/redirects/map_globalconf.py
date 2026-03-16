@@ -854,9 +854,9 @@ URLS = flatten(
         url_test("/apps/", "https://marketplace.firefox.com/"),
         url_test("/dnt/", "https://support.mozilla.org/kb/how-do-i-turn-do-not-track-feature"),
         url_test("/metrofirefox/", "/firefox/"),
-        url_test("/firefox/brand/", "https://mozilla.design/firefox/"),
-        # Bug 804810
-        url_test("/foundation/identity-guidelines/{,index.html}", "https://mozilla.design/mozilla/"),
+        # Bug 792185, 804810, issue 17044
+        url_test("/firefox/brand/", "https://brand.firefox.com/"),
+        url_test("/foundation/identity-guidelines/{,index.html}", "https://brand.mozilla.com/"),
         # Bug 1243060
         url_test("/firefox/tiles/", "https://support.mozilla.org/kb/about-tiles-new-tab"),
         # Bug 1252332
@@ -1092,29 +1092,17 @@ URLS = flatten(
         url_test("/contribute/events/", "https://community.mozilla.org/events/"),
         # issue 8596
         url_test("/firefox/xr/", "https://support.mozilla.org/kb/webxr-permission-info-page"),
-        # bug 1404926, Issue 8418
-        url_test("/styleguide/identity/firefox-family/{,overview/}", "https://mozilla.design/firefox/"),
-        url_test("/styleguide/identity/firefox/branding/", "https://mozilla.design/firefox/"),
-        url_test("/styleguide/identity/firefox/channels/", "https://mozilla.design/firefox/"),
-        url_test("/styleguide/identity/firefox/color/", "https://mozilla.design/firefox/"),
-        # Bug 1255785, Issue 8418
-        url_test("/styleguide/identity/mozilla/logo-prototype/", "https://mozilla.design/mozilla/"),
-        # Bug 1268847, Issue 8418
-        url_test("/styleguide/websites/sandstone/buttons/", "https://mozilla.design/"),
-        url_test("/styleguide/websites/sandstone/forms/", "https://mozilla.design/"),
-        url_test("/styleguide/websites/sandstone/tabzilla/", "https://mozilla.design/"),
-        # Bug 1365076, Issue 8418
-        url_test("/styleguide/identity/mozilla/branding/", "https://mozilla.design/mozilla/"),
-        url_test("/styleguide/identity/mozilla/color/", "https://mozilla.design/mozilla/"),
-        # Bug 1329931, Issue 8418
-        url_test("/styleguide/products/firefox-os/{,subpages/}", "https://mozilla.design/firefox/"),
-        # Bug 1329931 & 1342043, Issue 8418
-        url_test("/styleguide/identity/firefoxos/{,subpages/}", "https://mozilla.design/firefox/"),
-        # Bug 1433749, Issue 8418
-        url_test("/styleguide/identity/firefox/branding/", "https://mozilla.design/firefox/"),
-        url_test("/styleguide/websites/sandstone/buttons/", "https://mozilla.design/"),
-        # Issue 8418
-        url_test("/styleguide/", "https://mozilla.design/"),
+        # Bug 1255785, 1365076, issue 8418, 17044
+        url_test("/styleguide/identity/mozilla/{branding,color}/", "https://brand.mozilla.com/"),
+        # bug 1404926, 1433749, issue 8418, 17044
+        url_test("/styleguide/identity/firefox/{branding,color}/", "https://brand.firefox.com/"),
+        url_test("/styleguide/identity/firefox-family/{,overview/}", "https://brand.firefox.com/"),
+        # Bug 1329931, 1342043, issue 8418, 17044
+        url_test("/styleguide/products/firefox-os/{,subpages/}", "https://brand.firefox.com/"),
+        url_test("/styleguide/identity/firefoxos/{,subpages/}", "https://brand.firefox.com/"),
+        # Bug 1268847, issue 8418, 17044
+        url_test("/styleguide/websites/sandstone/{buttons,tabzilla}/", "https://brand.mozilla.com/all-brands"),
+        url_test("/styleguide/", "https://brand.mozilla.com/all-brands"),
         # Issue 8644, 8932, 15613
         url_test("/builders{,/}", "https://builders.mozilla.org/"),
         # Issue 6824, 14364
