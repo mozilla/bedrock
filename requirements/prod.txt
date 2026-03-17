@@ -1381,9 +1381,9 @@ py-svg-hush==0.3.0 \
     --hash=sha256:fa8d4c57699d2f90052226eda39ad7ebf21a52127afa07e06a9a7f535effc0ec \
     --hash=sha256:fdb6a371a8711276a89e9ebcb52e51a86590fe88c882ac443a8ca3227da3d757
     # via -r requirements/prod.in
-pyasn1==0.6.2 \
-    --hash=sha256:1eb26d860996a18e9b6ed05e7aae0e9fc21619fcee6af91cca9bad4fbea224bf \
-    --hash=sha256:9b59a2b25ba7e4f8197db7686c09fb33e658b98339fadb826e9512629017833b
+pyasn1==0.6.3 \
+    --hash=sha256:697a8ecd6d98891189184ca1fa05d1bb00e2f84b5977c481452050549c8a72cf \
+    --hash=sha256:a80184d120f0864a52a073acc6fc642847d0be408e7c7252f31390c0f4eadcde
     # via pyasn1-modules
 pyasn1-modules==0.4.2 \
     --hash=sha256:29253a9207ce32b64c3ac6600edc75368f98473906e8fd1043bd6b5b1de2c14a \
