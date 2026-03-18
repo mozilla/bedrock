@@ -41,7 +41,6 @@ Pillow==12.1.1
 psycopg[binary]==3.2.8
 py-svg-hush==0.3.0
 PyGithub==2.8.1
-pyOpenSSL==25.3.0
 PyYAML==6.0.3
 qrcode==8.2
 requests==2.32.5
