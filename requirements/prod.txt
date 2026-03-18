@@ -45,9 +45,9 @@ boto3==1.42.61 \
     --hash=sha256:117ebfc597c95bfb64c6d37ba77bd1c2a97a1885c1dcac2a8be1a14e2139a76d \
     --hash=sha256:156efcc298a33206be6dfd220815c64aa8b09424017534cabe717636961fc306
     # via -r requirements/prod.in
-botocore==1.42.68 \
-    --hash=sha256:3951c69e12ac871dda245f48dac5c7dd88ea1bfdd74a8879ec356cf2874b806a \
-    --hash=sha256:9df7da26374601f890e2f115bfa573d65bf15b25fe136bb3aac809f6145f52ab
+botocore==1.42.70 \
+    --hash=sha256:54ed9d25f05f810efd22b0dfda0bb9178df3ad8952b2e4359e05156c9321bd3c \
+    --hash=sha256:9ee17553b7febd1a0c1253b3b62ab5d79607eb6163c8fb943470a8893c31d4fa
     # via
     #   boto3
     #   s3transfer
@@ -345,7 +345,6 @@ cryptography==46.0.5 \
     #   google-auth
     #   mozilla-django-oidc
     #   pyjwt
-    #   pyopenssl
 datadog==0.52.1 \
     --hash=sha256:44c6deb563c4522dba206fba2e2bb93d3b04113c40191851ba3a241d82b5fd0b \
     --hash=sha256:b8c92cd761618ee062f114171067e4c400d48c9f0dad16cb285042439d9d5d4e
@@ -467,9 +466,9 @@ django-storages[google]==1.14.4 \
     --hash=sha256:69aca94d26e6714d14ad63f33d13619e697508ee33ede184e462ed766dc2a73f \
     --hash=sha256:d61930acb4a25e3aebebc6addaf946a3b1df31c803a6bf1af2f31c9047febaa3
     # via -r requirements/prod.in
-django-stubs-ext==5.2.9 \
-    --hash=sha256:230c51575551b0165be40177f0f6805f1e3ebf799b835c85f5d64c371ca6cf71 \
-    --hash=sha256:6db4054d1580657b979b7d391474719f1a978773e66c7070a5e246cd445a25a9
+django-stubs-ext==6.0.1 \
+    --hash=sha256:17415759b9a3f4b4da7998ac3b08c7dc5137f9a019490b918aece1a8a4c2ade4 \
+    --hash=sha256:633b280f89c0cbb7e3ce2f2f842e0acc43d8091378e75f84921d6be675d052dc
     # via django-tasks
 django-taggit==6.1.0 \
     --hash=sha256:ab776264bbc76cb3d7e49e1bf9054962457831bd21c3a42db9138b41956e4cf0 \
@@ -780,9 +779,9 @@ jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
     # via jsonschema
-justhtml==1.11.0 \
-    --hash=sha256:b481aee74d2a667f60ee5373a05547c15f3a7b75456f9fbf8eda49f4e4db05dd \
-    --hash=sha256:e98ce3a7740875177a55092700875f42087b21e6f2dc6ffb0265395ffe0fcf9e
+justhtml==1.12.0 \
+    --hash=sha256:4ca4d110694d51c4643e992ee72fe68c1eca343011de3370f54c15cab32c24a8 \
+    --hash=sha256:ef6d6b020c690db07db4359e2c921e7fc3770e8e61887ea4b57b2d53388c2265
     # via -r requirements/prod.in
 laces==0.1.2 \
     --hash=sha256:3218e09c1889ae5cf3fc7a82f5bb63ec0c7879889b6a9760bfc42323c694b84d \
@@ -1381,9 +1380,9 @@ py-svg-hush==0.3.0 \
     --hash=sha256:fa8d4c57699d2f90052226eda39ad7ebf21a52127afa07e06a9a7f535effc0ec \
     --hash=sha256:fdb6a371a8711276a89e9ebcb52e51a86590fe88c882ac443a8ca3227da3d757
     # via -r requirements/prod.in
-pyasn1==0.6.2 \
-    --hash=sha256:1eb26d860996a18e9b6ed05e7aae0e9fc21619fcee6af91cca9bad4fbea224bf \
-    --hash=sha256:9b59a2b25ba7e4f8197db7686c09fb33e658b98339fadb826e9512629017833b
+pyasn1==0.6.3 \
+    --hash=sha256:697a8ecd6d98891189184ca1fa05d1bb00e2f84b5977c481452050549c8a72cf \
+    --hash=sha256:a80184d120f0864a52a073acc6fc642847d0be408e7c7252f31390c0f4eadcde
     # via pyasn1-modules
 pyasn1-modules==0.4.2 \
     --hash=sha256:29253a9207ce32b64c3ac6600edc75368f98473906e8fd1043bd6b5b1de2c14a \
@@ -1430,10 +1429,6 @@ pynacl==1.6.2 \
     --hash=sha256:d29bfe37e20e015a7d8b23cfc8bd6aa7909c92a1b8f41ee416bbb3e79ef182b2 \
     --hash=sha256:fe9847ca47d287af41e82be1dd5e23023d3c31a951da134121ab02e42ac218c9
     # via pygithub
-pyopenssl==25.3.0 \
-    --hash=sha256:1fda6fc034d5e3d179d39e59c1895c9faeaf40a79de5fc4cbbfbe0d36f4a77b6 \
-    --hash=sha256:c981cb0a3fd84e8602d7afc209522773b94c1c2446a3c710a75b06fe1beae329
-    # via -r requirements/prod.in
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
     --hash=sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427
