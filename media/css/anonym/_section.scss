@@ -199,7 +199,7 @@
             top: calc(var(--section-padding-top) / 2);
             transform: translateX(-50%);
             content: '';
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 301"><defs><linearGradient id="a" x1="3" y1="-1038.289" x2="3" y2="-1338.289" gradientTransform="matrix(1 0 0 -1 0 -1038.29)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="%23d6ffcd" stop-opacity="0"/><stop offset=".27" stop-color="%2300d230"/></linearGradient></defs><path fill="none" stroke="url(%23a)" d="M3 0v300"/><circle cx="3" cy="298" r="3" fill="%2300d230"/></svg>');
+            background-image: url('/media/img/mozorg/anonym/anonym-section-stripe.svg');
             background-position: top left;
             background-repeat: no-repeat;
             background-size: 6px var(--gradient-line-height);

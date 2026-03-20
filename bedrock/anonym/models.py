@@ -63,7 +63,7 @@ class AbstractStatCardPage(AbstractBedrockCMSPage):
     company_name = models.CharField(
         max_length=255,
         blank=True,
-        help_text="Company or client name",
+        help_text="Company or client name. This overrides the 'title' field when displayed on the card views.",
     )
     logo = models.ForeignKey(
         "cms.BedrockImage",
@@ -158,6 +158,10 @@ class AnonymNewsItemPage(AbstractStatCardPage):
     # Since the concept of a AnonymNewsItemPage is similar to an
     # AnonymCaseStudyItemPage, use the AnonymCaseStudyItemPage template.
     template = "anonym/anonym_case_study_item_page.html"
+
+    @property
+    def category_label(self):
+        return "Press"
 
     @property
     def exclude_from_sitemap(self):
@@ -457,6 +461,10 @@ class AnonymCaseStudyItemPage(AbstractStatCardPage):
     )
 
     template = "anonym/anonym_case_study_item_page.html"
+
+    @property
+    def category_label(self):
+        return "Case Study"
 
     class Meta:
         verbose_name = "Anonym Case Study Item Page"

@@ -425,18 +425,19 @@ class StatCardListBlock(blocks.StructBlock):
 
 class LogoListBlock(blocks.StructBlock):
     """
-    Display a list of logos linking to their pages.
+    Display a mixed list of logo images and section labels.
 
-    This block allows content editors to select existing AnonymNewsItemPage
-    or AnonymCaseStudyItemPage instances to display their logos as links.
+    Editors can add logo images and text labels (e.g. "Publishers",
+    "Advertisers") in any order and rearrange them freely.
     """
 
-    pages = blocks.ListBlock(
-        PageChooserBlock(page_type=["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]),
+    items = blocks.StreamBlock(
+        [
+            ("logo", ImageChooserBlock()),
+            ("label", blocks.CharBlock(max_length=50, help_text="Section label, e.g. 'Publishers' or 'Advertisers'")),
+        ],
         min_num=1,
-        max_num=12,
-        default=[],
-        help_text="Logos will display in a list and link to the News item or Case Study",
+        max_num=24,
     )
 
     class Meta:
