@@ -28,11 +28,14 @@
     align-items: center;
 
     &.is-label {
-        align-items: start;
+        display: block;
         text-transform: uppercase;
         font-size: var(--mza-text-body-xs);
         font-weight: 600;
         padding-top: 1rem;
+        width: 100%;
+        text-align: center;
+
     }
 }
 
@@ -40,5 +43,14 @@
     .mzan-logo-list-logo {
         max-width: 120px;
         max-height: 80px;
+    }
+
+    .mzan-logo-item {
+        &.is-label {
+            display: flex;
+            width: auto;
+            align-items: start;
+
+        }
     }
 }
