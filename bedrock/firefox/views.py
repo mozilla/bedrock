@@ -12,7 +12,6 @@ from django.http import Http404, HttpResponsePermanentRedirect, JsonResponse
 from django.utils.cache import patch_response_headers
 from django.views.decorators.http import require_safe
 
-import querystringsafe_base64
 from product_details import product_details
 from product_details.version_compare import Version
 
@@ -26,7 +25,7 @@ from bedrock.firefox.firefox_details import (
 )
 from bedrock.newsletter.forms import NewsletterFooterForm
 from bedrock.releasenotes import version_re
-from lib import l10n_utils
+from lib import l10n_utils, querystringsafe_base64
 from lib.l10n_utils import L10nTemplateView, get_translations_native_names
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 

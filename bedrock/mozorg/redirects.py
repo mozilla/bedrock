@@ -79,10 +79,10 @@ redirectpatterns = (
     redirect(r"^contribute/page/?$", "https://wiki.mozilla.org/Webdev/GetInvolved/mozilla.org"),
     # Bug 763665, 1148127
     redirect(r"^projects/?$", FXC_URL),
-    # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418
-    redirect(r"^firefox/brand(/.*)?", "https://mozilla.design/firefox/"),
-    # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418
-    redirect(r"^foundation/identity-guidelines(/.*)?", "https://mozilla.design/mozilla/"),
+    # Bug 792185 Brand Toolkit -> Style Guide, Issue 8418, 17044
+    redirect(r"^firefox/brand(/.*)?", "https://brand.firefox.com/"),
+    # Bug 804810 Identity Guidelines -> Style Guide, Issue 8418, 17044
+    redirect(r"^foundation/identity-guidelines(/.*)?", "https://brand.mozilla.com/"),
     # Bug 945474 - delete Marketplace marketing product page
     # and redirect
     redirect(r"^apps/?$", "https://marketplace.firefox.com/"),
@@ -475,11 +475,11 @@ redirectpatterns = (
     redirect(r"^developer/?$", "https://developer.mozilla.com/"),
     redirect(r"^developer/browsertest/?$", "https://developer.mozilla.org/docs/Learn/Tools_and_testing/Cross_browser_testing/Automated_testing"),
     redirect(r"^developer/css-grid/?$", "https://developer.mozilla.org/docs/Learn/CSS/CSS_layout/Grids"),
-    # Issue 8418
-    redirect(r"^styleguide/products/firefox(.+)", "https://mozilla.design/firefox/"),
-    redirect(r"^styleguide/identity/firefox(.+)", "https://mozilla.design/firefox/"),
-    redirect(r"^styleguide/identity/mozilla(.+)", "https://mozilla.design/mozilla/"),
-    redirect(r"^styleguide(/.*)?", "https://mozilla.design/"),
+    # Issue 8418, 17044
+    redirect(r"^styleguide/products/firefox(.+)", "https://brand.firefox.com/"),
+    redirect(r"^styleguide/identity/firefox(.+)", "https://brand.firefox.com/"),
+    redirect(r"^styleguide/identity/mozilla(.+)", "https://brand.mozilla.com/"),
+    redirect(r"^styleguide(/.*)?", "https://brand.mozilla.com/all-brands"),
     # Issue 8644, 8932, 15613
     redirect(r"^builders/?$", "https://builders.mozilla.org/"),
     # Issue 6824, 14364

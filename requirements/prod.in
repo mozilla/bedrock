@@ -2,9 +2,7 @@ APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
 boto3==1.42.61
-chardet==7.0.1
 commonware==0.6.0
-contextlib2==21.6.0
 defusedxml==0.7.1
 dirsync==2.2.6
 dj-database-url==3.1.2
@@ -23,7 +21,6 @@ django-storages[google]==1.14.4
 django-waffle==4.2.0
 django-watchman==1.4.0
 Django>=5.2.12,<6.0
-docutils==0.22.4
 envcat==0.1.1
 everett==3.5.0
 fluent.runtime==0.4.0
@@ -44,12 +41,9 @@ Pillow==12.1.1
 psycopg[binary]==3.2.8
 py-svg-hush==0.3.0
 PyGithub==2.8.1
-pyOpenSSL==25.3.0
 PyYAML==6.0.3
 qrcode==8.2
-querystringsafe-base64==1.1.1  # Pinned to maintain stub attribution signatures https://github.com/mozilla/bedrock/issues/11156
 requests==2.32.5
-rich-text-renderer==0.2.8
 sentry-processor==0.0.1
 sentry-sdk==2.54.0
 supervisor==4.3.0

@@ -10,11 +10,11 @@ from django.http import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
 
-import querystringsafe_base64
 from pyquery import PyQuery as pq
 
 from bedrock.firefox import views
 from bedrock.mozorg.tests import TestCase
+from lib import querystringsafe_base64
 
 
 @override_settings(
