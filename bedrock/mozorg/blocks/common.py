@@ -57,7 +57,7 @@ class SpringboardItemBlock(blocks.StructBlock):
     """Block for a single media springboard row."""
 
     url = blocks.URLBlock(
-        required=False,
+        required=True,
         char_max_length=255,
         help_text="Link to the person's website or social media account with UTMs.",
     )
@@ -65,7 +65,7 @@ class SpringboardItemBlock(blocks.StructBlock):
     link_attributes = blocks.CharBlock(
         required=False,
         char_max_length=255,
-        help_text="Link attributes, such as data-link-text, data-link-position",
+        help_text='Link attributes limited to data-* (e.g., data-link-text="...",  data-link-position="...")',
     )
 
     type = blocks.ChoiceBlock(

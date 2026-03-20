@@ -7,12 +7,12 @@
 {% set bg_color = value.settings.background_color %}
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
 
-<div{% if bg_color %} class="{{ bg_color }} m24-c-showcase"{% endif %}{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+<div class="m24-c-showcase{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
 
   <div class="m24-c-content">
     <header class="m24-c-showcase-text">
       <h2 class="m24-c-showcase-title">{{ value.heading }}</h2>
-      <div class="m24-c-showcase-body">{{ value.body }}</div>
+      <div class="m24-c-showcase-body">{{ value.body|richtext }}</div>
     </header>
 
     <div class="m24-c-showcase">
@@ -33,7 +33,7 @@
       <h3 class="m24-c-showcase-subtitle">{{ value.sub_heading }}</h3>
 
       <p class="m24-c-showcase-body m24-c-section-cta">
-        <a href="{{ value.cta_link.get_url() }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+        <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
       </p>
     </header>
 

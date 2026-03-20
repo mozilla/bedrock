@@ -75,7 +75,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/blog1",
-                        "linkAttributes": "",
+                        "link_attributes": "",
                         "type": "Article",
                         "icon": "article",
                         "topic": "",
@@ -84,7 +84,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/webinar1",
-                        "linkAttributes": 'data-custom="test"',
+                        "link_attributes": 'data-custom="test"',
                         "type": "Video",
                         "icon": "video",
                         "topic": "",
