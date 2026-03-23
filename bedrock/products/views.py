@@ -3,13 +3,11 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
-from django.shortcuts import redirect
 from django.views.decorators.http import require_safe
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.products.forms import VPNWaitlistForm
 from lib import l10n_utils
-from lib.l10n_utils.fluent import ftl_file_is_active
 
 
 def vpn_available(request):
@@ -47,13 +45,6 @@ def vpn_available_android_sub_only(request):
     country_list = settings.VPN_MOBILE_SUB_ANDROID_ONLY_COUNTRY_CODES
 
     return country in country_list
-
-
-def active_locale_available(slug, locale):
-    # Import inside function to avoid circular import (models.py imports from views.py)
-    from bedrock.products.models import VPNResourceCenterDetailPage
-
-    return VPNResourceCenterDetailPage.objects.filter(slug=slug, locale__language_code=locale, live=True).exists()
 
 
 @require_safe
@@ -205,42 +196,3 @@ def monitor_waitlist_scan_page(request):
     ctx = {"newsletter_id": newsletter_id}
 
     return l10n_utils.render(request, template_name, ctx)
-
-
-@require_safe
-def vpn_resource_center_redirect(request, slug):
-    # When a /more url is requested the user should be forwarded to the /resource-centre url
-    # If the rc article is not available in their requested language bedrock should display the /more/ article if it is available in their language.
-    # 2. If neither is available in their language bedrock should forward to the English rc article.
-    VPNRC_SLUGS = {
-        "what-is-an-ip-address": {
-            "slug": "what-is-an-ip-address",
-            "old_template": "products/vpn/more/ip-address.html",
-            "ftl_files": ["products/vpn/more/ip-address", "products/vpn/shared"],
-        },
-        "vpn-or-proxy": {
-            "slug": "the-difference-between-a-vpn-and-a-web-proxy",
-            "old_template": "products/vpn/more/vpn-or-proxy.html",
-            "ftl_files": ["products/vpn/more/vpn-or-proxy", "products/vpn/shared"],
-        },
-        "what-is-a-vpn": {
-            "slug": "what-is-a-vpn",
-            "old_template": "products/vpn/more/what-is-a-vpn.html",
-            "ftl_files": ["products/vpn/more/what-is-a-vpn", "products/vpn/shared"],
-        },
-        "when-to-use-a-vpn": {
-            "slug": "5-reasons-you-should-use-a-vpn",
-            "old_template": "products/vpn/more/when-to-use.html",
-            "ftl_files": ["products/vpn/more/when-to-use-a-vpn", "products/vpn/shared"],
-        },
-    }
-    locale = l10n_utils.get_locale(request)
-    curr_page = VPNRC_SLUGS[slug]
-    rc_slug = curr_page["slug"]
-    redirect_link = f"/{locale}/products/vpn/resource-center/{rc_slug}/"
-    if active_locale_available(rc_slug, locale):
-        return redirect(redirect_link)
-    elif ftl_file_is_active(curr_page["ftl_files"][0], locale):
-        return l10n_utils.render(request, template=curr_page["old_template"], ftl_files=curr_page["ftl_files"])
-    else:
-        return redirect(redirect_link)

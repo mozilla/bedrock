@@ -1365,5 +1365,8 @@ URLS = flatten(
         ),
         url_test("/products/vpn/more/what-is-a-vpn/", "/products/vpn/resource-center/what-is-a-vpn/"),
         url_test("/products/vpn/more/5-reasons-you-should-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
+        # Issue WT-934
+        url_test("/products/vpn/more/vpn-or-proxy/", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/"),
+        url_test("/products/vpn/more/when-to-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
     )
 )
