@@ -51,4 +51,7 @@ redirectpatterns = (
     ),
     redirect("/products/vpn/more/what-is-a-vpn/", "/products/vpn/resource-center/what-is-a-vpn/"),
     redirect("/products/vpn/more/5-reasons-you-should-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
+    # Issue WT-934 - drop old FTL-based /more/ pages; redirect remaining old slugs to RC
+    redirect("/products/vpn/more/vpn-or-proxy/", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/"),
+    redirect("/products/vpn/more/when-to-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
 )

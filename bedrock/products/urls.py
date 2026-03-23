@@ -25,11 +25,5 @@ urlpatterns = (
     page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios_v2", "products/vpn/shared"]),
     page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android_v2", "products/vpn/shared"]),
     page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
-    # Evergreen SEO articles (issue #10224)
-    path(
-        "vpn/more/<slug:slug>/",
-        views.vpn_resource_center_redirect,
-        name="products.vpn.more.redirect",
-    ),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )
