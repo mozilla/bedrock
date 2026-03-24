@@ -367,8 +367,17 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
         collapsed=True,
     )
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
+        FieldPanel("notification"),
     ]
     settings_panels = AbstractBedrockCMSPage.settings_panels + [
         FieldPanel("navigation"),
@@ -409,8 +418,17 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         collapsed=True,
         use_json_field=True,
     )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
+        FieldPanel("notification"),
     ]
 
     template = "anonym/anonym_content_sub_page.html"

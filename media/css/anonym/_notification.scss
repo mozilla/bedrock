@@ -1,0 +1,51 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+
+.mzan-notification-container {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}
+
+#mzan-main:has(.mzan-notification) {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+}
+
+.mzan-notification {
+    background: #fafafa;
+    margin-top: auto;
+    padding: 1.5rem 0;
+
+    .mza-notification-text {
+        p {
+            font-size: var(--mza-text-body-md);
+            line-height: var(--mza-text-body-md-line-height);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+}

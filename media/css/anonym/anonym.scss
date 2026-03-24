@@ -30,6 +30,7 @@ $image-path: '/media/protocol/img';
 @use './stats';
 @use './people';
 @use './cta';
+@use './notification';
 
 :root {
     --moz-sans-headline: 'Mozilla Sans Headline', sans-serif;
