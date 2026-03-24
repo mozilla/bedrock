@@ -15,6 +15,8 @@ from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
 from bedrock.base.i18n import bedrock_i18n_patterns
+from bedrock.cms.decorators import prefer_cms
+from bedrock.mozorg import views as mozorg_views
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
@@ -26,6 +28,7 @@ locale404 = "lib.l10n_utils.locale_selection"
 # Paths that should have a locale prefix
 urlpatterns = bedrock_i18n_patterns(
     # Main pages
+    path("", prefer_cms(mozorg_views.HomeView.as_view()), name="mozorg.home"),
     path("foundation/", include("bedrock.foundation.urls")),
     path("about/legal/", include("bedrock.legal.urls")),
     path("press/", include("bedrock.press.urls")),
