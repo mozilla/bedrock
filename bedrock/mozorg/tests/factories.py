@@ -77,7 +77,7 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
 
 
 class NotificationSnippetFactory(factory.django.DjangoModelFactory):
-    notification_text = wagtail_factories.CharBlockFactory
+    notification_text = "<p>Follow Mozilla Ads for the latest advertising trends.</p>"
     linkedin_link = "https://www.example.com/test"
     tiktok_link = "https://www.example.com/test"
     spotify_link = "https://www.example.com/test"
