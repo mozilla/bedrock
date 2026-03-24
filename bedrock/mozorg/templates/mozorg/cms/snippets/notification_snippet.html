@@ -4,7 +4,7 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="{{ outer_container_class }}">
+<div class="{{ outer_container_class }}{% if not value.has_social_links %} no-socials{% endif %}">
   <div class="{{ container_class }}">
     <div class="mza-notification-text">{{ value.notification_text|richtext }}</div>
 

@@ -243,6 +243,19 @@ class NotificationSnippet(models.Model):
 
         return f"{strip_tags(self.notification_text)} - Notification Snippet"
 
+    @property
+    def has_social_links(self):
+        return any(
+            [
+                self.linkedin_link,
+                self.tiktok_link,
+                self.spotify_link,
+                self.bluesky_link,
+                self.instagram_link,
+                self.youtube_link,
+            ]
+        )
+
 
 class LeadershipPage(AbstractBedrockCMSPage):
     max_count = 1  # Ensure there's only one instance of this page
