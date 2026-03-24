@@ -40,6 +40,11 @@ Keep commit titles short, imperative, and linked to issues when available (e.g.,
 * Install the local git hooks via `make install-custom-git-hooks`.
 * If a changeset includes a GitHub Action or Workflow, use [Zizmor](https://zizmor.sh/) to check it for security issues before considering the work complete.
 
+## Wagtail CMS
+
+* When planning Wagtail work, remember that <https://docs.wagtail.org/en/7.3/llms.txt> and the full version at <https://docs.wagtail.org/en/7.3/llms-full.txt> contain LLM-appropriate documentation.
+* If the version of Wagtail (not counting patch releases) in requirements/prod.in doesn't match the version in the LLM-appropriate URLs mentioned, please update this AGENTS.md then load the new info
+
 ## LLM assistance
 
 * When committing code, do not list the LLM as a co-author - it is a tool, not a developer. All code committed is the responsibility of the human developer using the LLM. This is in line with <https://firefox-source-docs.mozilla.org/contributing/ai-coding.html>
