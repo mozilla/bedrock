@@ -80,7 +80,12 @@
       {% include_block block %}
     {% endfor %}
 
-    {% if page.notification %}
+    {# If there's a link, we don't show the case study content,
+       as it's being used as a redirect page. #}
+    {% endif %}
+  </main>
+
+   {% if page.notification %}
       {% with value=page.notification %}
         {% with outer_container_class='mzan-notification' %}
           {% with container_class='mzan-notification-container'  %}
@@ -89,9 +94,4 @@
         {% endwith %}
       {% endwith %}
     {% endif %}
-
-    {# If there's a link, we don't show the case study content,
-       as it's being used as a redirect page. #}
-    {% endif %}
-  </main>
 {% endblock %}
