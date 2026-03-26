@@ -1,0 +1,114 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+
+.mzan-notification {
+    background: #86FBE7;
+    background: linear-gradient(146deg,rgba(134, 251, 231, 1) 0%, rgba(183, 254, 240, 1) 37%, rgba(75, 239, 113, 1) 52%, rgba(167, 253, 186, 1) 64%);
+    margin-top: auto;
+    position: relative;
+
+    &.no-socials {
+        .mzan-notification-container {
+            flex-direction: row;
+        }
+
+        .mza-notification-text a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+
+    .mzan-icon {
+        flex-shrink: 0;
+    }
+}
+
+.mzan-notification-container {
+    @include container;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+
+.mza-notification-text {
+        p {
+            font-size: var(--mza-text-body-md);
+            line-height: var(--mza-text-body-md-line-height);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+
+.moz24-footer-social-links {
+    background: transparent;
+    margin-left: -4px;
+
+    li {
+        a {
+            opacity: .9;
+
+            &:hover,
+            &:focus {
+                opacity: 1;
+            }
+
+            &.linkedin {
+                background-image: url('/media/protocol/img/icons/social/linkedin/black.svg');
+            }
+
+            &.tiktok {
+                background-image: url('/media/protocol/img/icons/social/tiktok/black.svg');
+            }
+
+            &.spotify {
+                background-image: url('/media/protocol/img/icons/social/spotify/black.svg');
+            }
+
+            &.bluesky {
+                background-image: url('/media/img/icons/social/bluesky/black.svg');
+            }
+
+            &.instagram {
+                background-image: url('/media/protocol/img/icons/social/instagram/black.svg');
+            }
+
+            &.youtube {
+                background-image: url('/media/protocol/img/icons/social/youtube/black.svg');
+            }
+        }
+    }
+
+    @media #{$mq-md} {
+        margin-left: 0;
+    }
+}

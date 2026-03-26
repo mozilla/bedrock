@@ -23,14 +23,27 @@
     background: advars.$color-ads-secondary-pink;
     padding: 1.5rem 0;
 
-    p {
-        @include admixins.text-body-md;
-        font-weight: 600;
-        margin: 0;
-    }
-
     svg {
         flex: 0 0 auto;
+    }
+
+    .mza-notification-text {
+        p {
+            @include admixins.text-body-md;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
     }
 
     .moz24-footer-social-links {

@@ -4,9 +4,9 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<div class="{{ outer_container_class }}">
+<div class="{{ outer_container_class }}{% if not value.has_social_links %} no-socials{% endif %}">
   <div class="{{ container_class }}">
-    <p>{{ value.notification_text }}</p>
+    <div class="mza-notification-text">{{ value.notification_text|richtext }}</div>
 
     {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
       <ul class="moz24-footer-social-links">
@@ -41,6 +41,8 @@
         </li>
         {% endif %}
       </ul>
+    {% else %}
+    <i class="mzan-icon icon-arrow-right"></i>
     {% endif %}
     </div>
 </div>
