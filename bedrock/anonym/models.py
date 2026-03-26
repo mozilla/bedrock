@@ -176,6 +176,18 @@ class AnonymNewsItemPage(AbstractStatCardPage):
 class AnonymNewsPage(AnonymStaticPage):
     """Static news page for Anonym."""
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("notification"),
+    ]
+
     max_count = 1
     subpage_types = ["AnonymNewsItemPage"]
     template = "anonym/anonym_news.html"
@@ -198,6 +210,18 @@ class AnonymNewsPage(AnonymStaticPage):
 
 class AnonymCaseStudyPage(AnonymStaticPage):
     """Static case study page for Anonym."""
+
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("notification"),
+    ]
 
     max_count = 1
     subpage_types = ["AnonymCaseStudyItemPage"]
@@ -247,9 +271,18 @@ class AnonymContactPage(AbstractBedrockCMSPage):
         help_text="Page to redirect to after a successful form submission (e.g. a thank-you page).",
     )
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("subheading"),
         FieldPanel("form_fields"),
+        FieldPanel("notification"),
     ]
 
     settings_panels = AbstractBedrockCMSPage.settings_panels + [

@@ -74,4 +74,14 @@
     </div>
     </section>
   </main>
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% with outer_container_class='mzan-notification' %}
+        {% with container_class='mzan-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
+    {% endwith %}
+  {% endif %}
 {% endblock %}
