@@ -60,7 +60,7 @@
                 <span class="mzan-news-category">{{ featured_item.category }}</span>
               {% endif %}
               <span class="mzan-news-date">
-                {{ featured_item.first_published_at|date("M d") }}
+                {{ featured_item.first_published_at|date("M d, Y") }}
               </span>
             </div>
           </div>
@@ -108,7 +108,7 @@
                   {% if item.category %}
                     <span class="mzan-news-category">{{ item.category }}</span>
                   {% endif %}
-                  <span class="mzan-news-date">{{ item.first_published_at|date("M d") }}</span>
+                  <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
                 </p>
               </div>
             </article>
