@@ -593,6 +593,67 @@ def test_anonym_contact_page_serve(
     assert form_field_variants[2]["value"]["label"] in page_content
 
 
+def test_anonym_contact_page_get_is_never_cached(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that GET responses include never-cache headers.
+
+    The contact page contains a CSRF token, so it must not be cached by a CDN
+    or shared cache — otherwise different users receive the same stale token
+    and their form submissions are rejected with 403.
+    """
+    index_page = get_test_anonym_index_page()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Cache Test",
+        slug="contact-cache-test",
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+
+    cache_control = resp.get("Cache-Control", "")
+    assert "no-store" in cache_control
+
+
+def test_anonym_contact_page_post_errors_is_never_cached(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that POST-with-errors responses also include never-cache headers.
+
+    A re-rendered form (after validation failure) still contains a CSRF token
+    and must not be cached.
+    """
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Cache Error Test",
+        slug="contact-cache-error-test",
+        form_fields=form_field_variants,
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.post(page.relative_url(minimal_site), {})
+    resp = page.serve(request)
+
+    assert resp.status_code == 200
+    assert "Please fill in at least one field." in resp.text
+    cache_control = resp.get("Cache-Control", "")
+    assert "no-store" in cache_control
+
+
 @patch("bedrock.anonym.models.EmailMessage")
 def test_anonym_contact_page_post_valid(
     mock_email_class,

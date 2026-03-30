@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 from django.db import models
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.utils.cache import add_never_cache_headers
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
@@ -307,12 +308,16 @@ class AnonymContactPage(AbstractBedrockCMSPage):
             form_errors = self.validate_form_data(request.POST)
             if form_errors:
                 request.form_errors = form_errors
-                return super().serve(request, *args, **kwargs)
+                response = super().serve(request, *args, **kwargs)
+                add_never_cache_headers(response)
+                return response
 
             self.send_form_email(request)
             return redirect(self.redirect_to.url)
 
-        return super().serve(request, *args, **kwargs)
+        response = super().serve(request, *args, **kwargs)
+        add_never_cache_headers(response)
+        return response
 
     def validate_form_data(self, post_data):
         """Validate submitted form data against the field configuration.
