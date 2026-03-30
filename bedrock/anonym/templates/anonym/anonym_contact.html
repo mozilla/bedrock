@@ -44,7 +44,7 @@
 
     <div class="mzan-contact-form-wrap add-full-width-borders">
       <div class="mzan-section">
-        <form method="post" action="/page-not-found/" data-actn="" class="mzan-contact-form">
+        <form method="post" action="/page-not-found/" data-actn="{{ page.url or '' }}" class="mzan-contact-form">
           {% csrf_token %}
 
           {% if form_errors %}
