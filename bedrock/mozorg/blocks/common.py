@@ -340,13 +340,23 @@ class ShowcaseBlock(blocks.StructBlock):
     )
 
     sub_heading = blocks.CharBlock(
+        required=False,
         max_length=255,
         help_text="Section sub heading heading. Use sentence case.",
+    )
+
+    two_column_layout = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Make it two column layout",
+        inline_form=True,
+        help_text="Make the title and body content into a two-column layout.",
     )
 
     cta_divider = DividerBlock(label="Call-to-action")
 
     cta_text = blocks.CharBlock(
+        required=False,
         max_length=50,
         label="Link text",
         help_text="Use sentence case (e.g., 'Read the report', 'Read more').",
@@ -511,4 +521,66 @@ class GalleryBlock(blocks.StructBlock):
         template = "mozorg/cms/blocks/gallery_block.html"
         icon = "grip"
         label = "Gallery Section"
+        label_format = "{heading}"
+
+class ShowcaseGalleryBlockSettings(blocks.StructBlock):
+    """Settings for the showcase gallery block."""
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable (e.g., 'news', 'gallery').",
+    )
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "ID: {anchor_id} - Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+class ShowcaseGalleryBlock(blocks.StructBlock):
+    """A showcase block with a gallery as media."""
+
+    settings = ShowcaseGalleryBlockSettings()
+
+    text_divider = DividerBlock(label="Text")
+
+    heading = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Use sentence case.",
+    )
+
+    image_divider = DividerBlock(label="Image")
+
+    tiles = blocks.ListBlock(
+        GalleryTileBlock(),
+        min_num=1,
+        help_text="Add gallery tiles. For best results, ensure tile widths add up to 100% per row.",
+    )
+
+    body = blocks.CharBlock(
+        max_length=1000,
+        label="Content for section body",
+        help_text="Use sentence case.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/showcase_gallery_block.html"
+        icon = "grip"
+        label = "Showcase Gallery section"
         label_format = "{heading}"
