@@ -1,0 +1,72 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set bg_color = value.settings.background_color %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+{# Map image ratios to srcset_image fill specs #}
+{% set ratio_fill_specs = {
+  "1:1": "fill-{375x375,432x432}",
+  "2:3": "fill-{230x345,360x540,432x648}"
+} %}
+
+{# Map image ratios to dimensions for width/height attributes #}
+{% set ratio_dimensions = {
+  "1:1": {"width": "432", "height": "432"},
+  "2:3": {"width": "432", "height": "648"}
+} %}
+
+{# Mobile images always use 1:1 ratio #}
+{% set mobile_fill_spec = "fill-{375x375,432x432}" %}
+{% set mobile_dimensions = {"width": "432", "height": "432"} %}
+
+<div class="m24-c-careers{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}">
+  <h2 class="m24-c-careers-title">{{ value.heading }}</h2>
+  <div class="m24-c-careers-media">
+
+    {% for tile in value.tiles %}
+      {% set tile_alt = tile.image_alt|default("", true) %}
+
+      {% set mobile_img = srcset_image(tile.image, mobile_fill_spec) %}
+      {% set desktop_img = srcset_image(tile.image, ratio_fill_specs["2:3"]) %}
+      {% set dimensions = ratio_dimensions["2:3"] %}
+
+      {% set ns = namespace(mobile_srcset='', desktop_srcset='', desktop_src='') %}
+      {% for r in mobile_img.renditions %}
+        {% set ns.mobile_srcset = ns.mobile_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+      {% endfor %}
+      {% for r in desktop_img.renditions %}
+        {% if loop.first %}
+          {% set ns.desktop_src = r.url %}
+        {% endif %}
+        {% set ns.desktop_srcset = ns.desktop_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+      {% endfor %}
+
+      <picture>
+        <source
+          media="(max-width: 767px)"
+          srcset="{{ ns.mobile_srcset }}"
+          sizes="calc(50vw - 16px)"
+          width="{{ mobile_dimensions.width }}"
+          height="{{ mobile_dimensions.height }}">
+        <img
+          src="{{ ns.desktop_src }}"
+          srcset="{{ ns.desktop_srcset }}"
+          sizes="(min-width: 1440px) 432px, calc(100vw - 64px / 6)"
+          width="{{ dimensions.width }}"
+          height="{{ dimensions.height }}"
+          loading="lazy"
+          alt="{{ tile_alt }}">
+      </picture>
+
+    {% endfor %}
+
+  </div>
+  <p class="m24-consider-cta-info">{{ value.body }}</p>
+  <div class="m24-c-careers-cta">
+    <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="noopener external" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+  </div>
+</div>
