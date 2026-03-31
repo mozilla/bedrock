@@ -68,6 +68,12 @@
             margin-top: 0;
         }
     }
+
+    > .mzan-rich-text {
+        max-width: 675px;
+        margin-inline: auto;
+        padding: 32px 16px;
+    }
 }
 
 .mzan-section-topglow-theme {
