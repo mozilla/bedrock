@@ -68,4 +68,7 @@
 {% endblock %}
 
 {% block site_footer %}
+  {% with branding_only=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}
