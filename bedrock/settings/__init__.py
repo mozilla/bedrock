@@ -80,6 +80,7 @@ _csp_frame_src = {
     "www.google-analytics.com",
     "www.googletagmanager.com",
     "www.youtube.com",
+    "www.youtube-nocookie.com",
 }
 _csp_img_src = {
     csp.constants.SELF,
@@ -108,6 +109,7 @@ _csp_script_src = {
     "www.google-analytics.com",
     "www.googletagmanager.com",
     "www.youtube.com",
+    "www.youtube-nocookie.com",
     csp.constants.UNSAFE_EVAL,
     csp.constants.UNSAFE_INLINE,
 }
