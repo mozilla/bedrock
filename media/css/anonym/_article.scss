@@ -18,14 +18,14 @@
 
 .mzan-rich-text.is-article,
 .mzan-intro-text {
-    max-width: 1168px;
+    max-width: 73rem;
     margin: 0 auto;
     padding: 32px 16px;
     border: 1px solid advars.$color-ads-tertiary-gray;
     border-width: 0 1px;
 
     > * {
-        max-width: 675px;
+        max-width: 42rem;
         margin-inline: auto;
 
         &:last-child {
@@ -56,7 +56,7 @@
 
 
 .anonym-link-warning-cms-only {
-    max-width: 780px;
+    max-width: 48.75rem;
     padding: 16px;
     background: #ffffb4;
     box-shadow:  0 4px 6px -1px rgb(0, 0, 0, 0.1), 0 2px 4px -2px rgb(0, 0, 0, 0.1);

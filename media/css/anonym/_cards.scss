@@ -45,7 +45,7 @@
 }
 
 .mzan-card {
-    padding: 16px 0;
+    padding: 1rem;
     flex: 0 0 auto;
     scroll-snap-align: start;
 
@@ -173,15 +173,18 @@
 
 .mzan-card-logo-wrap {
     width: calc(100% - 80px);
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
+
+    @media #{$mq-md} {
+        aspect-ratio: 1 / 1;
+    }
 }
 
 .mzan-card-logo {
-    max-width: 160px;
-    max-height: 60px;
+    width: 160px;
     height: auto;
 }

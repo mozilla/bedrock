@@ -14,7 +14,7 @@
         display: block;
         height: auto;
         width: 100%;
-        max-width: 662px;
+        max-width: 41.375rem;
         margin: 0 auto;
     }
 
@@ -28,11 +28,11 @@
         padding-block: 1px;
         border: 1px solid advars.$color-ads-tertiary-gray;
         border-width: 0 1px;
-        max-width: 1200px;
+        max-width: 75rem;
 
         img,
         figcaption {
-            max-width: 675px;
+            max-width: 42rem;
             margin-inline: auto;
         }
 
@@ -41,7 +41,7 @@
         }
 
         &.is-full-width {
-            max-width: 1200px;
+            max-width: 75rem;
 
             img {
                 max-width: calc(100% - 32px);
