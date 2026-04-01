@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "dotenv-webpack": "^8.1.1",
+    "dotenv-webpack": "^9.0.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "globals": "^16.5.0",
