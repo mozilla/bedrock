@@ -18,7 +18,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.4",
-    "css-minimizer-webpack-plugin": "^7.0.2",
+    "css-minimizer-webpack-plugin": "^8.0.0",
     "embla-carousel": "^8.6.0",
     "mini-css-extract-plugin": "^2.10.0",
     "sass": "1.91.0",
