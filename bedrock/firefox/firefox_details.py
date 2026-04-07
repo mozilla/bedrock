@@ -5,7 +5,7 @@
 import re
 from collections import OrderedDict
 from operator import itemgetter
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from django.conf import settings
 
@@ -464,7 +464,7 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel="release", arch="arm", locale="multi", force_direct=False):
+    def get_download_url(self, channel="release", arch="arm", locale="multi", force_direct=False, utm_params=None):
         """
         Get direct download url for the product.
         :param channel: one of self.version_map.keys() such as nightly, beta.
@@ -494,7 +494,11 @@ class FirefoxAndroid(_ProductDetails):
             product_id = self.store_product_ids.get(channel, "org.mozilla.firefox")
             return self.store_url.replace(self.store_product_ids["release"], product_id)
 
-        return self.store_url
+        return (
+            self.store_url
+            + "&referrer="
+            + quote(f"utm_source={utm_params['utm_source']}&utm_medium={utm_params['utm_medium']}&utm_campaign={utm_params['utm_campaign']}")
+        )
 
 
 class FirefoxIOS(_ProductDetails):

@@ -88,9 +88,9 @@ def desktop_builds(
     return builds
 
 
-def android_builds(channel, builds=None):
+def android_builds(channel, builds=None, utm_params=None):
     builds = builds or []
-    link = firefox_android.get_download_url(channel.lower())
+    link = firefox_android.get_download_url(channel.lower(), utm_params=utm_params)
     builds.append({"os": "android", "os_pretty": "Android", "download_link": link})
 
     return builds
@@ -151,7 +151,13 @@ def download_firefox(
 
     if show_android:
         version = firefox_android.latest_version(channel)
-        builds = android_builds(channel, builds)
+
+        utm_params = ctx["request"].GET.copy()
+        utm_params["utm_source"] = utm_params.get("utm_source", "www.mozilla.org")
+        utm_params["utm_medium"] = utm_params.get("utm_medium", "referral")
+        utm_params["utm_campaign"] = utm_params.get("utm_campaign", "download")
+
+        builds = android_builds(channel, builds, utm_params)
 
     if show_ios:
         version = firefox_ios.latest_version(channel)

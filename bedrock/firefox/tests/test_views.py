@@ -4,7 +4,7 @@
 import json
 from unittest import skip
 from unittest.mock import ANY, patch
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, quote
 
 from django.http import HttpResponse
 from django.test import override_settings
@@ -462,3 +462,33 @@ class TestFirefoxSetAsDefaultThanks(TestCase):
         resp = self.client.get("/firefox/set-as-default/thanks/", follow=True)
         assert resp.status_code == 200, "Ensure this URL continues to work, see issue 13253"
         assert resp.templates[0].name == "firefox/set-as-default/thanks.html"
+
+
+class TestFirefoxThanksAndroidUTMParameters(TestCase):
+    def test_thanks_contains_matching_utm(self):
+        resp = self.client.get("/firefox/download/thanks/?utm_source=www.test.com", follow=True)
+        doc = pq(resp.content)
+        link = doc("#thanks-download-button-android")
+        href = link.attr("href")
+        assert "utm_source=www.test.com" in href
+
+    def test_thanks_passes_default_utm_parameters(self):
+        resp = self.client.get("/firefox/download/thanks", follow=True)
+        doc = pq(resp.content)
+        link = doc("#thanks-download-button-android")
+        href = link.attr("href")
+        assert quote("utm_source=www.mozilla.org") in href
+        assert quote("utm_medium=referral") in href
+        assert quote("utm_campaign=download") in href
+
+    def test_thanks_overwrites_default_utm_parameters(self):
+        resp = self.client.get("/firefox/download/thanks/?utm_source=www.test.com&utm_medium=test&utm_campaign=test", follow=True)
+        doc = pq(resp.content)
+        link = doc("#thanks-download-button-android")
+        href = link.attr("href")
+        assert quote("utm_source=www.mozilla.org") not in href
+        assert quote("utm_source=www.test.com") in href
+        assert quote("utm_medium=download") not in href
+        assert quote("utm_medium=test") in href
+        assert quote("utm_campaign=download") not in href
+        assert quote("utm_campaign=test") in href
