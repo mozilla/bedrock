@@ -46,3 +46,5 @@ footer-refresh-community-participation-guidelines = Community Participation Guid
 footer-refresh-about-this-site = About this site
 footer-refresh-all-languages = All languages
 footer-refresh-language = Language
+footer-refresh-anonym-privacy-policy = Anonym Privacy Policy
+footer-refresh-anonym-terms-and-conditions = Anonym Terms and Conditions
