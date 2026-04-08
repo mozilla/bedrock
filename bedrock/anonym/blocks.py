@@ -391,6 +391,15 @@ class FigureBlock(blocks.StructBlock):
         label = "Figure"
 
 
+class LegalRichTextBlock(blocks.StructBlock):
+    text = blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)
+
+    class Meta:
+        template = "anonym/blocks/legal-rich-text.html"
+        label = "Legal Text"
+        icon = "doc-full"
+
+
 class LinkWithTextBlock(blocks.StructBlock):
     label = blocks.CharBlock(label="Link Text")
     link = LinkBlock()
@@ -639,6 +648,7 @@ class SectionBlock(blocks.StructBlock):
             ("logo_list_block", LogoListBlock()),
             ("people_list", PeopleListBlock()),
             ("two_column", TwoColumnBlock()),
+            ("legal_rich_text", LegalRichTextBlock()),
             (
                 "rich_text",
                 blocks.RichTextBlock(
@@ -942,3 +952,12 @@ class ArticleFigureBlock(blocks.StructBlock):
         template = "anonym/blocks/article/figure.html"
         label = "Figure"
         icon = "image"
+
+
+class LegalRichTextBlock(blocks.StructBlock):
+    text = blocks.RichTextBlock(features=FULL_RICHTEXT_FEATURES)
+
+    class Meta:
+        template = "anonym/blocks/legal-rich-text.html"
+        label = "Legal Text"
+        icon = "doc-full"
