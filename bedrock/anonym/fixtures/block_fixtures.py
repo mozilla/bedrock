@@ -118,6 +118,30 @@ def get_logo_card_variants(image_id: int) -> list[dict]:
     ]
 
 
+def get_legal_rich_text_variants() -> list[dict]:
+    """Return LegalRichTextBlock variants for testing.
+
+    Returns:
+        List of legal rich text block data dictionaries
+    """
+    return [
+        {
+            "type": "legal_rich_text",
+            "value": {
+                "text": "<p>Terms and conditions apply.</p>",
+            },
+            "id": "legal-rich-text-variant-1",
+        },
+        {
+            "type": "legal_rich_text",
+            "value": {
+                "text": "<p>This agreement is governed by <strong>applicable law</strong>.</p>",
+            },
+            "id": "legal-rich-text-variant-2-formatted",
+        },
+    ]
+
+
 def get_person_card_variants(person_id: int) -> list[dict]:
     """Return PersonCardBlock variants for testing.
 

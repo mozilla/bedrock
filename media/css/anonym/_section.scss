@@ -69,10 +69,28 @@
         }
     }
 
-    > .mzan-rich-text {
+    > .mzan-rich-text,
+    > .mzan-legal-rich-text {
         max-width: 675px;
         margin-inline: auto;
         padding: 32px 16px;
+    }
+
+    > .mzan-legal-rich-text {
+        max-width: $content-xl;
+
+        ol {
+            counter-reset: legal-topic;
+            list-style: none;
+        }
+
+        ol li {
+            counter-increment: legal-topic;
+        }
+
+        ol li::before {
+            content: counters(legal-topic, '.') '. ';
+        }
     }
 }
 

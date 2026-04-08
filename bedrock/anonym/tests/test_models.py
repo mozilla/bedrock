@@ -18,6 +18,7 @@ from bedrock.anonym.fixtures.base_fixtures import (
 from bedrock.anonym.fixtures.block_fixtures import (
     get_call_to_action_variants,
     get_form_field_variants,
+    get_legal_rich_text_variants,
     get_navigation_link_variants,
     get_section_block_variants,
     get_stat_item_variants,
@@ -845,3 +846,79 @@ def test_anonym_contact_page_post_honeypot(
 
     assert resp.status_code == 200
     assert "Form submission failed." in page_content
+
+
+# ============================================================================
+# LegalRichTextBlock Tests
+# ============================================================================
+
+
+def test_legal_rich_text_block_renders(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that LegalRichTextBlock renders its rich text inside the wrapper div."""
+    index_page = get_test_anonym_index_page()
+
+    legal_variants = get_legal_rich_text_variants()
+    # Embed the legal_rich_text block inside a section's section_content
+    section_with_legal = {
+        "type": "section",
+        "value": {
+            "settings": {"anchor_id": "legal", "theme": ""},
+            "superheading_text": "",
+            "heading_text": "<p>Legal</p>",
+            "subheading_text": "",
+            "section_content": legal_variants[:1],
+            "action": [],
+        },
+        "id": "section-with-legal-rich-text",
+    }
+
+    page = AnonymIndexPage(
+        title="Legal Rich Text Test",
+        slug="legal-rich-text-test",
+        content=[section_with_legal],
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "mzan-legal-rich-text" in page_content
+    assert "Terms and conditions apply." in page_content
+
+
+def test_legal_rich_text_block_renders_formatted(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that LegalRichTextBlock preserves inline formatting (bold, etc.)."""
+    index_page = get_test_anonym_index_page()
+
+    legal_variants = get_legal_rich_text_variants()
+    section_with_formatted_legal = {
+        "type": "section",
+        "value": {
+            "settings": {"anchor_id": "legal-formatted", "theme": ""},
+            "superheading_text": "",
+            "heading_text": "<p>Legal Formatted</p>",
+            "subheading_text": "",
+            "section_content": legal_variants[1:2],
+            "action": [],
+        },
+        "id": "section-with-formatted-legal-rich-text",
+    }
+
+    page = AnonymIndexPage(
+        title="Legal Rich Text Formatted Test",
+        slug="legal-rich-text-formatted-test",
+        content=[section_with_formatted_legal],
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "mzan-legal-rich-text" in page_content
+    assert "applicable law" in page_content
