@@ -461,3 +461,44 @@ class HomePage(AbstractBedrockCMSPage):
         context = super().get_context(request, *args, **kwargs)
         context["utm_parameters"] = self.get_utm_parameters()
         return context
+
+
+class AboutUsPage(AbstractBedrockCMSPage):
+    subpage_types = []
+
+    max_count = 1  # Ensure there's only one instance of this page
+    ftl_files = ["mozorg/about-m24"]
+
+    content = StreamField(
+        [
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("showcase_block", ShowcaseBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for the homepage. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/about/about-us.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "about-us",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+    class Meta:
+        verbose_name = "About Us Page"

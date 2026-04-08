@@ -1,0 +1,66 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set bg_color = value.settings.background_color %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+
+{% macro career_pic(img_src_tall, img_src_square) -%}
+<picture>
+  <source srcset="{{ static('img/mozorg/about/m24/' + img_src_tall + '.png') }} 1x, {{ static('img/mozorg/about/m24/' + img_src_tall + '-high-res.png') }} 2x" media="(min-width: 768px)" width="216" height="324">
+  <source srcset="{{ static('img/mozorg/about/m24/' + img_src_square + '.png') }} 1x, {{ static('img/mozorg/about/m24/' + img_src_square + '-high-res.png') }} 2x" width="216" height="216">
+  <img src="{{ static('img/mozorg/about/m24/' + img_src_tall + '.png') }}" alt="" width="216" height="324" loading="lazy">
+</picture>
+{%- endmacro %}
+
+<div class="m24-c-careers{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}">
+  <h2 class="m24-c-careers-title">{{ value.heading }}</h2>
+  <div class="m24-c-careers-media">
+
+    {% for tile in value.tiles %}
+
+      {{ picture(
+        url="img/mozorg/about/m24/careers/careers-4-desktop-432.jpg",
+        sources=[
+          {
+            'media': '(max-width: 767px)',
+            'srcset': {
+              "img/mozorg/about/m24/careers/careers-4-mobile-375.jpg": "375w",
+              "img/mozorg/about/m24/careers/careers-4-mobile-432.jpg": "432w",
+            },
+            'sizes': {
+              "default": "calc(50vw - 16px)",
+            },
+            'width' : '432',
+            'height' : '423'
+          },
+          {
+            'srcset': {
+              "img/mozorg/about/m24/careers/careers-4-desktop-230.jpg": "230w",
+              "img/mozorg/about/m24/careers/careers-4-desktop-432.jpg": "432w",
+            },
+            'sizes': {
+              "(min-width: 1440px)": "432px",
+              "default": "calc(100vw - 64px / 6)",
+            },
+            'width' : '432',
+            'height' : '648'
+          },
+        ],
+        optional_attributes={
+          "loading": "lazy",
+          "alt": {{ tile.alt }},
+        }
+      ) }}
+
+    {% endfor %}
+
+  </div>
+  <p class="m24-consider-cta-info">{{ value.body|richtext }}</p>
+  <div class="m24-c-careers-cta">
+    <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+  </div>
+</div>
