@@ -29,6 +29,7 @@ FULL_RICHTEXT_FEATURES = [
     "h5",
     "bold",
     "italic",
+    "underline",
     "ol",
     "ul",
     "hr",
