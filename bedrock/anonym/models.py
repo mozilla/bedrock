@@ -7,6 +7,7 @@ from django.core.mail import EmailMessage
 from django.db import models
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
+from django.utils.cache import add_never_cache_headers
 
 from wagtail.admin.panels import FieldPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
@@ -176,6 +177,18 @@ class AnonymNewsItemPage(AbstractStatCardPage):
 class AnonymNewsPage(AnonymStaticPage):
     """Static news page for Anonym."""
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("notification"),
+    ]
+
     max_count = 1
     subpage_types = ["AnonymNewsItemPage"]
     template = "anonym/anonym_news.html"
@@ -198,6 +211,18 @@ class AnonymNewsPage(AnonymStaticPage):
 
 class AnonymCaseStudyPage(AnonymStaticPage):
     """Static case study page for Anonym."""
+
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("notification"),
+    ]
 
     max_count = 1
     subpage_types = ["AnonymCaseStudyItemPage"]
@@ -247,9 +272,18 @@ class AnonymContactPage(AbstractBedrockCMSPage):
         help_text="Page to redirect to after a successful form submission (e.g. a thank-you page).",
     )
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("subheading"),
         FieldPanel("form_fields"),
+        FieldPanel("notification"),
     ]
 
     settings_panels = AbstractBedrockCMSPage.settings_panels + [
@@ -274,12 +308,16 @@ class AnonymContactPage(AbstractBedrockCMSPage):
             form_errors = self.validate_form_data(request.POST)
             if form_errors:
                 request.form_errors = form_errors
-                return super().serve(request, *args, **kwargs)
+                response = super().serve(request, *args, **kwargs)
+                add_never_cache_headers(response)
+                return response
 
             self.send_form_email(request)
             return redirect(self.redirect_to.url)
 
-        return super().serve(request, *args, **kwargs)
+        response = super().serve(request, *args, **kwargs)
+        add_never_cache_headers(response)
+        return response
 
     def validate_form_data(self, post_data):
         """Validate submitted form data against the field configuration.
@@ -367,8 +405,17 @@ class AnonymIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
         collapsed=True,
     )
 
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
+        FieldPanel("notification"),
     ]
     settings_panels = AbstractBedrockCMSPage.settings_panels + [
         FieldPanel("navigation"),
@@ -409,8 +456,17 @@ class AnonymContentSubPage(AbstractBedrockCMSPage):
         collapsed=True,
         use_json_field=True,
     )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("content"),
+        FieldPanel("notification"),
     ]
 
     template = "anonym/anonym_content_sub_page.html"

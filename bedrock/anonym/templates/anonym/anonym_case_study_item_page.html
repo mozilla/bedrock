@@ -80,7 +80,12 @@
       {% include_block block %}
     {% endfor %}
 
-    {% if page.notification %}
+    {# If there's a link, we don't show the case study content,
+       as it's being used as a redirect page. #}
+    {% endif %}
+  </main>
+
+   {% if page.notification %}
       {% with value=page.notification %}
         {% with outer_container_class='mzan-notification' %}
           {% with container_class='mzan-notification-container'  %}
@@ -89,9 +94,11 @@
         {% endwith %}
       {% endwith %}
     {% endif %}
+{% endblock %}
 
-    {# If there's a link, we don't show the case study content,
-       as it's being used as a redirect page. #}
-    {% endif %}
-  </main>
+
+{% block site_footer %}
+  {% with branding_only=True, anonym_links=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}

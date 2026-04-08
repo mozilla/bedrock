@@ -5,11 +5,12 @@
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
+from django.utils.html import strip_tags
 
 import markdown
 from markdown.extensions.toc import TocExtension
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
-from wagtail.fields import StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import TranslatableMixin
 from wagtail.snippets.models import register_snippet
 
@@ -19,7 +20,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ShowcaseBlock, SpringboardBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -191,9 +192,9 @@ class ContactBannerSnippet(TranslatableMixin):
 
 @register_snippet
 class NotificationSnippet(models.Model):
-    notification_text = models.CharField(
-        max_length=255,
+    notification_text = RichTextField(
         blank=False,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL,
     )
     linkedin_link = models.URLField(
         max_length=255,
@@ -239,7 +240,21 @@ class NotificationSnippet(models.Model):
     ]
 
     def __str__(self):
-        return f"{self.notification_text} - Notification Snippet"
+
+        return f"{strip_tags(self.notification_text)} - Notification Snippet"
+
+    @property
+    def has_social_links(self):
+        return any(
+            [
+                self.linkedin_link,
+                self.tiktok_link,
+                self.spotify_link,
+                self.bluesky_link,
+                self.instagram_link,
+                self.youtube_link,
+            ]
+        )
 
 
 class LeadershipPage(AbstractBedrockCMSPage):
@@ -417,8 +432,10 @@ class HomePage(AbstractBedrockCMSPage):
 
     content = StreamField(
         [
+            ("springboard_block", SpringboardBlock()),
             ("donate_block", DonateBlock()),
             ("gallery_block", GalleryBlock()),
+            ("showcase_block", ShowcaseBlock()),
             ("transition_block", TransitionBlock()),
         ],
         blank=True,

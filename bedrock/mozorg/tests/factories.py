@@ -77,7 +77,7 @@ class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
 
 
 class NotificationSnippetFactory(factory.django.DjangoModelFactory):
-    notification_text = wagtail_factories.CharBlockFactory
+    notification_text = "<p>Follow Mozilla Ads for the latest advertising trends.</p>"
     linkedin_link = "https://www.example.com/test"
     tiktok_link = "https://www.example.com/test"
     spotify_link = "https://www.example.com/test"
@@ -234,6 +234,40 @@ class ContentSubpageFactory(wagtail_factories.PageFactory):
         model = models.ContentSubpage
 
 
+class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
+    url = "https://example.com/article"
+    link_attributes = ""
+    type = "Article"
+    icon = "article"
+    topic = "News"
+    author = "Test Author"
+    preview = "Test preview text"
+
+    class Meta:
+        model = common.SpringboardItemBlock
+
+
+class SpringboardBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = ""
+    background_color = ""
+
+    class Meta:
+        model = common.SpringboardBlockSettings
+
+
+class SpringboardBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(SpringboardBlockSettingsFactory)
+    heading = "Latest Resources"
+    column_one = "Type"
+    column_two = "Author"
+    column_three = "Topic"
+    column_four = "Preview"
+    springboard_items = wagtail_factories.ListBlockFactory(SpringboardItemBlockFactory)
+
+    class Meta:
+        model = common.SpringboardBlock
+
+
 class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     background_color = "gray"
     anchor_id = ""
@@ -255,6 +289,28 @@ class DonateBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.DonateBlock
 
 
+class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    anchor_id = ""
+
+    class Meta:
+        model = common.ShowcaseBlockSettings
+
+
+class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
+    heading = "State of Mozilla"
+    body = "<p>Read our annual report.</p>"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+    sub_heading = "Supporting a healthy internet"
+    cta_text = "Read the report"
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ShowcaseBlock
+
+
 class HomePageFactory(wagtail_factories.PageFactory):
     title = "Test Home Page"
     live = True
@@ -263,6 +319,8 @@ class HomePageFactory(wagtail_factories.PageFactory):
     content = wagtail_factories.StreamFieldFactory(
         {
             "donate_block": factory.SubFactory(DonateBlockFactory),
+            "springboard_block": factory.SubFactory(SpringboardBlockFactory),
+            "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
         }
     )
 

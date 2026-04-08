@@ -41,7 +41,7 @@
                     <img class="mzan-card-logo" src="{{ featured_item.logo.file.url }}" alt="{{ featured_item.logo.title }}" loading="lazy" />
                   </span>
                 {% endif %}
-                  <a href="{{ item_url }}" class="mzan-news-external-linksss" aria-label="External link">
+                  <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
                     {% if featured_item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -60,7 +60,7 @@
                 <span class="mzan-news-category">{{ featured_item.category }}</span>
               {% endif %}
               <span class="mzan-news-date">
-                {{ featured_item.first_published_at|date("M d") }}
+                {{ featured_item.first_published_at|date("M d, Y") }}
               </span>
             </div>
           </div>
@@ -108,7 +108,7 @@
                   {% if item.category %}
                     <span class="mzan-news-category">{{ item.category }}</span>
                   {% endif %}
-                  <span class="mzan-news-date">{{ item.first_published_at|date("M d") }}</span>
+                  <span class="mzan-news-date">{{ item.first_published_at|date("M d, Y") }}</span>
                 </p>
               </div>
             </article>
@@ -124,4 +124,20 @@
 
   </section>
   </main>
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% with outer_container_class='mzan-notification' %}
+        {% with container_class='mzan-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
+    {% endwith %}
+  {% endif %}
+{% endblock %}
+
+{% block site_footer %}
+  {% with branding_only=True, anonym_links=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}

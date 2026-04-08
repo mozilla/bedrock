@@ -42,4 +42,20 @@
       {% include_block block %}
     {% endfor %}
   </main>
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% with outer_container_class='mzan-notification' %}
+        {% with container_class='mzan-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
+    {% endwith %}
+  {% endif %}
+{% endblock %}
+
+{% block site_footer %}
+  {% with branding_only=True, anonym_links=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}

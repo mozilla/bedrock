@@ -66,7 +66,7 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
 
     # Create a NitificationSnippet
     notification_snippet = factories.NotificationSnippetFactory(
-        notification_text="Follow Mozilla Ads to get the latest secure advertising trends.",
+        notification_text="<p>Follow Mozilla Ads to get the latest secure advertising trends.</p>",
         linkedin_link="https://www.linkedin.com/showcase/mozilla-ads/",
         bluesky_link="https://bsky.app/profile/mozilla_ads",
         instagram_link="https://www.instagram.com/mozilla_ads/",

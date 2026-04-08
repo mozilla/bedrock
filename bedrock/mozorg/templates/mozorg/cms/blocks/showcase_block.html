@@ -1,0 +1,41 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set bg_color = value.settings.background_color %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+<div class="m24-c-showcase{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+
+  <div class="m24-c-content">
+    <header class="m24-c-showcase-text">
+      <h2 class="m24-c-showcase-title">{{ value.heading }}</h2>
+      <div class="m24-c-showcase-body">{{ value.body|richtext }}</div>
+    </header>
+
+    <div class="m24-c-showcase">
+      <div class="m24-c-showcase-media">
+        <!-- <img
+          loading="lazy"
+          src="{{ value.image }}"
+          width="1376"
+          height="515"
+          alt="{% if value.image_alt %}{{ value.image_alt }}{% endif %}"> -->
+        <figure>
+          {{ srcset_image(value.image, "width-1376", class="", sizes="1376px", alt=value.image_alt if value.image_alt else "") }}
+        </figure>
+      </div>
+    </div>
+
+    <header class="m24-c-showcase-text m24-l-two-columns">
+      <h3 class="m24-c-showcase-subtitle">{{ value.sub_heading }}</h3>
+
+      <p class="m24-c-showcase-body m24-c-section-cta">
+        <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+      </p>
+    </header>
+
+  </div>
+</div>

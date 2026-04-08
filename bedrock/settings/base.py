@@ -2525,6 +2525,10 @@ WAGTAIL_GRAVATAR_PROVIDER_URL = None
 
 WAGTAILADMIN_BASE_URL = config("WAGTAILADMIN_BASE_URL", default="")
 
+# Disable Wagtail autosave - doesn't play well with our infra, resulting in false notifications of stale pages
+# https://docs.wagtail.org/en/stable/reference/settings.html#wagtail-autosave-interval
+WAGTAIL_AUTOSAVE_INTERVAL = 0
+
 # We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 

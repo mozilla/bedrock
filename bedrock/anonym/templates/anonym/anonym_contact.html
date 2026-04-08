@@ -44,7 +44,7 @@
 
     <div class="mzan-contact-form-wrap add-full-width-borders">
       <div class="mzan-section">
-        <form method="post" action="/page-not-found/" data-actn="" class="mzan-contact-form">
+        <form method="post" action="/page-not-found/" data-actn="{{ page.url or '' }}" class="mzan-contact-form">
           {% csrf_token %}
 
           {% if form_errors %}
@@ -74,4 +74,20 @@
     </div>
     </section>
   </main>
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% with outer_container_class='mzan-notification' %}
+        {% with container_class='mzan-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
+    {% endwith %}
+  {% endif %}
+{% endblock %}
+
+{% block site_footer %}
+  {% with branding_only=True, anonym_links=True %}
+    {% include 'includes/protocol/footer/footer.html' %}
+  {% endwith %}
 {% endblock %}
