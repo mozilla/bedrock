@@ -114,8 +114,7 @@
           {{ ftl('footer-refresh-portions-of-this-content', href='href="%s"'|safe|format(url('foundation.licensing.website-content')), current_year=current_year|string) }}
         </p>
         <ul class="moz24-footer-terms">
-        {% set anonym_root_path="/"+LANG+"/anonym/" %}
-        {% if request.path.startswith(anonym_root_path) %}
+        {% if anonym_links %}
           {#
             For pages in the Anonym section, we ONLY show links to Anonym's legal docs, to
             avoid confusion with MoCo legals such as the Website Privacy Notice, DSAR page, etc
