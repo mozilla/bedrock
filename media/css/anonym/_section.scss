@@ -70,7 +70,7 @@
     }
 
     > .mzan-rich-text {
-        max-width: 675px;
+        max-width: 42rem;
         margin-inline: auto;
         padding: 32px 16px;
     }
@@ -88,7 +88,7 @@
         width: 100%;
         aspect-ratio: 1311/218;
         pointer-events: none;
-        max-width: 840px;
+        max-width: 52.5rem;
         margin: 0 auto;
         display: block;
     }
@@ -102,7 +102,7 @@
         font-size: 16px;
         line-height: 1.5;
         margin: 0;
-        max-width: 472px;
+        max-width: 29.5rem;
     }
 }
 
@@ -269,7 +269,7 @@
     font-size: var(--mza-text-body-md);
     line-height: var(--mza-text-body-md-line-height);
     margin: 0;
-    max-width: 640px;
+    max-width: 40rem;
 }
 
 .mzan-section-link {
