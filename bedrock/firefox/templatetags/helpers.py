@@ -159,7 +159,7 @@ def download_firefox(
             "utm_campaign": query_params.get("utm_campaign", "download"),
         }
 
-        if query_params["utm_content"]:
+        if query_params.get("utm_content"):
             utm_params["utm_content"] = query_params["utm_content"]
 
         builds = android_builds(channel, builds, utm_params)

@@ -504,11 +504,13 @@ class FirefoxAndroid(_ProductDetails):
                 ]
             )
 
+        store_url = self.store_url
+
         if channel != "release":
             product_id = self.store_product_ids.get(channel, "org.mozilla.firefox")
-            self.store_url = self.store_url.replace(self.store_product_ids["release"], product_id)
+            store_url = self.store_url.replace(self.store_product_ids["release"], product_id)
 
-        return self.store_url + "&referrer=" + quote(urlencode(utm_params))
+        return store_url + "&referrer=" + quote(urlencode(utm_params))
 
 
 class FirefoxIOS(_ProductDetails):
