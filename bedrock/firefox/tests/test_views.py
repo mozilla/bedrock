@@ -488,7 +488,7 @@ class TestFirefoxThanksAndroidUTMParameters(TestCase):
         href = link.attr("href")
         assert quote("utm_source=www.mozilla.org") not in href
         assert quote("utm_source=www.test.com") in href
-        assert quote("utm_medium=download") not in href
+        assert quote("utm_medium=referral") not in href
         assert quote("utm_medium=test") in href
         assert quote("utm_campaign=download") not in href
         assert quote("utm_campaign=test") in href

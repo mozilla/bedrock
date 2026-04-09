@@ -152,10 +152,15 @@ def download_firefox(
     if show_android:
         version = firefox_android.latest_version(channel)
 
-        utm_params = ctx["request"].GET.copy()
-        utm_params["utm_source"] = utm_params.get("utm_source", "www.mozilla.org")
-        utm_params["utm_medium"] = utm_params.get("utm_medium", "referral")
-        utm_params["utm_campaign"] = utm_params.get("utm_campaign", "download")
+        query_params = ctx["request"].GET.copy()
+        utm_params = {
+            "utm_source": query_params.get("utm_source", "www.mozilla.org"),
+            "utm_medium": query_params.get("utm_medium", "referral"),
+            "utm_campaign": query_params.get("utm_campaign", "download"),
+        }
+
+        if query_params["utm_content"]:
+            utm_params["utm_content"] = query_params["utm_content"]
 
         builds = android_builds(channel, builds, utm_params)
 
