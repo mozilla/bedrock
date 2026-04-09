@@ -85,11 +85,24 @@
         }
 
         ol li {
+            margin: 1rem 0;
             counter-increment: legal-topic;
         }
 
         ol li::before {
             content: counters(legal-topic, '.') '. ';
+        }
+
+        ol ol ol {
+            counter-reset: legal-alpha;
+        }
+
+        ol ol ol li {
+            counter-increment: legal-alpha;
+        }
+
+        ol ol ol li::before {
+            content: '(' counter(legal-alpha, lower-alpha) ') ';
         }
     }
 }
