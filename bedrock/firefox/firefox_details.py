@@ -346,7 +346,7 @@ class FirefoxAndroid(_ProductDetails):
         "release": "fennec-latest",
     }
 
-    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS
+    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     # Product IDs defined on Google Play
     # Nightly reuses the Aurora ID to migrate the user base
     store_product_ids = {
