@@ -14,6 +14,7 @@ GOOGLE_PLAY_FIREFOX_LINK = "https://play.google.com/store/apps/details?id=org.mo
 GOOGLE_PLAY_FIREFOX_LINK_UTMS = (
     GOOGLE_PLAY_FIREFOX_LINK + "&referrer=" + quote("utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=download")
 )
+
 # Link to Firefox for iOS on the Apple App Store.
 APPLE_APPSTORE_FIREFOX_LINK = "https://apps.apple.com/{country}/app/apple-store/id989804926"
 
