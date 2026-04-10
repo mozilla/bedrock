@@ -475,6 +475,7 @@ SUPPORTED_NONLOCALES = [
     "revision.txt",  # from root_files
     "locales",
     "csrf_403",
+    "_documents",  # Wagtail documents
 ]
 
 # Paths that can exist either with or without a locale code in the URL.
