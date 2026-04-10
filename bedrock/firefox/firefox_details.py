@@ -481,12 +481,9 @@ class FirefoxAndroid(_ProductDetails):
                 instead of Google Play.
         :return: string url
         """
-        utm_params = utm_params or {}
-        utm_params = {
-            "utm_source": utm_params.get("utm_source", "www.mozilla.org"),
-            "utm_medium": utm_params.get("utm_medium", "referral"),
-            "utm_campaign": utm_params.get("utm_campaign", "download"),
-        }
+        referrer_params = {"utm_source": "www.mozilla.org", "utm_medium": "referral", "utm_campaign": "download"}
+        if utm_params:
+            referrer_params = {**referrer_params, **utm_params}
 
         if force_direct:
             # Use a bouncer link
@@ -510,7 +507,7 @@ class FirefoxAndroid(_ProductDetails):
             product_id = self.store_product_ids.get(channel, "org.mozilla.firefox")
             store_url = self.store_url.replace(self.store_product_ids["release"], product_id)
 
-        return store_url + "&referrer=" + quote(urlencode(utm_params))
+        return store_url + "&referrer=" + quote(urlencode(referrer_params))
 
 
 class FirefoxIOS(_ProductDetails):

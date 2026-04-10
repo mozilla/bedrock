@@ -492,3 +492,10 @@ class TestFirefoxThanksAndroidUTMParameters(TestCase):
         assert quote("utm_medium=test") in href
         assert quote("utm_campaign=download") not in href
         assert quote("utm_campaign=test") in href
+
+    def test_thanks_passes_all_utm_parameters(self):
+        resp = self.client.get("/firefox/download/thanks/?utm_source=www.test.com&utm_medium=test&utm_campaign=test&utm_content=abc123", follow=True)
+        doc = pq(resp.content)
+        link = doc("#thanks-download-button-android")
+        href = link.attr("href")
+        assert quote("utm_content=abc123") in href
