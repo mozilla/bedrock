@@ -1,2 +1,8 @@
 # org.mozilla.vpn
 bae02cc7-9600-4568-b6d7-f452e5551956
+
+# org.mozilla.thunderbird
+c0b3aecc-1ba9-40df-8194-d82f9611db4f
+
+# org.mozilla.thunderbird_esr
+2e0404b9-fd19-4fce-b3a7-8fef8bcdebae
