@@ -150,7 +150,7 @@ def test_decorating_django_view__passing_fallback_lang_codes(
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of strings" in resp.text
 
 
@@ -181,7 +181,7 @@ def test_decorating_django_view__passing_callable_for_locales(
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of a-slug-here" in resp.text
 
 
@@ -223,7 +223,7 @@ def test_decorating_django_view__passing_ftl_files(lang_code_prefix, minimal_sit
         ["test/fluentA", "test/fluentB"],
         force=True,
     )
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of files" in resp.text
 
 
@@ -274,7 +274,7 @@ def test_patching_in_urlconf__standard_django_view__with_locale_list(
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of strings" in resp.text
 
 
@@ -305,7 +305,7 @@ def test_patching_in_urlconf__standard_django_view__with_callback_for_locales(
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES"]
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of a-slug-here" in resp.text
 
 
@@ -352,7 +352,7 @@ def test_patching_in_urlconf__standard_django_view__with_fluent_files(
     )
 
     assert resp.wsgi_request._locales_for_django_fallback_view == ["sco", "es-ES", "fr-CA"]
-    assert resp.wsgi_request._locales_available_via_cms == ["en-US"]
+    assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of files" in resp.text
 
 

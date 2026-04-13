@@ -20,7 +20,7 @@ def test_get_locales_for_cms_page(tiny_localized_site):
     # match the pages set up in the tiny_localized_site fixture
     assert Page.objects.filter(alias_of__isnull=False).count() == 0
 
-    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-US", "fr", "pt-BR"]
+    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-CA", "en-GB", "en-US", "fr", "pt-BR", "pt-PT"]
 
     # now make aliases of the test_page into Dutch and Spanish
     nl_locale = Locale.objects.create(language_code="nl")
@@ -34,8 +34,9 @@ def test_get_locales_for_cms_page(tiny_localized_site):
 
     assert Page.objects.filter(alias_of__isnull=False).count() == 4  # 2 child + 2 parent pages, which had to be copied too
 
-    # Show that the aliases don't appear in the available locales
-    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-US", "fr", "pt-BR"]
+    # Show that the Wagtail page aliases don't appear in the available locales
+    # (FALLBACK_LOCALES alias expansion still applies for en-US and pt-BR)
+    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-CA", "en-GB", "en-US", "fr", "pt-BR", "pt-PT"]
 
 
 def test_get_locales_for_cms_page__ensure_draft_pages_are_excluded(tiny_localized_site):
@@ -46,7 +47,7 @@ def test_get_locales_for_cms_page__ensure_draft_pages_are_excluded(tiny_localize
 
     fr_test_page.unpublish()
 
-    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-US", "pt-BR"]
+    assert sorted(get_locales_for_cms_page(en_us_test_page)) == ["en-CA", "en-GB", "en-US", "pt-BR", "pt-PT"]
 
 
 @pytest.mark.parametrize(
