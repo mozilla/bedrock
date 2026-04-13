@@ -2587,6 +2587,7 @@ def lazy_wagtail_langs():
         ("en-CA", "English (Canada)"),
         ("de", "German"),
         ("fr", "French"),
+        ("es-AR", "Spanish (Argentina)"),
         ("es-ES", "Spanish (Spain)"),
         ("es-CL", "Spanish (Chile)"),
         ("es-MX", "Spanish (México)"),
