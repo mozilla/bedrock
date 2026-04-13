@@ -3,13 +3,15 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.conf import settings
+from django.utils import translation
 from django.utils.cache import add_never_cache_headers
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 
-from wagtail.models import Page as WagtailBasePage
+from wagtail.models import Locale, Page as WagtailBasePage
 from wagtail_localize.fields import SynchronizedField
 
+from bedrock.base.i18n import normalize_language
 from bedrock.cms.utils import get_locales_for_cms_page
 from lib import l10n_utils
 
@@ -47,6 +49,58 @@ class AbstractBedrockCMSPage(WagtailBasePage):
 
     class Meta:
         abstract = True
+
+    @property
+    def localized(self):
+        """
+        Extends Wagtail's localized to handle alias locales in FALLBACK_LOCALES.
+
+        When the active locale is an alias (e.g. pt-PT → pt-BR) and the page has
+        no translation in that alias locale, returns the fallback locale's translation
+        instead of the source-locale original.
+        """
+        localized = super().localized
+
+        lang_code = normalize_language(translation.get_language())
+
+        if localized.locale.language_code == lang_code:
+            return localized
+
+        fallback_locales = getattr(settings, "FALLBACK_LOCALES", {})
+        if lang_code in fallback_locales:
+            fallback_code = fallback_locales[lang_code]
+            try:
+                fallback_locale = Locale.objects.get(language_code=fallback_code)
+                if localized.locale_id != fallback_locale.id:
+                    fallback_page = self.get_translation_or_none(fallback_locale)
+                    if fallback_page:
+                        return fallback_page
+            except Locale.DoesNotExist:
+                pass
+
+        return localized
+
+    def get_active_locale_url(self, request=None):
+        """
+        Returns the page URL with the locale prefix rewritten to the active
+        alias locale when serving alias locale content.
+
+        If the active locale is an alias (e.g. pt-PT → pt-BR) and this page is
+        in the fallback locale (e.g. pt-BR), swaps the prefix so the user stays
+        on their preferred alias URL rather than being sent to the canonical one.
+        host/pt-BR/page/ → host/pt-PT/page/
+        """
+        url = super().get_url(request)
+
+        active_language = normalize_language(translation.get_language())
+        fallback_locales = getattr(settings, "FALLBACK_LOCALES", {})
+
+        if active_language in fallback_locales:
+            fallback_code = fallback_locales[active_language]
+            if self.locale.language_code == fallback_code:
+                url = url.replace(f"/{fallback_code}/", f"/{active_language}/", 1)
+
+        return url
 
     @classmethod
     def can_create_at(cls, parent):
