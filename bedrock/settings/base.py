@@ -2602,6 +2602,15 @@ def lazy_wagtail_langs():
 WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
 
+# Alias locales that transparently serve another locale's content.
+# e.g. a request to /pt-PT/some/page/ serves the pt-BR page without redirecting.
+# Keys are alias locales; values are the canonical locale whose page tree is served.
+FALLBACK_LOCALES = {
+    "pt-PT": "pt-BR",
+    "en-GB": "en-US",
+    "en-CA": "en-US",
+}
+
 # Don't automatically make a page for a non-default locale availble in the default locale
 WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False  # note that WAGTAILLOCALIZE is correct without the _
 
@@ -2642,6 +2651,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
+    "EXCLUDE_LOCALES": ["pt-PT", "en-CA", "en-GB"],  # alias locales — not sent to Smartling separately
 }
 
 WAGTAILDRAFTSHARING = {
