@@ -20,7 +20,7 @@ django-rq-email-backend==2.0.0
 django-storages[google]==1.14.4
 django-waffle==4.2.0
 django-watchman==1.4.0
-Django>=5.2.12,<6.0
+Django>=5.2.13,<6.0
 envcat==0.1.1
 everett==3.5.0
 fluent.runtime==0.4.0
