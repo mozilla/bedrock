@@ -45,9 +45,9 @@ boto3==1.42.61 \
     --hash=sha256:117ebfc597c95bfb64c6d37ba77bd1c2a97a1885c1dcac2a8be1a14e2139a76d \
     --hash=sha256:156efcc298a33206be6dfd220815c64aa8b09424017534cabe717636961fc306
     # via -r requirements/prod.in
-botocore==1.42.87 \
-    --hash=sha256:1c6cc9555c1feec50b290a42de70ba6f04826c009562c2c12bb9990d0258482d \
-    --hash=sha256:32832df27c039cc1a518289afe0f6006296d3df26603b5f66e911457e67f0146
+botocore==1.42.88 \
+    --hash=sha256:032375b213305b6b81eedb269eaeefdf96f674620799bbf96117dca86052cc1a \
+    --hash=sha256:cbb59ee464662039b0c2c95a520cdf85b1e8ce00b72375ab9cd9f842cc001301
     # via
     #   boto3
     #   s3transfer
@@ -779,9 +779,9 @@ jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
     # via jsonschema
-justhtml==1.15.0 \
-    --hash=sha256:4dd3574872ff377ac13ae4227a7fae5ca3b5865b7da4f2425139310a0ff67ad9 \
-    --hash=sha256:e3dd8d254c969f07d937c6bd02dd9a2a11f4da5954147b7cdb04bff79ad4b8d1
+justhtml==1.16.0 \
+    --hash=sha256:8a7165d10119fda05ec6b6e0886f4343a35c9b2cda54615dd64b05e81e38d5f1 \
+    --hash=sha256:c57a6772191200d3820cccf47a38274841925eff2166bc3f3f277312d6b11193
     # via -r requirements/prod.in
 laces==0.1.2 \
     --hash=sha256:3218e09c1889ae5cf3fc7a82f5bb63ec0c7879889b6a9760bfc42323c694b84d \
@@ -1753,17 +1753,17 @@ wagtail-localize==1.13 \
     #   wagtail-localize-dashboard
     #   wagtail-localize-intentional-blanks
     #   wagtail-localize-smartling
-wagtail-localize-dashboard==0.1.2 \
-    --hash=sha256:071ecdc1d3bbec2155a28a843238eb2b28aaf4589cfeee5c20042d284c680264 \
-    --hash=sha256:56e7577eb883e3949b5e37ccad959d7356c27fb6449ea460b0da7f926929bcd0
+wagtail-localize-dashboard==0.3.0 \
+    --hash=sha256:6209b92ff78b369a68070a9706b8547610aed2062d3b86ed2871257688a471d3 \
+    --hash=sha256:c95b99bcd8331ff7138c961788a2da64d9ca92cf38a39d0acdf2f9361b2f2261
     # via -r requirements/prod.in
 wagtail-localize-intentional-blanks==0.2.4 \
     --hash=sha256:185b6010b08dce9db7d22839fb6701bb3339310fbdfd31c8c6a8c0b4ed8d38d3 \
     --hash=sha256:8557a1c4c565ffa950aee59c907981a92cb30c7c072f9866dd211ec87253479a
     # via -r requirements/prod.in
-wagtail-localize-smartling==0.11.0 \
-    --hash=sha256:2650f9467f1b9bc0879e9f9f9e13eb12074b26bf55f84a89e59c4613e454ecbe \
-    --hash=sha256:a34f6927d128b1e18d1bb937d2cb5c22683488be7a7299364afb62d849e41fd8
+wagtail-localize-smartling==0.12.1 \
+    --hash=sha256:0348763669a83e5164c231fa81c9f151ea3c397b41ec3c1c86bd9e372fc1663b \
+    --hash=sha256:9b0392ec7254daf75cbc12cf0b587f1a77b3f8ddd09a5ba86015b6666269cf67
     # via -r requirements/prod.in
 wagtail-thumbnail-choice-block==0.1.5 \
     --hash=sha256:079a61e76e45cfa4e6261a2d8a4d8a5ad6570f342d032b3774e9ea58905dda42 \
