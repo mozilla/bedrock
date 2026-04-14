@@ -12,7 +12,7 @@ from wagtail.models import Locale, Page as WagtailBasePage
 from wagtail_localize.fields import SynchronizedField
 
 from bedrock.base.i18n import normalize_language
-from bedrock.cms.utils import get_locales_for_cms_page
+from bedrock.cms.utils import compute_cms_page_locales
 from lib import l10n_utils
 
 
@@ -116,8 +116,18 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         # Quick annotation to help us track the origin of the page
         request.is_cms_page = True
 
-        # Patch in a list of available locales for pages that are translations, not just aliases
-        request._locales_available_via_cms = get_locales_for_cms_page(self)
+        # Compute locales in two sets:
+        # _locales_available_via_cms  – all locales, including alias expansion from
+        #                               FALLBACK_LOCALES. Used for the language picker
+        #                               and redirect decisions.
+        # _content_locales_via_cms    – only locales with real translated content (no
+        #                               alias expansion). Used by l10n_utils.render() to
+        #                               set context["content_locales"], which the template
+        #                               uses for hreflang filtering and noindex.
+        all_locales, content_locales = compute_cms_page_locales(self)
+        request._locales_available_via_cms = all_locales
+        request._content_locales_via_cms = content_locales
+
         return request
 
     def _render_with_fluent_string_support(self, request, *args, **kwargs):

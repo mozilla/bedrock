@@ -194,8 +194,12 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
 
 def get_locale(request):
+    # content_locale is set on the request when serving fallback content at an
+    # alias locale URL (e.g. pt-BR content at /pt-PT/). Use it as the authoritative
+    # locale for Fluent loading so that nav/footer strings render in the correct
+    # language rather than falling back to English.
     # request.locale is added in bedrock.base.middleware.BedrockLangCodeFixupMiddleware
-    lang = getattr(request, "locale", None)
+    lang = getattr(request, "content_locale", None) or getattr(request, "locale", None)
     if not lang:
         lang = settings.LANGUAGE_CODE
     return normalize_language(lang)
