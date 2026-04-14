@@ -5,6 +5,7 @@
 import os
 from unittest.mock import ANY, Mock, call, patch
 
+from django.http import HttpResponse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -175,6 +176,90 @@ class TestRender(TestCase):
             ],
             any_order=True,
         )
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_served_transparently(self):
+        """A request to an alias locale URL serves fallback content at that URL (no redirect)."""
+        # en-US is in translations, en-CA is not — alias fallback should kick in
+        self._test(
+            "/en-CA/firefox/new/",
+            "firefox/new.html",
+            locale="en-CA",
+            accept_lang="",
+            status=200,
+            active_locales=["en-US", "fr"],
+        )
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_sets_content_locale_on_request(self):
+        """render() sets request.content_locale to the fallback locale code."""
+        request = RequestFactory().get("/en-CA/firefox/new/")
+        request.locale = "en-CA"
+        with patch.object(l10n_utils, "django_render") as mock_render:
+            mock_render.return_value = HttpResponse()
+            l10n_utils.render(request, "firefox/new.html", {"active_locales": ["en-US", "fr"]})
+        assert getattr(request, "content_locale", None) == "en-US"
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_sets_content_locales_in_context(self):
+        """context['content_locales'] equals translations (no alias expansion) for non-CMS pages."""
+        request = RequestFactory().get("/en-CA/firefox/new/")
+        request.locale = "en-CA"
+        with patch.object(l10n_utils, "django_render") as mock_render:
+            mock_render.return_value = HttpResponse()
+            l10n_utils.render(request, "firefox/new.html", {"active_locales": ["en-US", "fr"]})
+            ctx = mock_render.call_args[0][2]
+        assert ctx["content_locales"] == {"en-US", "fr"}
+        assert "en-CA" not in ctx["content_locales"]
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_redirects_when_fallback_also_missing(self):
+        """If the fallback locale is also not in translations, still redirect."""
+        self._test(
+            "/en-CA/firefox/new/",
+            "firefox/new.html",
+            locale="en-CA",
+            accept_lang="",
+            status=302,
+            destination="/fr/firefox/new/",
+            active_locales=["fr"],  # neither en-CA nor en-US present
+        )
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_root_url_served_transparently(self):
+        """GET /en-CA/ (alias locale root with no sub-path) is served transparently — no redirect."""
+        self._test(
+            "/en-CA/",
+            "firefox/new.html",
+            locale="en-CA",
+            accept_lang="",
+            status=200,
+            active_locales=["en-US", "fr"],
+        )
+
+    @override_settings(FALLBACK_LOCALES={"en-CA": "en-US"})
+    def test_alias_locale_served_when_is_cms_page_false(self):
+        """
+        When prefer_cms falls back to the Django view after a CMS 404, it explicitly
+        sets request.is_cms_page = False before calling the view. Verify that
+        l10n_utils.render() still performs alias serving in that state.
+
+        This guards against a regression where the FALLBACK_LOCALES check in render()
+        would accidentally be gated on is_cms_page, which would break the
+        prefer_cms → Django-fallback → alias-serving path.
+        """
+        request = RequestFactory().get("/en-CA/firefox/new/")
+        request.locale = "en-CA"
+        request.is_cms_page = False  # explicitly set by prefer_cms after CMS 404
+
+        with patch.object(l10n_utils, "django_render") as mock_render:
+            mock_render.return_value = HttpResponse()
+            l10n_utils.render(request, "firefox/new.html", {"active_locales": ["en-US", "fr"]})
+
+        # Alias serving fired: django_render was called (no redirect), and
+        # content_locale was set to the fallback locale.
+        assert mock_render.called
+        assert getattr(request, "content_locale", None) == "en-US"
 
 
 class TestGetAcceptLanguages(TestCase):
