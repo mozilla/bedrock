@@ -5,7 +5,7 @@
 import re
 from collections import OrderedDict
 from operator import itemgetter
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 from django.conf import settings
 
@@ -346,7 +346,7 @@ class FirefoxAndroid(_ProductDetails):
         "release": "fennec-latest",
     }
 
-    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS
+    store_url = settings.GOOGLE_PLAY_FIREFOX_LINK
     # Product IDs defined on Google Play
     # Nightly reuses the Aurora ID to migrate the user base
     store_product_ids = {
@@ -464,7 +464,14 @@ class FirefoxAndroid(_ProductDetails):
         # We don't have pre-release builds yet
         return []
 
-    def get_download_url(self, channel="release", arch="arm", locale="multi", force_direct=False):
+    def get_download_url(
+        self,
+        channel="release",
+        arch="arm",
+        locale="multi",
+        force_direct=False,
+        utm_params=None,
+    ):
         """
         Get direct download url for the product.
         :param channel: one of self.version_map.keys() such as nightly, beta.
@@ -474,6 +481,10 @@ class FirefoxAndroid(_ProductDetails):
                 instead of Google Play.
         :return: string url
         """
+        referrer_params = {"utm_source": "www.mozilla.org", "utm_medium": "referral", "utm_campaign": "download"}
+        if utm_params:
+            referrer_params = {**referrer_params, **utm_params}
+
         if force_direct:
             # Use a bouncer link
             return "?".join(
@@ -490,11 +501,13 @@ class FirefoxAndroid(_ProductDetails):
                 ]
             )
 
+        store_url = self.store_url
+
         if channel != "release":
             product_id = self.store_product_ids.get(channel, "org.mozilla.firefox")
-            return self.store_url.replace(self.store_product_ids["release"], product_id)
+            store_url = self.store_url.replace(self.store_product_ids["release"], product_id)
 
-        return self.store_url
+        return store_url + "&referrer=" + quote(urlencode(referrer_params))
 
 
 class FirefoxIOS(_ProductDetails):
