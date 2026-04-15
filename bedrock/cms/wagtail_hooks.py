@@ -60,7 +60,7 @@ def mark_locale_roles_in_admin():
 
     return mark_safe(
         f"<script>window.WAGTAIL_LOCALE_ALIAS_MAP = {json.dumps(alias_id_map)};</script>"
-        f'<script src="{static("js/cms/wagtailadmin-locale-badges.js")}"></script>'
+        f'<script src="{static("js/wagtailadmin-locale-badges.js")}"></script>'
     )
 
 
