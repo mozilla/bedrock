@@ -5,6 +5,7 @@
 from unittest import mock
 
 from django.test import override_settings
+from django.utils import translation
 
 import pytest
 from wagtail.models import Locale, Page
@@ -115,6 +116,96 @@ def test__patch_request_for_bedrock__locales_available_via_cms(
     patched_request = page.specific._patch_request_for_bedrock(request)
     assert sorted(patched_request._locales_available_via_cms) == ["en-US", "fr", "pt-BR"]
     assert sorted(patched_request._content_locales_via_cms) == ["en-US", "fr"]
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_localized_returns_fallback_translation_for_alias_locale(tiny_localized_site):
+    """When the active locale is an alias (pt-PT) and the page has no pt-PT
+    translation, localized returns the pt-BR translation instead."""
+    en_us_page = Page.objects.get(locale__language_code="en-US", slug="test-page")
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    # The page has no pt-PT translation.
+    assert Page.objects.filter(locale__language_code="pt-PT", slug="test-page").exists() is False
+
+    with translation.override("pt-pt"):  # Django uses lowercase internally
+        result = en_us_page.specific.localized
+
+    assert result.pk == pt_br_page.pk
+    assert result.locale.language_code == "pt-BR"
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_localized_returns_alias_translation_for_alias_locale_when_alias_translation_exists(tiny_localized_site):
+    """When the active locale is an alias (pt-PT) and the page has a pt-PT
+    translation, localized returns the pt-PT translation."""
+    en_us_page = Page.objects.get(locale__language_code="en-US", slug="test-page")
+    # Translate the page into pt-PT: create the locale, copy the root, then the page.
+    pt_pt_locale = LocaleFactory(language_code="pt-PT")
+    en_us_page.get_parent().copy_for_translation(pt_pt_locale)
+    pt_pt_page = en_us_page.copy_for_translation(pt_pt_locale)
+    pt_pt_page.save_revision().publish()
+    pt_pt_page.refresh_from_db()
+
+    with translation.override("pt-pt"):  # Django uses lowercase internally
+        result = en_us_page.specific.localized
+
+    assert result.pk == pt_pt_page.pk
+    assert result.locale.language_code == "pt-PT"
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_localized_returns_original_when_no_fallback_translation(tiny_localized_site):
+    """When alias locale is active but no fallback translation exists, localized
+    falls back to Wagtail's default (returns the en-US original)."""
+    en_us_page = Page.objects.get(locale__language_code="en-US", slug="test-page")
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    pt_br_page.delete()
+    # The page has no pt-PT translation.
+    assert Page.objects.filter(locale__language_code="pt-PT", slug="test-page").exists() is False
+
+    with translation.override("pt-pt"):
+        result = en_us_page.specific.localized
+
+    # Wagtail default: returns en-US when no translation found
+    assert result.locale.language_code == "en-US"
+
+
+def test_localized_non_alias_locale_unchanged(tiny_localized_site):
+    """For a non-alias locale, localized behaves exactly like Wagtail's default."""
+    en_us_page = Page.objects.get(locale__language_code="en-US", slug="test-page")
+    fr_page = Page.objects.get(locale__language_code="fr", slug="test-page")
+
+    with translation.override("fr"):
+        result = en_us_page.specific.localized
+
+    assert result.pk == fr_page.pk
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"}, WAGTAILFRONTENDCHACHE={})
+def test_get_active_locale_url_rewrites_prefix_for_alias_locale(tiny_localized_site):
+    """When the active locale is pt-PT (alias for pt-BR), get_active_locale_url
+    returns the URL with /pt-BR/ replaced by /pt-PT/."""
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    # The page has no pt-PT translation.
+    assert Page.objects.filter(locale__language_code="pt-PT", slug="test-page").exists() is False
+
+    with translation.override("pt-pt"):
+        url = pt_br_page.specific.get_active_locale_url()
+
+    assert "/pt-PT/" in url
+    assert "/pt-BR/" not in url
+
+
+def test_get_active_locale_url_unchanged_for_non_alias_locale(tiny_localized_site):
+    """For a non-alias locale, get_active_locale_url returns the standard URL."""
+    fr_page = Page.objects.get(locale__language_code="fr", slug="test-page")
+
+    with translation.override("fr"):
+        url = fr_page.specific.get_active_locale_url()
+
+    assert "/fr/" in url
+    assert "/pt-BR/" not in url
+    assert "/pt-PT/" not in url
 
 
 def test__patch_request_for_bedrock_annotates_is_cms_page(tiny_localized_site, rf):

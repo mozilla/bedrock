@@ -3,11 +3,13 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from django.test import override_settings
+
 import pytest
 from wagtail.coreutils import get_dummy_request
 from wagtail.models import Locale, Page
 
-from bedrock.cms.utils import get_cms_locales_for_path, get_locales_for_cms_page, get_page_for_request
+from bedrock.cms.utils import find_fallback_page_for_locale, get_cms_locales_for_path, get_locales_for_cms_page, get_page_for_request
 
 pytestmark = [pytest.mark.django_db]
 
@@ -143,3 +145,42 @@ def test_get_cms_locales_for_path(
     if get_page_for_request_should_return_a_page:
         mock_get_page_for_request.assert_called_once_with(request=request)
         mock_get_locales_for_cms_page.assert_called_once_with(page=page)
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_find_fallback_page_for_locale_returns_fallback_page(tiny_localized_site):
+    """Alias locale with a live fallback page returns that page."""
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+
+    fallback_page = find_fallback_page_for_locale("pt-PT", "test-page/")
+
+    assert fallback_page == pt_br_page
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_find_fallback_page_for_locale_returns_none_when_no_fallback_page(tiny_localized_site):
+    """Alias locale configured but no page at the path in fallback locale → None."""
+    assert Page.objects.filter(slug="nonexistent-path").exists() is False
+    fallback_page = find_fallback_page_for_locale("pt-PT", "nonexistent-path/")
+    assert fallback_page is None
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_find_fallback_page_for_locale_returns_none_for_non_alias_locale(tiny_localized_site):
+    """Locale not in FALLBACK_LOCALES → None (no fallback lookup performed)."""
+    # The fr Page exists in the database.
+    assert Page.objects.filter(locale__language_code="fr", slug="test-page").exists() is True
+
+    fallback_page = find_fallback_page_for_locale("fr", "test-page/")
+
+    # Since "fr" is not in the FALLBACK_LOCALES, the function returns None.
+    assert fallback_page is None
+
+
+@override_settings(FALLBACK_LOCALES={"pt-PT": "pt-BR"})
+def test_find_fallback_page_for_locale_returns_none_for_draft_page(tiny_localized_site):
+    """Fallback page exists but is unpublished → None."""
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    pt_br_page.unpublish()
+    fallback_page = find_fallback_page_for_locale("pt-PT", "test-page/")
+    assert fallback_page is None

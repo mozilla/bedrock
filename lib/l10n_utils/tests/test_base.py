@@ -396,3 +396,45 @@ def test_get_best_translation(translations, accept_languages, expected):
 def test_get_best_translation__strict(translations, accept_languages, expected):
     # Strict is used for the root path, to return the list of localized home pages for bots.
     assert l10n_utils.get_best_translation(translations, accept_languages, strict=True) == expected
+
+
+@pytest.mark.parametrize(
+    "locale_is_set, locale_value, content_locale_is_set, content_locale_value, language_code_setting, expected",
+    (
+        (True, "es-AR", True, "es-MX", "en-US", "es-MX"),  # content_locale wins over locale
+        (False, "", True, "es-MX", "en-US", "es-MX"),  # content_locale wins even without locale
+        (True, "es-AR", False, "", "en-US", "es-AR"),  # locale wins when no content_locale
+        (False, "", False, "", "en-US", "en-US"),  # LANGUAGE_CODE fallback
+    ),
+)
+def test_get_locale_preference_order(
+    locale_is_set,
+    locale_value,
+    content_locale_is_set,
+    content_locale_value,
+    language_code_setting,
+    expected,
+    rf,
+):
+    request = rf.get("/")
+    if locale_is_set:
+        request.locale = locale_value
+    if content_locale_is_set:
+        request.content_locale = content_locale_value
+    with override_settings(LANGUAGE_CODE=language_code_setting):
+        assert l10n_utils.get_locale(request) == expected
+
+
+@patch.object(l10n_utils, "django_render")
+def test_render_does_not_redirect_when_content_locale_differs_from_url_locale(render_mock, rf):
+    """When content_locale is already set on the request (CMS alias page),
+    render() must not redirect even though locale != locale_in_url."""
+    render_mock.return_value = HttpResponse()
+    request = rf.get("/es-AR/download/")
+    request.locale = "es-AR"
+    request.content_locale = "es-MX"  # already set by CMS alias serving logic
+
+    response = l10n_utils.render(request, "some.html", {"active_locales": ["es-MX"]})
+
+    assert response.status_code == 200  # must serve, not redirect to /es-MX/
+    render_mock.assert_called_once()
