@@ -2651,13 +2651,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
-    "EXCLUDE_LOCALES": [
-        "en-CA",
-        "en-GB",
-        "pt-PT",
-        "es-CL",
-        "es-AR",
-    ],
+    "EXCLUDE_LOCALES": list(FALLBACK_LOCALES.keys()),
 }
 
 WAGTAILDRAFTSHARING = {
