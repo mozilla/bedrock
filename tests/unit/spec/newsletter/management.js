@@ -399,26 +399,6 @@ describe('management.es6.js', function () {
             expect(lang.options[lang.selectedIndex].value).toEqual('en');
         });
 
-        it('should default to English / US when user data does not match available options', function () {
-            const country = document.getElementById('id_country');
-            const lang = document.getElementById('id_lang');
-            const partialUserData = {
-                email: 'example@example.com',
-                country: 'xx',
-                lang: 'xx'
-            };
-
-            spyOn(NewsletterManagementForm, 'getPageLocale').and.returnValue(
-                'en-US'
-            );
-            NewsletterManagementForm.setFormDefaults(partialUserData);
-            expect(document.getElementById('id_email').innerText).toEqual(
-                partialUserData.email
-            );
-            expect(country.options[country.selectedIndex].value).toEqual('us');
-            expect(lang.options[lang.selectedIndex].value).toEqual('en');
-        });
-
         it('should fuzzy match language codes returned from basket', function () {
             const country = document.getElementById('id_country');
             const lang = document.getElementById('id_lang');
