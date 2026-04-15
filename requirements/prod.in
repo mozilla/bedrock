@@ -1,7 +1,7 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-boto3==1.42.61
+boto3==1.42.89
 commonware==0.6.0
 defusedxml==0.7.1
 dirsync==2.2.6
@@ -18,8 +18,8 @@ django-mozilla-product-details==1.0.3
 django-rq==3.0.1
 django-rq-email-backend==2.0.0
 django-storages[google]==1.14.4
-django-waffle==4.2.0
-django-watchman==1.4.0
+django-waffle==5.0.0
+django-watchman==1.5.0
 Django>=5.2.13,<6.0
 envcat==0.1.1
 everett==3.5.0
@@ -31,30 +31,30 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.11.0
-justhtml>=1.7.0
+justhtml>=1.16.0
 lxml==5.4.0  # Needed for BeautifulSoup.
-Markdown==3.8
+Markdown==3.9
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==5.0.2
-Pillow==12.1.1
+Pillow==12.2.0
 psycopg[binary]==3.2.8
 py-svg-hush==0.3.0
-PyGithub==2.8.1
+PyGithub==2.9.1
 PyYAML==6.0.3
 qrcode==8.2
-requests==2.32.5
+requests==2.33.1
 sentry-processor==0.0.1
-sentry-sdk==2.54.0
+sentry-sdk==2.58.0
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
 wagtail-localize-smartling==0.12.1
 wagtail-localize==1.13
-wagtail-link-block==1.1.7
-wagtail-thumbnail-choice-block==0.1.5
-Wand==0.6.13  # For animated GIF support
+wagtail-link-block==1.2
+wagtail-thumbnail-choice-block==0.2.0
+Wand==0.7.0  # For animated GIF support
 Wagtail==7.3.1
-whitenoise==6.11.0
-wagtail-localize-dashboard==0.3.0
-wagtail-localize-intentional-blanks==0.2.4
+whitenoise==6.12.0
+wagtail-localize-dashboard==0.4.0
+wagtail-localize-intentional-blanks==0.3.0

@@ -580,22 +580,22 @@ describe('MzpNewsletter', function () {
             );
         });
     });
-});
 
-describe('checkEmailValidity', function () {
-    it('should return true for primitive email format', function () {
-        expect(MzpNewsletter.checkEmailValidity('a@a')).toBeTruthy();
-        expect(
-            MzpNewsletter.checkEmailValidity('example@example.com')
-        ).toBeTruthy();
-    });
+    describe('checkEmailValidity', function () {
+        it('should return true for primitive email format', function () {
+            expect(MzpNewsletter.checkEmailValidity('a@a')).toBeTruthy();
+            expect(
+                MzpNewsletter.checkEmailValidity('example@example.com')
+            ).toBeTruthy();
+        });
 
-    it('should return false for anything else', function () {
-        expect(MzpNewsletter.checkEmailValidity(1234567890)).toBeFalsy();
-        expect(MzpNewsletter.checkEmailValidity('aaa')).toBeFalsy();
-        expect(MzpNewsletter.checkEmailValidity(null)).toBeFalsy();
-        expect(MzpNewsletter.checkEmailValidity(undefined)).toBeFalsy();
-        expect(MzpNewsletter.checkEmailValidity(true)).toBeFalsy();
-        expect(MzpNewsletter.checkEmailValidity(false)).toBeFalsy();
+        it('should return false for anything else', function () {
+            expect(MzpNewsletter.checkEmailValidity(1234567890)).toBeFalsy();
+            expect(MzpNewsletter.checkEmailValidity('aaa')).toBeFalsy();
+            expect(MzpNewsletter.checkEmailValidity(null)).toBeFalsy();
+            expect(MzpNewsletter.checkEmailValidity(undefined)).toBeFalsy();
+            expect(MzpNewsletter.checkEmailValidity(true)).toBeFalsy();
+            expect(MzpNewsletter.checkEmailValidity(false)).toBeFalsy();
+        });
     });
 });
