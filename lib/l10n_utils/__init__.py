@@ -112,8 +112,8 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     # For alias fallback pages (for example, if a user requests /es-AR/somepage/,
     # but a somepage does not exist in the es-AR locale, so the user is served
-    # a page from the fallback es-MX locale), the user-facing locale is the
-    # alias (es-AR), but the content locale is the fallback locale (es-MX).
+    # a page from the fallback es-ES locale), the user-facing locale is the
+    # alias (es-AR), but the content locale is the fallback locale (es-ES).
     # Use locale_in_url for URL prefix comparisons to avoid spurious redirects.
     locale_in_url, _, _ = split_path_and_normalize_language(request.path)
 
