@@ -16,7 +16,7 @@ def create_alias_locales(apps, schema_editor):
 
     from wagtail.models import Locale, Page, Site
 
-    alias_locales = ["es-AR", "es-CL", "pt-PT", "en-GB", "en-CA"]
+    alias_locales = ["es-AR", "es-CL", "es-MX", "pt-PT", "en-GB", "en-CA"]
 
     site = Site.objects.filter(is_default_site=True).select_related("root_page").first()
     if not site:
@@ -71,7 +71,7 @@ def remove_alias_locales(apps, schema_editor):
 
     from wagtail.models import Locale, Page
 
-    alias_locales = ["es-AR", "es-CL", "pt-PT", "en-GB", "en-CA"]
+    alias_locales = ["es-AR", "es-CL", "es-MX", "pt-PT", "en-GB", "en-CA"]
 
     en_us_locale_root = Page.objects.filter(
         depth=2,
