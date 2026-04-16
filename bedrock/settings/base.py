@@ -371,6 +371,7 @@ CANONICAL_LOCALES = {
 FALLBACK_LOCALES = {
     "es-AR": "es-ES",
     "es-CL": "es-ES",
+    "es-MX": "es-ES",
     "pt-PT": "pt-BR",
     "en-GB": "en-US",
     "en-CA": "en-US",
