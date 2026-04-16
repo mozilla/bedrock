@@ -63,7 +63,7 @@ urlpatterns = (
             "wrapped/view/path/with/locale/strings/",
             prefer_cms(
                 decorator_test_views.wrapped_dummy_view,
-                fallback_lang_codes=["fr-CA", "es-MX", "sco"],
+                fallback_lang_codes=["fr-CA", "es-ES", "sco"],
             ),
             name="url_wrapped_dummy_view",
         ),
@@ -79,7 +79,7 @@ urlpatterns = (
             "prefer-cms-alias-test/",
             prefer_cms(
                 decorator_test_views.wrapped_dummy_view,
-                fallback_lang_codes=["es-AR", "es-MX", "en-US"],
+                fallback_lang_codes=["es-AR", "es-ES", "en-US"],
             ),
             name="prefer_cms_alias_test",
         ),
@@ -147,7 +147,7 @@ def test_decorating_django_view__passing_fallback_lang_codes(
     assert resp.status_code == 200
     assert resp.text == "This is a dummy response from the decorated view with locale strings passed in"
     # Show that the expected locales are annotated onto the request
-    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
+    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-ES", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
 
     # Show the decorated view will "prefer" to render the Wagtail page when it exists
@@ -159,7 +159,7 @@ def test_decorating_django_view__passing_fallback_lang_codes(
     resp = client.get(f"{lang_code_prefix}/decorated/view/path/with/locale/strings/", follow=True)
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
-    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
+    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-ES", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of strings" in resp.text
 
@@ -271,7 +271,7 @@ def test_patching_in_urlconf__standard_django_view__with_locale_list(
     assert resp.status_code == 200
     assert resp.text == "This is a dummy response from the wrapped view"
     # Show that the expected locales are annotated onto the request
-    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
+    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-ES", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == []  # No page in CMS yet
 
     # Show the decorated view will "prefer" to render the Wagtail page when it exists
@@ -283,7 +283,7 @@ def test_patching_in_urlconf__standard_django_view__with_locale_list(
     resp = client.get(f"{lang_code_prefix}/wrapped/view/path/with/locale/strings/", follow=True)
     assert resp.status_code == 200
     # Show that the expected locales are annotated onto the request
-    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-MX", "sco"]
+    assert resp.wsgi_request._locales_for_django_fallback_view == ["fr-CA", "es-ES", "sco"]
     assert resp.wsgi_request._locales_available_via_cms == ["en-US", "en-GB", "en-CA"]
     assert "This is a CMS page now, with the slug of strings" in resp.text
 
@@ -460,15 +460,15 @@ def test_prefer_cms_rejects_invalid_setup(mocker, config, expect_exeption):
 
 @pytest.fixture()
 def prefer_cms_alias_site(tiny_localized_site):
-    """Site with a CMS page at /prefer-cms-alias-test/ in en-US, with es-MX locale available.
+    """Site with a CMS page at /prefer-cms-alias-test/ in en-US, with es-ES locale available.
 
     Uses tiny_localized_site (not minimal_site) because its root page is at depth 2 with a
     proper parent, which is required for copy_for_translation to succeed.
     """
     site = Site.objects.get(is_default_site=True)
-    es_mx_locale = LocaleFactory(language_code="es-MX")
+    es_es_locale = LocaleFactory(language_code="es-ES")
     # Translate the site root so child pages can be translated without copy_parents=True.
-    site.root_page.copy_for_translation(es_mx_locale)
+    site.root_page.copy_for_translation(es_es_locale)
 
     en_us_page = SimpleRichTextPageFactory(
         slug="prefer-cms-alias-test",
@@ -478,11 +478,11 @@ def prefer_cms_alias_site(tiny_localized_site):
     en_us_page.save_revision()
     en_us_page.publish(en_us_page.latest_revision)
 
-    return {"site": site, "es_mx_locale": es_mx_locale, "en_us_page": en_us_page}
+    return {"site": site, "es_es_locale": es_es_locale, "en_us_page": en_us_page}
 
 
 @pytest.mark.urls(__name__)
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
 def test_prefer_cms_serves_alias_fallback_cms_page(prefer_cms_alias_site, client):
     """
     prefer_cms serves the CMS's fallback page for an alias locale, rather than the static es-AR page.
@@ -490,29 +490,29 @@ def test_prefer_cms_serves_alias_fallback_cms_page(prefer_cms_alias_site, client
     This test verifies the following scenario:
         - a static page exists in an alias locale (es-AR)
         - a CMS page does NOT exist in an alias locale (es-AR)
-        - a CMS page does exist in the fallback locale (es-MX)
-    In this case, the user should get the CMS's es-MX page at the es-AR URL.
+        - a CMS page does exist in the fallback locale (es-ES)
+    In this case, the user should get the CMS's es-ES page at the es-AR URL.
     """
     en_us_page = prefer_cms_alias_site["en_us_page"]
-    es_mx_locale = prefer_cms_alias_site["es_mx_locale"]
+    es_es_locale = prefer_cms_alias_site["es_es_locale"]
 
-    es_mx_page = en_us_page.copy_for_translation(es_mx_locale)
-    es_mx_page.content = RichText("ES-MX CMS page content")
-    es_mx_page.save()
-    es_mx_page.save_revision()
-    es_mx_page.publish(es_mx_page.latest_revision)
+    es_es_page = en_us_page.copy_for_translation(es_es_locale)
+    es_es_page.content = RichText("ES-ES CMS page content")
+    es_es_page.save()
+    es_es_page.save_revision()
+    es_es_page.publish(es_es_page.latest_revision)
 
     response = client.get("/es-AR/prefer-cms-alias-test/")
 
     assert response.status_code == 200
-    # The es-MX CMS page was served
-    assert "ES-MX CMS page content" in response.text
+    # The es-ES CMS page was served
+    assert "ES-ES CMS page content" in response.text
     assert "dummy response from the wrapped view" not in response.text  # Django view was NOT reached
-    assert set(response.wsgi_request._locales_available_via_cms) == {"es-MX", "en-US", "es-AR"}
+    assert set(response.wsgi_request._locales_available_via_cms) == {"es-ES", "en-US", "es-AR"}
 
 
 @pytest.mark.urls(__name__)
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
 def test_prefer_cms_serves_direct_cms_page_for_alias_locale(prefer_cms_alias_site, client):
     """
     When a CMS page exists in an alias locale, prefer_cms serves it, rather than the static alias locale page.
@@ -520,18 +520,18 @@ def test_prefer_cms_serves_direct_cms_page_for_alias_locale(prefer_cms_alias_sit
     This test verifies the following scenario:
         - a static page exists in an alias locale (es-AR)
         - a CMS page does exist in an alias locale (es-AR)
-        - a CMS page does exist in a fallback locale (es-MX)
+        - a CMS page does exist in a fallback locale (es-ES)
     In this case, the user should get the CMS's es-AR page at the es-AR URL.
     """
     en_us_page = prefer_cms_alias_site["en_us_page"]
-    es_mx_locale = prefer_cms_alias_site["es_mx_locale"]
+    es_es_locale = prefer_cms_alias_site["es_es_locale"]
 
-    # es-MX page must exist for the locale chain to be valid
-    es_mx_page = en_us_page.copy_for_translation(es_mx_locale)
-    es_mx_page.content = RichText("ES-MX CMS page content")
-    es_mx_page.save()
-    es_mx_page.save_revision()
-    es_mx_page.publish(es_mx_page.latest_revision)
+    # es-ES page must exist for the locale chain to be valid
+    es_es_page = en_us_page.copy_for_translation(es_es_locale)
+    es_es_page.content = RichText("ES-ES CMS page content")
+    es_es_page.save()
+    es_es_page.save_revision()
+    es_es_page.publish(es_es_page.latest_revision)
 
     # es-AR also has its own promoted page; the root must be live so
     # _alias_needs_prewagtail_intercept returns False and Wagtail serves es-AR directly.
@@ -551,23 +551,23 @@ def test_prefer_cms_serves_direct_cms_page_for_alias_locale(prefer_cms_alias_sit
     # The es-AR CMS page was served
     assert "ES-AR CMS page content" in response.text
     assert "dummy response from the wrapped view" not in response.text
-    assert set(response.wsgi_request._locales_available_via_cms) == {"es-MX", "en-US", "es-AR"}
+    assert set(response.wsgi_request._locales_available_via_cms) == {"es-ES", "en-US", "es-AR"}
 
 
 @pytest.mark.urls(__name__)
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
 def test_prefer_cms_falls_through_to_django_when_no_alias_cms_page(prefer_cms_alias_site, client):
     """
-    prefer_cms falls through to the Django view when CMS has no page for es-AR or es-MX.
+    prefer_cms falls through to the Django view when CMS has no page for es-AR or es-ES.
 
     This test verifies the following scenario:
         - a static page exists in an alias locale (es-AR)
         - a CMS page does NOT exist in an alias locale (es-AR)
-        - a CMS page does NOT exist in a fallback locale (es-MX)
+        - a CMS page does NOT exist in a fallback locale (es-ES)
         - a CMS page does exist in the default locale (en-US)
     In this case, the user should get the static es-AR page at the es-AR URL.
     """
-    # prefer_cms_alias_site has an en-US CMS page only — no es-MX or es-AR translations.
+    # prefer_cms_alias_site has an en-US CMS page only — no es-ES or es-AR translations.
     response = client.get("/es-AR/prefer-cms-alias-test/")
     assert response.status_code == 200
     assert "dummy response from the wrapped view" in response.text  # Django view served

@@ -54,13 +54,13 @@ def localized_site_with_alias(tiny_localized_site):
 
 
 @pytest.fixture
-def site_with_es_mx_and_aliases(tiny_localized_site):
+def site_with_es_es_and_aliases(tiny_localized_site):
     """
     Extends tiny_localized_site with:
-    - es-MX: real translated content (test-page + child-page)
+    - es-ES: real translated content (test-page + child-page)
     - es-AR, es-CL: alias locales with non-live root pages only (no child-page)
 
-    Uses copy_for_translation(copy_parents=True) for es-MX so the depth-2 site
+    Uses copy_for_translation(copy_parents=True) for es-ES so the depth-2 site
     root is also translated. Uses .copy() for the alias locale roots for the same
     reason as the migration: copy_for_translation walks up to depth 1 and fails
     unless every ancestor is already translated.
@@ -71,11 +71,11 @@ def site_with_es_mx_and_aliases(tiny_localized_site):
     en_us_child = Page.objects.get(locale__language_code="en-US", slug="child-page")
     wagtail_root = en_us_root.get_parent()
 
-    es_mx_locale = LocaleFactory(language_code="es-MX")
-    es_mx_test_page = en_us_test_page.copy_for_translation(es_mx_locale, copy_parents=True)
-    es_mx_test_page.save_revision().publish()
-    es_mx_child = en_us_child.copy_for_translation(es_mx_locale)
-    es_mx_child.save_revision().publish()
+    es_es_locale = LocaleFactory(language_code="es-ES")
+    es_es_test_page = en_us_test_page.copy_for_translation(es_es_locale, copy_parents=True)
+    es_es_test_page.save_revision().publish()
+    es_es_child = en_us_child.copy_for_translation(es_es_locale)
+    es_es_child.save_revision().publish()
 
     for lang_code in ("es-AR", "es-CL"):
         alias_locale = LocaleFactory(language_code=lang_code)
@@ -209,15 +209,15 @@ def test_cms_hreflang_pt_br_claims_bare_pt(localized_site_with_alias, client):
     assert "/pt-BR/" in bare_pt_line  # bare "pt" points to pt-BR, not pt-PT
 
 
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX", "es-CL": "es-MX"})
-def test_cms_alias_locales_excluded_from_hreflang_on_all_pages(site_with_es_mx_and_aliases, client):
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES", "es-CL": "es-ES"})
+def test_cms_alias_locales_excluded_from_hreflang_on_all_pages(site_with_es_es_and_aliases, client):
     """
     Alias locales without their own content are excluded from hreflang on every page:
     the canonical locale, the fallback target, and the alias page itself.
     """
     page_path = "/test-page/child-page/"
     en_us_child = Page.objects.get(locale__language_code="en-US", slug="child-page")
-    es_mx_child = Page.objects.get(locale__language_code="es-MX", slug="child-page")
+    es_es_child = Page.objects.get(locale__language_code="es-ES", slug="child-page")
     # The "child-page" does not exist in the es-AR or es-CL locales.
     assert Page.objects.filter(locale__language_code="es-AR", slug="child-page").exists() is False
     assert Page.objects.filter(locale__language_code="es-CL", slug="child-page").exists() is False
@@ -228,29 +228,29 @@ def test_cms_alias_locales_excluded_from_hreflang_on_all_pages(site_with_es_mx_a
     html = response.text
     assert f'rel="canonical" href="{settings.CANONICAL_URL}/en-US{page_path}"' in html
     assert 'content="noindex,follow"' not in html
-    assert 'hreflang="es-MX"' in html
+    assert 'hreflang="es-ES"' in html
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
 
-    # --- 2. Fallback target (es-MX, has real content) ---
-    es_mx_child.refresh_from_db()
-    response = client.get(es_mx_child.url)
+    # --- 2. Fallback target (es-ES, has real content) ---
+    es_es_child.refresh_from_db()
+    response = client.get(es_es_child.url)
     assert response.status_code == 200
     html = response.text
-    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     assert 'content="noindex,follow"' not in html
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
 
     # --- 3. Alias locale (es-AR) served via fallback ---
-    es_ar_url = es_mx_child.url.replace("es-MX", "es-AR")
+    es_ar_url = es_es_child.url.replace("es-ES", "es-AR")
     response = client.get(es_ar_url)
     assert response.status_code == 200
     html = response.text
-    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-AR{page_path}"' not in html
     assert 'content="noindex,follow"' in html
-    assert 'hreflang="es-MX"' in html
+    assert 'hreflang="es-ES"' in html
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
 

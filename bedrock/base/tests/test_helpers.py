@@ -162,42 +162,42 @@ def test_get_locale_options(rf, translations_locales, cms_locales, django_locale
     )
 
 
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX", "es-CL": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES", "es-CL": "es-ES"})
 def test_get_locale_options_adds_alias_locales_when_fallback_present(rf):
     """Alias locales whose fallback is in translations are added to the language picker.
 
     For pure Fluent pages, translations only reflects FTL-active locales. When a
-    fallback locale (e.g. es-MX) is present, its aliases (es-AR, es-CL) must also
+    fallback locale (e.g. es-ES) is present, its aliases (es-AR, es-CL) must also
     appear so the language picker offers them to users browsing those locales.
     """
     request = rf.get("/dummy/path/")
-    translations = get_translations_native_names(["en-US", "es-MX", "fr"])
+    translations = get_translations_native_names(["en-US", "es-ES", "fr"])
 
     result = helpers.get_locale_options(request=request, translations=translations)
 
     assert "es-AR" in result
     assert "es-CL" in result
     assert "en-US" in result
-    assert "es-MX" in result
+    assert "es-ES" in result
     assert "fr" in result
 
 
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
 def test_get_locale_options_does_not_add_alias_when_fallback_absent(rf):
     """Alias locales are not added when their fallback locale is not in translations."""
     request = rf.get("/dummy/path/")
-    translations = get_translations_native_names(["en-US", "fr"])  # no es-MX
+    translations = get_translations_native_names(["en-US", "fr"])  # no es-ES
 
     result = helpers.get_locale_options(request=request, translations=translations)
 
     assert "es-AR" not in result
 
 
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
 def test_get_locale_options_does_not_double_add_alias_already_present(rf):
     """Alias locales are not duplicated when already present (e.g. from CMS path)."""
     # Simulate CMS page where get_locales_for_cms_page() already added es-AR.
-    translations_locales = ["en-US", "es-MX", "es-AR"]
+    translations_locales = ["en-US", "es-ES", "es-AR"]
     native_translations = get_translations_native_names(translations_locales)
     request = rf.get("/dummy/path/")
 

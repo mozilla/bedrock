@@ -24,7 +24,7 @@ def _hreflang_test_view(request):
     return l10n_utils.render(
         request,
         "test-hreflang.html",
-        {"active_locales": ["en-US", "es-MX", "fr", "de"]},
+        {"active_locales": ["en-US", "es-ES", "fr", "de"]},
     )
 
 
@@ -54,7 +54,7 @@ def _add_test_templates_dir():
 
 @pytest.mark.urls(__name__)
 @pytest.mark.usefixtures("_add_test_templates_dir")
-@override_settings(FALLBACK_LOCALES={"es-AR": "es-MX", "es-CL": "es-MX"})
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES", "es-CL": "es-ES"})
 def test_non_cms_page_hreflang_alternates(client):
     """
     Non-CMS (Django/Fluent) pages render correct hreflang alternates.
@@ -75,22 +75,22 @@ def test_non_cms_page_hreflang_alternates(client):
     assert f'rel="canonical" href="{settings.CANONICAL_URL}/en-US{page_path}"' in html
     # The supported languages have hreflang entries.
     assert f'hreflang="en" href="{settings.CANONICAL_URL}/en-US{page_path}"' in html
-    assert f'hreflang="es-MX" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    assert f'hreflang="es-ES" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     # The alias languages do not have a hreflang entries.
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
 
-    # --- 2. Fallback target (es-MX, has content in active_locales) ---
-    response = client.get(f"/es-MX{page_path}")
+    # --- 2. Fallback target (es-ES, has content in active_locales) ---
+    response = client.get(f"/es-ES{page_path}")
     assert response.status_code == 200
     html = response.text
     # The page is indexable
     assert 'content="noindex,follow"' not in html
     # The page is the canonical link.
-    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     # The supported languages have hreflang entries.
     assert f'hreflang="en" href="{settings.CANONICAL_URL}/en-US{page_path}"' in html
-    assert f'hreflang="es-MX" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    assert f'hreflang="es-ES" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     # The alias languages do not have a hreflang entries.
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
@@ -101,8 +101,8 @@ def test_non_cms_page_hreflang_alternates(client):
     html = response.text
     # The page is not indexable
     assert 'content="noindex,follow"' in html
-    # The page has a canonical link pointing to the es-MX page
-    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-MX{page_path}"' in html
+    # The page has a canonical link pointing to the es-ES page
+    assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-ES{page_path}"' in html
     assert f'rel="canonical" href="{settings.CANONICAL_URL}/es-AR{page_path}"' not in html
     # The alias languages do not have a hreflang entries.
     assert 'hreflang="es-AR"' not in html
