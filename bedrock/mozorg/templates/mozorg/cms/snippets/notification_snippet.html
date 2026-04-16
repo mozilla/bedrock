@@ -12,32 +12,44 @@
       <ul class="moz24-footer-social-links">
         {% if value.linkedin_link %}
         <li>
-          <a class="linkedin" href="{{ value.linkedin_link }}"></a>
+          <a class="linkedin" href="{{ value.linkedin_link }}"
+             {% if value.analytics_id %}data-cta-text="LinkedIn" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
         {% if value.tiktok_link %}
         <li>
-          <a class="tiktok" href="{{ value.tiktok_link }}"></a>
+          <a class="tiktok" href="{{ value.tiktok_link }}"
+             {% if value.analytics_id %}data-cta-text="TikTok" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
         {% if value.spotify_link %}
         <li>
-          <a class="spotify" href="{{ value.spotify_link }}"></a>
+          <a class="spotify" href="{{ value.spotify_link }}"
+             {% if value.analytics_id %}data-cta-text="Spotify" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
         {% if value.bluesky_link %}
         <li>
-          <a class="bluesky" href="{{ value.bluesky_link }}"></a>
+          <a class="bluesky" href="{{ value.bluesky_link }}"
+             {% if value.analytics_id %}data-cta-text="Bluesky" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
         {% if value.instagram_link %}
         <li>
-          <a class="instagram" href="{{ value.instagram_link }}"></a>
+          <a class="instagram" href="{{ value.instagram_link }}"
+             {% if value.analytics_id %}data-cta-text="Instagram" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
         {% if value.youtube_link %}
         <li>
-          <a class="youtube" href="{{ value.youtube_link }}"></a>
+          <a class="youtube" href="{{ value.youtube_link }}"
+             {% if value.analytics_id %}data-cta-text="YouTube" data-cta-uid="{{ value.analytics_id }}"{% endif %}
+          ></a>
         </li>
         {% endif %}
       </ul>
