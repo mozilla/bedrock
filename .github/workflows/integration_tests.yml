@@ -1,7 +1,7 @@
 # Workflows that run integration tests on live sites
 
 name: Integration tests
-run-name: Integration tests for ${{ inputs.branch }}
+run-name: "Integration tests for ${{ inputs.branch }} @ ${{ inputs.git_sha }}"
 env:
   SLACK_CHANNEL_ID: CBX0KH5GA # #www-notify in MoCo Slack
   SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN_FOR_MEAO_NOTIFICATIONS_APP}}

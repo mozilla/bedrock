@@ -43,11 +43,12 @@ jobs:
       commit_list: ${{ steps.commit-list.outputs.commit_list }}
 
     steps:
-      - name: Checkout
+      - name: Checkout main
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5
         with:
           fetch-depth: 0
           fetch-tags: true
+          ref: main
           persist-credentials: false
 
       - name: Resolve and validate release SHA
@@ -64,10 +65,15 @@ jobs:
       - name: Compute pending commit count
         id: commit-list
         run: |
-          COUNT=$(git log --oneline "origin/prod..HEAD" 2>/dev/null | grep -c . || true)
-          echo "commit_list=${COUNT} commit(s) pending" >> "$GITHUB_OUTPUT"
-          echo "Commits to deploy ($COUNT):"
-          git log --oneline "origin/prod..HEAD" 2>/dev/null || echo "(unable to compare — prod branch not found locally)"
+          if git rev-parse --verify origin/prod > /dev/null 2>&1; then
+            COUNT=$(git log --oneline "origin/prod..HEAD" | grep -c . || true)
+            echo "commit_list=${COUNT} commit(s) pending" >> "$GITHUB_OUTPUT"
+            echo "Commits to deploy ($COUNT):"
+            git log --oneline "origin/prod..HEAD"
+          else
+            echo "commit_list=unknown (origin/prod not available)" >> "$GITHUB_OUTPUT"
+            echo "Unable to compare — origin/prod not found"
+          fi
 
       - name: Notify #www — starting release
         uses: ./.github/actions/slack
@@ -199,6 +205,7 @@ jobs:
       - name: Gate — integration tests must complete for dev
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.resolve-sha.outputs.release_sha }}
           DEV_BUILD_COMPLETE_TIME: ${{ env.dev_build_complete_time }}
         run: |
           echo "Waiting for integration tests on main/dev (dispatched after build at $DEV_BUILD_COMPLETE_TIME)..."
@@ -210,8 +217,8 @@ jobs:
               --repo mozilla/bedrock \
               --workflow integration_tests.yml \
               --json displayTitle,conclusion,status,createdAt \
-              | jq --arg since "$DEV_BUILD_COMPLETE_TIME" \
-                  '[.[] | select(.displayTitle | test("Integration tests for main")) | select(.createdAt >= $since)]')
+              | jq --arg sha "$RELEASE_SHA" --arg since "$DEV_BUILD_COMPLETE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for main @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
             FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
@@ -244,6 +251,7 @@ jobs:
     needs: preflight-checks
     permissions:
       contents: write  # required to push the release SHA to the stage branch
+      actions: read    # required to poll workflow run status via gh run list
 
     steps:
       - name: Checkout main
@@ -335,6 +343,7 @@ jobs:
       - name: Wait — integration tests for stage (2 runs required)
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
           STAGE_BUILD_DONE_TIME: ${{ env.stage_build_done_time }}
         run: |
           echo "Waiting for 2 integration test runs on stage (dispatched after build at $STAGE_BUILD_DONE_TIME)..."
@@ -347,8 +356,8 @@ jobs:
               --repo mozilla/bedrock \
               --workflow integration_tests.yml \
               --json displayTitle,conclusion,status,createdAt \
-              | jq --arg since "$STAGE_BUILD_DONE_TIME" \
-                  '[.[] | select(.displayTitle | test("Integration tests for stage")) | select(.createdAt >= $since)]')
+              | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_BUILD_DONE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for stage @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
             FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
@@ -426,6 +435,7 @@ jobs:
       (needs.prod-approval-gate.result == 'success' || needs.prod-approval-gate.result == 'skipped')
     permissions:
       contents: write  # required to push the release tag and update the prod branch
+      actions: read    # required to poll workflow run status via gh run list
     outputs:
       tag: ${{ steps.tag-release.outputs.tag }}
 
@@ -524,6 +534,7 @@ jobs:
       - name: Wait — integration tests for prod (2 runs required)
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
           PROD_BUILD_DONE_TIME: ${{ env.prod_build_done_time }}
         run: |
           echo "Waiting for 2 integration test runs on prod (dispatched after build at $PROD_BUILD_DONE_TIME)..."
@@ -536,8 +547,8 @@ jobs:
               --repo mozilla/bedrock \
               --workflow integration_tests.yml \
               --json displayTitle,conclusion,status,createdAt \
-              | jq --arg since "$PROD_BUILD_DONE_TIME" \
-                  '[.[] | select(.displayTitle | test("Integration tests for prod")) | select(.createdAt >= $since)]')
+              | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_BUILD_DONE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for prod @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
             FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
