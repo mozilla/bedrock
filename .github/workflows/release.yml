@@ -10,7 +10,7 @@ on:
       pause_on_staging:
         description: "Pause after stage deployment for manual QA before pushing to prod"
         type: boolean
-        default: false
+        default: true
 
 # Minimum permissions at workflow level. Jobs that push branches/tags
 # override with contents: write.
