@@ -232,7 +232,7 @@ jobs:
               | jq --arg sha "$RELEASE_SHA" --arg since "$DEV_BUILD_COMPLETE_TIME" \
                   '[.[] | select(.displayTitle | contains("Integration tests for main @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
-            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
             echo "Integration tests (main/dev): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
             if [ "$FAILED_COUNT" -gt 0 ]; then
@@ -378,7 +378,7 @@ jobs:
               | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_BUILD_DONE_TIME" \
                   '[.[] | select(.displayTitle | contains("Integration tests for stage @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
-            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
             echo "Integration tests (stage): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
             if [ "$FAILED_COUNT" -gt 0 ]; then
@@ -573,7 +573,7 @@ jobs:
               | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_BUILD_DONE_TIME" \
                   '[.[] | select(.displayTitle | contains("Integration tests for prod @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
-            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion != null and .conclusion != "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
             echo "Integration tests (prod): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
             if [ "$FAILED_COUNT" -gt 0 ]; then
