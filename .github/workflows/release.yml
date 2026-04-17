@@ -249,6 +249,7 @@ jobs:
     name: Deploy to stage
     runs-on: ubuntu-latest
     needs: preflight-checks
+    if: github.repository == 'mozilla/bedrock'
     permissions:
       contents: write  # required to push the release SHA to the stage branch
       actions: read    # required to poll workflow run status via gh run list
@@ -430,6 +431,7 @@ jobs:
     needs: [preflight-checks, deploy-to-stage, prod-approval-gate]
     # Run when stage succeeded AND (approval granted OR approval not required)
     if: |
+      github.repository == 'mozilla/bedrock' &&
       always() &&
       needs.deploy-to-stage.result == 'success' &&
       (needs.prod-approval-gate.result == 'success' || needs.prod-approval-gate.result == 'skipped')
@@ -588,7 +590,7 @@ jobs:
   notify-completion:
     name: Notify completion
     runs-on: ubuntu-latest
-    if: always()
+    if: github.repository == 'mozilla/bedrock' && always()
     needs: [preflight-checks, deploy-to-stage, prod-approval-gate, deploy-to-prod]
 
     steps:
