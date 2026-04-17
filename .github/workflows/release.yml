@@ -68,10 +68,15 @@ jobs:
           if git rev-parse --verify origin/prod > /dev/null 2>&1; then
             COUNT=$(git log --oneline "origin/prod..HEAD" | grep -c . || true)
             echo "commit_list=${COUNT} commit(s) pending" >> "$GITHUB_OUTPUT"
+            LOG=$(git log --oneline "origin/prod..HEAD")
             echo "Commits to deploy ($COUNT):"
-            git log --oneline "origin/prod..HEAD"
+            echo "$LOG"
+            # Escape newlines and truncate to stay within Slack's 3000-char block limit
+            LOG_ESCAPED=$(echo "$LOG" | head -c 2800 | awk '{printf "%s\\n", $0}')
+            echo "commit_log=${LOG_ESCAPED}" >> "$GITHUB_OUTPUT"
           else
             echo "commit_list=unknown (origin/prod not available)" >> "$GITHUB_OUTPUT"
+            echo "commit_log=origin/prod not available — cannot list commits" >> "$GITHUB_OUTPUT"
             echo "Unable to compare — origin/prod not found"
           fi
 
@@ -84,7 +89,7 @@ jobs:
           channel_id: ${{ env.SLACK_CHANNEL_WWW }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ steps.resolve-sha.outputs.release_sha }}
-          message: "Starting Bedrock release (${{ steps.commit-list.outputs.commit_list }}), triggered by ${{ github.actor }}"
+          message: "Starting Bedrock release (${{ steps.commit-list.outputs.commit_list }}), triggered by ${{ github.actor }}\n\nCommits:\n${{ steps.commit-list.outputs.commit_log }}"
 
       - name: Notify #www-notify — release started
         uses: ./.github/actions/slack
