@@ -2720,6 +2720,7 @@ _allowed_page_models = [
     "anonym.AnonymCaseStudyPage",
     "anonym.AnonymContactPage",
     "mozorg.HomePage",
+    "mozorg.AboutUsPage",
     "mozorg.LeadershipPage",
     "products.VPNResourceCenterDetailPage",
     "products.VPNResourceCenterIndexPage",
