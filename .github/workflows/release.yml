@@ -266,6 +266,11 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
           ref: main
+          # A PAT is required here instead of the default GITHUB_TOKEN because GitHub
+          # does not trigger downstream workflow runs (e.g. build-and-push.yml) when a
+          # push is made using GITHUB_TOKEN. Using a PAT means the push is attributed
+          # to a real user, which causes GitHub to fire the push event normally.
+          token: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }}
           # persist-credentials: true (default) — required for git push to stage
 
       - name: Configure git identity
@@ -453,6 +458,9 @@ jobs:
           fetch-depth: 0
           fetch-tags: true
           ref: main
+          # A PAT is required here instead of the default GITHUB_TOKEN — see the
+          # equivalent comment in deploy-to-stage for the full explanation.
+          token: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }}
           # persist-credentials: true (default) — required for git push to prod and tag push
 
       - name: Configure git identity
