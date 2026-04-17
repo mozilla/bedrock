@@ -464,7 +464,9 @@ class HomePage(AbstractBedrockCMSPage):
 
 
 class AboutUsPage(AbstractBedrockCMSPage):
-    subpage_types = []
+    subpage_types = [
+        LeadershipPage,
+    ]
 
     max_count = 1  # Ensure there's only one instance of this page
     ftl_files = ["mozorg/about-m24"]
