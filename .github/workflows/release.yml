@@ -69,10 +69,15 @@ jobs:
             COUNT=$(git log --oneline "origin/prod..HEAD" | grep -c . || true)
             echo "commit_list=${COUNT} commit(s) pending" >> "$GITHUB_OUTPUT"
             LOG=$(git log --oneline "origin/prod..HEAD")
-            echo "Commits to deploy ($COUNT):"
-            echo "$LOG"
-            # Escape newlines and truncate to stay within Slack's 3000-char block limit
-            LOG_ESCAPED=$(echo "$LOG" | head -c 2800 | awk '{printf "%s\\n", $0}')
+            printf '%s\n' "Commits to deploy ($COUNT):"
+            printf '%s\n' "$LOG"
+            # JSON-encode the commit log for safe embedding in the Slack Block Kit payload.
+            # Commit subjects can contain characters (e.g. quotes, backslashes) that would
+            # otherwise break the JSON. Truncate the raw log before encoding to avoid
+            # splitting escape sequences, leaving headroom for Slack's 3000-char block limit
+            # after the prefix text the Slack action prepends.
+            LOG_JSON=$(printf '%s' "$LOG" | head -c 2500 | jq -Rs '.[:-1]')
+            LOG_ESCAPED="${LOG_JSON:1:-1}"
             echo "commit_log=${LOG_ESCAPED}" >> "$GITHUB_OUTPUT"
           else
             echo "commit_list=unknown (origin/prod not available)" >> "$GITHUB_OUTPUT"
