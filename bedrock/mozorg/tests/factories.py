@@ -326,3 +326,46 @@ class HomePageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.HomePage
+
+
+class ShowcaseGalleryImageBlockFactory(wagtail_factories.StructBlockFactory):
+    image = wagtail_factories.ImageChooserBlockFactory
+    image_alt = ""
+
+    class Meta:
+        model = common.ShowcaseGalleryImageBlock
+
+
+class ShowcaseGalleryBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = ""
+    background_color = ""
+
+    class Meta:
+        model = common.ShowcaseGalleryBlockSettings
+
+
+class ShowcaseGalleryBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ShowcaseGalleryBlockSettingsFactory)
+    heading = "Working at Mozilla"
+    tiles = wagtail_factories.ListBlockFactory(ShowcaseGalleryImageBlockFactory)
+    body = "Join a team that believes the internet is for everyone."
+    cta_text = "See open roles"
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ShowcaseGalleryBlock
+
+
+class AboutUsPageFactory(wagtail_factories.PageFactory):
+    title = "Test About Us Page"
+    live = True
+    slug = "about-us"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "showcase_gallery_block": factory.SubFactory(ShowcaseGalleryBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.AboutUsPage

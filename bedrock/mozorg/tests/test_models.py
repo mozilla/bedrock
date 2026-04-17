@@ -10,6 +10,7 @@ import pytest
 from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401, F811
+from bedrock.mozorg import models
 from bedrock.mozorg.tests import factories
 
 pytestmark = [
@@ -431,6 +432,55 @@ def test_advertising_index_page_valid_navigation_anchor_reference_in_header(
     assert advertising_page.id is not None
     # Should not raise ValidationError
     advertising_page.clean()  # No exception expected
+
+
+# AboutUsPage Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_about_us_page(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    about_us_page = factories.AboutUsPageFactory(
+        parent=root_page,
+        content__0__showcase_gallery_block=factories.ShowcaseGalleryBlockFactory(
+            heading="Working at Mozilla",
+            body="Join a team that believes the internet is for everyone.",
+            cta_text="See open roles",
+            cta_link=factories.LinkBlockFactory(
+                link_to="custom_url",
+                custom_url="https://example.com/careers",
+            ),
+        ),
+    )
+    about_us_page.save()
+
+    _relative_url = about_us_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/about-us/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(about_us_page, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+    assert "Working at Mozilla" in page_content
+    assert "Join a team that believes the internet is for everyone." in page_content
+    assert "See open roles" in page_content
+
+
+def test_about_us_page_utm_parameters(minimal_site):  # noqa: F811
+    root_page = minimal_site.root_page
+    about_us_page = factories.AboutUsPageFactory(parent=root_page, slug="about")
+    about_us_page.save()
+
+    utm_params = about_us_page.get_utm_parameters()
+
+    assert utm_params["utm_source"] == "www.mozilla.org"
+    assert utm_params["utm_medium"] == "referral"
+    assert utm_params["utm_campaign"] == "about"
+
+
+def test_about_us_page_subpage_types():
+    assert models.LeadershipPage in models.AboutUsPage.subpage_types
 
 
 def test_notification_snippet_analytics_id_auto_generated():

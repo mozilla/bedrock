@@ -1,0 +1,37 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}{{ ftl('m24-about-page-title') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  {{ ftl('m24-about-page-desc') }}
+{% endblock %}
+
+{% block body_id %}about{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('m24-root') }}
+  {{ css_bundle('m24-base') }}
+  {{ css_bundle('m24-about') }}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=m24-about' %}
+
+{% block content %}
+<main>
+  {% include 'mozorg/about/includes/m24/intro.html'%}
+  {% include 'mozorg/about/includes/m24/manifesto.html'%}
+
+  {# CMS managed content blocks #}
+  {% for block in page.content %}
+    {% include_block block %}
+  {% endfor %}
+
+</main>
+{% endblock %}

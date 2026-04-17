@@ -176,6 +176,7 @@ python manage.py dumpdata \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \
     mozorg.HomePage \
+    mozorg.AboutUsPage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \
