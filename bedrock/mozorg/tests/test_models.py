@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from uuid import uuid4
+
 from django.core.exceptions import ValidationError
 
 import pytest
@@ -479,3 +481,19 @@ def test_about_us_page_utm_parameters(minimal_site):  # noqa: F811
 
 def test_about_us_page_subpage_types():
     assert models.LeadershipPage in models.AboutUsPage.subpage_types
+
+
+def test_notification_snippet_analytics_id_auto_generated():
+    """analytics_id is populated automatically on first save."""
+    snippet = factories.NotificationSnippetFactory(analytics_id="")
+    assert snippet.analytics_id != ""
+    assert len(snippet.analytics_id) == 36  # UUID v4 string length
+
+
+def test_notification_snippet_analytics_id_not_overwritten():
+    """An existing analytics_id is not replaced on subsequent saves."""
+    original_uuid = str(uuid4())
+    snippet = factories.NotificationSnippetFactory(analytics_id=original_uuid)
+    snippet.notification_text = "<p>Updated</p>"
+    snippet.save()
+    assert snippet.analytics_id == original_uuid

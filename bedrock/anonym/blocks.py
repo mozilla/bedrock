@@ -12,6 +12,8 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 from wagtail_link_block.blocks import LinkBlock
 from wagtail_thumbnail_choice_block import ThumbnailChoiceBlock
 
+from bedrock.cms.blocks import UUIDBlock
+
 BASIC_TEXT_FEATURES = [
     "bold",
     "italic",
@@ -401,7 +403,23 @@ class LegalRichTextBlock(blocks.StructBlock):
         icon = "doc-full"
 
 
+class AnalyticsSettings(blocks.StructBlock):
+    analytics_id = UUIDBlock(
+        label="Analytics ID",
+        help_text="Unique identifier for analytics tracking. Leave blank to auto-generate.",
+        required=False,
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Analytics ID: {analytics_id}"
+        form_classname = "compact-form struct-block"
+
+
 class LinkWithTextBlock(blocks.StructBlock):
+    settings = AnalyticsSettings()
     label = blocks.CharBlock(label="Link Text")
     link = LinkBlock()
 
@@ -456,6 +474,19 @@ class LogoListBlock(blocks.StructBlock):
         icon = "doc-full"
 
 
+class CaseStudyItemWithAnalyticsBlock(blocks.StructBlock):
+    page = PageChooserBlock("anonym.AnonymCaseStudyItemPage")
+    analytics_id = UUIDBlock(
+        label="Analytics ID",
+        help_text="Unique identifier for analytics tracking. Leave blank to auto-generate.",
+        required=False,
+    )
+
+    class Meta:
+        label = "Case Study"
+        label_format = "Case Study - {page}"
+
+
 class CaseStudyListBlock(blocks.StructBlock):
     """
     Display a list of case study items with their logos, client names, and descriptions.
@@ -465,7 +496,7 @@ class CaseStudyListBlock(blocks.StructBlock):
     """
 
     case_study_items = blocks.ListBlock(
-        PageChooserBlock("anonym.AnonymCaseStudyItemPage"),
+        CaseStudyItemWithAnalyticsBlock(),
         min_num=1,
         max_num=3,
         default=[],

@@ -41,7 +41,10 @@
                     <img class="mzan-card-logo" src="{{ featured_item.logo.file.url }}" alt="{{ featured_item.logo.title }}" loading="lazy" />
                   </span>
                 {% endif %}
-                  <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
+                  <a href="{{ item_url }}" class="mzan-news-external-link"
+                     data-cta-text="{{ featured_item.title }}"
+                     data-cta-uid="{{ featured_item.analytics_id }}"
+                     aria-label="External link">
                     {% if featured_item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -85,7 +88,10 @@
                     <img class="mzan-card-logo" src="{{ item.logo.file.url }}" alt="{{ item.logo.title }}" loading="lazy" />
                 {% endif %}
                 </div>
-                  <a href="{{ item_url }}" class="mzan-news-external-link" aria-label="External link">
+                  <a href="{{ item_url }}" class="mzan-news-external-link"
+                     data-cta-text="{{ item.title }}"
+                     data-cta-uid="{{ item.analytics_id }}"
+                     aria-label="External link">
                     {% if item.link %}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                       <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

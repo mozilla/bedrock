@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from uuid import uuid4
+
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.db import models
@@ -141,6 +143,12 @@ class AnonymNewsItemPage(AbstractStatCardPage):
         use_json_field=True,
     )
 
+    analytics_id = models.CharField(
+        max_length=36,
+        blank=True,
+        help_text="Unique identifier for analytics tracking. Leave blank to auto-generate.",
+    )
+
     content_panels = (
         AbstractBedrockCMSPage.content_panels
         + [
@@ -156,9 +164,18 @@ class AnonymNewsItemPage(AbstractStatCardPage):
         ]
     )
 
+    promote_panels = AbstractBedrockCMSPage.promote_panels + [
+        FieldPanel("analytics_id"),
+    ]
+
     # Since the concept of a AnonymNewsItemPage is similar to an
     # AnonymCaseStudyItemPage, use the AnonymCaseStudyItemPage template.
     template = "anonym/anonym_case_study_item_page.html"
+
+    def save(self, *args, **kwargs):
+        if not self.analytics_id:
+            self.analytics_id = str(uuid4())
+        super().save(*args, **kwargs)
 
     @property
     def category_label(self):

@@ -10,6 +10,8 @@
     <a class="mzan-cta-button"
       href="{{ button.link.get_url() }}"
       {% if button.link.new_window %}target="_blank" rel="external noopener"{% endif %}
+      data-cta-text="{{ button.label }}"
+      data-cta-uid="{{ button.settings.analytics_id }}"
     >{{ button.label }}</a>
   {% endfor %}
 </div>
