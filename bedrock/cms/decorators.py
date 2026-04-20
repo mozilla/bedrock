@@ -6,9 +6,8 @@ from functools import wraps
 
 from django.http import Http404
 
-from wagtail.views import serve as wagtail_serve
-
 from bedrock.base.i18n import remove_lang_prefix
+from bedrock.cms.views import wagtail_serve_with_locale_fallback
 from lib.l10n_utils.fluent import get_active_locales
 
 from .utils import get_cms_locales_for_path
@@ -142,8 +141,10 @@ def prefer_cms(
             )
 
             try:
-                # Does Wagtail have a route that matches this? If so, show that page
-                wagtail_response = wagtail_serve(request, path)
+                # Does Wagtail have a route that matches this? If so, show that page.
+                # wagtail_serve_with_locale_fallback handles alias-locale
+                # transparent serving before deferring to Wagtail's own serve.
+                wagtail_response = wagtail_serve_with_locale_fallback(request, path)
                 if wagtail_response.status_code == HTTP_200_OK:
                     return wagtail_response
             except Http404:
@@ -152,15 +153,15 @@ def prefer_cms(
             # If the page does not exist in Wagtail, call the original view function and...
             #
             # 1) Un-mark this request as being for a CMS page (which happened
-            # via wagtail_serve()) to avoid lib.l10n_utils.render() incorrectly
-            # looking for available translations based on CMS data, rather than
-            # Fluent files
+            # via wagtail_serve_with_locale_fallback()) to avoid lib.l10n_utils.render()
+            # incorrectly looking for available translations based on CMS data, rather
+            # than Fluent files
             request.is_cms_page = False
 
             # 2) Make extra sure this request is still annotated with any CMS-backed
             # locale versions that are available, so that we can populate the
             # language picker appropriately. (The annotation also happened via
-            # wagtail_serve() thanks to AbstractBedrockCMSPage._patch_request_for_bedrock
+            # wagtail_serve_with_locale_fallback() thanks to AbstractBedrockCMSPage._patch_request_for_bedrock
             request._locales_available_via_cms = getattr(
                 request,
                 "_locales_available_via_cms",

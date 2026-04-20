@@ -11,9 +11,7 @@ from os.path import abspath
 from pathlib import Path
 from urllib.parse import urlparse
 
-from django.conf.locale import (
-    LANG_INFO,  # we patch this in bedrock.base.apps.BaseAppConfig  # noqa: F401
-)
+from django.conf.locale import LANG_INFO
 from django.utils.functional import lazy
 
 import dj_database_url
@@ -144,6 +142,9 @@ TEST_RUNNER = "django.test.runner.DiscoverRunner"
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = "en-US"
+
+# Add a fallback for zh-CN, which doesn't exist in core Django
+LANG_INFO["zh-CN"] = {"fallback": ["zh-hans"]}
 
 # Languages using BiDi (right-to-left) layout. Overrides/extends Django default.
 LANGUAGES_BIDI = ["ar", "ar-dz", "fa", "he", "skr", "ur"]
@@ -371,6 +372,9 @@ FALLBACK_LOCALES = {
     "es-AR": "es-ES",
     "es-CL": "es-ES",
     "es-MX": "es-ES",
+    "pt-PT": "pt-BR",
+    "en-GB": "en-US",
+    "en-CA": "en-US",
 }
 
 
@@ -2580,14 +2584,20 @@ def lazy_wagtail_langs():
         # 2) These are the Bedrock-side lang codes. They are mapped to
         # Smartling-specific ones in the WAGTAIL_LOCALIZE_SMARTLING settings, below
         ("en-US", "English (US)"),
+        ("en-GB", "English (Great Britain)"),
+        ("en-CA", "English (Canada)"),
         ("de", "German"),
         ("fr", "French"),
+        ("es-AR", "Spanish (Argentina)"),
         ("es-ES", "Spanish (Spain)"),
+        ("es-CL", "Spanish (Chile)"),
+        ("es-MX", "Spanish (México)"),
         ("it", "Italian"),
         ("ja", "Japanese"),
         ("nl", "Dutch (Netherlands)"),
         ("pl", "Polish"),
         ("pt-BR", "Portuguese (Brazil)"),
+        ("pt-PT", "Portuguese (Portugal)"),
         ("ru", "Russian"),
         ("zh-CN", "Chinese (China-Simplified)"),
     ]
@@ -2600,6 +2610,7 @@ def lazy_wagtail_langs():
 
 WAGTAIL_I18N_ENABLED = True
 WAGTAIL_CONTENT_LANGUAGES = lazy(lazy_wagtail_langs, list)()
+
 
 # Don't automatically make a page for a non-default locale availble in the default locale
 WAGTAILLOCALIZE_SYNC_LIVE_STATUS_ON_TRANSLATE = False  # note that WAGTAILLOCALIZE is correct without the _
@@ -2641,6 +2652,7 @@ WAGTAIL_LOCALIZE_SMARTLING = {
     ),
     "REFORMAT_LANGUAGE_CODES": False,  # don't force language codes into Django's all-lowercase pattern
     "VISUAL_CONTEXT_CALLBACK": "bedrock.cms.wagtail_localize_smartling.callbacks.visual_context",
+    "EXCLUDE_LOCALES": list(FALLBACK_LOCALES.keys()),
 }
 
 WAGTAILDRAFTSHARING = {
