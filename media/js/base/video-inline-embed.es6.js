@@ -35,6 +35,7 @@ function playVideo() {
     }
 
     new window.YT.Player(videoLink, {
+        host: 'https://www.youtube-nocookie.com', // privacy-enhanced mode
         width: 640,
         height: 360,
         videoId: videoId,
