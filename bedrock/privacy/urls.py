@@ -18,6 +18,7 @@ urlpatterns = (
     # bug 1319207 - special URL for Firefox Focus in de locale
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
+    path("smart-window/", views.smart_window_notices, name="privacy.notices.smart_window"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
     page("websites/cookie-settings/", "privacy/cookie-settings.html", ftl_files=["privacy/cookie-settings"]),
