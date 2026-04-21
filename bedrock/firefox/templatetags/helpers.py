@@ -207,11 +207,11 @@ def download_firefox_thanks(ctx, dom_id=None, locale=None, alt_copy=None, button
     channel = "release"
     locale = locale or get_locale(ctx["request"])
     dom_id = dom_id or "download-button-thanks"
-    transition_url = "/firefox/download/thanks/"
+    transition_url = f"{settings.FXC_BASE_URL}/thanks/"
     version = firefox_desktop.latest_version(channel)
 
     if locale_in_transition:
-        transition_url = f"/{locale}{transition_url}"
+        transition_url = f"{settings.FXC_BASE_URL}/{locale}/thanks/"
 
     download_link_direct = firefox_desktop.get_download_url(
         channel,
