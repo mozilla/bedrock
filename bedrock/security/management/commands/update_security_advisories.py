@@ -14,7 +14,7 @@ from django.db.models import Count
 from dateutil.parser import parse as parsedate
 
 from bedrock.base.sanitization import sanitize_html
-from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
+from bedrock.security.models import HallOfFamer, Product, SecurityAdvisory
 from bedrock.security.utils import (
     FILENAME_RE,
     check_hof_data,
@@ -22,7 +22,6 @@ from bedrock.security.utils import (
     parse_md_file,
     parse_yml_file,
     parse_yml_file_base,
-    update_advisory_bugs,
 )
 from bedrock.utils.git import GitRepo
 from bedrock.utils.management.cron_command import CronCommand
@@ -177,50 +176,6 @@ def add_hofers(filename, data):
         )
 
 
-def parse_cve_id(cve_id):
-    cve_year, cve_order = cve_id.split("-")[1:]
-    return int(cve_year), int(cve_order)
-
-
-def add_or_update_cve(data):
-    for cve_id, advisory in data["advisories"].items():
-        if not cve_id.startswith("CVE-"):
-            # skip advisories that are not CVE
-            continue
-
-        if not advisory.get("feed", True):
-            # skip advisories with `feed: false`
-            continue
-
-        cve_year, cve_order = parse_cve_id(cve_id)
-        update_advisory_bugs(advisory)
-        cve_title = advisory.get("cve_problemtype", advisory.get("title")) or ""
-        cve_data = {
-            "id": cve_id,
-            "year": cve_year,
-            "order": cve_order,
-            "title": cve_title,
-            "impact": advisory["impact"] or "",
-            "reporter": advisory["reporter"] or "",
-            "description": advisory.get("description", "") or "",
-            "bugs": advisory["bugs"],
-        }
-        try:
-            cve = MitreCVE.objects.get(id=cve_id)
-        except MitreCVE.DoesNotExist:
-            cve = MitreCVE(**cve_data)
-            cve.products = data["fixed_in"]
-            cve.mfsa_ids.append(data["mfsa_id"])
-        else:
-            cve.products = list(set(cve.products).union(data["fixed_in"]))
-            cve.mfsa_ids = list(set(cve.mfsa_ids).union([data["mfsa_id"]]))
-            for prop, value in cve_data.items():
-                if value:
-                    setattr(cve, prop, value)
-
-        cve.save()
-
-
 def update_db_from_file(filename):
     """
     Parse file for YAML and Markdown and update database.
@@ -240,8 +195,6 @@ def update_db_from_file(filename):
 
     data, html = parser(filename)
     html = sanitize_advisory_html(html)
-    if "advisories" in data:
-        add_or_update_cve(data)
     return add_or_update_advisory(data, html)
 
 
@@ -325,7 +278,6 @@ class Command(CronCommand):
             printout("Clearing all security advisories.")
             SecurityAdvisory.objects.all().delete()
             Product.objects.all().delete()
-            MitreCVE.objects.all().delete()
 
         if not no_git:
             printout("Updating repository.")
