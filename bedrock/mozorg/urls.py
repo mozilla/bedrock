@@ -14,14 +14,15 @@ it must go in mozorg.nonlocale_urls, not this file
 
 from django.urls import path
 
+from bedrock.cms.decorators import prefer_cms
 from bedrock.redirects.util import redirect
 
 from . import views
 from .util import page
 
 urlpatterns = [
-    path("", views.HomeView.as_view(), name="mozorg.home"),
-    path("about/", views.AboutView.as_view(), name="mozorg.about.index"),
+    path("", prefer_cms(views.HomeView.as_view()), name="mozorg.home"),
+    path("about/", prefer_cms(views.AboutView.as_view()), name="mozorg.about.index"),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
     page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),

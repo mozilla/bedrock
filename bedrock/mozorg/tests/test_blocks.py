@@ -17,6 +17,7 @@ from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
+from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
 
 pytestmark = [pytest.mark.django_db]
@@ -674,6 +675,189 @@ def test_showcase_block_new_window(minimal_site, rf, serving_method):  # noqa: F
     expected_cta_text = new_window_variant["value"]["cta_text"]
 
     # Find the link by its CTA text
+    cta_links = soup.find_all("a", class_="m24-c-cta")
+    cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
+    assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"
+
+    assert cta_link.get("target") == "_blank", "Expected target='_blank'"
+    assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
+    assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
+
+
+# ShowcaseGalleryBlock Tests
+
+
+def assert_showcase_gallery_block_structure(careers_element: BeautifulSoup):
+    """Verify the showcase gallery block has the expected HTML structure.
+
+    Args:
+        careers_element: BeautifulSoup element for the .m24-c-careers div
+    """
+    # Check title exists and is h2
+    title = careers_element.find(class_="m24-c-careers-title")
+    assert title is not None, "Missing .m24-c-careers-title element"
+    assert title.name == "h2", f"Expected h2 title, got {title.name}"
+
+    # Check media container and pictures
+    media = careers_element.find(class_="m24-c-careers-media")
+    assert media is not None, "Missing .m24-c-careers-media element"
+
+    pictures = media.find_all("picture")
+    assert len(pictures) > 0, "Expected at least one <picture> element in media"
+
+    for picture in pictures:
+        assert picture.find("img") is not None, "Missing <img> inside <picture>"
+
+    # Check body text paragraph
+    body = careers_element.find(class_="m24-consider-cta-info")
+    assert body is not None, "Missing .m24-consider-cta-info element"
+
+    # Check CTA container and link
+    cta_container = careers_element.find(class_="m24-c-careers-cta")
+    assert cta_container is not None, "Missing .m24-c-careers-cta element"
+
+    cta_link = cta_container.find("a", class_="m24-c-cta")
+    assert cta_link is not None, "Missing .m24-c-cta link in CTA container"
+
+
+def assert_showcase_gallery_block_content(careers_element: BeautifulSoup, variant_data: dict):
+    """Verify the showcase gallery block content matches the input data.
+
+    Args:
+        careers_element: BeautifulSoup element for the .m24-c-careers div
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+
+    # Check heading text
+    title = careers_element.find(class_="m24-c-careers-title")
+    assert value["heading"] in title.get_text(), f"Heading text '{value['heading']}' not found"
+
+    # Check number of pictures matches number of tiles
+    media = careers_element.find(class_="m24-c-careers-media")
+    pictures = media.find_all("picture")
+    assert len(pictures) == len(value["tiles"]), f"Expected {len(value['tiles'])} pictures, found {len(pictures)}"
+
+    # Check body text
+    body = careers_element.find(class_="m24-consider-cta-info")
+    assert value["body"] in body.get_text(), f"Body text '{value['body']}' not found"
+
+    # Check CTA text and href
+    cta_link = careers_element.find("a", class_="m24-c-cta")
+    assert cta_link is not None, "CTA link not found"
+    assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
+
+    expected_url = value["cta_link"]["custom_url"]
+    assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
+
+    assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
+    assert cta_link["data-cta-text"], "data-cta-text attribute is empty"
+
+
+def assert_showcase_gallery_block_attributes(careers_element: BeautifulSoup, variant_data: dict):
+    """Verify the showcase gallery block wrapper has correct attributes.
+
+    Args:
+        careers_element: BeautifulSoup element for the .m24-c-careers div
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+    settings = value["settings"]
+
+    # Check background color class if set
+    bg_color = settings["background_color"]
+    if bg_color:
+        assert bg_color in careers_element.get("class", []), f"Expected class '{bg_color}' not found"
+
+    # Check anchor ID if set
+    anchor_id = settings["anchor_id"]
+    if anchor_id:
+        assert careers_element.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{careers_element.get('id')}'"
+
+    # Check new_window attributes on CTA
+    cta_link = careers_element.find("a", class_="m24-c-cta")
+    if value["cta_link"].get("new_window"):
+        assert cta_link.get("target") == "_blank", "Expected target='_blank' for new_window=True"
+        assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel for new_window=True"
+        assert "external" in cta_link.get("rel", []), "Expected 'external' in rel for new_window=True"
+    else:
+        assert cta_link.get("target") is None, "Expected no target attribute for new_window=False"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_showcase_gallery_block_renders(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ShowcaseGalleryBlock renders with correct structure."""
+    placeholder_image = get_placeholder_image()
+    variants = get_showcase_gallery_variants(placeholder_image.id)
+    test_page = get_showcase_gallery_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    assert response.status_code == 200
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    careers_divs = soup.find_all("div", class_="m24-c-careers")
+    assert len(careers_divs) == len(variants), f"Expected {len(variants)} showcase gallery blocks, found {len(careers_divs)}"
+
+    for careers_div in careers_divs:
+        assert_showcase_gallery_block_structure(careers_div)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_showcase_gallery_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ShowcaseGalleryBlock content matches input data."""
+    placeholder_image = get_placeholder_image()
+    variants = get_showcase_gallery_variants(placeholder_image.id)
+    test_page = get_showcase_gallery_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    careers_divs = soup.find_all("div", class_="m24-c-careers")
+
+    for index, variant in enumerate(variants):
+        assert_showcase_gallery_block_content(careers_divs[index], variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_showcase_gallery_block_attributes(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ShowcaseGalleryBlock has correct background color and anchor ID."""
+    placeholder_image = get_placeholder_image()
+    variants = get_showcase_gallery_variants(placeholder_image.id)
+    test_page = get_showcase_gallery_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    careers_divs = soup.find_all("div", class_="m24-c-careers")
+
+    for index, variant in enumerate(variants):
+        assert_showcase_gallery_block_attributes(careers_divs[index], variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_showcase_gallery_block_new_window(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that new_window=True adds correct link attributes."""
+    placeholder_image = get_placeholder_image()
+    variants = get_showcase_gallery_variants(placeholder_image.id)
+    test_page = get_showcase_gallery_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    new_window_variant = next(v for v in variants if v["value"]["cta_link"].get("new_window"))
+    expected_cta_text = new_window_variant["value"]["cta_text"]
+
     cta_links = soup.find_all("a", class_="m24-c-cta")
     cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
     assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"

@@ -1,0 +1,674 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      pause_on_staging:
+        description: "Pause after stage deployment for manual QA before pushing to prod"
+        type: boolean
+        default: true
+
+# Minimum permissions at workflow level. Jobs that push branches/tags
+# override with contents: write.
+permissions:
+  contents: read  # default read; deploy jobs override to write for branch/tag pushes
+  actions: read   # poll workflow run status via gh run list
+
+# Prevent concurrent release runs to avoid overlapping deployments.
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+env:
+  SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN_FOR_MEAO_NOTIFICATIONS_APP }}
+  SLACK_CHANNEL_WWW: CD6RG3N3H
+  SLACK_CHANNEL_WWW_NOTIFY: CBX0KH5GA
+
+jobs:
+
+  # ============================================================
+  # Job 1: Preflight checks
+  # Verifies main's CI is fully green before any deployments.
+  # ============================================================
+  preflight-checks:
+    name: Preflight checks
+    runs-on: ubuntu-latest
+    if: github.repository == 'mozilla/bedrock'
+    outputs:
+      release_sha: ${{ steps.resolve-sha.outputs.release_sha }}
+      commit_list: ${{ steps.commit-list.outputs.commit_list }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          ref: main
+          persist-credentials: false
+
+      - name: Resolve and validate release SHA
+        id: resolve-sha
+        run: |
+          RELEASE_SHA=$(git rev-parse HEAD)
+          if ! [[ "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]; then
+            echo "::error::Unexpected SHA format: $RELEASE_SHA"
+            exit 1
+          fi
+          echo "release_sha=${RELEASE_SHA}" >> "$GITHUB_OUTPUT"
+          echo "Release SHA: $RELEASE_SHA"
+
+      - name: Compute pending commit count
+        id: commit-list
+        run: |
+          if git rev-parse --verify origin/prod > /dev/null 2>&1; then
+            COUNT=$(git log --oneline "origin/prod..HEAD" | grep -c . || true)
+            echo "commit_list=${COUNT} commit(s) pending" >> "$GITHUB_OUTPUT"
+            LOG=$(git log --oneline "origin/prod..HEAD")
+            printf '%s\n' "Commits to deploy ($COUNT):"
+            printf '%s\n' "$LOG"
+            # JSON-encode the commit log for safe embedding in the Slack Block Kit payload.
+            # Commit subjects can contain characters (e.g. quotes, backslashes) that would
+            # otherwise break the JSON. Truncate the raw log before encoding to avoid
+            # splitting escape sequences, leaving headroom for Slack's 3000-char block limit
+            # after the prefix text the Slack action prepends.
+            LOG_JSON=$(printf '%s' "$LOG" | head -c 2500 | jq -Rs '.')
+            LOG_ESCAPED="${LOG_JSON:1:-1}"
+            # Prefix with header using \\n so the output contains literal \n (two chars),
+            # not actual newlines — actual newlines in the Slack action's JSON payload break it.
+            echo "commit_log=Commits:\\n${LOG_ESCAPED}" >> "$GITHUB_OUTPUT"
+          else
+            echo "commit_list=unknown (origin/prod not available)" >> "$GITHUB_OUTPUT"
+            echo "commit_log=origin/prod not available" >> "$GITHUB_OUTPUT"
+            echo "Unable to compare — origin/prod not found"
+          fi
+
+      - name: Notify #www — starting release
+        uses: ./.github/actions/slack
+        with:
+          env_name: dev
+          label: "Bedrock release"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ steps.resolve-sha.outputs.release_sha }}
+          message: "Starting Bedrock release (${{ steps.commit-list.outputs.commit_list }}), triggered by ${{ github.actor }} — ${{ steps.commit-list.outputs.commit_log }}"
+
+      - name: Notify #www-notify — release started
+        uses: ./.github/actions/slack
+        with:
+          env_name: dev
+          label: "Bedrock release"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ steps.resolve-sha.outputs.release_sha }}
+          message: "Release workflow started by ${{ github.actor }}"
+
+      - name: Gate — unit tests must pass on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.resolve-sha.outputs.release_sha }}
+        run: |
+          echo "Checking unit tests for $RELEASE_SHA on main..."
+          TIMEOUT=600
+          INTERVAL=20
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RESULT=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow unit_tests.yml \
+              --branch main \
+              --json headSha,conclusion,status \
+              | jq --arg sha "$RELEASE_SHA" '[.[] | select(.headSha == $sha)]')
+            CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
+            STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
+            if [ "$CONCLUSION" = "success" ]; then
+              echo "✓ Unit tests passed"
+              break
+            elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
+              echo "::error::Unit tests did not pass (conclusion: $CONCLUSION)"
+              exit 1
+            fi
+            echo "Unit tests: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for unit tests"
+            exit 1
+          fi
+
+      - name: Gate — pre-commit standards must pass on main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.resolve-sha.outputs.release_sha }}
+        run: |
+          echo "Checking pre-commit standards for $RELEASE_SHA on main..."
+          TIMEOUT=600
+          INTERVAL=20
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RESULT=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow ensure_pre_commit_standards.yml \
+              --branch main \
+              --json headSha,conclusion,status \
+              | jq --arg sha "$RELEASE_SHA" '[.[] | select(.headSha == $sha)]')
+            CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
+            STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
+            if [ "$CONCLUSION" = "success" ]; then
+              echo "✓ Pre-commit standards passed"
+              break
+            elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
+              echo "::error::Pre-commit standards did not pass (conclusion: $CONCLUSION)"
+              exit 1
+            fi
+            echo "Pre-commit: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for pre-commit checks"
+            exit 1
+          fi
+
+      - name: Gate — Docker build must complete for main (dev deployment)
+        id: wait-dev-build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.resolve-sha.outputs.release_sha }}
+        run: |
+          echo "Waiting for build-and-push for $RELEASE_SHA on main..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RESULT=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow build-and-push.yml \
+              --branch main \
+              --json headSha,conclusion,status,updatedAt \
+              | jq --arg sha "$RELEASE_SHA" '[.[] | select(.headSha == $sha)]')
+            CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
+            STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
+            if [ "$CONCLUSION" = "success" ]; then
+              BUILD_COMPLETE_TIME=$(echo "$RESULT" | jq -r '.[0].updatedAt')
+              echo "dev_build_complete_time=${BUILD_COMPLETE_TIME}" >> "$GITHUB_ENV"
+              echo "✓ Docker build completed for main/dev (finished at $BUILD_COMPLETE_TIME)"
+              break
+            elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
+              echo "::error::Docker build did not succeed on main (conclusion: $CONCLUSION)"
+              exit 1
+            fi
+            echo "Build: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for Docker build on main"
+            exit 1
+          fi
+
+      - name: Gate — integration tests must complete for dev
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ steps.resolve-sha.outputs.release_sha }}
+          DEV_BUILD_COMPLETE_TIME: ${{ env.dev_build_complete_time }}
+        run: |
+          echo "Waiting for integration tests on main/dev (dispatched after build at $DEV_BUILD_COMPLETE_TIME)..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RUNS=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow integration_tests.yml \
+              --json displayTitle,conclusion,status,createdAt \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$DEV_BUILD_COMPLETE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for main @ " + $sha)) | select(.createdAt >= $since)]')
+            SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
+            TOTAL=$(echo "$RUNS" | jq 'length')
+            echo "Integration tests (main/dev): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
+            if [ "$FAILED_COUNT" -gt 0 ]; then
+              echo "::error::An integration test run failed for main/dev"
+              exit 1
+            fi
+            if [ "$SUCCESS_COUNT" -ge 1 ]; then
+              echo "✓ Integration tests passed for main/dev"
+              break
+            fi
+            echo "Waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for integration tests on main/dev"
+            exit 1
+          fi
+
+  # ============================================================
+  # Job 2: Deploy to stage
+  # Pushes the release SHA to the stage branch and waits for
+  # the deployment and both integration test runs to pass.
+  # ============================================================
+  deploy-to-stage:
+    name: Deploy to stage
+    runs-on: ubuntu-latest
+    needs: preflight-checks
+    if: github.repository == 'mozilla/bedrock'
+    permissions:
+      contents: write  # required to push the release SHA to the stage branch
+      actions: read    # required to poll workflow run status via gh run list
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5 # zizmor: ignore[artipacked]
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          ref: main
+          # A PAT is required here instead of the default GITHUB_TOKEN because GitHub
+          # does not trigger downstream workflow runs (e.g. build-and-push.yml) when a
+          # push is made using GITHUB_TOKEN. Using a PAT means the push is attributed
+          # to a real user, which causes GitHub to fire the push event normally.
+          # These jobs are gated upstream by preflight checks and prod-approval-gate.
+          token: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }} # zizmor: ignore[secrets-outside-env]
+          # persist-credentials: true (default) — required for git push to stage
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Verify HEAD matches release SHA
+        env:
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+        run: |
+          CURRENT_HEAD=$(git rev-parse HEAD)
+          if [ "$CURRENT_HEAD" != "$RELEASE_SHA" ]; then
+            echo "::error::main has advanced since release started."
+            echo "  Expected: $RELEASE_SHA"
+            echo "  Current:  $CURRENT_HEAD"
+            echo "Aborting to avoid releasing unexpected commits."
+            exit 1
+          fi
+          echo "✓ HEAD matches release SHA: $RELEASE_SHA"
+
+      - name: Notify #www — pushing to stage
+        uses: ./.github/actions/slack
+        with:
+          env_name: stage
+          label: "Bedrock release"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
+          message: "Pushing to Bedrock stage"
+
+      - name: Push to stage and record push time
+        id: stage-push
+        env:
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+        run: |
+          STAGE_PUSH_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "stage_push_time=${STAGE_PUSH_TIME}" >> "$GITHUB_OUTPUT"
+          git push origin "${RELEASE_SHA}:refs/heads/stage"
+          echo "Pushed $RELEASE_SHA to stage at $STAGE_PUSH_TIME"
+
+      - name: Wait — Docker build for stage
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+          STAGE_PUSH_TIME: ${{ steps.stage-push.outputs.stage_push_time }}
+        run: |
+          echo "Waiting for build-and-push on stage for $RELEASE_SHA (after $STAGE_PUSH_TIME)..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RESULT=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow build-and-push.yml \
+              --branch stage \
+              --json headSha,conclusion,status,createdAt,updatedAt \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_PUSH_TIME" \
+                  '[.[] | select(.headSha == $sha) | select(.createdAt >= $since)]')
+            CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
+            STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
+            if [ "$CONCLUSION" = "success" ]; then
+              STAGE_BUILD_DONE_TIME=$(echo "$RESULT" | jq -r '.[0].updatedAt')
+              echo "stage_build_done_time=${STAGE_BUILD_DONE_TIME}" >> "$GITHUB_ENV"
+              echo "✓ Docker build completed for stage (finished at $STAGE_BUILD_DONE_TIME)"
+              break
+            elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
+              echo "::error::Docker build failed for stage (conclusion: $CONCLUSION)"
+              exit 1
+            fi
+            echo "Build: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for Docker build on stage"
+            exit 1
+          fi
+
+      - name: Wait — integration tests for stage (2 runs required)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+          STAGE_BUILD_DONE_TIME: ${{ env.stage_build_done_time }}
+        run: |
+          echo "Waiting for 2 integration test runs on stage (dispatched after build at $STAGE_BUILD_DONE_TIME)..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          REQUIRED=2
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RUNS=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow integration_tests.yml \
+              --json displayTitle,conclusion,status,createdAt \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_BUILD_DONE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for stage @ " + $sha)) | select(.createdAt >= $since)]')
+            SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
+            TOTAL=$(echo "$RUNS" | jq 'length')
+            echo "Integration tests (stage): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
+            if [ "$FAILED_COUNT" -gt 0 ]; then
+              echo "::error::An integration test run failed for stage"
+              exit 1
+            fi
+            if [ "$SUCCESS_COUNT" -ge $REQUIRED ]; then
+              echo "✓ Both integration test runs passed for stage"
+              break
+            fi
+            echo "Waiting for $((REQUIRED - SUCCESS_COUNT)) more run(s)... ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for integration tests on stage"
+            exit 1
+          fi
+
+      - name: Notify #www-notify — stage deployment verified
+        uses: ./.github/actions/slack
+        with:
+          env_name: stage
+          label: "Bedrock release"
+          status: success
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
+          message: "Stage deployment verified. All checks passed."
+
+      - name: Notify #www — awaiting prod approval
+        if: inputs.pause_on_staging == true
+        uses: ./.github/actions/slack
+        with:
+          env_name: stage
+          label: "Bedrock release"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
+          message: "Stage verified. Awaiting approval to push to prod — click Details to review and approve."
+
+  # ============================================================
+  # Job 3: Prod approval gate
+  # Only runs when pause_on_staging=true. References the `prod`
+  # GitHub environment, which has required reviewers configured.
+  # The workflow pauses here until a reviewer approves.
+  # ============================================================
+  prod-approval-gate:
+    name: Awaiting prod approval
+    runs-on: ubuntu-latest
+    needs: deploy-to-stage
+    if: inputs.pause_on_staging == true
+    environment: prod
+    steps:
+      - name: Approved — proceeding to production
+        run: echo "Production deployment approved by reviewer."
+
+  # ============================================================
+  # Job 4: Deploy to production
+  # Tags the release via bin/tag-release.sh --ci --push,
+  # then waits for the prod Docker build and both integration
+  # test runs to complete.
+  # ============================================================
+  deploy-to-prod:
+    name: Deploy to production
+    runs-on: ubuntu-latest
+    needs: [preflight-checks, deploy-to-stage, prod-approval-gate]
+    # Run when stage succeeded AND (approval granted OR approval not required)
+    if: |
+      github.repository == 'mozilla/bedrock' &&
+      always() &&
+      needs.deploy-to-stage.result == 'success' &&
+      (needs.prod-approval-gate.result == 'success' || needs.prod-approval-gate.result == 'skipped')
+    permissions:
+      contents: write  # required to push the release tag and update the prod branch
+      actions: read    # required to poll workflow run status via gh run list
+    outputs:
+      tag: ${{ steps.tag-release.outputs.tag }}
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5 # zizmor: ignore[artipacked]
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          ref: main
+          # A PAT is required here instead of the default GITHUB_TOKEN — see the
+          # equivalent comment in deploy-to-stage for the full explanation.
+          token: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }} # zizmor: ignore[secrets-outside-env]
+          # persist-credentials: true (default) — required for git push to prod and tag push
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Verify HEAD still matches release SHA
+        env:
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+        run: |
+          CURRENT_HEAD=$(git rev-parse HEAD)
+          if [ "$CURRENT_HEAD" != "$RELEASE_SHA" ]; then
+            echo "::error::main has advanced since release started."
+            echo "  Expected: $RELEASE_SHA"
+            echo "  Current:  $CURRENT_HEAD"
+            echo "Aborting to avoid releasing unexpected commits."
+            exit 1
+          fi
+          echo "✓ HEAD matches release SHA: $RELEASE_SHA"
+
+      - name: Record prod push time
+        id: record-time
+        run: |
+          PROD_PUSH_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          echo "prod_push_time=${PROD_PUSH_TIME}" >> "$GITHUB_OUTPUT"
+
+      - name: Tag release and push to prod
+        id: tag-release
+        run: |
+          # --ci: skips interactive prompts; exits non-zero if main != stage
+          # --push: creates the tag, pushes tag and HEAD to prod branch
+          ./bin/tag-release.sh --ci --push
+          # The tag value is written to $GITHUB_OUTPUT by the script
+
+      - name: Notify #www — pushing to prod
+        uses: ./.github/actions/slack
+        with:
+          env_name: prod
+          label: "Bedrock release"
+          status: info
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ steps.tag-release.outputs.tag }}
+          message: "Pushing Bedrock Prod, tagged ${{ steps.tag-release.outputs.tag }}"
+
+      - name: Wait — Docker build for prod tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+          PROD_PUSH_TIME: ${{ steps.record-time.outputs.prod_push_time }}
+          RELEASE_TAG: ${{ steps.tag-release.outputs.tag }}
+        run: |
+          echo "Waiting for build-and-push for tag $RELEASE_TAG after $PROD_PUSH_TIME..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            # Tag pushes trigger build-and-push; headBranch is the tag name
+            RESULT=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow build-and-push.yml \
+              --json headSha,headBranch,conclusion,status,createdAt,updatedAt \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_PUSH_TIME" \
+                  '[.[] | select(.headSha == $sha) | select(.createdAt >= $since)]')
+            CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
+            STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
+            if [ "$CONCLUSION" = "success" ]; then
+              PROD_BUILD_DONE_TIME=$(echo "$RESULT" | jq -r '.[0].updatedAt')
+              echo "prod_build_done_time=${PROD_BUILD_DONE_TIME}" >> "$GITHUB_ENV"
+              echo "✓ Docker build completed for prod tag (finished at $PROD_BUILD_DONE_TIME)"
+              break
+            elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
+              echo "::error::Docker build failed for prod tag (conclusion: $CONCLUSION)"
+              exit 1
+            fi
+            echo "Build: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for Docker build for prod tag"
+            exit 1
+          fi
+
+      - name: Wait — integration tests for prod (2 runs required)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+          PROD_BUILD_DONE_TIME: ${{ env.prod_build_done_time }}
+        run: |
+          echo "Waiting for 2 integration test runs on prod (dispatched after build at $PROD_BUILD_DONE_TIME)..."
+          TIMEOUT=3600
+          INTERVAL=30
+          ELAPSED=0
+          REQUIRED=2
+          while [ $ELAPSED -lt $TIMEOUT ]; do
+            RUNS=$(gh run list \
+              --repo mozilla/bedrock \
+              --workflow integration_tests.yml \
+              --json displayTitle,conclusion,status,createdAt \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_BUILD_DONE_TIME" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for prod @ " + $sha)) | select(.createdAt >= $since)]')
+            SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
+            FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
+            TOTAL=$(echo "$RUNS" | jq 'length')
+            echo "Integration tests (prod): $TOTAL found, $SUCCESS_COUNT succeeded, $FAILED_COUNT failed"
+            if [ "$FAILED_COUNT" -gt 0 ]; then
+              echo "::error::An integration test run failed for prod"
+              exit 1
+            fi
+            if [ "$SUCCESS_COUNT" -ge $REQUIRED ]; then
+              echo "✓ Both integration test runs passed for prod"
+              break
+            fi
+            echo "Waiting for $((REQUIRED - SUCCESS_COUNT)) more run(s)... ${INTERVAL}s... (${ELAPSED}s elapsed)"
+            sleep $INTERVAL
+            ELAPSED=$((ELAPSED + INTERVAL))
+          done
+          if [ $ELAPSED -ge $TIMEOUT ]; then
+            echo "::error::Timed out waiting for integration tests on prod"
+            exit 1
+          fi
+
+      - name: Notify #www — prod deployment complete
+        uses: ./.github/actions/slack
+        with:
+          env_name: prod
+          label: "Bedrock release"
+          status: success
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ steps.tag-release.outputs.tag }}
+          message: "Bedrock Prod deploy complete, tagged ${{ steps.tag-release.outputs.tag }}"
+
+  # ============================================================
+  # Job 5: Final notification
+  # Always runs; reports overall outcome to both Slack channels.
+  # ============================================================
+  notify-completion:
+    name: Notify completion
+    runs-on: ubuntu-latest
+    if: github.repository == 'mozilla/bedrock' && always()
+    needs: [preflight-checks, deploy-to-stage, prod-approval-gate, deploy-to-prod]
+
+    steps:
+      - name: Checkout (sparse — Slack action only)
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5
+        with:
+          sparse-checkout: .github/actions/slack
+          persist-credentials: false
+
+      - name: Determine final status
+        id: final-status
+        env:
+          PREFLIGHT_RESULT: ${{ needs.preflight-checks.result }}
+          STAGE_RESULT: ${{ needs.deploy-to-stage.result }}
+          GATE_RESULT: ${{ needs.prod-approval-gate.result }}
+          PROD_RESULT: ${{ needs.deploy-to-prod.result }}
+          RELEASE_TAG: ${{ needs.deploy-to-prod.outputs.tag }}
+        run: |
+          if [ "$PROD_RESULT" = "success" ]; then
+            echo "status=success" >> "$GITHUB_OUTPUT"
+            echo "message=Release complete: tagged ${RELEASE_TAG}" >> "$GITHUB_OUTPUT"
+          elif [ -n "$RELEASE_TAG" ]; then
+            # Tag was pushed but something failed after (e.g. integration tests)
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "message=Release partially complete: ${RELEASE_TAG} was tagged and pushed but deployment verification failed" >> "$GITHUB_OUTPUT"
+          elif [ "$PREFLIGHT_RESULT" != "success" ]; then
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "message=Release aborted: preflight checks did not pass" >> "$GITHUB_OUTPUT"
+          elif [ "$STAGE_RESULT" != "success" ]; then
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "message=Release aborted: stage deployment did not pass" >> "$GITHUB_OUTPUT"
+          elif [ "$GATE_RESULT" = "failure" ]; then
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "message=Release cancelled: production deployment was not approved" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=failure" >> "$GITHUB_OUTPUT"
+            echo "message=Release aborted: production deployment did not complete" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Notify #www — final status
+        uses: ./.github/actions/slack
+        with:
+          env_name: prod
+          label: "Bedrock release"
+          status: ${{ steps.final-status.outputs.status }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
+          message: ${{ steps.final-status.outputs.message }}
+
+      - name: Notify #www-notify — final status
+        uses: ./.github/actions/slack
+        with:
+          env_name: prod
+          label: "Bedrock release"
+          status: ${{ steps.final-status.outputs.status }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
+          slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
+          message: ${{ steps.final-status.outputs.message }}
