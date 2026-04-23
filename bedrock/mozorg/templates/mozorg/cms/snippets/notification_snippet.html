@@ -6,7 +6,7 @@
 
 <div class="{{ outer_container_class }}{% if not value.has_social_links %} no-socials{% endif %}">
   <div class="{{ container_class }}">
-    <div class="mza-notification-text">{{ value.notification_text|richtext }}</div>
+    <div class="mza-notification-text">{{ value.notification_text|richtext|add_cta_analytics(value.analytics_id) }}</div>
 
     {% if value.linkedin_link or value.tiktok_link or value.spotify_link or value.bluesky_link or value.instagram_link or value.youtube_link  %}
       <ul class="moz24-footer-social-links">

@@ -11,7 +11,7 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import NoReverseMatch
 from django.utils.encoding import smart_str
-from django.utils.safestring import mark_safe
+from django.utils.safestring import SafeData, mark_safe
 from django.utils.text import slugify
 
 import jinja2
@@ -208,6 +208,33 @@ def add_bedrock_attributes(html):
             link["target"] = "_blank"
 
     return str(soup)
+
+
+@library.filter
+def add_cta_analytics(html, analytics_id):
+    """
+    Inject data-cta-text and data-cta-uid attributes onto every <a> tag in an
+    HTML string, for analytics tracking.
+
+    Intended to be chained after the |richtext filter on a NotificationSnippet's
+    notification_text field, where links in freeform rich text cannot receive
+    analytics attributes at render time through the normal template path:
+
+        {{ value.notification_text|richtext|add_cta_analytics(value.analytics_id) }}
+
+    data-cta-text is taken from the link's visible text (nested markup is stripped).
+    data-cta-uid is the analytics_id passed as argument.
+    """
+    if not analytics_id:
+        return html
+    soup = BeautifulSoup(str(html), "html.parser")
+    for link in soup.find_all("a", href=True):
+        link["data-cta-text"] = link.get_text()
+        link["data-cta-uid"] = analytics_id
+    result = str(soup)
+    if isinstance(html, (SafeData, Markup)):
+        return mark_safe(result)
+    return result
 
 
 @library.filter
