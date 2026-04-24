@@ -30,6 +30,7 @@ TRANSITION_COLOR_CHOICES = [
     ("orange", "Orange"),
     ("pink", "Pink"),
     ("gray", "Gray"),
+    ("dark-alt", "Dark-Alt"),
 ]
 
 
@@ -43,7 +44,7 @@ class TransitionBlock(blocks.StructBlock):
 
     bottom_color = blocks.ChoiceBlock(
         choices=TRANSITION_COLOR_CHOICES,
-        default="dark",
+        default="dark-alt",
     )
 
     class Meta:
