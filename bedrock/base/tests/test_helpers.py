@@ -4,9 +4,11 @@
 from unittest.mock import patch
 
 from django.test import TestCase, override_settings
+from django.utils.safestring import SafeData, mark_safe
 
 import pytest
 from django_jinja.backend import Jinja2
+from markupsafe import Markup
 
 from bedrock.base.templatetags import helpers
 from lib.l10n_utils import get_translations_native_names
@@ -84,6 +86,93 @@ class HelpersTests(TestCase):
 """
         processed_html = helpers.add_bedrock_attributes(fresh_html)
         assert processed_html == expected_html
+
+
+class TestAddCtaAnalytics:
+    ANALYTICS_ID = "test-uuid-1234"
+
+    def test_adds_attributes_to_links(self):
+        html = '<div class="rich-text"><p>Click <a href="https://example.com">here</a></p></div>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert 'data-cta-text="here"' in result
+        assert f'data-cta-uid="{self.ANALYTICS_ID}"' in result
+
+    def test_multiple_links_all_get_attributes(self):
+        link1 = '<a href="https://a.com">First</a>'
+        link2 = '<a href="https://b.com">Second</a>'
+        html = f"<p>{link1} and {link2}</p>"
+
+        link1_expected_result = link1.replace("<a ", f'<a data-cta-text="First" data-cta-uid="{self.ANALYTICS_ID}" ')
+        link2_expected_result = link2.replace("<a ", f'<a data-cta-text="Second" data-cta-uid="{self.ANALYTICS_ID}" ')
+        expected_result = f"<p>{link1_expected_result} and {link2_expected_result}</p>"
+
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+
+        assert result.count(f'data-cta-uid="{self.ANALYTICS_ID}"') == 2
+        assert expected_result == result
+
+    def test_nested_markup_in_link_text_is_stripped(self):
+        html = '<p><a href="https://example.com"><strong>bold link</strong></a></p>'
+
+        expected_result = html.replace("<a ", f'<a data-cta-text="bold link" data-cta-uid="{self.ANALYTICS_ID}" ')
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+
+        assert 'data-cta-text="bold link"' in result
+        assert result == expected_result
+
+    def test_no_links_returns_unchanged_content(self):
+        html = '<div class="rich-text"><p>No links here</p></div>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert self.ANALYTICS_ID not in result
+        assert "data-cta" not in result
+
+    def test_does_not_add_html_body_wrappers_div_fragment(self):
+        html = '<div class="rich-text"><p><a href="https://example.com">link</a></p></div>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert "<html>" not in result
+        assert "<body>" not in result
+        assert result.startswith("<div")
+
+    def test_does_not_add_html_body_wrappers_bare_link(self):
+        html = '<a href="https://example.com">link</a>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert "<html>" not in result
+        assert "<body>" not in result
+        assert result.startswith("<a")
+
+    def test_does_not_add_html_body_wrappers_no_links(self):
+        html = '<div class="rich-text"><p>No links here</p></div>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert "<html>" not in result
+        assert "<body>" not in result
+        assert result.startswith("<div")
+
+    def test_safe_input_returns_safe_output(self):
+        html = mark_safe('<p><a href="https://example.com">link</a></p>')
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert isinstance(result, SafeData)
+
+    def test_markup_input_returns_safe_output(self):
+        html = Markup('<p><a href="https://example.com">link</a></p>')
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert isinstance(result, SafeData)
+
+    def test_plain_string_input_returns_plain_string(self):
+        html = '<p><a href="https://example.com">link</a></p>'
+        result = helpers.add_cta_analytics(html, self.ANALYTICS_ID)
+        assert not isinstance(result, (SafeData, Markup))
+
+    def test_empty_analytics_id_returns_html_unchanged(self):
+        html = '<p><a href="https://example.com">link</a></p>'
+        result = helpers.add_cta_analytics(html, "")
+        assert "data-cta" not in result
+        assert result == html
+
+    def test_none_analytics_id_returns_html_unchanged(self):
+        html = '<p><a href="https://example.com">link</a></p>'
+        result = helpers.add_cta_analytics(html, None)
+        assert "data-cta" not in result
+        assert result == html
 
 
 @override_settings(LANG_GROUPS={"en": ["en-US", "en-GB"]})
