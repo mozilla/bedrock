@@ -183,6 +183,19 @@ def get_locale_options(request, translations):
     if cms_locale_count > 0 and django_fallback_locale_count > 0:
         available_locales = get_translations_native_names(sorted(set(request._locales_available_via_cms + request._locales_for_django_fallback_view)))
 
+    # For pure Fluent pages, translations only reflects FTL-active locales and does not
+    # include alias locales. Add alias locales whose fallback canonical locale is already
+    # present. (CMS pages are already handled upstream by get_locales_for_cms_page().)
+    alias_additions = get_translations_native_names(
+        [
+            alias_code
+            for alias_code, fallback_code in getattr(settings, "FALLBACK_LOCALES", {}).items()
+            if fallback_code in available_locales and alias_code not in available_locales
+        ]
+    )
+    if alias_additions:
+        available_locales = {**available_locales, **alias_additions}
+
     return available_locales
 
 
