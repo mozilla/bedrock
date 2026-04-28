@@ -7,7 +7,7 @@ from django.test import override_settings
 from django.urls import path
 
 import pytest
-from wagtail.models import Site
+from wagtail.models import Locale, Site
 from wagtail.rich_text import RichText
 
 from bedrock.base.i18n import bedrock_i18n_patterns
@@ -483,13 +483,13 @@ def prefer_cms_alias_site(tiny_localized_site):
 
 @pytest.mark.urls(__name__)
 @override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
-def test_prefer_cms_serves_alias_fallback_cms_page(prefer_cms_alias_site, client):
+def test_prefer_cms_serves_alias_fallback_cms_page_when_no_alias_locale(prefer_cms_alias_site, client):
     """
     prefer_cms serves the CMS's fallback page for an alias locale, rather than the static es-AR page.
 
     This test verifies the following scenario:
         - a static page exists in an alias locale (es-AR)
-        - a CMS page does NOT exist in an alias locale (es-AR)
+        - an alias locale (es-AR) does not exist
         - a CMS page does exist in the fallback locale (es-ES)
     In this case, the user should get the CMS's es-ES page at the es-AR URL.
     """
@@ -501,6 +501,82 @@ def test_prefer_cms_serves_alias_fallback_cms_page(prefer_cms_alias_site, client
     es_es_page.save()
     es_es_page.save_revision()
     es_es_page.publish(es_es_page.latest_revision)
+
+    # The es-AR locale does not exist
+    assert not Locale.objects.filter(language_code="es-AR").exists()
+
+    response = client.get("/es-AR/prefer-cms-alias-test/")
+
+    assert response.status_code == 200
+    # The es-ES CMS page was served
+    assert "ES-ES CMS page content" in response.text
+    assert "dummy response from the wrapped view" not in response.text  # Django view was NOT reached
+    assert set(response.wsgi_request._locales_available_via_cms) == {"es-ES", "en-US", "es-AR"}
+
+
+@pytest.mark.urls(__name__)
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
+def test_prefer_cms_serves_alias_fallback_cms_page_when_alias_locale_has_no_live_root(prefer_cms_alias_site, client):
+    """
+    prefer_cms serves the CMS's fallback page for an alias locale, rather than the static es-AR page.
+
+    This test verifies the following scenario:
+        - a static page exists in an alias locale (es-AR)
+        - an alias locale (es-AR) exists, but has no live root page
+        - a CMS page does exist in the fallback locale (es-ES)
+    In this case, the user should get the CMS's es-ES page at the es-AR URL.
+    """
+    en_us_page = prefer_cms_alias_site["en_us_page"]
+    es_es_locale = prefer_cms_alias_site["es_es_locale"]
+
+    es_es_page = en_us_page.copy_for_translation(es_es_locale)
+    es_es_page.content = RichText("ES-ES CMS page content")
+    es_es_page.save()
+    es_es_page.save_revision()
+    es_es_page.publish(es_es_page.latest_revision)
+
+    # es-AR also exists, but its root page is not live.
+    es_ar_locale = LocaleFactory(language_code="es-AR")
+    es_ar_root = prefer_cms_alias_site["site"].root_page.copy_for_translation(es_ar_locale)
+    es_ar_root.live = False
+    es_ar_root.save()
+
+    response = client.get("/es-AR/prefer-cms-alias-test/")
+
+    assert response.status_code == 200
+    # The es-ES CMS page was served
+    assert "ES-ES CMS page content" in response.text
+    assert "dummy response from the wrapped view" not in response.text  # Django view was NOT reached
+    assert set(response.wsgi_request._locales_available_via_cms) == {"es-ES", "en-US", "es-AR"}
+
+
+@pytest.mark.urls(__name__)
+@override_settings(FALLBACK_LOCALES={"es-AR": "es-ES"})
+def test_prefer_cms_serves_alias_fallback_cms_page_when_alias_locale_has_live_root(prefer_cms_alias_site, client):
+    """
+    prefer_cms serves the CMS's fallback page for an alias locale, rather than the static es-AR page.
+
+    This test verifies the following scenario:
+        - a static page exists in an alias locale (es-AR)
+        - an alias locale (es-AR) exists, and has a live root page
+        - a CMS page does NOT exist in the alias locale (es-AR)
+        - a CMS page does exist in the fallback locale (es-ES)
+    In this case, the user should get the CMS's es-ES page at the es-AR URL.
+    """
+    en_us_page = prefer_cms_alias_site["en_us_page"]
+    es_es_locale = prefer_cms_alias_site["es_es_locale"]
+
+    es_es_page = en_us_page.copy_for_translation(es_es_locale)
+    es_es_page.content = RichText("ES-ES CMS page content")
+    es_es_page.save()
+    es_es_page.save_revision()
+    es_es_page.publish(es_es_page.latest_revision)
+
+    # es-AR also exists and has a live root page.
+    es_ar_locale = LocaleFactory(language_code="es-AR")
+    es_ar_root = prefer_cms_alias_site["site"].root_page.copy_for_translation(es_ar_locale)
+    es_ar_root.live = True
+    es_ar_root.save()
 
     response = client.get("/es-AR/prefer-cms-alias-test/")
 

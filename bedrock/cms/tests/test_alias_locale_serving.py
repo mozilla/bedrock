@@ -6,7 +6,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import pytest
-from wagtail.models import Page, Site
+from wagtail.models import Locale as WagtailLocale, Page, Site
 
 from bedrock.cms.tests.factories import LocaleFactory
 
@@ -89,6 +89,54 @@ def site_with_es_es_and_aliases(tiny_localized_site):
         )
 
     return tiny_localized_site
+
+
+@pytest.fixture
+def localized_site_with_live_alias_root(tiny_localized_site):
+    """
+    Extends tiny_localized_site with a LIVE pt-PT root page.
+    The pt-PT locale has a live root but no 'test-page' translation.
+    This simulates an alias locale being promoted to its own live root
+    while not yet having all pages translated.
+    """
+    pt_pt_locale = LocaleFactory(language_code="pt-PT")
+
+    en_us_locale_root = Page.objects.filter(
+        depth=2,
+        locale__language_code="en-US",
+    ).first()
+    wagtail_root = en_us_locale_root.get_parent()
+
+    en_us_locale_root.copy(
+        to=wagtail_root,
+        update_attrs={
+            "locale": pt_pt_locale,
+            "slug": "home-pt-PT",
+        },
+        copy_revisions=False,
+        keep_live=True,
+        reset_translation_key=False,
+        log_action=None,
+    )
+
+    return tiny_localized_site
+
+
+@pytest.fixture
+def localized_site_with_live_alias_and_test_page(localized_site_with_live_alias_root):
+    """
+    Extends localized_site_with_live_alias_root by adding a live pt-PT translation
+    of 'test-page'. This simulates an alias locale that has been fully promoted and
+    has its own page — Wagtail should serve it directly.
+    """
+    pt_pt_locale = WagtailLocale.objects.get(language_code="pt-PT")
+    en_us_test_page = Page.objects.get(locale__language_code="en-US", slug="test-page")
+
+    pt_pt_test_page = en_us_test_page.copy_for_translation(pt_pt_locale)
+    pt_pt_test_page.title = "Página de Teste PT-PT"
+    pt_pt_test_page.save_revision().publish()
+
+    return localized_site_with_live_alias_root
 
 
 @override_settings(**ALIAS_SETTINGS)
@@ -253,6 +301,76 @@ def test_cms_alias_locales_excluded_from_hreflang_on_all_pages(site_with_es_es_a
     assert 'hreflang="es-ES"' in html
     assert 'hreflang="es-AR"' not in html
     assert 'hreflang="es-CL"' not in html
+
+
+@override_settings(**ALIAS_SETTINGS)
+def test_alias_locale_with_live_root_and_missing_page_serves_fallback(localized_site_with_live_alias_root, client):
+    """
+    When an alias locale (pt-PT) has a live root but no translation for a specific page,
+    the fallback locale's (pt-BR) page is served transparently.
+    """
+    assert Page.objects.filter(locale__language_code="pt-PT", slug="test-page").exists() is False
+    assert Page.objects.filter(locale__language_code="pt-BR", slug="test-page").exists() is True
+
+    response = client.get("/pt-PT/test-page/", follow=False)
+
+    assert response.status_code == 200
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    assert pt_br_page.title in response.text
+    assert response.wsgi_request.content_locale == "pt-BR"
+    # The page's canonical language is from the fallback locale.
+    assert 'rel="canonical"' in response.text
+    canonical_line = [line for line in response.text.splitlines() if 'rel="canonical"' in line][0]
+    assert "/pt-PT/" not in canonical_line
+    assert "/pt-BR/" in canonical_line
+    # The page is not indexable.
+    assert 'content="noindex,follow"' in response.text
+
+
+@override_settings(**ALIAS_SETTINGS)
+def test_alias_locale_with_live_root_and_own_page_serves_own_content(localized_site_with_live_alias_and_test_page, client):
+    """
+    When an alias locale has a live root AND its own translated page, Wagtail
+    serves the alias locale's own content directly (not the fallback locale's).
+    """
+    # Make sure the test page exists in pt-PT and pt-BR, and the page has
+    # different titles.
+    pt_pt_page = Page.objects.get(locale__language_code="pt-PT", slug="test-page")
+    pt_pt_page.title = "Página de Teste PT-PT"
+    pt_pt_page.save()
+    rev = pt_pt_page.specific.save_revision()
+    pt_pt_page.publish(rev)
+    pt_br_page = Page.objects.get(locale__language_code="pt-BR", slug="test-page")
+    pt_br_page.title = "Página de Teste PT-BR"
+    pt_br_page.save()
+    rev = pt_br_page.specific.save_revision()
+    pt_br_page.publish(rev)
+
+    response = client.get("/pt-PT/test-page/", follow=False)
+
+    assert response.status_code == 200
+    assert pt_pt_page.title in response.text
+    assert f"<title>{pt_pt_page.title}" in response.text
+    assert f"<title>{pt_br_page.title}" not in response.text
+    # The page's canonical language is from the alias locale.
+    assert 'rel="canonical"' in response.text
+    canonical_line = [line for line in response.text.splitlines() if 'rel="canonical"' in line][0]
+    assert "/pt-PT/" in canonical_line
+    assert "/pt-BR/" not in canonical_line
+
+
+@override_settings(**ALIAS_SETTINGS)
+def test_alias_locale_with_live_root_and_no_fallback_returns_404(localized_site_with_live_alias_root, client):
+    """
+    When an alias locale has a live root, Wagtail 404s on a missing page, and no
+    fallback page exists, the final response is 404.
+    """
+    assert Page.objects.filter(locale__language_code="pt-PT", slug="nonexistent").exists() is False
+    assert Page.objects.filter(locale__language_code="pt-BR", slug="nonexistent").exists() is False
+
+    response = client.get("/pt-PT/nonexistent/")
+
+    assert response.status_code == 404
 
 
 @override_settings(**ALIAS_SETTINGS)
