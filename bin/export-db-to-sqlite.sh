@@ -190,7 +190,6 @@ python manage.py dumpdata \
     security.Product \
     security.SecurityAdvisory \
     security.HallOfFamer \
-    security.MitreCVE \
     releasenotes.ProductRelease \
     contentcards.ContentCard \
     utils.GitRepoState \
