@@ -6,7 +6,10 @@
 
 {% extends "firefox/new/desktop/download.html" %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% set win_custom_download_id = 'partner-firefox-release-smi-smi-001-stub' %}
 {% set mac_custom_download_id = 'partner-firefox-release-smi-smi-001-latest' %}
