@@ -12,7 +12,7 @@ import wagtail.fields
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0027_aboutuspage_alter_homepage_content"),
+        ("mozorg", "0028_alter_aboutuspage_content_alter_homepage_content"),
     ]
 
     operations = [

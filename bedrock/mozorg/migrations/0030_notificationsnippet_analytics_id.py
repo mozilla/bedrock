@@ -9,7 +9,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("mozorg", "0028_alter_advertisingindexpage_sub_navigation"),
+        ("mozorg", "0029_alter_advertisingindexpage_sub_navigation"),
     ]
 
     operations = [

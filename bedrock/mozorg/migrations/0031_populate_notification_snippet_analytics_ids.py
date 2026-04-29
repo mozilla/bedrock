@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
     atomic = False
 
     dependencies = [
-        ("mozorg", "0029_notificationsnippet_analytics_id"),
+        ("mozorg", "0030_notificationsnippet_analytics_id"),
     ]
 
     operations = [
