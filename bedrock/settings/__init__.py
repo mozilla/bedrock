@@ -76,6 +76,7 @@ _csp_frame_ancestors = {
 _csp_frame_src = {
     csp.constants.SELF,
     "accounts.firefox.com",
+    "gtm.mozilla.org",
     "js.stripe.com",
     "www.google-analytics.com",
     "www.googletagmanager.com",
