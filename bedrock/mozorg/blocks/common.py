@@ -38,13 +38,11 @@ class TransitionBlock(blocks.StructBlock):
     """A decorative transition element between sections with configurable colors."""
 
     top_color = blocks.ChoiceBlock(
-        choices=TRANSITION_COLOR_CHOICES,
-        default="light",
+        choices=TRANSITION_COLOR_CHOICES, default="light", help_text="This should match the background color of the previous section"
     )
 
     bottom_color = blocks.ChoiceBlock(
-        choices=TRANSITION_COLOR_CHOICES,
-        default="dark-alt",
+        choices=TRANSITION_COLOR_CHOICES, default="dark-alt", help_text="This should match the background color of the next section"
     )
 
     class Meta:
@@ -52,22 +50,11 @@ class TransitionBlock(blocks.StructBlock):
         icon = "grip"
         label = "Transition"
         label_format = "{top_color} → {bottom_color}"
+        description = "This is a decrotive element with two configurable colors."
 
 
 class SpringboardItemBlock(blocks.StructBlock):
     """Block for a single media springboard row."""
-
-    url = blocks.URLBlock(
-        required=True,
-        char_max_length=255,
-        help_text="Link to the person's website or social media account with UTMs.",
-    )
-
-    link_attributes = blocks.CharBlock(
-        required=False,
-        char_max_length=255,
-        help_text='Link attributes limited to data-* (e.g., data-link-text="...",  data-link-position="...")',
-    )
 
     type = blocks.ChoiceBlock(
         required=False,
@@ -111,6 +98,12 @@ class SpringboardItemBlock(blocks.StructBlock):
         required=False,
         char_max_length=255,
         help_text="Short preview of the content",
+    )
+
+    url = blocks.URLBlock(
+        required=True,
+        char_max_length=255,
+        help_text="Link to the person's website or social media account with UTMs.",
     )
 
     class Meta:
@@ -425,6 +418,13 @@ class GalleryTileBlock(blocks.StructBlock):
         label="Link destination",
     )
 
+    cta_text = blocks.CharBlock(
+        max_length=100,
+        required=False,
+        label="Call to action text (optional)",
+        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
+    )
+
     image_divider = DividerBlock(label="Image")
 
     image = ImageChooserBlock(
@@ -482,13 +482,6 @@ class GalleryTileBlock(blocks.StructBlock):
     body = blocks.TextBlock(
         required=False,
         help_text="Short blurb about what you're linking to.",
-    )
-
-    cta_text = blocks.CharBlock(
-        max_length=100,
-        required=False,
-        label="Call to action text (optional)",
-        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
     )
 
     class Meta:
