@@ -38,6 +38,12 @@ class NavigationLinkBlock(blocks.StructBlock):
         help_text="This link should look like a button",
     )
 
+    analytics_id = blocks.CharBlock(
+        label="Analytics ID",
+        required=False,
+        help_text="Unique identifier for analytics tracking. Leave blank for standard nav links.",
+    )
+
     def clean(self, value):
         errors = {}
         link = value.get("link", {})

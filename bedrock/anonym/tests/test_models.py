@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from unittest.mock import patch
+from uuid import uuid4
 
 from django.test import RequestFactory
 
@@ -922,3 +923,35 @@ def test_legal_rich_text_block_renders_formatted(minimal_site: Site, rf: Request
     assert resp.status_code == 200
     assert "mzan-legal-rich-text" in page_content
     assert "applicable law" in page_content
+
+
+def test_anonym_news_item_page_analytics_id_auto_generated(minimal_site: Site) -> None:  # noqa: F811
+    """analytics_id is populated automatically on first save."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(title="News Auto UID", slug="news-auto-uid")
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    page = AnonymNewsItemPage(slug="test-auto-uid", title="Auto UID Test")
+    news_page.add_child(instance=page)
+    page.save()
+
+    assert page.analytics_id != ""
+    assert len(page.analytics_id) == 36  # UUID v4 string length
+
+
+def test_anonym_news_item_page_analytics_id_not_overwritten(minimal_site: Site) -> None:  # noqa: F811
+    """An existing analytics_id is not replaced on subsequent saves."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(title="News Preserve UID", slug="news-preserve-uid")
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    original_uuid = str(uuid4())
+    page = AnonymNewsItemPage(slug="test-preserve-uid", title="Preserve UID Test", analytics_id=original_uuid)
+    news_page.add_child(instance=page)
+    page.save()
+    page.title = "Updated Title"
+    page.save()
+
+    assert page.analytics_id == original_uuid

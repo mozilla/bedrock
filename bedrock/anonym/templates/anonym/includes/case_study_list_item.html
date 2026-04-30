@@ -5,22 +5,20 @@
 #}
 
 <li class="mzan-card mzan-case-study-card">
+    {% set name = case_study.company_name or case_study.title %}
     {% if case_study.logo %}
     <div class="mzan-card-logo-wrap">
       <img class="mzan-card-logo" src="{{ case_study.logo.file.url }}" alt="{{ case_study.logo.title }}" loading="lazy">
     </div>
     {% endif %}
-    <h2 class="mzan-card-heading">
-      {% if case_study.company_name %}
-        {{ case_study.company_name }}
-      {% else %}
-        {{ case_study.title }}
-      {% endif %}
-    </h2>
+    <h2 class="mzan-card-heading">{{ name }}</h2>
     {% if case_study.description %}
       <p>{{ case_study.description }}</p>
     {% endif %}
 
     {% set item_url = case_study.link if case_study.link else case_study.url %}
-    <a href="{{ item_url }}" class="mzp-c-button mzp-t-secondary mzp-t-md">Case Study</a>
+    <a href="{{ item_url }}" class="mzp-c-button mzp-t-secondary mzp-t-md"
+       data-cta-text="{{ name }} Case Study"
+       data-cta-uid="{{ item_analytics_id }}"
+    >Case Study</a>
 </li>

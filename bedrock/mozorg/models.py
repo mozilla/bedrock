@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from uuid import uuid4
+
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models, transaction
@@ -220,6 +222,11 @@ class NotificationSnippet(models.Model):
         max_length=255,
         blank=True,
     )
+    analytics_id = models.CharField(
+        max_length=36,
+        blank=True,
+        help_text="Unique identifier for analytics tracking of social links in this notification.",
+    )
 
     panels = [
         MultiFieldPanel(
@@ -228,6 +235,7 @@ class NotificationSnippet(models.Model):
                     "notification_text",
                     heading="Notification Text",
                 ),
+                FieldPanel("analytics_id", heading="Analytics ID"),
                 FieldPanel("linkedin_link", heading="Linkedin Link"),
                 FieldPanel("tiktok_link", heading="Tiktok Link"),
                 FieldPanel("spotify_link", heading="Spotify Link"),
@@ -242,6 +250,11 @@ class NotificationSnippet(models.Model):
     def __str__(self):
 
         return f"{strip_tags(self.notification_text)} - Notification Snippet"
+
+    def save(self, *args, **kwargs):
+        if not self.analytics_id:
+            self.analytics_id = str(uuid4())
+        super().save(*args, **kwargs)
 
     @property
     def has_social_links(self):

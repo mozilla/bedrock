@@ -22,6 +22,8 @@
       <a class="mzan-section-link"
         href="{{ cta.link.get_url() }}"
         {% if cta.link.new_window %}target="_blank" rel="external noopener"{% endif %}
+        data-cta-text="{{ cta.label }}"
+        data-cta-uid="{{ cta.settings.analytics_id }}"
       >{{ cta.label }}</a>
     {% endfor %}
   {% endif %}
