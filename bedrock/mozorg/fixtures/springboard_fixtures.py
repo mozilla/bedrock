@@ -30,7 +30,7 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/article1",
-                        "link_attributes": 'target="_blank" rel="noopener"',
+                        "link_attributes": "Understanding privacy in the digital age",
                         "type": "Article",
                         "icon": "article",
                         "topic": "Privacy & Security",
@@ -39,7 +39,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/video1",
-                        "link_attributes": "",
+                        "link_attributes": "How to secure your online accounts",
                         "type": "Video",
                         "icon": "video",
                         "topic": "Privacy & Security",
@@ -66,7 +66,7 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/podcast1",
-                        "link_attributes": "",
+                        "link_attributes": "Latest tech trends discussion",
                         "type": "Podcast",
                         "icon": "podcast",
                         "topic": "",
@@ -75,7 +75,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/blog1",
-                        "link_attributes": "",
+                        "link_attributes": "The future of open source software",
                         "type": "Article",
                         "icon": "article",
                         "topic": "",
@@ -84,7 +84,7 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/webinar1",
-                        "link_attributes": 'data-custom="test"',
+                        "link_attributes": "Teaching coding to beginners",
                         "type": "Video",
                         "icon": "video",
                         "topic": "",
