@@ -91,7 +91,7 @@ jobs:
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   notify-of-test-run-completion:
-    if: always()
+    if: always() && github.repository == 'mozilla/bedrock'
     needs: cdn-tests
     runs-on: ubuntu-latest
     steps:

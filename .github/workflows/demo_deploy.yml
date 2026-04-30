@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Deploy Heroku
     runs-on: ubuntu-latest
+    if: github.repository == 'mozilla/bedrock'
     steps:
       - name: Clone repository
         uses: actions/checkout@v4

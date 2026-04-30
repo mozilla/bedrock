@@ -7,6 +7,7 @@ jobs:
   create_issue:
     name: Create l10n cleanup issue
     runs-on: ubuntu-latest
+    if: github.repository == 'mozilla/bedrock'
     permissions:
       issues: write
     steps:
