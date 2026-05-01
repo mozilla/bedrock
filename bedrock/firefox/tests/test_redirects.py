@@ -822,12 +822,18 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
             301,
             "/en-US/whatsnew/145/?query=string.here&with=extra",
         ),
+        (
+            "/es-ES/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/es-ES/whatsnew/145/",
+        ),
+        (
+            "/uk/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/uk/whatsnew/145/",
+        ),
         # Routes NOT matching the redirect
-        # Only en-US, en-GB, en-CA, fr and de should redirect
-        ("/es-ES/firefox/145.0/whatsnew/", 200, None),
-        ("/uk/firefox/145.0/whatsnew/", 200, None),
-        ("/ru/firefox/145.0/whatsnew/", 200, None),
-        # And Nightly, Beta/Developer and ESR should not redirect
+        # Nightly, Beta/Developer and ESR should not redirect
         ("/en-US/firefox/145.0a/whatsnew/", 200, None),
         ("/en-US/firefox/146.0b/whatsnew/", 200, None),
         ("/en-US/firefox/146.0beta/whatsnew/", 200, None),
