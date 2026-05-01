@@ -45,6 +45,16 @@ class AbstractBedrockCMSPage(WagtailBasePage):
         SynchronizedField("slug"),
     ]
 
+    preview_sizes = [
+        {"name": "mobile", "icon": "mobile-alt", "device_width": 320, "label": "Mobile"},
+        {"name": "tablet", "icon": "tablet-alt", "device_width": 768, "label": "Tablet"},
+        {"name": "desktop", "icon": "desktop", "device_width": 1312, "label": "Desktop"},
+    ]
+
+    @property
+    def default_preview_size(self):
+        return "desktop"
+
     class Meta:
         abstract = True
 
