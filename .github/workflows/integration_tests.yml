@@ -100,7 +100,7 @@ jobs:
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   playwright-tests:
-    if: always() && github.repository == 'mozilla/bedrock'
+    if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     env:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
