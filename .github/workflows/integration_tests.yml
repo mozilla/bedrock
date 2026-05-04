@@ -41,7 +41,7 @@ jobs:
           message: "Integration tests started"
 
   integration-tests:
-    if: always() && github.repository == 'mozilla/bedrock'
+    if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     strategy:
       matrix:
