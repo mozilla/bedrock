@@ -178,7 +178,11 @@ check-requirements: .docker-build-pull
 
 preflight:
 	${MAKE} install-local-python-deps
-	@npm install
+	# --min-release-age=7 avoids packages uploaded in the last 7 days
+	# reducing supply-chain risk. Requires npm >= 11.10.0.
+	# To apply urgent security patch sooner, run:
+	# npm install package-name@version --min-release-age=0
+	@npm install --min-release-age=7
 	@$(if $(findstring --retain-db,$(MAKECMDGOALS)),bin/sync-all.sh --retain-db,bin/sync-all.sh)
 	@python manage.py bootstrap_local_admin
 
