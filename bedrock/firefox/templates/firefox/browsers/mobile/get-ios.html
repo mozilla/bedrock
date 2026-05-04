@@ -8,7 +8,10 @@
 
 {% extends "firefox/base/base-protocol.html" %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('get-ios-attr') }}

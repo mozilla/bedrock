@@ -9,7 +9,10 @@
 {% block page_title %}{{ ftl('about-this-site-title') }}{% endblock %}
 {% block page_desc %}{{ ftl('about-this-site-desc') }}{% endblock %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_favicon %}{{ static('img/favicons/mozilla/dino/favicon.ico') }}{% endblock %}
 {% block page_favicon_large %}{{ static('img/favicons/mozilla/dino/favicon-196x196.png') }}{% endblock %}

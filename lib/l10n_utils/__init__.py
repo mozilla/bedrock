@@ -110,6 +110,13 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
     ftl_files = ftl_files or context.get("ftl_files")
     locale = get_locale(request)
 
+    # For alias fallback pages (for example, if a user requests /es-AR/somepage/,
+    # but a somepage does not exist in the es-AR locale, so the user is served
+    # a page from the fallback es-ES locale), the user-facing locale is the
+    # alias (es-AR), but the content locale is the fallback locale (es-ES).
+    # Use locale_in_url for URL prefix comparisons to avoid spurious redirects.
+    locale_in_url, _, _ = split_path_and_normalize_language(request.path)
+
     # is this a non-locale page?
     name_prefix = request.path_info.split("/", 2)[1]
     non_locale_url = non_locale_url or name_prefix in settings.SUPPORTED_NONLOCALES or request.path_info in settings.SUPPORTED_LOCALE_IGNORE
@@ -164,6 +171,17 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
     context["translations"] = get_translations_native_names(translations)
 
+    # content_locales: locales with content (not including alias locales that
+    # serve another locale's content).
+    # For CMS pages, _content_locales_via_cms only includes aliases that have
+    # their own translated page. For non-CMS pages, it equals `translations`
+    # (Fluent content is always real content, never an alias).
+    if is_cms_page:
+        content_locales = getattr(request, "_content_locales_via_cms", translations)
+    else:
+        content_locales = translations
+    context["content_locales"] = set(content_locales)
+
     # Ensure the path requires a locale prefix.
     if not non_locale_url:
         # If the requested path's locale is different from the best matching
@@ -177,10 +195,27 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
             # Redirect to the locale if:
             # - The URL is the root path but is missing the trailing slash OR
             # - The locale isn't the current prefix in the URL
-            if request.path == f"/{locale}" or locale != request.path.lstrip("/").partition("/")[0]:
-                return redirect_to_locale(request, locale)
+            # Use locale_in_url (the URL prefix) for both the comparison and the
+            # redirect target so that CMS alias pages (where locale = fallback, e.g.
+            # pt-BR, but locale_in_url = alias, e.g. pt-PT) don't trigger a spurious
+            # redirect.
+            if request.path == f"/{locale_in_url}" or locale_in_url != request.path.lstrip("/").partition("/")[0]:
+                return redirect_to_locale(request, locale_in_url or locale)
         else:
-            return redirect_to_best_locale(request, translations)
+            # Before redirecting, check whether this locale is a configured alias
+            # (e.g. en-CA → en-US) and the fallback locale has translations. If
+            # the fallback locale has content, serve it transparently at the
+            # alias URL instead of redirecting.
+            fallback_locale = getattr(settings, "FALLBACK_LOCALES", {}).get(locale_in_url)
+            if fallback_locale and fallback_locale in translations and not is_root_path_with_no_language_clues(request):
+                # Serve the fallback locale's content at the alias URL.
+                request.content_locale = fallback_locale
+                locale = normalize_language(fallback_locale)
+                # Reload Fluent with the fallback locale so templates render the
+                # correct translations instead of falling back to en-US.
+                context["fluent_l10n"] = fluent_l10n([locale, "en"], ftl_files or settings.FLUENT_DEFAULT_FILES)
+            else:
+                return redirect_to_best_locale(request, translations)
 
         # Look for locale-specific template in app/templates/
         locale_tmpl = f".{locale}".join(splitext(template))
@@ -194,8 +229,12 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
 
 
 def get_locale(request):
+    # content_locale is set on the request when serving fallback content at an
+    # alias locale URL (e.g. pt-BR content at /pt-PT/). Use it as the authoritative
+    # locale for Fluent loading so that nav/footer strings render in the correct
+    # language rather than falling back to English.
     # request.locale is added in bedrock.base.middleware.BedrockLangCodeFixupMiddleware
-    lang = getattr(request, "locale", None)
+    lang = getattr(request, "content_locale", None) or getattr(request, "locale", None)
     if not lang:
         lang = settings.LANGUAGE_CODE
     return normalize_language(lang)

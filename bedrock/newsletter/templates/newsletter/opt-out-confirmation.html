@@ -9,7 +9,10 @@
 {% block page_title %}{{ ftl('opt-out-confirmation-cool-we-hear') }}{% endblock page_title %}
 {% block page_desc %}{{ ftl('opt-out-confirmation-youre-now-opted') }}{% endblock %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('newsletter-opt-out-confirmation') }}
