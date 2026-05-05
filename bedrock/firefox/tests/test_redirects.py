@@ -823,11 +823,13 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
             "/en-US/whatsnew/145/?query=string.here&with=extra",
         ),
         (
+            # Confirm non-default locale with region code and patch version number redirects
             "/es-ES/firefox/145.0.1.2/whatsnew/",
             301,
             "/es-ES/whatsnew/145/",
         ),
         (
+            # Confirm locale with without region code and patch version number redirects
             "/uk/firefox/145.0.1.2/whatsnew/",
             301,
             "/uk/whatsnew/145/",
