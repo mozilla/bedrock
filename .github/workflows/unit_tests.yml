@@ -2,7 +2,7 @@ name: Unit tests
 on:
   push:
     branches:
-      - 'main'
+      - "main"
   pull_request:
 
 concurrency:
@@ -16,7 +16,7 @@ jobs:
   test-js:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -29,12 +29,12 @@ jobs:
   test-python:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: "Run Python tests (on Docker)"
         run: |
-            make clean test-image
-            CONTAINER_ID=$(docker ps -alq)
-            docker cp $CONTAINER_ID:/app/python_coverage .
+          make clean test-image
+          CONTAINER_ID=$(docker ps -alq)
+          docker cp $CONTAINER_ID:/app/python_coverage .
         timeout-minutes: 60
       - name: "Store coverage as an artifact"
         uses: actions/upload-artifact@v4
@@ -48,5 +48,15 @@ jobs:
           # https://community.codecov.com/t/upload-issues-unable-to-locate-build-via-github-actions-api/3954/18
           token: ${{ secrets.CODECOV_TOKEN }}
           files: python_coverage/coverage.xml
-          fail_ci_if_error: false  # optional (default = false)
-          verbose: true  # optional (default = false)
+          fail_ci_if_error: false # optional (default = false)
+          verbose: true # optional (default = false)
+  test-python-more:
+    # This is a preview `test-ci` to replace the previous `test-image` over time
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }} # Only run the extra release checks on PRs for now
+    steps:
+      - uses: actions/checkout@v6
+      - name: "Run Python tests (on Docker) with extra release service build"
+        run: |
+          make clean test-ci
+        timeout-minutes: 60
