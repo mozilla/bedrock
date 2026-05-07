@@ -1007,6 +1007,16 @@ from .appstores import (  # noqa: E402, F401
     MICROSOFT_WINDOWS_STORE_FIREFOX_WEB_LINK,
 )
 
+# Adjust attribution link for Firefox on Android, used by mobile_app_redirector
+# when the request includes ?via=adjust. Override per-environment to keep test
+# installs out of production attribution data.
+ADJUST_FIREFOX_ANDROID_LINK = config(
+    "ADJUST_FIREFOX_ANDROID_LINK",
+    default=(
+        "https://app.adjust.com/20kona3j?fallback=https%3A%2F%2Fwww.firefox.com%2Fdownload&redirect_macos=https%3A%2F%2Fwww.firefox.com%2Fdownload"
+    ),
+)
+
 # Locales that should display the 'Send to Device' widget
 SEND_TO_DEVICE_LOCALES = [
     "de",

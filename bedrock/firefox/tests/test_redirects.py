@@ -10,6 +10,10 @@ from django.test import RequestFactory
 import pytest
 
 from bedrock.firefox.redirects import mobile_app, validate_param_value
+from bedrock.redirects.util import mobile_app_redirector
+
+ANDROID_UA = "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36"
+IOS_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 
 
 @pytest.mark.parametrize(
@@ -533,6 +537,55 @@ def test_mobile_app_redirector_does_not_go_to_springfield(client):
     resp = client.get("/en-US/firefox/browsers/mobile/app/")
     assert resp.status_code == 301
     assert resp.headers["Location"] == "https://apps.apple.com/app/apple-store/id989804926"
+
+
+def test_mobile_app_redirector_via_adjust_firefox_android_with_campaign():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result == f"{settings.ADJUST_FIREFOX_ANDROID_LINK}&campaign=firefox-all"
+
+
+def test_mobile_app_redirector_via_adjust_firefox_android_no_campaign():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust", HTTP_USER_AGENT=ANDROID_UA)
+    assert mobile_app_redirector(req, "firefox", None) == settings.ADJUST_FIREFOX_ANDROID_LINK
+
+
+def test_mobile_app_redirector_via_adjust_ignored_for_focus_android():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "focus", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FOCUS_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_via_adjust_ignored_for_firefox_ios():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=IOS_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith("https://apps.apple.com/app/apple-store/id989804926")
+    assert "ct=firefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_unknown_via_value_falls_back_to_default():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=bogus&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FIREFOX_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_no_via_param_falls_back_to_default():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FIREFOX_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
 
 
 @pytest.mark.parametrize(

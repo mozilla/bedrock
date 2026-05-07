@@ -92,6 +92,16 @@ def platform_redirector(desktop_dest, android_dest, ios_dest):
 def mobile_app_redirector(request, product, campaign):
     android_re = re.compile(r"\bAndroid\b", flags=re.I)
     value = request.headers.get("User-Agent", "")
+    is_android = bool(android_re.search(value))
+
+    # Opt-in routing through Adjust for Firefox on Android. Any other product,
+    # platform, or `via` value falls through to the default app-store logic.
+    if request.GET.get("via") == "adjust" and product == "firefox" and is_android:
+        adjust_url = settings.ADJUST_FIREFOX_ANDROID_LINK
+        if campaign:
+            separator = "&" if "?" in adjust_url else "?"
+            return f"{adjust_url}{separator}campaign={campaign}"
+        return adjust_url
 
     # Map product names to tracking product codes
     product_mapping = {
@@ -105,7 +115,7 @@ def mobile_app_redirector(request, product, campaign):
 
     tracking_product = product_mapping.get(product, "unrecognized")
 
-    if android_re.search(value):
+    if is_android:
         base_url = getattr(settings, f"GOOGLE_PLAY_{product.upper()}_LINK")
         params = "&referrer=utm_source%3Dwww.mozilla.org%26utm_medium%3Dreferral%26utm_campaign%3D{cmp}"
     else:
