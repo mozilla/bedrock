@@ -59,6 +59,8 @@ Be particularly aware of CMS-backed content that is not richtext. Ensure it's es
 
 * If a new Snippet (a Django model decorated with @register_snippet) is added, add a reminder in a comment to ensure that the Editors have permission to see and edit the new Snippet. That permission is added manually via the Wagtail UI.
 
+* If a Django view is being decorated for the first time with the `prefer_cms()` decorator and there is no `fallback_ftl_files=` parameter being passed in to `prefer_cms()`, add a non-blocking comment questioning whether it should be present, because without it, the page will only show the locales available in the CMS in the footer links on the page
+
 ## 8. Database schema changes
 
 * We use Django migrations to manage database schema state and also sometimes to adjust data. Django migrations are the ONLY permissible way to change database schema.
