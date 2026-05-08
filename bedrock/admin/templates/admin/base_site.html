@@ -12,7 +12,7 @@
 
 {% block userlinks %}
   <a href="{% url 'wagtailadmin_home' %}"> Go to CMS home</a> /
-  <a href="{% url 'rq_home' %}"> View task queue</a> /
+  <a href="{% url 'django_rq:home' %}"> View task queue</a> /
   <a href="{% url 'admin:logout' %}"> Logout</a>
   {% include "admin/color_theme_toggle.html" %}
 {% endblock userlinks %}

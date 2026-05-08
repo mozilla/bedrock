@@ -21,7 +21,7 @@ from wagtail.models import Locale as WagtailLocale
 def register_task_queue_link():
     return MenuItem(
         "Task Queue",
-        reverse("rq_home"),
+        reverse("django_rq:home"),
         icon_name="tasks",
         order=80000,
     )
