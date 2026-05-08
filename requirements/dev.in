@@ -4,7 +4,7 @@ braceexpand==0.1.7
 django-silk==5.5.0
 factory-boy==3.3.3
 freezegun==1.5.5
-markdown-it-py>=2.2.0
+markdown-it-py>=4.2.0
 py==1.11.0
 PyPOM==2.2.4
 pyquery==2.0.1
@@ -17,10 +17,10 @@ pytest-parallel==0.1.1
 pytest-rerunfailures==16.1
 pytest-selenium==4.1.0
 responses==0.26.0
-ruff==0.15.10
+ruff==0.15.12
 selenium==4.43.0
-translate-toolkit==3.19.5
-uv==0.11.6
+translate-toolkit==3.19.8
+uv==0.11.11
 wagtail-factories==4.4.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
