@@ -152,7 +152,9 @@ def render(request, template, context=None, ftl_files=None, activation_files=Non
                 translations.update(ftl_active_locales(af))
             translations = sorted(translations)  # `sorted` returns a list.
         elif l10n:
-            translations = l10n.active_locales
+            translations = l10n.active_locales if not is_root_path_with_no_language_clues(request) else l10n.active_home_locales
+            allowed = settings.PROD_LANGUAGES if not settings.DEV else settings.DEV_LANGUAGES
+            translations = set(translations).intersection(allowed)
 
         # if `add_active_locales` is given then add it to the translations for the template
         if "add_active_locales" in context:
