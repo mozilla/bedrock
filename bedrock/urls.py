@@ -8,13 +8,13 @@ from django.urls import include, path
 from django.utils.module_loading import import_string
 
 import wagtaildraftsharing.urls as wagtaildraftsharing_urls
-from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
 from bedrock.base.i18n import bedrock_i18n_patterns
+from bedrock.cms import wagtail_urls
 from bedrock.cms.decorators import prefer_cms
 from bedrock.mozorg import views as mozorg_views
 
@@ -96,8 +96,10 @@ if settings.STORAGES["default"]["BACKEND"] == "django.core.files.storage.FileSys
     )
     # Note that statics are handled via Whitenoise's middleware
 
-# Wagtail is the catch-all route, and it will raise a 404 if needed.
-# Note that we're also using localised URLs here
+# Wagtail catch-all: uses our custom wagtail_urls module which replaces
+# Wagtail's serve view with one that handles alias-locale fallback.
+# Because this is in the URL router, it only fires for paths that no other
+# Django view (including prefer_cms-decorated views) has claimed.
 urlpatterns += bedrock_i18n_patterns(
     path("", include(wagtail_urls)),
 )

@@ -60,11 +60,20 @@ class BedrockLocale(WagtailLocale):
                 logger.warning(f"[BedrockLocale.get_active] Normalization returned None, using original: {language_code}")
                 return cls.objects.get(language_code=language_code)
         except cls.DoesNotExist:
-            # Fall back to default locale
             from django.conf import settings
 
-            logger.warning(
-                f"[BedrockLocale.get_active] Locale not found for '{normalized_code or language_code}', "
-                f"falling back to default: {settings.LANGUAGE_CODE}"
-            )
+            code = normalized_code or language_code
+            # Before falling back all the way to the default locale, check if
+            # this language code has a configured fallback (e.g. pt-PT → pt-BR).
+            # This ensures that page.localized resolves to the fallback locale's
+            # pages rather than the en-US originals when the alias locale has no
+            # Locale DB record.
+            fallback_locales = getattr(settings, "FALLBACK_LOCALES", {})
+            if code in fallback_locales:
+                try:
+                    return cls.objects.get(language_code=fallback_locales[code])
+                except cls.DoesNotExist:
+                    pass
+
+            logger.warning(f"[BedrockLocale.get_active] Locale not found for '{code}', falling back to default: {settings.LANGUAGE_CODE}")
             return cls.objects.get(language_code=settings.LANGUAGE_CODE)

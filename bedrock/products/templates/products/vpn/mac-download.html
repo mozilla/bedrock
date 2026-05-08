@@ -6,7 +6,10 @@
 
 {% extends "products/vpn/download.html" %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex,nofollow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_title_full %}{{ ftl('vpn-mac-download-page-title') }}{% endblock %}
 

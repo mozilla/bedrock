@@ -5,11 +5,19 @@
 #}
 
 {%- set available_languages = get_locale_options(request, translations) -%}
+{%- set alias_locales = settings.FALLBACK_LOCALES|default({}) -%}
 
-    <link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + LANG + canonical_path }}">
+    <link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+    {%- if CANONICAL_LANG != LANG %}
+    <meta name="robots" content="noindex,follow">
+    {%- endif %}
     {% if is_homepage %}<link rel="alternate" hreflang="x-default" href="{{ settings.CANONICAL_URL }}{{ canonical_path }}">{% endif %}
     {% if available_languages -%}
       {%- for code, label in available_languages|dictsort -%}
+        {#- Skip alias locales that don't have their own content -#}
+        {%- if code in alias_locales and content_locales is defined and code not in content_locales -%}
+          {%- continue -%}
+        {%- endif -%}
         {%- set alt_url = alternate_url(canonical_path, code) -%}
         {%- if alt_url -%}
           {%- set loop_canonical_path = alt_url -%}
@@ -38,7 +46,6 @@
         <link rel="alternate" hreflang="pa" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="ਪੰਜਾਬੀ">
         <link rel="alternate" hreflang="pa-IN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% elif code == 'pt-PT' -%}
-        <link rel="alternate" hreflang="pt" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Português">
         <link rel="alternate" hreflang="pt-PT" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% elif code == 'sv-SE' -%}
         <link rel="alternate" hreflang="sv" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Svenska">
@@ -46,6 +53,9 @@
         {% elif code == 'zh-CN' -%}
         <link rel="alternate" hreflang="zh" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="中文">
         <link rel="alternate" hreflang="zh-CN" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
+        {% elif code == 'pt-BR' -%}
+        <link rel="alternate" hreflang="pt" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="Português">
+        <link rel="alternate" hreflang="pt-BR" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% elif code|length != 3 -%}{#- Bug 1364470: Drop ISO 639-2 and -3 locales not supported by Google -#}
         <link rel="alternate" hreflang="{{ code }}" href="{{ settings.CANONICAL_URL + '/' + code + loop_canonical_path }}" title="{{ label|safe }}">
         {% endif -%}
