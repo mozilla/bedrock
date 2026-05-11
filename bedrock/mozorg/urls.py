@@ -21,8 +21,8 @@ from . import views
 from .util import page
 
 urlpatterns = [
-    path("", prefer_cms(views.HomeView.as_view()), name="mozorg.home"),
-    path("about/", prefer_cms(views.AboutView.as_view()), name="mozorg.about.index"),
+    path("", prefer_cms(views.HomeView.as_view(), fallback_ftl_files=views.HomeView.activation_files), name="mozorg.home"),
+    path("about/", prefer_cms(views.AboutView.as_view(), fallback_ftl_files=views.AboutView.activation_files), name="mozorg.about.index"),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
     page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
     page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),

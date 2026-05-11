@@ -6,7 +6,8 @@ Fetch the latest version of all the checklists mentioned on https://mozmeao.gith
 
 Read AGENTS.md for supplementary instructions.
 
-If a mirrored copy of these instructions exists at `custom-instructions/repo/.github/copilot-instructions.md`, keep it fully synchronized with this file and any referenced AGENTS.md guidance, including section renumbering and DB schema guidance, or remove it to avoid drift and inconsistent Copilot behavior.
+If a mirrored copy of these instructions exists at `custom-instructions/repo/.github/copilot-instructions.md`, keep it fully synchronized with this file and any referenced AGENTS.md guidance, including section renumbering and DB schema guidance, or remove it to avoid drift and inconsistent Copilot behavior. If the mirrored version is out of sync, use this version as the canonical source and overwrite the mirrored version.
+
 Try to use Conventional Comments to indicate the kind of feedback you are providing, and whether it's blocking or non-blocking.
 
 Also, confirm in a comment on the PR that you are using this custom instructions file, please.
@@ -58,6 +59,8 @@ Be particularly aware of CMS-backed content that is not richtext. Ensure it's es
 * If you can see a new Wagtail CMS model is being added (specifically, a new Python class that is a subclass of wagtail.models.Page or of AbstractBedrockCMSPage, or a Django model class that is decorated or wrapped with with `register_snippet`) please check that the PR has it listed in bedrock.settings.base.CMS_ALLOWED_PAGE_MODELS and also in the ./bin/export-db-to-sqlite.sh script.
 
 * If a new Snippet (a Django model decorated with @register_snippet) is added, add a reminder in a comment to ensure that the Editors have permission to see and edit the new Snippet. That permission is added manually via the Wagtail UI.
+
+* If a Django view is being decorated for the first time with the `prefer_cms()` decorator and there is no `fallback_ftl_files=` parameter being passed in to `prefer_cms()`, add a non-blocking comment questioning whether it should be present, because without it, the page will only show the locales available in the CMS in the footer links on the page
 
 ## 8. Database schema changes
 

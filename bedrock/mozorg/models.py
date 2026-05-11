@@ -440,7 +440,6 @@ class HomePage(AbstractBedrockCMSPage):
     """CMS-managed homepage for mozilla.org."""
 
     max_count = 1  # Ensure there's only one instance of this page
-    subpage_types = []  # This page type cannot have any children
     ftl_files = ["mozorg/home-m24"]
 
     content = StreamField(
