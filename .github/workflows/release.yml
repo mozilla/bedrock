@@ -315,9 +315,11 @@ jobs:
         id: stage-push
         env:
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
+          GHA_PAT: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }}
         run: |
           STAGE_PUSH_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           echo "stage_push_time=${STAGE_PUSH_TIME}" >> "$GITHUB_OUTPUT"
+          git remote set-url origin "https://x-access-token:${GHA_PAT}@github.com/mozilla/bedrock.git"
           git push origin "${RELEASE_SHA}:refs/heads/stage"
           echo "Pushed $RELEASE_SHA to stage at $STAGE_PUSH_TIME"
 
@@ -498,7 +500,10 @@ jobs:
 
       - name: Tag release and push to prod
         id: tag-release
+        env:
+          GHA_PAT: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }}
         run: |
+          git remote set-url origin "https://x-access-token:${GHA_PAT}@github.com/mozilla/bedrock.git"
           # --ci: skips interactive prompts; exits non-zero if main != stage
           # --push: creates the tag, pushes tag and HEAD to prod branch
           ./bin/tag-release.sh --ci --push
