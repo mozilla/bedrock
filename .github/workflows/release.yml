@@ -130,6 +130,9 @@ jobs:
             if [ "$CONCLUSION" = "success" ]; then
               echo "✓ Unit tests passed"
               break
+            elif [ "$CONCLUSION" = "cancelled" ]; then
+              echo "::error::Unit tests for $RELEASE_SHA were cancelled — likely a new commit landed on main. Re-trigger the release when main is stable."
+              exit 1
             elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
               echo "::error::Unit tests did not pass (conclusion: $CONCLUSION)"
               exit 1
@@ -164,6 +167,9 @@ jobs:
             if [ "$CONCLUSION" = "success" ]; then
               echo "✓ Pre-commit standards passed"
               break
+            elif [ "$CONCLUSION" = "cancelled" ]; then
+              echo "::error::Pre-commit checks for $RELEASE_SHA were cancelled — likely a new commit landed on main. Re-trigger the release when main is stable."
+              exit 1
             elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
               echo "::error::Pre-commit standards did not pass (conclusion: $CONCLUSION)"
               exit 1
@@ -201,6 +207,9 @@ jobs:
               echo "dev_build_complete_time=${BUILD_COMPLETE_TIME}" >> "$GITHUB_ENV"
               echo "✓ Docker build completed for main/dev (finished at $BUILD_COMPLETE_TIME)"
               break
+            elif [ "$CONCLUSION" = "cancelled" ]; then
+              echo "::error::Docker build for $RELEASE_SHA was cancelled — likely a new commit landed on main. Re-trigger the release when main is stable."
+              exit 1
             elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
               echo "::error::Docker build did not succeed on main (conclusion: $CONCLUSION)"
               exit 1
