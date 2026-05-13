@@ -257,5 +257,8 @@ def remove_p_tag(value: str) -> str:
     soup = BeautifulSoup(html_content, "html.parser")
     content = ""
     if soup and soup.p:
-        content = "<br/>".join("".join(str(c) for c in tag.contents) for tag in soup.find_all("p"))
+        # `decode_contents()` re-encodes HTML entities in text nodes, so an
+        # entity-encoded payload like `&lt;img onerror=...&gt;` stays inert
+        # instead of round-tripping back into live markup (XSS).
+        content = "<br/>".join(tag.decode_contents() for tag in soup.find_all("p"))
     return mark_safe(content)
