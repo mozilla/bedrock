@@ -31,7 +31,13 @@ done
 echo "Comparing main branch to staging..."
 git fetch "$moz_git_remote"
 stage_hash=$(git rev-parse "${moz_git_remote}/stage")
-main_hash=$(git rev-parse main)
+if [[ "$ci_mode" == true ]]; then
+    # In CI mode we check out a specific SHA (detached HEAD), so 'main' branch
+    # reference is unavailable. Compare HEAD directly against origin/stage.
+    main_hash=$(git rev-parse HEAD)
+else
+    main_hash=$(git rev-parse main)
+fi
 if [[ "$stage_hash" != "$main_hash" ]]; then
     if [[ "$ci_mode" == true ]]; then
         echo "ERROR: Main branch does NOT match stage branch. Aborting release."

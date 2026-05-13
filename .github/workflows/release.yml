@@ -462,12 +462,12 @@ jobs:
       tag: ${{ steps.tag-release.outputs.tag }}
 
     steps:
-      - name: Checkout main
+      - name: Checkout release SHA
         uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd  # v5 # zizmor: ignore[artipacked]
         with:
           fetch-depth: 0
           fetch-tags: true
-          ref: main
+          ref: ${{ needs.preflight-checks.outputs.release_sha }}
           # A PAT is required here instead of the default GITHUB_TOKEN — see the
           # equivalent comment in deploy-to-stage for the full explanation.
           token: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }} # zizmor: ignore[secrets-outside-env]
@@ -477,20 +477,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Verify HEAD still matches release SHA
-        env:
-          RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
-        run: |
-          CURRENT_HEAD=$(git rev-parse HEAD)
-          if [ "$CURRENT_HEAD" != "$RELEASE_SHA" ]; then
-            echo "::error::main has advanced since release started."
-            echo "  Expected: $RELEASE_SHA"
-            echo "  Current:  $CURRENT_HEAD"
-            echo "Aborting to avoid releasing unexpected commits."
-            exit 1
-          fi
-          echo "✓ HEAD matches release SHA: $RELEASE_SHA"
 
       - name: Record prod push time
         id: record-time
