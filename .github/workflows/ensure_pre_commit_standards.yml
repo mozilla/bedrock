@@ -19,7 +19,7 @@ jobs:
           python-version: "3.13"
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
       - name: "Install npm dependencies"
         run: npm ci
       - name: "Cache pre-commit environments"
