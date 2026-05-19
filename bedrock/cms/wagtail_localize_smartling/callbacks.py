@@ -8,12 +8,14 @@
 #
 # The README.md of that repo covers what inputs are
 # provided and what outputs are needed
-
+import logging
 from typing import TYPE_CHECKING
+from urllib.parse import urlparse
 
+from django.conf import settings
 from django.test import RequestFactory
 
-from wagtail.models import Page
+from wagtail.models import Page, Site
 from wagtail_localize_smartling.exceptions import IncapableVisualContextCallback
 
 if TYPE_CHECKING:
@@ -22,9 +24,18 @@ from sentry_sdk import capture_exception, capture_message
 from wagtaildraftsharing.models import WagtaildraftsharingLink
 from wagtaildraftsharing.views import SharingLinkView
 
+logger = logging.getLogger(__name__)
+
 
 def _get_html_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
-    request = RequestFactory().get(sharing_link.url)
+    # Use the CMS hostname (guaranteed to be in ALLOWED_HOSTS) so that
+    # Wagtail's make_preview_request doesn't fall back to 'testserver' /
+    # 'localhost', which would cause DisallowedHost inside the middleware
+    # chain and return a 400 error page instead of the real page HTML.
+    # Also extract just the path from sharing_link.url in case it's absolute.
+    cms_hostname = urlparse(settings.WAGTAILADMIN_BASE_URL).hostname
+    path = urlparse(sharing_link.url).path
+    request = RequestFactory(SERVER_NAME=cms_hostname).get(path)
     view_func = SharingLinkView.as_view()
     try:
         resp = view_func(
@@ -38,8 +49,10 @@ def _get_html_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
         raise IncapableVisualContextCallback("Was not able to get a HTML export from the sharing link")
 
 
-def _get_full_url_for_sharing_link(sharing_link: WagtaildraftsharingLink, page: "Page") -> str:
-    return f"{page.get_site().root_url}{sharing_link.url}"
+def _get_full_url_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
+    url = f"{settings.WAGTAILADMIN_BASE_URL}{sharing_link.url}"
+    logger.debug("Page URL being sent to Smartling: %s", url)
+    return url
 
 
 def visual_context(smartling_job: "Job") -> tuple[str, str]:
@@ -73,6 +86,16 @@ def visual_context(smartling_job: "Job") -> tuple[str, str]:
         max_ttl=-1,  # -1 signifies "No expiry". If we pass None we get the default TTL
     )
 
-    url = _get_full_url_for_sharing_link(sharing_link=sharing_link, page=content_obj)
+    url = _get_full_url_for_sharing_link(sharing_link=sharing_link)
     html = _get_html_for_sharing_link(sharing_link=sharing_link)
+
+    # Strip the CMS hostname from URLs in the HTML so they become relative,
+    # then inject a <base> tag so Smartling resolves them against the public
+    # domain rather than the IAP-protected CMS host.
+    default_site = Site.objects.filter(is_default_site=True).first()
+    if default_site:
+        html = html.replace(default_site.root_url, "")
+    base_tag = f'<base href="{settings.CANONICAL_URL}/">'
+    html = html.replace("<head>", f"<head>{base_tag}", 1)
+
     return (url, html)
