@@ -51,7 +51,7 @@ def _get_html_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
 
 def _get_full_url_for_sharing_link(sharing_link: WagtaildraftsharingLink) -> str:
     url = f"{settings.WAGTAILADMIN_BASE_URL}{sharing_link.url}"
-    logger.debug("Page URL being sent to Smartling for path %s", sharing_link.url)
+    logger.debug("Page URL being sent to Smartling: %s", url)
     return url
 
 
