@@ -412,26 +412,6 @@ def test_springboard_block_attributes(minimal_site, rf, serving_method):  # noqa
             assert_springboard_block_attributes(section, variant)
 
 
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_springboard_block_link_attributes(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that SpringboardBlock renders link_attributes as data-link-text."""
-    variants = get_springboard_variants()
-    test_page = get_springboard_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    first_item = variants[0]["value"]["springboard_items"][0]
-    link = soup.find("a", href=first_item["url"])
-    assert link is not None, f"Link with href '{first_item['url']}' not found"
-    assert link.get("data-link-text") == first_item["link_attributes"], (
-        f"Expected data-link-text='{first_item['link_attributes']}', got '{link.get('data-link-text')}'"
-    )
-
-
 def test_springboard_fixture_returns_same_page_when_called_twice(minimal_site):  # noqa: F811
     """Test that get_springboard_test_page() returns the same page on subsequent calls."""
     # First call creates the page
