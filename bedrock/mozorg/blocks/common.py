@@ -50,7 +50,7 @@ class TransitionBlock(blocks.StructBlock):
         icon = "grip"
         label = "Transition"
         label_format = "{top_color} → {bottom_color}"
-        description = "This is a decrotive element with two configurable colors."
+        description = "This is a decorative element with two configurable colors."
 
 
 class SpringboardItemBlock(blocks.StructBlock):
