@@ -93,7 +93,7 @@ jobs:
 
       - name: Store artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: test-results
           path: results-${{github.run_id}}-${{matrix.label}}
@@ -114,7 +114,7 @@ jobs:
       run: cd tests/playwright && npm ci && npm run install-deps
     - name: Run Playwright tests
       run: cd tests/playwright && npm run integration-tests
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
       if: ${{ !cancelled() }}
       with:
         name: test-results-${{ github.event.inputs.git_sha }}-${{ github.run_id }}
