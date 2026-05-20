@@ -22,6 +22,10 @@ class TestStripAllTags:
             ("<p>unclosed", "unclosed"),
             ("before<br/>after", "beforeafter"),
             ("<p>hello   world</p>", "hello   world"),
+            # HTML comments are dropped
+            ("<!-- hidden -->", ""),
+            ("before<!-- mid -->after", "beforeafter"),
+            ("<p>visible<!-- note --></p>", "visible"),
         ],
     )
     def test_strip_all_tags(self, html, expected):
@@ -116,3 +120,27 @@ class TestSanitizeHtml:
         # javascript: should be stripped
         result = sanitize_html("<img src=\"javascript:alert('xss')\">", {"img"}, {"img": ["src"]})
         assert "javascript:" not in result.lower()
+
+    @pytest.mark.parametrize(
+        "html, expected",
+        [
+            # Comment-only input is dropped to empty string
+            ("<!-- only -->", ""),
+            ("<!-- Keep this note until 156 -->", ""),
+            # Comments adjacent to text disappear
+            ("<!-- hidden -->visible", "visible"),
+            # Comments interleaved with allowed tags
+            ("<p>before<!-- mid -->after</p>", "<p>beforeafter</p>"),
+            # Multi-line / multi-word comment content
+            ("<p>x<!-- a\nb\nc -->y</p>", "<p>xy</p>"),
+            # Comments are dropped while unknown tags continue to be escaped
+            (
+                "<!-- drop me --><custom>x</custom>",
+                "&lt;custom&gt;x&lt;/custom&gt;",
+            ),
+        ],
+    )
+    def test_comments_are_dropped(self, html, expected):
+        allowed_tags = {"p"}
+        allowed_attributes = {}
+        assert sanitize_html(html, allowed_tags, allowed_attributes) == expected

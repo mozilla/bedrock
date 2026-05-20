@@ -6,7 +6,15 @@
 Shared HTML sanitization utilities using justhtml.
 """
 
+import re
+
 from justhtml import JustHTML, SanitizationPolicy, UrlPolicy, UrlRule
+
+# Matches HTML comments. justhtml's DropComments transform cannot drop
+# comments when disallowed_tag_handling="escape" is in effect (the escape
+# pass runs in the same tree walk and wins), so we strip comments before
+# handing the input to justhtml.
+_HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 
 # URL policy that allows common schemes for href and src attributes.
 # Using default_handling="strip" ensures any URL attributes not explicitly
@@ -30,13 +38,16 @@ def strip_all_tags(html: str) -> str:
         disallowed_tag_handling="unwrap",
         drop_content_tags=set(),  # Preserve content from all tags (bleach compat)
     )
+    html = _HTML_COMMENT_RE.sub("", html)
     return JustHTML(html, safe=True, policy=policy, fragment=True).to_html(pretty=False)
 
 
 def sanitize_html(html: str, allowed_tags: set, allowed_attributes: dict) -> str:
     """Sanitize HTML using an allowlist of tags and attributes.
 
-    Disallowed tags are escaped (converted to &lt;tag&gt;).
+    Disallowed tags are escaped (converted to &lt;tag&gt;). HTML comments are
+    dropped: keeping them would reveal authoring notes and, with the
+    current escape policy, surface them as visible &lt;!-- ... --&gt; text.
     """
     policy = SanitizationPolicy(
         allowed_tags=allowed_tags,
@@ -44,4 +55,5 @@ def sanitize_html(html: str, allowed_tags: set, allowed_attributes: dict) -> str
         disallowed_tag_handling="escape",
         url_policy=_URL_POLICY,
     )
+    html = _HTML_COMMENT_RE.sub("", html)
     return JustHTML(html, safe=True, policy=policy, fragment=True).to_html(pretty=False)
