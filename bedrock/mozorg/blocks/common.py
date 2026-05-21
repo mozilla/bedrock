@@ -38,11 +38,15 @@ class TransitionBlock(blocks.StructBlock):
     """A decorative transition element between sections with configurable colors."""
 
     top_color = blocks.ChoiceBlock(
-        choices=TRANSITION_COLOR_CHOICES, default="light", help_text="This should match the background color of the previous section"
+        choices=TRANSITION_COLOR_CHOICES,
+        default="light",
+        help_text="This should match the background color of the previous section",
     )
 
     bottom_color = blocks.ChoiceBlock(
-        choices=TRANSITION_COLOR_CHOICES, default="dark-alt", help_text="This should match the background color of the next section"
+        choices=TRANSITION_COLOR_CHOICES,
+        default="dark-alt",
+        help_text="This should match the background color of the next section",
     )
 
     class Meta:
