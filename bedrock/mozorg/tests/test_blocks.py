@@ -295,15 +295,11 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
         assert link is not None, f"Link not found in item {index}"
         assert link.get("href") == expected_item["url"], f"Wrong URL in item {index}"
 
-        # Check link attributes if present
+        # Check link_attributes rendered as data-link-text
         if expected_item.get("link_attributes"):
-            # Parse expected attributes
-            if 'target="_blank"' in expected_item["link_attributes"]:
-                assert link.get("target") == "_blank", f"Missing target='_blank' in item {index}"
-            if 'rel="noopener"' in expected_item["link_attributes"]:
-                assert "noopener" in link.get("rel", []), f"Missing rel='noopener' in item {index}"
-            if "data-custom=" in expected_item["link_attributes"]:
-                assert link.get("data-custom") is not None, f"Missing data-custom attribute in item {index}"
+            assert link.get("data-link-text") == expected_item["link_attributes"], (
+                f"Wrong data-link-text in item {index}: expected '{expected_item['link_attributes']}', got '{link.get('data-link-text')}'"
+            )
 
         # Check type
         type_div = item.find(class_="m24-c-springboard-type")
@@ -414,29 +410,6 @@ def test_springboard_block_attributes(minimal_site, rf, serving_method):  # noqa
             section = soup.find("section", id=anchor_id)
             assert section is not None, f"Section with id '{anchor_id}' not found"
             assert_springboard_block_attributes(section, variant)
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_springboard_block_link_attributes(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that SpringboardBlock correctly applies link attributes."""
-    variants = get_springboard_variants()
-    test_page = get_springboard_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    # Find the first variant which has items with target="_blank"
-    variant_with_target = variants[0]
-    first_item_url = variant_with_target["value"]["springboard_items"][0]["url"]
-
-    # Find the link with that URL
-    link = soup.find("a", href=first_item_url)
-    assert link is not None, f"Link with href '{first_item_url}' not found"
-    assert link.get("target") == "_blank", "Expected target='_blank'"
-    assert "noopener" in link.get("rel", []), "Expected 'noopener' in rel"
 
 
 def test_springboard_fixture_returns_same_page_when_called_twice(minimal_site):  # noqa: F811

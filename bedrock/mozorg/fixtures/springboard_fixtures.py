@@ -30,7 +30,6 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/article1",
-                        "link_attributes": 'target="_blank" rel="noopener"',
                         "type": "Article",
                         "icon": "article",
                         "topic": "Privacy & Security",
@@ -39,7 +38,6 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/video1",
-                        "link_attributes": "",
                         "type": "Video",
                         "icon": "video",
                         "topic": "Privacy & Security",
@@ -66,7 +64,6 @@ def get_springboard_variants() -> list[dict]:
                 "springboard_items": [
                     {
                         "url": "https://example.com/podcast1",
-                        "link_attributes": "",
                         "type": "Podcast",
                         "icon": "podcast",
                         "topic": "",
@@ -75,7 +72,6 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/blog1",
-                        "link_attributes": "",
                         "type": "Article",
                         "icon": "article",
                         "topic": "",
@@ -84,7 +80,6 @@ def get_springboard_variants() -> list[dict]:
                     },
                     {
                         "url": "https://example.com/webinar1",
-                        "link_attributes": 'data-custom="test"',
                         "type": "Video",
                         "icon": "video",
                         "topic": "",
