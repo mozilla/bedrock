@@ -1204,6 +1204,12 @@
         "css/base/banners/fundraising-banner.scss"
       ],
       "name": "fundraising-banner"
+    },
+    {
+      "files": [
+        "css/base/banners/foundation-fundraising-banner.scss"
+      ],
+      "name": "foundation-fundraising-banner"
     }
   ],
   "js": [

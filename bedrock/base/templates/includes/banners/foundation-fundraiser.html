@@ -6,7 +6,7 @@
 
 {% extends 'includes/banners/basic.html' %}
 
-{% block banner_id %}foundation-fundraising-banner-eoy2025{% endblock %}
+{% block banner_id %}foundation-fundraising-banner-midyear2026{% endblock %}
 
 {% block banner_class %}c-banner-fundraising{% endblock %}
 
@@ -44,32 +44,16 @@
 
 {% block banner_content %}
   <div class="c-banner-outer">
+    <img class="c-banner-image" src="/media/img/banners/fundraiser/banner-green.png" />
     <div class="c-banner-inner">
       <div class="c-banner-copy">
         <h2 class="c-banner-title">{{ banner_title|safe }}</h2>
         <p class="c-banner-tagline">{{ banner_tagline }}</p>
-        <a id="foundation-fundraising-banner-eoy2025-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="Donate" data-cta-position="banner">
+        <a id="foundationfundraising-banner-midyear2026-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="Donate" data-cta-position="banner">
           {{ banner_button }}
         </a>
       </div>
-      <a href="{{ banner_link }}" aria-labelledby="foundation-fundraising-banner-eoy2025-link">
-      {{ picture(
-        url='img/banners/fundraiser/computer-200.png',
-        sources=[
-          {
-            'media': '(min-width: 688px)',
-            'srcset': {
-              'img/banners/fundraiser/computer-200.png': '200w',
-              'img/banners/fundraiser/computer-400.png': '400w',
-            }
-          },
-        ],
-        optional_attributes={
-          'height': '200',
-          'width': '200',
-          'class': 'c-banner-media'
-        }
-      ) }}
+      <a href="{{ banner_link }}" aria-labelledby="foundation-fundraising-banner-midyear2026-link">
       </a>
     </div>
   </div>
