@@ -6,6 +6,10 @@
 
 {% extends 'includes/banners/basic.html' %}
 
+{% block experiments %}
+  {{ js_bundle('firefox_whatsnew_133_experiment_donation') }}
+{% endblock %}
+
 {% block banner_id %}foundation-fundraising-banner-midyear2026{% endblock %}
 
 {% block banner_class %}c-banner-fundraising{% endblock %}

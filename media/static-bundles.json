@@ -1913,6 +1913,12 @@
     },
     {
       "files": [
+        "js/base/banners/foundation-fundraising-banner-midyear2026-init.es6.js"
+      ],
+      "name": "foundation_fundraising_banner_midyear2026"
+    },
+    {
+      "files": [
         "js/anonym/anonym-toggleable-items.js",
         "js/anonym/anonym-card-list-center.js",
         "js/anonym/anonym-contact-form.js"

@@ -6,4 +6,4 @@
 
 import MozBanner from './mozilla-banner.es6';
 
-MozBanner.init('foundation-fundraising-banner-midyear2026', true);
+MozBanner.init('fundraising-banner-eoy2025', true);

@@ -4,8 +4,15 @@
 
 @use '../../m24/vars/lib' as * with ($image-path: '/media/protocol/img');
 
-.c-banner-fundraising {
+.c-variant-orange {
+    background: rgb(239, 108, 19);
+}
+
+.c-variant-green {
     background: rgb(32, 195, 118);
+}
+
+.c-banner-fundraising {
     color: $color-black;
 
     .c-banner-image {
