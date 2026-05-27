@@ -50,19 +50,7 @@ const applyVariant = () => {
         '#foundation-fundraising-banner-midyear2026-link'
     );
 
-    if (href.indexOf('v=2') !== -1) {
-        bannerImage.setAttribute(
-            'src',
-            '/media/img/banners/fundraiser/banner-green.png'
-        );
-        document
-            .querySelector('.c-banner-fundraising')
-            .classList.add('c-variant-green');
-        donateButton.setAttribute(
-            'href',
-            'https://www.mozillafoundation.org/?form=26MY-PBA'
-        );
-    } else if (href.indexOf('v=3') !== -1) {
+    if (href.indexOf('v=3') !== -1) {
         bannerImage.setAttribute(
             'src',
             '/media/img/banners/fundraiser/banner-orange.png'
@@ -73,6 +61,18 @@ const applyVariant = () => {
         donateButton.setAttribute(
             'href',
             'https://www.mozillafoundation.org/?form=26MY-PBB'
+        );
+    } else {
+        bannerImage.setAttribute(
+            'src',
+            '/media/img/banners/fundraiser/banner-green.png'
+        );
+        document
+            .querySelector('.c-banner-fundraising')
+            .classList.add('c-variant-green');
+        donateButton.setAttribute(
+            'href',
+            'https://www.mozillafoundation.org/?form=26MY-PBA'
         );
     }
 };
