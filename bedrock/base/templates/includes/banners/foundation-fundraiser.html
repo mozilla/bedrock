@@ -15,28 +15,32 @@
 {% block banner_class %}c-banner-fundraising{% endblock %}
 
 {% if LANG =="de" %}
-  {% set banner_title = 'Spenden Sie an die Mozilla Foundation' %}
-  {% set banner_tagline = 'Helfen Sie mit, unser Halbjahres-Ziel bis 30. Juni zu knacken' %}
+  {% set banner_title = 'Spende jetzt an die Mozilla Foundation' %}
+  {% set banner_tagline = 'Hilf uns, unser wichtiges Halbjahres-Spendenziel bis 30. Juni zu knacken. %}
   {% set banner_button = 'Spenden' %}
 {% elif LANG.startswith('es-') %}
   {% set banner_title = 'Dona a la Fundación Mozilla' %}
-  {% set banner_tagline = 'Logremos la meta de recaudación de fondos de mediados de año antes del 30 de junio' %}
+  {% set banner_tagline = 'Es urgente que nos ayudes a alcanzar la meta de nuestra campaña de mediados de año antes del 30 de junio.' %}
   {% set banner_button = 'Donar' %}
 {% elif LANG == "fr" %}
-  {% set banner_title = 'Faites un don à la Fondation Mozilla' %}
-  {% set banner_tagline = 'Aidez-nous à atteindre notre objectif de collecte de fonds d’ici le 30 juin' %}
+  {% set banner_title = 'Donnez à la Fondation Mozilla' %}
+  {% set banner_tagline = 'Aidez-nous à atteindre notre objectif de collecte de fonds d’ici le 30 juin.' %}
   {% set banner_button = 'Je fais un don' %}
+{% elif LANG == "it" %}
+  {% set banner_title = 'Dona a Mozilla Foundation' %}
+  {% set banner_tagline = 'Aiutaci subito a raggiungere entro il 30 giugno il nostro obiettivo semestrale di finanziamento.' %}
+  {% set banner_button = 'Fai una donazione' %}
 {% elif LANG == "pl" %}
   {% set banner_title = 'Wesprzyj Fundację Mozilla' %}
-  {% set banner_tagline = 'Pomóż nam osiągnąć śródroczny cel fundraisingowy do 30 czerwca.' %}
-  {% set banner_button = 'Wpłać datek ' %}
+  {% set banner_tagline = 'Pomóż nam osiągnąć pilny cel śródrocznej kampanii do 30 czerwca.' %}
+  {% set banner_button = 'Wpłać datek' %}
 {% elif LANG.startswith('pt-') %}
-  {% set banner_title = 'Doe para a Fundação Mozilla' %}
-  {% set banner_tagline = 'Ajude-nos a bater nossa meta de arrecadação até 30 de junho' %}
+  {% set banner_title = 'Doe para a Fundação Mozilla %}
+  {% set banner_tagline = 'O prazo está acabando: contamos com você para bater nossa meta até 30 de junho. %}
   {% set banner_button = 'Doar' %}
 {% elif LANG == "nl" %}
   {% set banner_title = 'Doneer aan de Mozilla Foundation' %}
-  {% set banner_tagline = 'Help ons om vóór 30 juni ons halfjaarlijkse fondsenwervingsdoel te bereiken' %}
+  {% set banner_tagline = 'Help ons om vóór 30 juni ons dringende halfjaarlijkse campagnedoel te bereiken.' %}
   {% set banner_button = 'Doneer' %}
 {% else %}
   {% set banner_title = 'Donate to Mozilla Foundation' %}
