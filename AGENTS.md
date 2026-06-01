@@ -4,6 +4,17 @@
 
 Bedrock is a Django monolith: core apps, views, and templates live in `bedrock/`. Shared helpers sit in `lib/`, while automated checks and integration flows reside in `tests/`. Front-end source (Sass, JS, icons) lives under `media/`; webpack entry points are in `assets/`, and collected output is in `static/`. Infrastructure and localization assets are under `docker/`, `docs/`, and `l10n/`—update them when deployment or translation changes land.
 
+## Architecture (big picture)
+
+Bedrock is a Django monolith (~25 apps in `bedrock/`) that serves mozilla.org. A few cross-cutting systems are worth understanding before editing, because they span multiple files:
+
+* **Templating is Jinja2, not Django templates.** Configured via `django_jinja` in `bedrock/settings/base.py` with the environment in `bedrock/jinja2.py`. Page templates extend `bedrock/base/templates/base-protocol.html`.
+* **Localization flows through Fluent.** Source strings live in `l10n/en/*.ftl`; templates pull them with the `ftl('message-id')` global (optional `fallback=` to another message). The machinery is in `lib/l10n_utils/` (`fluent.py` loads resources, `templatetags/fluent.py` exposes the tag). `ftl_file_is_active('name')` gates whether a given `.ftl` file is translated enough to show — this is how alternate template variants are switched on (e.g. the footer renders `footer-refresh.html` only when both `navigation_refresh` and `footer-refresh` are active, otherwise the legacy `footer.html` markup). URL locale prefixes come from `bedrock_i18n_patterns` in `bedrock/urls.py`.
+* **Front-end assets are bundled by webpack from named bundles.** `media/static-bundles.json` is the source of truth: it maps bundle names to lists of Sass/JS files in `media/`. `webpack.config.js` builds those into `assets/`; `webpack.static.config.js` copies images/fonts and the Protocol package. Templates include them with `css_bundle('name')` / `js_bundle('name')` (defined in `bedrock/base/templatetags/helpers.py`), which resolve cache-busted filenames via Django's manifest storage. Adding CSS/JS means editing `static-bundles.json`, not just the template.
+* **Protocol is Mozilla's design system**, consumed as the `@mozilla-protocol/core` npm package. Its components use the `mzp-*` class prefix (`mzp-c-footer`, `mzp-c-button`, …). Bedrock layers overrides in `media/css/protocol/`; shared chrome (footer, nav) lives in `bedrock/base/templates/includes/protocol/`.
+* **Wagtail CMS** powers editor-managed content and lives in `bedrock/cms/` (models, hooks, middleware). CMS pages are served through Wagtail's page hierarchy rather than `urls.py`, and content is translated via the Smartling plugin (`bedrock/cms/wagtail_localize_smartling/`).
+* **Settings** are environment-driven via `everett` in `bedrock/settings/base.py` (`config(...)`), with `test.py` overrides for tests. `lib/` holds shared, app-agnostic helpers.
+
 ## Build, Test, and Development Commands
 
 Review the full setup notes in the platform docs (`https://mozmeao.github.io/platform-docs/`) before first use - cache these if you can.
