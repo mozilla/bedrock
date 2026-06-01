@@ -28,8 +28,6 @@ privacy-faq-mozilla-doesnt-know-as-much-v2 = { -brand-name-mozilla } doesn’t k
 
 privacy-faq-it-seems-like-every-company = It seems like every company on the web is buying and selling my data. You’re probably no different.
 privacy-faq-we-never-sell-your = We never sell your personal data. Unlike other big tech companies that collect and profit off your personal information, we’re built with privacy as the default. We don’t know your age, gender, precise location, or other information Big Tech collects and profits from.
-# Obsolete string (expires: 2025-12-08)
-privacy-faq-mozilla-doesnt-sell-data-about = { -brand-name-mozilla } doesn’t sell data about you, and we don’t buy data about you.
 privacy-faq-wait-so-how-do-you-make-money = Wait, so how do you make money?
 
 # Variables:

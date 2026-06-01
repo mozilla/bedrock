@@ -46,11 +46,7 @@ m24-home-tabstack-desc = Reliably automate web tasks with a simple developer-foc
 
 ## Donate
 
-# Obsolete string (expires 04-12-2025)
-m24-home-donate-to-the = Donate to the { -brand-name-mozilla } non-profit
 m24-home-donate-to-v2 = Donate to { -brand-name-mozilla-foundation }
-# Obsolete string (expires 04-12-2025)
-m24-home-mozilla-is-building = { -brand-name-mozilla } is building a movement to reclaim the internet. Together we can build a future where our privacy is protected, AI is trustworthy and irresponsible tech companies are held accountable. But that’s only possible if we do it together.
 m24-home-mozilla-foundation-is-building-v2 = { -brand-name-mozilla-foundation }  is building a future where technology is powered by people, and open by design. That’s why we fuel community-centered tech through advocacy, education, funding, and innovation — to make sure that the future of tech is good for everyone. But that’s only possible if we do it together.
 m24-home-were-proudly-nonprofit = We’re proudly non-profit. Will you donate to { -brand-name-mozilla } today?
 m24-home-donate = Donate
@@ -89,15 +85,11 @@ m24-home-join-today = Join today
 m24-home-a-double-bottom = A Double Bottom Line for Tech
 m24-home-mark-surman-discusses = Mark Surman discusses how we can build a tech ecosystem with a double bottom line — one that values both mission and money.
 m24-home-agent-platform = Agent Platform
-# Obsolete string (expires 2026-04-05)
-m24-home-any-agent = Any Agent
 m24-home-stop-wiring-tools = Stop wiring tools together and babysitting brittle automations. With the { -brand-name-mozilla-ai-v2 } Agent Platform, you describe your goal, we generate adaptive AI agents that work with your tools and processes.
 
 ## Media Springboard
 
 m24-home-type = Type
-# Obsolete string (expires 2026-03-13)
-m24-home-author = Author
 m24-home-author-v2 = Author(s)
 m24-home-topic = Topic
 m24-home-intro = Intro
@@ -113,8 +105,6 @@ m24-home-headline-you-ai-v2 = You, AI and the internet — what’s really going
 m24-home-mozilla-welcomes-raffi = { -brand-name-mozilla } welcomes Raffi Krikorian as Chief Technology Officer
 m24-home-tech-target = Tech Target
 m24-home-mozilla-ai-ceo = { -brand-name-mozilla-ai-v2 } CEO talks open source AI advantages
-# Obsolete string (expires 2026-03-01)
-m24-home-introducing-thundermail-and = Introducing Thundermail and Thunderbird Pro
 m24-home-introducing-thundermail-and-v2 = Introducing { -brand-name-thundermail } and { -brand-name-thunderbird-pro }
 m24-home-what-comes-next = What comes next in tech is a choice. Choose with us.
 m24-home-a-good-moment = ‘A good moment in time for us’: { -brand-name-firefox } head on AI browsers and what’s next for the web
@@ -144,13 +134,8 @@ m24-home-state-of-mozilla = State of { -brand-name-mozilla }
 m24-home-mozilla-is-reinventing-itself = { -brand-name-mozilla } is reinventing itself, diversifying around a constellation of organizations, reimagining advertising and creating an open source AI ecosystem. Read about it in the State of { -brand-name-mozilla } 2024 Report.
 
 # Variables
-# Obsolete string (expires: 2026-03-27)
-#   $year - year of report
-m24-home-mozilla-is-reinventing-itself-v2 = { -brand-name-mozilla } is reinventing itself, diversifying around a constellation of organizations, reimagining advertising and creating an open source AI ecosystem. Read about it in the State of { -brand-name-mozilla } { $year } Report.
-# Variables
 #   $year - year of report
 m24-home-mozilla-is-reinventing-itself-v3 = We’re at a crossroads for the future of technology, with Big AI companies consolidating power. The { $year } State of { -brand-name-mozilla } report is an invitation to choose a different future together.
-# Obsolete string (expires: 2026-03-27)
 # Used as an accessible text alternative for an image
 m24-home-state-of-mozilla-alt = Abstract pixel art in shades of green, orange and pink
 # Used as an accessible text alternative for an image
