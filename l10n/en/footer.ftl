@@ -46,5 +46,5 @@ footer-follow-firefox = Follow @{ -brand-name-firefox }
 footer-about-this-site = About this site
 footer-advertise = Advertise with { -brand-name-mozilla }
 
-# Obsolete string (expires 01-08-2026)
+# Obsolete string (expires 2026-08-01)
 footer-visit-mozilla-corporations = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, the <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
