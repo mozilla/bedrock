@@ -6,10 +6,6 @@
 
 {% extends 'includes/banners/basic.html' %}
 
-{% block experiments %}
-  {{ js_bundle('firefox_whatsnew_133_experiment_donation') }}
-{% endblock %}
-
 {% block banner_id %}foundation-fundraising-banner-midyear2026{% endblock %}
 
 {% block banner_class %}c-banner-fundraising{% endblock %}
@@ -48,7 +44,7 @@
   {% set banner_button = 'Donate' %}
 {% endif %}
 
-{% set banner_link = 'https://www.mozillafoundation.org/?form=eoy25-fp-moco-banner' %}
+{% set banner_link = 'https://www.mozillafoundation.org/en/?form=26MY-PBA %}
 
 {% block banner_content %}
   <div class="c-banner-outer">
