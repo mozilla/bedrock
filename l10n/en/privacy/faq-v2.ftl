@@ -30,11 +30,6 @@ privacy-faq-v2-mozilla-does-not-know = { -brand-name-mozilla } doesn’t know as
 privacy-faq-v2-it-seems-like = It seems like every company on the web is buying and selling my data. You’re probably no different.
 
 privacy-faq-v2-we-never-sell-your = We never sell your personal data. Unlike other big tech companies that collect and profit off your personal information, we’re built with privacy as the default. We don’t know your age, gender, precise location, or other information Big Tech collects and profits from.
-# Obsolete string (expires: 2025-12-08)
-# Variables:
-#   $attrs (url) - link to https://support.mozilla.org/kb/ohttp-explained
-privacy-faq-v2-mozilla-does-not-sell = { -brand-name-mozilla } doesn’t sell data about you (in the way that most people think about “selling data”), and we don’t buy data about you. Since we strive for transparency, and the LEGAL definition of “sale of data” is extremely broad in some places, we’ve had to step back from making the definitive statements you know and love. We still put a lot of work into making sure that the data that we share with our partners (which we need to do to make { -brand-name-firefox } commercially viable) is stripped of any identifying information, or shared only in the aggregate, or is put through our privacy preserving technologies (like <a { $attrs }>OHTTP</a>).
-
 privacy-faq-v2-wait-so-how = Wait, so how do you make money?
 
 # Variables:
