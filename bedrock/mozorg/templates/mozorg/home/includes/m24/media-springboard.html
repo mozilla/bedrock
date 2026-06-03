@@ -20,7 +20,7 @@
     </li>
     {{ springboard_item(
       link_url='https://blog.mozilla.org/en/mozilla/leadership/mozilla-welcomes-raffi-krikorian-chief-technology-officer/' + utm_params,
-      link_attributes='data-link-text="Mozilla welcomes Raffi Krikorian as Chief Technology Officer" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-mozilla-welcomes-raffi'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-news'),
@@ -29,7 +29,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.techtarget.com/searchenterpriseai/news/366629900/Mozillaai-CEO-Dickerson-talks-open-source-AI-advantages" + utm_params,
-      link_attributes='data-link-text="Mozilla.ai CEO talks open source AI advantages" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-mozilla-ai-ceo'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-open-source-ai'),
@@ -38,7 +38,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://blog.thunderbird.net/2025/04/thundermail-and-thunderbird-pro-services/" + utm_params,
-      link_attributes='data-link-text="Introducing Thundermail and Thunderbird Pro" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-introducing-thundermail-and-v2', fallback='m24-home-introducing-thundermail-and'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-products'),
@@ -47,7 +47,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.youtube.com/watch?v=HiZGWrN1zrU" + utm_params,
-      link_attributes='data-link-text="What comes next in tech is a choice. Choose with us." data-link-position="springboard"',
+      link_attributes=ftl('m24-home-what-comes-next'),
       type=ftl('m24-home-tag-video'),
       type_icon='video',
       topic=ftl('m24-home-topic-ps'),
@@ -56,7 +56,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.theguardian.com/technology/2025/oct/28/firefox-ai-internet-anthony-enzor-demeo" + utm_params,
-      link_attributes='data-link-text="A good moment in time for us" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-a-good-moment'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-news'),
@@ -65,7 +65,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.fastcompany.com/91289057/mozilla-browser-not-backed-by-billionaires" + utm_params,
-      link_attributes='data-link-text="Mozilla’s new message" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-mozillas-new-message'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-news'),
@@ -74,7 +74,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://blog.mozilla.org/mozilla/rewiring-mozilla-ai-and-web/" + utm_params,
-      link_attributes='data-link-text="Rewiring Mozilla: Doing for AI what we did for the web" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-rewiring-mozilla'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-news'),
@@ -83,7 +83,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.axios.com/2025/11/14/mozilla-ai-age" + utm_params,
-      link_attributes='data-link-text="Interview with Mark Surman: How Mozilla is adapting to the AI age" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-interview-with-mark'),
       type=ftl('m24-home-tag-article'),
       type_icon='article',
       topic=ftl('m24-home-topic-news'),
@@ -92,7 +92,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.youtube.com/watch?v=IY2EsEtajfY",
-      link_attributes='data-link-text="Women In Product conversation: Adding GenAI Without Losing the Plot" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-women-in-product'),
       type=ftl('m24-home-tag-video'),
       type_icon='video',
       topic=ftl('m24-home-topic-ai'),
@@ -101,7 +101,7 @@
     ) }}
     {{ springboard_item(
       link_url="https://www.youtube.com/watch?v=eBjqeLg1csI",
-      link_attributes='data-link-text="Scaling Open Source AI: Mark Surman & Tim Bradshaw" data-link-position="springboard"',
+      link_attributes=ftl('m24-home-scaling-open-source'),
       type=ftl('m24-home-tag-video'),
       type_icon='video',
       topic=ftl('m24-home-topic-ai'),

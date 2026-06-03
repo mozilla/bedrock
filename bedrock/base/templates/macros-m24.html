@@ -68,7 +68,7 @@
   Macro Parameters:
     author: Author of the media.
     class: String providing modifier class(es) to the item.
-    link_attributes: A generic parameter to add any extra attributes to the CTA link, such as target, rel, or data attributes for GA tracking. Note that the quotes will pass through unescaped.
+    link_attributes: Text used as the CTA link's data-link-text attribute for GA tracking (usually the item's preview). The value is escaped, so it is safe for untrusted/translated content.
     link_url (Required): String or url helper function provides href value for item.
     preview: Blurb / summary of the media. (usually a translation id wrapped in ftl function).
     topic: One or two word topic of the item. Perhaps one of the things the item is "tagged" with if it's a blog post. (usually a translation id wrapped in ftl function).
