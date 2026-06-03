@@ -38,7 +38,7 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1",
+    "concurrently": "^10.0.3",
     "dotenv-webpack": "^9.0.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
