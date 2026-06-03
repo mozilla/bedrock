@@ -23,7 +23,7 @@
 
     {% for item in value.springboard_items %}
       {{ springboard_item(
-      link_url=item.url,
+      link_url=item.url|add_utm_parameters,
       link_attributes=item.preview,
       type=item.type,
       type_icon=item.icon,
