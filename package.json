@@ -22,7 +22,7 @@
     "embla-carousel": "^8.6.0",
     "mini-css-extract-plugin": "^2.10.2",
     "sass": "1.91.0",
-    "sass-loader": "^16.0.7",
+    "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
     "webpack": "^5.107.2",
