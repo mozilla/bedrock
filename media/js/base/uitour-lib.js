@@ -340,4 +340,15 @@ if (typeof window.Mozilla === 'undefined') {
     Mozilla.UITour.closeTab = function () {
         _sendEvent('closeTab');
     };
+
+    /**
+     * Pin Firefox to the taskbar (Windows) or Dock (macOS).
+     * getConfiguration('appinfo') should first be used to check data.needsPin
+     * before calling this.
+     *
+     * @since 152
+     */
+    Mozilla.UITour.pinToTaskbar = function () {
+        _sendEvent('pinToTaskbar');
+    };
 })();
