@@ -1,0 +1,63 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends 'includes/banners/basic.html' %}
+
+{% block banner_id %}foundation-fundraising-banner-midyear2026{% endblock %}
+
+{% block banner_class %}c-banner-fundraising{% endblock %}
+
+{% if LANG =="de" %}
+  {% set banner_title = 'Spende jetzt an die Mozilla Foundation' %}
+  {% set banner_tagline = 'Hilf uns, unser wichtiges Halbjahres-Spendenziel bis 30. Juni zu knacken.' %}
+  {% set banner_button = 'Spenden' %}
+{% elif LANG.startswith('es-') %}
+  {% set banner_title = 'Dona a la Fundación Mozilla' %}
+  {% set banner_tagline = 'Es urgente que nos ayudes a alcanzar la meta de nuestra campaña de mediados de año antes del 30 de junio.' %}
+  {% set banner_button = 'Donar' %}
+{% elif LANG == "fr" %}
+  {% set banner_title = 'Donnez à la Fondation Mozilla' %}
+  {% set banner_tagline = 'Aidez-nous à atteindre notre objectif de collecte de fonds d’ici le 30 juin.' %}
+  {% set banner_button = 'Je fais un don' %}
+{% elif LANG == "it" %}
+  {% set banner_title = 'Dona a Mozilla Foundation' %}
+  {% set banner_tagline = 'Aiutaci subito a raggiungere entro il 30 giugno il nostro obiettivo semestrale di finanziamento.' %}
+  {% set banner_button = 'Fai una donazione' %}
+{% elif LANG == "pl" %}
+  {% set banner_title = 'Wesprzyj Fundację Mozilla' %}
+  {% set banner_tagline = 'Pomóż nam osiągnąć pilny cel śródrocznej kampanii do 30 czerwca.' %}
+  {% set banner_button = 'Wpłać datek' %}
+{% elif LANG.startswith('pt-') %}
+  {% set banner_title = 'Doe para a Fundação Mozilla' %}
+  {% set banner_tagline = 'O prazo está acabando: contamos com você para bater nossa meta até 30 de junho.' %}
+  {% set banner_button = 'Doar' %}
+{% elif LANG == "nl" %}
+  {% set banner_title = 'Doneer aan de Mozilla Foundation' %}
+  {% set banner_tagline = 'Help ons om vóór 30 juni ons dringende halfjaarlijkse campagnedoel te bereiken.' %}
+  {% set banner_button = 'Doneer' %}
+{% else %}
+  {% set banner_title = 'Donate to Mozilla Foundation' %}
+  {% set banner_tagline = 'Help reach our urgent mid-year campaign goal by June 30th.' %}
+  {% set banner_button = 'Donate' %}
+{% endif %}
+
+{% set banner_link = 'https://www.mozillafoundation.org/en/?form=26MY-PBA' %}
+
+{% block banner_content %}
+  <div class="c-banner-outer">
+    <img class="c-banner-image" src="/media/img/banners/fundraiser/banner-green.png" />
+    <div class="c-banner-inner">
+      <div class="c-banner-copy">
+        <h2 class="c-banner-title">{{ banner_title }}</h2>
+        <p class="c-banner-tagline">{{ banner_tagline }}</p>
+        <a id="foundation-fundraising-banner-midyear2026-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" data-cta-text="Donate" data-cta-position="banner">
+          {{ banner_button }}
+        </a>
+      </div>
+      </a>
+    </div>
+  </div>
+{% endblock %}
