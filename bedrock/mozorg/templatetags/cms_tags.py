@@ -14,7 +14,8 @@ from jinja2 import pass_context
 def add_utm_parameters(context: dict, value: str) -> str:
     """
     Appends UTM parameters to URLs pointing to *.mozilla.org,
-    *.mozillafoundation.org, and *.firefox.com (except www.mozilla.org itself).
+    *.mozillafoundation.org, *.firefox.com, *.mozilla.ai, *.mozilla.vc,
+    *.thunderbird.net, and *.mozilla.com (except www.mozilla.org itself).
     """
     utm_parameters = context.get("utm_parameters", {})
     if utm_parameters and value:
@@ -22,7 +23,7 @@ def add_utm_parameters(context: dict, value: str) -> str:
         host = parsed_url.netloc if value.startswith(("http://", "https://", "//")) else ""
 
         pattern = re.compile(
-            r"^(\w+\.)?((mozilla\.org)|(mozillafoundation\.org)|(firefox\.com))",
+            r"^(\w+\.)?((mozilla\.org)|(mozillafoundation\.org)|(firefox\.com)|(mozilla\.ai)|(mozilla\.vc)|(thunderbird\.net)|(mozilla\.com))",
             re.IGNORECASE,
         )
         # Exclude www.mozilla.org (the current site) from UTM modification

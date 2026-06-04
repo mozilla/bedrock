@@ -52,6 +52,44 @@ class TestAddUtmParameters:
         assert "utm_medium=referral" in result
         assert "utm_campaign=homepage" in result
 
+    def test_adds_utm_to_mozilla_ai(self, utm_context):
+        """Should add UTM parameters to mozilla.ai URLs."""
+        url = "https://www.mozilla.ai/some-page/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+        assert "utm_medium=referral" in result
+        assert "utm_campaign=homepage" in result
+
+    def test_adds_utm_to_mozilla_vc(self, utm_context):
+        """Should add UTM parameters to mozilla.vc URLs."""
+        url = "https://www.mozilla.vc/some-page/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+        assert "utm_medium=referral" in result
+        assert "utm_campaign=homepage" in result
+
+    def test_adds_utm_to_thunderbird_net(self, utm_context):
+        """Should add UTM parameters to thunderbird.net URLs."""
+        url = "https://www.thunderbird.net/en-US/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+        assert "utm_medium=referral" in result
+        assert "utm_campaign=homepage" in result
+
+    def test_adds_utm_to_mozilla_com(self, utm_context):
+        """Should add UTM parameters to mozilla.com URLs."""
+        url = "https://www.mozilla.com/some-page/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+        assert "utm_medium=referral" in result
+        assert "utm_campaign=homepage" in result
+
+    def test_exclusion_list_only_applies_to_mozilla_org(self, utm_context):
+        """Only bare mozilla.org is excluded; bare versions of other allowed domains still get UTMs."""
+        url = "https://mozilla.ai/some-page/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+
     def test_excludes_www_mozilla_org(self, utm_context):
         """Should NOT add UTM parameters to www.mozilla.org (same site)."""
         url = "https://www.mozilla.org/firefox/"
