@@ -31,7 +31,7 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.11.0
-justhtml>=1.18.0
+justhtml==1.18.0  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
 lxml==6.1.0  # Needed for BeautifulSoup.
 Markdown==3.10.2
 markus[datadog]==5.0.0
@@ -54,7 +54,7 @@ wagtail-localize==1.13
 wagtail-link-block==1.2
 wagtail-thumbnail-choice-block==0.2.0
 Wand==0.7.0  # For animated GIF support
-Wagtail==7.3.1
+Wagtail==7.3.2
 whitenoise==6.12.0
 wagtail-localize-dashboard==0.5.0
 wagtail-localize-intentional-blanks==0.3.0
