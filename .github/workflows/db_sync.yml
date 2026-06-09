@@ -1,0 +1,327 @@
+name: Database Sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: "Source environment"
+        type: choice
+        options:
+          - prod
+          - stage
+          - dev
+        default: prod
+      target:
+        description: "Target environment (never prod)"
+        type: choice
+        options:
+          - dev
+          - stage
+        default: dev
+      branches_in_sync:
+        description: "I confirm that the source and target branches are on the same commit"
+        type: boolean
+        required: true
+        default: false
+
+env:
+  BUCKET: ${{ secrets.GCP_DB_SYNC_BUCKET }}
+  DATABASE: ${{ secrets.GCP_DB_SYNC_TARGET_DATABASE }}
+
+permissions: {}
+
+jobs:
+  sync:
+    name: "Sync ${{ inputs.source }} → ${{ inputs.target }}"
+    runs-on: ubuntu-latest
+    if: github.repository == 'mozilla/bedrock'
+    environment: db-sync
+    concurrency:
+      group: db-sync-${{ inputs.target }}
+      cancel-in-progress: false
+    permissions:
+      id-token: write # Required for Workload Identity Federation with GCP
+    steps:
+      - name: Validate inputs
+        env:
+          SOURCE: ${{ inputs.source }}
+          TARGET: ${{ inputs.target }}
+          BRANCHES_IN_SYNC: ${{ inputs.branches_in_sync }}
+        run: |
+          # Reject prod as target (defense-in-depth against API triggers)
+          if [ "$TARGET" = "prod" ]; then
+            echo "::error::Prod cannot be a target"
+            exit 1
+          fi
+          # Reject unknown values
+          case "$SOURCE" in prod|stage|dev) ;; *)
+            echo "::error::Unknown source: $SOURCE"
+            exit 1
+          esac
+          case "$TARGET" in dev|stage) ;; *)
+            echo "::error::Unknown target: $TARGET"
+            exit 1
+          esac
+          # Reject same source and target
+          if [ "$SOURCE" = "$TARGET" ]; then
+            echo "::error::Source and target cannot be the same"
+            exit 1
+          fi
+          # Require confirmation that branches are on the same commit
+          if [ "$BRANCHES_IN_SYNC" != "true" ]; then
+            echo "::error::Please confirm that the source and target branches are on the same commit before running a sync"
+            exit 1
+          fi
+
+      - name: Resolve source environment
+        id: source
+        env:
+          SOURCE: ${{ inputs.source }}
+          PROD_PROJECT: ${{ secrets.GCP_PROJECT_ID_PROD }}
+          NONPROD_PROJECT: ${{ secrets.GCP_PROJECT_ID_NONPROD }}
+        run: |
+          case "$SOURCE" in
+            prod)
+              echo "project=$PROD_PROJECT" >> "$GITHUB_OUTPUT"
+              echo "instance=bedrock-prod-prod-v1" >> "$GITHUB_OUTPUT"
+              echo "sa=db-sync@$PROD_PROJECT.iam.gserviceaccount.com" >> "$GITHUB_OUTPUT"
+              ;;
+            stage)
+              echo "project=$NONPROD_PROJECT" >> "$GITHUB_OUTPUT"
+              echo "instance=bedrock-nonprod-stage-v1" >> "$GITHUB_OUTPUT"
+              echo "sa=db-sync@$NONPROD_PROJECT.iam.gserviceaccount.com" >> "$GITHUB_OUTPUT"
+              ;;
+            dev)
+              echo "project=$NONPROD_PROJECT" >> "$GITHUB_OUTPUT"
+              echo "instance=bedrock-nonprod-dev-v1" >> "$GITHUB_OUTPUT"
+              echo "sa=db-sync@$NONPROD_PROJECT.iam.gserviceaccount.com" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
+
+      - name: Resolve target environment
+        id: target
+        env:
+          TARGET: ${{ inputs.target }}
+          NONPROD_PROJECT: ${{ secrets.GCP_PROJECT_ID_NONPROD }}
+          STAGE_REPLICAS: ${{ secrets.GCP_STAGE_REPLICA_INSTANCES }}
+          DEV_REPLICAS: ${{ secrets.GCP_DEV_REPLICA_INSTANCES }}
+        run: |
+          case "$TARGET" in
+            stage)
+              echo "project=$NONPROD_PROJECT" >> "$GITHUB_OUTPUT"
+              echo "instance=bedrock-nonprod-stage-v1" >> "$GITHUB_OUTPUT"
+              echo "sa=db-sync@$NONPROD_PROJECT.iam.gserviceaccount.com" >> "$GITHUB_OUTPUT"
+              echo "replicas=$STAGE_REPLICAS" >> "$GITHUB_OUTPUT"
+              ;;
+            dev)
+              echo "project=$NONPROD_PROJECT" >> "$GITHUB_OUTPUT"
+              echo "instance=bedrock-nonprod-dev-v1" >> "$GITHUB_OUTPUT"
+              echo "sa=db-sync@$NONPROD_PROJECT.iam.gserviceaccount.com" >> "$GITHUB_OUTPUT"
+              echo "replicas=$DEV_REPLICAS" >> "$GITHUB_OUTPUT"
+              ;;
+          esac
+
+      # ── Export from source ──
+
+      - name: Auth to source project
+        id: auth-source
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # v2.1.13
+        with:
+          workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ steps.source.outputs.sa }}
+
+      - uses: google-github-actions/setup-gcloud@e427ad8a34f8676edf47cf7d7925499adf3eb74f # v2.2.1
+
+      - name: Export database from source
+        env:
+          INSTANCE: ${{ steps.source.outputs.instance }}
+          PROJECT: ${{ steps.source.outputs.project }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          gcloud sql export sql "$INSTANCE" \
+            "gs://$BUCKET/db-sync-$RUN_ID.sql.gz" \
+            --database="$DATABASE" \
+            --project="$PROJECT" \
+            --offload
+          echo "Export complete"
+
+      - name: Upload terminate-connections SQL to bucket
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          # Uploaded while still authenticated as the source SA, which has
+          # objectUser on the sync bucket. The nonprod SA (auth-target) does not.
+          # REVOKE CONNECT prevents new connections forming between termination
+          # and the database delete, closing the race window.
+          printf 'REVOKE CONNECT ON DATABASE "%s" FROM PUBLIC;\nSELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '"'"'%s'"'"' AND pid <> pg_backend_pid();\n' \
+            "$DATABASE" "$DATABASE" \
+            > /tmp/terminate-connections.sql
+          gcloud storage cp /tmp/terminate-connections.sql "gs://$BUCKET/terminate-connections-$RUN_ID.sql"
+
+      # ── Import to target ──
+
+      - name: Auth to target project
+        id: auth-target
+        if: steps.source.outputs.project != steps.target.outputs.project
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # v2.1.13
+        with:
+          workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ steps.target.outputs.sa }}
+
+      - name: Backup target database
+        env:
+          INSTANCE: ${{ steps.target.outputs.instance }}
+          PROJECT: ${{ steps.target.outputs.project }}
+        run: |
+          gcloud sql backups create \
+            --instance="$INSTANCE" \
+            --project="$PROJECT" \
+            --description="db-sync pre-import backup (run $GITHUB_RUN_ID)"
+          echo "Backup complete — restorable via console or gcloud if import fails"
+
+      - name: Stop replication on target replicas
+        env:
+          REPLICAS: ${{ steps.target.outputs.replicas }}
+          PROJECT: ${{ steps.target.outputs.project }}
+        run: |
+          IFS=',' read -ra REPLICA_LIST <<< "$REPLICAS"
+          for replica in "${REPLICA_LIST[@]}"; do
+            replica="${replica// /}"
+            echo "Stopping replication on $replica..."
+            gcloud sql instances patch "$replica" \
+              --no-enable-database-replication \
+              --project="$PROJECT" \
+              --quiet
+          done
+
+      - name: Terminate connections to target database
+        env:
+          INSTANCE: ${{ steps.target.outputs.instance }}
+          PROJECT: ${{ steps.target.outputs.project }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          # Revokes new connections and terminates existing ones so that the
+          # subsequent gcloud sql databases delete succeeds. Runs as postgres
+          # against the postgres system database (not bedrock-cms) so it
+          # can operate on bedrock-cms connections from the outside.
+          gcloud sql import sql "$INSTANCE" \
+            "gs://$BUCKET/terminate-connections-$RUN_ID.sql" \
+            --database=postgres \
+            --user=postgres \
+            --project="$PROJECT"
+
+      - name: Drop target database
+        env:
+          INSTANCE: ${{ steps.target.outputs.instance }}
+          PROJECT: ${{ steps.target.outputs.project }}
+        run: |
+          gcloud sql databases delete "$DATABASE" \
+            --instance="$INSTANCE" \
+            --project="$PROJECT" \
+            --quiet
+
+      - name: Recreate target database
+        env:
+          INSTANCE: ${{ steps.target.outputs.instance }}
+          PROJECT: ${{ steps.target.outputs.project }}
+        run: |
+          gcloud sql databases create "$DATABASE" \
+            --instance="$INSTANCE" \
+            --project="$PROJECT"
+
+      - name: Import database to target
+        env:
+          INSTANCE: ${{ steps.target.outputs.instance }}
+          PROJECT: ${{ steps.target.outputs.project }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          gcloud sql import sql "$INSTANCE" \
+            "gs://$BUCKET/db-sync-$RUN_ID.sql.gz" \
+            --database="$DATABASE" \
+            --project="$PROJECT" \
+            --user=bedrock_rw_user
+
+      - name: Restart replication on target replicas
+        if: always()
+        env:
+          REPLICAS: ${{ steps.target.outputs.replicas }}
+          PROJECT: ${{ steps.target.outputs.project }}
+        run: |
+          IFS=',' read -ra REPLICA_LIST <<< "$REPLICAS"
+          for replica in "${REPLICA_LIST[@]}"; do
+            replica="${replica// /}"
+            echo "Restarting replication on $replica..."
+            gcloud sql instances patch "$replica" \
+              --enable-database-replication \
+              --project="$PROJECT" \
+              --quiet
+          done
+
+      # ── Sync CMS media bucket ──
+
+      - name: Resolve CMS bucket names
+        id: cms
+        env:
+          SOURCE: ${{ inputs.source }}
+          TARGET: ${{ inputs.target }}
+        run: |
+          case "$SOURCE" in
+            prod)  echo "source=bedrock-prod-prod-cms-media" >> "$GITHUB_OUTPUT" ;;
+            stage) echo "source=bedrock-nonprod-stage-cms-media" >> "$GITHUB_OUTPUT" ;;
+            dev)   echo "source=bedrock-nonprod-dev-cms-media" >> "$GITHUB_OUTPUT" ;;
+          esac
+          case "$TARGET" in
+            stage) echo "target=bedrock-nonprod-stage-cms-media" >> "$GITHUB_OUTPUT" ;;
+            dev)   echo "target=bedrock-nonprod-dev-cms-media" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      - name: Sync CMS media from source to target
+        env:
+          CMS_SOURCE: ${{ steps.cms.outputs.source }}
+          CMS_TARGET: ${{ steps.cms.outputs.target }}
+        run: |
+          gcloud storage rsync \
+            "gs://$CMS_SOURCE" \
+            "gs://$CMS_TARGET" \
+            --recursive
+
+      - name: Re-auth to source project for cleanup
+        if: always()
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # v2.1.13
+        with:
+          workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ steps.source.outputs.sa }}
+
+      - name: Delete export files from bucket
+        if: always()
+        env:
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          gcloud storage rm "gs://$BUCKET/db-sync-$RUN_ID.sql.gz" || true
+          gcloud storage rm "gs://$BUCKET/terminate-connections-$RUN_ID.sql" || true
+
+      - name: Summary
+        env:
+          SOURCE: ${{ inputs.source }}
+          TARGET: ${{ inputs.target }}
+          SOURCE_INSTANCE: ${{ steps.source.outputs.instance }}
+          TARGET_INSTANCE: ${{ steps.target.outputs.instance }}
+          CMS_SOURCE: ${{ steps.cms.outputs.source }}
+          CMS_TARGET: ${{ steps.cms.outputs.target }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          echo "### Database Sync Complete" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "| | |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Source** | $SOURCE (\`$SOURCE_INSTANCE\`) |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Target** | $TARGET (\`$TARGET_INSTANCE\`) |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Database** | \`$DATABASE\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **CMS media** | \`$CMS_SOURCE\` → \`$CMS_TARGET\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| **Run ID** | \`$RUN_ID\` |" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "> **Note:** The target database is dropped and recreated before import — all pre-existing target data is replaced." >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### Manual follow-up required" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "See https://mozilla-hub.atlassian.net/wiki/spaces/EN/pages/2436891246/#IMPORTANT-Post-sync-manual-steps for details of what to do next" >> "$GITHUB_STEP_SUMMARY"
