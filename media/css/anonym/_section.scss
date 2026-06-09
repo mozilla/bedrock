@@ -348,7 +348,7 @@
         }
     }
 
-    &:not([hidden]):not(.mzan-half-grid) + &:not([hidden]):not(.mzan-half-grid) {
+    &:not([hidden], .mzan-half-grid) + &:not([hidden], .mzan-half-grid) {
         &::before {
             content: none;
         }
