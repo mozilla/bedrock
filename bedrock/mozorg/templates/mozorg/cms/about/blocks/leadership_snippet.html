@@ -1,0 +1,48 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div {% if snippet.biography|striptags|trim %}id="{{ snippet.name|slugify }}" {% endif %} class="vcard{% if snippet.biography|striptags|trim %} has-bio{% endif %}" itemscope itemtype="http://schema.org/Person">
+  <figure class="headshot">
+    {% if snippet.image %}
+      {# Empty alt: the person's name is in the adjacent figcaption and people kept adding it as the alt text which is not good for a11y #}
+      {{ srcset_image(snippet.image, "width-{200,400}", class="photo", sizes="160px", alt="") }}
+    {% endif %}
+    <figcaption>
+      <h3 class="fn" itemprop="name">{{ snippet.name }}</h3>
+    </figcaption>
+  </figure>
+
+  <div class="person-info">
+    {% if job_title_override %}
+      <p class="title" itemprop="jobTitle">{{ job_title_override }}</p>
+    {% endif %}
+
+    {% if snippet.biography %}
+      {% if snippet.external_links %}
+        <ul class="elsewhere">
+          {% for link in snippet.external_links %}
+            {% if link.value.url %}
+              <li><a class="{{ link.value.type }}" href="{{ link.value.url }}">{{ link.value.text }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <ul class="utility">
+        {% if snippet.press_photos_link %}
+          <li><a class="file" href="{{ snippet.press_photos_link }}">Download photos</a></li>
+        {% endif %}
+        <li><a class="link" href="{{ fullpageurl(page) }}#{{ snippet.name|slugify }}">Link to this bio</a></li>
+      </ul>
+    {% endif %}
+  </div>
+
+  {% if snippet.biography %}
+    <div class="person-bio mzp-u-rich-text">
+      {{ snippet.biography|richtext }}
+    </div>
+  {% endif %}
+</div>

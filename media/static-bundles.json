@@ -698,6 +698,12 @@
     },
     {
       "files": [
+        "css/mozorg/org-leadership.scss"
+      ],
+      "name": "about-org-leadership"
+    },
+    {
+      "files": [
         "css/mozorg/moss.scss"
       ],
       "name": "moss"
