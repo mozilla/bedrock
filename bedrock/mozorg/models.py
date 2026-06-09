@@ -318,6 +318,7 @@ class LeadershipProfileSnippet(TranslatableMixin):
     class Meta(TranslatableMixin.Meta):
         verbose_name = "Leadership Profile"
         verbose_name_plural = "Leadership Profiles"
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
