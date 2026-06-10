@@ -1,0 +1,158 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}{{ ftl('manifesto-the-mozilla-manifesto') }}{% endblock %}
+{% block page_title_suffix %}{% endblock %}
+
+{% block page_desc %}
+  {{ ftl('manifesto-these-are-the-principles') }}
+{% endblock %}
+
+{% block body_id %}manifesto{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('m24-root') }}
+  {{ css_bundle('m24-base') }}
+  {{ css_bundle('m24-manifesto') }}
+{% endblock %}
+
+{% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=manifesto' %}
+
+{% set principle_text_01 = ftl('manifesto-the-internet-is-an-integral') %}
+{% set principle_text_02 = ftl('manifesto-the-internet-is-a-global') %}
+{% set principle_text_03 = ftl('manifesto-the-internet-must-enrich') %}
+{% set principle_text_04 = ftl('manifesto-individuals-security-and') %}
+{% set principle_text_05 = ftl('manifesto-individuals-must-have') %}
+{% set principle_text_06 = ftl('manifesto-the-effectiveness-of-the') %}
+{% set principle_text_07 = ftl('manifesto-free-and-open-source-software') %}
+{% set principle_text_08 = ftl('manifesto-details-transparent-community') %}
+{% set principle_text_09 = ftl('manifesto-commercial-involvement') %}
+{% set principle_text_10 = ftl('manifesto-magnifying-the-public') %}
+
+
+{% block content %}
+<main>
+  <header class="m24-c-content">
+    <div class="m24-c-intro">
+      <h1 class="m24-c-intro-title">{{ ftl('manifesto-the-mozilla-manifesto') }}</h1>
+      {% if ftl_has_messages('manifesto-written-in-2007') %}
+      <p>{{ ftl('manifesto-written-in-2007') }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  <section class="m24-c-showcase m24-t-alt">
+    <div class="m24-c-content">
+      <div class="m24-c-showcase-text m24-l-two-columns">
+        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-details-introduction') }}</h2>
+        <div class="m24-c-showcase-body m24-t-body-sm">
+          <p>{{ ftl('manifesto-details-the-internet-is-becoming') }}</p>
+          <p>{{ ftl('manifesto-details-the-mozilla-project-global') }}</p>
+          <p>{{ ftl('manifesto-details-the-mozilla-project-community') }}</p>
+          <p>{{ ftl('manifesto-details-as-a-result-of') }}</p>
+          <p>{{ ftl('manifesto-details-the-goals-for') }}</p>
+          <ol class="mzp-u-list-styled">
+            <li>{{ ftl('manifesto-details-articulate-a-vision-v2') }}</li>
+            <li>{{ ftl('manifesto-details-speak-to-people') }}</li>
+            <li>{{ ftl('manifesto-details-make-mozilla-contributors') }}</li>
+            <li>{{ ftl('manifesto-details-provide-a-framework') }}</li>
+          </ol>
+          <p>{{ ftl('manifesto-details-these-principles-v2') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m24-t-dark">
+    <div class="m24-c-content">
+      <div class="m24-c-intro">
+          <h2 class="m24-c-intro-title">{{ ftl('manifesto-details-principles') }}</h2>
+      </div>
+      <ol class="c-points">
+        <li id="principles-01">{{ principle_text_01 }}</li>
+        <li id="principles-02">{{ principle_text_02 }}</li>
+        <li id="principles-03">{{ principle_text_03 }}</li>
+        <li id="principles-04">{{ principle_text_04 }}</li>
+        <li id="principles-05">{{ principle_text_05 }}</li>
+        <li id="principles-06">{{ principle_text_06 }}</li>
+        <li id="principles-07">{{ principle_text_07 }}</li>
+        <li id="principles-08">{{ principle_text_08 }}</li>
+        <li id="principles-09">{{ principle_text_09 }}</li>
+        <li id="principles-10">{{ principle_text_10 }}</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="m24-c-showcase m24-t-alt">
+    <div class="m24-c-content">
+      <div class="m24-c-showcase-text m24-l-two-columns">
+        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
+        <div class="m24-c-showcase-body m24-t-body-sm">
+          <p>{{ ftl('manifesto-the-open-global-internet') }}</p>
+          <p>{{ ftl('manifesto-over-the-last-decade-we') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m24-t-dark">
+    <div class="m24-c-content">
+      <div class="m24-c-intro">
+        <h2 class="m24-c-intro-title">Our Commitments</h2>
+      </div>
+      <ol class="c-points">
+        <li>{{ ftl('manifesto-we-are-committed-to-people') }}</li>
+        <li>{{ ftl('manifesto-we-are-committed-to-discourse') }}</li>
+        <li>{{ ftl('manifesto-we-are-committed-to-thinking') }}</li>
+        <li>{{ ftl('manifesto-we-are-committed-to-diverse') }}</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="m24-c-showcase">
+    <div class="m24-c-content">
+      <div class="m24-c-showcase-text m24-l-two-columns">
+        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
+        <div class="m24-c-showcase-body m24-t-body-sm">
+          <p>{{ ftl('manifesto-across-the-mozilla-project', fallback='manifesto-details-the-mozilla-foundation-pleges-v2') }}</p>
+          <ul class="mzp-u-list-styled">
+            <li>{{ ftl('manifesto-details-build-and-enable') }}</li>
+            <li>{{ ftl('manifesto-details-build-and-deliver') }}</li>
+            <li>{{ ftl('manifesto-details-use-the-mozilla') }}</li>
+            <li>{{ ftl('manifesto-details-promote-models') }}</li>
+            <li>{{ ftl('manifesto-details-promote-the-mozilla') }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="m24-c-showcase m24-t-alt">
+    <div class="m24-c-content">
+      <div class="m24-c-showcase-text m24-l-two-columns">
+        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
+        <div class="m24-c-showcase-body m24-t-body-sm">
+        <p>{{ ftl('manifesto-an-internet-with-these-v2', fallback='manifesto-an-internet-with-these') }}</p>
+        {% set github_link = 'href="https://github.com/mozilla%s" rel="external noopener" data-link-text="GitHub"'|safe|format(utm_params) %}
+        {% set mofo_link = 'href="https://www.mozillafoundation.org/%s" rel="external noopener" data-link-text="Mozilla Foundation"'|safe|format(utm_params) %}
+        {% set mozai_link = 'href="http://www.mozilla.ai%s" rel="external noopener" data-link-text="Mozilla.ai"'|safe|format(utm_params) %}
+        {% set mozvc_link = 'href="http://mozilla.vc%s" rel="external noopener" data-link-text="Mozilla Ventures"'|safe|format(utm_params) %}
+        {% set mdc_link = 'href="https://mozilladatacollective.com/%s" rel="external noopener" data-link-text="Mozilla Data Collective"'|safe|format(utm_params) %}
+        {% set festival_link = 'href="https://www.mozillafoundation.org/festival/%s" rel="external noopener" data-link-text="MozFest"'|safe|format(utm_params) %}
+        {% set firefox_link = 'href="https://www.firefox.com/%s" rel="external noopener" data-link-text="Firefox"'|safe|format(utm_params) %}
+        {% set thunderbird_link = 'href="https://www.thunderbird.net/%s" rel="external noopener" data-link-text="Thunderbird"'|safe|format(utm_params) %}
+        {% if ftl_has_messages('manifesto-if-you-share-this-goal') %}
+          <p>{{ ftl('manifesto-if-you-share-this-goal', github_link=github_link, mofo_link=mofo_link, mozai_link=mozai_link, mozvc_link=mozvc_link, mdc_link=mdc_link, festival_link=festival_link, firefox_link=firefox_link, thunderbird_link=thunderbird_link) }}</p>
+        {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+{% endblock %}

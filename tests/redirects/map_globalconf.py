@@ -714,6 +714,7 @@ URLS = flatten(
         # bug 861243 and bug 869489
         url_test("/about/manifesto.html", "/about/manifesto/"),
         url_test("/about/manifesto.{de,pt-BR}.html", "/{de,pt-BR}/about/manifesto/"),
+        url_test("/about/manifesto/details/", "/about/manifesto/"),
         # bug 856077
         url_test("/projects/toolkit/", "https://developer.mozilla.org/docs/Toolkit_API"),
         # bug 877165
