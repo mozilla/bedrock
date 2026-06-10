@@ -43,6 +43,31 @@ SVG_WITH_ALLOWED_DATA_URL = """<?xml version="1.0" encoding="UTF-8"?>
     <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==" />
 </svg>"""
 
+# Byte-sensitive regression samples: leave as bytes and do not reformat or
+# pretty-print. The encoded entities must survive verbatim for these fixtures
+# to exercise the intended sanitizer path.
+MALICIOUS_SVG_WITH_ENCODED_JS_URL = b"""<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="200" height="200">
+  <a xlink:href="java&#x0a;script:alert('XSS')">
+    <rect width="200" height="200" fill="red"/>
+  </a>
+</svg>"""
+
+# The href body is base64 of `<script>alert('XSS')</script>` so the payload
+# matches the shape of the other fixtures in this file, but its bytes never
+# spell out anything Layers 1/2 can recognise (no literal `<script`, no
+# `on*=`, no `javascript:`). That's deliberate: the assertion is about the
+# disallowed scheme/MIME (`data:text/html`), and any cleartext payload
+# would trip an earlier layer and mask whether Layer 3 is doing its job.
+MALICIOUS_SVG_WITH_ENCODED_HTML_DATA_URL = b"""<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="200" height="200">
+  <a xlink:href="data:te&#x78;t/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4=">
+    <rect width="200" height="200" fill="red"/>
+  </a>
+</svg>"""
+
 pytestmark = [pytest.mark.django_db]
 
 
@@ -361,3 +386,108 @@ class SVGSanitizationFieldTestCase(TestCase):
             content_type="text/xml",
         )
         self.assertTrue(self.field._is_svg_file(svg_file_2))
+
+    # Tests for `py-svg-hush` rewriting the uploaded bytes
+    def test_sanitizer_writes_back_to_file(self):
+        """`_sanitize_svg` writes the sanitized output back to the upload."""
+        svg_file = SimpleUploadedFile(
+            "test.svg",
+            CLEAN_SVG.encode("utf-8"),
+            content_type="image/svg+xml",
+        )
+        sentinel = b"<svg>sanitized</svg>"
+
+        with mock.patch("bedrock.cms.fields.filter_svg", return_value=sentinel):
+            result = self.field._sanitize_svg(svg_file)
+        self.assertIsNone(result)
+
+        svg_file.seek(0)
+        self.assertEqual(svg_file.read(), sentinel)
+
+        # `f.size` must track the rewritten buffer length.
+        self.assertEqual(svg_file.size, len(sentinel))
+
+    def test_encoded_javascript_url_is_neutralized(self):
+        """
+        An encoded `javascript:` URL that slips past Layers 1+2 must not
+        survive `py-svg-hush`'s rewrite of the uploaded bytes.
+        """
+        svg_file = SimpleUploadedFile(
+            "encoded_javascript_url.svg",
+            MALICIOUS_SVG_WITH_ENCODED_JS_URL,
+            content_type="image/svg+xml",
+        )
+
+        result = self.field._sanitize_svg(svg_file)
+        self.assertIsNone(result)
+
+        svg_file.seek(0)
+        rewritten = svg_file.read()
+
+        # The encoded byte sequence from the fixture must not survive.
+        self.assertNotIn(b"java&#x0a;script:", rewritten)
+
+    def test_encoded_html_data_url_is_neutralized(self):
+        """
+        Disallowed data-URL MIME types must not survive sanitization, even
+        when their byte representation is broken up so substring checks miss.
+        """
+        # The earlier layers can only spot `data:text/html` if it appears
+        # literally in the raw bytes. An encoded entity inside the MIME type
+        # slips past both the regex and the `defusedxml` walk (the latter only
+        # special-cases `javascript:`). Layer 3 is the line that has to hold:
+        # `py-svg-hush` parses the URL properly and strips any data URL whose
+        # MIME type is not in `ALLOWED_DATA_URL_MIME_TYPES`.
+        #
+        # Because this test depends on Layer 3 alone, it doubles as an early-
+        # warning signal: if someone removes the `filter_svg` call or loosens
+        # `ALLOWED_DATA_URL_MIME_TYPES` to include `text/html` (or `*`), this
+        # assertion is what should start failing.
+        svg_file = SimpleUploadedFile(
+            "html_data_url.svg",
+            MALICIOUS_SVG_WITH_ENCODED_HTML_DATA_URL,
+            content_type="image/svg+xml",
+        )
+
+        result = self.field._sanitize_svg(svg_file)
+        self.assertIsNone(result)
+
+        svg_file.seek(0)
+        rewritten = svg_file.read()
+
+        # The encoded byte sequence from the fixture must not survive.
+        self.assertNotIn(b"data:te&#x78;t/html", rewritten)
+
+    def test_sanitized_output_exceeding_max_upload_size_rejected(self):
+        """SVG whose sanitized output exceeds Wagtail max upload size is rejected."""
+        svg_file = SimpleUploadedFile(
+            "nested.svg",
+            CLEAN_SVG.encode("utf-8"),
+            content_type="image/svg+xml",
+        )
+        bloated = b"x" * 20_000
+
+        with mock.patch.object(self.field, "max_upload_size", 10_000):
+            with mock.patch("bedrock.cms.fields.filter_svg", return_value=bloated):
+                result = self.field._sanitize_svg(svg_file)
+
+        self.assertIsInstance(result, ValidationError)
+        self.assertEqual(result.code, "svg_sanitized_too_large")
+        # Upload buffer must not be rewritten when rejected.
+        svg_file.seek(0)
+        self.assertEqual(svg_file.read(), CLEAN_SVG.encode("utf-8"))
+
+    def test_deeply_nested_svg_rejected_when_sanitized_output_too_large(self):
+        """Regression: compact nested <g> SVG must not persist after ~56x expansion."""
+        compact = b"<svg xmlns='http://www.w3.org/2000/svg'>" + b"<g>" * 200 + b"<rect width='1' height='1'/>" + b"</g>" * 200 + b"</svg>"
+        svg_file = SimpleUploadedFile(
+            "nested.svg",
+            compact,
+            content_type="image/svg+xml",
+        )
+
+        with mock.patch.object(self.field, "max_upload_size", 50_000):
+            result = self.field._sanitize_svg(svg_file)
+
+        self.assertIsInstance(result, ValidationError)
+        self.assertEqual(result.code, "svg_sanitized_too_large")
