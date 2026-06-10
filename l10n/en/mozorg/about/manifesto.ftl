@@ -55,12 +55,13 @@ manifesto-mozillas-pledge = { -brand-name-mozilla }'s Pledge
 manifesto-across-the-mozilla-project = Across the { -brand-name-mozilla } Project and every organization in the { -brand-name-mozilla } family, we pledge to support the { -brand-name-mozilla } Manifesto in its activities. Specifically, we will:
 manifesto-we-need-you = We Need You To Advance the Manifesto
 manifesto-an-internet-with-these-v2 = An internet with these qualities will not come to life on its own. People and organizations must embed these aspirations into internet technology and into the human experience with the internet. The { -brand-name-mozilla } Manifesto and Addendum represent { -brand-name-mozilla }'s commitment to advancing these aspirations. { -brand-name-mozilla } works with people and organizations everywhere who want to make the internet an even better place for everyone.
+manifesto-our-commitments = Our Commitments
 
 # Variables:
 #   $github_link (url) - link to https://github.com/mozilla
 #   $mofo_link (url) - link to https://www.mozillafoundation.org/
-#   $mozai_link (url) - link to http://www.mozilla.ai
-#   $mozvc_link (url) - link to http://mozilla.vc
+#   $mozai_link (url) - link to https://www.mozilla.ai
+#   $mozvc_link (url) - link to https://mozilla.vc
 #   $mdc_link (url) - link to https://mozilladatacollective.com/
 #   $festival_link (url) - link to https://www.mozillafoundation.org/festival/
 #   $firefox_link (url) - link to https://www.firefox.com/

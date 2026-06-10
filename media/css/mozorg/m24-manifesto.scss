@@ -22,14 +22,14 @@
 // Principles & Addendum
 
 .c-points {
-        display: grid;
-        gap: $spacer-xl $grid-gutter;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        margin-top: $spacer-xl;
+    display: grid;
+    gap: $spacer-xl $grid-gutter;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin-top: $spacer-xl;
 
-        @media #{$mq-md} {
-            grid-template-columns: repeat(12, minmax(0, 1fr));
-        }
+    @media #{$mq-md} {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
 
     li {
         position: relative;

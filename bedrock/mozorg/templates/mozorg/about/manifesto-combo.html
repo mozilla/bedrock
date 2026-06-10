@@ -103,7 +103,7 @@
   <section class="m24-t-dark">
     <div class="m24-c-content">
       <div class="m24-c-intro">
-        <h2 class="m24-c-intro-title">Our Commitments</h2>
+        <h2 class="m24-c-intro-title">{{ ftl('manifesto-our-commitments') }}</h2>
       </div>
       <ol class="c-points">
         <li>{{ ftl('manifesto-we-are-committed-to-people') }}</li>
@@ -140,8 +140,8 @@
         <p>{{ ftl('manifesto-an-internet-with-these-v2', fallback='manifesto-an-internet-with-these') }}</p>
         {% set github_link = 'href="https://github.com/mozilla%s" rel="external noopener" data-link-text="GitHub"'|safe|format(utm_params) %}
         {% set mofo_link = 'href="https://www.mozillafoundation.org/%s" rel="external noopener" data-link-text="Mozilla Foundation"'|safe|format(utm_params) %}
-        {% set mozai_link = 'href="http://www.mozilla.ai%s" rel="external noopener" data-link-text="Mozilla.ai"'|safe|format(utm_params) %}
-        {% set mozvc_link = 'href="http://mozilla.vc%s" rel="external noopener" data-link-text="Mozilla Ventures"'|safe|format(utm_params) %}
+        {% set mozai_link = 'href="https://www.mozilla.ai%s" rel="external noopener" data-link-text="Mozilla.ai"'|safe|format(utm_params) %}
+        {% set mozvc_link = 'href="https://mozilla.vc%s" rel="external noopener" data-link-text="Mozilla Ventures"'|safe|format(utm_params) %}
         {% set mdc_link = 'href="https://mozilladatacollective.com/%s" rel="external noopener" data-link-text="Mozilla Data Collective"'|safe|format(utm_params) %}
         {% set festival_link = 'href="https://www.mozillafoundation.org/festival/%s" rel="external noopener" data-link-text="MozFest"'|safe|format(utm_params) %}
         {% set firefox_link = 'href="https://www.firefox.com/%s" rel="external noopener" data-link-text="Firefox"'|safe|format(utm_params) %}
