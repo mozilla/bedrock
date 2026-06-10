@@ -20,7 +20,7 @@
       <p class="title" itemprop="jobTitle">{{ job_title_override }}</p>
     {% endif %}
 
-    {% if snippet.biography %}
+    {% if snippet.biography|striptags|trim %}
       {% if snippet.external_links %}
         <ul class="elsewhere">
           {% for link in snippet.external_links %}
@@ -40,7 +40,7 @@
     {% endif %}
   </div>
 
-  {% if snippet.biography %}
+  {% if snippet.biography|striptags|trim %}
     <div class="person-bio mzp-u-rich-text">
       {{ snippet.biography|richtext }}
     </div>

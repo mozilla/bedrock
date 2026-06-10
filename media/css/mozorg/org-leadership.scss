@@ -24,7 +24,8 @@
     }
 }
 
-.m24-c-gallery-tile-link[href]:hover::after {
+.m24-c-gallery-tile-link[href]:hover::after,
+.m24-c-gallery-tile-link[href]:focus-visible::after {
     outline: 1px solid $color-black;
     outline-offset: 3px;
 }
