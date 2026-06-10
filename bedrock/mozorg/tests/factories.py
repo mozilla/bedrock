@@ -66,6 +66,35 @@ class LeadershipPageFactory(wagtail_factories.PageFactory):
         model = models.LeadershipPage
 
 
+class LeadershipProfileSnippetFactory(factory.django.DjangoModelFactory):
+    name = "Test Leadership Person"
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    press_photos_link = "https://example.com/photos.zip"
+    biography = "<p>Test biography text.</p>"
+
+    class Meta:
+        model = models.LeadershipProfileSnippet
+
+
+class OrganizationLeadershipIndexPageFactory(wagtail_factories.PageFactory):
+    title = "Test Organization Leadership Page"
+    live = True
+    slug = "organization-leadership"
+
+    class Meta:
+        model = models.OrganizationLeadershipIndexPage
+
+
+class OrganizationLeadershipSubpageFactory(wagtail_factories.PageFactory):
+    title = "Test Organization Leadership Subpage"
+    live = True
+    slug = "org-subpage"
+    leadership_groups = []
+
+    class Meta:
+        model = models.OrganizationLeadershipSubpage
+
+
 class ContactBannerSnippetFactory(factory.django.DjangoModelFactory):
     heading = "Contact Us"
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
