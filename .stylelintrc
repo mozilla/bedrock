@@ -35,7 +35,6 @@
                 ]
             }
         ],
-        "selector-not-notation": "simple",
         "media-feature-range-notation": "prefix"
     },
     "ignoreFiles": ["media/css/libs/**/*"]
