@@ -54,10 +54,10 @@
 
 .group-title {
     @include text-title-sm;
-    margin: 1em 0;
-    padding-top: 0.75em;
-    margin-bottom: $spacing-xs;
-    border-top: 2px solid $color-marketing-gray-30;
+    border-top: 1px solid $color-light-gray-30;
+    margin-bottom: $layout-sm;
+    margin-top: $layout-sm;
+    padding-top: $layout-sm;
 
     a {
         text-decoration: none;

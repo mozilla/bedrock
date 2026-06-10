@@ -7,6 +7,7 @@ from django.template.defaultfilters import slugify as django_slugify
 
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
+from wagtail.snippets.blocks import SnippetChooserBlock
 
 
 class LeadershipHeadshotBlock(blocks.StructBlock):
@@ -159,3 +160,44 @@ class LeadershipSectionBlock(blocks.StructBlock):
     class Meta:
         value_class = LeadershipSectionID
         icon = "group"
+
+
+class LeadershipProfileChooserBlock(blocks.StructBlock):
+    """Block for placing a LeadershipProfileSnippet with an optional per-placement job title."""
+
+    profile = SnippetChooserBlock("mozorg.LeadershipProfileSnippet")
+
+    job_title = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Job title to display for this placement. Leave blank to omit.",
+    )
+
+    class Meta:
+        icon = "user"
+        label = "Leadership Profile"
+
+
+class LeadershipGroupSnippetBlock(blocks.StructBlock):
+    """Block for a leadership group that references LeadershipProfileSnippets."""
+
+    title = blocks.CharBlock(
+        char_max_length=255,
+        help_text="Leadership group title, e.g. 'Executive Steering Committee' or 'Senior Leadership'.",
+        required=False,
+    )
+
+    description = blocks.CharBlock(
+        char_max_length=1000,
+        help_text="A couple of sentences describing what the group is and some helpful context.",
+        required=False,
+    )
+
+    leaders = blocks.ListBlock(
+        LeadershipProfileChooserBlock(),
+        min_num=1,
+    )
+
+    class Meta:
+        icon = "group"
+        label = "Leadership Group"

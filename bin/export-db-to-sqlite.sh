@@ -172,6 +172,9 @@ python manage.py dumpdata \
     anonym.Person \
     mozorg.WebvisionDoc \
     mozorg.LeadershipPage \
+    mozorg.LeadershipProfileSnippet \
+    mozorg.OrganizationLeadershipIndexPage \
+    mozorg.OrganizationLeadershipSubpage \
     mozorg.AdvertisingIndexPage \
     mozorg.AdvertisingTwoColumnSubpage \
     mozorg.ContentSubpage \

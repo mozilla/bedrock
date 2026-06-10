@@ -1,0 +1,76 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-protocol.html" import sidemenu_lists with context %}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title_full %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+{% block body_class %}{{ super() }} about-leadership{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('about-leadership') }}
+  {{ css_bundle('m24-base') }}
+  {{ css_bundle('about-org-leadership') }}
+{% endblock %}
+
+{% block content %}
+  {% set parent = page.get_parent() %}
+  {% set siblings = parent.get_children().live() %}
+  {% set nav_bar = [
+    (parent.url, parent.slug, parent.title),
+  ] %}
+  {% for sibling in siblings %}
+    {{ nav_bar.append((sibling.url, sibling.slug, sibling.title)) or "" }}
+  {% endfor %}
+
+  <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
+    <aside class="mzp-l-sidebar">
+      {{ sidemenu_lists([nav_bar]) }}
+    </aside>
+
+    <main class="mzp-l-main">
+      <h1>{{ page.title }}</h1>
+
+      {% if page.description %}
+        <p class="org-description">{{ page.description }}</p>
+      {% endif %}
+
+      {% for block in page.leadership_groups %}
+        <section class="leadership-group">
+          {% if block.value.title %}
+            <h2 class="group-title">{{ block.value.title }}</h2>
+          {% endif %}
+
+          {% if block.value.description %}
+            <p class="group-description">{{ block.value.description }}</p>
+          {% endif %}
+
+          <div class="gallery mgmt-corp">
+            {% for leader in block.value.leaders %}
+              {% set snippet = leader.profile %}
+              {% set job_title_override = leader.job_title %}
+              {% include "mozorg/cms/about/blocks/leadership_snippet.html" %}
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
+    </main>
+  </div>
+
+  <div id="leadership-modal" class="mzp-u-modal-content"></div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-leadership') }}
+{% endblock %}

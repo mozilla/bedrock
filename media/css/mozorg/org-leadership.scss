@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+
+.m24-c-gallery-tile-heading {
+    font-size: 14px;
+    padding: 0 $spacing-lg;
+}
+
+.m24-c-gallery-tile-image {
+    align-items: center;
+    aspect-ratio: 16/9;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+}
+
+.m24-c-gallery-tile-link[href]:hover::after,
+.m24-c-gallery-tile-link[href]:focus-visible::after {
+    outline: 1px solid $color-black;
+    outline-offset: 3px;
+}

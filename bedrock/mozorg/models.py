@@ -23,7 +23,12 @@ from bedrock.mozorg.blocks.advertising import (
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
-from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
+from bedrock.mozorg.blocks.leadership import (
+    LeadershipExternalLinkBlock,
+    LeadershipGroupSnippetBlock,
+    LeadershipProfileChooserBlock,
+    LeadershipSectionBlock,
+)
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
 BASE_UTM_PARAMETERS = {
@@ -270,6 +275,60 @@ class NotificationSnippet(models.Model):
         )
 
 
+@register_snippet
+class LeadershipProfileSnippet(TranslatableMixin):
+    name = models.CharField(max_length=255)
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    press_photos_link = models.URLField(
+        blank=True,
+        help_text="External link to a .zip file of photos of the person.",
+    )
+    biography = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+        help_text="A biography limited to a few short paragraphs. Links and formatting are supported.",
+    )
+    external_links = StreamField(
+        [("external_link", LeadershipExternalLinkBlock())],
+        blank=True,
+        null=True,
+        max_num=5,
+        use_json_field=True,
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel("name"),
+                FieldPanel("biography"),
+            ],
+            heading="Profile",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("image"),
+                FieldPanel("press_photos_link"),
+            ],
+            heading="Headshot",
+        ),
+        FieldPanel("external_links"),
+    ]
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "Leadership Profile"
+        verbose_name_plural = "Leadership Profiles"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
 class LeadershipPage(AbstractBedrockCMSPage):
     max_count = 1  # Ensure there's only one instance of this page
     subpage_types = []  # This page type cannot have any children
@@ -287,6 +346,88 @@ class LeadershipPage(AbstractBedrockCMSPage):
     ]
 
     template = "mozorg/cms/about/leadership.html"
+
+
+class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
+    subpage_types = ["OrganizationLeadershipSubpage"]
+
+    intro = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    exec_heading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    exec_description = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    exec_leaders = StreamField(
+        [("leadership_profile", LeadershipProfileChooserBlock())],
+        blank=True,
+        null=True,
+        use_json_field=True,
+    )
+
+    sub_pages_link_heading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("intro"),
+        MultiFieldPanel(
+            [
+                FieldPanel("exec_heading", heading="Heading"),
+                FieldPanel("exec_description", heading="Description"),
+                FieldPanel("exec_leaders", heading="Leaders"),
+            ],
+            heading="Executive Leadership",
+        ),
+        FieldPanel("sub_pages_link_heading", heading="Heading for the links to sub pages"),
+    ]
+
+    template = "mozorg/cms/about/organization_leadership_index_page.html"
+
+
+class OrganizationLeadershipSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["OrganizationLeadershipIndexPage"]
+    subpage_types = []
+
+    description = models.CharField(
+        max_length=1000,
+        blank=True,
+        help_text="A brief description of this organization.",
+    )
+
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Image for this organization's tile on the parent index page. If not set, the tile shows the page title only.",
+    )
+
+    leadership_groups = StreamField(
+        [("group", LeadershipGroupSnippetBlock())],
+        blank=False,
+        null=False,
+        collapsed=True,
+        use_json_field=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("image"),
+        FieldPanel("leadership_groups"),
+    ]
+
+    template = "mozorg/cms/about/organization_leadership_subpage.html"
 
 
 class AdvertisingIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
@@ -478,6 +619,7 @@ class HomePage(AbstractBedrockCMSPage):
 class AboutUsPage(AbstractBedrockCMSPage):
     subpage_types = [
         LeadershipPage,
+        OrganizationLeadershipIndexPage,
     ]
 
     max_count = 1  # Ensure there's only one instance of this page

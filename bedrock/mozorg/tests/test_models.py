@@ -497,3 +497,132 @@ def test_notification_snippet_analytics_id_not_overwritten():
     snippet.notification_text = "<p>Updated</p>"
     snippet.save()
     assert snippet.analytics_id == original_uuid
+
+
+# LeadershipProfileSnippet tests
+
+
+def test_leadership_profile_snippet_str():
+    snippet = factories.LeadershipProfileSnippetFactory(name="Jane Doe")
+    assert str(snippet) == "Jane Doe"
+
+
+# OrganizationLeadershipIndexPage / OrganizationLeadershipSubpage tests
+
+
+def test_organization_leadership_page_subpage_types():
+    assert models.OrganizationLeadershipIndexPage in models.AboutUsPage.subpage_types
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_index_page(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    snippet = factories.LeadershipProfileSnippetFactory(
+        name="Test Executive",
+        press_photos_link="https://example.com/exec-photos.zip",
+    )
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(
+        parent=root_page,
+        exec_heading="Executive Leadership",
+        exec_description="<p>Our executive team.</p>",
+        exec_leaders=[("leadership_profile", {"profile": snippet, "job_title": "Chief Executive Officer"})],
+        sub_pages_link_heading="Our Organizations",
+    )
+    index_page.save()
+
+    _relative_url = index_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/organization-leadership/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(index_page, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+
+    assert "Executive Leadership" in page_content
+    assert "Our executive team." in page_content
+    assert "Test Executive" in page_content
+    assert "Chief Executive Officer" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_index_page_shows_child_pages(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    snippet = factories.LeadershipProfileSnippetFactory(name="Test Person")
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(
+        parent=root_page,
+        sub_pages_link_heading="Our Organizations",
+    )
+    index_page.save()
+
+    subpage = factories.OrganizationLeadershipSubpageFactory(
+        parent=index_page,
+        title="Test Suborganization",
+        leadership_groups=[
+            (
+                "group",
+                {
+                    "title": "Test Group",
+                    "description": "Test group description.",
+                    "leaders": [{"profile": snippet, "job_title": "Test Role"}],
+                },
+            )
+        ],
+    )
+    subpage.save()
+
+    _relative_url = index_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(index_page, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+
+    assert "Test Suborganization" in page_content
+    assert "Our Organizations" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_subpage(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    snippet = factories.LeadershipProfileSnippetFactory(
+        name="Test Leader",
+        press_photos_link="https://example.com/leader-photos.zip",
+    )
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(parent=root_page)
+    index_page.save()
+
+    subpage = factories.OrganizationLeadershipSubpageFactory(
+        parent=index_page,
+        description="Test organization description.",
+        leadership_groups=[
+            (
+                "group",
+                {
+                    "title": "Senior Leadership",
+                    "description": "Our senior leadership team.",
+                    "leaders": [{"profile": snippet, "job_title": "Vice President"}],
+                },
+            )
+        ],
+    )
+    subpage.save()
+
+    _relative_url = subpage.relative_url(minimal_site)
+    assert _relative_url == "/en-US/organization-leadership/org-subpage/"
+    request = rf.get(_relative_url)
+
+    resp = getattr(subpage, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+
+    assert "Test organization description." in page_content
+    assert "Senior Leadership" in page_content
+    assert "Our senior leadership team." in page_content
+    assert "Test Leader" in page_content
+    assert "Vice President" in page_content
