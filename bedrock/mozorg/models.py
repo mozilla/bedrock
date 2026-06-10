@@ -281,7 +281,7 @@ class LeadershipProfileSnippet(TranslatableMixin):
     image = models.ForeignKey(
         "cms.BedrockImage",
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
     )
