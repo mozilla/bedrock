@@ -7,17 +7,20 @@ from functools import partial
 
 from django.conf import settings
 
-from bedrock.firefox.urls import (
-    android_releasenotes_re,
-    android_sysreq_re,
-    channel_re,
-    ios_releasenotes_re,
-    ios_sysreq_re,
-    platform_re,
-    releasenotes_re,
-    sysreq_re,
-)
+from bedrock.firefox import version_re
+from bedrock.firefox.urls import channel_re, latest_re, platform_re
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
+
+# Release notes / system requirements pages are now served by www.firefox.com, so
+# the URL patterns that rendered them in bedrock.firefox.urls have been removed.
+# These regexes are only used here, to redirect those paths (including all the
+# versioned URLs still in the wild) to www.firefox.com.
+releasenotes_re = latest_re % (version_re, r"(aurora|release)notes")
+android_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/android")
+ios_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/ios")
+sysreq_re = latest_re % (version_re, "system-requirements")
+android_sysreq_re = sysreq_re.replace(r"firefox", "firefox/android")
+ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
 # matches only ASCII letters (ignoring case), numbers, dashes, periods, and underscores.
@@ -181,13 +184,7 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/browsers/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/new/$", f"{FXC}/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/releasenotes/$", f"{FXC}/firefox/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/system-requirements/$", f"{FXC}/firefox/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/all/$", f"{FXC}/download/all/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/android/releasenotes/$", f"{FXC}/firefox/android/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/android/system-requirements/$", f"{FXC}/firefox/android/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/browsers/best-browser/$", f"{FXC}/more/best-browser/", permanent=True),
     offsite_redirect(r"^firefox/browsers/browser-history/$", f"{FXC}/more/browser-history/", permanent=True),
     offsite_redirect(r"^firefox/browsers/chromebook/$", f"{FXC}/browsers/desktop/chromebook/", permanent=True),
@@ -235,16 +232,11 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/features/tips/$", f"{FXC}/features/tips/", permanent=True),
     offsite_redirect(r"^firefox/features/translate/$", f"{FXC}/features/translate/", permanent=True),
     offsite_redirect(r"^firefox/installer-help/$", f"{FXC}/download/installer-help/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/ios/releasenotes/$", f"{FXC}/firefox/ios/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/ios/system-requirements/$", f"{FXC}/firefox/ios/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/ios/testflight/$", f"{FXC}/channel/ios/testflight/", permanent=True),
     offsite_redirect(r"^firefox/linux/$", f"{FXC}/browsers/desktop/linux/", permanent=True),
     offsite_redirect(r"^firefox/mac/$", f"{FXC}/browsers/desktop/mac/", permanent=True),
     offsite_redirect(r"^firefox/mobile/get-app/$", f"{FXC}/browsers/mobile/get-app/", permanent=True),
     offsite_redirect(r"^firefox/more/$", f"{FXC}/more/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/releases/$", f"{FXC}/releases/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/$", f"{FXC}/landing/set-as-default/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/thanks/$", f"{FXC}/landing/set-as-default/thanks/", permanent=True),
     offsite_redirect(r"^firefox/unsupported-systems/$", f"{FXC}/browsers/unsupported-systems/", permanent=True),

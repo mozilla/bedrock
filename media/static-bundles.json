@@ -38,12 +38,6 @@
     },
     {
       "files": [
-        "css/firefox/system-requirements.scss"
-      ],
-      "name": "firefox_system_requirements"
-    },
-    {
-      "files": [
         "css/firefox/installer-help.scss"
       ],
       "name": "installer_help"
@@ -59,12 +53,6 @@
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
-    },
-    {
-      "files": [
-        "css/firefox/releases-index.scss"
-      ],
-      "name": "firefox_releases_index"
     },
     {
       "files": [
@@ -653,12 +641,6 @@
         "css/firefox/enterprise/landing.scss"
       ],
       "name": "firefox-enterprise"
-    },
-    {
-      "files": [
-        "css/firefox/releasenotes.scss"
-      ],
-      "name": "firefox_releasenotes"
     },
     {
       "files": [
