@@ -301,6 +301,7 @@ redirectpatterns = (
     # bug 861243 and bug 869489
     redirect(r"^about/manifesto\.html$", "/about/manifesto/"),
     redirect(r"^about/manifesto\.(.*)\.html$", "/{}/about/manifesto/", locale_prefix=False),
+    redirect(r"^about/manifesto/details/?$", "mozorg.about.manifesto"),
     # bug 856077
     redirect(r"^projects/toolkit/?$", "https://developer.mozilla.org/docs/Toolkit_API"),
     redirect(r"^rhino/download\.html$", "https://developer.mozilla.org/docs/Mozilla/Projects/Rhino/Download_Rhino"),

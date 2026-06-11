@@ -1,0 +1,57 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// variables
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../m24/vars/lib' as *;
+@use '../m24/showcase.scss';
+
+// * ------------------------------------------------------------------ */
+
+#manifesto main h2 {
+    font-size: $text-title-lg;
+}
+
+.m24-c-showcase-body {
+    font-size: $text-body-md;
+    line-height: $text-body-line-height;
+}
+
+// * ------------------------------------------------------------------ */
+// Principles & Addendum
+
+.c-points {
+    display: grid;
+    gap: $spacer-xl $grid-gutter;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin-top: $spacer-xl;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    li {
+        position: relative;
+        font-size: $text-body-lg;
+        font-weight: 500;
+        grid-column: span 9 / -1;
+        padding-top: $spacer-xl;
+        text-align: start;
+
+        &::before {
+            @include bidi(((left, 0, right, auto),));
+            background-color: $m24-color-black;
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        @media #{$mq-md} {
+            grid-column: span 9 / -1;
+        }
+    }
+}

@@ -704,6 +704,12 @@
     },
     {
       "files": [
+        "css/mozorg/m24-manifesto.scss"
+      ],
+      "name": "m24-manifesto"
+    },
+    {
+      "files": [
         "css/mozorg/moss.scss"
       ],
       "name": "moss"
