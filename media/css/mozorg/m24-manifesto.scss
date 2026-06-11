@@ -35,13 +35,13 @@
         position: relative;
         font-size: $text-body-lg;
         font-weight: 500;
-        grid-column: span 9 / -1;
+        grid-column: 1/-1;
         padding-top: $spacer-xl;
         text-align: start;
 
         &::before {
             @include bidi(((left, 0, right, auto),));
-            background-color: $m24-color-black;
+            background-color: var(--m24-light-gray);
             content: '';
             display: block;
             height: 2px;
@@ -51,7 +51,7 @@
         }
 
         @media #{$mq-md} {
-            grid-column: span 9 / -1;
+            grid-column: span 9;
         }
     }
 }
