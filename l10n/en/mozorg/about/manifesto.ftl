@@ -57,16 +57,36 @@ manifesto-we-need-you = We Need You To Advance the Manifesto
 manifesto-an-internet-with-these-v2 = An internet with these qualities will not come to life on its own. People and organizations must embed these aspirations into internet technology and into the human experience with the internet. The { -brand-name-mozilla } Manifesto and Addendum represent { -brand-name-mozilla }'s commitment to advancing these aspirations. { -brand-name-mozilla } works with people and organizations everywhere who want to make the internet an even better place for everyone.
 manifesto-our-commitments = Our Commitments
 
+manifesto-if-you-share-this-goal-v2 = If you share this goal, let us know how we can help.
+
 # Variables:
 #   $github_link (url) - link to https://github.com/mozilla
+manifesto-we-create-open = We create <a { $github_link }>open source software</a> you can build on.
+
+# Variables:
 #   $mofo_link (url) - link to https://www.mozillafoundation.org/
+manifesto-we-fund-fellows = We <a { $mofo_link }>fund fellows and incubate projects</a> aimed at creating a better future online.
+
+# Variables:
 #   $mozai_link (url) - link to https://www.mozilla.ai
+manifesto-we-build-open-source = We <a { $mozai_link }>build open source AI tools</a> that give developers choice — and help them save money.
+
+# Variables:
 #   $mozvc_link (url) - link to https://mozilla.vc
+manifesto-we-invest-in = We <a { $mozvc_link }>invest in responsible tech startups</a>.
+
+# Variables:
 #   $mdc_link (url) - link to https://mozilladatacollective.com/
+manifesto-we-run-a-global = We <a { $mdc_link }>run a global community</a> for fair data exchange.
+
+# Variables:
 #   $festival_link (url) - link to https://www.mozillafoundation.org/festival/
+manifesto-we-host-a-yearly = We <a { $festival_link }>host a yearly global gathering</a> for people building anything and everything to advance the Manifesto.
+
+# Variables:
 #   $firefox_link (url) - link to https://www.firefox.com/
 #   $thunderbird_link (url) - link to https://www.thunderbird.net/
-manifesto-if-you-share-this-goal = If you share this goal, let us know how we can help. <a { $github_link }>We create open source software</a> you can build on. <a { $mofo_link }>We fund fellows and incubate projects</a> aimed at creating a better future online. <a { $mozai_link }>We build open source AI tools</a> that give developers choice — and help them save money. <a { $mozvc_link }>We invest in responsible tech startups</a>. We <a { $mdc_link }>run a global community</a> for fair data exchange. We <a { $festival_link }>host a yearly global gathering</a> for people building anything and everything to advance the Manifesto. And, of course, we make <a { $firefox_link }>{ -brand-name-firefox }</a> and <a { $thunderbird_link }>{ -brand-name-thunderbird }</a>. All of this is aimed at helping people make the internet a healthy place.
+manifesto-we-make-firefox-and-thunderbird = And, of course, we make <a { $firefox_link }>{ -brand-name-firefox }</a> and <a { $thunderbird_link }>{ -brand-name-thunderbird }</a>. All of this is aimed at helping people make the internet a healthy place.
 
 ## Obsolete strings (expire 2026-09-10)
 
