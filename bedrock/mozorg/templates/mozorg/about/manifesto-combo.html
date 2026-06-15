@@ -88,7 +88,7 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase m24-t-alt">
+  <section class="m24-c-showcase m24-t-green">
     <div class="m24-c-content">
       <div class="m24-c-showcase-text m24-l-two-columns">
         <h2 class="m24-c-showcase-title">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
@@ -114,7 +114,7 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase">
+  <section class="m24-c-showcase m24-t-alt">
     <div class="m24-c-content">
       <div class="m24-c-showcase-text m24-l-two-columns">
         <h2 class="m24-c-showcase-title">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
@@ -132,7 +132,7 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase m24-t-alt">
+  <section class="m24-c-showcase m24-t-green">
     <div class="m24-c-content">
       <div class="m24-c-showcase-text m24-l-two-columns">
         <h2 class="m24-c-showcase-title">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
@@ -146,8 +146,17 @@
         {% set festival_link = 'href="https://www.mozillafoundation.org/festival/%s" rel="external noopener" data-link-text="MozFest"'|safe|format(utm_params) %}
         {% set firefox_link = 'href="https://www.firefox.com/%s" rel="external noopener" data-link-text="Firefox"'|safe|format(utm_params) %}
         {% set thunderbird_link = 'href="https://www.thunderbird.net/%s" rel="external noopener" data-link-text="Thunderbird"'|safe|format(utm_params) %}
-        {% if ftl_has_messages('manifesto-if-you-share-this-goal') %}
-          <p>{{ ftl('manifesto-if-you-share-this-goal', github_link=github_link, mofo_link=mofo_link, mozai_link=mozai_link, mozvc_link=mozvc_link, mdc_link=mdc_link, festival_link=festival_link, firefox_link=firefox_link, thunderbird_link=thunderbird_link) }}</p>
+        {% if ftl_has_messages('manifesto-if-you-share-this-goal-v2') %}
+          <p>{{ ftl('manifesto-if-you-share-this-goal-v2') }}</p>
+          <ul class="mzp-u-list-styled">
+            <li>{{ ftl('manifesto-we-create-open', github_link=github_link) }}</li>
+            <li>{{ ftl('manifesto-we-fund-fellows', mofo_link=mofo_link) }}</li>
+            <li>{{ ftl('manifesto-we-build-open-source', mozai_link=mozai_link) }}</li>
+            <li>{{ ftl('manifesto-we-invest-in', mozvc_link=mozvc_link) }}</li>
+            <li>{{ ftl('manifesto-we-run-a-global', mdc_link=mdc_link) }}</li>
+            <li>{{ ftl('manifesto-we-host-a-yearly', festival_link=festival_link) }}</li>
+          </ul>
+          <p>{{ ftl('manifesto-we-make-firefox-and-thunderbird', firefox_link=firefox_link, thunderbird_link=thunderbird_link) }}</p>
         {% endif %}
         </div>
       </div>
