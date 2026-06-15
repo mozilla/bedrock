@@ -36,14 +36,10 @@ jobs:
     needs: notify-of-test-run-start
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname || 'https://www.mozilla.org' }} # Mozorg base URL
-      BROWSER_NAME: ""
       CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: ""
       LABEL: test-downloads
       MARK_EXPRESSION: download
       PYTEST_PROCESSES: auto
-      SAUCELABS_API_KEY: ""
-      SAUCELABS_USERNAME: ""
 
     # Note we use if: always() below to keep things going, rather than
     # continue-on-error, because that approach falsely marks the overall
