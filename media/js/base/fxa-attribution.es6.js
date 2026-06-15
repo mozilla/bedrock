@@ -15,6 +15,7 @@ const _allowedDomains = [
     'https://payments-next.allizom.org/',
     'https://payments.firefox.com/',
     'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
+    'https://stage.vpn.nonprod.webservices.mozgcp.net/',
     'https://vpn.mozilla.org/'
 ];
 
