@@ -46,11 +46,13 @@
     </div>
   </header>
 
-  <section class="m24-c-showcase m24-t-alt">
+  <section class="m24-t-alt">
     <div class="m24-c-content">
-      <div class="m24-c-showcase-text m24-l-two-columns">
-        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-details-introduction') }}</h2>
-        <div class="m24-c-showcase-body m24-t-body-sm">
+      <div class="m24-c-prose m24-l-two-columns">
+        <div class="m24-c-prose-hgroup">
+          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-details-introduction') }}</h2>
+        </div>
+        <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-details-the-internet-is-becoming') }}</p>
           <p>{{ ftl('manifesto-details-the-mozilla-project-global') }}</p>
           <p>{{ ftl('manifesto-details-the-mozilla-project-community') }}</p>
@@ -88,11 +90,13 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase m24-t-green">
+  <section class="m24-t-green">
     <div class="m24-c-content">
-      <div class="m24-c-showcase-text m24-l-two-columns">
-        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
-        <div class="m24-c-showcase-body m24-t-body-sm">
+      <div class="m24-c-prose m24-l-two-columns">
+        <div class="m24-c-prose-hgroup">
+          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
+        </div>
+        <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-the-open-global-internet') }}</p>
           <p>{{ ftl('manifesto-over-the-last-decade-we') }}</p>
         </div>
@@ -114,11 +118,13 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase m24-t-alt">
+  <section class="m24-t-green">
     <div class="m24-c-content">
-      <div class="m24-c-showcase-text m24-l-two-columns">
-        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
-        <div class="m24-c-showcase-body m24-t-body-sm">
+      <div class="m24-c-prose m24-l-two-columns">
+        <div class="m24-c-prose-hgroup">
+          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
+        </div>
+        <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-across-the-mozilla-project', fallback='manifesto-details-the-mozilla-foundation-pleges-v2') }}</p>
           <ul class="mzp-u-list-styled">
             <li>{{ ftl('manifesto-details-build-and-enable') }}</li>
@@ -132,11 +138,13 @@
     </div>
   </section>
 
-  <section class="m24-c-showcase m24-t-green">
+  <section class="m24-t-alt">
     <div class="m24-c-content">
-      <div class="m24-c-showcase-text m24-l-two-columns">
-        <h2 class="m24-c-showcase-title">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
-        <div class="m24-c-showcase-body m24-t-body-sm">
+      <div class="m24-c-prose m24-l-two-columns">
+        <div class="m24-c-prose-hgroup">
+          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
+        </div>
+        <div class="m24-c-prose-body">
         <p>{{ ftl('manifesto-an-internet-with-these-v2', fallback='manifesto-an-internet-with-these') }}</p>
         {% set github_link = 'href="https://github.com/mozilla%s" rel="external noopener" data-link-text="GitHub"'|safe|format(utm_params) %}
         {% set mofo_link = 'href="https://www.mozillafoundation.org/%s" rel="external noopener" data-link-text="Mozilla Foundation"'|safe|format(utm_params) %}

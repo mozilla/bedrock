@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
+from bedrock.mozorg.fixtures.prose_fixtures import get_prose_test_page, get_prose_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
 from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
@@ -737,15 +738,18 @@ def assert_showcase_gallery_block_attributes(careers_element: BeautifulSoup, var
     value = variant_data["value"]
     settings = value["settings"]
 
+    # bg_color and anchor_id are on the outer <section>, not on .m24-c-careers
+    section = careers_element.parent
+
     # Check background color class if set
     bg_color = settings["background_color"]
     if bg_color:
-        assert bg_color in careers_element.get("class", []), f"Expected class '{bg_color}' not found"
+        assert bg_color in section.get("class", []), f"Expected class '{bg_color}' not found on section"
 
     # Check anchor ID if set
     anchor_id = settings["anchor_id"]
     if anchor_id:
-        assert careers_element.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{careers_element.get('id')}'"
+        assert section.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{section.get('id')}'"
 
     # Check new_window attributes on CTA
     cta_link = careers_element.find("a", class_="m24-c-cta")
@@ -829,6 +833,176 @@ def test_showcase_gallery_block_new_window(minimal_site, rf, serving_method):  #
     soup = BeautifulSoup(response.content, "html.parser")
 
     new_window_variant = next(v for v in variants if v["value"]["cta_link"].get("new_window"))
+    expected_cta_text = new_window_variant["value"]["cta_text"]
+
+    cta_links = soup.find_all("a", class_="m24-c-cta")
+    cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
+    assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"
+
+    assert cta_link.get("target") == "_blank", "Expected target='_blank'"
+    assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
+    assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
+
+
+# ProseBlock Tests
+
+
+def assert_prose_block_structure(prose_element: BeautifulSoup):
+    """Verify the prose block has the expected HTML structure.
+
+    Args:
+        prose_element: BeautifulSoup element for the .m24-c-prose div
+    """
+    hgroup = prose_element.find(class_="m24-c-prose-hgroup")
+    assert hgroup is not None, "Missing .m24-c-prose-hgroup element"
+
+    heading = hgroup.find(class_="m24-c-prose-heading")
+    assert heading is not None, "Missing .m24-c-prose-heading element"
+    assert heading.name == "h2", f"Expected h2 heading, got {heading.name}"
+
+    body = prose_element.find(class_="m24-c-prose-body")
+    assert body is not None, "Missing .m24-c-prose-body element"
+
+
+def assert_prose_block_content(prose_element: BeautifulSoup, variant_data: dict):
+    """Verify the prose block content matches the input data.
+
+    Args:
+        prose_element: BeautifulSoup element for the .m24-c-prose div
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+
+    heading = prose_element.find(class_="m24-c-prose-heading")
+    assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
+
+    if value["sub_heading"]:
+        subheading = prose_element.find(class_="m24-c-prose-subheading")
+        assert subheading is not None, "Missing .m24-c-prose-subheading element"
+        assert value["sub_heading"] in subheading.get_text(), f"Sub-heading text '{value['sub_heading']}' not found"
+
+    body = prose_element.find(class_="m24-c-prose-body")
+    body_text = body.get_text()
+    expected_text = BeautifulSoup(value["body"], "html.parser").get_text()
+    assert expected_text.strip() in body_text, "Body text not found in prose body"
+
+    # section CTA is a sibling of the .m24-c-prose div, inside .m24-c-content
+    content_div = prose_element.parent
+    cta_text = value.get("cta_text", "")
+    cta_link = value.get("cta_link", {})
+    if cta_text and cta_link:
+        cta = content_div.find("a", class_="m24-c-cta")
+        assert cta is not None, "Missing .m24-c-cta link"
+        assert cta_text in cta.get_text(), f"CTA text '{cta_text}' not found"
+        expected_url = cta_link["custom_url"]
+        assert cta["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}'"
+    else:
+        cta = content_div.find("a", class_="m24-c-cta")
+        assert cta is None, "Unexpected .m24-c-cta link in block without CTA"
+
+
+def assert_prose_block_attributes(prose_element: BeautifulSoup, variant_data: dict):
+    """Verify the prose block has correct layout classes, background color, and anchor ID.
+
+    Args:
+        prose_element: BeautifulSoup element for the .m24-c-prose div
+        variant_data: The block data dictionary used to create the block
+    """
+    value = variant_data["value"]
+    settings = value["settings"]
+
+    # bg_color and anchor_id are on the outer wrapper div (grandparent of .m24-c-prose)
+    outer_div = prose_element.parent.parent
+
+    bg_color = settings["background_color"]
+    if bg_color:
+        assert bg_color in outer_div.get("class", []), f"Expected class '{bg_color}' not found on outer wrapper"
+
+    anchor_id = settings["anchor_id"]
+    if anchor_id:
+        assert outer_div.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{outer_div.get('id')}'"
+
+    # Layout classes are on the .m24-c-prose element itself
+    prose_classes = prose_element.get("class", [])
+    if settings["two_column_layout"]:
+        assert "m24-l-two-columns" in prose_classes, "Expected 'm24-l-two-columns' class for two-column layout"
+    else:
+        assert "m24-l-two-columns" not in prose_classes, "Unexpected 'm24-l-two-columns' class"
+
+    if settings["reverse"]:
+        assert "m24-l-reversed" in prose_classes, "Expected 'm24-l-reversed' class for reversed layout"
+    else:
+        assert "m24-l-reversed" not in prose_classes, "Unexpected 'm24-l-reversed' class"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_prose_block_renders(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ProseBlock renders with correct structure."""
+    variants = get_prose_variants()
+    test_page = get_prose_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    assert response.status_code == 200
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    prose_divs = soup.find_all("div", class_="m24-c-prose")
+    assert len(prose_divs) == len(variants), f"Expected {len(variants)} prose blocks, found {len(prose_divs)}"
+
+    for prose_div in prose_divs:
+        assert_prose_block_structure(prose_div)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_prose_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ProseBlock content matches input data."""
+    variants = get_prose_variants()
+    test_page = get_prose_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    prose_divs = soup.find_all("div", class_="m24-c-prose")
+
+    for index, variant in enumerate(variants):
+        assert_prose_block_content(prose_divs[index], variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_prose_block_attributes(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that ProseBlock has correct layout classes, background color, and anchor ID."""
+    variants = get_prose_variants()
+    test_page = get_prose_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    prose_divs = soup.find_all("div", class_="m24-c-prose")
+
+    for index, variant in enumerate(variants):
+        assert_prose_block_attributes(prose_divs[index], variant)
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_prose_block_cta_new_window(minimal_site, rf, serving_method):  # noqa: F811
+    """Test that a prose block CTA with new_window=True has correct link attributes."""
+    variants = get_prose_variants()
+    test_page = get_prose_test_page()
+
+    _relative_url = test_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+    response = getattr(test_page, serving_method)(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+
+    new_window_variant = next(v for v in variants if v["value"].get("cta_link", {}).get("new_window"))
     expected_cta_text = new_window_variant["value"]["cta_text"]
 
     cta_links = soup.find_all("a", class_="m24-c-cta")

@@ -6,17 +6,8 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use '../m24/vars/lib' as *;
 @use '../m24/showcase.scss';
+@use '../m24/prose.scss';
 
-// * ------------------------------------------------------------------ */
-
-#manifesto main h2 {
-    font-size: $text-title-lg;
-}
-
-.m24-c-showcase-body {
-    font-size: $text-body-md;
-    line-height: $text-body-line-height;
-}
 
 // * ------------------------------------------------------------------ */
 // Principles & Addendum
