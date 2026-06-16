@@ -2,30 +2,278 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use 'sass:color';
 
-.m24-c-gallery-tile-heading {
-    font-size: 14px;
-    padding: 0 $spacing-lg;
+// variables
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
+@use '~@mozilla-protocol/core/protocol/css/components/modal';
+@use '~@mozilla-protocol/core/protocol/css/components/sidebar-menu';
+@use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@use '../m24/vars/lib' as *;
+@use '../m24/main-with-sidebar';
+@use '../cms/rich-text';
+
+.visually-hidden {
+    @include visually-hidden;
 }
 
-.m24-c-gallery-tile-image {
-    align-items: center;
-    aspect-ratio: 16/9;
-    background-color: white;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
+/* -------------------------------------------------------------------------- */
+// Groups / sections
 
-    img {
-        max-width: 100%;
-        max-height: 100%;
-        object-fit: contain;
+.c-group-title {
+    @include text-title-sm;
+    border-top: 1px solid $color-light-gray-30;
+    margin-bottom: $layout-sm;
+    margin-top: $layout-sm;
+    padding-top: $layout-sm;
+
+    a {
+        text-decoration: none;
+        color: $m24-color-black;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration: underline;
+            color: $color-link;
+        }
     }
 }
 
-.m24-c-gallery-tile-link[href]:hover::after,
-.m24-c-gallery-tile-link[href]:focus-visible::after {
-    outline: 1px solid $color-black;
-    outline-offset: 3px;
+.c-group-description {
+    @include text-body-md;
+    margin-top: 0;
+    margin-bottom: $spacer-md;
+}
+
+/* only put bios in columns if JS is enabled to show modals */
+.js .c-group-gallery {
+    @include grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: $layout-sm auto;
+    gap: var(--grid-gutter);
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(8, 1fr);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+// Leadership profiles
+
+.vcard {
+    margin-bottom: $spacer-xl;
+
+    .photo {
+        border: 1px solid $m24-color-light-mid-gray;
+    }
+
+    .fn {
+        @include text-body-lg;
+        font-weight: bold;
+        margin-bottom: 0;
+    }
+
+    .title {
+        @include text-body-sm;
+        margin-bottom: 0;
+    }
+
+    .elsewhere,
+    .utility {
+        @include text-body-sm;
+        margin-top: $spacer-md;
+
+        a {
+            padding-left: 20px;
+            position: relative;
+
+            &::before {
+                background-position: center top;
+                background-repeat: no-repeat;
+                background-size: contain;
+                color: $color-link;
+                content: '';
+                height: 1em;
+                left: 0;
+                position: absolute;
+                top: 0.125em;
+                width: 1em;
+            }
+        }
+
+        a.website::before { background-image: url('/media/protocol/img/icons/globe.svg'); }
+        a.twitter::before { background-image: url('/media/protocol/img/icons/social/x/black.svg'); }
+        a.mastodon::before { background-image: url('/media/protocol/img/icons/social/mastodon/black.svg'); }
+        a.profile::before { background-image: url('/media/protocol/img/icons/accounts.svg'); }
+        a.file::before { background-image: url('/media/protocol/img/icons/download.svg'); }
+        a.link::before { background-image: url('/media/protocol/img/icons/link.svg'); }
+    }
+}
+
+
+/* if JS is enabled, we hide the bios, and make the card clickable */
+
+.js .vcard {
+    display: grid;
+    gap: $spacer-2xs;
+    grid-column: span 6;
+    grid-template-rows: auto auto 1fr;
+    margin-bottom: 0;
+
+    @media #{$mq-sm} {
+        grid-column: span 4;
+    }
+
+    @media #{$mq-md} {
+        grid-column: span 2;
+    }
+
+    .photo {
+        width: 100%;
+    }
+
+    .elsewhere,
+    .utility,
+    .person-bio {
+        display: none;
+    }
+
+    &.has-bio:hover,
+    &.has-bio:focus-visible {
+        cursor: pointer;
+
+        .fn {
+            text-decoration: underline;
+        }
+    }
+}
+
+/* Reformat if displaying in a modal */
+
+.mzp-c-modal .mzp-c-modal-overlay-contents {
+    padding: 0;
+
+    .vcard {
+        background: $m24-color-white;
+        color: $m24-color-black;
+        cursor: auto;
+        display: block;
+        min-height: 250px;
+        padding: $spacer-sm;
+        width: auto;
+
+        a {
+            color: $color-link;
+
+            &:hover,
+            &:focus-visible,
+            &:active {
+                color: color.adjust($color-link, $lightness: 10%);
+                text-decoration: underline;
+            }
+        }
+
+        &:hover,
+        &:focus {
+            cursor: auto;
+
+            .fn {
+                text-decoration: none;
+            }
+        }
+
+    }
+
+    .photo {
+        height: 160px;
+        margin: 0 auto $spacer-md;
+        width: 160px;
+        float: right;
+
+        @media #{$mq-sm} {
+            margin: 0 0 $spacer-md $spacer-md;
+        }
+
+        @media #{$mq-md} {
+            float: right;
+            height: 250px;
+            margin: 0 0 $spacer-md $spacer-md;
+            width: 250px;
+        }
+    }
+
+    .fn {
+        @include text-title-md;
+        color: $m24-color-black;
+        text-decoration: none;
+    }
+
+    .person-info {
+        margin: 0 0 $spacer-md;
+    }
+
+    .title {
+        font-size: $text-body-md;
+        font-weight: 700;
+        line-height: $text-body-line-height;
+        margin-bottom: $spacer-md;
+    }
+
+    .elsewhere,
+    .utility,
+    .person-bio {
+        display: block;
+    }
+}
+
+
+/* -------------------------------------------------------------------------- */
+// links to sub pages
+
+.c-subpages {
+    @include container;
+    margin-top: $layout-lg;
+    padding-top: $spacer-lg;
+    padding-bottom: $spacer-lg;
+}
+
+.c-subpages-intro {
+    margin-bottom: $spacer-lg;
+
+    h2 {
+        @include text-title-sm;
+        margin-bottom: $spacer-xs;
+    }
+}
+
+.c-orglinks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media #{$mq-xl} {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.c-orglinks-link {
+    box-sizing: border-box;
+    aspect-ratio: 16/9;
+    padding: $spacing-lg $spacing-md;
+
+    img {
+        display: block;
+        object-fit: contain;
+        height: 100%; // I don't know why this works but it makes the image respect the size of its container
+        width: 100%;
+    }
+
+    &:hover,
+    &:focus-visible {
+        outline: 1px solid $color-black;
+    }
 }

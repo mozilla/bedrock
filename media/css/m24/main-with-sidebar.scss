@@ -1,0 +1,49 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// variables
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use 'vars/lib' as *;
+
+.mzp-c-sidemenu-title {
+    font-size: $text-title-xs;
+    font-family: var(--title-font-family);
+}
+
+// Content with sidebar - left by default
+@media #{$mq-md} {
+    .mzp-has-sidebar {
+        @include grid;
+    }
+
+    .mzp-l-sidebar {
+        grid-row: 1;
+        grid-column: 1 / span 3;
+    }
+
+    .mzp-l-main {
+        grid-row: 1;
+        grid-column: 4 / span 9;
+    }
+
+    .mzp-l-sidebar-right {
+        .mzp-l-sidebar {
+            grid-column: 10 / span 3;
+        }
+
+        .mzp-l-main {
+            grid-column: 2 / span 9;
+        }
+    }
+}
+
+@media #{$mq-lg} {
+    .mzp-l-main {
+        grid-column: 4 / span 8;
+
+        .mzp-l-sidebar-right & {
+            grid-column: 2 / span 8;
+        }
+    }
+}

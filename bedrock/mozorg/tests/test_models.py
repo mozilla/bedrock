@@ -555,6 +555,7 @@ def test_organization_leadership_index_page_shows_child_pages(minimal_site, rf, 
     index_page = factories.OrganizationLeadershipIndexPageFactory(
         parent=root_page,
         sub_pages_link_heading="Our Organizations",
+        sub_pages_link_description="Learn about the organizations that make up Mozilla.",
     )
     index_page.save()
 
@@ -583,6 +584,28 @@ def test_organization_leadership_index_page_shows_child_pages(minimal_site, rf, 
 
     assert "Test Suborganization" in page_content
     assert "Our Organizations" in page_content
+    assert "Learn about the organizations that make up Mozilla." in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_index_page_description_hidden_without_heading(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(
+        parent=root_page,
+        sub_pages_link_heading="",
+        sub_pages_link_description="This description should not appear.",
+    )
+    index_page.save()
+
+    factories.OrganizationLeadershipSubpageFactory(parent=index_page).save()
+
+    _relative_url = index_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(index_page, serving_method)(request)
+    assert resp.status_code == 200
+    assert "This description should not appear." not in resp.text
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
