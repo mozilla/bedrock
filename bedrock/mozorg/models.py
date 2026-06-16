@@ -378,6 +378,11 @@ class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
         blank=True,
     )
 
+    sub_pages_link_description = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
     content_panels = AbstractBedrockCMSPage.content_panels + [
         FieldPanel("intro"),
         MultiFieldPanel(
@@ -388,7 +393,13 @@ class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
             ],
             heading="Executive Leadership",
         ),
-        FieldPanel("sub_pages_link_heading", heading="Heading for the links to sub pages"),
+        MultiFieldPanel(
+            [
+                FieldPanel("sub_pages_link_heading", heading="Heading"),
+                FieldPanel("sub_pages_link_description", heading="Description"),
+            ],
+            heading="Mozilla Organization Links",
+        ),
     ]
 
     template = "mozorg/cms/about/organization_leadership_index_page.html"

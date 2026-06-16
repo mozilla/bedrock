@@ -19,7 +19,6 @@
 {% block body_class %}{{ super() }} about-leadership{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('about-leadership') }}
   {{ css_bundle('m24-base') }}
   {{ css_bundle('about-org-leadership') }}
 {% endblock %}
@@ -34,11 +33,7 @@
     {{ nav_bar.append((sibling.url, sibling.slug, sibling.title)) or "" }}
   {% endfor %}
 
-  <div class="mzp-l-content mzp-has-sidebar mzp-l-sidebar-left">
-    <aside class="mzp-l-sidebar">
-      {{ sidemenu_lists([nav_bar]) }}
-    </aside>
-
+  <div class="m24-c-content mzp-has-sidebar mzp-l-sidebar-left">
     <main class="mzp-l-main">
       <h1>{{ page.title }}</h1>
 
@@ -47,16 +42,16 @@
       {% endif %}
 
       {% for block in page.leadership_groups %}
-        <section class="leadership-group">
+        <section class="c-group">
           {% if block.value.title %}
-            <h2 class="group-title">{{ block.value.title }}</h2>
+            <h2 id="{{ block.value.title|slugify }}" class="c-group-title">{{ block.value.title }}</h2>
           {% endif %}
 
           {% if block.value.description %}
-            <p class="group-description">{{ block.value.description }}</p>
+            <p class="c-group-description">{{ block.value.description }}</p>
           {% endif %}
 
-          <div class="gallery mgmt-corp">
+          <div class="c-group-gallery">
             {% for leader in block.value.leaders %}
               {% set snippet = leader.profile %}
               {% set job_title_override = leader.job_title %}
@@ -66,6 +61,10 @@
         </section>
       {% endfor %}
     </main>
+    <aside class="mzp-l-sidebar">
+      {{ sidemenu_lists([nav_bar]) }}
+    </aside>
+
   </div>
 
   <div id="leadership-modal" class="mzp-u-modal-content"></div>
