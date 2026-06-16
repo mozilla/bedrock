@@ -5,6 +5,7 @@
 from django.utils.safestring import mark_safe
 
 from wagtail import blocks
+from wagtail.blocks.struct_block import BlockGroup
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
 
@@ -229,8 +230,6 @@ class DonateBlock(blocks.StructBlock):
 
     settings = DonateBlockSettings()
 
-    text_divider = DividerBlock(label="Text")
-
     heading = blocks.CharBlock(
         max_length=255,
         help_text="Use sentence case.",
@@ -240,8 +239,6 @@ class DonateBlock(blocks.StructBlock):
         features=["bold", "link"],
         help_text="Keep this to 2 paragraphs or fewer.",
     )
-
-    image_divider = DividerBlock(label="Image")
 
     image = ImageChooserBlock(
         help_text="Ideal image size is 1400 x 700. Image will be cropped to a 2:1 aspect ratio.",
@@ -255,8 +252,6 @@ class DonateBlock(blocks.StructBlock):
             "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
         ),
     )
-
-    cta_divider = DividerBlock(label="Call-to-action")
 
     cta_text = blocks.CharBlock(
         max_length=50,
@@ -273,6 +268,14 @@ class DonateBlock(blocks.StructBlock):
         icon = "grip"
         label = "Donate Section"
         label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                BlockGroup(["heading", "body"], heading="Text"),
+                BlockGroup(["image", "image_alt"], heading="Image"),
+                BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
+            ],
+            settings=["settings"],
+        )
 
 
 class ShowcaseBlockSettings(blocks.StructBlock):
@@ -297,6 +300,14 @@ class ShowcaseBlockSettings(blocks.StructBlock):
         help_text="What color should the background be?",
     )
 
+    two_column_layout = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Make it two column layout",
+        inline_form=True,
+        help_text="Make the title and body content into a two-column layout.",
+    )
+
     class Meta:
         icon = "cog"
         collapsed = True
@@ -306,11 +317,9 @@ class ShowcaseBlockSettings(blocks.StructBlock):
 
 
 class ShowcaseBlock(blocks.StructBlock):
-    """Block for the showcase section on the homepage."""
+    """Block for the showcase component."""
 
     settings = ShowcaseBlockSettings()
-
-    text_divider = DividerBlock(label="Text")
 
     heading = blocks.CharBlock(
         max_length=255,
@@ -321,8 +330,6 @@ class ShowcaseBlock(blocks.StructBlock):
         features=["bold", "link"],
         help_text="Keep this to 2 paragraphs or fewer.",
     )
-
-    image_divider = DividerBlock(label="Image")
 
     image = ImageChooserBlock(
         help_text="Ideal image size is 1376 * 515.",
@@ -340,18 +347,8 @@ class ShowcaseBlock(blocks.StructBlock):
     sub_heading = blocks.CharBlock(
         required=False,
         max_length=255,
-        help_text="Section sub heading heading. Use sentence case.",
+        help_text="Sub heading. Use sentence case.",
     )
-
-    two_column_layout = blocks.BooleanBlock(
-        required=False,
-        default=False,
-        label="Make it two column layout",
-        inline_form=True,
-        help_text="Make the title and body content into a two-column layout.",
-    )
-
-    cta_divider = DividerBlock(label="Call-to-action")
 
     cta_text = blocks.CharBlock(
         required=False,
@@ -369,6 +366,14 @@ class ShowcaseBlock(blocks.StructBlock):
         icon = "grip"
         label = "Showcase Section"
         label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                BlockGroup(["heading", "body"], heading="Text"),
+                BlockGroup(["image", "image_alt"], heading="Image"),
+                BlockGroup(["sub_heading", "cta_text", "cta_link"], heading="Call-to-action"),
+            ],
+            settings=["settings"],
+        )
 
 
 class GalleryBlockSettings(blocks.StructBlock):
@@ -416,20 +421,32 @@ class GalleryTileBlock(blocks.StructBlock):
         help_text="Width of the tile in the gallery grid at desktop sizes.",
     )
 
-    link_divider = DividerBlock(label="Link")
-
-    cta_link = LinkBlock(
-        label="Link destination",
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Use sentence case.",
     )
 
-    cta_text = blocks.CharBlock(
-        max_length=100,
+    body = blocks.TextBlock(
         required=False,
-        label="Call to action text (optional)",
-        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
+        help_text="Short blurb about what you're linking to.",
     )
 
-    image_divider = DividerBlock(label="Image")
+    tag = blocks.ChoiceBlock(
+        choices=[
+            ("", "None"),
+            ("community", "Community"),
+            ("event", "Event"),
+            ("impact", "Impact"),
+            ("partnership", "Partnership"),
+            ("policy", "Policy"),
+            ("product", "Product"),
+            ("program", "Program"),
+            ("project", "Project"),
+            ("research", "Research"),
+        ],
+        required=False,
+        default="",
+    )
 
     image = ImageChooserBlock(
         help_text=(
@@ -459,39 +476,29 @@ class GalleryTileBlock(blocks.StructBlock):
         ),
     )
 
-    text_divider = DividerBlock(label="Text")
-
-    tag = blocks.ChoiceBlock(
-        choices=[
-            ("", "None"),
-            ("community", "Community"),
-            ("event", "Event"),
-            ("impact", "Impact"),
-            ("partnership", "Partnership"),
-            ("policy", "Policy"),
-            ("product", "Product"),
-            ("program", "Program"),
-            ("project", "Project"),
-            ("research", "Research"),
-        ],
-        required=False,
-        default="",
+    cta_link = LinkBlock(
+        label="Link destination",
     )
 
-    heading = blocks.CharBlock(
-        max_length=255,
-        help_text="Use sentence case.",
-    )
-
-    body = blocks.TextBlock(
+    cta_text = blocks.CharBlock(
+        max_length=100,
         required=False,
-        help_text="Short blurb about what you're linking to.",
+        label="Call to action text (optional)",
+        help_text="Use sentence case (e.g., 'Read more', 'Watch now').",
     )
 
     class Meta:
         icon = "image"
         label = "Gallery Tile"
         label_format = "{heading} ({width})"
+        form_layout = BlockGroup(
+            children=[
+                BlockGroup(["heading", "body", "tag"], heading="Text"),
+                BlockGroup(["image", "image_ratio", "image_alt"], heading="Image"),
+                BlockGroup(["cta_link", "cta_text"], heading="Link"),
+            ],
+            settings=["width"],
+        )
 
 
 class ShowcaseGalleryImageBlock(blocks.StructBlock):
@@ -577,26 +584,22 @@ class ShowcaseGalleryBlock(blocks.StructBlock):
 
     settings = ShowcaseGalleryBlockSettings()
 
-    text_divider = DividerBlock(label="Text")
-
     heading = blocks.CharBlock(
         required=False,
         max_length=255,
         help_text="Use sentence case.",
     )
 
-    image_divider = DividerBlock(label="Image")
+    body = blocks.CharBlock(
+        max_length=1000,
+        label="Content for section body",
+        help_text="Use sentence case.",
+    )
 
     tiles = blocks.ListBlock(
         ShowcaseGalleryImageBlock(),
         min_num=1,
         help_text="Add gallery tiles. For best results, ensure tile widths add up to 100% per row.",
-    )
-
-    body = blocks.CharBlock(
-        max_length=1000,
-        label="Content for section body",
-        help_text="Use sentence case.",
     )
 
     cta_text = blocks.CharBlock(
@@ -615,3 +618,103 @@ class ShowcaseGalleryBlock(blocks.StructBlock):
         icon = "grip"
         label = "Showcase Gallery section"
         label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                BlockGroup(["heading", "body"], heading="Text"),
+                BlockGroup(["tiles"], heading="Image"),
+                BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
+            ],
+            settings=["settings"],
+        )
+
+
+class ProseBlockSettings(blocks.StructBlock):
+    """Settings for the prose block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    two_column_layout = blocks.BooleanBlock(
+        required=False,
+        default=True,
+        label="Two column layout",
+        inline_form=True,
+        help_text="Place the headings and body side by side.",
+    )
+
+    reverse = blocks.BooleanBlock(
+        required=False,
+        default=False,
+        label="Reverse column order",
+        inline_form=True,
+        help_text="Put the body on the left and the headings on the right.",
+    )
+
+    anchor_id = blocks.CharBlock(
+        required=False,
+        max_length=100,
+        help_text="Optional: Add an ID to make this section linkable (e.g., 'pledge', 'support').",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class ProseBlock(blocks.StructBlock):
+    """Block for the prose component."""
+
+    settings = ProseBlockSettings()
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Section heading. Use sentence case.",
+    )
+
+    sub_heading = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Sub heading. Use sentence case.",
+    )
+
+    body = blocks.RichTextBlock(
+        features=["bold", "link"],
+    )
+
+    cta_text = blocks.CharBlock(
+        required=False,
+        max_length=50,
+        label="Link text",
+        help_text="Use sentence case (e.g., 'Read the report', 'Read more').",
+    )
+
+    cta_link = LinkBlock(
+        required=False,
+        label="Link destination",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/prose_block.html"
+        icon = "grip"
+        label = "Prose Section"
+        label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                BlockGroup(["heading", "sub_heading", "body"], heading="Text"),
+                BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
+            ],
+            settings=["settings"],
+        )

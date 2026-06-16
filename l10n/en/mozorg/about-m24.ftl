@@ -12,6 +12,8 @@ m24-about-page-desc = { -brand-name-mozilla } makes browsers, apps, code and too
 
 ## Intro
 
+m24-about-guard-the-internet = Guard the Open Internet
+# Obsolete string (expires 2026-09-11)
 m24-about-reclaim-the-internet = Reclaim the internet with us
 m24-about-mozilla-is-working = { -brand-name-mozilla } is working to put control of the internet back in the hands of the people using it.
 
@@ -21,14 +23,6 @@ m24-about-together-we-can = Together, we can keep the internet easy, safe and fr
 m24-about-read-our-manifesto = Read our manifesto
 # Used as an accessible text alternative for an image
 m24-about-a-group-of = A group of thinkers sitting in a circle on the floor sharing ideas.
-m24-about-advocate = Advocate
-m24-about-we-advocate-for = We advocate for better products, holding governments and tech corporations accountable for what they create.
-m24-about-research = Research
-m24-about-we-uncover-insights = We uncover insights, campaign to improve products and drive policies that represent your interests.
-m24-about-build = Build
-m24-about-we-build-products-v2 = We build products that put you in control — like { -brand-name-firefox } and more.
-m24-about-fund = Fund
-m24-about-we-fund-and = We fund and invest in the people and efforts taking technology, the internet and AI in the right direction.
 
 ## News
 

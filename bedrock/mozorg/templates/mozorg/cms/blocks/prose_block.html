@@ -1,0 +1,31 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set bg_color = value.settings.background_color %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+<div class="{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+  <div class="m24-c-content">
+    <div class="m24-c-prose{% if value.settings.two_column_layout %} m24-l-two-columns{% endif %}{% if value.settings.reverse %} m24-l-reversed{% endif %}">
+      <hgroup class="m24-c-prose-hgroup">
+        {% if value.heading %}
+          <h2 class="m24-c-prose-heading">{{ value.heading }}</h2>
+        {% endif %}
+        {% if value.sub_heading %}
+          <h3 class="m24-c-prose-subheading">{{ value.sub_heading }}</h3>
+        {% endif %}
+      </hgroup>
+      <div class="m24-c-prose-body">
+        {{ value.body|richtext }}
+      </div>
+    </div>
+    {% if value.cta_text and value.cta_link %}
+      <p class="m24-c-section-cta">
+        <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="external noopener" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
+      </p>
+    {% endif %}
+  </div>
+</div>

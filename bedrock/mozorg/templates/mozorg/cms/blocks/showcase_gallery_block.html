@@ -23,7 +23,8 @@
 {% set mobile_fill_spec = "fill-{375x375,432x432}" %}
 {% set mobile_dimensions = {"width": "432", "height": "432"} %}
 
-<div class="m24-c-careers{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}">
+<section{% if anchor_id %} id="{{ anchor_id }}"{% endif %} class="{{ bg_color }}">
+<div class="m24-c-careers">
   <h2 class="m24-c-careers-title">{{ value.heading }}</h2>
   <div class="m24-c-careers-media">
 
@@ -70,3 +71,4 @@
     <a href="{{ value.cta_link.get_url()|add_utm_parameters }}" class="m24-c-cta" {% if value.cta_link.new_window %}target="_blank" {% endif %}rel="noopener external" data-cta-text="{{ value.cta_text }}">{{ value.cta_text }}</a>
   </div>
 </div>
+</section>

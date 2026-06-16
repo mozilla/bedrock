@@ -22,7 +22,7 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ProseBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
 from bedrock.mozorg.blocks.leadership import (
     LeadershipExternalLinkBlock,
     LeadershipGroupSnippetBlock,
@@ -629,6 +629,7 @@ class AboutUsPage(AbstractBedrockCMSPage):
         [
             ("donate_block", DonateBlock()),
             ("gallery_block", GalleryBlock()),
+            ("prose_block", ProseBlock()),
             ("showcase_block", ShowcaseBlock()),
             ("showcase_gallery_block", ShowcaseGalleryBlock()),
             ("transition_block", TransitionBlock()),
