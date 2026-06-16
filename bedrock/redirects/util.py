@@ -340,8 +340,23 @@ def gone_view(request, *args, **kwargs):
     return page_gone_view(request)
 
 
-def gone(pattern):
-    """Return a url matcher suitable for urlpatterns that returns a 410."""
+def gone(pattern, locale_prefix=True, re_flags=None):
+    """Return a url matcher suitable for urlpatterns that returns a 410.
+
+    :param pattern: regex URL pattern that will return a 410.
+    :param locale_prefix: automatically prepend `pattern` with a regex for an optional
+        locale in the url, so that e.g. both `/foo` and `/{LANG}/foo` are caught.
+    :param re_flags: optional string of Python `re` flags used to modify how
+        `pattern` is interpreted (see the `re` module docs).
+    :return: a `re_path` matcher that serves a 410 Gone response for `pattern`.
+    """
+    if locale_prefix:
+        pattern = pattern.lstrip("^/")
+        pattern = LOCALE_RE + pattern
+
+    if re_flags:
+        pattern = f"(?{re_flags})" + pattern
+
     return re_path(pattern, gone_view)
 
 
