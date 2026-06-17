@@ -22,17 +22,17 @@ test.describe(
                 await openPage(url + '?geo=us', page, browserName);
             });
 
-            test('Windows download click', async ({ page, browserName }) => {
+            test('Windows download 64 click', async ({ page, browserName }) => {
                 // Click Windows download link
                 let downloadLink;
 
                 if (browserName === 'webkit') {
                     downloadLink = page.getByTestId(
-                        'vpn-download-link-secondary-windows'
+                        'vpn-download-link-secondary-64-windows'
                     );
                 } else {
                     downloadLink = page.getByTestId(
-                        'vpn-download-link-primary-windows'
+                        'vpn-download-link-primary-64-windows'
                     );
                 }
 
@@ -40,6 +40,46 @@ test.describe(
                 await downloadLink.click();
                 await page.waitForURL(
                     '**/products/vpn/download/windows/thanks/',
+                    {
+                        waitUntil: 'commit'
+                    }
+                );
+
+                // Assert /thanks/ page triggers file download.
+                const download = await page.waitForEvent('download');
+                const downloadURL = download.url();
+
+                expect(downloadURL).toEqual(
+                    expect.stringContaining(
+                        'https://archive.mozilla.org/pub/vpn/releases/'
+                    )
+                );
+
+                // Cancel download if not finished.
+                await download.cancel();
+            });
+
+            test('Windows download arm click', async ({
+                page,
+                browserName
+            }) => {
+                // Click Windows download link
+                let downloadLink;
+
+                if (browserName === 'webkit') {
+                    downloadLink = page.getByTestId(
+                        'vpn-download-link-secondary-arm-windows'
+                    );
+                } else {
+                    downloadLink = page.getByTestId(
+                        'vpn-download-link-primary-arm-windows'
+                    );
+                }
+
+                await expect(downloadLink).toBeVisible();
+                await downloadLink.click();
+                await page.waitForURL(
+                    '**/products/vpn/download/windows-arm/thanks/',
                     {
                         waitUntil: 'commit'
                     }
