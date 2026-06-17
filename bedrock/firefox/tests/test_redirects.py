@@ -10,6 +10,7 @@ from django.test import RequestFactory
 import pytest
 
 from bedrock.firefox.redirects import mobile_app, validate_param_value
+from bedrock.firefox.views import releasenotes_redirect
 from bedrock.redirects.util import mobile_app_redirector
 
 ANDROID_UA = "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36"
@@ -809,6 +810,30 @@ def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(clie
     resp = client.get(source_path)
     assert resp.status_code == 301
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
+
+
+@pytest.mark.parametrize(
+    "path, expected",
+    (
+        # release notes / system requirements redirect to the same path on www.firefox.com
+        ("/en-US/firefox/notes/", "/en-US/firefox/notes/"),
+        ("/en-US/firefox/beta/notes/", "/en-US/firefox/beta/notes/"),
+        ("/en-US/firefox/android/notes/", "/en-US/firefox/android/notes/"),
+        ("/en-US/firefox/system-requirements/", "/en-US/firefox/system-requirements/"),
+        ("/en-US/firefox/organizations/system-requirements/", "/en-US/firefox/organizations/system-requirements/"),
+        # the releases index is served at /releases/ on www.firefox.com, not /firefox/releases/
+        ("/en-US/firefox/releases/", "/releases/"),
+        # the incoming query string is preserved
+        ("/en-US/firefox/notes/?foo=bar&baz=1", "/en-US/firefox/notes/?foo=bar&baz=1"),
+        ("/en-US/firefox/releases/?utm=x", "/releases/?utm=x"),
+    ),
+)
+def test_releasenotes_redirect_view(path, expected):
+    """`releasenotes_redirect` is normally shadowed by RedirectsMiddleware, so call it
+    directly via RequestFactory to confirm its standalone fallback behaviour."""
+    resp = releasenotes_redirect(RequestFactory().get(path))
+    assert resp.status_code == 301
+    assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
 
 @pytest.mark.django_db
