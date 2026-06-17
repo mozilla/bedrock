@@ -80,9 +80,15 @@
             <div class="platform-body">
               <h2>{{ ftl('vpn-download-for-windows-long') }}</h2>
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
-              <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
-              <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" data-testid="vpn-download-link-primary-windows">
-              {{ ftl('vpn-download-get-mozilla-vpn', fallback='vpn-shared-subscribe-link') }}
+              <p>{{ ftl('vpn-download-for-windows-requirements-v2') }}</p>
+              <div class="platform-link-container">
+                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}"  data-cta-text="Install via Flathub" class="platform-download-link">
+                {{ ftl('vpn-download-windows') }}
+                </a>
+                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}"  data-cta-text="Install via APT" class="platform-download-link">
+                {{ ftl('vpn-download-windows-arm') }}
+                </a>
+              </div>
               </a>
             </div>
           </div>
@@ -172,11 +178,18 @@
             </div>
             <div class="platform-body">
               <h2>{{ ftl('vpn-download-for-windows-v2') }}</h2>
-              <p>{{ ftl('vpn-download-for-windows-requirements') }}</p>
+              <p>{{ ftl('vpn-download-for-windows-requirements-v2') }}</p>
             </div>
-            <a href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows)" class="platform-download-link ga-product-download" data-testid="vpn-download-link-secondary-windows">
-              <span class="visually-hidden">{{ ftl('vpn-download-for-windows-long') }}</span>
-            </a>
+            <div class="platform-link-container">
+              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="Install via Flathub" class="platform-download-link">
+                <span class="platform-download-arrow"></span>
+                {{ ftl('vpn-download-windows') }}
+              </a>
+              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="Install via APT" class="platform-download-link">
+                <span class="platform-download-arrow" aria-hidden="true"></span>
+                {{ ftl('vpn-download-windows-arm') }}
+              </a>
+            </div>
           </li>
           <!-- Mac OS -->
           <li class="secondary-platform macos">
@@ -202,11 +215,11 @@
             </div>
             <div class="platform-link-container">
               <a class="mzp-c-button mzp-t-secondary ga-product-download" href="https://flathub.org/apps/org.mozilla.vpn/?utm_medium=referral&utm_source=www.mozilla.org-vpn-download-page&utm_campaign=vpn-download-page" data-cta-text="Install via Flathub" class="platform-download-link">
-                <span class="platform-download-linux-arrow"></span>
+                <span class="platform-download-arrow"></span>
                 {{ ftl('vpn-download-flathub') }}
               </a>
               <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ linux_download_url }}" data-cta-text="Install via APT" class="platform-download-link">
-                <span class="platform-download-linux-arrow" aria-hidden="true"></span>
+                <span class="platform-download-arrow" aria-hidden="true"></span>
                 {{ ftl('vpn-download-apt') }}
               </a>
             </div>
