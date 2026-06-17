@@ -21,19 +21,13 @@
   {{ css_bundle('m24-manifesto') }}
 {% endblock %}
 
+{% macro permalink(anchor, number_ftl) -%}
+<div class="c-point-number">
+  <a href="#{{ anchor }}">{{ ftl(number_ftl) }}<span class="c-point-link-icon" ><svg class="c-point-anchor-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><g fill="currentColor"><path d="M13.443 7.012c1.103-1.104 1.09-3.02-.172-4.282s-3.18-1.276-4.283-.173l-.861.862-1.061-1.06.862-.863c1.752-1.752 4.62-1.61 6.404.173s1.924 4.65.172 6.403l-.862.862-1.06-1.06z"/><path d="m12.03 5.03-7 7-1.06-1.06 7-7z"/><path d="m1.497 7.928.861-.862 1.061 1.06-.862.862c-1.103 1.104-1.09 3.02.173 4.283s3.179 1.275 4.282.172l.862-.862 1.06 1.06-.861.863c-1.753 1.752-4.62 1.61-6.404-.172-1.783-1.784-1.925-4.652-.172-6.404"/></g></svg></span></a>
+</div>
+{%- endmacro %}
+
 {% set utm_params = '?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=manifesto' %}
-
-{% set principle_text_01 = ftl('manifesto-the-internet-is-an-integral') %}
-{% set principle_text_02 = ftl('manifesto-the-internet-is-a-global') %}
-{% set principle_text_03 = ftl('manifesto-the-internet-must-enrich') %}
-{% set principle_text_04 = ftl('manifesto-individuals-security-and') %}
-{% set principle_text_05 = ftl('manifesto-individuals-must-have') %}
-{% set principle_text_06 = ftl('manifesto-the-effectiveness-of-the') %}
-{% set principle_text_07 = ftl('manifesto-free-and-open-source-software') %}
-{% set principle_text_08 = ftl('manifesto-details-transparent-community') %}
-{% set principle_text_09 = ftl('manifesto-commercial-involvement') %}
-{% set principle_text_10 = ftl('manifesto-magnifying-the-public') %}
-
 
 {% block content %}
 <main>
@@ -76,16 +70,46 @@
           <h2 class="m24-c-intro-title">{{ ftl('manifesto-details-principles') }}</h2>
       </div>
       <ol class="c-points">
-        <li id="principles-01">{{ principle_text_01 }}</li>
-        <li id="principles-02">{{ principle_text_02 }}</li>
-        <li id="principles-03">{{ principle_text_03 }}</li>
-        <li id="principles-04">{{ principle_text_04 }}</li>
-        <li id="principles-05">{{ principle_text_05 }}</li>
-        <li id="principles-06">{{ principle_text_06 }}</li>
-        <li id="principles-07">{{ principle_text_07 }}</li>
-        <li id="principles-08">{{ principle_text_08 }}</li>
-        <li id="principles-09">{{ principle_text_09 }}</li>
-        <li id="principles-10">{{ principle_text_10 }}</li>
+        <li id="principles-01">
+          {{ permalink('principles-01', 'manifesto-principle-1') }}
+          <div class="c-point-text">{{ ftl('manifesto-the-internet-is-an-integral') }}</div>
+        </li>
+        <li id="principles-02">
+          {{ permalink('principles-02', 'manifesto-principle-2') }}
+          <div class="c-point-text">{{ ftl('manifesto-the-internet-is-a-global') }}</div>
+        </li>
+        <li id="principles-03">
+          {{ permalink('principles-03', 'manifesto-principle-3') }}
+          <div class="c-point-text">{{ ftl('manifesto-the-internet-must-enrich') }}</div>
+        </li>
+        <li id="principles-04">
+          {{ permalink('principles-04', 'manifesto-principle-4') }}
+          <div class="c-point-text">{{ ftl('manifesto-individuals-security-and') }}</div>
+        </li>
+        <li id="principles-05">
+          {{ permalink('principles-05', 'manifesto-principle-5') }}
+          <div class="c-point-text">{{ ftl('manifesto-individuals-must-have') }}</div>
+        </li>
+        <li id="principles-06">
+          {{ permalink('principles-06', 'manifesto-principle-6') }}
+          <div class="c-point-text">{{ ftl('manifesto-the-effectiveness-of-the') }}</div>
+        </li>
+        <li id="principles-07">
+          {{ permalink('principles-07', 'manifesto-principle-7') }}
+          <div class="c-point-text">{{ ftl('manifesto-free-and-open-source-software') }}</div>
+        </li>
+        <li id="principles-08">
+          {{ permalink('principles-08', 'manifesto-principle-8') }}
+          <div class="c-point-text">{{ ftl('manifesto-details-transparent-community') }}</div>
+        </li>
+        <li id="principles-09">
+          {{ permalink('principles-09', 'manifesto-principle-9') }}
+          <div class="c-point-text">{{ ftl('manifesto-commercial-involvement') }}</div>
+        </li>
+        <li id="principles-10">
+          {{ permalink('principles-10', 'manifesto-principle-10') }}
+          <div class="c-point-text">{{ ftl('manifesto-magnifying-the-public') }}</div>
+        </li>
       </ol>
     </div>
   </section>
@@ -110,10 +134,22 @@
         <h2 class="m24-c-intro-title">{{ ftl('manifesto-our-commitments') }}</h2>
       </div>
       <ol class="c-points">
-        <li>{{ ftl('manifesto-we-are-committed-to-people') }}</li>
-        <li>{{ ftl('manifesto-we-are-committed-to-discourse') }}</li>
-        <li>{{ ftl('manifesto-we-are-committed-to-thinking') }}</li>
-        <li>{{ ftl('manifesto-we-are-committed-to-diverse') }}</li>
+        <li id="commitment-01">
+          {{ permalink('commitment-01', 'manifesto-commitment-1') }}
+          <div class="c-point-text">{{ ftl('manifesto-we-are-committed-to-people') }}</div>
+        </li>
+        <li id="commitment-02">
+          {{ permalink('commitment-02', 'manifesto-commitment-2') }}
+          <div class="c-point-text">{{ ftl('manifesto-we-are-committed-to-discourse') }}</div>
+        </li>
+        <li id="commitment-03">
+          {{ permalink('commitment-03', 'manifesto-commitment-3') }}
+          <div class="c-point-text">{{ ftl('manifesto-we-are-committed-to-thinking') }}</div>
+        </li>
+        <li id="commitment-04">
+          {{ permalink('commitment-04', 'manifesto-commitment-4') }}
+          <div class="c-point-text">{{ ftl('manifesto-we-are-committed-to-diverse') }}</div>
+        </li>
       </ol>
     </div>
   </section>

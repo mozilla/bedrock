@@ -24,13 +24,12 @@
 
     li {
         position: relative;
-        font-size: $text-body-lg;
-        font-weight: 500;
         grid-column: 1/-1;
         padding-top: $spacer-xl;
         text-align: start;
 
-        &::before {
+        &::before,
+        &:last-child::after {
             @include bidi(((left, 0, right, auto),));
             background-color: var(--m24-light-gray);
             content: '';
@@ -41,8 +40,73 @@
             width: 100%;
         }
 
+        &:last-child {
+            padding-bottom: $spacer-xl;
+
+            &::after {
+                top: auto;
+                bottom: 0;
+
+            }
+        }
+
         @media #{$mq-md} {
-            grid-column: span 9;
+            grid-column: 2/-2;
         }
     }
+}
+
+.c-point-number {
+    @include text-body-md;
+    font-weight: 700;
+    margin-bottom: $spacer-sm;
+    position: relative;
+
+    a {
+        padding-bottom: $spacer-lg;
+        padding-top: $spacer-lg;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        transition: text-decoration-color $fast $bezier;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration-color: currentColor;
+
+            .c-point-link-icon {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.c-point-link-icon {
+    align-items: center;
+    color: inherit;
+    display: inline-flex;
+    height: 45px; // finger-sized hit area
+    justify-content: center;
+    line-height: 0;
+    width: 45px; // finger-sized hit area
+    position: absolute;
+    inset-inline-end: 0;
+    top: -13px;
+
+
+    @media #{$mq-md} {
+        inset-inline-end: calc(100%) ;
+    }
+
+    // Hide icon if hover supported
+    @media (hover: hover) {
+        opacity: 0;
+        transition: opacity $fast $bezier;
+    }
+}
+
+.c-point-text {
+    font-size: $text-body-lg;
+    font-weight: 500;
+    max-width: 65ch;
+    text-wrap: balance;
 }
