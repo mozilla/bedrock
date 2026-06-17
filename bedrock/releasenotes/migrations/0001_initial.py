@@ -6,8 +6,6 @@ from django.db import migrations, models
 
 import django_extensions.db.fields.json as json_module
 
-import bedrock.releasenotes.models
-
 
 class Migration(migrations.Migration):
     dependencies = []
@@ -23,11 +21,11 @@ class Migration(migrations.Migration):
                 ("slug", models.CharField(max_length=255)),
                 ("title", models.CharField(max_length=255)),
                 ("release_date", models.DateField()),
-                ("text", bedrock.releasenotes.models.MarkdownField(blank=True)),
+                ("text", models.TextField(blank=True)),
                 ("is_public", models.BooleanField(default=False)),
                 ("bug_list", models.TextField(blank=True)),
                 ("bug_search_url", models.CharField(max_length=2000, blank=True)),
-                ("system_requirements", bedrock.releasenotes.models.MarkdownField(blank=True)),
+                ("system_requirements", models.TextField(blank=True)),
                 ("created", models.DateTimeField()),
                 ("modified", models.DateTimeField()),
                 ("notes", json_module.JSONField(blank=True)),
