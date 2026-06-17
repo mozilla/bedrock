@@ -82,14 +82,13 @@
               <p class="current-platform-lede">{{ ftl('vpn-download-based-on-your') }}</p>
               <p>{{ ftl('vpn-download-for-windows-requirements-v2') }}</p>
               <div class="platform-link-container">
-                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}"  data-cta-text="VPN Download (Windows x64)" class="platform-download-link" data-testid="vpn-download-link-primary-windows">
+                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows x64)" class="platform-download-link" data-testid="vpn-download-link-primary-64-windows">
                 {{ ftl('vpn-download-windows') }}
                 </a>
-                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}"  data-cta-text="VPN Download (Windows ARM)" class="platform-download-link" data-testid="vpn-download-link-secondary-windows">
+                <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="VPN Download (Windows ARM)" class="platform-download-link" data-testid="vpn-download-link-primary-arm-windows">
                 {{ ftl('vpn-download-windows-arm') }}
                 </a>
               </div>
-              </a>
             </div>
           </div>
           <!-- Mac OS -->
@@ -181,11 +180,11 @@
               <p>{{ ftl('vpn-download-for-windows-requirements-v2') }}</p>
             </div>
             <div class="platform-link-container">
-              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="Install via Flathub" class="platform-download-link">
+              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows x64)"class="platform-download-link" data-testid="vpn-download-link-secondary-64-windows">
                 <span class="platform-download-arrow"></span>
                 {{ ftl('vpn-download-windows') }}
               </a>
-              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="Install via APT" class="platform-download-link">
+              <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="VPN Download (Windows ARM)" class="platform-download-link" data-testid="vpn-download-link-secondary-arm-windows">
                 <span class="platform-download-arrow" aria-hidden="true"></span>
                 {{ ftl('vpn-download-windows-arm') }}
               </a>
