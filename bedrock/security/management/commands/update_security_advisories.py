@@ -30,6 +30,7 @@ from bedrock.utils.management.decorators import alert_sentry_on_exception
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
 ADVISORIES_BRANCH = settings.MOFO_SECURITY_ADVISORIES_BRANCH
+ADVISORIES_AUTH = settings.MOFO_SECURITY_ADVISORIES_AUTH
 
 SM_RE = re.compile(r"seamonkey", flags=re.IGNORECASE)
 FNULL = open(os.devnull, "w")
@@ -262,12 +263,19 @@ class Command(CronCommand):
         )
 
     def handle_safe(self, quiet, no_git, clear_db, **options):
+        if not ADVISORIES_AUTH:
+            # No PAT configured — nothing to sync against the private repo.
+            # Skip rather than failing scripts like bin/run-db-update.sh.
+            self.stdout.write("Skipping security advisories sync: MOFO_SECURITY_ADVISORIES_AUTH is not set.")
+            return
+
         force = no_git or clear_db
         repo = GitRepo(
             ADVISORIES_PATH,
             ADVISORIES_REPO,
             branch_name=ADVISORIES_BRANCH,
             name="Security Advisories",
+            auth=ADVISORIES_AUTH or None,
         )
 
         def printout(msg, ending=None):

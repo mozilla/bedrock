@@ -1084,9 +1084,12 @@ WEBVISION_DOCS_BRANCH = config("WEBVISION_DOCS_BRANCH", default="main")
 MOFO_SECURITY_ADVISORIES_PATH = config("MOFO_SECURITY_ADVISORIES_PATH", default=data_path("mofo_security_advisories"))
 MOFO_SECURITY_ADVISORIES_REPO = config(
     "MOFO_SECURITY_ADVISORIES_REPO",
-    default="https://github.com/mozilla/foundation-security-advisories.git",
+    default="https://github.com/mozilla/foundation-security-advisories-private.git",
 )
 MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="master")
+# "<github username>:<github token>" (or just "<github token>") used to authenticate
+# git clone/fetch against the advisories repo when it is private. Empty = no auth.
+MOFO_SECURITY_ADVISORIES_AUTH = config("MOFO_SECURITY_ADVISORIES_AUTH", default="")
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = r"^/([a-zA-Z-]+/)?(newsletter)/"
@@ -1173,7 +1176,21 @@ SENTRY_DSN = config("SENTRY_DSN", default="")
 # https://github.com/laiyongtao/sentry-processor
 SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     "email",
-    # "token",  # token is on the default blocklist, which we also use via `with_default_keys`
+    # Belt-and-braces: these names are also on `with_default_keys=True`'s
+    # blocklist, but listing them here explicitly guards against SDK / processor
+    # version drift removing a name from the default set, and documents the
+    # local-variable names that touch credentials in this codebase.
+    "token",
+    "auth",
+    "pat",
+    # `git_config_value` is a substring of GIT_CONFIG_VALUE_0/_1/... — the env
+    # keys we use in bedrock/utils/git.py to pass an http.extraheader containing
+    # a base64-encoded PAT to git. On a clone/fetch failure those keys end up in
+    # frame locals (env, kwargs) which Sentry captures with with_locals=True.
+    # The default blocklist names don't substring-match the GIT_CONFIG_VALUE_*
+    # keys, so without this entry the encoded credential would survive into the
+    # Sentry payload.
+    "git_config_value",
 ]
 SENTRY_IGNORE_ERRORS = (
     BrokenPipeError,

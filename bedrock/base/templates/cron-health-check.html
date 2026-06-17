@@ -112,7 +112,13 @@
       {% for repo in git_repos %}
       <tr>
         <td><a href="{{ repo.repo_url }}">{{ repo.repo_name }}</a></td>
-        <td><a href="{{ repo.commit_url }}">{{ repo.latest_ref[:10] }}</a></td>
+        <td>
+          {% if repo.is_private %}
+            {{ repo.latest_ref[:10] }}
+          {% else %}
+            <a href="{{ repo.commit_url }}">{{ repo.latest_ref[:10] }}</a>
+          {% endif %}
+        </td>
         <td{% if repo.last_updated_timestamp %} title="{{repo.last_updated_timestamp|datetime(settings.STRFTIME_FORMAT_INTERNAL_USE)}}"{% endif %}>
           {{ repo.last_updated }}
         </td>

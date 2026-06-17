@@ -38,7 +38,6 @@ failure_detected=false
 # make sure l10n files are here for use in other commands
 python manage.py l10n_update || failure_detected=true
 python manage.py update_product_details_files || failure_detected=true
-python manage.py update_security_advisories --quiet || failure_detected=true
 python manage.py update_wordpress --quiet || failure_detected=true
 python manage.py update_content_cards --quiet || failure_detected=true
 python manage.py update_externalfiles --quiet || failure_detected=true
@@ -48,9 +47,10 @@ python manage.py update_webvision_docs --quiet || failure_detected=true
 DEV=False python manage.py update_sitemaps_data --quiet || failure_detected=true
 python manage.py sync_greenhouse --quiet || failure_detected=true
 
-# if [[ "$AUTH" == true ]]; then
-#     # Some jobs require some auth. Don't run these during build of the Docker images
-# fi
+if [[ "$AUTH" == true ]]; then
+    # Some jobs require some auth. Don't run these during build of the Docker images
+    python manage.py update_security_advisories --quiet || failure_detected=true
+fi
 
 # If all is well, ping DMS to avoid an alert being raised.
 if [[ $failure_detected == false ]]; then
