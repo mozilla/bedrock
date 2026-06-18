@@ -178,6 +178,22 @@ def vpn_windows_download_page(request):
 
 
 @require_safe
+def vpn_windows_arm_download_page(request):
+    template_name = "products/vpn/windows-arm-download.html"
+    country = get_country_from_request(request)
+    ftl_files = ["products/vpn/platform-post-download", "products/vpn/shared"]
+    windows_download_url = f"{settings.VPN_ENDPOINT}r/vpn/download/windows-arm"
+    block_download = country in settings.VPN_BLOCK_DOWNLOAD_COUNTRY_CODES
+
+    context = {
+        "windows_download_url": windows_download_url,
+        "block_download": block_download,
+    }
+
+    return l10n_utils.render(request, template_name, context, ftl_files=ftl_files)
+
+
+@require_safe
 def vpn_invite_page(request):
     ftl_files = ["products/vpn/landing", "products/vpn/shared"]
     locale = l10n_utils.get_locale(request)

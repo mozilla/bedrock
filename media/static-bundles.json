@@ -38,12 +38,6 @@
     },
     {
       "files": [
-        "css/firefox/system-requirements.scss"
-      ],
-      "name": "firefox_system_requirements"
-    },
-    {
-      "files": [
         "css/firefox/installer-help.scss"
       ],
       "name": "installer_help"
@@ -59,12 +53,6 @@
         "css/mozorg/mpl-differences.scss"
       ],
       "name": "mpl-differences"
-    },
-    {
-      "files": [
-        "css/firefox/releases-index.scss"
-      ],
-      "name": "firefox_releases_index"
     },
     {
       "files": [
@@ -206,12 +194,6 @@
         "css/mozorg/home/home-new.scss"
       ],
       "name": "home-new"
-    },
-    {
-      "files": [
-        "css/base/banners/firefox-newsletter.scss"
-      ],
-      "name": "firefox-newsletter-banner"
     },
     {
       "files": [
@@ -653,12 +635,6 @@
         "css/firefox/enterprise/landing.scss"
       ],
       "name": "firefox-enterprise"
-    },
-    {
-      "files": [
-        "css/firefox/releasenotes.scss"
-      ],
-      "name": "firefox_releasenotes"
     },
     {
       "files": [
@@ -1683,13 +1659,6 @@
         "js/base/protocol/init-m24-navigation.es6.js"
       ],
       "name": "m24-ui"
-    },
-    {
-      "files": [
-        "js/base/banners/firefox-newsletter-banner-init.es6.js",
-        "js/base/banners/firefox-newsletter-banner-check.js"
-      ],
-      "name": "firefox-newsletter-banner"
     },
     {
       "files": [

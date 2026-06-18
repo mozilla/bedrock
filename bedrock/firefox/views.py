@@ -18,13 +18,13 @@ from product_details.version_compare import Version
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
+from bedrock.firefox import version_re
 from bedrock.firefox.firefox_details import (
     firefox_android,
     firefox_desktop,
     firefox_ios,
 )
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.releasenotes import version_re
 from lib import l10n_utils, querystringsafe_base64
 from lib.l10n_utils import L10nTemplateView, get_translations_native_names
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
@@ -54,6 +54,24 @@ STUB_VALUE_NAMES = [
     ("dlsource", "mozorg"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
+
+
+def releasenotes_redirect(request, *args, **kwargs):
+    """Permanently redirect release-notes / system-requirements paths to www.firefox.com.
+
+    Those pages are now served by www.firefox.com, so the rendering views were removed.
+
+    Most paths redirect to the same path on www.firefox.com. The releases index is
+    special-cased because www.firefox.com serves that page at /releases/ rather than
+    /firefox/releases/ (matching the middleware redirect). The incoming query string
+    is preserved either way.
+    """
+    dest_path = "/releases/" if request.path.endswith("/firefox/releases/") else request.path
+    url = f"{settings.FXC_BASE_URL}{dest_path}"
+    querystring = request.META.get("QUERY_STRING", "")
+    if querystring:
+        url = f"{url}?{querystring}"
+    return HttpResponsePermanentRedirect(url)
 
 
 class InstallerHelpView(L10nTemplateView):

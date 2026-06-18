@@ -37,24 +37,40 @@ Be particularly aware of CMS-backed content that is not richtext. Ensure it's es
 * Are names (variables, functions, classes) clear and meaningful?
 * Would a short comment help explain _why_ something is done (not _what_)?
 
-## 4. Tests
+## 4. Functionality
+
+* Does the code do what the pull request description says it will?
+* Do these changes have any unintended consequences?
+
+## 5. Tests
 
 * Are new behaviors adequately covered by tests?
 * Do tests clearly express intent?
 * Are edge cases tested where appropriate?
 * Flag missing tests, but don’t require tests for trivial changes
 
-## 5. Performance (When Relevant)
+## 6. Performance (When Relevant)
 
 * Call out obvious inefficiencies or unnecessary work
 * Avoid premature optimization
 * Note performance implications only if they are meaningful in context
 
-## 6. Localization (L10N)
+## 7. Localization (L10N)
 
 * If new strings are added to the codebase that are not marked up as Fluent strings, add a non-blocking comment questioning whether they need to be translated or are OK in just one language.
+* Fallback strings may be removed if they have been marked as obsolete and the date for removal has past.
+* When passing HTML tags with attributes into strings for translation, put all the attributes and their values in a single variable.
+* Em dashes should have a space on either side.
 
-## 7. Wagtail CMS code
+## 8. Accessability (A11y)
+
+* Are accessability best practices in use.
+* Semantic HTML - including headings nested appropriately and landmarks.
+* Keyboard focus-visible states are added when hover states are added.
+* Form control have accessible labels.
+* ARIA attributes are only used when native HTML cannot provide the required accessibility.
+
+## 9. Wagtail CMS code
 
 * If you can see a new Wagtail CMS model is being added (specifically, a new Python class that is a subclass of wagtail.models.Page or of AbstractBedrockCMSPage, or a Django model class that is decorated or wrapped with with `register_snippet`) please check that the PR has it listed in bedrock.settings.base.CMS_ALLOWED_PAGE_MODELS and also in the ./bin/export-db-to-sqlite.sh script.
 
@@ -62,13 +78,21 @@ Be particularly aware of CMS-backed content that is not richtext. Ensure it's es
 
 * If a Django view is being decorated for the first time with the `prefer_cms()` decorator and there is no `fallback_ftl_files=` parameter being passed in to `prefer_cms()`, add a non-blocking comment questioning whether it should be present, because without it, the page will only show the locales available in the CMS in the footer links on the page
 
-## 8. Database schema changes
+## 10. Database schema changes
 
 * We use Django migrations to manage database schema state and also sometimes to adjust data. Django migrations are the ONLY permissible way to change database schema.
 * It is permissible for a changeset to add multiple columns and/or tables
 * If a changeset involves renaming or deleting a database field, add a warning comment to ensure the reviewer understands that such a change should happen atomically and be rolled out atomically.
 * If you can see that the changeset also changes application code related to a field that is being dropped (e.g. the diff involves a name change for an attribute that matches the field name being dropped), this is a very strong signal of risk. You must add a blocking comment to the PR: application code must stop using the old field name in a release BEFORE the field name is changed or the field is dropped. Recommend the pattern of adding a new field and migrating data to it in one release, then dropping the old field in a follow-up release.
 * Add a similar blocking comment if a changeset includes a field that is being renamed: we must add, migrate and drop - never just rename, unless we are 100% sure the field being renamed is not referenced in any application code.
+
+## 11. Front-End Best Practices (When Relevant)
+
+* Prefer classes over ID selectors.
+* Use available mixins and design tokens when available.
+* No commented out code (suggest removing it).
+* Layouts use logical properties (start/end) or the BIDI mixin.
+* Javascript promise rejections are handled.
 
 # What Not to Do
 

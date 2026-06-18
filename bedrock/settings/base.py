@@ -778,6 +778,7 @@ INSTALLED_APPS = [
     "bedrock.products",
     "bedrock.externalfiles",
     "bedrock.security",
+    # Kept registered only so the migration that drops ProductRelease runs on deploy; remove in a follow-up.
     "bedrock.releasenotes",
     "bedrock.contentcards",
     "bedrock.utils",
@@ -1071,10 +1072,6 @@ CONTENT_CARDS_REPO = config("CONTENT_CARDS_REPO", default="https://github.com/mo
 CONTENT_CARDS_BRANCH = config("CONTENT_CARDS_BRANCH", default=content_cards_default_branch)
 CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
 
-RELEASE_NOTES_PATH = config("RELEASE_NOTES_PATH", default=data_path("release_notes"))
-RELEASE_NOTES_REPO = config("RELEASE_NOTES_REPO", default="https://github.com/mozilla/release-notes.git")
-RELEASE_NOTES_BRANCH = config("RELEASE_NOTES_BRANCH", default="master")
-
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
 LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
@@ -1284,7 +1281,7 @@ DATA_CONSENT_COUNTRIES = [
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config(
     "VPN_ENDPOINT",
-    default=("https://stage.guardian.nonprod.cloudops.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
+    default=("https://stage.vpn.nonprod.webservices.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
 )
 
 # URL for Mozilla VPN subscription links

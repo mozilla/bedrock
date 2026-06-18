@@ -77,7 +77,7 @@
           {% endif %}
           <div class="c-orglinks">
             {% for child in children %}
-              <a href="child.url" class="c-orglinks-link">
+              <a href="{{ child.url }}" class="c-orglinks-link">
                 {% if child.specific.image %}
                   {{ srcset_image(child.specific.image, "width-{400,600,800,1000,1200}", sizes="(min-width: 1312px) 300px, (min-width: 768px) 25vw, 50vw", alt=child.title) }}
                 {% endif %}

@@ -12,6 +12,7 @@ from django.urls import URLPattern
 from bedrock.redirects.middleware import RedirectsMiddleware
 from bedrock.redirects.util import (
     get_resolver,
+    gone,
     header_redirector,
     is_firefox_redirector,
     no_redirect,
@@ -398,3 +399,42 @@ class TestRedirectUrlPattern(TestCase):
         resp = middleware.process_request(self.rf.get("/editor/midasdemo/securityprefs.html%3C/span%3E%3C/a%3E%C2%A0"))
         assert resp.status_code == 301
         assert resp["Location"] == "http://www-archive.mozilla.org/editor/midasdemo/securityprefs.html%C2%A0"
+
+
+@patch("bedrock.base.views.page_gone_view", return_value=HttpResponse(status=410))
+class TestGoneUrlPattern(TestCase):
+    def setUp(self):
+        self.rf = RequestFactory()
+
+    def test_gone_locale_prefixed(self, mock_page_gone_view):
+        """A gone() pattern returns a 410 and catches locale-prefixed paths by default."""
+        resolver = get_resolver([gone(r"^iam/the/walrus/$")])
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
+        for path in ("/iam/the/walrus/", "/en-US/iam/the/walrus/", "/de/iam/the/walrus/"):
+            resp = middleware.process_request(self.rf.get(path))
+            assert resp is not None, path
+            assert resp.status_code == 410, path
+
+    def test_gone_no_locale_prefix(self, mock_page_gone_view):
+        """With locale_prefix=False only the un-prefixed path is caught."""
+        resolver = get_resolver([gone(r"^iam/the/walrus/$", locale_prefix=False)])
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
+
+        resp = middleware.process_request(self.rf.get("/iam/the/walrus/"))
+        assert resp.status_code == 410
+
+        # locale-prefixed path falls through (no match)
+        resp = middleware.process_request(self.rf.get("/en-US/iam/the/walrus/"))
+        assert resp is None
+
+    def test_gone_match_flags(self, mock_page_gone_view):
+        """Should be able to set regex flags for a gone() URL."""
+        resolver = get_resolver([gone(r"^iam/the/walrus/$", re_flags="i")])
+        middleware = RedirectsMiddleware(get_response=HttpResponse, resolver=resolver)
+
+        resp = middleware.process_request(self.rf.get("/IAm/The/Walrus/"))
+        assert resp.status_code == 410
+
+        # also with locale
+        resp = middleware.process_request(self.rf.get("/es-ES/IAm/The/Walrus/"))
+        assert resp.status_code == 410
