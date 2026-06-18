@@ -26,6 +26,7 @@
     margin-bottom: $layout-sm;
     margin-top: $layout-sm;
     padding-top: $layout-sm;
+    scroll-margin-top: $layout-sm;
 
     a {
         text-decoration: none;
@@ -65,6 +66,10 @@
 
     .photo {
         border: 1px solid $m24-color-light-mid-gray;
+        transition-duration: $fast;
+        transition-property: border-color;
+        transition-timing-function: $bezier;
+        width: 100%;
     }
 
     .fn {
@@ -128,10 +133,6 @@
         grid-column: span 2;
     }
 
-    .photo {
-        width: 100%;
-    }
-
     .elsewhere,
     .utility,
     .person-bio {
@@ -141,6 +142,10 @@
     &.has-bio:hover,
     &.has-bio:focus-visible {
         cursor: pointer;
+
+        .photo {
+            border-color: $m24-color-black;
+        }
 
         .fn {
             text-decoration: underline;
@@ -255,15 +260,19 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    @media #{$mq-xl} {
+    @media #{$mq-lg} {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
 .c-orglinks-link {
+    border: 1px solid transparent;
     box-sizing: border-box;
     aspect-ratio: 16/9;
     padding: $spacing-lg $spacing-md;
+    transition-duration: $fast;
+    transition-property: border-color;
+    transition-timing-function: $bezier;
 
     img {
         display: block;
@@ -274,6 +283,6 @@
 
     &:hover,
     &:focus-visible {
-        outline: 1px solid $color-black;
+        border-color: $m24-color-black;
     }
 }
