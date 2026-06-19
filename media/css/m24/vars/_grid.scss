@@ -23,6 +23,17 @@ $mobile-square-img-max-width: 363px;
     @return calc($one-column * #{$n} - #{$minus});
 }
 
+// returns the value of $n columns within a $context-column-wide parent
+// examples:
+//   max-width: grid(6);     => 6 of 12 columns
+//   max-width: grid(3, 6);  => 3 columns inside a 6-column parent
+@function sub-grid($n, $context: $grid-columns) {
+    $one-column: calc(100% / #{$context});
+    $minus: calc(#{$grid-gutter} * (#{$context} - #{$n}) / #{$context});
+
+    @return calc(#{$one-column} * #{$n} - #{$minus});
+}
+
 // creates the standard 12 column grid
 @mixin grid {
     // can only be used inside a container that is full width with $content-padding on each side

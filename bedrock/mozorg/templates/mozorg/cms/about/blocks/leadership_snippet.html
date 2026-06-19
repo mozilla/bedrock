@@ -8,7 +8,7 @@
   <figure class="headshot">
     {% if snippet.image %}
       {# Empty alt: the person's name is in the adjacent figcaption and people kept adding it as the alt text which is not good for a11y #}
-      {{ srcset_image(snippet.image, "width-{200,400,600}", class="photo", sizes="220px", alt="") }}
+      {{ srcset_image(snippet.image, "fill-{200x200,400x400,600x600}", class="photo", sizes="220px", alt="") }}
     {% endif %}
     <figcaption>
       <h3 class="fn" itemprop="name">{{ snippet.name }}</h3>
