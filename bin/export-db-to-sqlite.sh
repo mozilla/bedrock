@@ -193,7 +193,6 @@ python manage.py dumpdata \
     security.Product \
     security.SecurityAdvisory \
     security.HallOfFamer \
-    releasenotes.ProductRelease \
     contentcards.ContentCard \
     utils.GitRepoState \
     wordpress.BlogPost \
