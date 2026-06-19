@@ -12,6 +12,7 @@ pytest-base-url==2.1.0  # Provides the --base-url option and base_url fixture us
 pytest-cov==7.1.0
 pytest-datadir==1.8.0
 pytest-django==4.12.0
+pytest-html==4.2.0  # Provides the --html option used to generate the integration test report
 pytest-mock==3.15.1
 pytest-parallel==0.1.1
 pytest-rerunfailures==16.3
