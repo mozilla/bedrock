@@ -306,42 +306,39 @@ jobs:
           ref: ${{ needs.preflight-checks.outputs.release_sha }}
           message: "Pushing to Bedrock stage"
 
-      - name: Push to stage and record push time
-        id: stage-push
+      - name: Push to stage
         env:
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
           GHA_PAT: ${{ secrets.BEDROCK_GHA_RELEASE_WORKFLOW_PAT }}
         run: |
-          STAGE_PUSH_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "stage_push_time=${STAGE_PUSH_TIME}" >> "$GITHUB_OUTPUT"
           git remote set-url origin "https://x-access-token:${GHA_PAT}@github.com/mozilla/bedrock.git"
+          # No-op if stage already points at $RELEASE_SHA (e.g. retry of a partial prior run);
+          # the wait steps below tolerate that by reusing the existing build / test runs.
           git push origin "${RELEASE_SHA}:refs/heads/stage"
-          echo "Pushed $RELEASE_SHA to stage at $STAGE_PUSH_TIME"
+          echo "Pushed $RELEASE_SHA to stage"
 
       - name: Wait — Docker build for stage
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
-          STAGE_PUSH_TIME: ${{ steps.stage-push.outputs.stage_push_time }}
         run: |
-          echo "Waiting for build-and-push on stage for $RELEASE_SHA (after $STAGE_PUSH_TIME)..."
+          echo "Waiting for build-and-push on stage for $RELEASE_SHA..."
           TIMEOUT=3600
           INTERVAL=30
           ELAPSED=0
+          # Query is intentionally not time-filtered: a release retry against a SHA already on
+          # stage produces a no-op push and no fresh build run — we want the prior success.
           while [ $ELAPSED -lt $TIMEOUT ]; do
             RESULT=$(gh run list \
               --repo mozilla/bedrock \
               --workflow build-and-push.yml \
               --branch stage \
               --json headSha,conclusion,status,createdAt,updatedAt \
-              | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_PUSH_TIME" \
-                  '[.[] | select(.headSha == $sha) | select(.createdAt >= $since)]')
+              | jq --arg sha "$RELEASE_SHA" '[.[] | select(.headSha == $sha)]')
             CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
             STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
             if [ "$CONCLUSION" = "success" ]; then
-              STAGE_BUILD_DONE_TIME=$(echo "$RESULT" | jq -r '.[0].updatedAt')
-              echo "stage_build_done_time=${STAGE_BUILD_DONE_TIME}" >> "$GITHUB_ENV"
-              echo "✓ Docker build completed for stage (finished at $STAGE_BUILD_DONE_TIME)"
+              echo "✓ Docker build completed for stage"
               break
             elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
               echo "::error::Docker build failed for stage (conclusion: $CONCLUSION)"
@@ -360,20 +357,21 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
-          STAGE_BUILD_DONE_TIME: ${{ env.stage_build_done_time }}
         run: |
-          echo "Waiting for 2 integration test runs on stage (dispatched after build at $STAGE_BUILD_DONE_TIME)..."
+          echo "Waiting for 2 integration test runs on stage for $RELEASE_SHA..."
           TIMEOUT=3600
           INTERVAL=30
           ELAPSED=0
           REQUIRED=2
+          # Query is intentionally not time-filtered: a release retry may rely on integration
+          # test runs that were dispatched (by external infra) during a prior partial run.
           while [ $ELAPSED -lt $TIMEOUT ]; do
             RUNS=$(gh run list \
               --repo mozilla/bedrock \
               --workflow integration_tests.yml \
               --json displayTitle,conclusion,status,createdAt \
-              | jq --arg sha "$RELEASE_SHA" --arg since "$STAGE_BUILD_DONE_TIME" \
-                  '[.[] | select(.displayTitle | contains("Integration tests for stage @ " + $sha)) | select(.createdAt >= $since)]')
+              | jq --arg sha "$RELEASE_SHA" \
+                  '[.[] | select(.displayTitle | contains("Integration tests for stage @ " + $sha))]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
             FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
             TOTAL=$(echo "$RUNS" | jq 'length')
