@@ -30,8 +30,16 @@ manifesto-we-are-committed-to-diverse = We are committed to an internet that cat
 manifesto-an-internet-with-these = An internet with these qualities will not come to life on its own. Individuals and organizations must embed these aspirations into internet technology and into the human experience with the internet. The { -brand-name-mozilla } Manifesto and Addendum represent { -brand-name-mozilla }’s commitment to advancing these aspirations. We aim to work together with people and organizations everywhere who share these goals to make the internet an even better place for everyone.
 manifesto-details-introduction = Introduction
 manifesto-details-the-internet-is-becoming = The internet is becoming an increasingly important part of our lives.
+manifesto-details-the-mozilla-project-global-v2 = The { -brand-name-mozilla } Project is a global community of people who believe that openness, innovation, and opportunity are key to the continued health of the internet. We have worked together since 1998 to ensure that the internet is developed in a way that benefits everyone. We are best known for creating the { -brand-name-mozilla } { -brand-name-firefox } web browser.
+
+# Obsolete string (expires 2026-09-20)
 manifesto-details-the-mozilla-project-global = The { -brand-name-mozilla } project is a global community of people who believe that openness, innovation, and opportunity are key to the continued health of the internet. We have worked together since 1998 to ensure that the internet is developed in a way that benefits everyone. We are best known for creating the { -brand-name-mozilla } { -brand-name-firefox } web browser.
+
+manifesto-details-the-mozilla-project-community-v2 = The { -brand-name-mozilla } Project uses a community-based approach to create world-class open source software and to develop new types of collaborative activities. We create communities of people involved in making the internet experience better for all of us.
+
+# Obsolete string (expires 2026-09-20)
 manifesto-details-the-mozilla-project-community = The { -brand-name-mozilla } project uses a community-based approach to create world-class open source software and to develop new types of collaborative activities. We create communities of people involved in making the internet experience better for all of us.
+
 manifesto-details-as-a-result-of = As a result of these efforts, we have distilled a set of principles that we believe are critical for the internet to continue to benefit the public good as well as commercial aspects of life. We set out these principles below.
 manifesto-details-the-goals-for = The goals for the Manifesto are to:
 manifesto-details-articulate-a-vision-v2 = articulate a vision for the internet that { -brand-name-mozilla } participants want { -brand-name-mozilla-foundation } to pursue;
@@ -114,7 +122,7 @@ manifesto-details-the-effectiveness = The effectiveness of the internet as a pub
 manifesto-details-free-and-open = Free and open source software promotes the development of the internet as a public resource.
 manifesto-details-commercial-involvement = Commercial involvement in the development of the internet brings many benefits; a balance between commercial profit and public benefit is critical.
 manifesto-details-magnifying-the = Magnifying the public benefit aspects of the internet is an important goal, worthy of time, attention and commitment.
-manifesto-details-there-are-many = There are many different ways of advancing the principles of the { -brand-name-mozilla } Manifesto. We welcome a broad range of activities, and anticipate the same creativity that { -brand-name-mozilla } participants have shown in other areas of the project. For individuals not deeply involved in the { -brand-name-mozilla } project, one basic and very effective way to support the Manifesto is to use { -brand-name-mozilla } { -brand-name-firefox } and other products that embody the principles of the Manifesto.
+manifesto-details-there-are-many = There are many different ways of advancing the principles of the { -brand-name-mozilla } Manifesto. We welcome a broad range of activities, and anticipate the same creativity that { -brand-name-mozilla } participants have shown in other areas of the project. For individuals not deeply involved in the { -brand-name-mozilla } Project, one basic and very effective way to support the Manifesto is to use { -brand-name-mozilla } { -brand-name-firefox } and other products that embody the principles of the Manifesto.
 manifesto-details-some-foundation-v2 = Some Foundation activities—currently the creation, delivery and promotion of consumer products—are conducted primarily through { -brand-name-mozilla-foundation }’s wholly owned subsidiary, the { -brand-name-mozilla-corporation }.
 manifesto-details-invitation = Invitation
 manifesto-details-the-mozilla-foundation-invites-v2 = { -brand-name-mozilla-foundation } invites all others who support the principles of the { -brand-name-mozilla } Manifesto to join with us, and to find new ways to make this vision of the internet a reality.
