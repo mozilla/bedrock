@@ -1,7 +1,7 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-boto3==1.43.6
+boto3>=1.43.34
 commonware==0.6.0
 defusedxml==0.7.1
 dirsync==2.2.6
@@ -20,19 +20,19 @@ django-rq-email-backend==2.0.0
 django-storages[google]==1.14.4
 django-waffle==5.0.0
 django-watchman==1.5.0
-Django>=5.2.14,<6.0
+Django>=5.2.15,<6.0
 envcat==0.1.1
 everett==3.5.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==14.5.0  # Must match the required version in the Glean NPM package.
-granian==2.7.4
+granian==2.7.6
 honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.11.0
 justhtml==1.18.0  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
-lxml==6.1.0  # Needed for BeautifulSoup.
+lxml==6.1.1  # Needed for BeautifulSoup.
 Markdown==3.10.2
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
@@ -43,18 +43,18 @@ py-svg-hush==0.3.0
 PyGithub==2.9.1
 PyYAML==6.0.3
 qrcode==8.2
-requests==2.33.1
+requests==2.34.2
 sentry-processor==0.0.1
 sentry-sdk==2.59.0
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
 wagtail-localize-smartling==0.12.2
-wagtail-localize==1.13
+wagtail-localize==1.13.1
 wagtail-link-block==1.2
 wagtail-thumbnail-choice-block==0.2.0
-Wand==0.7.0  # For animated GIF support
-Wagtail==7.3.2
+Wand==0.7.1  # For animated GIF support
+Wagtail==7.3.3
 whitenoise==6.12.0
 wagtail-localize-dashboard==0.5.0
 wagtail-localize-intentional-blanks==0.3.0
