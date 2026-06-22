@@ -43,7 +43,7 @@
         </div>
       {% endif %}
 
-      {% if page.exec_heading or page.exec_description or page.exec_leaders %}
+      {% if page.exec_heading or page.exec_description or page.exec_leaders or page.exec_closing %}
         <section class="c-group">
           {% if page.exec_heading %}
             <h2 id="{{ page.exec_heading|slugify }}" class="c-group-title">{{ page.exec_heading }}</h2>
@@ -62,6 +62,11 @@
                 {% set job_title_override = block.value.job_title %}
                 {% include "mozorg/cms/about/blocks/leadership_snippet.html" %}
               {% endfor %}
+            </div>
+          {% endif %}
+          {% if page.exec_closing %}
+            <div class="c-group-closing mzp-u-rich-text">
+              {{ page.exec_closing|richtext }}
             </div>
           {% endif %}
         </section>

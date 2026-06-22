@@ -7,6 +7,7 @@
 
 .m24-c-prose {
     @include grid;
+    margin-bottom: $spacer-lg;
 }
 
 .m24-c-prose-hgroup {
@@ -26,6 +27,10 @@
     font-size: $text-body-md;
     grid-column: 1/-1;
     line-height: $text-body-line-height;
+
+    & > :last-child {
+        margin-bottom: 0;
+    }
 }
 
 @media #{$mq-lg} {

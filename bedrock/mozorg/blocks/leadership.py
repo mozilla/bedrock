@@ -198,6 +198,12 @@ class LeadershipGroupSnippetBlock(blocks.StructBlock):
         min_num=1,
     )
 
+    closing = blocks.RichTextBlock(
+        required=False,
+        help_text="Optional closing text displayed after the list of leaders.",
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
     class Meta:
         icon = "group"
         label = "Leadership Group"
