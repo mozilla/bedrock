@@ -2,10 +2,12 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import io
 import os.path
 from unittest.mock import patch
 
 from django.conf import settings
+from django.test import override_settings
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.security.management.commands import update_security_advisories
@@ -227,6 +229,7 @@ class TestDBActions(TestCase):
         assert update_security_advisories.delete_orphaned_products() == 2
         assert Product.objects.get().name == "Firefox 43.0.1"
 
+    @patch.object(update_security_advisories, "ADVISORIES_AUTH", "set-for-test")
     @patch.object(update_security_advisories, "get_all_file_names")
     @patch.object(update_security_advisories, "delete_files")
     @patch.object(update_security_advisories, "update_db_from_file")
@@ -243,3 +246,26 @@ class TestDBActions(TestCase):
         update_security_advisories.Command().handle_safe(quiet=True, no_git=False, clear_db=False)
         udbff_mock.assert_called_with(update_security_advisories.filter_advisory_filenames(all_files)[0])
         df_mock.assert_called_with(["mfsa2016-43.md"])
+
+    @override_settings(DEV=True)
+    @patch.object(update_security_advisories, "GitRepo")
+    @patch.object(update_security_advisories, "ADVISORIES_AUTH", "")
+    def test_skip_when_auth_missing_in_dev(self, git_mock):
+        """A missing PAT in DEV should skip the sync rather than fail."""
+        cmd = update_security_advisories.Command()
+        cmd.stdout = io.StringIO()
+        cmd.handle_safe(quiet=False, no_git=False, clear_db=False)
+        assert "Skipping security advisories sync" in cmd.stdout.getvalue()
+        git_mock.assert_not_called()
+
+    @override_settings(DEV=False)
+    @patch.object(update_security_advisories, "GitRepo")
+    @patch.object(update_security_advisories, "ADVISORIES_AUTH", "")
+    def test_skip_when_auth_missing_outside_dev(self, git_mock):
+        """Outside DEV, missing auth should still skip — there is no useful
+        sync work to do without a PAT against the private repo."""
+        cmd = update_security_advisories.Command()
+        cmd.stdout = io.StringIO()
+        cmd.handle_safe(quiet=False, no_git=False, clear_db=False)
+        assert "Skipping security advisories sync" in cmd.stdout.getvalue()
+        git_mock.assert_not_called()
