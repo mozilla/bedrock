@@ -25,8 +25,8 @@ $mobile-square-img-max-width: 363px;
 
 // returns the value of $n columns within a $context-column-wide parent
 // examples:
-//   max-width: grid(6);     => 6 of 12 columns
-//   max-width: grid(3, 6);  => 3 columns inside a 6-column parent
+//   max-width: sub-grid(6);     => 6 of 12 columns
+//   max-width: sub-grid(3, 6);  => 3 columns inside a 6-column parent
 @function sub-grid($n, $context: $grid-columns) {
     $one-column: calc(100% / #{$context});
     $minus: calc(#{$grid-gutter} * (#{$context} - #{$n}) / #{$context});
