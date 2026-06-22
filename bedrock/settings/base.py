@@ -1086,7 +1086,7 @@ MOFO_SECURITY_ADVISORIES_REPO = config(
     "MOFO_SECURITY_ADVISORIES_REPO",
     default="https://github.com/mozilla/foundation-security-advisories-private.git",
 )
-MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="master")
+MOFO_SECURITY_ADVISORIES_BRANCH = config("MOFO_SECURITY_ADVISORIES_BRANCH", default="main")
 # "<github username>:<github token>" (or just "<github token>") used to authenticate
 # git clone/fetch against the advisories repo when it is private. Empty = no auth.
 MOFO_SECURITY_ADVISORIES_AUTH = config("MOFO_SECURITY_ADVISORIES_AUTH", default="")
