@@ -55,6 +55,13 @@
 
     @media #{$mq-md} {
         grid-template-columns: repeat(8, 1fr);
+
+        // optional 3 column display
+        &.l-group-gallery-narrow {
+            grid-template-columns: repeat(6, 1fr);
+            max-width: sub-grid(6,8);
+            margin: $layout-sm 0;
+        }
     }
 }
 
@@ -181,6 +188,10 @@
         &:hover,
         &:focus {
             cursor: auto;
+
+            .photo {
+                border-color: $m24-color-light-mid-gray;
+            }
 
             .fn {
                 text-decoration: none;
