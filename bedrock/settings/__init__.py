@@ -87,7 +87,7 @@ _csp_img_src = {
     CSP_ASSETS_HOST,
     "data:",
     "blog.mozilla.org",  # For careers pages.
-    "www.mozilla.org",
+    "www.mozilla.org",  # For loading assets from the CDNed www.m.o static-assets bucket
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
