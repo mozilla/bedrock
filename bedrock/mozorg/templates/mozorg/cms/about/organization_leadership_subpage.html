@@ -58,6 +58,11 @@
               {% include "mozorg/cms/about/blocks/leadership_snippet.html" %}
             {% endfor %}
           </div>
+          {% if block.value.closing %}
+            <div class="c-group-closing mzp-u-rich-text">
+              {{ block.value.closing|richtext }}
+            </div>
+          {% endif %}
         </section>
       {% endfor %}
     </main>

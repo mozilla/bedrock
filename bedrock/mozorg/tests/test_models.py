@@ -687,3 +687,69 @@ def test_organization_leadership_subpage(minimal_site, rf, serving_method):  # n
     assert "Our senior leadership team." in page_content
     assert "Test Leader" in page_content
     assert "Vice President" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_subpage_group_closing(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    snippet = factories.LeadershipProfileSnippetFactory(name="Test Leader")
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(parent=root_page)
+    index_page.save()
+
+    subpage = factories.OrganizationLeadershipSubpageFactory(
+        parent=index_page,
+        leadership_groups=[
+            (
+                "group",
+                {
+                    "title": "Senior Leadership",
+                    "description": "Our senior leadership team.",
+                    "leaders": [{"profile": snippet, "job_title": "Vice President"}],
+                    "closing": "<p>Thank you for your dedication.</p>",
+                },
+            )
+        ],
+    )
+    subpage.save()
+
+    _relative_url = subpage.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(subpage, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+    assert "Thank you for your dedication." in page_content
+    assert "c-group-closing" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_subpage_group_closing_hidden_when_blank(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    snippet = factories.LeadershipProfileSnippetFactory(name="Test Leader")
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(parent=root_page)
+    index_page.save()
+
+    subpage = factories.OrganizationLeadershipSubpageFactory(
+        parent=index_page,
+        leadership_groups=[
+            (
+                "group",
+                {
+                    "title": "Senior Leadership",
+                    "leaders": [{"profile": snippet, "job_title": "Vice President"}],
+                },
+            )
+        ],
+    )
+    subpage.save()
+
+    _relative_url = subpage.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(subpage, serving_method)(request)
+    assert resp.status_code == 200
+    assert "c-group-closing" not in resp.text
