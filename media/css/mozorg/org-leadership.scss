@@ -72,7 +72,9 @@
     margin-bottom: $spacer-xl;
 
     .photo {
+        aspect-ratio: 1 / 1;
         border: 1px solid $m24-color-light-mid-gray;
+        object-fit: cover;
         transition-duration: $fast;
         transition-property: border-color;
         transition-timing-function: $bezier;
