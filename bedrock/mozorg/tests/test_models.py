@@ -609,6 +609,44 @@ def test_organization_leadership_index_page_description_hidden_without_heading(m
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_index_page_exec_closing(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(
+        parent=root_page,
+        exec_closing="<p>Thank you for your continued support.</p>",
+    )
+    index_page.save()
+
+    _relative_url = index_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(index_page, serving_method)(request)
+    assert resp.status_code == 200
+    page_content = resp.text
+    assert "Thank you for your continued support." in page_content
+    assert "c-group-closing" in page_content
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_organization_leadership_index_page_exec_closing_hidden_when_blank(minimal_site, rf, serving_method):  # noqa: F811
+    root_page = minimal_site.root_page
+
+    index_page = factories.OrganizationLeadershipIndexPageFactory(
+        parent=root_page,
+        exec_closing="",
+    )
+    index_page.save()
+
+    _relative_url = index_page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(index_page, serving_method)(request)
+    assert resp.status_code == 200
+    assert "c-group-closing" not in resp.text
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
 def test_organization_leadership_subpage(minimal_site, rf, serving_method):  # noqa: F811
     root_page = minimal_site.root_page
 

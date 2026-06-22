@@ -373,6 +373,11 @@ class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
         use_json_field=True,
     )
 
+    exec_closing = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
     sub_pages_link_heading = models.CharField(
         max_length=255,
         blank=True,
@@ -390,6 +395,7 @@ class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
                 FieldPanel("exec_heading", heading="Heading"),
                 FieldPanel("exec_description", heading="Description"),
                 FieldPanel("exec_leaders", heading="Leaders"),
+                FieldPanel("exec_closing", heading="Closing"),
             ],
             heading="Executive Leadership",
         ),
