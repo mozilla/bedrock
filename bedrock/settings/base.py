@@ -778,8 +778,6 @@ INSTALLED_APPS = [
     "bedrock.products",
     "bedrock.externalfiles",
     "bedrock.security",
-    # Kept registered only so the migration that drops ProductRelease runs on deploy; remove in a follow-up.
-    "bedrock.releasenotes",
     "bedrock.contentcards",
     "bedrock.utils",
     "bedrock.wordpress",
