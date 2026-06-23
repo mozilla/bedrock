@@ -33,7 +33,7 @@ Sass in `media/css/` keeps the existing block–element naming    pattern.
 ## Testing Guidelines
 
 Pytest expects files named `test_<feature>.py` beside code or in `tests/unit/` or `tests/functional/`.
-Use markers such as `cdn`, `smoke`, or `skip_if_firefox` to scope runs (e.g., `pytest -m "not cdn"`). `npm run jasmine` rebuilds assets via `webpack.test.config.js` and runs front-end unit coverage. `make test` is the containerized umbrella; browser flows in `tests/playwright/` require QA coordination before extending.
+Use markers such as `cdn`, `download`, or `headless` to scope runs (e.g., `pytest -m "not cdn"`). `npm run jasmine` rebuilds assets via `webpack.test.config.js` and runs front-end unit coverage. `make test` is the containerized umbrella; browser flows in `tests/playwright/` require QA coordination before extending.
 
 ## Workflow guidelines
 

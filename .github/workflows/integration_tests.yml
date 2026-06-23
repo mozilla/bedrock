@@ -43,30 +43,11 @@ jobs:
   integration-tests:
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - LABEL: test-ie-saucelabs
-            BROWSER_NAME: internet explorer
-            DRIVER: SauceLabs
-            MARK_EXPRESSION: smoke
-            PLATFORM: Windows 10
-            PYTEST_PROCESSES: 8
-          - LABEL: test-headless
-            DRIVER: ""
-            MARK_EXPRESSION: headless
-
     env:
       BASE_URL: ${{ github.event.inputs.mozorg_service_hostname }}
-      BROWSER_NAME: ${{ matrix.BROWSER_NAME }}
       CI_JOB_ID: ${{ github.run_id }}
-      DRIVER: ${{ matrix.DRIVER }}
-      LABEL: ${{ matrix.LABEL }}
-      MARK_EXPRESSION: ${{ matrix.MARK_EXPRESSION }}
-      PLATFORM: ${{ matrix.PLATFORM }}
-      PYTEST_PROCESSES: ${{ matrix.PYTEST_PROCESSES }}
-      SAUCELABS_API_KEY: ${{ secrets.SAUCELABS_API_KEY }}
-      SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
+      LABEL: test-headless
+      MARK_EXPRESSION: headless
 
     # Note we use if: always() below to keep things going, rather than
     # continue-on-error, because that approach falsely marks the overall
@@ -96,7 +77,7 @@ jobs:
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         with:
           name: test-results
-          path: results-${{github.run_id}}-${{matrix.label}}
+          path: results-${{github.run_id}}
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   playwright-tests:

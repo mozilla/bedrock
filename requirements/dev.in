@@ -6,16 +6,16 @@ factory-boy==3.3.3
 freezegun==1.5.5
 markdown-it-py>=4.2.0
 py==1.11.0
-PyPOM==2.2.4
 pyquery==2.0.1
-pytest==9.1.1  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
+pytest==9.1.1  # Included because we use it directly
+pytest-base-url==2.1.0  # Provides the --base-url option and base_url fixture used by our HTTP integration tests
 pytest-cov==7.1.0
 pytest-datadir==1.8.0
 pytest-django==4.12.0
+pytest-html==4.2.0  # Provides the --html option used to generate the integration test report
 pytest-mock==3.15.1
 pytest-parallel==0.1.1
 pytest-rerunfailures==16.3
-pytest-selenium==4.1.0
 responses==0.26.1
 ruff==0.15.18
 selenium==4.45.0
