@@ -13,7 +13,6 @@ django-extensions==4.1
 django-jinja-markdown==1.2
 django-jinja==2.11.0
 django-jsonview==2.0.0
-django-memoize==2.3.1
 django-mozilla-product-details==1.0.3
 django-rq==4.1.0
 django-rq-email-backend==2.0.0

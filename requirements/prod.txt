@@ -376,7 +376,6 @@ django==5.2.15 \
     #   django-extensions
     #   django-filter
     #   django-jinja
-    #   django-memoize
     #   django-modelcluster
     #   django-mozilla-product-details
     #   django-permissionedforms
@@ -432,9 +431,6 @@ django-jinja-markdown==1.2 \
 django-jsonview==2.0.0 \
     --hash=sha256:1871983f6c7ab0bec1bad3249b06ce64c47d3bed57cd190f87e5acaf65722ebb \
     --hash=sha256:77345393f8e8bb3279b9ba9fb2db687adfa74d41feab972521545d47103d321b
-    # via -r requirements/prod.in
-django-memoize==2.3.1 \
-    --hash=sha256:62ac4807710ecf22a7397d008d64d0f798e7230482d4b6072d916cac852a47cd
     # via -r requirements/prod.in
 django-modelcluster==6.5 \
     --hash=sha256:459cbf0fb3bbc8c15ea9a2a062abc0d1ef935a38e04aa8ac3cb241c826bbc6dd \
