@@ -55,10 +55,6 @@
 {% block content %}
 
 <header>
-  {%- if LANG == 'de' and switch('de-ctd-homepage-promo') -%}
-    {% include 'mozorg/home/includes/ctd-promo-de.html'%}
-  {% endif %}
-
   <div class="c-header-wrapper mzp-l-content mzp-t-content-lg">
     <h1>{{ ftl('home-mission-driven') }}</h1>
     <p>{{ ftl('home-were-not-normal') }}</p>

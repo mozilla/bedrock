@@ -42,7 +42,6 @@ paths = [
     "/en-US/firefox/welcome/17c/",
     "/en-US/firefox/welcome/17b/",
     "/en-US/firefox/welcome/17a/",
-    "/en-US/firefox/nothing-personal/",
     "/en-US/newsletter/existing/",
     "/en-US/about/legal/terms/firefox/",
     "/en-US/about/legal/defend-mozilla-trademarks/",

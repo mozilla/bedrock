@@ -237,6 +237,9 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/mac/$", f"{FXC}/browsers/desktop/mac/", permanent=True),
     offsite_redirect(r"^firefox/mobile/get-app/$", f"{FXC}/browsers/mobile/get-app/", permanent=True),
     offsite_redirect(r"^firefox/more/$", f"{FXC}/more/", permanent=True),
+    offsite_redirect(r"^firefox/more/misinformation/$", f"{FXC}/features/", permanent=True),
+    offsite_redirect(r"^firefox/family/$", f"{FXC}/", permanent=True),
+    offsite_redirect(r"^firefox/nothing-personal/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/$", f"{FXC}/landing/set-as-default/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/thanks/$", f"{FXC}/landing/set-as-default/thanks/", permanent=True),
     offsite_redirect(r"^firefox/unsupported-systems/$", f"{FXC}/browsers/unsupported-systems/", permanent=True),
@@ -784,7 +787,7 @@ bedrock_redirectpatterns = (
     # issue 10703
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
     # issue 12107
-    redirect(r"^/firefox/families/?$", "firefox.family.index"),
+    redirect(r"^/firefox/families/?$", f"{FXC}/", permanent=True),
     redirect(r"^firefox/features/memory/?$", "firefox.features.fast"),
     redirect(r"^firefox/features/independent/?$", "firefox.features.index"),
     redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
@@ -803,7 +806,8 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/privacy/products/?$", "products.landing"),
     redirect(r"^firefox/privacy/safe-passwords/?$", "firefox.features.password-manager"),
     redirect(r"^firefox/privacy/book/?$", "https://support.mozilla.org/kb/how-stay-safe-web"),
-    redirect(r"^firefox/nothingpersonal/?$", "firefox.nothing-personal.index"),
+    redirect(r"^firefox/nothingpersonal/?$", f"{FXC}/", permanent=True),
+    redirect(r"^firefox/facebookcontainer/?$", "https://addons.mozilla.org/firefox/addon/facebook-container/", permanent=True),
     # issue 15841
     redirect(r"^firefox/tech/?$", "firefox.landing.tech"),
     # issue 16089, 16159
