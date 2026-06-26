@@ -994,19 +994,10 @@ class firefox_features_fast(L10nTemplateView):
 
 
 class firefox_features_pdf(L10nTemplateView):
+    template_name = "firefox/features/pdf-editor.html"
     ftl_files_map = {
         "firefox/features/pdf-editor.html": ["firefox/features/pdf-editor-2023", "firefox/features/shared"],
-        "firefox/features/pdf-editor-fr.html": ["firefox/features/shared"],
     }
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        if locale == "fr":
-            template_name = "firefox/features/pdf-editor-fr.html"
-        else:
-            template_name = "firefox/features/pdf-editor.html"
-
-        return [template_name]
 
 
 class firefox_features_adblocker(L10nTemplateView):
