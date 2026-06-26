@@ -5,7 +5,6 @@ from django.urls import path, re_path
 
 from bedrock.firefox import version_re, views
 from bedrock.mozorg.util import page
-from bedrock.utils.views import VariationTemplateView
 
 # `latest_re`, `version_re`, `platform_re` and `channel_re` are also imported by
 # bedrock.firefox.redirects to build the release-notes / system-requirements
@@ -18,89 +17,33 @@ channel_re = "(?P<channel>beta|aurora|developer|nightly|organizations)"
 
 
 urlpatterns = (
-    path(
-        "firefox/challenge-the-default/",
-        VariationTemplateView.as_view(
-            template_name="firefox/challenge-the-default/landing-switch.html",
-            active_locales=["de", "es-ES", "fr", "it", "pl"],
-            variation_locales=["de", "fr"],
-            template_context_variations=["1", "2", "3", "4", "5", "6"],
-        ),
-    ),
     path("firefox/all/", views.firefox_all, name="firefox.all"),
     path("firefox/all/<slug:product_slug>/", views.firefox_all, name="firefox.all.platforms"),
     path("firefox/all/<slug:product_slug>/<str:platform>/", views.firefox_all, name="firefox.all.locales"),
     path("firefox/all/<slug:product_slug>/<str:platform>/<str:locale>/", views.firefox_all, name="firefox.all.download"),
-    page("firefox/channel/desktop/", "firefox/channel/desktop.html", ftl_files=["firefox/channel"]),
-    page("firefox/channel/android/", "firefox/channel/android.html", ftl_files=["firefox/channel"]),
-    page("firefox/channel/ios/", "firefox/channel/ios.html", ftl_files=["firefox/channel"]),
+    # Channel, enterprise, features, and set-as-default pages are now served by
+    # www.firefox.com. The rendering views have been removed; RedirectsMiddleware
+    # (see bedrock.firefox.redirects) 301s every path to www.firefox.com. These
+    # named routes are retained — pointing at a fallback redirect view — purely so
+    # templates that still link to them remain reversible.
+    path("firefox/channel/desktop/", views.fxc_redirect, name="firefox.channel.desktop"),
+    path("firefox/channel/android/", views.fxc_redirect, name="firefox.channel.android"),
+    path("firefox/channel/ios/", views.fxc_redirect, name="firefox.channel.ios"),
     page("firefox/developer/", "firefox/developer/index.html", ftl_files=["firefox/developer"]),
-    page("firefox/enterprise/", "firefox/enterprise/index.html", ftl_files=["firefox/enterprise"]),
-    page("firefox/facebookcontainer/", "firefox/facebookcontainer/index.html", ftl_files=["firefox/facebook_container"]),
-    page("firefox/features/", "firefox/features/index.html", ftl_files=["firefox/features/index-2023", "firefox/features/shared"]),
-    page("firefox/features/customize/", "firefox/features/customize.html", ftl_files=["firefox/features/customize-2023", "firefox/features/shared"]),
-    page("firefox/features/add-ons/", "firefox/features/add-ons.html", ftl_files=["firefox/features/add-ons-2023", "firefox/features/shared"]),
-    page(
-        "firefox/features/pinned-tabs/",
-        "firefox/features/pinned-tabs.html",
-        ftl_files=["firefox/features/pinned-tabs-2023", "firefox/features/shared"],
-    ),
-    page(
-        "firefox/features/eyedropper/", "firefox/features/eyedropper.html", ftl_files=["firefox/features/eyedropper-2023", "firefox/features/shared"]
-    ),
-    path("firefox/features/pdf-editor/", views.firefox_features_pdf.as_view(), name="firefox.features.pdf-editor"),
-    path("firefox/features/adblocker/", views.firefox_features_adblocker.as_view(), name="firefox.features.adblocker"),
-    page("firefox/features/bookmarks/", "firefox/features/bookmarks.html", ftl_files=["firefox/features/bookmarks-2023", "firefox/features/shared"]),
-    path("firefox/features/fast/", views.firefox_features_fast.as_view(), name="firefox.features.fast"),
-    page(
-        "firefox/features/block-fingerprinting/",
-        "firefox/features/fingerprinting.html",
-        ftl_files=["firefox/features/fingerprinting", "firefox/features/shared"],
-    ),
-    page(
-        "firefox/features/password-manager/",
-        "firefox/features/password-manager.html",
-        ftl_files=["firefox/features/password-manager-2023", "firefox/features/shared"],
-    ),
-    page(
-        "firefox/features/private/",
-        "firefox/features/private.html",
-        ftl_files=["firefox/features/private-2023", "firefox/features/shared"],
-    ),
-    page(
-        "firefox/features/private-browsing/",
-        "firefox/features/private-browsing.html",
-        ftl_files=["firefox/features/private-browsing-2023", "firefox/features/shared"],
-    ),
-    page("firefox/features/sync/", "firefox/features/sync.html", ftl_files=["firefox/features/sync-2023", "firefox/features/shared"]),
-    path("firefox/features/translate/", views.firefox_features_translate, name="firefox.features.translate"),
-    page(
-        "firefox/features/picture-in-picture/",
-        "firefox/features/picture-in-picture.html",
-        ftl_files=["firefox/features/picture-in-picture", "firefox/features/shared"],
-    ),
-    path(
-        "firefox/features/tips/",
-        VariationTemplateView.as_view(
-            template_name="firefox/features/tips/tips.html",
-            template_context_variations=["picture-in-picture", "eyedropper", "forget"],
-        ),
-        name="firefox.features.tips",
-    ),
-    path(
-        "firefox/features/complete-pdf/",
-        VariationTemplateView.as_view(
-            template_name="firefox/features/pdf-complete-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
-        ),
-        name="firefox.features.pdf-complete",
-    ),
-    path(
-        "firefox/features/free-pdf-editor/",
-        VariationTemplateView.as_view(
-            template_name="firefox/features/pdf-free-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
-        ),
-        name="firefox.features.pdf-free",
-    ),
+    path("firefox/enterprise/", views.fxc_redirect, name="firefox.enterprise.index"),
+    path("firefox/facebookcontainer/", views.fxc_redirect, name="firefox.facebookcontainer.index"),
+    path("firefox/features/", views.fxc_redirect, name="firefox.features.index"),
+    path("firefox/features/pdf-editor/", views.fxc_redirect, name="firefox.features.pdf-editor"),
+    path("firefox/features/adblocker/", views.fxc_redirect, name="firefox.features.adblocker"),
+    path("firefox/features/fast/", views.fxc_redirect, name="firefox.features.fast"),
+    path("firefox/features/block-fingerprinting/", views.fxc_redirect, name="firefox.features.fingerprinting"),
+    path("firefox/features/password-manager/", views.fxc_redirect, name="firefox.features.password-manager"),
+    path("firefox/features/private/", views.fxc_redirect, name="firefox.features.private"),
+    path("firefox/features/private-browsing/", views.fxc_redirect, name="firefox.features.private-browsing"),
+    path("firefox/features/sync/", views.fxc_redirect, name="firefox.features.sync"),
+    path("firefox/features/translate/", views.fxc_redirect, name="firefox.features.translate"),
+    path("firefox/features/picture-in-picture/", views.fxc_redirect, name="firefox.features.picture-in-picture"),
+    path("firefox/features/tips/", views.fxc_redirect, name="firefox.features.tips"),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
@@ -167,7 +110,7 @@ urlpatterns = (
     ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
-    page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
+    path("firefox/nothing-personal/", views.fxc_redirect, name="firefox.nothing-personal.index"),
     # Issue 6604, SEO firefox/new pages
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
     path("firefox/mac/", views.PlatformViewMac.as_view(), name="firefox.mac"),
@@ -218,28 +161,16 @@ urlpatterns = (
     ),
     # Issue 8432
     # Issue 13253: Ensure that Firefox can continue to refer to this URL.
-    page("firefox/set-as-default/thanks/", "firefox/set-as-default/thanks.html", ftl_files="firefox/set-as-default/thanks"),
-    # Default browser campaign
-    page("firefox/set-as-default/", "firefox/set-as-default/landing.html", ftl_files="firefox/set-as-default/landing"),
+    # These pages are now served by www.firefox.com; named routes are retained so
+    # templates that still link to them remain reversible.
+    path("firefox/set-as-default/thanks/", views.fxc_redirect, name="firefox.set-as-default.thanks"),
+    path("firefox/set-as-default/", views.fxc_redirect, name="firefox.set-as-default.landing"),
     # Issue #9490 - Evergreen Content for SEO
-    page("firefox/more/", "firefox/more.html", ftl_files="firefox/more"),
     page("firefox/browsers/quantum/", "firefox/browsers/quantum.html", ftl_files="firefox/browsers/quantum"),
     page("firefox/faq/", "firefox/faq.html", ftl_files="firefox/faq"),
     page("firefox/browsers/chromebook/", "firefox/browsers/chromebook.html", ftl_files="firefox/browsers/chromebook"),
-    # Issue 9957
-    page("firefox/more/misinformation/", "firefox/more/misinformation.html", ftl_files="firefox/more/misinformation"),
     # Firefox for Families evergreen page, Issue #12004
     page("firefox/family/", "firefox/family/index.html"),
-    # Issue 14985 - "Built For You" campaign landing page
-    path(
-        "firefox/built-for-you/",
-        VariationTemplateView.as_view(
-            template_name="firefox/built-for-you/landing.html",
-            active_locales=["de", "fr"],
-            variation_locales=["de", "fr"],
-            template_context_variations=["1", "2", "3", "4", "5"],
-        ),
-    ),
     # Issue 15383 - Firefox 20th landing page
     page(
         "firefox/firefox20/",
