@@ -178,9 +178,9 @@
     },
     {
       "files": [
-        "css/firefox/features/picture-in-picture.scss"
+        "css/mozorg/manifesto.scss"
       ],
-      "name": "firefox-features-pip"
+      "name": "manifesto"
     },
     {
       "files": [
@@ -491,12 +491,6 @@
     },
     {
       "files": [
-        "css/firefox/set-as-default/thanks.scss"
-      ],
-      "name": "firefox-default-thanks"
-    },
-    {
-      "files": [
         "css/firefox/switch.scss"
       ],
       "name": "firefox-switch"
@@ -564,30 +558,6 @@
     },
     {
       "files": [
-        "css/firefox/features/index.scss"
-      ],
-      "name": "firefox-features-index"
-    },
-    {
-      "files": [
-        "css/firefox/features/article.scss"
-      ],
-      "name": "firefox-features-article"
-    },
-    {
-      "files": [
-        "css/firefox/compare/index.scss"
-      ],
-      "name": "firefox-compare-index"
-    },
-    {
-      "files": [
-        "css/firefox/compare/article.scss"
-      ],
-      "name": "firefox-compare-article"
-    },
-    {
-      "files": [
         "css/firefox/unsupported-systems.scss"
       ],
       "name": "firefox_unsupported_systems"
@@ -617,18 +587,6 @@
         "css/mozorg/book.scss"
       ],
       "name": "book"
-    },
-    {
-      "files": [
-        "css/firefox/set-as-default/landing.scss"
-      ],
-      "name": "firefox-default-landing"
-    },
-    {
-      "files": [
-        "css/firefox/enterprise/landing.scss"
-      ],
-      "name": "firefox-enterprise"
     },
     {
       "files": [
@@ -725,18 +683,6 @@
     },
     {
       "files": [
-        "css/firefox/facebook-container.scss"
-      ],
-      "name": "firefox_facebook_container"
-    },
-    {
-      "files": [
-        "css/firefox/channel.scss"
-      ],
-      "name": "firefox_channel"
-    },
-    {
-      "files": [
         "css/mozorg/commit-access-requirements.scss"
       ],
       "name": "commit-access-requirements"
@@ -752,12 +698,6 @@
         "css/firefox/browsers/what-is-a-browser.scss"
       ],
       "name": "what-is-a-browser"
-    },
-    {
-      "files": [
-        "css/firefox/features/tips.scss"
-      ],
-      "name": "firefox_tips"
     },
     {
       "files": [
@@ -782,12 +722,6 @@
         "css/firefox/browsers/windows-64-bit.scss"
       ],
       "name": "windows-64-bit"
-    },
-    {
-      "files": [
-        "css/firefox/more/misinformation.scss"
-      ],
-      "name": "misinformation"
     },
     {
       "files": [
@@ -1050,24 +984,6 @@
     },
     {
       "files": [
-        "css/firefox/family/styles.scss"
-      ],
-      "name": "firefox-family"
-    },
-    {
-      "files": [
-        "css/firefox/challenge-the-default/index.scss"
-      ],
-      "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "css/firefox/nothing-personal/styles.scss"
-      ],
-      "name": "firefox-nothing-personal"
-    },
-    {
-      "files": [
         "css/products/monitor/article.scss"
       ],
       "name": "monitor-article"
@@ -1101,12 +1017,6 @@
         "css/privacy/cookie-settings-form.scss"
       ],
       "name": "cookie-settings-form"
-    },
-    {
-      "files": [
-        "css/firefox/built-for-you/landing.scss"
-      ],
-      "name": "firefox-built-for-you"
     },
     {
       "files":  [
@@ -1327,12 +1237,6 @@
     },
     {
       "files": [
-        "js/firefox/features/features-article.es6.js"
-      ],
-      "name": "firefox_features_article"
-    },
-    {
-      "files": [
         "js/firefox/browsers/compare-article.es6.js"
       ],
       "name": "firefox_compare_article"
@@ -1397,12 +1301,6 @@
         "js/mozorg/about-transparency.js"
       ],
       "name": "about-transparency"
-    },
-    {
-      "files": [
-        "js/firefox/set-as-default/thanks.js"
-      ],
-      "name": "firefox-default-thanks"
     },
     {
       "files": [
@@ -1689,12 +1587,6 @@
     },
     {
       "files": [
-        "js/firefox/enterprise/landing.js"
-      ],
-      "name": "firefox-enterprise"
-    },
-    {
-      "files": [
         "js/newsletter/management.es6.js",
         "js/newsletter/management-init.es6.js"
       ],
@@ -1806,37 +1698,6 @@
         "js/privacy/data-preferences-init.es6.js"
       ],
       "name": "privacy-data-preferences"
-    },
-    {
-      "files": [
-        "js/firefox/family/banner.es6.js",
-        "js/firefox/family/banner-init.es6.js",
-        "js/firefox/family/fx-is-default-init.es6.js",
-        "js/firefox/family/copy-to-clipboard.js",
-        "js/firefox/family/animate-pop-in.es6.js",
-        "js/firefox/family/animate-pop-in-init.es6.js",
-        "js/firefox/family/animate-checkmark.es6.js",
-        "js/firefox/family/animate-checkmark-init.es6.js",
-        "js/firefox/family/default-open-first-detail.es6.js",
-        "js/firefox/family/default-open-first-detail-init.es6.js"
-      ],
-      "name": "firefox-family"
-    },
-    {
-      "files": [
-        "js/firefox/challenge-the-default/challenge-the-default.es6.js",
-        "js/firefox/challenge-the-default/animate-pop-in.es6.js",
-        "js/firefox/challenge-the-default/device-detect.es6.js"
-      ],
-      "name": "challenge-the-default"
-    },
-    {
-      "files": [
-        "js/firefox/nothing-personal/fx-is-default-init.es6.js",
-        "js/firefox/nothing-personal/animations.es6.js",
-        "js/firefox/nothing-personal/random-answers.es6.js"
-      ],
-      "name": "firefox-nothing-personal"
     },
     {
       "files": [
