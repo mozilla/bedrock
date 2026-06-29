@@ -26,7 +26,7 @@ from bedrock.firefox.firefox_details import (
 )
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils, querystringsafe_base64
-from lib.l10n_utils import L10nTemplateView, get_translations_native_names
+from lib.l10n_utils import L10nTemplateView
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 
 UA_REGEXP = re.compile(r"Firefox/(%s)" % version_re)
@@ -68,6 +68,20 @@ def releasenotes_redirect(request, *args, **kwargs):
     """
     dest_path = "/releases/" if request.path.endswith("/firefox/releases/") else request.path
     url = f"{settings.FXC_BASE_URL}{dest_path}"
+    querystring = request.META.get("QUERY_STRING", "")
+    if querystring:
+        url = f"{url}?{querystring}"
+    return HttpResponsePermanentRedirect(url)
+
+
+def fxc_redirect(request, *args, **kwargs):
+    """Fallback view for named routes whose pages now live on www.firefox.com.
+
+    These routes are retained solely so templates that reverse them don't raise
+    NoReverseMatch. RedirectsMiddleware intercepts the path first, so this view
+    is never reached in normal operation.
+    """
+    url = f"{settings.FXC_BASE_URL}{request.path}"
     querystring = request.META.get("QUERY_STRING", "")
     if querystring:
         url = f"{url}?{querystring}"
@@ -902,113 +916,3 @@ def firefox_welcome_page1(request):
     template_name = "firefox/welcome/page1.html"
 
     return l10n_utils.render(request, template_name, context, ftl_files="firefox/welcome/page1")
-
-
-@require_safe
-def firefox_features_translate(request):
-    translate_langs = [
-        "ar",
-        "bg",
-        "ca",
-        "zh-CN",
-        "hr",
-        "cs",
-        "da",
-        "nl",
-        "en-US",
-        "et",
-        "fi",
-        "fr",
-        "de",
-        "el",
-        "hu",
-        "id",
-        "it",
-        "ja",
-        "ko",
-        "lv",
-        "lt",
-        "pl",
-        "pt-PT",
-        "ro",
-        "ru",
-        "sr",
-        "sk",
-        "sl",
-        "es-ES",
-        "sv-SE",
-        "tr",
-        "uk",
-        "vi",
-    ]
-
-    names = get_translations_native_names(sorted(translate_langs))
-
-    context = {"context_test": names}
-
-    template_name = "firefox/features/translate.html"
-
-    return l10n_utils.render(
-        request,
-        template_name,
-        context,
-        ftl_files=["firefox/features/translate", "firefox/features/shared"],
-    )
-
-
-class firefox_features_fast(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/features/fast.html": [
-            "firefox/features/fast-2023",
-            "firefox/features/shared",
-        ],
-        "firefox/features/fast-2024.html": [
-            "firefox/features/fast-2024",
-            "firefox/features/shared",
-        ],
-    }
-
-    def get_template_names(self):
-        if ftl_file_is_active("firefox/features/fast-2024"):
-            template_name = "firefox/features/fast-2024.html"
-        else:
-            template_name = "firefox/features/fast.html"
-
-        return [template_name]
-
-
-class firefox_features_pdf(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/features/pdf-editor.html": ["firefox/features/pdf-editor-2023", "firefox/features/shared"],
-        "firefox/features/pdf-editor-fr.html": ["firefox/features/shared"],
-    }
-
-    def get_template_names(self):
-        locale = l10n_utils.get_locale(self.request)
-        if locale == "fr":
-            template_name = "firefox/features/pdf-editor-fr.html"
-        else:
-            template_name = "firefox/features/pdf-editor.html"
-
-        return [template_name]
-
-
-class firefox_features_adblocker(L10nTemplateView):
-    ftl_files_map = {
-        "firefox/features/adblocker-2025.html": [
-            "firefox/features/adblocker-2025",
-            "firefox/features/shared",
-        ],
-        "firefox/features/adblocker.html": [
-            "firefox/features/adblocker",
-            "firefox/features/shared",
-        ],
-    }
-
-    def get_template_names(self):
-        if ftl_file_is_active("firefox/features/adblocker-2025"):
-            template_name = "firefox/features/adblocker-2025.html"
-        else:
-            template_name = "firefox/features/adblocker.html"
-
-        return [template_name]
