@@ -662,12 +662,6 @@
     },
     {
       "files": [
-        "css/mozorg/leadership.scss"
-      ],
-      "name": "about-leadership"
-    },
-    {
-      "files": [
         "css/mozorg/org-leadership.scss"
       ],
       "name": "about-org-leadership"

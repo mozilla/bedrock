@@ -171,7 +171,6 @@ python manage.py dumpdata \
     anonym.AnonymContactPage \
     anonym.Person \
     mozorg.WebvisionDoc \
-    mozorg.LeadershipPage \
     mozorg.LeadershipProfileSnippet \
     mozorg.OrganizationLeadershipIndexPage \
     mozorg.OrganizationLeadershipSubpage \
