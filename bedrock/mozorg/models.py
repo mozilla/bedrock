@@ -635,7 +635,6 @@ class HomePage(AbstractBedrockCMSPage):
 
 class AboutUsPage(AbstractBedrockCMSPage):
     subpage_types = [
-        LeadershipPage,
         OrganizationLeadershipIndexPage,
     ]
 
