@@ -12,9 +12,9 @@
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
     "@mozmeao/trafficcop": "^3.1.0",
-    "@sentry/browser": "^10.56.0",
+    "@sentry/browser": "^10.62.0",
     "babel-loader": "^10.1.1",
-    "caniuse-lite": "^1.0.30001793",
+    "caniuse-lite": "^1.0.30001800",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.4",
@@ -25,8 +25,8 @@
     "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.3"
+    "webpack": "^5.108.3",
+    "webpack-cli": "^7.1.0"
   },
   "repository": {
     "type": "git",
