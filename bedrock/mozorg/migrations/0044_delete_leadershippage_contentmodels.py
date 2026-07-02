@@ -5,7 +5,7 @@
 from django.db import migrations
 
 STALE_MODELS = (
-    "LeadershipPage",
+    "leadershippage",
 )
 
 
@@ -15,7 +15,7 @@ def remove_stale_contenttypes(apps, schema_editor):
     # that resolves a log entry / permission via ContentType.get_object_for_this_type() (e.g.
     # the Wagtail admin home recent-edits panel) then crashes because model_class() is None.
     ContentType = apps.get_model("contenttypes", "ContentType")
-    ContentType.objects.filter(app_label="cms", model__in=STALE_MODELS).delete()
+    ContentType.objects.filter(app_label="mozorg", model__in=STALE_MODELS).delete()
 
 
 class Migration(migrations.Migration):
