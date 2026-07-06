@@ -178,12 +178,6 @@
     },
     {
       "files": [
-        "css/mozorg/manifesto.scss"
-      ],
-      "name": "manifesto"
-    },
-    {
-      "files": [
         "css/firefox/features/picture-in-picture.scss"
       ],
       "name": "firefox-features-pip"
@@ -665,12 +659,6 @@
         "css/mozorg/contact-spaces.scss"
       ],
       "name": "contact-spaces"
-    },
-    {
-      "files": [
-        "css/mozorg/leadership.scss"
-      ],
-      "name": "about-leadership"
     },
     {
       "files": [
@@ -1601,12 +1589,6 @@
         "js/firefox/firefox-20th/firefox-20th.js"
       ],
       "name": "firefox_20th"
-    },
-    {
-      "files": [
-        "js/mozorg/manifesto.js"
-      ],
-      "name": "manifesto"
     },
     {
       "files": [
