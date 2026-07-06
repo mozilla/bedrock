@@ -854,16 +854,31 @@ def test_fxc_redirect_view_delegates_to_resolver(path, expected):
     assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
 
-def test_fxc_redirect_view_fallback_preserves_full_path():
+@pytest.mark.parametrize(
+    "path, query, expected",
+    (
+        (
+            "/en-US/firefox/unknown/",
+            {"foo": "bar"},
+            "/en-US/firefox/unknown/?foo=bar&redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/unknown/",
+            {},
+            "/en-US/firefox/unknown/?redirect_source=mozilla-org",
+        ),
+    ),
+)
+def test_fxc_redirect_view_fallback_preserves_full_path(path, query, expected):
     """When no redirect pattern matches, `fxc_redirect` falls back to
-    FXC_BASE_URL + full path including query string."""
+    FXC_BASE_URL + full path with redirect_source=mozilla-org appended."""
     with patch("bedrock.firefox.views.get_redirects_resolver") as mock_get_resolver:
         from django.urls import Resolver404
 
         mock_get_resolver.return_value.resolve.side_effect = Resolver404
-        resp = fxc_redirect(RequestFactory().get("/en-US/firefox/unknown/", {"foo": "bar"}))
+        resp = fxc_redirect(RequestFactory().get(path, query))
     assert resp.status_code == 301
-    assert resp["Location"] == f"{settings.FXC_BASE_URL}/en-US/firefox/unknown/?foo=bar"
+    assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
 
 @pytest.mark.django_db

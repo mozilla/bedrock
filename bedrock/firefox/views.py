@@ -95,7 +95,10 @@ def fxc_redirect(request, *args, **kwargs):
             return response
     except Resolver404:
         pass
-    return HttpResponsePermanentRedirect(f"{settings.FXC_BASE_URL}{request.get_full_path()}")
+    qs = request.META.get("QUERY_STRING", "")
+    redirect_source = "redirect_source=mozilla-org"
+    full_qs = f"{qs}&{redirect_source}" if qs else redirect_source
+    return HttpResponsePermanentRedirect(f"{settings.FXC_BASE_URL}{request.path}?{full_qs}")
 
 
 class InstallerHelpView(L10nTemplateView):
