@@ -15,6 +15,7 @@ from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_str
+from django.utils.html import format_html, format_html_join
 
 import jinja2
 from django_jinja import library
@@ -653,10 +654,6 @@ def _fxa_product_button(
 ):
     href = _fxa_product_url(product_url, entrypoint, optional_parameters)
     css_class = "js-fxa-cta-link"
-    attrs = ""
-
-    if optional_attributes:
-        attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     if include_metrics:
         css_class += " js-fxa-product-button"
@@ -667,7 +664,21 @@ def _fxa_product_button(
     if class_name:
         css_class += f" {class_name}"
 
-    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>{button_text}</a>'
+    # Build the anchor with contextual escaping. `button_text`, the
+    # `optional_attributes` values, and the label-derived `href` can all carry
+    # caller- or l10n-supplied data (e.g. a translated button label,
+    # `data-cta-*` attributes, or the `entrypoint`/`utm_campaign` that flows
+    # into the `href`). Every interpolated value must therefore be escaped to
+    # prevent XSS.
+    attrs = format_html_join(" ", '{}="{}"', (optional_attributes or {}).items())
+    markup = format_html(
+        '<a href="{}" data-action="{}" class="{}" {}>{}</a>',
+        href,
+        settings.FXA_ENDPOINT,
+        css_class,
+        attrs,
+        button_text,
+    )
 
     return Markup(markup)
 
