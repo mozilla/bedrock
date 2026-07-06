@@ -44,8 +44,8 @@
 {% endblock %}
 
 {% block stub_attribution %}
+  {% include 'includes/stub-attribution.html' %}
   {% if settings.STUB_ATTRIBUTION_RATE %}
-    {{ super() }}
     <!--[if IE 9]><!-->
       {# Ensure opt-out runs in IE 10 / 11 since we also support stub attribution for those browsers. #}
       {{ js_bundle('firefox_marketing_opt_out') }}

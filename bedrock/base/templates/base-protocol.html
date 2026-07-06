@@ -154,15 +154,8 @@
       <![endif]-->
     {% endblock %}
 
-    {# Bug 1279291 #}
-    {% block stub_attribution %}
-      {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if IE 9]><!-->
-          {# Stub attribution is run on all evergreen browsers plus IE9 and above. #}
-          {{ js_bundle('stub-attribution') }}
-        <!--<![endif]-->
-      {% endif %}
-    {% endblock %}
+    {# Bug 1279291 — loaded per-page via includes/stub-attribution.html on download-flow pages #}
+    {% block stub_attribution %}{% endblock %}
 
     <!--[if !IE]><!-->
     {# Glean only runs on evergreen browsers so we exclude it from IE. #}

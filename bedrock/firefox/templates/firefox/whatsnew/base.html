@@ -11,9 +11,6 @@
 <link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
 {% endblock %}
 
-{# Exclude stub attribution for in-product pages: issus 9620 #}
-{% block stub_attribution %}{% endblock %}
-
 {% block page_title %}{{ ftl('whatsnew-page-title-v2') }}{% endblock %}
 {% block page_desc %}{{ ftl('whatsnew-page-description') }}{% endblock %}
 
