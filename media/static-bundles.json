@@ -178,12 +178,6 @@
     },
     {
       "files": [
-        "css/mozorg/manifesto.scss"
-      ],
-      "name": "manifesto"
-    },
-    {
-      "files": [
         "css/mozorg/home/includes/featured-vpn.scss",
         "css/mozorg/home/home-new.scss"
       ],
