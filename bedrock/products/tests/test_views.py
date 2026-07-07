@@ -10,6 +10,7 @@ from django.test import override_settings
 from django.test.client import RequestFactory
 
 import pytest
+from pyquery import PyQuery as pq
 
 from bedrock.mozorg.tests import TestCase
 from bedrock.products import views
@@ -181,3 +182,36 @@ class TestMonitorScanWaitlistPage(TestCase):
         self.assertEqual(ctx["newsletter_id"], "monitor-waitlist")
         template = render_mock.call_args[0][1]
         assert template == "products/monitor/waitlist/scan.html"
+
+
+@override_settings(DEV=False, VPN_ENDPOINT="https://vpn.mozilla.org/")
+class TestVPNDownloadPageRendering(TestCase):
+    """Full-render regression tests for the VPN download page.
+
+    Unlike TestVPNDownloadPage above, these tests do NOT mock l10n_utils.render,
+    so they exercise the real Jinja2 template, Fluent l10n, and the justhtml
+    sanitizer stack end-to-end. They catch library API regressions (like the
+    justhtml >=1.19 URL-handling breaking change) that the mocked tests miss.
+    """
+
+    def test_download_page_renders_200(self):
+        """The page must not 500 — detects justhtml API breakage that raises at render time."""
+        response = self.client.get("/en-US/products/vpn/download/?geo=us")
+        self.assertEqual(response.status_code, 200)
+
+    def test_wireguard_link_href_intact(self):
+        """The sanitized WireGuard link must retain its href after justhtml processing.
+
+        Guards against justhtml >=1.19 regression: UrlRule(handling=None) inherits
+        UrlPolicy.default_handling='strip', silently dropping the href on <a> tags.
+        Fix: set handling='allow' explicitly on UrlRule (see bedrock/base/sanitization.py).
+        """
+        response = self.client.get("/en-US/products/vpn/download/?geo=us")
+        self.assertEqual(response.status_code, 200)
+        doc = pq(response.content)
+        wireguard_link = doc('a[href="https://mullvad.net/help/why-wireguard/"]')
+        self.assertEqual(
+            wireguard_link.length,
+            1,
+            "WireGuard link href was stripped by the sanitizer — check UrlRule.handling in bedrock/base/sanitization.py",
+        )
