@@ -30,7 +30,7 @@ honcho==2.0.0
 html5lib==1.1
 jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breaking changes later if glean-parser updates it
 jq==1.11.0
-justhtml==1.18.0  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
+justhtml==1.22.0  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
 lxml==6.1.1  # Needed for BeautifulSoup.
 Markdown==3.10.2
 markus[datadog]==5.0.0

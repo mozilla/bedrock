@@ -19,7 +19,10 @@ _HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
 # URL policy that allows common schemes for href and src attributes.
 # Using default_handling="strip" ensures any URL attributes not explicitly
 # listed are removed, preventing potential javascript: or other dangerous schemes.
-_URL_RULE = UrlRule(allowed_schemes=["http", "https", "mailto", "tel"])
+# handling="allow" on the rule preserves scheme-validated URLs as live links;
+# without it, justhtml >=1.19 inherits default_handling="strip" per-rule and
+# silently drops href/src on allowlisted <a>/<img> too.
+_URL_RULE = UrlRule(allowed_schemes=["http", "https", "mailto", "tel"], handling="allow")
 _URL_POLICY = UrlPolicy(
     default_handling="strip",
     allow_rules={
