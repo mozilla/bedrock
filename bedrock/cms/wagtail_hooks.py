@@ -14,7 +14,11 @@ import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
 from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleElementHandler
+from wagtail.fields import StreamField
 from wagtail.models import Locale as WagtailLocale
+
+from bedrock.cms.blocks import regenerate_analytics_ids
+from bedrock.cms.models.base import AbstractBedrockCMSPage
 
 
 @hooks.register("register_admin_menu_item")
@@ -93,3 +97,45 @@ def register_underline_feature(features):
     # 6. (optional) Add the feature to the default features list to make it available
     # on rich text fields that do not specify an explicit 'features' list
     features.default_features.append("underline")
+
+
+@hooks.register("after_copy_page")
+def regenerate_analytics_ids_on_copy(request, page, new_page):
+    """Give freshly copied pages their own analytics IDs so duplicated pages don't
+    share tracking UUIDs with their source.
+
+    Runs for every admin "Copy page" action (the admin view uses ``CopyPageAction``
+    directly, so overriding ``Page.copy()`` would not catch it). Skipped when:
+
+    * the editor ticked "Keep analytics IDs" on the copy form (opt-out), or
+    * the copy is an alias, which must mirror its original exactly.
+
+    Applies to the copied page and every copied descendant, since recursive copies
+    build subpages without calling ``Page.copy()`` either.
+    """
+    post = getattr(request, "POST", {})
+    user = getattr(request, "user", None)
+
+    if post.get("keep_analytics_ids"):
+        return
+    if new_page.alias_of_id:
+        return
+
+    for copied_page in new_page.get_descendants(inclusive=True).specific():
+        if not isinstance(copied_page, AbstractBedrockCMSPage):
+            continue
+
+        stream_fields = [field for field in copied_page._meta.get_fields() if isinstance(field, StreamField)]
+        if not stream_fields:
+            continue
+
+        for field in stream_fields:
+            setattr(copied_page, field.name, regenerate_analytics_ids(getattr(copied_page, field.name)))
+
+        copied_page.save()
+        revision = copied_page.save_revision(user=user) if user else copied_page.save_revision()
+        if copied_page.live:
+            if user:
+                revision.publish(user=user)
+            else:
+                revision.publish()
