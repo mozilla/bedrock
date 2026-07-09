@@ -767,9 +767,9 @@ jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
     # via jsonschema
-justhtml==1.22.0 \
-    --hash=sha256:04a1599b8790902ae9353fec8080e0687cbf092a5d8c7de60687ceb8754c3031 \
-    --hash=sha256:a64746c54fc0488cef42e426f92e919f2f5abbce3564b82255df0d7001f7596f
+justhtml==1.18.0 \
+    --hash=sha256:38d74b92c06f2cf55aa14c3532fbd2ced65884c2c32c3544b389f321799a7fc2 \
+    --hash=sha256:74407e840dc34f77230acda83cbee4ada8a6dbe77543684eac9f7874028e072a
     # via -r requirements/prod.in
 laces==0.1.2 \
     --hash=sha256:3218e09c1889ae5cf3fc7a82f5bb63ec0c7879889b6a9760bfc42323c694b84d \
