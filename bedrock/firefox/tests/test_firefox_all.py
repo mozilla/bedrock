@@ -244,7 +244,8 @@ def test_firefox_esr(client, os, lang):
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
-    assert len(link) == 2
+    expected_links = 1 if os in ["linux", "linux64-aarch64", "win64-aarch64"] else 2
+    assert len(link) == expected_links
     download_url = link.attr("href")
     if "msi" in os:
         product = "firefox-esr-msi-latest-ssl"
@@ -258,9 +259,9 @@ def test_firefox_esr(client, os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-@pytest.mark.parametrize("os, lang", [("win64", "en-US"), ("win64", "de"), ("osx", "en-US"), ("linux", "en-US")])
+@pytest.mark.parametrize("os, lang", [("win64", "en-US"), ("win64", "de"), ("osx", "en-US"), ("linux64", "en-US")])
 def test_firefox_esr_next(client, os, lang):
-    # Note: Only testing a few os/lang pairs to avoid mocking too much. We're mostly checking that 2 buttons show up.
+    # Note: Only testing a few os/lang pairs to avoid mocking too much. We're mostly checking that all button and link types show up.
 
     # Set an esr_next version.
     orig_latest_version = firefox_desktop.latest_version
@@ -281,8 +282,8 @@ def test_firefox_esr_next(client, os, lang):
                         "win64": {
                             "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=win64&lang=en-US",
                         },
-                        "linux": {
-                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=linux&lang=en-US",
+                        "linux64": {
+                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=linux64&lang=en-US",
                         },
                         "osx": {
                             "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=osx&lang=en-US",
