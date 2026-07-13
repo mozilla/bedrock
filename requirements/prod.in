@@ -1,7 +1,6 @@
 APScheduler==3.11.2
 babis==0.2.4
 basket-client==1.2.0
-boto3>=1.43.34
 commonware==0.6.0
 defusedxml==0.7.1
 dirsync==2.2.6
