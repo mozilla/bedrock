@@ -30,7 +30,7 @@ sys.path.append(ROOT)
 from bedrock.base.config_manager import config  # noqa
 
 CACHE = {}
-BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
+BUCKET_NAME = config("GCS_DB_BUCKET", default="bedrock-db-dev")
 
 
 def gcs_client():
