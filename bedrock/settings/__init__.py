@@ -51,6 +51,7 @@ _csp_connect_src = {
     "transcend-cdn.com",  # Transcend Consent Management
     "www.google-analytics.com",
     "www.googletagmanager.com",
+    "analytics.google.com",  # WT-1453
     # This is for glean pings and deletion requests.
     "www.mozilla.org/submit/bedrock/",
     BASKET_URL,
