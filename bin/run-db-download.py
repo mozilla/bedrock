@@ -29,7 +29,7 @@ sys.path.append(ROOT)
 # must import after adding bedrock to path
 from bedrock.base.config_manager import config  # noqa
 
-BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
+BUCKET_NAME = config("GCS_DB_BUCKET", default="bedrock-db-dev")
 GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
 
 
