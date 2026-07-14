@@ -27,7 +27,6 @@ from bedrock.mozorg.blocks.leadership import (
     LeadershipExternalLinkBlock,
     LeadershipGroupSnippetBlock,
     LeadershipProfileChooserBlock,
-    LeadershipSectionBlock,
 )
 from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
 
@@ -329,25 +328,6 @@ class LeadershipProfileSnippet(TranslatableMixin):
         return self.name
 
 
-class LeadershipPage(AbstractBedrockCMSPage):
-    max_count = 1  # Ensure there's only one instance of this page
-    subpage_types = []  # This page type cannot have any children
-
-    leadership_sections = StreamField(
-        [("section", LeadershipSectionBlock())],
-        blank=True,
-        null=True,
-        collapsed=True,
-        use_json_field=True,
-    )
-
-    content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("leadership_sections"),
-    ]
-
-    template = "mozorg/cms/about/leadership.html"
-
-
 class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
     subpage_types = ["OrganizationLeadershipSubpage"]
 
@@ -635,7 +615,6 @@ class HomePage(AbstractBedrockCMSPage):
 
 class AboutUsPage(AbstractBedrockCMSPage):
     subpage_types = [
-        LeadershipPage,
         OrganizationLeadershipIndexPage,
     ]
 
