@@ -48,11 +48,11 @@ def upload_db_data(db_data):
 
     # upload the database
     db_file = bucket.blob(db_data["file_name"])
-    db_file.upload_from_filename(DB_FILE, predefined_acl="public-read")
+    db_file.upload_from_filename(DB_FILE)
 
     # upload the json metadata
     db_file_info = bucket.blob(JSON_DATA_FILE_NAME)
-    db_file_info.upload_from_filename(JSON_DATA_FILE, predefined_acl="public-read")
+    db_file_info.upload_from_filename(JSON_DATA_FILE)
 
     return 0
 
