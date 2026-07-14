@@ -49,9 +49,12 @@ _csp_connect_src = {
     "telemetry.us.transcend.io",  # Transcend Consent Management
     "cdn.transcend.io",  # Transcend Consent Management
     "transcend-cdn.com",  # Transcend Consent Management
-    "www.google-analytics.com",
-    "www.googletagmanager.com",
+    "googletagmanager.com",
+    "*.googletagmanager.com",
+    "google-analytics.com",
+    "*.google-analytics.com",
     "analytics.google.com",  # WT-1453
+    "*.analytics.google.com",  # WT-1453
     # This is for glean pings and deletion requests.
     "www.mozilla.org/submit/bedrock/",
     BASKET_URL,
@@ -107,8 +110,11 @@ _csp_script_src = {
     "s.ytimg.com",
     "tagmanager.google.com",
     "transcend-cdn.com",  # Transcend Consent Management
-    "www.google-analytics.com",
-    "www.googletagmanager.com",
+    "googletagmanager.com",
+    "*.googletagmanager.com",
+    "google-analytics.com",
+    "*.google-analytics.com",
+    "tagmanager.google.com",
     "www.youtube.com",
     csp.constants.UNSAFE_EVAL,
     csp.constants.UNSAFE_INLINE,
