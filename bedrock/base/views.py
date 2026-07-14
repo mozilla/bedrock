@@ -62,7 +62,7 @@ if SQLITE_DB_IN_USE and not LOCAL_DB_UPDATE:
         ("download_database", 600),
     )
 
-DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
+DB_INFO_FILE = getenv("GCS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
 GIT_SHA = getenv("GIT_SHA")
 BUCKET_NAME = config("GCS_DB_BUCKET", default="bedrock-db-dev")
 GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
