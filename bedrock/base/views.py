@@ -65,8 +65,7 @@ if SQLITE_DB_IN_USE and not LOCAL_DB_UPDATE:
 DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
 GIT_SHA = getenv("GIT_SHA")
 BUCKET_NAME = getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
-S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
+GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
 
 
 def get_l10n_repo_info():
@@ -84,7 +83,7 @@ def get_l10n_repo_info():
 
 
 def get_db_file_url(filename):
-    return "/".join([S3_BASE_URL, filename])
+    return "/".join([GCS_BASE_URL, filename])
 
 
 def get_extra_server_info():
