@@ -6,9 +6,10 @@
 
 import os
 import sys
+from pathlib import Path
 
 import requests
-from db_s3_utils import (
+from db_utils import (
     DATA_PATH,
     DB_FILE,
     JSON_DATA_FILE_NAME,
@@ -18,13 +19,22 @@ from db_s3_utils import (
     set_db_data,
 )
 
-BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
-S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config  # noqa
+
+BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
+GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
 
 
 def get_file_url(filename):
-    return "/".join([S3_BASE_URL, filename])
+    return "/".join([GCS_BASE_URL, filename])
 
 
 def download_db_info():

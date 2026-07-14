@@ -4,13 +4,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import os
 import sys
+from pathlib import Path
 from time import time
 
-import boto3
-from boto3.exceptions import Boto3Error
-from db_s3_utils import (
+from db_utils import (
     DB_FILE,
     JSON_DATA_FILE,
     JSON_DATA_FILE_NAME,
@@ -19,49 +17,42 @@ from db_s3_utils import (
     get_prev_db_data,
     set_db_data,
 )
+from google.cloud import storage
+
+# ROOT path of the project. A pathlib.Path object.
+ROOT_PATH = Path(__file__).resolve().parents[1]
+ROOT = str(ROOT_PATH)
+
+# add bedrock to path
+sys.path.append(ROOT)
+
+# must import after adding bedrock to path
+from bedrock.base.config_manager import config  # noqa
 
 CACHE = {}
-BUCKET_NAME = os.getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_S3_REGION", "us-west-2")
+BUCKET_NAME = config("AWS_DB_S3_BUCKET", default="bedrock-db-dev")
 
 
-# Requires setting some environment variables:
-# AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
-# See boto3 docs for more info:
-# http://boto3.readthedocs.io/en/latest/guide/configuration.html#environment-variable-configuration
-def s3_client():
-    if "AWS_ACCESS_KEY_ID" not in os.environ:
-        return None
+def gcs_client():
+    gcs = CACHE.get("gcs_client")
+    if not gcs:
+        gcs = storage.Client()
+        CACHE["gcs_client"] = gcs
 
-    s3 = CACHE.get("s3_client")
-    if not s3:
-        s3 = boto3.client("s3", region_name=REGION_NAME)
-        CACHE["s3_client"] = s3
-
-    return s3
-
-
-def delete_s3_obj(filename):
-    s3 = s3_client()
-    s3.delete_object(Bucket=BUCKET_NAME, Key=filename)
+    return gcs
 
 
 def upload_db_data(db_data):
-    s3 = s3_client()
-    if not s3:
-        return "ERROR: AWS credentials not configured"
+    gcs = gcs_client()
+    bucket = gcs.bucket(BUCKET_NAME)
 
-    try:
-        # upload the new db
-        s3.upload_file(DB_FILE, BUCKET_NAME, db_data["file_name"], ExtraArgs={"ACL": "public-read"})
-    except Boto3Error:
-        return f"ERROR: Failed to upload the new database: {db_data}"
+    # upload the database
+    db_file = bucket.blob(db_data["file_name"])
+    db_file.upload_from_filename(DB_FILE)
 
-    try:
-        # after successful file upload, upload json metadata
-        s3.upload_file(JSON_DATA_FILE, BUCKET_NAME, JSON_DATA_FILE_NAME, ExtraArgs={"ACL": "public-read"})
-    except Boto3Error:
-        return f"ERROR: Failed to upload the new database info file: {db_data}"
+    # upload the json metadata
+    db_file_info = bucket.blob(JSON_DATA_FILE_NAME)
+    db_file_info.upload_from_filename(JSON_DATA_FILE)
 
     return 0
 
@@ -95,14 +86,7 @@ def main(args):
     if "--no-upload" in args:
         return 0
 
-    res = upload_db_data(new_data)
-    # TODO decide if we should do this here or as a separate process
-    # keeping some number of these around could be good for research
-    # if res == 0 and prev_data:
-    #    remove old db file
-    #    delete_s3_obj(prev_data['file_name'])
-
-    return res
+    return upload_db_data(new_data)
 
 
 if __name__ == "__main__":
