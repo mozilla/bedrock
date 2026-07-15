@@ -140,7 +140,6 @@ urlpatterns = [
         name="mozorg.about.webvision.full",
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
-    path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
     redirect("advertising/formats/", "/advertising/solutions/", prepend_locale=False),
