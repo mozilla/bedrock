@@ -87,20 +87,6 @@ urlpatterns = (
         ),
         name="firefox.features.tips",
     ),
-    path(
-        "firefox/features/complete-pdf/",
-        VariationTemplateView.as_view(
-            template_name="firefox/features/pdf-complete-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
-        ),
-        name="firefox.features.pdf-complete",
-    ),
-    path(
-        "firefox/features/free-pdf-editor/",
-        VariationTemplateView.as_view(
-            template_name="firefox/features/pdf-free-fr.html", ftl_files=["firefox/features/shared"], active_locales=["fr"]
-        ),
-        name="firefox.features.pdf-free",
-    ),
     path("firefox/ios/testflight/", views.ios_testflight, name="firefox.ios.testflight"),
     page("firefox/unsupported-systems/", "firefox/unsupported-systems.html"),
     path("firefox/download/thanks/", views.DownloadThanksView.as_view(), name="firefox.download.thanks"),
