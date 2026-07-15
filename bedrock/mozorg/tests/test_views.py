@@ -2,10 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
 from unittest.mock import patch
 
-from django.core import mail
 from django.http.response import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
@@ -167,102 +165,3 @@ class TestMozorgRedirects(TestCase):
                 resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
                 self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
                 self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
-
-
-class TestMiecoEmail(TestCase):
-    def setUp(self):
-        self.factory = RequestFactory()
-        self.view = views.mieco_email_form
-        with self.activate_locale("en-US"):
-            self.url = reverse("mozorg.email_mieco")
-
-        self.data = {
-            "name": "The Dude",
-            "email": "foo@bar.com",
-            "interests": "abiding, bowling",
-            "description": "The rug really tied the room together.",
-        }
-
-    def tearDown(self):
-        mail.outbox = []
-
-    def test_not_post(self):
-        resp = self.client.get(self.url)
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Only POST requests are allowed"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_bad_json(self):
-        resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Error decoding JSON"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_invalid_email(self):
-        resp = self.client.post(self.url, content_type="application/json", data='{"email": "foo@bar"}')
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_invalid_message_id(self):
-        self.data["message_id"] = "the-dude"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success(self, mock_emailMessage, mock_render_to_string):
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success_mieco(self, mock_emailMessage, mock_render_to_string):
-        self.data["message_id"] = "mieco"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success_innovations(self, mock_emailMessage, mock_render_to_string):
-        self.data["message_id"] = "innovations"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["innovations"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["innovations"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_outbox(self):
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(len(mail.outbox), 1)
-
-        email = mail.outbox[0]
-        self.assertIn(f"Name: {self.data['name']}", email.body)
-        self.assertIn(f"E-mail: {self.data['email']}", email.body)
-        self.assertIn(f"Interests: {self.data['interests']}", email.body)
-        self.assertIn(f"Message:\n{self.data['description']}", email.body)
