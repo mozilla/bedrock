@@ -2,24 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
-
 from django.conf import settings
-from django.core.mail import EmailMessage
 from django.http import Http404
 from django.shortcuts import render as django_render
-from django.template.loader import render_to_string
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 from django.views.generic import TemplateView
 
-from jsonview.decorators import json_view
 from product_details import product_details
 
-from bedrock.contentful.api import ContentfulPage
 from bedrock.mozorg.credits import CreditsFile
-from bedrock.mozorg.forms import MiecoEmailForm
 from bedrock.mozorg.models import WebvisionDoc
 from bedrock.newsletter.forms import NewsletterFooterForm
 from lib import l10n_utils
@@ -150,9 +141,9 @@ class HomeView(L10nTemplateView):
     def get_template_names(self):
         experience = self.request.GET.get("xv", None)
 
-        if ftl_file_is_active("mozorg/home-m24") and experience != "legacy":
+        if ftl_file_is_active("mozorg/home-m24") and experience not in ["quantum", "trailhead"]:
             return [self.m24_template_name]
-        elif ftl_file_is_active("mozorg/home-new") and experience != "legacy":
+        elif ftl_file_is_active("mozorg/home-new") and experience != "quantum":
             return [self.template_name]
 
         return [self.old_template_name]
@@ -170,28 +161,6 @@ class AboutView(L10nTemplateView):
             return [self.m24_template_name]
 
         return [self.template_name]
-
-
-@method_decorator(never_cache, name="dispatch")
-class ContentfulPreviewView(L10nTemplateView):
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        content_id = ctx["content_id"]
-        page = ContentfulPage(self.request, content_id)
-        ctx.update(page.get_content())
-        return ctx
-
-    def render_to_response(self, context, **response_kwargs):
-        page_type = context["page_type"]
-        theme = context["info"]["theme"]
-        if page_type == "pagePageResourceCenter":
-            template = "products/vpn/resource-center/article.html"
-        elif theme == "firefox":
-            template = "firefox/contentful-all.html"
-        else:
-            template = "mozorg/contentful-all.html"
-
-        return l10n_utils.render(self.request, template, context, **response_kwargs)
 
 
 class WebvisionDocView(RequireSafeMixin, TemplateView):
@@ -223,64 +192,6 @@ class WebvisionDocView(RequireSafeMixin, TemplateView):
         return context
 
 
-MIECO_EMAIL_SUBJECT = {"mieco": "MIECO Interest Form", "innovations": "Innovations Interest Form"}
-MIECO_EMAIL_SENDER = settings.DEFAULT_FROM_EMAIL
-MIECO_EMAIL_TO = {
-    "mieco": ["mieco@mozilla.com"],
-    "innovations": ["innovations@mozilla.com"],
-}
-
-
-@json_view
-def mieco_email_form(request):
-    """
-    This form accepts a POST request from future.mozilla.org/mieco and will send
-    an email with the data included in the email.
-    """
-    CORS_HEADERS = {
-        "Access-Control-Allow-Origin": "https://future.mozilla.org",
-        "Access-Control-Allow-Headers": "accept, accept-encoding, content-type, dnt, origin, user-agent, x-csrftoken, x-requested-with",
-    }
-
-    if request.method == "OPTIONS":
-        return {}, 200, CORS_HEADERS
-
-    if request.method != "POST":
-        return {"error": 400, "message": "Only POST requests are allowed"}, 400, CORS_HEADERS
-
-    try:
-        json_data = json.loads(request.body.decode("utf-8"))
-    except json.decoder.JSONDecodeError:
-        return {"error": 400, "message": "Error decoding JSON"}, 400, CORS_HEADERS
-
-    form = MiecoEmailForm(
-        {
-            "email": json_data.get("email", ""),
-            "name": json_data.get("name", ""),
-            "interests": json_data.get("interests", ""),
-            "description": json_data.get("description", ""),
-            "message_id": json_data.get("message_id", ""),
-        }
-    )
-
-    if not form.is_valid():
-        return {"error": 400, "message": "Invalid form data"}, 400, CORS_HEADERS
-
-    message_id = form.cleaned_data.pop("message_id") or "mieco"
-    email_to = MIECO_EMAIL_TO[message_id]
-    email_msg = render_to_string("mozorg/emails/mieco-email.txt", {"data": form.cleaned_data}, request=request)
-    email_sub = MIECO_EMAIL_SUBJECT[message_id]
-
-    email = EmailMessage(email_sub, email_msg, MIECO_EMAIL_SENDER, email_to)
-
-    try:
-        email.send()
-    except Exception as e:
-        return {"error": 400, "message": str(e)}, 400, CORS_HEADERS
-
-    return {"status": "ok"}, 200, CORS_HEADERS
-
-
 @require_safe
 def anti_harassment_tool_view(request):
     locale = l10n_utils.get_locale(request)
@@ -290,3 +201,31 @@ def anti_harassment_tool_view(request):
     ctx = {"action": action, "newsletter_form": newsletter_form}
 
     return l10n_utils.render(request, "mozorg/antiharassment-tool.html", ctx)
+
+
+@require_safe
+def advertising_landing_view(request):
+    context = {}
+    template = "mozorg/advertising/landing.html"
+    return l10n_utils.render(request, template, context)
+
+
+@require_safe
+def advertising_solutions_view(request):
+    context = {}
+    template = "mozorg/advertising/solutions.html"
+    return l10n_utils.render(request, template, context)
+
+
+@require_safe
+def advertising_principles_view(request):
+    context = {}
+    template = "mozorg/advertising/principles.html"
+    return l10n_utils.render(request, template, context)
+
+
+@require_safe
+def advertising_impact_view(request):
+    context = {}
+    template = "mozorg/advertising/impact.html"
+    return l10n_utils.render(request, template, context)

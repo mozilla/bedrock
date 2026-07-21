@@ -1,0 +1,143 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+
+.mzan-news-section {
+    gap: 0;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+
+    > .mzan-hgroup {
+        margin-bottom: 36px;
+
+        .mzan-heading {
+            font-size: var(--mzanon-section-heading-font-size);
+            line-height: 1;
+        }
+
+        @media #{$mq-md} {
+            margin-bottom: 75px;
+        }
+    }
+
+
+    .mzan-cards.dividers {
+        margin-top: 0;
+    }
+
+    @media #{$mq-md} {
+        padding: 75px 0;
+    }
+}
+
+
+
+.mzan-news-featured {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .mzan-heading {
+        font-size: var(--mzanon-section-heading-font-size-sm);
+        line-height: var(--mza-text-title-sm-line-height);
+        text-align: left;
+        margin-top: auto;
+    }
+
+    @media #{$mq-md} {
+        flex-direction: row;
+
+        > * {
+            flex: 1;
+        }
+    }
+}
+
+
+
+.news-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    .mzan-card-logo-wrap {
+        aspect-ratio: unset;
+        justify-content: start;
+        padding: 0;
+        height: 100px;
+        margin: 0;
+    }
+
+    .mzan-card-light {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+
+        p.mzan-news-meta {
+            margin-top: auto;
+        }
+    }
+
+    .mzan-card-heading {
+        font-size: var(--mza-text-title-xs);
+        line-height: var(--mza-text-title-xs-line-height);
+        font-weight: 300;
+    }
+}
+
+.mzan-news-source {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.mzan-news-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: var(--mza-text-body-sm);
+    margin-top: auto;
+    padding-top: 16px;
+}
+
+.mzan-news-external-link {
+    opacity: 0.6;
+
+    &::after {
+        content: "";
+        display: block;
+        inset: 0;
+        position: absolute;
+    }
+
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.mzan-news-featured-content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border: 1px solid advars.$color-ads-tertiary-gray;
+    border-width: 0 1px;
+    padding: 50px 20px;
+
+    .mzan-news-meta {
+        margin-top: 0;
+    }
+}
+
+.mzan-news-featured-image {
+    padding: 20px;
+    border-right: 1px solid advars.$color-ads-tertiary-gray;
+
+    img {
+        display: block;
+    }
+}

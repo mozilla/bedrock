@@ -41,7 +41,7 @@ MozBanner.setCookie = function (id) {
     const cookieDuration = 1 * 24 * 60 * 60 * 1000; // 1 day expiration
     date.setTime(date.getTime() + cookieDuration); // 1 day expiration
     window.Mozilla.Cookies.setItem(
-        id,
+        'moz-banner-' + id,
         true,
         date.toUTCString(),
         '/',
@@ -52,7 +52,7 @@ MozBanner.setCookie = function (id) {
 };
 
 MozBanner.hasCookie = function (id) {
-    return Mozilla.Cookies.hasItem(id);
+    return Mozilla.Cookies.hasItem('moz-banner-' + id);
 };
 
 MozBanner.close = function () {

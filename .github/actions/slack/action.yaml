@@ -9,12 +9,23 @@ inputs:
   env_name:
     description: Name of env involved - one of dev, test, stage or prod
     required: true
+    type: choice
+    options:
+      - dev
+      - test
+      - stage
+      - prod
   label:
     description: Very brief summary of what this notification is for - e.g. 'Integration tests'
     required: true
   status:
     description: Status of message type to be sent, supported values 'info', 'success', 'failure'
     required: true
+    type: choice
+    options:
+      - info
+      - success
+      - failure
   channel_id:
     description: Slack channel id to send messages
     required: true
@@ -39,8 +50,10 @@ runs:
   steps:
     - id: set-build-status-color
       shell: bash
+      env:
+        STATUS: ${{ inputs.status }}
       run: >-
-        eval "case ${{ inputs.status }} in
+        eval "case $STATUS in
             info)
                 echo 'STATUS_COLOR=#00FFFF';;
             success)
@@ -54,13 +67,13 @@ runs:
         esac" >> $GITHUB_ENV
 
     - id: slack-notification
-      uses: slackapi/slack-github-action@v1.25.0
-      env:
-        SLACK_BOT_TOKEN: ${{ inputs.slack_bot_token }}
+      uses: slackapi/slack-github-action@45a88b9581bfab2566dc881e2cd66d334e621e2c  # v3.0.3
       with:
-        channel-id: ${{ inputs.channel_id }}
+        method: chat.postMessage
+        token: ${{ inputs.slack_bot_token }}
         payload: |
           {
+            "channel": "${{ inputs.channel_id }}",
             "text": "${{ inputs.label }}",
             "attachments": [
               {

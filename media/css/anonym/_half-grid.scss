@@ -1,0 +1,67 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+.mzan-half-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-top: 75px;
+
+    .mzan-heading,
+    .mzan-subheading {
+        text-align: left;
+    }
+
+    .col {
+        border-left: 1px solid #e8e8e8;
+        border-right: 1px solid #e8e8e8;
+        padding: 50px 25px 0;
+    }
+
+    .two-col-list {
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .two-col-list-item-heading {
+        font-size: var(--mza-text-body-sm);
+        line-height: var(--mza-text-body-sm-line-height);
+    }
+
+    .two-col-list-item-text {
+        font-size: var(--mza-text-body-sm);
+        line-height: 1.5;
+
+        > *:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    & ~ & {
+        margin-top: 0;
+    }
+
+    @media #{$mq-md} {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 150px;
+
+        .col {
+            padding-bottom: 50px;
+            border-right: 0 none;
+
+            &:last-child {
+                border-right: 1px solid #e8e8e8;
+            }
+        }
+
+        & ~ & {
+            margin-top: 150px;
+        }
+    }
+}

@@ -2,16 +2,97 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from uuid import uuid4
+
 from django.conf import settings
+from django.core.exceptions import ValidationError
 from django.db import models, transaction
+from django.utils.html import strip_tags
 
 import markdown
 from markdown.extensions.toc import TocExtension
-from wagtail.admin.panels import FieldPanel
-from wagtail.fields import StreamField
+from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
+from wagtail.fields import RichTextField, StreamField
+from wagtail.models import TranslatableMixin
+from wagtail.snippets.models import register_snippet
 
 from bedrock.cms.models.base import AbstractBedrockCMSPage
-from bedrock.mozorg.blocks.leadership import LeadershipSectionBlock
+from bedrock.mozorg.blocks.advertising import (
+    AdvertisingHeroBlock,
+    SectionBlock,
+    TwoColumnDetailBlock,
+)
+from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ProseBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
+from bedrock.mozorg.blocks.leadership import (
+    LeadershipExternalLinkBlock,
+    LeadershipGroupSnippetBlock,
+    LeadershipProfileChooserBlock,
+)
+from bedrock.mozorg.blocks.navigation import NavigationLinkBlock
+
+BASE_UTM_PARAMETERS = {
+    "utm_source": "www.mozilla.org",
+    "utm_medium": "referral",
+}
+
+
+class SubNavigationMixin:
+    """
+    Mixin for pages with navigation that validates anchor IDs.
+
+    Pages using this mixin should:
+    1. Have a navigation StreamField (defaults to 'sub_navigation', configurable via navigation_field_name)
+    2. Implement get_available_sections() to return a list of all anchor IDs
+    """
+
+    navigation_field_name = "sub_navigation"
+
+    def get_available_sections(self):
+        """
+        Return a list of all anchor IDs available in the page's content.
+        Subclasses should override this method to collect anchor IDs from their specific content fields.
+        """
+        raise NotImplementedError("Subclasses must implement get_available_sections()")
+
+    def clean(self):
+        """
+        Validate that:
+        1. Anchor IDs in content blocks are unique
+        2. Navigation links reference valid sections
+        """
+        super().clean()
+
+        # Get available section anchors
+        available_sections = self.get_available_sections()
+
+        # Check for duplicate anchor IDs
+        if len(available_sections) != len(set(available_sections)):
+            # Find duplicates
+            seen = set()
+            duplicates = set()
+            for anchor_id in available_sections:
+                if anchor_id in seen:
+                    duplicates.add(anchor_id)
+                seen.add(anchor_id)
+
+            raise ValidationError(f"Duplicate anchor ID(s) found: {', '.join(sorted(duplicates))}. Each anchor ID must be unique.")
+
+        # Validate navigation links reference valid sections
+        navigation_field = getattr(self, self.navigation_field_name, None)
+        if navigation_field:
+            available_sections_set = set(available_sections)
+            invalid_anchors = []
+            for nav_item in navigation_field:
+                link = nav_item.value.get("link", {})
+                if link.get("link_to") == "anchor":
+                    anchor = link.get("anchor", "")
+                    if anchor and anchor not in available_sections_set:
+                        invalid_anchors.append(anchor)
+
+            if invalid_anchors:
+                available_text = ", ".join(available_sections) if available_sections else "None"
+                invalid_text = ", ".join(invalid_anchors)
+                raise ValidationError(f"Navigation links reference unknown section(s): '{invalid_text}'. Available sections: {available_text}")
 
 
 def process_md_file(file_path):
@@ -21,7 +102,10 @@ def process_md_file(file_path):
             input = f.read()
 
         md = markdown.Markdown(
-            extensions=["markdown.extensions.attr_list", TocExtension(permalink=True, baselevel=2, toc_depth="2-3", separator="")],
+            extensions=[
+                "markdown.extensions.attr_list",
+                TocExtension(permalink=True, baselevel=2, toc_depth="2-3", separator=""),
+            ],
             output_format="html5",
         )
         content = md.convert(input)
@@ -62,19 +146,513 @@ class WebvisionDoc(models.Model):
         return self.name
 
 
-class LeadershipPage(AbstractBedrockCMSPage):
-    max_count = 1  # Ensure there's only one instance of this page
-    subpage_types = []  # This page type cannot have any children
+@register_snippet
+class ContactBannerSnippet(TranslatableMixin):
+    heading = models.CharField(
+        max_length=255,
+        blank=False,
+    )
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    button_text = models.CharField(
+        verbose_name="Link Text",
+        max_length=255,
+        blank=False,
+    )
+    button_link = models.URLField(
+        verbose_name="Link URL",
+        blank=False,
+    )
 
-    leadership_sections = StreamField(
-        [("section", LeadershipSectionBlock())],
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "heading",
+                    heading="Heading",
+                ),
+                FieldPanel("image", heading="Image"),
+                FieldRowPanel(
+                    [
+                        FieldPanel("button_text", heading="Button text"),
+                        FieldPanel("button_link", heading="Button link"),
+                    ]
+                ),
+            ],
+            heading="Contact Banner Block",
+        ),
+    ]
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "Contact Banner Snippet"
+        verbose_name_plural = "Contact Banner Snippets"
+
+    def __str__(self):
+        return f"{self.heading} - Contact Banner Snippet"
+
+
+@register_snippet
+class NotificationSnippet(models.Model):
+    notification_text = RichTextField(
+        blank=False,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_MINIMAL,
+    )
+    linkedin_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    tiktok_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    spotify_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    bluesky_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    instagram_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    youtube_link = models.URLField(
+        max_length=255,
+        blank=True,
+    )
+    analytics_id = models.CharField(
+        max_length=36,
+        blank=True,
+        help_text="Unique identifier for analytics tracking of social links in this notification.",
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel(
+                    "notification_text",
+                    heading="Notification Text",
+                ),
+                FieldPanel("analytics_id", heading="Analytics ID"),
+                FieldPanel("linkedin_link", heading="Linkedin Link"),
+                FieldPanel("tiktok_link", heading="Tiktok Link"),
+                FieldPanel("spotify_link", heading="Spotify Link"),
+                FieldPanel("bluesky_link", heading="Bluesky Link"),
+                FieldPanel("instagram_link", heading="Instagram Link"),
+                FieldPanel("youtube_link", heading="Youtube Link"),
+            ],
+            heading="Notifications Block",
+        ),
+    ]
+
+    def __str__(self):
+
+        return f"{strip_tags(self.notification_text)} - Notification Snippet"
+
+    def save(self, *args, **kwargs):
+        if not self.analytics_id:
+            self.analytics_id = str(uuid4())
+        super().save(*args, **kwargs)
+
+    @property
+    def has_social_links(self):
+        return any(
+            [
+                self.linkedin_link,
+                self.tiktok_link,
+                self.spotify_link,
+                self.bluesky_link,
+                self.instagram_link,
+                self.youtube_link,
+            ]
+        )
+
+
+@register_snippet
+class LeadershipProfileSnippet(TranslatableMixin):
+    name = models.CharField(max_length=255)
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    press_photos_link = models.URLField(
+        blank=True,
+        help_text="External link to a .zip file of photos of the person.",
+    )
+    biography = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+        help_text="A biography limited to a few short paragraphs. Links and formatting are supported.",
+    )
+    external_links = StreamField(
+        [("external_link", LeadershipExternalLinkBlock())],
         blank=True,
         null=True,
-        collapsed=True,
+        max_num=5,
+        use_json_field=True,
+    )
+
+    panels = [
+        MultiFieldPanel(
+            [
+                FieldPanel("name"),
+                FieldPanel("biography"),
+            ],
+            heading="Profile",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("image"),
+                FieldPanel("press_photos_link"),
+            ],
+            heading="Headshot",
+        ),
+        FieldPanel("external_links"),
+    ]
+
+    class Meta(TranslatableMixin.Meta):
+        verbose_name = "Leadership Profile"
+        verbose_name_plural = "Leadership Profiles"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+
+class OrganizationLeadershipIndexPage(AbstractBedrockCMSPage):
+    subpage_types = ["OrganizationLeadershipSubpage"]
+
+    intro = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    exec_heading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    exec_description = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    exec_leaders = StreamField(
+        [("leadership_profile", LeadershipProfileChooserBlock())],
+        blank=True,
+        null=True,
+        use_json_field=True,
+    )
+
+    exec_closing = RichTextField(
+        blank=True,
+        features=settings.WAGTAIL_RICHTEXT_FEATURES_FULL,
+    )
+
+    sub_pages_link_heading = models.CharField(
+        max_length=255,
+        blank=True,
+    )
+
+    sub_pages_link_description = models.CharField(
+        max_length=255,
+        blank=True,
     )
 
     content_panels = AbstractBedrockCMSPage.content_panels + [
-        FieldPanel("leadership_sections"),
+        FieldPanel("intro"),
+        MultiFieldPanel(
+            [
+                FieldPanel("exec_heading", heading="Heading"),
+                FieldPanel("exec_description", heading="Description"),
+                FieldPanel("exec_leaders", heading="Leaders"),
+                FieldPanel("exec_closing", heading="Closing"),
+            ],
+            heading="Executive Leadership",
+        ),
+        MultiFieldPanel(
+            [
+                FieldPanel("sub_pages_link_heading", heading="Heading"),
+                FieldPanel("sub_pages_link_description", heading="Description"),
+            ],
+            heading="Mozilla Organization Links",
+        ),
     ]
 
-    template = "mozorg/cms/about/leadership.html"
+    template = "mozorg/cms/about/organization_leadership_index_page.html"
+
+
+class OrganizationLeadershipSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["OrganizationLeadershipIndexPage"]
+    subpage_types = []
+
+    description = models.CharField(
+        max_length=1000,
+        blank=True,
+        help_text="A brief description of this organization.",
+    )
+
+    image = models.ForeignKey(
+        "cms.BedrockImage",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        help_text="Image for this organization's tile on the parent index page. If not set, the tile shows the page title only.",
+    )
+
+    leadership_groups = StreamField(
+        [("group", LeadershipGroupSnippetBlock())],
+        blank=False,
+        null=False,
+        collapsed=True,
+        use_json_field=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("description"),
+        FieldPanel("image"),
+        FieldPanel("leadership_groups"),
+    ]
+
+    template = "mozorg/cms/about/organization_leadership_subpage.html"
+
+
+class AdvertisingIndexPage(SubNavigationMixin, AbstractBedrockCMSPage):
+    subpage_types = ["AdvertisingTwoColumnSubpage", "ContentSubpage"]
+    navigation_field_name = "sub_navigation"
+
+    sub_navigation = StreamField(
+        [("link", NavigationLinkBlock())],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Configure the sub-navigation menu items. Leave empty to use the default navigation.",
+    )
+    hero = StreamField(
+        [("advertising_hero_block", AdvertisingHeroBlock())],
+        blank=True,
+        null=True,
+        max_num=1,
+        collapsed=True,
+        use_json_field=True,
+    )
+    sections = StreamField(
+        [
+            ("section", SectionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+        use_json_field=True,
+    )
+    contact_banner = models.ForeignKey(
+        "mozorg.ContactBannerSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("hero"),
+        FieldPanel("sections"),
+        FieldPanel("contact_banner"),
+        FieldPanel("notification"),
+    ]
+    settings_panels = AbstractBedrockCMSPage.settings_panels + [
+        FieldPanel("sub_navigation"),
+    ]
+
+    template = "mozorg/cms/advertising/advertising_index_page.html"
+
+    def get_available_sections(self):
+        """Collect all anchor IDs from hero and sections."""
+        available_sections = []
+
+        # Check hero blocks
+        for block in self.hero:
+            anchor_id = block.value.get("anchor_id")
+            if anchor_id:
+                available_sections.append(anchor_id)
+
+        # Check section blocks
+        for block in self.sections:
+            # SectionBlock has anchor_id nested under settings
+            settings = block.value.get("settings", {})
+            anchor_id = settings.get("anchor_id") if settings else None
+
+            if anchor_id:
+                available_sections.append(anchor_id)
+
+            # Also, check for an anchor id in the section's header.
+            header_anchor_id = block.value.get("header").get("anchor_id")
+            if header_anchor_id:
+                available_sections.append(header_anchor_id)
+
+            # Also, check for anchor ids in each block of the sections' content.
+            for section_block in block.value.get("content"):
+                section_block_anchor_id = section_block.value.get("anchor_id")
+                if section_block_anchor_id:
+                    available_sections.append(section_block_anchor_id)
+
+        return available_sections
+
+
+class AdvertisingTwoColumnSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
+    subpage_types = []  # This page type cannot have any children
+
+    content = StreamField(
+        [
+            ("two_column_block", TwoColumnDetailBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+        use_json_field=True,
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/advertising/two_column_subpage.html"
+
+
+class ContentSubpage(AbstractBedrockCMSPage):
+    parent_page_types = ["AdvertisingIndexPage"]
+    subpage_types = []  # This page type cannot have any children
+
+    sections = StreamField(
+        [
+            ("section", SectionBlock()),
+        ],
+        blank=True,
+        null=True,
+        collapsed=True,
+        use_json_field=True,
+    )
+
+    contact_banner = models.ForeignKey(
+        "mozorg.ContactBannerSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+    notification = models.ForeignKey(
+        "mozorg.NotificationSnippet",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+    )
+
+    content_panels = AbstractBedrockCMSPage.content_panels + [
+        FieldPanel("sections"),
+        FieldPanel("contact_banner"),
+        FieldPanel("notification"),
+    ]
+
+    template = "mozorg/cms/advertising/content_subpage.html"
+
+
+class HomePage(AbstractBedrockCMSPage):
+    """CMS-managed homepage for mozilla.org."""
+
+    max_count = 1  # Ensure there's only one instance of this page
+    ftl_files = ["mozorg/home-m24"]
+
+    content = StreamField(
+        [
+            ("springboard_block", SpringboardBlock()),
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("showcase_block", ShowcaseBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for the homepage. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/home/home.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "homepage",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+
+class AboutUsPage(AbstractBedrockCMSPage):
+    subpage_types = [
+        OrganizationLeadershipIndexPage,
+    ]
+
+    max_count = 1  # Ensure there's only one instance of this page
+    ftl_files = ["mozorg/about-m24"]
+
+    content = StreamField(
+        [
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("prose_block", ProseBlock()),
+            ("showcase_block", ShowcaseBlock()),
+            ("showcase_gallery_block", ShowcaseGalleryBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for the homepage. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/about/about-us.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "about-us",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+    class Meta:
+        verbose_name = "About Us Page"

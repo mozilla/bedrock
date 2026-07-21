@@ -6,23 +6,15 @@ import re
 from django.db.models import Q
 from django.urls import NoReverseMatch
 from django.utils.decorators import method_decorator
-from django.views.decorators.http import require_safe
 from django.views.generic import DetailView, ListView, RedirectView
 
-from jsonview.decorators import json_view
 from product_details import product_details
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.decorators import cache_control_expires
-from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
+from bedrock.security.models import HallOfFamer, Product, SecurityAdvisory
 from lib.l10n_utils import LangFilesMixin, RequireSafeMixin
-
-
-@json_view
-@require_safe
-def mitre_cve_feed(request):
-    return [cve.feed_entry() for cve in MitreCVE.objects.all()]
 
 
 def product_is_obsolete(prod_name, version):

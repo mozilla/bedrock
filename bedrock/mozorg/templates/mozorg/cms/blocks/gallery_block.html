@@ -1,0 +1,124 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import gallery_tile with context %}
+
+{% set bg_color = value.settings.background_color|default("", true) %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+
+{# Map image ratios to srcset_image fill specs #}
+{% set ratio_fill_specs = {
+  "2:1": "fill-{400x200,600x300,800x400,1000x500,1200x600,1400x700}",
+  "1:1": "fill-{400x400,600x600,800x800,1000x1000,1200x1200,1400x1400}",
+  "5:4": "fill-{400x320,600x480,800x640,1000x800,1200x960,1400x1120}",
+  "4:5": "fill-{400x500,600x750,800x1000,1000x1250,1200x1500,1400x1750}",
+  "2:3": "fill-{400x600,600x900,800x1200,1000x1500,1200x1800,1400x2100}"
+} %}
+
+{# Map image ratios to dimensions for width/height attributes #}
+{% set ratio_dimensions = {
+  "2:1": {"width": "1400", "height": "700"},
+  "1:1": {"width": "1400", "height": "1400"},
+  "5:4": {"width": "1400", "height": "1120"},
+  "4:5": {"width": "1400", "height": "1750"},
+  "2:3": {"width": "1400", "height": "2100"}
+} %}
+
+{# Map width choices to CSS classes #}
+{% set width_classes = {
+  "fifth": "m24-l-grid-five",
+  "quarter": "m24-l-grid-quarter",
+  "third": "m24-l-grid-third",
+  "half": "m24-l-grid-half",
+  "three-quarters": "m24-l-grid-three-quarters"
+} %}
+
+{# Mobile images always use 2:1 ratio #}
+{% set mobile_fill_spec = "fill-{400x200,600x300,800x400,1000x500,1200x600,1400x700}" %}
+{% set mobile_dimensions = {"width": "1400", "height": "700"} %}
+{% set mobile_sizes = "(min-width: 768px) calc((100vw - 32px) / 2), calc(100vw - 32px)" %}
+
+{# Map width choices to sizes attribute for desktop images #}
+{% set desktop_sizes = {
+  "fifth": "(min-width: 1440px) 264px, calc((100vw - 64px) / 5)",
+  "quarter": "(min-width: 1440px) 332px, calc((100vw - 64px) / 4)",
+  "third": "(min-width: 1440px) 448px, calc((100vw - 64px) / 3)",
+  "half": "(min-width: 1440px) 680px, calc((100vw - 64px) / 2)",
+  "three-quarters": "(min-width: 1440px) 1024px, calc((100vw - 64px) * 0.75)"
+} %}
+
+<section{% if anchor_id %} id="{{ anchor_id }}"{% endif %} class="{{ bg_color }}">
+  <div class="m24-c-content">
+    {% if value.heading or value.intro %}
+    <header class="m24-c-intro">
+      {% if value.heading %}
+      <h2 class="m24-c-intro-title">{{ value.heading }}</h2>
+      {% endif %}
+      {% if value.intro %}
+      {{ value.intro|richtext }}
+      {% endif %}
+    </header>
+    {% endif %}
+    <div class="m24-c-gallery-container">
+      {% for tile in value.tiles %}
+        {% set tile_ratio = tile.image_ratio|default("2:1", true) %}
+        {% set tile_width = tile.width|default("half", true) %}
+        {% set fill_spec = ratio_fill_specs[tile_ratio] %}
+        {% set dimensions = ratio_dimensions[tile_ratio] %}
+        {% set css_class = width_classes[tile_width] %}
+
+        {# Generate srcset renditions for mobile (always 2:1) and desktop (CMS-chosen ratio) #}
+        {% set mobile_img = srcset_image(tile.image, mobile_fill_spec) %}
+        {% set desktop_img = srcset_image(tile.image, fill_spec) %}
+        {% set tile_alt = tile.image_alt|default("", true) %}
+
+        {# Build srcset strings from renditions #}
+        {% set ns = namespace(mobile_srcset='', desktop_srcset='', desktop_src='') %}
+        {% for r in mobile_img.renditions %}
+          {% set ns.mobile_srcset = ns.mobile_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+        {% endfor %}
+        {% for r in desktop_img.renditions %}
+          {% if loop.first %}
+            {% set ns.desktop_src = r.url %}
+          {% endif %}
+          {% set ns.desktop_srcset = ns.desktop_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+        {% endfor %}
+
+        {# Build picture element with mobile source and desktop fallback #}
+        {% set picture_html %}
+          <picture>
+            <source
+              media="(max-width: 1311px)"
+              srcset="{{ ns.mobile_srcset }}"
+              sizes="{{ mobile_sizes }}"
+              width="{{ mobile_dimensions.width }}"
+              height="{{ mobile_dimensions.height }}">
+            <img
+              src="{{ ns.desktop_src }}"
+              srcset="{{ ns.desktop_srcset }}"
+              sizes="{{ desktop_sizes[tile_width] }}"
+              width="{{ dimensions.width }}"
+              height="{{ dimensions.height }}"
+              loading="lazy"
+              alt="{{ tile_alt }}">
+          </picture>
+        {% endset %}
+
+        {% set tile_tag = tile.tag|default("", true) %}
+        {{ gallery_tile(
+          class=css_class,
+          image=picture_html,
+          tag=tile_tag|title if tile_tag else "",
+          heading=tile.heading,
+          body=tile.body|default("", true),
+          link_url=tile.cta_link.get_url()|add_utm_parameters,
+          cta_text=tile.cta_text|default("", true),
+          link_attributes='data-link-text="' ~ tile.heading|slugify ~ '"' ~ (' target="_blank" rel="external noopener"' if tile.cta_link.new_window else '')
+        ) }}
+      {% endfor %}
+    </div>
+  </div>
+</section>

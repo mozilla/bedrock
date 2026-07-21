@@ -383,13 +383,6 @@ describe('site.js', function () {
             );
         });
 
-        it('should identify 0.1 as Windows 7', function () {
-            expect(window.site.getWindowsVersionClientHint('0.1')).toBe('6.1');
-            expect(window.site.getWindowsVersionClientHint('0.1.2')).toBe(
-                '6.1'
-            );
-        });
-
         it('should return anything else as zero / unknown', function () {
             expect(window.site.getWindowsVersionClientHint('0.9')).toBe('0');
             expect(window.site.getWindowsVersionClientHint('0.8')).toBe('0');

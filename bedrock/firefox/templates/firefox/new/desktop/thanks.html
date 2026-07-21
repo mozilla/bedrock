@@ -10,7 +10,10 @@
 {% block html_attrs %}data-test-fxa-template="firefox-download-thanks"{% endblock %}
 
 {# "scene2" page should not be indexed to avoid it appearing in search results: issue 7024 #}
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block extrahead %}
   {{ super() }}
@@ -93,6 +96,10 @@
     <a href="{{ firefox_url('desktop', 'all') }}">{{ ftl('firefox-desktop-download-in-another-language') }}</a>
   </div>
 </main>
+{% endblock %}
+
+{% block stub_attribution %}
+  {% include 'includes/stub-attribution.html' %}
 {% endblock %}
 
 {% block js %}

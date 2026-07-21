@@ -4,28 +4,29 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.28.0",
-    "@babel/preset-env": "^7.28.0",
-    "@mozilla-protocol/core": "^20.0.0",
+    "@babel/core": "^8.0.1",
+    "@babel/preset-env": "^8.0.2",
+    "@mozilla-protocol/core": "^22.0.0",
     "@mozilla/glean": "^5.0.3",
-    "@mozmeao/consent-banner": "^1.1.0",
+    "@mozmeao/consent-banner": "^1.1.1",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
     "@mozmeao/trafficcop": "^3.1.0",
-    "@sentry/browser": "^10.4.0",
-    "babel-loader": "^10.0.0",
-    "caniuse-lite": "^1.0.30001731",
+    "@sentry/browser": "^10.56.0",
+    "babel-loader": "^10.1.1",
+    "caniuse-lite": "^1.0.30001793",
     "clean-webpack-plugin": "^4.0.0",
-    "copy-webpack-plugin": "^13.0.0",
-    "css-loader": "^7.1.2",
-    "css-minimizer-webpack-plugin": "^7.0.2",
-    "mini-css-extract-plugin": "^2.9.2",
-    "sass": "^1.89.2",
-    "sass-loader": "^16.0.5",
+    "copy-webpack-plugin": "^14.0.0",
+    "css-loader": "^7.1.4",
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "embla-carousel": "^8.6.0",
+    "mini-css-extract-plugin": "^2.10.2",
+    "sass": "1.91.0",
+    "sass-loader": "^17.0.0",
     "style-loader": "^4.0.0",
-    "terser-webpack-plugin": "^5.3.14",
-    "webpack": "^5.101.0",
-    "webpack-cli": "^6.0.1"
+    "terser-webpack-plugin": "^5.6.1",
+    "webpack": "^5.107.2",
+    "webpack-cli": "^7.0.3"
   },
   "repository": {
     "type": "git",
@@ -37,19 +38,19 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "concurrently": "^9.2.0",
-    "dotenv-webpack": "^8.1.1",
+    "concurrently": "^10.0.3",
+    "dotenv-webpack": "^9.0.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
-    "globals": "^16.3.0",
-    "jasmine-browser-runner": "^3.0.0",
-    "jasmine-core": "^5.9.0",
+    "globals": "^17.6.0",
+    "jasmine-browser-runner": "^4.0.0",
+    "jasmine-core": "^6.1.0",
     "prettier": "^3.3.3",
-    "sinon": "^21.0.0",
+    "sinon": "^22.0.0",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
     "svgo": "^4.0.0",
-    "webpack-dev-server": "^5.2.2"
+    "webpack-dev-server": "^5.2.4"
   },
   "scripts": {
     "start": "concurrently --kill-others \"python manage.py runserver 0.0.0.0:8080\" \"npm run watch\"",
@@ -75,5 +76,13 @@
   "browserslist": [
     "defaults",
     "IE 8"
-  ]
+  ],
+  "overrides": {
+    "sockjs": {
+      "uuid": "^11.1.1"
+    },
+    "@mozilla/glean": {
+      "uuid": "^11.1.1"
+    }
+  }
 }

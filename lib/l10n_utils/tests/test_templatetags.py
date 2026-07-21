@@ -28,8 +28,9 @@ from lib.l10n_utils.templatetags.fluent import (
             'test attrs <a href="https://www.mozilla.org/" class="test-link" id="target-for-link" rel="nofollow" title="test title">test</a>',
         ),
         (
+            # Script tags are dropped entirely for security (not just escaped)
             "some string with a sneaky <script>alert('pwned');</script>",
-            "some string with a sneaky &lt;script&gt;alert('pwned');&lt;/script&gt;",
+            "some string with a sneaky ",
         ),
         (
             'some string with disallowed attrs <a onclick="injectedScript()">test</a>',
@@ -40,8 +41,8 @@ from lib.l10n_utils.templatetags.fluent import (
     ids=[
         "Tag test, no changes expected via sanitization",
         "Attr test, no changes expected via sanitization",
-        "Proof that bleach is escaping tags that are not in the allowlists",
-        "Proof that bleach is stripping attrs that are not in the allowlists",
+        "Dangerous tags like script are dropped entirely",
+        "Disallowed attrs are stripped",
         "String with no markup in it",
     ],
 )
@@ -106,8 +107,13 @@ def test_ftl_bleach_allowlists_are_comprehensive():
         f"Unexpected tag(s) found: {tags_found.difference(TAGS_ALLOWED_IN_FLUENT_STRINGS)}"
     )
 
-    assert set(ATTRS_ALLOWED_IN_FLUENT_STRINGS).issuperset(attrs_found), (
+    # Flatten all allowed attributes from the dict (which maps tag -> attrs)
+    all_allowed_attrs = set()
+    for attrs in ATTRS_ALLOWED_IN_FLUENT_STRINGS.values():
+        all_allowed_attrs.update(attrs)
+
+    assert all_allowed_attrs.issuperset(attrs_found), (
         "DANGER! HTML attributes were detected in source FTL strings that are not in "
         "lib.l10n_utils.templatetags.fluent.ATTRS_ALLOWED_IN_FLUENT_STRINGS. "
-        f"Unexpected attribute(s) found: {set(attrs_found).difference(set(ATTRS_ALLOWED_IN_FLUENT_STRINGS))}"
+        f"Unexpected attribute(s) found: {attrs_found.difference(all_allowed_attrs)}"
     )

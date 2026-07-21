@@ -1,0 +1,35 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="mzan-section is-comparison-table-block">
+  <hgroup class="mzan-hgroup">
+    <h2 class="mzan-heading">{{ value.heading_text }}</h2>
+    {% if value.subheading_text %}<p class="mzan-subheading">{{ value.subheading_text|richtext|remove_p_tag }}</p>{% endif %}
+  </hgroup>
+
+  {% if value.rows %}
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Traditional Tracking & Measurement Technology</th>
+          <th>Clean Rooms</th>
+          <th>Anonym</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in value.rows %}
+          <tr>
+            <td>{{ row.text }}</td>
+            <td>{% if row.tradition_tracking == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
+            <td>{% if row.clean_rooms == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
+            <td>{% if row.anonym == true %}<i class="mzan-icon icon-check"></i>{% else %}<i class="mzan-icon icon-close is-no" aria-title="No"></i>{% endif %}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</section>

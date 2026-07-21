@@ -1,0 +1,18 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mza-feature-list-modals">
+  <div class="m24-c-content">
+    <h3 class="mza-section-subheading">{{ value.heading_text }}</h3>
+    <p class="mza-highlight-text">{{ value.supporting_text }}</p>
+
+    <ul class="mza-bordered-list">
+      {% for item in value.feature_list_items %}
+        {% include_block item %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

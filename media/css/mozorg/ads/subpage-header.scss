@@ -1,0 +1,24 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+@use './mixins' as admixins;
+
+.mza-subpage-header {
+    background-color: advars.$color-ads-off-black;
+
+    h1 {
+        color: #fff;
+        @include admixins.text-title-2xl;
+        margin: 0;
+    }
+
+    h2 {
+        @include admixins.text-title-xl;
+    }
+
+    & + .has-border-top {
+        padding-top: 0;
+    }
+}

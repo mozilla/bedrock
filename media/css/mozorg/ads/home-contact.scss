@@ -1,0 +1,70 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+@use './mixins' as admixins;
+
+
+
+.mzp-c-button.mza-c-contact-button {
+    @include admixins.text-button-md;
+    background-color: $m24-color-black;
+    border-color: currentColor;
+    border-radius: 0;
+    color: $m24-color-white;
+    margin-top: 2rem;
+    padding-block: 0.75rem;
+    font-weight: 600;
+}
+
+.m24-c-content.mza-c-home-contact {
+    padding-top: 0;
+}
+
+.mza-c-main-dark-section + .m24-c-content.mza-c-home-contact {
+    padding-top: 4rem;
+}
+
+.mza-c-home-contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    border-top: 1px solid advars.$color-ads-off-black;
+
+    .mza-hgroup {
+        margin-top: 2rem;
+    }
+
+    .cell.justify-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .mzp-c-button.mza-c-contact-button {
+        margin-top: 2rem;
+
+        svg {
+            position: relative;
+            top: -2px;
+        }
+
+        &:hover {
+            background-color: $m24-color-white;
+            color: $m24-color-black;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .mza-c-home-contact-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: $spacing-2xl;
+
+        .mza-figure {
+            margin-top: -1px;
+        }
+    }
+}

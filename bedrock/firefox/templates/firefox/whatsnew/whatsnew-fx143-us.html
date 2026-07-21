@@ -1,0 +1,190 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/whatsnew/base-new-theme.html" %}
+
+{% block site_css %}
+  {{ super() }}
+  {{ css_bundle('firefox_whatsnew_143') }}
+{% endblock %}
+
+{% block wnp_content %}
+<div class="wnp-page">
+  <main class="wnp-main">
+    <!-- Section 2: Headlines / Sub Features -->
+    <section class="wnp-section" aria-labelledby="features-heading">
+      <div class="wnp-container">
+        <h2 id="features-heading" class="wnp-subtitle text-center">Smarter. Faster. Yours.</h2>
+        <p class="wnp-body wnp-is-centered">Page summaries, personalized tabs, and memory-saving performance all built into Firefox.</p>
+
+        <div class="wnp-feature">
+          <div class="wnp-feature-media">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                src="/media/img/firefox/whatsnew/whatsnew143-us/summarize.png"
+                alt="Shake to summarize illustration"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew143-us/summarize@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <p class="wnp-feature-eyebrow">Shake to Summarize</p>
+            <h3 class="wnp-subtitle">Shake it up. Skip the scroll.</h3>
+            <p class="wnp-body">Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.</p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-outline" href="#qr-firefox-mobile" data-cta-text="Get the app">Get the app
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="wnp-feature wnp-feature--reverse">
+          <div class="wnp-feature-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                loading="lazy"
+                src="/media/img/firefox/whatsnew/whatsnew143-us/new-tab-sections.png"
+                alt="New tab sections illustration"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew143-us/new-tab-sections@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <p class="wnp-feature-eyebrow">New Tab 'Sections'</p>
+            <h3 class="wnp-subtitle">Your new tab, your way</h3>
+            <p class="wnp-body">Discover recent stories, topic sections, and suggestions tailored to your preferences. Your recommendations are more helpful, more personal, while 100% under your control. Your privacy is always protected.</p>
+            <div class="wnp-btn-wrap"><button class="wnp143-uitour wnp143-uitour-newtab wnp-button wnp-button-outline">Personalize my new tab
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+            </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="wnp-feature">
+          <div class="wnp-feature-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              <img
+                loading="lazy"
+                src="/media/img/firefox/whatsnew/whatsnew143-us/unload-tabs.png"
+                alt="Unload tabs illustration"
+                srcset="
+                  /media/img/firefox/whatsnew/whatsnew143-us/unload-tabs@2x.png 2x
+                "
+              />
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <p class="wnp-feature-eyebrow">Unload tabs</p>
+            <h3 class="wnp-subtitle">Keep your tabs. Free up memory.</h3>
+            <p class="wnp-body">Unloading a tab keeps it visible while freeing up memory and CPU.</p>
+            <p class="wnp-body">Right-click on one or multiple tabs and choose <strong>Unload Tab</strong> to help Firefox stay fast.</p>
+            <p class="wnp-body">When you come back, your tab will reload just where you left off.</p>
+            <div class="wnp-btn-wrap">
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox/?{{ utm_params }}" aria-label="Learn more about unload tabs" data-cta-text="Learn more - unload tabs">Learn More
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="wnp-link-wrap">
+          <a class="wnp-link" href="/firefox/{{ version }}/releasenotes/" data-cta-text="See full release notes"><strong>See Full Release Notes</strong></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- QR Code Banner -->
+    <section id="qr-firefox-mobile" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+      <div class="wnp-container">
+        <div class="wnp-qr">
+          <div class="wnp-qr-layout">
+            <div class="wnp-qr-media">
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" aria-label="QR code to download Firefox Mobile" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
+            </div>
+            <div class="wnp-qr-content">
+              <div class="wnp-qr-content-inner">
+                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">Take Firefox with you</h2>
+                <p class="wnp-body">Scan the QR code to get Firefox Mobile and browse with calm, focus, and control — wherever you go.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe Banner -->
+    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+      <div class="wnp-container">
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">Keep up with all things Firefox</h2>
+        <p class="wnp-body wnp-is-centered">Get monthly how-tos, advice and news to make your Firefox experience work best for you.</p>
+        {{ email_newsletter_form(
+        template="firefox/whatsnew/includes/newsletter_form.html",
+        include_country=true,
+        include_language=true,
+        footer=false,
+        include_title=false
+        ) }}
+      </div>
+    </section>
+
+    <!-- Feature Panels -->
+    <section class="wnp-section wnp-section-highlights" aria-labelledby="highlights-heading">
+      <div class="wnp-container">
+        <h2 id="highlights-heading" class="wnp-subtitle text-center">Smart tools that help you stay focused</h2>
+        <p class="wnp-subtitle-content wnp-body wnp-has-subhead-spacing wnp-is-centered">From instant link previews to automatic tab grouping, Firefox gives you built-in tools to help you stay organized and work smarter.</p>
+        <div class="wnp-grid">
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img loading="lazy" class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/link-preview.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/link-preview-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <a href="https://connect.mozilla.org/t5/discussions/try-link-previews-in-firefox-142-see-what-s-behind-a-link-before/m-p/103496#M40177/?{{ utm_params }}" data-cta-text="Learn more - Link Previews">See what’s behind the link before you click</a>
+              </h3>
+              <p class="wnp-body">Firefox Link Previews shows a snapshot of the page before you open it, helping you decide if it's worth your time. Just long press and hold on any link to preview.</p>
+              <a class="wnp-button wnp-button-outline" href="https://connect.mozilla.org/t5/discussions/try-link-previews-in-firefox-142-see-what-s-behind-a-link-before/m-p/103496#M40177/?{{ utm_params }}" data-cta-text="Try it on this link">
+                Try it on this link <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img loading="lazy" class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/tab-group.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/tab-group-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <a href="https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups/?{{ utm_params }}" data-cta-text="Learn more - new tab customization" aria-describedby="desc-tab-group">Your tabs grouped by topic</a>
+              </h3>
+              <p class="wnp-body">A local AI model identifies similar tabs and automatically organizes them into groups. It even suggests tab group names to help you stay organized. All on your device only, to ensure your privacy.</p>
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/how-use-ai-enhanced-tab-groups/?{{ utm_params }}" aria-label="Learn more about tab group" data-cta-text="Learn more - tab group" id="desc-tab-group">
+                Learn more <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+          <article class="wnp-card">
+            <div class="wnp-card-content">
+              <img loading="lazy" class="wnp-card-sticker" src="/media/img/firefox/whatsnew/whatsnew143-us/vertical-tabs.svg" data-dark-src="/media/img/firefox/whatsnew/whatsnew143-us/vertical-tabs-dark.svg" alt="" aria-hidden="true">
+              <h3 class="wnp-subtitle">
+                <span>Less clutter with vertical tabs</span>
+              </h3>
+              <p class="wnp-body">Firefox’s sidebar lets you move tabs to the side, pin key sites and keep your AI assistant handy.</p>
+              <a class="wnp-button wnp-button-outline" href="https://support.mozilla.org/en-US/kb/use-sidebar-access-tools-and-vertical-tabs/?{{ utm_params }}" aria-label="Learn more about vertical tabs" data-cta-text="Learn more - vertical tabs" id="desc-sidebar">
+                Learn more <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('firefox_whatsnew_143_us') }}
+{% endblock %}

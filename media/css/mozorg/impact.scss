@@ -2,10 +2,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
 
 header {
     background-color: $color-black;
@@ -78,8 +75,18 @@ header {
 }
 
 .c-cards {
+    margin: auto;
+
     h3 {
         text-align: center;
+    }
+
+    .mzp-l-card-quarter {
+        @media #{$mq-md} {
+            display: flex;
+            justify-content: center;
+        }
+
     }
 }
 
@@ -92,19 +99,37 @@ header {
 }
 
 
-.c-past-reports-table {
+.c-past-reports-table.mzp-u-data-table {
     margin: 0 auto;
     margin-top: $spacing-2xl;
     table-layout: auto;
 
-    th,
+    th {
+        padding: 0 0 $spacing-xs;
+    }
+
     td {
-        max-width: 420px;
-        vertical-align: top;
+        padding: $spacing-md 0;
+        border-top: 2px solid #F4F4F4;
+
+        &:first-of-type {
+            padding-right: $spacing-2xl;
+        }
+    }
+
+    a {
+        font-weight: 600;
+        margin: $spacing-md 0;
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+            text-decoration: underline;
+        }
     }
 
     @media #{$mq-md} {
-        table-layout: fixed;
         width: 790px;
+        max-width: 100%;
     }
 }

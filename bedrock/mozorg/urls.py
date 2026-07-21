@@ -12,18 +12,18 @@ it must go in mozorg.nonlocale_urls, not this file
 
 """
 
-from django.conf import settings
 from django.urls import path
 
+from bedrock.cms.decorators import prefer_cms
+from bedrock.redirects.util import redirect
+
 from . import views
-from .dev_urls import urlpatterns as dev_only_urlpatterns
 from .util import page
 
 urlpatterns = [
-    path("", views.HomeView.as_view(), name="mozorg.home"),
-    path("about/", views.AboutView.as_view(), name="mozorg.about.index"),
+    path("", prefer_cms(views.HomeView.as_view(), fallback_ftl_files=views.HomeView.activation_files), name="mozorg.home"),
+    path("about/", prefer_cms(views.AboutView.as_view(), fallback_ftl_files=views.AboutView.activation_files), name="mozorg.about.index"),
     page("about/manifesto/", "mozorg/about/manifesto.html", ftl_files=["mozorg/about/manifesto"]),
-    page("about/manifesto/details/", "mozorg/about/manifesto-details.html", ftl_files=["mozorg/about/manifesto"]),
     page("account/", "mozorg/account.html", ftl_files=["firefox/accounts"]),
     page("about/policy/lean-data/", "mozorg/about/policy/lean-data/index.html"),
     page("about/policy/lean-data/build-security/", "mozorg/about/policy/lean-data/build-security.html"),
@@ -88,6 +88,7 @@ urlpatterns = [
     page("about/policy/transparency/jan-jun-2024/", "mozorg/about/policy/transparency/jan-jun-2024.html"),
     page("about/policy/transparency/jul-dec-2024/", "mozorg/about/policy/transparency/jul-dec-2024.html"),
     page("about/policy/transparency/2024/", "mozorg/about/policy/transparency/2024.html"),
+    page("about/policy/transparency/2025/", "mozorg/about/policy/transparency/2025.html"),
     page("contact/", "mozorg/contact/contact-landing.html"),
     page("contact/spaces/", "mozorg/contact/spaces/spaces-landing.html"),
     page("MPL/", "mozorg/mpl/index.html"),
@@ -139,13 +140,7 @@ urlpatterns = [
         name="mozorg.about.webvision.full",
     ),
     page("analytics-tests/", "mozorg/analytics-tests/ga-index.html"),
-    path("email-mieco/", views.mieco_email_form, name="mozorg.email_mieco"),
-    page("advertising/", "mozorg/advertising/landing.html"),
-    page("advertising/formats/", "mozorg/advertising/formats.html"),
-    page("advertising/principles/", "mozorg/advertising/principles.html"),
     path("antiharassment-tool/", views.anti_harassment_tool_view, name="mozorg.antiharassment-tool"),
     page("rise25/nominate/", "mozorg/rise25/landing.html"),
+    redirect("advertising/formats/", "/advertising/solutions/", prepend_locale=False),
 ]
-
-if settings.DEV:
-    urlpatterns += dev_only_urlpatterns

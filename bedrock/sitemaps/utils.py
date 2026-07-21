@@ -14,12 +14,6 @@ from django.urls import resolvers
 
 from wagtail.models import Page
 
-from bedrock.contentful.constants import (
-    CONTENT_CLASSIFICATION_VPN,
-    CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-    VRC_ROOT_PATH,
-)
-from bedrock.contentful.models import ContentfulEntry
 from bedrock.security.models import SecurityAdvisory
 
 SEC_KNOWN_VULNS = [
@@ -121,7 +115,11 @@ def get_static_urls():
                 if not render.called:
                     continue
 
-                locales = set(render.call_args[0][2]["translations"].keys())
+                context = render.call_args[0][2]
+                if "translations" not in context:
+                    # If translations key is missing, skip this URL
+                    continue
+                locales = set(context["translations"].keys())
 
                 # Firefox Focus has a different URL in German
                 if path == "/privacy/firefox-focus/":
@@ -133,29 +131,6 @@ def get_static_urls():
             if path not in urls:
                 urls[path] = locales
 
-    return urls
-
-
-def _get_vrc_urls():
-    # URLs for individual VRC articles - the listing/landing page is declared
-    # separately in bedrock/products/urls.py so we don't need to include it here
-
-    urls = defaultdict(list)
-
-    for entry in ContentfulEntry.objects.filter(
-        localisation_complete=True,
-        content_type=CONTENT_TYPE_PAGE_RESOURCE_CENTER,
-        classification=CONTENT_CLASSIFICATION_VPN,
-    ):
-        _path = f"{VRC_ROOT_PATH}{entry.slug}/"
-        urls[_path].append(entry.locale)  # One slug may support multiple locales
-
-    return urls
-
-
-def get_contentful_urls():
-    urls = {}
-    urls.update(_get_vrc_urls())
     return urls
 
 
@@ -185,6 +160,8 @@ def get_wagtail_urls():
             or cms_page.is_site_root()
             # not all pages have the is_structural_page attribute, so default those to False
             or getattr(cms_page.specific, "is_structural_page", False) is True
+            # not all pages have the exclude_from_sitemap attribute, so default those to False
+            or getattr(cms_page.specific, "exclude_from_sitemap", False) is True
         ):
             # Don't include these pages in the sitemap
             continue
@@ -201,7 +178,6 @@ def get_wagtail_urls():
 def get_all_urls():
     urls = get_static_urls()
     urls.update(get_security_urls())
-    urls.update(get_contentful_urls())
     urls.update(get_wagtail_urls())
     return urls
 

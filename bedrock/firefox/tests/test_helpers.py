@@ -326,7 +326,7 @@ class TestDownloadThanksButton(TestCase):
 
     def test_download_firefox_thanks_button(self):
         """
-        Download link should point to /firefox/download/thanks/
+        Download link should point to firefox.com/thanks/
         """
         rf = RequestFactory()
         get_request = rf.get("/fake")
@@ -340,7 +340,7 @@ class TestDownloadThanksButton(TestCase):
         link = pq(links)
         href = link.attr("href")
 
-        assert href == "/firefox/download/thanks/"
+        assert href == f"{settings.FXC_BASE_URL}/thanks/"
         assert button.attr("id") == "download-button-thanks"
         assert link.attr("data-cta-text") == "Download Firefox"
 
@@ -369,7 +369,7 @@ class TestDownloadThanksButton(TestCase):
         link = pq(links)
         href = link.attr("href")
 
-        assert href == "/en-US/firefox/download/thanks/"
+        assert href == f"{settings.FXC_BASE_URL}/en-US/thanks/"
         assert button.attr("id") == "test-download"
         assert link.attr("data-cta-position") == "primary cta"
         assert "test-css-class" in link.attr("class")

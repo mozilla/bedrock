@@ -4,10 +4,10 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@axe-core/playwright": "^4.10.2",
-    "@playwright/test": "^1.54.1",
+    "@axe-core/playwright": "^4.11.3",
+    "@playwright/test": "^1.60.0",
     "axe-html-reporter": "^2.2.11",
-    "dotenv": "^17.2.1"
+    "dotenv": "^17.4.2"
   },
   "repository": {
     "type": "git",

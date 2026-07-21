@@ -45,12 +45,21 @@ _csp_connect_src = {
     "o1069899.ingest.sentry.io",
     "o1069899.sentry.io",
     "region1.google-analytics.com",
-    "www.google-analytics.com",
-    "www.googletagmanager.com",
+    "telemetry.transcend.io",  # Transcend Consent Management
+    "telemetry.us.transcend.io",  # Transcend Consent Management
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
+    "googletagmanager.com",
+    "*.googletagmanager.com",
+    "google-analytics.com",
+    "*.google-analytics.com",
+    "analytics.google.com",  # WT-1453
+    "*.analytics.google.com",  # WT-1453
     # This is for glean pings and deletion requests.
     "www.mozilla.org/submit/bedrock/",
     BASKET_URL,
     FXA_ENDPOINT,
+    FOUNDATION_URL,
 }
 _csp_font_src = {
     csp.constants.SELF,
@@ -62,6 +71,7 @@ _csp_form_action = {
     # progressively enhance forms by using Javascript.
     BASKET_URL,
     FXA_ENDPOINT,
+    FOUNDATION_URL,
 }
 # On hosts with wagtail admin enabled, we need to allow the admin to frame itself for previews.
 _csp_frame_ancestors = {
@@ -70,6 +80,7 @@ _csp_frame_ancestors = {
 _csp_frame_src = {
     csp.constants.SELF,
     "accounts.firefox.com",
+    "gtm.mozilla.org",
     "js.stripe.com",
     "www.google-analytics.com",
     "www.googletagmanager.com",
@@ -80,7 +91,7 @@ _csp_img_src = {
     CSP_ASSETS_HOST,
     "data:",
     "blog.mozilla.org",  # For careers pages.
-    "www.mozilla.org",  # For release notes.
+    "www.mozilla.org",  # For loading assets from the CDNed www.m.o static-assets bucket
     "www.googletagmanager.com",
     "www.google-analytics.com",
     "images.ctfassets.net",
@@ -94,11 +105,16 @@ _csp_media_src = {
 _csp_script_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
+    "cdn.transcend.io",  # Transcend Consent Management
     "js.stripe.com",
     "s.ytimg.com",
     "tagmanager.google.com",
-    "www.google-analytics.com",
-    "www.googletagmanager.com",
+    "transcend-cdn.com",  # Transcend Consent Management
+    "googletagmanager.com",
+    "*.googletagmanager.com",
+    "google-analytics.com",
+    "*.google-analytics.com",
+    "tagmanager.google.com",
     "www.youtube.com",
     csp.constants.UNSAFE_EVAL,
     csp.constants.UNSAFE_INLINE,
@@ -107,7 +123,13 @@ _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
     csp.constants.UNSAFE_INLINE,
+    "cdn.transcend.io",  # Transcend Consent Management
+    "transcend-cdn.com",  # Transcend Consent Management
 }
+
+# Transcend Consent Management UI uses CSS-in-JS which requires inline styles.
+if TRANSCEND_AIRGAP_URL:  # noqa: F405
+    _csp_style_src.add(csp.constants.UNSAFE_INLINE)
 
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
@@ -129,6 +151,8 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
 # 3. DJANGO-CSP SETTINGS
 if csp_extra_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_default_src |= set(csp_extra_default_src)
+if extra_csp_connect_src := config("CSP_CONNECT_SRC", default="", parser=ListOf(str, allow_empty=False)):
+    _csp_connect_src |= set(extra_csp_connect_src)
 if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
@@ -161,9 +185,6 @@ if csp_ro_report_uri:
     # Copy CSP and override report-uri for report-only.
     CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
     CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
-
-    # CSP directive updates we're testing that we hope to move to the enforced policy.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["style-src"] -= {csp.constants.UNSAFE_INLINE}
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
@@ -243,17 +264,6 @@ CACHES["product-details"] = {
     "LOCATION": "product-details",
     "OPTIONS": {
         "MAX_ENTRIES": 200,  # currently 104 json files
-        "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
-    },
-}
-
-# cache for release notes
-CACHES["release-notes"] = {
-    "BACKEND": "bedrock.base.cache.SimpleDictCache",
-    "LOCATION": "release-notes",
-    "TIMEOUT": 5,
-    "OPTIONS": {
-        "MAX_ENTRIES": 300,  # currently 564 json files but most are rarely accessed
         "CULL_FREQUENCY": 4,  # 1/4 entries deleted if max reached
     },
 }

@@ -1,0 +1,69 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+
+
+.anonym-article-page {
+    h1, h2, h3, h4, h5, h6 {
+          font-family: var(--moz-sans-headline);
+          font-weight: 300;
+          margin-block-start: 56px;
+    }
+
+}
+
+.mzan-rich-text.is-article,
+.mzan-intro-text {
+    max-width: 1168px;
+    margin: 0 auto;
+    padding: 32px 16px;
+    border: 1px solid advars.$color-ads-tertiary-gray;
+    border-width: 0 1px;
+
+    > * {
+        max-width: 675px;
+        margin-inline: auto;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.mzan-rich-text.is-article {
+    p, li, div, table {
+        font-size: 16px; // keeping 16px for mobile and desktop both, so we're not using the variable.
+        line-height: 1.5;
+    }
+}
+
+.mzan-intro-text {
+    p, li, div, table {
+        font-size: var(--mza-text-body-lg);
+        line-height: 1.3;
+    }
+
+    & + .mzan-rich-text.is-article {
+        padding-top: 0;
+    }
+}
+
+
+
+
+.anonym-link-warning-cms-only {
+    max-width: 780px;
+    padding: 16px;
+    background: #ffffb4;
+    box-shadow:  0 4px 6px -1px rgb(0, 0, 0, 0.1), 0 2px 4px -2px rgb(0, 0, 0, 0.1);
+    display: block;
+    margin: auto;
+
+    > * {
+        margin: 0;
+    }
+}

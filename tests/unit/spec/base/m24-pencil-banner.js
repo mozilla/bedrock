@@ -72,7 +72,7 @@ describe('m24-pencil-banner.es6.js', function () {
             spyOn(window.Mozilla.Cookies, 'setItem');
             M24PencilBanner.setCookie();
             expect(window.Mozilla.Cookies.setItem).toHaveBeenCalledWith(
-                'pencil-banner',
+                'moz-banner-pencil',
                 true,
                 jasmine.any(String),
                 '/',

@@ -8,7 +8,7 @@ import { getConsentCookie } from '../consent/utils.es6';
 
 let _pencilBanner;
 const M24PencilBanner = {};
-const BANNER_ID = 'pencil-banner';
+const BANNER_ID = 'moz-banner-pencil';
 
 M24PencilBanner.consentsToCookies = function () {
     const cookie = getConsentCookie();

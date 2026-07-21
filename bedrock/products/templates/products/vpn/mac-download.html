@@ -6,7 +6,10 @@
 
 {% extends "products/vpn/download.html" %}
 
-{% block canonical_urls %}<meta name="robots" content="noindex,nofollow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_title_full %}{{ ftl('vpn-mac-download-page-title') }}{% endblock %}
 
@@ -91,7 +94,7 @@
             base_el='li',
             title=ftl('vpn-login-or-signup'),
             image=resp_img(
-              url='img/products/vpn/download/vpn-app-700.png',
+              url='img/products/vpn/download/vpn-app-mac-700.png',
               srcset={
               "img/products/vpn/download/vpn-app-mac-960.png": "960w",
               "img/products/vpn/download/vpn-app-mac-700.png": "700w",

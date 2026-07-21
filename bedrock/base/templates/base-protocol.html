@@ -10,6 +10,8 @@
   <head>
     <meta charset="utf-8">{# Note: Must be within first 512 bytes of page #}
 
+    {% include 'includes/transcend-consent.html' %}
+
     <!--[if !IE]><!-->
     {{ js_bundle('site') }}
 
@@ -55,8 +57,6 @@
     {# keep the verification for the previous official mastodon profile #}
     <link href="https://mastodon.social/@mozilla" rel="me">
 
-    {{ l10n_css() }}
-
     <!--[if lt IE 9]>
       {# Only needed for IE before v9 #}
       <script src="{{ static('js/ie/libs/html5shiv.js') }}"></script>
@@ -78,6 +78,7 @@
       {% else %}
         {{ css_bundle('legacy-navigation-and-footer') }}
       {% endif %}
+      {{ l10n_css() }}
     {% endblock %}
 
     {# Page-specific styles, hidden from IE9 and lower #}
@@ -153,15 +154,8 @@
       <![endif]-->
     {% endblock %}
 
-    {# Bug 1279291 #}
-    {% block stub_attribution %}
-      {% if settings.STUB_ATTRIBUTION_RATE %}
-        <!--[if IE 9]><!-->
-          {# Stub attribution is run on all evergreen browsers plus IE9 and above. #}
-          {{ js_bundle('stub-attribution') }}
-        <!--<![endif]-->
-      {% endif %}
-    {% endblock %}
+    {# Bug 1279291 — loaded per-page via includes/stub-attribution.html on download-flow pages #}
+    {% block stub_attribution %}{% endblock %}
 
     <!--[if !IE]><!-->
     {# Glean only runs on evergreen browsers so we exclude it from IE. #}

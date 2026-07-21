@@ -2,37 +2,40 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import bleach
 import jinja2
 from django_jinja import library
 from markupsafe import Markup
 
+from bedrock.base.sanitization import sanitize_html
 from lib.l10n_utils import fluent
 
-TAGS_ALLOWED_IN_FLUENT_STRINGS = {
-    "a",
-    "abbr",
-    "b",
-    "br",
-    "em",
-    "i",
-    "span",
-    "strong",
-}
+TAGS_ALLOWED_IN_FLUENT_STRINGS = frozenset(
+    {
+        "a",
+        "abbr",
+        "b",
+        "br",
+        "em",
+        "i",
+        "span",
+        "strong",
+    }
+)
 
-ATTRS_ALLOWED_IN_FLUENT_STRINGS = [
-    "class",
-    "href",
-    "id",
-    "rel",
-    "title",
-    "target",
-    "data-link-text",
-    "data-link-position",
-    "data-cta-text",
-    "data-cta-type",
-    "data-cta-position",
-]
+ATTRS_ALLOWED_IN_FLUENT_STRINGS = {
+    "*": [
+        "class",
+        "id",
+        "rel",
+        "title",
+        "data-link-text",
+        "data-link-position",
+        "data-cta-text",
+        "data-cta-type",
+        "data-cta-position",
+    ],
+    "a": ["href", "target"],
+}
 
 
 @library.global_function
@@ -58,13 +61,13 @@ def ftl(ctx, message_id, fallback=None, locale=None, **kwargs):
         l10n = ctx["fluent_l10n"]
         localised_string = fluent.translate(l10n, message_id, fallback, **kwargs)
 
-    bleached_localised_string = bleach.clean(
+    sanitized_string = sanitize_html(
         localised_string,
-        tags=TAGS_ALLOWED_IN_FLUENT_STRINGS,
-        attributes=ATTRS_ALLOWED_IN_FLUENT_STRINGS,
+        allowed_tags=TAGS_ALLOWED_IN_FLUENT_STRINGS,
+        allowed_attributes=ATTRS_ALLOWED_IN_FLUENT_STRINGS,
     )
 
-    return Markup(bleached_localised_string)
+    return Markup(sanitized_string)
 
 
 @library.global_function

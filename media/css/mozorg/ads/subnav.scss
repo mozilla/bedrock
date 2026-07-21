@@ -1,0 +1,111 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+@use './mixins' as admixins;
+
+.c-sub-navigation-list {
+    a[href*='anonymco.com'],
+    a[href*='mozilla.formstack.com'] {
+        padding-right: 1.2em;
+
+        // background: url('/media/protocol/img/icons/external-link.svg') right
+        //     center no-repeat;
+        // background-size: 1em auto;
+    }
+}
+
+.mza-c-sub-navigation {
+    box-sizing: border-box;
+    background-color: advars.$color-ads-off-black;
+    border-bottom: 1px solid advars.$color-ads-border-over-black;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+
+    &.is-absolute {
+        position: absolute;
+        margin-top: 54px;
+    }
+
+    &.is-sticky {
+        position: sticky;
+    }
+
+    & * {
+        box-sizing: border-box;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title {
+        line-height: 1;
+        padding-top: $spacer-2xs;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title a:link,
+    &.c-sub-navigation .c-sub-navigation-item a:link,
+    &.c-sub-navigation .c-sub-navigation-title a:visited,
+    &.c-sub-navigation .c-sub-navigation-item a:visited {
+        color: white;
+        text-decoration: none;
+        vertical-align: middle;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-title a:hover,
+    &.c-sub-navigation .c-sub-navigation-item a:hover {
+        color: white;
+        text-decoration: underline;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-item a:link {
+        @include admixins.text-button-md;
+    }
+
+    .c-sub-navigation-content {
+        width: 100%;
+        padding: $spacing-lg 0;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:link,
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:visited
+     {
+        padding: $spacer-xs;
+        color: advars.$color-ads-off-black;
+        background-color: $token-color-green;
+        display: inline-block;
+        border: 2px solid $token-color-green;
+    }
+
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:hover,
+    &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:active {
+        background-color: advars.$color-ads-off-black;
+        color: $token-color-green;
+        text-decoration: none;
+    }
+
+    .mzp-l-content {
+        // based on .m24-c-navigation-container
+        margin: 0 auto;
+        max-width: $content-max;
+        padding: 0 $spacer-md;
+        position: relative;
+        width: 100%;
+
+        @media #{$mq-md} {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            position: static;
+            padding: 0 $container-padding;
+            box-sizing: border-box;
+        }
+    }
+}
+
+@media #{$mq-md} {
+    .mza-c-sub-navigation {
+        &.c-sub-navigation .c-sub-navigation-item a.mza-c-contact-sales-button:link {
+            display: inline;
+        }
+    }
+}

@@ -1,0 +1,112 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as * with ($image-path: '/media/protocol/img');
+
+.c-banner-fundraising {
+    background: $color-moz-pink-light;
+    color: $color-black;
+
+
+    .c-banner-outer {
+        @include container;
+        padding: $spacer-lg $container-padding;
+    }
+
+    .c-banner-title {
+        @include bidi(((padding-right, calc(20px + $spacer-sm * 2), padding-left, 0),));
+        color: $color-black;
+        display: block;
+        font-size: 24px;
+        line-height: 1;
+        margin-bottom: 12px;
+        width: auto;
+    }
+
+    .c-banner-tagline {
+        margin-bottom: 16px;
+        font-size: 16px;
+    }
+
+    .c-banner-media {
+        display: none;
+    }
+
+    .c-banner-button {
+        width: 100%;
+
+        &::after {
+            @include bidi(((content, ' ♥', '♥ '),));
+        }
+    }
+
+    // Close button
+    .c-banner-close {
+        @include image-replaced;
+        @include bidi(((right, $spacer-sm, left, auto),));
+        background: transparent url('#{$image-path}/icons/close.svg') center center / 20px 20px no-repeat;
+        border: $border-width solid transparent;
+        cursor: pointer;
+        height: calc(20px + $spacer-sm * 2);
+        padding: $spacer-xs;
+        position: absolute;
+        top: $spacer-sm;
+        transition: border-color $fast $bezier;
+        width: calc(20px + $spacer-sm * 2);
+        z-index: 1;
+
+        &:hover,
+        &:focus {
+            border-color: $color-moz-pink;
+        }
+    }
+
+
+    @media #{$mq-md} {
+        .c-banner-inner {
+            align-items: center;
+            display: flex;
+            flex-flow: row nowrap;
+            gap: 48px;
+            justify-content: space-between;
+            max-width: grid(10);
+            margin: 0 auto;
+        }
+
+        .c-banner-title {
+            @include bidi(((padding-right, 0, padding-left, 0),));
+        }
+
+        .c-banner-copy {
+            flex: 1 1 auto;
+        }
+
+        .c-banner-tagline {
+            font-size: 18px;
+        }
+
+        picture {
+            display: block;
+            flex: 0 0 200px;
+        }
+
+        .c-banner-media {
+            display: block;
+        }
+
+        .c-banner-button {
+            width: auto;
+        }
+    }
+
+    @media #{$mq-xl} {
+        .c-banner-title {
+            font-size: 48px;
+        }
+
+        .c-banner-tagline {
+            font-size: 24px;
+        }
+    }
+}

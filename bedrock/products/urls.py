@@ -4,7 +4,6 @@
 
 from django.urls import path
 
-from bedrock.cms.decorators import prefer_cms
 from bedrock.mozorg.util import page
 from bedrock.products import views
 
@@ -22,33 +21,10 @@ urlpatterns = (
     path("vpn/download/", views.vpn_download_page, name="products.vpn.download"),
     path("vpn/download/mac/thanks/", views.vpn_mac_download_page, name="products.vpn.mac-download"),
     path("vpn/download/windows/thanks/", views.vpn_windows_download_page, name="products.vpn.windows-download"),
+    path("vpn/download/windows-arm/thanks/", views.vpn_windows_arm_download_page, name="products.vpn.windows-arm-download"),
     page("vpn/mobile/", "products/vpn/platforms/mobile.html", ftl_files=["products/vpn/platforms/mobile_v2", "products/vpn/shared"]),
     page("vpn/mobile/ios/", "products/vpn/platforms/ios.html", ftl_files=["products/vpn/platforms/ios_v2", "products/vpn/shared"]),
     page("vpn/mobile/android/", "products/vpn/platforms/android.html", ftl_files=["products/vpn/platforms/android_v2", "products/vpn/shared"]),
     page("vpn/ipad/", "products/vpn/platforms/ipad.html", ftl_files=["products/vpn/platforms/ipad", "products/vpn/shared"]),
-    # Evergreen SEO articles (issue #10224)
-    path(
-        "vpn/more/<slug:slug>/",
-        views.vpn_resource_center_redirect,
-        name="products.vpn.more.redirect",
-    ),
-    # VPN Resource Center
-    path(
-        "vpn/resource-center/",
-        prefer_cms(
-            views.resource_center_landing_view,
-            fallback_lang_codes=["de", "en-US", "es-ES", "fr", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
-        ),
-        name="products.vpn.resource-center.landing",
-    ),
-    path(
-        "vpn/resource-center/<slug:slug>/",
-        prefer_cms(
-            views.resource_center_article_view,
-            fallback_callable=views.resource_center_article_available_locales_lookup,
-        ),
-        name="products.vpn.resource-center.article",
-    ),
-    path("monitor/waitlist-plus/", views.monitor_waitlist_plus_page, name="products.monitor.waitlist-plus"),
     path("monitor/waitlist-scan/", views.monitor_waitlist_scan_page, name="products.monitor.waitlist-scan"),
 )

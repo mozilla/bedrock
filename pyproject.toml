@@ -1,7 +1,7 @@
 [tool.ruff]
 line-length = 150
 target-version = 'py313'
-extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache"]
+extend-exclude = ["docs", "assets", "static", "bedrock/externalfiles/files_cache", "*/migrations/*"]
 
 [tool.ruff.lint]
 # Set what ruff should check for.
@@ -21,7 +21,6 @@ select = [
 
 [tool.ruff.lint.per-file-ignores]
 "bedrock/settings/__init__.py" = ["F405"]
-"bedrock/contentful/tests/data.py" = ["E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["bedrock", "lib", "pages"]

@@ -1,0 +1,12 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% if settings.STUB_ATTRIBUTION_RATE %}
+  <!--[if IE 9]><!-->
+    {# Stub attribution is run on all evergreen browsers plus IE9 and above. #}
+    {{ js_bundle('stub-attribution') }}
+  <!--<![endif]-->
+{% endif %}

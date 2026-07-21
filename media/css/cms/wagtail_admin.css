@@ -1,0 +1,15 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+/* DividerBlock styles for visual grouping in the admin */
+
+/* stylelint-disable-next-line selector-class-pattern */
+[data-contentpath$="_divider"] > .w-field__label {
+    font-size: calc(1em + 2px);
+}
+
+.cms-divider-hr {
+    margin: 0.5rem 0 1rem;
+    border: 0;
+}

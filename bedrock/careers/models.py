@@ -2,13 +2,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from datetime import datetime
 from itertools import chain
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 
 
 class Position(models.Model):
@@ -23,7 +23,7 @@ class Position(models.Model):
     apply_url = models.URLField()
     source = models.CharField(max_length=100)
     position_type = models.CharField(max_length=100)
-    updated_at = models.DateTimeField(default=datetime.utcnow)
+    updated_at = models.DateTimeField(default=timezone.now)
     # Store the Greenhouse internal ID for grouping the same jobs with multiple
     # listings per location.
     internal_job_id = models.PositiveIntegerField()

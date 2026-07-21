@@ -43,7 +43,7 @@
 
 {# Docs: https://docs.bsky.app/docs/advanced-guides/intent-links #}
 {% macro bluesky_share_url(url, text) -%}
-  {{ 'https://bsky.app/intent/compose?text=%s+%s'|format(text|urlencode|truncate(300), url|urlencode)  }}
+  {{ 'https://bsky.app/intent/compose?text=%s+%s'|format(text|truncate(300)|urlencode, url|urlencode)  }}
 {%- endmacro %}
 
 {% macro google_play_button(class_name='', extra_data_attributes={}, extra_img_attributes={}, href=settings.GOOGLE_PLAY_FIREFOX_LINK_UTMS, id='', product='Firefox', target='') -%}
@@ -147,7 +147,7 @@
     <div class="fxa-email-field-container">
       <div class="mzp-c-field mzp-l-stretch">
         <label class="mzp-c-field-label" for="fxa-email-field">{{ ftl('fxa-form-email-address') }}</label>
-        <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" required data-testid="fxa-form-email-field">
+        <input type="email" name="email" id="fxa-email-field" class="mzp-c-field-control" placeholder="user@example.com" autocomplete="email" required data-testid="fxa-form-email-field">
       </div>
 
       <div class="mzp-c-button-container mzp-l-stretch">

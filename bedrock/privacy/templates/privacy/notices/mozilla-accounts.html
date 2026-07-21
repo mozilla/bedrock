@@ -8,4 +8,6 @@
 
 {% set body_id = "mozilla-accounts" %}
 
+{% block body_class %}{{ super() }} mozilla-accounts{% endblock %}
+
 {% block article_header_logo %}{{ static('img/trademarks/symbol.svg') }}{% endblock %}

@@ -1,0 +1,62 @@
+name: Unit tests
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test-js:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: "Install JS dependencies"
+        run: npm ci
+      - name: "Run JS tests"
+        run: xvfb-run npm test
+
+  test-python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: "Run Python tests (on Docker)"
+        run: |
+          make clean test-image
+          CONTAINER_ID=$(docker ps -alq)
+          docker cp $CONTAINER_ID:/app/python_coverage .
+        timeout-minutes: 60
+      - name: "Store coverage as an artifact"
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: coverage-results
+          path: python_coverage
+      - name: "Upload coverage to Codecov"
+        uses: codecov/codecov-action@v4
+        with:
+          # A CodeCov token is normally NOT needed for public repos, but this workaround is suggested here:
+          # https://community.codecov.com/t/upload-issues-unable-to-locate-build-via-github-actions-api/3954/18
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: python_coverage/coverage.xml
+          fail_ci_if_error: false # optional (default = false)
+          verbose: true # optional (default = false)
+  test-python-more:
+    # This is a preview `test-ci` to replace the previous `test-image` over time
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }} # Only run the extra release checks on PRs for now
+    steps:
+      - uses: actions/checkout@v6
+      - name: "Run Python tests (on Docker) with extra release service build"
+        run: |
+          make clean test-ci
+        timeout-minutes: 60

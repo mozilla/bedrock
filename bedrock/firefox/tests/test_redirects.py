@@ -10,6 +10,11 @@ from django.test import RequestFactory
 import pytest
 
 from bedrock.firefox.redirects import mobile_app, validate_param_value
+from bedrock.firefox.views import releasenotes_redirect
+from bedrock.redirects.util import mobile_app_redirector
+
+ANDROID_UA = "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36"
+IOS_UA = "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1"
 
 
 @pytest.mark.parametrize(
@@ -294,6 +299,12 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
             False,
         ),
         (
+            "/fr/firefox/features/complete-pdf/",
+            f"{settings.FXC_BASE_URL}/fr/features/complete-pdf/{EXPECTED_REDIRECT_QS}",
+            301,
+            False,
+        ),
+        (
             "/en-US/firefox/features/customize/",
             f"{settings.FXC_BASE_URL}/en-US/features/customize/{EXPECTED_REDIRECT_QS}",
             301,
@@ -308,6 +319,12 @@ EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
         (
             "/en-US/firefox/features/fast/",
             f"{settings.FXC_BASE_URL}/en-US/features/fast/{EXPECTED_REDIRECT_QS}",
+            301,
+            False,
+        ),
+        (
+            "/fr/firefox/features/free-pdf-editor/",
+            f"{settings.FXC_BASE_URL}/fr/features/free-pdf-editor/{EXPECTED_REDIRECT_QS}",
             301,
             False,
         ),
@@ -523,6 +540,55 @@ def test_mobile_app_redirector_does_not_go_to_springfield(client):
     assert resp.headers["Location"] == "https://apps.apple.com/app/apple-store/id989804926"
 
 
+def test_mobile_app_redirector_via_adjust_firefox_android_with_campaign():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result == f"{settings.ADJUST_FIREFOX_ANDROID_LINK}&campaign=firefox-all"
+
+
+def test_mobile_app_redirector_via_adjust_firefox_android_no_campaign():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust", HTTP_USER_AGENT=ANDROID_UA)
+    assert mobile_app_redirector(req, "firefox", None) == settings.ADJUST_FIREFOX_ANDROID_LINK
+
+
+def test_mobile_app_redirector_via_adjust_ignored_for_focus_android():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "focus", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FOCUS_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_via_adjust_ignored_for_firefox_ios():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=adjust&campaign=firefox-all", HTTP_USER_AGENT=IOS_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith("https://apps.apple.com/app/apple-store/id989804926")
+    assert "ct=firefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_unknown_via_value_falls_back_to_default():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?via=bogus&campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FIREFOX_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
+
+
+def test_mobile_app_redirector_no_via_param_falls_back_to_default():
+    rf = RequestFactory()
+    req = rf.get("/firefox/app/?campaign=firefox-all", HTTP_USER_AGENT=ANDROID_UA)
+    result = mobile_app_redirector(req, "firefox", "firefox-all")
+    assert result.startswith(settings.GOOGLE_PLAY_FIREFOX_LINK)
+    assert "utm_campaign%3Dfirefox-all" in result
+    assert "app.adjust.com" not in result
+
+
 @pytest.mark.parametrize(
     "path, expected_dest",
     (
@@ -722,7 +788,7 @@ def test_offsite_redirects_still_work_when_locale_not_in_source_path(
 )
 def test_releasenotes_and_sysreq_redirects(client, path, expected):
     resp = client.get(path)
-    assert resp.status_code == 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
+    assert resp.status_code == 301
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
 
@@ -742,5 +808,128 @@ def test_releasenotes_and_sysreq_redirects(client, path, expected):
 )
 def test_releasenotes_and_sysreq_generic_urls_are_redirected_to_springfield(client, source_path, dest_path):
     resp = client.get(source_path)
-    assert resp.status_code == 301 if settings.MAKE_RELNOTES_REDIRECTS_PERMANENT else 302
+    assert resp.status_code == 301
     assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}?redirect_source=mozilla-org"
+
+
+@pytest.mark.parametrize(
+    "path, expected",
+    (
+        # release notes / system requirements redirect to the same path on www.firefox.com
+        ("/en-US/firefox/notes/", "/en-US/firefox/notes/"),
+        ("/en-US/firefox/beta/notes/", "/en-US/firefox/beta/notes/"),
+        ("/en-US/firefox/android/notes/", "/en-US/firefox/android/notes/"),
+        ("/en-US/firefox/system-requirements/", "/en-US/firefox/system-requirements/"),
+        ("/en-US/firefox/organizations/system-requirements/", "/en-US/firefox/organizations/system-requirements/"),
+        # the releases index is served at /releases/ on www.firefox.com, not /firefox/releases/
+        ("/en-US/firefox/releases/", "/releases/"),
+        # the incoming query string is preserved
+        ("/en-US/firefox/notes/?foo=bar&baz=1", "/en-US/firefox/notes/?foo=bar&baz=1"),
+        ("/en-US/firefox/releases/?utm=x", "/releases/?utm=x"),
+    ),
+)
+def test_releasenotes_redirect_view(path, expected):
+    """`releasenotes_redirect` is normally shadowed by RedirectsMiddleware, so call it
+    directly via RequestFactory to confirm its standalone fallback behaviour."""
+    resp = releasenotes_redirect(RequestFactory().get(path))
+    assert resp.status_code == 301
+    assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path, expected_status_code, dest_path",
+    (
+        (
+            "/de/firefox/145.0/whatsnew/",
+            301,
+            "/de/whatsnew/145/",
+        ),
+        (
+            "/en-CA/firefox/145.0/whatsnew/",
+            301,
+            "/en-CA/whatsnew/145/",
+        ),
+        (
+            "/en-GB/firefox/145.0/whatsnew/",
+            301,
+            "/en-GB/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/145.0/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/fr/firefox/145.0/whatsnew/",
+            301,
+            "/fr/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/146.0/whatsnew/",
+            301,
+            "/en-US/whatsnew/146/",
+        ),
+        (
+            "/en-US/firefox/145.0.1/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/145.1.2/whatsnew/",
+            301,
+            "/en-US/whatsnew/145/",
+        ),
+        (
+            "/en-US/firefox/154.1.2/whatsnew/",
+            301,
+            "/en-US/whatsnew/154/",
+        ),
+        (
+            "/en-US/firefox/145.0/whatsnew/?query=string.here",
+            301,
+            "/en-US/whatsnew/145/?query=string.here",
+        ),
+        (
+            "/en-US/firefox/145.0/whatsnew/?query=string.here&with=extra",
+            301,
+            "/en-US/whatsnew/145/?query=string.here&with=extra",
+        ),
+        (
+            # Confirm non-default locale with region code and patch version number redirects
+            "/es-ES/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/es-ES/whatsnew/145/",
+        ),
+        (
+            # Confirm locale with without region code and patch version number redirects
+            "/uk/firefox/145.0.1.2/whatsnew/",
+            301,
+            "/uk/whatsnew/145/",
+        ),
+        # Routes NOT matching the redirect
+        # Nightly, Beta/Developer and ESR should not redirect
+        ("/en-US/firefox/145.0a/whatsnew/", 200, None),
+        ("/en-US/firefox/146.0b/whatsnew/", 200, None),
+        ("/en-US/firefox/146.0beta/whatsnew/", 200, None),
+        ("/en-US/firefox/145.0.1a/whatsnew/", 200, None),
+        ("/en-US/firefox/145.1.2b/whatsnew/", 200, None),
+        ("/en-US/firefox/145.0esr/whatsnew/", 200, None),
+        # And lower than 145 is not redirected
+        ("/en-US/firefox/144.0/whatsnew/", 200, None),
+        ("/en-US/firefox/143.0/whatsnew/", 200, None),
+        ("/en-US/firefox/142.0.1/whatsnew/", 200, None),
+    ),
+)
+def test_wnp145_redirects_to_fxc_when_appropriate(client, source_path, expected_status_code, dest_path):
+    resp = client.get(source_path)
+    assert resp.status_code == expected_status_code
+    if expected_status_code == 301:
+        assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}"
+    else:
+        assert "Location" not in resp.headers

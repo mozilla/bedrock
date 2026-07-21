@@ -27,6 +27,13 @@ class GitRepoState(models.Model):
         return ""
 
     @property
+    def is_private(self):
+        # Heuristic: Mozilla suffixes private repo names with "-private", and
+        # `clean_remote_url` strips `.git` and trailing slashes before we store
+        # the URL, so an endswith match is reliable for the current callers.
+        return self.repo_url.endswith("-private") if self.repo_url else False
+
+    @property
     def last_updated(self):
         if self.latest_ref_timestamp:
             latest_datetime = datetime.fromtimestamp(self.latest_ref_timestamp)

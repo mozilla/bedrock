@@ -1,0 +1,27 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzan-cards dividers add-full-width-borders">
+  <ul class="mzan-card-list mzan-case-study-card-list">
+    {% for item in value.case_study_items %}
+      {% set case_study = item.page.specific %}
+      {% set item_analytics_id = item.analytics_id %}
+      {% include 'anonym/includes/case_study_list_item.html' %}
+    {% endfor %}
+  </ul>
+</div>
+
+{% set all_case_studies=anonym_case_studies() %}
+{% if all_case_studies.count() > 3 %}
+  <div class="mzan-casestudies=view-all">
+    <a
+      href="{{ all_case_studies.first().get_parent().url }}"
+      class="mzan-button mzan-button-outline"
+    >
+      See more case studies
+    </a>
+  </div>
+{% endif %}

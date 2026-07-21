@@ -1,0 +1,65 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+{% block body_class %}{{ super() }} advertising{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-ads') }}
+{% endblock %}
+
+{% block site_header %}
+  {% with has_subnav=true %}
+    {% include 'includes/protocol/navigation/navigation.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% if page.sub_navigation %}
+    {% with advertising_index_page=page %}
+      {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
+    {% endwith %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+<main id="mza-main">
+  {% for block in page.hero %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% for block in page.sections %}
+    {% include_block block %}
+  {% endfor %}
+
+  {% if page.contact_banner %}
+    {% with value=page.contact_banner %}
+      {% include 'mozorg/cms/snippets/contact_bannet_snippet.html' %}
+    {% endwith %}
+  {% endif %}
+
+  {% if page.notification %}
+    {% with value=page.notification %}
+      {% with outer_container_class='mza-notification' %}
+        {% with container_class='mza-notification-container'  %}
+          {% include 'mozorg/cms/snippets/notification_snippet.html' %}
+        {% endwith %}
+      {% endwith %}
+    {% endwith %}
+  {% endif %}
+
+  {# Leaving this here for the next round. This might be useful. {% include 'mozorg/advertising/includes/blog-articles.html' %} #}
+</main>
+{% endblock %}

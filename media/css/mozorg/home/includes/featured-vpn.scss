@@ -3,11 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
-$font-path: '/media/protocol/fonts';
-$image-path: '/media/protocol/img';
-
-
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($font-path: '/media/protocol/fonts', $image-path: '/media/protocol/img');
 
 .vpn-feature {
     font-family: var(--body-font-family);

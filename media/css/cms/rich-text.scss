@@ -3,50 +3,10 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/base/utilities/rich-text';
 
-.w-rich-text {
-    ul {
-        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
-        list-style: disc;
 
-        li {
-            margin-bottom: 0.25em;
-        }
-
-        ul {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: circle;
-            margin-bottom: 0;
-        }
-
-        ol {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: decimal;
-            margin-bottom: 0;
-        }
-    }
-
-    ol {
-        @include bidi(((margin-left, $layout-sm, margin-right, 0),));
-        list-style: decimal;
-
-        li {
-            margin-bottom: 0.25em;
-        }
-
-        ol {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: lower-alpha;
-            margin-bottom: 0;
-        }
-
-        ul {
-            @include bidi(((margin-left, $layout-xs, margin-right, 0),));
-            list-style: disc;
-            margin-bottom: 0;
-        }
-    }
-
+.mzp-u-rich-text {
     .richtext-image {
         display: block;
         height: auto;

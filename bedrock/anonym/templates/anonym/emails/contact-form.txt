@@ -1,0 +1,8 @@
+A new contact form submission has been received:
+
+------------------------------------
+{% for field in fields %}
++ {{ field.label }}
+{{ field.value }}
+
+{% endfor %}------------------------------------

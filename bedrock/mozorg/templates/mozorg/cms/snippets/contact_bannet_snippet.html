@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="m24-c-content mza-c-home-contact has-scroll-padding" id="contact-sales">
+  <div class="mza-c-home-contact-grid">
+    <div class="cell justify-content">
+      <hgroup class="mza-hgroup">
+          <h2 class="mza-section-heading">{{ value.heading }}</h2>
+      </hgroup>
+
+      <div>
+
+        <a
+          href="{{ value.button_link }}"
+          class="mzp-c-button mzp-t-xl mza-c-contact-button"
+        >
+          {{ value.button_text }}
+
+          <span class="mzp-c-button-icon-end">
+          <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+                <g transform="translate(4.000000, 4.000000)" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 0 16 0 16 7"></polyline>
+                    <path d="M8,8 L16,0"></path>
+                    <path d="M4,-1.77635684e-15 L3,-1.77635684e-15 C1.34314575,-1.47199765e-15 -2.02906125e-16,1.34314575 0,3 L0,13 C2.02906125e-16,14.6568542 1.34314575,16 3,16 L13,16 C14.6568542,16 16,14.6568542 16,13 L16,12"></path>
+                </g>
+            </g>
+          </svg>
+        </span>
+        </a>
+      </div>
+    </div>
+
+    <figure class="mza-figure">
+      {{ srcset_image(value.image, "width-{1000,1200,1400}", class="", loading="lazy", role="presentation") }}
+    </figure>
+
+</div>
+</section>

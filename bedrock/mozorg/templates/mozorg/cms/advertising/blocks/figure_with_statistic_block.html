@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mza-c-home-solutions has-scroll-padding"{% if value.anchor_id %} id="{{ value.anchor_id }}"{% endif %}>
+    <div class="mza-figure-grid m24-c-content padding-top-0 no-bottom-padding {% if not value.align_image_on_right %}reversed-on-large{% endif %}">
+      <div class="mza-stat">
+        <span class="mza-stat-text">
+          <span class="mza-stat-number is-smaller">{{ value.statistic_value }}</span>
+          <span class="mza-stat-label">{{ value.statistic_label }}</span>
+        </span>
+      </div>
+      <figure class="mza-figure">
+        {{ srcset_image(value.image, "width-{1000,1200,1400}", class="", loading="lazy", alt=value.image.description) }}
+        <figcaption class="mza-figcaption">
+          {{ value.image_caption }}
+        </figcaption>
+      </figure>
+    </div>
+</div>

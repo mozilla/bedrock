@@ -1,0 +1,45 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+
+.mza-c-main-dark-section {
+    background-color: advars.$color-ads-off-black;
+
+    * {
+        color: white;
+    }
+
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited,
+    a:visited:hover {
+        color: white;
+    }
+
+    hr {
+        margin: $spacer-lg 0;
+    }
+
+    .mza-figure-grid .mza-stat::before {
+        background-color: white;
+    }
+
+    .mza-bordered-list {
+        li {
+            border-color: advars.$color-ads-light-gray;
+
+            button {
+                color: white;
+
+                .action-text {
+                    color: advars.$color-ads-dark-gray;
+                }
+            }
+        }
+    }
+}

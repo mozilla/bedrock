@@ -12,7 +12,6 @@ const url = '/en-US/';
 const slugs = [
     'about/manifesto',
     'contribute',
-    'firefox/developer',
     'newsletter',
     'newsletter/developer',
     'newsletter/firefox',

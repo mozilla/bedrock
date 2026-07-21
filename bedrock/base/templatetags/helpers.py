@@ -11,12 +11,14 @@ from django.conf import settings
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.urls import NoReverseMatch
 from django.utils.encoding import smart_str
+from django.utils.safestring import SafeData, mark_safe
 from django.utils.text import slugify
 
 import jinja2
 from bs4 import BeautifulSoup
 from django_jinja import library
 from markupsafe import Markup
+from wagtail.rich_text import RichText
 
 from bedrock.base import waffle
 from bedrock.utils import expand_locale_groups
@@ -181,6 +183,19 @@ def get_locale_options(request, translations):
     if cms_locale_count > 0 and django_fallback_locale_count > 0:
         available_locales = get_translations_native_names(sorted(set(request._locales_available_via_cms + request._locales_for_django_fallback_view)))
 
+    # For pure Fluent pages, translations only reflects FTL-active locales and does not
+    # include alias locales. Add alias locales whose fallback canonical locale is already
+    # present. (CMS pages are already handled upstream by get_locales_for_cms_page().)
+    alias_additions = get_translations_native_names(
+        [
+            alias_code
+            for alias_code, fallback_code in getattr(settings, "FALLBACK_LOCALES", {}).items()
+            if fallback_code in available_locales and alias_code not in available_locales
+        ]
+    )
+    if alias_additions:
+        available_locales = {**available_locales, **alias_additions}
+
     return available_locales
 
 
@@ -206,3 +221,44 @@ def add_bedrock_attributes(html):
             link["target"] = "_blank"
 
     return str(soup)
+
+
+@library.filter
+def add_cta_analytics(html, analytics_id):
+    """
+    Inject data-cta-text and data-cta-uid attributes onto every <a> tag in an
+    HTML string, for analytics tracking.
+
+    Intended to be chained after the |richtext filter on a NotificationSnippet's
+    notification_text field, where links in freeform rich text cannot receive
+    analytics attributes at render time through the normal template path:
+
+        {{ value.notification_text|richtext|add_cta_analytics(value.analytics_id) }}
+
+    data-cta-text is taken from the link's visible text (nested markup is stripped).
+    data-cta-uid is the analytics_id passed as argument.
+    """
+    if not analytics_id:
+        return html
+    soup = BeautifulSoup(str(html), "html.parser")
+    for link in soup.find_all("a", href=True):
+        link["data-cta-text"] = link.get_text()
+        link["data-cta-uid"] = analytics_id
+    result = str(soup)
+    if isinstance(html, (SafeData, Markup)):
+        return mark_safe(result)
+    return result
+
+
+@library.filter
+def remove_p_tag(value: str) -> str:
+    rich_text = RichText(value)
+    html_content = str(rich_text.source)
+    soup = BeautifulSoup(html_content, "html.parser")
+    content = ""
+    if soup and soup.p:
+        # `decode_contents()` re-encodes HTML entities in text nodes, so an
+        # entity-encoded payload like `&lt;img onerror=...&gt;` stays inert
+        # instead of round-tripping back into live markup (XSS).
+        content = "<br/>".join(tag.decode_contents() for tag in soup.find_all("p"))
+    return mark_safe(content)

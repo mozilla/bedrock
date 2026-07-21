@@ -4,8 +4,8 @@
 
 @use 'sass:math';
 
-@import '~@mozilla-protocol/core/protocol/css/includes/lib';
-@import '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
 // * -------------------------------------------------------------------------- */
 // Index
@@ -137,7 +137,8 @@ main h3 {
 // Custom 2024 page
 $mzp-v-spacing: var(--v-grid-md);
 
-.c-2024-back-link {
+.c-2024-back-link,
+.c-2025-back-link {
     display: flex;
     gap: $spacing-xs;
     margin-bottom: $spacing-xl;
@@ -149,11 +150,11 @@ $mzp-v-spacing: var(--v-grid-md);
     img {
         padding: $spacing-xs;
         box-sizing: border-box;
-        height: 1.5rem;
     }
 }
 
-.c-2024-reports {
+.c-2024-reports,
+.c-2025-reports {
     display: flex;
     flex-direction: column;
     gap: $spacing-md;

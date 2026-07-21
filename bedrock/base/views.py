@@ -10,15 +10,17 @@ from time import time
 
 from django.conf import settings
 from django.shortcuts import render
-from django.utils.timezone import now as tz_now
+from django.utils.decorators import decorator_from_middleware
 from django.views.decorators.cache import never_cache
 from django.views.decorators.http import require_safe
 
 import timeago
 from waffle.models import Switch
 
+from bedrock.base.config_manager import config
 from bedrock.base.geo import get_country_from_request
-from bedrock.contentful.models import ContentfulEntry
+from bedrock.base.i18n import get_language_from_headers
+from bedrock.base.middleware import BedrockLocaleMiddleware
 from bedrock.utils import git
 from lib import l10n_utils
 
@@ -45,23 +47,25 @@ class GeoTemplateView(l10n_utils.L10nTemplateView):
 
 
 SQLITE_DB_IN_USE = settings.DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3"
+LOCAL_DB_UPDATE = config("LOCAL_DB_UPDATE", default="False", parser=bool)
 
 HEALTH_FILES = [
     # Format: (file name, max seconds since last run)
     ("update_locales", 600),
 ]
 
-if SQLITE_DB_IN_USE:
+# Only check download_database health when using SQLite AND downloading from S3
+# (not when doing local DB updates)
+if SQLITE_DB_IN_USE and not LOCAL_DB_UPDATE:
     HEALTH_FILES.insert(
         0,
         ("download_database", 600),
     )
 
-DB_INFO_FILE = getenv("AWS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
+DB_INFO_FILE = getenv("GCS_DB_JSON_DATA_FILE", f"{settings.DATA_PATH}/bedrock_db_info.json")
 GIT_SHA = getenv("GIT_SHA")
-BUCKET_NAME = getenv("AWS_DB_S3_BUCKET", "bedrock-db-dev")
-REGION_NAME = os.getenv("AWS_DB_REGION", "us-west-2")
-S3_BASE_URL = f"https://s3-{REGION_NAME}.amazonaws.com/{BUCKET_NAME}"
+BUCKET_NAME = config("GCS_DB_BUCKET", default="bedrock-db-dev")
+GCS_BASE_URL = f"https://storage.googleapis.com/{BUCKET_NAME}"
 
 
 def get_l10n_repo_info():
@@ -79,7 +83,7 @@ def get_l10n_repo_info():
 
 
 def get_db_file_url(filename):
-    return "/".join([S3_BASE_URL, filename])
+    return "/".join([GCS_BASE_URL, filename])
 
 
 def get_extra_server_info():
@@ -103,24 +107,6 @@ def get_extra_server_info():
             server_info[f"db_{key}"] = value
 
     return server_info
-
-
-def get_contentful_sync_info():
-    data = {}
-    latest = ContentfulEntry.objects.order_by("last_modified").last()
-    if latest:
-        latest_sync = latest.last_modified
-        time_since_latest_sync = timeago.format(
-            latest_sync,
-            now=tz_now(),
-        )
-        data.update(
-            {
-                "latest_sync": latest_sync,
-                "time_since_latest_sync": time_since_latest_sync,
-            }
-        )
-    return data
 
 
 @require_safe
@@ -169,7 +155,6 @@ def cron_health_check(request):
         {
             "results": results,
             "server_info": get_extra_server_info(),
-            "contentful_info": get_contentful_sync_info(),
             "success": check_pass,
             "git_repos": unique_repos.values(),
             "fluent_repo": get_l10n_repo_info(),
@@ -189,6 +174,23 @@ def server_error_view(request, template_name="500.html"):
 def page_not_found_view(request, exception=None, template_name="404.html"):
     """404 error handler that runs context processors."""
     return l10n_utils.render(request, template_name, ftl_files=["404", "500"], status=404)
+
+
+def page_gone_view(request, exception=None, template_name="410.html"):
+    """410 error handler that runs context processors."""
+
+    # In a normal request, this would happen in bedrock.base.middleware.BedrockLangCodeFixupMiddleware
+    # But requests that get here don't go through that middleware
+    lang_code = request.GET.get("lang", None) or get_language_from_headers(request)
+    request.locale = lang_code if lang_code else ""
+
+    locale_middleware = decorator_from_middleware(BedrockLocaleMiddleware)
+
+    @locale_middleware
+    def _view(request):
+        return l10n_utils.render(request, template_name, ftl_files=["410", "500"], status=410, non_locale_url=True)
+
+    return _view(request)
 
 
 def csrf_failure(request, reason="CSRF failure", template_name="403_csrf.html"):

@@ -8,17 +8,18 @@ from django.urls import include, path
 from django.utils.module_loading import import_string
 
 import wagtaildraftsharing.urls as wagtaildraftsharing_urls
-from wagtail import urls as wagtail_urls
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail.documents import urls as wagtaildocs_urls
 from watchman import views as watchman_views
 
 from bedrock.base import views as base_views
 from bedrock.base.i18n import bedrock_i18n_patterns
+from bedrock.cms import wagtail_urls
 
 # The default django 404 and 500 handler doesn't run the ContextProcessors,
 # which breaks the base template page. So we replace them with views that do!
 handler500 = "bedrock.base.views.server_error_view"
+handler410 = "bedrock.base.views.page_gone_view"
 handler404 = "bedrock.base.views.page_not_found_view"
 locale404 = "lib.l10n_utils.locale_selection"
 
@@ -56,6 +57,7 @@ if settings.DEV:
 if settings.DEBUG:
     urlpatterns += bedrock_i18n_patterns(
         path("404/", import_string(handler404)),
+        path("410/", import_string(handler410)),
         path("500/", import_string(handler500)),
     )
     urlpatterns += (path("csrf_403/", base_views.csrf_failure, {}),)
@@ -66,6 +68,8 @@ if settings.WAGTAIL_ENABLE_ADMIN:
     # that bedrock doesn't try to prepend a locale onto requests for the path
     urlpatterns += (
         path("oidc/", include("mozilla_django_oidc.urls")),
+        path("cms-admin/translations/", include("wagtail_localize_dashboard.urls")),  # Must come before wagtailadmin_urls
+        path("intentional-blanks/", include("wagtail_localize_intentional_blanks.urls")),
         path("cms-admin/", include(wagtailadmin_urls)),
         path("django-admin/", admin.site.urls),  # needed to show django-rq UI
         path("django-rq/", include("django_rq.urls")),  # task queue management
@@ -89,8 +93,10 @@ if settings.STORAGES["default"]["BACKEND"] == "django.core.files.storage.FileSys
     )
     # Note that statics are handled via Whitenoise's middleware
 
-# Wagtail is the catch-all route, and it will raise a 404 if needed.
-# Note that we're also using localised URLs here
+# Wagtail catch-all: uses our custom wagtail_urls module which replaces
+# Wagtail's serve view with one that handles alias-locale fallback.
+# Because this is in the URL router, it only fires for paths that no other
+# Django view (including prefer_cms-decorated views) has claimed.
 urlpatterns += bedrock_i18n_patterns(
     path("", include(wagtail_urls)),
 )

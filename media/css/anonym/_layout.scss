@@ -1,0 +1,31 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+
+.anonym {
+    background: #fafafa;
+    color: #161616;
+}
+
+#mzan-main {
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 0 0 96px;
+    background-color: #fafafa;
+    background-image: url('/media/img/mozorg/anonym/bottom-glow.png');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% auto;
+
+    @media #{$mq-md} {
+        padding: 0 0 128px;
+    }
+}
+
+// basic typography defaults for this page
+.anonym #mzan-main {
+    font-size: var(--mza-text-body-md);
+    line-height: var(--mza-text-body-md-line-height);
+}

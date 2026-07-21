@@ -8,8 +8,10 @@
 
 {# Template used for a user to manage their subscriptions #}
 
-{# "noindex" pages should not have the canonical or hreflang tags: bug 1442331 #}
-{% block canonical_urls %}<meta name="robots" content="noindex,follow">{% endblock %}
+{% block canonical_urls %}
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="{{ settings.CANONICAL_URL + '/' + CANONICAL_LANG + canonical_path }}">
+{% endblock %}
 
 {% block page_css %}
   {{ css_bundle('protocol-emphasis-box') }}
@@ -103,11 +105,20 @@
             <small>{{ ftl('newsletters-not-all-subscriptions-are') }}</small>
 
             <aside>
+              {% if switch('show-newsletter-subscribe-timing') %}
+                <p>{{ ftl('newsletters-it-may-take') }}</p>
+              {% endif %}
               <p>{{ ftl('newsletters-many-of-our-communications-v2', url='https://support.mozilla.org/kb/managing-account-data') }}</p>
 
               <p>{{ ftl('newsletters-to-get-access-to-the-whole', url=url('mozorg.account')) }}</p>
 
               <p>{{ ftl('newsletters-there-are-many-ways-to', url=url('mozorg.about.forums.forums')) }}</p>
+
+              {% if switch('foundation-separate-newsletter') %}
+                <p>{{ ftl('newsletters-newsletter-subscriptions-for', foundation="https://www.mozillafoundation.org") }}</p>
+                <p>{{ ftl('newsletters-to-unsubscribe', unsubscribe="https://www.mozillafoundation.org/newsletter/unsubscribe") }}</p>
+                <p>{{ ftl('newsletters-if-you-arent-already-subscribed', subscribe="https://www.mozillafoundation.org/newsletter") }}</p>
+              {% endif %}
             </aside>
           </div> <!-- close .basic-settings -->
         </div>

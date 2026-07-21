@@ -26,7 +26,7 @@
       </p>
 
       <div class="mzp-l-content locations-wrapper">
-        <ul class="mzp-l-columns mzp-t-columns-two">
+        <ul class="mzp-l-columns mzp-t-columns-three">
           <!-- San Francisco -->
           {% call picto(
             base_el='li',
@@ -42,37 +42,12 @@
               body=True,
               ) %}
               <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
-              <span itemprop="streetAddress" class="street-address">149 New Montgomery Street<br>4th floor</span><br>
-              <span itemprop="addressLocality" class="locality">San Francisco</span>, <abbr itemprop="addressRegion" class="region" title="California">CA</abbr> <span itemprop="postalCode" class="postal-code">94105</span><br>
+              <span itemprop="streetAddress" class="street-address">235 Pine Street<br>7th floor</span><br>
+              <span itemprop="addressLocality" class="locality">San Francisco</span>, <abbr itemprop="addressRegion" class="region" title="California">CA</abbr> <span itemprop="postalCode" class="postal-code">94104</span><br>
               <span itemprop="addressCountry" class="country-name">USA</span>
             </p>
           {% endcall %}
 
-          <!-- Beijing -->
-          {% call picto(
-            base_el='li',
-            title='Beijing',
-            image=resp_img(
-              url='img/contact/mozilla-beijing.png',
-              optional_attributes={
-                'class': 'mzp-c-picto-image',
-                'loading': 'lazy',
-                'width': '150'
-              }
-              ),
-              body=True,
-              ) %}
-              <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress" class="adr">
-                <span class="org">Mozilla Online Ltd.</span><br>
-                <span itemprop="streetAddress" class="street-address">China Resources Building, Suite 1708 <br>8 Jianguomenbei Avenue</span><br>
-                <span itemprop="addressLocality" class="locality">Dongcheng District</span>, <span itemprop="addressRegion" class="region">Beijing</span> <span itemprop="postalCode" class="postal-code">100005</span><br>
-                <span itemprop="addressCountry" class="country-name">China</span>
-              </p>
-          {% endcall %}
-
-          </ul>
-
-          <ul class="mzp-l-columns mzp-t-columns-two">
           <!-- Berlin -->
           {% call picto(
             base_el='li',

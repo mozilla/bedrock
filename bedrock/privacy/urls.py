@@ -13,10 +13,12 @@ urlpatterns = (
     path("faq/", views.FAQView.as_view(), name="privacy.faq"),
     page("email/", "privacy/email.html", active_locales=["en-US", "de", "fr"]),
     path("firefox/", views.firefox_notices, name="privacy.notices.firefox"),
+    path("firefox/next/", views.firefox_notices_preview, name="privacy.notices.firefox_preview"),
     path("firefox-focus/", views.firefox_focus_notices, name="privacy.notices.firefox-focus"),
     # bug 1319207 - special URL for Firefox Focus in de locale
     path("firefox-klar/", views.firefox_focus_notices, name="privacy.notices.firefox-klar"),
     path("thunderbird/", views.thunderbird_notices, name="privacy.notices.thunderbird"),
+    path("smart-window/", views.smart_window_notices, name="privacy.notices.smart_window"),
     path("websites/", views.websites_notices, name="privacy.notices.websites"),
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
     page("websites/cookie-settings/", "privacy/cookie-settings.html", ftl_files=["privacy/cookie-settings"]),
@@ -106,5 +108,10 @@ urlpatterns = (
         "privacy/archive/mozilla-hubs-notice-2024-06.html",
         ftl_files=["privacy/index"],
         active_locales=["en-US"],
+    ),
+    page(
+        "firefox/update/dec2025/",
+        "privacy/firefox-update-dec2025.html",
+        active_locales=["en-US", "cs", "de", "es-ES", "fr", "hu", "id", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],
     ),
 )

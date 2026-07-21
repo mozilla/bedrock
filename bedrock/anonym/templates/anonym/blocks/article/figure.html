@@ -1,0 +1,25 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+{# Test with: {{ value.settings.make_full_width }}, {{ value.image }}, {{ value.caption }} - ArticleFigureBlock #}
+
+<figure class="mzan-hero-figure is-article add-full-width-borders{% if value.settings.make_full_width %} is-full-width{% endif %}">
+  {{ srcset_image(
+      value.image,
+      "width-{200,400,600,800,1000,1200,1400}",
+      sizes="
+        (min-width: 768px) 50vw,
+        (min-width: 1440px) 680px,
+        100vw
+      ",
+      width=value.image.width,
+      loading="lazy",
+  ) }}
+  {% if value.caption %}
+  <figcaption class="mzan-hero-figure-caption">
+    {{ value.caption }}
+  </figcaption>
+  {% endif %}
+</figure>

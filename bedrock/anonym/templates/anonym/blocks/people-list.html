@@ -1,0 +1,15 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzan-people">
+  <ul class="mzan-people-list">
+    {% for person in value.people %}
+      <li>
+        <img src="{{ person.image.file.url }}" alt="{{ person.name }}" width="64" height="64" loading="lazy">
+     </li>
+    {% endfor %}
+  </ul>
+</div>

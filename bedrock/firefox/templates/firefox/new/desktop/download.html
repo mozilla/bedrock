@@ -605,6 +605,10 @@
 
 {% endblock %}
 
+{% block stub_attribution %}
+  {% include 'includes/stub-attribution.html' %}
+{% endblock %}
+
 {% block js %}
   {{ js_bundle('firefox_desktop_download') }}
 

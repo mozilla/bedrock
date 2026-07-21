@@ -1,0 +1,88 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../../m24/vars/lib' as *;
+
+:root {
+    // titles
+    --mza-text-title-2xl: 64px;
+    --mza-text-title-xl: 48px;
+    --mza-text-title-lg: 40px;
+    --mza-text-title-md: 28px;
+    --mza-text-title-sm: 24px;
+    --mza-text-title-xs: 20px;
+    --mzanon-section-heading-font-size: 40px;
+    --mzanon-section-heading-font-size-sm: 28px;
+
+    // body
+    --mza-text-body-xl: 24px;
+    --mza-text-body-lg: 18px;
+    --mza-text-body-md: 16px;
+    --mza-text-body-sm: 14px;
+    --mza-text-body-xs: 12px;
+
+    // line heights
+    --mza-text-title-2xl-line-height: .9;
+    --mza-text-title-xl-line-height: 1;
+    --mza-text-title-lg-line-height: 1;
+    --mza-text-title-md-line-height: 1;
+    --mza-text-title-sm-line-height: 1.2;
+    --mza-text-title-xs-line-height: 1.2;
+    --mza-text-body-xl-line-height: 1.2;
+    --mza-text-body-lg-line-height: 1.2;
+    --mza-text-body-md-line-height: 1.25;
+    --mza-text-body-sm-line-height: 1.375;
+    --mza-text-body-xs-line-height: 1.2;
+
+    // buttons
+    --mza-text-button-xl: 24px;
+    --mza-text-button-lg: 18px;
+    --mza-text-button-md: 16px;
+    --mza-text-button-sm: 14px;
+
+    // button line heights
+    --mza-text-button-xl-line-height: 1;
+    --mza-text-button-lg-line-height: 1;
+    --mza-text-button-md-line-height: 1.2;
+    --mza-text-button-sm-line-height: 1.2;
+
+    // horizontal page padding
+    --mzanon-h-pad: 20px;
+}
+
+@media #{$mq-md} {
+    :root {
+        // titles
+        --mza-text-title-2xl: 80px;
+        --mza-text-title-xl: 64px;
+        --mza-text-title-lg: 48px;
+        --mza-text-title-md: 32px;
+        --mza-text-title-sm: 32px;
+        --mza-text-title-xs: 24px;
+        --mzanon-section-heading-font-size: 64px;
+        --mzanon-section-heading-font-size-sm: 40px;
+
+        // body
+        --mza-text-body-xl: 32px;
+        --mza-text-body-lg: 24px;
+        --mza-text-body-md: 18px;
+        --mza-text-body-sm: 16px;
+
+        // buttons
+        --mza-text-button-xl: 32px;
+        --mza-text-button-lg: 24px;
+        --mza-text-button-md: 18px;
+        --mza-text-button-sm: 16px;
+    }
+}
+
+@media #{$mq-xl} {
+    :root {
+        // titles
+        --mza-text-title-2xl: 128px;
+        --mza-text-title-xl: 80px;
+        --mza-text-title-lg: 64px;
+        --mza-text-title-md: 48px;
+    }
+}

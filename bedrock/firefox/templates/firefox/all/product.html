@@ -11,7 +11,7 @@
   {% if product %}
     <span class="c-step-choice">{{ product and product.name }}</span> <a href="{{ url('firefox.all') }}" class="c-step-icon"><img alt="{{ ftl('firefox-all-change-browser') }}" src="{{ static('protocol/img/icons/close.svg') }}" width="30" height="30"></a>
   {% else %}
-    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/arrow-down.svg') }}" width="30" height="30">
+    <img alt="{{ ftl('firefox-all-down-arrow') }}" class="c-step-icon" src="{{ static('protocol/img/icons/caret-down.svg') }}" width="30" height="30">
   {% endif %}
 
   {% if not product %}

@@ -27,6 +27,7 @@ from commonware.middleware import FrameOptionsHeader as OldFrameOptionsHeader
 from csp.contrib.rate_limiting import RateLimitedCSPMiddleware
 
 from bedrock.base import metrics
+from bedrock.base.exceptions import Http410
 from bedrock.base.i18n import (
     check_for_bedrock_language,
     get_language_from_headers,
@@ -250,6 +251,8 @@ class MetricsStatusMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
         if isinstance(exception, Http404):
             self._record(404)
+        elif isinstance(exception, Http410):
+            self._record(410)
         else:
             self._record(500)
 
@@ -295,6 +298,8 @@ class MetricsViewTimingMiddleware(MiddlewareMixin):
     def process_exception(self, request, exception):
         if isinstance(exception, Http404):
             self._record_timing(request, 404)
+        elif isinstance(exception, Http410):
+            self._record_timing(request, 410)
         else:
             self._record_timing(request, 500)
 

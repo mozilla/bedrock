@@ -10,7 +10,7 @@
 # Usage ./bin/fill-empty-postgres-database.sh
 
 # 0. Are we configured appropriately?
-ACTIVE_DATABASE=$(python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
+ACTIVE_DATABASE=$(PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage python manage.py shell -c "from django.conf import settings; print(settings.DATABASES['default']['ENGINE'])")
 
 if [[ $ACTIVE_DATABASE != *"postgres"* ]]; then
     echo "ERROR: Django's active database does not point to a Postgres database."
@@ -24,11 +24,3 @@ PROD_DETAILS_STORAGE=product_details.storage.PDFileStorage ./manage.py migrate
 
 # 2. Run db update scripts to pull down the usual data sources
 ./bin/run-db-update.sh
-
-# 3. Port the Contentful data (for the VPN Resource Center pages) from sqlite
-# (Contentful sync is not enabled and doesn't work any more, but
-# we can get the data from the sqlite db in the bedrock install)
-DATABASE_URL=sqlite://./data/bedrock.db ./manage.py dumpdata contentful.contentfulentry -o /tmp/contentful_data.json
-
-# ...and then load it in to postgres
-./manage.py loaddata /tmp/contentful_data.json

@@ -4,12 +4,13 @@
 
 footer-refresh-discover-mozilla-products =Discover { -brand-name-mozilla } products and initiatives. We promise to keep your email private and secure — no sharing, no selling, just great updates.
 footer-refresh-leadership = Leadership
-footer-refresh-advertise = Advertise with { -brand-name-mozilla }
-footer-refresh-mozilla-advertising = { -brand-name-mozilla } Advertising
+footer-refresh-mozilla-ads = { -brand-name-mozilla-ads }
 # The content inside the <span> is added to provide information for screen reader users only, and it is visually hidden
-footer-refresh-learn-more-about-mozilla-advertising = Learn more <span>about { footer-refresh-mozilla-advertising }</span>
+footer-refresh-learn-more-about-mozilla-ads = Learn more <span>about { footer-refresh-mozilla-ads }</span>
+# Obsolete string (expires 2026-10-03)
+footer-refresh-learn-more-about-mozilla-advertising = Learn more <span>about { -brand-name-mozilla } Advertising</span>
 footer-refresh-firefox-release-notes = { -brand-name-firefox } Release Notes
-footer-refresh-privacy-first = Privacy-first advertising solutions for brands, publishers, and platforms.
+footer-refresh-add-trust-to = Add trust to your ad buy.
 footer-refresh-mdn-v2 = { -brand-name-mdn }
 footer-refresh-follow-mozilla = Follow @{ -brand-name-mozilla }
 footer-refresh-instagram = Instagram
@@ -21,6 +22,8 @@ footer-refresh-youtube = YouTube
 footer-refresh-company = Company
 footer-refresh-press-center = Press Center
 footer-refresh-careers = Careers
+# Our "merch" store is an online store which sells Mozilla branded stuff. (Merch is short for merchandise).
+footer-refresh-store = Merch Store
 footer-refresh-contact = Contact
 footer-refresh-support = Support
 footer-refresh-product-help = Product Help
@@ -32,8 +35,8 @@ footer-refresh-developer-edition = { -brand-name-developer-edition }
 footer-refresh-enterprise = { -brand-name-enterprise }
 footer-refresh-tools = Tools
 footer-refresh-donate = Donate
-# Obsolete string (expires 19-10-2025)
-footer-refresh-visit-mozilla-corporations = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, the <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
+footer-refresh-donate-not-for-profit = Donate to the not-for-profit <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
+# Obsolete string (expires 2026-08-01)
 footer-refresh-visit-mozilla-corporations-v2 = Visit <a { $moco_link }>{ -brand-name-mozilla-corporation }’s</a> not-for-profit parent, <a { $mofo_link }>{ -brand-name-mozilla-foundation }</a>.
 footer-refresh-portions-of-this-content = Portions of this content are ©1998–{ $current_year } by individual mozilla.org contributors. Content available under a <a rel="license" { $href }>{ -brand-name-creative-commons } license</a>.
 footer-refresh-websites-privacy-notice = Website Privacy Notice
@@ -43,3 +46,5 @@ footer-refresh-community-participation-guidelines = Community Participation Guid
 footer-refresh-about-this-site = About this site
 footer-refresh-all-languages = All languages
 footer-refresh-language = Language
+footer-refresh-anonym-privacy-policy = { -brand-name-anonym } Privacy Policy
+footer-refresh-anonym-terms-and-conditions = { -brand-name-anonym } Terms and Conditions

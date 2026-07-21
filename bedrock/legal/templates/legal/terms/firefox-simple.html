@@ -24,9 +24,6 @@
 {% block google_analytics %}{% endblock %}
 {% block glean %}{% endblock %}
 
-{# Exclude stub attribution for in-product pages: issus 9620 #}
-{% block stub_attribution %}{% endblock %}
-
 {# Avoid loading unnecessary JS bundles for performance boost #}
 {% block site_js %}{% endblock %}
 {% block sentry_client %}{% endblock %}

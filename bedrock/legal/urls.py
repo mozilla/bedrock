@@ -32,6 +32,11 @@ urlpatterns = (
         name="legal.terms.thunderbird",
     ),
     path(
+        "terms/smart-window/",
+        LegalDocView.as_view(template_name="legal/terms/smart-window.html", legal_doc_name="smart_window_about_rights"),
+        name="legal.terms.smart_window",
+    ),
+    path(
         "terms/mdn-plus/",
         LegalDocView.as_view(template_name="legal/terms/mdn-plus.html", legal_doc_name="mdn_plus_terms"),
         name="legal.terms.mdn-plus",

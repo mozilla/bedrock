@@ -263,7 +263,7 @@ describe('TrackProductDownload.getEventFromUrl', function () {
         );
         expect(testEvent['release_channel']).toBe('release');
     });
-    it('should identify release_channel for Firefox ESR', function () {
+    it('should identify release_channel for Firefox ESR (win64)', function () {
         const testEvent = TrackProductDownload.getEventFromUrl(
             'https://download.mozilla.org/?product=firefox-esr-latest-ssl&os=win64&lang=en-US'
         );

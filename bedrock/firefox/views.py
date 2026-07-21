@@ -12,22 +12,20 @@ from django.http import Http404, HttpResponsePermanentRedirect, JsonResponse
 from django.utils.cache import patch_response_headers
 from django.views.decorators.http import require_safe
 
-import querystringsafe_base64
 from product_details import product_details
 from product_details.version_compare import Version
 
 from bedrock.base.geo import get_country_from_request
 from bedrock.base.templatetags.helpers import urlparams
 from bedrock.base.urlresolvers import reverse
-from bedrock.contentful.api import ContentfulPage
+from bedrock.firefox import version_re
 from bedrock.firefox.firefox_details import (
     firefox_android,
     firefox_desktop,
     firefox_ios,
 )
 from bedrock.newsletter.forms import NewsletterFooterForm
-from bedrock.releasenotes import version_re
-from lib import l10n_utils
+from lib import l10n_utils, querystringsafe_base64
 from lib.l10n_utils import L10nTemplateView, get_translations_native_names
 from lib.l10n_utils.fluent import ftl, ftl_file_is_active
 
@@ -56,6 +54,24 @@ STUB_VALUE_NAMES = [
     ("dlsource", "mozorg"),
 ]
 STUB_VALUE_RE = re.compile(r"^[a-z0-9-.%():_]+$", flags=re.IGNORECASE)
+
+
+def releasenotes_redirect(request, *args, **kwargs):
+    """Permanently redirect release-notes / system-requirements paths to www.firefox.com.
+
+    Those pages are now served by www.firefox.com, so the rendering views were removed.
+
+    Most paths redirect to the same path on www.firefox.com. The releases index is
+    special-cased because www.firefox.com serves that page at /releases/ rather than
+    /firefox/releases/ (matching the middleware redirect). The incoming query string
+    is preserved either way.
+    """
+    dest_path = "/releases/" if request.path.endswith("/firefox/releases/") else request.path
+    url = f"{settings.FXC_BASE_URL}{dest_path}"
+    querystring = request.META.get("QUERY_STRING", "")
+    if querystring:
+        url = f"{url}?{querystring}"
+    return HttpResponsePermanentRedirect(url)
 
 
 class InstallerHelpView(L10nTemplateView):
@@ -343,6 +359,9 @@ def firefox_all(request, product_slug=None, platform=None, locale=None):
                 # ESR115 builds do not exist for "sat" ans "skr" languages (see issue #15437).
                 if locale in ["sat", "skr"]:
                     download_esr_115_url = None
+                # ESR115 builds do not exist for "linux64-aarch64" (springfield#467); "linux" (i686) and "win64-aarch64" no longer ship (bug 2040496)
+                if platform in ["linux64-aarch64", "linux", "win64-aarch64"]:
+                    download_esr_115_url = None
                 context.update(
                     download_esr_115_url=download_esr_115_url,
                 )
@@ -513,6 +532,9 @@ class WhatsnewView(L10nTemplateView):
         "firefox/whatsnew/whatsnew-fx141-customize-new-tab.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142.html": ["firefox/whatsnew/whatsnew"],
         "firefox/whatsnew/whatsnew-fx142-tracking-protection-de-fr.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx143-row.html": ["firefox/whatsnew/whatsnew", "footer-refresh"],
+        "firefox/whatsnew/whatsnew-fx143-us.html": ["firefox/whatsnew/whatsnew"],
+        "firefox/whatsnew/whatsnew-fx144.html": ["firefox/whatsnew/whatsnew"],
     }
 
     # specific templates that should not be rendered in
@@ -617,6 +639,18 @@ class WhatsnewView(L10nTemplateView):
                     template = "firefox/whatsnew/whatsnew-fx142beta.html"
                 else:
                     template = "firefox/whatsnew/index.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("144."):
+            if locale in ["en-US", "en-CA", "en-GB", "de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx144.html"
+            else:
+                template = "firefox/whatsnew/index.html"
+        elif version.startswith("143."):
+            if locale in ["en-CA", "en-GB", "de", "fr"]:
+                template = "firefox/whatsnew/whatsnew-fx143-row.html"
+            elif locale in ["en-US"]:
+                template = "firefox/whatsnew/whatsnew-fx143-us.html"
             else:
                 template = "firefox/whatsnew/index.html"
         elif version.startswith("142."):
@@ -978,20 +1012,3 @@ class firefox_features_adblocker(L10nTemplateView):
             template_name = "firefox/features/adblocker.html"
 
         return [template_name]
-
-
-class FirefoxContentful(L10nTemplateView):
-    def get_context_data(self, **kwargs):
-        ctx = super().get_context_data(**kwargs)
-        content_id = ctx["content_id"]
-        locale = l10n_utils.get_locale(self.request)
-        page = ContentfulPage(content_id, locale)
-        content = page.get_content()
-        self.request.page_info = content["info"]
-        ctx.update(content)
-        return ctx
-
-    def render_to_response(self, context, **response_kwargs):
-        template = "firefox/contentful-all.html"
-
-        return l10n_utils.render(self.request, template, context, **response_kwargs)

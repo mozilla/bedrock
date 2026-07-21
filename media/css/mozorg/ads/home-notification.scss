@@ -1,0 +1,97 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+@use '../../m24/vars/lib' as *;
+@use './vars' as advars;
+@use './mixins' as admixins;
+
+.mza-notification-container {
+    @include container;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media #{$mq-md} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+}
+
+.mza-notification {
+    background: advars.$color-ads-secondary-pink;
+    padding: 1.5rem 0;
+
+    svg {
+        flex: 0 0 auto;
+    }
+
+    .mza-notification-text {
+        p {
+            @include admixins.text-body-md;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration: underline;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+    }
+
+    .moz24-footer-social-links {
+        background: transparent;
+        margin-left: -4px;
+
+        li {
+            a {
+                opacity: .9;
+
+
+                &:hover,
+                &:focus {
+                    opacity: 1;
+                }
+
+                &.linkedin {
+                    background-image: url('/media/protocol/img/icons/social/linkedin/black.svg');
+                }
+
+                &.tiktok {
+                    background-image: url('/media/protocol/img/icons/social/tiktok/black.svg');
+                }
+
+                &.spotify {
+                    background-image: url('/media/protocol/img/icons/social/spotify/black.svg');
+                }
+
+                &.twitter {
+                    background-image: url('/media/protocol/img/icons/social/x/black.svg');
+                }
+
+                &.bluesky {
+                    background-image: url('/media/img/icons/social/bluesky/black.svg');
+                }
+
+                &.instagram {
+                    background-image: url('/media/protocol/img/icons/social/instagram/black.svg');
+                }
+
+                &.youtube {
+                    background-image: url('/media/protocol/img/icons/social/youtube/black.svg');
+                }
+            }
+        }
+
+        @media #{$mq-md} {
+            margin-left: 0;
+        }
+    }
+}

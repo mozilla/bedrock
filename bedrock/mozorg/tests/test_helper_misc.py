@@ -106,7 +106,7 @@ class TestL10nCSS(TestCase):
     static_url_dev = "/static/"
     cdn_url = "//mozorg.cdn.mozilla.net"
     static_url_prod = cdn_url + static_url_dev
-    markup = '<link rel="stylesheet" media="screen,projection,tv" href="%scss/l10n/%s/intl.css">'
+    markup = '<link rel="stylesheet" href="%scss/l10n/%s/intl.css">'
 
     def _render(self, locale):
         req = self.rf.get("/")
@@ -205,11 +205,11 @@ class TestDonateUrl(TestCase):
 
     def test_donate_url_with_location_param(self):
         """Should include location parameter when supplied"""
-        assert self._render(location="moco-donate-footer") == ("https://foundation.mozilla.org/?form=moco-donate-footer")
+        assert self._render(location="moco-donate-footer") == ("https://www.mozillafoundation.org/?form=moco-donate-footer")
 
     def test_donate_url_no_params(self):
         """Should link to /donate/ when no location parameter is supplied"""
-        assert self._render() == ("https://foundation.mozilla.org/donate/")
+        assert self._render() == ("https://www.mozillafoundation.org/donate/")
 
     rf = RequestFactory()
 
@@ -939,8 +939,8 @@ class TestRelayFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign In to Relay", "data-cta-type": "fxa-relay", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://relay.firefox.com/accounts/fxa/login/?process=login&entrypoint=mozilla.org-whatsnew&form_type=button'
-            '&utm_source=mozilla.org-whatsnew&utm_medium=referral&utm_campaign=whatsnew96" data-action="https://accounts.firefox.com/" '
+            '<a href="https://relay.firefox.com/accounts/fxa/login/?process=login&amp;entrypoint=mozilla.org-whatsnew&amp;form_type=button'
+            '&amp;utm_source=mozilla.org-whatsnew&amp;utm_medium=referral&amp;utm_campaign=whatsnew96" data-action="https://accounts.firefox.com/" '
             'class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product relay-main-cta-button" '
             'data-cta-text="Sign In to Relay" data-cta-type="fxa-relay" data-cta-position="primary">Sign In to Relay</a>'
         )
@@ -982,8 +982,8 @@ class TestMonitorFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign In to Monitor", "data-cta-type": "fxa-monitor", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://monitor.mozilla.org/user/dashboard?entrypoint=mozilla.org-firefox-accounts&form_type=button'
-            '&utm_source=mozilla.org-firefox-accounts&utm_medium=referral&utm_campaign=skyline" '
+            '<a href="https://monitor.mozilla.org/user/dashboard?entrypoint=mozilla.org-firefox-accounts&amp;form_type=button'
+            '&amp;utm_source=mozilla.org-firefox-accounts&amp;utm_medium=referral&amp;utm_campaign=skyline" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button '
             'monitor-main-cta-button" data-cta-text="Sign In to Monitor" data-cta-type="fxa-monitor" '
             'data-cta-position="primary">Sign In to Monitor</a>'
@@ -1028,8 +1028,8 @@ class TestFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign Up", "data-cta-type": "fxa-sync", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
-            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            '<a href="https://accounts.firefox.com/signup?entrypoint=mozilla.org-firefox-whatsnew73&amp;form_type=button'
+            '&amp;utm_source=mozilla.org-firefox-whatsnew73&amp;utm_medium=referral&amp;utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary">Sign Up</a>'
         )
@@ -1048,8 +1048,8 @@ class TestFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign In", "data-cta-type": "fxa-sync", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://accounts.firefox.com/signin?entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
-            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            '<a href="https://accounts.firefox.com/signin?entrypoint=mozilla.org-firefox-whatsnew73&amp;form_type=button'
+            '&amp;utm_source=mozilla.org-firefox-whatsnew73&amp;utm_medium=referral&amp;utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             'fxa-main-cta-button" data-cta-text="Sign In" data-cta-type="fxa-sync" data-cta-position="primary">Sign In</a>'
         )
@@ -1068,12 +1068,56 @@ class TestFxAButton(TestCase):
             optional_attributes={"data-cta-text": "Sign Up", "data-cta-type": "fxa-sync", "data-cta-position": "primary"},
         )
         expected = (
-            '<a href="https://accounts.firefox.com/?action=email&entrypoint=mozilla.org-firefox-whatsnew73&form_type=button'
-            '&utm_source=mozilla.org-firefox-whatsnew73&utm_medium=referral&utm_campaign=whatsnew73" '
+            '<a href="https://accounts.firefox.com/?action=email&amp;entrypoint=mozilla.org-firefox-whatsnew73&amp;form_type=button'
+            '&amp;utm_source=mozilla.org-firefox-whatsnew73&amp;utm_medium=referral&amp;utm_campaign=whatsnew73" '
             'data-action="https://accounts.firefox.com/" class="js-fxa-cta-link js-fxa-product-button mzp-c-button mzp-t-product '
             'fxa-main-cta-button" data-cta-text="Sign Up" data-cta-type="fxa-sync" data-cta-position="primary">Sign Up</a>'
         )
         self.assertEqual(markup, expected)
+
+
+@override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)
+class TestFxAButtonXSS(TestCase):
+    """Hardening tests for the FxA button sink.
+
+    `_fxa_product_button` is the single place that assembles the anchor. Its
+    `button_text`, its `optional_attributes` values, and the label-derived
+    `href` can all carry caller- or l10n-supplied data. Every value
+    interpolated into the anchor must therefore be contextually escaped, so
+    that a translated label, or any future caller, cannot inject markup.
+    """
+
+    PRODUCT_URL = "https://accounts.firefox.com/signup"
+
+    def test_button_text_is_escaped(self):
+        """The button label must not render as live HTML."""
+        markup = misc._fxa_product_button(
+            self.PRODUCT_URL,
+            "mozilla.org-page",
+            button_text="<img src=x onerror=\"alert('XSS')\">",
+        )
+        assert "<img" not in markup
+        assert "&lt;img src=x" in markup
+
+    def test_optional_attribute_value_is_escaped(self):
+        """Attribute values must not break out of the attribute."""
+        markup = misc._fxa_product_button(
+            self.PRODUCT_URL,
+            "mozilla.org-page",
+            button_text="Sign In",
+            optional_attributes={"data-cta-text": '"><script>alert(1)</script>'},
+        )
+        assert "<script>" not in markup
+        assert "&lt;script&gt;" in markup
+
+    def test_label_in_href_entrypoint_is_escaped(self):
+        """A label flowing into `utm_campaign`/`entrypoint`, and into the
+        `href`, must not break out of the `href` attribute value."""
+        entrypoint = "mozilla.org-" + '"><img src=x onerror=alert(1)>'.lower().replace(" ", "_")
+        markup = misc._fxa_product_button(self.PRODUCT_URL, entrypoint, button_text="ok")
+        assert "<img" not in markup
+        assert '"><img' not in markup
+        assert "&lt;img_src=x" in markup
 
 
 @override_settings(FXA_ENDPOINT=TEST_FXA_ENDPOINT)

@@ -6,8 +6,6 @@
 
 .m24-c-careers {
     @include container;
-    color: $m24-color-black;
-    background-color: $m24-color-white;
     padding: $spacer-xl $container-padding;
 
     * {
@@ -76,7 +74,6 @@
 
     .m24-c-careers-title {
         grid-column: 1/-1;
-        padding-bottom: $spacer-2xl;
     }
 
     .m24-c-careers-media {

@@ -1,0 +1,22 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<section class="add-full-width-borders {% if value.second_column %}mzan-half-grid{% endif %}">
+  <div class="col col-1">
+      <h2 class="mzan-heading">{{ value.heading_text }}</h2>
+      <p class="mzan-subheading">{{ value.subheading_text }}</p>
+  </div>
+
+  {% if value.second_column %}
+  <div class="col col-2">
+    <ul class="two-col-list">
+      {% for item in value.second_column %}
+        {% include_block item %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</section>

@@ -1,30 +1,27 @@
 -r prod.txt
 
-bpython==0.25
 braceexpand==0.1.7
-django-silk==5.4.0
+django-silk==5.5.0
 factory-boy==3.3.3
-freezegun==1.5.2
-markdown-it-py>=2.2.0
-pipdeptree==2.26.1
+freezegun==1.5.5
+markdown-it-py>=4.2.0
 py==1.11.0
-Pygments>=2.15.0  # to bring it up to a secure version
-PyPOM==2.2.4
 pyquery==2.0.1
-pytest==7.4.4  # Included because we use it directly, but also a subdep of pytest-selenium's subdeps
-pytest-cov==5.0.0
-pytest-datadir==1.7.2
-pytest-django==4.11.1
-pytest-mock==3.14.1
+pytest==9.1.1  # Included because we use it directly
+pytest-base-url==2.1.0  # Provides the --base-url option and base_url fixture used by our HTTP integration tests
+pytest-cov==7.1.0
+pytest-datadir==1.8.0
+pytest-django==4.12.0
+pytest-html==4.2.0  # Provides the --html option used to generate the integration test report
+pytest-mock==3.15.1
 pytest-parallel==0.1.1
-pytest-rerunfailures==15.1
-pytest-selenium==4.0.1
-responses==0.25.7
-ruff==0.11.13
-selenium==4.9.1  # Pinned to 4.9.1 until https://github.com/pytest-dev/pytest-selenium/issues/315 is resolved
-translate-toolkit==3.15.2
-uv==0.8.9
-wagtail-factories==4.2.1
+pytest-rerunfailures==16.3
+responses==0.26.1
+ruff==0.15.18
+selenium==4.45.0
+translate-toolkit==3.19.11
+uv==0.11.23
+wagtail-factories==4.4.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
-compare-locales==9.0.4
+compare-locales==9.0.5

@@ -1,0 +1,957 @@
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+from unittest.mock import patch
+from uuid import uuid4
+
+from django.test import RequestFactory
+
+import pytest
+from bs4 import BeautifulSoup
+from wagtail.models import Site
+
+from bedrock.anonym.fixtures.base_fixtures import (
+    get_placeholder_image,
+    get_test_anonym_index_page,
+    get_test_person,
+)
+from bedrock.anonym.fixtures.block_fixtures import (
+    get_call_to_action_variants,
+    get_form_field_variants,
+    get_legal_rich_text_variants,
+    get_navigation_link_variants,
+    get_section_block_variants,
+    get_stat_item_variants,
+    get_toggleable_items_variants,
+)
+from bedrock.anonym.models import (
+    AnonymCaseStudyItemPage,
+    AnonymCaseStudyPage,
+    AnonymContactPage,
+    AnonymContentSubPage,
+    AnonymIndexPage,
+    AnonymNewsItemPage,
+    AnonymNewsPage,
+    Person,
+)
+from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
+
+pytestmark = [
+    pytest.mark.django_db,
+]
+
+
+def get_text_from_html(html_string: str) -> str:
+    """Extract plain text from an HTML string.
+
+    Args:
+        html_string: HTML content string
+
+    Returns:
+        Plain text with HTML tags stripped
+    """
+    soup = BeautifulSoup(html_string, "html.parser")
+    return soup.get_text()
+
+
+# ============================================================================
+# Person Snippet Tests
+# ============================================================================
+
+
+def test_person_snippet_creation() -> None:
+    """Test that a Person snippet can be created."""
+    image = get_placeholder_image()
+    person = Person.objects.create(
+        name="John Doe",
+        position="Software Engineer",
+        description="<p>A software engineer.</p>",
+        image=image,
+    )
+    assert person.id is not None
+    assert person.name == "John Doe"
+    assert person.position == "Software Engineer"
+
+
+def test_person_snippet_str() -> None:
+    """Test the string representation of a Person snippet."""
+    person = get_test_person()
+    assert str(person) == f"{person.name} - {person.position}"
+
+
+# ============================================================================
+# AnonymIndexPage Tests
+# ============================================================================
+
+
+def test_anonym_index_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymIndexPage can be created."""
+    root_page = minimal_site.root_page
+    page = AnonymIndexPage(
+        title="Anonym Home",
+        slug="anonym-home",
+    )
+    root_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "Anonym Home"
+    assert page.live is True
+
+
+def test_anonym_index_page_get_available_sections(minimal_site: Site) -> None:  # noqa: F811
+    """Test that get_available_sections returns anchor IDs from content blocks."""
+    root_page = minimal_site.root_page
+    image = get_placeholder_image()
+    person = get_test_person()
+
+    section_variants = get_section_block_variants(image.id, person.id)
+    cta_variants = get_call_to_action_variants()
+
+    page = AnonymIndexPage(
+        title="Anonym Home",
+        slug="anonym-home-sections",
+        content=section_variants[:2] + cta_variants[:1],
+    )
+    root_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    sections = page.get_available_sections()
+    # Sections should include anchor IDs from content blocks - derive expected from fixture data
+    expected_sections = {
+        section_variants[0]["value"]["settings"]["anchor_id"],
+        section_variants[1]["value"]["settings"]["anchor_id"],
+        cta_variants[0]["value"]["settings"]["anchor_id"],
+    }
+    assert set(sections) == expected_sections
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_anonym_index_page_serve(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+    serving_method: str,
+) -> None:
+    """Test that AnonymIndexPage can be served."""
+    root_page = minimal_site.root_page
+    image = get_placeholder_image()
+    person = get_test_person()
+
+    section_variants = get_section_block_variants(image.id, person.id)
+    # Use only the first two nav links (overview, features) that match section anchor IDs
+    nav_variants = get_navigation_link_variants()[:2]
+
+    page = AnonymIndexPage(
+        title="Anonym Index",
+        slug="anonym-index-serve",
+        navigation=nav_variants,
+        # Include sections with anchor IDs that match navigation (overview, features)
+        content=section_variants[:2],
+    )
+    root_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(page, serving_method)(request)
+    page_content = resp.text
+
+    assert "Anonym Index" in page_content
+    # The heading_text from fixtures contains HTML; parse the page to extract just the text
+    page_soup = BeautifulSoup(page_content, "html.parser")
+    page_text = page_soup.get_text()
+    expected_heading_text = get_text_from_html(section_variants[0]["value"]["heading_text"])
+    assert expected_heading_text in page_text
+
+
+# ============================================================================
+# AnonymContentSubPage Tests
+# ============================================================================
+
+
+def test_anonym_content_sub_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymContentSubPage can be created."""
+    index_page = get_test_anonym_index_page()
+
+    page = AnonymContentSubPage(
+        title="Content Sub Test",
+        slug="content-sub-test",
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "Content Sub Test"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_anonym_content_sub_page_serve(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+    serving_method: str,
+) -> None:
+    """Test that AnonymContentSubPage can be served."""
+    index_page = get_test_anonym_index_page()
+    image = get_placeholder_image()
+    person = get_test_person()
+
+    section_variants = get_section_block_variants(image.id, person.id)
+    toggleable_variants = get_toggleable_items_variants(image.id, person.id)
+
+    page = AnonymContentSubPage(
+        title="Content Sub Serve Test",
+        slug="content-sub-serve-test",
+        content=section_variants[:1] + toggleable_variants[:1],
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(page, serving_method)(request)
+    page_content = resp.text
+
+    assert "Content Sub Serve Test" in page_content
+
+
+# ============================================================================
+# AnonymNewsPage Tests
+# ============================================================================
+
+
+def test_anonym_news_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymNewsPage can be created."""
+    index_page = get_test_anonym_index_page()
+
+    page = AnonymNewsPage(
+        title="News Test",
+        slug="news-test",
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "News Test"
+
+
+# ============================================================================
+# AnonymNewsItemPage Tests
+# ============================================================================
+
+
+def test_anonym_news_item_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymNewsItemPage can be created."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    image = get_placeholder_image()
+
+    page = AnonymNewsItemPage(
+        title="News Item Test",
+        slug="news-item-test",
+        description="A test news item",
+        category="Press",
+        logo=image,
+        image=image,
+    )
+    news_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "News Item Test"
+    assert page.category == "Press"
+
+
+def test_anonym_news_item_page_exclude_from_sitemap(minimal_site: Site) -> None:  # noqa: F811
+    """Test that AnonymNewsItemPage excludes from sitemap when external link is set."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-sitemap-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    # Page without external link should be in sitemap
+    page_internal = AnonymNewsItemPage(
+        title="Internal News",
+        slug="internal-news-test",
+        link="",
+    )
+    news_page.add_child(instance=page_internal)
+    page_internal.save_revision().publish()
+    assert page_internal.exclude_from_sitemap is False
+
+    # Page with external link should be excluded from sitemap
+    page_external = AnonymNewsItemPage(
+        title="External News",
+        slug="external-news-test",
+        link="https://example.com/external",
+    )
+    news_page.add_child(instance=page_external)
+    page_external.save_revision().publish()
+    assert page_external.exclude_from_sitemap is True
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_anonym_news_item_page_serve(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+    serving_method: str,
+) -> None:
+    """Test that AnonymNewsItemPage can be served."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-serve-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    image = get_placeholder_image()
+    person = get_test_person()
+    section_variants = get_section_block_variants(image.id, person.id)
+    stat_variants = get_stat_item_variants()
+
+    page = AnonymNewsItemPage(
+        title="News Item Serve Test",
+        slug="news-item-serve-test",
+        description="Testing news item serving",
+        category="Blog",
+        logo=image,
+        image=image,
+        stats=stat_variants[:2],
+        content=section_variants[:1],
+    )
+    news_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(page, serving_method)(request)
+    page_content = resp.text
+
+    assert "News Item Serve Test" in page_content
+
+
+def test_anonym_news_page_get_context_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that AnonymNewsPage.get_context selects the most recent featured item."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-context-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    # Create three news items — only the middle one is featured
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a")
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b", is_featured=True)
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    item_c = AnonymNewsItemPage(title="Item C", slug="item-c")
+    news_page.add_child(instance=item_c)
+    item_c.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    assert context["featured_item"].pk == item_b.pk
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_c.pk}
+
+
+def test_anonym_news_page_get_context_no_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that get_context returns no featured item when none is marked."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-no-featured-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a-nf")
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b-nf")
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    assert context["featured_item"] is None
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_b.pk}
+
+
+def test_anonym_news_page_get_context_multiple_featured(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that only the most recent featured item is selected when multiple are marked."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(
+        title="News Container",
+        slug="news-container-multi-featured-test",
+    )
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    # Create three featured items — the most recently published should win
+    item_a = AnonymNewsItemPage(title="Item A", slug="item-a-mf", is_featured=True)
+    news_page.add_child(instance=item_a)
+    item_a.save_revision().publish()
+
+    item_b = AnonymNewsItemPage(title="Item B", slug="item-b-mf", is_featured=True)
+    news_page.add_child(instance=item_b)
+    item_b.save_revision().publish()
+
+    item_c = AnonymNewsItemPage(title="Item C", slug="item-c-mf", is_featured=True)
+    news_page.add_child(instance=item_c)
+    item_c.save_revision().publish()
+
+    request = rf.get("/")
+    context = news_page.get_context(request)
+
+    # Most recently published featured item is selected
+    assert context["featured_item"].pk == item_c.pk
+    nonfeatured_pks = set(context["nonfeatured_items"].values_list("pk", flat=True))
+    assert nonfeatured_pks == {item_a.pk, item_b.pk}
+
+
+# ============================================================================
+# AnonymCaseStudyPage Tests
+# ============================================================================
+
+
+def test_anonym_case_study_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymCaseStudyPage can be created."""
+    index_page = get_test_anonym_index_page()
+
+    page = AnonymCaseStudyPage(
+        title="Case Study Test",
+        slug="case-study-test",
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "Case Study Test"
+
+
+# ============================================================================
+# AnonymCaseStudyItemPage Tests
+# ============================================================================
+
+
+def test_anonym_case_study_item_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymCaseStudyItemPage can be created."""
+    index_page = get_test_anonym_index_page()
+    case_study_page = AnonymCaseStudyPage(
+        title="Case Study Container",
+        slug="case-study-container-test",
+    )
+    index_page.add_child(instance=case_study_page)
+    case_study_page.save_revision().publish()
+
+    image = get_placeholder_image()
+
+    page = AnonymCaseStudyItemPage(
+        title="Case Study Item Test",
+        slug="case-study-item-test",
+        company_name="Test Client",
+        description="A test case study",
+        logo=image,
+    )
+    case_study_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "Case Study Item Test"
+    assert page.company_name == "Test Client"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_anonym_case_study_item_page_serve(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+    serving_method: str,
+) -> None:
+    """Test that AnonymCaseStudyItemPage can be served."""
+    index_page = get_test_anonym_index_page()
+    case_study_page = AnonymCaseStudyPage(
+        title="Case Study Container",
+        slug="case-study-container-serve-test",
+    )
+    index_page.add_child(instance=case_study_page)
+    case_study_page.save_revision().publish()
+
+    image = get_placeholder_image()
+    person = get_test_person()
+    section_variants = get_section_block_variants(image.id, person.id)
+
+    page = AnonymCaseStudyItemPage(
+        title="Case Study Item Serve Test",
+        slug="case-study-item-serve-test",
+        company_name="Acme Corp",
+        description="Testing case study item serving",
+        logo=image,
+        content=section_variants[:1],
+    )
+    case_study_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(page, serving_method)(request)
+    page_content = resp.text
+
+    assert "Case Study Item Serve Test" in page_content
+
+
+# ============================================================================
+# AnonymContactPage Tests
+# ============================================================================
+
+
+def _create_thank_you_page(index_page):
+    """Create a simple thank-you page as the redirect target for contact form tests."""
+    thank_you = AnonymContentSubPage(
+        title="Thank You",
+        slug="thank-you",
+    )
+    index_page.add_child(instance=thank_you)
+    thank_you.save_revision().publish()
+    return thank_you
+
+
+def test_anonym_contact_page_creation(minimal_site: Site) -> None:  # noqa: F811
+    """Test that an AnonymContactPage can be created."""
+    index_page = get_test_anonym_index_page()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Test",
+        slug="contact-test",
+        subheading="Get in touch",
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    assert page.id is not None
+    assert page.title == "Contact Test"
+    assert page.subheading == "Get in touch"
+    assert page.to_email_address == "test@example.com"
+    assert page.redirect_to == thank_you_page
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_anonym_contact_page_serve(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+    serving_method: str,
+) -> None:
+    """Test that AnonymContactPage can be served."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Serve Test",
+        slug="contact-serve-test",
+        subheading="Contact us today",
+        form_fields=form_field_variants[:3],
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.get(_relative_url)
+
+    resp = getattr(page, serving_method)(request)
+    page_content = resp.text
+
+    assert "Contact Serve Test" in page_content
+    # Verify form field labels from fixture data
+    assert form_field_variants[0]["value"]["label"] in page_content
+    assert form_field_variants[2]["value"]["label"] in page_content
+
+
+def test_anonym_contact_page_get_is_never_cached(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that GET responses include never-cache headers.
+
+    The contact page contains a CSRF token, so it must not be cached by a CDN
+    or shared cache — otherwise different users receive the same stale token
+    and their form submissions are rejected with 403.
+    """
+    index_page = get_test_anonym_index_page()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Cache Test",
+        slug="contact-cache-test",
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+
+    cache_control = resp.get("Cache-Control", "")
+    assert "no-store" in cache_control
+
+
+def test_anonym_contact_page_post_errors_is_never_cached(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that POST-with-errors responses also include never-cache headers.
+
+    A re-rendered form (after validation failure) still contains a CSRF token
+    and must not be cached.
+    """
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Cache Error Test",
+        slug="contact-cache-error-test",
+        form_fields=form_field_variants,
+        to_email_address="test@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.post(page.relative_url(minimal_site), {})
+    resp = page.serve(request)
+
+    assert resp.status_code == 200
+    assert "Please fill in at least one field." in resp.text
+    cache_control = resp.get("Cache-Control", "")
+    assert "no-store" in cache_control
+
+
+@patch("bedrock.anonym.models.EmailMessage")
+def test_anonym_contact_page_post_valid(
+    mock_email_class,
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a valid POST sends an email and redirects."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Post Test",
+        slug="contact-post-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Jane Doe",
+            "company": "Acme",
+            "email": "jane@example.com",
+            "phone": "555-1234",
+            "interest": "privacy",
+            "services": ["consulting", "support"],
+        },
+    )
+
+    resp = page.serve(request)
+
+    assert resp.status_code == 302
+    assert resp["Location"] == thank_you_page.url
+    mock_email_class.assert_called_once()
+    call_args = mock_email_class.call_args
+    assert call_args[0][0] == "Contact form submission: Contact Post Test"
+    assert call_args[0][3] == ["recipient@example.com"]
+    mock_email_class.return_value.send.assert_called_once()
+
+
+def test_anonym_contact_page_post_missing_required(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a POST missing required fields re-renders with errors."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Validation Test",
+        slug="contact-validation-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    # POST with missing required fields (full_name, email, interest are required)
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "company": "Acme",
+            "phone": "555-1234",
+        },
+    )
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Full Name is required." in page_content
+    assert "Email Address is required." in page_content
+    assert "Area of Interest is required." in page_content
+
+
+@patch("bedrock.anonym.models.EmailMessage")
+def test_anonym_contact_page_post_checkbox_group(
+    mock_email_class,
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that checkbox group values are collected correctly."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Checkbox Test",
+        slug="contact-checkbox-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Jane Doe",
+            "email": "jane@example.com",
+            "interest": "privacy",
+            "services": ["consulting", "implementation"],
+        },
+    )
+
+    resp = page.serve(request)
+
+    assert resp.status_code == 302
+    # Verify the email body contains the joined checkbox values
+    call_args = mock_email_class.call_args
+    email_body = call_args[0][1]
+    assert "consulting, implementation" in email_body
+
+
+def test_anonym_contact_page_post_empty_submission(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that an empty POST (no fields filled in) is rejected."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    # Use only optional fields so required-field validation doesn't trigger
+    optional_fields = [form_field_variants[1], form_field_variants[3]]  # company, phone
+
+    page = AnonymContactPage(
+        title="Contact Empty Test",
+        slug="contact-empty-test",
+        form_fields=optional_fields,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(_relative_url, {})
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Please fill in at least one field." in page_content
+
+
+def test_anonym_contact_page_post_honeypot(
+    minimal_site: Site,  # noqa: F811
+    rf: RequestFactory,
+) -> None:
+    """Test that a POST with the honeypot field filled is rejected."""
+    index_page = get_test_anonym_index_page()
+    form_field_variants = get_form_field_variants()
+    thank_you_page = _create_thank_you_page(index_page)
+
+    page = AnonymContactPage(
+        title="Contact Honeypot Test",
+        slug="contact-honeypot-test",
+        form_fields=form_field_variants,
+        to_email_address="recipient@example.com",
+        redirect_to=thank_you_page,
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    _relative_url = page.relative_url(minimal_site)
+    request = rf.post(
+        _relative_url,
+        {
+            "full_name": "Bot Name",
+            "email": "bot@example.com",
+            "interest": "privacy",
+            "office_fax": "I am a bot",
+        },
+    )
+
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "Form submission failed." in page_content
+
+
+# ============================================================================
+# LegalRichTextBlock Tests
+# ============================================================================
+
+
+def test_legal_rich_text_block_renders(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that LegalRichTextBlock renders its rich text inside the wrapper div."""
+    index_page = get_test_anonym_index_page()
+
+    legal_variants = get_legal_rich_text_variants()
+    # Embed the legal_rich_text block inside a section's section_content
+    section_with_legal = {
+        "type": "section",
+        "value": {
+            "settings": {"anchor_id": "legal", "theme": ""},
+            "superheading_text": "",
+            "heading_text": "<p>Legal</p>",
+            "subheading_text": "",
+            "section_content": legal_variants[:1],
+            "action": [],
+        },
+        "id": "section-with-legal-rich-text",
+    }
+
+    page = AnonymIndexPage(
+        title="Legal Rich Text Test",
+        slug="legal-rich-text-test",
+        content=[section_with_legal],
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "mzan-legal-rich-text" in page_content
+    assert "Terms and conditions apply." in page_content
+
+
+def test_legal_rich_text_block_renders_formatted(minimal_site: Site, rf: RequestFactory) -> None:  # noqa: F811
+    """Test that LegalRichTextBlock preserves inline formatting (bold, etc.)."""
+    index_page = get_test_anonym_index_page()
+
+    legal_variants = get_legal_rich_text_variants()
+    section_with_formatted_legal = {
+        "type": "section",
+        "value": {
+            "settings": {"anchor_id": "legal-formatted", "theme": ""},
+            "superheading_text": "",
+            "heading_text": "<p>Legal Formatted</p>",
+            "subheading_text": "",
+            "section_content": legal_variants[1:2],
+            "action": [],
+        },
+        "id": "section-with-formatted-legal-rich-text",
+    }
+
+    page = AnonymIndexPage(
+        title="Legal Rich Text Formatted Test",
+        slug="legal-rich-text-formatted-test",
+        content=[section_with_formatted_legal],
+    )
+    index_page.add_child(instance=page)
+    page.save_revision().publish()
+
+    request = rf.get(page.relative_url(minimal_site))
+    resp = page.serve(request)
+    page_content = resp.text
+
+    assert resp.status_code == 200
+    assert "mzan-legal-rich-text" in page_content
+    assert "applicable law" in page_content
+
+
+def test_anonym_news_item_page_analytics_id_auto_generated(minimal_site: Site) -> None:  # noqa: F811
+    """analytics_id is populated automatically on first save."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(title="News Auto UID", slug="news-auto-uid")
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    page = AnonymNewsItemPage(slug="test-auto-uid", title="Auto UID Test")
+    news_page.add_child(instance=page)
+    page.save()
+
+    assert page.analytics_id != ""
+    assert len(page.analytics_id) == 36  # UUID v4 string length
+
+
+def test_anonym_news_item_page_analytics_id_not_overwritten(minimal_site: Site) -> None:  # noqa: F811
+    """An existing analytics_id is not replaced on subsequent saves."""
+    index_page = get_test_anonym_index_page()
+    news_page = AnonymNewsPage(title="News Preserve UID", slug="news-preserve-uid")
+    index_page.add_child(instance=news_page)
+    news_page.save_revision().publish()
+
+    original_uuid = str(uuid4())
+    page = AnonymNewsItemPage(slug="test-preserve-uid", title="Preserve UID Test", analytics_id=original_uuid)
+    news_page.add_child(instance=page)
+    page.save()
+    page.title = "Updated Title"
+    page.save()
+
+    assert page.analytics_id == original_uuid

@@ -1,0 +1,61 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../m24/vars/lib' as *;
+@use '../mozorg/ads/vars' as advars;
+
+
+.mzan-hero-figure {
+    margin: 0;
+
+    img {
+        border-radius: 0;
+        display: block;
+        height: auto;
+        width: 100%;
+        max-width: 662px;
+        margin: 0 auto;
+    }
+
+    &.is-full-width {
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+    }
+
+    &.is-article {
+        margin: 0 auto;
+        padding-block: 1px;
+        border: 1px solid advars.$color-ads-tertiary-gray;
+        border-width: 0 1px;
+        max-width: 1200px;
+
+        img,
+        figcaption {
+            max-width: 675px;
+            margin-inline: auto;
+        }
+
+        img {
+            margin: 16px auto;
+        }
+
+        &.is-full-width {
+            max-width: 1200px;
+
+            img {
+                max-width: calc(100% - 32px);
+                margin: 16px;
+            }
+        }
+    }
+
+    figcaption {
+        padding: 16px 16px 32px;
+
+        & > *:last-child {
+            margin-bottom: 0;
+        }
+
+    }
+}

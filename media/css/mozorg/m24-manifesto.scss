@@ -1,0 +1,112 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// variables
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../m24/vars/lib' as *;
+@use '../m24/showcase.scss';
+@use '../m24/prose.scss';
+
+
+// * ------------------------------------------------------------------ */
+// Principles & Addendum
+
+.c-points {
+    display: grid;
+    gap: $spacer-xl $grid-gutter;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    margin-top: $spacer-xl;
+
+    @media #{$mq-md} {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+
+    li {
+        position: relative;
+        grid-column: 1/-1;
+        padding-top: $spacer-xl;
+        text-align: start;
+
+        &::before,
+        &:last-child::after {
+            @include bidi(((left, 0, right, auto),));
+            background-color: var(--m24-light-gray);
+            content: '';
+            display: block;
+            height: 2px;
+            position: absolute;
+            top: 0;
+            width: 100%;
+        }
+
+        &:last-child {
+            padding-bottom: $spacer-xl;
+
+            &::after {
+                top: auto;
+                bottom: 0;
+
+            }
+        }
+
+        @media #{$mq-md} {
+            grid-column: 2/-2;
+        }
+    }
+}
+
+.c-point-number {
+    @include text-body-md;
+    font-weight: 700;
+    margin-bottom: $spacer-sm;
+    position: relative;
+
+    a {
+        padding-bottom: $spacer-lg;
+        padding-top: $spacer-lg;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        transition: text-decoration-color $fast $bezier;
+
+        &:hover,
+        &:focus-visible {
+            text-decoration-color: currentColor;
+
+            .c-point-link-icon {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.c-point-link-icon {
+    align-items: center;
+    color: inherit;
+    display: inline-flex;
+    height: 45px; // finger-sized hit area
+    justify-content: center;
+    line-height: 0;
+    width: 45px; // finger-sized hit area
+    position: absolute;
+    inset-inline-end: 0;
+    top: -13px;
+
+
+    @media #{$mq-md} {
+        inset-inline-end: calc(100%) ;
+    }
+
+    // Hide icon if hover supported
+    @media (hover: hover) {
+        opacity: 0;
+        transition: opacity $fast $bezier;
+    }
+}
+
+.c-point-text {
+    font-size: $text-body-lg;
+    font-weight: 500;
+    max-width: 65ch;
+    text-wrap: balance;
+}

@@ -4,18 +4,20 @@
 
 import os
 
+from django.http import Http404
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_safe
 
 import commonware.log
 
+from bedrock.base.waffle import switch
 from lib import l10n_utils
 
 log = commonware.log.getLogger("mozorg.util")
 
 
-def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
+def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, enabling_switch=None, **kwargs):
     """
     Define a bedrock page.
 
@@ -37,6 +39,8 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @param add_active_locales: A list of locale codes that should be active for this page
         in addition to those from the lang or ftl files.
     @param ftl_files: A list of FTL files that combined contain the strings for this page.
+    @param enabling_switch: An optional waffle switch name. When provided,
+        the page returns 404 if the switch is disabled.
     @param kwargs: Any additional arguments are passed to l10n_utils.render
         as the context.
     """
@@ -48,6 +52,8 @@ def page(name, tmpl, decorators=None, url_name=None, ftl_files=None, **kwargs):
     @csrf_exempt
     @require_safe
     def _view(request):
+        if enabling_switch and not switch(enabling_switch):
+            raise Http404()
         kwargs.setdefault("urlname", url_name)
         return l10n_utils.render(request, tmpl, kwargs, ftl_files=ftl_files)
 

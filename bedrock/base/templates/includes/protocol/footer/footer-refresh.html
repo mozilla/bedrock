@@ -9,18 +9,21 @@
     {% include 'includes/protocol/footer/footer-newsletter.html' %}
   {% endif %}
   <div class="moz24-footer-content">
+    {% if not branding_only %}
     <div class="moz24-footer-primary">
       <div class="moz24-footer-sections-container">
         <div class="moz24-footer-advertising">
           <div class="moz24-footer-advertising-wrapper">
-            <h2>{{ ftl('footer-refresh-mozilla-advertising', fallback='footer-refresh-advertise') }}</h2>
-            <p>{{ ftl('footer-refresh-privacy-first') }}</p>
+            <h2>
+              <img src="{{ static('img/logos/mozilla/ads/Mozilla_Ads_Logo.svg') }}" alt="{{ ftl('footer-refresh-mozilla-ads') }}" width="250" height="33" class="moz24-footer-advertising-logo">
+            </h2>
+            {% if ftl_has_messages('footer-refresh-add-trust-to') %}
+              <p>{{ ftl('footer-refresh-add-trust-to') }}</p>
+            {% endif %}
             <a class="moz24-footer-advertising-link" href="{{ url('mozorg.advertising.landing') }}" data-link-position="footer" data-link-text="Learn more">
-              <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-learn-more-about-mozilla-advertising') }}</span>
+              <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-learn-more-about-mozilla-ads', fallback='footer-refresh-learn-more-about-mozilla-advertising') }}</span>
               <span class="mzp-c-button-icon-end">
-                <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="24" height="24" viewBox="0 0 23.4 24">
-                  <path fill="#fff" d="M23.4 12 9.1 0v10.5H0v3h9.1V24l14.3-12zm-11.3-1.5v-4l6.6 5.5-6.6 5.5v-7z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="m7.24 1.36 5.89 5.89H0v1.5h13.13l-5.89 5.89L8.3 15.7 16 8 8.3.3z"/></svg>
               </span>
             </a>
           </div>
@@ -34,6 +37,7 @@
               <li><a href="{{ url('mozorg.about.leadership.index') }}" data-link-position="footer" data-link-text="Leadership">{{ ftl('footer-refresh-leadership') }}</a></li>
               <li><a href="https://blog.mozilla.org/category/mozilla/news/?{{ utm_params }}&utm_content=company" data-link-position="footer" data-link-text="Press Center">{{ ftl('footer-refresh-press-center') }}</a></li>
               <li><a href="{{ url('careers.home') }}" data-link-position="footer" data-link-text="Careers">{{ ftl('footer-refresh-careers') }}</a></li>
+              <li><a href="https://shop.mozilla.com/?{{ utm_params }}&utm_content=company" data-link-position="footer" data-link-text="Merch Store">{{ ftl('footer-refresh-store') }}</a></li>
               <li><a href="{{ url('mozorg.contact.contact-landing') }}" data-link-position="footer" data-link-text="Contact">{{ ftl('footer-refresh-contact') }}</a></li>
             {% if LANG == "de" %}
               {# Legal requirement in Germany see issue #14240 #}
@@ -91,11 +95,9 @@
       </div>
     </div>
     <div class="moz24-footer-actions">
-      <a class="moz24-footer-donate" href="{{ donate_url(location='moco-donate-footer') }}" data-link-type="button" data-link-text="Donate">
+      <a class="moz24-footer-donate" href="{{ donate_url(location='moco-donate-footer') }}" data-link-text="Donate">
         <span class="mzp-c-button-icon-start">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path fill="currentColor" d="M16.34 2.93c-1.26 0-2.34.46-3.2 1.03-.11.09-.57.43-.84.82h-.71c-.28-.4-.75-.75-.85-.81s-.02-.01-.03-.02h-.01c-.85-.56-1.92-1-3.16-1-3.09 0-5.6 2.57-5.6 5.73 0 1.6.52 3.26 1.55 4.94.79 1.28 1.87 2.57 3.22 3.85 2.27 2.14 4.51 3.49 4.61 3.55l.29.17h.66l.29-.17c.09-.06 2.34-1.41 4.61-3.55 1.35-1.28 2.44-2.57 3.22-3.85 1.03-1.68 1.55-3.34 1.55-4.94 0-3.16-2.51-5.73-5.6-5.73Zm-.8 12.74c-1.4 1.33-2.82 2.34-3.61 2.87-.78-.53-2.21-1.54-3.61-2.87-1.82-1.72-3.99-4.34-3.99-7.02 0-1.83 1.44-3.33 3.2-3.33.78 0 1.58.33 2.36.99.37.31.66.63.83.85s0 .01 0 .01v2.39h2.4V7.15c.18-.22.46-.53.83-.84.78-.66 1.58-.99 2.36-.99 1.76 0 3.2 1.49 3.2 3.33 0 2.68-2.17 5.29-3.99 7.02Z"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><g clip-path="url(#a)"><path fill="currentColor" d="M14.8 8.25c.77-.77 1.2-1.8 1.2-2.9a4.094 4.094 0 0 0-4.1-4.1c-1.1 0-2.12.43-2.9 1.2L7.99 3.46 6.98 2.45c-.77-.77-1.8-1.2-2.9-1.2a4.094 4.094 0 0 0-4.1 4.1c0 1.1.43 2.12 1.2 2.9l6.8 6.8 6.8-6.8zM1.5 5.35c0-.7.27-1.35.76-1.83.49-.49 1.14-.76 1.84-.76s1.34.27 1.84.76l2.07 2.07 2.07-2.07c.98-.98 2.69-.98 3.67 0a2.595 2.595 0 0 1 0 3.67l-5.74 5.74-5.75-5.74c-.49-.49-.76-1.14-.76-1.84"/></g><defs><clipPath id="a"><path d="M0 0h16v16H0z"/></clipPath></defs></svg>
         </span>
         <span class="mzp-c-button-icon-text">{{ ftl('footer-refresh-donate') }}</span>
       </a>
@@ -103,15 +105,32 @@
         {% include 'includes/protocol/lang-switcher-refresh.html' %}
        </div>
     </div>
+    {% endif %}
     <div class="moz24-footer-secondary">
       <div class="moz24-footer-legal">
         <p class="moz24-footer-license" rel="license">
-          {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
-          {% set mofo_link = 'href="https://foundation.mozilla.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
-          {{ ftl('footer-refresh-visit-mozilla-corporations-v2', fallback='footer-refresh-visit-mozilla-corporations', moco_link=moco_link, mofo_link=mofo_link) }}<br>
+          {% set mofo_link = 'href="https://www.mozillafoundation.org/?utm_source=www.mozilla.org&utm_medium=referral&utm_campaign=footer" rel="external noopener" data-link-position="footer" data-link-text="Mozilla Foundation"'|safe %}
+          {% if ftl_has_messages('footer-refresh-donate-not-for-profit') %}
+            {{ ftl('footer-refresh-donate-not-for-profit', mofo_link=mofo_link) }}<br>
+          {% else %}
+            {% set moco_link = 'href="%s" data-link-position="footer" data-link-text="Mozilla Corporation"'|safe|format(url('mozorg.home')) %}
+            {{ ftl('footer-refresh-visit-mozilla-corporations-v2', moco_link=moco_link, mofo_link=mofo_link) }}<br>
+          {% endif %}
           {{ ftl('footer-refresh-portions-of-this-content', href='href="%s"'|safe|format(url('foundation.licensing.website-content')), current_year=current_year|string) }}
         </p>
         <ul class="moz24-footer-terms">
+        {% if anonym_links %}
+          {#
+            For pages in the Anonym section, we ONLY show links to Anonym's legal docs, to
+            avoid confusion with MoCo legals such as the Website Privacy Notice, DSAR page, etc
+          #}
+          <li><a href="{{ url('anonym.privacy-policy') }}" data-link-position="footer" data-link-text="Anonym Privacy Policy">{{ ftl('footer-refresh-anonym-privacy-policy') }}</a></li>
+          <li><a href="{{ url('anonym.terms-and-conditions') }}" data-link-position="footer" data-link-text="Anonym Terms and Conditions">{{ ftl('footer-refresh-anonym-terms-and-conditions') }}</a></li>
+          <li>
+            {# Link to /privacy/websites/cookie-settings/ is a legal requirement and should not be removed. It must be present on every page (Issue 14213). #}
+            <a href="{{ url('privacy.cookie-settings') }}" data-link-position="footer" data-link-text="Cookies">{{ ftl('footer-refresh-websites-cookies') }}</a>
+          </li>
+        {% else %}
           <li><a href="{{ url('privacy.notices.websites') }}" data-link-position="footer" data-link-text="Privacy">{{ ftl('footer-refresh-websites-privacy-notice') }}</a></li>
           <li>
             {# Link to /privacy/websites/cookie-settings/ is a legal requirement and should not be removed. It must be present on every page (Issue 14213). #}
@@ -122,6 +141,7 @@
           {% if ftl_has_messages('footer-about-this-site') %}
             <li><a href="{{ url('mozorg.about.this-site') }}" data-link-position="footer" data-link-text="About this site">{{ ftl('footer-refresh-about-this-site') }}</a></li>
           {% endif %}
+        {% endif %}
         </ul>
       </div>
     </div>

@@ -1,0 +1,112 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../mozorg/ads/vars' as advars;
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-weight: bold;
+    position: relative;
+
+    tr {
+        border-bottom: 1px solid advars.$color-ads-tertiary-gray;
+    }
+
+    th, td {
+        padding: 8px;
+        width: 120px;
+        text-align: right;
+
+        &:first-child {
+            width: auto;
+            text-align: left;
+        }
+
+        &:nth-child(2) {
+            width: 180px;
+        }
+    }
+
+    th {
+        font-size: var(--mza-text-body-xs);
+        line-height: var(--mza-text-body-xs-line-height);
+        font-weight: 400;
+        color: advars.$color-ads-light-text;
+        text-transform: uppercase;
+        padding: 8px;
+
+        &:last-child {
+            font-weight: bold;
+            color: advars.$color-ads-off-black;
+        }
+    }
+
+    .mzan-icon.is-no {
+        opacity: 0.5;
+        width: 0.8em;
+        height: 0.8em;
+    }
+
+    // Mobile overrides. Keep the table for semantics,
+    // but break it apart with CSS.
+    @media screen and (max-width: 768px) {
+        position: relative;
+
+        td, th {
+            width: auto;
+        }
+
+        // Make thead, tbody, and rows block elements
+        thead, tbody {
+            display: block;
+            width: 100%;
+        }
+
+        // Header row stays in one line
+        thead tr {
+            display: flex;
+            width: 100%;
+
+            // Don't show the (empty) header in the first column.
+            th:first-child {
+                display: none;
+            }
+        }
+
+        thead th {
+            flex: 1;
+            text-align: center;
+        }
+
+        tbody tr {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        // First cell (th with scope="row") takes full width
+        tbody th[scope="row"] {
+            flex: 0 0 100%;
+            width: 100%;
+            display: block;
+        }
+
+        // Remaining cells (td) share the width equally
+        tbody td {
+            flex: 1;
+            min-width: 0; // Allow shrinking
+            text-align: center;
+            padding-bottom: 16px;
+
+            &:first-child {
+                min-width: calc(100% - 16px);
+                padding-top: 16px;
+                padding-bottom: 8px;
+                text-align: center;
+            }
+        }
+    }
+}

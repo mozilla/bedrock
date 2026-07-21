@@ -1,28 +1,20 @@
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
-from django.conf import settings
 from django.urls import path, re_path
 
-import bedrock.releasenotes.views
-from bedrock.firefox import views
+from bedrock.firefox import version_re, views
 from bedrock.mozorg.util import page
-from bedrock.releasenotes import version_re
 from bedrock.utils.views import VariationTemplateView
 
-# Note that these regular expressions are also used in bedrock.firefox.redirects,
-# so if they become redundant here, they will need to be moved to that module.
+# `latest_re`, `version_re`, `platform_re` and `channel_re` are also imported by
+# bedrock.firefox.redirects to build the release-notes / system-requirements
+# redirect patterns, so keep them defined here.
 latest_re = r"^firefox(?:/(?P<version>%s))?/%s/$"
 firstrun_re = latest_re % (version_re, "firstrun")
 whatsnew_re = latest_re % (version_re, "whatsnew")
 platform_re = "(?P<platform>android|ios)"
 channel_re = "(?P<channel>beta|aurora|developer|nightly|organizations)"
-releasenotes_re = latest_re % (version_re, r"(aurora|release)notes")
-android_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/android")
-ios_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/ios")
-sysreq_re = latest_re % (version_re, "system-requirements")
-android_sysreq_re = sysreq_re.replace(r"firefox", "firefox/android")
-ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 
 urlpatterns = (
@@ -116,32 +108,14 @@ urlpatterns = (
     path("firefox/installer-help/", views.InstallerHelpView.as_view(), name="firefox.installer-help"),
     re_path(firstrun_re, views.FirstrunView.as_view(), name="firefox.firstrun"),
     re_path(whatsnew_re, views.WhatsnewView.as_view(), name="firefox.whatsnew"),
-    # Release notes
-    re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$", bedrock.releasenotes.views.latest_notes, name="firefox.notes"),
-    path("firefox/nightly/notes/feed/", bedrock.releasenotes.views.nightly_feed, name="firefox.nightly.notes.feed"),
-    re_path("firefox/(?:latest/)?releasenotes/$", bedrock.releasenotes.views.latest_notes, {"product": "firefox"}),
-    path("firefox/android/releasenotes/", bedrock.releasenotes.views.latest_notes, {"product": "Firefox for Android"}),
-    path("firefox/ios/releasenotes/", bedrock.releasenotes.views.latest_notes, {"product": "Firefox for iOS"}),
-    re_path(
-        f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
-        bedrock.releasenotes.views.latest_sysreq,
-        {"product": "firefox"},
-        name="firefox.sysreq",
-    ),
-    re_path(releasenotes_re, bedrock.releasenotes.views.release_notes, name="firefox.desktop.releasenotes"),
-    re_path(
-        android_releasenotes_re, bedrock.releasenotes.views.release_notes, {"product": "Firefox for Android"}, name="firefox.android.releasenotes"
-    ),
-    re_path(ios_releasenotes_re, bedrock.releasenotes.views.release_notes, {"product": "Firefox for iOS"}, name="firefox.ios.releasenotes"),
-    re_path(sysreq_re, bedrock.releasenotes.views.system_requirements, name="firefox.system_requirements"),
-    re_path(
-        android_sysreq_re,
-        bedrock.releasenotes.views.system_requirements,
-        {"product": "Firefox for Android"},
-        name="firefox.android.system_requirements",
-    ),
-    re_path(ios_sysreq_re, bedrock.releasenotes.views.system_requirements, {"product": "Firefox for iOS"}, name="firefox.ios.system_requirements"),
-    path("firefox/releases/", bedrock.releasenotes.views.releases_index, {"product": "Firefox"}, name="firefox.releases.index"),
+    # Release notes and system requirements pages are now served by www.firefox.com.
+    # The rendering views have been removed; RedirectsMiddleware (see
+    # bedrock.firefox.redirects) 301s every release-notes / system-requirements path
+    # to www.firefox.com. These named routes are retained — pointing at a fallback
+    # redirect view — purely so templates that still link to them remain reversible.
+    re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$", views.releasenotes_redirect, name="firefox.notes"),
+    re_path(f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$", views.releasenotes_redirect, name="firefox.sysreq"),
+    path("firefox/releases/", views.releasenotes_redirect, name="firefox.releases.index"),
     path("firefox/stub_attribution_code/", views.stub_attribution_code, name="firefox.stub_attribution_code"),
     path("firefox/welcome/1/", views.firefox_welcome_page1, name="firefox.welcome.page1"),
     page("firefox/welcome/4/", "firefox/welcome/page4.html", ftl_files=["firefox/welcome/page4"]),
@@ -186,6 +160,11 @@ urlpatterns = (
     page("firefox/welcome/23/", "firefox/welcome/page23.html", ftl_files=["firefox/welcome/page23"]),
     page("firefox/welcome/24/", "firefox/welcome/page24.html", ftl_files=["firefox/welcome/page24"]),
     page("firefox/welcome/25/", "firefox/welcome/page25.html", active_locales=["en-US", "fr", "de"]),
+    page(
+        "firefox/welcome/26/",
+        "firefox/welcome/page26.html",
+        active_locales=["en-US", "en-CA", "en-GB", "fr", "de", "pt-BR", "pt-PT", "ja", "es-AR", "es-CL", "es-ES", "es-MX", "pl", "it"],
+    ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
     page("firefox/nothing-personal/", "firefox/nothing-personal/index.html"),
@@ -273,7 +252,3 @@ urlpatterns = (
     page("firefox/landing/gaming/", "firefox/landing/gaming.html", ftl_files="firefox/new/desktop", active_locales="en-GB"),
     page("firefox/landing/get/", "firefox/landing/get.html", ftl_files="firefox/new/desktop"),
 )
-
-# Contentful
-if settings.DEV:
-    urlpatterns += (path("firefox/more/<content_id>/", views.FirefoxContentful.as_view()),)

@@ -13,20 +13,6 @@
     .header-image {
         .logo-mozilla {
             display: inline-block;
-
-            &::after {
-                @include bidi(((float, right, left),));
-                background: $color-marketing-gray-30;
-                content: '';
-                height: 60px;
-                margin: -10px $spacing-lg 0;
-                width: 2px;
-            }
-        }
-
-        .logo-firefox {
-            @include bidi(((transform, translateX(-5px), translateX(5px)),));
-            display: inline-block;
         }
     }
 }
@@ -50,6 +36,9 @@
 
     & > li {
         margin-bottom: $spacing-lg;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     a:link,
@@ -61,8 +50,8 @@
 
     .list-icon {
         @include bidi((
-            (padding-left, auto, $spacing-md),
-            (padding-right, $spacing-md, auto),
+            (padding-left, unset, $spacing-md),
+            (padding-right, $spacing-md, unset),
         ));
         vertical-align: top;
     }

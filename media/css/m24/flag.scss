@@ -109,13 +109,6 @@
     }
 }
 
-.m24-c-cta {
-    &:hover,
-    &:visited:hover {
-        color: $m24-color-black;
-    }
-}
-
 @media #{$mq-lg} {
     .m24-c-flag {
         @include grid;

@@ -22,6 +22,7 @@ def pytest_generate_tests(metafunc):
         "/about/legal/terms/firefox-hello/",
         "/about/legal/terms/firefox/",
         "/about/legal/terms/thunderbird/",
+        "/about/legal/terms/smart-window/",
         "/credits/",
         "/privacy/",
         "/privacy/principles/",

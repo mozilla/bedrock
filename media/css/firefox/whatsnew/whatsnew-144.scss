@@ -1,0 +1,91 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+
+// Page-specific styles for Firefox 144 What's New Page
+
+.wnp-qr-media {
+    background-image: url('/media/img/firefox/whatsnew/whatsnew144/qr-background-simple.png');
+}
+
+.wnp-tag {
+    background-color: #fff;
+}
+
+// Note: This notification should only display for logged-out users on Windows 10+
+// This is handled *here* by helper classes that have been added to the body tag globally.
+.windows-10-plus .state-fxa-supported-signed-out .wnp-page-header-notification.wnp-144-is-inline {
+    display: flex;
+}
+
+.wnp-page-header-notification.wnp-144-is-inline {
+    display: none;
+    position: relative;
+    justify-content: center;
+
+    .wnp-notification-bar {
+        background: var(--fds-color-blue-light);
+    }
+
+    .notification-icon-section {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 40px;
+        flex-shrink: 0;
+        align-self: stretch;
+        background: var(--fds-color-gray-90);
+        border-radius: calc(var(--fds-border-radius-md) - 1px) 0 0 calc(var(--fds-border-radius-md) - 1px);
+    }
+
+    .notification-icon {
+        color: var(--fds-color-blue-light);
+        width: 24px;
+        height: 24px;
+    }
+
+    .notification-icon-section.notification-icon-inverted {
+        justify-content: center;
+    }
+
+    a:link,
+    a:hover,
+    a:visited,
+    a:active {
+        font-weight: bold;
+        color: var(--fds-color-gray-90);
+        text-decoration: underline;
+    }
+
+    a:hover {
+        text-decoration: none;
+    }
+
+    .notification-close {
+        appearance: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: calc(var(--scale-4) * 1px);
+        color: currentColor;
+        opacity: 0.7;
+        transition: opacity 0.2s ease;
+        flex-shrink: 0;
+        margin: 0;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+}

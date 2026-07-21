@@ -8,6 +8,7 @@ from django.test import RequestFactory, TestCase, override_settings
 
 import jinja2
 
+from bedrock.base.context_processors import i18n
 from lib.l10n_utils import translation
 
 
@@ -69,3 +70,20 @@ class TestContext(TestCase):
 
         req = self.factory.get("/", data={"geo": "france"})
         assert self.render("{{ country_code }}", req) == "None"
+
+    def test_canonical_lang_equals_lang_normally(self):
+        """CANONICAL_LANG should equal LANG when there is no content_locale on the request."""
+        translation.activate("fr")
+        req = self.factory.get("/fr/page/")
+        ctx = i18n(req)
+        assert ctx["LANG"] == "fr"
+        assert ctx["CANONICAL_LANG"] == "fr"
+
+    def test_canonical_lang_uses_content_locale(self):
+        """CANONICAL_LANG uses request.content_locale when set (alias locale serving)."""
+        translation.activate("pt-PT")
+        req = self.factory.get("/pt-PT/page/")
+        req.content_locale = "pt-BR"
+        ctx = i18n(req)
+        assert ctx["LANG"] == "pt-PT"
+        assert ctx["CANONICAL_LANG"] == "pt-BR"

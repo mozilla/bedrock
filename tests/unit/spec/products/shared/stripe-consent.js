@@ -80,7 +80,7 @@ describe('stripe-consent.es6.js', function () {
             spyOn(StripeConsent, 'loadStripeJS');
         });
 
-        it('should load Stripe JS if consent cookie accepts analytics', function () {
+        it('should load Stripe JS if no consent cookie', function () {
             StripeConsent.init();
             expect(StripeConsent.loadStripeJS).toHaveBeenCalled();
         });

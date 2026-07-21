@@ -1,0 +1,212 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "privacy/base-protocol.html" %}
+
+{% block page_title %}Firefox Privacy Notice Update Dec 2025{% endblock %}
+{% block page_desc %}{{ description | safe }}{% endblock %}
+
+{% block body_id %}privacy-firefox-update-dec2025{% endblock %}
+{% block body_class %}mzp-t-mozilla{% endblock %}
+
+{% block sidemenu %}
+{% endblock %}
+
+{% if LANG == 'cs' %}
+  {% set description = 'Za účelem zohlednění nedávných změn produktu s účinností od 17. prosince 2025 aktualizujeme <a href="/privacy/firefox/next">Oznámení o ochraně osobních údajů Firefox</a>.' %}
+  {% set list_title = 'Zde uvádíme přehled novinek:' %}
+  {% set list_item_one = 'Aktualizovali jsme část popisující naše <i>Poskytování a vylepšování funkce vyhledávání a návrhů</i> a byly doplněny odkazy na podrobnější informace o tom, jak to funguje. Kromě místně dodávaných návrhů můžete nyní získat návrhy od společnosti Mozilla a jejích partnerů, které jsou získávány s využitím technologie na ochranu osobních údajů označované jako OHTTP, která skrývá vaši adresu IP a další identifikující údaje pro všechny strany (včetně samotné společnosti Mozilla). Tyto návrhy můžete kdykoliv upravit nebo vypnout v nastavení svého prohlížeče.' %}
+  {% set list_item_two = 'Aktualizovali jsme část popisující naše <i>Poskytování relevantního obsahu a reklam na nové kartě Firefoxu</i>. V některých regionech využíváme zpracování v zařízení a technologii OHTTP k vytvoření modelů s ochranou osobních údajů, která nám pomáhají doporučovat budoucí obsah a základě kliknutí a zobrazení na Nové kartě. Pokud je zapnutý sponzorovaný obsah, zobrazujeme rovněž reklamy na základě obsahu prohlíženého na Nové kartě. Údaje o tom, jak s těmito reklamami interagujete mohou být rovněž zpracovávány místně ve vašem zařízení. Funkce zkratek rovněž využívá data místně ve vašem zařízení pro výběr nejběžnějších zkratek, přičemž některé z nich mohou být sponzorované. Sponzorovaný obsah můžete kdykoliv vypnout ve vašich Nastaveních. ' %}
+  {% set list_item_three = 'Doplnili jsme informace o naší nové funkci „Zatřeste pro shrnutí“ („Shake to Summarize“), který mohou uživatelé zapnut, včetně odkazu na podrobnější informace o tom, jak tato funkce funguje.' %}
+  {% set list_item_four = 'Odstranili jsme část popisující funkci Kontrol recenzí, která již není k dispozici.' %}
+  {% set list_item_five = 'Aktualizovali jsme tabulku zákonných důvodů, aby odrážela tyto změny našeho zpracovávání vašich údajů.' %}
+  {% set list_item_six = 'Doplnili jsme odkaz na aktualizovaný seznam poskytovatelů služeb a partnerů, s nimiž spolupracuje Mozilla, aby vám poskytovala Firefox a související služby.' %}
+  {% set list_item_seven = 'Provedli jsme také určité stylistické změny a věříme, že jsme tak usnadnili porozumění textu. ' %}
+  {% set main_cta = 'Máte-li jakékoliv otázky ohledně těchto aktualizací nebo našich postupů v oblasti ochrany osobních údajů, neváhejte se na nás kdykoliv obrátit na adrese <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'de' %}
+  {% set description = 'Wir aktualisieren den <a href="/privacy/firefox/next">Firefox-Datenschutzhinweis</a> mit Wirkung zum 17. Dezember 2025, um den jüngsten Produktänderungen Rechnung zu tragen.' %}
+  {% set list_title = 'Hier sind die Neuerungen:' %}
+  {% set list_item_one = 'Wir haben den Abschnitt aktualisiert, der beschreibt, wie wir <i>Suchfunktionalität und Vorschläge bereitstellen und optimieren</i>, und Links hinzugefügt, über die Sie mehr über die Funktionsweise erfahren können. Zusätzlich zu den lokal bereitgestellten Vorschlägen erhalten Sie nun ggf. auch Vorschläge von Mozilla und seinen Partnern, die mithilfe einer datenschutzkonformen Technologie namens OHTTP abgerufen werden, welche Ihre IP-Adresse und weitere Identifikationsdaten vor allen Parteien (einschließlich Mozilla selbst) verbirgt. Sie können diese Vorschläge in Ihren Browser-Einstellungen jederzeit anpassen oder deaktivieren.' %}
+  {% set list_item_two = 'Wir haben den Abschnitt aktualisiert, der beschreibt, wie wir <i>relevante Inhalte und Werbung auf der Firefox-Seite „Neuer Tab“ bereitstellen</i>. In manchen Regionen nutzen wir die Datenverarbeitung auf dem Gerät sowie OHTTP, um datenschutzkonforme Modelle zu erstellen, die uns helfen, künftige Inhalte auf Grundlage von Klicks und Impressionen auf der Seite „Neuer Tab“ zu empfehlen. Wenn gesponserte Inhalte aktiviert sind, zeigen wir außerdem Anzeigen basierend auf den Inhalten an, die Sie auf der Seite „Neuer Tab“ sehen. Daten zu Ihrer Interaktion mit diesen Anzeigen dürfen lokal auf Ihrem Gerät verarbeitet werden. Die Verknüpfungsfunktion nutzt zudem lokal auf Ihrem Gerät gespeicherte Browser-Daten, um die beliebtesten Verknüpfungen auszuwählen, die zum Teil gesponsert sein können. Sie können gesponserte Inhalte jederzeit in Ihren Einstellungen deaktivieren.' %}
+  {% set list_item_three = 'Wir haben Informationen zu unserer neuen Funktion „Zum Zusammenfassen schütteln“ hinzugefügt, die Benutzer aktivieren können. Sie umfassen einen Link zu weiteren Informationen über die Funktionsweise.' %}
+  {% set list_item_four = 'Wir haben einen Abschnitt entfernt, der die Funktion „Review Checker“ beschreibt, die nicht mehr verfügbar ist.' %}
+  {% set list_item_five = 'Wir haben die Tabelle mit den Rechtsgrundlagen aktualisiert, um diesen Änderungen bei der Verarbeitung Ihrer Daten Rechnung zu tragen.' %}
+  {% set list_item_six = 'Wir haben einen Link zu einer aktualisierten Liste der Dienstleister und Partner hinzugefügt, mit denen Mozilla zusammenarbeitet, um Ihnen Firefox und verwandte Dienste bereitzustellen.' %}
+  {% set list_item_seven = 'Wir haben einige stilistische Änderungen vorgenommen und hoffen, dass der Text dadurch verständlicher geworden ist.' %}
+  {% set main_cta = 'Sollten Sie Fragen zu diesen Änderungen oder unseren Datenschutzpraktiken haben, können Sie sich jederzeit unter <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a> an uns wenden.' %}
+{% elif LANG == 'es-ES' %}
+  {% set description = 'Estamos actualizando el <a href="/privacy/firefox/next">Aviso de privacidad de Firefox</a> con vigencia desde el 17 de diciembre de 2025 para reflejar cambios recientes del producto.' %}
+  {% set list_title = 'Estas son las novedades:' %}
+  {% set list_item_one = 'Actualizamos la sección que describe nuestro modo de <i>Proporcionar y mejorar las funciones de búsqueda y las sugerencias</i> y agregamos enlaces para saber más sobre cómo funciona. Además de las sugerencias ofrecidas localmente, ahora usted puede también recibir sugerencias de Mozilla y sus socios, que se obtienen usando una tecnología que protege la privacidad que se llama OHTTP y que esconde su dirección IP y otros datos identificativos a todas las partes involucradas (incluida Mozilla). Usted puede modificar o desactivar cualquiera de dichas sugerencias en cualquier momento en los ajustes de su navegador.' %}
+  {% set list_item_two = 'Actualizamos la sección que describe nuestro modo de <i>Ofrecer contenido relevante y publicidad en Nueva pestaña de Firefox</i>. En algunas regiones, usamos procesamiento en el dispositivo y OHTTP para construir modelos que protegen la privacidad que nos ayudan a recomendar contenido futuro basándose en los clics y las impresiones de la Nueva pestaña. Cuando está activado el contenido patrocinado, también mostramos anuncios basados en el contenido de la Nueva pestaña que usted mira. Los datos sobre cómo usted interactúa con esos anuncios pueden ser procesados localmente en su dispositivo. La función accesos directos también usa los datos de navegación localmente en su dispositivo para seleccionar los mejores accesos directos, alguno de los cuales pueden estar patrocinados. Usted puede desactivar el contenido patrocinado en sus ajustes en cualquier momento.' %}
+  {% set list_item_three = 'Agregamos información sobre nuestra nueva función «Agita para resumir» que los usuarios pueden activar, incluido un enlace a más información sobre cómo funciona.' %}
+  {% set list_item_four = 'Eliminamos una sección que describía la función Verificador de reseñas que ya no está disponible.' %}
+  {% set list_item_five = 'Actualizamos los fundamentos legales para reflejar estos cambios sobre cómo procesamos sus datos.' %}
+  {% set list_item_six = 'Agregamos un enlace a una lista actualizada de los proveedores de servicios y socios con los que Mozilla trabaja para brindarle a usted Firefox y servicios relacionados.' %}
+  {% set list_item_seven = 'Hemos hecho unos cambios de estilo y esperamos que ahora el lenguaje sea más fácilmente comprensible.' %}
+  {% set main_cta = 'Si usted tiene alguna pregunta sobre estas actualizaciones o sobre nuestras prácticas de privacidad, puede contactarnos libremente en cualquier momento en <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'fr' %}
+  {% set description = 'Nous mettons à jour la <a href="/privacy/firefox/next">Politique de confidentialité de Firefox</a> avec date d’effet au 17 décembre 2025 afin qu’elle reflète les dernières modifications apportées au produit.' %}
+  {% set list_title = 'Voici les nouveautés :' %}
+  {% set list_item_one = 'Nous avons mis à jour la section qui décrit comment nous <i>Fournissons et améliorons la fonctionnalité et les suggestions de recherche</i>, et ajouté des liens pour en savoir plus sur leur fonctionnement. Outre les suggestions proposées localement, vous pouvez maintenant recevoir des suggestions de Mozilla et ses partenaires, qui sont obtenues par le biais de la technologie OHTTP destinée à préserver la confidentialité en masquant votre adresse IP et toutes autres données d’identification (notamment Mozilla). Vous pouvez paramétrer ou désactiver ces suggestions à tout moment dans les paramètres de votre navigateur.' %}
+  {% set list_item_two = 'Nous avons mis à jour la section qui décrit comment nous <i>proposons du contenu et des publicités pertinents dans le nouvel onglet Firefox</i>. Dans certains pays, nous utilisons le traitement sur appareil et OHTTP pour créer des modèles préservant la confidentialité qui nous aident à recommander du contenu futur en fonction des clics et des impressions dans le nouvel onglet. Lorsque le contenu sponsorisé est activé, nous affichons également des publicités basées sur le contenu du nouvel onglet que vous voyez. Les données relatives à votre interaction avec ces publicités peuvent être traitées localement sur votre appareil. La fonctionnalité de raccourcis utilise également les données de navigation localement sur votre appareil pour sélectionner les raccourcis les plus populaires, dont certains peuvent être sponsorisés. Vous pouvez désactiver le contenu sponsorisé à tout moment dans vos paramètres. ' %}
+  {% set list_item_three = 'Nous avons ajouté des informations sur notre nouvelle fonctionnalité « Secouer pour résumer » que les utilisateurs peuvent activer, y compris un lien vers plus d’informations sur son fonctionnement.' %}
+  {% set list_item_four = 'Nous avons supprimé une section décrivant la fonctionnalité Vérificateur d’avis, qui n’est plus disponible.' %}
+  {% set list_item_five = 'Nous avons mis à jour le tableau des bases juridiques afin de refléter ces changements dans la manière dont nous traitons vos données.' %}
+  {% set list_item_six = 'Nous avons ajouté un lien vers une liste mise à jour des prestataires de services et partenaires avec lesquels Mozilla travaille pour vous fournir Firefox et les services associés.' %}
+  {% set list_item_seven = 'Nous avons apporté quelques modifications stylistiques et espérons avoir rendu le langage plus facile à comprendre.' %}
+  {% set main_cta = 'Si vous avez des questions concernant ces mises à jour ou nos pratiques en matière de confidentialité, n’hésitez pas à nous contacter à tout moment à l’adresse <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'hu' %}
+  {% set description = 'A <a href="/privacy/firefox/next">Firefox adatvédelmi nyilatkozatát</a> 2025. december 17-én frissítjük, hogy az tükrözze a legújabb termékmódosításokat.' %}
+  {% set list_title = 'Íme az újdonságok:' %}
+  {% set list_item_one = 'Frissítettük azt a szakaszt, amely leírja, hogyan <i>biztosítjuk és fejlesztjük a keresési funkciókat és javaslatokat</i>, és hozzáadtunk hivatkozásokat, amelyek segítségével többet megtudhat a működéséről. A helyben kézbesített javaslatok mellett mostantól a Mozillától és partnereitől is kaphat javaslatokat, amelyeket egy OHTTP nevű adatvédelmi technológia segítségével kérünk le, amely elrejti az Ön IP-címét és egyéb azonosító adatait minden fél elől (beleértve magát a Mozillát is). Ezeket a javaslatokat bármikor módosíthatja vagy kikapcsolhatja a böngésző beállításaiban.' %}
+  {% set list_item_two = 'Frissítettük azt a szakaszt, amely leírja, hogyan <i>jelenítünk meg releváns tartalmat és hirdetéseket a Firefox Új lapján</i>. Bizonyos régiókban eszközön belüli kezelést és OHTTP-t használunk olyan adatvédelmi modellek létrehozására, amelyek segítenek nekünk a jövőbeli tartalmak ajánlásában az Új lap kattintásai és megjelenítései alapján. Amikor a szponzorált tartalom be van kapcsolva, az Új lapon látott tartalom alapján is megjelenítünk hirdetéseket. A hirdetésekkel való interakciójára vonatkozó adatokat lokálisan, az eszközén kezelhetjük. A gyorsbillentyűk funkció az eszközön tárolt helyi böngészési adatokat is felhasználja a legjobb gyorsbillentyűk kiválasztásához, amelyek közül néhány szponzorált is lehet. A szponzorált tartalmakat bármikor kikapcsolhatja a Beállításokban. ' %}
+  {% set list_item_three = 'Információkat adtunk hozzá az új „Összefoglalás rázással” funkciónkról, amelyet a felhasználók bekapcsolhatnak, beleértve egy hivatkozást a működésével kapcsolatos további információkhoz.' %}
+  {% set list_item_four = 'Eltávolítottunk egy szakaszt, amely a Vélemény-ellenőrző funkciót ismertette, és már nem érhető el.' %}
+  {% set list_item_five = 'Frissítettük a jogalapok táblázatát, hogy az tükrözze az adatkezelésünkben bekövetkezett változásokat.' %}
+  {% set list_item_six = 'Hozzáadtunk egy hivatkozást azon szolgáltatók és partnerek frissített listájához, akikkel a Mozilla együttműködve Firefox és kapcsolódó szolgáltatásokat nyújt Önnek.' %}
+  {% set list_item_seven = 'Néhány stilisztikai változtatást eszközöltünk, és remélhetőleg a nyelvezetet könnyebben érthetővé tettük.' %}
+  {% set main_cta = 'Ha bármilyen kérdése van ezekkel a frissítésekkel vagy az adatvédelmi gyakorlatunkkal kapcsolatban, forduljon hozzánk bizalommal a <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a> e-mail-címen.' %}
+{% elif LANG == 'id' %}
+  {% set description = 'Kami memperbarui <a href="/privacy/firefox/next">Pemberitahuan Privasi Firefox</a> yang berlaku mulai 17 Desember 2025 untuk mencerminkan perubahan produk terbaru.' %}
+  {% set list_title = 'Berikut ini yang baru:' %}
+  {% set list_item_one = 'Kami memperbarui bagian ini yang menggambarkan cara kami <i>Menyediakan dan meningkatkan fungsi</i> dan saran pencarian, serta menambahkan tautan untuk mempelajari lebih lanjut tentang cara kerjanya. Selain saran yang dikirimkan secara lokal, sekarang Anda mungkin menerima pesan dari Mozilla dan mitranya, yang diambil menggunakan teknologi yang menjaga privasi bernama OHTTP. Teknologi ini menyembunyikan alamat IP Anda dan data pengidentifikasi lainnya dari semua pihak (termasuk Mozilla sendiri). Anda juga bisa menyesuaikan atau menonaktifkan saran ini kapan saja di pengaturan browser Anda.' %}
+  {% set list_item_two = 'Kami memperbarui bagian yang menjelaskan cara kami <i>Menampilkan konten dan iklan yang relevan di Tab Baru Firefox</i>. Di beberapa wilayah, kami menggunakan pemrosesan di perangkat dan OHTTP untuk membangun model yang menjaga privasi yang membantu kami merekomendasikan konten mendatang berdasarkan klik dan impresi Tab Baru. Jika konten bersponsor aktif, kami juga menampilkan iklan berdasarkan konten Tab Baru yang Anda lihat. Data tentang cara Anda berinteraksi dengan iklan tersebut bisa diproses secara lokal di perangkat Anda. Fitur pintasan juga menggunakan data penjelajahan secara lokal di perangkat Anda untuk memilih pintasan teratas, yang sebagian di antaranya mungkin bersponsor. Anda bisa menonaktifkan konten bersponsor di Pengaturan Anda kapan saja.' %}
+  {% set list_item_three = 'Kami menambahkan informasi tentang fitur “Goyang untuk Meringkas” baru yang bisa diaktifkan oleh pengguna, termasuk tautan ke informasi selengkapnya tentang cara kerjanya.' %}
+  {% set list_item_four = 'Kami menghapus bagian yang menjelaskan fitur Pemeriksa Ulasan, yang sudah tidak tersedia.' %}
+  {% set list_item_five = 'Kami memperbarui tabel dasar hukum untuk mencerminkan perubahan ini pada cara kami memproses data Anda.' %}
+  {% set list_item_six = 'Kami menambahkan tautan ke daftar penyedia layanan yang diperbarui dan mitra yang bekerja sama dengan Mozilla untuk menyediakan Firefox dan layanan terkait kepada Anda.' %}
+  {% set list_item_seven = 'Kami melakukan beberapa perubahan stilistika, dan berharap bahasanya lebih mudah dipahami.' %}
+  {% set main_cta = 'Jika ada pertanyaan tentang pembaruan ini atau praktik privasi kami, silakan hubungi kami kapan saja di <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'it' %}
+  {% set description = 'Stiamo aggiornando l’<a href="/privacy/firefox/next">Informativa sulla privacy di Firefox</a> che entrerà in vigore il 17 dicembre 2025, per riflettere le recenti modifiche apportate al prodotto.' %}
+  {% set list_title = 'Ecco le novità:' %}
+  {% set list_item_one = 'Abbiamo aggiornato la sezione relativa a <i>Disponibilità e miglioramento della funzionalità di ricerca e dei suggerimenti</i>, e aggiunto dei collegamenti per approfondirne il funzionamento. Oltre ai suggerimenti forniti a livello locale, ora potresti ricevere anche suggerimenti da Mozilla e dai suoi partner, recuperati utilizzando una tecnologia di protezione della privacy chiamata OHTTP che nasconde il tuo indirizzo IP e altri dati identificativi a tutte le parti (incluso Mozilla stesso). Puoi regolare o disattivare questi suggerimenti in qualsiasi momento nelle impostazioni del tuo browser.' %}
+  {% set list_item_two = 'Abbiamo aggiornato la sezione che descrive la nostra <i>Proposta di contenuti e pubblicità pertinenti nella Nuova scheda di Firefox</i>. In alcune aree geografiche, ci serviamo dell’elaborazione sul dispositivo e della tecnologia OHTTP per creare modelli che tutelino la privacy e ci aiutino a consigliare contenuti futuri sulla base dei clic e delle impressioni della pagina Nuova scheda. Se i contenuti sponsorizzati sono abilitati, mostreremo anche annunci pubblicitari basati sul contenuto visualizzato nella Nuova scheda. I dati relativi alle tue interazioni con tali annunci pubblicitari potrebbero essere elaborati localmente sul tuo dispositivo. Anche la funzione scorciatoie utilizza i dati di navigazione memorizzati localmente sul tuo dispositivo per selezionare le scorciatoie più utilizzate, alcune delle quali potrebbero essere sponsorizzate. Puoi disattivare i contenuti sponsorizzati nelle impostazioni in qualsiasi momento.' %}
+  {% set list_item_three = 'Abbiamo aggiunto informazioni sulla nuova funzione “Agita per riassumere” (Shake to Summarize) attivabile dagli utenti, incluso un link a ulteriori informazioni sul suo funzionamento.' %}
+  {% set list_item_four = 'Abbiamo rimosso una sezione relativa alla funzione Verifica recensioni, non più disponibile.' %}
+  {% set list_item_five = 'Abbiamo aggiornato la tabella delle basi legali per riflettere alcuni cambiamenti relativi alla modalità di elaborazione dei tuoi dati.' %}
+  {% set list_item_six = 'Abbiamo aggiunto un collegamento a un elenco aggiornato di partner e fornitori di servizi con cui Mozilla collabora per fornirti Firefox e i servizi correlati.' %}
+  {% set list_item_seven = 'Abbiamo apportato alcune modifiche stilistiche e, ci auguriamo, reso il linguaggio più facile da comprendere.' %}
+  {% set main_cta = 'Per qualsiasi domanda su questi aggiornamenti o sulle nostre regole in materia di privacy, puoi contattarci in qualsiasi momento all’indirizzo <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'ja' %}
+  {% set description = 'Mozilla では、製品に対する最近の変更点を踏まえ、 <a href="/privacy/firefox/next">Firefox のプライバシーに関する通知</a>（発効日：2025年12月17日）を更新します。' %}
+  {% set list_title = '最新情報はこちら:' %}
+  {% set list_item_one = '「検索機能の提供と提案の改善」方法についての説明を更新し、その仕組みが詳しく学べるリンクを追加しました。今後はローカルで提供される提案に加えて、Mozilla およびそのパートナーからの提案も受け取れるようになりました。提案は、あなたの IP アドレスやその他の識別情報をすべての関係者（Mozilla自体を含む）から見えないようにする、OHTTPと呼ばれるプライバシー保護技術を通じて取得されます。これらの提案は、ブラウザーの設定でいつでも調整したり、オフにすることができます。' %}
+  {% set list_item_two = '「Firefox の新しいタブに関連性の高いコンテンツや広告を表示する」方法についての説明を更新しました。一部の地域では、Mozilla はデバイス上での処理と OHTTP を使用してプライバシー保護モデルを構築しています。これは新しいタブのクリック回数やインプレッションに基づいて、将来のコンテンツを推奨するのに役立つものです。スポンサー付きコンテンツがオンになっている場合、新しいタブに表示されるコンテンツにも基づいて広告が表示されます。それらの広告との対話に関するデータは、お使いのデバイス上でローカルに処理される場合があります。ショートカット機能はまた、デバイス上のローカルブラウジングデータを使用して上位のショートカットを選択します。その中にはスポンサー付きのものが含まれる場合もあります。スポンサー付きコンテンツは、設定でいつでもオフにすることができます。' %}
+  {% set list_item_three = '新機能の「Shake to Summarize（振って要約）」について、ユーザーがオンにできる機能の詳細（機能の仕組みに関する詳細情報へのリンクを含む）を追加しました。' %}
+  {% set list_item_four = 'レビューチェッカー機能は廃止されたため、説明を削除しました。' %}
+  {% set list_item_five = 'データ処理方法の変更に伴い、法的根拠の表を更新しました。' %}
+  {% set list_item_six = 'Firefox と関連サービスを提供するために Mozilla が提携しているサービスプロバイダーおよびパートナーの最新版リストへのリンクを追加しました。' %}
+  {% set list_item_seven = '文章のスタイルも多少変更し、わかりやすい表現を心掛けました。' %}
+  {% set main_cta = 'これらの更新内容や Mozilla のプライバシー慣行についてご質問がある場合は、いつでも <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>までお気軽にお問い合わせください。' %}
+{% elif LANG == 'nl' %}
+  {% set description = 'In verband met recente productwijzigingen werken we met ingang van 17 december 2025 de <a href="/privacy/firefox/next">Firefox-privacyverklaring</a> bij.' %}
+  {% set list_title = 'Dit is er nieuw:' %}
+  {% set list_item_one = 'We hebben de sectie bijgewerkt die beschrijft hoe we <i>Zoekfunctionaliteit en suggesties bieden en verbeteren</i> en we hebben koppelingen toegevoegd naar informatie over hoe dit werkt. Naast lokaal verzorgde suggesties, ontvangt u mogelijk ook suggesties van Mozilla en partners van Mozilla, die worden opgehaald via technologie voor privacybehoud, OHTTP, die uw IP-adres en andere identificerende informatie verbergt voor alle partijen (waaronder Mozilla zelf). U kunt deze suggesties op elk gewenst moment in- of uitschakelen in uw browserinstellingen.' %}
+  {% set list_item_two = 'We hebben de sectie bijgewerkt die beschrijft <i>hoe we relevante content en reclame verzorgen op Firefox Nieuw tabblad</i>. In enkele regio’s gebruiken we verwerking op het apparaat en OHTTP om modellen voor privacybehoud op te bouwen die ons helpen om toekomstige content aan te bevelen op basis van klikken en impressies op Nieuw tabblad. Wanneer de optie voor gesponsorde content is ingeschakeld, geven we ook op advertenties gebaseerde content weer op Nieuw tabblad. Gegevens over uw interactie met die advertenties worden mogelijk lokaal op uw apparaat verwerkt. De functie voor snelkoppelingen gebruikt eveneens navigatiegegevens lokaal op uw apparaat om de belangrijkste snelkoppelingen te selecteren. Enkele van deze snelkoppelingen worden mogelijk gesponsord. U kunt gesponsorde content op elke gewenst moment uitschakelen in uw instellingen.' %}
+  {% set list_item_three = 'We hebben informatie toegevoegd over onze nieuwe functie Schudden voor een samenvatting die gebruikers kunnen inschakelen. Deze informatie omvat een koppeling naar meer informatie over hoe de functie werkt.' %}
+  {% set list_item_four = 'We hebben een sectie verwijderd waarin de functie Review Checker wordt beschreven. Deze functie is niet langer beschikbaar.' %}
+  {% set list_item_five = 'We hebben de tabel met informatie over de wettelijke bases bijwerkt, zodat deze aansluit bij deze wijzigingen in hoe wij uw gegevens verwerken.' %}
+  {% set list_item_six = 'We hebben een koppeling toegevoegd naar een bijgewerkte lijst met de dienstverleners en partners waarmee Mozilla samenwerkt om Firefox en gerelateerde services voor u te verzorgen.' %}
+  {% set list_item_seven = 'We hebben enkele stilistische wijzigingen aangebracht en de taal hopelijk gemakkelijker te begrijpen gemaakt.' %}
+  {% set main_cta = 'Als u eventueel suggesties hebt over deze updates of onze privacyprocedures, kunt u op elk gewenst moment contact met ons opnemen via <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'pl' %}
+  {% set description = 'Aktualizujemy <a href="/privacy/firefox/next">Zasady prywatności przeglądarki Firefox</a> ze skutkiem od 17 grudnia 2025 r., aby uwzględnić ostatnie zmiany w produkcie.' %}
+  {% set list_title = 'Oto nowości:' %}
+  {% set list_item_one = 'Zaktualizowaliśmy sekcję Zapewnienie i <i>ulepszenie funkcji wyszukiwania i podpowiedzi</i> i dodaliśmy łącza, aby przedstawić więcej informacji o tym, jak to działa. Oprócz podpowiedzi dostarczanych lokalnie, użytkownik może teraz otrzymywać również sugestie od firmy Mozilla i jej partnerów, pobierane przy użyciu technologii ochrony prywatności o nazwie OHTTP, która ukrywa adres IP i inne dane identyfikacyjne użytkownika przed wszystkimi stronami (w tym samą firmą Mozilla). Użytkownik może w dowolnym momencie dostosować lub wyłączyć te podpowiedzi w ustawieniach przeglądarki.' %}
+  {% set list_item_two = 'Zaktualizowaliśmy sekcję <i>Wyświetlanie odpowiednich treści i reklam na stronie Nowa karta przeglądarki Firefox</i>. W niektórych regionach wykorzystujemy przetwarzanie na urządzeniu i technologię OHTTP do tworzenia modeli chroniących prywatność, które pomagają nam rekomendować przyszłe treści na podstawie kliknięć i wyświetleń na nowej karcie. Gdy włączone są treści sponsorowane, wyświetlamy również reklamy oparte na treściach widocznych na nowej karcie. Dane dotyczące interakcji z tymi reklamami mogą być przetwarzane lokalnie na urządzeniu użytkownika. Funkcja skrótów również wykorzystuje dane przeglądania lokalnie na urządzeniu użytkownika, aby wybrać najpopularniejsze skróty, z których niektóre mogą być sponsorowane. W każdej chwili użytkownik może wyłączyć treści sponsorowane w ustawieniach.' %}
+  {% set list_item_three = 'Dodaliśmy informacje o naszej nowej funkcji „Potrząśnięcie streszcza”, którą użytkownicy mogą włączyć, w tym łącze do dodatkowych informacji na temat sposobu działania tej funkcji.' %}
+  {% set list_item_four = 'Usunęliśmy sekcję opisującą funkcję Review Checker, która nie jest już dostępna.' %}
+  {% set list_item_five = 'Zaktualizowaliśmy tabelę podstaw prawnych, aby odzwierciedlić te zmiany w sposobie przetwarzania danych użytkownika.' %}
+  {% set list_item_six = 'Dodaliśmy łącze do zaktualizowanej listy dostawców usług i partnerów, z którymi Mozilla współpracuje, aby świadczyć usługi Firefox i powiązane usługi.' %}
+  {% set list_item_seven = 'Wprowadziliśmy kilka zmian stylistycznych, które, mamy nadzieję, sprawiły, że język stał się łatwiejszy do zrozumienia.' %}
+  {% set main_cta = 'W razie jakichkolwiek innych pytań dotyczących tych aktualizacji lub naszych praktyk w zakresie ochrony prywatności, prosimy o kontakt pod adresem <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'pt-BR' %}
+  {% set description = 'Estamos atualizando o <a href="/privacy/firefox/next">Aviso de privacidade do Firefox</a>, com vigor a partir de 17 de dezembro de 2025, para refletir mudanças recentes de produtos.' %}
+  {% set list_title = 'Confira o que mudou:' %}
+  {% set list_item_one = 'Atualizamos a seção <i>Fornecer funcionalidades de pesquisa e aprimorá-las</i>, adicionando links com informações adicionais. Além de sugestões entregues localmente, você também poderá receber sugestões da Mozilla e de seus parceiros, obtidas por meio de uma tecnologia de proteção de privacidade chamada OHTTP, que oculta o endereço IP e outros dados de identificação de terceiros (incluindo da própria Mozilla). É possível ajustar ou desativar essas sugestões a qualquer momento nas configurações do navegador.' %}
+  {% set list_item_two = 'Atualizamos a seção <i>Fornecer conteúdo e publicidade relevante na página de nova aba do Firefox</i>. Em algumas regiões, usamos processamento no dispositivo e OHTTP para criar modelos de proteção de privacidade que nos ajudam a recomendar conteúdo futuro com base em cliques e impressões em nova aba. Quando o conteúdo patrocinado está ativado, também mostramos anúncios com base no conteúdo de nova aba. Dados sobre como você interage com esses anúncios podem ser tratados localmente em seu dispositivo. O recurso de atalhos também usa dados de navegação localmente no seu dispositivo para selecionar os principais atalhos, sendo que alguns deles podem ser patrocinados. É possível desativar o conteúdo patrocinado nas configurações a qualquer momento.' %}
+  {% set list_item_three = 'Adicionamos informações sobre nosso novo recurso “Agitar para resumir”, que pode ser ativado pelos usuários, incluindo um link com mais informações sobre seu funcionamento.' %}
+  {% set list_item_four = 'Removemos a seção que descreve o recurso Verificador de avaliações, que não está mais disponível.' %}
+  {% set list_item_five = 'Atualizamos a tabela de bases legais para refletir essas mudanças na forma como tratamos seus dados.' %}
+  {% set list_item_six = 'Adicionamos um link para uma lista atualizada de prestadores de serviços e parceiros com os quais a Mozilla trabalha para fornecer o Firefox e serviços relacionados a você.' %}
+  {% set list_item_seven = 'Fizemos algumas mudanças estilísticas e tentamos simplificar a linguagem para facilitar a compreensão.' %}
+  {% set main_cta = 'Se você tiver qualquer dúvida sobre essas atualizações ou nossas práticas de privacidade, entre em contato conosco a qualquer momento enviando um email para <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'ru' %}
+  {% set description = 'Мы обновляем <a href="/privacy/firefox/next">Уведомление о конфиденциальности Firefox</a> с 17 декабря 2025 года, чтобы отразить последние изменения в продуктах.' %}
+  {% set list_title = 'Что нового:' %}
+  {% set list_item_one = 'Мы обновили раздел, в котором описывается, как мы <i>Предоставляем и улучшаем функциональность поиска и предложения</i>, а также добавили ссылки, позволяющие узнать больше о том, как это работает. Помимо рекомендаций, доставляемых локально, теперь вы также можете получать рекомендации от Mozilla и ее партнеров, которые получены с помощью технологии сохранения конфиденциальности OHTTP, которая скрывает ваш IP-адрес и другие идентифицирующие данные от всех сторон (включая Mozilla). Вы можете изменить или отключить эти предложения в любое время в настройках браузера.' %}
+  {% set list_item_two = 'Мы обновили раздел, в котором описывается, как мы <i>Размещаем релевантный контент и рекламу в Новой вкладке Firefox</i>. В некоторых регионах мы используем обработку на устройстве и OHTTP для создания моделей, сохраняющих конфиденциальность, которые помогают нам рекомендовать будущий контент на основе кликов и показов новой вкладки. При включении спонсируемого контента мы также показываем рекламу на основе контента новой вкладки, который вы видите. Данные о том, как вы взаимодействуете с этими рекламными объявлениями, могут обрабатываться локально на вашем устройстве. Функция ярлыков также использует данные локального просмотра на вашем устройстве для выбора лучших ярлыков, некоторые из которых могут быть спонсируемыми. Вы можете в любое время отключить спонсируемый контент в настройках.' %}
+  {% set list_item_three = 'Мы добавили информацию о нашей новой функции Встряхните, чтобы получить сводку (Shake to Summarize) для создания кратких сводок сайтов, которую могут включить пользователи, включая ссылку на дополнительную информацию о том, как она работает.' %}
+  {% set list_item_four = 'Мы удалили раздел с описанием функции оценки надежности отзывов о товарах в интернет-магазинах Review Checker, которая больше недоступна.' %}
+  {% set list_item_five = 'Мы обновили таблицу правовых оснований, чтобы отразить эти изменения в части обработки ваших данных.' %}
+  {% set list_item_six = 'Мы добавили ссылку на обновленный список провайдеров услуг и партнеров, с которыми Mozilla сотрудничает для предоставления вам Firefox и сопутствующих услуг.' %}
+  {% set list_item_seven = 'Мы внесли некоторые стилистические изменения и надеемся, что сделали язык более понятным.' %}
+  {% set main_cta = 'Если у вас возникнут какие-либо вопросы относительно этих обновлений или нашей политики конфиденциальности, обращайтесь к нам в любое время по адресу <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% elif LANG == 'zh-CN' %}
+  {% set description = '我们正在更新 <a href="/privacy/firefox/next">Firefox 隐私声明</a>，新版本自 2025 年 12 月 17 日起生效，以反映近期的产品变更。' %}
+  {% set list_title = '更新内容如下：' %}
+  {% set list_item_one = '我们更新了“提供并改进搜索功能与建议”章节的内容，并增加了链接以便了解更多运作详情。除了本地提供的建议外，您现在还可以收到来自 Mozilla 及其合作伙伴的建议，这些建议通过一项名为 OHTTP 的隐私保护技术获取，该技术能向所有相关方（包括 Mozilla 自身）隐藏您的 IP 地址及其他识别数据。您可以随时在浏览器设置中调整或关闭这些建议。' %}
+  {% set list_item_two = '我们更新了“在 Firefox 新标签页上提供相关内容和广告”章节的内容。在某些地区，我们使用设备端处理和 OHTTP 技术来建立隐私保护模型，以帮助我们根据新标签页的点击和展示情况来推荐未来内容。当赞助内容开启时，我们还会根据您看到的新标签页内容展示广告。关于您与这些广告互动方式的数据可能会在您的设备上进行本地处理。快捷方式功能同样会使用您设备本地的浏览数据来选择常用快捷方式，其中部分可能为赞助内容。您可以随时在设置中关闭赞助内容。' %}
+  {% set list_item_three = '我们增加了关于用户可启用的新功能“摇一摇总结”的信息，以及了解更多该功能运作详情的链接。' %}
+  {% set list_item_four = '我们移除了描述 Review Checker 功能的章节，该功能现已不再提供。' %}
+  {% set list_item_five = '我们更新了法律依据表格，以反映我们在数据处理方式上的这些变更。' %}
+  {% set list_item_six = '我们增加了一个链接，指向 Mozilla 为向您提供 Firefox 和相关服务而与之合作的服务提供商和合作伙伴的更新列表。' %}
+  {% set list_item_seven = '我们做了一些文体上的修改，希望使语言更易于理解。' %}
+  {% set main_cta = '如果您对这些更新或我们的隐私保护措施有任何疑问，请随时发送电子邮件至 <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>与我们联系。' %}
+{% else %}
+  {% set description = 'We’re updating the <a href="/privacy/firefox/next">Firefox Privacy Notice</a> effective December 17, 2025 to reflect recent product changes.' %}
+  {% set list_title = 'Here’s what’s new:' %}
+  {% set list_item_one = 'We updated the section that describes how we <i>Provide and improve search functionality and suggestions</i>, and added links to learn more about how it works. In addition to suggestions delivered locally, you may now also receive suggestions from Mozilla and its partners, which are retrieved using a privacy-preserving technology called OHTTP that hides your IP address and other identifying data from all parties (including Mozilla itself). You can adjust or turn off these suggestions at any time in your browser settings.' %}
+  {% set list_item_two = 'We updated the section that describes how we <i>Serve relevant content and advertising on Firefox New Tab</i>. In some regions, we use on-device processing and OHTTP to build privacy-preserving models that help us recommend future content based on New Tab clicks and impressions. When sponsored content is on, we also show ads based on the New Tab content you see. Data about how you interact with those ads may be processed locally on your device. The shortcuts feature also uses browsing data locally on your device to select top shortcuts, some of which may be sponsored. You can turn off sponsored content in your Settings at any time.' %}
+  {% set list_item_three = 'We added information about our new “Shake to Summarize” feature that users can turn on, including a link to more information about how it works.' %}
+  {% set list_item_four = 'We removed a section describing the Review Checker feature, which is no longer available.' %}
+  {% set list_item_five = 'We updated the lawful bases table to reflect these changes to how we process your data.' %}
+  {% set list_item_six = 'We added a link to an updated list of the service providers and partners that Mozilla works with to provide Firefox and related services to you.' %}
+  {% set list_item_seven = 'We made some stylistic changes, and hopefully made the language easier to understand.' %}
+  {% set main_cta = 'If you have any questions about these updates or our privacy practices, feel free to contact us at any time at <a href="mailto:compliance@mozilla.com">compliance@mozilla.com</a>.' %}
+{% endif %}
+
+{% block article %}
+  <div itemprop="articleBody" class="mzp-c-article">
+    <p>
+      {{ description | safe }}
+    </p>
+    <p>
+      {{ list_title }}
+    </p>
+
+    <ul class="mzp-u-list-styled">
+      <li>
+        {{ list_item_one | safe }}
+      </li>
+      <li>
+        {{ list_item_two | safe }}
+      </li>
+      <li>
+        {{ list_item_three }}
+      </li>
+      <li>
+        {{ list_item_four }}
+      </li>
+      <li>
+        {{ list_item_five }}
+      </li>
+      <li>
+        {{ list_item_six }}
+      </li>
+      <li>
+        {{ list_item_seven }}
+      </li>
+    </ul>
+
+    <p>
+      {{ main_cta | safe }}
+    </p>
+
+  </div>
+{% endblock %}

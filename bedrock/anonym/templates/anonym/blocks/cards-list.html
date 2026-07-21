@@ -1,0 +1,14 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="mzan-cards {% if value.settings.dividers_between_cards_on_desktop %}dividers {% endif %}">
+  <ul class="mzan-card-list {% if value.settings.scrollable_on_mobile %}scroll-on-mobile {% endif %}">
+    {% for card in value.cards %}
+      {% set card_index = loop.index %}
+      {% include_block card %}
+    {% endfor %}
+  </ul>
+</div>

@@ -2,15 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 
-from django.core import mail
 from django.http.response import HttpResponse
 from django.test import override_settings
 from django.test.client import RequestFactory
-
-import pytest
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg import views
@@ -125,60 +121,6 @@ class TestHomePageLocales(TestCase):
         self.assertEqual(resp.status_code, 405)
 
 
-@pytest.mark.django_db
-@pytest.mark.parametrize(
-    "content_id, page_data, expected_template",
-    (
-        (
-            "abc",
-            {"page_type": "pagePageResourceCenter", "info": {"theme": "mozilla"}},
-            "products/vpn/resource-center/article.html",
-        ),
-        (
-            "def",
-            {"page_type": "OTHER", "info": {"theme": "firefox"}},
-            "firefox/contentful-all.html",
-        ),
-        (
-            "ghi",
-            {"page_type": "OTHER", "info": {"theme": "mozilla"}},
-            "mozorg/contentful-all.html",
-        ),
-        (
-            "jkl",
-            {"page_type": "OTHER", "info": {"theme": "OTHER"}},
-            "mozorg/contentful-all.html",
-        ),
-    ),
-)
-@patch("bedrock.mozorg.views.l10n_utils.render")
-@patch("bedrock.mozorg.views.ContentfulPage")
-# Trying to hot-reload the URLconf with settings.DEV = True was not
-# viable when the tests were being run in CI or via Makefile, so
-# instead we're explicitly including the urlconf that is loaded
-# when settings.DEV is True
-@pytest.mark.urls("bedrock.mozorg.tests.contentful_test_urlconf")
-def test_contentful_preview_view(
-    contentfulpage_mock,
-    render_mock,
-    client,
-    content_id,
-    page_data,
-    expected_template,
-):
-    mock_page_data = Mock(name="mock_page_data")
-    mock_page_data.get_content.return_value = page_data
-    contentfulpage_mock.return_value = mock_page_data
-
-    render_mock.return_value = HttpResponse("dummy")
-
-    url = reverse("contentful.preview", kwargs={"content_id": content_id})
-
-    client.get(url, follow=True)
-    assert render_mock.call_count == 1
-    assert render_mock.call_args_list[0][0][1] == expected_template
-
-
 class TestWebvisionDocView(TestCase):
     def test_doc(self):
         WebvisionDoc.objects.create(name="summary", content={"title": "<h1>Summary</h1>"})
@@ -223,102 +165,3 @@ class TestMozorgRedirects(TestCase):
                 resp = self.client.get(path, follow=True, headers={"accept-language": "en"})
                 self.assertEqual(resp.redirect_chain[0], ("/about/webvision/", 301))
                 self.assertEqual(resp.redirect_chain[1], ("/en-US/about/webvision/", 302))
-
-
-class TestMiecoEmail(TestCase):
-    def setUp(self):
-        self.factory = RequestFactory()
-        self.view = views.mieco_email_form
-        with self.activate_locale("en-US"):
-            self.url = reverse("mozorg.email_mieco")
-
-        self.data = {
-            "name": "The Dude",
-            "email": "foo@bar.com",
-            "interests": "abiding, bowling",
-            "description": "The rug really tied the room together.",
-        }
-
-    def tearDown(self):
-        mail.outbox = []
-
-    def test_not_post(self):
-        resp = self.client.get(self.url)
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Only POST requests are allowed"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_bad_json(self):
-        resp = self.client.post(self.url, content_type="application/json", data='{{"bad": "json"}')
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Error decoding JSON"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_invalid_email(self):
-        resp = self.client.post(self.url, content_type="application/json", data='{"email": "foo@bar"}')
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_invalid_message_id(self):
-        self.data["message_id"] = "the-dude"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-        self.assertEqual(resp.status_code, 400)
-        self.assertEqual(resp.text, '{"error": 400, "message": "Invalid form data"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success(self, mock_emailMessage, mock_render_to_string):
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success_mieco(self, mock_emailMessage, mock_render_to_string):
-        self.data["message_id"] = "mieco"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["mieco"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["mieco"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    @patch("bedrock.mozorg.views.render_to_string", return_value="rendered")
-    @patch("bedrock.mozorg.views.EmailMessage")
-    def test_success_innovations(self, mock_emailMessage, mock_render_to_string):
-        self.data["message_id"] = "innovations"
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-
-        self.assertEqual(resp.status_code, 200)
-        mock_emailMessage.assert_called_once_with(
-            views.MIECO_EMAIL_SUBJECT["innovations"], "rendered", views.MIECO_EMAIL_SENDER, views.MIECO_EMAIL_TO["innovations"]
-        )
-        self.assertEqual(resp.text, '{"status": "ok"}')
-        self.assertIn("Access-Control-Allow-Origin", resp.headers)
-        self.assertIn("Access-Control-Allow-Headers", resp.headers)
-
-    def test_outbox(self):
-        resp = self.client.post(self.url, content_type="application/json", data=json.dumps(self.data))
-        self.assertEqual(resp.status_code, 200)
-        self.assertEqual(len(mail.outbox), 1)
-
-        email = mail.outbox[0]
-        self.assertIn(f"Name: {self.data['name']}", email.body)
-        self.assertIn(f"E-mail: {self.data['email']}", email.body)
-        self.assertIn(f"Interests: {self.data['interests']}", email.body)
-        self.assertIn(f"Message:\n{self.data['description']}", email.body)

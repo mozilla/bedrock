@@ -1,0 +1,210 @@
+{#
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# We use a new base template introduced with WNP142 #}
+{% extends "firefox/whatsnew/base-new-theme.html" %}
+
+{% if LANG == 'de' %}
+  {% set features_title = 'Bleib schnell und behalte deine Tabs.' %}
+  {% set features_subtitle = 'Gib Speicher frei, ohne auf deine wichtigen Tabs zu verzichten.' %}
+  {% set feature_2_eyebrow = 'Tab entladen' %}
+  {% set feature_2_title = 'Tabs sichern, Speicher zurückholen.' %}
+  {% set feature_2_body = '<p>Ein entladener Tab bleibt sichtbar, auch wenn du ihn gerade nicht nutzt. Gleichzeitig verbraucht er im Hintergrund keine Ressourcen und macht dein Browsen schneller.</p><p>Klicke mit der rechten Maustaste auf einen oder mehrere Tabs und wähle „Tab entladen“, um die Funktion zu aktivieren. Wenn du zurückkommst, lädt der Tab genau an der Stelle neu, an der du pausiert hast.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/de/kb/tabs-entladen-systemspeicherverbrauch-reduzieren' %}
+  {% set mobile_title = 'Was gibt’s Neues bei Firefox Mobile?' %}
+  {% set mobile_subtitle = 'Entdecke die neuesten Updates' %}
+  {% set card_1_title = 'Private Tabs bleiben privat' %}
+  {% set card_1_body = 'Deine privaten Tabs sperren sich automatisch, sobald du den Bildschirm verlässt, und entsperren nur mit Gesicht, Fingerabdruck oder PIN.' %}
+  {% set card_2_title = 'Jetzt noch mehrsprachiger' %}
+  {% set card_2_body = 'Übersetze jetzt Webseiten ins Japanische, Chinesische, Koreanische und viele weitere Sprachen, um in deiner bevorzugten Sprache zu browsen. ' %}
+  {% set card_3_title = 'Smartere Passwörter, weniger Stress' %}
+  {% set card_3_body = 'Firefox schlägt dir starke Passwörter vor, wenn du ein neues Konto auf einer Website erstellst und bewahrt sie sicher auf. Mit Sync hast du sie auf jedem Gerät stets griffbereit.' %}
+  {% set card_4_title = 'Fresher Look, klarer Fokus' %}
+  {% set card_4_body = 'Eine schlankere Oberfläche und ein verbessertes Dark Mode in Firefox für iOS sorgen für Übersicht und Ruhe beim Browsen.' %}
+  {% set qr_title = 'Nimm Firefox immer mit' %}
+  {% set qr_body = 'Scanne den QR-Code, hol dir Firefox Mobile und browse überall entspannt, fokussiert und kontrolliert.' %}
+  {% set newsletter_title = 'Mach das Beste aus Firefox' %}
+  {% set newsletter_body = 'Melde dich für monatliche Updates von Firefox und den neuesten Internet-Trends an und gestalte dein Online-Leben.' %}
+  {% set newsletter_subscribe = 'Jetzt abonnieren' %}
+  {% set try_it_now = 'Jetzt ausprobieren' %}
+  {% set learn_more = 'Mehr erfahren' %}
+  {% set release_notes = 'Alle Versionshinweise anzeigen' %}
+  {% set tag_privacy = 'Datenschutz' %}
+  {% set tag_language = 'Sprache' %}
+  {% set tag_design = 'Design' %}
+{% elif LANG == 'fr' %}
+  {% set features_title = 'Conservez vos onglets et votre rapidité' %}
+  {% set features_subtitle = 'Libérez de la mémoire sans abandonner vos onglets utiles.' %}
+  {% set feature_2_eyebrow = 'Décharger l’onglet' %}
+  {% set feature_2_title = 'Conservez vos onglets. Libérez de la mémoire.' %}
+  {% set feature_2_body = '<p>Décharger un onglet le garde visible tout en libérant de la mémoire et le CPU.</p><p>Faites un clic droit sur un ou plusieurs onglets et choisissez <strong>Décharger l’onglet</strong> pour aider Firefox à rester rapide.</p>Revenez et retrouvez votre onglet, où vous l’avez laissé.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/fr/kb/decharger-onglets-reduire-utilisation-memoire-firefox' %}
+  {% set mobile_title = 'Quoi de neuf sur Firefox Mobile ?' %}
+  {% set mobile_subtitle = 'Découvrez les dernières infos' %}
+  {% set card_1_title = 'Des onglets privés qui le restent' %}
+  {% set card_1_body = 'Vos onglets privés se verrouillent automatiquement quand vous n’êtes pas dessus et ne se réouvrent qu’avec votre visage, vos empreintes digitales ou un code PIN. ' %}
+  {% set card_2_title = 'Encore plus de langues' %}
+  {% set card_2_body = 'Traduisez désormais vos pages web en japonais, chinois, coréen et plus. Et naviguez dans votre langue préférée.' %}
+  {% set card_3_title = 'Mots de passe plus intelligents, moins de soucis' %}
+  {% set card_3_body = 'Firefox suggère des mots de passe forts quand vous créez un nouveau compte sur n’importe quel site et les garde en sécurité, prêts à être synchronisés sur tout appareil.' %}
+  {% set card_4_title = 'Un look épuré pour une concentration affûtée' %}
+  {% set card_4_body = 'L’UI fluide et le mode sombre mis à jour de Firefox sur iOS rendent la navigation claire et agréable. ' %}
+  {% set qr_title = 'Emportez Firefox avec vous' %}
+  {% set qr_body = 'Scannez le QR code pour accéder à Firefox Mobile et naviguez avec tranquillité, concentration et contrôle, où que vous soyez.' %}
+  {% set newsletter_title = 'Révélez tout le potentiel de Firefox' %}
+  {% set newsletter_body = 'Abonnez-vous et retrouvez les dernières actualités et astuces pour améliorer votre expérience internet.' %}
+  {% set newsletter_subscribe = 'Je m’inscris' %}
+  {% set try_it_now = 'Essayer maintenant' %}
+  {% set learn_more = 'En savoir plus ' %}
+  {% set release_notes = 'Voir la totalité des notes de version' %}
+  {% set tag_privacy = 'Confidentialité' %}
+  {% set tag_language = 'Langue' %}
+  {% set tag_design = 'Design' %}
+{% else %}
+  {% set features_title = 'Stay fast, keep your tabs' %}
+  {% set features_subtitle = 'Free up memory without giving up the tabs you need.' %}
+  {% set feature_1_eyebrow = 'Shake to Summarize' %}
+  {% set feature_1_title = 'Shake it up. Skip the scroll.' %}
+  {% set feature_1_body = 'Summarize long reads quickly with a shake or tap. Available now on Firefox for iOS.' %}
+  {% set feature_1_cta = 'Get the app' %}
+  {% set feature_2_eyebrow = 'Unload Tabs' %}
+  {% set feature_2_title = 'Keep your tabs. Free up memory.' %}
+  {% set feature_2_body = '<p>Unloading a tab keeps it visible while freeing up memory and CPU.</p><p>Right-click a tab or multiple tabs and select <strong>Unload Tab</strong> to help Firefox run smoothly.</p><p>When you come back, your tab will reload just where you left off.</p>' %}
+  {% set feature_2_link = 'https://support.mozilla.org/kb/unload-tabs-reduce-memory-usage-firefox' %}
+  {% set mobile_title = 'What’s New on Firefox Mobile?' %}
+  {% set mobile_subtitle = 'Discover the latest updates' %}
+  {% set card_1_title = 'Private tabs that stay private' %}
+  {% set card_1_body = 'Your private tabs lock automatically when you step away, and only unlock with your face, fingerprint, or PIN.' %}
+  {% set card_2_title = 'Getting even more multilingual' %}
+  {% set card_2_body = 'Now you can translate web pages into Japanese, Chinese, Korean and more, so you can browse in your preferred language.' %}
+  {% set card_3_title = 'Smarter passwords, fewer headaches' %}
+  {% set card_3_body = 'Firefox suggests strong passwords when you create a new account on any site, and keeps them secure, ready on any device when you sync.' %}
+  {% set card_4_title = 'A cleaner look with greater focus' %}
+  {% set card_4_body = 'A streamlined UI and upgraded dark mode on Firefox for iOS bring clarity and focus to all  your browsing.' %}
+  {% set qr_title = 'Take Firefox with you' %}
+  {% set qr_body = 'Scan the QR code to get Firefox Mobile and browse calmly with focus and control — wherever you go.' %}
+  {% set newsletter_title = 'Keep up with all things Firefox' %}
+  {% set newsletter_body = 'Get monthly tips, guides and news to help you make the most out of Firefox.' %}
+  {% set newsletter_subscribe = 'Sign up to Firefox News' %}
+  {% set try_it_now = 'Try it now' %}
+  {% set learn_more = 'Learn more' %}
+  {% set release_notes = 'See Full Release Notes' %}
+  {% set tag_privacy = 'Privacy' %}
+  {% set tag_language = 'Language' %}
+  {% set tag_design = 'Design' %}
+{% endif %}
+
+{% block wnp_content %}
+<div class="wnp-page">
+    <!-- Section 2: Headlines / Sub Features -->
+    <section class="wnp-section">
+      <div class="wnp-container">
+
+        <h2 id="features-heading" class="wnp-subtitle text-center">{{ features_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ features_subtitle }}</p>
+
+        <div class="wnp-feature">
+          <div class="wnp-feature-media" aria-hidden="true">
+            <div class="wnp-media-frame wnp-media-frame--settings">
+              {{resp_img(
+                url="img/firefox/wnp-143/unload-tab.png",
+                srcset={
+                    "img/firefox/wnp-143/unload-tab-high-res.png": "2x",
+                },
+                optional_attributes={"l10n": True},
+            )}}
+            </div>
+          </div>
+          <div class="wnp-feature-content">
+            <p class="wnp-feature-eyebrow">{{ feature_2_eyebrow }}</p>
+            <h3 class="wnp-subtitle">{{ feature_2_title }}</h3>
+            <p class="wnp-body">{{ feature_2_body | safe }}</p>
+            <div class="wnp-btn-wrap"><a class="wnp-button wnp-button-outline" href="{{ feature_2_link }}?{{ utm_params }}" data-cta-text="Learn more - unload tabs">{{ learn_more }}
+                <span class="wnp-button-icon wnp-button-icon-arrow" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="wnp-link-wrap">
+          <a class="wnp-link" href="/firefox/{{ version }}/releasenotes/" data-cta-text="See full release notes">{{ release_notes }}</a>
+        </p>
+      </div>
+    </section>
+
+     <!-- Section 3: Mobile Features -->
+    <section class="wnp-section wnp-section-mobile" aria-labelledby="wnp-mobile-heading">
+      <div class="wnp-container">
+        <h2 id="wnp-mobile-heading" class="wnp-subtitle text-center">{{ mobile_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ mobile_subtitle }}</p>
+        <div class="wnp-grid">
+          <article class="wnp-card">
+            <div>
+              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_privacy }}</span>
+            </div>
+            <h3 class="wnp-subtitle">{{ card_1_title }}</h3>
+            <p class="wnp-body">{{ card_1_body }}</p>
+          </article>
+          <article class="wnp-card">
+            <div>
+              <span class="wnp-tag wnp-tag-android"><img src="/media/img/firefox/whatsnew/whatsnew142/android-icon.png" width="12" height="12" alt="" aria-hidden="true">Android</span><span class="wnp-tag wnp-tag-blue"><img src="/media/img/firefox/whatsnew/whatsnew142/language-icon.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_language }}</span>
+            </div>
+            <h3 class="wnp-subtitle">{{ card_2_title }}</h3>
+            <p class="wnp-body">{{ card_2_body }}</p>
+          </article>
+          <article class="wnp-card">
+            <div>
+              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-purple"><img src="/media/img/firefox/whatsnew/whatsnew142/shield.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_privacy }}</span>
+            </div>
+            <h3 class="wnp-subtitle">{{ card_3_title }}</h3>
+            <p class="wnp-body">{{ card_3_body }}</p>
+          </article>
+          <article class="wnp-card">
+            <div>
+              <span class="wnp-tag wnp-tag-ios"><img src="/media/img/firefox/whatsnew/whatsnew142/apple-icon.png" width="12" height="12" alt="" aria-hidden="true">iOS</span><span class="wnp-tag wnp-tag-yellow"><img src="/media/img/firefox/whatsnew/whatsnew142/design-icon.svg" width="12" height="12" alt="" aria-hidden="true">{{ tag_design }}</span>
+            </div>
+            <h3 class="wnp-subtitle">{{ card_4_title }}</h3>
+            <p class="wnp-body">{{ card_4_body }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: QR Code Banner -->
+    <section id="qr-code" class="wnp-section wnp-section-mobile" aria-labelledby="wnp-qr-qr-heading">
+      <div class="wnp-container">
+        <div class="wnp-qr">
+          <div class="wnp-qr-layout">
+            <div class="wnp-qr-media" aria-hidden="true">
+              <div class="wnp-qr-qr" data-href="https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-{{ major_version }}" role="img">{{ qrcode("https://www.mozilla.org/firefox/browsers/mobile/app/?product=firefox&campaign=whatsnew-" ~ major_version, 12) }}</div>
+            </div>
+            <div class="wnp-qr-content">
+              <div class="wnp-qr-content-inner">
+                <h2 id="wnp-qr-qr-heading" class="wnp-subtitle">{{ qr_title }}</h2>
+                <p class="wnp-body">{{ qr_body }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe Banner -->
+    <section class="wnp-section wnp-section-subscribe" aria-labelledby="subscribe-heading">
+      <div class="wnp-container">
+        <h2 id="subscribe-heading" class="wnp-subtitle text-center">{{ newsletter_title }}</h2>
+        <p class="wnp-body wnp-is-centered">{{ newsletter_body }}</p>
+        {{ email_newsletter_form(
+        template="firefox/whatsnew/includes/newsletter_form.html",
+        include_country=true,
+        include_language=true,
+        footer=false,
+        include_title=false
+        ) }}
+      </div>
+    </section>
+</div>
+{% endblock %}

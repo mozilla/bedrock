@@ -8,6 +8,15 @@ import FormUtils from './form-utils.es6';
 
 const FXA_NEWSLETTERS = ['firefox-accounts-journey', 'test-pilot'];
 
+const FOUNDATION_NEWSLETTERS = [
+    'mozilla-foundation',
+    'take-action-for-the-internet',
+    'mozilla-festival',
+    'internet-health-report',
+    'common-voice',
+    'mozilla-fellowship-awardee-alumni'
+];
+
 const FXA_NEWSLETTERS_LOCALES = ['en', 'de', 'fr'];
 
 const UNSUB_UNSUBSCRIBED_ALL = 1;
@@ -220,7 +229,11 @@ const NewsletterManagementForm = {
                     NewsletterManagementForm.isFxANewsletter(newsletter) &&
                     isFxALocale);
 
-            if (!shouldDisplayNewsletter) {
+            // Temporary filter for Foundation newsletters, they are handled in separate system
+            if (
+                !shouldDisplayNewsletter ||
+                FOUNDATION_NEWSLETTERS.includes(obj.slug)
+            ) {
                 continue;
             }
 
@@ -705,11 +718,17 @@ const NewsletterManagementForm = {
 
     /**
      * Perform a client side redirect to the /newsletter/recovery/ page.
+     * @param {Object} options - Optional parameters
+     * @param {Boolean} options.expired - If true, adds ?expired=1 to indicate token was invalid/expired
      */
-    redirectToRecoveryPage: () => {
-        const recoveryUrl = _form.getAttribute('data-recovery-url');
+    redirectToRecoveryPage: (options = {}) => {
+        let recoveryUrl = _form.getAttribute('data-recovery-url');
 
         if (FormUtils.isWellFormedURL(recoveryUrl)) {
+            if (options.expired) {
+                recoveryUrl +=
+                    (recoveryUrl.includes('?') ? '&' : '?') + 'expired=1';
+            }
             window.location.href = recoveryUrl;
         } else {
             NewsletterManagementForm.onDataError();
@@ -772,7 +791,14 @@ const NewsletterManagementForm = {
                     })
                     .catch((e) => {
                         spinnerTarget.classList.add('hidden');
-                        NewsletterManagementForm.onDataError(e);
+                        // If token not found (403 or 404), redirect to recovery page
+                        if (e && (e.status === 403 || e.status === 404)) {
+                            NewsletterManagementForm.redirectToRecoveryPage({
+                                expired: true
+                            });
+                        } else {
+                            NewsletterManagementForm.onDataError(e);
+                        }
                     });
             })
             .catch(() => {

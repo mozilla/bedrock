@@ -11,10 +11,6 @@
 
 $border: 2px solid $color-marketing-gray-20;
 
-.mzp-c-sidemenu .mzp-c-sidemenu-title {
-    font-family: var(--body-font-family);
-}
-
 @media #{$mq-md} {
     .mzp-l-sidebar {
         padding-top: 156px; // height of privacy-title
@@ -277,5 +273,31 @@ $border: 2px solid $color-marketing-gray-20;
             @include text-body-md;
             font-weight: normal;
         }
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// Firefox Privacy Notice Update Dec 2025
+
+#privacy-firefox-update-dec2025 {
+    .mzp-has-sidebar .mzp-l-main {
+        @media #{$mq-md} {
+            width: 100%;
+        }
+
+        @media #{$mq-lg} {
+            width: 75%;
+            margin: 0 auto;
+        }
+    }
+}
+
+
+// * -------------------------------------------------------------------------- */
+// Mozilla accounts page variant
+
+.mozilla-accounts {
+    .mzp-u-data-table td {
+        vertical-align: top;
     }
 }

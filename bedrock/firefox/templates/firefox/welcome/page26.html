@@ -1,0 +1,100 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "firefox/welcome/base.html" %}
+
+{% if LANG =="de" %}
+  {% set heading = 'Du treibst Firefox an. Spende jetzt, damit gute Technologie Standard wird' %}
+  {% set body_1 = 'Die Mozilla Foundation – die Non-Profit hinter Firefox – baut eine Zukunft, in der Technologien den Menschen dient und nicht dem Machterhalt.' %}
+  {% set body_2 = 'Deine Spende an die Mozilla Foundation sorgt dafür, dass das Internet offen und privat bleibt und für Menschen gemacht ist. Spende heute, damit das Internet sein Versprechen einhalten kann.' %}
+  {% set button_text = 'An die Mozilla Foundation spenden' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-de' %}
+{% elif LANG == "fr" %}
+  {% set heading = 'Firefox existe grâce à vous. Faites un don pour que la tech soit bénéfique par défaut' %}
+  {% set body_1 = 'La Fondation Mozilla — l’organisation à but non lucratif à l’origine de Firefox — construit un avenir où la technologie est au service des gens, et non du pouvoir.' %}
+  {% set body_2 = 'Votre don à la Fondation Mozilla permet de faire en sorte qu’Internet reste ouvert, protège votre vie privée et soit pensé pour toutes et tous. Faites un don aujourd’hui pour qu’Internet puisse tenir ses promesses.' %}
+  {% set button_text = 'Faire un don à la Fondation Mozilla' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-fr' %}
+{% elif LANG == "it" %}
+  {% set heading = 'La forza di Firefox sei tu. Rendi la tecnologia di qualità uno standard. Basta una donazione.' %}
+  {% set body_1 = 'Mozilla Foundation, l’organizzazione senza fini di lucro che ha sviluppato Firefox, sta creando un futuro in cui la tecnologia è al servizio delle persone e non dei potenti.' %}
+  {% set body_2 = 'Con la tua donazione a Mozilla Foundation, internet resta un luogo libero, riservato e dedicato alle persone. Dona subito per trasformare in realtà la missione originaria di internet.' %}
+  {% set button_text = 'Dona a Mozilla Foundation' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-it' %}
+{% elif LANG == "ja" %}
+  {% set heading = '皆様が Firefox の原動力です。良きテクノロジーをデフォルトにするために、ご寄付をお願いします' %}
+  {% set body_1 = 'Firefox を運営する非営利団体 Mozilla Foundation は、テクノロジーが権力ではなく人々に貢献する未来を築いています。' %}
+  {% set body_2 = 'Mozilla Foundation へのご寄付は、オープンで、プライベートな、人々のために作られたインターネットを守る活動に充てられます。インターネットの約束を良きものにするために、ご寄付ください。' %}
+  {% set button_text = 'Mozilla Foundation に寄付する' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-ja' %}
+{% elif LANG == "pl" %}
+  {% set heading = 'Firefox rozwija się dzięki Tobie. Wesprzyj nas, jeśli chcesz, by świat korzystał z dobrych technologii' %}
+  {% set body_1 = 'Mozilla Foundation – organizacja non profit stojąca za Firefoxem – buduje przyszłość, w której technologia służy ludziom, nie władzy.' %}
+  {% set body_2 = 'Dzięki Twojemu wsparciu dla Mozilla Foundation internet pozostanie otwarty, bezpieczny i przyjazny dla ludzi. Wesprzyj nas już dziś, aby urzeczywistnić naszą wizję internetu.' %}
+  {% set button_text = 'Przekaż datek na Mozilla Foundation' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-pl' %}
+{% elif LANG.startswith('es-') %}
+  {% set heading = 'Tú impulsas Firefox. Dona para que la buena tecnología prevalezca' %}
+  {% set body_1 = 'Fundación Mozilla —la organización sin fines de lucro detrás de Firefox— está creando un futuro en el que la tecnología sirva a las personas, no al poder.' %}
+  {% set body_2 = 'Tu donación a Fundación Mozilla ayuda a mantener Internet abierto, privado y accesible para todo el mundo. Haz una donación hoy mismo para cumplir la promesa de Internet.' %}
+  {% set button_text = 'Haz una donación a Fundación Mozilla' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-sp' %}
+{% elif LANG.startswith('pt-') %}
+  {% set heading = 'Você é a força por trás do Firefox. Doe agora para que a tecnologia para o bem seja o padrão' %}
+  {% set body_1 = 'A Fundação Mozilla, a organização sem fins lucrativos criadora do Firefox, está construindo um futuro em que a tecnologia serve às pessoas, não ao poder.' %}
+  {% set body_2 = 'Sua doação para a Fundação Mozilla mantém a internet aberta, privada e feita para as pessoas. Doe hoje e ajude a cumprir a promessa original da internet.' %}
+  {% set button_text = 'Doe para a Fundação Mozilla' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-pt-BR' %}
+{% else %}
+  {% set heading = 'You power Firefox. Now donate to make good tech the default.' %}
+  {% set body_1 = 'Mozilla Foundation — the non-profit behind Firefox — is building a future where technology serves people, not power.' %}
+  {% set body_2 = 'Your donation to Mozilla Foundation keeps the internet open, private, and built for people. Donate today to make good on the promise of the internet.' %}
+  {% set button_text = 'Donate to Mozilla Foundation' %}
+  {% set button_link = 'https://www.mozillafoundation.org/?form=25-fxm-gt-en' %}
+{% endif %}
+
+{% block page_title %}{{ button_text }}{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('protocol-split') }}
+  {{ css_bundle('firefox_welcome_page26') }}
+{% endblock %}
+
+{% block shoulder_cta %}{% endblock %}
+
+{% block content_body %}
+<section class="mzp-c-split">
+  <div class="c-fundraiser-container mzp-c-split-container">
+    <div class="mzp-c-split-body ">
+      <h1 class="mzp-u-title-md">{{ heading }}</h1>
+      <p>{{ body_1 }}</p>
+      {% if body_2 %}<p>{{ body_2 }}</p>{% endif %}
+      <p>
+        <a class="c-fundraiser-button mzp-c-button mzp-t-product" href="{{ button_link }}" data-cta-text="Donate">
+          {{ button_text }}
+          <span class="c-fundraiser-button-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
+              <path d="M5.44994 6.28789L5.44994 8.09414L-2.74887e-07 8.09414L-3.5384e-07 6.2879L5.44994 6.28789ZM14 7.19102L5.44994 -0.000774622L5.44994 6.28789L7.25619 6.28789L7.25619 3.8788L11.194 7.19102L7.25619 10.5032L7.25619 8.09414L5.44994 8.09414L5.44994 14.3828L14 7.19102Z" fill="white"/>
+            </svg>
+          </span>
+        </a>
+      </p>
+    </div>
+    <div class="c-fundraiser-media-container mzp-c-split-media ">
+      {{ resp_img('img/firefox/welcome/page26/computer-585.jpeg',
+        srcset={
+          'img/firefox/welcome/page26/computer-1170.jpeg': '2x'
+        },
+        optional_attributes={
+          "width": "585",
+          "height": "397",
+          "class": "mzp-c-split-media-asset"
+        }
+      ) }}
+    </div>
+  </div>
+</section>
+{% endblock %}

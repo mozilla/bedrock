@@ -13,7 +13,8 @@ from django.db.models import Count
 
 from dateutil.parser import parse as parsedate
 
-from bedrock.security.models import HallOfFamer, MitreCVE, Product, SecurityAdvisory
+from bedrock.base.sanitization import sanitize_html
+from bedrock.security.models import HallOfFamer, Product, SecurityAdvisory
 from bedrock.security.utils import (
     FILENAME_RE,
     check_hof_data,
@@ -21,7 +22,6 @@ from bedrock.security.utils import (
     parse_md_file,
     parse_yml_file,
     parse_yml_file_base,
-    update_advisory_bugs,
 )
 from bedrock.utils.git import GitRepo
 from bedrock.utils.management.cron_command import CronCommand
@@ -30,11 +30,72 @@ from bedrock.utils.management.decorators import alert_sentry_on_exception
 ADVISORIES_REPO = settings.MOFO_SECURITY_ADVISORIES_REPO
 ADVISORIES_PATH = settings.MOFO_SECURITY_ADVISORIES_PATH
 ADVISORIES_BRANCH = settings.MOFO_SECURITY_ADVISORIES_BRANCH
+ADVISORIES_AUTH = settings.MOFO_SECURITY_ADVISORIES_AUTH
 
 SM_RE = re.compile(r"seamonkey", flags=re.IGNORECASE)
 FNULL = open(os.devnull, "w")
 HOF_FILES = ["client.yml", "web.yml"]
 HOF_DIRECTORY = "bug-bounty-hof"
+
+# Allowlists for advisory HTML sanitization.
+# Tags come from markdown output and the security/partials/cve.html template.
+ADVISORY_ALLOWED_TAGS = frozenset(
+    {
+        # Markdown output
+        "a",
+        "abbr",
+        "b",
+        "blockquote",
+        "br",
+        "code",
+        "del",
+        "em",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "h6",
+        "hr",
+        "i",
+        "img",
+        "li",
+        "ol",
+        "p",
+        "pre",
+        "small",
+        "strong",
+        "ul",
+        # CVE partial template structure
+        "section",
+        "dl",
+        "dt",
+        "dd",
+        "span",
+    }
+)
+ADVISORY_ALLOWED_ATTRS = {
+    "*": ["class", "id"],
+    "a": ["href"],
+    "img": ["src", "srcset", "alt"],
+    "span": ["class"],
+}
+
+
+def strip_html_comments(html):
+    """Remove HTML comments (<!-- ... -->) from advisory HTML.
+
+    Some older advisories contain HTML comments (e.g. commented-out CVE
+    placeholders).  The sanitizer escapes these into visible &lt;!-- … --&gt;
+    text, so we strip them before sanitization.
+    """
+    return re.sub(r"<!--.*?-->", "", html, flags=re.DOTALL)
+
+
+def sanitize_advisory_html(html):
+    """Sanitize advisory HTML using an allowlist of tags and attributes."""
+    html = strip_html_comments(html)
+    return sanitize_html(html, ADVISORY_ALLOWED_TAGS, ADVISORY_ALLOWED_ATTRS)
 
 
 def fix_product_name(name):
@@ -116,50 +177,6 @@ def add_hofers(filename, data):
         )
 
 
-def parse_cve_id(cve_id):
-    cve_year, cve_order = cve_id.split("-")[1:]
-    return int(cve_year), int(cve_order)
-
-
-def add_or_update_cve(data):
-    for cve_id, advisory in data["advisories"].items():
-        if not cve_id.startswith("CVE-"):
-            # skip advisories that are not CVE
-            continue
-
-        if not advisory.get("feed", True):
-            # skip advisories with `feed: false`
-            continue
-
-        cve_year, cve_order = parse_cve_id(cve_id)
-        update_advisory_bugs(advisory)
-        cve_title = advisory.get("cve_problemtype", advisory.get("title")) or ""
-        cve_data = {
-            "id": cve_id,
-            "year": cve_year,
-            "order": cve_order,
-            "title": cve_title,
-            "impact": advisory["impact"] or "",
-            "reporter": advisory["reporter"] or "",
-            "description": advisory["description"] or "",
-            "bugs": advisory["bugs"],
-        }
-        try:
-            cve = MitreCVE.objects.get(id=cve_id)
-        except MitreCVE.DoesNotExist:
-            cve = MitreCVE(**cve_data)
-            cve.products = data["fixed_in"]
-            cve.mfsa_ids.append(data["mfsa_id"])
-        else:
-            cve.products = list(set(cve.products).union(data["fixed_in"]))
-            cve.mfsa_ids = list(set(cve.mfsa_ids).union([data["mfsa_id"]]))
-            for prop, value in cve_data.items():
-                if value:
-                    setattr(cve, prop, value)
-
-        cve.save()
-
-
 def update_db_from_file(filename):
     """
     Parse file for YAML and Markdown and update database.
@@ -178,8 +195,7 @@ def update_db_from_file(filename):
         raise RuntimeError(f"Unknown file type {filename}")
 
     data, html = parser(filename)
-    if "advisories" in data:
-        add_or_update_cve(data)
+    html = sanitize_advisory_html(html)
     return add_or_update_advisory(data, html)
 
 
@@ -247,12 +263,19 @@ class Command(CronCommand):
         )
 
     def handle_safe(self, quiet, no_git, clear_db, **options):
+        if not ADVISORIES_AUTH:
+            # No PAT configured — nothing to sync against the private repo.
+            # Skip rather than failing scripts like bin/run-db-update.sh.
+            self.stdout.write("Skipping security advisories sync: MOFO_SECURITY_ADVISORIES_AUTH is not set.")
+            return
+
         force = no_git or clear_db
         repo = GitRepo(
             ADVISORIES_PATH,
             ADVISORIES_REPO,
             branch_name=ADVISORIES_BRANCH,
             name="Security Advisories",
+            auth=ADVISORIES_AUTH or None,
         )
 
         def printout(msg, ending=None):
@@ -263,7 +286,6 @@ class Command(CronCommand):
             printout("Clearing all security advisories.")
             SecurityAdvisory.objects.all().delete()
             Product.objects.all().delete()
-            MitreCVE.objects.all().delete()
 
         if not no_git:
             printout("Updating repository.")

@@ -29,7 +29,7 @@
     .m24-pencil-banner-close {
         @include bidi(((right, $spacer-sm, auto), (left, auto, $spacer-sm)));
         @include image-replaced;
-        background: transparent url('/media/img/icons/m24-small/close.svg') center center no-repeat;
+        background: transparent url('/media/protocol/img/icons/close.svg') center center no-repeat;
         @include background-size(20px 20px);
         border: $border-width solid transparent;
         cursor: pointer;

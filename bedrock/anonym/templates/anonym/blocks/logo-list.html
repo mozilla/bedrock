@@ -1,0 +1,17 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<ul class="mzan-logo-list">
+  {% for item in value["items"] %}
+    {% if item.block_type == "label" %}
+      <li class="mzan-logo-item is-label">{{ item.value }}</li>
+    {% elif item.block_type == "logo" %}
+      <li class="mzan-logo-item">
+        <img class="mzan-logo-list-logo" src="{{ item.value.file.url }}" alt="{{ item.value.title }}" width="64" height="64" loading="lazy">
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

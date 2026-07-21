@@ -15,13 +15,14 @@ from django.template.defaultfilters import slugify as django_slugify
 from django.template.defaulttags import CsrfTokenNode
 from django.template.loader import render_to_string
 from django.utils.encoding import smart_str
+from django.utils.html import format_html, format_html_join
 
-import bleach
 import jinja2
 from django_jinja import library
 from markupsafe import Markup
 from product_details import product_details
 
+from bedrock.base.sanitization import strip_all_tags
 from bedrock.base.templatetags.helpers import static, urlparams
 
 ALL_FX_PLATFORMS = ("windows", "linux", "mac", "android", "ios")
@@ -131,8 +132,7 @@ def l10n_css(ctx):
 
     For a locale that has locale-specific stylesheet, this would output:
 
-        <link rel="stylesheet" media="screen,projection,tv"
-              href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/l10n/{{ LANG }}/intl.css">
 
     For a locale that doesn't have any locale-specific stylesheet, this would
     output nothing.
@@ -149,7 +149,7 @@ def l10n_css(ctx):
     locale = getattr(ctx["request"], "locale", "en-US")
 
     if _l10n_media_exists("css", locale, "intl.css"):
-        markup = '<link rel="stylesheet" media="screen,projection,tv" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
+        markup = '<link rel="stylesheet" href="%s">' % static(path.join("css", "l10n", locale, "intl.css"))
     else:
         markup = ""
 
@@ -363,13 +363,13 @@ def donate_url(ctx, location=""):
 
     This would output:
 
-        https://foundation.mozilla.org/donate/
+        https://www.mozillafoundation.org/donate/
 
         {{ donate(location='contribute')}}
 
     This would output:
 
-        https://foundation.mozilla.org/?form=contribute
+        https://www.mozillafoundation.org/?form=contribute
 
     """
 
@@ -477,7 +477,11 @@ def slugify(text):
 
 @library.filter
 def bleach_tags(text):
-    return bleach.clean(text, tags=set(), strip=True).replace("&amp;", "&")
+    """Strip all HTML tags and convert entities to characters for plain text output.
+
+    Used in .txt email templates where HTML entities should become real characters.
+    """
+    return strip_all_tags(text).replace("&amp;", "&")
 
 
 # from jingo
@@ -650,10 +654,6 @@ def _fxa_product_button(
 ):
     href = _fxa_product_url(product_url, entrypoint, optional_parameters)
     css_class = "js-fxa-cta-link"
-    attrs = ""
-
-    if optional_attributes:
-        attrs += " ".join(f'{attr}="{val}"' for attr, val in optional_attributes.items())
 
     if include_metrics:
         css_class += " js-fxa-product-button"
@@ -664,7 +664,21 @@ def _fxa_product_button(
     if class_name:
         css_class += f" {class_name}"
 
-    markup = f'<a href="{href}" data-action="{settings.FXA_ENDPOINT}" class="{css_class}" {attrs}>{button_text}</a>'
+    # Build the anchor with contextual escaping. `button_text`, the
+    # `optional_attributes` values, and the label-derived `href` can all carry
+    # caller- or l10n-supplied data (e.g. a translated button label,
+    # `data-cta-*` attributes, or the `entrypoint`/`utm_campaign` that flows
+    # into the `href`). Every interpolated value must therefore be escaped to
+    # prevent XSS.
+    attrs = format_html_join(" ", '{}="{}"', (optional_attributes or {}).items())
+    markup = format_html(
+        '<a href="{}" data-action="{}" class="{}" {}>{}</a>',
+        href,
+        settings.FXA_ENDPOINT,
+        css_class,
+        attrs,
+        button_text,
+    )
 
     return Markup(markup)
 

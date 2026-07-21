@@ -19,7 +19,7 @@ def decorated_dummy_view(request):
     return HttpResponse("This is a dummy response from the decorated view")
 
 
-@prefer_cms(fallback_lang_codes=["fr-CA", "es-MX", "sco"])
+@prefer_cms(fallback_lang_codes=["fr-CA", "es-ES", "sco"])
 def decorated_dummy_view_with_locale_strings(request):
     return HttpResponse("This is a dummy response from the decorated view with locale strings passed in")
 

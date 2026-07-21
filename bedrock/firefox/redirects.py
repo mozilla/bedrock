@@ -7,17 +7,20 @@ from functools import partial
 
 from django.conf import settings
 
-from bedrock.firefox.urls import (
-    android_releasenotes_re,
-    android_sysreq_re,
-    channel_re,
-    ios_releasenotes_re,
-    ios_sysreq_re,
-    platform_re,
-    releasenotes_re,
-    sysreq_re,
-)
+from bedrock.firefox import version_re
+from bedrock.firefox.urls import channel_re, latest_re, platform_re
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
+
+# Release notes / system requirements pages are now served by www.firefox.com, so
+# the URL patterns that rendered them in bedrock.firefox.urls have been removed.
+# These regexes are only used here, to redirect those paths (including all the
+# versioned URLs still in the wild) to www.firefox.com.
+releasenotes_re = latest_re % (version_re, r"(aurora|release)notes")
+android_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/android")
+ios_releasenotes_re = releasenotes_re.replace(r"firefox", "firefox/ios")
+sysreq_re = latest_re % (version_re, "system-requirements")
+android_sysreq_re = sysreq_re.replace(r"firefox", "firefox/android")
+ios_sysreq_re = sysreq_re.replace(r"firefox", "firefox/ios")
 
 PRODUCT_OPTIONS = ["firefox", "focus", "klar"]
 # matches only ASCII letters (ignoring case), numbers, dashes, periods, and underscores.
@@ -76,6 +79,24 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
     return f"{settings.FXC_BASE_URL}{request.path}"
 
 
+WNP_145_PLUS_RE = (
+    # Issues 16590 and 16791 for WNP 145+ Release (not Nightly, Beta/Developer or ESR)
+    # https://mozilla-hub.atlassian.net/browse/WT-1125 -> need to expand WNP Release to all locales
+    r"^(?P<wnp_locale>[a-z]{2}(?:-[A-Z]{2})?)/firefox/"
+    r"(?P<major_version>1(?:4[5-9]|[5-9]\d|\d{3,4})|[2-9]\d{2,4})"
+    r"\.\d{1,3}(?:\.\d{1,3}){0,2}/whatsnew/?$"
+)
+
+wnp_redirectpatterns = (
+    # Note not an offsite_redirect, so no additional querystring is injected
+    redirect(
+        # Issues 16590 and 16791 for WNP 145+
+        WNP_145_PLUS_RE,
+        f"{settings.FXC_BASE_URL}/" + "{wnp_locale}/whatsnew/{major_version}/",
+        permanent=True,
+    ),
+)
+
 releasenotes_redirectpatterns = (
     # Special-case redirects that existed before the Bedrock->Springfield redirects;
     # pulled together here in one place
@@ -83,78 +104,78 @@ releasenotes_redirectpatterns = (
         # issue 14467; 16381
         r"^firefox/125\.0/releasenotes/?$",
         f"{settings.FXC_BASE_URL}/firefox/125.0.1/releasenotes/",
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         r"^firefox/38\.0\.3/releasenotes/$",
         f"{settings.FXC_BASE_URL}/firefox/38.0.5/releasenotes/",
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     # Redirects from Bedrock to Springfield in general
     offsite_redirect(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?notes/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/nightly/notes/feed/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/(?:latest/)?releasenotes/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/android/releasenotes/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/ios/releasenotes/",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         f"^firefox/(?:{platform_re}/)?(?:{channel_re}/)?system-requirements/$",
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         android_releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         ios_releasenotes_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         android_sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         ios_sysreq_re,
         _redirect_to_same_path_on_fxc,
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
     offsite_redirect(
         "firefox/releases/$",
         f"{settings.FXC_BASE_URL}/releases/",  # leave Springfield to sort out the local redirect
-        permanent=settings.MAKE_RELNOTES_REDIRECTS_PERMANENT,
+        permanent=True,
     ),
 )
 
@@ -163,13 +184,7 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/browsers/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/new/$", f"{FXC}/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/releasenotes/$", f"{FXC}/firefox/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/system-requirements/$", f"{FXC}/firefox/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/all/$", f"{FXC}/download/all/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/android/releasenotes/$", f"{FXC}/firefox/android/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/android/system-requirements/$", f"{FXC}/firefox/android/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/browsers/best-browser/$", f"{FXC}/more/best-browser/", permanent=True),
     offsite_redirect(r"^firefox/browsers/browser-history/$", f"{FXC}/more/browser-history/", permanent=True),
     offsite_redirect(r"^firefox/browsers/chromebook/$", f"{FXC}/browsers/desktop/chromebook/", permanent=True),
@@ -202,9 +217,11 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/features/add-ons/$", f"{FXC}/features/add-ons/", permanent=True),
     offsite_redirect(r"^firefox/features/block-fingerprinting/$", f"{FXC}/features/block-fingerprinting/", permanent=True),
     offsite_redirect(r"^firefox/features/bookmarks/$", f"{FXC}/features/bookmarks/", permanent=True),
+    offsite_redirect(r"^firefox/features/complete-pdf/$", f"{FXC}/features/complete-pdf/", permanent=True),
     offsite_redirect(r"^firefox/features/customize/$", f"{FXC}/features/customize/", permanent=True),
     offsite_redirect(r"^firefox/features/eyedropper/$", f"{FXC}/features/eyedropper/", permanent=True),
     offsite_redirect(r"^firefox/features/fast/$", f"{FXC}/features/fast/", permanent=True),
+    offsite_redirect(r"^firefox/features/free-pdf-editor/$", f"{FXC}/features/free-pdf-editor/", permanent=True),
     offsite_redirect(r"^firefox/features/password-manager/$", f"{FXC}/features/password-manager/", permanent=True),
     offsite_redirect(r"^firefox/features/pdf-editor/$", f"{FXC}/features/pdf-editor/", permanent=True),
     offsite_redirect(r"^firefox/features/picture-in-picture/$", f"{FXC}/features/picture-in-picture/", permanent=True),
@@ -215,16 +232,11 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/features/tips/$", f"{FXC}/features/tips/", permanent=True),
     offsite_redirect(r"^firefox/features/translate/$", f"{FXC}/features/translate/", permanent=True),
     offsite_redirect(r"^firefox/installer-help/$", f"{FXC}/download/installer-help/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/ios/releasenotes/$", f"{FXC}/firefox/ios/releasenotes/", permanent=True),
-    # offsite_redirect(r"^firefox/ios/system-requirements/$", f"{FXC}/firefox/ios/system-requirements/", permanent=True),
     offsite_redirect(r"^firefox/ios/testflight/$", f"{FXC}/channel/ios/testflight/", permanent=True),
     offsite_redirect(r"^firefox/linux/$", f"{FXC}/browsers/desktop/linux/", permanent=True),
     offsite_redirect(r"^firefox/mac/$", f"{FXC}/browsers/desktop/mac/", permanent=True),
     offsite_redirect(r"^firefox/mobile/get-app/$", f"{FXC}/browsers/mobile/get-app/", permanent=True),
     offsite_redirect(r"^firefox/more/$", f"{FXC}/more/", permanent=True),
-    # NOT YET - releasenotes and system requerements should be redirected as a separate piece of work
-    # offsite_redirect(r"^firefox/releases/$", f"{FXC}/releases/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/$", f"{FXC}/landing/set-as-default/", permanent=True),
     offsite_redirect(r"^firefox/set-as-default/thanks/$", f"{FXC}/landing/set-as-default/thanks/", permanent=True),
     offsite_redirect(r"^firefox/unsupported-systems/$", f"{FXC}/browsers/unsupported-systems/", permanent=True),
@@ -798,4 +810,4 @@ bedrock_redirectpatterns = (
     redirect(r"^/firefox/?$", f"{FXC}/"),
 )
 
-redirectpatterns = releasenotes_redirectpatterns + bedrock_redirectpatterns + springfield_redirectpatterns
+redirectpatterns = wnp_redirectpatterns + releasenotes_redirectpatterns + bedrock_redirectpatterns + springfield_redirectpatterns

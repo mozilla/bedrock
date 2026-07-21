@@ -1,7 +1,6 @@
 [run]
 source = bedrock,lib,bin
 omit =
-    .circleci/*
     .github/*
     .venv/*
     **/migrations/*
@@ -12,7 +11,6 @@ omit =
     manage.py
     node_modules/*
     python_coverage/*
-    setup.py
     static/*
     test_infra/*
     tests/*

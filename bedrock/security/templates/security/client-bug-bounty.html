@@ -23,7 +23,7 @@
 
   <p>The Mozilla Client Security Bug Bounty Program is designed to encourage security research in Mozilla software and to reward those who help us create the safest Internet software in existence.</p>
 
-  <p><strong>Guidelines:</strong> In addition to our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a>, submissions must be either an <a href="#static-analysis-bounty">static analysis submission</a>, <a href="#exploit-mitigation-bounty">exploit mitigation bypass</a> or a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information.</p>
+  <p><strong>Guidelines:</strong> Our <a href="{{ url('security.bug-bounty') }}">general eligibility requirements</a> apply to the Client Bug Bounty Program. Submissions must be either a <a href="#security-vulnerability-bounty">security bug</a> demonstrating the ability to perform an unauthorized action or obtain access to otherwise-restricted information or an <a href="#exploit-mitigation-bounty">exploit mitigation bypass</a>. We recommend that you read our <a href="{{ url('security.bug-bounty.faq') }}">Frequently Asked Questions</a> before submitting.</p>
 
   <h2 id="security-vulnerability-bounty">Security Vulnerability Bounty</h2>
 
@@ -33,6 +33,7 @@
     <li>Eligible security bugs may be present in any of the main development or released versions of Firefox, Firefox for Android, or Firefox for iOS as released by Mozilla Corporation (e.g. Nightly mozilla-central or Beta test versions, as well as the final release product versions). End-of-life products are not eligible for a security bug bounty and non-default configurations are <a href="{{ url('security.bug-bounty.faq') }}#nondefault-pref">only sometimes eligible</a>.</li>
     <li>Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</li>
     <li>We reserve the right not to pay bounties for security bugs in or caused by additional third party software (e.g. binary plugins, extensions) not bundled by Mozilla in a release.</li>
+    <li>We typically will not pay bounties that point out a patch gap between Firefox and a third party library we vendor, so long as the library has a history of being updated on a cadence.</li>
   </ul>
 
   <p>All bounties paid will be at the discretion of the Mozilla Bounty Committee. The committee will evaluate the severity of reported issues with the help of engineers who work on the affected code. Security researchers are invited to participate in the assignment of ratings, but final decisions on the rating are at the discretion of the Bounty Committee.</p>
@@ -49,14 +50,14 @@
   <ul class="mzp-u-list-styled">
     <li>Sufficient information to diagnose the vulnerability and produce a fix.  Examples:</li>
     <ul class="mzp-u-list-styled">
-      <li>ASAN Stacktrace or Crash Dump (typically for Memory Trespassing/Corruption)</li>
+      <li>ASAN Stacktrace or Crash Dump (typically for Memory Trespassing/Corruption) including a testcase that reproduces that output</li>
       <li>Trigger point (for UXSS)</li>
-      <li>ASAN Nightly bug reports</li>
     </ul>
     <li>Notes:</li>
     <ul class="mzp-u-list-styled">
       <li>Typically bounties are not paid for issues which cannot be identified/fixed from the report.</li>
-      <li>While we do adhere to a first reporter-rule (with a 72-hour collision window), exceptions are made for reports that are not actionable and require additional information provided by another party.</li>
+      <li>While we do adhere to a first reporter-rule (with a 48-hour collision window), exceptions are made for reports that are not actionable and require additional information provided by another party.</li>
+      <li>A report should not have severity keywords set or include CVSS scores or CWEs.</li>
     </ul>
   </ul>
 
@@ -83,7 +84,7 @@
     <tr>
       <th></th>
       <th>High Quality Report</th>
-      <th>Baseline</th>
+      <th>Baseline: up to</th>
     </tr>
   </thead>
   <tbody>
@@ -132,6 +133,8 @@
       <td>
         <ul class="mzp-u-list-styled">
           <li>sec-high rated address bar spoofs</li>
+          <li>Memory corruption in the GPU process</li>
+          <li>Information disclosure from the parent to a less privileged process (e.g. out-of-bounds memory reads via IPC)</li>
         </ul>
       </td>
       <td class="two-col-cell" colspan="2">
@@ -173,7 +176,7 @@
 
   <p><sup>1</sup> For Highest Impact, bypassing WebExtension Install Prompts excludes local attacks.</p>
 
-  <p><sup>2</sup>UXSS is defined as the ability to execute JavaScript in an arbitrary cross-origin context. As mentioned above, complex user interaction or limited capabilities of the vulnerability (such as only being able to inject into a cross-origin domain, but not an arbitrary cross-origin domain) may decrease the bounty award.</p>
+  <p><sup>2</sup>UXSS is defined as the ability to execute JavaScript in an arbitrary cross-origin context. As mentioned above, complex user interaction or limited capabilities of the vulnerability (such as requiring a compromised content process; or only being able to inject into a cross-origin domain, but not an arbitrary cross-origin domain) will decrease the bounty award.</p>
 
   <p><sup>3</sup> If precise control of the OOM condition can be demonstrated, this will be considered High Impact.</p>
 
@@ -183,12 +186,13 @@
 
   <p>Within Firefox, we have introduced vital security features, exploit mitigations, and defense in depth measures. If you are able to bypass one of these measures, even if you are operating from privileged access within the browser, you are eligible for a bounty.</p>
 
-  <p>Privileged access means bypassing the mitigation in a testing scenario; such as <a href="https://blog.mozilla.org/security/2019/12/02/help-test-firefoxs-built-in-html-sanitizer-to-protect-against-uxss-bugs/">directly testing the HTML Sanitizer</a>. However do note that as explained above in footnote <sup>1</sup>, direct calls to an IPC method from a compromised content process is an expected attack vector and not considered a testing scenario; these are eligible for a Highest Impact bounty as well as the Bounty Bonus described below.</p>
+  <p>Privileged access means bypassing the mitigation in a testing scenario; such as <a href="https://blog.mozilla.org/security/2019/12/02/help-test-firefoxs-built-in-html-sanitizer-to-protect-against-uxss-bugs/">directly testing the HTML Sanitizer</a>. However do note that as explained above in footnote <sup>0</sup>, direct calls to an IPC method from a compromised content process is an expected attack vector and not considered a testing scenario; these are eligible for a Highest Impact bounty as well as the Bounty Bonus described below.</p>
 
   <p>The mitigations we consider in scope for this bounty are:</p>
 
   <ul class="mzp-u-list-styled">
     <li>We compile <a href="https://searchfox.org/mozilla-central/source/toolkit/moz.configure#2108-2113">certain libraries</a><sup>5</sup> from C/C++ to wasm, isolating them in a memory-safe sandbox. To bypass the mitigation, you are allowed to introduce a memory corruption flaw into the library; after which point you would need to exploit the flaw to either achieve arbitrary code execution within the content process (or convince us it is possible via e.g. RIP control) <em>or</em> manipulate the library to provide output crossing the taint boundary (<a href="https://searchfox.org/mozilla-central/rev/2c991232499e826e46f9d976eb653817340ba389/third_party/rlbox/include/rlbox.hpp#63-78">example</a>) which causes Firefox to make an incorrect security-relevant decision.</li>
+    <li>We use a Content Security Policy to <a href="https://attackanddefense.dev/2025/04/09/hardening-the-firefox-frontend-with-content-security-policies.html">prevent script execution</a> in the Parent Process. A bypass would be either (a) a CSP bypass that would lead to a sandbox escape if there was a script injection vector (i.e. demonstrate there is a gap in the CSP even if you can't find a way to exploit that gap from the content process) or (b) a script injection vector that is only mitigated by the CSP (i.e. demonstrate a script injection vector from the content process that does not execute because of the CSP).</li>
     <li>We separate strings and ArrayBuffers into separate memory arenas from DOM Nodes. A bypass would be arbitrary control of memory layout in the same <a href="https://searchfox.org/mozilla-central/rev/31d8600b73dc85b4cdbabf45ac3f1a9c11700d8e/memory/build/malloc_decls.h#108">jemalloc arena</a> as DOM nodes (i.e. full vtable overlayment). </li>
     <li>We <a href="https://blog.mozilla.org/attack-and-defense/2019/09/29/remote-code-execution-in-firefox-beyond-memory-corruptions/">sanitize HTML fragments before using them in privileged contexts</a>. A bypass would be (i) finding a location we should be sanitizing (because it has attacker-controlled data) but aren’t or (ii) bypassing the HTML sanitizer with something that could execute JS<sup>3</sup> in Firefox.</li>
     <li>We disallow eval() from being used in the System Principal context or the Parent Process. A bypass would be identifying a location where we still use eval that <a href="https://searchfox.org/mozilla-release/rev/42c9e6b219d64360e005268ed1471d7d603b8fa8/dom/security/nsContentSecurityUtils.cpp#279">isn’t explicitly being allowed</a><sup>4</sup>, or how to abuse a location that is allowed.</li>
@@ -216,36 +220,9 @@
 
   <p><strong>Bounty</strong>: Assuming the mitigation is bypassed in a testing scenario, with privileged access, we will treat a bypass of the above listed mitigations as High Impact using the table above, with the same payout range for baseline to high quality report.</p>
 
-  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $18K - $20K plus an additional $9000.</p>
+  <p><strong>Bounty Bonus</strong>: If the mitigation is bypassed without privileged access, this would count as both a regular security vulnerability eligible for a bounty and a mitigation bypass. The vulnerability payout will be decided per the criteria and table above and the mitigation bypass adds a bonus of an additional 50% of the baseline payout for the category. e.g. a UXSS vulnerability that bypasses our HTML sanitization would earn $8K - $10K plus an additional $4000.</p>
 
   <p><em>Note</em>: If you’re in the Bounty Bonus category, you may think submitting them separately could earn you slightly more money than submitting them together. We’re pretty sure that doing so would make the second report bounty-ineligible, but if you think each issue is fully independent, you’re welcome to submit them separately and we’ll consider it.</p>
-
-<h2 id="static-analysis-bounty">Static Analysis Bounty</h2>
-
-  <p>We also have a program that rewards the submission of static analysis tools that identify present or historical security vulnerabilities in Firefox.  We will accept static analysis queries <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">written as clang-based checkers</a> - we have some documentation that <a href="https://firefox-source-docs.mozilla.org/code-quality/static-analysis/writing-new/index.html">may help you get started or integrate and run over Firefox as a whole</a>. Submissions should be made following <a href="#claiming-a-bounty">our instructions below</a>.</p>
-
-  <p>We will issue a bounty for the query itself, dependent upon the quality of the submission. Because this is an experiment, we are not committing to an exact amount or range for the bounty, but we expect this will typically be in the $2500-$7500 range.</p>
-
-  <p>Additionally, if your query matches presently unknown security vulnerabilities, each vulnerability it matches will be considered for a bounty independently. The amount awarded is dependent on the submission quality, as per normal bounty policy. For example purposes, we’ll assume a high or critical vulnerability (which is the most common case for memory corruption.) A report that only shows the output of the tool would be at the minimum end ($3000), and may be less if you submit multiple false positives we need to spend time validating. However a report that includes documentation explaining and validating that the issue is in fact a vulnerability would be eligible for an increased payout. A submission that includes documentation and a test case (which we acknowledge may be difficult for bugs found via this method) would be eligible for the maximum end ($5000).</p>
-
-  <p>The quality of the static analysis submission will be judged on:</p>
-  <ul class="mzp-u-list-styled">
-    <li>Complexity of the query. Is the query identifying a simplistic or syntactical issue with tight locality? Or is it identifying a semantic problem across complicated data flows?</li>
-    <li>Documentation of the query. How does it work, and how did you develop it. What things did you try that didn’t work, and how did you refine it. Crucially: when trying to find the bad pattern, what edge cases does your query miss?</li>
-    <li>Test vectors. Can you supply simple C++ programs that illustrate the vulnerable code patterns that the query matches. Can you supply programs that are edge cases the query misses?
-    <ul class="mzp-u-list-styled">
-      <li>While it may seem unusual to highlight shortcomings of your submission, from our perspective this makes the submission stronger - it gives us confidence you tested it in multiple scenarios, and shows us how we may be able to improve it.</li>
-    </ul></li>
-    <li>What Firefox issues does it identify, either currently unknown, or previously known and fixed? This is your opportunity to argue the usefulness of your query: we’re not going to run your query on historical versions of the codebase, so you should and demonstrate the bugs the query identifies. The more you can identify, the stronger your case is. As a rule of thumb, a query that identifies less than three distinct issues will need an exceptionally strong argument for its future usefulness.</li>
-    <li>The false positive rate of the query. As a rule of thumb, a query should have fewer false positives than true positives. Which means if it matches 1 valid historical issue and 3 current, false positives - you should seek to identify additional historical issues it matches or refine the query.</li>
-    <li>Uniqueness of the query. If we receive multiple query submissions that do the same thing, we will consider the first reported. This is similar to our existing policy that the issue must be previously unreported. However, if your submission improves upon a prior submitted query, we will consider a (smaller) bounty for your improvement upon the prior query.</li>
-  </ul>
-
-  <p><b>More about "Complexity of the query":</b> Consider a function that returns -1 for error, 0 for failure, and 1 for success. Miscasting this return value into a boolean is a common mistake, and we surely have some historical instances of this in our code base. If you identify a function that still has this (bad) API, such a simplistic syntactical query is still valuable to us. If the API is ours, we should fix the API and if the API isn’t ours, we should use static analysis to prevent such a flaw from occurring. But it’s not a very sophisticated query.  On the flip side, a query that does data flow analysis between a user-controlled source and attacker-controlled sink, accounting for complex transitions along the way (like IPC or JS/C++ boundaries) - that is a very sophisticated query.</p>
-
-  <p><b>Examples of Quality of Submission:</b> As mentioned, the bounty amount we grant for the query will be determined based on the quality of the submission, and an estimation of the number of issues we think it may identify in a one to three-year timespan. On the low end, if you submit a query that identifies a single historical issue of a syntactical misuse of an API we are unlikely to use in future code, we may not issue a bounty, and if we did it would be below the $2500 range. And on the high end, if you submit a query that matches 3 unknown issues today, in code written in the last year - we can expect it will identify a significant number of issues in the future and would be looking above the $7500 range. (Plus you’d be eligible for separate bounties on those 3 issues.)</p>
-
-  <p><em>Note</em>: While we previously accepted submissions of CodeQL queries, we no longer do. You are of course encouraged to develop CodeQL queries if you think they will be valuable, and submit any findings you glean from them.</p>
 
   <h2 id="claiming-a-bounty">Claiming a Bug Bounty</h2>
 
@@ -253,9 +230,8 @@
   <ul class="mzp-u-list-styled">
     <li>Make sure you have a Bugzilla account.</li>
     <li>Use the <a href="https://bugzilla.mozilla.org/form.client.bounty">bugzilla client bug bounty form</a> to file the issue and automatically mark it for bug bounty consideration.</li>
-    <li>In the "Description" field, please clearly describe one security issue or static analysis submission. Please do not include extremely verbose output in the description field, and instead attach it as described below.</li>
+    <li>In the "Description" field, please clearly describe one security issue. Please do not include extremely verbose output in the description field, and instead attach it as described below.</li>
     <li>If you have multiple bugs to file (for example, multiple findings from a single tool), file each one via this form individually, and we will link them as appropriate during review.</li>
-    <li>If submitting a static analysis submission, use the "Attachment" option to attach the source code of the query or plugin.</li>
     <li>Attach any supporting documents, such as "proofs of concept", reproduction cases, debug output or output from a tool. Again, use the "Attachment" option. While not required, such supporting documents will improve the quality of the submission and help us judge it more quickly and accurately. If you have multiple files to attach, it is better to attach one, submit the form, and then attach the remainder to the newly-created bug rather than attaching a zip file. (The exception is for a bundle of related files, like several log files, or test vector programs.)</li>
     <li>If you have filed the bug directly in Bugzilla without using the <a href="https://bugzilla.mozilla.org/form.client.bounty">Bugzilla client bug bounty form</a>, please immediately notify the Mozilla Security Group by email to <a href="mailto:security@mozilla.org">security@mozilla.org</a> and include the number of the bug you filed and a mention that you are submitting it for bounty consideration. <strong>Do not send the actual vulnerability via email.</strong></li>
   </ul>

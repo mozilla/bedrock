@@ -1,0 +1,64 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+
+.m24-c-prose {
+    @include grid;
+    margin-bottom: $spacer-lg;
+}
+
+.m24-c-prose-hgroup {
+    grid-column: 1/-1;
+}
+
+.m24-c-prose-heading {
+    font-size: $text-title-lg;
+    margin-bottom: $spacer-sm;
+}
+
+.m24-c-prose-subheading {
+    font-size: $text-title-sm;
+}
+
+.m24-c-prose-body {
+    font-size: $text-body-md;
+    grid-column: 1/-1;
+    line-height: $text-body-line-height;
+
+    & > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+@media #{$mq-lg} {
+    .m24-c-prose {
+        .m24-c-prose-hgroup,
+        .m24-c-prose-body {
+            grid-column: 1/-5;
+        }
+
+        &.m24-l-two-columns {
+            .m24-c-prose-hgroup {
+                grid-column: 1/7;
+            }
+
+            .m24-c-prose-body {
+                grid-column: 7/-1;
+            }
+
+            &.m24-l-reversed {
+                .m24-c-prose-hgroup {
+                    grid-column: 7/-1;
+                }
+
+                .m24-c-prose-body {
+                    grid-row: 1;
+                    grid-column: 1/7;
+                }
+            }
+        }
+    }
+}

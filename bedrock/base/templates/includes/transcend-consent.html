@@ -1,0 +1,10 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Transcend Consent Management - https://docs.transcend.io/docs/consent #}
+{% if settings.TRANSCEND_AIRGAP_URL and switch('transcend-consent') %}
+<script data-cfasync="false" src="{{ settings.TRANSCEND_AIRGAP_URL }}"></script>
+{% endif %}

@@ -86,7 +86,7 @@
         text-decoration: none;
 
         &::before {
-            background: $url-image-arrow-down-form top left no-repeat;
+            background: $url-image-caret-down-form top left no-repeat;
             @include background-size(20px, 20px);
             @include bidi(((right, 8px, left, auto),));
             @include transition(transform 100ms ease-in-out);
@@ -138,6 +138,10 @@
         .c-menu-title {
             padding: 0 $spacing-md;
         }
+    }
+
+    .c-menu-title-icon {
+        @include bidi(((margin, 0 $spacing-sm 0 0, 0 0 0 $spacing-sm),));
     }
 }
 
@@ -239,14 +243,14 @@
             color: $color-black;
             text-decoration: none;
             border-bottom: 2px solid transparent;
+        }
 
-            &:hover,
-            &:active,
-            &:focus {
-                @include transition(border-bottom-color 100ms ease-in-out);
-                border-bottom: 2px solid $color-black;
-                color: $color-black;
-            }
+        a:hover,
+        a:active,
+        a:focus {
+            @include transition(border-bottom-color 100ms ease-in-out);
+            border-bottom: 2px solid $color-black;
+            color: $color-black;
         }
     }
 

@@ -1,0 +1,42 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+{% block body_class %}{{ super() }} advertising{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('mozilla-ads') }}
+{% endblock %}
+
+{% block sub_navigation %}
+  {% with advertising_index_page=page.get_parent() %}
+    {% include 'mozorg/cms/advertising/includes/sub-nav.html' %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  <header class="mza-subpage-header">
+    <div class="m24-c-content">
+      <h1>{{ page.title }}</h1>
+    </div>
+  </header>
+
+
+  <main id="mza-main">
+    {% for block in page.content %}
+      {% include_block block %}
+    {% endfor %}
+  </main>
+{% endblock %}

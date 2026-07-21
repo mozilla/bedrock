@@ -15,7 +15,9 @@ vpn-download-mozilla-vpn-offers = { -brand-name-mozilla-vpn } offers safe and se
 vpn-download-not-available-in-country = Sorry, { -brand-name-mozilla-vpn } is not available for download in your country.
 
 vpn-download-for-windows-v2 = VPN for { -brand-name-windows }
+# Obsolete string (expires: 2026-07-20)
 vpn-download-for-windows-requirements = { -brand-name-windows } 10/11 (64-bit only)
+vpn-download-for-windows-requirements-v2 = { -brand-name-windows } 10/11
 vpn-download-for-windows-long = Download { -brand-name-mozilla-vpn } for { -brand-name-windows }
 vpn-download-for-firefox-extension = Install { -brand-name-firefox } extension
 vpn-download-for-mac = VPN for { -brand-name-mac-short }
@@ -50,3 +52,10 @@ vpn-download-from-the-maker = From the maker of { -brand-name-firefox }, { -bran
 vpn-download-we-never-log = We never log, track, or share your network data.
 
 vpn-download-previous-versions = Download previous versions for { -brand-name-windows } and { -brand-name-mac-short }
+
+vpn-download-install-via-flathub = Install via Flathub
+vpn-download-install-via-apt = Install via APT
+vpn-download-flathub = Flathub
+vpn-download-apt = APT
+vpn-download-windows = 64-bit
+vpn-download-windows-arm = ARM
