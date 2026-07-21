@@ -9,7 +9,9 @@ import {
     dntEnabled,
     getConsentCookie,
     gpcEnabled,
-    isFirefoxDownloadThanks
+    isFirefoxDownloadThanks,
+    setGtagAdsConsentMode,
+    setGtagAnalyticsConsentMode
 } from '../consent/utils.es6';
 
 const GTM_CONTAINER_ID = document
@@ -18,12 +20,43 @@ const GTM_CONTAINER_ID = document
 
 const GTMSnippet = {};
 
+if (typeof window.dataLayer === 'undefined') {
+    window.dataLayer = [];
+}
+
+/**
+ * Set Gtag consent defaults based on consent cookie or
+ * visitor region. Visitors outside EU/EAA default to
+ * granted analytics; visitors inside EU/EAA default to
+ * denied until explicit consent is given. Ads are always
+ * denied by default unless the user has previously consented.
+ */
+GTMSnippet.setGtagConsentDefaults = () => {
+    const cookie = getConsentCookie();
+    const hasPref = cookie;
+
+    if (hasPref) {
+        setGtagAdsConsentMode(cookie.analytics, 'default');
+        setGtagAnalyticsConsentMode(cookie.analytics, 'default');
+    } else {
+        setGtagAdsConsentMode(false, 'default');
+        setGtagAnalyticsConsentMode(!consentRequired(), 'default');
+    }
+};
+
 /**
  * Load the GTM snippet. Expects `GTM_CONTAINER_ID` to be
  * defined in the HTML tag via a data attribute.
  */
 GTMSnippet.loadSnippet = () => {
     if (GTM_CONTAINER_ID) {
+        window.gtag = function () {
+            window.dataLayer.push(arguments);
+        };
+        // first: set default consent
+        GTMSnippet.setGtagConsentDefaults();
+
+        // then: load GTM script (the order is important)
         // prettier-ignore
         (function(w,d,s,l,i,j,f,dl,k,q){
             w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});f=d.getElementsByTagName(s)[0];
@@ -47,6 +80,10 @@ GTMSnippet.isFirefoxDownloadThanks = () => {
  */
 GTMSnippet.handleConsent = (e) => {
     const hasConsent = e.detail.analytics;
+
+    // update gtag consent according to pref
+    setGtagAdsConsentMode(hasConsent);
+    setGtagAnalyticsConsentMode(hasConsent);
 
     if (hasConsent) {
         GTMSnippet.loadSnippet();
