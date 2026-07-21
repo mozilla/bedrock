@@ -10,6 +10,58 @@ const COOKIE_ID = 'moz-consent-pref'; // Cookie name
 const COOKIE_EXPIRY_DAYS = 182; // 6 months expiry
 
 /**
+ * Sets GTAG ads consent mode
+ * @param {Boolean} hasConsent - if analytics pref is true or false
+ * @param {String} type - one of consent mode types (default|update)
+ * @returns {Boolean}
+ */
+function setGtagAdsConsentMode(hasConsent, type = 'update') {
+    // bail out if GTAG has not been created with GTMSnippet.loadSnippet
+    // this needs to run before GTM snippet loads to set proper defaults
+    if (typeof window.gtag === 'undefined') {
+        return false;
+    }
+    if (hasConsent) {
+        window.gtag('consent', type, {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted'
+        });
+    } else {
+        window.gtag('consent', type, {
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            ad_storage: 'denied'
+        });
+    }
+    return true;
+}
+
+/**
+ * Sets GTAG analytics consent mode
+ * @param {Boolean} hasConsent - based on analytics cookie
+ * @param {String} type - one of consent mode types (default|update)
+ * @returns {Boolean}
+ */
+function setGtagAnalyticsConsentMode(hasConsent, type = 'update') {
+    // bail out if GTAG has not been created with GTMSnippet.loadSnippet
+    // this needs to run before GTM snippet loads to set proper defaults
+    if (typeof window.gtag === 'undefined') {
+        return false;
+    }
+    if (hasConsent) {
+        window.gtag('consent', type, {
+            analytics_storage: 'granted'
+        });
+    } else {
+        window.gtag('consent', type, {
+            analytics_storage: 'denied'
+        });
+    }
+    return true;
+}
+
+/**
  * Determines if the current page requires consent.
  * Looks for a data attribute on the <html> tag.
  */
@@ -105,6 +157,9 @@ function setConsentCookie(data) {
             false,
             'lax'
         );
+
+        setGtagAdsConsentMode(data.analytics);
+        setGtagAnalyticsConsentMode(data.analytics);
 
         return true;
     } catch (e) {
@@ -232,5 +287,7 @@ export {
     isFirefoxDownloadThanks,
     isURLExceptionAllowed,
     isURLPermitted,
-    setConsentCookie
+    setConsentCookie,
+    setGtagAdsConsentMode,
+    setGtagAnalyticsConsentMode
 };
