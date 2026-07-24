@@ -13,7 +13,9 @@ import {
     isFirefoxDownloadThanks,
     isURLExceptionAllowed,
     isURLPermitted,
-    setConsentCookie
+    setConsentCookie,
+    setGtagAdsConsentMode,
+    setGtagAnalyticsConsentMode
 } from '../../../../../media/js/base/consent/utils.es6';
 
 describe('consentRequired()', function () {
@@ -377,5 +379,79 @@ describe('setConsentCookie()', function () {
         const data = true;
         const result = setConsentCookie(data);
         expect(result).toBeFalse();
+    });
+});
+
+describe('setGtagAdsConsentMode()', function () {
+    afterEach(function () {
+        delete window.gtag;
+    });
+
+    it('should return false if window.gtag is not defined', function () {
+        expect(setGtagAdsConsentMode(true)).toBeFalse();
+    });
+
+    it('should set granted consent when hasConsent is true', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAdsConsentMode(true);
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'update', {
+            ad_user_data: 'granted',
+            ad_personalization: 'granted',
+            ad_storage: 'granted'
+        });
+    });
+
+    it('should set denied consent when hasConsent is false', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAdsConsentMode(false);
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'update', {
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            ad_storage: 'denied'
+        });
+    });
+
+    it('should respect an explicit type argument', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAdsConsentMode(false, 'default');
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'default', {
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            ad_storage: 'denied'
+        });
+    });
+});
+
+describe('setGtagAnalyticsConsentMode()', function () {
+    afterEach(function () {
+        delete window.gtag;
+    });
+
+    it('should return false if window.gtag is not defined', function () {
+        expect(setGtagAnalyticsConsentMode(true)).toBeFalse();
+    });
+
+    it('should set granted consent when hasConsent is true', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAnalyticsConsentMode(true);
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'update', {
+            analytics_storage: 'granted'
+        });
+    });
+
+    it('should set denied consent when hasConsent is false', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAnalyticsConsentMode(false);
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'update', {
+            analytics_storage: 'denied'
+        });
+    });
+
+    it('should respect an explicit type argument', function () {
+        window.gtag = jasmine.createSpy('gtag');
+        setGtagAnalyticsConsentMode(true, 'default');
+        expect(window.gtag).toHaveBeenCalledWith('consent', 'default', {
+            analytics_storage: 'granted'
+        });
     });
 });
