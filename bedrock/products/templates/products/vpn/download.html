@@ -85,9 +85,11 @@
                 <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-download') }}" data-cta-text="VPN Download (Windows x64)" class="platform-download-link" data-testid="vpn-download-link-primary-64-windows">
                 {{ ftl('vpn-download-windows') }}
                 </a>
+                {# bedrock#17305
                 <a class="mzp-c-button ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="VPN Download (Windows ARM)" class="platform-download-link" data-testid="vpn-download-link-primary-arm-windows">
                 {{ ftl('vpn-download-windows-arm') }}
                 </a>
+                #}
               </div>
             </div>
           </div>
@@ -184,10 +186,12 @@
                 <span class="platform-download-arrow"></span>
                 {{ ftl('vpn-download-windows') }}
               </a>
+              {# bedrock#17305
               <a class="mzp-c-button mzp-t-secondary ga-product-download" href="{{ url('products.vpn.windows-arm-download') }}" data-cta-text="VPN Download (Windows ARM)" class="platform-download-link" data-testid="vpn-download-link-secondary-arm-windows">
                 <span class="platform-download-arrow" aria-hidden="true"></span>
                 {{ ftl('vpn-download-windows-arm') }}
               </a>
+              #}
             </div>
           </li>
           <!-- Mac OS -->
