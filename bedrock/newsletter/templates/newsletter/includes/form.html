@@ -22,7 +22,7 @@
     </header>
     {% elif include_title %}
     <header class="mzp-c-newsletter-header">
-      <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news'), true) }}</h3>
+      <h3 class="mzp-c-newsletter-title">{{ title|d(ftl('newsletter-form-get-firefox-news') if id == 'mozilla-and-you' else ftl('newsletter-form-get-mozilla-updates'), true) }}</h3>
       {% if subtitle %}
       <h4 class="mzp-c-newsletter-subtitle">{{ subtitle }}</h4>
       {% endif %}
