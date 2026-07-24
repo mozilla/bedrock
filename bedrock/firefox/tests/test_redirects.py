@@ -10,7 +10,7 @@ from django.test import RequestFactory
 import pytest
 
 from bedrock.firefox.redirects import mobile_app, validate_param_value
-from bedrock.firefox.views import releasenotes_redirect
+from bedrock.firefox.views import fxc_redirect, releasenotes_redirect
 from bedrock.redirects.util import mobile_app_redirector
 
 ANDROID_UA = "Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36"
@@ -832,6 +832,51 @@ def test_releasenotes_redirect_view(path, expected):
     """`releasenotes_redirect` is normally shadowed by RedirectsMiddleware, so call it
     directly via RequestFactory to confirm its standalone fallback behaviour."""
     resp = releasenotes_redirect(RequestFactory().get(path))
+    assert resp.status_code == 301
+    assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
+
+
+@pytest.mark.parametrize(
+    "path, expected",
+    (
+        # path transformations defined in redirect patterns are applied correctly
+        ("/en-US/firefox/features/", "/en-US/features/?redirect_source=mozilla-org"),
+        ("/en-US/firefox/channel/desktop/", "/en-US/channel/desktop/?redirect_source=mozilla-org"),
+        ("/en-US/firefox/enterprise/", "/en-US/browsers/enterprise/?redirect_source=mozilla-org"),
+    ),
+)
+def test_fxc_redirect_view_delegates_to_resolver(path, expected):
+    """`fxc_redirect` delegates to the redirects resolver so path transformations
+    (e.g. /firefox/features/ → /features/) are applied correctly if the view is
+    reached directly instead of being intercepted by RedirectsMiddleware."""
+    resp = fxc_redirect(RequestFactory().get(path))
+    assert resp.status_code == 301
+    assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
+
+
+@pytest.mark.parametrize(
+    "path, query, expected",
+    (
+        (
+            "/en-US/firefox/unknown/",
+            {"foo": "bar"},
+            "/en-US/firefox/unknown/?foo=bar&redirect_source=mozilla-org",
+        ),
+        (
+            "/en-US/firefox/unknown/",
+            {},
+            "/en-US/firefox/unknown/?redirect_source=mozilla-org",
+        ),
+    ),
+)
+def test_fxc_redirect_view_fallback_preserves_full_path(path, query, expected):
+    """When no redirect pattern matches, `fxc_redirect` falls back to
+    FXC_BASE_URL + full path with redirect_source=mozilla-org appended."""
+    with patch("bedrock.firefox.views.get_redirects_resolver") as mock_get_resolver:
+        from django.urls import Resolver404
+
+        mock_get_resolver.return_value.resolve.side_effect = Resolver404
+        resp = fxc_redirect(RequestFactory().get(path, query))
     assert resp.status_code == 301
     assert resp["Location"] == f"{settings.FXC_BASE_URL}{expected}"
 
