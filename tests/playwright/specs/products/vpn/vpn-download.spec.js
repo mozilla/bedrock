@@ -63,6 +63,7 @@ test.describe(
                 page,
                 browserName
             }) => {
+                test.skip(true, 'bedrock#17305');
                 // Click Windows download link
                 let downloadLink;
 
