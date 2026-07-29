@@ -31,7 +31,6 @@ urlpatterns = (
     path("firefox/channel/ios/", views.fxc_redirect, name="firefox.channel.ios"),
     page("firefox/developer/", "firefox/developer/index.html", ftl_files=["firefox/developer"]),
     path("firefox/enterprise/", views.fxc_redirect, name="firefox.enterprise.index"),
-    path("firefox/facebookcontainer/", views.fxc_redirect, name="firefox.facebookcontainer.index"),
     path("firefox/features/", views.fxc_redirect, name="firefox.features.index"),
     path("firefox/features/pdf-editor/", views.fxc_redirect, name="firefox.features.pdf-editor"),
     path("firefox/features/adblocker/", views.fxc_redirect, name="firefox.features.adblocker"),

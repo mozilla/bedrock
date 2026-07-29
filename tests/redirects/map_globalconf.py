@@ -1183,7 +1183,7 @@ URLS = flatten(
         # issue 10703
         url_test("/firefox/lockwise/", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
         # issue 12107
-        url_test("/firefox/families/", FXC_URL),
+        url_test("/firefox/families/", f"{FXC_URL}?redirect_source=mozilla-org"),
         # issue 10879
         url_test("/exp/", "/"),
         # issue 11092, issue 12156
@@ -1319,7 +1319,7 @@ URLS = flatten(
         # issue 14944
         url_test("/{nothing-personal,nothingpersonal}/", "/firefox/nothing-personal/"),
         url_test("/firefox/nothing-personal/", f"{FXC_URL}?redirect_source=mozilla-org"),
-        url_test("/firefox/nothingpersonal/", FXC_URL),
+        url_test("/firefox/nothingpersonal/", f"{FXC_URL}?redirect_source=mozilla-org"),
         # issue 15008
         url_test("/try-picture-in-picture/", "/firefox/features/picture-in-picture/"),
         # issue 15075

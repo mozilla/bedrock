@@ -787,7 +787,7 @@ bedrock_redirectpatterns = (
     # issue 10703
     redirect(r"firefox/lockwise/?", "https://support.mozilla.org/kb/end-of-support-firefox-lockwise"),
     # issue 12107
-    redirect(r"^/firefox/families/?$", f"{FXC}/", permanent=True),
+    offsite_redirect(r"^/firefox/families/?$", f"{FXC}/", permanent=True),
     redirect(r"^firefox/features/memory/?$", "firefox.features.fast"),
     redirect(r"^firefox/features/independent/?$", "firefox.features.index"),
     redirect(r"^firefox/features/safebrowser/?$", "firefox.features.private"),
@@ -806,7 +806,7 @@ bedrock_redirectpatterns = (
     redirect(r"^firefox/privacy/products/?$", "products.landing"),
     redirect(r"^firefox/privacy/safe-passwords/?$", "firefox.features.password-manager"),
     redirect(r"^firefox/privacy/book/?$", "https://support.mozilla.org/kb/how-stay-safe-web"),
-    redirect(r"^firefox/nothingpersonal/?$", f"{FXC}/", permanent=True),
+    offsite_redirect(r"^firefox/nothingpersonal/?$", f"{FXC}/", permanent=True),
     redirect(r"^firefox/facebookcontainer/?$", "https://addons.mozilla.org/firefox/addon/facebook-container/", permanent=True),
     # issue 15841
     redirect(r"^firefox/tech/?$", "firefox.landing.tech"),
