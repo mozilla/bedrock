@@ -1317,7 +1317,7 @@ URLS = flatten(
         url_test("/firefox/privacy/safe-passwords/", "/firefox/features/password-manager/"),
         url_test("/firefox/privacy/book/", "https://support.mozilla.org/kb/how-stay-safe-web"),
         # issue 14944
-        url_test("/{nothing-personal,nothingpersonal}/", "/firefox/nothing-personal/"),
+        url_test("/{nothing-personal,nothingpersonal}/", f"{FXC_URL}?redirect_source=mozilla-org"),
         url_test("/firefox/nothing-personal/", f"{FXC_URL}?redirect_source=mozilla-org"),
         url_test("/firefox/nothingpersonal/", f"{FXC_URL}?redirect_source=mozilla-org"),
         # issue 15008
