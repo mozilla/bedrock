@@ -15,13 +15,13 @@ pytest-django==4.12.0
 pytest-html==4.2.0  # Provides the --html option used to generate the integration test report
 pytest-mock==3.15.1
 pytest-parallel==0.1.1
-pytest-rerunfailures==16.3
-responses==0.26.1
+pytest-rerunfailures==16.4
+responses==0.26.2
 ruff==0.15.18
-selenium==4.45.0
-translate-toolkit==3.19.11
+selenium==4.46.0
+translate-toolkit==3.19.15
 uv==0.11.23
-wagtail-factories==4.4.0
+wagtail-factories==4.5.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0
 compare-locales==9.0.5
