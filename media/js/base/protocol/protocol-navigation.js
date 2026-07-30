@@ -10,6 +10,10 @@
     'use strict';
 
     var MzpNavigation = {};
+    // Only read by the sticky nav helpers below, which are never initialized
+    // in this legacy copy (`initSticky` has no callers). The sticky nav in use
+    // is m24-navigation.es6.js, which assigns its own `_navElem`.
+    // eslint-disable-next-line no-unassigned-vars
     var _navElem;
     var _navItemsLists;
     var _options = {

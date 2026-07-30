@@ -8,20 +8,19 @@
 
 const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './media/index.js',
     output: {
         path: path.resolve(__dirname, 'assets/'),
-        publicPath: '/media/'
+        publicPath: '/media/',
+        // Clean out /assets before processing
+        clean: true
     },
     performance: {
         hints: 'warning'
     },
     plugins: [
-        // Clean out /assets before processing
-        new CleanWebpackPlugin(),
         new CopyPlugin({
             patterns: [
                 {

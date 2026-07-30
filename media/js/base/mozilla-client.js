@@ -131,8 +131,8 @@ if (typeof window.Mozilla === 'undefined') {
      * @return {Boolean} true if user version number is equal to or greater than product details version.
      */
     Client._compareVersion = function (strict, userVerArr, latestVerArr) {
-        var currentUserNumber = 0;
-        var currentLatestNumber = 0;
+        var currentUserNumber;
+        var currentLatestNumber;
         var isUpToDate = false;
 
         // Make sure both latest and user array lengths match.
