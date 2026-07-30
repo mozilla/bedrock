@@ -557,7 +557,7 @@ redirectpatterns = (
     redirect(r"^diversity/?$", "mozorg.diversity.2022.index", locale_prefix=False),
     redirect(r"^webvision/?$", "mozorg.about.webvision.summary", locale_prefix=True, prepend_locale=False),
     # issue 14944
-    redirect(r"^nothing-?personal/?$", "firefox.nothing-personal.index"),
+    redirect(r"^nothing-?personal/?$", FXC_URL, query={"redirect_source": "mozilla-org"}, merge_query=True, permanent=True),
     # Issue 15008
     redirect(r"^try-picture-in-picture/?$", "firefox.features.picture-in-picture"),
 )

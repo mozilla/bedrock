@@ -109,7 +109,6 @@ urlpatterns = (
     ),
     page("firefox/switch/", "firefox/switch.html", ftl_files=["firefox/switch"]),
     page("firefox/share/", "firefox/share.html", active_locales=["de", "fr", "en-US", "en-CA"]),
-    path("firefox/nothing-personal/", views.fxc_redirect, name="firefox.nothing-personal.index"),
     # Issue 6604, SEO firefox/new pages
     path("firefox/linux/", views.PlatformViewLinux.as_view(), name="firefox.linux"),
     path("firefox/mac/", views.PlatformViewMac.as_view(), name="firefox.mac"),
@@ -148,7 +147,6 @@ urlpatterns = (
     page("firefox/browsers/chromebook/", "firefox/browsers/chromebook.html", ftl_files="firefox/browsers/chromebook"),
     # These pages are now served by www.firefox.com; named routes are retained so
     # templates that still link to them remain reversible.
-    path("firefox/family/", views.fxc_redirect, name="firefox.family.index"),
     # Issue 15383 - Firefox 20th landing page
     page(
         "firefox/firefox20/",
