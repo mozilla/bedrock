@@ -453,17 +453,6 @@ class TestFirefoxWelcomePage1(TestCase):
         render_mock.assert_called_once_with(req, "firefox/welcome/page1.html", ANY, ftl_files="firefox/welcome/page1")
 
 
-# Issue 13253: Ensure that Firefox can continue to refer to this URL.
-@skip(
-    reason="Related view is now unreachable and [TODO] should be removed",
-)
-class TestFirefoxSetAsDefaultThanks(TestCase):
-    def test_firefox_set_as_default_thanks(self):
-        resp = self.client.get("/firefox/set-as-default/thanks/", follow=True)
-        assert resp.status_code == 200, "Ensure this URL continues to work, see issue 13253"
-        assert resp.templates[0].name == "firefox/set-as-default/thanks.html"
-
-
 class TestFirefoxThanksAndroidUTMParameters(TestCase):
     def test_thanks_contains_matching_utm(self):
         resp = self.client.get("/firefox/download/thanks/?utm_source=www.test.com", follow=True)
