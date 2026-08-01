@@ -38,18 +38,18 @@
     "url": "https://bugzilla.mozilla.org/"
   },
   "devDependencies": {
-    "concurrently": "^10.0.3",
+    "concurrently": "^10.0.4",
     "dotenv-webpack": "^9.0.0",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
-    "globals": "^17.6.0",
+    "globals": "^17.8.0",
     "jasmine-browser-runner": "^4.0.0",
-    "jasmine-core": "^6.1.0",
+    "jasmine-core": "^6.3.0",
     "prettier": "^3.3.3",
-    "sinon": "^22.0.0",
+    "sinon": "^22.1.0",
     "stylelint": "^16.10.0",
     "stylelint-config-standard-scss": "^13.1.0",
-    "svgo": "^4.0.0",
+    "svgo": "^4.0.2",
     "webpack-dev-server": "^5.2.4"
   },
   "scripts": {
