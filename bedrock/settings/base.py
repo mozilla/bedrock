@@ -1132,6 +1132,10 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
 GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
+# Tagging server URL for server-side GTM dependency serving, normalized here so
+# both the CSP config and the front-end can just append a path. When empty, Tag
+# Manager dependencies load as usual.
+GTM_SERVER_URL = config("GTM_SERVER_URL", default="").rstrip("/")
 
 # Transcend Consent Management - airgap.js script URL
 TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
