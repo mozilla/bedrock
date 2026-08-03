@@ -1151,6 +1151,26 @@ def _normalize_gtm_server_url(url):
 # When empty, Tag Manager dependencies load from Google as usual.
 GTM_SERVER_URL = _normalize_gtm_server_url(config("GTM_SERVER_URL", default=""))
 
+
+def _normalize_gtm_server_path(path):
+    # Exact path the tagging server serves gtm.js from, i.e. the server
+    # container's "Tag serving path" for our container ID. Only used when
+    # GTM_SERVER_URL is set; Google's CDN always serves from /gtm.js.
+    #
+    # Taken verbatim apart from adding a leading slash, because the trailing
+    # slash is significant and differs by path: a custom path such as
+    # "/script/" 400s without it, while the default "/gtm.js" 400s with it.
+    #
+    # Kept separate from GTM_SERVER_URL so that stays a bare origin, which is
+    # what the CSP directives want.
+    path = path.strip()
+    if path and not path.startswith("/"):
+        path = f"/{path}"
+    return path
+
+
+GTM_SERVER_PATH = _normalize_gtm_server_path(config("GTM_SERVER_PATH", default="/gtm.js"))
+
 # Transcend Consent Management - airgap.js script URL
 TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
 

@@ -19,10 +19,13 @@ const html = document.getElementsByTagName('html')[0];
 const GTM_CONTAINER_ID = html.getAttribute('data-gtm-container-id');
 
 // Load Tag Manager from our own tagging server when server-side dependency
-// serving is configured, else from Google.
-const GTM_BASE_URL =
-    html.getAttribute('data-gtm-server-url') ||
-    'https://www.googletagmanager.com';
+// serving is configured, else from Google. The tagging server serves gtm.js from
+// whatever path is set as its "Tag serving path", so that is configurable too,
+// but Google's CDN only ever serves it from /gtm.js.
+const GTM_SERVER_URL = html.getAttribute('data-gtm-server-url');
+const GTM_BASE_URL = GTM_SERVER_URL || 'https://www.googletagmanager.com';
+const GTM_SCRIPT_PATH =
+    (GTM_SERVER_URL && html.getAttribute('data-gtm-server-path')) || '/gtm.js';
 
 const GTMSnippet = {};
 
@@ -66,7 +69,7 @@ GTMSnippet.loadSnippet = () => {
         // prettier-ignore
         (function(w,d,s,l,i,j,f,dl,k,q){
             w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});f=d.getElementsByTagName(s)[0];
-            k=i.length;q=GTM_BASE_URL+'/gtm.js?id=@&l='+(l||'dataLayer');
+            k=i.length;q=GTM_BASE_URL+GTM_SCRIPT_PATH+'?id=@&l='+(l||'dataLayer');
             while(k--){j=d.createElement(s);j.async=!0;j.src=q.replace('@',i[k]);f.parentNode.insertBefore(j,f);}
         }(window,document,'script','dataLayer',[GTM_CONTAINER_ID]));
     }

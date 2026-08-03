@@ -9,7 +9,7 @@ from django.test import override_settings
 
 import pytest
 
-from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend, _normalize_gtm_server_url
+from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend, _normalize_gtm_server_path, _normalize_gtm_server_url
 
 
 @override_settings(DEV=False, PROD_LANGUAGES=("de", "fr", "nb-NO", "ja", "ja-JP-mac", "en-US", "en-GB"))
@@ -50,3 +50,19 @@ def test_get_media_cdn_hostname(media_url, expected_hostname):
 )
 def test_normalize_gtm_server_url(raw_url, expected_url):
     assert _normalize_gtm_server_url(raw_url) == expected_url
+
+
+@pytest.mark.parametrize(
+    "raw_path, expected_path",
+    (
+        ("/gtm.js", "/gtm.js"),  # the default
+        ("gtm.js", "/gtm.js"),
+        # A custom "Tag serving path" needs its trailing slash kept: the tagging
+        # server answers /script/ but 400s on /script.
+        ("/script/", "/script/"),
+        ("script/", "/script/"),
+        ("", ""),
+    ),
+)
+def test_normalize_gtm_server_path(raw_path, expected_path):
+    assert _normalize_gtm_server_path(raw_path) == expected_path
