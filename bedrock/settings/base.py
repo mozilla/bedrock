@@ -1132,10 +1132,24 @@ PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
 GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
-# Tagging server URL for server-side GTM dependency serving, normalized here so
-# both the CSP config and the front-end can just append a path. When empty, Tag
-# Manager dependencies load as usual.
-GTM_SERVER_URL = config("GTM_SERVER_URL", default="").rstrip("/")
+
+
+def _normalize_gtm_server_url(url):
+    # Tagging server URL for server-side GTM dependency serving, normalized here
+    # so both the CSP config and the front-end can just append a path.
+    #
+    # The front-end concatenates this with a path, so a scheme-less value would
+    # resolve page-relative and silently 404 instead of loading gtm.js. A bare
+    # hostname is a plausible mistake to make here, because the adjacent CSP
+    # entries and CSP_CONNECT_SRC are all written that way.
+    url = url.rstrip("/")
+    if url and "//" not in url:
+        url = f"https://{url}"
+    return url
+
+
+# When empty, Tag Manager dependencies load from Google as usual.
+GTM_SERVER_URL = _normalize_gtm_server_url(config("GTM_SERVER_URL", default=""))
 
 # Transcend Consent Management - airgap.js script URL
 TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")

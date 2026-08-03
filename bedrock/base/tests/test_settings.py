@@ -9,7 +9,7 @@ from django.test import override_settings
 
 import pytest
 
-from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend
+from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend, _normalize_gtm_server_url
 
 
 @override_settings(DEV=False, PROD_LANGUAGES=("de", "fr", "nb-NO", "ja", "ja-JP-mac", "en-US", "en-GB"))
@@ -33,3 +33,20 @@ def test_lang_groups():
 )
 def test_get_media_cdn_hostname(media_url, expected_hostname):
     assert _get_media_cdn_hostname_for_storage_backend(media_url) == expected_hostname
+
+
+@pytest.mark.parametrize(
+    "raw_url, expected_url",
+    (
+        ("https://gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("https://gtm.mozilla.org/", "https://gtm.mozilla.org"),
+        # A scheme-less value would resolve page-relative in the browser, so we add one.
+        ("gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("gtm.mozilla.org/", "https://gtm.mozilla.org"),
+        # Protocol-relative already resolves against the page's scheme.
+        ("//gtm.mozilla.org", "//gtm.mozilla.org"),
+        ("", ""),  # unset, which disables server-side dependency serving
+    ),
+)
+def test_normalize_gtm_server_url(raw_url, expected_url):
+    assert _normalize_gtm_server_url(raw_url) == expected_url
