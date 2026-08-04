@@ -1135,17 +1135,12 @@ GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
 
 
 def _normalize_gtm_server_url(url):
-    # Tagging server URL for server-side GTM dependency serving, normalized here
-    # so both the CSP config and the front-end can just append a path.
-    #
-    # The front-end concatenates this with a path, so a scheme-less value would
-    # resolve page-relative and silently 404 instead of loading gtm.js. A bare
-    # hostname is a plausible mistake to make here, because the adjacent CSP
-    # entries and CSP_CONNECT_SRC are all written that way.
-    url = url.rstrip("/")
-    if url and "//" not in url:
-        url = f"https://{url}"
-    return url
+    # Coerce to an https:// origin so the front-end can append a path and CSP
+    # gets a valid source. A bare hostname is the likely mistake here, since the
+    # adjacent CSP entries and CSP_CONNECT_SRC are all written that way, and it
+    # would resolve page-relative in the browser and 404 without a CSP warning.
+    host = url.removeprefix("https://").removeprefix("http://").removeprefix("//").rstrip("/")
+    return f"https://{host}" if host else ""
 
 
 # When empty, Tag Manager dependencies load from Google as usual.
@@ -1153,16 +1148,10 @@ GTM_SERVER_URL = _normalize_gtm_server_url(config("GTM_SERVER_URL", default=""))
 
 
 def _normalize_gtm_server_path(path):
-    # Exact path the tagging server serves gtm.js from, i.e. the server
-    # container's "Tag serving path" for our container ID. Only used when
-    # GTM_SERVER_URL is set; Google's CDN always serves from /gtm.js.
-    #
-    # Taken verbatim apart from adding a leading slash, because the trailing
-    # slash is significant and differs by path: a custom path such as
-    # "/script/" 400s without it, while the default "/gtm.js" 400s with it.
-    #
-    # Kept separate from GTM_SERVER_URL so that stays a bare origin, which is
-    # what the CSP directives want.
+    # The server container's "Tag serving path". Kept separate from
+    # GTM_SERVER_URL so that stays a bare origin for CSP, and taken verbatim
+    # apart from a leading slash, because the trailing slash is significant and
+    # differs by path: "/script/" 400s without it, "/gtm.js" 400s with it.
     path = path.strip()
     if path and not path.startswith("/"):
         path = f"/{path}"

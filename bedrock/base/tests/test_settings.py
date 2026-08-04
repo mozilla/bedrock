@@ -40,12 +40,18 @@ def test_get_media_cdn_hostname(media_url, expected_hostname):
     (
         ("https://gtm.mozilla.org", "https://gtm.mozilla.org"),
         ("https://gtm.mozilla.org/", "https://gtm.mozilla.org"),
-        # A scheme-less value would resolve page-relative in the browser, so we add one.
+        # A scheme-less value would resolve page-relative in the browser.
         ("gtm.mozilla.org", "https://gtm.mozilla.org"),
         ("gtm.mozilla.org/", "https://gtm.mozilla.org"),
-        # Protocol-relative already resolves against the page's scheme.
-        ("//gtm.mozilla.org", "//gtm.mozilla.org"),
+        # Protocol-relative is not a valid CSP source expression.
+        ("//gtm.mozilla.org", "https://gtm.mozilla.org"),
+        # http:// would be mixed content on our https pages.
+        ("http://gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("http://gtm.mozilla.org/", "https://gtm.mozilla.org"),
         ("", ""),  # unset, which disables server-side dependency serving
+        # A scheme with no host is treated as unset rather than becoming garbage.
+        ("https://", ""),
+        ("//", ""),
     ),
 )
 def test_normalize_gtm_server_url(raw_url, expected_url):
