@@ -131,6 +131,18 @@ _csp_style_src = {
 if TRANSCEND_AIRGAP_URL:  # noqa: F405
     _csp_style_src.add(csp.constants.UNSAFE_INLINE)
 
+# When server-side GTM is enabled, our own tagging server serves gtm.js
+# (`script-src`) and receives measurement hits. Google documents `connect-src`,
+# `img-src` and `frame-src` as all required for the tagging server URL, since hits
+# fall back from fetch to an image beacon, and some tags redirect via an iframe.
+# See https://developers.google.com/tag-platform/tag-manager/server-side/send-data
+# GTM_SERVER_URL is an origin with no path.
+if GTM_SERVER_URL:
+    _csp_script_src.add(GTM_SERVER_URL)
+    _csp_connect_src.add(GTM_SERVER_URL)
+    _csp_img_src.add(GTM_SERVER_URL)
+    _csp_frame_src.add(GTM_SERVER_URL)
+
 # 2. TEST-SPECIFIC SETTINGS
 # TODO: make this selectable by an env var, like the other modes
 if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:

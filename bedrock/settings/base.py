@@ -1133,6 +1133,33 @@ ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
 
 GTM_CONTAINER_ID = config("GTM_CONTAINER_ID", default="")
 
+
+def _normalize_gtm_server_url(url):
+    # Coerce to an https:// origin so the front-end can append a path and CSP
+    # gets a valid source. A bare hostname is the likely mistake here, since the
+    # adjacent CSP entries and CSP_CONNECT_SRC are all written that way, and it
+    # would resolve page-relative in the browser and 404 without a CSP warning.
+    host = url.removeprefix("https://").removeprefix("http://").removeprefix("//").rstrip("/")
+    return f"https://{host}" if host else ""
+
+
+# When empty, Tag Manager dependencies load from Google as usual.
+GTM_SERVER_URL = _normalize_gtm_server_url(config("GTM_SERVER_URL", default=""))
+
+
+def _normalize_gtm_server_path(path):
+    # The server container's "Tag serving path". Kept separate from
+    # GTM_SERVER_URL so that stays a bare origin for CSP, and taken verbatim
+    # apart from a leading slash, because the trailing slash is significant and
+    # differs by path: "/script/" 400s without it, "/gtm.js" 400s with it.
+    path = path.strip()
+    if path and not path.startswith("/"):
+        path = f"/{path}"
+    return path
+
+
+GTM_SERVER_PATH = _normalize_gtm_server_path(config("GTM_SERVER_PATH", default="/gtm.js"))
+
 # Transcend Consent Management - airgap.js script URL
 TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
 

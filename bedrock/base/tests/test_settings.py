@@ -9,7 +9,7 @@ from django.test import override_settings
 
 import pytest
 
-from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend
+from bedrock.settings.base import _get_media_cdn_hostname_for_storage_backend, _normalize_gtm_server_path, _normalize_gtm_server_url
 
 
 @override_settings(DEV=False, PROD_LANGUAGES=("de", "fr", "nb-NO", "ja", "ja-JP-mac", "en-US", "en-GB"))
@@ -33,3 +33,42 @@ def test_lang_groups():
 )
 def test_get_media_cdn_hostname(media_url, expected_hostname):
     assert _get_media_cdn_hostname_for_storage_backend(media_url) == expected_hostname
+
+
+@pytest.mark.parametrize(
+    "raw_url, expected_url",
+    (
+        ("https://gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("https://gtm.mozilla.org/", "https://gtm.mozilla.org"),
+        # A scheme-less value would resolve page-relative in the browser.
+        ("gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("gtm.mozilla.org/", "https://gtm.mozilla.org"),
+        # Protocol-relative is not a valid CSP source expression.
+        ("//gtm.mozilla.org", "https://gtm.mozilla.org"),
+        # http:// would be mixed content on our https pages.
+        ("http://gtm.mozilla.org", "https://gtm.mozilla.org"),
+        ("http://gtm.mozilla.org/", "https://gtm.mozilla.org"),
+        ("", ""),  # unset, which disables server-side dependency serving
+        # A scheme with no host is treated as unset rather than becoming garbage.
+        ("https://", ""),
+        ("//", ""),
+    ),
+)
+def test_normalize_gtm_server_url(raw_url, expected_url):
+    assert _normalize_gtm_server_url(raw_url) == expected_url
+
+
+@pytest.mark.parametrize(
+    "raw_path, expected_path",
+    (
+        ("/gtm.js", "/gtm.js"),  # the default
+        ("gtm.js", "/gtm.js"),
+        # A custom "Tag serving path" needs its trailing slash kept: the tagging
+        # server answers /script/ but 400s on /script.
+        ("/script/", "/script/"),
+        ("script/", "/script/"),
+        ("", ""),
+    ),
+)
+def test_normalize_gtm_server_path(raw_path, expected_path):
+    assert _normalize_gtm_server_path(raw_path) == expected_path
