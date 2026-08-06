@@ -91,7 +91,8 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             sassOptions: {
-                                silenceDeprecations: ['mixed-decls', 'import']
+                                silenceDeprecations: ['mixed-decls', 'import'],
+                                charset: false
                             }
                         }
                     }
