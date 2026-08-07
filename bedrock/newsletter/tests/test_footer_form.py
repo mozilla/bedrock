@@ -8,7 +8,6 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.mozorg.tests import TestCase
@@ -47,43 +46,43 @@ class TestNewsletterFooter(TestCase):
         The correct language for the locale should be initially selected or
         'en' if it's not an option.
         """
-        for foundation_separate_newsletter_enabled in (True, False):
-            with self.subTest(foundation_separate_newsletter_enabled=foundation_separate_newsletter_enabled):
-                with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=foundation_separate_newsletter_enabled):
-                    with self.activate_locale("fr"):
-                        resp = self.client.get(reverse(self.view_name))
-                    doc = pq(resp.content)
-                    assert doc('#id_lang option[selected="selected"]').val() == "fr"
+        with self.activate_locale("fr"):
+            resp = self.client.get(reverse(self.view_name))
+        doc = pq(resp.content)
+        assert doc('#id_lang option[selected="selected"]').val() == "fr"
 
-                    # with hyphenated regional locale, should have only lang
-                    with self.activate_locale("pt-BR"):
-                        resp = self.client.get(reverse(self.view_name))
-                    doc = pq(resp.content)
-                    assert doc('#id_lang option[selected="selected"]').val() == "pt"
+        # with hyphenated regional locale, should have only lang
+        with self.activate_locale("pt-BR"):
+            resp = self.client.get(reverse(self.view_name))
+        doc = pq(resp.content)
+        assert doc('#id_lang option[selected="selected"]').val() == "pt"
 
-                    # not supported. should default to ''
-                    with self.activate_locale("af"):
-                        resp = self.client.get(reverse(self.view_name))
-                    doc = pq(resp.content)
-                    assert doc('#id_lang option[selected="selected"]').val() == ""
+        # not supported. should default to ''
+        with self.activate_locale("af"):
+            resp = self.client.get(reverse(self.view_name))
+        doc = pq(resp.content)
+        assert doc('#id_lang option[selected="selected"]').val() == ""
 
     @override_settings(DEV=True)
     def test_newsletter_action(self):
         """
         Newsletter points to correct POST URL.
+        The /newsletter/ page uses mozilla-foundation, which always posts to FOUNDATION_SUBSCRIBE_URL.
         """
+        with self.activate_locale("en-US"):
+            resp = self.client.get(reverse(self.view_name))
+        doc = pq(resp.content)
+        assert doc("#newsletter-form").attr("action") == settings.FOUNDATION_SUBSCRIBE_URL
 
-        with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=True):
-            with self.activate_locale("en-US"):
-                resp = self.client.get(reverse(self.view_name))
-            doc = pq(resp.content)
-            assert doc("#newsletter-form").attr("action") == settings.FOUNDATION_SUBSCRIBE_URL
-
-        with override_switch("FOUNDATION_SEPARATE_NEWSLETTER", active=False):
-            with self.activate_locale("en-US"):
-                resp = self.client.get(reverse(self.view_name))
-            doc = pq(resp.content)
-            assert doc("#newsletter-form").attr("action") == settings.BASKET_SUBSCRIBE_URL
+    @override_settings(DEV=True)
+    def test_non_foundation_newsletter_routes_to_basket(self):
+        """
+        Non-Foundation newsletters post to BASKET_SUBSCRIBE_URL.
+        """
+        with self.activate_locale("en-US"):
+            resp = self.client.get(reverse("newsletter.family"))
+        doc = pq(resp.content)
+        assert doc("#newsletter-form").attr("action") == settings.BASKET_SUBSCRIBE_URL
 
 
 @patch(
