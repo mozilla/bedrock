@@ -10,15 +10,16 @@
         margin-top: $spacing-xl;
     }
 
-    ul.multiple-item-list {
-        margin-bottom: 0;
+    // Keep an example row's amount cell visually grouped with its list cell.
+    tr:has(> td > ul) td {
+        border-top: 0;
     }
 
-    td.two-col-cell {
+    td[colspan] {
         text-align: center;
     }
 
-    td.two-col-cell:not(.first-of-section) {
-        border-top: 0;
+    ul.multiple-item-list {
+        margin-bottom: 0;
     }
 }
