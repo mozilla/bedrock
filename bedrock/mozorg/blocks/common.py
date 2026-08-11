@@ -68,17 +68,6 @@ class SpringboardItemBlock(blocks.StructBlock):
             ("Podcast", "Podcast"),
             ("Video", "Video"),
         ],
-        help_text="Selects a visual icon type for the link.",
-    )
-
-    icon = blocks.ChoiceBlock(
-        required=False,
-        choices=[
-            ("article", "Article"),
-            ("podcast", "Podcast"),
-            ("video", "Video"),
-        ],
-        help_text="Selects an icon for the row.",
     )
 
     topic = blocks.ChoiceBlock(
@@ -89,14 +78,14 @@ class SpringboardItemBlock(blocks.StructBlock):
             ("Artificial Intelligence", "Artificial Intelligence"),
             ("Open Source AI", "Open Source AI"),
             ("Privacy & Security", "Privacy & Security"),
+            ("Data", "Data"),
         ],
-        help_text="Selects a topic.",
     )
 
     author = blocks.CharBlock(
         required=False,
         char_max_length=255,
-        help_text="Author name(s), website name",
+        help_text="Author or website name(s)",
     )
 
     preview = blocks.CharBlock(
@@ -108,12 +97,13 @@ class SpringboardItemBlock(blocks.StructBlock):
     url = blocks.URLBlock(
         required=True,
         char_max_length=255,
-        help_text="Link to the person's website or social media account with UTMs.",
+        help_text="Link to the full content.",
     )
 
     class Meta:
         icon = "grip"
         label = "Springboard Item"
+        label_format = "{preview}"
 
 
 class SpringboardBlockSettings(blocks.StructBlock):

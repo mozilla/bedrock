@@ -308,9 +308,9 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
         assert expected_item["type"] in type_div.get_text(), f"Wrong type text in item {index}"
 
         # Check icon if present
-        if expected_item.get("icon"):
-            icon = item.find("span", class_=f"m24-c-springboard-icon-{expected_item['icon'].lower()}")
-            assert icon is not None, f"Icon with class 'm24-c-springboard-icon-{expected_item['icon'].lower()}' not found in item {index}"
+        if expected_item.get("type"):
+            icon = item.find("span", class_=f"m24-c-springboard-icon-{expected_item['type'].lower()}")
+            assert icon is not None, f"Icon with class 'm24-c-springboard-icon-{expected_item['type'].lower()}' not found in item {index}"
 
         # Check author
         author_div = item.find(class_="m24-c-springboard-author")

@@ -31,7 +31,6 @@ def get_springboard_variants() -> list[dict]:
                     {
                         "url": "https://example.com/article1",
                         "type": "Article",
-                        "icon": "article",
                         "topic": "Privacy & Security",
                         "author": "Jane Doe",
                         "preview": "Understanding privacy in the digital age",
@@ -39,7 +38,6 @@ def get_springboard_variants() -> list[dict]:
                     {
                         "url": "https://example.com/video1",
                         "type": "Video",
-                        "icon": "video",
                         "topic": "Privacy & Security",
                         "author": "John Smith",
                         "preview": "How to secure your online accounts",
@@ -65,7 +63,6 @@ def get_springboard_variants() -> list[dict]:
                     {
                         "url": "https://example.com/podcast1",
                         "type": "Podcast",
-                        "icon": "podcast",
                         "topic": "",
                         "author": "Mozilla Team",
                         "preview": "Latest tech trends discussion",
@@ -73,7 +70,6 @@ def get_springboard_variants() -> list[dict]:
                     {
                         "url": "https://example.com/blog1",
                         "type": "Article",
-                        "icon": "article",
                         "topic": "",
                         "author": "Alice Johnson",
                         "preview": "The future of open source software",
@@ -81,7 +77,6 @@ def get_springboard_variants() -> list[dict]:
                     {
                         "url": "https://example.com/webinar1",
                         "type": "Video",
-                        "icon": "video",
                         "topic": "",
                         "author": "Bob Williams",
                         "preview": "Teaching coding to beginners",
