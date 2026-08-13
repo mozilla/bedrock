@@ -1,0 +1,19 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+
+:root {
+    --env-bg: #00d230;
+}
+
+.sidebar {
+    border-left: 10px solid var(--env-bg);
+}
+
+.sidebar-wagtail-branding {
+    background-color: var(--env-bg);
+}
+
+.button.serious {
+    box-shadow: 0 0 0 4px var(--env-bg);
+}
