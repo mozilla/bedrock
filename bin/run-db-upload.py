@@ -60,7 +60,7 @@ def upload_db_data(db_data):
 def get_db_file_name():
     git_sha = get_git_sha()
     checksum = get_db_checksum()
-    return f"{git_sha[:10]}-{checksum[:10]}.db"
+    return f"public-{git_sha[:10]}-{checksum[:10]}.db"
 
 
 def get_db_data():
