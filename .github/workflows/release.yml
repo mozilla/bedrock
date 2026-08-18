@@ -295,13 +295,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Notify #www — pushing to stage
+      - name: Notify #www-notify — pushing to stage
         uses: ./.github/actions/slack
         with:
           env_name: stage
           label: "Bedrock release"
           status: info
-          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ needs.preflight-checks.outputs.release_sha }}
           message: "Pushing to Bedrock stage"
@@ -404,14 +404,14 @@ jobs:
           ref: ${{ needs.preflight-checks.outputs.release_sha }}
           message: "Stage deployment verified. All checks passed."
 
-      - name: Notify #www — awaiting prod approval
+      - name: Notify #www-notify — awaiting prod approval
         if: inputs.pause_on_staging == true
         uses: ./.github/actions/slack
         with:
           env_name: stage
           label: "Bedrock release"
           status: info
-          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ needs.preflight-checks.outputs.release_sha }}
           message: "Stage verified. Awaiting approval to push to prod — click Details to review and approve."
@@ -488,13 +488,13 @@ jobs:
           ./bin/tag-release.sh --ci --push
           # The tag value is written to $GITHUB_OUTPUT by the script
 
-      - name: Notify #www — pushing to prod
+      - name: Notify #www-notify — pushing to prod
         uses: ./.github/actions/slack
         with:
           env_name: prod
           label: "Bedrock release"
           status: info
-          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ steps.tag-release.outputs.tag }}
           message: "Pushing Bedrock Prod, tagged ${{ steps.tag-release.outputs.tag }}"
@@ -577,13 +577,13 @@ jobs:
             exit 1
           fi
 
-      - name: Notify #www — prod deployment complete
+      - name: Notify #www-notify — prod deployment complete
         uses: ./.github/actions/slack
         with:
           env_name: prod
           label: "Bedrock release"
           status: success
-          channel_id: ${{ env.SLACK_CHANNEL_WWW }}
+          channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ steps.tag-release.outputs.tag }}
           message: "Bedrock Prod deploy complete, tagged ${{ steps.tag-release.outputs.tag }}"
