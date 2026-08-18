@@ -24,7 +24,7 @@ everett==3.5.0
 fluent.runtime==0.4.0
 fluent.syntax==0.19.0
 glean-parser==14.5.0  # Must match the required version in the Glean NPM package.
-google-cloud-storage==3.13.0  # explicit top-level dep since bin/run-db-upload.py imports it directly
+google-cloud-storage==3.13.1  # explicit top-level dep since bin/run-db-upload.py imports it directly
 granian==2.7.9
 honcho==2.0.0
 html5lib==1.1
@@ -32,7 +32,7 @@ jinja2==3.1.6  # Moved to top-level dep to control its upgrade, to avoid breakin
 jq==1.12.0
 justhtml==1.18.0  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
 lxml==6.1.1  # Needed for BeautifulSoup.
-Markdown==3.10.2
+Markdown==3.10.3
 markus[datadog]==5.0.0
 https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz#egg=mdx_outline
 mozilla-django-oidc==5.0.2
@@ -44,7 +44,7 @@ PyYAML==6.0.3
 qrcode==8.2
 requests==2.34.2
 sentry-processor==0.0.1
-sentry-sdk==2.66.1
+sentry-sdk==2.67.1
 supervisor==4.3.0
 timeago==1.0.16
 wagtaildraftsharing==0.3.0
