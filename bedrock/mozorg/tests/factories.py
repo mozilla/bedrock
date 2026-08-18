@@ -211,7 +211,6 @@ class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
     url = "https://example.com/article"
     link_attributes = ""
     type = "Article"
-    icon = "article"
     topic = "News"
     author = "Test Author"
     preview = "Test preview text"

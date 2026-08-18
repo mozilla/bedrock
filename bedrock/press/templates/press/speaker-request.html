@@ -9,7 +9,6 @@
   {% block page_title %}Speaker Request Form{% endblock %}
 
   {% block page_css %}
-  {{ css_bundle('protocol-emphasis-box') }}
   {{ css_bundle('press') }}
   {% endblock %}
 
@@ -26,16 +25,6 @@
   <h2>
     Please complete and submit the form below to request a speaker from Mozilla for your upcoming event.
   </h2>
-
-  {% endif %}
-  {% if not form_success %}
-  <section class="mzp-c-emphasis-box">
-    {% with url='https://bugzilla.mozilla.org/form.dev-engagement-event' %}
-    If you are hosting a developer conference or event and want someone from
-    Mozilla's developer team to speak, please fill out the
-    <a href="{{ url }}">Developer Events Request Form</a> instead.
-    {% endwith %}
-  </section>
 
   {% if form.errors %}
   <aside class="mzp-c-notification-bar mzp-t-error">
