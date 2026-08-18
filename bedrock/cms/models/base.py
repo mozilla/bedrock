@@ -12,6 +12,7 @@ from wagtail.models import Locale, Page as WagtailBasePage
 from wagtail_localize.fields import SynchronizedField
 
 from bedrock.base.i18n import normalize_language
+from bedrock.cms.forms import BedrockCopyForm
 from bedrock.cms.utils import compute_cms_page_locales
 from lib import l10n_utils
 
@@ -46,6 +47,9 @@ class AbstractBedrockCMSPage(WagtailBasePage):
     override_translatable_fields = [
         SynchronizedField("slug"),
     ]
+
+    # Add the "Keep analytics IDs" opt-out checkbox to the admin copy form.
+    copy_form_class = BedrockCopyForm
 
     preview_sizes = [
         {"name": "mobile", "icon": "mobile-alt", "device_width": 320, "label": "Mobile"},

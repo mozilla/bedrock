@@ -31,6 +31,19 @@
     {% endif %}
 
     {% if not block_download %}
+
+    {# download unavailable message bedrock#17305 #}
+      <header class="platform-download-header">
+        <div class="mzp-l-content platform-download-header-wrapper">
+          <div class="vpn-logo">
+            <img src="{{ static('img/logos/vpn/vpn-dark-logo.svg') }}" alt="">
+          </div>
+          <h1>Mozilla VPN for Windows ARM</h1>
+          <p>This download is temporarily unavailable.</p>
+        </div>
+      </header>
+
+  {# hide per bedrock#17305
     <header class="platform-download-header">
       <div class="mzp-l-content platform-download-header-wrapper">
         <div class="vpn-logo">
@@ -129,8 +142,13 @@
         {% endcall %}
       </ol>
     </section>
+    #}
   </div>
+  {# hide per bedrock#17305
   {% include 'products/vpn/includes/download-faq.html' %}
+  #}
+
+
   {% endif %}
   <footer class="vpn-footer">
       {% include 'products/vpn/includes/footer-legal.html' %}

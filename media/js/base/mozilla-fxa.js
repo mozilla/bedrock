@@ -27,7 +27,7 @@ if (typeof window.Mozilla === 'undefined') {
     };
 
     FxaState.convertFxaDetailsToStateAndDo = function (details, callback) {
-        var stateClass = '';
+        var stateClass;
 
         if (details.firefox) {
             if (details.legacy) {
