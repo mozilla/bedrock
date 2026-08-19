@@ -1,0 +1,16 @@
+{% extends "wagtailadmin/admin_base.html" %}
+{% comment %} SKIP LICENSE INSERTION {% endcomment %}
+{% comment %}
+This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+{% endcomment %}
+{% load static %}
+
+{% block branding_favicon %}
+    {% if cms_environment and cms_environment != "prod" %}
+        <link rel="shortcut icon" href="{% static 'img/cms/favicon-'|add:cms_environment|add:'.ico' %}">
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}

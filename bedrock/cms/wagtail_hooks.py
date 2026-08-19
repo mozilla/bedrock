@@ -19,6 +19,7 @@ from wagtail.models import Locale as WagtailLocale
 
 from bedrock.cms.blocks import regenerate_analytics_ids
 from bedrock.cms.models.base import AbstractBedrockCMSPage
+from bedrock.cms.utils import get_cms_environment
 
 
 @hooks.register("register_admin_menu_item")
@@ -44,6 +45,14 @@ def register_django_admin_link():
 @hooks.register("insert_global_admin_css")
 def global_admin_css():
     return format_html('<link rel="stylesheet" href="{}">', static("css/cms/wagtail_admin.css"))
+
+
+@hooks.register("insert_global_admin_css")
+def environment_admin_css():
+    env = get_cms_environment()
+    if env not in {"dev", "stage", "local"}:
+        return ""
+    return format_html('<link rel="stylesheet" href="{}">', static(f"css/cms/wagtail_admin_{env}.css"))
 
 
 @hooks.register("insert_global_admin_js")
