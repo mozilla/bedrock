@@ -71,7 +71,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.18
+    rev: v0.16.0
     hooks:
       - id: ruff
       - id: ruff-format
@@ -86,7 +86,7 @@ repos:
     hooks:
       - id: prettier
         additional_dependencies:
-        - prettier@3.3.3
+        - prettier@3.9.6
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
@@ -118,7 +118,7 @@ repos:
     - id: pyupgrade
       args: [--py313]
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: "1.30.0"  # replace with latest tag on GitHub
+    rev: "1.32.0"  # replace with latest tag on GitHub
     hooks:
     -   id: django-upgrade
         args: [--target-version, "5.2"]

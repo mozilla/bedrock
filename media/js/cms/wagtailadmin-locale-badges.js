@@ -16,9 +16,9 @@
                     s = e.querySelector('a[href$="/locales/edit/' + n + '/"]');
                 if (s) {
                     var c = document.createElement('span');
-                    (c.className = 'w-status w-status--label'),
+                    ((c.className = 'w-status w-status--label'),
                         (c.textContent = 'alias → ' + a),
-                        s.insertAdjacentElement('afterend', c);
+                        s.insertAdjacentElement('afterend', c));
                 }
             });
         }
