@@ -60,7 +60,7 @@ def _sanitize_job_description(content: str) -> str:
     """Sanitize Greenhouse job description HTML."""
     # Convert h1/h2/h3 to h4 for consistent heading levels
     content = _HEADER_RE.sub(r"<\1h4\3", content)
-    return JustHTML(content, safe=True, policy=_SANITIZE_POLICY, fragment=True).to_html(pretty=False)
+    return JustHTML(content, sanitize=True, policy=_SANITIZE_POLICY, fragment=True).to_html(pretty=False)
 
 
 @alert_sentry_on_exception
