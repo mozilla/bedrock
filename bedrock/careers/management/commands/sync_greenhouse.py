@@ -16,9 +16,9 @@ from bedrock.base.sanitization import _URL_POLICY
 from bedrock.careers.models import Position
 from bedrock.utils.management.decorators import alert_sentry_on_exception
 
-GREENHOUSE_URL = "https://api.greenhouse.io/v1/boards/{}/jobs/?content=true"
+GREENHOUSE_URL = "https://boards-api.greenhouse.io/v1/boards/{}/jobs?content=true"
 # to see the raw data for debugging use this command:
-# curl 'https://api.greenhouse.io/v1/boards/mozilla/jobs/?content=true' | \
+# curl 'https://boards-api.greenhouse.io/v1/boards/mozilla/jobs?content=true' | \
 # jq -r .jobs[0].content | sed 's/&lt;/</g' | sed 's/&quot;/"/g' | sed 's/&gt;/>/g'
 
 
@@ -82,12 +82,17 @@ class Command(BaseCommand):
         jobs_updated = 0
         jobs_removed = 0
         job_ids = []
+        sources = [GREENHOUSE_URL.format(settings.GREENHOUSE_BOARD), GREENHOUSE_URL.format(settings.GREENHOUSE_BOARD)]
+        jobs_list = []
 
-        response = requests.get(GREENHOUSE_URL.format(settings.GREENHOUSE_BOARD))
-        response.raise_for_status()
+        for source in sources:
+            response = requests.get(source)
+            response.raise_for_status()
+            data = response.json()
+            jobs_list.extend(data["jobs"])
 
-        data = response.json()
-        for job in data["jobs"]:
+        for job in jobs_list:
+            print(job["id"])
             # In case GH includes jobs with the same ID multiple times in the json.
             if job["id"] in job_ids:
                 continue
