@@ -812,9 +812,9 @@ jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
     # via jsonschema
-justhtml==1.18.0 \
-    --hash=sha256:38d74b92c06f2cf55aa14c3532fbd2ced65884c2c32c3544b389f321799a7fc2 \
-    --hash=sha256:74407e840dc34f77230acda83cbee4ada8a6dbe77543684eac9f7874028e072a
+justhtml==3.11.1 \
+    --hash=sha256:c911815b8a40c7949b59bbf40154e1e42b79e8858b3bba071762ba548fc9c49f \
+    --hash=sha256:e80ae3cc3f3fff1b9fcbb927510d47331fb8664f73f055d1e0e37d71993835fc
     # via -r requirements/prod.in
 laces==0.1.2 \
     --hash=sha256:3218e09c1889ae5cf3fc7a82f5bb63ec0c7879889b6a9760bfc42323c694b84d \
