@@ -78,7 +78,7 @@ class Command(FTLRepoCommand):
         if not self.meao_repo.auth:
             raise CommandError("Git push authentication not configured")
         try:
-            self.meao_repo.push("HEAD:main")
+            self.meao_repo.push(f"HEAD:{self.meao_repo.branch_name}")
         except CalledProcessError:
             raise CommandError(f"There was a problem pushing to {self.meao_repo.remote_url}")
 
