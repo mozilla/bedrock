@@ -75,20 +75,15 @@ class Command(FTLRepoCommand):
         return True
 
     def push_changes(self):
+        if not self.meao_repo.auth:
+            raise CommandError("Git push authentication not configured")
         try:
-            self.meao_repo.git("push", self.git_push_url, "HEAD:master")
+            self.meao_repo.push("HEAD:main")
         except CalledProcessError:
             raise CommandError(f"There was a problem pushing to {self.meao_repo.remote_url}")
 
         commit = self.meao_repo.git("rev-parse", "--short", "HEAD")
         self.stdout.write(f"Pushed {commit} to {self.meao_repo.remote_url}")
-
-    @property
-    def git_push_url(self):
-        if not settings.FLUENT_REPO_AUTH:
-            raise CommandError("Git push authentication not configured")
-
-        return self.meao_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
     def _copy_file(self, filepath):
         relative_filepath = filepath.relative_to(self.l10n_repo.path)
