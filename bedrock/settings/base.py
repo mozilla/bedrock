@@ -1215,6 +1215,12 @@ SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     # keys, so without this entry the encoded credential would survive into the
     # Sentry payload.
     "git_config_value",
+    # `authentication` masks the raw credential when it appears as a dict
+    # value in frame locals (e.g. a params dict passed to GitRepo(**params)).
+    "authentication",
+    # `fluent_repo_auth` masks the raw FLUENT_REPO_AUTH env var that
+    # GitRepo.git() copies from os.environ into its subprocess env dict.
+    "fluent_repo_auth",
 ]
 SENTRY_IGNORE_ERRORS = (
     BrokenPipeError,

@@ -201,6 +201,75 @@ def test_git_pull_with_auth_only_authenticates_fetch():
     assert checkout_calls[0].kwargs == {}
 
 
+def test_git_push_with_auth():
+    g = git.GitRepo(".", "https://example.com/repo.git", auth="testserviceaccount:supersecret")
+    with patch.object(g, "git") as git_mock:
+        git_mock.return_value = "ok"
+        g.push("HEAD:main")
+
+    git_mock.assert_called_once()
+    call_args = git_mock.call_args
+    assert call_args.args == ("push", "https://example.com/repo.git", "HEAD:main")
+    for a in call_args.args:
+        assert "supersecret" not in str(a)
+    assert call_args.kwargs["env"]["GIT_CONFIG_KEY_0"] == "http.https://example.com/.extraheader"
+
+
+def test_git_push_without_auth_passes_no_env():
+    g = git.GitRepo(".", "https://example.com/repo.git")
+    with patch.object(g, "git") as git_mock:
+        git_mock.return_value = "ok"
+        g.push("HEAD:main")
+
+    call_args = git_mock.call_args
+    assert call_args.args == ("push", "https://example.com/repo.git", "HEAD:main")
+    assert call_args.kwargs == {}
+
+
+def test_git_scrubs_auth_from_called_process_error():
+    g = git.GitRepo(".", "https://example.com/repo.git", auth="supersecret")
+    with patch.object(git, "os") as os_mock, patch.object(git, "check_output") as co_mock:
+        os_mock.getcwd.return_value = "olddir"
+        co_mock.side_effect = git.CalledProcessError(
+            1,
+            cmd=(git.GIT, "push", "https://supersecret@example.com/repo.git"),
+            output=b"fatal: Authentication failed for 'supersecret'",
+        )
+
+        with pytest.raises(git.CalledProcessError) as exc_info:
+            g.git("push", "https://supersecret@example.com/repo.git")
+
+    cpe = exc_info.value
+    assert "supersecret" not in str(cpe.cmd)
+    assert "***" in str(cpe.cmd)
+    assert b"supersecret" not in cpe.output
+    assert b"***" in cpe.output
+    # .args is rebuilt from (returncode, scrubbed cmd)
+    assert cpe.args == (cpe.returncode, cpe.cmd)
+    # __cause__ is suppressed (raise ... from None)
+    assert cpe.__cause__ is None
+
+
+def test_git_reclone_propagates_auth():
+    g = git.GitRepo(".", "https://example.com/repo.git", auth="supersecret")
+    with (
+        patch.object(git, "rmtree"),
+        patch.object(git, "time", return_value=1234),
+        patch("bedrock.utils.git.GitRepo") as MockGitRepo,
+        patch.object(g, "path") as path_mock,
+    ):
+        path_mock.exists.return_value = True
+        path_mock.with_suffix.return_value = path_mock
+        g.reclone()
+
+    MockGitRepo.assert_called_once_with(
+        path_mock,
+        "https://example.com/repo.git",
+        "main",
+        auth="supersecret",
+    )
+
+
 def test_git_call_passes_env_when_provided():
     """The base git() helper merges the supplied env on top of os.environ."""
     with patch.object(git, "os") as os_mock, patch.object(git, "check_output") as co_mock:
