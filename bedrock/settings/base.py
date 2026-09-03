@@ -928,8 +928,8 @@ FOUNDATION_SUBSCRIBE_URL = f"{FOUNDATION_URL}/api/newsletter/mozillaorg"
 
 # Custom languages for the Foundation signup form; need specifying directly
 # because the form config is not provided by Basket
-FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES = config(
-    "FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES",
+FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGES = config(
+    "FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGES",
     default="en,de,fr,es,pl,pt",
     parser=ListOf(str),
 )
