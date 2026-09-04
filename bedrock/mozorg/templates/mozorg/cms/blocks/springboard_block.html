@@ -6,9 +6,11 @@
 
 {% from "macros-m24.html" import springboard_item with context %}
 
+{% set heading_level = block_level if block_level else 3 %}
+
 <section class="m24-c-content{% if value.settings.background_color %} {{ value.settings.background_color }}{% endif %}" {% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
   {% if value.heading %}
-    <h3 class="m24-c-intro-title m24-t-sm" itemprop="sectionTitle">{{ value.heading }}</h3>
+    <h{{ heading_level }} class="m24-c-intro-title m24-t-sm" itemprop="sectionTitle">{{ value.heading }}</h{{ heading_level }}>
   {% endif %}
   <ul class="m24-c-springboard">
     <li class="m24-c-springboard-item m24-c-springboard-headings">

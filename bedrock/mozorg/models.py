@@ -656,3 +656,41 @@ class AboutUsPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "About Us Page"
+
+
+class FreeformPage(AbstractBedrockCMSPage):
+    content = StreamField(
+        [
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("prose_block", ProseBlock()),
+            ("showcase_block", ShowcaseBlock()),
+            ("springboard_block", SpringboardBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for this page. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/freeform/freeform.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "freeform",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+    class Meta:
+        verbose_name = "Freeform Page"

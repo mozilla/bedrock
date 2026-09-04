@@ -8,6 +8,7 @@
 
 {% set bg_color = value.settings.background_color|default("", true) %}
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+{% set heading_level = block_level if block_level else 2 %}
 
 {# Map image ratios to srcset_image fill specs #}
 {% set ratio_fill_specs = {
@@ -55,7 +56,7 @@
     {% if value.heading or value.intro %}
     <header class="m24-c-intro">
       {% if value.heading %}
-      <h2 class="m24-c-intro-title">{{ value.heading }}</h2>
+      <h{{ heading_level }} class="m24-c-intro-title">{{ value.heading }}</h{{ heading_level }}>
       {% endif %}
       {% if value.intro %}
       {{ value.intro|richtext }}
@@ -113,6 +114,7 @@
           image=picture_html,
           tag=tile_tag|title if tile_tag else "",
           heading=tile.heading,
+          heading_level=heading_level + 1,
           body=tile.body|default("", true),
           link_url=tile.cta_link.get_url()|add_utm_parameters,
           cta_text=tile.cta_text|default("", true),
