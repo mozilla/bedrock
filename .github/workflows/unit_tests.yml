@@ -4,6 +4,7 @@ on:
     branches:
       - "main"
   pull_request:
+  merge_group:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -37,7 +38,7 @@ jobs:
           docker cp $CONTAINER_ID:/app/python_coverage .
         timeout-minutes: 60
       - name: "Store coverage as an artifact"
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage-results
           path: python_coverage
@@ -53,7 +54,7 @@ jobs:
   test-python-more:
     # This is a preview `test-ci` to replace the previous `test-image` over time
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }} # Only run the extra release checks on PRs for now
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }} # Only run the extra release checks on PRs and Merge Queue prep for now
     steps:
       - uses: actions/checkout@v6
       - name: "Run Python tests (on Docker) with extra release service build"
