@@ -1,0 +1,357 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% block page_title %}Law Enforcement Guidelines{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('about-transparency') }}
+{% endblock %}
+
+{% block content %}
+<main>
+  <header class="c-page-header">
+    <div class="mzp-l-content mzp-t-content-lg">
+      <h1>Law Enforcement Guidelines</h1>
+    </div>
+  </header>
+
+  <div class="mzp-l-content mzp-t-content-lg">
+    <div class="c-back-link">
+      <img src="{{ static('protocol/img/icons/arrow-left.svg') }}" alt="Back" height="20" width="20">
+      <a href="{{ url('mozorg.about.policy.transparency.index') }}">Mozilla Transparency</a>
+    </div>
+
+    <section id="introduction">
+      <h2>1. Introduction</h2>
+
+      <p>
+        This policy applies to official law enforcement or government agency requests for information about users of the
+        products and services offered by Mozilla Corporation.
+      </p>
+
+      <p>
+        <a href="{{ url('foundation.moco') }}">Mozilla Corporation</a> is based in California, and is a wholly-owned subsidiary of Mozilla.org, a 501(c)(3) nonprofit
+        organization that is controlled by Mozilla Foundation, a 501(c)(3) nonprofit organization. Other business
+        organizations owned by Mozilla.org include:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li><a href="https://www.thunderbird.net/en-US/about/">MZLA Technologies Corporation</a>;</li>
+        <li><a href="https://www.mozilla.ai/">Mozilla.ai</a>;</li>
+        <li><a href="https://mozilla.vc/">Mozilla Ventures</a>; and</li>
+        <li><a href="https://mozilladatacollective.com/">Mozilla Data Collective</a>.</li>
+      </ul>
+
+      <p>
+        Mozilla Corporation (going forward, “Mozilla”) generally cannot provide information about products, services, or
+        users associated with other Mozilla-affiliated entities. Please visit those entities’ websites to learn how to
+        contact them directly.
+      </p>
+    </section>
+
+    <section id="commitment-to-privacy">
+      <h2>2. Commitment to Privacy</h2>
+
+      <p>
+        In accordance with the <a href="{{ url('mozorg.about.manifesto') }}">Mozilla Manifesto</a>, Mozilla collects very
+        little personal information about its users. Where we do collect user data, Mozilla will only disclose it:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>in response to valid legal process, or</li>
+        <li>
+          where we have a good faith belief that
+          <ul class="mzp-u-list-styled">
+            <li>
+              an emergency creates a meaningful risk of death or serious bodily injury to a person, and the disclosure of
+              user data is necessary to prevent that harm; or
+            </li>
+            <li>Mozilla is legally required to share the information under a statute or regulation.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="submission-of-government-requests">
+      <h2>3. Submission of Government Requests</h2>
+
+      <p>
+        Mozilla generally requires valid legal process to compel the disclosure of specific user data to a government.
+        This means:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>A legitimate and properly scoped subpoena or court order from a U.S. court;</li>
+        <li>
+          A search warrant supported by probable cause and issued by an appropriate law enforcement authority; or
+        </li>
+        <li>
+          For governments outside the United States, a Mutual Legal Assistance Treaty (MLAT) request, letter rogatory, or
+          equivalent government-to-government legal process<sup><a href="#footnote-1">1</a></sup>.
+        </li>
+      </ul>
+
+      <p>
+        Legal process can be served on Mozilla by email at
+        <a href="mailto:legalrequest@mozilla.com">legalrequest@mozilla.com</a>, or by mail or personal service at the
+        following addresses:
+      </p>
+
+      <p lang="en" dir="ltr">
+        <strong>Mozilla Corporation</strong><br>
+        Attn: Legal requests<br>
+        1875 Mission St<br>
+        Ste 103<br>
+        San Francisco, CA 94103
+      </p>
+
+      <p lang="en" dir="ltr">
+        <strong>Mozilla Corporation</strong><br>
+        ℅ National Registered Agents, Inc.<br>
+        330 N. Brand Blvd<br>
+        Glendale, CA 91203
+      </p>
+
+      <p>We aim to respond to standard requests within two weeks of receipt.</p>
+
+      <p>
+        Acceptance of legal process by any of the above means is for convenience. Mozilla reserves the right to object to
+        subpoenas and law enforcement requests for any reason, including lack of jurisdiction or improper service.
+      </p>
+      <aside class="footnotes">
+        <p id="footnote-1">
+          <sup>1</sup> Please see our <a href="#faq-mlat">FAQ (section 10.G)</a> if you have questions about the MLAT requirement.
+        </p>
+      </aside>
+    </section>
+
+    <section id="information-to-include-in-requests">
+      <h2>4. Information to Include in Requests</h2>
+
+      <p>Please include the following information in all requests:</p>
+
+      <ul class="mzp-u-list-styled">
+        <li>Requesting agency</li>
+        <li>Authorized officer</li>
+        <li>Official email address</li>
+        <li>Account identifiers</li>
+        <li>Categories of information sought</li>
+        <li>Relevant date range</li>
+        <li>Production deadline</li>
+      </ul>
+
+      <p>
+        We retain very little specific user information, and will be unable to respond to overly vague requests. <strong><i>If you
+        are seeking specific categories of information about a user, please review the <a href="#faq">FAQ section</a> of
+        these guidelines before submitting your request</i></strong>.
+      </p>
+
+      <p>
+        Pursuant to California law, Mozilla will not disclose user information in response to a law enforcement request
+        related to the investigation or prosecution of conduct associated with reproductive health services that are
+        lawful in California. Accordingly, requests from law enforcement agencies outside California must either:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>
+          include an express affirmation that the requested information is not sought in connection with an investigation
+          relating to lawful reproductive health services; or
+        </li>
+        <li>
+          provide sufficient information regarding the nature of the investigation to enable Mozilla to make this
+          determination itself.
+        </li>
+      </ul>
+    </section>
+
+    <section id="user-notice">
+      <h2>5. User Notice</h2>
+
+      <p>
+        Where possible, Mozilla will notify affected users about government requests for their information, except where:
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li>notice is prohibited by law or a court order;</li>
+        <li>notice is likely to result in real-world harm;</li>
+        <li>notice could be counterproductive (such as where an account has been compromised); or</li>
+        <li>no identifiable information was disclosed.</li>
+      </ul>
+
+      <p>
+        In addition, we will only notify a user about a request where we possess sufficient information on how to contact
+        that user. In practice, this means that users who have not provided Mozilla with any contact information will not
+        be contacted.
+      </p>
+
+      <p>Notice may be provided before or after the disclosure has been made, depending on the circumstances.</p>
+
+      <p>
+        Mozilla will not notify users when it proactively discloses their information — such as when making reports to
+        the National Center for Missing and Exploited Children.
+      </p>
+    </section>
+
+    <section id="data-retention-and-availability">
+      <h2>6. Data Retention and Availability</h2>
+
+      <p>
+        In most cases, Mozilla does not retain much data after a user deletes their account. Where an account has been
+        deleted, we may be able to confirm that the account existed, but we will generally not be able to provide further
+        details about the account activity or the accountholder.
+      </p>
+
+      <p>
+        Preservation requests can be served by email at
+        <a href="mailto:legalrequest@mozilla.com">legalrequest@mozilla.com</a>. Such requests should include sufficient
+        information to allow us to identify all of the information that should be preserved, as well as the preservation
+        period. If you seek further preservation beyond the originally-stated preservation period, you must provide an
+        updated preservation request. Preservation requests must be served while an account is still active, in order to
+        be effective.
+      </p>
+    </section>
+
+    <section id="cost-recovery">
+      <h2>7. Cost Recovery</h2>
+
+      <p>
+        In certain cases, particularly those involving unusual or burdensome requests, we may seek reimbursement for the
+        cost of investigating and responding to law enforcement requests.
+      </p>
+    </section>
+
+    <section id="authentication">
+      <h2>8. Authentication</h2>
+
+      <p>
+        Unless otherwise specified, all records produced by Mozilla in response to law enforcement requests are those
+        created and maintained in the ordinary course of Mozilla’s business.
+      </p>
+    </section>
+
+    <section id="contact-information">
+      <h2>9. Contact information</h2>
+
+      <p>
+        Questions not covered in these guidelines, or related to a specific production or law enforcement response, can be
+        sent by email to <a href="mailto:legalrequest@mozilla.com">legalrequest@mozilla.com</a>.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>10. FAQ</h2>
+
+      <p>
+        In general, Mozilla collects and retains very little data about its users. Where we collect data about Internet
+        activity, we generally do so in a de-identified fashion, so we can not link it back to a specific individual. For
+        more information about how we collect data, please see our <a href="{{ url('privacy') }}">Privacy page</a>, or the
+        applicable Privacy Notice.
+      </p>
+
+      <p>
+        We frequently receive requests from law enforcement that we are unable to respond to. Frequent sources of
+        confusion are listed below:
+      </p>
+
+      <h3 id="faq-firefox-usage-data">A. Firefox Browser Usage Data</h3>
+
+      <p>
+        The Firefox browser is a downloadable piece of software that sits on a user’s device. A given user’s browsing
+        history is stored locally, and is not accessible to Mozilla. When a Mozilla accountholder enables the sync
+        feature, their data is stored on a Mozilla server, but is end-to-end encrypted and not readable by Mozilla.
+        Mozilla can determine whether the sync feature has been used and when the last sync date was, but it cannot
+        determine what specific data was synced.
+      </p>
+
+      <p>
+        Mozilla does not have access to a user’s email content, social media account information or other online
+        activity, and does not have access to user email addresses, unless those addresses have been used to create an
+        account.
+      </p>
+
+      <h3 id="faq-search-activity">B. Search Activity and Results</h3>
+
+      <p>
+        The Firefox browser provides a portal for users to access third party search engines and websites. It does not
+        operate or control those search engines and websites. Mozilla does not have a search engine product, and has no
+        control over search engine results. The only websites that Mozilla controls are those located on a Mozilla domain
+        (including but not limited to www.firefox.com, www.mozilla.com, www.mozilla.org,
+        <a href="https://soloist.ai/">https://soloist.ai/</a> and various associated subdomains). If you have concerns
+        about search results or about the contents of a particular website, please contact the operator of that search
+        engine or website.
+      </p>
+
+      <h3 id="faq-ip-address-data">C. IP Address Data</h3>
+
+      <p>
+        Our IP logs only indicate what pages a specific device has visited on a Mozilla-controlled website, such as
+        www.mozilla.org. These logs are only retained for 90 days, are not associated with any specific user, and do not
+        include any information about activity on other websites. We generally object to requests for records related to
+        a specific IP address, unless there is a demonstrable reason why the user’s activity on Mozilla’s website would
+        provide significant value to the investigation.
+      </p>
+
+      <h3 id="faq-email-content">D. Email Content</h3>
+
+      <p>
+        We do not have access to the contents of users’ email. We do not have user’s email addresses unless they have
+        deliberately provided those addresses to us for communication or account creation purposes.
+      </p>
+
+      <h3 id="faq-user-agent-strings">E. User Agent Strings</h3>
+
+      <p>
+        For historical and compatibility reasons, all user agent strings include the word Mozilla, regardless of whether
+        the user was using the Firefox browser. This is true even for browsers that have never had any affiliation with
+        Mozilla, such as Chrome and Safari.
+      </p>
+
+      <p>
+        Where a user agent string is associated with Mozilla, it is simply a generic identifier of device, OS, and
+        browser. Mozilla is not able to identify a specific user based on a user agent string.
+      </p>
+
+      <h3 id="faq-ecpa-sca-requests">F. ECPA/SCA Requests</h3>
+
+      <p>
+        Firefox is not a remote computing service under 18 USC § 2711(2). The Firefox browser is downloadable software
+        that lives on a user’s device, and can be used to access email, cloud storage, social media, and similar
+        cloud-based services offered by other companies. Mozilla does not have information about specific user activities
+        on third party platforms.
+      </p>
+
+      <p>
+        Where we do collect information about users’ online activity through another (non-Firefox) Mozilla product or
+        feature, that information is generally encrypted, and is not readable by Mozilla. We are therefore generally
+        unable to respond to requests based on 18 USC §§ 2701 et seq. (the Stored Communications Act).
+      </p>
+
+      <h3 id="faq-mlat">G. MLAT Requirement for International Requests</h3>
+
+      <p>
+        As noted in <a href="#submission-of-government-requests">section 3</a>, Mozilla requires that requests be based
+        on a valid legal process. For agencies outside of the United States, this generally means letters rogatory, or
+        requests through the Mutual Legal Assistance Treaty (MLAT) Process. MLAT requests must be valid both in the
+        United States and the originating country.
+      </p>
+
+      <ul class="mzp-u-list-styled">
+        <li><strong>Brazilian entities:</strong> Mozilla does not have an entity or corporate representative in Brazil.
+        Requests must be submitted to our U.S. entity, and must be valid under U.S. law.</li>
+        <li> <strong>EU agencies:</strong> Mozilla does not interpret Regulation (EU) 2023/1543 (the E-Evidence Regulation) as
+        applicable to the Firefox browser. Mozilla will therefore generally request an MLAT for EU law enforcement
+        requests.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+{% endblock %}
+
+{% block js %}
+  {{ js_bundle('about-transparency') }}
+{% endblock %}

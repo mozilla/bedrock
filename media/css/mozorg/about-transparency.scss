@@ -138,7 +138,8 @@ main h3 {
 $mzp-v-spacing: var(--v-grid-md);
 
 .c-2024-back-link,
-.c-2025-back-link {
+.c-2025-back-link,
+.c-back-link {
     display: flex;
     gap: $spacing-xs;
     margin-bottom: $spacing-xl;
