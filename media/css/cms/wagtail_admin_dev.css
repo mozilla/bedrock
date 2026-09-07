@@ -10,7 +10,7 @@
     border-left: 10px solid var(--env-bg);
 }
 
-.sidebar-wagtail-branding {
+.sidebar-wagtail-branding__icon-wrapper {
     background-color: var(--env-bg);
 }
 
