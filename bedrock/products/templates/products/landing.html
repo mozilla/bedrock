@@ -245,6 +245,25 @@
       <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://tabstack.ai/{{ referrals }}" rel="external noopener" data-cta-text="Tabstack Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-tabstack') }}">{{ ftl('ui-learn-more') }} {{ icon_external|safe }}</a></p>
     {% endcall %}
     {% endif %}
+    {% if ftl_has_messages('firefox-products-otari-desc') %}
+    <!-- Otari -->
+    {% call picto(
+      body=True,
+      image=resp_img(
+        url='img/logos/otari/otari-logo.svg',
+        optional_attributes={
+          'class': 'mzp-c-picto-image',
+          'width': '64',
+          'height': '64',
+          'loading': 'lazy'
+        }
+      ),
+    ) %}
+      <h2 class="mzp-c-picto-heading"><a href="https://otari.ai/{{ referrals }}" data-cta-text="Otari" data-cta-position="heading">{{ ftl('firefox-products-otari') }}</a></h2>
+      <p>{{ ftl('firefox-products-otari-desc') }}</p>
+      <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="https://otari.ai/{{ referrals }}" rel="external noopener" data-cta-text="Otari Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-otari') }}">{{ ftl('ui-learn-more') }} {{ icon_external|safe }}</a></p>
+    {% endcall %}
+    {% endif %}
   </section>
 
 
