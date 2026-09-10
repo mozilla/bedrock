@@ -39,7 +39,6 @@ failure_detected=false
 python manage.py l10n_update || failure_detected=true
 python manage.py update_product_details_files || failure_detected=true
 python manage.py update_wordpress --quiet || failure_detected=true
-python manage.py update_content_cards --quiet || failure_detected=true
 python manage.py update_externalfiles --quiet || failure_detected=true
 python manage.py update_newsletter_data --quiet || failure_detected=true
 python manage.py update_legal_docs --quiet || failure_detected=true

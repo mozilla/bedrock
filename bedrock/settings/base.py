@@ -776,7 +776,6 @@ INSTALLED_APPS = [
     "bedrock.products",
     "bedrock.externalfiles",
     "bedrock.security",
-    "bedrock.contentcards",
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
@@ -1058,16 +1057,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
         }
     },
 }
-
-if DEV:
-    content_cards_default_branch = "dev-processed"
-else:
-    content_cards_default_branch = "prod-processed"
-
-CONTENT_CARDS_PATH = config("CONTENT_CARDS_PATH", default=data_path("content_cards"))
-CONTENT_CARDS_REPO = config("CONTENT_CARDS_REPO", default="https://github.com/mozmeao/www-admin.git")
-CONTENT_CARDS_BRANCH = config("CONTENT_CARDS_BRANCH", default=content_cards_default_branch)
-CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
 
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
