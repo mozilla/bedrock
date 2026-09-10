@@ -535,10 +535,11 @@ def assert_showcase_block_attributes(wrapper_element: BeautifulSoup, variant_dat
     # Check background color class if set
     bg_color = settings["background_color"]
     if bg_color:
-        expected_class = bg_color
-        assert expected_class in wrapper_element.get("class", []), f"Expected class '{expected_class}' not found"
-        # Check m24-c-showcase class exists when background color is set
-        assert "m24-c-showcase" in wrapper_element.get("class", []), "Expected class 'm24-c-showcase' not found"
+        assert bg_color in wrapper_element.get("class", []), f"Expected class '{bg_color}' not found"
+
+    # Check .m24-c-showcase component wrapper exists (nested inside .m24-c-content,
+    # not necessarily on the same element as the background color)
+    assert wrapper_element.find(class_="m24-c-showcase") is not None, "Missing .m24-c-showcase element"
 
     # Check anchor ID if set
     anchor_id = settings["anchor_id"]

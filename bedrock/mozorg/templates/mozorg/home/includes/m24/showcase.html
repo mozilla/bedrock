@@ -4,79 +4,80 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
+{% from "macros-m24.html" import m24_showcase with context %}
+
 <div class="m24-c-transition m24-t-top-light m24-t-bottom-green"><hr></div>
 
-<section class="m24-c-showcase m24-t-green">
-  <div class="m24-c-content">
-    <header class="m24-c-showcase-text">
-      <h2 class="m24-c-showcase-title">{{ ftl('m24-home-rise25-awards') }}</h2>
-      <p class="m24-c-showcase-body">{{ ftl('m24-home-get-to-know') }}</p>
-    </header>
+{% set media_html %}
+  {{ resp_img(
+    url="img/home/2024/showcase/showcase-3-720.jpg",
+    srcset={
+      "img/home/2024/showcase/showcase-3-360.jpg": "360w",
+      "img/home/2024/showcase/showcase-3-720.jpg": "720w",
+    },
+    sizes={
+      "(min-width: 480px)": "240px",
+      "(min-width: 768px)": "360px",
+      "default": "180px",
+    },
+    optional_attributes={
+      "loading": "lazy",
+      "alt": ftl('m24-home-alt-rise25-proud'),
+      "height": "360",
+      "width": "360",
+      'class': 'm24-c-showcase-image image-one',
+    }
+  ) }}
 
-    <div class="m24-c-showcase">
-      <div class="m24-c-showcase-media m24-t-media-three">
-        {{ resp_img(
-          url="img/home/2024/showcase/showcase-3-720.jpg",
-          srcset={
-            "img/home/2024/showcase/showcase-3-360.jpg": "360w",
-            "img/home/2024/showcase/showcase-3-720.jpg": "720w",
-          },
-          sizes={
-            "(min-width: 480px)": "240px",
-            "(min-width: 768px)": "360px",
-            "default": "180px",
-          },
-          optional_attributes={
-            "loading": "lazy",
-            "alt": ftl('m24-home-alt-rise25-proud'),
-            "height": "360",
-            "width": "360",
-            'class': 'm24-c-showcase-image image-one',
-          }
-        ) }}
+  {{ resp_img(
+    url="img/home/2024/showcase/showcase-2-720.jpg",
+    srcset={
+      "img/home/2024/showcase/showcase-2-360.jpg": "360w",
+      "img/home/2024/showcase/showcase-2-720.jpg": "720w",
+    },
+    sizes={
+      "(min-width: 480px)": "240px",
+      "(min-width: 768px)": "360px",
+      "default": "180px",
+    },
+    optional_attributes={
+      "loading": "lazy",
+      "alt": ftl('m24-home-alt-rise25-smiling'),
+      "height": "360",
+      "width": "360",
+      'class': 'm24-c-showcase-image image-two',
+    }
+  ) }}
 
-        {{ resp_img(
-          url="img/home/2024/showcase/showcase-2-720.jpg",
-          srcset={
-            "img/home/2024/showcase/showcase-2-360.jpg": "360w",
-            "img/home/2024/showcase/showcase-2-720.jpg": "720w",
-          },
-          sizes={
-            "(min-width: 480px)": "240px",
-            "(min-width: 768px)": "360px",
-            "default": "180px",
-          },
-          optional_attributes={
-            "loading": "lazy",
-            "alt": ftl('m24-home-alt-rise25-smiling'),
-            "height": "360",
-            "width": "360",
-            'class': 'm24-c-showcase-image image-two',
-          }
-        ) }}
+  {{ resp_img(
+    url="img/home/2024/showcase/showcase-1-720.jpg",
+    srcset={
+      "img/home/2024/showcase/showcase-1-360.jpg": "360w",
+      "img/home/2024/showcase/showcase-1-720.jpg": "720w",
+    },
+    sizes={
+      "(min-width: 480px)": "240px",
+      "(min-width: 768px)": "360px",
+      "default": "180px",
+    },
+    optional_attributes={
+      "loading": "lazy",
+      "alt": ftl('m24-home-alt-rise25-joyous'),
+      "height": "360",
+      "width": "360",
+      'class': 'm24-c-showcase-image image-three',
+    }
+  ) }}
+{% endset %}
 
-        {{ resp_img(
-          url="img/home/2024/showcase/showcase-1-720.jpg",
-          srcset={
-            "img/home/2024/showcase/showcase-1-360.jpg": "360w",
-            "img/home/2024/showcase/showcase-1-720.jpg": "720w",
-          },
-          sizes={
-            "(min-width: 480px)": "240px",
-            "(min-width: 768px)": "360px",
-            "default": "180px",
-          },
-          optional_attributes={
-            "loading": "lazy",
-            "alt": ftl('m24-home-alt-rise25-joyous'),
-            "height": "360",
-            "width": "360",
-            'class': 'm24-c-showcase-image image-three',
-          }
-        ) }}
-      </div>
-    </div>
-
-    <p class="m24-c-section-cta"><a href="https://www.youtube.com/watch?v=QzDUMpJbLiM" class="m24-c-cta" rel="external noopener" data-cta-text="Watch the award show">{{ ftl('m24-home-watch-the-award') }}</a></p>
-  </div>
-</section>
+{% call m24_showcase(
+  heading=ftl('m24-home-rise25-awards'),
+  media=media_html,
+  media_class="m24-t-media-three",
+  background_color="m24-t-green",
+  cta_text=ftl('m24-home-watch-the-award'),
+  cta_link_url="https://www.youtube.com/watch?v=QzDUMpJbLiM",
+  cta_analytics_label="Watch the award show"
+) %}
+  {{ ftl('m24-home-get-to-know') }}
+{% endcall %}

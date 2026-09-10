@@ -137,3 +137,81 @@
   </p>
 </div>
 {%- endmacro %}
+
+{#
+  Showcase Section
+  HTML Import: {% from "macros-m24.html" import m24_showcase with context %}
+  CSS Bundle: Requires m24-base CSS bundle
+  Usage: Use with {% call %} block to pass body content. Leave the call block empty
+    (or entirely conditional, e.g. wrapping it in an {% if %} that can render nothing)
+    to omit the body — the body wrapper is only rendered when the block has content.
+  Macro Parameters:
+    heading (Required): String for the section heading.
+    media (Required): Pre-rendered media HTML for the section (an <img>, <picture>, or several images).
+    tag: String for the root element's tag name. Defaults to "div".
+    background_color: String modifier class for the section background (e.g. "m24-t-green"). Defaults to "".
+    anchor_id: String id attribute, to make the section linkable. Defaults to "".
+    media_class: String modifier class(es) for the media wrapper (e.g. "m24-t-media-three"). Defaults to "".
+    two_column_layout: Boolean to place the heading and body side by side. Defaults to False.
+    sub_heading: String for a secondary heading shown in a two-column footer alongside the
+      call-to-action. Pass an explicit value (including "") to render that footer; leave
+      unset (the default, None) to get a plain call-to-action with no sub heading, or to
+      omit the call-to-action entirely if cta_text/cta_link_url are also unset.
+    cta_text: String for the call-to-action link text.
+    cta_link_url: String URL for the call-to-action link. A call-to-action only renders
+      when both this and cta_text are provided.
+    cta_link_new_window: Boolean to open the call-to-action link in a new window. Defaults to False.
+    cta_link_external: Boolean to mark the call-to-action link as external, adding
+      rel="external noopener". Defaults to True; set False for same-site links.
+    cta_analytics_label: String for the call-to-action's data-cta-text attribute (used for
+      GA tracking). Defaults to cta_text — override when the visible text is translated but
+      the tracking label should stay in English.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling. Defaults to 2.
+#}
+{% macro m24_showcase(
+  heading,
+  media,
+  tag="section",
+  background_color="",
+  anchor_id="",
+  media_class="",
+  two_column_layout=False,
+  sub_heading=none,
+  cta_text="",
+  cta_link_url="",
+  cta_link_new_window=False,
+  cta_link_external=True,
+  cta_analytics_label=none,
+  heading_level=2
+) -%}
+<{{ tag }} class="{% if background_color %} {{ background_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
+  <div class="m24-c-content">
+    <div class="m24-c-showcase">
+      <header class="m24-c-showcase-text{% if two_column_layout %} m24-l-two-columns{% endif %}">
+        <h{{ heading_level }} class="m24-c-showcase-title">{{ heading }}</h{{ heading_level }}>
+        {% set body_content %}{{ caller() }}{% endset %}
+        {% if body_content.strip() %}
+          <div class="m24-c-showcase-body">{{ body_content }}</div>
+        {% endif %}
+      </header>
+
+        <div class="m24-c-showcase-media{% if media_class %} {{ media_class }}{% endif %}">
+          {{ media }}
+        </div>
+
+      {% if sub_heading is not none %}
+        <header class="m24-c-showcase-text m24-l-two-columns">
+          <h3 class="m24-c-showcase-subtitle">{{ sub_heading }}</h3>
+          <p class="m24-c-showcase-body m24-c-section-cta">
+            <a href="{{ cta_link_url }}" class="m24-c-cta"{% if cta_link_new_window %} target="_blank"{% endif %}{% if cta_link_external %} rel="external noopener"{% endif %} data-cta-text="{{ cta_analytics_label or cta_text }}">{{ cta_text }}</a>
+          </p>
+        </header>
+      {% elif cta_text and cta_link_url %}
+        <p class="m24-c-section-cta">
+          <a href="{{ cta_link_url }}" class="m24-c-cta"{% if cta_link_new_window %} target="_blank"{% endif %}{% if cta_link_external %} rel="external noopener"{% endif %} data-cta-text="{{ cta_analytics_label or cta_text }}">{{ cta_text }}</a>
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</{{ tag }}>
+{%- endmacro %}
