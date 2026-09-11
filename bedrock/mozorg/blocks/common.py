@@ -334,10 +334,10 @@ class ShowcaseBlock(blocks.StructBlock):
         ),
     )
 
-    sub_heading = blocks.CharBlock(
+    label = blocks.CharBlock(
         required=False,
         max_length=255,
-        help_text="Sub heading. Use sentence case.",
+        help_text="Label. Use sentence case.",
     )
 
     cta_text = blocks.CharBlock(
@@ -360,7 +360,7 @@ class ShowcaseBlock(blocks.StructBlock):
             children=[
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
-                BlockGroup(["sub_heading", "cta_text", "cta_link"], heading="Call-to-action"),
+                BlockGroup(["label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
             settings=["settings"],
         )

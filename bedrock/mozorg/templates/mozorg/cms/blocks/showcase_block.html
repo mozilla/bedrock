@@ -20,7 +20,7 @@
   background_color=value.settings.background_color,
   anchor_id=anchor_id,
   two_column_layout=value.settings.two_column_layout,
-  sub_heading=value.sub_heading,
+  label=value.label or none,
   cta_text=value.cta_text,
   cta_link_url=value.cta_link.get_url()|add_utm_parameters,
   cta_link_new_window=value.cta_link.new_window

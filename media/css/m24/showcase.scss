@@ -4,14 +4,15 @@
 
 @use 'vars/lib' as *;
 
-.m24-c-showcase-title {
+.m24-c-showcase-heading {
     font-size: $text-title-xl;
-    margin-bottom: $spacer-sm;
+    margin-bottom: 0;
 }
 
-.m24-c-showcase-subtitle {
+.m24-c-showcase-label {
     font-size: $text-button-xl;
     padding: $spacer-xs 0;
+    margin-bottom: 0;
     text-align: end;
 }
 
@@ -19,8 +20,16 @@
     font-weight: 500;
     font-size: $text-body-lg;
 
+    & *:last-child {
+        margin-bottom: 0;
+    }
+
+    .m24-c-showcase-heading + & {
+        margin-top: $spacer-sm;
+    }
+
     @media #{$mq-xl} {
-        max-width: grid(6);
+        max-width: grid(9);
     }
 }
 
@@ -112,27 +121,16 @@
     .m24-c-showcase-text.m24-l-two-columns {
         @include grid;
 
-        .m24-c-showcase-title,
-        .m24-c-showcase-subtitle {
+        .m24-c-showcase-heading,
+        .m24-c-showcase-label {
             grid-column: 1/7;
+            padding: 0;
             text-align: start;
         }
 
         .m24-c-showcase-body {
             grid-column: 7/-1;
             max-width: none;
-        }
-    }
-
-    .m24-c-showcase-foot {
-        @include grid;
-
-        .m24-c-showcase-foot-content {
-            grid-column: 1/7;
-        }
-
-        .m24-c-section-cta {
-            grid-column: 7/-1;
         }
     }
 }

@@ -275,7 +275,7 @@ class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
     body = "<p>Read our annual report.</p>"
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
-    sub_heading = "Supporting a healthy internet"
+    label = "Supporting a healthy internet"
     cta_text = "Read the report"
     cta_link = factory.SubFactory(LinkBlockFactory)
 

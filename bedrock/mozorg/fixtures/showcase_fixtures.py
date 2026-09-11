@@ -29,7 +29,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Read our annual report on Mozilla's mission and impact.</p>",
                 "image": image_id,
                 "image_alt": "State of Mozilla report cover",
-                "sub_heading": "Supporting a healthy internet",
+                "label": "Supporting a healthy internet",
                 "cta_text": "Read the report",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -51,7 +51,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Discover the <strong>latest features</strong> in Firefox.</p><p>Built for privacy and speed.</p>",
                 "image": image_id,
                 "image_alt": "",
-                "sub_heading": "Browse with confidence",
+                "label": "Browse with confidence",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -73,7 +73,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>How Mozilla champions open source technology.</p>",
                 "image": image_id,
                 "image_alt": "Open source community collaboration",
-                "sub_heading": "Building together",
+                "label": "Building together",
                 "cta_text": "Explore our work",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -95,7 +95,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>See how our community is making a difference.</p>",
                 "image": image_id,
                 "image_alt": "Mozilla community event",
-                "sub_heading": "Join the movement",
+                "label": "Join the movement",
                 "cta_text": "View impact report",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -104,6 +104,28 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 },
             },
             "id": "showcase-variant-4",
+        },
+        # Variant 7: CTA with no label
+        {
+            "type": "showcase_block",
+            "value": {
+                "settings": {
+                    "background_color": "",
+                    "anchor_id": "",
+                },
+                "heading": "No Label",
+                "body": "<p>The call-to-action has no label above it.</p>",
+                "image": image_id,
+                "image_alt": "",
+                "label": "",
+                "cta_text": "Learn more",
+                "cta_link": {
+                    "link_to": "custom_url",
+                    "custom_url": "https://www.mozilla.org/no-label",
+                    "new_window": False,
+                },
+            },
+            "id": "showcase-variant-7",
         },
     ]
 
