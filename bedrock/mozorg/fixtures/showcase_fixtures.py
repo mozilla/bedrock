@@ -105,12 +105,58 @@ def get_showcase_variants(image_id: int) -> list[dict]:
             },
             "id": "showcase-variant-4",
         },
-        # Variant 7: CTA with no label
+        # Variant 5: Two column layout, with label and CTA
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "",
+                    "anchor_id": "",
+                    "two_column_layout": True,
+                },
+                "heading": "Two Column Layout",
+                "body": "<p>Heading and body sit side by side at desktop widths, with the image below.</p>",
+                "image": image_id,
+                "image_alt": "Two column layout example",
+                "label": "Read more",
+                "cta_text": "See details",
+                "cta_link": {
+                    "link_to": "custom_url",
+                    "custom_url": "https://www.mozilla.org/two-column",
+                    "new_window": False,
+                },
+            },
+            "id": "showcase-variant-5",
+        },
+        # Variant 6: Two column layout, dark background with anchor_id
+        {
+            "type": "showcase_block",
+            "value": {
+                "settings": {
+                    "background_color": "m24-t-dark",
+                    "anchor_id": "two-column-section",
+                    "two_column_layout": True,
+                },
+                "heading": "Two Column Layout, Dark Background",
+                "body": "<p>Same two column heading/body layout, on a dark background with an anchor ID.</p>",
+                "image": image_id,
+                "image_alt": "",
+                "label": "Worth a look",
+                "cta_text": "Learn more",
+                "cta_link": {
+                    "link_to": "custom_url",
+                    "custom_url": "https://www.mozilla.org/two-column-dark",
+                    "new_window": False,
+                },
+            },
+            "id": "showcase-variant-6",
+        },
+        # Variant 7: CTA with no label
+        {
+            "type": "showcase_block",
+            "value": {
+                "settings": {
+                    "background_color": "m24-t-dark",
                     "anchor_id": "",
                 },
                 "heading": "No Label",
