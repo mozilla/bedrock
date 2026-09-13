@@ -131,6 +131,51 @@ class TestFraudReport(TestCase):
 
         assert not form.is_valid()
 
+    def test_form_details_at_max_length(self):
+        """
+        Form should be valid when details is at the character limit.
+        """
+        self.data.update(input_details="x" * legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH)
+
+        form = FraudReportForm(self.data)
+
+        assert form.is_valid()
+
+    def test_form_details_over_max_length(self):
+        """
+        With details over the character limit, form should not be valid and
+        should have details in the errors hash.
+        """
+        self.data.update(input_details="x" * (legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1))
+
+        form = FraudReportForm(self.data)
+
+        assert not form.is_valid()
+        self.assertIn("input_details", form.errors)
+
+    def test_form_details_maxlength_attribute(self):
+        """
+        Details field should render the character limit as a maxlength
+        attribute, so the browser enforces it too.
+        """
+        form = FraudReportForm(auto_id="%s")
+
+        self.assertIn(f'maxlength="{legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH}"', str(form["input_details"]))
+
+    def test_form_details_over_max_length_no_email(self):
+        """
+        Form with details over the character limit should not send an email.
+        """
+        self.data.update(input_details="x" * (legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1))
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        ret = submit_form(request, form)
+
+        self.assertTrue(ret["form_error"])
+        assert len(mail.outbox) == 0
+
     def test_form_valid_attachement(self):
         """
         Form should be valid when attachment under/at size limit.

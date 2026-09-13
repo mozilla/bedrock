@@ -7,6 +7,7 @@ from django import forms
 from bedrock.mozorg.forms import HoneyPotWidget
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
+FRAUD_REPORT_DETAILS_MAX_LENGTH = 2000
 
 
 class FraudReportForm(forms.Form):
@@ -68,7 +69,11 @@ class FraudReportForm(forms.Form):
         ),
     )
     input_specific_product = forms.CharField(max_length=254, required=False, widget=forms.TextInput(attrs={"size": 20, "class": "fill-width"}))
-    input_details = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}))
+    input_details = forms.CharField(
+        max_length=FRAUD_REPORT_DETAILS_MAX_LENGTH,
+        required=False,
+        widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}),
+    )
     input_attachment = forms.ImageField(required=False)
     input_attachment_desc = forms.CharField(
         max_length=254, required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"})
