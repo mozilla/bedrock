@@ -17,6 +17,7 @@ from lib import l10n_utils
 
 FRAUD_REPORT_EMAIL_FROM = settings.DEFAULT_FROM_EMAIL
 FRAUD_REPORT_EMAIL_SUBJECT = "New trademark infringement report: %s; %s"
+FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH = 200
 FRAUD_REPORT_EMAIL_TO = ["trademarks@mozilla.com"]
 
 
@@ -74,7 +75,11 @@ def submit_form(request, form):
         form_error = False
         data = form.cleaned_data
 
-        subject = FRAUD_REPORT_EMAIL_SUBJECT % (data["input_url"], data["input_category"])
+        url = data["input_url"]
+        if len(url) > FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH:
+            url = url[:FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH] + "..."
+
+        subject = FRAUD_REPORT_EMAIL_SUBJECT % (url, data["input_category"])
         sender = FRAUD_REPORT_EMAIL_FROM
         to = FRAUD_REPORT_EMAIL_TO
         msg = render_to_string("legal/emails/fraud-report.txt", data, request=request)

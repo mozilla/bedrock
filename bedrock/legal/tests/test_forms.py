@@ -176,6 +176,43 @@ class TestFraudReport(TestCase):
         self.assertTrue(ret["form_error"])
         assert len(mail.outbox) == 0
 
+    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
+    @patch("bedrock.legal.views.EmailMessage")
+    def test_email_subject_long_url_truncated(self, mock_email_message, mock_render_to_string):
+        """
+        Make sure a long url is truncated in the email subject, but is still
+        sent in full in the email body.
+        """
+        long_url = "http://example.com/" + "a" * 1900
+        self.data.update(input_url=long_url)
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        subject = mock_email_message.call_args[0][0]
+
+        self.assertIn(long_url[: legal_views.FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH] + "...", subject)
+        self.assertNotIn(long_url, subject)
+        assert mock_render_to_string.call_args[0][1]["input_url"] == long_url
+
+    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
+    @patch("bedrock.legal.views.EmailMessage")
+    def test_email_subject_short_url_not_truncated(self, mock_email_message, mock_render_to_string):
+        """
+        Make sure a normal length url is not truncated in the email subject.
+        """
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        subject = mock_email_message.call_args[0][0]
+
+        self.assertIn(self.data["input_url"], subject)
+        self.assertNotIn("...", subject)
+
     def test_form_valid_attachement(self):
         """
         Form should be valid when attachment under/at size limit.
