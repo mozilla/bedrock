@@ -466,7 +466,7 @@ def assert_showcase_block_structure(showcase_element: BeautifulSoup, variant_dat
     image = media.find("img")
     assert image is not None, "Missing image in media section"
 
-    if value["label"]:
+    if value["cta_label"]:
         # Check second text section with label and CTA
         text_sections = content_wrapper.find_all(class_="m24-c-showcase-text")
         assert len(text_sections) >= 2, "Expected at least 2 .m24-c-showcase-text sections"
@@ -508,9 +508,9 @@ def assert_showcase_block_content(showcase_element: BeautifulSoup, variant_data:
 
     # Check label text, if a label was provided
     subtitle = showcase_element.find(class_="m24-c-showcase-label")
-    if value["label"]:
+    if value["cta_label"]:
         assert subtitle is not None, "Missing .m24-c-showcase-label element"
-        assert value["label"] in subtitle.get_text(), f"Label text '{value['label']}' not found"
+        assert value["cta_label"] in subtitle.get_text(), f"Label text '{value['cta_label']}' not found"
     else:
         assert subtitle is None, "Unexpected .m24-c-showcase-label element for empty label"
 

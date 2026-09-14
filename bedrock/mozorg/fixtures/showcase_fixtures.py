@@ -29,7 +29,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Read our annual report on Mozilla's mission and impact.</p>",
                 "image": image_id,
                 "image_alt": "State of Mozilla report cover",
-                "label": "Supporting a healthy internet",
+                "cta_label": "Supporting a healthy internet",
                 "cta_text": "Read the report",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -51,7 +51,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Discover the <strong>latest features</strong> in Firefox.</p><p>Built for privacy and speed.</p>",
                 "image": image_id,
                 "image_alt": "",
-                "label": "Browse with confidence",
+                "cta_label": "Browse with confidence",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -73,7 +73,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>How Mozilla champions open source technology.</p>",
                 "image": image_id,
                 "image_alt": "Open source community collaboration",
-                "label": "Building together",
+                "cta_label": "Building together",
                 "cta_text": "Explore our work",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -95,7 +95,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>See how our community is making a difference.</p>",
                 "image": image_id,
                 "image_alt": "Mozilla community event",
-                "label": "Join the movement",
+                "cta_label": "Join the movement",
                 "cta_text": "View impact report",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -118,7 +118,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Heading and body sit side by side at desktop widths, with the image below.</p>",
                 "image": image_id,
                 "image_alt": "Two column layout example",
-                "label": "Read more",
+                "cta_label": "Read more",
                 "cta_text": "See details",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -141,7 +141,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>Same two column heading/body layout, on a dark background with an anchor ID.</p>",
                 "image": image_id,
                 "image_alt": "",
-                "label": "Worth a look",
+                "cta_label": "Worth a look",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",
@@ -163,7 +163,7 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "body": "<p>The call-to-action has no label above it.</p>",
                 "image": image_id,
                 "image_alt": "",
-                "label": "",
+                "cta_label": "",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",

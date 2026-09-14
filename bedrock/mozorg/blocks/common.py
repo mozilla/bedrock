@@ -334,7 +334,7 @@ class ShowcaseBlock(blocks.StructBlock):
         ),
     )
 
-    label = blocks.CharBlock(
+    cta_label = blocks.CharBlock(
         required=False,
         max_length=255,
         help_text="Label. Use sentence case.",
@@ -360,7 +360,7 @@ class ShowcaseBlock(blocks.StructBlock):
             children=[
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
-                BlockGroup(["label", "cta_text", "cta_link"], heading="Call-to-action"),
+                BlockGroup(["cta_label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
             settings=["settings"],
         )
