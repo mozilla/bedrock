@@ -7,7 +7,7 @@ from django import forms
 from bedrock.mozorg.forms import HoneyPotWidget
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
-FRAUD_REPORT_DETAILS_MAX_LENGTH = 2000
+FRAUD_REPORT_DETAILS_MAX_LENGTH = 5000
 
 
 class FraudReportForm(forms.Form):
