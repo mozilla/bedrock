@@ -173,6 +173,27 @@ def get_showcase_variants(image_id: int) -> list[dict]:
             },
             "id": "showcase-variant-7",
         },
+        # Variant 8: Label with no CTA text or link at all
+        {
+            "type": "showcase_block",
+            "value": {
+                "settings": {
+                    "background_color": "",
+                    "anchor_id": "",
+                },
+                "heading": "Label Without CTA",
+                "body": "<p>The label is set, but there is no call-to-action.</p>",
+                "image": image_id,
+                "image_alt": "",
+                "cta_label": "2026",
+                "cta_text": "",
+                "cta_link": {
+                    "link_to": "",
+                    "new_window": False,
+                },
+            },
+            "id": "showcase-variant-8",
+        },
     ]
 
 

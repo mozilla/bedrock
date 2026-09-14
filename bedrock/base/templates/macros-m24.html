@@ -153,7 +153,7 @@
     anchor_id: String id attribute, to make the section linkable. Defaults to "".
     media_class: String modifier class(es) for the media wrapper (e.g. "m24-t-media-three"). Defaults to "".
     two_column_layout: Boolean to place the heading and body side by side. Defaults to False.
-    label: String for a secondary heading shown in a two-column footer alongside the
+    label: String for a short label shown in a two-column footer alongside the
       call-to-action. Pass an explicit value (including "") to render that footer; leave
       unset (the default, None) to get a plain call-to-action with no label, or to
       omit the call-to-action entirely if cta_text/cta_link_url are also unset.
@@ -201,10 +201,12 @@
 
       {% if label is not none %}
         <header class="m24-c-showcase-text m24-l-two-columns">
-          <h3 class="m24-c-showcase-label">{{ label }}</h3>
-          <p class="m24-c-showcase-body m24-c-section-cta">
-            <a href="{{ cta_link_url }}" class="m24-c-cta"{% if cta_link_new_window %} target="_blank"{% endif %}{% if cta_link_external %} rel="external noopener"{% endif %} data-cta-text="{{ cta_analytics_label or cta_text }}">{{ cta_text }}</a>
-          </p>
+          <p class="m24-c-showcase-label">{{ label }}</p>
+          {% if cta_text and cta_link_url %}
+            <p class="m24-c-showcase-body m24-c-section-cta">
+              <a href="{{ cta_link_url }}" class="m24-c-cta"{% if cta_link_new_window %} target="_blank"{% endif %}{% if cta_link_external %} rel="external noopener"{% endif %} data-cta-text="{{ cta_analytics_label or cta_text }}">{{ cta_text }}</a>
+            </p>
+          {% endif %}
         </header>
       {% elif cta_text and cta_link_url %}
         <p class="m24-c-section-cta">

@@ -466,23 +466,28 @@ def assert_showcase_block_structure(showcase_element: BeautifulSoup, variant_dat
     image = media.find("img")
     assert image is not None, "Missing image in media section"
 
+    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
+    has_cta = bool(value.get("cta_text")) and has_cta_link
+
     if value["cta_label"]:
-        # Check second text section with label and CTA
+        # Check second text section with label and, if present, a CTA
         text_sections = content_wrapper.find_all(class_="m24-c-showcase-text")
         assert len(text_sections) >= 2, "Expected at least 2 .m24-c-showcase-text sections"
 
-        subtitle_section = text_sections[1]
-        subtitle = subtitle_section.find(class_="m24-c-showcase-label")
-        assert subtitle is not None, "Missing .m24-c-showcase-label element"
-        assert subtitle.name == "h3", f"Expected h3 subtitle, got {subtitle.name}"
+        label_section = text_sections[1]
+        label = label_section.find(class_="m24-c-showcase-label")
+        assert label is not None, "Missing .m24-c-showcase-label element"
+        assert label.name == "p", f"Expected p label, got {label.name}"
 
-        # Check CTA exists
-        cta = subtitle_section.find("a", class_="m24-c-cta")
-        assert cta is not None, "Missing .m24-c-cta link"
+        cta = label_section.find("a", class_="m24-c-cta")
+        if has_cta:
+            assert cta is not None, "Missing .m24-c-cta link"
+        else:
+            assert cta is None, "Unexpected .m24-c-cta link with no cta_text/cta_link"
     else:
         # No label: the CTA (if any) is a bare paragraph, not a second text section
         assert content_wrapper.find(class_="m24-c-showcase-label") is None, "Unexpected .m24-c-showcase-label element for empty label"
-        if value.get("cta_text") and value.get("cta_link"):
+        if has_cta:
             cta = content_wrapper.find("a", class_="m24-c-cta")
             assert cta is not None, "Missing .m24-c-cta link"
 
@@ -507,27 +512,31 @@ def assert_showcase_block_content(showcase_element: BeautifulSoup, variant_data:
     assert expected_body in body_text, f"Body text not found. Expected '{expected_body}' in '{body_text}'"
 
     # Check label text, if a label was provided
-    subtitle = showcase_element.find(class_="m24-c-showcase-label")
+    label = showcase_element.find(class_="m24-c-showcase-label")
     if value["cta_label"]:
-        assert subtitle is not None, "Missing .m24-c-showcase-label element"
-        assert value["cta_label"] in subtitle.get_text(), f"Label text '{value['cta_label']}' not found"
+        assert label is not None, "Missing .m24-c-showcase-label element"
+        assert value["cta_label"] in label.get_text(), f"Label text '{value['cta_label']}' not found"
     else:
-        assert subtitle is None, "Unexpected .m24-c-showcase-label element for empty label"
+        assert label is None, "Unexpected .m24-c-showcase-label element for empty label"
 
-    # Check CTA link
-    cta_link = showcase_element.find("a", class_="m24-c-cta")
-    assert cta_link is not None, "CTA link not found"
+    # Check CTA link, if cta_text and cta_link were both provided
+    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
+    if value.get("cta_text") and has_cta_link:
+        cta_link = showcase_element.find("a", class_="m24-c-cta")
+        assert cta_link is not None, "CTA link not found"
 
-    # Check CTA text
-    assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
+        # Check CTA text
+        assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
 
-    # Check CTA href
-    expected_url = value["cta_link"]["custom_url"]
-    assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
+        # Check CTA href
+        expected_url = value["cta_link"]["custom_url"]
+        assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
 
-    # Check data-cta-text attribute exists
-    assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
-    assert cta_link["data-cta-text"], "data-cta-text attribute is empty"
+        # Check data-cta-text attribute exists
+        assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
+        assert cta_link["data-cta-text"], "data-cta-text attribute is empty"
+    else:
+        assert showcase_element.find("a", class_="m24-c-cta") is None, "Unexpected .m24-c-cta link with no cta_text/cta_link"
 
     # Check image alt text if provided
     image = showcase_element.find("img")
