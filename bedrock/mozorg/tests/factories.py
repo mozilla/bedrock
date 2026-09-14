@@ -4,6 +4,7 @@
 
 import factory
 import wagtail_factories
+from wagtail.rich_text import RichText
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
@@ -241,7 +242,7 @@ class SpringboardBlockFactory(wagtail_factories.StructBlockFactory):
 
 
 class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
-    background_color = "gray"
+    background_color = "m24-t-gray"
     anchor_id = ""
 
     class Meta:
@@ -251,7 +252,7 @@ class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class DonateBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(DonateBlockSettingsFactory)
     heading = "Support Mozilla"
-    body = "<p>Help us build a better internet.</p>"
+    body = RichText("<p>Help us build a better internet.</p>")
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
     cta_text = "Donate"
@@ -272,7 +273,7 @@ class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
     heading = "State of Mozilla"
-    body = "<p>Read our annual report.</p>"
+    body = RichText("<p>Read our annual report.</p>")
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
     cta_label = "Supporting a healthy internet"
@@ -281,6 +282,38 @@ class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
 
     class Meta:
         model = common.ShowcaseBlock
+
+
+class ProseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    anchor_id = ""
+
+    class Meta:
+        model = common.ProseBlockSettings
+
+
+class ProseBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ProseBlockSettingsFactory)
+    heading = "About Mozilla"
+    sub_heading = ""
+    body = RichText("<p>Mozilla builds products and technology.</p>")
+    cta_text = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ProseBlock
+
+
+class GalleryTileBlockFactory(wagtail_factories.StructBlockFactory):
+    heading = "Firefox"
+    body = ""
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+    cta_text = ""
+
+    class Meta:
+        model = common.GalleryTileBlock
 
 
 class HomePageFactory(wagtail_factories.PageFactory):
