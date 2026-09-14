@@ -405,9 +405,9 @@ def test_about_us_page(minimal_site, rf, serving_method):  # noqa: F811
 
     about_us_page = factories.AboutUsPageFactory(
         parent=root_page,
-        content__0__showcase_gallery_block=factories.ShowcaseGalleryBlockFactory(
+        content__0__showcase_block=factories.ShowcaseBlockFactory(
             heading="Working at Mozilla",
-            body="Join a team that believes the internet is for everyone.",
+            body=RichText("<p>Join a team that believes the internet is for everyone.</p>"),
             cta_text="See open roles",
             cta_link=factories.LinkBlockFactory(
                 link_to="custom_url",

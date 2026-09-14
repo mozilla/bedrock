@@ -8,6 +8,7 @@ from wagtail import blocks
 from wagtail.blocks.struct_block import BlockGroup
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
+from wagtail_thumbnail_choice_block import ThumbnailChoiceBlock
 
 
 class DividerBlock(blocks.StaticBlock):
@@ -318,6 +319,21 @@ class ShowcaseMediaBlock(blocks.StreamBlock):
         help_text = "Choose a single image or a gallery of images."
 
 
+SHOWCASE_LAYOUT_CHOICES = (
+    ("heading-body-media", "Heading, body, media"),
+    ("heading-and-body-media", "Heading & body, media"),
+    ("heading-media-body", "Heading, media, body"),
+    ("media-heading-body", "Media, heading, body"),
+)
+
+SHOWCASE_LAYOUT_THUMBNAILS = {
+    "heading-body-media": "/media/img/mozorg/cms/layouts/heading-body-media.svg",
+    "heading-and-body-media": "/media/img/mozorg/cms/layouts/heading-and-body-media.svg",
+    "heading-media-body": "/media/img/mozorg/cms/layouts/heading-media-body.svg",
+    "media-heading-body": "/media/img/mozorg/cms/layouts/media-heading-body.svg",
+}
+
+
 class ShowcaseBlockSettings(blocks.StructBlock):
     """Settings for the showcase block."""
 
@@ -340,12 +356,13 @@ class ShowcaseBlockSettings(blocks.StructBlock):
         help_text="What color should the background be?",
     )
 
-    two_column_layout = blocks.BooleanBlock(
-        required=False,
-        default=False,
-        label="Make it two column layout",
+    layout = ThumbnailChoiceBlock(
+        choices=SHOWCASE_LAYOUT_CHOICES,
+        thumbnails=SHOWCASE_LAYOUT_THUMBNAILS,
+        default="heading-body-media",
+        required=True,
         inline_form=True,
-        help_text="Make the title and body content into a two-column layout.",
+        help_text="How should the text and media be arranged?",
     )
 
     class Meta:
@@ -371,18 +388,7 @@ class ShowcaseBlock(blocks.StructBlock):
         help_text="Keep this to 2 paragraphs or fewer.",
     )
 
-    image = ImageChooserBlock(
-        help_text="Ideal image size is 1376 * 515.",
-    )
-
-    image_alt = blocks.CharBlock(
-        max_length=255,
-        required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
-    )
+    media = ShowcaseMediaBlock()
 
     cta_label = blocks.CharBlock(
         required=False,
@@ -409,7 +415,7 @@ class ShowcaseBlock(blocks.StructBlock):
         form_layout = BlockGroup(
             children=[
                 BlockGroup(["heading", "body"], heading="Text"),
-                BlockGroup(["image", "image_alt"], heading="Image"),
+                BlockGroup(["media"], heading="Media"),
                 BlockGroup(["cta_label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
             settings=["settings"],
@@ -541,26 +547,6 @@ class GalleryTileBlock(blocks.StructBlock):
         )
 
 
-class ShowcaseGalleryImageBlock(blocks.StructBlock):
-    """A single image with alt text for the gallery."""
-
-    image = ImageChooserBlock()
-
-    image_alt = blocks.CharBlock(
-        max_length=255,
-        required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
-    )
-
-    class Meta:
-        icon = "image"
-        label = "Showcase Gallery Image"
-        label_format = "{image}"
-
-
 class GalleryBlock(blocks.StructBlock):
     """Block for a gallery section with multiple tiles."""
 
@@ -587,85 +573,6 @@ class GalleryBlock(blocks.StructBlock):
         icon = "grip"
         label = "Gallery Section"
         label_format = "{heading}"
-
-
-class ShowcaseGalleryBlockSettings(blocks.StructBlock):
-    """Settings for the showcase gallery block."""
-
-    anchor_id = blocks.CharBlock(
-        required=False,
-        max_length=100,
-        help_text="Optional: Add an ID to make this section linkable (e.g., 'news', 'gallery').",
-    )
-
-    background_color = blocks.ChoiceBlock(
-        choices=[
-            ("", "White"),
-            ("m24-t-dark", "Dark"),
-            ("m24-t-green", "Green"),
-            ("m24-t-orange", "Orange"),
-            ("m24-t-pink", "Pink"),
-            ("m24-t-gray", "Gray"),
-        ],
-        required=False,
-        help_text="What color should the background be?",
-    )
-
-    class Meta:
-        icon = "cog"
-        collapsed = True
-        label = "Settings"
-        label_format = "ID: {anchor_id} - Background: {background_color}"
-        form_classname = "compact-form struct-block"
-
-
-class ShowcaseGalleryBlock(blocks.StructBlock):
-    """A showcase block with a gallery as media."""
-
-    settings = ShowcaseGalleryBlockSettings()
-
-    heading = blocks.CharBlock(
-        required=False,
-        max_length=255,
-        help_text="Use sentence case.",
-    )
-
-    body = blocks.CharBlock(
-        max_length=1000,
-        label="Content for section body",
-        help_text="Use sentence case.",
-    )
-
-    tiles = blocks.ListBlock(
-        ShowcaseGalleryImageBlock(),
-        min_num=1,
-        help_text="Add gallery tiles. For best results, ensure tile widths add up to 100% per row.",
-    )
-
-    cta_text = blocks.CharBlock(
-        required=False,
-        max_length=50,
-        label="Link text",
-        help_text="Use sentence case (e.g., 'Read the report', 'Read more').",
-    )
-
-    cta_link = LinkBlock(
-        label="Link destination",
-    )
-
-    class Meta:
-        template = "mozorg/cms/blocks/showcase_gallery_block.html"
-        icon = "grip"
-        label = "Showcase Gallery section"
-        label_format = "{heading}"
-        form_layout = BlockGroup(
-            children=[
-                BlockGroup(["heading", "body"], heading="Text"),
-                BlockGroup(["tiles"], heading="Image"),
-                BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
-            ],
-            settings=["settings"],
-        )
 
 
 class ProseBlockSettings(blocks.StructBlock):

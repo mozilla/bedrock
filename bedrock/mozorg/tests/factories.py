@@ -2,12 +2,29 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import uuid
+
 import factory
 import wagtail_factories
+from wagtail.rich_text import RichText
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
 from bedrock.mozorg.blocks import advertising, common, navigation
+
+
+def _build_showcase_media():
+    """Build a single-entry ShowcaseMediaBlock StreamValue containing one image."""
+    image = wagtail_factories.ImageChooserBlockFactory()
+    return common.ShowcaseMediaBlock().to_python(
+        [
+            {
+                "type": "image",
+                "value": {"image": image.id, "image_alt": ""},
+                "id": str(uuid.uuid4()),
+            }
+        ]
+    )
 
 
 class LeadershipProfileSnippetFactory(factory.django.DjangoModelFactory):
@@ -272,9 +289,8 @@ class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
     heading = "State of Mozilla"
-    body = "<p>Read our annual report.</p>"
-    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
-    image_alt = ""
+    body = RichText("<p>Read our annual report.</p>")
+    media = factory.LazyFunction(_build_showcase_media)
     cta_label = "Supporting a healthy internet"
     cta_text = "Read the report"
     cta_link = factory.SubFactory(LinkBlockFactory)
@@ -300,34 +316,6 @@ class HomePageFactory(wagtail_factories.PageFactory):
         model = models.HomePage
 
 
-class ShowcaseGalleryImageBlockFactory(wagtail_factories.StructBlockFactory):
-    image = wagtail_factories.ImageChooserBlockFactory
-    image_alt = ""
-
-    class Meta:
-        model = common.ShowcaseGalleryImageBlock
-
-
-class ShowcaseGalleryBlockSettingsFactory(wagtail_factories.StructBlockFactory):
-    anchor_id = ""
-    background_color = ""
-
-    class Meta:
-        model = common.ShowcaseGalleryBlockSettings
-
-
-class ShowcaseGalleryBlockFactory(wagtail_factories.StructBlockFactory):
-    settings = factory.SubFactory(ShowcaseGalleryBlockSettingsFactory)
-    heading = "Working at Mozilla"
-    tiles = wagtail_factories.ListBlockFactory(ShowcaseGalleryImageBlockFactory)
-    body = "Join a team that believes the internet is for everyone."
-    cta_text = "See open roles"
-    cta_link = factory.SubFactory(LinkBlockFactory)
-
-    class Meta:
-        model = common.ShowcaseGalleryBlock
-
-
 class AboutUsPageFactory(wagtail_factories.PageFactory):
     title = "Test About Us Page"
     live = True
@@ -335,7 +323,7 @@ class AboutUsPageFactory(wagtail_factories.PageFactory):
 
     content = wagtail_factories.StreamFieldFactory(
         {
-            "showcase_gallery_block": factory.SubFactory(ShowcaseGalleryBlockFactory),
+            "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
         }
     )
 

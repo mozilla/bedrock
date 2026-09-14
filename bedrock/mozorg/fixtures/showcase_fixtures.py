@@ -3,6 +3,8 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+import uuid
+
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image, get_test_index_page
 from bedrock.mozorg.models import HomePage
 
@@ -17,18 +19,24 @@ def get_showcase_variants(image_id: int) -> list[dict]:
         List of block data dictionaries representing different configurations
     """
     return [
-        # Variant 1: Default white background, no anchor
+        # Variant 1: Default layout (heading-body-media), white background, no anchor
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "",
                     "anchor_id": "",
+                    "layout": "heading-body-media",
                 },
                 "heading": "State of Mozilla 2024",
                 "body": "<p>Read our annual report on Mozilla's mission and impact.</p>",
-                "image": image_id,
-                "image_alt": "State of Mozilla report cover",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": "State of Mozilla report cover"},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "Supporting a healthy internet",
                 "cta_text": "Read the report",
                 "cta_link": {
@@ -39,40 +47,52 @@ def get_showcase_variants(image_id: int) -> list[dict]:
             },
             "id": "showcase-variant-1",
         },
-        # Variant 2: Dark background
+        # Variant 2: Dark background, new_window=True
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "m24-t-dark",
                     "anchor_id": "",
+                    "layout": "heading-body-media",
                 },
                 "heading": "Firefox Innovations",
                 "body": "<p>Discover the <strong>latest features</strong> in Firefox.</p><p>Built for privacy and speed.</p>",
-                "image": image_id,
-                "image_alt": "",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": ""},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "Browse with confidence",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",
                     "custom_url": "https://www.mozilla.org/firefox/features",
-                    "new_window": False,
+                    "new_window": True,
                 },
             },
             "id": "showcase-variant-2",
         },
-        # Variant 3: Green background with anchor_id
+        # Variant 3: heading-and-body-media layout, green background with anchor_id
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "m24-t-green",
                     "anchor_id": "showcase-section",
+                    "layout": "heading-and-body-media",
                 },
                 "heading": "Open Source Leadership",
                 "body": "<p>How Mozilla champions open source technology.</p>",
-                "image": image_id,
-                "image_alt": "Open source community collaboration",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": "Open source community collaboration"},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "Building together",
                 "cta_text": "Explore our work",
                 "cta_link": {
@@ -83,91 +103,118 @@ def get_showcase_variants(image_id: int) -> list[dict]:
             },
             "id": "showcase-variant-3",
         },
-        # Variant 4: Orange background with new_window=True
+        # Variant 4: heading-media-body layout
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "m24-t-orange",
                     "anchor_id": "",
+                    "layout": "heading-media-body",
                 },
                 "heading": "Community Impact",
                 "body": "<p>See how our community is making a difference.</p>",
-                "image": image_id,
-                "image_alt": "Mozilla community event",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": "Mozilla community event"},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "Join the movement",
                 "cta_text": "View impact report",
                 "cta_link": {
                     "link_to": "custom_url",
                     "custom_url": "https://foundation.mozilla.org/impact",
-                    "new_window": True,
+                    "new_window": False,
                 },
             },
             "id": "showcase-variant-4",
         },
-        # Variant 5: Two column layout, with label and CTA
+        # Variant 5: media-heading-body layout, gallery media
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "",
                     "anchor_id": "",
-                    "two_column_layout": True,
+                    "layout": "media-heading-body",
                 },
-                "heading": "Two Column Layout",
-                "body": "<p>Heading and body sit side by side at desktop widths, with the image below.</p>",
-                "image": image_id,
-                "image_alt": "Two column layout example",
-                "cta_label": "Read more",
-                "cta_text": "See details",
+                "heading": "Working at Mozilla",
+                "body": "<p>Join a team that believes the internet is for everyone.</p>",
+                "media": [
+                    {
+                        "type": "gallery",
+                        "value": {
+                            "images": [
+                                {"image": image_id, "image_alt": "Mozilla team working together"},
+                                {"image": image_id, "image_alt": "Mozilla office space"},
+                                {"image": image_id, "image_alt": ""},
+                            ]
+                        },
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
+                "cta_label": "Worth a look",
+                "cta_text": "See open roles",
                 "cta_link": {
                     "link_to": "custom_url",
-                    "custom_url": "https://www.mozilla.org/two-column",
+                    "custom_url": "https://www.mozilla.org/careers",
                     "new_window": False,
                 },
             },
             "id": "showcase-variant-5",
         },
-        # Variant 6: Two column layout, dark background with anchor_id
-        {
-            "type": "showcase_block",
-            "value": {
-                "settings": {
-                    "background_color": "m24-t-dark",
-                    "anchor_id": "two-column-section",
-                    "two_column_layout": True,
-                },
-                "heading": "Two Column Layout, Dark Background",
-                "body": "<p>Same two column heading/body layout, on a dark background with an anchor ID.</p>",
-                "image": image_id,
-                "image_alt": "",
-                "cta_label": "Worth a look",
-                "cta_text": "Learn more",
-                "cta_link": {
-                    "link_to": "custom_url",
-                    "custom_url": "https://www.mozilla.org/two-column-dark",
-                    "new_window": False,
-                },
-            },
-            "id": "showcase-variant-6",
-        },
-        # Variant 7: CTA with no label
+        # Variant 6: CTA with no label
         {
             "type": "showcase_block",
             "value": {
                 "settings": {
                     "background_color": "m24-t-dark",
                     "anchor_id": "",
+                    "layout": "heading-body-media",
                 },
                 "heading": "No Label",
                 "body": "<p>The call-to-action has no label above it.</p>",
-                "image": image_id,
-                "image_alt": "",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": ""},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "",
                 "cta_text": "Learn more",
                 "cta_link": {
                     "link_to": "custom_url",
                     "custom_url": "https://www.mozilla.org/no-label",
+                    "new_window": False,
+                },
+            },
+            "id": "showcase-variant-6",
+        },
+        # Variant 7: No call-to-action at all
+        {
+            "type": "showcase_block",
+            "value": {
+                "settings": {
+                    "background_color": "",
+                    "anchor_id": "",
+                    "layout": "heading-body-media",
+                },
+                "heading": "No Call To Action",
+                "body": "<p>This showcase block has no label, CTA text, or CTA link.</p>",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": ""},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
+                "cta_label": "",
+                "cta_text": "",
+                "cta_link": {
+                    "link_to": "",
                     "new_window": False,
                 },
             },
@@ -180,11 +227,17 @@ def get_showcase_variants(image_id: int) -> list[dict]:
                 "settings": {
                     "background_color": "",
                     "anchor_id": "",
+                    "layout": "heading-body-media",
                 },
                 "heading": "Label Without CTA",
                 "body": "<p>The label is set, but there is no call-to-action.</p>",
-                "image": image_id,
-                "image_alt": "",
+                "media": [
+                    {
+                        "type": "image",
+                        "value": {"image": image_id, "image_alt": ""},
+                        "id": str(uuid.uuid4()),
+                    }
+                ],
                 "cta_label": "2026",
                 "cta_text": "",
                 "cta_link": {

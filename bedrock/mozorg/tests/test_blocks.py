@@ -18,7 +18,6 @@ from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
 from bedrock.mozorg.fixtures.prose_fixtures import get_prose_test_page, get_prose_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
-from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
 
 pytestmark = [pytest.mark.django_db]
@@ -430,6 +429,14 @@ def test_springboard_fixture_returns_same_page_when_called_twice(minimal_site): 
 # ShowcaseBlock Tests
 
 
+def _descendant_position(root: BeautifulSoup, target: BeautifulSoup) -> int:
+    """Return target's index among root's descendants, using identity (not ==) comparison."""
+    for index, node in enumerate(root.descendants):
+        if node is target:
+            return index
+    raise ValueError("target is not a descendant of root")
+
+
 def assert_showcase_block_structure(showcase_element: BeautifulSoup, variant_data: dict):
     """Verify the showcase block has the expected HTML structure.
 
@@ -438,58 +445,74 @@ def assert_showcase_block_structure(showcase_element: BeautifulSoup, variant_dat
         variant_data: The block data dictionary used to create the block
     """
     value = variant_data["value"]
-    # Check content wrapper exists
+    layout = value["settings"]["layout"]
+    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
+
     content_wrapper = showcase_element.find(class_="m24-c-content")
     assert content_wrapper is not None, "Missing .m24-c-content element"
 
-    # Check text header section exists
-    text_header = content_wrapper.find(class_="m24-c-showcase-text")
-    assert text_header is not None, "Missing .m24-c-showcase-text element"
-
-    # Check title exists and is h2
-    title = text_header.find(class_="m24-c-showcase-heading")
-    assert title is not None, "Missing .m24-c-showcase-heading element"
-    assert title.name == "h2", f"Expected h2 title, got {title.name}"
-
-    # Check body exists
-    body = text_header.find(class_="m24-c-showcase-body")
-    assert body is not None, "Missing .m24-c-showcase-body element"
-
-    # Check showcase media section exists
     showcase_section = content_wrapper.find(class_="m24-c-showcase")
     assert showcase_section is not None, "Missing .m24-c-showcase element"
+    assert f"m24-l-{layout}" in showcase_section.get("class", []), f"Expected class 'm24-l-{layout}' on .m24-c-showcase"
 
-    media = showcase_section.find(class_="m24-c-showcase-media")
-    assert media is not None, "Missing .m24-c-showcase-media element"
+    # Heading
+    heading = showcase_section.find(class_="m24-c-showcase-heading")
+    assert heading is not None, "Missing .m24-c-showcase-heading element"
+    assert heading.name == "h2", f"Expected h2 heading, got {heading.name}"
 
-    # Check image exists
-    image = media.find("img")
-    assert image is not None, "Missing image in media section"
+    if layout == "heading-and-body-media":
+        header = heading.find_parent(class_="m24-c-showcase-text")
+        assert "m24-l-two-columns" in header.get("class", []), "Expected m24-l-two-columns on the header"
 
-    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
-    has_cta = bool(value.get("cta_text")) and has_cta_link
+    # Media
+    media_wrapper = showcase_section.find(class_="m24-c-showcase-media")
+    assert media_wrapper is not None, "Missing .m24-c-showcase-media element"
 
-    if value["cta_label"]:
-        # Check second text section with label and, if present, a CTA
-        text_sections = content_wrapper.find_all(class_="m24-c-showcase-text")
-        assert len(text_sections) >= 2, "Expected at least 2 .m24-c-showcase-text sections"
-
-        label_section = text_sections[1]
-        label = label_section.find(class_="m24-c-showcase-label")
-        assert label is not None, "Missing .m24-c-showcase-label element"
-        assert label.name == "p", f"Expected p label, got {label.name}"
-
-        cta = label_section.find("a", class_="m24-c-cta")
-        if has_cta:
-            assert cta is not None, "Missing .m24-c-cta link"
-        else:
-            assert cta is None, "Unexpected .m24-c-cta link with no cta_text/cta_link"
+    media_type = value["media"][0]["type"]
+    if media_type == "image":
+        assert media_wrapper.find("img") is not None, "Missing image in media section"
     else:
-        # No label: the CTA (if any) is a bare paragraph, not a second text section
-        assert content_wrapper.find(class_="m24-c-showcase-label") is None, "Unexpected .m24-c-showcase-label element for empty label"
-        if has_cta:
-            cta = content_wrapper.find("a", class_="m24-c-cta")
+        gallery = media_wrapper.find(class_="m24-c-showcase-gallery")
+        assert gallery is not None, "Missing .m24-c-showcase-gallery element"
+        expected_pictures = len(value["media"][0]["value"]["images"])
+        assert len(gallery.find_all("picture")) == expected_pictures, f"Expected {expected_pictures} pictures in gallery"
+
+    heading_pos = _descendant_position(showcase_section, heading)
+    media_pos = _descendant_position(showcase_section, media_wrapper)
+    if layout == "media-heading-body":
+        assert media_pos < heading_pos, "Expected media before heading for media-heading-body layout"
+    else:
+        assert heading_pos < media_pos, f"Expected heading before media for {layout} layout"
+
+    # Body: the real body element carries m24-c-showcase-body but not m24-c-section-cta
+    # (the CTA link paragraph reuses m24-c-showcase-body as a spacing utility class)
+    body = showcase_section.find(lambda tag: tag.get("class") and "m24-c-showcase-body" in tag["class"] and "m24-c-section-cta" not in tag["class"])
+    assert body is not None, "Missing .m24-c-showcase-body element"
+
+    if layout == "heading-media-body":
+        body_pos = _descendant_position(showcase_section, body)
+        assert media_pos < body_pos, "Expected body after media for heading-media-body layout"
+    else:
+        assert body.find_parent(class_="m24-c-showcase-text") is not None, "Expected body inside the heading's text section"
+
+    # CTA / label footer
+    if value["cta_label"] or (value.get("cta_text") and has_cta_link):
+        footer = showcase_section.find("footer", class_="m24-c-showcase-text")
+        assert footer is not None, "Missing CTA footer element"
+        assert "m24-l-two-columns" in footer.get("class", []), "Expected m24-l-two-columns on the footer"
+
+        label = footer.find(class_="m24-c-showcase-label")
+        if value["cta_label"]:
+            assert label is not None, "Missing .m24-c-showcase-label element"
+            assert label.name == "p", f"Expected p label, got {label.name}"
+        else:
+            assert label is None, "Unexpected .m24-c-showcase-label element for empty cta_label"
+
+        if value.get("cta_text") and has_cta_link:
+            cta = footer.find("a", class_="m24-c-cta")
             assert cta is not None, "Missing .m24-c-cta link"
+    else:
+        assert showcase_section.find("footer") is None, "Unexpected footer element with no label or CTA"
 
 
 def assert_showcase_block_content(showcase_element: BeautifulSoup, variant_data: dict):
@@ -500,13 +523,14 @@ def assert_showcase_block_content(showcase_element: BeautifulSoup, variant_data:
         variant_data: The block data dictionary used to create the block
     """
     value = variant_data["value"]
+    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
 
     # Check heading text
-    title = showcase_element.find(class_="m24-c-showcase-heading")
-    assert value["heading"] in title.get_text(), f"Heading text '{value['heading']}' not found"
+    heading = showcase_element.find(class_="m24-c-showcase-heading")
+    assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
 
     # Check body contains expected content
-    body = showcase_element.find(class_="m24-c-showcase-body")
+    body = showcase_element.find(lambda tag: tag.get("class") and "m24-c-showcase-body" in tag["class"] and "m24-c-section-cta" not in tag["class"])
     body_text = body.get_text()
     expected_body = BeautifulSoup(value["body"], "html.parser").get_text()
     assert expected_body in body_text, f"Body text not found. Expected '{expected_body}' in '{body_text}'"
@@ -517,31 +541,34 @@ def assert_showcase_block_content(showcase_element: BeautifulSoup, variant_data:
         assert label is not None, "Missing .m24-c-showcase-label element"
         assert value["cta_label"] in label.get_text(), f"Label text '{value['cta_label']}' not found"
     else:
-        assert label is None, "Unexpected .m24-c-showcase-label element for empty label"
+        assert label is None, "Unexpected .m24-c-showcase-label element for empty cta_label"
 
-    # Check CTA link, if cta_text and cta_link were both provided
-    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
+    # Check media alt text
+    media_item = value["media"][0]
+    if media_item["type"] == "image":
+        image_alt = media_item["value"]["image_alt"]
+        image = showcase_element.find("img")
+        if image_alt:
+            assert image.get("alt") == image_alt, f"Expected alt text '{image_alt}', got '{image.get('alt')}'"
+    else:
+        images = media_item["value"]["images"]
+        pictures = showcase_element.find(class_="m24-c-showcase-gallery").find_all("picture")
+        for picture, expected_image in zip(pictures, images):
+            expected_alt = expected_image["image_alt"]
+            img = picture.find("img")
+            assert img.get("alt", "") == expected_alt, f"Expected alt text '{expected_alt}', got '{img.get('alt')}'"
+
+    # Check CTA link, if present
     if value.get("cta_text") and has_cta_link:
         cta_link = showcase_element.find("a", class_="m24-c-cta")
         assert cta_link is not None, "CTA link not found"
-
-        # Check CTA text
         assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
 
-        # Check CTA href
         expected_url = value["cta_link"]["custom_url"]
         assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
 
-        # Check data-cta-text attribute exists
         assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
         assert cta_link["data-cta-text"], "data-cta-text attribute is empty"
-    else:
-        assert showcase_element.find("a", class_="m24-c-cta") is None, "Unexpected .m24-c-cta link with no cta_text/cta_link"
-
-    # Check image alt text if provided
-    image = showcase_element.find("img")
-    if value["image_alt"]:
-        assert image.get("alt") == value["image_alt"], f"Expected alt text '{value['image_alt']}', got '{image.get('alt')}'"
 
 
 def assert_showcase_block_attributes(wrapper_element: BeautifulSoup, variant_data: dict):
@@ -553,6 +580,7 @@ def assert_showcase_block_attributes(wrapper_element: BeautifulSoup, variant_dat
     """
     value = variant_data["value"]
     settings = value["settings"]
+    has_cta_link = bool(value.get("cta_link", {}).get("link_to"))
 
     # Check background color class if set
     bg_color = settings["background_color"]
@@ -569,11 +597,12 @@ def assert_showcase_block_attributes(wrapper_element: BeautifulSoup, variant_dat
         assert wrapper_element.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{wrapper_element.get('id')}'"
 
     # Check new_window attributes on CTA if applicable
-    cta_link = wrapper_element.find("a", class_="m24-c-cta")
-    if value["cta_link"].get("new_window"):
-        assert cta_link.get("target") == "_blank", "Expected target='_blank' for new_window=True"
-        assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel for new_window=True"
-        assert "external" in cta_link.get("rel", []), "Expected 'external' in rel for new_window=True"
+    if value.get("cta_text") and has_cta_link:
+        cta_link = wrapper_element.find("a", class_="m24-c-cta")
+        if value["cta_link"].get("new_window"):
+            assert cta_link.get("target") == "_blank", "Expected target='_blank' for new_window=True"
+            assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel for new_window=True"
+            assert "external" in cta_link.get("rel", []), "Expected 'external' in rel for new_window=True"
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
@@ -619,14 +648,14 @@ def test_showcase_block_content(minimal_site, rf, serving_method):  # noqa: F811
 
     soup = BeautifulSoup(response.content, "html.parser")
 
-    # Find all showcase titles to identify each block
-    titles = soup.find_all(class_="m24-c-showcase-heading")
-    assert len(titles) == len(variants), f"Expected {len(variants)} showcase titles, found {len(titles)}"
+    # Find all showcase headings to identify each block
+    headings = soup.find_all(class_="m24-c-showcase-heading")
+    assert len(headings) == len(variants), f"Expected {len(variants)} showcase headings, found {len(headings)}"
 
     for index, variant in enumerate(variants):
-        # Find the showcase block containing this title
-        title = titles[index]
-        showcase_block = title.find_parent(class_="m24-c-content").parent
+        # Find the showcase block containing this heading
+        heading = headings[index]
+        showcase_block = heading.find_parent(class_="m24-c-content").parent
 
         assert_showcase_block_content(showcase_block, variant)
 
@@ -645,11 +674,11 @@ def test_showcase_block_wrapper_attributes(minimal_site, rf, serving_method):  #
     soup = BeautifulSoup(response.content, "html.parser")
 
     # Find showcase blocks and verify each one
-    titles = soup.find_all(class_="m24-c-showcase-heading")
+    headings = soup.find_all(class_="m24-c-showcase-heading")
 
     for index, variant in enumerate(variants):
-        title = titles[index]
-        wrapper = title.find_parent(class_="m24-c-content").parent
+        heading = headings[index]
+        wrapper = heading.find_parent(class_="m24-c-content").parent
 
         assert_showcase_block_attributes(wrapper, variant)
 
@@ -667,197 +696,11 @@ def test_showcase_block_new_window(minimal_site, rf, serving_method):  # noqa: F
 
     soup = BeautifulSoup(response.content, "html.parser")
 
-    # Find the variant with new_window=True (variant 4)
+    # Find the variant with new_window=True
     new_window_variant = next(v for v in variants if v["value"]["cta_link"].get("new_window"))
     expected_cta_text = new_window_variant["value"]["cta_text"]
 
     # Find the link by its CTA text
-    cta_links = soup.find_all("a", class_="m24-c-cta")
-    cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
-    assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"
-
-    assert cta_link.get("target") == "_blank", "Expected target='_blank'"
-    assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
-    assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
-
-
-# ShowcaseGalleryBlock Tests
-
-
-def assert_showcase_gallery_block_structure(careers_element: BeautifulSoup):
-    """Verify the showcase gallery block has the expected HTML structure.
-
-    Args:
-        careers_element: BeautifulSoup element for the .m24-c-careers div
-    """
-    # Check title exists and is h2
-    title = careers_element.find(class_="m24-c-careers-title")
-    assert title is not None, "Missing .m24-c-careers-title element"
-    assert title.name == "h2", f"Expected h2 title, got {title.name}"
-
-    # Check media container and pictures
-    media = careers_element.find(class_="m24-c-careers-media")
-    assert media is not None, "Missing .m24-c-careers-media element"
-
-    pictures = media.find_all("picture")
-    assert len(pictures) > 0, "Expected at least one <picture> element in media"
-
-    for picture in pictures:
-        assert picture.find("img") is not None, "Missing <img> inside <picture>"
-
-    # Check body text paragraph
-    body = careers_element.find(class_="m24-consider-cta-info")
-    assert body is not None, "Missing .m24-consider-cta-info element"
-
-    # Check CTA container and link
-    cta_container = careers_element.find(class_="m24-c-careers-cta")
-    assert cta_container is not None, "Missing .m24-c-careers-cta element"
-
-    cta_link = cta_container.find("a", class_="m24-c-cta")
-    assert cta_link is not None, "Missing .m24-c-cta link in CTA container"
-
-
-def assert_showcase_gallery_block_content(careers_element: BeautifulSoup, variant_data: dict):
-    """Verify the showcase gallery block content matches the input data.
-
-    Args:
-        careers_element: BeautifulSoup element for the .m24-c-careers div
-        variant_data: The block data dictionary used to create the block
-    """
-    value = variant_data["value"]
-
-    # Check heading text
-    title = careers_element.find(class_="m24-c-careers-title")
-    assert value["heading"] in title.get_text(), f"Heading text '{value['heading']}' not found"
-
-    # Check number of pictures matches number of tiles
-    media = careers_element.find(class_="m24-c-careers-media")
-    pictures = media.find_all("picture")
-    assert len(pictures) == len(value["tiles"]), f"Expected {len(value['tiles'])} pictures, found {len(pictures)}"
-
-    # Check body text
-    body = careers_element.find(class_="m24-consider-cta-info")
-    assert value["body"] in body.get_text(), f"Body text '{value['body']}' not found"
-
-    # Check CTA text and href
-    cta_link = careers_element.find("a", class_="m24-c-cta")
-    assert cta_link is not None, "CTA link not found"
-    assert value["cta_text"] in cta_link.get_text(), f"CTA text '{value['cta_text']}' not found"
-
-    expected_url = value["cta_link"]["custom_url"]
-    assert cta_link["href"].startswith(expected_url.rstrip("/")), f"Expected href to start with '{expected_url}', got '{cta_link['href']}'"
-
-    assert "data-cta-text" in cta_link.attrs, "Missing data-cta-text attribute"
-    assert cta_link["data-cta-text"], "data-cta-text attribute is empty"
-
-
-def assert_showcase_gallery_block_attributes(careers_element: BeautifulSoup, variant_data: dict):
-    """Verify the showcase gallery block wrapper has correct attributes.
-
-    Args:
-        careers_element: BeautifulSoup element for the .m24-c-careers div
-        variant_data: The block data dictionary used to create the block
-    """
-    value = variant_data["value"]
-    settings = value["settings"]
-
-    # bg_color and anchor_id are on the outer <section>, not on .m24-c-careers
-    section = careers_element.parent
-
-    # Check background color class if set
-    bg_color = settings["background_color"]
-    if bg_color:
-        assert bg_color in section.get("class", []), f"Expected class '{bg_color}' not found on section"
-
-    # Check anchor ID if set
-    anchor_id = settings["anchor_id"]
-    if anchor_id:
-        assert section.get("id") == anchor_id, f"Expected id '{anchor_id}', got '{section.get('id')}'"
-
-    # Check new_window attributes on CTA
-    cta_link = careers_element.find("a", class_="m24-c-cta")
-    if value["cta_link"].get("new_window"):
-        assert cta_link.get("target") == "_blank", "Expected target='_blank' for new_window=True"
-        assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel for new_window=True"
-        assert "external" in cta_link.get("rel", []), "Expected 'external' in rel for new_window=True"
-    else:
-        assert cta_link.get("target") is None, "Expected no target attribute for new_window=False"
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_showcase_gallery_block_renders(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that ShowcaseGalleryBlock renders with correct structure."""
-    placeholder_image = get_placeholder_image()
-    variants = get_showcase_gallery_variants(placeholder_image.id)
-    test_page = get_showcase_gallery_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    assert response.status_code == 200
-
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    careers_divs = soup.find_all("div", class_="m24-c-careers")
-    assert len(careers_divs) == len(variants), f"Expected {len(variants)} showcase gallery blocks, found {len(careers_divs)}"
-
-    for careers_div in careers_divs:
-        assert_showcase_gallery_block_structure(careers_div)
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_showcase_gallery_block_content(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that ShowcaseGalleryBlock content matches input data."""
-    placeholder_image = get_placeholder_image()
-    variants = get_showcase_gallery_variants(placeholder_image.id)
-    test_page = get_showcase_gallery_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-    careers_divs = soup.find_all("div", class_="m24-c-careers")
-
-    for index, variant in enumerate(variants):
-        assert_showcase_gallery_block_content(careers_divs[index], variant)
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_showcase_gallery_block_attributes(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that ShowcaseGalleryBlock has correct background color and anchor ID."""
-    placeholder_image = get_placeholder_image()
-    variants = get_showcase_gallery_variants(placeholder_image.id)
-    test_page = get_showcase_gallery_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-    careers_divs = soup.find_all("div", class_="m24-c-careers")
-
-    for index, variant in enumerate(variants):
-        assert_showcase_gallery_block_attributes(careers_divs[index], variant)
-
-
-@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
-def test_showcase_gallery_block_new_window(minimal_site, rf, serving_method):  # noqa: F811
-    """Test that new_window=True adds correct link attributes."""
-    placeholder_image = get_placeholder_image()
-    variants = get_showcase_gallery_variants(placeholder_image.id)
-    test_page = get_showcase_gallery_test_page()
-
-    _relative_url = test_page.relative_url(minimal_site)
-    request = rf.get(_relative_url)
-    response = getattr(test_page, serving_method)(request)
-
-    soup = BeautifulSoup(response.content, "html.parser")
-
-    new_window_variant = next(v for v in variants if v["value"]["cta_link"].get("new_window"))
-    expected_cta_text = new_window_variant["value"]["cta_text"]
-
     cta_links = soup.find_all("a", class_="m24-c-cta")
     cta_link = next((link for link in cta_links if expected_cta_text in link.get_text()), None)
     assert cta_link is not None, f"CTA link with text '{expected_cta_text}' not found"
