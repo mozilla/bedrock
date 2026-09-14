@@ -268,6 +268,56 @@ class DonateBlock(blocks.StructBlock):
         )
 
 
+class ImageWithAltBlock(blocks.StructBlock):
+    """A single image with alt text."""
+
+    image = ImageChooserBlock()
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=(
+            "A concise description of the image for someone who can't see it. "
+            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
+        ),
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/image.html"
+        icon = "image"
+        label = "Image"
+        label_format = "{image}"
+
+
+class GalleryStripBlock(blocks.StructBlock):
+    """A strip of multiple images with alt text."""
+
+    images = blocks.ListBlock(
+        ImageWithAltBlock(),
+        min_num=1,
+        help_text="Add gallery images. For best results, use 6 or fewer.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/gallery.html"
+        icon = "image"
+        label = "Gallery"
+        label_format = "Gallery ({images})"
+
+
+class ShowcaseMediaBlock(blocks.StreamBlock):
+    """The media chooser for the showcase block: a single image or a gallery."""
+
+    image = ImageWithAltBlock()
+    gallery = GalleryStripBlock()
+
+    class Meta:
+        min_num = 1
+        max_num = 1
+        label = "Media"
+        help_text = "Choose a single image or a gallery of images."
+
+
 class ShowcaseBlockSettings(blocks.StructBlock):
     """Settings for the showcase block."""
 

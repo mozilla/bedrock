@@ -1,0 +1,48 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{# Fill spec for the 2:3 desktop crop and the 1:1 mobile crop #}
+{% set desktop_fill_spec = "fill-{230x345,360x540,432x648}" %}
+{% set desktop_dimensions = {"width": "432", "height": "648"} %}
+{% set mobile_fill_spec = "fill-{375x375,432x432}" %}
+{% set mobile_dimensions = {"width": "432", "height": "432"} %}
+
+<div class="m24-c-showcase-gallery">
+  {% for tile in value.images %}
+    {% set tile_alt = tile.image_alt|default("", true) %}
+
+    {% set mobile_img = srcset_image(tile.image, mobile_fill_spec) %}
+    {% set desktop_img = srcset_image(tile.image, desktop_fill_spec) %}
+
+    {% set ns = namespace(mobile_srcset='', desktop_srcset='', desktop_src='') %}
+    {% for r in mobile_img.renditions %}
+      {% set ns.mobile_srcset = ns.mobile_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+    {% endfor %}
+    {% for r in desktop_img.renditions %}
+      {% if loop.first %}
+        {% set ns.desktop_src = r.url %}
+      {% endif %}
+      {% set ns.desktop_srcset = ns.desktop_srcset ~ (', ' if loop.index > 1 else '') ~ r.url ~ ' ' ~ r.width ~ 'w' %}
+    {% endfor %}
+
+    <picture>
+      <source
+        media="(max-width: 767px)"
+        srcset="{{ ns.mobile_srcset }}"
+        sizes="calc(50vw - 16px)"
+        width="{{ mobile_dimensions.width }}"
+        height="{{ mobile_dimensions.height }}">
+      <img
+        src="{{ ns.desktop_src }}"
+        srcset="{{ ns.desktop_srcset }}"
+        sizes="(min-width: 1440px) 432px, calc(100vw - 64px / 6)"
+        width="{{ desktop_dimensions.width }}"
+        height="{{ desktop_dimensions.height }}"
+        loading="lazy"
+        alt="{{ tile_alt }}">
+    </picture>
+  {% endfor %}
+</div>
