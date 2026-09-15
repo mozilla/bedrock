@@ -17,7 +17,7 @@ from lib import l10n_utils
 
 FRAUD_REPORT_EMAIL_FROM = settings.DEFAULT_FROM_EMAIL
 FRAUD_REPORT_EMAIL_SUBJECT = "New trademark infringement report: %s; %s"
-FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH = 200
+FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH = 70
 FRAUD_REPORT_EMAIL_TO = ["trademarks@mozilla.com"]
 
 
