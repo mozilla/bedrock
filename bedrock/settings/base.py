@@ -911,8 +911,10 @@ WP_BLOGS = {
     },
 }
 
-GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
-FOUNDATION_GREENHOUSE_BOARD = config("FOUNDATION_GREENHOUSE_BOARD", default="mozillafoundation")
+GREENHOUSE_BOARDS = [
+    config("GREENHOUSE_BOARD", default="mozilla"),
+    config("FOUNDATION_GREENHOUSE_BOARD", default="mozillafoundation"),
+]
 
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")

@@ -82,11 +82,11 @@ class Command(BaseCommand):
         jobs_updated = 0
         jobs_removed = 0
         job_ids = []
-        sources = [GREENHOUSE_URL.format(settings.GREENHOUSE_BOARD), GREENHOUSE_URL.format(settings.FOUNDATION_GREENHOUSE_BOARD)]
         jobs_list = []
 
-        for source in sources:
-            response = requests.get(source)
+        for source in settings.GREENHOUSE_BOARDS:
+            url = GREENHOUSE_URL.format(source)
+            response = requests.get(url)
             response.raise_for_status()
             data = response.json()
             jobs_list.extend(data["jobs"])
