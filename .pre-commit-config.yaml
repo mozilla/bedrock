@@ -92,16 +92,16 @@ repos:
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@16.10.0"
+          - "stylelint@16.26.1"
           - "stylelint-config-standard-scss@13.1.0"
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v10.2.0
+    rev: v10.10.0
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-config-prettier@9.1.0"
+          - "eslint-config-prettier@10.1.8"
   #       Additional excludes in /.eslintignore file
   - repo: https://github.com/mozmeao/pre-commit-hooks-django
     rev: v0.4.1a  # this is OUR micro-bumped release of the fork
