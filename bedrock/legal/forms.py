@@ -10,6 +10,21 @@ FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
 FRAUD_REPORT_DETAILS_MAX_LENGTH = 5000
 
 
+class NewlineNormalizedCharField(forms.CharField):
+    """
+    CharField that counts a newline as the single character the browser
+    counted for maxlength, not the CRLF pair the browser actually submits.
+    """
+
+    def to_python(self, value):
+        value = super().to_python(value)
+
+        if value:
+            value = value.replace("\r\n", "\n").replace("\r", "\n")
+
+        return value
+
+
 class FraudReportForm(forms.Form):
     input_url = forms.URLField(
         max_length=2000,
@@ -69,7 +84,7 @@ class FraudReportForm(forms.Form):
         ),
     )
     input_specific_product = forms.CharField(max_length=254, required=False, widget=forms.TextInput(attrs={"size": 20, "class": "fill-width"}))
-    input_details = forms.CharField(
+    input_details = NewlineNormalizedCharField(
         max_length=FRAUD_REPORT_DETAILS_MAX_LENGTH,
         required=False,
         widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}),

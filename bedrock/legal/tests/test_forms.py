@@ -16,6 +16,10 @@ from bedrock.legal.forms import FraudReportForm
 from bedrock.legal.views import submit_form
 from bedrock.mozorg.tests import TestCase
 
+CR = "\r"
+LF = "\n"
+CRLF = CR + LF
+
 
 class TestFraudReport(TestCase):
     def setUp(self):
@@ -140,6 +144,26 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data)
 
         assert form.is_valid()
+
+    def test_form_details_crlf_counted_as_one_character(self):
+        """
+        A browser counts a newline as one character but submits it as CRLF, so
+        newlines should be normalised before details is measured.
+        """
+        lines = legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH // 2
+        browser_value = ("x" + LF) * lines
+        submitted_value = ("x" + CRLF) * lines
+
+        assert len(browser_value) == legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+        assert len(submitted_value) > legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+
+        self.data.update(input_details=submitted_value)
+
+        form = FraudReportForm(self.data)
+
+        assert form.is_valid()
+        assert len(form.cleaned_data["input_details"]) <= legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+        self.assertNotIn(CR, form.cleaned_data["input_details"])
 
     def test_form_details_over_max_length(self):
         """
