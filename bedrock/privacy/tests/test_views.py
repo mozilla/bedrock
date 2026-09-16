@@ -202,6 +202,13 @@ class TestPrivacyIndexView(TestCase):
 
         load_mock.assert_called_once_with("mozilla_privacy_policy", "de")
 
+    @patch("bedrock.privacy.views.load_legal_doc", return_value=None)
+    def test_missing_doc_gives_404(self, load_mock):
+        req = RequestFactory().get("/en-US/privacy/")
+        req.locale = "en-US"
+        with self.assertRaises(Http404):
+            views.privacy(req)
+
 
 class TestPrivacyFAQView(TestCase):
     @patch("bedrock.privacy.views.ftl_file_is_active", return_value=True)
