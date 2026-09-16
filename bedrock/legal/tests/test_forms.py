@@ -194,9 +194,8 @@ class TestFraudReport(TestCase):
         mock_capture_message.assert_called_once()
         assert mock_capture_message.call_args[1]["level"] == "warning"
 
-    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
     @patch("bedrock.legal.views.EmailMessage")
-    def test_email_subject_long_url_truncated(self, mock_email_message, mock_render_to_string):
+    def test_email_subject_long_url_truncated(self, mock_email_message):
         """
         Make sure a long url is truncated in the email subject, but is still
         sent in full in the email body.
@@ -209,15 +208,14 @@ class TestFraudReport(TestCase):
         request = self.factory.get("/")
         submit_form(request, form)
 
-        subject = mock_email_message.call_args[0][0]
+        subject, body = mock_email_message.call_args[0][:2]
 
         self.assertIn(long_url[: legal_views.FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "...", subject)
         self.assertNotIn(long_url, subject)
-        assert mock_render_to_string.call_args[0][1]["input_url"] == long_url
+        self.assertIn(long_url, body)
 
-    @patch("bedrock.legal.views.render_to_string", return_value="rendered")
     @patch("bedrock.legal.views.EmailMessage")
-    def test_email_subject_short_url_not_truncated(self, mock_email_message, mock_render_to_string):
+    def test_email_subject_short_url_not_truncated(self, mock_email_message):
         """
         Make sure a normal length url is not truncated in the email subject.
         """
