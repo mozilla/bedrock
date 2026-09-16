@@ -215,6 +215,24 @@ class TestFraudReport(TestCase):
         self.assertIn(long_url, body)
 
     @patch("bedrock.legal.views.EmailMessage")
+    def test_email_url_is_not_mangled(self, mock_email_message):
+        """
+        The reported url should reach the email exactly as submitted, neither
+        escaped nor entity-decoded, so that it can be clicked.
+        """
+        url = "http://example.com/?a=1&b=2&reg=3&copy=4"
+        self.data.update(input_url=url)
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        body = mock_email_message.call_args[0][1]
+
+        self.assertIn(url, body)
+
+    @patch("bedrock.legal.views.EmailMessage")
     def test_email_subject_short_url_not_truncated(self, mock_email_message):
         """
         Make sure a normal length url is not truncated in the email subject.
