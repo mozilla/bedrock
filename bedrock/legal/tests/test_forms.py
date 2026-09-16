@@ -165,18 +165,6 @@ class TestFraudReport(TestCase):
         assert len(form.cleaned_data["input_details"]) <= legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
         self.assertNotIn(CR, form.cleaned_data["input_details"])
 
-    def test_form_details_over_max_length(self):
-        """
-        With details over the character limit, form should not be valid and
-        should have details in the errors hash.
-        """
-        self.data.update(input_details="x" * (legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1))
-
-        form = FraudReportForm(self.data)
-
-        assert not form.is_valid()
-        self.assertIn("input_details", form.errors)
-
     def test_form_details_maxlength_attribute(self):
         """
         Details field should render the character limit as a maxlength
@@ -186,9 +174,11 @@ class TestFraudReport(TestCase):
 
         self.assertIn(f'maxlength="{legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH}"', str(form["input_details"]))
 
-    def test_form_details_over_max_length_no_email(self):
+    @patch("bedrock.legal.views.capture_message")
+    def test_form_details_over_max_length_no_email(self, mock_capture_message):
         """
-        Form with details over the character limit should not send an email.
+        Details over the character limit should be dropped without sending an
+        email, reported to Sentry, and still look like a success.
         """
         self.data.update(input_details="x" * (legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1))
 
@@ -197,8 +187,12 @@ class TestFraudReport(TestCase):
         request = self.factory.get("/")
         ret = submit_form(request, form)
 
-        self.assertTrue(ret["form_error"])
+        self.assertFalse(ret["form_error"])
+        self.assertTrue(ret["form_submitted"])
         assert len(mail.outbox) == 0
+
+        mock_capture_message.assert_called_once()
+        assert mock_capture_message.call_args[1]["level"] == "warning"
 
     @patch("bedrock.legal.views.render_to_string", return_value="rendered")
     @patch("bedrock.legal.views.EmailMessage")
