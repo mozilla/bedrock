@@ -211,7 +211,7 @@ class TestFraudReport(TestCase):
 
         subject = mock_email_message.call_args[0][0]
 
-        self.assertIn(long_url[: legal_views.FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH] + "...", subject)
+        self.assertIn(long_url[: legal_views.FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "...", subject)
         self.assertNotIn(long_url, subject)
         assert mock_render_to_string.call_args[0][1]["input_url"] == long_url
 

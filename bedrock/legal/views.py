@@ -87,7 +87,7 @@ def submit_form(request, form):
         else:
             url = data["input_url"]
             if len(url) > FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH:
-                url = url[:FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH] + "..."
+                url = url[: FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "..."
 
             subject = FRAUD_REPORT_EMAIL_SUBJECT % (url, data["input_category"])
             sender = FRAUD_REPORT_EMAIL_FROM
