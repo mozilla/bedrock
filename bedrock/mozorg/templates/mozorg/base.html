@@ -16,11 +16,7 @@
     </div>
 
     <div class="newsletter-content">
-      {% if LANG.startswith('en-') %}
-        {{ email_newsletter_form(newsletters='mozilla-foundation', title=ftl('newsletter-form-get-mozilla-updates')) }}
-      {% else %}
-        {{ email_newsletter_form() }}
-      {% endif %}
+      {{ email_newsletter_form(newsletters='mozilla-foundation') }}
     </div>
   </aside>
 </div>
