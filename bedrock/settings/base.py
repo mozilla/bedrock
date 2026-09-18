@@ -416,11 +416,15 @@ def lazy_langs():
     :return: list of tuples
 
     """
+    from django.apps import apps
     from django.conf import settings
 
-    from product_details import product_details
-
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
+
+    if not apps.ready:
+        return [(lang, lang) for lang in langs]
+
+    from product_details import product_details
 
     return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
