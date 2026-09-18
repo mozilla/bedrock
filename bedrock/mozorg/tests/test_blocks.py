@@ -11,15 +11,25 @@ This module tests that Wagtail blocks render correctly by:
 """
 
 import pytest
+import wagtail_factories
 from bs4 import BeautifulSoup
+from wagtail.blocks import StructBlockValidationError
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
+from bedrock.mozorg.blocks import common
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
 from bedrock.mozorg.fixtures.prose_fixtures import get_prose_test_page, get_prose_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
 from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
+from bedrock.mozorg.tests.factories import (
+    DonateBlockFactory,
+    GalleryTileBlockFactory,
+    ProseBlockFactory,
+    ShowcaseBlockFactory,
+    ShowcaseGalleryBlockFactory,
+)
 
 pytestmark = [pytest.mark.django_db]
 
@@ -1035,3 +1045,60 @@ def test_prose_block_cta_new_window(minimal_site, rf, serving_method):  # noqa: 
     assert cta_link.get("target") == "_blank", "Expected target='_blank'"
     assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
     assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
+
+
+# CTALinkRequiredMixin Tests
+
+
+def assert_cta_link_required_when_text_filled(block, invalid_value, valid_value):
+    """Verify a block mixing in CTALinkRequiredMixin rejects cta_text without cta_link,
+    but accepts a value where cta_link is filled in (or cta_text is unset).
+
+    Args:
+        block: An instance of the block under test.
+        invalid_value: A block value with cta_text set but cta_link empty; must raise.
+        valid_value: A block value expected to pass validation.
+    """
+    with pytest.raises(StructBlockValidationError) as exc_info:
+        block.clean(invalid_value)
+    assert "cta_link" in exc_info.value.block_errors
+
+    block.clean(valid_value)  # should not raise
+
+
+def test_donate_block_cta_link_required_when_text_filled():
+    """DonateBlock.cta_text is always required, so the valid case fills in cta_link instead."""
+    block = common.DonateBlock()
+    invalid_value = DonateBlockFactory(cta_link__link_to="")
+    valid_value = DonateBlockFactory(cta_link__link_to="custom_url", cta_link__custom_url="https://example.com")
+    assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
+
+
+def test_showcase_block_cta_link_required_when_text_filled():
+    block = common.ShowcaseBlock()
+    invalid_value = ShowcaseBlockFactory(cta_text="Read more", cta_link__link_to="")
+    valid_value = ShowcaseBlockFactory(cta_text="", cta_link__link_to="")
+    assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
+
+
+def test_prose_block_cta_link_required_when_text_filled():
+    block = common.ProseBlock()
+    invalid_value = ProseBlockFactory(cta_text="Read more", cta_link__link_to="")
+    valid_value = ProseBlockFactory(cta_text="", cta_link__link_to="")
+    assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
+
+
+def test_gallery_tile_block_cta_link_required_when_text_filled():
+    block = common.GalleryTileBlock()
+    invalid_value = GalleryTileBlockFactory(cta_text="Read more", cta_link__link_to="")
+    valid_value = GalleryTileBlockFactory(cta_text="", cta_link__link_to="")
+    assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
+
+
+def test_showcase_gallery_block_cta_link_required_when_text_filled():
+    """ShowcaseGalleryBlock.tiles requires at least one tile, so both values need one."""
+    block = common.ShowcaseGalleryBlock()
+    tile = wagtail_factories.ImageChooserBlockFactory()
+    invalid_value = ShowcaseGalleryBlockFactory(cta_text="Read more", cta_link__link_to="", tiles__0__image=tile)
+    valid_value = ShowcaseGalleryBlockFactory(cta_text="", cta_link__link_to="", tiles__0__image=tile)
+    assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
