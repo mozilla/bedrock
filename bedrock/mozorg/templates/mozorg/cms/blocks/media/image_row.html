@@ -1,0 +1,20 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set n = value.images|length %}
+
+<div class="m24-c-showcase-row">
+  {% for item in value.images %}
+    {{ srcset_image(
+      item.image,
+      "fill-{100x150,200x300,400x600,600x900,800x1200,1000x1500}",
+      sizes="(min-width: 1440px) calc((1376px - " ~ ((n - 1) * 16) ~ "px) / " ~ n ~ "), (min-width: 1312px) calc((100vw - 64px - " ~ ((n - 1) * 16) ~ "px) / " ~ n ~ "), (min-width: 768px) calc((100vw - 48px - " ~ ((n - 1) * 12) ~ "px) / " ~ n ~ "), calc((100vw - 32px - " ~ ((n - 1) * 8) ~ "px) / " ~ n ~ ")",
+      alt=item.image_alt if item.image_alt else "",
+      loading="lazy",
+      class="m24-c-showcase-image"
+    ) }}
+  {% endfor %}
+</div>

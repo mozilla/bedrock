@@ -9,18 +9,20 @@
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
 
 {% set media_html %}
-  <figure>
-    {{ srcset_image(value.image, "width-1376", class="", sizes="1376px", alt=value.image_alt if value.image_alt else "") }}
-  </figure>
+  {% for media_item in value.media %}{% include_block media_item %}{% endfor %}
 {% endset %}
+
+{% set media_item = value.media[0] %}
+{% set is_even_grid = media_item.block_type == "square_image" or (media_item.block_type == "image_row" and media_item.value.images|length == 4) %}
 
 {% call m24_showcase(
   heading=value.heading,
   media=media_html,
   background_color=value.settings.background_color,
   anchor_id=anchor_id,
-  two_column_layout=value.settings.two_column_layout,
-  label=value.cta_label or none,
+  layout=value.settings.layout,
+  showcase_class="m24-l-showcase-even-grid" if is_even_grid else "",
+  cta_label=value.cta_label,
   cta_text=value.cta_text,
   cta_link_url=value.cta_link.get_url()|add_utm_parameters,
   cta_link_new_window=value.cta_link.new_window

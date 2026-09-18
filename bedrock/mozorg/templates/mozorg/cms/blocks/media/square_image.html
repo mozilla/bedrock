@@ -1,0 +1,16 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+<div class="m24-c-showcase-square">
+  {{ srcset_image(
+    value.image.image,
+    "fill-{200x200,400x400,600x600,800x800,1000x1000}",
+    sizes="(min-width: 1440px) 448px, (min-width: 768px) calc((100vw - 48px) / 3), min(363px, calc(100vw - 32px))",
+    alt=value.image.image_alt if value.image.image_alt else "",
+    loading="lazy",
+    class="m24-c-showcase-image"
+  ) }}
+</div>
