@@ -19,7 +19,7 @@ If the instructions don't say which app the block belongs to, ask before startin
 
 ## Templates
 
-Bedrock uses Jinja2, not Django templates or `django-includecontents` — there is no component library.
+Bedrock uses Jinja2 templates. There is no formal component library — reusable markup is just a shared template you `{% include %}`.
 
 Each block sets `Meta.template` and gets exactly one template, at `bedrock/<app>/templates/<app>/blocks/<name>.html` (mozorg nests further by section, e.g. `mozorg/cms/advertising/blocks/`).
 
@@ -50,7 +50,7 @@ Before writing new markup or fixtures, check whether an existing shared include,
 
 ## Important considerations
 
-Bedrock has no `block_position`/`block_text` equivalent. Heading hierarchy is tracked with `block_level`, a plain Jinja template variable (not a block field) set in the parent page template before calling `{% include_block %}`, e.g. `bedrock/anonym/templates/anonym/anonym_content_sub_page.html`:
+Heading hierarchy is tracked with `block_level`, a plain Jinja template variable (not a block field) set in the parent page template before calling `{% include_block %}`, e.g. `bedrock/anonym/templates/anonym/anonym_content_sub_page.html`:
 
 ```jinja
 {% set block_level = 1 if ns.headings == 0 else 2 %}
@@ -59,7 +59,7 @@ Bedrock has no `block_position`/`block_text` equivalent. Heading hierarchy is tr
 
 and consumed by the block's own template (`bedrock/anonym/templates/anonym/blocks/section.html`): `<h{{ block_level }} class="mzan-heading">`. Any block that renders a heading and can contain child blocks with their own headings must set/increment `block_level` before including them.
 
-Analytics attributes are `data-cta-text` and `data-cta-uid`, not `data-cta-position`. `data-cta-uid` comes from a `UUIDBlock`-backed `analytics_id` field (auto-generated, excluded from translation — see `bedrock/cms/blocks.py`); `data-cta-text` is just the link/button's own label. For rich text fields where attributes can't be set at block-definition time, use the `add_cta_analytics` Jinja filter (`bedrock/base/templatetags/helpers.py`) to inject both attributes onto every rendered `<a>`.
+Analytics attributes on buttons/links are `data-cta-text` (the link/button's own label) and `data-cta-uid` (a stable per-CTA identifier). `data-cta-uid` comes from a `UUIDBlock`-backed `analytics_id` field (auto-generated once when the block is created, excluded from translation — see `bedrock/cms/blocks.py`). For rich text fields where attributes can't be set at block-definition time, use the `add_cta_analytics` Jinja filter (`bedrock/base/templatetags/helpers.py`) to inject both attributes onto every rendered `<a>`.
 
 ## Steps
 
