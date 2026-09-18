@@ -4,40 +4,39 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="m24-c-showcase m24-t-pink">
-  <div class="m24-c-content">
-    <header class="m24-c-showcase-text m24-l-two-columns">
-      <h2 class="m24-c-showcase-title">{{ ftl('m24-about-community-love-v2') }}</h2>
+{% from "macros-m24.html" import m24_showcase with context %}
 
-      <div class="m24-c-showcase-body">
-        <p>{{ ftl('m24-about-mozilla-is-a') }}</p>
-        <p>{{ ftl('m24-about-from-writing-code') }}</p>
-      </div>
-    </header>
+{% set media_html %}
+  {{ resp_img(
+    url='img/mozorg/about/m24/community-1440.jpg',
+    srcset={
+      "img/mozorg/about/m24/community-375.jpg": "375w",
+      "img/mozorg/about/m24/community-686.jpg": "686w",
+      "img/mozorg/about/m24/community-1216.jpg": "1216w",
+      "img/mozorg/about/m24/community-1440.jpg": "1440w",
+      "img/mozorg/about/m24/community-2464.jpg": "2464w",
+      "img/mozorg/about/m24/community-2752.jpg": "2752w",
+    },
+    sizes={
+      "default": "100vw",
+    },
+    optional_attributes={
+      'width': '1376',
+      'height': '590',
+      'loading': 'lazy',
+      'alt': ftl('m24-about-alt-community')
+    }
+  ) }}
+{% endset %}
 
-    <div class="m24-c-showcase-media">
-      {{ resp_img(
-        url='img/mozorg/about/m24/community-1440.jpg',
-        srcset={
-          "img/mozorg/about/m24/community-375.jpg": "375w",
-          "img/mozorg/about/m24/community-686.jpg": "686w",
-          "img/mozorg/about/m24/community-1216.jpg": "1216w",
-          "img/mozorg/about/m24/community-1440.jpg": "1440w",
-          "img/mozorg/about/m24/community-2464.jpg": "2464w",
-          "img/mozorg/about/m24/community-2752.jpg": "2752w",
-        },
-        sizes={
-          "default": "100vw",
-        },
-        optional_attributes={
-          'width': '1376',
-          'height': '590',
-          'loading': 'lazy',
-          'alt': ftl('m24-about-alt-community')
-        }
-      ) }}
-    </div>
-  </div>
-</section>
+{% call m24_showcase(
+  heading=ftl('m24-about-community-love-v2'),
+  media=media_html,
+  background_color="m24-t-pink",
+  two_column_layout=True
+) %}
+  <p>{{ ftl('m24-about-mozilla-is-a') }}</p>
+  <p>{{ ftl('m24-about-from-writing-code') }}</p>
+{% endcall %}
 
 <div class="m24-c-transition m24-t-top-pink m24-t-bottom-dark-alt"><hr></div>
