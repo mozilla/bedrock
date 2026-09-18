@@ -74,9 +74,10 @@ def test_normalize_gtm_server_path(raw_path, expected_path):
     assert _normalize_gtm_server_path(raw_path) == expected_path
 
 
-def test_lazy_langs_skips_db_before_apps_ready(mocker):
+def test_lazy_langs_skips_db_before_apps_ready(mocker, settings):
     from bedrock.settings.base import lazy_langs
 
+    settings.DEV = True
     mocker.patch("bedrock.settings.base.DEV_LANGUAGES", ["en-US", "de"])
     apps = mocker.patch("django.apps.apps")
     apps.ready = False
@@ -85,9 +86,10 @@ def test_lazy_langs_skips_db_before_apps_ready(mocker):
     assert result == [("en-US", "en-US"), ("de", "de")]
 
 
-def test_lazy_langs_uses_product_details_after_apps_ready(mocker):
+def test_lazy_langs_uses_product_details_after_apps_ready(mocker, settings):
     from bedrock.settings.base import lazy_langs
 
+    settings.DEV = True
     mocker.patch("bedrock.settings.base.DEV_LANGUAGES", ["en-US", "de"])
     apps = mocker.patch("django.apps.apps")
     apps.ready = True
