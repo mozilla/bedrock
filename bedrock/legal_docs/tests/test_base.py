@@ -147,3 +147,23 @@ class TestFilePathData(TestCase):
             "locale": "cnh",
             "doc_name": "WebRTC_ToS",
         }
+
+    def test_legal_docs_locale_is_mapped_to_bedrock_locale(self):
+        """Locales named differently in the legal-docs repo are translated on the way in."""
+        path = Path("/repo/data/legal_docs/hi/websites_privacy_notice.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
+        }
+        path = Path("/repo/data/legal_docs/websites_privacy_notice/hi.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
+        }
+
+    def test_unmapped_locale_is_left_alone(self):
+        path = Path("/repo/data/legal_docs/hi-IN/websites_privacy_notice.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
+        }
