@@ -62,6 +62,16 @@ class TestProcessMdFile:
         # any OSError is swallowed; a directory stands in for a path that cannot be opened
         assert process_md_file(tmp_path) is None
 
+    def test_non_utf8_file_is_none(self, tmp_path):
+        doc = tmp_path / "notice.md"
+        doc.write_bytes("café naïve".encode("latin-1"))
+        assert process_md_file(doc) is None
+
+    def test_binary_file_is_none(self, tmp_path):
+        doc = tmp_path / "notice.md"
+        doc.write_bytes(b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR")
+        assert process_md_file(doc) is None
+
     def test_empty_file_is_empty_string(self, tmp_path):
         # falsy but not None, which is what refresh() counts as an error
         assert process_md_file(write_doc(tmp_path, "en", "notice", "")) == ""
@@ -120,6 +130,15 @@ class TestRefresh:
 
         assert LegalDoc.objects.refresh() == (1, 1)
         assert list(LegalDoc.objects.values_list("name", flat=True)) == ["websites_privacy_notice"]
+
+    def test_one_bad_doc_does_not_abort_the_run(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice")
+        (tmp_path / "de").mkdir()
+        (tmp_path / "de" / "websites_privacy_notice.md").write_bytes("café".encode("latin-1"))
+
+        assert LegalDoc.objects.refresh() == (1, 1)
+        assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "en")
 
     def test_non_markdown_files_are_ignored(self, tmp_path, settings):
         settings.LEGAL_DOCS_PATH = tmp_path
