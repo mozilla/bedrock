@@ -1233,7 +1233,7 @@ def test_firefox_all_win_store_combinations_match_the_view(reprime_product_detai
     except Http404:
         view_renders = False
 
-    path = "/en-US/firefox/all/%s/%s/" % (product, "/".join(v for v in depth_kwargs.values()))
+    path = "/en-US/firefox/all/{}/{}/".format(product, "/".join(v for v in depth_kwargs.values()))
     resp = client.get(path, secure=True)
     if view_renders:
         assert resp.status_code == 301

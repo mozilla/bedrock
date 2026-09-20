@@ -255,7 +255,7 @@ springfield_redirectpatterns = (
         locale_prefix=False,
     ),
     offsite_redirect(
-        r"^(?:(?P<locale>(?:%s)/))?firefox/all/(?P<product>%s)/?$" % (_FIREFOX_ALL_PAGE_LOCALES_RE, _FIREFOX_ALL_PRODUCTS_RE),
+        rf"^(?:(?P<locale>(?:{_FIREFOX_ALL_PAGE_LOCALES_RE})/))?firefox/all/(?P<product>{_FIREFOX_ALL_PRODUCTS_RE})/?$",
         _firefox_all_redirect,
         permanent=True,
         locale_prefix=False,
