@@ -2,12 +2,31 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.exceptions import ValidationError
 from django.utils.safestring import mark_safe
 
 from wagtail import blocks
 from wagtail.blocks.struct_block import BlockGroup
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
+
+IMAGE_ALT_HELP_TEXT = (
+    "A concise description of the image for someone who can't see it. "
+    "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
+)
+
+
+class CTALinkRequiredMixin:
+    """Require cta_link to be filled in when cta_text has been provided."""
+
+    def clean(self, value):
+        cta_text = value.get("cta_text")
+        cta_link = value.get("cta_link") or {}
+
+        if cta_text and not cta_link.get("link_to"):
+            raise blocks.StructBlockValidationError({"cta_link": ValidationError("A link destination is required when link text is filled in.")})
+
+        return super().clean(value)
 
 
 class DividerBlock(blocks.StaticBlock):
@@ -215,7 +234,7 @@ class DonateBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class DonateBlock(blocks.StructBlock):
+class DonateBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the donate section on the homepage."""
 
     settings = DonateBlockSettings()
@@ -237,10 +256,7 @@ class DonateBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     cta_text = blocks.CharBlock(
@@ -260,11 +276,11 @@ class DonateBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
 
 
@@ -306,7 +322,7 @@ class ShowcaseBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class ShowcaseBlock(blocks.StructBlock):
+class ShowcaseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the showcase component."""
 
     settings = ShowcaseBlockSettings()
@@ -328,16 +344,13 @@ class ShowcaseBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
-    sub_heading = blocks.CharBlock(
+    cta_label = blocks.CharBlock(
         required=False,
         max_length=255,
-        help_text="Sub heading. Use sentence case.",
+        help_text="Label. Use sentence case.",
     )
 
     cta_text = blocks.CharBlock(
@@ -358,11 +371,11 @@ class ShowcaseBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
-                BlockGroup(["sub_heading", "cta_text", "cta_link"], heading="Call-to-action"),
+                BlockGroup(["cta_label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
 
 
@@ -396,7 +409,7 @@ class GalleryBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class GalleryTileBlock(blocks.StructBlock):
+class GalleryTileBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """A single tile in the gallery grid."""
 
     width = blocks.ChoiceBlock(
@@ -460,10 +473,7 @@ class GalleryTileBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     cta_link = LinkBlock(
@@ -499,10 +509,7 @@ class ShowcaseGalleryImageBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     class Meta:
@@ -569,7 +576,7 @@ class ShowcaseGalleryBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class ShowcaseGalleryBlock(blocks.StructBlock):
+class ShowcaseGalleryBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """A showcase block with a gallery as media."""
 
     settings = ShowcaseGalleryBlockSettings()
@@ -664,7 +671,7 @@ class ProseBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class ProseBlock(blocks.StructBlock):
+class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the prose component."""
 
     settings = ProseBlockSettings()
@@ -703,8 +710,8 @@ class ProseBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "sub_heading", "body"], heading="Text"),
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
