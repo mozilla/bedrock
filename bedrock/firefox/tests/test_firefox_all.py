@@ -6,12 +6,15 @@ from unittest.mock import patch
 
 from django.conf import settings
 from django.core.cache import caches
+from django.http import Http404
+from django.test import RequestFactory
 
 import pytest
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
+from bedrock.firefox.views import firefox_all
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")
@@ -21,6 +24,20 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")
 pytestmark = pytest.mark.django_db
 
 pd_cache = caches["product-details"]
+
+
+def firefox_all_response(product_slug=None, platform=None, locale=None, page_locale="en-US"):
+    """Render the real firefox_all view directly (issue #16367 revision).
+
+    RedirectsMiddleware now intercepts /firefox/all/* URLs, so these tests call
+    the real view function with a RequestFactory request carrying the page
+    locale that BedrockLangCodeFixupMiddleware would set. The view raises
+    Http404 for combinations it refuses, exactly like before.
+    """
+    request = RequestFactory().get(f"/en-US/firefox/all/{product_slug or ''}/{platform or ''}/{locale or ''}", secure=True)
+    request.locale = page_locale
+    return firefox_all(request, product_slug=product_slug, platform=platform, locale=locale)
+
 
 OS_LANG_PAIRS = [
     # windows
@@ -105,8 +122,8 @@ def test_all_step_3(client):
     assert len(doc(".c-lang-list > li")) == len(firefox_desktop.get_filtered_full_builds("release"))
 
 
-def test_all_step_4(client):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
+def test_all_step_4():
+    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"})
     doc = pq(resp.content)
 
     # Step 1,2,3 is done, step 4 is active, no more steps
@@ -125,8 +142,8 @@ def test_all_step_4(client):
 
 
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_release(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": os, "locale": lang}))
+def test_firefox_release(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -144,8 +161,8 @@ def test_firefox_release(client, os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-def test_firefox_microsoft_store_release(client):
-    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "win-store"}))
+def test_firefox_microsoft_store_release():
+    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": "win-store"})
     doc = pq(resp.content)
 
     assert len(doc("#msStoreLink")) == 1
@@ -153,8 +170,8 @@ def test_firefox_microsoft_store_release(client):
 
 
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_beta(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-beta", "platform": os, "locale": lang}))
+def test_firefox_beta(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-beta", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -172,8 +189,8 @@ def test_firefox_beta(client, os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-def test_firefox_microsoft_store_beta(client):
-    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-beta", "platform": "win-store"}))
+def test_firefox_microsoft_store_beta():
+    resp = firefox_all_response(**{"product_slug": "desktop-beta", "platform": "win-store"})
     doc = pq(resp.content)
 
     assert len(doc("#msStoreLink")) == 1
@@ -181,8 +198,8 @@ def test_firefox_microsoft_store_beta(client):
 
 
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_developer(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-developer", "platform": os, "locale": lang}))
+def test_firefox_developer(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-developer", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -201,8 +218,8 @@ def test_firefox_developer(client, os, lang):
 
 
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_nightly(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-nightly", "platform": os, "locale": lang}))
+def test_firefox_nightly(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-nightly", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -224,8 +241,8 @@ def test_firefox_nightly(client, os, lang):
 
 
 @pytest.mark.parametrize("os, lang", [("linux64-aarch64", "es-ES"), ("linux64-aarch64", "pt-BR")])
-def test_firefox_linux_nightly_aarch(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-nightly", "platform": os, "locale": lang}))
+def test_firefox_linux_nightly_aarch(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-nightly", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -239,8 +256,8 @@ def test_firefox_linux_nightly_aarch(client, os, lang):
 
 
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_esr(client, os, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-esr", "platform": os, "locale": lang}))
+def test_firefox_esr(os, lang):
+    resp = firefox_all_response(**{"product_slug": "desktop-esr", "platform": os, "locale": lang})
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -260,7 +277,7 @@ def test_firefox_esr(client, os, lang):
 
 
 @pytest.mark.parametrize("os, lang", [("win64", "en-US"), ("win64", "de"), ("osx", "en-US"), ("linux64", "en-US")])
-def test_firefox_esr_next(client, os, lang):
+def test_firefox_esr_next(os, lang):
     # Note: Only testing a few os/lang pairs to avoid mocking too much. We're mostly checking that all button and link types show up.
 
     # Set an esr_next version.
@@ -304,7 +321,7 @@ def test_firefox_esr_next(client, os, lang):
 
     with patch("bedrock.firefox.views.firefox_desktop.latest_version", side_effect=mock_latest_version):
         with patch("bedrock.firefox.views.firefox_desktop.get_filtered_full_builds", side_effect=mock_get_filtered_full_builds):
-            resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-esr", "platform": os, "locale": lang}))
+            resp = firefox_all_response(**{"product_slug": "desktop-esr", "platform": os, "locale": lang})
             doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -322,40 +339,40 @@ def test_firefox_esr_next(client, os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-def test_firefox_mobile_release(client):
-    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "mobile-release"}))
+def test_firefox_mobile_release():
+    resp = firefox_all_response(**{"product_slug": "mobile-release"})
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 1
 
 
-def test_firefox_android_release(client):
-    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-release"}))
+def test_firefox_android_release():
+    resp = firefox_all_response(**{"product_slug": "android-release"})
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_android_beta(client):
-    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-beta"}))
+def test_firefox_android_beta():
+    resp = firefox_all_response(**{"product_slug": "android-beta"})
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_android_nightly(client):
-    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-nightly"}))
+def test_firefox_android_nightly():
+    resp = firefox_all_response(**{"product_slug": "android-nightly"})
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_ios_beta(client):
-    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "ios-beta"}))
+def test_firefox_ios_beta():
+    resp = firefox_all_response(**{"product_slug": "ios-beta"})
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 0
@@ -395,16 +412,16 @@ def test_platform_404(client):
     assert resp.status_code == 404
 
 
-def test_locale_404(client):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"}))
-    assert resp.status_code == 404
+def test_locale_404():
+    with pytest.raises(Http404):
+        firefox_all_response(**{"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"})
 
 
 @pytest.mark.parametrize("product_slug", [("desktop-release"), ("desktop-esr"), ("desktop-beta"), ("desktop-developer")])
 @pytest.mark.parametrize("lang", [("ckb"), ("ltg"), ("hye"), ("wo"), ("lo"), ("scn"), ("brx"), ("meh"), ("bo")])
-def test_nightly_locales_only_on_nightly(client, product_slug, lang):
-    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": product_slug, "platform": "win64", "locale": lang}))
-    assert resp.status_code == 404
+def test_nightly_locales_only_on_nightly(product_slug, lang):
+    with pytest.raises(Http404):
+        firefox_all_response(**{"product_slug": product_slug, "platform": "win64", "locale": lang})
 
 
 @pytest.mark.parametrize(
