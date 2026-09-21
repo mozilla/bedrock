@@ -1321,7 +1321,7 @@ DATA_CONSENT_COUNTRIES = [
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config(
     "VPN_ENDPOINT",
-    default=("https://stage.vpn.nonprod.webservices.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
+    default=("https://vpn.allizom.org/" if DEV else "https://vpn.mozilla.org/"),
 )
 
 # URL for Mozilla VPN subscription links
