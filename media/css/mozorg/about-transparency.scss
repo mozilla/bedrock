@@ -8,19 +8,6 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
 // * -------------------------------------------------------------------------- */
-// Index
-
-main dt {
-    @include text-title-xs;
-    font-weight: bold;
-    margin-top: $spacing-sm;
-}
-
-main dd {
-    padding: $spacing-sm;
-}
-
-// * -------------------------------------------------------------------------- */
 // Base Template
 
 .reports-nav {
