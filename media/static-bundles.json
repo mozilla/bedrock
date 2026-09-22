@@ -1051,6 +1051,12 @@
     },
     {
       "files": [
+        "css/m24/components/tabs.scss"
+      ],
+      "name": "m24-tabs"
+    },
+    {
+      "files": [
         "css/protocol/navigation-and-footer.scss"
       ],
       "name": "legacy-navigation-and-footer"
@@ -1698,6 +1704,13 @@
         "js/m24/animation-play-state.es6.js"
       ],
       "name": "m24-animation"
+    },
+    {
+      "files": [
+        "js/base/protocol/m24-tabs.es6.js",
+        "js/base/protocol/m24-tabs-init.es6.js"
+      ],
+      "name": "m24-tabs"
     },
     {
       "files": [
