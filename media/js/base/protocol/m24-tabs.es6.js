@@ -24,8 +24,8 @@ M24Tabs.getGroupTabs = (tab) => {
 };
 
 /**
- * Read the id of the panel referenced by location.hash, if it matches
- * one of the given tabs.
+ * Read the id of the panel referenced by location.hash to see
+ *  if it matches a tab on this page.
  * @param {Array} tabs - array of tab link elements.
  * @returns {Object} the matching tab link, or the first tab.
  */
@@ -124,11 +124,7 @@ M24Tabs.onTabClick = (e) => {
 
 /**
  * Keyboard support per the ARIA APG tabs pattern: Left/Right move (and
- * wrap) between tabs, Home/End jump to the first/last tab. Up/Down Arrow
- * are intentionally left alone here — this is a horizontal tab list, so
- * those keys should still scroll the page rather than being intercepted.
- * This is a roving tabindex, not a focus trap — Tab still moves focus in
- * and out of the widget normally.
+ * wrap) between tabs, Home/End jump to the first/last tab.
  * @param {Event} e - keydown event.
  */
 M24Tabs.onTabKeyDown = (e) => {
@@ -237,19 +233,7 @@ M24Tabs.setAria = (tablist) => {
 };
 
 /**
- * Basic feature detect for tabs JS support.
- * @returns {Boolean}
- */
-M24Tabs.isSupported = () => {
-    if (typeof window.MzpSupports !== 'undefined') {
-        return window.MzpSupports.matchMedia && window.MzpSupports.classList;
-    } else {
-        return false;
-    }
-};
-
-/**
- * Enhances a tabs container for 1st class JS support.
+ * Adds CSS class to trigger tab styles.
  * @param {Object} container - the `.m24-c-tabs` element.
  */
 M24Tabs.enhanceJS = (container) => {
@@ -258,7 +242,7 @@ M24Tabs.enhanceJS = (container) => {
 };
 
 /**
- * Initialize a single tabs container.
+ * Initialize a tabs container.
  * @param {Object} container - the `.m24-c-tabs` element.
  */
 M24Tabs.initItem = (container) => {
@@ -284,7 +268,7 @@ M24Tabs.initItem = (container) => {
 };
 
 /**
- * Tear a single tabs container back down to its basic (no-JS) state.
+ * Tear a tabs container back down to its basic (no-JS) state.
  * @param {Object} container - the `.m24-c-tabs` element.
  */
 M24Tabs.destroyItem = (container) => {
@@ -331,10 +315,6 @@ M24Tabs.destroyItem = (container) => {
  *   - onTabChange: called with the newly selected tab link element.
  */
 M24Tabs.init = (selector, options) => {
-    if (!M24Tabs.isSupported()) {
-        return;
-    }
-
     if (typeof selector !== 'string') {
         selector = '.m24-c-tabs';
     }
