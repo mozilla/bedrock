@@ -217,3 +217,76 @@
   </div>
 </{{ tag }}>
 {%- endmacro %}
+
+{#
+  Tabs
+  HTML Import: {% from "macros-m24.html" import tabs, tab_panel with context %}
+  CSS Import: css_bundle('m24-tabs')
+  JS Import: js_bundle('m24-tabs')
+
+  Renders an accessible tabs widget (WAI-ARIA APG tabs pattern). All ARIA
+  roles/states are added by the JS at runtime (see
+  media/js/base/protocol/m24-tabs.es6.js) — with JS disabled, or in
+  unsupported browsers, the tab list degrades to a row of in-page jump
+  links.
+
+  `tabs()` renders the tab list and wraps the panels; it doesn't take the
+  list of tabs directly. Instead, use {% call(tabset) tabs(...) %} to get a
+  `tabset` object, and pass that to a nested {% call tab_panel(tabset, ...) %}
+  for each panel. Each `tab_panel()` call registers itself with `tabset` and
+  renders its own panel markup (including its id and heading), so a tab's id
+  and label are each only written once, in one place.
+
+  tabs() Macro Parameters:
+    aria_label (Required): String accessible name for the tab list itself
+      (e.g. "Product categories"), since there's no visible label pointing
+      at it. Usually a translation id wrapped in an ftl function.
+    nested: Boolean indicating the tabs sit inside a container that already
+      constrains content width, so the tab list and panel headings don't need
+      their own mzp-l-content class. Defaults to False.
+
+  tab_panel() Macro Parameters:
+    tabset (Required): The object passed into the {% call(tabset) tabs(...) %}
+      block, used to register this panel with its tab group.
+    id (Required): String used as the `id` attribute of the panel element,
+      and (as "{id}-tab") of its tab link.
+    label (Required): String tab label and panel heading text (usually a
+      translation id wrapped in ftl function).
+    heading_level: Number indicating heading level for the panel's heading.
+      Should be based on semantic meaning, not presentational styling.
+      Defaults to 2.
+
+  Usage:
+    {% call(tabset) tabs(aria_label=ftl('firefox-products-tabs-aria-label')) %}
+      {% call tab_panel(tabset, id='products-panel', label=ftl('firefox-products-tabs-consumer')) %}
+        ...
+      {% endcall %}
+      {% call tab_panel(tabset, id='business-panel', label=ftl('firefox-products-tabs-business')) %}
+        ...
+      {% endcall %}
+    {% endcall %}
+#}
+{% macro tabs(aria_label, nested=False) -%}
+{%- set tabset = namespace(panels=[], nested=nested) -%}
+{%- set body %}{{ caller(tabset) }}{% endset -%}
+<div class="m24-c-tabs m24-c-tabs-is-basic">
+  <ul class="m24-c-tabs-list{% if not nested %} mzp-l-content mzp-t-content-nospace{% endif %}" aria-label="{{ aria_label }}">
+    {% for panel in tabset.panels %}
+    <li class="m24-c-tabs-item">
+      <a class="m24-c-tabs-link" id="{{ panel.id }}-tab" href="#{{ panel.id }}">{{ panel.label }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="m24-c-tabs-panels">
+    {{ body }}
+  </div>
+</div>
+{%- endmacro %}
+
+{% macro tab_panel(tabset, id, label, heading_level=2) -%}
+{%- do tabset.panels.append({'id': id, 'label': label}) -%}
+<div id="{{ id }}" class="m24-c-tabs-panel">
+  <h{{ heading_level }} class="m24-c-tabs-panel-heading{% if not tabset.nested %} mzp-l-content{% endif %}">{{ label }}</h{{ heading_level }}>
+  {{ caller() }}
+</div>
+{%- endmacro %}
