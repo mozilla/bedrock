@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import json
 from unittest.mock import patch
 
 import pytest
@@ -9,9 +10,14 @@ from wagtail.models import Locale, Page, PageViewRestriction, Site
 
 from bedrock.anonym.models import AnonymNewsItemPage, AnonymNewsPage
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory, StructuralPageFactory
+from bedrock.security.models import SecurityAdvisory
 from bedrock.sitemaps.utils import (
+    SEC_KNOWN_VULNS,
     _path_for_cms_url,
+    get_security_urls,
+    get_static_urls,
     get_wagtail_urls,
+    output_json,
     update_sitemaps,
 )
 
@@ -287,3 +293,48 @@ def test_update_sitemaps(
     }
 
     mock_output_json.assert_called_once_with(expected)
+
+
+def _create_advisory(advisory_id):
+    return SecurityAdvisory.objects.create(id=advisory_id, title="Test advisory", year=2024, order=1, extra_data={}, html="")
+
+
+def test_get_security_urls():
+    _create_advisory("2024-01")
+    _create_advisory("bogus")
+
+    urls = get_security_urls()
+
+    assert set(urls) == set(SEC_KNOWN_VULNS) | {"/security/advisories/mfsa2024-01/"}
+    assert all(locales == ["en-US"] for locales in urls.values())
+
+
+@pytest.fixture
+def static_urls_settings(settings):
+    settings.ROOT_URLCONF = "bedrock.sitemaps.tests.urls"
+    settings.EXTRA_INDEX_URLS = {"/extra/": ["de"]}
+
+
+def _get_sorted_static_urls():
+    return {path: sorted(locales) for path, locales in get_static_urls().items()}
+
+
+def test_get_static_urls(static_urls_settings):
+    urls = _get_sorted_static_urls()
+
+    assert urls == {
+        "/credits/": [],
+        "/translated/": ["de", "en-US", "fr"],
+        "/privacy/firefox-focus/": ["en-US", "fr"],
+        "/extra/": ["de"],
+    }
+
+
+def test_output_json(settings, tmp_path):
+    settings.ROOT_PATH = tmp_path
+    (tmp_path / "root_files").mkdir()
+    urls = {"/firefox/": ["de", "fr"], "/credits/": []}
+
+    output_json(urls)
+
+    assert json.loads((tmp_path / "root_files" / "sitemap.json").read_text()) == urls
