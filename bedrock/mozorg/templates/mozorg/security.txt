@@ -1,3 +1,6 @@
-Email: security@mozilla.org
-Main info: https://www.mozilla.org/en-US/security/
-Bounty program: https://www.mozilla.org/en-US/security/bug-bounty/
+# Mozilla security overview: https://www.mozilla.org/en-US/security/
+Contact: mailto:security@mozilla.org
+Expires: 2037-09-19T00:00:00.000Z
+Policy: https://www.mozilla.org/en-US/security/bug-bounty/
+Preferred-Languages: en
+Canonical: https://www.mozilla.org/.well-known/security.txt
