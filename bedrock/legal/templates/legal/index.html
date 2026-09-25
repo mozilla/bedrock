@@ -108,10 +108,11 @@
     <div class="newsletter-content">
       {% if LANG.startswith('en-') %}
       {{ email_newsletter_form(
+            newsletters='mozilla-foundation',
             title='Love the Web?',
             desc='Get the Mozilla newsletter and help us keep it open and free.') }}
       {% else %}
-      {{ email_newsletter_form() }}
+      {{ email_newsletter_form(newsletters='mozilla-foundation') }}
       {% endif %}
     </div>
   </div>
