@@ -5,6 +5,8 @@
 import json
 from unittest.mock import patch
 
+from django.utils import translation
+
 import pytest
 from wagtail.models import Locale, Page, PageViewRestriction, Site
 
@@ -309,6 +311,13 @@ def test_get_security_urls():
     assert all(locales == ["en-US"] for locales in urls.values())
 
 
+def test_get_security_urls__other_language_active():
+    _create_advisory("2024-01")
+    with translation.override("fr"):
+        urls = get_security_urls()
+    assert "/security/advisories/mfsa2024-01/" in urls
+
+
 @pytest.fixture
 def static_urls_settings(settings):
     settings.ROOT_URLCONF = "bedrock.sitemaps.tests.urls"
@@ -328,6 +337,12 @@ def test_get_static_urls(static_urls_settings):
         "/privacy/firefox-focus/": ["en-US", "fr"],
         "/extra/": ["de"],
     }
+
+
+def test_get_static_urls__other_language_active(static_urls_settings):
+    expected = _get_sorted_static_urls()
+    with translation.override("fr"):
+        assert _get_sorted_static_urls() == expected
 
 
 def test_output_json(settings, tmp_path):
