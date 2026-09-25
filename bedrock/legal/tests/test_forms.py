@@ -16,6 +16,10 @@ from bedrock.legal.forms import FraudReportForm
 from bedrock.legal.views import submit_form
 from bedrock.mozorg.tests import TestCase
 
+CR = "\r"
+LF = "\n"
+CRLF = CR + LF
+
 
 class TestFraudReport(TestCase):
     def setUp(self):
@@ -130,6 +134,118 @@ class TestFraudReport(TestCase):
         form = FraudReportForm(self.data)
 
         assert not form.is_valid()
+
+    def test_form_details_at_max_length(self):
+        """
+        Form should be valid when details is at the character limit.
+        """
+        self.data.update(input_details="x" * legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH)
+
+        form = FraudReportForm(self.data)
+
+        assert form.is_valid()
+
+    def test_form_details_crlf_counted_as_one_character(self):
+        """
+        A browser counts a newline as one character but submits it as CRLF, so
+        newlines should be normalised before details is measured.
+        """
+        lines = legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH // 2
+        browser_value = ("x" + LF) * lines
+        submitted_value = ("x" + CRLF) * lines
+
+        assert len(browser_value) == legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+        assert len(submitted_value) > legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+
+        self.data.update(input_details=submitted_value)
+
+        form = FraudReportForm(self.data)
+
+        assert form.is_valid()
+        assert len(form.cleaned_data["input_details"]) <= legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+        self.assertNotIn(CR, form.cleaned_data["input_details"])
+
+    def test_form_details_maxlength_attribute(self):
+        """
+        Details field should render the character limit as a maxlength
+        attribute, so the browser enforces it too.
+        """
+        form = FraudReportForm(auto_id="%s")
+
+        self.assertIn(f'maxlength="{legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH}"', str(form["input_details"]))
+
+    @patch("bedrock.legal.views.capture_message")
+    def test_form_details_over_max_length_no_email(self, mock_capture_message):
+        """
+        Details over the character limit should be dropped without sending an
+        email, reported to Sentry, and still look like a success.
+        """
+        self.data.update(input_details="x" * (legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1))
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        ret = submit_form(request, form)
+
+        self.assertFalse(ret["form_error"])
+        self.assertTrue(ret["form_submitted"])
+        assert len(mail.outbox) == 0
+
+        mock_capture_message.assert_called_once()
+        assert mock_capture_message.call_args[1]["level"] == "warning"
+
+    @patch("bedrock.legal.views.EmailMessage")
+    def test_email_subject_long_url_truncated(self, mock_email_message):
+        """
+        Make sure a long url is truncated in the email subject, but is still
+        sent in full in the email body.
+        """
+        long_url = "http://example.com/" + "a" * 1900
+        self.data.update(input_url=long_url)
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        subject, body = mock_email_message.call_args[0][:2]
+
+        self.assertIn(long_url[: legal_views.FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "...", subject)
+        self.assertNotIn(long_url, subject)
+        self.assertIn(long_url, body)
+
+    @patch("bedrock.legal.views.EmailMessage")
+    def test_email_url_is_not_mangled(self, mock_email_message):
+        """
+        The reported url should reach the email exactly as submitted, neither
+        escaped nor entity-decoded, so that it can be clicked.
+        """
+        url = "http://example.com/?a=1&b=2&reg=3&copy=4"
+        self.data.update(input_url=url)
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        body = mock_email_message.call_args[0][1]
+
+        self.assertIn(url, body)
+
+    @patch("bedrock.legal.views.EmailMessage")
+    def test_email_subject_short_url_not_truncated(self, mock_email_message):
+        """
+        Make sure a normal length url is not truncated in the email subject.
+        """
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        subject = mock_email_message.call_args[0][0]
+
+        self.assertIn(self.data["input_url"], subject)
+        self.assertNotIn("...", subject)
 
     def test_form_valid_attachement(self):
         """
