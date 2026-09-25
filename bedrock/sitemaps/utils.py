@@ -11,6 +11,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.test.client import Client
 from django.urls import resolvers
+from django.utils import translation
 
 from wagtail.models import Page
 
@@ -47,7 +48,9 @@ def get_security_urls():
     urls = {url: ["en-US"] for url in SEC_KNOWN_VULNS}
     for advisory in SecurityAdvisory.objects.all():
         try:
-            adv_url = advisory.get_absolute_url()
+            # reverse in en-US, whatever language is active
+            with translation.override("en-US"):
+                adv_url = advisory.get_absolute_url()
         except resolvers.NoReverseMatch:
             continue
 
@@ -79,12 +82,16 @@ def get_static_urls():
     # start with the ones we know we want
     urls.update(settings.EXTRA_INDEX_URLS)
 
+    # get the en-US URLs, whatever language is active
+    with translation.override(settings.LANGUAGE_CODE):
+        reverse_dict = resolvers.get_resolver(None).reverse_dict
+
     # get_resolver is an undocumented but convenient function.
     # Try to retrieve all valid URLs on this site.
     # NOTE: have to use `lists()` here since the standard
     # `items()` only returns the first item in the list for the
     # view since `reverse_dict` is a `MultiValueDict`.
-    for key, values in resolvers.get_resolver(None).reverse_dict.lists():
+    for key, values in reverse_dict.lists():
         for value in values:
             path = value[0][0][0]
 
