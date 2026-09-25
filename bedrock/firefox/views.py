@@ -210,109 +210,96 @@ def sign_attribution_codes(codes):
     return {"attribution_code": code.decode(), "attribution_sig": sig}
 
 
+# A product object for android OR ios (mobile-release covers both).
+class MobileRelease:
+    slug = "mobile-release"
+
+
+mobile_release = MobileRelease()
+
+# Shared definition of the /firefox/all/ steps vocabulary (issue #16367).
+# bedrock/firefox/redirects.py builds its redirect patterns and its validation
+# from these, so the view and the redirect layer cannot drift apart.
+FIREFOX_ALL_PRODUCTS = {
+    "desktop-release": {"product": firefox_desktop, "channel": "release", "name_ftl": "firefox-all-product-firefox"},
+    "desktop-beta": {"product": firefox_desktop, "channel": "beta", "name_ftl": "firefox-all-product-firefox-beta"},
+    "desktop-developer": {"product": firefox_desktop, "channel": "devedition", "name_ftl": "firefox-all-product-firefox-developer"},
+    "desktop-nightly": {"product": firefox_desktop, "channel": "nightly", "name_ftl": "firefox-all-product-firefox-nightly"},
+    "desktop-esr": {"product": firefox_desktop, "channel": "esr", "name_ftl": "firefox-all-product-firefox-esr"},
+    "android-release": {"product": firefox_android, "channel": "release", "name_ftl": "firefox-all-product-firefox-android"},
+    "android-beta": {"product": firefox_android, "channel": "beta", "name_ftl": "firefox-all-product-firefox-android-beta"},
+    "android-nightly": {"product": firefox_android, "channel": "nightly", "name_ftl": "firefox-all-product-firefox-android-nightly"},
+    "ios-release": {"product": firefox_ios, "channel": "release", "name_ftl": "firefox-all-product-firefox-ios"},
+    "ios-beta": {"product": firefox_ios, "channel": "beta", "name_ftl": "firefox-all-product-firefox-ios"},
+    # mobile-release is a special case for both android and ios.
+    "mobile-release": {"product": mobile_release, "channel": "release", "name_ftl": "firefox-all-product-firefox"},
+}
+
+FIREFOX_ALL_PLATFORM_MAP = {
+    "win64": "Windows 64-bit",
+    "win64-msi": "Windows 64-bit MSI",
+    "win64-aarch64": "Windows ARM64/AArch64",
+    "win": "Windows 32-bit",
+    "win-msi": "Windows 32-bit MSI",
+    "win-store": "Microsoft Store",
+    "osx": "macOS",
+    "linux64": "Linux 64-bit",
+    "linux": "Linux 32-bit",
+    "linux64-aarch64": "Linux ARM64/AArch64",
+}
+
+# win-store is only available for these products (404 otherwise, both in the
+# view and in the #16367 redirects).
+FIREFOX_ALL_WIN_STORE_PRODUCTS = ("desktop-release", "desktop-beta")
+
+
+def check_firefox_all_combination(product_slug=None, platform=None, download_locale=None):
+    """Raise Http404 for any combination the legacy firefox_all view refuses.
+
+    Shared by the view and by the #16367 redirect rules so that both layers
+    validate identically: a path this 404s must never be redirected, and a
+    path this accepts must never be left behind.
+    """
+    if product_slug and product_slug not in FIREFOX_ALL_PRODUCTS:
+        raise Http404()
+    if platform and platform not in FIREFOX_ALL_PLATFORM_MAP:
+        raise Http404()
+    if download_locale and download_locale not in product_details.languages:
+        raise Http404()
+    if platform == "win-store" and product_slug not in FIREFOX_ALL_WIN_STORE_PRODUCTS:
+        raise Http404()
+    if (
+        download_locale
+        and platform != "win-store"
+        and product_slug
+        # mobile products preset their download link and skip the build lookup
+        and not product_slug.startswith(("mobile", "android", "ios"))
+    ):
+        # the download step only exists for builds of this product's channel
+        # (e.g. nightly-only locales like "meh"), mirroring the build lookup
+        # in firefox_all()
+        data = FIREFOX_ALL_PRODUCTS[product_slug]
+        if not any(b["locale"] == download_locale for b in data["product"].get_filtered_full_builds(data["channel"])):
+            raise Http404()
+
+
 @require_safe
 def firefox_all(request, product_slug=None, platform=None, locale=None):
     ftl_files = "firefox/all"
 
-    # A product object for android OR ios.
-    class MobileRelease:
-        slug = "mobile-release"
-
-    mobile_release = MobileRelease()
-
     product_map = {
-        "desktop-release": {
-            "slug": "desktop-release",
-            "product": firefox_desktop,
-            "channel": "release",
-            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
-        },
-        "desktop-beta": {
-            "slug": "desktop-beta",
-            "product": firefox_desktop,
-            "channel": "beta",
-            "name": ftl("firefox-all-product-firefox-beta", ftl_files=ftl_files),
-        },
-        "desktop-developer": {
-            "slug": "desktop-developer",
-            "product": firefox_desktop,
-            "channel": "devedition",
-            "name": ftl("firefox-all-product-firefox-developer", ftl_files=ftl_files),
-        },
-        "desktop-nightly": {
-            "slug": "desktop-nightly",
-            "product": firefox_desktop,
-            "channel": "nightly",
-            "name": ftl("firefox-all-product-firefox-nightly", ftl_files=ftl_files),
-        },
-        "desktop-esr": {
-            "slug": "desktop-esr",
-            "product": firefox_desktop,
-            "channel": "esr",
-            "name": ftl("firefox-all-product-firefox-esr", ftl_files=ftl_files),
-        },
-        "android-release": {
-            "slug": "android-release",
-            "product": firefox_android,
-            "channel": "release",
-            "name": ftl("firefox-all-product-firefox-android", ftl_files=ftl_files),
-        },
-        "android-beta": {
-            "slug": "android-beta",
-            "product": firefox_android,
-            "channel": "beta",
-            "name": ftl("firefox-all-product-firefox-android-beta", ftl_files=ftl_files),
-        },
-        "android-nightly": {
-            "slug": "android-nightly",
-            "product": firefox_android,
-            "channel": "nightly",
-            "name": ftl("firefox-all-product-firefox-android-nightly", ftl_files=ftl_files),
-        },
-        "ios-release": {
-            "slug": "ios-release",
-            "product": firefox_ios,
-            "channel": "release",
-            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
-        },
-        "ios-beta": {
-            "slug": "ios-beta",
-            "product": firefox_ios,
-            "channel": "beta",
-            "name": ftl("firefox-all-product-firefox-ios", ftl_files=ftl_files),
-        },
-        # mobile-release is a special case for both android and ios.
-        "mobile-release": {
-            "slug": "mobile-release",
-            "product": mobile_release,
-            "channel": "release",
-            "name": ftl("firefox-all-product-firefox", ftl_files=ftl_files),
-        },
+        slug: {
+            "slug": slug,
+            "product": data["product"],
+            "channel": data["channel"],
+            "name": ftl(data["name_ftl"], ftl_files=ftl_files),
+        }
+        for slug, data in FIREFOX_ALL_PRODUCTS.items()
     }
+    platform_map = FIREFOX_ALL_PLATFORM_MAP
 
-    platform_map = {
-        "win64": "Windows 64-bit",
-        "win64-msi": "Windows 64-bit MSI",
-        "win64-aarch64": "Windows ARM64/AArch64",
-        "win": "Windows 32-bit",
-        "win-msi": "Windows 32-bit MSI",
-        "win-store": "Microsoft Store",
-        "osx": "macOS",
-        "linux64": "Linux 64-bit",
-        "linux": "Linux 32-bit",
-        "linux64-aarch64": "Linux ARM64/AArch64",
-    }
-
-    # 404 checks.
-    if product_slug and product_slug not in product_map.keys():
-        raise Http404()
-    if platform and platform not in platform_map.keys():
-        raise Http404()
-    if locale and locale not in product_details.languages.keys():
-        raise Http404()
-    # 404 if win-store and not desktop-release.
-    if platform == "win-store" and product_slug not in ["desktop-release", "desktop-beta"]:
-        raise Http404()
+    # 404 checks, shared with the #16367 redirect rules (bedrock/firefox/redirects.py).
+    check_firefox_all_combination(product_slug, platform, locale)
 
     product = product_map.get(product_slug)
     platform_name = None
