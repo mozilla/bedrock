@@ -8,19 +8,6 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/mixins/details';
 
 // * -------------------------------------------------------------------------- */
-// Index
-
-main dt {
-    @include text-title-xs;
-    font-weight: bold;
-    margin-top: $spacing-sm;
-}
-
-main dd {
-    padding: $spacing-sm;
-}
-
-// * -------------------------------------------------------------------------- */
 // Base Template
 
 .reports-nav {
@@ -138,7 +125,8 @@ main h3 {
 $mzp-v-spacing: var(--v-grid-md);
 
 .c-2024-back-link,
-.c-2025-back-link {
+.c-2025-back-link,
+.c-back-link {
     display: flex;
     gap: $spacing-xs;
     margin-bottom: $spacing-xl;
