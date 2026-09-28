@@ -416,11 +416,15 @@ def lazy_langs():
     :return: list of tuples
 
     """
+    from django.apps import apps
     from django.conf import settings
 
-    from product_details import product_details
-
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
+
+    if not apps.ready:
+        return [(lang, lang) for lang in langs]
+
+    from product_details import product_details
 
     return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
@@ -776,7 +780,6 @@ INSTALLED_APPS = [
     "bedrock.products",
     "bedrock.externalfiles",
     "bedrock.security",
-    "bedrock.contentcards",
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
@@ -1059,16 +1062,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     },
 }
 
-if DEV:
-    content_cards_default_branch = "dev-processed"
-else:
-    content_cards_default_branch = "prod-processed"
-
-CONTENT_CARDS_PATH = config("CONTENT_CARDS_PATH", default=data_path("content_cards"))
-CONTENT_CARDS_REPO = config("CONTENT_CARDS_REPO", default="https://github.com/mozmeao/www-admin.git")
-CONTENT_CARDS_BRANCH = config("CONTENT_CARDS_BRANCH", default=content_cards_default_branch)
-CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
-
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
 LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
@@ -1215,6 +1208,12 @@ SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     # keys, so without this entry the encoded credential would survive into the
     # Sentry payload.
     "git_config_value",
+    # `authentication` masks the raw credential when it appears as a dict
+    # value in frame locals (e.g. a params dict passed to GitRepo(**params)).
+    "authentication",
+    # `fluent_repo_auth` masks the raw FLUENT_REPO_AUTH env var that
+    # GitRepo.git() copies from os.environ into its subprocess env dict.
+    "fluent_repo_auth",
 ]
 SENTRY_IGNORE_ERRORS = (
     BrokenPipeError,
@@ -1322,7 +1321,7 @@ DATA_CONSENT_COUNTRIES = [
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config(
     "VPN_ENDPOINT",
-    default=("https://stage.vpn.nonprod.webservices.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
+    default=("https://vpn.allizom.org/" if DEV else "https://vpn.mozilla.org/"),
 )
 
 # URL for Mozilla VPN subscription links

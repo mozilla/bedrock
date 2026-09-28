@@ -153,6 +153,7 @@
       {{ form.input_details.errors }}
       <label for="input_details" class="mzp-c-field-label">Please provide additional details</label>
       {{ form.input_details }}
+      <p class="mzp-c-field-info">Maximum {{ form.input_details.field.widget.attrs.maxlength }} characters.</p>
     </div>
 
     <div class="mzp-c-field" id="attachment">

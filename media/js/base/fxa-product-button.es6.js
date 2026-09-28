@@ -16,7 +16,7 @@ const allowedList = [
     'https://payments.firefox.com/',
     'https://relay.firefox.com/',
     'https://stage.guardian.nonprod.cloudops.mozgcp.net/',
-    'https://stage.vpn.nonprod.webservices.mozgcp.net/',
+    'https://vpn.allizom.org/',
     'https://vpn.mozilla.org/'
 ];
 

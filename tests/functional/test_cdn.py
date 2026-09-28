@@ -77,12 +77,7 @@ def test_locale_redirect(url, base_url):
 @pytest.mark.cdn
 @pytest.mark.parametrize(
     "url",
-    (
-        # only in the GCS bucket
-        "/media/contentcards/img/home-en/card_2/card_2.73be009fe44e.jpg",
-        # comes from bedrock
-        "/media/protocol/img/logos/mozilla/black.40d1af88c248.svg",
-    ),
+    ("/media/protocol/img/logos/mozilla/black.40d1af88c248.svg",),
 )
 @pytest.mark.nondestructive
 def test_media(url, base_url):

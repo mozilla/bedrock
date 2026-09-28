@@ -37,5 +37,10 @@
         ],
         "media-feature-range-notation": "prefix"
     },
-    "ignoreFiles": ["media/css/libs/**/*"]
+    "ignoreFiles": [
+        "media/css/libs/**/*",
+        "media/css/cms/wagtail_admin_dev.css",
+        "media/css/cms/wagtail_admin_local.css",
+        "media/css/cms/wagtail_admin_stage.css"
+    ]
 }

@@ -32,6 +32,8 @@ def test_pre_sentry_sanitisation__before_send_setup():
         # Substring of GIT_CONFIG_VALUE_0/_1/... — the env keys we use to
         # pass an http.extraheader containing the base64-encoded PAT to git.
         "git_config_value",
+        "authentication",
+        "fluent_repo_auth",
     ]
 
 
@@ -183,3 +185,67 @@ def test_pre_sentry_sanitisation_for_git_config_value_with_base64_padding():
     stringified = json.dumps(output)
 
     assert "blocklist" not in stringified
+
+
+def test_pre_sentry_sanitisation_authentication_in_nested_params_dict():
+    """``authentication`` nested one level inside a params dict is masked."""
+    event = {
+        "exception": {
+            "values": [
+                {
+                    "stacktrace": {
+                        "frames": [
+                            {
+                                "vars": {
+                                    "params": {
+                                        "repo_dir": "/data/l10n",
+                                        "authentication": "ghp_secret123",
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    }
+
+    output = before_send(event=event, hint=None)
+
+    params = output["exception"]["values"][0]["stacktrace"]["frames"][0]["vars"]["params"]
+    assert params["authentication"] == "********"
+    assert params["repo_dir"] == "/data/l10n"
+
+
+def test_pre_sentry_sanitisation_fluent_repo_auth_in_nested_env():
+    """``FLUENT_REPO_AUTH`` nested inside a git_options/env dict is masked."""
+    event = {
+        "exception": {
+            "values": [
+                {
+                    "stacktrace": {
+                        "frames": [
+                            {
+                                "vars": {
+                                    "git_options": {
+                                        "env": {
+                                            "LANG": "en_US.UTF-8",
+                                            "FLUENT_REPO_AUTH": "user:secret",
+                                            "GIT_CONFIG_VALUE_0": "AUTHORIZATION: Basic dXNlcjpzZWNyZXQ=",
+                                        },
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    }
+
+    output = before_send(event=event, hint=None)
+
+    env = output["exception"]["values"][0]["stacktrace"]["frames"][0]["vars"]["git_options"]["env"]
+    assert env["FLUENT_REPO_AUTH"] == "********"
+    assert env["GIT_CONFIG_VALUE_0"] == "********"
+    assert env["LANG"] == "en_US.UTF-8"

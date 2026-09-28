@@ -37,6 +37,14 @@ class GitRepo:
         self.db_latest_key = sha256(db_latest_key.encode()).hexdigest()
         self.repo_name = name or self.path.name
 
+    def _scrub(self, value):
+        """Redact ``self.auth`` from *value* (str or bytes)."""
+        if not self.auth or value is None:
+            return value
+        needle = self.auth.encode() if isinstance(value, bytes) else self.auth
+        replacement = b"***" if isinstance(value, bytes) else "***"
+        return value.replace(needle, replacement)
+
     def git(self, *args, env=None):
         """Run a git command against the current repo"""
         curdir = os.getcwd()
@@ -46,6 +54,12 @@ class GitRepo:
             if env is not None:
                 kwargs["env"] = {**os.environ, **env}
             output = check_output((GIT,) + args, **kwargs)
+        except CalledProcessError as cpe:
+            cpe.cmd = tuple(self._scrub(arg) for arg in cpe.cmd)
+            cpe.output = self._scrub(cpe.output)
+            cpe.stderr = self._scrub(cpe.stderr)
+            cpe.args = (cpe.returncode, cpe.cmd)
+            raise cpe from None
         finally:
             os.chdir(curdir)
 
@@ -197,6 +211,12 @@ class GitRepo:
         self.git("checkout", "-f", "FETCH_HEAD")
         return old_hash, self.current_hash
 
+    def push(self, refspec):
+        """Push *refspec* to the configured remote, authenticated."""
+        with self._auth_env() as env:
+            extra = {"env": env} if env else {}
+            return self.git("push", self.remote_url, refspec, **extra)
+
     def update(self):
         """Updates a repo, cloning if necessary.
 
@@ -237,12 +257,6 @@ class GitRepo:
             repo_base = repo_base[:-1]
 
         return repo_base
-
-    def remote_url_auth(self, auth):
-        url = self.clean_remote_url
-        # remove https://
-        url = url[8:]
-        return f"https://{auth}@{url}"
 
     def set_db_latest(self, latest_ref=None):
         latest_ref = latest_ref or self.current_hash

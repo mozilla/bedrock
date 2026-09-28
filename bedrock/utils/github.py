@@ -15,7 +15,7 @@ def get_client():
         return GITHUB_CLIENT
 
     if settings.FLUENT_REPO_AUTH:
-        auth_token = settings.FLUENT_REPO_AUTH.split(":")[1]
+        auth_token = settings.FLUENT_REPO_AUTH.rsplit(":", 1)[-1]
         GITHUB_CLIENT = Github(auth_token)
 
     return GITHUB_CLIENT

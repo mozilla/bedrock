@@ -294,9 +294,10 @@ $border: 2px solid $color-marketing-gray-20;
 
 
 // * -------------------------------------------------------------------------- */
-// Mozilla accounts page variant
+// Mozilla accounts and Smart Window page variants
 
-.mozilla-accounts {
+.mozilla-accounts,
+.privacy-smart-window {
     .mzp-u-data-table td {
         vertical-align: top;
     }

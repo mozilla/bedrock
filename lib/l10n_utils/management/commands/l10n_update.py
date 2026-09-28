@@ -34,7 +34,7 @@ class Command(BaseCommand):
 
     def update_fluent_files(self, clean=False):
         for site, params in FLUENT_L10N_UPDATE_PARAMS.items():
-            repo = GitRepo(**params)
+            repo = GitRepo(**params, auth=settings.FLUENT_REPO_AUTH or None)
             if clean:
                 repo.reclone()
             else:

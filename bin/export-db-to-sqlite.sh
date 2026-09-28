@@ -192,7 +192,6 @@ python manage.py dumpdata \
     security.Product \
     security.SecurityAdvisory \
     security.HallOfFamer \
-    contentcards.ContentCard \
     utils.GitRepoState \
     wordpress.BlogPost \
     sitemaps.SitemapURL \

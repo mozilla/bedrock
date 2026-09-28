@@ -91,21 +91,16 @@ class Command(FTLRepoCommand):
         return True
 
     def push_changes(self):
+        if not self.l10n_repo.auth:
+            raise CommandError("Git push authentication not configured")
         try:
-            result = self.l10n_repo.git("push", self.git_push_url, f"HEAD:{self.branch_name}")
+            result = self.l10n_repo.push(f"HEAD:{self.branch_name}")
             self.stdout.write(result)
         except CalledProcessError as cpe:
             raise CommandError(f"There was a problem pushing to {self.l10n_repo.remote_url}: {cpe}\n{cpe.output}")
 
         commit = self.l10n_repo.git("rev-parse", "--short", "HEAD")
         self.stdout.write(f"Pushed {commit} to {self.l10n_repo.remote_url} as {self.branch_name}")
-
-    @property
-    def git_push_url(self):
-        if not settings.FLUENT_REPO_AUTH:
-            raise CommandError("Git push authentication not configured")
-
-        return self.l10n_repo.remote_url_auth(settings.FLUENT_REPO_AUTH)
 
     def get_open_pr(self):
         if self.github is None:
