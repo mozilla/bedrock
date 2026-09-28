@@ -103,6 +103,19 @@ class FraudReportForm(forms.Form):
     # honeypot
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
 
+    def clean_input_url(self):
+        """
+        Percent-encode characters that RFC 3986 forbids in a URL. The email
+        template renders the URL without autoescaping so that ``&`` survives
+        intact, so this stops a reporter smuggling HTML tags into the email.
+        """
+        url = self.cleaned_data.get("input_url")
+
+        if url:
+            url = url.replace("<", "%3C").replace(">", "%3E").replace('"', "%22")
+
+        return url
+
     def clean_input_attachment(self):
         attachment = self.cleaned_data.get("input_attachment")
 
