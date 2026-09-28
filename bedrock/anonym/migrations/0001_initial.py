@@ -514,7 +514,7 @@ class Migration(migrations.Migration):
                             27: ("wagtail.blocks.StructBlock", [[("label", 17), ("link", 26)]], {}),
                             28: ("wagtail.blocks.ListBlock", (27,), {"default": [], "max_num": 1, "min_num": 0}),
                             29: ("wagtail.blocks.StructBlock", [[("logo", 7), ("heading", 16), ("text", 14), ("button", 28)]], {}),
-                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("anonym.Person",), {}),
+                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("wagtailcore.Page",), {}),
                             31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                             32: (
                                 "wagtail.blocks.StreamBlock",
@@ -525,7 +525,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page", "wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -533,7 +533,7 @@ class Migration(migrations.Migration):
                                 {"default": [], "help_text": "Select news items or case studies to display.", "max_num": 6, "min_num": 1},
                             ),
                             36: ("wagtail.blocks.StructBlock", [[("pages", 35)]], {}),
-                            37: ("wagtail.blocks.PageChooserBlock", ("anonym.AnonymCaseStudyItemPage",), {}),
+                            37: ("wagtail.blocks.PageChooserBlock", ("wagtailcore.Page",), {}),
                             38: (
                                 "wagtail.blocks.ListBlock",
                                 (37,),
@@ -1438,7 +1438,7 @@ class Migration(migrations.Migration):
                             27: ("wagtail.blocks.StructBlock", [[("label", 17), ("link", 26)]], {}),
                             28: ("wagtail.blocks.ListBlock", (27,), {"default": [], "max_num": 1, "min_num": 0}),
                             29: ("wagtail.blocks.StructBlock", [[("logo", 7), ("heading", 16), ("text", 14), ("button", 28)]], {}),
-                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("anonym.Person",), {}),
+                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("wagtailcore.Page",), {}),
                             31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                             32: (
                                 "wagtail.blocks.StreamBlock",
@@ -1449,7 +1449,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page", "wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -1457,7 +1457,7 @@ class Migration(migrations.Migration):
                                 {"default": [], "help_text": "Select news items or case studies to display.", "max_num": 6, "min_num": 1},
                             ),
                             36: ("wagtail.blocks.StructBlock", [[("pages", 35)]], {}),
-                            37: ("wagtail.blocks.PageChooserBlock", ("anonym.AnonymCaseStudyItemPage",), {}),
+                            37: ("wagtail.blocks.PageChooserBlock", ("wagtailcore.Page",), {}),
                             38: (
                                 "wagtail.blocks.ListBlock",
                                 (37,),
@@ -2033,7 +2033,7 @@ class Migration(migrations.Migration):
                             27: ("wagtail.blocks.StructBlock", [[("label", 17), ("link", 26)]], {}),
                             28: ("wagtail.blocks.ListBlock", (27,), {"default": [], "max_num": 1, "min_num": 0}),
                             29: ("wagtail.blocks.StructBlock", [[("logo", 7), ("heading", 16), ("text", 14), ("button", 28)]], {}),
-                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("anonym.Person",), {}),
+                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("wagtailcore.Page",), {}),
                             31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                             32: (
                                 "wagtail.blocks.StreamBlock",
@@ -2044,7 +2044,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page", "wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -2052,7 +2052,7 @@ class Migration(migrations.Migration):
                                 {"default": [], "help_text": "Select news items or case studies to display.", "max_num": 6, "min_num": 1},
                             ),
                             36: ("wagtail.blocks.StructBlock", [[("pages", 35)]], {}),
-                            37: ("wagtail.blocks.PageChooserBlock", ("anonym.AnonymCaseStudyItemPage",), {}),
+                            37: ("wagtail.blocks.PageChooserBlock", ("wagtailcore.Page",), {}),
                             38: (
                                 "wagtail.blocks.ListBlock",
                                 (37,),
@@ -2627,7 +2627,7 @@ class Migration(migrations.Migration):
                             27: ("wagtail.blocks.StructBlock", [[("label", 17), ("link", 26)]], {}),
                             28: ("wagtail.blocks.ListBlock", (27,), {"default": [], "max_num": 1, "min_num": 0}),
                             29: ("wagtail.blocks.StructBlock", [[("logo", 7), ("heading", 16), ("text", 14), ("button", 28)]], {}),
-                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("anonym.Person",), {}),
+                            30: ("wagtail.snippets.blocks.SnippetChooserBlock", ("wagtailcore.Page",), {}),
                             31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                             32: (
                                 "wagtail.blocks.StreamBlock",
@@ -2638,7 +2638,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page", "wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -2646,7 +2646,7 @@ class Migration(migrations.Migration):
                                 {"default": [], "help_text": "Select news items or case studies to display.", "max_num": 6, "min_num": 1},
                             ),
                             36: ("wagtail.blocks.StructBlock", [[("pages", 35)]], {}),
-                            37: ("wagtail.blocks.PageChooserBlock", ("anonym.AnonymCaseStudyItemPage",), {}),
+                            37: ("wagtail.blocks.PageChooserBlock", ("wagtailcore.Page",), {}),
                             38: (
                                 "wagtail.blocks.ListBlock",
                                 (37,),
