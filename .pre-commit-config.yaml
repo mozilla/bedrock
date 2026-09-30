@@ -71,7 +71,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.7
+    rev: v0.16.8
     hooks:
       - id: ruff
       - id: ruff-format
@@ -86,7 +86,7 @@ repos:
     hooks:
       - id: prettier
         additional_dependencies:
-        - prettier@3.9.7
+        - prettier@3.9.9
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
@@ -97,7 +97,7 @@ repos:
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v10.10.0
+    rev: v10.11.0
     hooks:
       - id: eslint
         additional_dependencies:
