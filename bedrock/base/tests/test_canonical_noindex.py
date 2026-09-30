@@ -2,7 +2,11 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.test import RequestFactory
+
 import pytest
+
+from bedrock.firefox.views import firefox_all
 
 pytestmark = pytest.mark.django_db
 
@@ -39,12 +43,16 @@ def test_newsletter_opt_out_has_canonical_and_noindex(client):
     assert 'content="noindex,follow"' not in response.text
 
 
-def test_firefox_all_child_page_has_canonical_and_robots_none(client):
+def test_firefox_all_child_page_has_canonical_and_robots_none():
     # firefox/all/base.html uses a conditional block: when a product slug is
     # present in the URL path, it renders `content="none"`. The product slug
     # comes from the URL path, not a query parameter, so
     # /firefox/all/desktop-release/ triggers the branch.
-    response = client.get("/en-US/firefox/all/desktop-release/")
+    # (Issue #16367: RedirectsMiddleware intercepts /firefox/all/* URLs, so this
+    # renders the real firefox_all view directly instead of via HTTP routing.)
+    request = RequestFactory().get("/en-US/firefox/all/desktop-release/", secure=True)
+    request.locale = "en-US"
+    response = firefox_all(request, product_slug="desktop-release")
     assert response.status_code == 200
     assert 'rel="canonical"' in response.text
     assert 'content="none"' in response.text

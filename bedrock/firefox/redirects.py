@@ -9,6 +9,11 @@ from django.conf import settings
 
 from bedrock.firefox import version_re
 from bedrock.firefox.urls import channel_re, latest_re, platform_re
+from bedrock.firefox.views import (
+    FIREFOX_ALL_PLATFORM_MAP,
+    FIREFOX_ALL_PRODUCTS,
+    check_firefox_all_combination,
+)
 from bedrock.redirects.util import mobile_app_redirector, no_redirect, platform_redirector, redirect
 
 # Release notes / system requirements pages are now served by www.firefox.com, so
@@ -77,6 +82,48 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
     URL we return.
     """
     return f"{settings.FXC_BASE_URL}{request.path}"
+
+
+# Issue 16367 - the /firefox/all/ step pages now live on www.firefox.com under
+# /download/all/. The product/platform vocabularies and the combination rules
+# are shared with the legacy view (FIREFOX_ALL_* and check_firefox_all_combination
+# in bedrock.firefox.views), so a path the view 404s keeps 404ing locally instead
+# of being sent to a 404 on www.firefox.com. The page-locale alternation derives
+# from settings.LANGUAGES, the same canonical locale list the locale middleware
+# normalizes against, so non-canonical spellings (en-us, de-AT, xx-XX) keep their
+# pre-existing locale-middleware handling instead of being redirected from here.
+_FIREFOX_ALL_PAGE_LOCALES_RE = "|".join(sorted((lang for lang, name in settings.LANGUAGES), key=len, reverse=True))
+_FIREFOX_ALL_PRODUCTS_RE = "|".join(FIREFOX_ALL_PRODUCTS)
+_FIREFOX_ALL_PLATFORMS_RE = "|".join(FIREFOX_ALL_PLATFORM_MAP)
+# matches every download-locale slug in product_details.languages (incl. the
+# dash-and-word shapes like ja-JP-mac and ca-valencia), while mirroring the
+# <slug:...> converter used by the local view's URL patterns.
+_FIREFOX_ALL_DOWNLOAD_LOCALE_RE = "[-a-zA-Z0-9_]+"
+
+
+def _firefox_all_redirect(request, product=None, platform=None, download_locale=None, **kwargs):
+    """Returns the equivalent /download/all/ steps path on www.firefox.com.
+
+    Meant to be called from the offsite_redirect helper, which merges the
+    existing querystring and adds on the redirect_source querystring. The
+    {_locale} placeholder is filled in (or stripped when the source URL had no
+    page locale) by bedrock.redirects.util.redirect.
+
+    check_firefox_all_combination raises Http404 for every combination the
+    legacy view refuses (invalid win-store combinations at both depths,
+    download locales that are not in product_details.languages, and locales
+    without a build for the product's channel), so no path that 404s on
+    origin/main turns into a redirect to a 404 on www.firefox.com.
+    """
+    check_firefox_all_combination(product, platform, download_locale)
+    path = "/download/all/"
+    if product:
+        path += f"{product}/"
+    if platform:
+        path += f"{platform}/"
+    if download_locale:
+        path += f"{download_locale}/"
+    return f"{settings.FXC_BASE_URL}/" + "{_locale}" + path
 
 
 WNP_145_PLUS_RE = (
@@ -185,6 +232,34 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/browsers/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/new/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/all/$", f"{FXC}/download/all/", permanent=True),
+    # Issue 16367 - deeper /firefox/all/* steps, deepest first. The page-locale
+    # group only accepts canonical locales (from settings.LANGUAGES, same list
+    # the locale middleware normalizes against), and _firefox_all_redirect
+    # raises Http404 - exactly like the view would - for combinations the view
+    # refuses (win-store on products other than desktop-release/desktop-beta,
+    # at both the platform and the download-locale depth, download locales that
+    # are not in product_details.languages, and locales without a build for the
+    # product's channel).
+    offsite_redirect(
+        r"^(?:(?P<locale>(?:%s)/))?firefox/all/(?P<product>%s)/(?P<platform>%s)/(?P<download_locale>%s)/?$"
+        % (_FIREFOX_ALL_PAGE_LOCALES_RE, _FIREFOX_ALL_PRODUCTS_RE, _FIREFOX_ALL_PLATFORMS_RE, _FIREFOX_ALL_DOWNLOAD_LOCALE_RE),
+        _firefox_all_redirect,
+        permanent=True,
+        locale_prefix=False,
+    ),
+    offsite_redirect(
+        r"^(?:(?P<locale>(?:%s)/))?firefox/all/(?P<product>%s)/(?P<platform>%s)/?$"
+        % (_FIREFOX_ALL_PAGE_LOCALES_RE, _FIREFOX_ALL_PRODUCTS_RE, _FIREFOX_ALL_PLATFORMS_RE),
+        _firefox_all_redirect,
+        permanent=True,
+        locale_prefix=False,
+    ),
+    offsite_redirect(
+        rf"^(?:(?P<locale>(?:{_FIREFOX_ALL_PAGE_LOCALES_RE})/))?firefox/all/(?P<product>{_FIREFOX_ALL_PRODUCTS_RE})/?$",
+        _firefox_all_redirect,
+        permanent=True,
+        locale_prefix=False,
+    ),
     offsite_redirect(r"^firefox/browsers/best-browser/$", f"{FXC}/more/best-browser/", permanent=True),
     offsite_redirect(r"^firefox/browsers/browser-history/$", f"{FXC}/more/browser-history/", permanent=True),
     offsite_redirect(r"^firefox/browsers/chromebook/$", f"{FXC}/browsers/desktop/chromebook/", permanent=True),
