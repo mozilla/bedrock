@@ -13,12 +13,17 @@ from wagtail.images.models import Filter
 from bedrock.cms.models.images import AUTOMATIC_RENDITION_FILTER_SPECS
 
 wagtail_jinja_image_tag_regex_pattern = re.compile(
-    r"(?:(?<!_)image|srcset_image|picture)\("  # `image(`, `srcset_image(`, or `picture(`, but not other `*_image(` calls
-    # such as macros like hero_image()
-    r".*"  # anything, such as the dot-pattern to get hold of the image on a block
-    r"(?<!=)\"([\w\-{},.|]*)\""  # a filter spec pattern as an arg (eg "fill-200x200", "width-1200", or the
-    # brace-expanded "fill-{400x200,600x300}"), but not a key=value attr pair
-    r".*\)"  # any other optional args to the image() call and its closing paren
+    r"(?:(?<!_)image|srcset_image)\("  # `image(` or `srcset_image(`, but not other `*_image(` calls such as
+    # macros like hero_image(). Deliberately excludes `picture(`: every `picture(` call in the codebase is
+    # the unrelated, locally-defined `url=`/`sources=` helper, not Wagtail's image-filterspec `picture()`.
+    r".*?"  # anything, such as the dot-pattern to get hold of the image on a block; non-greedy so this
+    # stops at the first quoted arg instead of skipping past it to a later one (calls span multiple
+    # lines, so DOTALL is needed for this to cross line breaks at all)
+    r"(?<!=)\"([\w\-{},.|]+)\""  # a filter spec pattern as an arg (eg "fill-200x200", "width-1200", or the
+    # brace-expanded "fill-{400x200,600x300}"), but not a key=value attr pair. Required to be non-empty so a
+    # call with no literal spec (e.g. a variable) can't match an unrelated quoted string later in the file.
+    r".*?\)",  # any other optional args to the image() call and its closing paren
+    re.DOTALL,
 )
 
 

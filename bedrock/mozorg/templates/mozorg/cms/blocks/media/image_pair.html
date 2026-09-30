@@ -9,7 +9,7 @@
     {{ srcset_image(
       item.image,
       "fill-{200x100,400x200,600x300,800x400,1000x500,1200x600,1400x700}",
-      sizes="(min-width: 1440px) 680px, (min-width: 1312px) calc((100vw - 80px) / 2), (min-width: 768px) calc((100vw - 60px) / 2), calc((100vw - 40px) / 2)",
+      sizes="(min-width: 1440px) 680px, (min-width: 1312px) calc((100vw - 80px) / 2), (min-width: 768px) calc((100vw - 60px) / 2), (min-width: 480px) calc((100vw - 40px) / 2), calc(100vw - 32px)",
       alt=item.image_alt if item.image_alt else "",
       loading="lazy",
       class="m24-c-showcase-image"

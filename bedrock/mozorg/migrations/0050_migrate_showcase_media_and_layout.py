@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import json
 import sys
 import uuid
 
@@ -15,41 +14,80 @@ def _should_skip():
     return "pytest" in sys.modules or config("SQLITE_EXPORT_MODE", parser=bool, default="false")
 
 
-def migrate_showcase_media_and_layout(apps, schema_editor):
-    """
-    Reshape existing ShowcaseBlock.value to the media chooser and named layout
-    system: image/image_alt become a single-entry ultrawide_image media
-    stream, and settings.two_column_layout becomes settings.layout.
+def _migrate_showcase_block_value(value):
+    """Reshape a single showcase_block's value in place, from the original
+    image/image_alt/two_column_layout shape to the media chooser and named
+    layout shape. Returns True if the value was modified.
 
     Old structure:
         {
-            "type": "showcase_block",
-            "value": {
-                "settings": {"two_column_layout": false, ...},
-                "image": 123,
-                "image_alt": "...",
-                ...
-            }
+            "settings": {"two_column_layout": false, ...},
+            "image": 123,
+            "image_alt": "...",
+            ...
         }
 
     New structure:
         {
-            "type": "showcase_block",
-            "value": {
-                "settings": {"layout": "heading-body-media", ...},
-                "media": [
-                    {
-                        "type": "ultrawide_image",
-                        "value": {"image": {"image": 123, "image_alt": "..."}},
-                        "id": "...",
-                    }
-                ],
-                ...
-            }
+            "settings": {"layout": "heading-body-media", ...},
+            "media": [
+                {
+                    "type": "ultrawide_image",
+                    "value": {"image": {"image": 123, "image_alt": "..."}},
+                    "id": "...",
+                }
+            ],
+            ...
         }
+
+    Idempotent: a value already in the new shape has neither "image" nor
+    "two_column_layout", so it passes through unmodified.
+    """
+    modified = False
+
+    if "image" in value:
+        image = value.pop("image")
+        image_alt = value.pop("image_alt", "")
+        value["media"] = [
+            {
+                "type": "ultrawide_image",
+                "value": {"image": {"image": image, "image_alt": image_alt}},
+                "id": str(uuid.uuid4()),
+            }
+        ]
+        modified = True
+
+    settings = value.get("settings", {})
+    if "two_column_layout" in settings:
+        two_column_layout = settings.pop("two_column_layout")
+        settings["layout"] = "heading-and-body-media" if two_column_layout else "heading-body-media"
+        modified = True
+
+    return modified
+
+
+def _migrate_raw_blocks(raw):
+    """Apply _migrate_showcase_block_value to every showcase_block in a list
+    of raw (undeserialized) top-level block dicts. Returns True if anything
+    was modified.
 
     This does not touch showcase_gallery_block content — that block is being
     migrated to showcase_block by hand, page by page, ahead of its removal.
+    """
+    modified = False
+
+    for block in raw:
+        if block.get("type") == "showcase_block":
+            if _migrate_showcase_block_value(block.get("value", {})):
+                modified = True
+
+    return modified
+
+
+def migrate_showcase_media_and_layout(apps, schema_editor):
+    """
+    Reshape existing ShowcaseBlock.value to the media chooser and named layout
+    system. See _migrate_showcase_block_value for the shape change.
 
     Affects: AboutUsPage.content and HomePage.content
     """
@@ -65,32 +103,8 @@ def migrate_showcase_media_and_layout(apps, schema_editor):
                 continue
 
             raw = list(page.content.raw_data)
-            modified = False
-
-            for block in raw:
-                if block.get("type") == "showcase_block":
-                    value = block.get("value", {})
-
-                    if "image" in value:
-                        image = value.pop("image")
-                        image_alt = value.pop("image_alt", "")
-                        value["media"] = [
-                            {
-                                "type": "ultrawide_image",
-                                "value": {"image": {"image": image, "image_alt": image_alt}},
-                                "id": str(uuid.uuid4()),
-                            }
-                        ]
-                        modified = True
-
-                    settings = value.get("settings", {})
-                    if "two_column_layout" in settings:
-                        two_column_layout = settings.pop("two_column_layout")
-                        settings["layout"] = "heading-and-body-media" if two_column_layout else "heading-body-media"
-                        modified = True
-
-            if modified:
-                Model.objects.filter(pk=page.pk).update(content=json.dumps(raw))
+            if _migrate_raw_blocks(raw):
+                Model.objects.filter(pk=page.pk).update(content=raw)
 
 
 class Migration(migrations.Migration):
