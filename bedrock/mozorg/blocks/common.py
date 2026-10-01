@@ -81,17 +81,30 @@ class TransitionBlock(blocks.StructBlock):
 class SpringboardItemBlock(blocks.StructBlock):
     """Block for a single media springboard row."""
 
+    url = blocks.URLBlock(
+        max_length=255,
+        label="Link",
+        help_text=("Full URL of the article, podcast, or video. Links to other Mozilla sites will have tracking parameters added automatically."),
+    )
+
     type = blocks.ChoiceBlock(
-        required=False,
         choices=[
             ("Article", "Article"),
             ("Podcast", "Podcast"),
             ("Video", "Video"),
         ],
+        default="Article",
+        label="Media type",
+        help_text="Sets the icon shown next to the link.",
+    )
+
+    author = blocks.CharBlock(
+        max_length=100,
+        label="Author or publication",
+        help_text="Who made it, e.g. a person's name or 'The Guardian'.",
     )
 
     topic = blocks.ChoiceBlock(
-        required=False,
         choices=[
             ("News", "News"),
             ("Products", "Products"),
@@ -102,27 +115,15 @@ class SpringboardItemBlock(blocks.StructBlock):
         ],
     )
 
-    author = blocks.CharBlock(
-        required=False,
-        char_max_length=255,
-        help_text="Author or website name(s)",
-    )
-
     preview = blocks.CharBlock(
-        required=False,
-        char_max_length=255,
-        help_text="Short preview of the content",
-    )
-
-    url = blocks.URLBlock(
-        required=True,
-        char_max_length=255,
-        help_text="Link to the full content.",
+        max_length=120,
+        label="Headline",
+        help_text="Use sentence case. Long headlines are cut off on wide screens.",
     )
 
     class Meta:
-        icon = "grip"
-        label = "Springboard Item"
+        icon = "link"
+        label = "Link"
         label_format = "{preview}"
 
 
@@ -148,6 +149,18 @@ class SpringboardBlockSettings(blocks.StructBlock):
         help_text="What color should the background be?",
     )
 
+    heading_size = blocks.ChoiceBlock(
+        choices=[
+            ("", "Extra large"),
+            ("m24-t-lg", "Large"),
+            ("m24-t-md", "Medium"),
+            ("m24-t-sm", "Small"),
+        ],
+        default="",
+        required=False,
+        help_text="How big should the section heading be?",
+    )
+
     class Meta:
         icon = "cog"
         collapsed = True
@@ -161,48 +174,37 @@ class SpringboardBlock(blocks.StructBlock):
 
     settings = SpringboardBlockSettings()
 
-    text_divider = DividerBlock(label="Text")
-
     heading = blocks.CharBlock(
         required=False,
         max_length=255,
         help_text="Use sentence case.",
     )
 
-    column_one = blocks.CharBlock(
-        max_length=255,
-        label="Title for column one",
-        help_text="Column name, e.g.: Type",
-    )
-
-    column_two = blocks.CharBlock(
-        max_length=255,
-        label="Title for column two",
-        help_text="Column name, e.g.: Author(s)",
-    )
-
-    column_three = blocks.CharBlock(
-        max_length=255,
-        label="Title for column three",
-        help_text="Column name, e.g.: Topic",
-    )
-
-    column_four = blocks.CharBlock(
-        max_length=255,
-        label="Title for column four",
-        help_text="Column name, e.g.: Intro",
+    intro = blocks.RichTextBlock(
+        features=["bold", "link"],
+        required=False,
     )
 
     springboard_items = blocks.ListBlock(
         SpringboardItemBlock(),
         min_num=1,
+        max_num=12,
+        label="Links",
     )
 
     class Meta:
         template = "mozorg/cms/blocks/springboard_block.html"
-        icon = "grip"
-        label = "Springboard Section"
+        icon = "list-ul"
+        label = "Springboard (media links)"
         label_format = "{heading}"
+        description = "A list of links to articles, podcasts, and videos, with an icon for each media type."
+        form_layout = BlockGroup(
+            children=[
+                "settings",
+                BlockGroup(["heading", "intro"], heading="Text"),
+                "springboard_items",
+            ],
+        )
 
 
 class DonateBlockSettings(blocks.StructBlock):

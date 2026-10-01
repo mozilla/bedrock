@@ -4,34 +4,52 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% from "macros-m24.html" import springboard_item with context %}
+{% from "macros-m24.html" import springboard_headings, springboard_item with context %}
 
-<section class="m24-c-content{% if value.settings.background_color %} {{ value.settings.background_color }}{% endif %}" {% if value.settings.anchor_id %} id="{{ value.settings.anchor_id }}"{% endif %}>
-  {% if value.heading %}
-    <h3 class="m24-c-intro-title m24-t-sm" itemprop="sectionTitle">{{ value.heading }}</h3>
-  {% endif %}
-  <ul class="m24-c-springboard">
-    <li class="m24-c-springboard-item m24-c-springboard-headings">
-      <div class="m24-c-springboard-link">
-        <div class="m24-c-springboard-thumb"></div>
-        <div class="m24-c-springboard-type" itemprop="columnOne">{{ value.column_one }}</div>
-        <div class="m24-c-springboard-author" itemprop="columnTwo">{{ value.column_two }}</div>
-        <div class="m24-c-springboard-topic" itemprop="columnThree">{{ value.column_three }}</div>
-        <div class="m24-c-springboard-preview" itemprop="columnFour">{{ value.column_four}}</div>
-      </div>
-    </li>
+{# Choice values aren't sent for translation, so map them to Fluent strings: (message ID, fallback ID). #}
+{% set type_ftl = {
+  "Article": ("m24-cms-springboard-type-article", "m24-home-tag-article"),
+  "Podcast": ("m24-cms-springboard-type-podcast", "m24-home-tag-podcast"),
+  "Video": ("m24-cms-springboard-type-video", "m24-home-tag-video"),
+} %}
+{% set topic_ftl = {
+  "News": ("m24-cms-springboard-topic-news", "m24-home-topic-news"),
+  "Products": ("m24-cms-springboard-topic-products", "m24-home-topic-products"),
+  "Artificial Intelligence": ("m24-cms-springboard-topic-ai", "m24-home-topic-ai"),
+  "Open Source AI": ("m24-cms-springboard-topic-open-source-ai", "m24-home-topic-open-source-ai"),
+  "Privacy & Security": ("m24-cms-springboard-topic-privacy-security", "m24-home-topic-ps"),
+  "Data": ("m24-cms-springboard-topic-data", None),
+} %}
 
-    {% for item in value.springboard_items %}
-      {{ springboard_item(
-      link_url=item.url|add_utm_parameters,
-      link_attributes=item.preview,
-      type=item.type,
-      type_icon=item.type,
-      topic=item.topic,
-      author=item.author,
-      preview=item.preview
-    ) }}
-    {% endfor %}
+{% set bg_color = value.settings.background_color|default("", true) %}
+{% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
 
-  </ul>
+<section{% if anchor_id %} id="{{ anchor_id }}"{% endif %} class="{{ bg_color }}">
+  <div class="m24-c-content">
+    {% if value.heading or value.intro %}
+    <header class="m24-c-intro">
+      {% if value.heading %}
+      <h2 class="m24-c-intro-title{% if value.settings.heading_size %} {{ value.settings.heading_size }}{% endif %}">{{ value.heading }}</h2>
+      {% endif %}
+      {% if value.intro %}
+      {{ value.intro|richtext }}
+      {% endif %}
+    </header>
+    {% endif %}
+    <ul class="m24-c-springboard">
+      {{ springboard_headings() }}
+
+      {% for item in value.springboard_items %}
+        {{ springboard_item(
+          link_url=item.url|add_utm_parameters,
+          link_attributes=item.preview,
+          type=ftl(*type_ftl[item.type]) if item.type in type_ftl else item.type,
+          type_icon=item.type|lower,
+          topic=ftl(*topic_ftl[item.topic]) if item.topic in topic_ftl else item.topic,
+          author=item.author,
+          preview=item.preview
+        ) }}
+      {% endfor %}
+    </ul>
+  </div>
 </section>

@@ -226,7 +226,6 @@ class ContentSubpageFactory(wagtail_factories.PageFactory):
 
 class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
     url = "https://example.com/article"
-    link_attributes = ""
     type = "Article"
     topic = "News"
     author = "Test Author"
@@ -239,6 +238,7 @@ class SpringboardItemBlockFactory(wagtail_factories.StructBlockFactory):
 class SpringboardBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     anchor_id = ""
     background_color = ""
+    heading_size = ""
 
     class Meta:
         model = common.SpringboardBlockSettings
@@ -247,10 +247,7 @@ class SpringboardBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class SpringboardBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(SpringboardBlockSettingsFactory)
     heading = "Latest Resources"
-    column_one = "Type"
-    column_two = "Author"
-    column_three = "Topic"
-    column_four = "Preview"
+    intro = ""
     springboard_items = wagtail_factories.ListBlockFactory(SpringboardItemBlockFactory)
 
     class Meta:
