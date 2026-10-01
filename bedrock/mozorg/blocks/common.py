@@ -9,6 +9,7 @@ from wagtail import blocks
 from wagtail.blocks.struct_block import BlockGroup
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
+from wagtail_thumbnail_choice_block import ThumbnailChoiceBlock
 
 IMAGE_ALT_HELP_TEXT = (
     "A concise description of the image for someone who can't see it. "
@@ -284,6 +285,111 @@ class DonateBlock(CTALinkRequiredMixin, blocks.StructBlock):
         )
 
 
+class ImageWithAltBlock(blocks.StructBlock):
+    """A single image with alt text."""
+
+    image = ImageChooserBlock()
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=IMAGE_ALT_HELP_TEXT,
+    )
+
+    class Meta:
+        icon = "image"
+        label = "Image"
+        label_format = "{image}"
+
+
+class UltrawideImageBlock(blocks.StructBlock):
+    """A single ultra-wide (22:9) image spanning the full width of the section."""
+
+    image = ImageWithAltBlock()
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/ultrawide_image.html"
+        icon = "showcase-ultrawide"
+        label = "Ultra-wide image"
+        label_format = "Ultra-wide: {image}"
+
+
+class SquareImageBlock(blocks.StructBlock):
+    """A single square (1:1) image, centered in the section."""
+
+    image = ImageWithAltBlock()
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/square_image.html"
+        icon = "showcase-square"
+        label = "Square image"
+        label_format = "Square: {image}"
+
+
+class ImagePairBlock(blocks.StructBlock):
+    """Exactly two 2:1 images, side by side."""
+
+    images = blocks.ListBlock(
+        ImageWithAltBlock(),
+        min_num=2,
+        max_num=2,
+        help_text="Add exactly 2 images.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/image_pair.html"
+        icon = "showcase-pair"
+        label = "Two images"
+        label_format = "Two images ({images})"
+
+
+class ImageRowBlock(blocks.StructBlock):
+    """3 to 8 2:3 images in a single row."""
+
+    images = blocks.ListBlock(
+        ImageWithAltBlock(),
+        min_num=3,
+        max_num=8,
+        help_text="Add 3 to 8 images.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/media/image_row.html"
+        icon = "showcase-row"
+        label = "Row of images"
+        label_format = "Row of images ({images})"
+
+
+class ShowcaseMediaBlock(blocks.StreamBlock):
+    """The media chooser for the showcase block."""
+
+    ultrawide_image = UltrawideImageBlock()
+    square_image = SquareImageBlock()
+    image_pair = ImagePairBlock()
+    image_row = ImageRowBlock()
+
+    class Meta:
+        min_num = 1
+        max_num = 1
+        label = "Media"
+        help_text = "Choose how images should be arranged."
+
+
+SHOWCASE_LAYOUT_CHOICES = (
+    ("heading-body-media", "Heading, body, media"),
+    ("heading-and-body-media", "Heading & body, media"),
+    ("heading-media-body", "Heading, media, body"),
+    ("media-heading-body", "Media, heading, body"),
+)
+
+SHOWCASE_LAYOUT_THUMBNAILS = {
+    "heading-body-media": "/media/img/mozorg/cms/layouts/heading-body-media.svg",
+    "heading-and-body-media": "/media/img/mozorg/cms/layouts/heading-and-body-media.svg",
+    "heading-media-body": "/media/img/mozorg/cms/layouts/heading-media-body.svg",
+    "media-heading-body": "/media/img/mozorg/cms/layouts/media-heading-body.svg",
+}
+
+
 class ShowcaseBlockSettings(blocks.StructBlock):
     """Settings for the showcase block."""
 
@@ -306,12 +412,13 @@ class ShowcaseBlockSettings(blocks.StructBlock):
         help_text="What color should the background be?",
     )
 
-    two_column_layout = blocks.BooleanBlock(
-        required=False,
-        default=False,
-        label="Make it two column layout",
+    layout = ThumbnailChoiceBlock(
+        choices=SHOWCASE_LAYOUT_CHOICES,
+        thumbnails=SHOWCASE_LAYOUT_THUMBNAILS,
+        default="heading-body-media",
+        required=True,
         inline_form=True,
-        help_text="Make the title and body content into a two-column layout.",
+        help_text="How should the text and media be arranged?",
     )
 
     class Meta:
@@ -333,23 +440,16 @@ class ShowcaseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     )
 
     body = blocks.RichTextBlock(
+        required=False,
         features=["bold", "link"],
         help_text="Keep this to 2 paragraphs or fewer.",
     )
 
-    image = ImageChooserBlock(
-        help_text="Ideal image size is 1376 * 515.",
-    )
-
-    image_alt = blocks.CharBlock(
-        max_length=255,
-        required=False,
-        help_text=IMAGE_ALT_HELP_TEXT,
-    )
+    media = ShowcaseMediaBlock()
 
     cta_label = blocks.CharBlock(
         required=False,
-        max_length=255,
+        max_length=40,
         help_text="Label. Use sentence case.",
     )
 
@@ -373,7 +473,7 @@ class ShowcaseBlock(CTALinkRequiredMixin, blocks.StructBlock):
             children=[
                 "settings",
                 BlockGroup(["heading", "body"], heading="Text"),
-                BlockGroup(["image", "image_alt"], heading="Image"),
+                BlockGroup(["media"], heading="Media"),
                 BlockGroup(["cta_label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
         )
