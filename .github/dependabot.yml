@@ -11,8 +11,6 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     ignore:
-      # Needs to be kept in sync with glean_parser Python dependency.
-      - dependency-name: '@mozilla/glean'
       # Owned NPM packages that require manual testing.
       - dependency-name: '@mozilla-protocol/core'
       - dependency-name: '@mozmeao/consent-banner'
