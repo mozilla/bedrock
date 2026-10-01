@@ -61,6 +61,8 @@ and consumed by the block's own template (`bedrock/anonym/templates/anonym/block
 
 Analytics attributes on buttons/links are `data-cta-text` (the link/button's own label) and `data-cta-uid` (a stable per-CTA identifier). `data-cta-uid` comes from a `UUIDBlock`-backed `analytics_id` field (auto-generated once when the block is created, excluded from translation — see `bedrock/cms/blocks.py`). For rich text fields where attributes can't be set at block-definition time, use the `add_cta_analytics` Jinja filter (`bedrock/base/templatetags/helpers.py`) to inject both attributes onto every rendered `<a>`.
 
+Text used by CMS components that is not entered by editors (for example: The column headings in the springboard component, or content inserted based on a ChoiceBlock selection) is not sent to Smarting for translation with page content. To translate these strings add them to `l10n/en/m24-cms-blocks.ftl` under a `##` group named for the block, with IDs prefixed `m24-cms-<block>-` (e.g. `m24-cms-springboard-type`), and render them with `ftl()`.
+
 ## Steps
 
 Use the instructions to build the block: $ARGUMENTS

@@ -305,6 +305,7 @@ FLUENT_DEFAULT_FILES = [
     "sub_navigation",
     "ui",
     "mozilla-account-promo",
+    "m24-cms-blocks",
 ]
 
 FLUENT_DEFAULT_PERCENT_REQUIRED = config("FLUENT_DEFAULT_PERCENT_REQUIRED", default="80", parser=int)
