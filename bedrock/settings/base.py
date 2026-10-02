@@ -4,6 +4,7 @@
 
 import json
 import platform
+import re
 import socket
 import struct
 import sys
@@ -687,10 +688,25 @@ def get_app_name(hostname):
     return "bedrock"
 
 
+def get_deployment_environment(app_name):
+    """
+    Get the deployment environment from the app name, which our deployments set to
+    `bedrock-{environment}` or `bedrock-cms-{environment}`. Returns "local"
+    for any other app name.
+    """
+    match = re.fullmatch(r"bedrock(?:-cms)?-(dev|stage|prod|test)", app_name)
+    return match.group(1) if match else "local"
+
+
 HOSTNAME = platform.node()
 # Prefer APP_NAME from env, but fall back to hostname parsing. TODO: remove get_app_name() usage once fully redundant
 APP_NAME = config("APP_NAME", default=get_app_name(HOSTNAME))
 CLUSTER_NAME = config("CLUSTER_NAME", default="")
+
+# Stamped on every line sent to the audit.wagtail logger, so lines from each deployment can be told apart
+AUDIT_LOG_TENANT = "bedrock"
+AUDIT_LOG_ENVIRONMENT = config("AUDIT_LOG_ENVIRONMENT", default=get_deployment_environment(APP_NAME))
+
 ENABLE_HOSTNAME_MIDDLEWARE = config("ENABLE_HOSTNAME_MIDDLEWARE", default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="false", parser=bool)
 # set this to enable basic auth for the entire site
@@ -1093,6 +1109,8 @@ LOGGING = {
     },
     "formatters": {
         "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(message)s"},
+        # Audit messages are already JSON; written bare, Cloud Logging parses each one into jsonPayload
+        "bare_message": {"format": "%(message)s"},
     },
     "handlers": {
         "null": {
@@ -1102,6 +1120,11 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "stream": sys.stdout,
             "formatter": "verbose",
+        },
+        "audit_console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "bare_message",
         },
     },
     "loggers": {
@@ -1114,6 +1137,11 @@ LOGGING = {
             "handlers": ["console"],
             "level": "DEBUG",
         },
+        "audit.wagtail": {
+            "handlers": ["audit_console"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
 }
 
@@ -1121,6 +1149,9 @@ LOGGING = {
 # but we need not take any action because it's already HTTP 400-ed.
 # Note that we ignore at the Sentry client level
 ignore_logger("django.security.DisallowedHost")
+# Sentry records every log call as a breadcrumb regardless of `propagate`, and the
+# user-deletion audit line carries an email address
+ignore_logger("audit.wagtail")
 
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
