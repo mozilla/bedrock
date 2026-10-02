@@ -1154,9 +1154,6 @@ def _normalize_gtm_server_path(path):
 
 GTM_SERVER_PATH = _normalize_gtm_server_path(config("GTM_SERVER_PATH", default="/gtm.js"))
 
-# Transcend Consent Management - airgap.js script URL
-TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
-
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
 STUB_ATTRIBUTION_RATE = config("STUB_ATTRIBUTION_RATE", default=str(1 if DEV else 0), parser=float)
