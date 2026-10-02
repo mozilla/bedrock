@@ -14,7 +14,6 @@ from django.db.utils import DatabaseError
 from django.utils.dateparse import parse_datetime
 from django.utils.timezone import make_aware
 
-from django_extensions.db.fields.json import JSONField
 from markupsafe import Markup
 from sentry_sdk import capture_exception
 
@@ -146,8 +145,8 @@ class BlogPost(models.Model):
     title = models.CharField(max_length=255)
     excerpt = models.TextField()
     link = models.URLField()
-    featured_media = JSONField()
-    tags = JSONField()
+    featured_media = models.JSONField(default=dict)
+    tags = models.JSONField(default=list)
 
     objects = BlogPostManager()
 
