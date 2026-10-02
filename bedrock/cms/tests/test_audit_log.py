@@ -186,13 +186,13 @@ def test_audit_lines_are_written_as_bare_json():
     "app_name, expected_environment",
     [
         ("bedrock-prod", "prod"),
-        ("bedrock-stage", "stage"),
-        ("bedrock-dev", "dev"),
+        ("bedrock-cms-stage", "stage"),
+        ("bedrock-cms-dev", "dev"),
         ("bedrock-test", "test"),
         ("bedrock", "local"),
         ("www-demo3", "local"),
         ("another-service-prod", "local"),
-        ("bedrock-prod-web", "local"),
+        ("bedrock-prod-cms", "local"),
         ("bedrock-cms", "local"),
     ],
 )
@@ -201,7 +201,7 @@ def test_get_deployment_environment(app_name, expected_environment):
 
 
 def test_get_cms_environment_matches_audit_log_environment(settings):
-    settings.APP_NAME = "bedrock-stage"
+    settings.APP_NAME = "bedrock-cms-stage"
     assert get_cms_environment() == get_deployment_environment(settings.APP_NAME) == "stage"
 
 

@@ -691,9 +691,10 @@ def get_app_name(hostname):
 def get_deployment_environment(app_name):
     """
     Get the deployment environment from the app name, which our deployments set to
-    `bedrock-{environment}`. Returns "local" for any other app name.
+    `bedrock-{environment}` or `bedrock-cms-{environment}`. Returns "local"
+    for any other app name.
     """
-    match = re.fullmatch(r"bedrock-(dev|stage|prod|test)", app_name)
+    match = re.fullmatch(r"bedrock(?:-cms)?-(dev|stage|prod|test)", app_name)
     return match.group(1) if match else "local"
 
 
