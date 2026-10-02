@@ -2,6 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from unittest.mock import patch
+
+import pytest
+
 from bedrock.mozorg.tests import TestCase
 from bedrock.sitemaps.models import NO_LOCALE, SitemapURL
 
@@ -30,3 +34,18 @@ class TestSitemapsModel(TestCase):
         SitemapURL.objects.create(path="/firefox/", locale="en-US")
         SitemapURL.objects.create(path="/locales/", locale=NO_LOCALE)
         assert list(SitemapURL.objects.all_locales()) == [NO_LOCALE, "de", "en-US", "fr"]
+
+    @patch("bedrock.sitemaps.models.get_all_urls")
+    def test_refresh(self, get_all_urls):
+        SitemapURL.objects.create(path="/stale/", locale="de")
+        get_all_urls.return_value = {"/firefox/": ["de", "fr"], "/locales/": []}
+        SitemapURL.objects.refresh()
+        assert sorted(str(o) for o in SitemapURL.objects.all()) == ["/de/firefox/", "/fr/firefox/", "/locales/"]
+        assert SitemapURL.objects.get(path="/locales/").locale == NO_LOCALE
+
+    @patch("bedrock.sitemaps.models.get_all_urls", side_effect=RuntimeError("URL discovery failed"))
+    def test_refresh_failure_keeps_existing_urls(self, get_all_urls):
+        SitemapURL.objects.create(path="/firefox/", locale="de")
+        with pytest.raises(RuntimeError):
+            SitemapURL.objects.refresh()
+        assert [str(o) for o in SitemapURL.objects.all()] == ["/de/firefox/"]
