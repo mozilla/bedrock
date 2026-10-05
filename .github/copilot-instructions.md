@@ -76,6 +76,8 @@ Be particularly aware of CMS-backed content that is not richtext. Ensure it's es
 
 * If a new Snippet (a Django model decorated with @register_snippet) is added, add a reminder in a comment to ensure that the Editors have permission to see and edit the new Snippet. That permission is added manually via the Wagtail UI.
 
+* If a changeset renames or removes a child block of a StructBlock/StreamBlock, or renames a block type in a StreamField, add a blocking comment unless the changeset also migrates wagtail-localize data for the affected page models: `wagtail_localize.TranslationContext` (`path`, `path_id` and `field_path`) and `wagtail_localize.TranslationSource.content_json`. Without this, stale contexts make the translation editor raise `KeyError` and editing translated pages returns a 500. A migration that only rewrites the page model's StreamField content is not enough. Also ask whether page revisions need the same rename. Otherwise the renamed field loads empty in the editor for pages whose latest revision predates the migration.
+
 * If a Django view is being decorated for the first time with the `prefer_cms()` decorator and there is no `fallback_ftl_files=` parameter being passed in to `prefer_cms()`, add a non-blocking comment questioning whether it should be present, because without it, the page will only show the locales available in the CMS in the footer links on the page
 
 ## 10. Database schema changes

@@ -55,6 +55,8 @@ Keep commit titles short, imperative, and linked to issues when available (e.g.,
 
 * When planning Wagtail work, remember that <https://docs.wagtail.org/en/7.3/llms.txt> and the full version at <https://docs.wagtail.org/en/7.3/llms-full.txt> contain LLM-appropriate documentation.
 * If the version of Wagtail (not counting patch releases) in requirements/prod.in doesn't match the version in the LLM-appropriate URLs mentioned, please update this AGENTS.md then load the new info
+* Renaming or removing a field on a block (or a block type in a StreamField) needs more than a migration of page content. wagtail-localize keeps its own copy of translatable content: `TranslationContext.path`/`field_path` (e.g. `content.<block-uuid>.old_name` / `content.showcase_block.old_name`) and `TranslationSource.content_json`. If these aren't migrated too, the translation editor raises `KeyError: 'old_name'` and editing any translated page returns a 500. Rename the contexts in place (recomputing `path_id`) so existing `StringTranslation`s stay linked. See `bedrock/mozorg/migrations/0049_migrate_showcase_cta_label_translation_data.py` for an example.
+* Page revisions (`wagtailcore.Revision.content`) also hold old StreamField JSON. Unknown keys are dropped silently when a revision loads, so a renamed field shows up empty in the editor for any page whose latest revision predates the content migration.
 
 ## LLM assistance
 
