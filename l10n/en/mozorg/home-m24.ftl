@@ -140,7 +140,7 @@ m24-home-state-of-mozilla-alt = Abstract pixel art in shades of green, orange an
 m24-home-state-of-mozilla-alt-v2 = The text ‘Choose Your Future’ on a yellow, pixelated background
 m24-home-read-the-report = Read the report
 
-## Nothing Personal
+## Nothing Personal is the name of the magazine and should be kept in English.
 
 m24-home-mozilla-nothing-personal = Nothing Personal
 m24-home-our-new-magazine = Our new magazine for independent thinkers, technologists, and creatives on the front lines of digital culture.
