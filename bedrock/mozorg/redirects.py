@@ -560,6 +560,8 @@ redirectpatterns = (
     redirect(r"^nothing-?personal/?$", FXC_URL, query={"redirect_source": "mozilla-org"}, merge_query=True, permanent=True),
     # Issue 15008
     redirect(r"^try-picture-in-picture/?$", "firefox.features.picture-in-picture"),
-    # Anonym pages removed
+    # Anonym pages removed; legal docs moved to the privacy archive
+    redirect(r"^anonym/privacy-policy/?$", "privacy.archive.anonym-privacy-policy-2026-10"),
+    redirect(r"^anonym/terms-and-conditions/?$", "privacy.archive.anonym-terms-2026-10"),
     redirect(r"^anonym(/.*)?$", "mozorg.home"),
 )

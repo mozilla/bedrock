@@ -7,6 +7,7 @@ from unittest.mock import patch
 import pytest
 from wagtail.models import Locale, Page, PageViewRestriction, Site
 
+from bedrock.cms.models import SimpleRichTextPage
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory, StructuralPageFactory
 from bedrock.sitemaps.utils import (
     _path_for_cms_url,
@@ -154,6 +155,21 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
     assert urls == {
         "/test-page/": ["en-US", "fr", "pt-BR"],
         "/test-page/child-page/": ["fr"],
+    }
+
+
+def test_get_wagtail_urls__exclude_from_sitemap(dummy_wagtail_pages):
+    """Test that pages with exclude_from_sitemap=True are excluded from sitemap."""
+    exclude_child_pages = property(lambda page: page.slug == "child-page")
+
+    with patch.object(SimpleRichTextPage, "exclude_from_sitemap", exclude_child_pages, create=True):
+        urls = get_wagtail_urls()
+
+    # The excluded pages are dropped in every locale, but their descendants are not
+    assert urls == {
+        "/test-structural-page/structural-sub-child/": ["en-US"],
+        "/test-page/": ["en-US", "fr", "pt-BR"],
+        "/test-page/child-page/grandchild-page/": ["fr"],
     }
 
 
