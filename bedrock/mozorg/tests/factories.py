@@ -407,6 +407,22 @@ class GalleryBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.GalleryBlock
 
 
+class ImageWithAltBlockFactory(wagtail_factories.StructBlockFactory):
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+
+    class Meta:
+        model = common.ImageWithAltBlock
+
+
+class ImageCaptionBlockFactory(wagtail_factories.StructBlockFactory):
+    image = factory.SubFactory(ImageWithAltBlockFactory)
+    caption = RichText("<p>An image caption.</p>")
+
+    class Meta:
+        model = common.ImageCaptionBlock
+
+
 class FreeformPageFactory(wagtail_factories.PageFactory):
     title = "Test Freeform Page"
     live = True
@@ -435,6 +451,7 @@ class ArticlePageFactory(wagtail_factories.PageFactory):
     content = wagtail_factories.StreamFieldFactory(
         {
             "text": factory.LazyFunction(lambda: RichText("<p>Article body copy.</p>")),
+            "image_caption": factory.SubFactory(ImageCaptionBlockFactory),
         }
     )
     gallery = wagtail_factories.StreamFieldFactory(

@@ -23,7 +23,16 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ProseBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import (
+    DonateBlock,
+    GalleryBlock,
+    ImageCaptionBlock,
+    ProseBlock,
+    ShowcaseBlock,
+    ShowcaseGalleryBlock,
+    SpringboardBlock,
+    TransitionBlock,
+)
 from bedrock.mozorg.blocks.leadership import (
     LeadershipExternalLinkBlock,
     LeadershipGroupSnippetBlock,
@@ -709,6 +718,7 @@ class ArticlePage(AbstractBedrockCMSPage):
                     icon="pilcrow",
                 ),
             ),
+            ("image_caption", ImageCaptionBlock()),
         ],
         blank=True,
         null=True,
