@@ -547,11 +547,11 @@ def test_home_and_about_block_heading_levels_are_unchanged(minimal_site, rf):  #
     assert soup.find(class_="m24-c-careers-title").name == "h2"
 
 
-def test_freeform_page_offers_home_and_about_blocks_minus_retired_careers_block_plus_intro():
+def test_freeform_page_offers_home_and_about_blocks_minus_retired_careers_block_plus_intro_and_pullquote():
     def block_names(model):
         return set(model._meta.get_field("content").stream_block.child_blocks)
 
-    expected = (block_names(models.HomePage) | block_names(models.AboutUsPage)) - {"showcase_gallery_block"} | {"intro_block"}
+    expected = (block_names(models.HomePage) | block_names(models.AboutUsPage)) - {"showcase_gallery_block"} | {"intro_block", "pullquote_block"}
     assert block_names(models.FreeformPage) == expected
 
 
@@ -578,6 +578,29 @@ def test_freeform_page_intro_heading_levels(minimal_site, rf):  # noqa: F811
 
     lead_section = soup.find(class_="m24-c-intro-section")
     assert lead_section is soup.main.find(True)
+
+
+def test_freeform_page_renders_pullquote(minimal_site, rf):  # noqa: F811
+    """A pullquote has no heading, so leading with one falls back to the hidden <h1>."""
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        seo_title="Fallback title",
+        content__0__pullquote_block=factories.PullquoteBlockFactory(quote=RichText("<p>A freeform pullquote.</p>"), author="Jane Doe"),
+        content__1__prose_block=factories.ProseBlockFactory(heading="Later heading"),
+    )
+    freeform_page.save()
+
+    soup = BeautifulSoup(freeform_page.serve(rf.get(freeform_page.relative_url(minimal_site))).text, "html.parser")
+
+    pullquote = soup.find("figure", class_="m24-c-pullquote")
+    assert pullquote is not None
+    assert "A freeform pullquote." in pullquote.find("blockquote").get_text()
+    assert pullquote.find(class_="m24-c-pullquote-author").get_text() == "Jane Doe"
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert h1s[0]["class"] == ["visually-hidden"]
+    assert soup.find(class_="m24-c-prose-heading").name == "h2"
 
 
 def test_freeform_page_utm_parameters(minimal_site):  # noqa: F811
@@ -622,6 +645,7 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
         intro__0__intro_block=factories.IntroBlockFactory(heading="Article heading"),
         content__0__text=RichText("<h2>Section heading</h2><p>Body copy with a <a href='https://example.com/'>link</a>.</p>"),
         content__1__image_caption=factories.ImageCaptionBlockFactory(),
+        content__2__pullquote_block=factories.PullquoteBlockFactory(),
         gallery__0__gallery_block=factories.GalleryBlockFactory(heading="Gallery heading"),
     )
     article_page.save()
@@ -648,6 +672,7 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     assert content_children[0].find("h2").get_text() == "Section heading"
     assert content_children[0].find("a", href="https://example.com/") is not None
     assert content_children[1].find("figure", class_="m24-c-longform-figure") is not None
+    assert content_children[2].find("figure", class_="m24-c-pullquote") is not None
 
 
 def test_article_page_heading_levels(minimal_site, rf):  # noqa: F811
@@ -762,7 +787,7 @@ def test_article_page_allows_at_most_one_gallery():
 
 def test_article_page_content_block_types():
     content_blocks = set(models.ArticlePage._meta.get_field("content").stream_block.child_blocks)
-    assert content_blocks == {"text", "image_caption"}
+    assert content_blocks == {"text", "image_caption", "pullquote_block"}
 
 
 def test_article_page_rich_text_excludes_embedded_images():
@@ -790,7 +815,11 @@ def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
     article_page = factories.ArticlePageFactory(
         parent=minimal_site.root_page,
         intro__0__intro_block=factories.IntroBlockFactory(heading=payload),
-        content__0__image_caption=factories.ImageCaptionBlockFactory(
+        content__0__pullquote_block=factories.PullquoteBlockFactory(
+            author=payload,
+            citation=RichText("<p><i>Publication</i> &lt;script&gt;alert(1)&lt;/script&gt;</p>"),
+        ),
+        content__1__image_caption=factories.ImageCaptionBlockFactory(
             image__image_alt=payload,
             caption=RichText("<p><em>Formatted</em> &lt;img src=x onerror=alert(1)&gt;</p>"),
         ),
@@ -802,7 +831,12 @@ def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
 
     assert soup.main.find("script") is None
     assert soup.find(class_="m24-c-intro-title").get_text() == payload
+    assert soup.find(class_="m24-c-pullquote-author").get_text() == payload
     assert soup.find("img", class_="m24-c-longform-figure-image")["alt"] == payload
+
+    citation = soup.find(class_="m24-c-pullquote-citation")
+    assert citation.find("i").get_text() == "Publication"
+    assert "<script>alert(1)</script>" in citation.get_text()
 
     # Allowed rich text formatting renders, but HTML typed as text stays inert.
     caption = soup.find("figcaption", class_="m24-c-longform-figure-text")

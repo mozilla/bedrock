@@ -440,6 +440,23 @@ class ImageCaptionBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.ImageCaptionBlock
 
 
+class PullquoteBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+
+    class Meta:
+        model = common.PullquoteBlockSettings
+
+
+class PullquoteBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(PullquoteBlockSettingsFactory)
+    quote = RichText("<p>A memorable quote.</p>")
+    author = "Jane Doe"
+    citation = RichText("<p>Mozillian</p>")
+
+    class Meta:
+        model = common.PullquoteBlock
+
+
 class FreeformPageFactory(wagtail_factories.PageFactory):
     title = "Test Freeform Page"
     live = True
@@ -451,6 +468,7 @@ class FreeformPageFactory(wagtail_factories.PageFactory):
             "gallery_block": factory.SubFactory(GalleryBlockFactory),
             "intro_block": factory.SubFactory(IntroBlockFactory),
             "prose_block": factory.SubFactory(ProseBlockFactory),
+            "pullquote_block": factory.SubFactory(PullquoteBlockFactory),
             "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
             "springboard_block": factory.SubFactory(SpringboardBlockFactory),
             "transition_block": factory.SubFactory(TransitionBlockFactory),
@@ -475,6 +493,7 @@ class ArticlePageFactory(wagtail_factories.PageFactory):
         {
             "text": factory.LazyFunction(lambda: RichText("<p>Article body copy.</p>")),
             "image_caption": factory.SubFactory(ImageCaptionBlockFactory),
+            "pullquote_block": factory.SubFactory(PullquoteBlockFactory),
         }
     )
     gallery = wagtail_factories.StreamFieldFactory(
