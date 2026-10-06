@@ -7,6 +7,7 @@ from uuid import uuid4
 from django.core.exceptions import ValidationError
 
 import pytest
+from bs4 import BeautifulSoup
 from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401, F811
@@ -443,6 +444,140 @@ def test_about_us_page_utm_parameters(minimal_site):  # noqa: F811
 
 def test_about_us_page_subpage_types():
     assert models.OrganizationLeadershipIndexPage in models.AboutUsPage.subpage_types
+
+
+# FreeformPage Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_freeform_page(minimal_site, rf, serving_method):  # noqa: F811
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        content__0__prose_block=factories.ProseBlockFactory(
+            heading="A freeform heading",
+            body=RichText("<p>Freeform body copy.</p>"),
+        ),
+        content__1__transition_block=factories.TransitionBlockFactory(),
+    )
+    freeform_page.save()
+
+    _relative_url = freeform_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/freeform-page/"
+
+    resp = getattr(freeform_page, serving_method)(rf.get(_relative_url))
+    assert resp.status_code == 200
+    page_content = resp.text
+
+    assert "A freeform heading" in page_content
+    assert "m24-c-transition" in page_content
+
+    # Blank canvas: none of the hardcoded HomePage / AboutUsPage chrome.
+    assert "m24-c-flag" not in page_content  # home hero
+    assert "m24-c-launchpad" not in page_content  # home products
+    assert "m24-c-feature" not in page_content  # about manifesto
+
+
+def test_freeform_page_promotes_first_block_heading_to_h1(minimal_site, rf):  # noqa: F811
+    """The first block that renders a heading owns the page <h1>; later ones are <h2>."""
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        content__0__transition_block=factories.TransitionBlockFactory(),
+        content__1__prose_block=factories.ProseBlockFactory(heading="First heading"),
+        content__2__showcase_block=factories.ShowcaseBlockFactory(heading="Second heading"),
+    )
+    freeform_page.save()
+
+    resp = freeform_page.serve(rf.get(freeform_page.relative_url(minimal_site)))
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert "First heading" in h1s[0].get_text()
+    assert h1s[0]["class"] == ["m24-c-prose-heading"]
+
+    showcase_heading = soup.find(class_="m24-c-showcase-heading")
+    assert showcase_heading.name == "h2"
+    assert "Second heading" in showcase_heading.get_text()
+
+    assert not soup.find("h1", class_="visually-hidden")
+
+
+@pytest.mark.parametrize(
+    "content",
+    (
+        {
+            "content__0__gallery_block": factories.GalleryBlockFactory(heading=""),
+            "content__1__prose_block": factories.ProseBlockFactory(heading="Later heading"),
+        },
+        {"content__0__prose_block": factories.ProseBlockFactory(heading="", sub_heading="Only a sub-heading")},
+        {},
+    ),
+    ids=("headingless-gallery-first", "prose-sub-heading-only", "empty"),
+)
+def test_freeform_page_falls_back_to_hidden_h1(minimal_site, rf, content):  # noqa: F811
+    freeform_page = factories.FreeformPageFactory(parent=minimal_site.root_page, seo_title="Fallback title", **content)
+    freeform_page.save()
+
+    soup = BeautifulSoup(freeform_page.serve(rf.get(freeform_page.relative_url(minimal_site))).text, "html.parser")
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert h1s[0]["class"] == ["visually-hidden"]
+    assert h1s[0].get_text() == "Fallback title"
+    assert h1s[0] is soup.main.find(["h1", "h2", "h3", "h4"])
+
+    # prose-sub-heading-only: with no section heading rendered, the sub-heading
+    # sits right under the hidden h1 and must not skip a level to h3.
+    subheading = soup.find(class_="m24-c-prose-subheading")
+    if subheading:
+        assert subheading.name == "h2"
+
+
+def test_home_and_about_block_heading_levels_are_unchanged(minimal_site, rf):  # noqa: F811
+    """block_level is opt-in: pages that don't set it keep their historic levels."""
+    about_page = factories.AboutUsPageFactory(
+        parent=minimal_site.root_page,
+        content__0__showcase_gallery_block=factories.ShowcaseGalleryBlockFactory(heading="About heading"),
+    )
+    about_page.save()
+
+    soup = BeautifulSoup(about_page.serve(rf.get(about_page.relative_url(minimal_site))).text, "html.parser")
+
+    assert soup.find(class_="m24-c-careers-title").name == "h2"
+
+
+def test_freeform_page_offers_union_of_home_and_about_blocks_minus_retired_careers_block():
+    def block_names(model):
+        return set(model._meta.get_field("content").stream_block.child_blocks)
+
+    expected = (block_names(models.HomePage) | block_names(models.AboutUsPage)) - {"showcase_gallery_block"}
+    assert block_names(models.FreeformPage) == expected
+
+
+def test_freeform_page_utm_parameters(minimal_site):  # noqa: F811
+    freeform_page = factories.FreeformPageFactory(parent=minimal_site.root_page, slug="my-campaign")
+    freeform_page.save()
+
+    assert freeform_page.get_utm_parameters() == {
+        "utm_source": "www.mozilla.org",
+        "utm_medium": "referral",
+        "utm_campaign": "my-campaign",
+    }
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_freeform_page_seo_fields(minimal_site, rf, serving_method):  # noqa: F811
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        seo_title="Custom SEO Title",
+        search_description="Custom search description.",
+    )
+    freeform_page.save()
+
+    page_content = getattr(freeform_page, serving_method)(rf.get(freeform_page.relative_url(minimal_site))).text
+
+    assert "<title>Custom SEO Title — Mozilla</title>" in page_content
+    assert 'content="Custom search description."' in page_content
 
 
 def test_notification_snippet_analytics_id_auto_generated():

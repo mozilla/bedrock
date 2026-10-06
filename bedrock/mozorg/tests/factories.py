@@ -284,38 +284,6 @@ class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.ShowcaseBlock
 
 
-class ProseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
-    background_color = ""
-    anchor_id = ""
-
-    class Meta:
-        model = common.ProseBlockSettings
-
-
-class ProseBlockFactory(wagtail_factories.StructBlockFactory):
-    settings = factory.SubFactory(ProseBlockSettingsFactory)
-    heading = "About Mozilla"
-    sub_heading = ""
-    body = RichText("<p>Mozilla builds products and technology.</p>")
-    cta_text = ""
-    cta_link = factory.SubFactory(LinkBlockFactory)
-
-    class Meta:
-        model = common.ProseBlock
-
-
-class GalleryTileBlockFactory(wagtail_factories.StructBlockFactory):
-    heading = "Firefox"
-    body = ""
-    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
-    image_alt = ""
-    cta_link = factory.SubFactory(LinkBlockFactory)
-    cta_text = ""
-
-    class Meta:
-        model = common.GalleryTileBlock
-
-
 class HomePageFactory(wagtail_factories.PageFactory):
     title = "Test Home Page"
     live = True
@@ -374,3 +342,86 @@ class AboutUsPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.AboutUsPage
+
+
+class TransitionBlockFactory(wagtail_factories.StructBlockFactory):
+    top_color = "light"
+    bottom_color = "dark-alt"
+
+    class Meta:
+        model = common.TransitionBlock
+
+
+class ProseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    two_column_layout = True
+    reverse = False
+    anchor_id = ""
+
+    class Meta:
+        model = common.ProseBlockSettings
+
+
+class ProseBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ProseBlockSettingsFactory)
+    heading = "Our mission"
+    sub_heading = ""
+    body = RichText("<p>Keep the internet open and accessible to all.</p>")
+    cta_text = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ProseBlock
+
+
+class GalleryBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = ""
+    background_color = ""
+
+    class Meta:
+        model = common.GalleryBlockSettings
+
+
+class GalleryTileBlockFactory(wagtail_factories.StructBlockFactory):
+    width = "half"
+    heading = "Gallery tile heading"
+    body = "Gallery tile body."
+    tag = ""
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_ratio = "2:1"
+    image_alt = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+    cta_text = "Read more"
+
+    class Meta:
+        model = common.GalleryTileBlock
+
+
+class GalleryBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(GalleryBlockSettingsFactory)
+    heading = "In the news"
+    intro = RichText("<p>Recent coverage.</p>")
+    tiles = wagtail_factories.ListBlockFactory(GalleryTileBlockFactory)
+
+    class Meta:
+        model = common.GalleryBlock
+
+
+class FreeformPageFactory(wagtail_factories.PageFactory):
+    title = "Test Freeform Page"
+    live = True
+    slug = "freeform-page"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "donate_block": factory.SubFactory(DonateBlockFactory),
+            "gallery_block": factory.SubFactory(GalleryBlockFactory),
+            "prose_block": factory.SubFactory(ProseBlockFactory),
+            "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
+            "springboard_block": factory.SubFactory(SpringboardBlockFactory),
+            "transition_block": factory.SubFactory(TransitionBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.FreeformPage
