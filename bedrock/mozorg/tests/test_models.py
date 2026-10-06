@@ -12,6 +12,7 @@ from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401, F811
 from bedrock.mozorg import models
+from bedrock.mozorg.blocks import common
 from bedrock.mozorg.tests import factories
 
 pytestmark = [
@@ -575,6 +576,157 @@ def test_freeform_page_seo_fields(minimal_site, rf, serving_method):  # noqa: F8
     freeform_page.save()
 
     page_content = getattr(freeform_page, serving_method)(rf.get(freeform_page.relative_url(minimal_site))).text
+
+    assert "<title>Custom SEO Title — Mozilla</title>" in page_content
+    assert 'content="Custom search description."' in page_content
+
+
+# ArticlePage Tests
+
+
+def _article_soup(page, site, rf, serving_method="serve"):
+    resp = getattr(page, serving_method)(rf.get(page.relative_url(site)))
+    assert resp.status_code == 200
+    return BeautifulSoup(resp.text, "html.parser")
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        content__0__text=RichText("<h2>Section heading</h2><p>Body copy with a <a href='https://example.com/'>link</a>.</p>"),
+        gallery__0__gallery_block=factories.GalleryBlockFactory(heading="Gallery heading"),
+    )
+    article_page.save()
+
+    _relative_url = article_page.relative_url(minimal_site)
+    assert _relative_url == "/en-US/article-page/"
+
+    soup = _article_soup(article_page, minimal_site, rf, serving_method)
+
+    assert "m24-article" in soup.body["class"]
+
+    article = soup.find(class_="m24-c-article")
+    gallery = soup.find(class_="m24-c-gallery-container")
+    assert article and gallery
+
+    # Sections render in a fixed order: content, then gallery.
+    sections = [el for el in soup.main.find_all(True) if el in (article, gallery)]
+    assert sections == [article, gallery]
+    assert gallery.find_parent(class_="m24-c-article") is None
+
+    content_children = article.find_all(recursive=False)
+    assert content_children[0]["class"] == ["m24-c-longform"]
+    assert content_children[0].find("h2").get_text() == "Section heading"
+    assert content_children[0].find("a", href="https://example.com/") is not None
+
+
+@pytest.mark.parametrize("seo_title", ("", "Custom SEO Title"))
+def test_article_page_has_hidden_title_h1(minimal_site, rf, seo_title):  # noqa: F811
+    """The page title (never the SEO title) is the page's only <h1>, visually hidden."""
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        title="Article title",
+        seo_title=seo_title,
+        content__0__text=RichText("<h2>Section heading</h2><h3>Sub-section heading</h3>"),
+    )
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert h1s[0].get_text() == "Article title"
+    assert h1s[0]["class"] == ["visually-hidden"]
+    assert h1s[0] is soup.main.find(["h1", "h2", "h3", "h4"])
+
+    article = soup.find(class_="m24-c-article")
+    assert article.find("h2").get_text() == "Section heading"
+    assert article.find("h3").get_text() == "Sub-section heading"
+
+
+def test_article_page_without_content_or_gallery(minimal_site, rf):  # noqa: F811
+    article_page = factories.ArticlePageFactory(parent=minimal_site.root_page)
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    assert soup.find("h1", class_="visually-hidden") is not None
+    assert soup.find(class_="m24-c-article") is None
+    assert soup.find(class_="m24-c-gallery-container") is None
+
+
+def test_article_page_gallery_heading_is_h2(minimal_site, rf):  # noqa: F811
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        gallery__0__gallery_block=factories.GalleryBlockFactory(heading="Gallery heading"),
+    )
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    gallery_heading = soup.find(string="Gallery heading").parent
+    assert gallery_heading.name == "h2"
+    assert len(soup.find_all("h1")) == 1
+
+
+def test_article_page_allows_at_most_one_gallery():
+    stream_block = models.ArticlePage._meta.get_field("gallery").stream_block
+    # A gallery needs at least one tile; the tile's CTA is cleared so it doesn't need a link.
+    gallery_value = factories.GalleryBlockFactory(tiles__0__cta_text="", tiles__0__cta_link__link_to="")
+    gallery = {"type": "gallery_block", "value": common.GalleryBlock().get_prep_value(gallery_value)}
+
+    stream_block.clean(stream_block.to_python([]))  # should not raise
+    stream_block.clean(stream_block.to_python([gallery]))  # should not raise
+
+    with pytest.raises(ValidationError):
+        stream_block.clean(stream_block.to_python([gallery, gallery]))
+
+
+def test_article_page_content_block_types():
+    content_blocks = set(models.ArticlePage._meta.get_field("content").stream_block.child_blocks)
+    assert content_blocks == {"text"}
+
+
+def test_article_page_rich_text_excludes_embedded_images():
+    text_block = models.ArticlePage._meta.get_field("content").stream_block.child_blocks["text"]
+    assert "image" not in text_block.features
+    assert {"h2", "h3", "link", "ol", "ul"} <= set(text_block.features)
+
+
+def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
+    payload = '<script>alert("x")</script>'
+    article_page = factories.ArticlePageFactory(parent=minimal_site.root_page, title=payload)
+    article_page.save()
+
+    html = article_page.serve(rf.get(article_page.relative_url(minimal_site))).text
+    soup = BeautifulSoup(html, "html.parser")
+
+    assert soup.main.find("script") is None
+    assert soup.find("h1", class_="visually-hidden").get_text() == payload
+
+
+def test_article_page_utm_parameters(minimal_site):  # noqa: F811
+    article_page = factories.ArticlePageFactory(parent=minimal_site.root_page, slug="my-article")
+    article_page.save()
+
+    assert article_page.get_utm_parameters() == {
+        "utm_source": "www.mozilla.org",
+        "utm_medium": "referral",
+        "utm_campaign": "my-article",
+    }
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_article_page_seo_fields(minimal_site, rf, serving_method):  # noqa: F811
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        seo_title="Custom SEO Title",
+        search_description="Custom search description.",
+    )
+    article_page.save()
+
+    page_content = getattr(article_page, serving_method)(rf.get(article_page.relative_url(minimal_site))).text
 
     assert "<title>Custom SEO Title — Mozilla</title>" in page_content
     assert 'content="Custom search description."' in page_content

@@ -1044,6 +1044,12 @@
     },
     {
       "files": [
+        "css/m24/article.scss"
+      ],
+      "name": "m24-article"
+    },
+    {
+      "files": [
         "css/m24/root.scss",
         "css/protocol/protocol-mozilla.scss"
       ],

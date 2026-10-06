@@ -2794,6 +2794,7 @@ _allowed_page_models = [
     "mozorg.HomePage",
     "mozorg.AboutUsPage",
     "mozorg.FreeformPage",
+    "mozorg.ArticlePage",
     "mozorg.LeadershipProfileSnippet",
     "mozorg.OrganizationLeadershipIndexPage",
     "mozorg.OrganizationLeadershipSubpage",

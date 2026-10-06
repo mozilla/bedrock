@@ -180,6 +180,7 @@ python manage.py dumpdata \
     mozorg.HomePage \
     mozorg.AboutUsPage \
     mozorg.FreeformPage \
+    mozorg.ArticlePage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \
