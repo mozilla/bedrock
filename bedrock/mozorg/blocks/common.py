@@ -717,6 +717,71 @@ class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
         )
 
 
+class IntroBlockSettings(blocks.StructBlock):
+    """Settings for the intro block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    heading_size = blocks.ChoiceBlock(
+        choices=[
+            ("m24-t-2xl", "2X large"),
+            ("", "X large"),
+            ("m24-t-lg", "Large"),
+        ],
+        default="",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
+        form_classname = "compact-form struct-block"
+
+
+class IntroBlock(blocks.StructBlock):
+    """Block for the intro component."""
+
+    settings = IntroBlockSettings()
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Page heading. Use sentence case.",
+    )
+
+    body = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "link"],
+        help_text="A short introduction. Keep this to 1 or 2 sentences.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/intro_block.html"
+        icon = "title"
+        label = "Intro"
+        label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                "settings",
+                BlockGroup(["heading", "body"], heading="Text"),
+            ],
+        )
+
+
 class ImageWithAltBlock(blocks.StructBlock):
     """A single image with alt text."""
 

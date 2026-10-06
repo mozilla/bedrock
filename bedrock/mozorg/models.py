@@ -27,6 +27,7 @@ from bedrock.mozorg.blocks.common import (
     DonateBlock,
     GalleryBlock,
     ImageCaptionBlock,
+    IntroBlock,
     ProseBlock,
     ShowcaseBlock,
     ShowcaseGalleryBlock,
@@ -673,6 +674,7 @@ class FreeformPage(AbstractBedrockCMSPage):
         [
             ("donate_block", DonateBlock()),
             ("gallery_block", GalleryBlock()),
+            ("intro_block", IntroBlock()),
             ("prose_block", ProseBlock()),
             ("showcase_block", ShowcaseBlock()),
             ("springboard_block", SpringboardBlock()),
@@ -707,6 +709,14 @@ class FreeformPage(AbstractBedrockCMSPage):
 
 
 class ArticlePage(AbstractBedrockCMSPage):
+    intro = StreamField(
+        [("intro_block", IntroBlock())],
+        max_num=1,
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Optional: The page heading and introduction.",
+    )
     content = StreamField(
         [
             (
@@ -736,6 +746,7 @@ class ArticlePage(AbstractBedrockCMSPage):
 
     content_panels = [
         FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("intro"),
         FieldPanel("content"),
         FieldPanel("gallery"),
     ]
