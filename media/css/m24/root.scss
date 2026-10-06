@@ -33,10 +33,6 @@
     --m24-light-orange: #{$token-color-light-orange};
     --m24-dark-orange: #{$token-color-dark-orange};
 
-    // grid
-    --grid-margin: 16px;
-    --grid-gutter: 8px;
-
     // spacers
     --spacer-3xl: 80px;
     --spacer-2xl: 64px;
@@ -47,8 +43,15 @@
     --spacer-xs: 8px;
     --spacer-2xs: 4px;
 
+    // grid
+    --grid-margin: 16px;
+    --grid-gutter: 8px;
+
     // container
-    --container-padding: 16px;
+    --container-padding: var(--grid-margin);
+    --section-spacing: 48px;
+    --group-spacing: 32px;
+    --item-spacing: 16px;
 
     // titles
     --text-title-2xl: 48px;
@@ -87,10 +90,6 @@
 
 @media #{$mq-md} {
     :root {
-        // grid
-        --grid-margin: 24px;
-        --grid-gutter: 12px;
-
         // spacers
         --spacer-3xl: 128px;
         --spacer-2xl: 80px;
@@ -101,8 +100,13 @@
         --spacer-xs: 8px;
         --spacer-2xs: 4px;
 
+        // grid
+        --grid-margin: 24px;
+        --grid-gutter: 12px;
+
         // container
-        --container-padding: 24px;
+        --section-spacing: var(--spacer-xl);
+        --group-spacing: 48px;
 
         // title
         --text-title-2xl: 80px;
@@ -131,10 +135,6 @@
 
 @media #{$mq-xl} {
     :root {
-        // grid
-        --grid-margin: 32px;
-        --grid-gutter: 16px;
-
         // spacers
         --spacer-3xl: 200px;
         --spacer-2xl: 128px;
@@ -145,8 +145,9 @@
         --spacer-xs: 8px;
         --spacer-2xs: 4px;
 
-        // container
-        --container-padding: 32px;
+        // grid
+        --grid-margin: 32px;
+        --grid-gutter: 16px;
 
         // titles
         --text-title-2xl: 128px;

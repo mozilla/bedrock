@@ -425,3 +425,23 @@ class FreeformPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.FreeformPage
+
+
+class ArticlePageFactory(wagtail_factories.PageFactory):
+    title = "Test Article Page"
+    live = True
+    slug = "article-page"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "text": factory.LazyFunction(lambda: RichText("<p>Article body copy.</p>")),
+        }
+    )
+    gallery = wagtail_factories.StreamFieldFactory(
+        {
+            "gallery_block": factory.SubFactory(GalleryBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.ArticlePage
