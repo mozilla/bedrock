@@ -13,7 +13,7 @@ from django.utils.safestring import mark_safe
 import wagtail.admin.rich_text.editors.draftail.features as draftail_features
 from wagtail import hooks
 from wagtail.admin.menu import MenuItem
-from wagtail.admin.rich_text.converters.html_to_contentstate import InlineStyleElementHandler
+from wagtail.admin.rich_text.converters.html_to_contentstate import BlockElementHandler, InlineStyleElementHandler
 from wagtail.fields import StreamField
 from wagtail.models import Locale as WagtailLocale
 
@@ -106,6 +106,39 @@ def register_underline_feature(features):
     # 6. (optional) Add the feature to the default features list to make it available
     # on rich text fields that do not specify an explicit 'features' list
     features.default_features.append("underline")
+
+
+@hooks.register("register_icons")
+def register_icons(icons):
+    return [*icons, "cms/icons/lede.svg"]
+
+
+@hooks.register("register_rich_text_features")
+def register_lede_feature(features):
+    """
+    Register the `lede` feature: a paragraph-level style for larger introductory text,
+    stored as `<p class="m24-u-lede">`. Not a default feature; fields opt in to it.
+    """
+    feature_name = "lede"
+    type_ = "lede"
+
+    control = {
+        "type": type_,
+        "icon": "lede",
+        "description": "Lede: larger introductory paragraph",
+        "element": "p",
+    }
+
+    features.register_editor_plugin("draftail", feature_name, draftail_features.BlockFeature(control))
+
+    features.register_converter_rule(
+        "contentstate",
+        feature_name,
+        {
+            "from_database_format": {'p[class="m24-u-lede"]': BlockElementHandler(type_)},
+            "to_database_format": {"block_map": {type_: {"element": "p", "props": {"class": "m24-u-lede"}}}},
+        },
+    )
 
 
 @hooks.register("after_copy_page")
