@@ -25,10 +25,9 @@
 {% block content %}
 <main>
   {# The first non-transition block owns the page <h1> if it has a heading;
-     otherwise it could render sub-headings (gallery tiles, prose sub-heading)
-     ahead of any <h1>, so a hidden fallback <h1> is used and every block gets
-     <h2>. Blocks read `block_level` and fall back to their historic level when
-     it is unset. #}
+     otherwise it could render lower-level headings ahead of any <h1>, so a
+     hidden fallback <h1> is used and every block gets <h2>. Blocks read
+     `block_level` and fall back to their historic level when it is unset. #}
   {% set lead = page.content|rejectattr("block_type", "equalto", "transition_block")|first %}
   {% set lead_has_heading = lead and lead.value.heading %}
   {% if not lead_has_heading %}

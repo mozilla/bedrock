@@ -33,6 +33,7 @@ main > .m24-c-intro-section:first-child {
     font-size: $text-title-xl;
     line-height: 1;
     margin-bottom: var(--item-spacing);
+    text-box: trim-both cap text;
 
     &.m24-t-sm {
         font-size: $text-title-sm;
