@@ -668,7 +668,7 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     assert gallery.find_parent(class_="m24-c-article") is None
 
     content_children = article.find_all(recursive=False)
-    assert content_children[0]["class"] == ["m24-c-longform"]
+    assert content_children[0]["class"] == ["m24-c-longform", "m24-c-rich-text"]
     assert content_children[0].find("h2").get_text() == "Section heading"
     assert content_children[0].find("a", href="https://example.com/") is not None
     assert content_children[1].find("figure", class_="m24-c-longform-figure") is not None
@@ -793,7 +793,21 @@ def test_article_page_content_block_types():
 def test_article_page_rich_text_excludes_embedded_images():
     text_block = models.ArticlePage._meta.get_field("content").stream_block.child_blocks["text"]
     assert "image" not in text_block.features
-    assert {"h2", "h3", "link", "ol", "ul"} <= set(text_block.features)
+    assert {"h2", "h3", "lede", "link", "ol", "ul", "blockquote"} <= set(text_block.features)
+
+
+def test_article_page_renders_lede_paragraph(minimal_site, rf):  # noqa: F811
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        content__0__text=RichText('<h2>Section heading</h2><p class="m24-u-lede">Lede copy.</p><p>Body copy.</p>'),
+    )
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    lede = soup.find("p", class_="m24-u-lede")
+    assert lede.get_text() == "Lede copy."
+    assert lede.find_parent(class_="m24-c-rich-text") is not None
 
 
 def _intro_data(heading="Heading"):

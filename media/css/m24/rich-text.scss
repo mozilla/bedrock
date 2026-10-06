@@ -1,0 +1,100 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+// Typography for editor-authored rich text
+.m24-c-rich-text {
+    > * {
+        margin-bottom: var(--item-spacing);
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: $text-title-md;
+        margin-top: var(--group-spacing);
+    }
+
+    h3 {
+        font-size: $text-title-sm;
+        margin-top: var(--group-spacing);
+    }
+
+    > h2:first-child,
+    > h3:first-child {
+        margin-top: 0;
+    }
+
+    ul.mzp-u-list-styled, // this needs the added specificity to override the Protocol defaults
+    ol.mzp-u-list-styled {
+        margin-inline: auto;
+        padding-inline: $spacer-lg;
+    }
+
+    ul.mzp-u-list-styled {
+        list-style: none;
+
+        > li {
+            margin-bottom: var(--item-spacing);
+            position: relative;
+
+            &::before {
+                content: "";
+                background: currentColor;
+                display: block;
+                height: 0.5em;
+                inset-inline-start: calc(.5em / 2 + var(--item-spacing) * -2);
+                position: absolute;
+                top: .5em;
+                width: 0.5em;
+            }
+        }
+    }
+
+    ol.mzp-u-list-styled {
+        counter-reset: m24-rich-text-ol;
+        list-style: none;
+
+        > li {
+            counter-increment: m24-rich-text-ol;
+            margin-bottom: var(--item-spacing);
+            position: relative;
+
+            &::before {
+                content: counter(m24-rich-text-ol, decimal-leading-zero);
+                font-family: monospace;
+                font-weight: bold;
+                inset-inline-end: 100%;
+                padding-inline-end: 1ch;
+                position: absolute;
+            }
+        }
+    }
+
+    blockquote {
+        border-inline-start: $border-width solid $m24-color-black;
+        padding-inline-start: $grid-gutter;
+        font-size: $text-title-sm;
+        line-height: var(--text-title-sm-line-height);
+        margin-block: var(--item-spacing);
+    }
+
+    hr {
+        border-top: $border-width solid $m24-color-black;
+        margin-block: var(--group-spacing);
+    }
+
+    code {
+        font-family: monospace;
+        font-size: 0.9em;
+    }
+
+    .m24-u-lede {
+        font-size: $text-body-lg;
+        font-weight: 500;
+    }
+}
