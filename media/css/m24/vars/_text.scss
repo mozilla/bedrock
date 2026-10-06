@@ -16,6 +16,9 @@ $text-body-lg: var(--text-body-lg);
 $text-body-md: var(--text-body-md);
 $text-body-sm: var(--text-body-sm);
 
+// widest body text should get, in grid columns, before lines become hard to read
+$text-body-max-cols: 8;
+
 // buttons
 $text-button-xl: var(--text-button-xl);
 $text-button-lg: var(--text-button-lg);

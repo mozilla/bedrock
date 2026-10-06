@@ -59,7 +59,7 @@ main > .m24-c-intro-section:first-child {
 
 @media #{$mq-xl} {
     .m24-c-intro p {
-        max-width: grid(9);
+        max-width: grid($text-body-max-cols);
     }
 
     p.m24-c-intro-cta {

@@ -32,12 +32,12 @@
 @media #{$mq-lg} {
     .m24-c-prose {
         .m24-c-prose-body {
-            grid-column: 1/-5;
+            grid-column: 1 / span $text-body-max-cols;
         }
 
         &.m24-l-two-columns {
             .m24-c-prose-heading {
-                grid-column: 1/7;
+                grid-column: 1 / span 6;
 
                 p {
                     max-width: none;
@@ -45,17 +45,17 @@
             }
 
             .m24-c-prose-body {
-                grid-column: 7/-1;
+                grid-column: 7 / span 6;
             }
 
             &.m24-l-reversed {
                 .m24-c-prose-heading {
-                    grid-column: 7/-1;
+                    grid-column: 7 / span 6;
                 }
 
                 .m24-c-prose-body {
                     grid-row: 1;
-                    grid-column: 1/7;
+                    grid-column: 1 / span 6;
                 }
             }
         }
