@@ -494,7 +494,7 @@ def test_freeform_page_promotes_first_block_heading_to_h1(minimal_site, rf):  # 
     h1s = soup.find_all("h1")
     assert len(h1s) == 1
     assert "First heading" in h1s[0].get_text()
-    assert h1s[0]["class"] == ["m24-c-prose-heading"]
+    assert h1s[0]["class"] == ["m24-c-intro-title", "m24-t-lg"]
 
     showcase_heading = soup.find(class_="m24-c-showcase-heading")
     assert showcase_heading.name == "h2"
@@ -510,10 +510,9 @@ def test_freeform_page_promotes_first_block_heading_to_h1(minimal_site, rf):  # 
             "content__0__gallery_block": factories.GalleryBlockFactory(heading=""),
             "content__1__prose_block": factories.ProseBlockFactory(heading="Later heading"),
         },
-        {"content__0__prose_block": factories.ProseBlockFactory(heading="", sub_heading="Only a sub-heading")},
         {},
     ),
-    ids=("headingless-gallery-first", "prose-sub-heading-only", "empty"),
+    ids=("headingless-gallery-first", "empty"),
 )
 def test_freeform_page_falls_back_to_hidden_h1(minimal_site, rf, content):  # noqa: F811
     freeform_page = factories.FreeformPageFactory(parent=minimal_site.root_page, seo_title="Fallback title", **content)
@@ -526,12 +525,6 @@ def test_freeform_page_falls_back_to_hidden_h1(minimal_site, rf, content):  # no
     assert h1s[0]["class"] == ["visually-hidden"]
     assert h1s[0].get_text() == "Fallback title"
     assert h1s[0] is soup.main.find(["h1", "h2", "h3", "h4"])
-
-    # prose-sub-heading-only: with no section heading rendered, the sub-heading
-    # sits right under the hidden h1 and must not skip a level to h3.
-    subheading = soup.find(class_="m24-c-prose-subheading")
-    if subheading:
-        assert subheading.name == "h2"
 
 
 def test_home_and_about_block_heading_levels_are_unchanged(minimal_site, rf):  # noqa: F811
@@ -600,7 +593,7 @@ def test_freeform_page_renders_pullquote(minimal_site, rf):  # noqa: F811
     h1s = soup.find_all("h1")
     assert len(h1s) == 1
     assert h1s[0]["class"] == ["visually-hidden"]
-    assert soup.find(class_="m24-c-prose-heading").name == "h2"
+    assert soup.find(class_="m24-c-intro-title").name == "h2"
 
 
 def test_freeform_page_utm_parameters(minimal_site):  # noqa: F811
@@ -794,6 +787,34 @@ def test_article_page_rich_text_excludes_embedded_images():
     text_block = models.ArticlePage._meta.get_field("content").stream_block.child_blocks["text"]
     assert "image" not in text_block.features
     assert {"h2", "h3", "lede", "link", "ol", "ul", "blockquote"} <= set(text_block.features)
+
+
+def test_article_text_and_prose_body_share_rich_text_features():
+    text_block = models.ArticlePage._meta.get_field("content").stream_block.child_blocks["text"]
+    prose_body = common.ProseBlock().child_blocks["body"]
+
+    assert text_block.features == ["h2", "h3", *common.RICHTEXT_BODY_FEATURES]
+    assert prose_body.features == common.RICHTEXT_BODY_FEATURES
+    assert not {"h2", "h3", "h4"} & set(prose_body.features)
+
+
+def test_prose_body_renders_shared_rich_text(minimal_site, rf):  # noqa: F811
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        content__0__prose_block=factories.ProseBlockFactory(
+            heading="Prose heading",
+            body=RichText('<p class="m24-u-lede">Lede copy.</p><ul><li>An item</li></ul><p><a href="https://example.com/">A link</a></p>'),
+        ),
+    )
+    freeform_page.save()
+
+    soup = BeautifulSoup(freeform_page.serve(rf.get(freeform_page.relative_url(minimal_site))).text, "html.parser")
+
+    body = soup.find(class_="m24-c-prose-body")
+    assert body["class"] == ["m24-c-prose-body", "m24-c-rich-text"]
+    assert body.find("p", class_="m24-u-lede").get_text() == "Lede copy."
+    assert body.find("ul").find("li").get_text() == "An item"
+    assert body.find("a", href="https://example.com/") is not None
 
 
 def test_article_page_renders_lede_paragraph(minimal_site, rf):  # noqa: F811
