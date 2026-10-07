@@ -595,6 +595,7 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     article_page = factories.ArticlePageFactory(
         parent=minimal_site.root_page,
         content__0__text=RichText("<h2>Section heading</h2><p>Body copy with a <a href='https://example.com/'>link</a>.</p>"),
+        content__1__image_caption=factories.ImageCaptionBlockFactory(),
         gallery__0__gallery_block=factories.GalleryBlockFactory(heading="Gallery heading"),
     )
     article_page.save()
@@ -619,6 +620,7 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     assert content_children[0]["class"] == ["m24-c-longform"]
     assert content_children[0].find("h2").get_text() == "Section heading"
     assert content_children[0].find("a", href="https://example.com/") is not None
+    assert content_children[1].find("figure", class_="m24-c-longform-figure") is not None
 
 
 @pytest.mark.parametrize("seo_title", ("", "Custom SEO Title"))
@@ -685,7 +687,7 @@ def test_article_page_allows_at_most_one_gallery():
 
 def test_article_page_content_block_types():
     content_blocks = set(models.ArticlePage._meta.get_field("content").stream_block.child_blocks)
-    assert content_blocks == {"text"}
+    assert content_blocks == {"text", "image_caption"}
 
 
 def test_article_page_rich_text_excludes_embedded_images():
@@ -696,7 +698,14 @@ def test_article_page_rich_text_excludes_embedded_images():
 
 def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
     payload = '<script>alert("x")</script>'
-    article_page = factories.ArticlePageFactory(parent=minimal_site.root_page, title=payload)
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        title=payload,
+        content__0__image_caption=factories.ImageCaptionBlockFactory(
+            image__image_alt=payload,
+            caption=RichText("<p><em>Formatted</em> &lt;img src=x onerror=alert(1)&gt;</p>"),
+        ),
+    )
     article_page.save()
 
     html = article_page.serve(rf.get(article_page.relative_url(minimal_site))).text
@@ -704,6 +713,13 @@ def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
 
     assert soup.main.find("script") is None
     assert soup.find("h1", class_="visually-hidden").get_text() == payload
+    assert soup.find("img", class_="m24-c-longform-figure-image")["alt"] == payload
+
+    # Allowed rich text formatting renders, but HTML typed as text stays inert.
+    caption = soup.find("figcaption", class_="m24-c-longform-figure-text")
+    assert caption.find("em").get_text() == "Formatted"
+    assert caption.find("img") is None
+    assert "<img src=x onerror=alert(1)>" in caption.get_text()
 
 
 def test_article_page_utm_parameters(minimal_site):  # noqa: F811

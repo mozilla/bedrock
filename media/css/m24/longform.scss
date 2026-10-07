@@ -9,7 +9,6 @@
     font-size: $text-body-md;
     line-height: $text-body-line-height;
     margin: 0 auto var(--group-spacing) auto;
-    max-width: grid(8);
     text-align: start;
 
     &:not(:first-child) {
@@ -17,6 +16,49 @@
     }
 
     &:last-child {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-lg} {
+        max-width: page-grid(8);
+        padding-inline: 0;
+    }
+}
+
+// * -------------------------------------------------------------------------- */
+// image + caption
+
+.m24-c-longform-figure {
+    font-size: $text-body-md;
+    line-height: $text-body-line-height;
+    margin: 0 auto;
+    text-align: start;
+
+    @media #{$mq-md} {
+        max-width: grid(8);
+    }
+
+    @media #{$mq-lg} {
+        max-width: sub-grid(5, 8);
+    }
+}
+
+.m24-c-longform-figure-image {
+    display: block;
+    height: auto;
+    width: 100%;
+}
+
+// inverted like .m24-t-dark, so links (which use $m24-color-black) read on the dark bar
+.m24-c-longform-figure-text {
+    @include invert-colors;
+    border-top: $border-width solid $m24-color-black;
+    background-color: $m24-color-alt-white;
+    color: $m24-color-black;
+    font-size: $text-body-sm;
+    padding: var(--item-spacing);
+
+    > :last-child {
         margin-bottom: 0;
     }
 }

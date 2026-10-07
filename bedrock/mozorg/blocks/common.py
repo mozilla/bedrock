@@ -715,3 +715,38 @@ class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
         )
+
+
+class ImageWithAltBlock(blocks.StructBlock):
+    """A single image with alt text."""
+
+    image = ImageChooserBlock()
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=IMAGE_ALT_HELP_TEXT,
+    )
+
+    class Meta:
+        icon = "image"
+        label = "Image"
+        label_format = "{image}"
+
+
+class ImageCaptionBlock(blocks.StructBlock):
+    """An image with an optional caption."""
+
+    image = ImageWithAltBlock()
+
+    caption = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "italic", "link"],
+        help_text="Optional caption shown below the image.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/longform_image_caption_block.html"
+        icon = "image"
+        label = "Image + Caption"
+        label_format = "{image}"
