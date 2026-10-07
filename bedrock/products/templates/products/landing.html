@@ -263,24 +263,6 @@
           <p>{{ ftl('firefox-products-mozilla-ads-desc') }}</p>
           <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="{{ url('mozorg.advertising.landing') }}" data-cta-text="Mozilla Ads Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-mozilla-ads') }}">{{ ftl('firefox-products-extend-your-reach', fallback='ui-learn-more') }}</a></p>
         {% endcall %}
-
-        <!-- Firefox for Enterprise -->
-        {% call picto(
-          body=True,
-          image=resp_img(
-            url='protocol/img/logos/firefox/browser/logo.svg',
-            optional_attributes={
-              'class': 'mzp-c-picto-image',
-              'width': '64',
-              'height': '64',
-              'loading': 'lazy'
-            }
-          ),
-        ) %}
-          <h3 class="mzp-c-picto-heading">{{ ftl('firefox-products-firefox-enterprise') }}</h3>
-          <p>{{ ftl('firefox-products-firefox-enterprise-desc') }}</p>
-          <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="{{ url('firefox.enterprise.index') }}" data-cta-text="Firefox Enterprise Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-firefox-enterprise') }}">{{ ftl('firefox-products-manage-your-fleet', fallback='ui-learn-more') }}</a></p>
-        {% endcall %}
       </div>
     {% endcall %}
   {% endcall %}
