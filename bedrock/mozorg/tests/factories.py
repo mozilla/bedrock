@@ -407,6 +407,23 @@ class GalleryBlockFactory(wagtail_factories.StructBlockFactory):
         model = common.GalleryBlock
 
 
+class IntroBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    heading_size = ""
+
+    class Meta:
+        model = common.IntroBlockSettings
+
+
+class IntroBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(IntroBlockSettingsFactory)
+    heading = "Guard the internet"
+    body = RichText("<p>Mozilla is working to put people back in charge.</p>")
+
+    class Meta:
+        model = common.IntroBlock
+
+
 class ImageWithAltBlockFactory(wagtail_factories.StructBlockFactory):
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
@@ -432,6 +449,7 @@ class FreeformPageFactory(wagtail_factories.PageFactory):
         {
             "donate_block": factory.SubFactory(DonateBlockFactory),
             "gallery_block": factory.SubFactory(GalleryBlockFactory),
+            "intro_block": factory.SubFactory(IntroBlockFactory),
             "prose_block": factory.SubFactory(ProseBlockFactory),
             "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
             "springboard_block": factory.SubFactory(SpringboardBlockFactory),
@@ -448,6 +466,11 @@ class ArticlePageFactory(wagtail_factories.PageFactory):
     live = True
     slug = "article-page"
 
+    intro = wagtail_factories.StreamFieldFactory(
+        {
+            "intro_block": factory.SubFactory(IntroBlockFactory),
+        }
+    )
     content = wagtail_factories.StreamFieldFactory(
         {
             "text": factory.LazyFunction(lambda: RichText("<p>Article body copy.</p>")),

@@ -547,12 +547,37 @@ def test_home_and_about_block_heading_levels_are_unchanged(minimal_site, rf):  #
     assert soup.find(class_="m24-c-careers-title").name == "h2"
 
 
-def test_freeform_page_offers_union_of_home_and_about_blocks_minus_retired_careers_block():
+def test_freeform_page_offers_home_and_about_blocks_minus_retired_careers_block_plus_intro():
     def block_names(model):
         return set(model._meta.get_field("content").stream_block.child_blocks)
 
-    expected = (block_names(models.HomePage) | block_names(models.AboutUsPage)) - {"showcase_gallery_block"}
+    expected = (block_names(models.HomePage) | block_names(models.AboutUsPage)) - {"showcase_gallery_block"} | {"intro_block"}
     assert block_names(models.FreeformPage) == expected
+
+
+def test_freeform_page_intro_heading_levels(minimal_site, rf):  # noqa: F811
+    """An intro that leads the page owns the <h1>; an intro further down is an <h2>."""
+    freeform_page = factories.FreeformPageFactory(
+        parent=minimal_site.root_page,
+        content__0__intro_block=factories.IntroBlockFactory(heading="Lead intro"),
+        content__1__prose_block=factories.ProseBlockFactory(heading="Prose heading"),
+        content__2__intro_block=factories.IntroBlockFactory(heading="Later intro"),
+    )
+    freeform_page.save()
+
+    soup = BeautifulSoup(freeform_page.serve(rf.get(freeform_page.relative_url(minimal_site))).text, "html.parser")
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert h1s[0].get_text() == "Lead intro"
+    assert h1s[0]["class"] == ["m24-c-intro-title"]
+    assert not soup.find("h1", class_="visually-hidden")
+
+    intro_headings = soup.find_all(class_="m24-c-intro-title")
+    assert [h.name for h in intro_headings if h.get_text() == "Later intro"] == ["h2"]
+
+    lead_section = soup.find(class_="m24-c-intro-section")
+    assert lead_section is soup.main.find(True)
 
 
 def test_freeform_page_utm_parameters(minimal_site):  # noqa: F811
@@ -594,6 +619,7 @@ def _article_soup(page, site, rf, serving_method="serve"):
 def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     article_page = factories.ArticlePageFactory(
         parent=minimal_site.root_page,
+        intro__0__intro_block=factories.IntroBlockFactory(heading="Article heading"),
         content__0__text=RichText("<h2>Section heading</h2><p>Body copy with a <a href='https://example.com/'>link</a>.</p>"),
         content__1__image_caption=factories.ImageCaptionBlockFactory(),
         gallery__0__gallery_block=factories.GalleryBlockFactory(heading="Gallery heading"),
@@ -607,13 +633,14 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
 
     assert "m24-article" in soup.body["class"]
 
+    intro = soup.find(class_="m24-c-intro")
     article = soup.find(class_="m24-c-article")
     gallery = soup.find(class_="m24-c-gallery-container")
-    assert article and gallery
+    assert intro and article and gallery
 
-    # Sections render in a fixed order: content, then gallery.
-    sections = [el for el in soup.main.find_all(True) if el in (article, gallery)]
-    assert sections == [article, gallery]
+    # Sections render in a fixed order: intro, content, then gallery.
+    sections = [el for el in soup.main.find_all(True) if el in (intro, article, gallery)]
+    assert sections == [intro, article, gallery]
     assert gallery.find_parent(class_="m24-c-article") is None
 
     content_children = article.find_all(recursive=False)
@@ -623,9 +650,30 @@ def test_article_page(minimal_site, rf, serving_method):  # noqa: F811
     assert content_children[1].find("figure", class_="m24-c-longform-figure") is not None
 
 
+def test_article_page_heading_levels(minimal_site, rf):  # noqa: F811
+    """The intro owns the page's only <h1>."""
+    article_page = factories.ArticlePageFactory(
+        parent=minimal_site.root_page,
+        intro__0__intro_block=factories.IntroBlockFactory(heading="Article heading"),
+        content__0__text=RichText("<h2>Section heading</h2><h3>Sub-section heading</h3>"),
+    )
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    h1s = soup.find_all("h1")
+    assert len(h1s) == 1
+    assert h1s[0].get_text() == "Article heading"
+    assert h1s[0]["class"] == ["m24-c-intro-title"]
+
+    article = soup.find(class_="m24-c-article")
+    assert article.find("h2").get_text() == "Section heading"
+    assert article.find("h3").get_text() == "Sub-section heading"
+
+
 @pytest.mark.parametrize("seo_title", ("", "Custom SEO Title"))
-def test_article_page_has_hidden_title_h1(minimal_site, rf, seo_title):  # noqa: F811
-    """The page title (never the SEO title) is the page's only <h1>, visually hidden."""
+def test_article_page_without_intro_has_hidden_title_h1(minimal_site, rf, seo_title):  # noqa: F811
+    """Without an intro, the page title (never the SEO title) is the page's only <h1>, visually hidden."""
     article_page = factories.ArticlePageFactory(
         parent=minimal_site.root_page,
         title="Article title",
@@ -645,6 +693,33 @@ def test_article_page_has_hidden_title_h1(minimal_site, rf, seo_title):  # noqa:
     article = soup.find(class_="m24-c-article")
     assert article.find("h2").get_text() == "Section heading"
     assert article.find("h3").get_text() == "Sub-section heading"
+
+
+@pytest.mark.parametrize("with_intro", (True, False))
+@pytest.mark.parametrize("gallery_heading", ("Gallery heading", ""))
+def test_article_page_heading_hierarchy(minimal_site, rf, with_intro, gallery_heading):  # noqa: F811
+    """The page has one <h1>, first, and every heading after it steps down at most one level."""
+    page_kwargs = {
+        "parent": minimal_site.root_page,
+        "content__0__text": RichText("<h2>Section heading</h2><h3>Sub-section heading</h3>"),
+        "content__1__image_caption": factories.ImageCaptionBlockFactory(),
+        "gallery__0__gallery_block": factories.GalleryBlockFactory(heading=gallery_heading, tiles__0__heading="Tile heading"),
+    }
+    if with_intro:
+        page_kwargs["intro__0__intro_block"] = factories.IntroBlockFactory(heading="Article heading")
+    article_page = factories.ArticlePageFactory(**page_kwargs)
+    article_page.save()
+
+    soup = _article_soup(article_page, minimal_site, rf)
+
+    levels = [int(h.name[1]) for h in soup.main.find_all(["h1", "h2", "h3", "h4", "h5", "h6"])]
+    assert levels[0] == 1
+    assert levels.count(1) == 1
+    for previous, current in zip(levels, levels[1:]):
+        assert current <= previous + 1, f"Heading levels skip from h{previous} to h{current}: {levels}"
+
+    tile_heading = soup.find(class_="m24-c-gallery-tile-heading")
+    assert tile_heading.name == ("h3" if gallery_heading else "h2")
 
 
 def test_article_page_without_content_or_gallery(minimal_site, rf):  # noqa: F811
@@ -696,11 +771,25 @@ def test_article_page_rich_text_excludes_embedded_images():
     assert {"h2", "h3", "link", "ol", "ul"} <= set(text_block.features)
 
 
+def _intro_data(heading="Heading"):
+    return {"type": "intro_block", "value": {"settings": {"background_color": ""}, "heading": heading, "body": ""}}
+
+
+def test_article_page_allows_at_most_one_intro():
+    stream_block = models.ArticlePage._meta.get_field("intro").stream_block
+
+    stream_block.clean(stream_block.to_python([]))  # should not raise
+    stream_block.clean(stream_block.to_python([_intro_data()]))  # should not raise
+
+    with pytest.raises(ValidationError):
+        stream_block.clean(stream_block.to_python([_intro_data("One"), _intro_data("Two")]))
+
+
 def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
     payload = '<script>alert("x")</script>'
     article_page = factories.ArticlePageFactory(
         parent=minimal_site.root_page,
-        title=payload,
+        intro__0__intro_block=factories.IntroBlockFactory(heading=payload),
         content__0__image_caption=factories.ImageCaptionBlockFactory(
             image__image_alt=payload,
             caption=RichText("<p><em>Formatted</em> &lt;img src=x onerror=alert(1)&gt;</p>"),
@@ -712,7 +801,7 @@ def test_article_page_escapes_plain_text_fields(minimal_site, rf):  # noqa: F811
     soup = BeautifulSoup(html, "html.parser")
 
     assert soup.main.find("script") is None
-    assert soup.find("h1", class_="visually-hidden").get_text() == payload
+    assert soup.find(class_="m24-c-intro-title").get_text() == payload
     assert soup.find("img", class_="m24-c-longform-figure-image")["alt"] == payload
 
     # Allowed rich text formatting renders, but HTML typed as text stays inert.

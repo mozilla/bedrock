@@ -6,7 +6,7 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use 'vars/lib' as *;
 
-// base includes the shared foundation plus the gallery component.
+// base includes the shared foundation plus the intro and gallery components.
 @use 'base';
 @use 'longform';
 
