@@ -32,7 +32,7 @@ firefox-products-get-the-browser-that-blocks = Get the browser that blocks 2000+
 
 firefox-products-firefox-focus = { -brand-name-firefox-focus }
 firefox-products-your-dedicated-privacy = Your dedicated privacy browser with automatic tracking protection and ad blocking.
-firefox-products-get-focus = Get Focus
+firefox-products-get-focus = Get { -brand-name-firefox-focus }
 
 ## Monitor
 

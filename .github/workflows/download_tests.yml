@@ -19,7 +19,7 @@ jobs:
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Fetch codebase
-        uses: actions/checkout@v5
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
 
       - name: Run functional download tests
         run: ./bin/integration_tests/functional_tests.sh
@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, download-tests]
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack
         with:

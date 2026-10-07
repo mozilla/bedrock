@@ -1,7 +1,7 @@
 -r prod.txt
 
 braceexpand==0.1.7
-django-silk==5.5.0
+django-silk==5.6.0
 factory-boy==3.3.3
 freezegun==1.5.5
 markdown-it-py>=4.2.0
@@ -15,12 +15,12 @@ pytest-django==4.14.0
 pytest-html==4.2.0  # Provides the --html option used to generate the integration test report
 pytest-mock==3.15.1
 pytest-parallel==0.1.1
-pytest-rerunfailures==16.6.1
+pytest-rerunfailures==16.7
 responses==0.26.3
-ruff==0.16.7
+ruff==0.16.8
 selenium==4.49.0
-translate-toolkit==3.19.19
-uv==0.12.12
+translate-toolkit==3.20.0
+uv==0.12.17
 wagtail-factories==4.5.0
 # Related to moz-l10n-lint, used in CI
 cl-ext.lang==0.1.0

@@ -1037,6 +1037,18 @@
       "name": "m24-about"
     },
     {
+      "files":  [
+        "css/m24/freeform.scss"
+      ],
+      "name": "m24-freeform"
+    },
+    {
+      "files": [
+        "css/m24/article.scss"
+      ],
+      "name": "m24-article"
+    },
+    {
       "files": [
         "css/m24/root.scss",
         "css/protocol/protocol-mozilla.scss"
@@ -1114,12 +1126,6 @@
         "js/base/mozilla-cookie-helper.js"
       ],
       "name": "site-ie"
-    },
-    {
-      "files": [
-        "js/glean/init.es6.js"
-      ],
-      "name": "glean"
     },
     {
       "files": [

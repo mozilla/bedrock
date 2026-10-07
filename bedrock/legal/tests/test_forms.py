@@ -233,6 +233,26 @@ class TestFraudReport(TestCase):
         self.assertIn(url, body)
 
     @patch("bedrock.legal.views.EmailMessage")
+    def test_email_url_html_is_percent_encoded(self, mock_email_message):
+        """
+        The url is rendered without autoescaping, so angle brackets and quotes
+        must be percent-encoded rather than reaching the email as raw HTML.
+        """
+        url = 'http://example.com/<script>alert("1")</script>?a=1&b=2'
+        self.data.update(input_url=url)
+
+        form = FraudReportForm(self.data)
+
+        request = self.factory.get("/")
+        submit_form(request, form)
+
+        subject, body = mock_email_message.call_args[0][:2]
+
+        self.assertIn("http://example.com/%3Cscript%3Ealert(%221%22)%3C/script%3E?a=1&b=2", body)
+        self.assertNotIn("<", body.split("+ Category")[0])
+        self.assertNotIn("<", subject)
+
+    @patch("bedrock.legal.views.EmailMessage")
     def test_email_subject_short_url_not_truncated(self, mock_email_message):
         """
         Make sure a normal length url is not truncated in the email subject.

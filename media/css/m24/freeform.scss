@@ -1,0 +1,19 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// variables
+@use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use 'vars/lib' as *;
+
+// base includes the shared foundation (body/link resets, .m24-c-content,
+// .m24-c-cta) plus the gallery, showcase, theme, transition and intro
+// components. Only donate, prose and springboard need adding on top.
+@use 'base';
+@use 'donate';
+@use 'prose';
+@use 'springboard';
+
+.visually-hidden {
+    @include visually-hidden;
+}

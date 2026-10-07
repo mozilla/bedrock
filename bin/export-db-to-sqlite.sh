@@ -179,6 +179,8 @@ python manage.py dumpdata \
     mozorg.ContentSubpage \
     mozorg.HomePage \
     mozorg.AboutUsPage \
+    mozorg.FreeformPage \
+    mozorg.ArticlePage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \

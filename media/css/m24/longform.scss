@@ -1,0 +1,22 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+.m24-c-longform {
+    @include container;
+    font-size: $text-body-md;
+    line-height: $text-body-line-height;
+    margin: 0 auto var(--group-spacing) auto;
+    max-width: grid(8);
+    text-align: start;
+
+    &:not(:first-child) {
+        margin-top: var(--group-spacing);
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
