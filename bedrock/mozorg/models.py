@@ -641,6 +641,10 @@ class AboutUsPage(AbstractBedrockCMSPage):
             ("showcase_gallery_block", ShowcaseGalleryBlock()),
             ("transition_block", TransitionBlock()),
         ],
+        # showcase_gallery_block is being retired in favor of showcase_block's media chooser.
+        # Capping it at 0 disables adding new instances in the admin without touching any
+        # existing showcase_gallery_block content, which is being migrated to showcase_block by hand.
+        block_counts={"showcase_gallery_block": {"max_num": 0}},
         blank=True,
         null=True,
         use_json_field=True,
