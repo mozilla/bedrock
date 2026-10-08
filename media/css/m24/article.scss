@@ -9,6 +9,7 @@
 // base includes the shared foundation plus the intro and gallery components.
 @use 'base';
 @use 'longform';
+@use 'pullquote';
 
 .visually-hidden {
     @include visually-hidden;

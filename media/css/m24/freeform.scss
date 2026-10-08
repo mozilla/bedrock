@@ -6,12 +6,10 @@
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use 'vars/lib' as *;
 
-// base includes the shared foundation (body/link resets, .m24-c-content,
-// .m24-c-cta) plus the gallery, showcase, theme, transition and intro
-// components. Only donate, prose and springboard need adding on top.
 @use 'base';
 @use 'donate';
 @use 'prose';
+@use 'pullquote';
 @use 'springboard';
 
 .visually-hidden {

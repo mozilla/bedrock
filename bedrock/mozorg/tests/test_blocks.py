@@ -22,6 +22,7 @@ from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_do
 from bedrock.mozorg.fixtures.image_caption_fixtures import get_image_caption_test_page, get_image_caption_variants
 from bedrock.mozorg.fixtures.intro_fixtures import get_intro_test_pages, get_intro_variants
 from bedrock.mozorg.fixtures.prose_fixtures import get_prose_test_page, get_prose_variants
+from bedrock.mozorg.fixtures.pullquote_fixtures import get_pullquote_test_page, get_pullquote_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
 from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
@@ -1212,3 +1213,45 @@ def test_image_caption_block_content(minimal_site, rf, serving_method):  # noqa:
             assert caption.find("a", href=expected.find("a")["href"]) is not None
         else:
             assert caption is None, "Unexpected <figcaption> in image without caption"
+
+
+# PullquoteBlock Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_pullquote_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Each pullquote renders a <blockquote> with optional author, citation and background color."""
+    variants = get_pullquote_variants()
+    soup = _serve_soup(get_pullquote_test_page(), minimal_site, rf, serving_method)
+
+    pullquotes = soup.find_all("figure", class_="m24-c-pullquote")
+    assert len(pullquotes) == len(variants)
+
+    for pullquote, variant in zip(pullquotes, variants):
+        value = variant["value"]
+        bg_color = value["settings"]["background_color"]
+        content = pullquote.parent
+        outer = content.parent
+        assert content.get("class") == ["m24-c-content"]
+        assert (outer.get("class") or []) == ([bg_color] if bg_color else [])
+
+        blockquote = pullquote.find("blockquote")
+        assert BeautifulSoup(value["quote"], "html.parser").get_text() in blockquote.get_text()
+
+        author = pullquote.find(class_="m24-c-pullquote-author")
+        citation = pullquote.find(class_="m24-c-pullquote-citation")
+        if value["author"]:
+            assert author.get_text() == value["author"]
+        else:
+            assert author is None
+        if value["citation"]:
+            expected = BeautifulSoup(value["citation"], "html.parser")
+            assert citation.get_text().strip() == expected.get_text()
+            for link in expected.find_all("a"):
+                assert citation.find("a", href=link["href"]) is not None, f"Expected link to {link['href']}"
+            assert citation.find("i") is not None
+        else:
+            assert citation is None
+
+        if not value["author"] and not value["citation"]:
+            assert pullquote.find("figcaption") is None

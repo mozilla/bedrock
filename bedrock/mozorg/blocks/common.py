@@ -815,3 +815,55 @@ class ImageCaptionBlock(blocks.StructBlock):
         icon = "image"
         label = "Image + Caption"
         label_format = "{image}"
+
+
+class PullquoteBlockSettings(blocks.StructBlock):
+    """Settings for the pullquote block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class PullquoteBlock(blocks.StructBlock):
+    """A pullquote with optional attribution."""
+
+    settings = PullquoteBlockSettings()
+
+    quote = blocks.RichTextBlock(
+        features=["bold", "italic", "link"],
+    )
+
+    author = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Name of the person being quoted.",
+    )
+
+    citation = blocks.RichTextBlock(
+        required=False,
+        features=["italic", "link", "bold"],
+        help_text="Flexible extra field for more information (author's title, name and/or link to the source, date, etc.)",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/pullquote_block.html"
+        icon = "openquote"
+        label = "Pullquote"
+        label_format = "{quote}"
