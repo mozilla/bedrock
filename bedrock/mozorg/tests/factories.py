@@ -357,6 +357,7 @@ class ProseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     two_column_layout = True
     reverse = False
     anchor_id = ""
+    heading_size = "m24-t-lg"
 
     class Meta:
         model = common.ProseBlockSettings

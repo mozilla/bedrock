@@ -889,11 +889,13 @@ def assert_prose_block_structure(prose_element: BeautifulSoup):
     Args:
         prose_element: BeautifulSoup element for the .m24-c-prose div
     """
-    hgroup = prose_element.find(class_="m24-c-prose-hgroup")
-    assert hgroup is not None, "Missing .m24-c-prose-hgroup element"
+    hgroup = prose_element.find(class_="m24-c-prose-heading")
+    assert hgroup is not None, "Missing .m24-c-prose-heading element"
+    assert hgroup.name == "hgroup"
+    assert "m24-c-intro" in hgroup["class"], "Expected the prose heading group to use the intro component"
 
-    heading = hgroup.find(class_="m24-c-prose-heading")
-    assert heading is not None, "Missing .m24-c-prose-heading element"
+    heading = hgroup.find(class_="m24-c-intro-title")
+    assert heading is not None, "Missing .m24-c-intro-title element"
     assert heading.name == "h2", f"Expected h2 heading, got {heading.name}"
 
     body = prose_element.find(class_="m24-c-prose-body")
@@ -909,13 +911,16 @@ def assert_prose_block_content(prose_element: BeautifulSoup, variant_data: dict)
     """
     value = variant_data["value"]
 
-    heading = prose_element.find(class_="m24-c-prose-heading")
+    hgroup = prose_element.find(class_="m24-c-prose-heading")
+    heading = hgroup.find(class_="m24-c-intro-title")
     assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
 
+    subheading = hgroup.find("p")
     if value["sub_heading"]:
-        subheading = prose_element.find(class_="m24-c-prose-subheading")
-        assert subheading is not None, "Missing .m24-c-prose-subheading element"
+        assert subheading is not None, "Missing sub-heading paragraph"
         assert value["sub_heading"] in subheading.get_text(), f"Sub-heading text '{value['sub_heading']}' not found"
+    else:
+        assert subheading is None, "Unexpected sub-heading paragraph"
 
     body = prose_element.find(class_="m24-c-prose-body")
     body_text = body.get_text()
@@ -969,6 +974,11 @@ def assert_prose_block_attributes(prose_element: BeautifulSoup, variant_data: di
         assert "m24-l-reversed" in prose_classes, "Expected 'm24-l-reversed' class for reversed layout"
     else:
         assert "m24-l-reversed" not in prose_classes, "Unexpected 'm24-l-reversed' class"
+
+    # Variants saved without heading_size fall back to the default (Large).
+    heading_size = settings.get("heading_size", "m24-t-lg")
+    heading = prose_element.find(class_="m24-c-intro-title")
+    assert heading["class"] == (["m24-c-intro-title", heading_size] if heading_size else ["m24-c-intro-title"])
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
@@ -1048,6 +1058,25 @@ def test_prose_block_cta_new_window(minimal_site, rf, serving_method):  # noqa: 
     assert cta_link.get("target") == "_blank", "Expected target='_blank'"
     assert "noopener" in cta_link.get("rel", []), "Expected 'noopener' in rel"
     assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
+
+
+def test_prose_block_without_heading_size_renders_large():
+    """Prose data saved before heading_size existed keeps its original size (Large)."""
+    block = common.ProseBlock()
+    value = block.to_python(
+        {
+            "settings": {"background_color": "", "two_column_layout": True, "reverse": False, "anchor_id": ""},
+            "heading": "Legacy prose",
+            "sub_heading": "",
+            "body": "<p>Body.</p>",
+            "cta_text": "",
+            "cta_link": {},
+        }
+    )
+
+    assert value["settings"]["heading_size"] == "m24-t-lg"
+    heading = BeautifulSoup(block.render(value), "html.parser").find(class_="m24-c-intro-title")
+    assert heading["class"] == ["m24-c-intro-title", "m24-t-lg"]
 
 
 # CTALinkRequiredMixin Tests
