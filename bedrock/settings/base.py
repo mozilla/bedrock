@@ -931,7 +931,8 @@ FOUNDATION_SUBSCRIBE_URL = f"{FOUNDATION_URL}/api/newsletter/mozillaorg"
 
 # Custom languages for the Foundation signup form; need specifying directly
 # because the form config is not provided by Basket
-FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES = config(
+FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGES = config(
+    # Misspelled env var name kept for compatibility with existing deployment config
     "FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGUES",
     default="en,de,fr,es,pl,pt",
     parser=ListOf(str),
