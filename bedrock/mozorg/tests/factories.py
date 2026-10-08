@@ -2,6 +2,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import uuid
+
 import factory
 import wagtail_factories
 from wagtail.rich_text import RichText
@@ -9,6 +11,20 @@ from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
 from bedrock.mozorg.blocks import advertising, common, navigation
+
+
+def _build_showcase_media():
+    """Build a single-entry ShowcaseMediaBlock StreamValue containing one ultrawide image."""
+    image = wagtail_factories.ImageChooserBlockFactory()
+    return common.ShowcaseMediaBlock().to_python(
+        [
+            {
+                "type": "ultrawide_image",
+                "value": {"image": {"image": image.id, "image_alt": ""}},
+                "id": str(uuid.uuid4()),
+            }
+        ]
+    )
 
 
 class LeadershipProfileSnippetFactory(factory.django.DjangoModelFactory):
@@ -265,6 +281,7 @@ class DonateBlockFactory(wagtail_factories.StructBlockFactory):
 class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
     background_color = ""
     anchor_id = ""
+    layout = "heading-body-media"
 
     class Meta:
         model = common.ShowcaseBlockSettings
@@ -274,8 +291,7 @@ class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
     heading = "State of Mozilla"
     body = RichText("<p>Read our annual report.</p>")
-    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
-    image_alt = ""
+    media = factory.LazyFunction(_build_showcase_media)
     cta_label = "Supporting a healthy internet"
     cta_text = "Read the report"
     cta_link = factory.SubFactory(LinkBlockFactory)

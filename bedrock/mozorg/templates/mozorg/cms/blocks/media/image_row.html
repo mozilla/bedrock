@@ -1,0 +1,24 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{#
+  The grid is a fixed 6 columns from $mq-sm up (2 below it) regardless of how
+  many images are in the row — blank trailing columns are expected when there
+  are fewer than 6. Every image is therefore always rendered at 1/6 (or 1/2
+  below $mq-sm) of the row width, independent of the actual image count.
+#}
+<div class="m24-c-showcase-row">
+  {% for item in value.images %}
+    {{ srcset_image(
+      item.image,
+      "fill-{100x150,200x300,400x600,600x900,800x1200,1000x1500}",
+      sizes="(min-width: 1440px) 216px, (min-width: 1312px) calc((100vw - 144px) / 6), (min-width: 768px) calc((100vw - 108px) / 6), (min-width: 480px) calc((100vw - 72px) / 6), calc((100vw - 40px) / 2)",
+      alt=item.image_alt if item.image_alt else "",
+      loading="lazy",
+      class="m24-c-showcase-image"
+    ) }}
+  {% endfor %}
+</div>
