@@ -625,6 +625,23 @@ class ShowcaseGalleryBlock(CTALinkRequiredMixin, blocks.StructBlock):
         )
 
 
+# Headings are left out so blocks with their own heading field can use this set without competing headings.
+RICHTEXT_BODY_FEATURES = [
+    "lede",
+    "hr",
+    "bold",
+    "italic",
+    "code",
+    "blockquote",
+    "superscript",
+    "link",
+    "ol",
+    "ul",
+]
+
+ARTICLE_RICHTEXT_FEATURES = ["h2", "h3", *RICHTEXT_BODY_FEATURES]
+
+
 class ProseBlockSettings(blocks.StructBlock):
     """Settings for the prose block."""
 
