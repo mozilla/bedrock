@@ -10,6 +10,9 @@ This module tests that Wagtail blocks render correctly by:
 3. Asserting that rendered output matches expected structure and content
 """
 
+import importlib
+from unittest.mock import patch
+
 import pytest
 import wagtail_factories
 from bs4 import BeautifulSoup
@@ -257,7 +260,7 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
     """Verify the springboard block content matches the input data.
 
     Args:
-        section_element: BeautifulSoup element for the section.m24-c-content
+        section_element: BeautifulSoup element for the block's outer section
         variant_data: The block data dictionary used to create the block
     """
     value = variant_data["value"]
@@ -267,30 +270,28 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
         heading = section_element.find("h3", class_="m24-c-intro-title")
         assert heading is not None, "Heading element not found when heading text provided"
         assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
-        assert heading.get("itemprop") == "sectionTitle", "Missing itemprop='sectionTitle' on heading"
+        heading_size = value["settings"].get("heading_size")
+        if heading_size:
+            assert heading_size in heading.get("class", []), f"Expected heading class '{heading_size}'"
     else:
-        heading = section_element.find("h3", class_="m24-c-intro-title")
+        heading = section_element.find(class_="m24-c-intro-title")
         assert heading is None, "Heading element should not exist when no heading text provided"
 
-    # Check column headers
+    intro = section_element.find("header", class_="m24-c-intro")
+    if value.get("intro"):
+        assert intro is not None, "Intro header not found when intro text provided"
+        assert "Optional intro text" in intro.get_text()
+        assert intro.find("b") is not None and intro.find("a", href="https://example.com") is not None
+    elif not value.get("heading"):
+        assert intro is None, "Intro header should not exist without a heading or intro"
+
+    # Column headings come from Fluent, not the block value
     springboard = section_element.find("ul", class_="m24-c-springboard")
     header_row = springboard.find("li", class_="m24-c-springboard-headings")
-
-    type_header = header_row.find(class_="m24-c-springboard-type")
-    assert value["column_one"] in type_header.get_text(), f"Column one text '{value['column_one']}' not found"
-    assert type_header.get("itemprop") == "columnOne", "Missing itemprop='columnOne'"
-
-    author_header = header_row.find(class_="m24-c-springboard-author")
-    assert value["column_two"] in author_header.get_text(), f"Column two text '{value['column_two']}' not found"
-    assert author_header.get("itemprop") == "columnTwo", "Missing itemprop='columnTwo'"
-
-    topic_header = header_row.find(class_="m24-c-springboard-topic")
-    assert value["column_three"] in topic_header.get_text(), f"Column three text '{value['column_three']}' not found"
-    assert topic_header.get("itemprop") == "columnThree", "Missing itemprop='columnThree'"
-
-    preview_header = header_row.find(class_="m24-c-springboard-preview")
-    assert value["column_four"] in preview_header.get_text(), f"Column four text '{value['column_four']}' not found"
-    assert preview_header.get("itemprop") == "columnFour", "Missing itemprop='columnFour'"
+    assert header_row.find(class_="m24-c-springboard-type").get_text(strip=True) == "Type"
+    assert header_row.find(class_="m24-c-springboard-author").get_text(strip=True) == "Author(s)"
+    assert header_row.find(class_="m24-c-springboard-topic").get_text(strip=True) == "Topic"
+    assert header_row.find(class_="m24-c-springboard-preview").get_text(strip=True) == "Intro"
 
     # Check springboard items
     items = springboard.find_all("li", class_="m24-c-springboard-item")
@@ -309,21 +310,15 @@ def assert_springboard_block_content(section_element: BeautifulSoup, variant_dat
         assert link is not None, f"Link not found in item {index}"
         assert link.get("href") == expected_item["url"], f"Wrong URL in item {index}"
 
-        # Check link_attributes rendered as data-link-text
-        if expected_item.get("link_attributes"):
-            assert link.get("data-link-text") == expected_item["link_attributes"], (
-                f"Wrong data-link-text in item {index}: expected '{expected_item['link_attributes']}', got '{link.get('data-link-text')}'"
-            )
+        assert link.get("data-link-text") == expected_item["preview"], f"Wrong data-link-text in item {index}"
 
         # Check type
         type_div = item.find(class_="m24-c-springboard-type")
         assert type_div is not None, f"Type div not found in item {index}"
         assert expected_item["type"] in type_div.get_text(), f"Wrong type text in item {index}"
 
-        # Check icon if present
-        if expected_item.get("type"):
-            icon = item.find("span", class_=f"m24-c-springboard-icon-{expected_item['type'].lower()}")
-            assert icon is not None, f"Icon with class 'm24-c-springboard-icon-{expected_item['type'].lower()}' not found in item {index}"
+        icon = item.find("span", class_=f"m24-c-springboard-icon-{expected_item['type'].lower()}")
+        assert icon is not None, f"Icon with class 'm24-c-springboard-icon-{expected_item['type'].lower()}' not found in item {index}"
 
         # Check author
         author_div = item.find(class_="m24-c-springboard-author")
@@ -345,7 +340,7 @@ def assert_springboard_block_attributes(section_element: BeautifulSoup, variant_
     """Verify the springboard block section has correct attributes.
 
     Args:
-        section_element: BeautifulSoup element for the section.m24-c-content
+        section_element: BeautifulSoup element for the block's outer section
         variant_data: The block data dictionary used to create the block
     """
     value = variant_data["value"]
@@ -395,7 +390,7 @@ def test_springboard_block_content(minimal_site, rf, serving_method):  # noqa: F
     response = getattr(test_page, serving_method)(request)
 
     soup = BeautifulSoup(response.content, "html.parser")
-    sections = soup.find_all("section", class_="m24-c-content")
+    sections = soup.find_all("section")
 
     # Filter sections that contain springboard blocks
     springboard_sections = [s for s in sections if s.find("ul", class_="m24-c-springboard")]
@@ -438,6 +433,71 @@ def test_springboard_fixture_returns_same_page_when_called_twice(minimal_site): 
     assert second_page is not None
     assert second_page.id == first_page.id
     assert second_page.slug == first_page.slug
+
+
+def test_springboard_block_type_and_topic_are_localized(minimal_site, rf):  # noqa: F811
+    """Choice values aren't translated by Smartling, so the template must render them via Fluent."""
+    test_page = get_springboard_test_page()
+    request = rf.get(test_page.relative_url(minimal_site))
+
+    with patch("lib.l10n_utils.fluent.translate", lambda l10n, message_id, fallback=None, **kwargs: f"tr:{message_id}"):
+        response = test_page.serve(request)
+
+    soup = BeautifulSoup(response.content, "html.parser")
+    # Index 0 is the headings row
+    first_item = soup.find_all("li", class_="m24-c-springboard-item")[1]
+    assert first_item.find(class_="m24-c-springboard-type").get_text(strip=True) == "tr:m24-cms-springboard-type-article"
+    assert first_item.find(class_="m24-c-springboard-topic").get_text(strip=True) == "tr:m24-cms-springboard-topic-privacy-security"
+
+
+@pytest.mark.parametrize("field", ("url", "type", "author", "topic", "preview"))
+def test_springboard_item_fields_are_required(field):
+    block = common.SpringboardItemBlock()
+    value = block.to_python(
+        {
+            "url": "https://example.com/article",
+            "type": "Article",
+            "author": "Jane Doe",
+            "topic": "News",
+            "preview": "A headline",
+        }
+    )
+    value[field] = ""
+
+    with pytest.raises(StructBlockValidationError) as exc_info:
+        block.clean(value)
+    assert field in exc_info.value.block_errors
+
+
+@pytest.mark.parametrize("field, max_length", (("author", 100), ("preview", 120), ("url", 255)))
+def test_springboard_item_max_length(field, max_length):
+    block = common.SpringboardItemBlock()
+    value = block.to_python(
+        {
+            "url": "https://example.com/article",
+            "type": "Article",
+            "author": "Jane Doe",
+            "topic": "News",
+            "preview": "A headline",
+        }
+    )
+    value[field] = "https://example.com/" + "a" * max_length if field == "url" else "a" * (max_length + 1)
+
+    with pytest.raises(StructBlockValidationError) as exc_info:
+        block.clean(value)
+    assert field in exc_info.value.block_errors
+
+
+def test_springboard_heading_size_migration_operation():
+    migration = importlib.import_module("bedrock.mozorg.migrations.0055_springboard_heading_size_small")
+    operation = migration.SetDefaultHeadingSizeOperation()
+
+    assert operation.apply({"anchor_id": "media", "background_color": ""}) == {
+        "anchor_id": "media",
+        "background_color": "",
+        "heading_size": "m24-t-sm",
+    }
+    assert operation.apply({"anchor_id": "", "background_color": "", "heading_size": ""})["heading_size"] == ""
 
 
 # ShowcaseBlock Tests
