@@ -103,7 +103,7 @@ If Wagtail or a Wagtail-related library is upgraded, verify if overrides and cus
 * `bedrock/cms/models/locale.py` - the custom Locale model could have attributes or methods that break Wagtail's Locale implementation
 * `bedrock/cms/wagtail_hooks.py` - verify that the hooks honor the contracts expected by Wagtail
 * `bedrock/admin/templates/wagtailadmin/` and `bedrock/cms/templates/wagtailcore/` - verify that the Wagtail admin and core template overrides are still compatible with the originals
-* `bedrock/cms/models/pages.py`, `bedrock/anonym/models.py`, `bedrock/mozorg/models.py` and `bedrock/products/models.py` - verify that the page models, snippets, mixins and subclasses respect Wagtail's classes' implementation
+* `bedrock/cms/models/pages.py`, `bedrock/mozorg/models.py` and `bedrock/products/models.py` - verify that the page models, snippets, mixins and subclasses respect Wagtail's classes' implementation
 * `bedrock/cms/fields.py` - verify that custom fields respect the contracts from the classes they inherit from
 
 # What Not to Do

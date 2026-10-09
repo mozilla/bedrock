@@ -525,7 +525,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -1449,7 +1449,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -2044,7 +2044,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
@@ -2638,7 +2638,7 @@ class Migration(migrations.Migration):
                             34: (
                                 "wagtail.blocks.PageChooserBlock",
                                 (),
-                                {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]},
+                                {"page_type": ["wagtailcore.Page"]},
                             ),
                             35: (
                                 "wagtail.blocks.ListBlock",
