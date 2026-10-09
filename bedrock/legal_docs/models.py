@@ -32,7 +32,7 @@ def process_md_file(file_path):
             ],
         )
         content = output.getvalue().decode("utf-8")
-    except OSError:
+    except (OSError, UnicodeDecodeError):
         content = None
     finally:
         output.close()
