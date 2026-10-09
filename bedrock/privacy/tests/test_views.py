@@ -111,6 +111,7 @@ class TestProcessLegalDoc(TestCase):
         assert self.hrefs('<a href="/en-US/privacy/">Privacy</a>') == ["/en-US/privacy/"]
 
     def test_only_the_start_of_an_href_is_matched(self):
+        # `HREF_PATTERN` is anchored, so a mozilla.org URL further into the href stays put
         href = "https://example.com/redirect?to=https://www.mozilla.org/en-US/"
         assert self.hrefs(f'<a href="{href}">Redirect</a>') == [href]
 
@@ -172,6 +173,7 @@ class TestPrivacyIndexView(TestCase):
             views.privacy(req)
 
     def test_missing_doc_gives_404_end_to_end(self):
+        # The test DB has no `LegalDoc` rows, so `load_legal_doc` returns `None` without mocking
         resp = self.client.get("/en-US/privacy/")
         assert resp.status_code == 404
 
