@@ -4,11 +4,11 @@
 
 from functools import total_ordering
 
+from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
 from django.template.defaultfilters import slugify
 
 from django_extensions.db.fields import ModificationDateTimeField
-from django_extensions.db.fields.json import JSONField
 from product_details.version_compare import Version
 
 from bedrock.base.urlresolvers import reverse
@@ -72,7 +72,8 @@ class SecurityAdvisory(models.Model):
     year = models.IntegerField()
     order = models.IntegerField()
     fixed_in = models.ManyToManyField(Product, related_name="advisories")
-    extra_data = JSONField()
+    # YAML front matter can hold dates, which the default JSON encoder rejects.
+    extra_data = models.JSONField(default=dict, encoder=DjangoJSONEncoder)
     html = models.TextField()
     last_modified = ModificationDateTimeField()
 
