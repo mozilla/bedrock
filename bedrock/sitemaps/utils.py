@@ -82,12 +82,12 @@ def get_static_urls():
     # start with the ones we know we want
     urls.update(settings.EXTRA_INDEX_URLS)
 
-    # get the en-US URLs, whatever language is active
+    # get_resolver is an undocumented but convenient function.
+    # Try to retrieve all valid URLs on this site, in en-US whatever
+    # language is active.
     with translation.override(settings.LANGUAGE_CODE):
         reverse_dict = resolvers.get_resolver(None).reverse_dict
 
-    # get_resolver is an undocumented but convenient function.
-    # Try to retrieve all valid URLs on this site.
     # NOTE: have to use `lists()` here since the standard
     # `items()` only returns the first item in the list for the
     # view since `reverse_dict` is a `MultiValueDict`.
