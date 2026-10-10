@@ -49,7 +49,7 @@ def get_security_urls():
     for advisory in SecurityAdvisory.objects.all():
         try:
             # reverse in en-US, whatever language is active
-            with translation.override("en-US"):
+            with translation.override(settings.LANGUAGE_CODE):
                 adv_url = advisory.get_absolute_url()
         except resolvers.NoReverseMatch:
             continue
