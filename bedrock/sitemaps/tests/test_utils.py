@@ -284,9 +284,9 @@ def test_get_security_urls():
 
 def test_get_security_urls__other_language_active():
     _create_advisory("2024-01")
+    expected = get_security_urls()
     with translation.override("fr"):
-        urls = get_security_urls()
-    assert "/security/advisories/mfsa2024-01/" in urls
+        assert get_security_urls() == expected
 
 
 @pytest.fixture
