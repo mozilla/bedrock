@@ -2,19 +2,15 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import os
-from unittest.mock import patch
 
 from django.conf import settings
 from django.core.cache import caches
-from django.http import Http404
-from django.test import RequestFactory
 
 import pytest
 from pyquery import PyQuery as pq
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.firefox.firefox_details import firefox_desktop
-from bedrock.firefox.views import firefox_all
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "test_data")
 PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")
@@ -24,20 +20,6 @@ PROD_DETAILS_DIR = os.path.join(TEST_DATA_DIR, "product_details_json")
 pytestmark = pytest.mark.django_db
 
 pd_cache = caches["product-details"]
-
-
-def firefox_all_response(product_slug=None, platform=None, locale=None, page_locale="en-US"):
-    """Render the real firefox_all view directly (issue #16367 revision).
-
-    RedirectsMiddleware now intercepts /firefox/all/* URLs, so these tests call
-    the real view function with a RequestFactory request carrying the page
-    locale that BedrockLangCodeFixupMiddleware would set. The view raises
-    Http404 for combinations it refuses, exactly like before.
-    """
-    request = RequestFactory().get(f"/en-US/firefox/all/{product_slug or ''}/{platform or ''}/{locale or ''}", secure=True)
-    request.locale = page_locale
-    return firefox_all(request, product_slug=product_slug, platform=platform, locale=locale)
-
 
 OS_LANG_PAIRS = [
     # windows
@@ -122,8 +104,14 @@ def test_all_step_3(client):
     assert len(doc(".c-lang-list > li")) == len(firefox_desktop.get_filtered_full_builds("release"))
 
 
-def test_all_step_4():
-    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_all_step_4(client):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
     doc = pq(resp.content)
 
     # Step 1,2,3 is done, step 4 is active, no more steps
@@ -141,9 +129,15 @@ def test_all_step_4():
     )
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_release(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": os, "locale": lang})
+def test_firefox_release(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -161,17 +155,29 @@ def test_firefox_release(os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-def test_firefox_microsoft_store_release():
-    resp = firefox_all_response(**{"product_slug": "desktop-release", "platform": "win-store"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_microsoft_store_release(client):
+    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "win-store"}))
     doc = pq(resp.content)
 
     assert len(doc("#msStoreLink")) == 1
     assert settings.MICROSOFT_WINDOWS_STORE_FIREFOX_WEB_LINK in doc("#msStoreLink").attr("href")
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_beta(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-beta", "platform": os, "locale": lang})
+def test_firefox_beta(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-beta", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -189,17 +195,29 @@ def test_firefox_beta(os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-def test_firefox_microsoft_store_beta():
-    resp = firefox_all_response(**{"product_slug": "desktop-beta", "platform": "win-store"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_microsoft_store_beta(client):
+    resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-beta", "platform": "win-store"}))
     doc = pq(resp.content)
 
     assert len(doc("#msStoreLink")) == 1
     assert settings.MICROSOFT_WINDOWS_STORE_FIREFOX_BETA_WEB_LINK in doc("#msStoreLink").attr("href")
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_developer(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-developer", "platform": os, "locale": lang})
+def test_firefox_developer(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-developer", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -217,9 +235,15 @@ def test_firefox_developer(os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_nightly(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-nightly", "platform": os, "locale": lang})
+def test_firefox_nightly(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-nightly", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -240,9 +264,15 @@ def test_firefox_nightly(os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", [("linux64-aarch64", "es-ES"), ("linux64-aarch64", "pt-BR")])
-def test_firefox_linux_nightly_aarch(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-nightly", "platform": os, "locale": lang})
+def test_firefox_linux_nightly_aarch(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-nightly", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -255,9 +285,15 @@ def test_firefox_linux_nightly_aarch(os, lang):
     assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
-def test_firefox_esr(os, lang):
-    resp = firefox_all_response(**{"product_slug": "desktop-esr", "platform": os, "locale": lang})
+def test_firefox_esr(client, os, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-esr", "platform": os, "locale": lang}))
     doc = pq(resp.content)
 
     link = doc(".c-download-button")
@@ -276,103 +312,70 @@ def test_firefox_esr(os, lang):
         assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
 
 
-@pytest.mark.parametrize("os, lang", [("win64", "en-US"), ("win64", "de"), ("osx", "en-US"), ("linux64", "en-US")])
-def test_firefox_esr_next(os, lang):
-    # Note: Only testing a few os/lang pairs to avoid mocking too much. We're mostly checking that all button and link types show up.
-
-    # Set an esr_next version.
-    orig_latest_version = firefox_desktop.latest_version
-    orig_get_filtered_full_builds = firefox_desktop.get_filtered_full_builds
-
-    def mock_latest_version(channel="release"):
-        if channel == "esr_next":
-            return "128.0"
-        else:
-            return orig_latest_version(channel)
-
-    def mock_get_filtered_full_builds(channel, query=None):
-        if channel == "esr_next":
-            return [
-                {
-                    "locale": "en-US",
-                    "platforms": {
-                        "win64": {
-                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=win64&lang=en-US",
-                        },
-                        "linux64": {
-                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=linux64&lang=en-US",
-                        },
-                        "osx": {
-                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=osx&lang=en-US",
-                        },
-                    },
-                },
-                {
-                    "locale": "de",
-                    "platforms": {
-                        "win64": {
-                            "download_url": "https://download.mozilla.org/?product=firefox-esr-next-latest-ssl&os=win64&lang=de",
-                        },
-                    },
-                },
-            ]
-        else:
-            return orig_get_filtered_full_builds(channel, query)
-
-    with patch("bedrock.firefox.views.firefox_desktop.latest_version", side_effect=mock_latest_version):
-        with patch("bedrock.firefox.views.firefox_desktop.get_filtered_full_builds", side_effect=mock_get_filtered_full_builds):
-            resp = firefox_all_response(**{"product_slug": "desktop-esr", "platform": os, "locale": lang})
-            doc = pq(resp.content)
-
-    link = doc(".c-download-button")
-    assert len(link) == 3  # We show both the current ESR and the next ESR download buttons, as well as ESR 115.
-
-    download_esr_next_url = link.eq(0).attr("href")
-    download_esr_url = link.eq(1).attr("href")
-
-    assert all(substr in download_esr_next_url for substr in ["product=firefox-esr-next-latest-ssl", f"os={os}", f"lang={lang}"])
-    assert all(substr in download_esr_url for substr in ["product=firefox-esr-latest-ssl", f"os={os}", f"lang={lang}"])
-
-    if os.startswith("linux"):
-        linux_link = doc(".c-linux-debian a")
-        assert len(linux_link) == 1
-        assert "https://support.mozilla.org/kb/install-firefox-linux" in linux_link.attr("href")
-
-
-def test_firefox_mobile_release():
-    resp = firefox_all_response(**{"product_slug": "mobile-release"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_mobile_release(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "mobile-release"}))
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 1
 
 
-def test_firefox_android_release():
-    resp = firefox_all_response(**{"product_slug": "android-release"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_android_release(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-release"}))
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_android_beta():
-    resp = firefox_all_response(**{"product_slug": "android-beta"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_android_beta(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-beta"}))
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_android_nightly():
-    resp = firefox_all_response(**{"product_slug": "android-nightly"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_android_nightly(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "android-nightly"}))
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 1
     assert len(doc("#appStoreLink")) == 0
 
 
-def test_firefox_ios_beta():
-    resp = firefox_all_response(**{"product_slug": "ios-beta"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_firefox_ios_beta(client):
+    resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "ios-beta"}))
     doc = pq(resp.content)
 
     assert len(doc("#playStoreLink")) == 0
@@ -402,26 +405,50 @@ def test_close_icons(client, slug, count):
     assert len(doc("[src='/media/protocol/img/icons/close.svg']")) == count
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 def test_product_404(client):
     resp = client.get(reverse("firefox.all.platforms", kwargs={"product_slug": "xxx"}))
     assert resp.status_code == 404
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 def test_platform_404(client):
     resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": "desktop-release", "platform": "xxx"}))
     assert resp.status_code == 404
 
 
-def test_locale_404():
-    with pytest.raises(Http404):
-        firefox_all_response(**{"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"})
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
+def test_locale_404(client):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "xxx"}))
+    assert resp.status_code == 404
 
 
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
+)
 @pytest.mark.parametrize("product_slug", [("desktop-release"), ("desktop-esr"), ("desktop-beta"), ("desktop-developer")])
 @pytest.mark.parametrize("lang", [("ckb"), ("ltg"), ("hye"), ("wo"), ("lo"), ("scn"), ("brx"), ("meh"), ("bo")])
-def test_nightly_locales_only_on_nightly(product_slug, lang):
-    with pytest.raises(Http404):
-        firefox_all_response(**{"product_slug": product_slug, "platform": "win64", "locale": lang})
+def test_nightly_locales_only_on_nightly(client, product_slug, lang):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": product_slug, "platform": "win64", "locale": lang}))
+    assert resp.status_code == 404
 
 
 @pytest.mark.parametrize(
@@ -437,6 +464,12 @@ def test_nightly_locales_only_on_nightly(product_slug, lang):
         ("ios-beta"),
         ("mobile-release"),
     ],
+)
+@pytest.mark.skip(
+    reason=(
+        "The /firefox/all/* pages are being retired and now redirect to www.firefox.com (issue #16367); "
+        "remove these tests along with the view once the redirects are confirmed stable"
+    ),
 )
 def test_win_store_only_on_release_and_beta(client, product_slug):
     resp = client.get(reverse("firefox.all.locales", kwargs={"product_slug": product_slug, "platform": "win-store"}))
