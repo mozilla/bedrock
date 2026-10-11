@@ -35,7 +35,6 @@ build.py
 db.sql
 Desktop.ini
 docs/site
-media/js/libs/glean
 node_modules
 npm-debug.log
 pip-log.txt

@@ -1,0 +1,23 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% from "macros-m24.html" import m24_intro with context %}
+
+{% set bg_color = value.settings.background_color|default("", true) %}
+{% set heading_level = block_level if block_level else 1 %}
+
+<section class="m24-c-intro-section{% if bg_color %} {{ bg_color }}{% endif %}">
+  <div class="m24-c-content">
+    {% call m24_intro(
+      heading=value.heading,
+      heading_level=heading_level,
+      heading_size=value.settings.heading_size,
+      tag="div"
+    ) %}
+      {% if value.body %}{{ value.body|richtext }}{% endif %}
+    {% endcall %}
+  </div>
+</section>

@@ -1,0 +1,76 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use '../vars/lib' as *;
+
+.m24-c-tabs-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.m24-c-tabs-item {
+    margin: 0;
+    border: $spacer-xs solid $m24-color-alt-black;
+}
+
+.m24-c-tabs-link {
+    background-color: $m24-color-alt-black;
+    color: $m24-color-white;
+    display: inline-block;
+    font-size: $text-button-sm;
+    font-weight: 600;
+    padding: $spacer-xs;
+    text-decoration: none;
+
+    &:hover {
+        background-color: $m24-color-white;
+        color: $m24-color-alt-black;
+    }
+
+    // currentColor keeps the ring visible against both the black and
+    // white background states of the link.
+    &:focus-visible {
+        outline-color: currentColor;
+        outline-offset: $spacer-2xs;
+    }
+}
+
+.m24-c-tabs-panel {
+    scroll-margin-top: $layout-lg;
+
+    // Only the panel itself receives this, not when a mouse user clicks a
+    // focusable child inside it (unlike :focus-within, which would).
+    &:focus-visible {
+        outline-offset: $spacer-2xs;
+    }
+
+    // remove extra element which becomes its own grid item if left
+    .mzp-l-columns::after {
+        display: none;
+    }
+}
+
+// Basic: no JS, or JS unsupported.
+.m24-c-tabs-is-basic {
+    .m24-c-tabs-item {
+        margin-inline-end: $spacer-sm;
+    }
+}
+
+// Enhanced: JS has taken over
+.m24-c-tabs-is-enhanced {
+    .m24-c-tabs-item {
+        margin-block-end: $spacer-xl;
+    }
+
+    .m24-c-tabs-link[aria-selected='true'] {
+        background-color: $m24-color-white;
+        color: $m24-color-alt-black;
+    }
+
+    .m24-c-tabs-panel-heading {
+        @include visually-hidden;
+    }
+}

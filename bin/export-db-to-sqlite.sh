@@ -162,14 +162,6 @@ python manage.py dumpdata \
     cms.SimpleRichTextPage \
     cms.BedrockImage \
     legal_docs.LegalDoc \
-    anonym.AnonymIndexPage \
-    anonym.AnonymContentSubPage \
-    anonym.AnonymNewsPage \
-    anonym.AnonymNewsItemPage \
-    anonym.AnonymCaseStudyItemPage \
-    anonym.AnonymCaseStudyPage \
-    anonym.AnonymContactPage \
-    anonym.Person \
     mozorg.WebvisionDoc \
     mozorg.LeadershipProfileSnippet \
     mozorg.OrganizationLeadershipIndexPage \
@@ -179,6 +171,8 @@ python manage.py dumpdata \
     mozorg.ContentSubpage \
     mozorg.HomePage \
     mozorg.AboutUsPage \
+    mozorg.FreeformPage \
+    mozorg.ArticlePage \
     mozorg.ContactBannerSnippet \
     mozorg.NotificationSnippet \
     newsletter.Newsletter \

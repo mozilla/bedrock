@@ -4,9 +4,10 @@
 
 from unittest.mock import patch
 
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.test.client import RequestFactory
 
+from bs4 import BeautifulSoup
 from waffle.models import Switch
 from waffle.testutils import override_switch
 
@@ -80,5 +81,109 @@ class TestFirefoxPrivacyNextViewBehaviour(TestCase):
             assert resp.status_code == 200
             assert render_mock.call_args_list[0][0][1] == "privacy/notices/firefox-intro.html"
 
+    @patch.object(views.PrivacyDocView, "get_legal_doc")
+    @patch("bedrock.privacy.views.l10n_utils.render", return_value=HttpResponse())
+    def test_simple_template_for_the_product_variant(self, render_mock, lld_mock):
+        with override_switch("ENABLE_FIREFOX_PRIVACY_NEXT", active=True):
+            lld_mock.return_value["content"].select.return_value = None
+            resp = self.client.get("/en-US/privacy/firefox/next/?v=product")
+            assert resp.status_code == 200
+            assert render_mock.call_args[0][1] == "privacy/notices/firefox-simple.html"
+
     def test_uses_correct_view_class(self):
         assert isinstance(views.firefox_notices_preview.view_class(), views.FirefoxPrivacyPreviewDocView)
+
+
+class TestProcessLegalDoc(TestCase):
+    def hrefs(self, html):
+        return [link["href"] for link in views.process_legal_doc(html).find_all("a")]
+
+    def test_returns_a_soup_object(self):
+        doc = views.process_legal_doc("<p>Legalese</p>")
+        assert isinstance(doc, BeautifulSoup)
+        assert doc.find("p").text == "Legalese"
+
+    def test_mozorg_links_become_paths(self):
+        assert self.hrefs('<a href="https://www.mozilla.org/en-US/about/">About</a>') == ["/en-US/about/"]
+        assert self.hrefs('<a href="http://www.mozilla.org/en-US/about/">About</a>') == ["/en-US/about/"]
+
+    def test_relative_links_are_untouched(self):
+        assert self.hrefs('<a href="/en-US/privacy/">Privacy</a>') == ["/en-US/privacy/"]
+
+    def test_only_the_start_of_an_href_is_matched(self):
+        # `HREF_PATTERN` is anchored, so a mozilla.org URL further into the href stays put
+        href = "https://example.com/redirect?to=https://www.mozilla.org/en-US/"
+        assert self.hrefs(f'<a href="{href}">Redirect</a>') == [href]
+
+    def test_every_matching_link_is_rewritten(self):
+        html = (
+            '<a href="https://www.mozilla.org/en-US/about/">About</a>'
+            '<a href="https://www.mozilla.org/en-US/contact/">Contact</a>'
+            '<a href="https://example.com/">Example</a>'
+        )
+        assert self.hrefs(html) == ["/en-US/about/", "/en-US/contact/", "https://example.com/"]
+
+
+class TestPrivacyDocView(TestCase):
+    def get_legal_doc(self, doc):
+        with patch("bedrock.legal_docs.views.load_legal_doc", return_value=doc):
+            view = views.PrivacyDocView()
+            view.request = RequestFactory().get("/en-US/privacy/websites/")
+            return view.get_legal_doc()
+
+    def test_content_is_processed(self):
+        doc = self.get_legal_doc(
+            {
+                "content": '<a href="https://www.mozilla.org/en-US/about/">About</a>',
+                "active_locales": ["de", "en-US"],
+            }
+        )
+        assert isinstance(doc["content"], BeautifulSoup)
+        assert doc["content"].find("a")["href"] == "/en-US/about/"
+        assert doc["active_locales"] == ["de", "en-US"]
+
+    def test_missing_doc_is_passed_through(self):
+        assert self.get_legal_doc(None) is None
+
+
+class TestPrivacyIndexView(TestCase):
+    @patch("bedrock.privacy.views.l10n_utils.render", return_value=HttpResponse())
+    @patch("bedrock.privacy.views.load_legal_doc")
+    def test_renders_processed_doc(self, load_mock, render_mock):
+        load_mock.return_value = {
+            "content": '<a href="https://www.mozilla.org/en-US/about/">About</a>',
+            "active_locales": ["de", "en-US"],
+        }
+        req = RequestFactory().get("/de/privacy/")
+        req.locale = "de"
+        views.privacy(req)
+
+        load_mock.assert_called_once_with("mozilla_privacy_policy", "de")
+        args, kwargs = render_mock.call_args
+        assert args[1] == "privacy/index.html"
+        assert args[2]["doc"].find("a")["href"] == "/en-US/about/"
+        assert args[2]["active_locales"] == ["de", "en-US"]
+        assert kwargs["ftl_files"] == "privacy/index"
+
+    @patch("bedrock.privacy.views.load_legal_doc", return_value=None)
+    def test_missing_doc_gives_404(self, load_mock):
+        req = RequestFactory().get("/en-US/privacy/")
+        req.locale = "en-US"
+        with self.assertRaises(Http404):
+            views.privacy(req)
+
+    def test_missing_doc_gives_404_end_to_end(self):
+        # The test DB has no `LegalDoc` rows, so `load_legal_doc` returns `None` without mocking
+        resp = self.client.get("/en-US/privacy/")
+        assert resp.status_code == 404
+
+
+class TestPrivacyFAQView(TestCase):
+    @patch("bedrock.privacy.views.ftl_file_is_active", return_value=True)
+    def test_v2_template_when_ftl_file_is_active(self, ftl_mock):
+        assert views.FAQView().get_template_names() == ["privacy/faq-v2.html"]
+        ftl_mock.assert_called_once_with("privacy/faq-v2")
+
+    @patch("bedrock.privacy.views.ftl_file_is_active", return_value=False)
+    def test_legacy_template_when_ftl_file_is_inactive(self, ftl_mock):
+        assert views.FAQView().get_template_names() == ["privacy/faq.html"]

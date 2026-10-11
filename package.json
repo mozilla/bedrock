@@ -4,28 +4,27 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^8.0.5",
+    "@babel/preset-env": "^8.0.5",
     "@mozilla-protocol/core": "^22.0.0",
-    "@mozilla/glean": "^5.0.3",
     "@mozmeao/consent-banner": "^1.1.1",
     "@mozmeao/cookie-helper": "^1.1.0",
     "@mozmeao/dnt-helper": "^1.0.0",
     "@mozmeao/trafficcop": "^3.1.0",
-    "@sentry/browser": "^10.56.0",
+    "@sentry/browser": "^10.75.0",
     "babel-loader": "^10.1.1",
-    "caniuse-lite": "^1.0.30001793",
+    "caniuse-lite": "^1.0.30001810",
     "copy-webpack-plugin": "^14.0.0",
-    "css-loader": "^7.1.4",
+    "css-loader": "^7.1.5",
     "css-minimizer-webpack-plugin": "^8.0.0",
     "embla-carousel": "^8.6.0",
     "mini-css-extract-plugin": "^2.10.2",
     "sass": "1.91.0",
-    "sass-loader": "^17.0.0",
+    "sass-loader": "^17.0.1",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.107.2",
-    "webpack-cli": "^7.0.3"
+    "webpack": "^5.111.1",
+    "webpack-cli": "^7.2.3"
   },
   "repository": {
     "type": "git",
@@ -40,17 +39,17 @@
     "@eslint/js": "^10.0.1",
     "concurrently": "^10.0.3",
     "dotenv-webpack": "^9.0.0",
-    "eslint": "^10.8.0",
+    "eslint": "^10.11.0",
     "eslint-config-prettier": "^10.1.8",
     "glob": "^13.0.6",
-    "globals": "^17.6.0",
+    "globals": "^17.12.0",
     "jasmine-browser-runner": "^5.0.0",
-    "jasmine-core": "^7.0.1",
-    "prettier": "^3.3.3",
+    "jasmine-core": "^7.0.2",
+    "prettier": "^3.9.9",
     "sinon": "^22.0.0",
-    "stylelint": "^16.10.0",
+    "stylelint": "^16.26.1",
     "stylelint-config-standard-scss": "^13.1.0",
-    "svgo": "^4.0.0",
+    "svgo": "^4.1.0",
     "webpack-dev-server": "^5.2.4"
   },
   "scripts": {
@@ -61,18 +60,16 @@
     "test-build": "webpack --config webpack.test.config.js --mode=development",
     "jasmine": "npm run test-build && npx jasmine-browser-runner runSpecs --config=tests/unit/jasmine-browser.json && npx jasmine-browser-runner runSpecs --browser=chrome --config=tests/unit/jasmine-browser.json",
     "jasmine-serve": "concurrently \"webpack --watch --config webpack.test.config.js --mode=development\" \"npx jasmine-browser-runner serve --config=tests/unit/jasmine-browser.json\"",
-    "test": "npm run glean && npm run lint && npm run jasmine",
+    "test": "npm run lint && npm run jasmine",
     "static": "webpack --config webpack.static.config.js --mode=production --bail",
-    "prebuild": "npm run glean && npm run static",
+    "prebuild": "npm run static",
     "build": "webpack --mode=production --bail --progress",
-    "prewatch": "npm run glean && npm run static",
+    "prewatch": "npm run static",
     "watch": "webpack serve --mode=development --progress",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check .",
     "stylelint-fix": "npx stylelint \"media/css/**/*.{css,scss}\" --fix",
-    "format": "npm run prettier && npm run stylelint-fix",
-    "glean-lint": "glean glinter glean/metrics.yaml",
-    "glean": "npm run glean-lint && glean translate glean/metrics.yaml -f javascript -o media/js/libs/glean/"
+    "format": "npm run prettier && npm run stylelint-fix"
   },
   "browserslist": [
     "defaults",
@@ -80,9 +77,6 @@
   ],
   "overrides": {
     "sockjs": {
-      "uuid": "^11.1.1"
-    },
-    "@mozilla/glean": {
       "uuid": "^11.1.1"
     },
     "glob": "^13.0.6",

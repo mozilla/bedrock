@@ -17,6 +17,15 @@ class CmsConfig(AppConfig):
         # Replace Wagtail's formfield_for_dbfield with our SVG-sanitizing version
         self._patch_image_form_field()
 
+        self._connect_audit_log_receivers()
+
+    @staticmethod
+    def _connect_audit_log_receivers():
+        """Send every new Wagtail audit log entry, and every user deletion, to the audit.wagtail logger."""
+        # Imported here because importing the module connects its receivers, and it imports
+        # Wagtail models, which cannot be imported while the app registry is still loading.
+        from bedrock.cms import audit_log  # noqa: F401
+
     @staticmethod
     def _patch_locale_get_active():
         """

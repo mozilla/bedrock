@@ -45,18 +45,12 @@ _csp_connect_src = {
     "o1069899.ingest.sentry.io",
     "o1069899.sentry.io",
     "region1.google-analytics.com",
-    "telemetry.transcend.io",  # Transcend Consent Management
-    "telemetry.us.transcend.io",  # Transcend Consent Management
-    "cdn.transcend.io",  # Transcend Consent Management
-    "transcend-cdn.com",  # Transcend Consent Management
     "googletagmanager.com",
     "*.googletagmanager.com",
     "google-analytics.com",
     "*.google-analytics.com",
     "analytics.google.com",  # WT-1453
     "*.analytics.google.com",  # WT-1453
-    # This is for glean pings and deletion requests.
-    "www.mozilla.org/submit/bedrock/",
     BASKET_URL,
     FXA_ENDPOINT,
     FOUNDATION_URL,
@@ -105,11 +99,9 @@ _csp_media_src = {
 _csp_script_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
-    "cdn.transcend.io",  # Transcend Consent Management
     "js.stripe.com",
     "s.ytimg.com",
     "tagmanager.google.com",
-    "transcend-cdn.com",  # Transcend Consent Management
     "googletagmanager.com",
     "*.googletagmanager.com",
     "google-analytics.com",
@@ -123,13 +115,7 @@ _csp_style_src = {
     csp.constants.SELF,
     CSP_ASSETS_HOST,
     csp.constants.UNSAFE_INLINE,
-    "cdn.transcend.io",  # Transcend Consent Management
-    "transcend-cdn.com",  # Transcend Consent Management
 }
-
-# Transcend Consent Management UI uses CSS-in-JS which requires inline styles.
-if TRANSCEND_AIRGAP_URL:  # noqa: F405
-    _csp_style_src.add(csp.constants.UNSAFE_INLINE)
 
 # When server-side GTM is enabled, our own tagging server serves gtm.js
 # (`script-src`) and receives measurement hits. Google documents `connect-src`,

@@ -157,14 +157,6 @@ SendToDevice.prototype.onFormSuccess = function () {
         event: 'send_to_device',
         method: 'email'
     });
-
-    // Glean
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.clickEvent({
-            id: 'send_to_device',
-            type: 'email'
-        });
-    }
 };
 
 SendToDevice.prototype.onFormError = function (msg) {

@@ -110,6 +110,18 @@ urlpatterns = (
         active_locales=["en-US"],
     ),
     page(
+        "archive/anonym/privacy-policy-2026-10/",
+        "privacy/archive/anonym-privacy-policy-2026-10.html",
+        ftl_files=["privacy/index"],
+        active_locales=["en-US"],
+    ),
+    page(
+        "archive/anonym/terms-2026-10/",
+        "privacy/archive/anonym-terms-2026-10.html",
+        ftl_files=["privacy/index"],
+        active_locales=["en-US"],
+    ),
+    page(
         "firefox/update/dec2025/",
         "privacy/firefox-update-dec2025.html",
         active_locales=["en-US", "cs", "de", "es-ES", "fr", "hu", "id", "it", "ja", "nl", "pl", "pt-BR", "ru", "zh-CN"],

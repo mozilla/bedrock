@@ -36,7 +36,6 @@ from wagtail_localize.models import StringSegment, Translation, TranslationSourc
 from wagtail_localize.segments.extract import extract_segments
 from wagtail_localize.segments.types import StringSegmentValue
 
-from bedrock.anonym.models import Person
 from bedrock.mozorg.models import ContactBannerSnippet
 from bedrock.products.models import MonitorCallToActionSnippet, VPNCallToActionSnippet
 
@@ -49,7 +48,6 @@ TRANSLATABLE_SNIPPET_MODELS = [
     ContactBannerSnippet,
     VPNCallToActionSnippet,
     MonitorCallToActionSnippet,
-    Person,
 ]
 
 

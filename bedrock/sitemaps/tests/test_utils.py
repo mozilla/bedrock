@@ -7,7 +7,7 @@ from unittest.mock import patch
 import pytest
 from wagtail.models import Locale, Page, PageViewRestriction, Site
 
-from bedrock.anonym.models import AnonymNewsItemPage, AnonymNewsPage
+from bedrock.cms.models import SimpleRichTextPage
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory, StructuralPageFactory
 from bedrock.sitemaps.utils import (
     _path_for_cms_url,
@@ -160,46 +160,17 @@ def test_get_wagtail_urls(dummy_wagtail_pages):
 
 def test_get_wagtail_urls__exclude_from_sitemap(dummy_wagtail_pages):
     """Test that pages with exclude_from_sitemap=True are excluded from sitemap."""
-    site = Site.objects.get(is_default_site=True)
-    en_us_root_page = site.root_page
+    exclude_child_pages = property(lambda page: page.slug == "child-page")
 
-    # Create an AnonymNewsPage
-    news_page = AnonymNewsPage(
-        title="News",
-        slug="news",
-        live=True,
-    )
-    en_us_root_page.add_child(instance=news_page)
-    news_page.save_revision().publish()
+    with patch.object(SimpleRichTextPage, "exclude_from_sitemap", exclude_child_pages, create=True):
+        urls = get_wagtail_urls()
 
-    # Create a news item without external link (should be included)
-    news_item_without_link = AnonymNewsItemPage(
-        title="Internal News Item",
-        slug="internal-news",
-        live=True,
-        link="",  # No external link
-    )
-    news_page.add_child(instance=news_item_without_link)
-    news_item_without_link.save_revision().publish()
-
-    # Create a news item with external link (should be excluded)
-    news_item_with_link = AnonymNewsItemPage(
-        title="External News Item",
-        slug="external-news",
-        live=True,
-        link="https://example.com/article",  # Has external link
-    )
-    news_page.add_child(instance=news_item_with_link)
-    news_item_with_link.save_revision().publish()
-
-    urls = get_wagtail_urls()
-
-    # The news page and news item without link should be included
-    assert "/news/" in urls
-    assert "/news/internal-news/" in urls
-
-    # The news item with external link should be excluded
-    assert "/news/external-news/" not in urls
+    # The excluded pages are dropped in every locale, but their descendants are not
+    assert urls == {
+        "/test-structural-page/structural-sub-child/": ["en-US"],
+        "/test-page/": ["en-US", "fr", "pt-BR"],
+        "/test-page/child-page/grandchild-page/": ["fr"],
+    }
 
 
 @pytest.mark.parametrize(

@@ -1,0 +1,47 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% extends "base-protocol-mozilla.html" %}
+
+{% if page.seo_title %}
+  {% set meta_title = page.seo_title %}
+{% else %}
+  {% set meta_title = page.title %}
+{% endif %}
+
+{% block page_title %}{{ meta_title }}{% endblock %}
+{% block page_desc %}{{ page.search_description }}{% endblock %}
+
+{% block body_id %}freeform{% endblock %}
+{% block body_class %}{{ super() }} m24-freeform{% endblock %}
+
+{% block page_css %}
+  {{ css_bundle('m24-freeform') }}
+{% endblock %}
+
+{% block content %}
+<main>
+  {# The first non-transition block owns the page <h1> if it has a heading;
+     otherwise it could render sub-headings (gallery tiles, prose sub-heading)
+     ahead of any <h1>, so a hidden fallback <h1> is used and every block gets
+     <h2>. Blocks read `block_level` and fall back to their historic level when
+     it is unset. #}
+  {% set lead = page.content|rejectattr("block_type", "equalto", "transition_block")|first %}
+  {% set lead_has_heading = lead and lead.value.heading %}
+  {% if not lead_has_heading %}
+    <h1 class="visually-hidden">{{ meta_title }}</h1>
+  {% endif %}
+  {% set ns = namespace(lead_seen=false) %}
+  {% for block in page.content %}
+    {% set block_level = 2 %}
+    {% if not ns.lead_seen and block.block_type != "transition_block" %}
+      {% set ns.lead_seen = true %}
+      {% if lead_has_heading %}{% set block_level = 1 %}{% endif %}
+    {% endif %}
+    {% include_block block %}
+  {% endfor %}
+</main>
+{% endblock %}

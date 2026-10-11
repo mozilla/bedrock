@@ -1,7 +1,7 @@
 A new violating website report has been submitted with the following information:
 
 + URL
-{{ input_url }}
+{{ input_url|safe }}
 
 + Category
 {{ input_category }}

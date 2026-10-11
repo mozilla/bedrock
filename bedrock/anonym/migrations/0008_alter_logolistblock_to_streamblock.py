@@ -412,7 +412,7 @@ class Migration(migrations.Migration):
                     31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                     32: ("wagtail.blocks.StreamBlock", [[("icon_card", 15), ("logo_card", 29), ("person_card", 31)]], {"max_num": 4, "min_num": 1}),
                     33: ("wagtail.blocks.StructBlock", [[("settings", 11), ("cards", 32)]], {}),
-                    34: ("wagtail.blocks.PageChooserBlock", (), {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]}),
+                    34: ("wagtail.blocks.PageChooserBlock", (), {"page_type": ["wagtailcore.Page"]}),
                     35: (
                         "wagtail.blocks.ListBlock",
                         (34,),
@@ -1198,7 +1198,7 @@ class Migration(migrations.Migration):
                     31: ("wagtail.blocks.StructBlock", [[("person", 30), ("link", 28)]], {}),
                     32: ("wagtail.blocks.StreamBlock", [[("icon_card", 15), ("logo_card", 29), ("person_card", 31)]], {"max_num": 4, "min_num": 1}),
                     33: ("wagtail.blocks.StructBlock", [[("settings", 11), ("cards", 32)]], {}),
-                    34: ("wagtail.blocks.PageChooserBlock", (), {"page_type": ["anonym.AnonymNewsItemPage", "anonym.AnonymCaseStudyItemPage"]}),
+                    34: ("wagtail.blocks.PageChooserBlock", (), {"page_type": ["wagtailcore.Page"]}),
                     35: (
                         "wagtail.blocks.ListBlock",
                         (34,),

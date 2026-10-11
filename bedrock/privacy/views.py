@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 import re
 
+from django.http import Http404
 from django.shortcuts import redirect
 
 from bs4 import BeautifulSoup
@@ -123,6 +124,8 @@ mozilla_accounts = PrivacyDocView.as_view(template_name="privacy/notices/mozilla
 
 def privacy(request):
     doc = load_legal_doc("mozilla_privacy_policy", l10n_utils.get_locale(request))
+    if doc is None:
+        raise Http404("Legal doc not found")
 
     template_vars = {
         "doc": process_legal_doc(doc["content"]),
