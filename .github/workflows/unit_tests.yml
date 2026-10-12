@@ -40,6 +40,9 @@ jobs:
           docker cp $CONTAINER_ID:/app/python_coverage .
         timeout-minutes: 60
       - name: "Run Python tests (on Docker, PostgreSQL)"
+        if: >-
+          github.event_name != 'pull_request' ||
+          contains(github.event.pull_request.body, '[ci:postgres]')
         run: |
           make test-image-postgres
         timeout-minutes: 60
