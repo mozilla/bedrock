@@ -1,0 +1,21 @@
+name: "SSDLC: Generate SBOM"
+
+on:
+    release:
+        types: [published]
+    push:
+        branches:
+            - main
+    workflow_dispatch:
+
+# Default to no permissions; the sbom job grants only what it needs.
+permissions: {}
+
+jobs:
+    sbom:
+        permissions:
+            contents: write # Upload the SBOM as a release asset and submit it to the dependency graph
+            actions: read # Let the reusable workflow upload the SBOM as a workflow artifact
+        uses: mozilla/ssdlc-actions/.github/workflows/ssdlc-sbom.yml@5e1ea380f75b02891de776dcc00e74ad7cfeca9c # v1.3
+        with:
+            sbom_name: ${{ github.event.release.tag_name || github.sha }}
