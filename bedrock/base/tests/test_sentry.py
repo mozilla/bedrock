@@ -23,6 +23,7 @@ def test_pre_sentry_sanitisation__before_send_setup():
 
     assert SENSITIVE_FIELDS_TO_MASK_ENTIRELY == [
         "email",
+        "X-Mozilla-Ops-Canary",
         # The following are also on `with_default_keys=True`'s blocklist;
         # listed explicitly as belt-and-braces against SDK / processor
         # version drift removing any of them from the default set.
