@@ -102,6 +102,34 @@ class TestLegalDocView(TestCase):
         assert render_mock.call_args[0][2]["doc"] == doc_value
         lld_mock.assert_called_with("the_dude_exists", "de")
 
+    @patch.object(views, "load_legal_doc")
+    @patch.object(views.l10n_utils, "render")
+    def test_default_ftl_files(self, render_mock, lld_mock):
+        """Every legal doc gets the shared legal and privacy strings."""
+        lld_mock.return_value = {"content": "Legalese", "active_locales": ["en-US"]}
+        render_mock.return_value = HttpResponse()
+        req = RequestFactory().get("/dude/exists/")
+        req.locale = "de"
+        view = views.LegalDocView.as_view(template_name="base.html", legal_doc_name="the_dude_exists")
+        view(req)
+        assert render_mock.call_args[1]["ftl_files"] == ["mozorg/about/legal", "privacy/index"]
+
+    @patch.object(views, "load_legal_doc")
+    @patch.object(views.l10n_utils, "render")
+    def test_subclass_ftl_files_are_appended(self, render_mock, lld_mock):
+        """Subclasses can add their own .ftl files without losing the shared ones."""
+        lld_mock.return_value = {"content": "Legalese", "active_locales": ["en-US"]}
+        render_mock.return_value = HttpResponse()
+        req = RequestFactory().get("/dude/exists/")
+        req.locale = "de"
+        view = views.LegalDocView.as_view(
+            template_name="base.html",
+            legal_doc_name="the_dude_exists",
+            ftl_files=["privacy/faq"],
+        )
+        view(req)
+        assert render_mock.call_args[1]["ftl_files"] == ["mozorg/about/legal", "privacy/index", "privacy/faq"]
+
 
 class TestFilePathData(TestCase):
     def test_legacy_repo_layout(self):
@@ -146,4 +174,24 @@ class TestFilePathData(TestCase):
         assert get_data_from_file_path(path) == {
             "locale": "cnh",
             "doc_name": "WebRTC_ToS",
+        }
+
+    def test_legal_docs_locale_is_mapped_to_bedrock_locale(self):
+        """Locales named differently in the legal-docs repo are translated on the way in."""
+        path = Path("/repo/data/legal_docs/hi/websites_privacy_notice.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
+        }
+        path = Path("/repo/data/legal_docs/websites_privacy_notice/hi.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
+        }
+
+    def test_unmapped_locale_is_left_alone(self):
+        path = Path("/repo/data/legal_docs/hi-IN/websites_privacy_notice.md")
+        assert get_data_from_file_path(path) == {
+            "locale": "hi-IN",
+            "doc_name": "websites_privacy_notice",
         }
