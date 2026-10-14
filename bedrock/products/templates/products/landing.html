@@ -228,6 +228,23 @@
 
     {% call tab_panel(tabset, id='for-business', label=ftl('firefox-products-tabs-business')) %}
       <div class="mzp-l-content mzp-t-content-nospace mzp-l-columns mzp-t-columns-three">
+        <!-- Firefox for Enterprise -->
+        {% call picto(
+          body=True,
+          image=resp_img(
+            url='img/logos/firefox/firefox-enterprise.png',
+            optional_attributes={
+              'class': 'mzp-c-picto-image',
+              'width': '63',
+              'height': '64',
+              'loading': 'lazy'
+            }
+          ),
+        ) %}
+          <h3 class="mzp-c-picto-heading">{{ ftl('firefox-products-firefox-enterprise') }}</h3>
+          <p>{{ ftl('firefox-products-firefox-enterprise-desc-v2', fallback='firefox-products-firefox-enterprise-desc') }}</p>
+          <p><a class="mzp-c-button mzp-t-product mzp-t-secondary" href="{{ url('firefox.enterprise.index') }}" data-cta-text="Firefox Enterprise Learn More" aria-label="{{ ftl('firefox-products-learn-more-about-firefox-enterprise') }}">{{ ftl('firefox-products-manage-your-fleet', fallback='ui-learn-more') }}</a></p>
+        {% endcall %}
         <!-- Otari -->
         {% call picto(
           body=True,
@@ -235,7 +252,7 @@
             url='img/logos/otari/otari-logo.svg',
             optional_attributes={
               'class': 'mzp-c-picto-image',
-              'width': '64',
+              'width': '60',
               'height': '64',
               'loading': 'lazy'
             }
@@ -253,7 +270,7 @@
             url='protocol/img/logos/mozilla/logo-flat.svg',
             optional_attributes={
               'class': 'mzp-c-picto-image',
-              'width': '64',
+              'width': '55',
               'height': '64',
               'loading': 'lazy'
             }
