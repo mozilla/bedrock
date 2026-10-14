@@ -6,6 +6,8 @@ from contextlib import suppress
 from importlib import reload
 from unittest import mock
 
+from django.conf import settings
+from django.core.exceptions import MiddlewareNotUsed
 from django.http import HttpResponse
 from django.test import Client, RequestFactory, TestCase
 from django.test.utils import override_settings
@@ -21,6 +23,7 @@ from bedrock.base.middleware import (
     BedrockLangCodeFixupMiddleware,
     BedrockLocaleMiddleware,
     CSPMiddlewareByPathPrefix,
+    SyntheticServerErrorMiddleware,
 )
 
 
@@ -438,10 +441,6 @@ def _passthrough_response(request):
 
 
 def test_synthetic_500_middleware_no_op_when_token_unset(rf):
-    from django.core.exceptions import MiddlewareNotUsed
-
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     with override_settings(SYNTHETIC_5XX_TOKEN=""):
         with pytest.raises(MiddlewareNotUsed):
             SyntheticServerErrorMiddleware(get_response=_passthrough_response)
@@ -450,20 +449,12 @@ def test_synthetic_500_middleware_no_op_when_token_unset(rf):
 def test_synthetic_500_middleware_refuses_short_configured_token(rf):
     # If the configured token isn't exactly 64 chars, the middleware refuses to
     # arm itself. Prevents accidental weak-token config from silently working.
-    from django.core.exceptions import MiddlewareNotUsed
-
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     with override_settings(SYNTHETIC_5XX_TOKEN="short"):
         with pytest.raises(MiddlewareNotUsed):
             SyntheticServerErrorMiddleware(get_response=_passthrough_response)
 
 
 def test_synthetic_500_middleware_refuses_long_configured_token(rf):
-    from django.core.exceptions import MiddlewareNotUsed
-
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     with override_settings(SYNTHETIC_5XX_TOKEN="a" * 65):
         with pytest.raises(MiddlewareNotUsed):
             SyntheticServerErrorMiddleware(get_response=_passthrough_response)
@@ -473,10 +464,6 @@ def test_synthetic_500_middleware_refuses_non_ascii_configured_token(rf):
     # A 64-char token containing non-ASCII has a UTF-8 byte length != 64, so
     # no request could ever match it. Refuse to arm rather than run a
     # middleware that can never fire.
-    from django.core.exceptions import MiddlewareNotUsed
-
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     with override_settings(SYNTHETIC_5XX_TOKEN="é" * 64):
         with pytest.raises(MiddlewareNotUsed):
             SyntheticServerErrorMiddleware(get_response=_passthrough_response)
@@ -484,8 +471,6 @@ def test_synthetic_500_middleware_refuses_non_ascii_configured_token(rf):
 
 @override_settings(SYNTHETIC_5XX_TOKEN=_VALID_TOKEN)
 def test_synthetic_500_middleware_fires_on_matching_header(rf):
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY=_VALID_TOKEN)
     response = middleware(request)
@@ -500,8 +485,6 @@ def test_synthetic_500_middleware_synthetic_response_has_no_cache_override(rf):
     # In Dev testing, those headers caused Fastly to enter pass state before
     # our failover cascade in vcl_fetch got a look, suppressing the restart.
     # Fastly's default behaviour already avoids caching 5xx.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY=_VALID_TOKEN)
     response = middleware(request)
@@ -512,8 +495,6 @@ def test_synthetic_500_middleware_synthetic_response_has_no_cache_override(rf):
 
 @override_settings(SYNTHETIC_5XX_TOKEN=_VALID_TOKEN)
 def test_synthetic_500_middleware_passthrough_without_header(rf):
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get("/en-US/")
     response = middleware(request)
@@ -524,8 +505,6 @@ def test_synthetic_500_middleware_passthrough_without_header(rf):
 @override_settings(SYNTHETIC_5XX_TOKEN=_VALID_TOKEN)
 def test_synthetic_500_middleware_passthrough_with_wrong_value_header(rf):
     # Wrong value, correct length - passes through, no 500.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY="b" * 64)
     response = middleware(request)
@@ -537,8 +516,6 @@ def test_synthetic_500_middleware_passthrough_with_wrong_value_header(rf):
 def test_synthetic_500_middleware_passthrough_with_wrong_length_header(rf):
     # Wrong length - shortcircuits before compare_digest is called and
     # passes through.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY="short")
     response = middleware(request)
@@ -552,8 +529,6 @@ def test_synthetic_500_middleware_passthrough_with_non_ascii_header(rf):
     # operands. A 64-char header of non-ASCII would therefore have produced
     # an uncontrolled 500 without knowing the token. We compare bytes, so
     # this must pass through cleanly (and count as a probe).
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     # Django decodes WSGI header values as latin-1, so build the request
     # the same way a real non-ASCII header would arrive.
@@ -571,8 +546,6 @@ def test_synthetic_500_middleware_passthrough_with_non_ascii_header(rf):
 def test_synthetic_500_middleware_empty_header_counts_as_probe(rf):
     # A header that is present but empty is a (failed) probe, not an absent
     # header: it must pass through AND increment the probe metric.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     with MetricsMock() as mm:
         request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY="")
@@ -588,8 +561,6 @@ def test_synthetic_500_middleware_empty_header_counts_as_probe(rf):
 def test_synthetic_500_middleware_skips_healthcheck_paths(rf, path):
     # Even with the matching token, healthcheck paths pass through untouched
     # so Fastly's probe stays green during a cascade test.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     request = rf.get(path, HTTP_X_MOZILLA_OPS_CANARY=_VALID_TOKEN)
     response = middleware(request)
@@ -602,8 +573,6 @@ def test_synthetic_500_middleware_uses_constant_time_compare(rf):
     # Verify that hmac.compare_digest is actually used for token comparison,
     # not a plain == comparison. Timing-safe compare avoids leaking token
     # characters via response timing.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     # Use a 64-char header so we pass the length gate and reach compare_digest.
     provided = "c" * 64
@@ -621,8 +590,6 @@ def test_synthetic_500_middleware_emits_metric_on_match(rf):
     # Every successful token match increments synthetic5xx.triggered so we can
     # alert on unusual volume (legit tests are a handful of hits; a leaked-token
     # abuser would look very different). Tagged with path but never the token.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     with MetricsMock() as mm:
         request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY=_VALID_TOKEN)
@@ -636,8 +603,6 @@ def test_synthetic_500_middleware_emits_probe_metric_on_wrong_value(rf):
     # Header present but wrong value = suspicious. Increments
     # synthetic5xx.header_present_no_match so we get visibility on probing
     # BEFORE anyone succeeds guessing the token.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     with MetricsMock() as mm:
         request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY="b" * 64)
@@ -651,8 +616,6 @@ def test_synthetic_500_middleware_emits_probe_metric_on_wrong_value(rf):
 def test_synthetic_500_middleware_emits_probe_metric_on_wrong_length(rf):
     # Same probe metric fires when length is wrong (e.g. attacker sending a
     # prefix or guessing at a different length).
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     with MetricsMock() as mm:
         request = rf.get("/en-US/", HTTP_X_MOZILLA_OPS_CANARY="short")
@@ -665,8 +628,6 @@ def test_synthetic_500_middleware_emits_probe_metric_on_wrong_length(rf):
 @override_settings(SYNTHETIC_5XX_TOKEN=_VALID_TOKEN)
 def test_synthetic_500_middleware_no_metric_on_missing_header(rf):
     # No header at all = normal traffic, no metrics.
-    from bedrock.base.middleware import SyntheticServerErrorMiddleware
-
     middleware = SyntheticServerErrorMiddleware(get_response=_passthrough_response)
     with MetricsMock() as mm:
         request = rf.get("/en-US/")
@@ -684,8 +645,6 @@ def test_synthetic_500_middleware_position_in_settings():
     # credentials before the canary can fire, and BEFORE every redirect /
     # locale middleware so the synthetic 500 pre-empts the 302s they issue
     # (otherwise `/` and other pre-locale paths could never be cascade-tested).
-    from django.conf import settings
-
     mw = settings.MIDDLEWARE
     ours = mw.index("bedrock.base.middleware.SyntheticServerErrorMiddleware")
 
@@ -713,11 +672,6 @@ def test_synthetic_500_middleware_fires_before_locale_redirect(rf):
     # first, `/` (and any other pre-locale path) would 302 before the
     # synthetic 500 got a chance to fire, and we couldn't test the cascade
     # on those paths.
-    from bedrock.base.middleware import (
-        BedrockLangCodeFixupMiddleware,
-        SyntheticServerErrorMiddleware,
-    )
-
     # Build the chain in the same order as settings.MIDDLEWARE:
     # SyntheticServerErrorMiddleware wraps BedrockLangCodeFixupMiddleware
     # wraps a passthrough.
@@ -745,8 +699,6 @@ def test_lang_code_fixup_would_redirect_root_without_our_middleware(rf):
     # Together with the test above, this proves that the 500 we get is
     # coming from our middleware pre-empting the redirect - not from `/`
     # simply not redirecting in this test setup.
-    from bedrock.base.middleware import BedrockLangCodeFixupMiddleware
-
     inner = BedrockLangCodeFixupMiddleware(get_response=_passthrough_response)
 
     request = rf.get(
