@@ -254,3 +254,37 @@ def test_pre_sentry_sanitisation_fluent_repo_auth_in_nested_env():
     assert env["FLUENT_REPO_AUTH"] == "********"
     assert env["GIT_CONFIG_VALUE_0"] == "********"
     assert env["LANG"] == "en_US.UTF-8"
+
+
+def test_pre_sentry_sanitisation_masks_synthetic_5xx_frame_locals():
+    """SyntheticServerErrorMiddleware holds the canary header value in a local
+    named ``provided_token``. If anything raises after a successful match,
+    Sentry captures that local; the ``token`` blocklist entry must mask it
+    (the header-name entry only covers request headers, not frame locals).
+    """
+    secret = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    event = {
+        "exception": {
+            "values": [
+                {
+                    "stacktrace": {
+                        "frames": [
+                            {
+                                "vars": {
+                                    "provided_token": secret,
+                                    "request": "<WSGIRequest: GET '/'>",
+                                },
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    }
+
+    output = before_send(event=event, hint=None)
+
+    frame_vars = output["exception"]["values"][0]["stacktrace"]["frames"][0]["vars"]
+    assert frame_vars["provided_token"] == "********"
+    assert frame_vars["request"] == "<WSGIRequest: GET '/'>"
+    assert secret not in json.dumps(output)
