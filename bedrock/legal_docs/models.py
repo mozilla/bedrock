@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import io
+import logging
 import re
 
 from django.conf import settings
@@ -10,6 +11,8 @@ from django.db import models, transaction
 
 import markdown as md
 from mdx_outline import OutlineExtension
+
+log = logging.getLogger(__name__)
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     "hi": "hi-IN",
@@ -32,7 +35,8 @@ def process_md_file(file_path):
             ],
         )
         content = output.getvalue().decode("utf-8")
-    except OSError:
+    except (OSError, UnicodeDecodeError) as exc:
+        log.warning("Could not process legal doc %s: %s", file_path, exc)
         content = None
     finally:
         output.close()
