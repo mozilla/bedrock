@@ -17,6 +17,8 @@ jobs:
     if: github.repository == 'mozilla/bedrock'
     permissions:
       contents: write
+    outputs:
+      tag_name: ${{ steps.validate.outputs.tag_name }}
 
     steps:
       - name: Checkout repository
@@ -54,3 +56,17 @@ jobs:
             --verify-tag
 
           echo "✅ Successfully created release for $CURRENT_TAG"
+
+  # Runs here rather than from a `release: published` trigger: the release above is created
+  # with GITHUB_TOKEN, and events caused by GITHUB_TOKEN never start other workflows.
+  # The SBOM action finds the release for the pushed tag and attaches the SBOM to it.
+  sbom:
+    name: Generate SBOM for release
+    needs: create-release
+    if: needs.create-release.outputs.tag_name != ''
+    permissions:
+      contents: write # Upload the SBOM as a release asset and submit it to the dependency graph
+      actions: read # Let the reusable workflow upload the SBOM as a workflow artifact
+    uses: mozilla/ssdlc-actions/.github/workflows/ssdlc-sbom.yml@5e1ea380f75b02891de776dcc00e74ad7cfeca9c # v1.3
+    with:
+      sbom_name: ${{ needs.create-release.outputs.tag_name }}
