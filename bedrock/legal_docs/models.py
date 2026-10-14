@@ -12,7 +12,7 @@ from django.db import models, transaction
 import markdown as md
 from mdx_outline import OutlineExtension
 
-log = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     "hi": "hi-IN",
@@ -36,7 +36,7 @@ def process_md_file(file_path):
         )
         content = output.getvalue().decode("utf-8")
     except (OSError, UnicodeDecodeError) as exc:
-        log.warning("Could not process legal doc %s: %s", file_path, exc)
+        logger.warning("Could not process legal doc %s: %s", file_path, exc)
         content = None
     finally:
         output.close()
