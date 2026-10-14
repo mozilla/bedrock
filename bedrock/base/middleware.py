@@ -211,8 +211,8 @@ class SyntheticServerErrorMiddleware:
 
     The middleware is a no-op when the SYNTHETIC_5XX_TOKEN env var is unset
     (raises MiddlewareNotUsed so Django drops it from the chain). It also
-    refuses to arm if the configured token is not exactly TOKEN_LENGTH chars
-    (see below for why length is pinned).
+    refuses to arm if the configured token is not exactly TOKEN_LENGTH
+    ASCII chars (see below for why length is pinned, and why ASCII).
 
     When armed, a request carrying the token in the X-Mozilla-Ops-Canary
     header receives HTTP 500 with a synthetic body; other requests pass
@@ -232,6 +232,17 @@ class SyntheticServerErrorMiddleware:
     = 256 bits of entropy) is public info by design, so any timing signal
     from the length check itself leaks nothing an attacker doesn't already
     know.
+
+    Both operands are compared as bytes, not str. compare_digest raises
+    TypeError when given str operands containing non-ASCII characters, so a
+    str-based compare would let anyone send a 64-char header full of
+    non-ASCII and trigger an uncontrolled 500 without knowing the token.
+    Comparing UTF-8 encoded bytes makes that impossible, and the configured
+    token is additionally required to be pure ASCII so its byte length is
+    guaranteed to equal TOKEN_LENGTH.
+
+    A header that is present but empty is treated as a (failed) probe, not
+    as absent, so it shows up in the header_present_no_match metric.
 
     Two metrics are emitted for observability:
     - synthetic5xx.triggered (with path tag) on every successful match.
@@ -271,21 +282,31 @@ class SyntheticServerErrorMiddleware:
                 len(token),
             )
             raise MiddlewareNotUsed
+        if not token.isascii():
+            # Non-ASCII would make the UTF-8 byte length differ from the char
+            # length, so no request could ever match. Refuse rather than arm a
+            # middleware that can never fire.
+            logger.warning("SyntheticServerErrorMiddleware disabled: SYNTHETIC_5XX_TOKEN must be ASCII")
+            raise MiddlewareNotUsed
         self.get_response = get_response
-        self._token = token
+        self._token = token.encode("utf-8")
 
     def __call__(self, request):
         if request.path in self.HEALTHCHECK_PATHS:
             return self.get_response(request)
 
-        provided = request.headers.get(self.HEADER_NAME, "")
-        if not provided:
+        provided = request.headers.get(self.HEADER_NAME)
+        if provided is None:
             return self.get_response(request)
 
-        # Length short-circuit ensures compare_digest is only ever called with
-        # equal-length operands (see docstring). Any header value present but
-        # not matching (wrong length OR wrong value) counts as a probe attempt
-        # so we get observability on token-guessing BEFORE anyone succeeds.
+        # Compare as bytes: compare_digest raises TypeError on non-ASCII str,
+        # which would otherwise be an unauthenticated route to a 500 (see
+        # docstring). Length short-circuit ensures compare_digest is only ever
+        # called with equal-length operands. Any header value present but not
+        # matching (empty, wrong length OR wrong value) counts as a probe
+        # attempt so we get observability on token-guessing BEFORE anyone
+        # succeeds.
+        provided = provided.encode("utf-8")
         if len(provided) != self.TOKEN_LENGTH or not hmac.compare_digest(provided, self._token):
             metrics.incr("synthetic5xx.header_present_no_match")
             return self.get_response(request)

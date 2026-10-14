@@ -1231,8 +1231,11 @@ SENTRY_DSN = config("SENTRY_DSN", default="")
 SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     "email",
     # X-Mozilla-Ops-Canary carries the SYNTHETIC_5XX_TOKEN value on cascade-test
-    # requests; keep it out of Sentry events so the token cannot leak via error reports.
-    "X-Mozilla-Ops-Canary",
+    # requests; keep it out of Sentry events so the token cannot leak via error
+    # reports. Must be lowercase: DesensitizationProcessor lowercases the event
+    # key before doing a substring match, but does NOT lowercase the configured
+    # blocklist entries, so a mixed-case entry here would never match.
+    "x-mozilla-ops-canary",
     # Belt-and-braces: these names are also on `with_default_keys=True`'s
     # blocklist, but listing them here explicitly guards against SDK / processor
     # version drift removing a name from the default set, and documents the
