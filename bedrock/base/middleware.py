@@ -11,7 +11,9 @@ the locale codes.
 
 import base64
 import contextlib
+import hmac
 import inspect
+import logging
 import time
 from functools import wraps
 
@@ -36,6 +38,8 @@ from bedrock.base.i18n import (
     split_path_and_normalize_language,
 )
 from lib.l10n_utils import is_root_path_with_no_language_clues
+
+logger = logging.getLogger(__name__)
 
 
 class BedrockLangCodeFixupMiddleware(MiddlewareMixin):
@@ -196,6 +200,136 @@ def simplified_check_for_language():
         yield
     finally:
         trans_real.check_for_language = check_for_language
+
+
+class SyntheticServerErrorMiddleware:
+    """Returns a synthetic 500 when a request carries a matching magic header.
+
+    Purpose is to test failure paths (specifically Fastly's origin failover
+    cascade) by producing a controlled 5xx from Bedrock without breaking
+    anything real.
+
+    The middleware is a no-op when the SYNTHETIC_5XX_TOKEN env var is unset
+    (raises MiddlewareNotUsed so Django drops it from the chain). It also
+    refuses to arm if the configured token is not exactly TOKEN_LENGTH
+    ASCII chars (see below for why length is pinned, and why ASCII).
+
+    When armed, a request carrying the token in the X-Mozilla-Ops-Canary
+    header receives HTTP 500 with a synthetic body; other requests pass
+    through.
+
+    Healthcheck paths (/healthz/, /readiness/, /healthz-cron/) are always
+    passed through so Fastly's probe stays green during a cascade test,
+    which is precisely the scenario the cascade is designed to catch
+    (site broken but /healthz/ says 200).
+
+    Token comparison uses hmac.compare_digest for constant-time content
+    comparison, gated by a strict length check. Python's docs note that
+    compare_digest can leak string lengths via timing when the operands
+    differ in length; by requiring provided == TOKEN_LENGTH before calling
+    compare_digest, we ensure both operands are always the same length when
+    the comparison runs. The pinned length (64 chars = openssl rand -hex 32
+    = 256 bits of entropy) is public info by design, so any timing signal
+    from the length check itself leaks nothing an attacker doesn't already
+    know.
+
+    Both operands are compared as bytes, not str. compare_digest raises
+    TypeError when given str operands containing non-ASCII characters, so a
+    str-based compare would let anyone send a 64-char header full of
+    non-ASCII and trigger an uncontrolled 500 without knowing the token.
+    Comparing UTF-8 encoded bytes makes that impossible, and the configured
+    token is additionally required to be pure ASCII so its byte length is
+    guaranteed to equal TOKEN_LENGTH.
+
+    A header that is present but empty is treated as a (failed) probe, not
+    as absent, so it shows up in the header_present_no_match metric.
+
+    Two metrics are emitted for observability:
+    - synthetic5xx.triggered (with path tag) on every successful match.
+      Legit tests = a few hits. Leaked-token abuse = many.
+    - synthetic5xx.header_present_no_match on every request that carries
+      the header with a wrong value or wrong length. A spike here is the
+      early-warning signal for token probing before a guesser succeeds.
+
+    The synthetic 500 response is a plain text body with no Cache-Control or
+    Surrogate-Control override. Setting `Cache-Control: no-store` (which was
+    tempting as belt-and-braces against caching a 500) empirically caused
+    Fastly to enter pass state BEFORE our failover cascade in vcl_fetch got
+    a look, suppressing the restart. Fastly's default behaviour already
+    avoids caching 5xx, so the belt-and-braces was low-value and worth
+    dropping for the cascade to fire correctly.
+
+    Trigger by curling with:
+
+        curl -H "X-Mozilla-Ops-Canary: <64-char-token>" https://<host>/some-path
+    """
+
+    HEADER_NAME = "X-Mozilla-Ops-Canary"
+    HEALTHCHECK_PATHS = ("/healthz/", "/readiness/", "/healthz-cron/")
+    # openssl rand -hex 32 → 64 hex chars, 256 bits of entropy.
+    TOKEN_LENGTH = 64
+
+    def __init__(self, get_response):
+        token = settings.SYNTHETIC_5XX_TOKEN
+        if not token:
+            raise MiddlewareNotUsed
+        if len(token) != self.TOKEN_LENGTH:
+            # Fail loud at startup rather than silently accept a weak/misconfigured
+            # token. `openssl rand -hex 32` is the intended generator.
+            logger.warning(
+                "SyntheticServerErrorMiddleware disabled: SYNTHETIC_5XX_TOKEN must be exactly %d chars, got %d",
+                self.TOKEN_LENGTH,
+                len(token),
+            )
+            raise MiddlewareNotUsed
+        if not token.isascii():
+            # Non-ASCII would make the UTF-8 byte length differ from the char
+            # length, so no request could ever match. Refuse rather than arm a
+            # middleware that can never fire.
+            logger.warning("SyntheticServerErrorMiddleware disabled: SYNTHETIC_5XX_TOKEN must be ASCII")
+            raise MiddlewareNotUsed
+        self.get_response = get_response
+        self._token = token.encode("utf-8")
+
+    def __call__(self, request):
+        if request.path in self.HEALTHCHECK_PATHS:
+            return self.get_response(request)
+
+        # Named `provided_token` (not `provided`) deliberately: Sentry captures
+        # frame locals, and the `token` entry in SENSITIVE_FIELDS_TO_MASK_ENTIRELY
+        # substring-matches this name, so the value is masked if anything below
+        # raises after a successful match.
+        provided_token = request.headers.get(self.HEADER_NAME)
+        if provided_token is None:
+            return self.get_response(request)
+
+        # Compare as bytes: compare_digest raises TypeError on non-ASCII str,
+        # which would otherwise be an unauthenticated route to a 500 (see
+        # docstring). Length short-circuit ensures compare_digest is only ever
+        # called with equal-length operands. Any header value present but not
+        # matching (empty, wrong length OR wrong value) counts as a probe
+        # attempt so we get observability on token-guessing BEFORE anyone
+        # succeeds.
+        provided_token = provided_token.encode("utf-8")
+        if len(provided_token) != self.TOKEN_LENGTH or not hmac.compare_digest(provided_token, self._token):
+            metrics.incr("synthetic5xx.header_present_no_match")
+            return self.get_response(request)
+
+        # Successful match.
+        metrics.incr("synthetic5xx.triggered", tags=[f"path:{request.path}"])
+        # Note: we deliberately do NOT set Cache-Control: no-store or
+        # Surrogate-Control here, even as belt-and-braces against a synthetic
+        # 500 getting cached. Empirically, Fastly reacts to those headers by
+        # switching the response into pass state BEFORE our cascade block in
+        # vcl_fetch gets a look, which suppresses the failover restart we
+        # want to trigger. Fastly's default behaviour already avoids caching
+        # 5xx responses, so the belt-and-braces was low-value; the cascade
+        # firing correctly is not. See PR #1567 discussion (2026-07-02).
+        return HttpResponse(
+            "synthetic 500 for cascade test",
+            content_type="text/plain",
+            status=500,
+        )
 
 
 class BasicAuthMiddleware:
