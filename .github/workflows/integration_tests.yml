@@ -21,6 +21,11 @@ on:
 permissions:
   contents: read
 
+# Keyed on the deployed branch so stage and prod runs never block each other.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.branch }}
+  cancel-in-progress: false
+
 jobs:
   notify-of-test-run-start:
     name: Notify Slack of test run start

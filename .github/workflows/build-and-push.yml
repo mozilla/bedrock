@@ -28,6 +28,12 @@ env:
 permissions:
   contents: read
 
+# Queue rather than cancel: downstream jobs and the l10n workflow_run pull images
+# by SHA, and a cancelled build would leave a SHA with no image.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build_and_publish_public_images:
     name: Build and push public images
@@ -115,7 +121,7 @@ jobs:
     needs: build_and_publish_public_images
     permissions:
       contents: read
-      id-token: write
+      id-token: write # GCP workload identity federation for the GCS upload
 
     steps:
       - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
@@ -160,7 +166,7 @@ jobs:
     needs: [build_and_publish_public_images, upload_static_assets]
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      id-token: write # GCP workload identity federation for the GAR push
 
     steps:
       - id: gcp_auth

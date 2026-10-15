@@ -17,6 +17,10 @@ on:
         description: The root URL of the Mozorg service to run tests against. eg 'https://www.mozilla.org'
         required: true
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   notify-of-test-run-start:
     name: Notify Slack of test run start

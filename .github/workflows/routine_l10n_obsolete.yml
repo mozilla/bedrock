@@ -6,13 +6,17 @@ on:
   schedule:
     - cron: 0 09 14 */2 *
 
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   create_issue:
     name: Create l10n cleanup issue
     runs-on: ubuntu-latest
     if: github.repository == 'mozilla/bedrock'
     permissions:
-      issues: write
+      issues: write # Open the reminder issue and close the previous one
     steps:
       - name: Open new issue (and close old if needed)
         run: |

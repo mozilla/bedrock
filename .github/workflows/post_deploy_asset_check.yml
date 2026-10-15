@@ -23,6 +23,11 @@ on:
         description: Fully qualified base URL for the CDN (eg. https://www.mozilla.org)
         required: true
 
+# Keyed on the deployed branch so stage and prod runs never block each other.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.branch }}
+  cancel-in-progress: false
+
 jobs:
   notify-of-checks-start:
     name: Notify Slack of asset check start

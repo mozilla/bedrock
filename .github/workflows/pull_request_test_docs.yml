@@ -11,6 +11,10 @@ on:
       - requirements/docs.*
       - .github/workflows/pull_request_test_docs.yml
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     name: Build documentation

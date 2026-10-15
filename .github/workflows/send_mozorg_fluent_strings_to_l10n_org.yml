@@ -18,6 +18,11 @@ on:
   schedule:
     - cron: "25 5 * * *" # Every 5:25 AM UTC
 
+# Queue rather than cancel: running two of these at once could open duplicate PRs.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
 jobs:
   open_l10n_pr:
     name: Open Fluent PR in www-l10n
