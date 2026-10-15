@@ -7,9 +7,10 @@ permissions:
   contents: read
 
 on:
-  # workflow_run is needed so this runs after the image build on main. It is restricted
-  # to main, gated on the repository name and on the upstream run succeeding, and the
-  # checkout below does not persist credentials.
+  # workflow_run is needed so this runs after the image build on main. The job's if:
+  # only accepts upstream runs that succeeded, came from a push or manual dispatch in
+  # this repository (never a pull_request from a fork), and the checkout below does not
+  # persist credentials.
   workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows: ["Build and push a Docker image"]
     types: [completed]
@@ -22,13 +23,21 @@ on:
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   open_l10n_pr:
     name: Open Fluent PR in www-l10n
     if: |
       github.repository == 'mozilla/bedrock' &&
-      (github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run')
+      (
+        github.event_name != 'workflow_run' ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_repository.full_name == github.repository &&
+          contains(fromJSON('["push", "workflow_dispatch"]'), github.event.workflow_run.event)
+        )
+      )
     runs-on: ubuntu-latest
     env:
       HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
