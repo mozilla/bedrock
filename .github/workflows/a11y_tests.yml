@@ -5,6 +5,9 @@ run-name: Accessibility Tests for ${{ github.sha }}
 env:
   SLACK_CHANNEL_ID: CBX0KH5GA # #www-notify in MoCo Slack
   SLACK_BOT_TOKEN: ${{secrets.SLACK_BOT_TOKEN_FOR_MEAO_NOTIFICATIONS_APP}}
+permissions:
+  contents: read
+
 on:
   schedule:
     - cron: "0 15 * * *" # 3pm daily

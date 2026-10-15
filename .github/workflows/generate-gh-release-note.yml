@@ -1,5 +1,8 @@
 name: Generate GitHub Release entry
 
+# Default to no permissions; jobs grant only what they need.
+permissions: {}
+
 on:
   push:
     # YYYY-MM-DD or YYYY-MM-DD.integer for times when there are multiple releases in a day

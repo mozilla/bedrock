@@ -3,6 +3,9 @@
 
 name: Open Fluent PR in www-l10n
 
+permissions:
+  contents: read
+
 on:
   # workflow_run is needed so this runs after the image build on main. It is restricted
   # to main, gated on the repository name and on the upstream run succeeding, and the

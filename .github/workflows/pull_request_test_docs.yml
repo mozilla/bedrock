@@ -1,5 +1,8 @@
 name: Test documentation build
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch: # allow manual runs
   pull_request:

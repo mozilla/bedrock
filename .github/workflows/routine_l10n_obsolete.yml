@@ -1,4 +1,7 @@
 name: Bimonthly l10n cleanup reminder
+# Default to no permissions; jobs grant only what they need.
+permissions: {}
+
 on:
   schedule:
     - cron: 0 09 14 */2 *
