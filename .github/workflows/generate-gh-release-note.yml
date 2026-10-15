@@ -16,6 +16,7 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   create-release:

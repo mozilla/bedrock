@@ -23,7 +23,10 @@ env:
   GAR_REPOSITORY: bedrock-prod
   IMAGE: bedrock
   ORG: mozmeao
-  REF_ID: ${{ github.event.inputs.ref || github.ref }}
+  # Push builds pin the commit that triggered them. Runs can now queue behind each
+  # other, and checking out the branch name would build whatever the tip is by the
+  # time the run starts, leaving the triggering SHA with no image.
+  REF_ID: ${{ github.event.inputs.ref || github.sha }}
 
 permissions:
   contents: read
@@ -33,6 +36,7 @@ permissions:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   build_and_publish_public_images:
@@ -112,6 +116,9 @@ jobs:
         timeout-minutes: 90
         env:
             GIT_COMMIT: ${{ env.LONG_SHA }}
+            # A SHA checkout is detached, so tell the push script the branch name
+            # explicitly; it only pushes the :latest tag for main.
+            GIT_BRANCH: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name || '' }}
 
 
   upload_static_assets:

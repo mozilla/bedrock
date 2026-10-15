@@ -25,6 +25,7 @@ permissions:
 concurrency:
   group: ${{ github.workflow }}-${{ inputs.branch }}
   cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   notify-of-test-run-start:

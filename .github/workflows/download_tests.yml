@@ -20,6 +20,7 @@ on:
 concurrency:
   group: ${{ github.workflow }}
   cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   notify-of-test-run-start:
