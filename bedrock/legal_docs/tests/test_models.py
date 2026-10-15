@@ -98,6 +98,20 @@ class TestProcessMdFile:
         assert str(doc) in record.getMessage()
         assert "codec can't decode byte" in record.getMessage()
 
+    @pytest.mark.parametrize("encoding", ["utf-16-le", "utf-16-be"])
+    def test_utf16_file_without_bom_is_none(self, tmp_path, encoding):
+        doc = tmp_path / "notice.md"
+        doc.write_bytes("# Privacy Notice".encode(encoding))
+        assert process_md_file(doc) is None
+
+    def test_nul_character_is_logged(self, tmp_path, caplog):
+        doc = write_doc(tmp_path, "en", "notice", "Legal\x00ese")
+        with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
+            assert process_md_file(doc) is None
+        (record,) = warnings_logged(caplog)
+        assert str(doc) in record.getMessage()
+        assert "NUL" in record.getMessage()
+
     def test_good_file_logs_nothing(self, tmp_path, caplog):
         with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
             process_md_file(write_doc(tmp_path, "en", "notice", "Legalese"))
@@ -170,6 +184,61 @@ class TestRefresh:
 
         assert LegalDoc.objects.refresh() == (1, 1)
         assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "en")
+
+    def test_empty_doc_is_logged(self, tmp_path, settings, caplog):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        doc = write_doc(tmp_path, "de", "websites_privacy_notice", "")
+
+        with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
+            LegalDoc.objects.refresh()
+
+        (record,) = warnings_logged(caplog)
+        assert str(doc) in record.getMessage()
+        assert "is empty" in record.getMessage()
+
+    def test_unreadable_doc_is_logged_once(self, tmp_path, settings, caplog):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        (tmp_path / "de").mkdir()
+        (tmp_path / "de" / "websites_privacy_notice.md").write_bytes("café".encode("latin-1"))
+
+        with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
+            LegalDoc.objects.refresh()
+
+        assert len(warnings_logged(caplog)) == 1
+
+    def test_doc_with_nul_does_not_abort_the_run(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice")
+        write_doc(tmp_path, "de", "websites_privacy_notice", "Legal\x00ese")
+
+        assert LegalDoc.objects.refresh() == (1, 1)
+        assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "en")
+
+    @pytest.mark.parametrize(
+        "locale, doc_name",
+        [
+            ("ast-ES", "websites_privacy_notice"),
+            ("ja-JP_m", "websites_privacy_notice"),
+            ("de", "x" * 101),
+        ],
+    )
+    def test_overlong_name_or_locale_is_counted_and_skipped(self, tmp_path, settings, caplog, locale, doc_name):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice")
+        doc = write_doc(tmp_path, locale, doc_name)
+
+        with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
+            assert LegalDoc.objects.refresh() == (1, 1)
+
+        assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "en")
+        (record,) = warnings_logged(caplog)
+        assert str(doc) in record.getMessage()
+
+    def test_name_and_locale_at_the_limit_are_loaded(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "es-ES", "x" * 100)
+
+        assert LegalDoc.objects.refresh() == (1, 0)
 
     def test_non_markdown_files_are_ignored(self, tmp_path, settings):
         settings.LEGAL_DOCS_PATH = tmp_path
