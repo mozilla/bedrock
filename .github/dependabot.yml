@@ -6,14 +6,12 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
-      default-semver-major-days: 30
   - package-ecosystem: docker
     directory: '/'
     schedule:
       interval: monthly
     cooldown:
       default-days: 7
-      default-semver-major-days: 30
     open-pull-requests-limit: 20
     labels:
       - Backend
@@ -41,7 +39,7 @@ updates:
       interval: monthly
     cooldown:
       default-days: 7
-      default-semver-major-days: 30
+      semver-major-days: 30
     groups:
       frontend:
         dependency-type: production
@@ -63,7 +61,7 @@ updates:
       interval: monthly
     cooldown:
       default-days: 7
-      default-semver-major-days: 30
+      semver-major-days: 30
     open-pull-requests-limit: 10
     groups:
       playwright:
