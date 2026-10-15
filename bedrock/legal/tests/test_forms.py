@@ -147,8 +147,7 @@ class TestFraudReport(TestCase):
 
     def test_form_details_crlf_counted_as_one_character(self):
         """
-        A browser counts a newline as one character but submits it as CRLF, so
-        newlines should be normalised before details is measured.
+        A report at the limit with CRLF newlines should still be sent.
         """
         lines = legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH // 2
         browser_value = ("x" + LF) * lines
@@ -161,8 +160,11 @@ class TestFraudReport(TestCase):
 
         form = FraudReportForm(self.data)
 
-        assert form.is_valid()
-        assert len(form.cleaned_data["input_details"]) <= legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH
+        request = self.factory.get("/")
+        ret = submit_form(request, form)
+
+        self.assertFalse(ret["form_error"])
+        assert len(mail.outbox) == 1
         self.assertNotIn(CR, form.cleaned_data["input_details"])
 
     def test_form_details_maxlength_attribute(self):
