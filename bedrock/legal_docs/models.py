@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import io
+import logging
 import re
 
 from django.conf import settings
@@ -10,6 +11,8 @@ from django.db import models, transaction
 
 import markdown as md
 from mdx_outline import OutlineExtension
+
+logger = logging.getLogger(__name__)
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     "hi": "hi-IN",
@@ -32,7 +35,11 @@ def process_md_file(file_path):
             ],
         )
         content = output.getvalue().decode("utf-8")
-    except OSError:
+        if "\x00" in content:
+            logger.warning("Could not process legal doc %s: it contains NUL characters", file_path)
+            content = None
+    except (OSError, UnicodeDecodeError) as exc:
+        logger.warning("Could not process legal doc %s: %s", file_path, exc)
         content = None
     finally:
         output.close()
@@ -97,12 +104,21 @@ class LegalDocsManager(models.Manager):
         doc_objs = []
         errors = 0
         docs_path = settings.LEGAL_DOCS_PATH
+        name_max_length = LegalDoc._meta.get_field("name").max_length
+        locale_max_length = LegalDoc._meta.get_field("locale").max_length
         with transaction.atomic(using=self.db):
             self.all().delete()
             doc_files = docs_path.glob("*/*.md")
             for docf in doc_files:
                 path_data = get_data_from_file_path(docf)
+                if len(path_data["doc_name"]) > name_max_length or len(path_data["locale"]) > locale_max_length:
+                    logger.warning("Legal doc %s has a name or locale too long to store", docf)
+                    errors += 1
+                    continue
+
                 content = process_md_file(docf)
+                if content == "":
+                    logger.warning("Legal doc %s is empty", docf)
                 if not content:
                     errors += 1
                     continue
