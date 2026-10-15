@@ -34,4 +34,6 @@ jobs:
           persist-credentials: false
       - name: Run PR-opening script
         shell: bash
-        run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
+        env:
+          FLUENT_REPO_AUTH: ${{ secrets.FLUENT_REPO_AUTH }}
+        run: bin/open-ftl-pr.sh
