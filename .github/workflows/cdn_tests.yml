@@ -28,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+          persist-credentials: false
           sparse-checkout: .github/actions/slack
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
@@ -68,6 +69,8 @@ jobs:
     steps:
       - name: Fetch codebase
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
 
       - name: Run CDN tests
         run: ./bin/integration_tests/functional_tests.sh
@@ -93,6 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+          persist-credentials: false
           sparse-checkout: .github/actions/slack
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack

@@ -56,6 +56,7 @@ jobs:
 
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+            persist-credentials: false
             fetch-depth: 10 # get enough so we have a Git history, but not everything
             fetch-tags: true
             ref: ${{ env.REF_ID }}

@@ -27,6 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
+          persist-credentials: false
           sparse-checkout: |
             .github/actions/slack
       - name: Notify via Slack that tests are starting
@@ -66,6 +67,7 @@ jobs:
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
         with:
+          persist-credentials: false
           sparse-checkout: |
             .github/actions/slack
       - name: Notify via Slack of test-run success

@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
         with:
@@ -48,6 +50,8 @@ jobs:
     steps:
       - name: Fetch codebase
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
 
       - name: Run functional download tests
         run: ./bin/integration_tests/functional_tests.sh
@@ -72,6 +76,8 @@ jobs:
     needs: [notify-of-test-run-start, download-tests]
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack
         with:
