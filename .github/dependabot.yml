@@ -4,10 +4,16 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
+      default-semver-major-days: 30
   - package-ecosystem: docker
     directory: '/'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+      default-semver-major-days: 30
     open-pull-requests-limit: 20
     labels:
       - Backend
@@ -33,6 +39,9 @@ updates:
       - dependency-name: 'stylelint-config-standard-scss'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+      default-semver-major-days: 30
     groups:
       frontend:
         dependency-type: production
@@ -52,6 +61,9 @@ updates:
     directory: '/tests/playwright'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+      default-semver-major-days: 30
     open-pull-requests-limit: 10
     groups:
       playwright:
