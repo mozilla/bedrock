@@ -1,0 +1,7 @@
+rules:
+  # Workflows guard against running on forks with
+  # `github.repository == 'mozilla/bedrock'`. zizmor prefers
+  # github.event.repository.full_name, but the literal is clearer and
+  # the repo name is stable.
+  self-repository:
+    disable: true
