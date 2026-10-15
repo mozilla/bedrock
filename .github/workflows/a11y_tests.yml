@@ -19,6 +19,7 @@ on:
 
 jobs:
   notify-of-test-run-start:
+    name: Notify Slack of test run start
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
@@ -37,6 +38,7 @@ jobs:
           message: "Accessibility Tests started"
 
   accessibility-tests:
+    name: Accessibility tests
     runs-on: ubuntu-latest
     needs: notify-of-test-run-start
     env:
@@ -62,6 +64,7 @@ jobs:
           retention-days: 30
 
   notify-of-test-run-completion:
+    name: Notify Slack of test run completion
     if: github.repository == 'mozilla/bedrock' && always()
     runs-on: ubuntu-latest
     needs: [notify-of-test-run-start, accessibility-tests]

@@ -23,6 +23,7 @@ permissions:
 
 jobs:
   notify-of-test-run-start:
+    name: Notify Slack of test run start
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
@@ -42,6 +43,7 @@ jobs:
           message: "CDN tests started"
 
   cdn-tests:
+    name: ${{ matrix.LABEL }}
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     strategy:
@@ -90,6 +92,7 @@ jobs:
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   notify-of-test-run-completion:
+    name: Notify Slack of test run completion
     if: always() && github.repository == 'mozilla/bedrock'
     needs: cdn-tests
     runs-on: ubuntu-latest

@@ -20,6 +20,7 @@ on:
 
 jobs:
   open_l10n_pr:
+    name: Open Fluent PR in www-l10n
     if: |
       github.repository == 'mozilla/bedrock' &&
       (github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run')

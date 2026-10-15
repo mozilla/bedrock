@@ -20,6 +20,7 @@ on:
   workflow_dispatch:
 jobs:
   linter:
+    name: Lint Fluent files
     runs-on: ubuntu-latest
     steps:
       - name: Clone repository
