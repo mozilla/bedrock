@@ -1,0 +1,18 @@
+name: "SSDLC: Auditing"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  code-security-analysis:
+    permissions:
+      security-events: write # required for uploading code scanning alerts
+    uses: mozilla/ssdlc-actions/.github/workflows/code-security-analysis-public-repo.yml@5e1ea380f75b02891de776dcc00e74ad7cfeca9c # v1.3
