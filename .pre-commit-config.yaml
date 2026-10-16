@@ -90,7 +90,7 @@ repos:
         language: node
         types: [text]
         additional_dependencies:
-        - prettier@3.9.9
+        - prettier@3.9.10
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
@@ -101,7 +101,7 @@ repos:
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v10.11.0
+    rev: v10.12.0
     hooks:
       - id: eslint
         additional_dependencies:
