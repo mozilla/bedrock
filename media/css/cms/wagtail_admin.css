@@ -13,3 +13,14 @@
     margin: 0.5rem 0 1rem;
     border: 0;
 }
+
+/* stylelint-disable-next-line selector-class-pattern */
+.Draftail-block--lede {
+    font-size: 1.25em;
+    font-weight: 500;
+}
+
+/* stylelint-disable-next-line selector-class-pattern */
+.Draftail-Editor .Draftail-DividerBlock {
+    margin: 2rem 0;
+}

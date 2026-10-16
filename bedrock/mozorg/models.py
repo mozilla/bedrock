@@ -24,6 +24,7 @@ from bedrock.mozorg.blocks.advertising import (
     TwoColumnDetailBlock,
 )
 from bedrock.mozorg.blocks.common import (
+    ARTICLE_RICHTEXT_FEATURES,
     DonateBlock,
     GalleryBlock,
     ImageCaptionBlock,
@@ -724,7 +725,7 @@ class ArticlePage(AbstractBedrockCMSPage):
             (
                 "text",
                 blocks.RichTextBlock(
-                    features=["h2", "h3", "bold", "italic", "link", "ol", "ul"],
+                    features=ARTICLE_RICHTEXT_FEATURES,
                     template="mozorg/cms/blocks/longform_block.html",
                     label="Text",
                     icon="pilcrow",
