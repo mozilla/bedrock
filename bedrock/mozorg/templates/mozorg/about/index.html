@@ -177,9 +177,8 @@
     </div>
 
     <div class="newsletter-content">
-      {% set newsletter_id = 'mozilla-foundation' if LANG.startswith('en-') else 'mozilla-and-you' %}
       {{ email_newsletter_form(
-          newsletters=newsletter_id,
+          newsletters='mozilla-foundation',
           title=ftl('about-get-the-mozilla-newsletter'),
           desc=ftl('about-stay-informed-about-the-issues'),
           button_class='button-dark',

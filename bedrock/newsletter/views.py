@@ -217,7 +217,8 @@ def recovery(request):
 def newsletter_subscribe(request):
     if request.method == "POST":
         newsletters = request.POST.getlist("newsletters")
-        form = NewsletterFooterForm(newsletters, l10n_utils.get_locale(request), request.POST)
+        languages_override = settings.FOUNDATION_SUBSCRIBE_AVAILABLE_LANGUAGES if newsletters == ["mozilla-foundation"] else None
+        form = NewsletterFooterForm(newsletters, l10n_utils.get_locale(request), request.POST, languages_override=languages_override)
         errors = []
         if form.is_valid():
             data = form.cleaned_data
