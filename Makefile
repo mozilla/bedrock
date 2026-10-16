@@ -29,6 +29,7 @@ help:
 	@echo "  format                         - format front-end code using Stylelint and Prettier"
 	@echo "  test                           - run tests against local files"
 	@echo "  test-image                     - run tests against files in docker image"
+	@echo "  test-image-postgres            - run tests against postgres in docker image"
 	@echo "  test-cdn                       - run CDN tests against TEST_DOMAIN"
 	@echo "  docs                           - generate mkdocs HTML documentation with server and live reload using Docker"
 	@echo "  docs-setup                     - install dependencies required for building the docs"
@@ -128,6 +129,11 @@ test-cdn: .docker-build-pull test_infra/fixtures/tls.json
 test-image: .docker-build
 	${DC} run test-image
 
+# Reuses the image built above and the `db` service in docker-compose.yml,
+# so this does not rebuild anything when run after `test-image`.
+test-image-postgres: .docker-build
+	${DC} run test-image-postgres
+
 docs: .docker-build-pull
 	${DC} up docs
 
@@ -212,4 +218,4 @@ install-custom-git-hooks:
 uninstall-custom-git-hooks:
 	rm .git/hooks/post-merge
 
-.PHONY: all clean build pull docs docs-setup livedocs build-docs lint run stop kill run-shell shell test test-image rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks run-local-task-queue
+.PHONY: all clean build pull docs docs-setup livedocs build-docs lint run stop kill run-shell shell test test-image test-image-postgres rebuild build-ci test-ci fresh-data djshell run-prod build-prod test-cdn compile-requirements check-requirements install-local-python-deps preflight clean-local-deps install-custom-git-hooks uninstall-custom-git-hooks run-local-task-queue

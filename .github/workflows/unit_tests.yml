@@ -31,11 +31,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
-      - name: "Run Python tests (on Docker)"
+      # The PostgreSQL step below reuses the image built by this step,
+      # so the Docker image is built only once per workflow run.
+      - name: "Run Python tests (on Docker, SQLite)"
         run: |
           make clean test-image
           CONTAINER_ID=$(docker ps -alq)
           docker cp $CONTAINER_ID:/app/python_coverage .
+        timeout-minutes: 60
+      - name: "Run Python tests (on Docker, PostgreSQL)"
+        if: >-
+          github.event_name != 'pull_request' ||
+          contains(github.event.pull_request.body, '[ci:postgres]')
+        run: |
+          make test-image-postgres
         timeout-minutes: 60
       - name: "Store coverage as an artifact"
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
