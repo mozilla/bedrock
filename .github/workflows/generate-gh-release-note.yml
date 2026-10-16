@@ -1,5 +1,8 @@
 name: Generate GitHub Release entry
 
+# Default to no permissions; jobs grant only what they need.
+permissions: {}
+
 on:
   push:
     # YYYY-MM-DD or YYYY-MM-DD.integer for times when there are multiple releases in a day
@@ -10,13 +13,18 @@ on:
       - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9]'
       - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9][0-9]'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
+
 jobs:
   create-release:
     name: Generate GitHub Release entry
     runs-on: ubuntu-slim
     if: github.repository == 'mozilla/bedrock'
     permissions:
-      contents: write
+      contents: write # Create the GitHub Release for the tag
     outputs:
       tag_name: ${{ steps.validate.outputs.tag_name }}
 

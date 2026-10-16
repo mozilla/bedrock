@@ -15,6 +15,7 @@ permissions: {}
 
 jobs:
   sbom:
+    name: Generate SBOM
     permissions:
       contents: write # Submit the SBOM to the dependency graph
       actions: read # Let the reusable workflow upload the SBOM as a workflow artifact

@@ -1,7 +1,15 @@
 name: Bimonthly l10n cleanup reminder
+# Default to no permissions; jobs grant only what they need.
+permissions: {}
+
 on:
   schedule:
     - cron: 0 09 14 */2 *
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   create_issue:
@@ -9,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'mozilla/bedrock'
     permissions:
-      issues: write
+      issues: write # Open the reminder issue and close the previous one
     steps:
       - name: Open new issue (and close old if needed)
         run: |

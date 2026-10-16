@@ -81,10 +81,14 @@ repos:
       - id: fluent_linter
         files: \.ftl$
         args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/]
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+  # pre-commit/mirrors-prettier is archived; this is its hook definition inlined.
+  - repo: local
     hooks:
       - id: prettier
+        name: prettier
+        entry: prettier --write --ignore-unknown
+        language: node
+        types: [text]
         additional_dependencies:
         - prettier@3.9.9
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
@@ -122,3 +126,8 @@ repos:
     hooks:
     -   id: django-upgrade
         args: [--target-version, "5.2"]
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.30.1
+    hooks:
+    -   id: zizmor
+        args: [--pedantic]
