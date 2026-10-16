@@ -6,6 +6,13 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
+    groups:
+      actions:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
   - package-ecosystem: docker
     directory: '/'
     schedule:
@@ -48,6 +55,14 @@ updates:
           - 'patch'
       dev-dependencies:
         dependency-type: development
+        update-types:
+          - 'minor'
+          - 'patch'
+      # Security updates ignore the groups above (they default to version-updates).
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
         update-types:
           - 'minor'
           - 'patch'
