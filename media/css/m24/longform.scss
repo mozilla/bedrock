@@ -20,7 +20,7 @@
     }
 
     @media #{$mq-lg} {
-        max-width: page-grid(8);
+        max-width: page-grid($text-body-max-cols);
         padding-inline: 0;
     }
 }
@@ -39,7 +39,7 @@
     }
 
     @media #{$mq-lg} {
-        max-width: sub-grid(5, 8);
+        max-width: sub-grid(5, $text-body-max-cols);
     }
 }
 
