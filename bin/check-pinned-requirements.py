@@ -6,25 +6,23 @@
 
 import re
 import subprocess
+import tomllib
 
 # Allow `print` statements.
 # ruff: noqa: T201
 
 
-def extract_pinned(requirements_file):
-    """Extract pinned dependencies from a requirements file."""
+def extract_pinned(requirements):
+    """Extract pinned dependencies from a list of PEP 508 requirement strings."""
     pinned_deps = {}
-    with open(requirements_file) as file:
-        for line in file:
-            line = line.strip().lower()
-            # Skip comments and empty lines
-            if line and not line.startswith("#"):
-                # Match lines with version constraints (pinned dependencies) using non-capturing groups for the operator
-                pinned_match = re.match(r"^(\S+)(?:==|>=)(\S+)", line)
-                if pinned_match:
-                    pkg_name = pinned_match.group(1)
-                    version = pinned_match.group(2)
-                    pinned_deps[pkg_name] = version
+    for requirement in requirements:
+        # Match requirements with version constraints (pinned dependencies), skipping any `[extras]`
+        pinned_match = re.match(r"^([^=<>\[\s]+)(?:\[[^\]]*\])?(?:==|>=)([^,;\s]+)", requirement.strip().lower())
+        if pinned_match:
+            # Normalize the name the way `uv pip list` prints it, e.g. `fluent.runtime` -> `fluent-runtime`
+            pkg_name = re.sub(r"[-_.]+", "-", pinned_match.group(1))
+            version = pinned_match.group(2)
+            pinned_deps[pkg_name] = version
     return pinned_deps
 
 
@@ -43,18 +41,17 @@ def get_outdated_packages():
     return raw, outdated
 
 
-def check_outdated_for_requirements(requirements_files):
-    """Check outdated packages for each requirements file."""
+def check_outdated_for_requirements(requirement_groups):
+    """Check outdated packages for each named group of requirements."""
     # Get outdated packages once for efficiency
     raw_outdated, outdated = get_outdated_packages()
 
-    for req_file in requirements_files:
-        # Extract pinned and unpinned dependencies for the current requirements file
-        pinned = extract_pinned(req_file)
+    for group_name, requirements in requirement_groups.items():
+        pinned = extract_pinned(requirements)
 
         outdated_dep = [p for p in outdated if p in pinned]
 
-        print(f"\nOutdated pinned packages for {req_file}:")
+        print(f"\nOutdated pinned packages for {group_name}:")
         if outdated_dep:
             for pkg_name in sorted(outdated_dep):
                 print(f"    {pkg_name} {pinned[pkg_name]} -> {outdated[pkg_name]}")
@@ -66,8 +63,14 @@ def check_outdated_for_requirements(requirements_files):
 
 
 def main():
-    requirements_files = [f"requirements/{f}" for f in ("prod.in", "dev.in", "docs.in")]
-    check_outdated_for_requirements(requirements_files)
+    with open("pyproject.toml", "rb") as file:
+        pyproject = tomllib.load(file)
+    requirement_groups = {
+        "project.dependencies": pyproject["project"]["dependencies"],
+        "dependency-groups.dev": pyproject["dependency-groups"]["dev"],
+        "dependency-groups.docs": pyproject["dependency-groups"]["docs"],
+    }
+    check_outdated_for_requirements(requirement_groups)
 
 
 if __name__ == "__main__":

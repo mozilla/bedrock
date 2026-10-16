@@ -1,4 +1,11 @@
 ########
+# Pinned `uv` binary, copied into the stages that install Python deps.
+# Keep in sync with `setup-uv` `version` in the docs workflows.
+#
+FROM ghcr.io/astral-sh/uv:0.12.17 AS uv
+
+
+########
 # Python dependencies builder
 #
 FROM python:3.13-slim-bookworm AS python-builder
@@ -8,15 +15,37 @@ ENV LANG=C.UTF-8
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ENV PATH="/venv/bin:$PATH"
+ENV UV_PROJECT_ENVIRONMENT=/venv
+# Overrides a local `.python-version` when the repo is mounted in. A version, not a path, so `uv pip` still finds `/venv` first on `PATH`
+ENV UV_PYTHON=3.13
+ENV UV_PYTHON_DOWNLOADS=never
+ENV UV_NO_CACHE=1
+ENV UV_COMPILE_BYTECODE=1
 
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install build-essential gettext libxml2-dev libxslt1-dev libxslt1.1
-RUN python -m venv /venv
+COPY --from=uv /uv /usr/local/bin/
 
-COPY requirements/prod.txt ./requirements/
+COPY pyproject.toml uv.lock ./
 
 # Install Python deps
-RUN pip install --require-hashes --no-cache-dir -r requirements/prod.txt
+RUN uv sync --locked --no-default-groups
+
+
+########
+# Lockfile updates for `make compile-requirements`
+#
+# Kept separate from `python-builder`, whose `uv sync --locked` fails while
+# `pyproject.toml` and `uv.lock` disagree, which is exactly when this is needed
+#
+FROM python:3.13-slim-bookworm AS uv-lock
+
+WORKDIR /app
+ENV UV_PYTHON=3.13
+ENV UV_PYTHON_DOWNLOADS=never
+ENV UV_NO_CACHE=1
+
+COPY --from=uv /uv /usr/local/bin/
 
 
 ########
@@ -91,11 +120,15 @@ CMD ["./bin/run-tests.sh"]
 
 RUN apt-install make
 COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
-COPY requirements/* ./requirements/
-RUN pip install --require-hashes --no-cache-dir -r requirements/dev.txt
-RUN pip install --require-hashes --no-cache-dir -r requirements/docs.txt
+ENV UV_PROJECT_ENVIRONMENT=/venv
+ENV UV_PYTHON=3.13
+ENV UV_PYTHON_DOWNLOADS=never
+ENV UV_NO_CACHE=1
+ENV UV_COMPILE_BYTECODE=1
+COPY --from=uv /uv /usr/local/bin/
+COPY pyproject.toml uv.lock ./
+RUN uv sync --locked
 COPY ./setup.cfg ./
-COPY ./pyproject.toml ./
 COPY ./.coveragerc ./
 COPY ./tests ./tests
 

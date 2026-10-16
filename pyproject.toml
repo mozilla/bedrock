@@ -1,3 +1,115 @@
+[project]
+name = "bedrock"
+version = "0"
+requires-python = "==3.13.*"
+dependencies = [
+    "APScheduler==3.11.3",
+    "babis==0.2.4",
+    "basket-client==1.2.0",
+    "commonware==0.6.0",
+    "defusedxml==0.7.1",
+    "dirsync==2.2.6",
+    "dj-database-url==3.1.2",
+    "django-cors-headers==4.9.0",
+    "django-crum==0.7.9",
+    "django-csp==4.0",
+    "django-extensions==4.1",
+    "django-jinja-markdown==1.2",
+    "django-jinja==2.11.0",
+    "django-jsonview==2.0.0",
+    "django-mozilla-product-details==1.0.3",
+    "django-rq==4.2.0",
+    "django-rq-email-backend==2.0.0",
+    "django-storages[google]==1.14.4",
+    "django-waffle==5.0.0",
+    "django-watchman==1.5.0",
+    "Django>=5.2.16,<6.0",
+    "envcat==0.1.1",
+    "everett==3.5.0",
+    "fluent.runtime==0.4.0",
+    "fluent.syntax==0.19.0",
+    "google-cloud-storage==3.14.1",  # explicit top-level dep since bin/run-db-upload.py imports it directly
+    "granian==2.8.3",
+    "honcho==2.0.0",
+    "html5lib==1.1",
+    "jinja2==3.1.6",  # Pinned as a top-level dep to control its upgrade and avoid breaking changes
+    "jq==1.12.0",
+    "justhtml==3.11.2",  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
+    "lxml==6.1.3",  # Needed for BeautifulSoup.
+    "Markdown==3.10.3",
+    "markus[datadog]==5.0.0",
+    "mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz",
+    "mozilla-django-oidc==5.0.2",
+    "Pillow==12.3.0",
+    "psycopg[binary]==3.2.8",
+    "py-svg-hush==0.3.0",
+    "PyGithub==2.10.0",
+    "PyYAML==6.0.3",
+    "qrcode==8.2",
+    "requests==2.34.2",
+    "sentry-processor==0.0.1",
+    "sentry-sdk==2.69.2",
+    "supervisor==4.3.0",
+    "timeago==1.0.16",
+    "wagtaildraftsharing==0.3.0",
+    "wagtail-localize-smartling==0.13.0",
+    "wagtail-localize==1.14.5",
+    "wagtail-link-block==1.2",
+    "wagtail-thumbnail-choice-block==0.3.0",
+    "Wand==0.7.2",  # For animated GIF support
+    "Wagtail==7.3.4",
+    "whitenoise==6.12.0",
+    "wagtail-localize-dashboard==0.5.0",
+    "wagtail-localize-intentional-blanks==0.3.0",
+]
+
+[dependency-groups]
+dev = [
+    "braceexpand==0.1.7",
+    "django-silk==5.6.0",
+    "factory-boy==3.3.3",
+    "freezegun==1.5.5",
+    "markdown-it-py>=4.2.0",
+    "py==1.11.0",
+    "pyquery==2.1.0",
+    "pytest==9.1.1",  # Included because we use it directly
+    "pytest-base-url==2.1.0",  # Provides the --base-url option and base_url fixture used by our HTTP integration tests
+    "pytest-cov==7.1.0",
+    "pytest-datadir==1.8.0",
+    "pytest-django==4.14.0",
+    "pytest-html==4.2.0",  # Provides the --html option used to generate the integration test report
+    "pytest-mock==3.15.1",
+    "pytest-parallel==0.1.1",
+    "pytest-rerunfailures==16.7",
+    "responses==0.26.3",
+    "ruff==0.16.8",
+    "selenium==4.49.0",
+    "translate-toolkit==3.20.0",
+    "wagtail-factories==4.5.0",
+    # Related to moz-l10n-lint, used in CI
+    "cl-ext.lang==0.1.0",
+    "compare-locales==9.0.5",
+]
+docs = [
+    "mkdocs-material==9.6.14",
+]
+
+[tool.uv]
+# Bedrock is an application, not an installable package
+package = false
+# The dev image and local installs also get the docs tooling
+default-groups = ["dev", "docs"]
+# Avoids packages uploaded in the last 7 days, reducing supply-chain risk. Dependabot's
+# `cooldown` in `.github/dependabot.yml` matches it. This also blocks Dependabot security
+# updates to a release younger than 7 days.
+#
+# To apply an urgent fix sooner (e.g. a Django security release):
+#   1. Bump the pin above.
+#   2. Exempt just that package by adding `exclude-newer-package = { django = false }` under `exclude-newer`.
+#   3. Run `uv lock`, which only re-resolves the changed package. Commit both files.
+#   4. Once the release is 7 days old, remove the exemption and run `uv lock` again.
+exclude-newer = "7 days"
+
 [tool.ruff]
 line-length = 150
 target-version = 'py313'

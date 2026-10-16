@@ -18,7 +18,7 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 preflight:
-	pip install -r ../requirements/docs.txt
+	cd .. && uv sync --locked --active --python 3.13 --inexact --only-group docs
 
 serve:
 	mkdocs serve --open
