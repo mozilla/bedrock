@@ -56,6 +56,30 @@ Keep commit titles short, imperative, and linked to issues when available (e.g.,
 * When planning Wagtail work, remember that <https://docs.wagtail.org/en/7.3/llms.txt> and the full version at <https://docs.wagtail.org/en/7.3/llms-full.txt> contain LLM-appropriate documentation.
 * If the version of Wagtail (not counting patch releases) in requirements/prod.in doesn't match the version in the LLM-appropriate URLs mentioned, please update this AGENTS.md then load the new info
 
+## m24 CMS blocks
+
+Conventions for the m24 blocks in `bedrock/mozorg/blocks/common.py`, with templates in `bedrock/mozorg/templates/mozorg/cms/blocks/` and styles in `media/css/m24/`:
+
+* Put a block's options in a `<Name>BlockSettings` StructBlock with `icon = "cog"`, `collapsed = True`, `label = "Settings"`, a `label_format` and `form_classname = "compact-form struct-block"`. Background color is a `background_color` ChoiceBlock whose values are theme classes: `""` for white, then `m24-t-dark`, `m24-t-green`, `m24-t-orange`, `m24-t-pink` and `m24-t-gray`.
+* Block templates wrap the component in an outer element that carries the background class, then a `<div class="m24-c-content">` container (see `prose_block.html`).
+* Headings follow `block_level` (`{% set heading_level = block_level if block_level else 2 %}`). Each page has exactly one `<h1>`, and every block after it starts at `<h2>`; see `freeform.html` for a page that promotes its first block's heading or falls back to a visually hidden `<h1>`.
+* Freeform page StreamField block names end in `_block`.
+* Class prefixes: `m24-c-` for components, `m24-l-` for layout variants, `m24-t-` for theme and size modifiers and `m24-u-` for utilities (e.g. `m24-u-lede`).
+* Use the `$m24-color-*` variables, not the `$token-color-*` values. `.m24-t-dark` uses the `invert-colors` mixin, so colors written in light-theme terms flip without being redeclared for dark sections. An element with its own dark background can `@include invert-colors` so links and text inside it adapt.
+* Grid helpers live in `vars/_grid.scss`: `grid($n)` only works inside a full-width container that has the container padding, `page-grid($n)` gives n columns of the page grid inside a full-width parent with no padding (e.g. `.m24-c-article`), and `sub-grid($n, $context)` gives n columns inside a context-column parent. Check the rendered widths in a browser, because nesting these changes what the percentages resolve against.
+* Limit body text width with `$text-body-max-cols` (in `vars/_text.scss`) rather than a literal column count.
+* Use the spacing tokens for vertical rhythm: `--section-spacing` between unconnected sections, `--group-spacing` to separate groups of related elements within a section, and `--item-spacing` between related elements. For example, the heading and subheading in an intro are separated by item spacing, the intro is separated from a group of tiles by group spacing, and the tiles inside that group are separated by item spacing.
+* Build intros with the `m24_intro` macro in `macros-m24.html`, placed inside the background wrapper and `.m24-c-content`. Its `tag` defaults to `header`, for an intro that introduces the content after it; pass `tag="div"` for an intro that stands alone, as the intro block does.
+* Blocks with a heading size setting share `HEADING_SIZE_CHOICES`.
+* Rich text fields share feature lists from `common.py`: `RICHTEXT_BODY_FEATURES` for bodies that sit under a block's own heading field, and `ARTICLE_RICHTEXT_FEATURES` (`h2` and `h3` plus the body set) for article text.
+* Wrap rendered rich text in `.m24-c-rich-text` to get the editor typography in `rich-text.scss`.
+* Use logical properties (`border-inline-start`, `inset-inline-start`, `padding-inline-start`), because bedrock serves right-to-left locales.
+* The browser support matrix is Safari 15.6+ and Firefox 115+. Check caniuse before using newer CSS.
+* Keep the `sizes` value on `srcset_image` in step with the image's CSS widths, and re-check it whenever the layout changes.
+* Image and mask URLs in m24 SCSS are absolute `/media/...` paths, because `STATIC_URL` is `/media/`.
+* Wagtail serializes block definitions, including features, choices, `help_text` and `template`, into migrations, so changing any of them needs `makemigrations`.
+* Don't keep lists of things in comments; they go out of date.
+
 ## LLM assistance
 
 * When committing code, do not list the LLM as a co-author - it is a tool, not a developer. All code committed is the responsibility of the human developer using the LLM. This is in line with <https://firefox-source-docs.mozilla.org/contributing/ai-coding.html>
