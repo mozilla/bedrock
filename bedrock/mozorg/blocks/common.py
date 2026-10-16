@@ -642,6 +642,13 @@ RICHTEXT_BODY_FEATURES = [
 ARTICLE_RICHTEXT_FEATURES = ["h2", "h3", *RICHTEXT_BODY_FEATURES]
 
 
+HEADING_SIZE_CHOICES = [
+    ("m24-t-2xl", "2X large"),
+    ("", "X large"),
+    ("m24-t-lg", "Large"),
+]
+
+
 class ProseBlockSettings(blocks.StructBlock):
     """Settings for the prose block."""
 
@@ -680,11 +687,19 @@ class ProseBlockSettings(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable (e.g., 'pledge', 'support').",
     )
 
+    heading_size = blocks.ChoiceBlock(
+        choices=HEADING_SIZE_CHOICES,
+        default="m24-t-lg",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
     class Meta:
         icon = "cog"
         collapsed = True
         label = "Settings"
-        label_format = "Background: {background_color}"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
         form_classname = "compact-form struct-block"
 
 
@@ -705,7 +720,7 @@ class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     )
 
     body = blocks.RichTextBlock(
-        features=["bold", "link"],
+        features=RICHTEXT_BODY_FEATURES,
     )
 
     cta_text = blocks.CharBlock(
@@ -751,11 +766,7 @@ class IntroBlockSettings(blocks.StructBlock):
     )
 
     heading_size = blocks.ChoiceBlock(
-        choices=[
-            ("m24-t-2xl", "2X large"),
-            ("", "X large"),
-            ("m24-t-lg", "Large"),
-        ],
+        choices=HEADING_SIZE_CHOICES,
         default="",
         required=False,
         inline_form=True,

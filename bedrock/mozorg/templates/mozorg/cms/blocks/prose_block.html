@@ -7,20 +7,18 @@
 {% set bg_color = value.settings.background_color %}
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
 {% set heading_level = block_level if block_level else 2 %}
-{% set subheading_level = heading_level if (block_level and not value.heading) else heading_level + 1 %}
+{% set heading_size = value.settings.heading_size %}
 
 <div class="{% if bg_color %} {{ bg_color }}{% endif %}"{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
   <div class="m24-c-content">
     <div class="m24-c-prose{% if value.settings.two_column_layout %} m24-l-two-columns{% endif %}{% if value.settings.reverse %} m24-l-reversed{% endif %}">
-      <hgroup class="m24-c-prose-hgroup">
-        {% if value.heading %}
-          <h{{ heading_level }} class="m24-c-prose-heading">{{ value.heading }}</h{{ heading_level }}>
-        {% endif %}
+      <hgroup class="m24-c-prose-heading m24-c-intro">
+        <h{{ heading_level }} class="m24-c-intro-title{% if heading_size %} {{ heading_size }}{% endif %}">{{ value.heading }}</h{{ heading_level }}>
         {% if value.sub_heading %}
-          <h{{ subheading_level }} class="m24-c-prose-subheading">{{ value.sub_heading }}</h{{ subheading_level }}>
+          <p>{{ value.sub_heading }}</p>
         {% endif %}
       </hgroup>
-      <div class="m24-c-prose-body">
+      <div class="m24-c-prose-body m24-c-rich-text">
         {{ value.body|richtext }}
       </div>
     </div>
