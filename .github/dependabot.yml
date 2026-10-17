@@ -16,6 +16,31 @@ updates:
     labels:
       - Backend
       - dependencies
+  - package-ecosystem: uv
+    directory: '/'
+    ignore:
+      # Need to be kept in sync with pre-commit-config.yaml.
+      - dependency-name: 'ruff'
+    schedule:
+      interval: monthly
+    # Matches `exclude-newer` in `pyproject.toml`, so Dependabot never proposes a version uv refuses to lock
+    cooldown:
+      default-days: 7
+    groups:
+      backend:
+        dependency-type: production
+        update-types:
+          - 'minor'
+          - 'patch'
+      backend-dev-dependencies:
+        dependency-type: development
+        update-types:
+          - 'minor'
+          - 'patch'
+    open-pull-requests-limit: 10
+    labels:
+      - Backend
+      - dependencies
   - package-ecosystem: npm
     directory: '/'
     ignore:
