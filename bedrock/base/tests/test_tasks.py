@@ -125,14 +125,15 @@ class TasksHelperTests(TestCase):
             func_kwargs=func_kwargs,
         )
 
-        mock_get_queue.assert_called_once_with("default")
+        # The default queue is a test-specific one when running tests
+        mock_get_queue.assert_called_once_with("test_default")
         mock_queue.enqueue.assert_called_once_with(
             func,
             *func_args,
             **func_kwargs,
         )
         func.assert_not_called()
-        mock_logger_info.assert_called_once_with(f"Sending {func} to the task queue 'default'")
+        mock_logger_info.assert_called_once_with(f"Sending {func} to the task queue 'test_default'")
 
     @override_settings(TASK_QUEUE_AVAILABLE=False)
     @patch("bedrock.base.tasks.django_rq.get_queue")
