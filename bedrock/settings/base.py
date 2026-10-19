@@ -74,14 +74,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 TASK_QUEUE_AVAILABLE = False
 RQ_QUEUES = {}
 
+# Names of the task queues we use. When running tests, these are swapped
+# for test-specific queues - see bedrock/settings/__init__.py
+RQ_DEFAULT_QUEUE = "default"
+RQ_IMAGE_RENDITIONS_QUEUE = "image_renditions"
+
 REDIS_URL = config("REDIS_URL", default="")
 if REDIS_URL:
     TASK_QUEUE_AVAILABLE = True
     REDIS_URL = REDIS_URL.rstrip("/0")
     RQ_QUEUES = {
         # Same Redis DBs/connections
-        "default": {"URL": f"{REDIS_URL}/0"},
-        "image_renditions": {"URL": f"{REDIS_URL}/0"},
+        RQ_DEFAULT_QUEUE: {"URL": f"{REDIS_URL}/0"},
+        RQ_IMAGE_RENDITIONS_QUEUE: {"URL": f"{REDIS_URL}/0"},
     }
 
 CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}")  # 10 mins
@@ -973,6 +978,9 @@ if DEBUG:
     default_email_backend = "django.core.mail.backends.console.EmailBackend"
 elif TASK_QUEUE_AVAILABLE is True:
     default_email_backend = "django_rq_email_backend.backends.RQEmailBackend"
+
+# The queue that django-rq-email-backend sends emails via, when it is in use
+RQ_EMAIL_DEFAULT_QUEUE = RQ_DEFAULT_QUEUE
 
 DEFAULT_FROM_EMAIL = "Mozilla.com <noreply@mozilla.com>"
 

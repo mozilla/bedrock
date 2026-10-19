@@ -145,6 +145,13 @@ if (len(sys.argv) > 1 and sys.argv[1] == "test") or "pytest" in sys.modules:
     if DATABASES["default"]["ENGINE"] == "django.db.backends.sqlite3":
         DATABASES["default"] = {"ENGINE": "django.db.backends.sqlite3", "NAME": ":memory:"}
 
+    # Use test-specific task queues, so that jobs enqueued during a test run
+    # don't end up on the queues that a local worker is processing
+    RQ_DEFAULT_QUEUE = f"test_{RQ_DEFAULT_QUEUE}"
+    RQ_IMAGE_RENDITIONS_QUEUE = f"test_{RQ_IMAGE_RENDITIONS_QUEUE}"
+    RQ_EMAIL_DEFAULT_QUEUE = f"test_{RQ_EMAIL_DEFAULT_QUEUE}"
+    RQ_QUEUES = {f"test_{queue_name}": queue_config for queue_name, queue_config in RQ_QUEUES.items()}
+
 
 # 3. DJANGO-CSP SETTINGS
 if csp_extra_default_src := config("CSP_DEFAULT_SRC", default="", parser=ListOf(str, allow_empty=False)):

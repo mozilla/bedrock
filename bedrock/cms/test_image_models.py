@@ -32,7 +32,8 @@ class BedrockImageTestCase(TestCase):
 
             image._pre_generate_expected_renditions()
 
-            mock_django_rq.get_queue.assert_called_once_with("image_renditions")
+            # The queue is a test-specific one when running tests
+            mock_django_rq.get_queue.assert_called_once_with("test_image_renditions")
             mock_queue.enqueue.assert_called_once_with(
                 _make_renditions,
                 image_id=image.id,
@@ -46,7 +47,7 @@ class BedrockImageTestCase(TestCase):
             image._pre_generate_expected_renditions()
             mock_defer_task.assert_called_once_with(
                 _make_renditions,
-                queue_name="image_renditions",
+                queue_name="test_image_renditions",
                 func_kwargs={
                     "image_id": image.id,
                     "filter_specs": AUTOMATIC_RENDITION_FILTER_SPECS,
