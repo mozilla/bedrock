@@ -91,7 +91,7 @@ dev = [
     "compare-locales==9.0.5",
 ]
 docs = [
-    "mkdocs-material==9.6.14",
+    "mkdocs-material==9.7.7",
 ]
 
 [tool.uv]
