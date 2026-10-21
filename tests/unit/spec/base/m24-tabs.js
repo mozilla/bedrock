@@ -33,8 +33,6 @@ describe('m24-tabs.es6.js', function () {
         panelOne = document.getElementById('panel-one');
         panelTwo = document.getElementById('panel-two');
 
-        spyOn(M24Tabs, 'isSupported').and.returnValue(true);
-
         // stub out google tag manager
         window.dataLayer = sinon.stub();
         window.dataLayer.push = sinon.stub();
@@ -51,14 +49,6 @@ describe('m24-tabs.es6.js', function () {
     });
 
     describe('init()', function () {
-        it('should do nothing if unsupported', function () {
-            M24Tabs.isSupported.and.returnValue(false);
-            M24Tabs.init('#test-tabs');
-            expect(
-                document.querySelector('.m24-c-tabs-list').getAttribute('role')
-            ).toBeNull();
-        });
-
         it('should set ARIA roles/relationships and select the first tab', function () {
             M24Tabs.init('#test-tabs');
 
