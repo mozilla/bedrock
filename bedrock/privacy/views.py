@@ -111,10 +111,6 @@ websites_notices = PrivacyDocView.as_view(template_name="privacy/notices/website
 
 mdn_plus = PrivacyDocView.as_view(template_name="privacy/notices/mdn-plus.html", legal_doc_name="mdn_plus_privacy")
 
-ad_targeting_guidelines = PrivacyDocView.as_view(
-    template_name="privacy/notices/ad-targeting-guidelines.html", legal_doc_name="adtargeting_guidelines"
-)
-
 subscription_services = PrivacyDocView.as_view(
     template_name="privacy/notices/subscription-services.html", legal_doc_name="subscription_services_privacy_notice"
 )
