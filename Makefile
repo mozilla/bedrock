@@ -174,7 +174,7 @@ check-requirements: .docker-build-pull
 # `--no-sync` skips a second install. `--active` and `--python 3.13` match that target.
 UV_RUN_LOCAL = uv run --no-sync --active --python 3.13
 
-preflight:
+preflight: .env
 	${MAKE} install-local-python-deps
 	# --min-release-age=7 avoids packages uploaded in the last 7 days
 	# reducing supply-chain risk. Requires npm >= 11.10.0.
