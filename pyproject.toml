@@ -109,6 +109,9 @@ default-groups = ["dev", "docs"]
 #   3. Run `uv lock`, which only re-resolves the changed package. Commit both files.
 #   4. Once the release is 7 days old, remove the exemption and run `uv lock` again.
 exclude-newer = "7 days"
+# Temporary: certifi 2026.10.19 drops the compromised eMudhra intermediates, so skip the
+# cooldown for it. Remove this line after 2026-10-26 and run `uv lock`.
+exclude-newer-package = { certifi = false }
 
 [tool.ruff]
 line-length = 150
