@@ -49,6 +49,16 @@ If the script fails (e.g. no virtualenv active), fall back to manually checking 
 - For each pinned package (`==` version), run `pip index versions <package>` or fetch `https://pypi.org/project/<package>/#history` to find the latest version
 - Report packages where the pinned version differs from latest
 
+The script only covers `==` pins. Range pins (e.g. `Django>=5.2.18,<6.0`) are invisible to it,
+and `uv lock` leaves their locked version alone until something forces a re-resolve. Check them
+separately:
+
+- List range-pinned packages: `grep -nE '^\s*"[A-Za-z0-9_.-]+\s*(>=|~=|<|>)' pyproject.toml`
+- Run `uv lock --upgrade-package <pkg> --dry-run` for each one. "No lockfile changes detected"
+  means the lock is already at the newest version the range allows; otherwise report the
+  locked → available bump as an outdated dependency alongside the `==` results. Security
+  releases of Django in particular surface this way.
+
 ### npm (`npm` or `all`)
 
 Run `npm outdated --long` to find outdated packages in `package.json`.
@@ -164,6 +174,9 @@ Process approved updates in this order:
 ### 1. Python dependencies
 - Edit the version pin in `pyproject.toml` (`[project] dependencies` or a `[dependency-groups]` entry)
 - Run `uv lock` to update `uv.lock` for just that change. `make compile-requirements` re-resolves every package, so only use it when a full refresh is wanted
+- For a range-pinned package, run `uv lock --upgrade-package <pkg>` instead, since an unchanged
+  declaration is never re-resolved. For a security release, also raise the range's floor so
+  older releases cannot be locked again
 
 ### 2. npm packages
 - Run `npm install <package>@<version>` for pinned packages, or `npm update <package>` for range-pinned packages
