@@ -4,8 +4,6 @@
 
 from django.db import models
 
-from django_extensions.db.fields.json import JSONField
-
 
 class NewsletterManager(models.Manager):
     def serialize(self):
@@ -40,7 +38,7 @@ class Newsletter(models.Model):
         unique=True,
         help_text="The ID for the newsletter that will be used by clients",
     )
-    data = JSONField()
+    data = models.JSONField(default=dict)
 
     objects = NewsletterManager()
 
