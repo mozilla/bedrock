@@ -16,6 +16,8 @@ redirectpatterns = (
     redirect(r"^foundation/documents/domain-name-license\.pdf$", "/foundation/trademarks/policy/"),
     redirect(r"^foundation/trademarks/poweredby/faq/?$", "/foundation/trademarks/policy/"),
     redirect(r"^foundation/trademarks/l10n-website-policy/?$", "/foundation/trademarks/policy/"),
+    # https://mozilla-hub.atlassian.net/browse/WT-1869
+    redirect(r"^foundation/trademarks/community-edition-(permitted-changes|policy)/?$", "/foundation/trademarks/policy/"),
     # Issue 9727
     redirect(r"^foundation/annualreport/2022/?$", "https://stateof.mozilla.org/"),
     redirect(r"^foundation/annualreport/?$", "/foundation/annualreport/2024/", name="foundation.annualreport"),
