@@ -39,7 +39,7 @@
     "@eslint/js": "^10.0.1",
     "concurrently": "^10.0.6",
     "dotenv-webpack": "^9.0.0",
-    "eslint": "^10.12.0",
+    "eslint": "^10.13.0",
     "eslint-config-prettier": "^10.1.8",
     "glob": "^13.0.6",
     "globals": "^17.13.0",
