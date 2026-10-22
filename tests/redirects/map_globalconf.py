@@ -1238,6 +1238,8 @@ URLS = flatten(
         url_test("/foundation/annualreport/2022/", "https://stateof.mozilla.org/"),
         # Issue 14186
         url_test("/privacy/firefox-monitor/", "/privacy/subscription-services/"),
+        # https://mozilla-hub.atlassian.net/browse/WT-1870
+        url_test("/privacy/ad-targeting-guidelines/", "/privacy/firefox/"),
         # Issue 14172
         url_test(
             "/firefox/browsers/mobile/app/?product=firefox",
