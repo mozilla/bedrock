@@ -86,7 +86,6 @@ RUN adduser --uid 1000 --disabled-password --gecos '' --no-create-home webdev
 
 WORKDIR /app
 EXPOSE 8000
-CMD ["./bin/run.sh"]
 
 COPY docker/bin/apt-install /usr/local/bin/
 RUN apt-install ca-certificates curl gettext git libmagickwand-dev libpq-dev libxslt1.1 sqlite3
@@ -116,8 +115,6 @@ COPY ./media ./media
 #
 FROM app-base AS devapp
 
-CMD ["./bin/run-tests.sh"]
-
 RUN apt-install make
 COPY docker/bin/ssllabs-scan /usr/local/bin/ssllabs-scan
 ENV UV_PROJECT_ENVIRONMENT=/venv
@@ -142,6 +139,7 @@ RUN touch /home/webdev/.pythonhist
 RUN chown -R webdev /home/webdev/
 
 USER webdev
+CMD ["./bin/run-tests.sh"]
 
 # build args
 ARG GIT_SHA=latest
@@ -165,6 +163,7 @@ RUN honcho run --env docker/envfiles/prod.env docker/bin/build_staticfiles.sh
 # Change User
 RUN chown webdev:webdev -R .
 USER webdev
+CMD ["./bin/run.sh"]
 
 # build args
 ARG GIT_SHA=latest
