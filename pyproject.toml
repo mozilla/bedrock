@@ -23,7 +23,7 @@ dependencies = [
     "django-storages[google]==1.14.4",
     "django-waffle==5.0.0",
     "django-watchman==1.5.0",
-    "Django>=5.2.16,<6.0",
+    "Django>=5.2.18,<6.0",
     "envcat==0.1.1",
     "everett==3.5.0",
     "fluent.runtime==0.4.0",
@@ -78,12 +78,12 @@ dev = [
     "pytest-datadir==1.8.0",
     "pytest-django==4.14.0",
     "pytest-html==4.2.0",  # Provides the --html option used to generate the integration test report
-    "pytest-mock==3.15.1",
+    "pytest-mock==3.16.0",
     "pytest-parallel==0.1.1",
     "pytest-rerunfailures==16.7",
     "responses==0.26.3",
-    "ruff==0.16.8",
-    "selenium==4.49.0",
+    "ruff==0.17.0",
+    "selenium==4.51.0",
     "translate-toolkit==3.20.0",
     "wagtail-factories==4.5.0",
     # Related to moz-l10n-lint, used in CI
@@ -91,7 +91,7 @@ dev = [
     "compare-locales==9.0.5",
 ]
 docs = [
-    "mkdocs-material==9.6.14",
+    "mkdocs-material==9.7.7",
 ]
 
 [tool.uv]
@@ -99,7 +99,7 @@ docs = [
 package = false
 # Floor matches the `ghcr.io/astral-sh/uv` image in `Dockerfile`. uv carries its own CA roots for
 # PyPI fetches, so an older local uv would resolve and lock against a stale trust store.
-required-version = ">=0.13.4"
+required-version = ">=0.13.5"
 # The dev image and local installs also get the docs tooling
 default-groups = ["dev", "docs"]
 # Avoids packages uploaded in the last 7 days, reducing supply-chain risk. Dependabot's

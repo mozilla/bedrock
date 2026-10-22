@@ -71,7 +71,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.8
+    rev: v0.17.0
     hooks:
       - id: ruff
       - id: ruff-format
@@ -101,7 +101,7 @@ repos:
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v10.12.0
+    rev: v10.13.0
     hooks:
       - id: eslint
         additional_dependencies:
@@ -117,17 +117,17 @@ repos:
     -   id: check-unapplied-migrations
     -   id: check-absent-migrations
   - repo: https://github.com/asottile/pyupgrade
-    rev: "v3.21.2"
+    rev: "v3.22.0"
     hooks:
     - id: pyupgrade
       args: [--py313]
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: "1.32.0"  # replace with latest tag on GitHub
+    rev: "1.33.0"  # replace with latest tag on GitHub
     hooks:
     -   id: django-upgrade
         args: [--target-version, "5.2"]
   - repo: https://github.com/zizmorcore/zizmor-pre-commit
-    rev: v1.30.1
+    rev: v1.31.1
     hooks:
     -   id: zizmor
         args: [--pedantic]
