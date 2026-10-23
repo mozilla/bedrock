@@ -21,9 +21,12 @@ on:
 permissions:
   contents: read
 
-# Keyed on the deployed branch so stage and prod runs never block each other.
+# Stage and prod each deploy to a US and an EU origin, and every deployment dispatches
+# its own run for the same branch and SHA. Key on branch, SHA and a region label derived
+# from the origin hostname (without putting the hostname itself in the group name) so
+# the two regions run in parallel and only a re-dispatch of the same deployment queues.
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.branch }}
+  group: ${{ github.workflow }}-${{ inputs.branch }}-${{ inputs.git_sha }}-${{ contains(inputs.mozorg_service_hostname, '.eu.') && 'eu' || 'us' }}
   cancel-in-progress: false
   queue: max # keep every pending run, not just the newest
 

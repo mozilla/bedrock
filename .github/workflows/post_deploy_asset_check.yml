@@ -23,9 +23,11 @@ on:
         description: Fully qualified base URL for the CDN (eg. https://www.mozilla.org)
         required: true
 
-# Keyed on the deployed branch so stage and prod runs never block each other.
+# Only the US deployment dispatches this today, but key it per deployment like the
+# integration tests so enabling it for the EU origin never serialises the two regions.
+# The region label is derived from the origin hostname rather than exposing the hostname.
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.branch }}
+  group: ${{ github.workflow }}-${{ inputs.branch }}-${{ inputs.git_sha }}-${{ contains(inputs.origin_hostname, '.eu.') && 'eu' || 'us' }}
   cancel-in-progress: false
   queue: max # keep every pending run, not just the newest
 
