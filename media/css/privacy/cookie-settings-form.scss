@@ -6,6 +6,10 @@
 @use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 
 .mzp-c-breadcrumb {
+    .mzp-c-breadcrumb-item + .mzp-c-breadcrumb-item::before {
+        font-family: ui-sans-serif, sans-serif;
+    }
+
     &.is-hidden {
         display: none;
     }

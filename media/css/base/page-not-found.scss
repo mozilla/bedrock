@@ -64,7 +64,7 @@
 
     &::before {
         @include bidi(((content, '\2190\0020', '\2192\0020'),));
-        font-family: sans-serif;
+        font-family: ui-sans-serif, sans-serif;
     }
 }
 
