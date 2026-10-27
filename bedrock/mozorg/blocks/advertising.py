@@ -317,7 +317,8 @@ class SectionBlock(blocks.StructBlock):
             ("statistic_callout_block", StatisticCalloutBlock()),
             ("features_with_modals", FeatureListWithModalsBlock()),
             ("feature_list_block", FeatureListBlock()),
-        ]
+        ],
+        required=False,
     )
     call_to_action = blocks.ListBlock(RowTextAndLinkBlock(), min_num=0, max_num=1, default=[], label="Call to Action")
 
