@@ -8,11 +8,13 @@ from django.core.exceptions import ValidationError
 
 import pytest
 from bs4 import BeautifulSoup
+from wagtail import blocks
 from wagtail.rich_text import RichText
 
 from bedrock.cms.tests.conftest import minimal_site  # noqa: F401, F811
 from bedrock.mozorg import models
 from bedrock.mozorg.blocks import common
+from bedrock.mozorg.blocks.advertising import SectionHeaderBlock
 from bedrock.mozorg.tests import factories
 
 pytestmark = [
@@ -63,7 +65,7 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
             settings=factories.SectionSettingsFactory(anchor_id=""),
             header=factories.SectionHeaderBlockFactory(
                 heading_text="Test Section Header",
-                subheading_text="Test subheading",
+                subheading_text=RichText("<p>Test subheading</p>"),
             ),
         ),
     )
@@ -94,6 +96,19 @@ def test_advertising_index_page(minimal_site, rf, serving_method):  # noqa
 
     # Assert notification snippet text
     assert "Follow Mozilla Ads to get the latest secure advertising trends." in page_content
+
+
+def test_section_header_block_requires_a_heading():
+    block = SectionHeaderBlock()
+
+    # All heading fields empty -> validation error (covers the RichText .source path)
+    empty = block.to_python({"superheading_text": "", "heading_text": "", "subheading_text": ""})
+    with pytest.raises(blocks.StructBlockValidationError):
+        block.clean(empty)
+
+    # A rich-text subheading alone is enough to pass
+    with_subheading = block.to_python({"superheading_text": "", "heading_text": "", "subheading_text": "<p>Hi</p>"})
+    block.clean(with_subheading)  # should not raise
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
