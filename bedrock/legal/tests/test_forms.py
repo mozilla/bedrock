@@ -195,6 +195,7 @@ class TestFraudReport(TestCase):
 
         mock_capture_message.assert_called_once()
         assert mock_capture_message.call_args[1]["level"] == "warning"
+        assert mock_capture_message.call_args[1]["extras"] == {"details_length": legal_forms.FRAUD_REPORT_DETAILS_MAX_LENGTH + 1}
 
     @patch("bedrock.legal.views.EmailMessage")
     def test_email_subject_long_url_truncated(self, mock_email_message):
