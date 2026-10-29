@@ -165,3 +165,29 @@ class TestAddUtmParameters:
         result = add_utm_parameters(utm_context, url)
         # The regex only matches single-level subdomains like blog.mozilla.org
         assert result == url
+
+    def test_adds_utm_to_hyphenated_subdomain(self, utm_context):
+        url = "https://open-source.mozilla.org/article/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+
+    def test_adds_utm_when_url_has_port(self, utm_context):
+        url = "https://blog.mozilla.org:443/article/"
+        result = add_utm_parameters(utm_context, url)
+        assert "utm_source=www.mozilla.org" in result
+
+    @pytest.mark.parametrize(
+        "url",
+        (
+            "https://mozilla.org.example.com/article/",
+            "https://blog.mozilla.com.evil.net/article/",
+            "https://notmozilla.org/article/",
+            "https://blog.mozilla.org@example.com/article/",
+        ),
+    )
+    def test_excludes_look_alike_domains(self, utm_context, url):
+        assert add_utm_parameters(utm_context, url) == url
+
+    def test_excludes_www_mozilla_org_uppercase(self, utm_context):
+        url = "https://WWW.MOZILLA.ORG/about/"
+        assert add_utm_parameters(utm_context, url) == url
