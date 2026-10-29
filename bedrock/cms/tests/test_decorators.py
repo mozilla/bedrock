@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 
+from django.http import Http404
 from django.test import override_settings
 from django.urls import path
 
@@ -479,6 +480,24 @@ def prefer_cms_alias_site(tiny_localized_site):
     en_us_page.publish(en_us_page.latest_revision)
 
     return {"site": site, "es_es_locale": es_es_locale, "en_us_page": en_us_page}
+
+
+@pytest.mark.parametrize("lang_code", ("es-ES", "cak"))
+@pytest.mark.urls(__name__)
+def test_prefer_cms_strips_the_locale_of_any_shape_before_wagtail_matching(prefer_cms_alias_site, client, mocker, lang_code):
+    """
+    prefer_cms removes the locale from the request path before asking Wagtail to match the
+    page. Supported locales are not all of the "xx" or "xx-YY" shape (Kaqchikel is "cak",
+    Japanese on macOS is "ja-JP-mac"), so the prefix has to be recognized as a supported
+    locale rather than matched by length - otherwise Wagtail is handed the locale as the
+    first segment of the page path and the CMS page can never be served for that locale.
+    """
+    mock_serve = mocker.patch("bedrock.cms.decorators.wagtail_serve_with_locale_fallback", side_effect=Http404)
+
+    response = client.get(f"/{lang_code}/prefer-cms-alias-test/")
+
+    assert mock_serve.call_args[0][1] == "/prefer-cms-alias-test/"
+    assert "dummy response from the wrapped view" in response.text
 
 
 @pytest.mark.urls(__name__)

@@ -165,5 +165,12 @@ def check_for_bedrock_language(lang_code):
 
 
 def remove_lang_prefix(url):
-    locale_pattern = r"^/([a-z]{2}(-[a-zA-Z]{2})?)/"  # (e.g., /en-US/ or /en-us/)
-    return re.sub(locale_pattern, "/", url)
+    """Strip the leading locale of a path, if it has one, e.g. /sco/firefox/ --> /firefox/.
+
+    The locale is looked up rather than pattern-matched, because supported locales come in
+    shapes a fixed-length pattern can't cover (e.g. "cak", "ja-JP-mac").
+    """
+    match = re.match(r"^/[^/]+/", url)
+    if match and normalize_language(match.group(0).strip("/")):
+        return url[match.end() - 1 :]
+    return url

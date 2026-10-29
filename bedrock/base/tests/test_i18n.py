@@ -15,6 +15,7 @@ from bedrock.base.i18n import (
     get_language_from_headers,
     normalize_language,
     path_needs_lang_code,
+    remove_lang_prefix,
     split_path_and_normalize_language,
 )
 from lib.l10n_utils import translation
@@ -223,3 +224,26 @@ def test_get_language_from_headers(rf, headers, expected):
 )
 def test_get_best_language(header, expected):
     assert get_best_language(header) == expected
+
+
+@pytest.mark.parametrize(
+    "url, expected",
+    (
+        ("/en-US/firefox/", "/firefox/"),
+        # the code is matched case-insensitively, as elsewhere in this module
+        ("/EN-US/firefox/", "/firefox/"),
+        # supported locales are not all two letters, and may have several subtags
+        ("/sco/firefox/", "/firefox/"),
+        ("/cak/firefox/", "/firefox/"),
+        ("/ja-JP-mac/firefox/", "/firefox/"),
+        # a shorter code still resolves through the fallbacks
+        ("/es/firefox/", "/firefox/"),
+        # paths that don't start with a locale are left alone
+        ("/firefox/", "/firefox/"),
+        ("/robots.txt", "/robots.txt"),
+        ("/", "/"),
+        ("", ""),
+    ),
+)
+def test_remove_lang_prefix(url, expected):
+    assert remove_lang_prefix(url) == expected
