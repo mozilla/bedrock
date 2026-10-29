@@ -68,6 +68,15 @@ MALICIOUS_SVG_WITH_ENCODED_HTML_DATA_URL = b"""<?xml version="1.0"?>
   </a>
 </svg>"""
 
+# An SVG whose DTD declares an entity. `defusedxml` refuses to parse it and raises
+# `EntitiesForbidden`, which is a `ValueError` rather than a `ParseError`, so layer 2 has
+# to defer to layer 3 (`py-svg-hush` drops the DTD and resolves the entity in its output).
+SVG_WITH_DOCTYPE_ENTITY = """<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [<!ENTITY logo "Mozilla">]>
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
+    <text x="10" y="20">&logo;</text>
+</svg>"""
+
 pytestmark = [pytest.mark.django_db]
 
 
@@ -223,6 +232,28 @@ class SVGSanitizationFieldTestCase(TestCase):
         """XML detection should not flag clean SVGs."""
         content = CLEAN_SVG.encode("utf-8")
         self.assertFalse(self.field._has_dangerous_elements_xml(content))
+
+    def test_xml_detection_of_defused_parse_error(self):
+        """XML detection defers on any XML-level rejection, as documented, not only ParseError."""
+        content = SVG_WITH_DOCTYPE_ENTITY.encode("utf-8")
+        self.assertFalse(self.field._has_dangerous_elements_xml(content))
+
+    def test_svg_with_doctype_entity_is_sanitized_not_raised(self):
+        """A DTD that defusedxml refuses is handled by layer 3, not raised past the field.
+
+        `EntitiesForbidden` is a `ValueError`, not a `ParseError`, so the "if we can't parse
+        the XML, let py-svg-hush handle it" deferral did not cover it and the exception
+        escaped `to_python()` - a 500 in the admin instead of a sanitized upload.
+        """
+        svg_file = SimpleUploadedFile(
+            "dtd.svg",
+            SVG_WITH_DOCTYPE_ENTITY.encode("utf-8"),
+            content_type="image/svg+xml",
+        )
+
+        result = self.field._sanitize_svg(svg_file)
+        self.assertIsNone(result)
+        self.assertNotIn(b"<!DOCTYPE", svg_file.read())
 
     # Integration tests for to_python() method
     def test_to_python_with_clean_svg(self):
