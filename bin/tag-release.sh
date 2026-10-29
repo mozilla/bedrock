@@ -27,9 +27,40 @@ while [[ $# -ge 1 ]]; do
   shift # past argument or value
 done
 
+write_output() {
+    if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
+        echo "$1" >> "$GITHUB_OUTPUT"
+    fi
+}
+
+git fetch "$moz_git_remote"
+
+if [[ "$ci_mode" == true ]]; then
+    # A re-run of the release job must not mint a new tag for a SHA that is
+    # already tagged: no new integration tests are dispatched for a SHA that's
+    # already on prod. Reuse the oldest tag, the one that actually deployed it.
+    # This runs before the stage check so a retry works even if stage has moved.
+    git fetch --tags "$moz_git_remote"
+    existing_tag=$(git tag --points-at HEAD | grep -E '^[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9]+)?$' | sort -V | head -n 1 || true)
+    if [[ -n "$existing_tag" ]]; then
+        echo "✓ HEAD is already tagged; reusing existing tag $existing_tag"
+        write_output "tag=${existing_tag}"
+        write_output "reused=true"
+        prod_updated=false
+        if [[ "$do_push" == true && "$(git rev-parse "${moz_git_remote}/prod")" != "$(git rev-parse HEAD)" ]]; then
+            # Prod isn't on this SHA (a previous run failed before updating
+            # prod, or prod was rolled back), so this push redeploys it and the
+            # caller must ignore integration runs from before now.
+            git push "$moz_git_remote" HEAD:prod
+            prod_updated=true
+        fi
+        write_output "prod_updated=${prod_updated}"
+        exit 0
+    fi
+fi
+
 # compare main and stage
 echo "Comparing main branch to staging..."
-git fetch "$moz_git_remote"
 stage_hash=$(git rev-parse "${moz_git_remote}/stage")
 if [[ "$ci_mode" == true ]]; then
     # In CI mode we check out a specific SHA (detached HEAD), so 'main' branch
@@ -78,9 +109,8 @@ done
 echo "tagged $tag_value"
 
 # Output the tag name for CI systems to capture
-if [[ -n "${GITHUB_OUTPUT:-}" ]]; then
-  echo "tag=${tag_value}" >> "$GITHUB_OUTPUT"
-fi
+write_output "tag=${tag_value}"
+write_output "reused=false"
 
 if [[ "$do_push" == true ]]; then
   git push "$moz_git_remote" "$tag_value"

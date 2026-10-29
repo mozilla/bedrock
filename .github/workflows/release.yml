@@ -471,12 +471,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Record prod push time
-        id: record-time
-        run: |
-          PROD_PUSH_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          echo "prod_push_time=${PROD_PUSH_TIME}" >> "$GITHUB_OUTPUT"
-
       - name: Tag release and push to prod
         id: tag-release
         env:
@@ -486,7 +480,28 @@ jobs:
           # --ci: skips interactive prompts; exits non-zero if main != stage
           # --push: creates the tag, pushes tag and HEAD to prod branch
           ./bin/tag-release.sh --ci --push
-          # The tag value is written to $GITHUB_OUTPUT by the script
+          # The tag value is written to $GITHUB_OUTPUT by the script. On a re-run
+          # the script reuses the SHA's existing tag (reused=true) instead of
+          # minting a new one.
+
+      - name: Record release start time
+        id: release-since
+        env:
+          RELEASE_TAG: ${{ steps.tag-release.outputs.tag }}
+          PROD_UPDATED: ${{ steps.tag-release.outputs.prod_updated }}
+        run: |
+          # Tag creation time is a stable lower bound for this release's
+          # integration runs: prod can't have had this SHA before its first tag,
+          # and unlike the build's updatedAt it doesn't move if the build is re-run.
+          # If a reused tag's SHA was just pushed back onto prod (e.g. after a
+          # rollback), runs from its original deploy are stale, so start from now.
+          if [ "$PROD_UPDATED" = "true" ]; then
+            RELEASE_SINCE=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          else
+            TAG_DATE=$(git for-each-ref --format='%(creatordate:unix)' "refs/tags/${RELEASE_TAG}")
+            RELEASE_SINCE=$(date -u -d "@${TAG_DATE}" +"%Y-%m-%dT%H:%M:%SZ")
+          fi
+          echo "release_since=${RELEASE_SINCE}" >> "$GITHUB_OUTPUT"
 
       - name: Notify #www-notify — pushing to prod
         uses: ./.github/actions/slack
@@ -497,36 +512,37 @@ jobs:
           channel_id: ${{ env.SLACK_CHANNEL_WWW_NOTIFY }}
           slack_bot_token: ${{ env.SLACK_BOT_TOKEN }}
           ref: ${{ steps.tag-release.outputs.tag }}
-          message: "Pushing Bedrock Prod, tagged ${{ steps.tag-release.outputs.tag }}"
+          message: ${{ steps.tag-release.outputs.reused == 'true' && format('Re-checking Bedrock Prod deploy for existing tag {0}', steps.tag-release.outputs.tag) || format('Pushing Bedrock Prod, tagged {0}', steps.tag-release.outputs.tag) }}
 
       - name: Wait — Docker build for prod tag
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
-          PROD_PUSH_TIME: ${{ steps.record-time.outputs.prod_push_time }}
           RELEASE_TAG: ${{ steps.tag-release.outputs.tag }}
         run: |
-          echo "Waiting for build-and-push for tag $RELEASE_TAG after $PROD_PUSH_TIME..."
+          echo "Waiting for build-and-push for tag $RELEASE_TAG..."
           TIMEOUT=3600
           INTERVAL=30
           ELAPSED=0
           while [ $ELAPSED -lt $TIMEOUT ]; do
-            # Tag pushes trigger build-and-push; headBranch is the tag name
+            # Tag pushes trigger build-and-push; headBranch is the tag name.
+            # Filter by commit server-side so the default result limit can't hide it.
             RESULT=$(gh run list \
               --repo mozilla/bedrock \
               --workflow build-and-push.yml \
-              --json headSha,headBranch,conclusion,status,createdAt,updatedAt \
-              | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_PUSH_TIME" \
-                  '[.[] | select(.headSha == $sha) | select(.createdAt >= $since)]')
+              --commit "$RELEASE_SHA" \
+              --event push \
+              --limit 50 \
+              --json headBranch,conclusion,status,url \
+              | jq --arg tag "$RELEASE_TAG" '[.[] | select(.headBranch == $tag)]')
             CONCLUSION=$(echo "$RESULT" | jq -r '.[0].conclusion // empty')
             STATUS=$(echo "$RESULT" | jq -r '.[0].status // "not found"')
             if [ "$CONCLUSION" = "success" ]; then
-              PROD_BUILD_DONE_TIME=$(echo "$RESULT" | jq -r '.[0].updatedAt')
-              echo "prod_build_done_time=${PROD_BUILD_DONE_TIME}" >> "$GITHUB_ENV"
-              echo "✓ Docker build completed for prod tag (finished at $PROD_BUILD_DONE_TIME)"
+              echo "✓ Docker build completed for prod tag"
               break
             elif [ -n "$CONCLUSION" ] && [ "$CONCLUSION" != "null" ]; then
-              echo "::error::Docker build failed for prod tag (conclusion: $CONCLUSION)"
+              BUILD_URL=$(echo "$RESULT" | jq -r '.[0].url')
+              echo "::error::Docker build failed for prod tag $RELEASE_TAG (conclusion: $CONCLUSION). Re-run it, then re-run this job: $BUILD_URL"
               exit 1
             fi
             echo "Build: $STATUS — waiting ${INTERVAL}s... (${ELAPSED}s elapsed)"
@@ -538,13 +554,15 @@ jobs:
             exit 1
           fi
 
+      # If an integration run fails or stalls, re-run that integration run (it
+      # keeps its original createdAt, so it still matches), then re-run this job.
       - name: Wait — integration tests for prod (2 runs required)
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_SHA: ${{ needs.preflight-checks.outputs.release_sha }}
-          PROD_BUILD_DONE_TIME: ${{ env.prod_build_done_time }}
+          RELEASE_SINCE: ${{ steps.release-since.outputs.release_since }}
         run: |
-          echo "Waiting for 2 integration test runs on prod (dispatched after build at $PROD_BUILD_DONE_TIME)..."
+          echo "Waiting for 2 integration test runs on prod (dispatched after $RELEASE_SINCE)..."
           TIMEOUT=3600
           INTERVAL=30
           ELAPSED=0
@@ -553,8 +571,9 @@ jobs:
             RUNS=$(gh run list \
               --repo mozilla/bedrock \
               --workflow integration_tests.yml \
+              --limit 100 \
               --json displayTitle,conclusion,status,createdAt \
-              | jq --arg sha "$RELEASE_SHA" --arg since "$PROD_BUILD_DONE_TIME" \
+              | jq --arg sha "$RELEASE_SHA" --arg since "$RELEASE_SINCE" \
                   '[.[] | select(.displayTitle | contains("Integration tests for prod @ " + $sha)) | select(.createdAt >= $since)]')
             SUCCESS_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion == "success")] | length')
             FAILED_COUNT=$(echo "$RUNS" | jq '[.[] | select(.conclusion | . == "failure" or . == "cancelled" or . == "timed_out" or . == "startup_failure")] | length')
