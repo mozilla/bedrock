@@ -721,6 +721,8 @@ def test_lang_code_fixup_would_redirect_root_without_our_middleware(rf):
         "Basic a",
         # valid base64, but the decoded bytes are not text
         "Basic //8=",
+        # non-ASCII, which `b64decode` rejects with a plain `ValueError`
+        "Basic éééé",
         # a scheme we don't implement
         "Bearer sometoken",
         # right scheme, wrong shape
