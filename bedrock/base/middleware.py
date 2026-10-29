@@ -355,8 +355,10 @@ class BasicAuthMiddleware:
         if required_auth:
             if "Authorization" in request.headers:
                 auth = request.headers["Authorization"].split()
-                if len(auth) == 2:
-                    if auth[0].lower() == "basic":
+                if len(auth) == 2 and auth[0].lower() == "basic":
+                    # A client can send anything here, so treat a header we can't
+                    # decode as simply the wrong credentials rather than a 500.
+                    with contextlib.suppress(ValueError):
                         provided_auth = base64.b64decode(auth[1]).decode()
                         if provided_auth == required_auth:
                             # we're good. continue on.
