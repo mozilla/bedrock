@@ -17,6 +17,7 @@ import csp.constants
 import pytest
 from jinja2.exceptions import UndefinedError
 from markus.testing import MetricsMock
+from product_details import product_details
 from pytest_django.asserts import assertTemplateUsed
 
 from bedrock.base.middleware import (
@@ -275,6 +276,26 @@ def test_BedrockLangCodeFixupMiddleware(
     else:
         # the request will have been annotated by the middleware
         assert request.locale == expected_request_locale
+
+
+@pytest.mark.parametrize(
+    "request_path, expected_dest",
+    (
+        ("/scn/firefox/nightly/firstrun/", "/it/firefox/nightly/firstrun/"),
+        ("/scn/firefox/nightly/firstrun/?src=test", "/it/firefox/nightly/firstrun/?src=test"),
+        ("/scn/", "/it/"),
+    ),
+)
+def test_BedrockLangCodeFixupMiddleware_strips_disabled_product_locale(request_path, expected_dest, rf, monkeypatch):
+    monkeypatch.setattr(product_details, "languages", {"scn": {}})
+
+    request = rf.get(request_path, HTTP_ACCEPT_LANGUAGE="it")
+    middleware = BedrockLangCodeFixupMiddleware(get_response=HttpResponse)
+
+    resp = middleware.process_request(request)
+
+    assert resp.status_code == 302
+    assert resp.headers["location"] == expected_dest
 
 
 @pytest.mark.django_db
