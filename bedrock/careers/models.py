@@ -56,12 +56,7 @@ class Position(models.Model):
 
     @property
     def location_list(self):
-        _key = self._get_cache_key("location_list")
-        location_list = cache.get(_key)
-        if location_list is None:
-            location_list = sorted(self.location.split(","))
-            cache.set(_key, location_list, settings.CACHE_TIME_LONG)
-        return location_list
+        return sorted(self.location.split(","))
 
     @classmethod
     def position_types(cls):

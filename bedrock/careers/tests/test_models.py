@@ -18,6 +18,13 @@ class TestPositionModel(TestCase):
         pos = Position.objects.get()
         assert pos.location_list == ["Portland", "San Francisco"]
 
+    def test_location_list_is_per_position(self):
+        PositionFactory(id=1, location="Toronto")
+        PositionFactory(id=2, location="Berlin,Paris")
+
+        assert Position.objects.get(id=2).location_list == ["Berlin", "Paris"]
+        assert Position.objects.get(id=1).location_list == ["Toronto"]
+
     def test_cover(self):
         PositionFactory(id=1, title="Job", job_locations="Remote US", internal_job_id=999)
         PositionFactory(id=2, title="Cover", job_locations="Remote", internal_job_id=999)
