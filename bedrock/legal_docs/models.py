@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import io
+import logging
 import re
 
 from django.conf import settings
@@ -10,6 +11,8 @@ from django.db import models, transaction
 
 import markdown as md
 from mdx_outline import OutlineExtension
+
+logger = logging.getLogger(__name__)
 
 LEGAL_DOCS_LOCALES_TO_BEDROCK = {
     "hi": "hi-IN",
@@ -32,7 +35,11 @@ def process_md_file(file_path):
             ],
         )
         content = output.getvalue().decode("utf-8")
-    except OSError:
+        if "\x00" in content:
+            logger.warning("Could not process legal doc %s: it contains NUL characters", file_path)
+            content = None
+    except (OSError, UnicodeDecodeError) as exc:
+        logger.warning("Could not process legal doc %s: %s", file_path, exc)
         content = None
     finally:
         output.close()
@@ -40,11 +47,14 @@ def process_md_file(file_path):
     return content
 
 
+def is_legacy_layout(file_path):
+    return bool(LOCALE_RE.match(file_path.stem))
+
+
 def get_data_from_file_path(file_path):
     locale = file_path.parts[-2]
     doc_name = file_path.stem
-    if LOCALE_RE.match(doc_name):
-        # we're dealing with the old repo format
+    if is_legacy_layout(file_path):
         locale, doc_name = doc_name, locale
 
     if locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
@@ -97,16 +107,34 @@ class LegalDocsManager(models.Manager):
         doc_objs = []
         errors = 0
         docs_path = settings.LEGAL_DOCS_PATH
+        name_max_length = LegalDoc._meta.get_field("name").max_length
+        locale_max_length = LegalDoc._meta.get_field("locale").max_length
+        seen_docs = {}
         with transaction.atomic(using=self.db):
             self.all().delete()
-            doc_files = docs_path.glob("*/*.md")
+            # read the new layout first, so a legacy copy is the one dropped
+            doc_files = sorted(docs_path.glob("*/*.md"), key=lambda path: (is_legacy_layout(path), str(path)))
             for docf in doc_files:
                 path_data = get_data_from_file_path(docf)
-                content = process_md_file(docf)
-                if not content:
+                if len(path_data["doc_name"]) > name_max_length or len(path_data["locale"]) > locale_max_length:
+                    logger.warning("Legal doc %s has a name or locale too long to store", docf)
                     errors += 1
                     continue
 
+                doc_key = (path_data["doc_name"], path_data["locale"])
+                if doc_key in seen_docs:
+                    logger.warning("Legal doc %s duplicates %s in the other folder layout, ignoring it", docf, seen_docs[doc_key])
+                    continue
+
+                content = process_md_file(docf)
+                if content == "":
+                    logger.warning("Legal doc %s is empty", docf)
+                if not content:
+                    errors += 1
+                    # leave the name free for a usable copy in the other layout
+                    continue
+
+                seen_docs[doc_key] = docf
                 doc_objs.append(
                     LegalDoc(
                         name=path_data["doc_name"],
