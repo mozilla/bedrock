@@ -3,6 +3,7 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
+@use '../protocol/font-stacks' as *;
 
 .page-header {
     .mzp-l-content {
@@ -64,7 +65,7 @@
 
     &::before {
         @include bidi(((content, '\2190\0020', '\2192\0020'),));
-        font-family: ui-sans-serif, sans-serif;
+        font-family: $font-stack-arrows;
     }
 }
 

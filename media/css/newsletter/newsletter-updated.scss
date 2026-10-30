@@ -7,6 +7,7 @@
 @use '~@mozilla-protocol/core/protocol/css/components/forms/field';
 @use '~@mozilla-protocol/core/protocol/css/components/forms/button-container';
 @use '~@mozilla-protocol/core/protocol/css/components/notification-bar';
+@use '../protocol/font-stacks' as *;
 
 // * -------------------------------------------------------------------------- */
 // newsletter/updated custom styles.
@@ -51,6 +52,7 @@
 
     a::before {
         @include bidi(((content, '\2190\0020', '\2192\0020'),));
+        font-family: $font-stack-arrows;
     }
 
     /* only show back link for JS enabled clients */
