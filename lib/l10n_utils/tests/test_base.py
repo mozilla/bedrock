@@ -329,6 +329,32 @@ class TestL10nTemplateView(TestCase):
         view(self.req)
         render_mock.assert_called_with(self.req, ["old_dude.html"], ANY, ftl_files="old_dude", activation_files=None)
 
+    @patch.object(l10n_utils, "ftl_file_is_active")
+    def test_old_template_name_ftl_file_is_active_args(self, is_active_mock, render_mock):
+        """The configured FTL file name is what decides between the old and new template.
+
+        `ftl_files` (and the values of `ftl_files_map`) may be a single name rather than a
+        list, so indexing it directly hands `ftl_file_is_active()` the first *character*.
+        """
+        is_active_mock.return_value = True
+        view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", old_template_name="old_dude.html", ftl_files="dude")
+        view(self.req)
+        is_active_mock.assert_called_once_with("dude")
+
+        # a list of FTL files is only ever checked by name, too
+        is_active_mock.reset_mock()
+        view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", old_template_name="old_dude.html", ftl_files=["dude", "donny"])
+        view(self.req)
+        is_active_mock.assert_called_once_with("dude")
+
+    def test_old_template_name_without_ftl_files(self, render_mock):
+        """Nothing configured to be active means the old template is used, not a crash."""
+        with patch.object(l10n_utils, "ftl_file_is_active") as is_active_mock:
+            view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", old_template_name="old_dude.html")
+            view(self.req)
+            is_active_mock.assert_not_called()
+        render_mock.assert_called_with(self.req, ["old_dude.html"], ANY, ftl_files=None, activation_files=None)
+
     def test_ftl_activations(self, render_mock):
         view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", ftl_files="dude", activation_files=["dude", "donny"])
         view(self.req)
