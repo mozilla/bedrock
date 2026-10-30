@@ -20,6 +20,7 @@ from markus.testing import MetricsMock
 from pytest_django.asserts import assertTemplateUsed
 
 from bedrock.base.middleware import (
+    BasicAuthMiddleware,
     BedrockLangCodeFixupMiddleware,
     BedrockLocaleMiddleware,
     CSPMiddlewareByPathPrefix,
@@ -711,3 +712,37 @@ def test_lang_code_fixup_would_redirect_root_without_our_middleware(rf):
     assert response is not None
     assert response.status_code == 302
     assert response["Location"].startswith("/en-GB")
+
+
+@pytest.mark.parametrize(
+    "header",
+    [
+        # not valid base64 (length 1 mod 4)
+        "Basic a",
+        # valid base64, but the decoded bytes are not text
+        "Basic //8=",
+        # non-ASCII, which `b64decode` rejects with a plain `ValueError`
+        "Basic éééé",
+        # a scheme we don't implement
+        "Bearer sometoken",
+        # right scheme, wrong shape
+        "Basic",
+    ],
+)
+def test_basic_auth_malformed_authorization_header_returns_401(rf, header):
+    # Whatever a client sends in the header, a password-protected demo site
+    # must answer with a 401 challenge, not blow up with a 500 because the
+    # header could not be decoded.
+    with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus"):
+        middleware = BasicAuthMiddleware(get_response=_passthrough_response)
+        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION=header))
+
+    assert response.status_code == 401
+
+
+def test_basic_auth_correct_credentials_pass_through(rf):
+    with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus"):
+        middleware = BasicAuthMiddleware(get_response=_passthrough_response)
+        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION="Basic dGhlZHVkZTp0aGV3YWxydXM="))
+
+    assert response.status_code == 200

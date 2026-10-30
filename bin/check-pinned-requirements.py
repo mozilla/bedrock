@@ -6,6 +6,7 @@
 
 import re
 import subprocess
+import sys
 import tomllib
 
 # Allow `print` statements.
@@ -29,6 +30,9 @@ def extract_pinned(requirements):
 def get_outdated_packages():
     """Get a list of outdated packages and their latest versions using `uv`."""
     result = subprocess.run(["uv", "pip", "list", "--no-cache", "--outdated"], capture_output=True, text=True)
+    # Without this, a failed `uv pip list` would look like "no outdated packages"
+    if result.returncode != 0:
+        sys.exit(f"`uv pip list` failed:\n{result.stderr}")
     outdated = {}
     raw = result.stdout.splitlines()
     for line in raw[2:]:  # Skip header lines
