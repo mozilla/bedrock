@@ -47,11 +47,14 @@ def process_md_file(file_path):
     return content
 
 
+def is_legacy_layout(file_path):
+    return bool(LOCALE_RE.match(file_path.stem))
+
+
 def get_data_from_file_path(file_path):
     locale = file_path.parts[-2]
     doc_name = file_path.stem
-    if LOCALE_RE.match(doc_name):
-        # we're dealing with the old repo format
+    if is_legacy_layout(file_path):
         locale, doc_name = doc_name, locale
 
     if locale in LEGAL_DOCS_LOCALES_TO_BEDROCK:
@@ -106,9 +109,11 @@ class LegalDocsManager(models.Manager):
         docs_path = settings.LEGAL_DOCS_PATH
         name_max_length = LegalDoc._meta.get_field("name").max_length
         locale_max_length = LegalDoc._meta.get_field("locale").max_length
+        seen_docs = {}
         with transaction.atomic(using=self.db):
             self.all().delete()
-            doc_files = docs_path.glob("*/*.md")
+            # read the new layout first, so a legacy copy is the one dropped
+            doc_files = sorted(docs_path.glob("*/*.md"), key=lambda path: (is_legacy_layout(path), str(path)))
             for docf in doc_files:
                 path_data = get_data_from_file_path(docf)
                 if len(path_data["doc_name"]) > name_max_length or len(path_data["locale"]) > locale_max_length:
@@ -116,13 +121,20 @@ class LegalDocsManager(models.Manager):
                     errors += 1
                     continue
 
+                doc_key = (path_data["doc_name"], path_data["locale"])
+                if doc_key in seen_docs:
+                    logger.warning("Legal doc %s duplicates %s in the other folder layout, ignoring it", docf, seen_docs[doc_key])
+                    continue
+
                 content = process_md_file(docf)
                 if content == "":
                     logger.warning("Legal doc %s is empty", docf)
                 if not content:
                     errors += 1
+                    # leave the name free for a usable copy in the other layout
                     continue
 
+                seen_docs[doc_key] = docf
                 doc_objs.append(
                     LegalDoc(
                         name=path_data["doc_name"],

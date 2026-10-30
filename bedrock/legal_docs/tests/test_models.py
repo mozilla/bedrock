@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import logging
+from pathlib import Path
 from unittest.mock import patch
 
 from django.db import DatabaseError
@@ -12,6 +13,7 @@ import pytest
 from bedrock.legal_docs.models import (
     LegalDoc,
     LegalDocsManager,
+    is_legacy_layout,
     process_md_file,
     snake_case,
 )
@@ -138,6 +140,18 @@ class TestSnakeCase:
 
     def test_snake_case_name_is_unchanged(self):
         assert snake_case("websites_privacy_notice") == "websites_privacy_notice"
+
+
+class TestIsLegacyLayout:
+    def test_legacy_layout_is_doc_name_then_locale(self):
+        assert is_legacy_layout(Path("/repo/websites_privacy_notice/de.md")) is True
+
+    def test_new_layout_is_locale_then_doc_name(self):
+        assert is_legacy_layout(Path("/repo/de/websites_privacy_notice.md")) is False
+
+    def test_locales_with_a_region_are_recognised(self):
+        assert is_legacy_layout(Path("/repo/websites_privacy_notice/en-US.md")) is True
+        assert is_legacy_layout(Path("/repo/firefox_privacy_notice/es-ES_b.md")) is True
 
 
 @pytest.mark.django_db
@@ -271,6 +285,88 @@ class TestRefresh:
 
         LegalDoc.objects.refresh()
         assert LegalDoc.objects.get(name="websites_privacy_notice").locale == "hi-IN"
+
+    def test_doc_in_both_layouts_is_stored_once(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        assert LegalDoc.objects.refresh() == (1, 0)
+        assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "en")
+
+    def test_new_layout_wins_over_the_legacy_copy(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        LegalDoc.objects.refresh()
+        assert "New layout" in LegalDoc.objects.get().content
+
+    def test_new_layout_wins_whatever_order_the_files_arrive_in(self, tmp_path, settings):
+        # glob order is down to the filesystem, so hand refresh() the awkward order
+        settings.LEGAL_DOCS_PATH = tmp_path
+        new = write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        legacy = write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        with patch.object(Path, "glob", return_value=[legacy, new]):
+            LegalDoc.objects.refresh()
+
+        assert "New layout" in LegalDoc.objects.get().content
+
+    def test_duplicate_doc_no_longer_breaks_get_doc(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        settings.PROD_LANGUAGES = ["en-US", "de"]
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        LegalDoc.objects.refresh()
+        assert "New layout" in LegalDoc.objects.get_doc("websites_privacy_notice", "en")["content"]
+
+    def test_ignored_duplicate_is_logged(self, tmp_path, settings, caplog):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        legacy = write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        with caplog.at_level(logging.WARNING, logger=MODELS_LOGGER):
+            LegalDoc.objects.refresh()
+
+        (record,) = warnings_logged(caplog)
+        assert str(legacy) in record.getMessage()
+        assert "duplicates" in record.getMessage()
+
+    def test_unreadable_copy_does_not_shut_out_the_other_layout(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "")
+        write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        assert LegalDoc.objects.refresh() == (1, 1)
+        assert "Legacy layout" in LegalDoc.objects.get().content
+
+    def test_duplicate_is_not_counted_as_an_error(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# New layout")
+        write_doc(tmp_path, "websites_privacy_notice", "en", "# Legacy layout")
+
+        assert LegalDoc.objects.refresh()[1] == 0
+
+    def test_same_doc_in_different_locales_is_not_deduplicated(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "en", "websites_privacy_notice", "# English")
+        write_doc(tmp_path, "websites_privacy_notice", "de", "# German")
+
+        assert LegalDoc.objects.refresh() == (2, 0)
+        assert set(LegalDoc.objects.values_list("name", "locale")) == {
+            ("websites_privacy_notice", "en"),
+            ("websites_privacy_notice", "de"),
+        }
+
+    def test_duplicates_across_mapped_locales_are_caught(self, tmp_path, settings):
+        settings.LEGAL_DOCS_PATH = tmp_path
+        write_doc(tmp_path, "hi", "websites_privacy_notice", "# New layout")
+        write_doc(tmp_path, "websites_privacy_notice", "hi", "# Legacy layout")
+
+        assert LegalDoc.objects.refresh() == (1, 0)
+        assert LegalDoc.objects.values_list("name", "locale").get() == ("websites_privacy_notice", "hi-IN")
 
     def test_missing_docs_path_loads_nothing(self, tmp_path, settings):
         settings.LEGAL_DOCS_PATH = tmp_path / "not-checked-out"
