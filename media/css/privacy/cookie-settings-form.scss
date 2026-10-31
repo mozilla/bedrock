@@ -4,8 +4,13 @@
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as *;
 @use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
+@use '../protocol/font-stacks' as *;
 
 .mzp-c-breadcrumb {
+    .mzp-c-breadcrumb-item + .mzp-c-breadcrumb-item::before {
+        font-family: $font-stack-arrows;
+    }
+
     &.is-hidden {
         display: none;
     }

@@ -1,0 +1,7 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+// Liberation Sans (Arial's Linux fallback) draws arrow glyphs too low.
+// Prefer UI fonts for arrows; generic sans-serif can also resolve to Arial.
+$font-stack-arrows: ui-sans-serif, system-ui, sans-serif;

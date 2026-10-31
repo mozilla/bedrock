@@ -10,6 +10,11 @@
 @use '~@mozilla-protocol/core/protocol/css/components/logos/wordmark-product-vpn';
 @use '~@mozilla-protocol/core/protocol/css/components/breadcrumb';
 @use '../../cms/rich-text';
+@use '../../protocol/font-stacks' as *;
+
+.mzp-c-breadcrumb .mzp-c-breadcrumb-item + .mzp-c-breadcrumb-item::before {
+    font-family: $font-stack-arrows;
+}
 
 .resource-center-page-header {
     .mzp-l-content {
