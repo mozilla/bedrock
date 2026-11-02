@@ -4,7 +4,7 @@
   "description": "Making mozilla.org awesome, one pebble at a time",
   "private": true,
   "dependencies": {
-    "@babel/core": "^8.0.7",
+    "@babel/core": "^8.0.9",
     "@babel/preset-env": "^8.0.7",
     "@mozilla-protocol/core": "^22.0.0",
     "@mozmeao/consent-banner": "^1.1.1",
@@ -23,7 +23,7 @@
     "sass-loader": "^17.0.1",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.112.0",
+    "webpack": "^5.112.2",
     "webpack-cli": "^7.2.3"
   },
   "repository": {
