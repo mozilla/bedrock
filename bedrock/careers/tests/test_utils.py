@@ -37,3 +37,8 @@ class GeneratePositionMetaDescriptionTests(TestCase):
         self.position.location = "Remote Belgium; Remote Denmark; Remote Finland"
         meta = generate_position_meta_description(self.position)
         self.assertEqual(meta, "Mozilla is hiring a full time Bowler in Remote Belgium, Remote Denmark and Remote Finland")
+
+    def test_position_with_no_offices_has_no_location_to_name(self):
+        self.position.location = ""
+        meta = generate_position_meta_description(self.position)
+        self.assertEqual(meta, "Mozilla is hiring a full time Bowler")
