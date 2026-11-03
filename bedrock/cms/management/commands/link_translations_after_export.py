@@ -17,8 +17,9 @@ the page with the lowest primary key is treated as the source (it was created fi
 translated copies received higher PKs).
 
 StringTranslation reconstruction: extract_segments() is run on each target page and
-matched to the source's StringSegment records by context path. Block UUIDs are
-preserved through the standard wagtail-localize workflow, so paths match correctly.
+matched to the source's StringSegment records by context path, then by position
+within that path. Block UUIDs are preserved through the standard wagtail-localize
+workflow, so paths match correctly.
 """
 
 import warnings
@@ -268,19 +269,26 @@ def _infer_string_translations(translation, source_segs, target_instance):
     Extracts translatable strings from the target instance and imports them as
     StringTranslation records by matching context paths with the source's segments.
 
+    Segments sharing a context path (e.g. the paragraphs of a rich text field) are
+    paired by position, and a path is skipped when the source and target have a
+    different number of segments.
+
     source_segs is a pre-fetched list of StringSegment objects (with string and context
     select_related) for the translation source; callers fetch it once per group.
 
     Returns the number of string translations imported.
     """
-    # Use a walrus operator so render_html() is called once per segment, not twice.
-    # (is_empty() calls render_html() internally; the dict value called it again.)
-    target_segs_by_path = {
-        seg.path: html for seg in extract_segments(target_instance) if isinstance(seg, StringSegmentValue) and (html := seg.render_html())
-    }
+    target_strings_by_path = defaultdict(list)
+    for seg in extract_segments(target_instance):
+        if isinstance(seg, StringSegmentValue):
+            target_strings_by_path[seg.path].append(seg.render_html())
 
-    if not target_segs_by_path:
+    if not target_strings_by_path:
         return 0
+
+    source_segs_by_path = defaultdict(list)
+    for source_seg in sorted(source_segs, key=lambda seg: seg.order):
+        source_segs_by_path[source_seg.context.path].append(source_seg)
 
     po = polib.POFile(wrapwidth=200)
     po.metadata = {
@@ -289,16 +297,20 @@ def _infer_string_translations(translation, source_segs, target_instance):
         "X-WagtailLocalize-TranslationID": str(translation.uuid),
     }
 
-    for source_seg in source_segs:
-        translated_html = target_segs_by_path.get(source_seg.context.path)
-        if translated_html and translated_html != source_seg.string.data:
-            po.append(
-                polib.POEntry(
-                    msgid=source_seg.string.data,
-                    msgctxt=source_seg.context.path,
-                    msgstr=translated_html,
+    for path, path_source_segs in source_segs_by_path.items():
+        path_target_strings = target_strings_by_path[path]
+        if len(path_target_strings) != len(path_source_segs):
+            continue
+
+        for source_seg, translated in zip(path_source_segs, path_target_strings):
+            if translated and translated != source_seg.string.data:
+                po.append(
+                    polib.POEntry(
+                        msgid=source_seg.string.data,
+                        msgctxt=path,
+                        msgstr=translated,
+                    )
                 )
-            )
 
     if not po:
         return 0

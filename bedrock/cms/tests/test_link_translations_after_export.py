@@ -10,7 +10,7 @@ from django.core.management import call_command
 
 import pytest
 from wagtail.models import Page, Site
-from wagtail_localize.models import StringTranslation, Translation, TranslationSource
+from wagtail_localize.models import StringSegment, StringTranslation, Translation, TranslationSource
 from wagtail_localize.segments.extract import extract_segments
 
 from bedrock.cms.management.commands import link_translations_after_export
@@ -157,6 +157,17 @@ def test_rerun_does_not_duplicate_records(en_page, fr_page, fr_locale):
     assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour"), ("Hello world", "Bonjour le monde")}
 
 
+def test_rerun_keeps_translations_it_can_no_longer_rebuild(en_page, fr_page, fr_locale):
+    run()
+    fr_page.title = "Salut"
+    fr_page.content = "<p>Bonjour</p><p>le monde</p>"
+    fr_page.save()
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Hello", "Salut"), ("Hello world", "Bonjour le monde")}
+
+
 def test_snippets_are_linked(fr_locale):
     en_banner = ContactBannerSnippet.objects.create(heading="Contact us", button_text="Write to us", button_link="https://example.com/")
     translate(en_banner, fr_locale, heading="Contactez-nous", button_text="Écrivez-nous")
@@ -245,3 +256,33 @@ def test_page_with_unset_char_blocks_is_linked(fr_locale):
 
     assert "Errors: 0" in out, err
     assert string_translations(en_page, fr_locale) == {("Advertising", "Publicité"), ("Reach people", "Touchez les gens")}
+
+
+def test_rich_text_paragraphs_are_paired_in_order(fr_locale):
+    en_page = make_page("Hello", "hello", "<p>Hello world</p><p>Goodbye</p><p>See you</p>")
+    translate(en_page, fr_locale, content="<p>Bonjour le monde</p><p>Au revoir</p><p>See you</p>")
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Hello world", "Bonjour le monde"), ("Goodbye", "Au revoir")}
+
+
+def test_paragraphs_that_no_longer_line_up_are_skipped(fr_locale):
+    en_page = make_page("Hello", "hello", "<p>Hello world</p><p>Goodbye</p>")
+    translate(en_page, fr_locale, title="Bonjour", content="<p>Bonjour</p><p>le monde</p><p>Au revoir</p>")
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
+
+
+def test_pairing_does_not_depend_on_the_order_segments_arrive_in(fr_locale):
+    en_page = make_page("Hello", "hello", "<p>One</p><p>Two</p><p>Three</p>")
+    fr_page = translate(en_page, fr_locale, content="<p>Un</p><p>Deux</p><p>Trois</p>")
+    run("--skip-string-translations")
+    translation = Translation.objects.get(source__object_id=en_page.translation_key)
+    source_segs = list(StringSegment.objects.filter(source=translation.source).select_related("string", "context").order_by("-order"))
+
+    link_translations_after_export._infer_string_translations(translation, source_segs, fr_page)
+
+    assert string_translations(en_page, fr_locale) == {("One", "Un"), ("Two", "Deux"), ("Three", "Trois")}
