@@ -9,6 +9,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 from google.cloud import storage
+from google.cloud.exceptions import NotFound
 
 from bedrock.cms.models import BedrockImage
 from bedrock.settings.base import path as build_path
@@ -77,7 +78,11 @@ class Command(BaseCommand):
                 self.stdout.write(f"Skipping: {local_dest} already exists locally.\n")
             else:
                 blob = bucket.blob(image_key)
-                blob.download_to_filename(local_dest)
+                try:
+                    blob.download_to_filename(local_dest)
+                except NotFound:
+                    self.stderr.write(f"Skipping: {image_key} was not found in {bucket_name}\n")
+                    continue
                 self.stdout.write(f"Downloaded {image_key} from {bucket_name} to {local_dest}\n")
                 if redownload:
                     # The DB will still think it has renditions included, and we want to regenerate those

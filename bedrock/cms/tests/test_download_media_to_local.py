@@ -4,12 +4,13 @@
 
 from io import StringIO
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 from django.conf import settings
 from django.core.management import call_command
 
 import pytest
+from google.cloud.exceptions import NotFound
 
 from bedrock.cms.management.commands import download_media_to_local
 from bedrock.cms.models import BedrockImage
@@ -135,6 +136,26 @@ def test_redownload_replaces_existing_image_and_its_renditions(storage_client, i
     assert not image.renditions.exists()
     assert not other_image.renditions.exists()
     assert pre_generate_renditions.call_count == 2
+
+
+def test_image_missing_from_bucket_does_not_stop_the_rest(storage_client, image, media_root, pre_generate_renditions):
+    other_image = BedrockImage.objects.create(title="Panda", file="original_images/panda.jpg", width=100, height=100)
+    pre_generate_renditions.reset_mock()
+
+    def blob(key):
+        blob_mock = MagicMock()
+        if key.endswith("fox.jpg"):
+            blob_mock.download_to_filename.side_effect = NotFound("No such object")
+        return blob_mock
+
+    storage_client.bucket.return_value.blob.side_effect = blob
+
+    out, err = run()
+
+    assert err == "Skipping: media/cms/original_images/fox.jpg was not found in bedrock-nonprod-dev-cms-media\n"
+    assert "Downloaded media/cms/original_images/panda.jpg" in out
+    pre_generate_renditions.assert_called_once_with(other_image)
+    assert out.endswith("All done.\n")
 
 
 def test_no_images_means_nothing_to_download(storage_client, media_root):
