@@ -2,13 +2,20 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-from itertools import chain
+import re
 
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+
+# Greenhouse can concatenate with commas or semicolons
+_SPLIT_LOCATIONS_RE = re.compile(r"[,;]")
+
+
+def _split_locations(value):
+    return [part.strip() for part in _SPLIT_LOCATIONS_RE.split(value or "") if part.strip()]
 
 
 class Position(models.Model):
@@ -56,12 +63,7 @@ class Position(models.Model):
 
     @property
     def location_list(self):
-        _key = self._get_cache_key("location_list")
-        location_list = cache.get(_key)
-        if location_list is None:
-            location_list = sorted(self.location.split(","))
-            cache.set(_key, location_list, settings.CACHE_TIME_LONG)
-        return location_list
+        return sorted(_split_locations(self.location))
 
     @classmethod
     def position_types(cls):
@@ -79,10 +81,9 @@ class Position(models.Model):
         if locations is None:
             locations = sorted(
                 {
-                    location.strip()
-                    for location in chain(
-                        *[locations.split(",") for locations in cls.objects.exclude(job_locations="Remote").values_list("job_locations", flat=True)]
-                    )
+                    location
+                    for raw_location in cls.objects.exclude(job_locations="Remote").values_list("job_locations", flat=True)
+                    for location in _split_locations(raw_location)
                 }
             )
             cache.set(_key, locations, settings.CACHE_TIME_LONG)

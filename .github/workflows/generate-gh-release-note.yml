@@ -1,5 +1,8 @@
 name: Generate GitHub Release entry
 
+# Default to no permissions; jobs grant only what they need.
+permissions: {}
+
 on:
   push:
     # YYYY-MM-DD or YYYY-MM-DD.integer for times when there are multiple releases in a day
@@ -10,17 +13,24 @@ on:
       - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9]'
       - '20[0-9][0-9]-[01][0-9]-[0-3][0-9].[0-9][0-9][0-9]'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
+
 jobs:
   create-release:
     name: Generate GitHub Release entry
     runs-on: ubuntu-slim
     if: github.repository == 'mozilla/bedrock'
     permissions:
-      contents: write
+      contents: write # Create the GitHub Release for the tag
+    outputs:
+      tag_name: ${{ steps.validate.outputs.tag_name }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
 
@@ -54,3 +64,17 @@ jobs:
             --verify-tag
 
           echo "✅ Successfully created release for $CURRENT_TAG"
+
+  # Runs here rather than from a `release: published` trigger: the release above is created
+  # with GITHUB_TOKEN, and events caused by GITHUB_TOKEN never start other workflows.
+  # The SBOM action finds the release for the pushed tag and attaches the SBOM to it.
+  sbom:
+    name: Generate SBOM for release
+    needs: create-release
+    if: needs.create-release.outputs.tag_name != ''
+    permissions:
+      contents: write # Upload the SBOM as a release asset and submit it to the dependency graph
+      actions: read # Let the reusable workflow upload the SBOM as a workflow artifact
+    uses: mozilla/ssdlc-actions/.github/workflows/ssdlc-sbom.yml@5e1ea380f75b02891de776dcc00e74ad7cfeca9c # v1.3
+    with:
+      sbom_name: ${{ needs.create-release.outputs.tag_name }}

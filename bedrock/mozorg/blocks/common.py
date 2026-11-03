@@ -625,6 +625,30 @@ class ShowcaseGalleryBlock(CTALinkRequiredMixin, blocks.StructBlock):
         )
 
 
+# Headings are left out so blocks with their own heading field can use this set without competing headings.
+RICHTEXT_BODY_FEATURES = [
+    "lede",
+    "hr",
+    "bold",
+    "italic",
+    "code",
+    "blockquote",
+    "superscript",
+    "link",
+    "ol",
+    "ul",
+]
+
+ARTICLE_RICHTEXT_FEATURES = ["h2", "h3", *RICHTEXT_BODY_FEATURES]
+
+
+HEADING_SIZE_CHOICES = [
+    ("m24-t-2xl", "2X large"),
+    ("", "X large"),
+    ("m24-t-lg", "Large"),
+]
+
+
 class ProseBlockSettings(blocks.StructBlock):
     """Settings for the prose block."""
 
@@ -663,11 +687,19 @@ class ProseBlockSettings(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable (e.g., 'pledge', 'support').",
     )
 
+    heading_size = blocks.ChoiceBlock(
+        choices=HEADING_SIZE_CHOICES,
+        default="m24-t-lg",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
     class Meta:
         icon = "cog"
         collapsed = True
         label = "Settings"
-        label_format = "Background: {background_color}"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
         form_classname = "compact-form struct-block"
 
 
@@ -688,7 +720,7 @@ class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     )
 
     body = blocks.RichTextBlock(
-        features=["bold", "link"],
+        features=RICHTEXT_BODY_FEATURES,
     )
 
     cta_text = blocks.CharBlock(
@@ -715,3 +747,151 @@ class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
         )
+
+
+class IntroBlockSettings(blocks.StructBlock):
+    """Settings for the intro block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    heading_size = blocks.ChoiceBlock(
+        choices=HEADING_SIZE_CHOICES,
+        default="",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
+        form_classname = "compact-form struct-block"
+
+
+class IntroBlock(blocks.StructBlock):
+    """Block for the intro component."""
+
+    settings = IntroBlockSettings()
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Page heading. Use sentence case.",
+    )
+
+    body = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "link"],
+        help_text="A short introduction. Keep this to 1 or 2 sentences.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/intro_block.html"
+        icon = "title"
+        label = "Intro"
+        label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                "settings",
+                BlockGroup(["heading", "body"], heading="Text"),
+            ],
+        )
+
+
+class ImageWithAltBlock(blocks.StructBlock):
+    """A single image with alt text."""
+
+    image = ImageChooserBlock()
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=IMAGE_ALT_HELP_TEXT,
+    )
+
+    class Meta:
+        icon = "image"
+        label = "Image"
+        label_format = "{image}"
+
+
+class ImageCaptionBlock(blocks.StructBlock):
+    """An image with an optional caption."""
+
+    image = ImageWithAltBlock()
+
+    caption = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "italic", "link"],
+        help_text="Optional caption shown below the image.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/longform_image_caption_block.html"
+        icon = "image"
+        label = "Image + Caption"
+        label_format = "{image}"
+
+
+class PullquoteBlockSettings(blocks.StructBlock):
+    """Settings for the pullquote block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class PullquoteBlock(blocks.StructBlock):
+    """A pullquote with optional attribution."""
+
+    settings = PullquoteBlockSettings()
+
+    quote = blocks.RichTextBlock(
+        features=["bold", "italic", "link"],
+    )
+
+    author = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Name of the person being quoted.",
+    )
+
+    citation = blocks.RichTextBlock(
+        required=False,
+        features=["italic", "link", "bold"],
+        help_text="Flexible extra field for more information (author's title, name and/or link to the source, date, etc.)",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/pullquote_block.html"
+        icon = "openquote"
+        label = "Pullquote"
+        label_format = "{quote}"

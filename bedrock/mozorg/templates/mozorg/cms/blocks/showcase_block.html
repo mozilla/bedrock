@@ -7,6 +7,7 @@
 {% from "macros-m24.html" import m24_showcase with context %}
 
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+{% set heading_level = block_level if block_level else 2 %}
 
 {% set media_html %}
   <figure>
@@ -23,7 +24,8 @@
   label=value.cta_label or none,
   cta_text=value.cta_text,
   cta_link_url=value.cta_link.get_url()|add_utm_parameters,
-  cta_link_new_window=value.cta_link.new_window
+  cta_link_new_window=value.cta_link.new_window,
+  heading_level=heading_level
 ) %}
   {{ value.body|richtext }}
 {% endcall %}

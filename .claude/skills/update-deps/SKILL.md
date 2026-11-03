@@ -12,8 +12,8 @@ allowed-tools:
   - Bash(pre-commit *)
   - Bash(git ls-remote --tags *)
   - Bash(make compile-requirements)
-  - Bash(uv pip compile *)
-  - Bash(uv pip install *)
+  - Bash(uv lock *)
+  - Bash(uv sync *)
   - Bash(pytest *)
   - Read
   - Edit
@@ -42,12 +42,22 @@ Run ecosystem-specific checks based on the scope. For `all`, run all three. For 
 
 ### Python (`python` or `all`)
 
-Run `python bin/check-pinned-requirements.py` to find outdated pinned packages in `requirements/prod.in` and `requirements/dev.in`.
+Run `python bin/check-pinned-requirements.py` to find outdated pinned packages in `pyproject.toml` (`[project] dependencies` and the `dev` and `docs` groups in `[dependency-groups]`).
 
 If the script fails (e.g. no virtualenv active), fall back to manually checking PyPI:
-- Read `requirements/prod.in` and `requirements/dev.in`
+- Read `[project] dependencies` and `[dependency-groups]` in `pyproject.toml`
 - For each pinned package (`==` version), run `pip index versions <package>` or fetch `https://pypi.org/project/<package>/#history` to find the latest version
 - Report packages where the pinned version differs from latest
+
+The script only covers `==` pins. Range pins (e.g. `Django>=5.2.18,<6.0`) are invisible to it,
+and `uv lock` leaves their locked version alone until something forces a re-resolve. Check them
+separately:
+
+- List range-pinned packages: `grep -nE '^\s*"[A-Za-z0-9_.-]+\s*(>=|~=|<|>)' pyproject.toml`
+- Run `uv lock --upgrade-package <pkg> --dry-run` for each one. "No lockfile changes detected"
+  means the lock is already at the newest version the range allows; otherwise report the
+  locked → available bump as an outdated dependency alongside the `==` results. Security
+  releases of Django in particular surface this way.
 
 ### npm (`npm` or `all`)
 
@@ -70,13 +80,16 @@ Several tools appear in multiple config files and their versions must stay align
 Check version alignment across these files:
 - `package.json` (dependencies + devDependencies)
 - `.pre-commit-config.yaml` (rev values + additional_dependencies)
-- `requirements/dev.in` (pinned versions)
+- `pyproject.toml` (pinned versions in `[dependency-groups] dev`)
+- `Dockerfile` (`ghcr.io/astral-sh/uv` image tag)
+- `.github/workflows/publish_docs.yml` and `.github/workflows/pull_request_test_docs.yml` (`setup-uv` `version`)
 
 ### Tools to check
 
 | Tool | Files where it appears |
 |------|----------------------|
-| **ruff** | `requirements/dev.in` (`ruff==X.Y.Z`), `.pre-commit-config.yaml` (`ruff-pre-commit` rev) |
+| **uv** | `Dockerfile` (`ghcr.io/astral-sh/uv:X.Y.Z`), `.github/workflows/publish_docs.yml` and `.github/workflows/pull_request_test_docs.yml` (`setup-uv` `version: X.Y.Z`) |
+| **ruff** | `pyproject.toml` (`ruff==X.Y.Z`), `.pre-commit-config.yaml` (`ruff-pre-commit` rev) |
 | **eslint** | `package.json` (devDependencies), `.pre-commit-config.yaml` (eslint rev + additional_dependencies) |
 | **prettier** | `package.json` (devDependencies), `.pre-commit-config.yaml` (mirrors-prettier additional_dependencies) |
 | **stylelint** | `package.json` (devDependencies), `.pre-commit-config.yaml` (both stylelint hook entries' additional_dependencies) |
@@ -142,7 +155,7 @@ Offer three choices for each: **Approve**, **Deny (with reason)**, or **Skip (de
 
 Group related sync-required packages into a single decision. For example:
 - "stylelint 16.10.0 → 16.26.1 across `package.json` + both `.pre-commit-config.yaml` entries" = one question, not three
-- "ruff 0.14.14 → X.Y.Z across `requirements/dev.in` + `.pre-commit-config.yaml`" = one question
+- "ruff 0.14.14 → X.Y.Z across `pyproject.toml` + `.pre-commit-config.yaml`" = one question
 
 ### When denied
 
@@ -158,9 +171,12 @@ Record the following in `.claude/skills/update-deps/denied.md`:
 
 Process approved updates in this order:
 
-### 1. Python `.in` files
-- Edit the version pin in `requirements/prod.in` or `requirements/dev.in`
-- Run `make compile-requirements` to regenerate `.txt` files
+### 1. Python dependencies
+- Edit the version pin in `pyproject.toml` (`[project] dependencies` or a `[dependency-groups]` entry)
+- Run `uv lock` to update `uv.lock` for just that change. `make compile-requirements` re-resolves every package, so only use it when a full refresh is wanted
+- For a range-pinned package, run `uv lock --upgrade-package <pkg>` instead, since an unchanged
+  declaration is never re-resolved. For a security release, also raise the range's floor so
+  older releases cannot be locked again
 
 ### 2. npm packages
 - Run `npm install <package>@<version>` for pinned packages, or `npm update <package>` for range-pinned packages

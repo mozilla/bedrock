@@ -18,6 +18,18 @@ class TestPositionModel(TestCase):
         pos = Position.objects.get()
         assert pos.location_list == ["Portland", "San Francisco"]
 
+    def test_location_list_splits_on_semicolons(self):
+        PositionFactory(location="Remote Belgium; Remote Denmark; Remote Finland")
+        pos = Position.objects.get()
+        assert pos.location_list == ["Remote Belgium", "Remote Denmark", "Remote Finland"]
+
+    def test_location_list_is_per_position(self):
+        PositionFactory(id=1, location="Toronto")
+        PositionFactory(id=2, location="Berlin,Paris")
+
+        assert Position.objects.get(id=2).location_list == ["Berlin", "Paris"]
+        assert Position.objects.get(id=1).location_list == ["Toronto"]
+
     def test_cover(self):
         PositionFactory(id=1, title="Job", job_locations="Remote US", internal_job_id=999)
         PositionFactory(id=2, title="Cover", job_locations="Remote", internal_job_id=999)
@@ -41,6 +53,13 @@ class TestPositionModel(TestCase):
         PositionFactory(job_locations="Remote")  # The "cover" should be excluded.
 
         assert Position.locations() == ["Remote CA", "Remote US", "San Francisco"]
+
+    def test_locations_splits_on_semicolons(self):
+        PositionFactory(job_locations="Remote Belgium;Remote Denmark")
+        PositionFactory(job_locations="Remote France;Remote Netherlands")
+        PositionFactory(job_locations="Remote")
+
+        assert Position.locations() == ["Remote Belgium", "Remote Denmark", "Remote France", "Remote Netherlands"]
 
     def test_department(self):
         PositionFactory(department="Marketing")

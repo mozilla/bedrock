@@ -219,6 +219,29 @@
 {%- endmacro %}
 
 {#
+  Intro
+  HTML Import: {% from "macros-m24.html" import m24_intro with context %}
+  CSS Bundle: Requires m24-base CSS bundle
+  Usage: Use with {% call %} block to pass body content. Leave the call block empty to omit the body. Place inside a background color wrapper and a .m24-c-content div.
+  Macro Parameters:
+    heading (Required): String for the intro heading.
+    heading_level: Number indicating heading level for title text. Should be based on semantic meaning, not presentational styling. Defaults to 1.
+    heading_size: String size modifier class for the heading (e.g. "m24-t-2xl", "m24-t-lg"). Defaults to "" (extra large).
+    tag: String for the intro's tag name. Use "header" when the intro introduces a section's other content, "div" when it stands alone. Defaults to "header".
+#}
+{% macro m24_intro(
+  heading,
+  heading_level=1,
+  heading_size="",
+  tag="header"
+) -%}
+<{{ tag }} class="m24-c-intro">
+  <h{{ heading_level }} class="m24-c-intro-title{% if heading_size %} {{ heading_size }}{% endif %}">{{ heading }}</h{{ heading_level }}>
+  {{ caller() }}
+</{{ tag }}>
+{%- endmacro %}
+
+{#
   Tabs
   HTML Import: {% from "macros-m24.html" import tabs, tab_panel with context %}
   CSS Import: css_bundle('m24-tabs')

@@ -1,0 +1,120 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+@use 'vars/lib' as *;
+
+.m24-c-pullquote {
+    --pullquote-text-color: #{$m24-color-alt-black};
+    --pullquote-accent-color: #{$m24-color-mid-gray};
+
+    // .m24-t-dark inverts the color variables so no need to re-declare them here
+
+    .m24-t-green & {
+        --pullquote-text-color: #{$m24-color-dark-green};
+        --pullquote-accent-color: #{$m24-color-green};
+    }
+
+    .m24-t-orange & {
+        --pullquote-text-color: #{$m24-color-dark-orange};
+        --pullquote-accent-color: #{$m24-color-orange};
+    }
+
+    .m24-t-pink & {
+        --pullquote-text-color: #{$m24-color-dark-pink};
+        --pullquote-accent-color: #{$m24-color-pink};
+    }
+
+    .m24-t-gray & {
+        --pullquote-text-color: #{$m24-color-alt-black};
+        --pullquote-accent-color: #{$m24-color-dark-mid-gray};
+    }
+
+    @include grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    row-gap: var(--group-spacing);
+    max-width: 100%;
+
+    &::before,
+    &::after {
+        aspect-ratio: 64 / 54;
+        background-color: var(--pullquote-accent-color);
+        content: "";
+        display: block;
+        justify-self: end;
+        mask: url("/media/img/m24/pullquote.svg") center / contain no-repeat;
+
+        // shrinks with its grid column on small screens so the marks stay inside the viewport
+        width: min(64px, 100%);
+        position: relative;
+    }
+
+    &::before {
+        transform: rotate(180deg);
+
+        @media #{$mq-md} {
+            inset-inline-end: var(--grid-gutter);
+        }
+    }
+
+    // below sm there's no closing mark; the quote and attribution use its column
+    &::after {
+        display: none;
+        grid-column: -2 / -1;
+        grid-row: 1;
+        place-self: end start;
+
+        @media #{$mq-sm} {
+            display: block;
+        }
+
+        @media #{$mq-md} {
+            inset-inline-start: var(--grid-gutter);
+        }
+    }
+}
+
+.m24-c-pullquote-text {
+    grid-column: 2/-1;
+    font-size: $text-body-xl;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: var(--pullquote-text-color);
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+
+    @media #{$mq-sm} {
+        grid-column: 2/-2;
+    }
+}
+
+.m24-c-pullquote-attribution {
+    grid-column: 2/-1;
+    position: relative;
+
+    @media #{$mq-md} {
+        grid-column: 3/-2;
+    }
+}
+
+.m24-c-pullquote-author {
+    border-inline-start: 10px solid var(--pullquote-accent-color);
+    padding-inline-start: var(--grid-gutter);
+    display: block;
+    font-weight: 600;
+    font-size: $text-body-lg;
+}
+
+.m24-c-pullquote-citation {
+    border-inline-start: 10px solid var(--pullquote-accent-color);
+    padding-inline-start: var(--grid-gutter);
+    display: block;
+    font-style: italic;
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}

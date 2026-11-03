@@ -32,7 +32,7 @@ firefox-products-get-the-browser-that-blocks = Get the browser that blocks 2000+
 
 firefox-products-firefox-focus = { -brand-name-firefox-focus }
 firefox-products-your-dedicated-privacy = Your dedicated privacy browser with automatic tracking protection and ad blocking.
-firefox-products-get-focus = Get Focus
+firefox-products-get-focus = Get { -brand-name-firefox-focus }
 
 ## Monitor
 
@@ -97,5 +97,6 @@ firefox-products-learn-more-about-mozilla-ads = Learn more about { -brand-name-m
 
 firefox-products-firefox-enterprise = { -brand-name-firefox-enterprise }
 firefox-products-firefox-enterprise-desc = Deploy, manage, and secure { -brand-name-firefox } across your organization with enterprise-grade policy controls.
+firefox-products-firefox-enterprise-desc-v2 = { -brand-name-mozilla }’s customer-controlled, on-premises enterprise browser platform. Built to help organizations strengthen their digital sovereignty and operational resilience through greater control over their data, IT infrastructure and browser environment.
 firefox-products-manage-your-fleet = Deploy { -brand-name-firefox }
 firefox-products-learn-more-about-firefox-enterprise = Learn more about { -brand-name-firefox-enterprise }

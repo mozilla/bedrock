@@ -23,6 +23,7 @@ def test_pre_sentry_sanitisation__before_send_setup():
 
     assert SENSITIVE_FIELDS_TO_MASK_ENTIRELY == [
         "email",
+        "x-mozilla-ops-canary",
         # The following are also on `with_default_keys=True`'s blocklist;
         # listed explicitly as belt-and-braces against SDK / processor
         # version drift removing any of them from the default set.
@@ -48,6 +49,9 @@ example_unsanitised_data = {
     "token": "this is in sentry_processor's default set of keys to scrub AND out blocklist of keys",
     # Custom blocklist
     "email": "These items are on our blocklist and should be removed entirely",
+    # Mixed-case header key as Sentry's Django integration records it. The
+    # processor lowercases it before matching against our (lowercase) entry.
+    "X-Mozilla-Ops-Canary": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
     # Substring match: GIT_CONFIG_VALUE_0 lowercases to git_config_value_0,
     # which contains the "git_config_value" substring on our blocklist.
     # (The real-world value would be an "AUTHORIZATION: Basic <base64>"
@@ -66,6 +70,7 @@ expected_sanitised_data = {
     "token": "********",
     # Custom blocklist
     "email": "********",
+    "X-Mozilla-Ops-Canary": "********",
     "GIT_CONFIG_VALUE_0": "********",
 }
 
@@ -249,3 +254,37 @@ def test_pre_sentry_sanitisation_fluent_repo_auth_in_nested_env():
     assert env["FLUENT_REPO_AUTH"] == "********"
     assert env["GIT_CONFIG_VALUE_0"] == "********"
     assert env["LANG"] == "en_US.UTF-8"
+
+
+def test_pre_sentry_sanitisation_masks_synthetic_5xx_frame_locals():
+    """SyntheticServerErrorMiddleware holds the canary header value in a local
+    named ``provided_token``. If anything raises after a successful match,
+    Sentry captures that local; the ``token`` blocklist entry must mask it
+    (the header-name entry only covers request headers, not frame locals).
+    """
+    secret = "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    event = {
+        "exception": {
+            "values": [
+                {
+                    "stacktrace": {
+                        "frames": [
+                            {
+                                "vars": {
+                                    "provided_token": secret,
+                                    "request": "<WSGIRequest: GET '/'>",
+                                },
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+    }
+
+    output = before_send(event=event, hint=None)
+
+    frame_vars = output["exception"]["values"][0]["stacktrace"]["frames"][0]["vars"]
+    assert frame_vars["provided_token"] == "********"
+    assert frame_vars["request"] == "<WSGIRequest: GET '/'>"
+    assert secret not in json.dumps(output)

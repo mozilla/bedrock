@@ -960,12 +960,6 @@
     },
     {
       "files": [
-        "css/anonym/anonym.scss"
-      ],
-      "name": "mozilla-anonym"
-    },
-    {
-      "files": [
         "css/mozorg/advertising-format.scss"
       ],
       "name": "mozilla-ads-format"
@@ -1035,6 +1029,18 @@
         "css/m24/about.scss"
       ],
       "name": "m24-about"
+    },
+    {
+      "files":  [
+        "css/m24/freeform.scss"
+      ],
+      "name": "m24-freeform"
+    },
+    {
+      "files": [
+        "css/m24/article.scss"
+      ],
+      "name": "m24-article"
     },
     {
       "files": [
@@ -1114,12 +1120,6 @@
         "js/base/mozilla-cookie-helper.js"
       ],
       "name": "site-ie"
-    },
-    {
-      "files": [
-        "js/glean/init.es6.js"
-      ],
-      "name": "glean"
     },
     {
       "files": [
@@ -1741,14 +1741,6 @@
         "js/base/banners/foundation-fundraising-banner-midyear2026-init.es6.js"
       ],
       "name": "foundation_fundraising_banner_midyear2026"
-    },
-    {
-      "files": [
-        "js/anonym/anonym-toggleable-items.js",
-        "js/anonym/anonym-card-list-center.js",
-        "js/anonym/anonym-contact-form.js"
-      ],
-      "name": "anonym"
     },
     {
       "files": [

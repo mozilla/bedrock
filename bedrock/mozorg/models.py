@@ -11,6 +11,7 @@ from django.utils.html import strip_tags
 
 import markdown
 from markdown.extensions.toc import TocExtension
+from wagtail import blocks
 from wagtail.admin.panels import FieldPanel, FieldRowPanel, MultiFieldPanel
 from wagtail.fields import RichTextField, StreamField
 from wagtail.models import TranslatableMixin
@@ -22,7 +23,19 @@ from bedrock.mozorg.blocks.advertising import (
     SectionBlock,
     TwoColumnDetailBlock,
 )
-from bedrock.mozorg.blocks.common import DonateBlock, GalleryBlock, ProseBlock, ShowcaseBlock, ShowcaseGalleryBlock, SpringboardBlock, TransitionBlock
+from bedrock.mozorg.blocks.common import (
+    ARTICLE_RICHTEXT_FEATURES,
+    DonateBlock,
+    GalleryBlock,
+    ImageCaptionBlock,
+    IntroBlock,
+    ProseBlock,
+    PullquoteBlock,
+    ShowcaseBlock,
+    ShowcaseGalleryBlock,
+    SpringboardBlock,
+    TransitionBlock,
+)
 from bedrock.mozorg.blocks.leadership import (
     LeadershipExternalLinkBlock,
     LeadershipGroupSnippetBlock,
@@ -656,3 +669,104 @@ class AboutUsPage(AbstractBedrockCMSPage):
 
     class Meta:
         verbose_name = "About Us Page"
+
+
+class FreeformPage(AbstractBedrockCMSPage):
+    content = StreamField(
+        [
+            ("donate_block", DonateBlock()),
+            ("gallery_block", GalleryBlock()),
+            ("intro_block", IntroBlock()),
+            ("prose_block", ProseBlock()),
+            ("pullquote_block", PullquoteBlock()),
+            ("showcase_block", ShowcaseBlock()),
+            ("springboard_block", SpringboardBlock()),
+            ("transition_block", TransitionBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add content blocks for this page. Blocks will render in the order shown.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("content"),
+    ]
+
+    template = "mozorg/cms/freeform/freeform.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "freeform",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+    class Meta:
+        verbose_name = "Freeform Page"
+
+
+class ArticlePage(AbstractBedrockCMSPage):
+    intro = StreamField(
+        [("intro_block", IntroBlock())],
+        max_num=1,
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Optional: The page heading and introduction.",
+    )
+    content = StreamField(
+        [
+            (
+                "text",
+                blocks.RichTextBlock(
+                    features=ARTICLE_RICHTEXT_FEATURES,
+                    template="mozorg/cms/blocks/longform_block.html",
+                    label="Text",
+                    icon="pilcrow",
+                ),
+            ),
+            ("image_caption", ImageCaptionBlock()),
+            ("pullquote_block", PullquoteBlock()),
+        ],
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Add the body of the article. Blocks will render in the order shown.",
+    )
+    gallery = StreamField(
+        [("gallery_block", GalleryBlock())],
+        max_num=1,
+        blank=True,
+        null=True,
+        use_json_field=True,
+        help_text="Optional: A gallery shown at the end of the article.",
+    )
+
+    content_panels = [
+        FieldPanel("title", help_text="Help identify this page for other editors."),
+        FieldPanel("intro"),
+        FieldPanel("content"),
+        FieldPanel("gallery"),
+    ]
+
+    template = "mozorg/cms/article/article.html"
+
+    def get_utm_parameters(self):
+        return {
+            **BASE_UTM_PARAMETERS,
+            "utm_campaign": self.slug or "article",
+        }
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        context["utm_parameters"] = self.get_utm_parameters()
+        return context
+
+    class Meta:
+        verbose_name = "Article Page"
