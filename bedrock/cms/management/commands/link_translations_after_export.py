@@ -271,7 +271,8 @@ def _infer_string_translations(translation, source_segs, target_instance):
 
     Segments sharing a context path (e.g. the paragraphs of a rich text field) are
     paired by position, and a path is skipped when the source and target have a
-    different number of segments.
+    different number of segments. Strings are imported as string.data rather than
+    render_html(), since StringTranslation flags any href in a link as an error.
 
     source_segs is a pre-fetched list of StringSegment objects (with string and context
     select_related) for the translation source; callers fetch it once per group.
@@ -281,7 +282,7 @@ def _infer_string_translations(translation, source_segs, target_instance):
     target_strings_by_path = defaultdict(list)
     for seg in extract_segments(target_instance):
         if isinstance(seg, StringSegmentValue):
-            target_strings_by_path[seg.path].append(seg.render_html())
+            target_strings_by_path[seg.path].append(seg.string.data)
 
     if not target_strings_by_path:
         return 0

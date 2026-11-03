@@ -276,6 +276,16 @@ def test_paragraphs_that_no_longer_line_up_are_skipped(fr_locale):
     assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
 
 
+def test_translated_links_are_stored_the_way_wagtail_localize_expects(fr_locale):
+    en_page = make_page("Hello", "hello", '<p>Visit <a href="https://example.com/">our site</a></p>')
+    translate(en_page, fr_locale, content='<p>Visitez <a href="https://example.com/">notre site</a></p>')
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {('Visit <a id="a1">our site</a>', 'Visitez <a id="a1">notre site</a>')}
+    assert not StringTranslation.objects.filter(has_error=True).exists()
+
+
 def test_pairing_does_not_depend_on_the_order_segments_arrive_in(fr_locale):
     en_page = make_page("Hello", "hello", "<p>One</p><p>Two</p><p>Three</p>")
     fr_page = translate(en_page, fr_locale, content="<p>Un</p><p>Deux</p><p>Trois</p>")
