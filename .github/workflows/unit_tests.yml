@@ -49,7 +49,7 @@ jobs:
           name: coverage-results
           path: python_coverage
       - name: "Upload coverage to Codecov"
-        uses: codecov/codecov-action@0fb7174895f61a3b6b78fc075e0cd60383518dac # v5.5.5
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           # A CodeCov token is normally NOT needed for public repos, but this workaround is suggested here:
           # https://community.codecov.com/t/upload-issues-unable-to-locate-build-via-github-actions-api/3954/18
