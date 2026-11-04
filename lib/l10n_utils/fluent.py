@@ -85,6 +85,11 @@ class FluentL10n(FluentLocalization):
         return get_active_locales(self.resource_ids[0])
 
     @cached_property
+    def active_home_locales(self):
+        # use mozorg/home to check for activation
+        return get_active_locales("mozorg/home.ftl")
+
+    @cached_property
     def percent_translated(self):
         if not self._message_ids:
             return 0
