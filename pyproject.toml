@@ -40,7 +40,7 @@ dependencies = [
     "markus[datadog]==5.0.0",
     "mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz",
     "mozilla-django-oidc==5.0.2",
-    "Pillow==12.3.0",
+    "Pillow==13.0.0",
     "psycopg[binary]==3.2.8",
     "py-svg-hush==0.3.0",
     "PyGithub==2.10.0",
