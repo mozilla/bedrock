@@ -113,7 +113,8 @@ class Command(BaseCommand):
             else:
                 location = ""
 
-            jobLocations = job.get("location", {}).get("name", "")
+            # Greenhouse can concatenate with commas or semicolons
+            jobLocations = ",".join(job.get("location", {}).get("name", "").split(";"))
 
             description = html.unescape(job.get("content", ""))
             description = _sanitize_job_description(description)
