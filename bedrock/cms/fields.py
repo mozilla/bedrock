@@ -10,6 +10,7 @@ from django.template.defaultfilters import filesizeformat
 from django.utils.translation import gettext_lazy as _
 
 import defusedxml.ElementTree as ET
+from defusedxml.common import DefusedXmlException
 from py_svg_hush import filter_svg
 from wagtail.images.fields import WagtailImageField
 
@@ -162,7 +163,7 @@ class SanitizingWagtailImageField(WagtailImageField):
 
         try:
             root = ET.fromstring(content)
-        except ET.ParseError:
+        except (ET.ParseError, DefusedXmlException):
             # If we can't parse the XML, let py-svg-hush handle it
             # (it will either sanitize it or fail)
             return False
