@@ -350,7 +350,10 @@ class LangFilesMixin:
             return template_names
 
         ftl_files = self.get_ftl_files(template_names)
-        if ftl_file_is_active(ftl_files[0]):
+        if isinstance(ftl_files, str):
+            # a single FTL name is allowed anywhere a list is (see `render()`)
+            ftl_files = [ftl_files]
+        if ftl_files and ftl_file_is_active(ftl_files[0]):
             return template_names
 
         return [self.old_template_name]
