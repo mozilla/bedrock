@@ -4,6 +4,7 @@
 
 import re
 from functools import partial
+from urllib.parse import quote
 
 from django.conf import settings
 
@@ -77,6 +78,25 @@ def _redirect_to_same_path_on_fxc(request, *args, **kwargs):
     URL we return.
     """
     return f"{settings.FXC_BASE_URL}{request.path}"
+
+
+# Issue 16367 - the deeper /firefox/all/* step pages now live on
+# www.firefox.com under /download/all/. Springfield is the source of truth for
+# whether a requested product, platform or download locale exists (it 301s or
+# 404s accordingly), so we forward the captured path blindly instead of
+# duplicating that validation here.
+def _firefox_all_redirect(request, download_path=None, **kwargs):
+    """Returns the equivalent /download/all/ steps path on www.firefox.com.
+
+    Meant to be called from the offsite_redirect helper, which merges the
+    existing querystring and adds on the redirect_source querystring. The
+    {_locale} placeholder is filled in (or stripped when the source URL had no
+    locale) by bedrock.redirects.util.redirect. The captured path is URL-quoted
+    so user-supplied braces/percent signs can't be re-interpreted by the
+    helper's format() calls.
+    """
+    safe_path = quote(download_path or "", safe="/")
+    return f"{settings.FXC_BASE_URL}/" + "{_locale}" + f"/download/all/{safe_path}/"
 
 
 WNP_145_PLUS_RE = (
@@ -185,6 +205,13 @@ springfield_redirectpatterns = (
     offsite_redirect(r"^firefox/browsers/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/new/$", f"{FXC}/", permanent=True),
     offsite_redirect(r"^firefox/all/$", f"{FXC}/download/all/", permanent=True),
+    # Issue 16367 - deeper /firefox/all/* steps: forward whatever follows
+    # blindly; www.firefox.com decides whether it 301s further or 404s.
+    offsite_redirect(
+        r"^firefox/all/(?P<download_path>.+?)/?$",
+        _firefox_all_redirect,
+        permanent=True,
+    ),
     offsite_redirect(r"^firefox/browsers/best-browser/$", f"{FXC}/more/best-browser/", permanent=True),
     offsite_redirect(r"^firefox/browsers/browser-history/$", f"{FXC}/more/browser-history/", permanent=True),
     offsite_redirect(r"^firefox/browsers/chromebook/$", f"{FXC}/browsers/desktop/chromebook/", permanent=True),

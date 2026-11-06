@@ -210,6 +210,10 @@ def sign_attribution_codes(codes):
     return {"attribution_code": code.decode(), "attribution_sig": sig}
 
 
+# NOTE (issue #16367): the /firefox/all/* pages are being retired — they now
+# redirect to www.firefox.com via bedrock.firefox.redirects. The view and its
+# (currently skipped) tests stay until the redirects are confirmed stable, at
+# which point both go away together.
 @require_safe
 def firefox_all(request, product_slug=None, platform=None, locale=None):
     ftl_files = "firefox/all"
