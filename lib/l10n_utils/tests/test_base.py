@@ -399,6 +399,33 @@ def test_get_best_translation__strict(translations, accept_languages, expected):
 
 
 @pytest.mark.parametrize(
+    "translations, accept_language, expected",
+    (
+        # the requested locale is available, so it wins over the root fallback
+        (["en-GB", "en-US"], "en-GB,en;q=0.9", "en-GB"),
+        (["zh-CN", "zh-TW"], "zh-TW,zh;q=0.9", "zh-TW"),
+        (["pt-BR", "pt-PT"], "pt-PT,pt;q=0.9", "pt-PT"),
+        (["es-ES", "es-MX"], "es-MX,es;q=0.9", "es-MX"),
+        # when only the root of the requested locale is translated, that's what we serve
+        (["de", "en-US"], "de-AT,de;q=0.9", "de"),
+        (["en-US"], "en-GB,en;q=0.9", "en-US"),
+    ),
+)
+def test_get_best_translation__real_accept_language_header(translations, accept_language, expected, rf):
+    """`get_accept_languages()` returns the lower-cased tags that Django's header parser gives us,
+
+    while the language map and the translations are keyed by the canonical mixed-case codes
+    (e.g. "zh-TW"), so the two must be compared case-insensitively. Otherwise a request for
+    "zh-TW" never matches the "zh-TW" translation and gets the fallback for its root instead.
+    """
+    request = rf.get("/", HTTP_ACCEPT_LANGUAGE=accept_language)
+    accepted = l10n_utils.get_accept_languages(request)
+    assert accepted == [lang.lower() for lang in accepted]
+
+    assert l10n_utils.get_best_translation({locale: {} for locale in translations}, accepted) == expected
+
+
+@pytest.mark.parametrize(
     "locale_is_set, locale_value, content_locale_is_set, content_locale_value, language_code_setting, expected",
     (
         (True, "es-AR", True, "es-MX", "en-US", "es-MX"),  # content_locale wins over locale
