@@ -282,16 +282,16 @@ dev = [
     { name = "pytest-datadir", specifier = "==1.8.0" },
     { name = "pytest-django", specifier = "==4.14.0" },
     { name = "pytest-html", specifier = "==4.2.0" },
-    { name = "pytest-mock", specifier = "==3.16.0" },
+    { name = "pytest-mock", specifier = "==3.17.0" },
     { name = "pytest-parallel", specifier = "==0.1.1" },
     { name = "pytest-rerunfailures", specifier = "==16.7" },
     { name = "responses", specifier = "==0.26.3" },
     { name = "ruff", specifier = "==0.17.0" },
     { name = "selenium", specifier = "==4.51.0" },
-    { name = "translate-toolkit", specifier = "==3.20.0" },
+    { name = "translate-toolkit", specifier = "==3.20.1" },
     { name = "wagtail-factories", specifier = "==4.5.0" },
 ]
-docs = [{ name = "mkdocs-material", specifier = "==9.7.7" }]
+docs = [{ name = "mkdocs-material", specifier = "==9.8.0" }]
 
 [[package]]
 name = "braceexpand"
@@ -1366,7 +1366,7 @@ wheels = [
 
 [[package]]
 name = "mkdocs-material"
-version = "9.7.7"
+version = "9.8.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "babel" },
@@ -1381,9 +1381,9 @@ dependencies = [
     { name = "pymdown-extensions" },
     { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/f1/cd/c05d3a530ba7934f144fb45f7203cd236adc25c7bdcc34673d202f4b0278/mkdocs_material-9.7.7.tar.gz", hash = "sha256:c0649c065b1b0512d60aad8c10f947f8e455284475239b364b610f2deb4d0855", size = 4097923, upload-time = "2026-07-17T16:21:33.156Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/b9/02/3c0df248819286810d8479b3a72d9531db0cc36c042fe1ab3985f137c664/mkdocs_material-9.8.0.tar.gz", hash = "sha256:1ed4c5edaf405a3fb62e55288b8fdff592971729361548b1ffa757bf9849fb81", size = 4094495, upload-time = "2026-10-24T09:50:16.181Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ad/21/17c1bc9e6f47c972ad66fb2ac2568f99f90f1207eeb6fc3b34d094dba7b5/mkdocs_material-9.7.7-py3-none-any.whl", hash = "sha256:8ea9bb1737a5b524a5f9dcf2e1b4ebda8274ae3008aa7845720a97083bef708f", size = 9305438, upload-time = "2026-07-17T16:21:30.017Z" },
+    { url = "https://files.pythonhosted.org/packages/c8/16/360f44c7702f27ff4670a647a16c72432291e311371d72b4c34a57e990e0/mkdocs_material-9.8.0-py3-none-any.whl", hash = "sha256:19304a7263c5700428227122b3b2699aa73f432c9de8816876adaec7d7293ce3", size = 9302245, upload-time = "2026-10-24T09:50:12.636Z" },
 ]
 
 [[package]]
@@ -1736,15 +1736,15 @@ crypto = [
 
 [[package]]
 name = "pymdown-extensions"
-version = "10.21.3"
+version = "12.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "markdown" },
     { name = "pyyaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/9e/26/d1015444da4d952a1ca487a236b522eb979766f0295a0bd0c5fc089989a9/pymdown_extensions-10.21.3.tar.gz", hash = "sha256:72cfcf55f07aea0d4af2c4f11dd4e52466ddfb1bb819673146398e0bd3a77354", size = 854140, upload-time = "2026-05-13T12:57:32.267Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f3/fe/ac50ee24a80a1b344e643f6fb626063cc7041b978cd1dd9a7f9963ae1cd1/pymdown_extensions-12.3.tar.gz", hash = "sha256:a7f2a4e0bc60c6e6babfa7922cfb3b01cd640eb00fb208f3c582e12bae00ea67", size = 870532, upload-time = "2026-10-14T22:40:43.252Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/7e/85/545a951eecc270fcd688288c600017e2050a1aacb56c711d208586d3e470/pymdown_extensions-10.21.3-py3-none-any.whl", hash = "sha256:d7a5d08014fc571e80ca21dd6f854e31f94c489800350564d55d15b3c41e76b6", size = 269002, upload-time = "2026-05-13T12:57:30.296Z" },
+    { url = "https://files.pythonhosted.org/packages/8a/d0/758afe732c2da502c051b4d03ff88daa3c0fc1a1e671e6c5a6318177bab4/pymdown_extensions-12.3-py3-none-any.whl", hash = "sha256:345493a8e3497e24382902903a1c43a28e34a52f2b7571a1c9641429b820ca74", size = 277597, upload-time = "2026-10-14T22:40:41.543Z" },
 ]
 
 [[package]]
@@ -1887,14 +1887,14 @@ wheels = [
 
 [[package]]
 name = "pytest-mock"
-version = "3.16.0"
+version = "3.17.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/7a/7f/6ed29931d5c8cd396e7c0a55412e6cc88020373365c8685985dea53d26d7/pytest_mock-3.16.0.tar.gz", hash = "sha256:5a8395528b8f498205f3718f575228d0edaed7425fff638f87d1a6c3e0383636", size = 35362, upload-time = "2026-09-27T14:57:55.46Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/97/c2/28b9f5b955ff2bcd4727a6f768e2ca9b586cd7c37b95ea5f7b9b873ac7b3/pytest_mock-3.17.0.tar.gz", hash = "sha256:e36576e0985e01027e999891e7a966c67822d40c89ef1b4c8b6e22737e3590b4", size = 43064, upload-time = "2026-10-17T16:21:42.435Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/db/5b/b83a9bf1a3b4ec222f9fa083147ff6816245223da0ab92370e7e056f113f/pytest_mock-3.16.0-py3-none-any.whl", hash = "sha256:007cfeb257801d88d9c0b2a7b5a15a15e73b71968dfd72e7bf8c4a2f8393aec8", size = 10016, upload-time = "2026-09-27T14:57:54.283Z" },
+    { url = "https://files.pythonhosted.org/packages/e8/ea/47fbdc8f37410956fd445720e927589b1e2a47772c5f28109f0ce2fa26d9/pytest_mock-3.17.0-py3-none-any.whl", hash = "sha256:1b82aa4b37137248bd687055e109723debeb07b489de1565297dc9589c5f2d6b", size = 11248, upload-time = "2026-10-17T16:21:41.265Z" },
 ]
 
 [[package]]
@@ -2214,15 +2214,15 @@ wheels = [
 
 [[package]]
 name = "translate-toolkit"
-version = "3.20.0"
+version = "3.20.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "lxml" },
     { name = "unicode-segmentation-rs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8c/0b/44ee3656e5382462d8ca0fdbaa09df1c3e7b5414e3ae778984d6b2ecaff5/translate_toolkit-3.20.0.tar.gz", hash = "sha256:0cfa591c205331ce2238ea2a8fc4c3204bf399af05ad90da6ed3e3058ed315ec", size = 636625, upload-time = "2026-09-11T12:44:08.524Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/dc/8f/618a8b6589e67232feecbda4094fbfa3e076cdabd146519960453ea18b44/translate_toolkit-3.20.1.tar.gz", hash = "sha256:8626ab3def40f9db15e0481cf6afcd22aa15f1f12670608a0bcbca57777a2d0c", size = 644182, upload-time = "2026-10-23T09:55:31.311Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/12/1d/c935763bd2eaaf285fe523cba1dd5361b82a9aeb3ac8b08f72ffb74e77af/translate_toolkit-3.20.0-py3-none-any.whl", hash = "sha256:7f11fc8addccc1f4aafa073f5624b264897a2bb688d4308a53154f2792b929f3", size = 866223, upload-time = "2026-09-11T12:44:06.814Z" },
+    { url = "https://files.pythonhosted.org/packages/31/72/bf65bbbacb58fba923183136d9f75acef3b2c064e9cbd0fe6ea0c67066c5/translate_toolkit-3.20.1-py3-none-any.whl", hash = "sha256:385de700387cc87fd7fd86d9f043db5ec43cc3009a891e38a31667ff3e0f2812", size = 867566, upload-time = "2026-10-23T09:55:29.725Z" },
 ]
 
 [[package]]

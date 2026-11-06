@@ -78,20 +78,20 @@ dev = [
     "pytest-datadir==1.8.0",
     "pytest-django==4.14.0",
     "pytest-html==4.2.0",  # Provides the --html option used to generate the integration test report
-    "pytest-mock==3.16.0",
+    "pytest-mock==3.17.0",
     "pytest-parallel==0.1.1",
     "pytest-rerunfailures==16.7",
     "responses==0.26.3",
     "ruff==0.17.0",
     "selenium==4.51.0",
-    "translate-toolkit==3.20.0",
+    "translate-toolkit==3.20.1",
     "wagtail-factories==4.5.0",
     # Related to moz-l10n-lint, used in CI
     "cl-ext.lang==0.1.0",
     "compare-locales==9.0.5",
 ]
 docs = [
-    "mkdocs-material==9.7.7",
+    "mkdocs-material==9.8.0",
 ]
 
 [tool.uv]
