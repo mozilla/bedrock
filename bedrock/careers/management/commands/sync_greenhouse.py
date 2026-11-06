@@ -16,9 +16,9 @@ from bedrock.base.sanitization import _URL_POLICY
 from bedrock.careers.models import Position
 from bedrock.utils.management.decorators import alert_sentry_on_exception
 
-GREENHOUSE_URL = "https://api.greenhouse.io/v1/boards/{}/jobs/?content=true"
+GREENHOUSE_URL = "https://boards-api.greenhouse.io/v1/boards/{}/jobs?content=true"
 # to see the raw data for debugging use this command:
-# curl 'https://api.greenhouse.io/v1/boards/mozilla/jobs/?content=true' | \
+# curl 'https://boards-api.greenhouse.io/v1/boards/mozilla/jobs?content=true' | \
 # jq -r .jobs[0].content | sed 's/&lt;/</g' | sed 's/&quot;/"/g' | sed 's/&gt;/>/g'
 
 
@@ -82,19 +82,25 @@ class Command(BaseCommand):
         jobs_updated = 0
         jobs_removed = 0
         job_ids = []
+        jobs_list = []
 
-        response = requests.get(GREENHOUSE_URL.format(settings.GREENHOUSE_BOARD))
-        response.raise_for_status()
+        for source in settings.GREENHOUSE_BOARDS:
+            url = GREENHOUSE_URL.format(source)
+            response = requests.get(url)
+            response.raise_for_status()
+            data = response.json()
+            jobs_list.extend(data["jobs"])
 
-        data = response.json()
-        for job in data["jobs"]:
+        for job in jobs_list:
             # In case GH includes jobs with the same ID multiple times in the json.
             if job["id"] in job_ids:
                 continue
 
             job_ids.append(job["id"])
 
-            position, created = Position.objects.get_or_create(job_id=job["id"], internal_job_id=job["internal_job_id"], source="gh")
+            internal_job_id = job.get("internal_job_id") or job["id"]
+
+            position, created = Position.objects.get_or_create(job_id=job["id"], internal_job_id=internal_job_id, source="gh")
 
             departments = job.get("departments", "")
             if departments:
@@ -142,7 +148,7 @@ class Command(BaseCommand):
                 # in a `RuntimeWarning` about receiving a naive datetime.
                 # "updated_at": datetime.datetime.strptime(job["updated_at"], "%Y-%m-%dT%H:%M:%S%z"),
                 "updated_at": job["updated_at"],
-                "internal_job_id": job["internal_job_id"],
+                "internal_job_id": internal_job_id,
             }
 
             changed = False
@@ -158,7 +164,8 @@ class Command(BaseCommand):
                     jobs_updated += 1
                 position.save()
 
-        positions_to_be_removed = Position.objects.exclude(job_id__in=job_ids, source="gh")
+        # Only delete Greenhouse jobs. Other sources will be supported here later
+        positions_to_be_removed = Position.objects.filter(source="gh").exclude(job_id__in=job_ids)
         jobs_removed = positions_to_be_removed.count()
         positions_to_be_removed.delete()
 

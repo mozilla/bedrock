@@ -4,7 +4,7 @@
 
 from datetime import datetime, timezone
 from io import StringIO
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from django.core.management import call_command
 from django.test.utils import override_settings
@@ -16,7 +16,7 @@ from bedrock.mozorg.tests import TestCase
 REQUESTS = "bedrock.careers.management.commands.sync_greenhouse.requests"
 
 
-@override_settings(GREENHOUSE_BOARD="mozilla")
+@override_settings(GREENHOUSE_BOARDS=["mozilla"])
 class SyncGreenhouseTests(TestCase):
     def test_job_fetch(self):
         jobs_response = {
@@ -103,6 +103,90 @@ class SyncGreenhouseTests(TestCase):
             call_command("sync_greenhouse", stdout=StringIO())
         self.assertEqual(Position.objects.all().count(), 1)
         self.assertEqual(Position.objects.all()[0].job_id, "xxx")
+
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_multiple_boards(self):
+        """Jobs from every configured board are fetched, and stale jobs are still removed."""
+
+        def jobs_response(job_id, internal_job_id, title):
+            return {
+                "jobs": [
+                    {
+                        "id": job_id,
+                        "internal_job_id": internal_job_id,
+                        "title": title,
+                        "absolute_url": f"http://example.com/{job_id}",
+                        "updated_at": "2016-07-25T14:45:57-04:00",
+                    },
+                ]
+            }
+
+        responses = {
+            "https://boards-api.greenhouse.io/v1/boards/mozilla/jobs?content=true": jobs_response("xxx", 99, "Web Fox"),
+            "https://boards-api.greenhouse.io/v1/boards/mozillafoundation/jobs?content=true": jobs_response("yyy", 98, "Web Kangaroo"),
+        }
+
+        def get(url):
+            response = Mock()
+            response.json.return_value = responses[url]
+            return response
+
+        PositionFactory(job_id="zzz", internal_job_id=97)
+        with patch(REQUESTS) as requests:
+            requests.get.side_effect = get
+            call_command("sync_greenhouse", stdout=StringIO())
+
+        self.assertEqual(requests.get.call_count, 2)
+        for url in responses:
+            requests.get.assert_any_call(url)
+        # Jobs from both boards remain, and the job no longer listed by either board is removed.
+        self.assertEqual(sorted(Position.objects.values_list("job_id", flat=True)), ["xxx", "yyy"])
+
+    def test_missing_internal_job_id_uses_job_id(self):
+        """Postings without an internal_job_id are grouped by their own job ID, not collapsed together."""
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": 111,
+                    "internal_job_id": None,
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+                {
+                    "id": 222,
+                    "internal_job_id": None,
+                    "title": "Web Kangaroo",
+                    "absolute_url": "http://example.com/bar",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        positions = Position.objects.all()
+        self.assertEqual(positions.count(), 2)
+        self.assertEqual(sorted(p.internal_job_id for p in positions), [111, 222])
+
+    def test_other_source_positions_are_not_removed(self):
+        """Positions from a source other than Greenhouse are left alone by the cleanup step."""
+        PositionFactory(job_id="legacy", internal_job_id=5, source="legacy", apply_url="http://example.com/legacy")
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertTrue(Position.objects.filter(job_id="legacy", source="legacy").exists())
 
     def test_position_description_none(self):
         """
