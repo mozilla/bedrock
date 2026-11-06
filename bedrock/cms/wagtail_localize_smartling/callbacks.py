@@ -15,7 +15,7 @@ from urllib.parse import urlparse
 from django.conf import settings
 from django.test import RequestFactory
 
-from wagtail.models import Page, Site
+from wagtail.models import Page
 from wagtail_localize_smartling.exceptions import IncapableVisualContextCallback
 
 if TYPE_CHECKING:
@@ -92,9 +92,9 @@ def visual_context(smartling_job: "Job") -> tuple[str, str]:
     # Strip the CMS hostname from URLs in the HTML so they become relative,
     # then inject a <base> tag so Smartling resolves them against the public
     # domain rather than the IAP-protected CMS host.
-    default_site = Site.objects.filter(is_default_site=True).first()
-    if default_site:
-        html = html.replace(default_site.root_url, "")
+    page_site = content_obj.get_site()
+    if page_site:
+        html = html.replace(page_site.root_url, "")
     base_tag = f'<base href="{settings.CANONICAL_URL}/">'
     html = html.replace("<head>", f"<head>{base_tag}", 1)
 
