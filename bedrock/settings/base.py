@@ -1951,7 +1951,7 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "22",
                 "total": "264",
                 "currency": "PLN",
-                "saving": 48,
+                "saving": 51,
                 "analytics": {
                     "brand": "vpn",
                     "plan": "vpn",
