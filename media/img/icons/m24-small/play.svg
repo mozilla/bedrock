@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <bx:export>
+      <bx:file format="svg" path="play.svg" normalization="web-static"/>
+    </bx:export>
+  </defs>
+  <path d="M 8.45 10.789 L 8.45 12.595 L 8.45 10.789 Z M 17 11.692 L 8.45 4.5 L 8.45 10.789 L 10.256 10.789 L 10.256 8.38 L 14.194 11.692 L 10.256 15.004 L 10.255 10.098 L 8.45 10.105 L 8.45 18.884 L 17 11.692 Z" fill="#000"/>
+</svg>
