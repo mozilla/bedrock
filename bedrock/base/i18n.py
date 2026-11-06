@@ -9,6 +9,8 @@ from django.conf import settings
 from django.utils.text import capfirst
 from django.utils.translation.trans_real import parse_accept_lang_header
 
+from product_details import product_details
+
 from lib.l10n_utils import translation
 
 
@@ -132,8 +134,19 @@ def split_path_and_normalize_language(path_):
 
     if extracted_lang and supported_lang:
         return supported_lang, rest, different
-    else:
-        return "", path, False
+
+    # A product locale that Bedrock doesn't serve (e.g. "scn") is still a language
+    # prefix, not part of the page path. Drop it so that the caller can negotiate a
+    # supported locale, instead of prefixing a second one (e.g. /it/scn/...) that 404s.
+    if extracted_lang and _is_product_locale(extracted_lang):
+        return "", rest, True
+
+    return "", path, False
+
+
+def _is_product_locale(language):
+    """Return whether the code is a Firefox locale, supported by Bedrock or not."""
+    return language.lower() in {code.lower() for code in product_details.languages}
 
 
 def get_language_from_headers(request):

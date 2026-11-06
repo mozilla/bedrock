@@ -6,6 +6,7 @@ from django.test import override_settings
 from django.urls import URLResolver
 
 import pytest
+from product_details import product_details
 
 from bedrock.base.i18n import (
     LocalePrefixPattern,
@@ -129,6 +130,13 @@ def test_path_needs_lang_code(path, expected):
 def test_split_path_and_normalize_language(path, result):
     res = split_path_and_normalize_language(path)
     assert res == result
+
+
+@pytest.mark.parametrize("language", ("scn", "fur", "sat", "sc"))
+def test_split_path_for_disabled_product_language(language, monkeypatch):
+    monkeypatch.setattr(product_details, "languages", {language: {}})
+
+    assert split_path_and_normalize_language(f"/{language}/some/action") == ("", "some/action", True)
 
 
 @pytest.mark.parametrize(
