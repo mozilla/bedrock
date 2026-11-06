@@ -78,6 +78,47 @@ def test_visual_context__cms_hostname_stripped_and_base_tag_injected(mock_get_ht
     assert '<img src="/media/image.jpg">' in html
 
 
+@pytest.mark.django_db
+@override_settings(WAGTAILADMIN_BASE_URL="https://cms.example.com")
+@mock.patch("bedrock.cms.wagtail_localize_smartling.callbacks._get_html_for_sharing_link")
+def test_visual_context__strips_the_page_site_root_url_rather_than_the_default_site(mock_get_html):
+    # Each site root needs its own URL path, so they hang off the page tree root rather than
+    # being tree roots themselves
+    tree_root = Page.get_first_root_node()
+    default_site_root_page = SimpleRichTextPageFactory(parent=tree_root, slug="default-site-root")
+    default_site = wagtail_factories.SiteFactory(
+        root_page=default_site_root_page,
+        is_default_site=True,
+        hostname="cms-default.example.com",
+    )
+    page_site_root_page = SimpleRichTextPageFactory(parent=tree_root, slug="other-site-root")
+    page_site = wagtail_factories.SiteFactory(
+        root_page=page_site_root_page,
+        is_default_site=False,
+        hostname="cms-other.example.com",
+        port=8080,
+    )
+    page = SimpleRichTextPageFactory(parent=page_site_root_page, slug="visual-context-other-site-page")
+    page.save_revision()
+
+    mock_get_html.return_value = (
+        "<html><head></head><body>"
+        f'<img src="{page_site.root_url}/media/image.jpg">'
+        f'<a href="{default_site.root_url}/elsewhere/">Elsewhere</a>'
+        "</body></html>"
+    )
+
+    mock_job = mock.Mock()
+    mock_job.translation_source.get_source_instance.return_value = page
+    mock_job.user = WagtailUserFactory()
+
+    _, html = visual_context(smartling_job=mock_job)
+
+    assert '<img src="/media/image.jpg">' in html
+    assert f'<a href="{default_site.root_url}/elsewhere/">' in html
+    assert '<base href="https://www.mozilla.org/">' in html
+
+
 def test_visual_context__for_inviable_object(client):
     inviable_obj = mock.Mock()
 

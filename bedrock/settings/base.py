@@ -2631,7 +2631,7 @@ WAGTAILADMIN_BASE_URL = config("WAGTAILADMIN_BASE_URL", default="")
 # https://docs.wagtail.org/en/stable/reference/settings.html#wagtail-autosave-interval
 WAGTAIL_AUTOSAVE_INTERVAL = 0
 
-# We're sticking to LTS releases of Wagtail, so we don't want to be told there's a new version if that's not LTS
+# Wagtail upgrades are planned work, so don't show editors the dashboard notice about new releases
 WAGTAIL_ENABLE_UPDATE_CHECK = False
 
 # Custom setting (not a Wagtail core one) that we use to plug in/unplug the admin UI entirely
