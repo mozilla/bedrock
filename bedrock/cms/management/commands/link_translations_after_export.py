@@ -17,10 +17,12 @@ the page with the lowest primary key is treated as the source (it was created fi
 translated copies received higher PKs).
 
 StringTranslation reconstruction: extract_segments() is run on each target page and
-matched to the source's StringSegment records by context path. Block UUIDs are
-preserved through the standard wagtail-localize workflow, so paths match correctly.
+matched to the source's StringSegment records by context path, then by position
+within that path. Block UUIDs are preserved through the standard wagtail-localize
+workflow, so paths match correctly.
 """
 
+import json
 import warnings
 from collections import defaultdict
 
@@ -28,7 +30,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import polib
-from bs4 import MarkupResemblesLocatorWarning
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from wagtail.blocks import CharBlock, ListBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
@@ -263,24 +265,60 @@ def _sanitize_stream_fields(instance):
                 _fix_none_in_stream(field.stream_block, stream_value)
 
 
+def _with_source_link_ids(source_seg, target_seg):
+    """
+    Replace each link id in the target segment's string.data with the id of the source
+    link that has the same attributes, preferring one not yet used so an unchanged
+    string keeps the source's ids. A rebuilt translation takes link attributes from
+    the source by id, so ids left in target order would swap reordered links.
+    Returns None if a target link has no counterpart in the source.
+    """
+    if not target_seg.attrs:
+        return target_seg.string.data
+
+    source_attrs = json.loads(source_seg.attrs) or {}
+    unused_ids = set(source_attrs)
+    soup = BeautifulSoup(target_seg.string.data, "html.parser")
+    for link in soup.find_all(id=True):
+        matching_ids = [link_id for link_id, attrs in source_attrs.items() if attrs == target_seg.attrs[link["id"]]]
+        if not matching_ids:
+            return None
+
+        source_id = next((link_id for link_id in matching_ids if link_id in unused_ids), matching_ids[0])
+        unused_ids.discard(source_id)
+        link["id"] = source_id
+
+    return str(soup)
+
+
 def _infer_string_translations(translation, source_segs, target_instance):
     """
     Extracts translatable strings from the target instance and imports them as
     StringTranslation records by matching context paths with the source's segments.
+
+    Segments sharing a context path (e.g. the paragraphs of a rich text field) are
+    paired by position, and a path is skipped when the source and target have a
+    different number of segments. A string repeated within a path can only have one
+    translation there, so it is skipped when its translations disagree. Strings are
+    imported as string.data rather than render_html(), since StringTranslation flags
+    any href in a link as an error.
 
     source_segs is a pre-fetched list of StringSegment objects (with string and context
     select_related) for the translation source; callers fetch it once per group.
 
     Returns the number of string translations imported.
     """
-    # Use a walrus operator so render_html() is called once per segment, not twice.
-    # (is_empty() calls render_html() internally; the dict value called it again.)
-    target_segs_by_path = {
-        seg.path: html for seg in extract_segments(target_instance) if isinstance(seg, StringSegmentValue) and (html := seg.render_html())
-    }
+    target_segs_by_path = defaultdict(list)
+    for seg in extract_segments(target_instance):
+        if isinstance(seg, StringSegmentValue):
+            target_segs_by_path[seg.path].append(seg)
 
     if not target_segs_by_path:
         return 0
+
+    source_segs_by_path = defaultdict(list)
+    for source_seg in sorted(source_segs, key=lambda seg: seg.order):
+        source_segs_by_path[source_seg.context.path].append(source_seg)
 
     po = polib.POFile(wrapwidth=200)
     po.metadata = {
@@ -289,16 +327,28 @@ def _infer_string_translations(translation, source_segs, target_instance):
         "X-WagtailLocalize-TranslationID": str(translation.uuid),
     }
 
-    for source_seg in source_segs:
-        translated_html = target_segs_by_path.get(source_seg.context.path)
-        if translated_html and translated_html != source_seg.string.data:
-            po.append(
-                polib.POEntry(
-                    msgid=source_seg.string.data,
-                    msgctxt=source_seg.context.path,
-                    msgstr=translated_html,
+    for path, path_source_segs in source_segs_by_path.items():
+        path_target_segs = target_segs_by_path[path]
+        if len(path_target_segs) != len(path_source_segs):
+            continue
+
+        translations_by_string = defaultdict(set)
+        for source_seg, target_seg in zip(path_source_segs, path_target_segs):
+            translations_by_string[source_seg.string.data].add(_with_source_link_ids(source_seg, target_seg))
+
+        for source_string, translations in translations_by_string.items():
+            if len(translations) > 1:
+                continue
+
+            translated = translations.pop()
+            if translated and translated != source_string:
+                po.append(
+                    polib.POEntry(
+                        msgid=source_string,
+                        msgctxt=path,
+                        msgstr=translated,
+                    )
                 )
-            )
 
     if not po:
         return 0
