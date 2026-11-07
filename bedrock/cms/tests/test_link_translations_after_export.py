@@ -348,6 +348,26 @@ def test_dropped_link_keeps_the_translation(fr_locale):
     assert string_translations(en_page, fr_locale) == {('Visit <a id="a1">our site</a>', "Visitez notre site")}
 
 
+@pytest.mark.parametrize("fr_content", ["<p>Bonjour</p><p>Hello</p>", "<p>Bonjour</p><p>Salut</p>"])
+def test_repeated_paragraphs_with_different_translations_are_skipped(fr_locale, fr_content):
+    en_page = make_page("Greeting", "greeting", "<p>Hello</p><p>Hello</p>")
+    translate(en_page, fr_locale, title="Salutation", content=fr_content)
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Greeting", "Salutation")}
+
+
+def test_repeated_paragraphs_with_the_same_translation_are_imported_once(fr_locale):
+    en_page = make_page("Greeting", "greeting", "<p>Hello</p><p>Hello</p>")
+    translate(en_page, fr_locale, content="<p>Bonjour</p><p>Bonjour</p>")
+
+    out, _ = run("--pages", str(en_page.pk))
+
+    assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
+    assert "StringTranslations: 1," in out
+
+
 def test_untranslated_string_with_repeated_links_is_not_recorded(fr_locale):
     en_page = make_page("Hello", "hello", '<p><a href="https://example.com/">One</a> and <a href="https://example.com/">two</a></p>')
     translate(en_page, fr_locale, title="Bonjour")
