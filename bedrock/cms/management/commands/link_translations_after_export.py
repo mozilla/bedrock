@@ -22,6 +22,7 @@ within that path. Block UUIDs are preserved through the standard wagtail-localiz
 workflow, so paths match correctly.
 """
 
+import json
 import warnings
 from collections import defaultdict
 
@@ -29,7 +30,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 
 import polib
-from bs4 import MarkupResemblesLocatorWarning
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 from wagtail.blocks import CharBlock, ListBlock, StreamBlock, StructBlock, TextBlock
 from wagtail.fields import StreamField
 from wagtail.models import Page
@@ -264,6 +265,32 @@ def _sanitize_stream_fields(instance):
                 _fix_none_in_stream(field.stream_block, stream_value)
 
 
+def _with_source_link_ids(source_seg, target_seg):
+    """
+    Replace each link id in the target segment's string.data with the id of the source
+    link that has the same attributes, preferring one not yet used so an unchanged
+    string keeps the source's ids. A rebuilt translation takes link attributes from
+    the source by id, so ids left in target order would swap reordered links.
+    Returns None if a target link has no counterpart in the source.
+    """
+    if not target_seg.attrs:
+        return target_seg.string.data
+
+    source_attrs = json.loads(source_seg.attrs) or {}
+    unused_ids = set(source_attrs)
+    soup = BeautifulSoup(target_seg.string.data, "html.parser")
+    for link in soup.find_all(id=True):
+        matching_ids = [link_id for link_id, attrs in source_attrs.items() if attrs == target_seg.attrs[link["id"]]]
+        if not matching_ids:
+            return None
+
+        source_id = next((link_id for link_id in matching_ids if link_id in unused_ids), matching_ids[0])
+        unused_ids.discard(source_id)
+        link["id"] = source_id
+
+    return str(soup)
+
+
 def _infer_string_translations(translation, source_segs, target_instance):
     """
     Extracts translatable strings from the target instance and imports them as
@@ -279,12 +306,12 @@ def _infer_string_translations(translation, source_segs, target_instance):
 
     Returns the number of string translations imported.
     """
-    target_strings_by_path = defaultdict(list)
+    target_segs_by_path = defaultdict(list)
     for seg in extract_segments(target_instance):
         if isinstance(seg, StringSegmentValue):
-            target_strings_by_path[seg.path].append(seg.string.data)
+            target_segs_by_path[seg.path].append(seg)
 
-    if not target_strings_by_path:
+    if not target_segs_by_path:
         return 0
 
     source_segs_by_path = defaultdict(list)
@@ -299,11 +326,12 @@ def _infer_string_translations(translation, source_segs, target_instance):
     }
 
     for path, path_source_segs in source_segs_by_path.items():
-        path_target_strings = target_strings_by_path[path]
-        if len(path_target_strings) != len(path_source_segs):
+        path_target_segs = target_segs_by_path[path]
+        if len(path_target_segs) != len(path_source_segs):
             continue
 
-        for source_seg, translated in zip(path_source_segs, path_target_strings):
+        for source_seg, target_seg in zip(path_source_segs, path_target_segs):
+            translated = _with_source_link_ids(source_seg, target_seg)
             if translated and translated != source_seg.string.data:
                 po.append(
                     polib.POEntry(

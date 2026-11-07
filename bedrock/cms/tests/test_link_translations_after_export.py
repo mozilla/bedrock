@@ -296,3 +296,62 @@ def test_pairing_does_not_depend_on_the_order_segments_arrive_in(fr_locale):
     link_translations_after_export._infer_string_translations(translation, source_segs, fr_page)
 
     assert string_translations(en_page, fr_locale) == {("One", "Un"), ("Two", "Deux"), ("Three", "Trois")}
+
+
+def test_reordered_links_keep_their_destinations(fr_locale):
+    en_page = make_page("Hello", "hello", '<p><a href="https://example.com/a">One</a> and <a href="https://example.com/b">two</a></p>')
+    fr_content = '<p><a href="https://example.com/b">Deux</a> et <a href="https://example.com/a">un</a></p>'
+    fr_page = translate(en_page, fr_locale, content=fr_content)
+
+    run()
+    Translation.objects.get(source__object_id=en_page.translation_key).save_target()
+
+    fr_page.refresh_from_db()
+    assert fr_page.content == fr_content
+    assert not StringTranslation.objects.filter(has_error=True).exists()
+
+
+def test_repeated_links_can_share_a_destination(fr_locale):
+    en_page = make_page("Hello", "hello", '<p><a href="https://example.com/">One</a> and <a href="https://example.com/">two</a></p>')
+    fr_content = '<p><a href="https://example.com/">Deux</a> et <a href="https://example.com/">un</a></p>'
+    fr_page = translate(en_page, fr_locale, content=fr_content)
+
+    run()
+    Translation.objects.get(source__object_id=en_page.translation_key).save_target()
+
+    fr_page.refresh_from_db()
+    assert fr_page.content == fr_content
+
+
+@pytest.mark.parametrize(
+    "fr_content",
+    [
+        '<p>Visitez <a href="https://example.org/">notre site</a></p>',
+        '<p>Visitez <a href="https://example.com/">notre site</a> ou <a href="https://example.org/">le leur</a></p>',
+    ],
+)
+def test_links_the_source_does_not_have_leave_the_string_untranslated(fr_locale, fr_content):
+    en_page = make_page("Hello", "hello", '<p>Visit <a href="https://example.com/">our site</a></p>')
+    translate(en_page, fr_locale, title="Bonjour", content=fr_content)
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
+
+
+def test_dropped_link_keeps_the_translation(fr_locale):
+    en_page = make_page("Hello", "hello", '<p>Visit <a href="https://example.com/">our site</a></p>')
+    translate(en_page, fr_locale, content="<p>Visitez notre site</p>")
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {('Visit <a id="a1">our site</a>', "Visitez notre site")}
+
+
+def test_untranslated_string_with_repeated_links_is_not_recorded(fr_locale):
+    en_page = make_page("Hello", "hello", '<p><a href="https://example.com/">One</a> and <a href="https://example.com/">two</a></p>')
+    translate(en_page, fr_locale, title="Bonjour")
+
+    run()
+
+    assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
