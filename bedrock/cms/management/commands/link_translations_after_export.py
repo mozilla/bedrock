@@ -298,8 +298,10 @@ def _infer_string_translations(translation, source_segs, target_instance):
 
     Segments sharing a context path (e.g. the paragraphs of a rich text field) are
     paired by position, and a path is skipped when the source and target have a
-    different number of segments. Strings are imported as string.data rather than
-    render_html(), since StringTranslation flags any href in a link as an error.
+    different number of segments. A string repeated within a path can only have one
+    translation there, so it is skipped when its translations disagree. Strings are
+    imported as string.data rather than render_html(), since StringTranslation flags
+    any href in a link as an error.
 
     source_segs is a pre-fetched list of StringSegment objects (with string and context
     select_related) for the translation source; callers fetch it once per group.
@@ -330,12 +332,19 @@ def _infer_string_translations(translation, source_segs, target_instance):
         if len(path_target_segs) != len(path_source_segs):
             continue
 
+        translations_by_string = defaultdict(set)
         for source_seg, target_seg in zip(path_source_segs, path_target_segs):
-            translated = _with_source_link_ids(source_seg, target_seg)
-            if translated and translated != source_seg.string.data:
+            translations_by_string[source_seg.string.data].add(_with_source_link_ids(source_seg, target_seg))
+
+        for source_string, translations in translations_by_string.items():
+            if len(translations) > 1:
+                continue
+
+            translated = translations.pop()
+            if translated and translated != source_string:
                 po.append(
                     polib.POEntry(
-                        msgid=source_seg.string.data,
+                        msgid=source_string,
                         msgctxt=path,
                         msgstr=translated,
                     )
