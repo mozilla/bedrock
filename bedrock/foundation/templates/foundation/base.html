@@ -49,7 +49,7 @@
         {% if LANG.startswith('en-') %}
           {{ email_newsletter_form(newsletters='mozilla-foundation', title='Sign up. Read up.<br> Make a difference.'|safe, desc='Get the Mozilla newsletter and help us keep the Web free and open.', button_class='button-red') }}
         {% else %}
-          {{ email_newsletter_form(button_class='button-red') }}
+          {{ email_newsletter_form(newsletters='mozilla-foundation', button_class='button-red') }}
         {% endif %}
       </div>
     </aside>
