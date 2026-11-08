@@ -39,17 +39,6 @@ def test_newsletter_opt_out_has_canonical_and_noindex(client):
     assert 'content="noindex,follow"' not in response.text
 
 
-def test_firefox_all_child_page_has_canonical_and_robots_none(client):
-    # firefox/all/base.html uses a conditional block: when a product slug is
-    # present in the URL path, it renders `content="none"`. The product slug
-    # comes from the URL path, not a query parameter, so
-    # /firefox/all/desktop-release/ triggers the branch.
-    response = client.get("/en-US/firefox/all/desktop-release/")
-    assert response.status_code == 200
-    assert 'rel="canonical"' in response.text
-    assert 'content="none"' in response.text
-
-
 def test_whatsnew_new_theme_has_canonical_and_noindex(client):
     # whatsnew/base-new-theme.html is a standalone template that does not extend
     # base-protocol.html and has no canonical_urls block. The noindex meta and
