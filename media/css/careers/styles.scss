@@ -3,15 +3,15 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 @use '~@mozilla-protocol/core/protocol/css/includes/lib' as * with ($image-path: '/media/protocol/img');
-@use './components/hero-text.scss';
-@use './components/hero-video.scss';
-@use './components/home.scss';
-@use './components/testimonials.scss';
-@use './components/diversity.scss';
-@use './components/locations.scss';
-@use './components/job-listings.scss';
-@use './components/position.scss';
-@use './components/footer.scss';
+@use './components/hero-text';
+@use './components/hero-video';
+@use './components/home';
+@use './components/testimonials';
+@use './components/diversity';
+@use './components/locations';
+@use './components/job-listings';
+@use './components/position';
+@use './components/footer';
 
 @use '~@mozilla-protocol/core/protocol/css/components/callout';
 @use '~@mozilla-protocol/core/protocol/css/templates/card-layout';
