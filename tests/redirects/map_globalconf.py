@@ -1238,6 +1238,8 @@ URLS = flatten(
         url_test("/foundation/annualreport/2022/", "https://stateof.mozilla.org/"),
         # Issue 14186
         url_test("/privacy/firefox-monitor/", "/privacy/subscription-services/"),
+        # https://mozilla-hub.atlassian.net/browse/WT-1870
+        url_test("/privacy/ad-targeting-guidelines/", "/privacy/firefox/"),
         # Issue 14172
         url_test(
             "/firefox/browsers/mobile/app/?product=firefox",
@@ -1370,5 +1372,12 @@ URLS = flatten(
         # Issue WT-934
         url_test("/products/vpn/more/vpn-or-proxy/", "/products/vpn/resource-center/the-difference-between-a-vpn-and-a-web-proxy/"),
         url_test("/products/vpn/more/when-to-use-a-vpn/", "/products/vpn/resource-center/5-reasons-you-should-use-a-vpn/"),
+        # Anonym pages removed
+        url_test("/anonym{,/}", "/"),
+        url_test("/anonym/{about,contact,news,case-study}/", "/"),
+        url_test("/anonym/privacy-policy{,/}", "/privacy/archive/anonym/privacy-policy-2026-10/"),
+        url_test("/anonym/terms-and-conditions{,/}", "/privacy/archive/anonym/terms-2026-10/"),
+        url_test("/anonym/news/reddit-partners-with-anonym/", "/"),
+        url_test("/anonym/case-study/lets-talk-about-data-control/", "/"),
     )
 )

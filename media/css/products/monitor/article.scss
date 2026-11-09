@@ -15,6 +15,11 @@
 
 
 @use '../../protocol/components/legal-toc';
+@use '../../protocol/font-stacks' as *;
+
+.mzp-c-breadcrumb .mzp-c-breadcrumb-item + .mzp-c-breadcrumb-item::before {
+    font-family: $font-stack-arrows;
+}
 
 @media #{$mq-md} {
     .toc-is-sticky {

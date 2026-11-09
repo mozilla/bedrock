@@ -4,6 +4,7 @@
 
 import json
 import platform
+import re
 import socket
 import struct
 import sys
@@ -73,14 +74,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 TASK_QUEUE_AVAILABLE = False
 RQ_QUEUES = {}
 
+# Names of the task queues we use. When running tests, these are swapped
+# for test-specific queues - see bedrock/settings/__init__.py
+RQ_DEFAULT_QUEUE = "default"
+RQ_IMAGE_RENDITIONS_QUEUE = "image_renditions"
+
 REDIS_URL = config("REDIS_URL", default="")
 if REDIS_URL:
     TASK_QUEUE_AVAILABLE = True
     REDIS_URL = REDIS_URL.rstrip("/0")
     RQ_QUEUES = {
         # Same Redis DBs/connections
-        "default": {"URL": f"{REDIS_URL}/0"},
-        "image_renditions": {"URL": f"{REDIS_URL}/0"},
+        RQ_DEFAULT_QUEUE: {"URL": f"{REDIS_URL}/0"},
+        RQ_IMAGE_RENDITIONS_QUEUE: {"URL": f"{REDIS_URL}/0"},
     }
 
 CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}")  # 10 mins
@@ -416,11 +422,15 @@ def lazy_langs():
     :return: list of tuples
 
     """
+    from django.apps import apps
     from django.conf import settings
 
-    from product_details import product_details
-
     langs = DEV_LANGUAGES if settings.DEV else settings.PROD_LANGUAGES
+
+    if not apps.ready:
+        return [(lang, lang) for lang in langs]
+
+    from product_details import product_details
 
     return [(lang, product_details.languages[lang]["native"]) for lang in langs if lang in product_details.languages]
 
@@ -683,16 +693,39 @@ def get_app_name(hostname):
     return "bedrock"
 
 
+def get_deployment_environment(app_name):
+    """
+    Get the deployment environment from the app name, which our deployments set to
+    `bedrock-{environment}` or `bedrock-cms-{environment}`. Returns "local"
+    for any other app name.
+    """
+    match = re.fullmatch(r"bedrock(?:-cms)?-(dev|stage|prod|test)", app_name)
+    return match.group(1) if match else "local"
+
+
 HOSTNAME = platform.node()
 # Prefer APP_NAME from env, but fall back to hostname parsing. TODO: remove get_app_name() usage once fully redundant
 APP_NAME = config("APP_NAME", default=get_app_name(HOSTNAME))
 CLUSTER_NAME = config("CLUSTER_NAME", default="")
+
+# Stamped on every line sent to the audit.wagtail logger, so lines from each deployment can be told apart
+AUDIT_LOG_TENANT = "bedrock"
+AUDIT_LOG_ENVIRONMENT = config("AUDIT_LOG_ENVIRONMENT", default=get_deployment_environment(APP_NAME))
+
 ENABLE_HOSTNAME_MIDDLEWARE = config("ENABLE_HOSTNAME_MIDDLEWARE", default=str(bool(APP_NAME)), parser=bool)
 ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", default="false", parser=bool)
 # set this to enable basic auth for the entire site
 # e.g. BASIC_AUTH_CREDS="thedude:thewalrus"
 BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
 ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE", default="false", parser=bool)
+
+# Optional token that arms SyntheticServerErrorMiddleware. When set (via a k8s
+# Secret in webservices-infra), requests carrying the same token in the
+# X-Mozilla-Ops-Canary header receive HTTP 500. Used to force user-facing
+# 5xx for testing Fastly's failover cascade without breaking the /healthz/
+# probe. When unset (the default in every environment) the middleware is a
+# no-op and this setting has no effect.
+SYNTHETIC_5XX_TOKEN = config("SYNTHETIC_5XX_TOKEN", default="")
 
 MIDDLEWARE = [
     # IMPORTANT: this may be extended later in this file or via settings/__init__.py
@@ -705,6 +738,7 @@ MIDDLEWARE = [
     # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
+    "bedrock.base.middleware.SyntheticServerErrorMiddleware",
     "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLocaleMiddleware
     "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come after RedirectsMiddleware
     "bedrock.base.middleware.BedrockLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
@@ -762,7 +796,6 @@ INSTALLED_APPS = [
     "wagtail_link_block",
     "wagtail_thumbnail_choice_block",
     # Local apps
-    "bedrock.anonym",
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
@@ -776,7 +809,6 @@ INSTALLED_APPS = [
     "bedrock.products",
     "bedrock.externalfiles",
     "bedrock.security",
-    "bedrock.contentcards",
     "bedrock.utils",
     "bedrock.wordpress",
     "bedrock.sitemaps",
@@ -949,6 +981,9 @@ if DEBUG:
 elif TASK_QUEUE_AVAILABLE is True:
     default_email_backend = "django_rq_email_backend.backends.RQEmailBackend"
 
+# The queue that django-rq-email-backend sends emails via, when it is in use
+RQ_EMAIL_DEFAULT_QUEUE = RQ_DEFAULT_QUEUE
+
 DEFAULT_FROM_EMAIL = "Mozilla.com <noreply@mozilla.com>"
 
 EMAIL_BACKEND = config("EMAIL_BACKEND", default=default_email_backend)
@@ -1061,16 +1096,6 @@ SEND_TO_DEVICE_MESSAGE_SETS = {
     },
 }
 
-if DEV:
-    content_cards_default_branch = "dev-processed"
-else:
-    content_cards_default_branch = "prod-processed"
-
-CONTENT_CARDS_PATH = config("CONTENT_CARDS_PATH", default=data_path("content_cards"))
-CONTENT_CARDS_REPO = config("CONTENT_CARDS_REPO", default="https://github.com/mozmeao/www-admin.git")
-CONTENT_CARDS_BRANCH = config("CONTENT_CARDS_BRANCH", default=content_cards_default_branch)
-CONTENT_CARDS_URL = config("CONTENT_CARDS_URL", default=STATIC_URL)
-
 LEGAL_DOCS_PATH = DATA_PATH / "legal_docs"
 LEGAL_DOCS_REPO = config("LEGAL_DOCS_REPO", default="https://github.com/mozilla/legal-docs.git")
 LEGAL_DOCS_BRANCH = config("LEGAL_DOCS_BRANCH", default="main" if DEV else "prod")
@@ -1102,6 +1127,8 @@ LOGGING = {
     },
     "formatters": {
         "verbose": {"format": "%(levelname)s %(asctime)s %(module)s %(message)s"},
+        # Audit messages are already JSON; written bare, Cloud Logging parses each one into jsonPayload
+        "bare_message": {"format": "%(message)s"},
     },
     "handlers": {
         "null": {
@@ -1111,6 +1138,11 @@ LOGGING = {
             "class": "logging.StreamHandler",
             "stream": sys.stdout,
             "formatter": "verbose",
+        },
+        "audit_console": {
+            "class": "logging.StreamHandler",
+            "stream": sys.stdout,
+            "formatter": "bare_message",
         },
     },
     "loggers": {
@@ -1123,6 +1155,11 @@ LOGGING = {
             "handlers": ["console"],
             "level": "DEBUG",
         },
+        "audit.wagtail": {
+            "handlers": ["audit_console"],
+            "level": "INFO",
+            "propagate": False,
+        },
     },
 }
 
@@ -1130,6 +1167,9 @@ LOGGING = {
 # but we need not take any action because it's already HTTP 400-ed.
 # Note that we ignore at the Sentry client level
 ignore_logger("django.security.DisallowedHost")
+# Sentry records every log call as a breadcrumb regardless of `propagate`, and the
+# user-deletion audit line carries an email address
+ignore_logger("audit.wagtail")
 
 PASSWORD_HASHERS = ["django.contrib.auth.hashers.PBKDF2PasswordHasher"]
 ADMINS = MANAGERS = config("ADMINS", parser=json.loads, default="[]")
@@ -1162,9 +1202,6 @@ def _normalize_gtm_server_path(path):
 
 
 GTM_SERVER_PATH = _normalize_gtm_server_path(config("GTM_SERVER_PATH", default="/gtm.js"))
-
-# Transcend Consent Management - airgap.js script URL
-TRANSCEND_AIRGAP_URL = config("TRANSCEND_AIRGAP_URL", default="")
 
 GMAP_API_KEY = config("GMAP_API_KEY", default="")
 STUB_ATTRIBUTION_HMAC_KEY = config("STUB_ATTRIBUTION_HMAC_KEY", default="")
@@ -1202,6 +1239,12 @@ SENTRY_DSN = config("SENTRY_DSN", default="")
 # https://github.com/laiyongtao/sentry-processor
 SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     "email",
+    # X-Mozilla-Ops-Canary carries the SYNTHETIC_5XX_TOKEN value on cascade-test
+    # requests; keep it out of Sentry events so the token cannot leak via error
+    # reports. Must be lowercase: DesensitizationProcessor lowercases the event
+    # key before doing a substring match, but does NOT lowercase the configured
+    # blocklist entries, so a mixed-case entry here would never match.
+    "x-mozilla-ops-canary",
     # Belt-and-braces: these names are also on `with_default_keys=True`'s
     # blocklist, but listing them here explicitly guards against SDK / processor
     # version drift removing a name from the default set, and documents the
@@ -1330,7 +1373,7 @@ DATA_CONSENT_COUNTRIES = [
 # ***This URL *MUST* end in a traling slash!***
 VPN_ENDPOINT = config(
     "VPN_ENDPOINT",
-    default=("https://stage.vpn.nonprod.webservices.mozgcp.net/" if DEV else "https://vpn.mozilla.org/"),
+    default=("https://vpn.allizom.org/" if DEV else "https://vpn.mozilla.org/"),
 )
 
 # URL for Mozilla VPN subscription links
@@ -2796,15 +2839,10 @@ _allowed_page_models = [
     "mozorg.AdvertisingIndexPage",
     "mozorg.AdvertisingTwoColumnSubpage",
     "mozorg.ContentSubpage",
-    "anonym.AnonymIndexPage",
-    "anonym.AnonymContentSubPage",
-    "anonym.AnonymNewsPage",
-    "anonym.AnonymNewsItemPage",
-    "anonym.AnonymCaseStudyItemPage",
-    "anonym.AnonymCaseStudyPage",
-    "anonym.AnonymContactPage",
     "mozorg.HomePage",
     "mozorg.AboutUsPage",
+    "mozorg.FreeformPage",
+    "mozorg.ArticlePage",
     "mozorg.LeadershipProfileSnippet",
     "mozorg.OrganizationLeadershipIndexPage",
     "mozorg.OrganizationLeadershipSubpage",

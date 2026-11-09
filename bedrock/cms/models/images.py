@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.conf import settings
 from django.db import models
 
 from wagtail.images.models import AbstractImage, AbstractRendition, Image
@@ -156,7 +157,7 @@ class BedrockImage(AbstractImage):
         # to generate renditions, else it will immediately generate them
         defer_task(
             _make_renditions,
-            queue_name="image_renditions",
+            queue_name=settings.RQ_IMAGE_RENDITIONS_QUEUE,
             func_kwargs={
                 "image_id": self.id,
                 "filter_specs": AUTOMATIC_RENDITION_FILTER_SPECS,

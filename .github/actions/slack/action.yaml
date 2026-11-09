@@ -52,8 +52,8 @@ runs:
       shell: bash
       env:
         STATUS: ${{ inputs.status }}
-      run: >-
-        eval "case $STATUS in
+      run: |
+        case $STATUS in
             info)
                 echo 'STATUS_COLOR=#00FFFF';;
             success)
@@ -64,7 +64,7 @@ runs:
                 echo 'STATUS_COLOR=#FF0000';;
             *)
                 echo 'STATUS_COLOR=##8128a7';;
-        esac" >> $GITHUB_ENV
+        esac >> "$GITHUB_ENV"
 
     - id: slack-notification
       uses: slackapi/slack-github-action@45a88b9581bfab2566dc881e2cd66d334e621e2c  # v3.0.3

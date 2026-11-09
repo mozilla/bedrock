@@ -38,7 +38,7 @@
       {# ESR #}
       {% set is_esr_next_version = desktop_esr_next_version %}
       {# If there are multiple ESR's available, show next as well. #}
-      {% if is_esr_next_version %}
+      {% if is_esr_next_version and download_esr_next_url %}
         <p class="c-step-download">
           <a href="{{ download_esr_next_url }}" class="download-link mzp-c-button mzp-t-product mzp-t-xl c-download-button" data-download-version="{{ platform }}" data-cta-text="Download Now">
             {{ ftl('firefox-all-download-esr-version', esr_version=desktop_esr_next_version) }} {{ icon_download|safe }}

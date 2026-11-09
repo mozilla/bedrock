@@ -7,23 +7,33 @@
 .m24-c-intro {
     font-weight: 500;
     font-size: $text-body-lg;
-    margin-bottom: $spacer-xl;
+    margin-bottom: var(--group-spacing);
     text-wrap: balance;
     text-wrap-style: balance;
 
-    &.m24-t-intro-snug {
+    // nothing follows it, so the .m24-c-content padding provides the spacing
+    .m24-c-content > &:only-child {
         margin-bottom: 0;
     }
 
     > :last-child{
         margin-bottom: 0;
     }
+
+    p {
+        margin-bottom: var(--item-spacing);
+    }
+}
+
+main > .m24-c-intro-section:first-child {
+    padding-top: var(--section-spacing);
 }
 
 .m24-c-intro-title {
     font-size: $text-title-xl;
     line-height: 1;
-    margin-bottom: $spacer-sm;
+    margin-bottom: var(--item-spacing);
+    text-box: trim-both cap text;
 
     &.m24-t-sm {
         font-size: $text-title-sm;
@@ -44,12 +54,12 @@
 
 .m24-c-intro-cta {
     text-align: end;
-    margin-top: $spacer-md;
+    margin-top: var(--group-spacing);
 }
 
 @media #{$mq-xl} {
     .m24-c-intro p {
-        max-width: grid(9);
+        max-width: grid($text-body-max-cols);
     }
 
     p.m24-c-intro-cta {

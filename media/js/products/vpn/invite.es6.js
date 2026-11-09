@@ -52,14 +52,6 @@ const WaitListForm = {
                 newsletter: newsletter
             });
         }
-
-        // Glean
-        if (typeof window.Mozilla.Glean !== 'undefined') {
-            window.Mozilla.Glean.clickEvent({
-                id: 'newsletter_subscribe',
-                type: newsletter
-            });
-        }
     },
 
     validateFields: () => {

@@ -5,11 +5,13 @@
 
 def generate_position_meta_description(position):
     suffix = "n" if position.position_type.lower().startswith(("a", "e", "i", "o", "u")) else ""
-    meta = f"Mozilla is hiring a{suffix} {position.position_type.lower()} {position.title} in "
+    meta = f"Mozilla is hiring a{suffix} {position.position_type.lower()} {position.title}"
 
-    if len(position.location_list) > 1:
-        meta = meta + f"{', '.join(position.location_list[:-1])} and {position.location_list[-1]}"
-    else:
-        meta = meta + position.location_list[0]
+    locations = position.location_list
+
+    if len(locations) > 1:
+        meta = meta + f" in {', '.join(locations[:-1])} and {locations[-1]}"
+    elif locations:
+        meta = meta + f" in {locations[0]}"
 
     return meta

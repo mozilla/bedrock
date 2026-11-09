@@ -4,34 +4,36 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-<section class="m24-c-showcase m24-t-green">
-  <div class="m24-c-content">
-    <header class="m24-c-showcase-text">
-      <h2 class="m24-c-showcase-title">{{ ftl('m24-about-lets-build-a') }}</h2>
-      <p class="m24-c-showcase-body">{{ ftl('m24-about-see-how-were') }}</p>
-    </header>
+{% from "macros-m24.html" import m24_showcase with context %}
 
-    <div class="m24-c-showcase-media">
+{% set media_html %}
+  {{ resp_img(
+    url='img/mozorg/about/m24/impact-800.png',
+    srcset={
+      "img/mozorg/about/m24/impact-200.png": "200w",
+      "img/mozorg/about/m24/impact-400.png": "400w",
+      "img/mozorg/about/m24/impact-800.png": "800w",
+    },
+    sizes={
+      "default": "100vw",
+    },
+    optional_attributes={
+      'loading': 'lazy',
+      'width': '400',
+      'height': '356',
+      'alt': ''
+    }
+  ) }}
+{% endset %}
 
-      {{ resp_img(
-        url='img/mozorg/about/m24/impact-800.png',
-        srcset={
-          "img/mozorg/about/m24/impact-200.png": "200w",
-          "img/mozorg/about/m24/impact-400.png": "400w",
-          "img/mozorg/about/m24/impact-800.png": "800w",
-        },
-        sizes={
-          "default": "100vw",
-        },
-        optional_attributes={
-          'loading': 'lazy',
-          'width': '400',
-          'height': '356',
-          'alt': ''
-        }
-      ) }}
-    </div>
-
-    <p class="m24-c-section-cta"><a href="{{ url('mozorg.impact-report.index') }}" class="m24-c-cta" data-cta-text="Read about our commitment">{{ ftl('m24-about-read-about-our') }}</a></p>
-  </div>
-</section>
+{% call m24_showcase(
+  heading=ftl('m24-about-lets-build-a'),
+  media=media_html,
+  background_color="m24-t-green",
+  cta_text=ftl('m24-about-read-about-our'),
+  cta_link_url=url('mozorg.impact-report.index'),
+  cta_link_external=False,
+  cta_analytics_label="Read about our commitment"
+) %}
+  {{ ftl('m24-about-see-how-were') }}
+{% endcall %}

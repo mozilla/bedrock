@@ -8,10 +8,12 @@
 
 {% set bg_color = value.settings.background_color %}
 {% set anchor_id = value.settings.anchor_id|slugify if value.settings.anchor_id else "" %}
+{% set heading_level = block_level if block_level else 2 %}
 
 <div{% if bg_color %} class="{{ bg_color }}"{% endif %}{% if anchor_id %} id="{{ anchor_id }}"{% endif %}>
   {% call m24_donate(
     heading=value.heading,
+    heading_level=heading_level,
     image=srcset_image(
       value.image, "fill-{400x200,600x300,800x400,1000x500,1200x600,1400x700}",
       sizes="(min-width: 1440px) 680px, (min-width: 1311px) calc((100vw - 64px) / 2), (min-width: 768px) calc((100vw - 32px) / 2), calc(100vw - 32px)",

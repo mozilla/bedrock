@@ -1,18 +1,56 @@
 version: 2
 updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
   - package-ecosystem: docker
     directory: '/'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
     open-pull-requests-limit: 20
+    labels:
+      - Backend
+      - dependencies
+  - package-ecosystem: uv
+    directory: '/'
+    ignore:
+      # Need to be kept in sync with pre-commit-config.yaml.
+      - dependency-name: 'ruff'
+    schedule:
+      interval: monthly
+    # Matches `exclude-newer` in `pyproject.toml`, so Dependabot never proposes a version uv refuses to lock
+    cooldown:
+      default-days: 7
+    groups:
+      backend:
+        dependency-type: production
+        update-types:
+          - 'minor'
+          - 'patch'
+      backend-dev-dependencies:
+        dependency-type: development
+        update-types:
+          - 'minor'
+          - 'patch'
+    open-pull-requests-limit: 10
     labels:
       - Backend
       - dependencies
   - package-ecosystem: npm
     directory: '/'
     ignore:
-      # Needs to be kept in sync with glean_parser Python dependency.
-      - dependency-name: '@mozilla/glean'
       # Owned NPM packages that require manual testing.
       - dependency-name: '@mozilla-protocol/core'
       - dependency-name: '@mozmeao/consent-banner'
@@ -31,6 +69,9 @@ updates:
       - dependency-name: 'stylelint-config-standard-scss'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
     groups:
       frontend:
         dependency-type: production
@@ -42,6 +83,14 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
+      # Security updates ignore the groups above (they default to version-updates).
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - '*'
+        update-types:
+          - 'minor'
+          - 'patch'
     open-pull-requests-limit: 10
     labels:
       - Frontend
@@ -50,6 +99,9 @@ updates:
     directory: '/tests/playwright'
     schedule:
       interval: monthly
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
     open-pull-requests-limit: 10
     groups:
       playwright:

@@ -92,6 +92,26 @@ class SyncGreenhouseTests(TestCase):
         self.assertEqual(position.position_type, "Full-time")
         self.assertEqual(position.description, "<h4>foo</h4> bar")
 
+    def test_semicolon_location_normalized_to_commas(self):
+        """Greenhouse can join multiple locations with ';'; store comma-only."""
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 8223520,
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                    "location": {"name": "Remote Belgium; Remote Denmark; Remote Finland"},
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        position = Position.objects.get()
+        self.assertEqual(position.job_locations, "Remote Belgium, Remote Denmark, Remote Finland")
+
     def test_job_removal(self):
         PositionFactory(job_id="xxx", internal_job_id=99)
         PositionFactory(job_id="yyy", internal_job_id=99)

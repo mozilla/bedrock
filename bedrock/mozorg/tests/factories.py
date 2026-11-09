@@ -4,6 +4,7 @@
 
 import factory
 import wagtail_factories
+from wagtail.rich_text import RichText
 from wagtail_link_block.blocks import LinkBlock
 
 from bedrock.mozorg import models
@@ -241,7 +242,7 @@ class SpringboardBlockFactory(wagtail_factories.StructBlockFactory):
 
 
 class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
-    background_color = "gray"
+    background_color = "m24-t-gray"
     anchor_id = ""
 
     class Meta:
@@ -251,7 +252,7 @@ class DonateBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class DonateBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(DonateBlockSettingsFactory)
     heading = "Support Mozilla"
-    body = "<p>Help us build a better internet.</p>"
+    body = RichText("<p>Help us build a better internet.</p>")
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
     cta_text = "Donate"
@@ -272,10 +273,10 @@ class ShowcaseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
 class ShowcaseBlockFactory(wagtail_factories.StructBlockFactory):
     settings = factory.SubFactory(ShowcaseBlockSettingsFactory)
     heading = "State of Mozilla"
-    body = "<p>Read our annual report.</p>"
+    body = RichText("<p>Read our annual report.</p>")
     image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
     image_alt = ""
-    sub_heading = "Supporting a healthy internet"
+    cta_label = "Supporting a healthy internet"
     cta_text = "Read the report"
     cta_link = factory.SubFactory(LinkBlockFactory)
 
@@ -341,3 +342,166 @@ class AboutUsPageFactory(wagtail_factories.PageFactory):
 
     class Meta:
         model = models.AboutUsPage
+
+
+class TransitionBlockFactory(wagtail_factories.StructBlockFactory):
+    top_color = "light"
+    bottom_color = "dark-alt"
+
+    class Meta:
+        model = common.TransitionBlock
+
+
+class ProseBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    two_column_layout = True
+    reverse = False
+    anchor_id = ""
+    heading_size = "m24-t-lg"
+
+    class Meta:
+        model = common.ProseBlockSettings
+
+
+class ProseBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(ProseBlockSettingsFactory)
+    heading = "Our mission"
+    sub_heading = ""
+    body = RichText("<p>Keep the internet open and accessible to all.</p>")
+    cta_text = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+
+    class Meta:
+        model = common.ProseBlock
+
+
+class GalleryBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    anchor_id = ""
+    background_color = ""
+
+    class Meta:
+        model = common.GalleryBlockSettings
+
+
+class GalleryTileBlockFactory(wagtail_factories.StructBlockFactory):
+    width = "half"
+    heading = "Gallery tile heading"
+    body = "Gallery tile body."
+    tag = ""
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_ratio = "2:1"
+    image_alt = ""
+    cta_link = factory.SubFactory(LinkBlockFactory)
+    cta_text = "Read more"
+
+    class Meta:
+        model = common.GalleryTileBlock
+
+
+class GalleryBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(GalleryBlockSettingsFactory)
+    heading = "In the news"
+    intro = RichText("<p>Recent coverage.</p>")
+    tiles = wagtail_factories.ListBlockFactory(GalleryTileBlockFactory)
+
+    class Meta:
+        model = common.GalleryBlock
+
+
+class IntroBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+    heading_size = ""
+
+    class Meta:
+        model = common.IntroBlockSettings
+
+
+class IntroBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(IntroBlockSettingsFactory)
+    heading = "Guard the internet"
+    body = RichText("<p>Mozilla is working to put people back in charge.</p>")
+
+    class Meta:
+        model = common.IntroBlock
+
+
+class ImageWithAltBlockFactory(wagtail_factories.StructBlockFactory):
+    image = factory.SubFactory(wagtail_factories.ImageChooserBlockFactory)
+    image_alt = ""
+
+    class Meta:
+        model = common.ImageWithAltBlock
+
+
+class ImageCaptionBlockFactory(wagtail_factories.StructBlockFactory):
+    image = factory.SubFactory(ImageWithAltBlockFactory)
+    caption = RichText("<p>An image caption.</p>")
+
+    class Meta:
+        model = common.ImageCaptionBlock
+
+
+class PullquoteBlockSettingsFactory(wagtail_factories.StructBlockFactory):
+    background_color = ""
+
+    class Meta:
+        model = common.PullquoteBlockSettings
+
+
+class PullquoteBlockFactory(wagtail_factories.StructBlockFactory):
+    settings = factory.SubFactory(PullquoteBlockSettingsFactory)
+    quote = RichText("<p>A memorable quote.</p>")
+    author = "Jane Doe"
+    citation = RichText("<p>Mozillian</p>")
+
+    class Meta:
+        model = common.PullquoteBlock
+
+
+class FreeformPageFactory(wagtail_factories.PageFactory):
+    title = "Test Freeform Page"
+    live = True
+    slug = "freeform-page"
+
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "donate_block": factory.SubFactory(DonateBlockFactory),
+            "gallery_block": factory.SubFactory(GalleryBlockFactory),
+            "intro_block": factory.SubFactory(IntroBlockFactory),
+            "prose_block": factory.SubFactory(ProseBlockFactory),
+            "pullquote_block": factory.SubFactory(PullquoteBlockFactory),
+            "showcase_block": factory.SubFactory(ShowcaseBlockFactory),
+            "springboard_block": factory.SubFactory(SpringboardBlockFactory),
+            "transition_block": factory.SubFactory(TransitionBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.FreeformPage
+
+
+class ArticlePageFactory(wagtail_factories.PageFactory):
+    title = "Test Article Page"
+    live = True
+    slug = "article-page"
+
+    intro = wagtail_factories.StreamFieldFactory(
+        {
+            "intro_block": factory.SubFactory(IntroBlockFactory),
+        }
+    )
+    content = wagtail_factories.StreamFieldFactory(
+        {
+            "text": factory.LazyFunction(lambda: RichText("<p>Article body copy.</p>")),
+            "image_caption": factory.SubFactory(ImageCaptionBlockFactory),
+            "pullquote_block": factory.SubFactory(PullquoteBlockFactory),
+        }
+    )
+    gallery = wagtail_factories.StreamFieldFactory(
+        {
+            "gallery_block": factory.SubFactory(GalleryBlockFactory),
+        }
+    )
+
+    class Meta:
+        model = models.ArticlePage

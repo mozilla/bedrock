@@ -2,12 +2,31 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.exceptions import ValidationError
 from django.utils.safestring import mark_safe
 
 from wagtail import blocks
 from wagtail.blocks.struct_block import BlockGroup
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail_link_block.blocks import LinkBlock
+
+IMAGE_ALT_HELP_TEXT = (
+    "A concise description of the image for someone who can't see it. "
+    "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
+)
+
+
+class CTALinkRequiredMixin:
+    """Require cta_link to be filled in when cta_text has been provided."""
+
+    def clean(self, value):
+        cta_text = value.get("cta_text")
+        cta_link = value.get("cta_link") or {}
+
+        if cta_text and not cta_link.get("link_to"):
+            raise blocks.StructBlockValidationError({"cta_link": ValidationError("A link destination is required when link text is filled in.")})
+
+        return super().clean(value)
 
 
 class DividerBlock(blocks.StaticBlock):
@@ -215,7 +234,7 @@ class DonateBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class DonateBlock(blocks.StructBlock):
+class DonateBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the donate section on the homepage."""
 
     settings = DonateBlockSettings()
@@ -237,10 +256,7 @@ class DonateBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     cta_text = blocks.CharBlock(
@@ -260,11 +276,11 @@ class DonateBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
 
 
@@ -306,7 +322,7 @@ class ShowcaseBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class ShowcaseBlock(blocks.StructBlock):
+class ShowcaseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the showcase component."""
 
     settings = ShowcaseBlockSettings()
@@ -328,16 +344,13 @@ class ShowcaseBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
-    sub_heading = blocks.CharBlock(
+    cta_label = blocks.CharBlock(
         required=False,
         max_length=255,
-        help_text="Sub heading. Use sentence case.",
+        help_text="Label. Use sentence case.",
     )
 
     cta_text = blocks.CharBlock(
@@ -358,11 +371,11 @@ class ShowcaseBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "body"], heading="Text"),
                 BlockGroup(["image", "image_alt"], heading="Image"),
-                BlockGroup(["sub_heading", "cta_text", "cta_link"], heading="Call-to-action"),
+                BlockGroup(["cta_label", "cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
 
 
@@ -396,7 +409,7 @@ class GalleryBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class GalleryTileBlock(blocks.StructBlock):
+class GalleryTileBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """A single tile in the gallery grid."""
 
     width = blocks.ChoiceBlock(
@@ -460,10 +473,7 @@ class GalleryTileBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     cta_link = LinkBlock(
@@ -499,10 +509,7 @@ class ShowcaseGalleryImageBlock(blocks.StructBlock):
     image_alt = blocks.CharBlock(
         max_length=255,
         required=False,
-        help_text=(
-            "A concise description of the image for someone who can't see it. "
-            "See <a href='https://mozmeao.github.io/platform-docs/cms/alt-text/' target='_blank'>alt text guidelines</a> for tips."
-        ),
+        help_text=IMAGE_ALT_HELP_TEXT,
     )
 
     class Meta:
@@ -569,7 +576,7 @@ class ShowcaseGalleryBlockSettings(blocks.StructBlock):
         form_classname = "compact-form struct-block"
 
 
-class ShowcaseGalleryBlock(blocks.StructBlock):
+class ShowcaseGalleryBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """A showcase block with a gallery as media."""
 
     settings = ShowcaseGalleryBlockSettings()
@@ -618,6 +625,30 @@ class ShowcaseGalleryBlock(blocks.StructBlock):
         )
 
 
+# Headings are left out so blocks with their own heading field can use this set without competing headings.
+RICHTEXT_BODY_FEATURES = [
+    "lede",
+    "hr",
+    "bold",
+    "italic",
+    "code",
+    "blockquote",
+    "superscript",
+    "link",
+    "ol",
+    "ul",
+]
+
+ARTICLE_RICHTEXT_FEATURES = ["h2", "h3", *RICHTEXT_BODY_FEATURES]
+
+
+HEADING_SIZE_CHOICES = [
+    ("m24-t-2xl", "2X large"),
+    ("", "X large"),
+    ("m24-t-lg", "Large"),
+]
+
+
 class ProseBlockSettings(blocks.StructBlock):
     """Settings for the prose block."""
 
@@ -656,15 +687,23 @@ class ProseBlockSettings(blocks.StructBlock):
         help_text="Optional: Add an ID to make this section linkable (e.g., 'pledge', 'support').",
     )
 
+    heading_size = blocks.ChoiceBlock(
+        choices=HEADING_SIZE_CHOICES,
+        default="m24-t-lg",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
     class Meta:
         icon = "cog"
         collapsed = True
         label = "Settings"
-        label_format = "Background: {background_color}"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
         form_classname = "compact-form struct-block"
 
 
-class ProseBlock(blocks.StructBlock):
+class ProseBlock(CTALinkRequiredMixin, blocks.StructBlock):
     """Block for the prose component."""
 
     settings = ProseBlockSettings()
@@ -681,7 +720,7 @@ class ProseBlock(blocks.StructBlock):
     )
 
     body = blocks.RichTextBlock(
-        features=["bold", "link"],
+        features=RICHTEXT_BODY_FEATURES,
     )
 
     cta_text = blocks.CharBlock(
@@ -703,8 +742,156 @@ class ProseBlock(blocks.StructBlock):
         label_format = "{heading}"
         form_layout = BlockGroup(
             children=[
+                "settings",
                 BlockGroup(["heading", "sub_heading", "body"], heading="Text"),
                 BlockGroup(["cta_text", "cta_link"], heading="Call-to-action"),
             ],
-            settings=["settings"],
         )
+
+
+class IntroBlockSettings(blocks.StructBlock):
+    """Settings for the intro block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    heading_size = blocks.ChoiceBlock(
+        choices=HEADING_SIZE_CHOICES,
+        default="",
+        required=False,
+        inline_form=True,
+        help_text="How large should the heading text be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color} - Heading size: {heading_size}"
+        form_classname = "compact-form struct-block"
+
+
+class IntroBlock(blocks.StructBlock):
+    """Block for the intro component."""
+
+    settings = IntroBlockSettings()
+
+    heading = blocks.CharBlock(
+        max_length=255,
+        help_text="Page heading. Use sentence case.",
+    )
+
+    body = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "link"],
+        help_text="A short introduction. Keep this to 1 or 2 sentences.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/intro_block.html"
+        icon = "title"
+        label = "Intro"
+        label_format = "{heading}"
+        form_layout = BlockGroup(
+            children=[
+                "settings",
+                BlockGroup(["heading", "body"], heading="Text"),
+            ],
+        )
+
+
+class ImageWithAltBlock(blocks.StructBlock):
+    """A single image with alt text."""
+
+    image = ImageChooserBlock()
+
+    image_alt = blocks.CharBlock(
+        max_length=255,
+        required=False,
+        help_text=IMAGE_ALT_HELP_TEXT,
+    )
+
+    class Meta:
+        icon = "image"
+        label = "Image"
+        label_format = "{image}"
+
+
+class ImageCaptionBlock(blocks.StructBlock):
+    """An image with an optional caption."""
+
+    image = ImageWithAltBlock()
+
+    caption = blocks.RichTextBlock(
+        required=False,
+        features=["bold", "italic", "link"],
+        help_text="Optional caption shown below the image.",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/longform_image_caption_block.html"
+        icon = "image"
+        label = "Image + Caption"
+        label_format = "{image}"
+
+
+class PullquoteBlockSettings(blocks.StructBlock):
+    """Settings for the pullquote block."""
+
+    background_color = blocks.ChoiceBlock(
+        choices=[
+            ("", "White"),
+            ("m24-t-dark", "Dark"),
+            ("m24-t-green", "Green"),
+            ("m24-t-orange", "Orange"),
+            ("m24-t-pink", "Pink"),
+            ("m24-t-gray", "Gray"),
+        ],
+        required=False,
+        help_text="What color should the background be?",
+    )
+
+    class Meta:
+        icon = "cog"
+        collapsed = True
+        label = "Settings"
+        label_format = "Background: {background_color}"
+        form_classname = "compact-form struct-block"
+
+
+class PullquoteBlock(blocks.StructBlock):
+    """A pullquote with optional attribution."""
+
+    settings = PullquoteBlockSettings()
+
+    quote = blocks.RichTextBlock(
+        features=["bold", "italic", "link"],
+    )
+
+    author = blocks.CharBlock(
+        required=False,
+        max_length=255,
+        help_text="Name of the person being quoted.",
+    )
+
+    citation = blocks.RichTextBlock(
+        required=False,
+        features=["italic", "link", "bold"],
+        help_text="Flexible extra field for more information (author's title, name and/or link to the source, date, etc.)",
+    )
+
+    class Meta:
+        template = "mozorg/cms/blocks/pullquote_block.html"
+        icon = "openquote"
+        label = "Pullquote"
+        label_format = "{quote}"

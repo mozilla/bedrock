@@ -71,7 +71,7 @@ repos:
           - --comment-style
           - "|#|"
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.16.0
+    rev: v0.17.0
     hooks:
       - id: ruff
       - id: ruff-format
@@ -81,27 +81,31 @@ repos:
       - id: fluent_linter
         files: \.ftl$
         args: [--config, .github/l10n/linter_config.yml, l10n/en/, l10n/en-US/]
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v4.0.0-alpha.8
+  # pre-commit/mirrors-prettier is archived; this is its hook definition inlined.
+  - repo: local
     hooks:
       - id: prettier
+        name: prettier
+        entry: prettier --write --ignore-unknown
+        language: node
+        types: [text]
         additional_dependencies:
-        - prettier@3.9.6
+        - prettier@3.9.10
   - repo: https://github.com/awebdeveloper/pre-commit-stylelint
     rev: 0.0.2
     hooks:
       - id: stylelint
         additional_dependencies:
-          - "stylelint@16.10.0"
+          - "stylelint@16.26.1"
           - "stylelint-config-standard-scss@13.1.0"
           - "postcss-scss@4.0.9"
           - "postcss@8.4.38"
   - repo: https://github.com/eslint/eslint
-    rev: v10.2.0
+    rev: v10.13.0
     hooks:
       - id: eslint
         additional_dependencies:
-          - "eslint-config-prettier@9.1.0"
+          - "eslint-config-prettier@10.1.8"
   #       Additional excludes in /.eslintignore file
   - repo: https://github.com/mozmeao/pre-commit-hooks-django
     rev: v0.4.1a  # this is OUR micro-bumped release of the fork
@@ -113,12 +117,17 @@ repos:
     -   id: check-unapplied-migrations
     -   id: check-absent-migrations
   - repo: https://github.com/asottile/pyupgrade
-    rev: "v3.21.2"
+    rev: "v3.22.0"
     hooks:
     - id: pyupgrade
       args: [--py313]
   - repo: https://github.com/adamchainz/django-upgrade
-    rev: "1.32.0"  # replace with latest tag on GitHub
+    rev: "1.33.0"  # replace with latest tag on GitHub
     hooks:
     -   id: django-upgrade
         args: [--target-version, "5.2"]
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.31.1
+    hooks:
+    -   id: zizmor
+        args: [--pedantic]

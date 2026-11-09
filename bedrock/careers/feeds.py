@@ -48,6 +48,4 @@ class LatestPositionsFeed(Feed):
         return item.updated_at
 
     def item_categories(self, item):
-        categories = item.location_list
-        categories.append(item.department)
-        return categories
+        return [*item.location_list, item.department]

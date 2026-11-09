@@ -13,9 +13,12 @@ import django_rq
 logger = logging.getLogger(__name__)
 
 
-def defer_task(func, *, queue_name="default", func_args=None, func_kwargs=None):
+def defer_task(func, *, queue_name=None, func_args=None, func_kwargs=None):
     # Note that the * means queue_name, func_args and func_kwargs MUST be passed
     # as keywords
+
+    # Look the default queue up from settings, so that tests get a test-specific one
+    queue_name = queue_name or settings.RQ_DEFAULT_QUEUE
 
     # Avoid mutable default problem
     func_args = func_args or []

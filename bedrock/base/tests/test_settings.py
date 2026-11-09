@@ -4,6 +4,9 @@
 
 """Tests for settings"""
 
+from importlib import reload
+from unittest import mock
+
 from django.conf import settings
 from django.test import override_settings
 
@@ -19,6 +22,37 @@ def test_lang_groups():
         "ja": ["ja-JP-mac", "ja"],
         "en": ["en-US", "en-GB"],
     }
+
+
+def test_rq_queue_names_are_test_specific():
+    assert settings.RQ_DEFAULT_QUEUE == "test_default"
+    assert settings.RQ_IMAGE_RENDITIONS_QUEUE == "test_image_renditions"
+    assert settings.RQ_EMAIL_DEFAULT_QUEUE == "test_default"
+
+
+def test_rq_queues_are_test_specific_when_redis_is_configured():
+    # RQ_QUEUES is only populated when REDIS_URL is set, so reload the settings
+    # with it set, as if the tests were being run with a local Redis available
+    from bedrock import settings as bedrock_settings
+    from bedrock.settings import base as base_settings
+
+    try:
+        with mock.patch.dict("os.environ", {"REDIS_URL": "redis://redis:6379"}):
+            reload(base_settings)
+            reload(bedrock_settings)
+
+            assert bedrock_settings.TASK_QUEUE_AVAILABLE is True
+            assert bedrock_settings.RQ_QUEUES == {
+                "test_default": {"URL": "redis://redis:6379/0"},
+                "test_image_renditions": {"URL": "redis://redis:6379/0"},
+            }
+            assert bedrock_settings.RQ_DEFAULT_QUEUE == "test_default"
+            assert bedrock_settings.RQ_IMAGE_RENDITIONS_QUEUE == "test_image_renditions"
+            assert bedrock_settings.RQ_EMAIL_DEFAULT_QUEUE == "test_default"
+    finally:
+        # Restore the settings modules for any tests that use them later
+        reload(base_settings)
+        reload(bedrock_settings)
 
 
 @pytest.mark.parametrize(
@@ -72,3 +106,32 @@ def test_normalize_gtm_server_url(raw_url, expected_url):
 )
 def test_normalize_gtm_server_path(raw_path, expected_path):
     assert _normalize_gtm_server_path(raw_path) == expected_path
+
+
+def test_lazy_langs_skips_db_before_apps_ready(mocker, settings):
+    from bedrock.settings.base import lazy_langs
+
+    settings.DEV = True
+    mocker.patch("bedrock.settings.base.DEV_LANGUAGES", ["en-US", "de"])
+    apps = mocker.patch("django.apps.apps")
+    apps.ready = False
+
+    result = lazy_langs()
+    assert result == [("en-US", "en-US"), ("de", "de")]
+
+
+def test_lazy_langs_uses_product_details_after_apps_ready(mocker, settings):
+    from bedrock.settings.base import lazy_langs
+
+    settings.DEV = True
+    mocker.patch("bedrock.settings.base.DEV_LANGUAGES", ["en-US", "de"])
+    apps = mocker.patch("django.apps.apps")
+    apps.ready = True
+    pd = mocker.patch("product_details.product_details")
+    pd.languages = {
+        "en-US": {"native": "English (US)"},
+        "de": {"native": "Deutsch"},
+    }
+
+    result = lazy_langs()
+    assert result == [("en-US", "English (US)"), ("de", "Deutsch")]

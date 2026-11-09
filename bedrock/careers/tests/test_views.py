@@ -40,6 +40,15 @@ class PositionTests(TransactionTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["position"].job_id, job_id_2)
 
+    def test_position_detail_page_for_job_with_no_offices(self):
+        position = PositionFactory(job_id="aabbccde", title="Bowler", position_type="Full time", location="")
+
+        url = reverse("careers.position", kwargs={"job_id": position.job_id, "source": position.source})
+        response = self.client.get(url, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["meta_description"], "Mozilla is hiring a full time Bowler")
+
     def test_foundation_position_shows_foundation_as_employer(self):
         position = PositionFactory(job_id="mofo1", department="Grantmaking", is_mofo=True)
         url = reverse("careers.position", kwargs={"job_id": position.job_id, "source": "gh"})

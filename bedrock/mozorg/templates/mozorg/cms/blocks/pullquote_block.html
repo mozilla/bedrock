@@ -1,0 +1,23 @@
+{#
+ This Source Code Form is subject to the terms of the Mozilla Public
+ License, v. 2.0. If a copy of the MPL was not distributed with this
+ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+#}
+
+{% set bg_color = value.settings.background_color|default("", true) %}
+
+<div class="{% if bg_color %}{{ bg_color }}{% endif %}">
+  <div class="m24-c-content">
+    <figure class="m24-c-pullquote">
+      <blockquote class="m24-c-pullquote-text">
+        {{ value.quote|richtext }}
+      </blockquote>
+      {% if value.author or value.citation %}
+        <figcaption class="m24-c-pullquote-attribution">
+          {% if value.author %}<div class="m24-c-pullquote-author">{{ value.author }}</div>{% endif %}
+          {% if value.citation %}<div class="m24-c-pullquote-citation">{{ value.citation|richtext }}</div>{% endif %}
+        </figcaption>
+      {% endif %}
+    </figure>
+  </div>
+</div>
