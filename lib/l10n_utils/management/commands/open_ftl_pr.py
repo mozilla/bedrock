@@ -2,7 +2,6 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-import filecmp
 import shutil
 from datetime import datetime
 from os import getenv
@@ -86,7 +85,7 @@ class Command(FTLRepoCommand):
             target = target_path / source.name
             if source.is_dir():
                 sync(source, target, "sync", content=True, create=True, purge=True)
-            elif not target.is_file() or not filecmp.cmp(source, target, shallow=False):
+            else:
                 shutil.copy2(source, target)
 
     def create_branch(self):
