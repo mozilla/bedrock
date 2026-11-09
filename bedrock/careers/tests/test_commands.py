@@ -29,7 +29,7 @@ def _job(job_id, internal_job_id=99, title="Web Fox", **extra):
     }
 
 
-def _sync_boards(board_jobs):
+def _sync_boards(board_jobs, stderr=None):
     """Run sync_greenhouse with a distinct response per board; returns the mocked requests module."""
     responses = {GREENHOUSE_URL.format(board): {"jobs": jobs} for board, jobs in board_jobs.items()}
 
@@ -40,7 +40,7 @@ def _sync_boards(board_jobs):
 
     with patch(REQUESTS) as requests:
         requests.get.side_effect = get
-        call_command("sync_greenhouse", stdout=StringIO(), stderr=StringIO())
+        call_command("sync_greenhouse", stdout=StringIO(), stderr=stderr or StringIO())
     return requests
 
 
@@ -145,6 +145,15 @@ class SyncGreenhouseTests(TestCase):
             dict(Position.objects.values_list("job_id", "is_mofo")),
             {"moco": False, "legacy-mofo": True, "mofo": True, "mofo-no-dept": True},
         )
+
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_same_id_on_both_boards_keeps_first_and_warns(self):
+        """Greenhouse ids never repeat across boards; if one did, bedrock could not store both."""
+        stderr = StringIO()
+        _sync_boards({"mozilla": [_job("dup", 1, "First")], "mozillafoundation": [_job("dup", 2, "Second")]}, stderr=stderr)
+
+        self.assertEqual(list(Position.objects.values_list("title", flat=True)), ["First"])
+        self.assertIn("Job dup is on both the mozilla and mozillafoundation boards; keeping the first", stderr.getvalue())
 
     def test_jobs_without_internal_job_id_are_skipped(self):
         """A posting with a null or absent internal_job_id is reported and skipped; the rest still sync."""

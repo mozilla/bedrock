@@ -83,19 +83,27 @@ class Command(BaseCommand):
         jobs_removed = 0
         jobs_skipped = 0
         job_ids = []
+        board_by_job_id = {}
         jobs_list = []
 
         for board in settings.GREENHOUSE_BOARDS:
             response = requests.get(GREENHOUSE_URL.format(board))
             response.raise_for_status()
             # Remember which board each job came from: it decides the employer.
-            from_foundation_board = board == settings.FOUNDATION_GREENHOUSE_BOARD
-            jobs_list.extend((job, from_foundation_board) for job in response.json()["jobs"])
+            jobs_list.extend((board, job) for job in response.json()["jobs"])
 
-        for job, from_foundation_board in jobs_list:
-            # In case GH includes jobs with the same ID multiple times in the json.
-            if job["id"] in job_ids:
+        for board, job in jobs_list:
+            # Greenhouse ids are unique across all boards, so a repeat within one
+            # board's JSON is just a duplicated row. The same id arriving from a
+            # second board would be a clash bedrock cannot store (job_id is the
+            # URL key), so keep the first one and say so.
+            if job["id"] in board_by_job_id:
+                if board_by_job_id[job["id"]] != board:
+                    self.stderr.write(f"Job {job['id']} is on both the {board_by_job_id[job['id']]} and {board} boards; keeping the first")
                 continue
+            board_by_job_id[job["id"]] = board
+
+            from_foundation_board = board == settings.FOUNDATION_GREENHOUSE_BOARD
 
             # Greenhouse sets this on every job post. It is the key that groups the
             # per-location postings of one job, so a post without it cannot be
