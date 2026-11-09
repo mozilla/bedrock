@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import datetime
+import re
 
 from django.urls import reverse
 from django.utils import timezone
@@ -47,6 +48,14 @@ class PositionTests(TransactionTestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context["meta_description"], "Mozilla is hiring a full time Bowler")
+
+    def test_foundation_position_shows_foundation_as_employer(self):
+        position = PositionFactory(job_id="mofo1", department="Grantmaking", is_mofo=True)
+        url = reverse("careers.position", kwargs={"job_id": position.job_id, "source": "gh"})
+        response = self.client.get(url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(re.search(r'class="title-location">\s*at Mozilla Foundation\s*<', response.text))
+        self.assertIn('<dd class="job-post-team">Grantmaking</dd>', response.text)
 
     def test_position_view_404_has_appropriate_wording(self):
         url = reverse("careers.position", kwargs={"job_id": "aabbccdd", "source": "gh"})
