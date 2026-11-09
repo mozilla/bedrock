@@ -2,6 +2,9 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from decimal import Decimal
+
+from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
@@ -321,7 +324,7 @@ TEST_VPN_PLAN_ID_MATRIX = {
                 "price": "22",
                 "total": "264",
                 "currency": "PLN",
-                "saving": 48,
+                "saving": 51,
                 "analytics": {"brand": "vpn", "plan": "vpn", "currency": "PLN", "discount": "276", "price": "264", "period": "yearly"},
             },
             "monthly": {
@@ -1408,7 +1411,7 @@ class TestVPNSaving(TestCase):
     def test_vpn_12_month_saving_pln(self):
         """Should return expected markup"""
         markup = self._render(country_code="PL", lang="en-US")
-        expected = "Save 48%"
+        expected = "Save 51%"
         self.assertEqual(markup, expected)
 
     def test_vpn_12_month_saving_ron(self):
@@ -1416,6 +1419,18 @@ class TestVPNSaving(TestCase):
         markup = self._render(country_code="RO", lang="en-US")
         expected = "Save 50%"
         self.assertEqual(markup, expected)
+
+
+class TestVPNPlanSavingValues(TestCase):
+    def test_saving_matches_plan_prices(self):
+        """The hard-coded saving should agree with the prices of the plans it compares"""
+        for currency, languages in settings.VPN_PLAN_ID_MATRIX.items():
+            for lang, plans in languages.items():
+                with self.subTest(currency=currency, lang=lang):
+                    annual_total = Decimal(plans["12-month"]["total"])
+                    monthly_price = Decimal(plans["monthly"]["price"])
+                    actual_saving = (1 - annual_total / (monthly_price * 12)) * 100
+                    self.assertLess(abs(plans["12-month"]["saving"] - actual_saving), 1)
 
 
 class TestVPNProductReferralLink(TestCase):
