@@ -12,7 +12,7 @@ from django.utils import timezone
 
 
 class Position(models.Model):
-    job_id = models.CharField(max_length=10)
+    job_id = models.CharField(max_length=36)
     title = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     location = models.CharField(max_length=500)
@@ -25,8 +25,9 @@ class Position(models.Model):
     position_type = models.CharField(max_length=100)
     updated_at = models.DateTimeField(default=timezone.now)
     # Store the Greenhouse internal ID for grouping the same jobs with multiple
-    # listings per location.
-    internal_job_id = models.PositiveIntegerField()
+    # listings per location. Newer Greenhouse tenants issue ids above 2**31,
+    # so this must be a 64-bit column.
+    internal_job_id = models.PositiveBigIntegerField()
 
     NON_MOCO_DEPTS = [
         "Pan Mozilla",

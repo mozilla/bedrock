@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from django.core.cache import cache
+from django.db.backends.base.operations import BaseDatabaseOperations
 
 from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory
@@ -48,3 +49,12 @@ class TestPositionModel(TestCase):
         PositionFactory(department="Engineering")
 
         assert Position.categories() == ["Engineering", "Marketing"]
+
+    def test_internal_job_id_column_fits_newer_greenhouse_ids(self):
+        # Newer Greenhouse tenants (e.g. the mozillafoundation board) issue ids
+        # above 2**31, which overflow a 32-bit integer column on PostgreSQL.
+        # SQLite stores every integer as 64 bits, so the test database cannot
+        # catch this; check the field type's standard range instead.
+        field = Position._meta.get_field("internal_job_id")
+        low, high = BaseDatabaseOperations.integer_field_ranges[field.get_internal_type()]
+        assert low <= 4_141_464_005 <= high
