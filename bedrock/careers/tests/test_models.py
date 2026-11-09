@@ -50,6 +50,16 @@ class TestPositionModel(TestCase):
 
         assert Position.categories() == ["Engineering", "Marketing"]
 
+    def test_is_moco_false_for_mofo_jobs(self):
+        assert PositionFactory(department="Engineering").is_moco
+        assert not PositionFactory(department="Engineering", is_mofo=True).is_moco
+        assert not PositionFactory(department="Mozilla Foundation").is_moco
+
+    def test_employer(self):
+        assert PositionFactory(department="Engineering").employer == "Mozilla Corporation"
+        assert PositionFactory(department="Grantmaking", is_mofo=True).employer == "Mozilla Foundation"
+        assert PositionFactory(department="MZLA/Thunderbird").employer == "MZLA/Thunderbird"
+
     def test_internal_job_id_column_fits_newer_greenhouse_ids(self):
         # Newer Greenhouse tenants (e.g. the mozillafoundation board) issue ids
         # above 2**31, which overflow a 32-bit integer column on PostgreSQL.

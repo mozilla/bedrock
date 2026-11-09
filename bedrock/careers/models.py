@@ -53,7 +53,15 @@ class Position(models.Model):
 
     @property
     def is_moco(self):
-        return self.department not in self.NON_MOCO_DEPTS
+        return not self.is_mofo and self.department not in self.NON_MOCO_DEPTS
+
+    @property
+    def employer(self):
+        if self.is_moco:
+            return "Mozilla Corporation"
+        if self.is_mofo:
+            return "Mozilla Foundation"
+        return self.department
 
     @property
     def location_list(self):

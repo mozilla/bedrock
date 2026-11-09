@@ -19,16 +19,11 @@
       <h1 class="job-title">{{ position.title }}</h1>
 
       <div class="title-location">
-        at
-        {% if position.is_moco %}
-          Mozilla Corporation
-        {% else %}
-          {{ position.department }}
-        {% endif %}
+        at {{ position.employer }}
       </div>
 
       <dl class="mzp-u-list-styled">
-        {% if position.is_moco %}
+        {% if position.department and position.department != position.employer %}
           <dt class="job-post-team-head">Team:</dt>
           <dd class="job-post-team">{{ position.department }}</dd>
         {% endif %}

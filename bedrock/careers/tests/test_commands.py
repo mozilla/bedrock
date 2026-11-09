@@ -9,11 +9,39 @@ from unittest.mock import Mock, patch
 from django.core.management import call_command
 from django.test.utils import override_settings
 
+from bedrock.careers.management.commands.sync_greenhouse import GREENHOUSE_URL
 from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory
 from bedrock.mozorg.tests import TestCase
 
 REQUESTS = "bedrock.careers.management.commands.sync_greenhouse.requests"
+
+
+def _job(job_id, internal_job_id=99, title="Web Fox", **extra):
+    """A minimal Greenhouse job post, with any extra fields layered on top."""
+    return {
+        "id": job_id,
+        "internal_job_id": internal_job_id,
+        "title": title,
+        "absolute_url": f"http://example.com/{job_id}",
+        "updated_at": "2016-07-25T14:45:57-04:00",
+        **extra,
+    }
+
+
+def _sync_boards(board_jobs):
+    """Run sync_greenhouse with a distinct response per board; returns the mocked requests module."""
+    responses = {GREENHOUSE_URL.format(board): {"jobs": jobs} for board, jobs in board_jobs.items()}
+
+    def get(url, **kwargs):
+        response = Mock()
+        response.json.return_value = responses[url]
+        return response
+
+    with patch(REQUESTS) as requests:
+        requests.get.side_effect = get
+        call_command("sync_greenhouse", stdout=StringIO(), stderr=StringIO())
+    return requests
 
 
 @override_settings(GREENHOUSE_BOARDS=["mozilla"])
@@ -87,67 +115,50 @@ class SyncGreenhouseTests(TestCase):
     @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
     def test_multiple_boards(self):
         """Jobs from every configured board are fetched, and stale jobs are still removed."""
-
-        def jobs_response(job_id, internal_job_id, title):
-            return {
-                "jobs": [
-                    {
-                        "id": job_id,
-                        "internal_job_id": internal_job_id,
-                        "title": title,
-                        "absolute_url": f"http://example.com/{job_id}",
-                        "updated_at": "2016-07-25T14:45:57-04:00",
-                    },
-                ]
-            }
-
-        responses = {
-            "https://boards-api.greenhouse.io/v1/boards/mozilla/jobs?content=true": jobs_response("xxx", 99, "Web Fox"),
-            "https://boards-api.greenhouse.io/v1/boards/mozillafoundation/jobs?content=true": jobs_response("yyy", 98, "Web Kangaroo"),
-        }
-
-        def get(url):
-            response = Mock()
-            response.json.return_value = responses[url]
-            return response
-
         PositionFactory(job_id="zzz", internal_job_id=97)
-        with patch(REQUESTS) as requests:
-            requests.get.side_effect = get
-            call_command("sync_greenhouse", stdout=StringIO())
+        requests = _sync_boards({"mozilla": [_job("xxx", 99, "Web Fox")], "mozillafoundation": [_job("yyy", 98, "Web Kangaroo")]})
 
         self.assertEqual(requests.get.call_count, 2)
-        for url in responses:
-            requests.get.assert_any_call(url)
+        self.assertEqual(
+            {call.args[0] for call in requests.get.call_args_list},
+            {GREENHOUSE_URL.format("mozilla"), GREENHOUSE_URL.format("mozillafoundation")},
+        )
         # Jobs from both boards remain, and the job no longer listed by either board is removed.
         self.assertEqual(sorted(Position.objects.values_list("job_id", flat=True)), ["xxx", "yyy"])
 
-    def test_missing_internal_job_id_uses_job_id(self):
-        """Postings without an internal_job_id are grouped by their own job ID, not collapsed together."""
-        jobs_response = {
-            "jobs": [
-                {
-                    "id": 111,
-                    "internal_job_id": None,
-                    "title": "Web Fox",
-                    "absolute_url": "http://example.com/foo",
-                    "updated_at": "2016-07-25T14:45:57-04:00",
-                },
-                {
-                    "id": 222,
-                    "internal_job_id": None,
-                    "title": "Web Kangaroo",
-                    "absolute_url": "http://example.com/bar",
-                    "updated_at": "2016-07-25T14:45:57-04:00",
-                },
-            ]
-        }
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_foundation_board_jobs_are_mofo(self):
+        """The board a job comes from decides the employer, not its department name."""
+        _sync_boards(
+            {
+                "mozilla": [
+                    _job("moco", 1, departments=[{"name": "Engineering"}]),
+                    _job("legacy-mofo", 2, departments=[{"name": "Mozilla Foundation"}]),
+                ],
+                "mozillafoundation": [
+                    _job("mofo", 3, departments=[{"name": "Grantmaking"}]),
+                    _job("mofo-no-dept", 4),
+                ],
+            }
+        )
+        self.assertEqual(
+            dict(Position.objects.values_list("job_id", "is_mofo")),
+            {"moco": False, "legacy-mofo": True, "mofo": True, "mofo-no-dept": True},
+        )
+
+    def test_jobs_without_internal_job_id_are_skipped(self):
+        """A posting with a null or absent internal_job_id is reported and skipped; the rest still sync."""
+        absent = _job(333, 97)
+        del absent["internal_job_id"]
+        stdout, stderr = StringIO(), StringIO()
         with patch(REQUESTS) as requests:
-            requests.get().json.return_value = jobs_response
-            call_command("sync_greenhouse", stdout=StringIO())
-        positions = Position.objects.all()
-        self.assertEqual(positions.count(), 2)
-        self.assertEqual(sorted(p.internal_job_id for p in positions), [111, 222])
+            requests.get().json.return_value = {"jobs": [_job(111, internal_job_id=None), absent, _job(222, 98)]}
+            call_command("sync_greenhouse", stdout=stdout, stderr=stderr)
+
+        self.assertEqual(list(Position.objects.values_list("job_id", flat=True)), ["222"])
+        self.assertIn("skipped: 2", stdout.getvalue())
+        self.assertIn("Skipping job 111: no internal_job_id", stderr.getvalue())
+        self.assertIn("Skipping job 333: no internal_job_id", stderr.getvalue())
 
     def test_other_source_positions_are_not_removed(self):
         """Positions from a source other than Greenhouse are left alone by the cleanup step."""

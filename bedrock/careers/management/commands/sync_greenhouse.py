@@ -81,24 +81,32 @@ class Command(BaseCommand):
         jobs_added = 0
         jobs_updated = 0
         jobs_removed = 0
+        jobs_skipped = 0
         job_ids = []
         jobs_list = []
 
-        for source in settings.GREENHOUSE_BOARDS:
-            url = GREENHOUSE_URL.format(source)
-            response = requests.get(url)
+        for board in settings.GREENHOUSE_BOARDS:
+            response = requests.get(GREENHOUSE_URL.format(board))
             response.raise_for_status()
-            data = response.json()
-            jobs_list.extend(data["jobs"])
+            # Remember which board each job came from: it decides the employer.
+            from_foundation_board = board == settings.FOUNDATION_GREENHOUSE_BOARD
+            jobs_list.extend((job, from_foundation_board) for job in response.json()["jobs"])
 
-        for job in jobs_list:
+        for job, from_foundation_board in jobs_list:
             # In case GH includes jobs with the same ID multiple times in the json.
             if job["id"] in job_ids:
                 continue
 
-            job_ids.append(job["id"])
+            # Greenhouse sets this on every job post. It is the key that groups the
+            # per-location postings of one job, so a post without it cannot be
+            # placed correctly: skip it rather than guess, and say so.
+            internal_job_id = job.get("internal_job_id")
+            if not internal_job_id:
+                jobs_skipped += 1
+                self.stderr.write(f"Skipping job {job['id']}: no internal_job_id")
+                continue
 
-            internal_job_id = job.get("internal_job_id") or job["id"]
+            job_ids.append(job["id"])
 
             position, created = Position.objects.get_or_create(job_id=job["id"], internal_job_id=internal_job_id, source="gh")
 
@@ -108,10 +116,9 @@ class Command(BaseCommand):
             else:
                 department = ""
 
-            # TODO remove this as there are more than just MoFo
-            is_mofo = False
-            if department == "Mozilla Foundation":
-                is_mofo = True
+            # Everything on the Foundation board is a MoFo job. Jobs on the MoCo
+            # board filed under a "Mozilla Foundation" department are too.
+            is_mofo = from_foundation_board or department == "Mozilla Foundation"
 
             offices = job.get("offices", "")
             if offices:
@@ -169,4 +176,4 @@ class Command(BaseCommand):
         positions_to_be_removed.delete()
 
         if not quiet:
-            self.stdout.write(f"Jobs added: {jobs_added} updated: {jobs_updated} removed: {jobs_removed}")
+            self.stdout.write(f"Jobs added: {jobs_added} updated: {jobs_updated} removed: {jobs_removed} skipped: {jobs_skipped}")
