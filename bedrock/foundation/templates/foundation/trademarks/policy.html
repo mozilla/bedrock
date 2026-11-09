@@ -4,9 +4,11 @@
  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #}
 
-{% extends "foundation/base.html" %}
+{% extends "foundation/trademarks/base.html" %}
 
 {% block page_title %}Mozilla Trademark Guidelines{% endblock %}
+
+{% set body_id = "trademarks" %}
 
 {% block article_title %}
   Mozilla Trademark Guidelines
@@ -66,7 +68,7 @@
     <li>
       Include a trademark attribution notice.
       <ul>
-        <li>{% with list=url('foundation.trademarks.list') %}Use a clearly visible notice to provide attribution to Mozilla, such as: “[Mozilla trademark] is a trademark of the Mozilla Foundation in the US and other countries.” Please see the <a href="{{ list }}">Trademarks List</a> for examples of attribution notices.{% endwith %}</li>
+        <li>{% with list=url('foundation.trademarks.list') %}Use a clearly visible notice to provide attribution to Mozilla, such as: “[Mozilla trademark] is a trademark of Mozilla.org in the US and other countries.” Please see the <a href="{{ list }}">Trademarks List</a> for examples of attribution notices.{% endwith %}</li>
       </ul>
     </li>
 
