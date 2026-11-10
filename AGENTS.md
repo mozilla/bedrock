@@ -41,9 +41,128 @@ When working on a feature or fix, work on a dedicated branch whose name is prefi
 
 ## Commit & Pull Request Guidelines
 
-Keep commit titles short, imperative, and linked to issues when available (e.g., `Tighten hero metrics (#16595)`). Focus diffs and note migrations, toggles, or telemetry changes. Pull requests should explain intent and link to bugs. Flag rollout considerations when touching configuration under `docker/`, `**/migrations/` or monitoring.
+Keep commit titles short, imperative, and linked to issues when available (e.g., `Tighten hero metrics (#16595)`). Focus diffs and note migrations, toggles, or telemetry changes. Flag rollout considerations when touching configuration under `docker/`, `**/migrations/` or monitoring.
 
-In the PR template's **Testing** section, use bullet points to tell the reviewer what to check: URLs to visit, edge cases to try, high-impact or high-risk changes, and any setup the default environment doesn't cover. Don't list the tests you ran.
+### Writing PR descriptions
+
+Keep all four headings from `.github/PULL_REQUEST_TEMPLATE.md`. Answer one that does not
+apply with `n/a` — one word is a complete answer, and inventing content to fill a heading is
+worse than admitting it is empty. Don't end the description with "🤖 Generated with Claude
+Code" or any other generated-by line.
+
+A description directs the reviewer's attention. It does not restate the diff, and it does not
+explain this codebase back to the team that owns it. Check what actually changed
+(`git diff --stat main...`, plus a scan for migrations, fixtures, config, and deletions —
+these are the categories most likely to hide a consequence a stat diff won't show) before
+writing, so the description matches reality.
+
+Take length out of describing the change.
+
+**One-line summary.** One or two sentences: what the change does, and why where the title
+does not already make that obvious. Compress rather than qualify. "Add compact-input class
+for narrower input fields" beats "Add a reusable `.compact-input` CSS class to
+narrow admin number fields that only ever hold a few digits, instead of rendering
+full-width" — 21 words and two subordinate clauses to say less than eight.
+
+**Significant changes and points to review.** Short bullets, most significant first, one
+clause each. Nest a sub-bullet where a consequence needs one; never go past two levels. A
+single sentence is right where the change is one idea, and a short paragraph is right
+where the reviewer needs domain context the diff cannot give — mozmeao/springfield#1813 explains that editors
+keep several "General" WNPs published at once, which is why the filter had to move off the
+slug.
+
+Name a file where the file is the point — "Remove the unused wagtail-admin.scss",
+"Add regenerate_analytics_ids() to cms/blocks.py" — and prefer the bare
+filename when it identifies the thing on its own.
+
+Rejected — mozmeao/springfield#1791 as first drafted:
+
+> - **Page-level validation** (`springfield/cms/models/base.py`) — every sample-rated
+>   Conditional Display block on a page must share the same rate. **This is the most critical
+>   part to review** — it's new validation that runs on every page save across the whole CMS.
+
+Replacement — mozmeao/springfield#1791 as merged:
+
+> - Adds sample_rate field on ConditionalDisplayBlock (DecimalBlock, 0.01-100%).
+> - Multiple components can be displayed based on sample-rate but the sample rate must match.
+>   - Page.clean() now rejects a save if two sample-rated blocks on the same page disagree.
+
+- Say what changed. Add why only where the change does not already imply it.
+- Do not rate your own change. No "low risk", "mechanical", "straightforward", "nothing here
+  is riskier than a CSS tweak", and never a reflexive "this is the most critical part to
+  review" — most PRs have no such thing, and a rating carries nothing a reviewer can act on.
+- Do flag a change that is genuinely high-risk or wide blast radius, in one line, stating its
+  reach as a fact rather than a rating: a data migration, a schema change, something hard to
+  undo, or behaviour that reaches past the scope the summary names. "The copy hook now
+  regenerates these fields on every page copy, of every page type" earns that line.
+  Validation that only fires on the blocks this PR adds does not. When nothing qualifies,
+  say nothing — silence is the normal case.
+- A side-effect worth knowing about but not risky — a duplicate file deleted, a stray
+  reference removed — is a plain bullet like everything else.
+- Fold low-risk, mechanical fallout — updated fixtures, ported static pages, renamed CSS —
+  into its own short item, kept brief and after the substantive bullets, so it doesn't crowd
+  out what the reviewer actually needs to think about.
+- Flag genuine uncertainty about your own work — "I'm not sure this handles the RTL case" —
+  distinct from rating risk. Risk-rating is banned above; naming a real unknown is not, and
+  is often the most useful sentence in the description.
+- Never explain mechanics the team already knows: why no migration was generated, how this
+  project's StreamField subclass behaves, what an existing template loop does.
+- Never describe your own process. Not which approach you tried first, not what a review
+  caught, not that the branch is stacked on another PR. Two things that look similar but are
+  worth keeping: deliberately deferred scope — "Bare template changes for the new layouts
+  (no styles yet)" — and a port's provenance — "Ported from mozmeao/springfield#1570".
+
+**Issue / Bugzilla link.** The full GitHub issue, Jira or Bugzilla URL, or `n/a`. List all of them where a change
+closes more than one, and give the context on a cross-reference: "Follow-up to
+mozmeao/springfield#1813, fixing the issue pointed out by <comment URL>".
+
+**Testing.** What a reviewer does by hand to check this. The one section worth expanding.
+
+- Open with prerequisites where there are any: "Make sure you have GCP/DNT disabled", "get
+  prod DB (or set up a referral hub page with an image on it locally)".
+- Include setup commands a reviewer must run to see the change at all, such as
+  `./manage.py migrate`. Leave out test and lint commands: `pytest`,
+  `npm run jasmine` and `stylelint` only re-check what CI already checked.
+- Give the URL to load. Deep-link to the specific fixture page where there is one, with the
+  expected result after it.
+- One step per thing to verify, phrased as a check — "Check an error displays when two blocks
+  disagree on sample rate", not "set two blocks to different rates → save is rejected, error
+  names both blocks". `- [ ]` checkboxes where the reviewer is working through a list.
+- Ask plainly for a close look when you want one: "Look at this one pretty closely please, it
+  changes the thanks page."
+
+A complete example — mozmeao/springfield#1823, in full, as the shape to aim for:
+
+> ## One-line summary
+>
+> Enforce good practices for image titles and descriptions.
+>
+> ## Significant changes and points to review
+>
+> - Add a new `is_decorative` field `SpringfieldImage`
+> - Make the description field required when an image isn't decorative
+> - Reject image titles that look like file names
+> - Remove Wagtail's default behavior to use the image's file name as the title
+> - Render an empty `alt` attribute for images flagged as decorative
+>
+> ## Issue / Bugzilla link
+>
+> https://mozilla-hub.atlassian.net/browse/WT-1715
+>
+> ## Testing
+>
+> - Edit any image and check the "Image is decorative" checkbox
+> - Load a page that uses the image and verify that it renders an empty `alt` attribute
+> - Upload a new image from a page editor and check that the form doesn't pre-fill the title
+>   field with the image file name
+> - Verify that the form rejects an empty description
+> - Check the "Image is decorative" checkbox and verify that the form accepts an empty
+>   description
+> - Do the same on the multiple image upload form (`/cms-admin/images/multiple/add/`)
+
+166 words. Five bullets, each one clause. Backticks on identifiers, none on prose. No bold,
+no em-dashes, no repo paths, no risk rating, no test commands. Testing is six imperative
+checks an editor could follow without reading the diff.
 
 ## Security & Configuration Tips
 
