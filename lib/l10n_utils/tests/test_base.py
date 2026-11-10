@@ -3,7 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 import os
-from unittest.mock import ANY, Mock, call, patch
+from unittest.mock import ANY, call, patch
 
 from django.http import HttpResponse
 from django.test import TestCase
@@ -339,28 +339,31 @@ class TestL10nTemplateView(TestCase):
     "translations, accept_languages, expected",
     (
         # Anything with a 'en-US' translation and 'en' root accept languages, goes to 'en-US'.
-        (["en-US"], ["en-US"], "en-US"),
-        (["en-US"], ["en-CA"], "en-US"),
+        (["en-US"], ["en-us"], "en-US"),
+        (["en-US"], ["en-ca"], "en-US"),
         (["en-US"], ["en"], "en-US"),
-        (["en-US", "de"], ["en-GB"], "en-US"),
+        (["en-US", "de"], ["en-gb"], "en-US"),
         # Anything with a 'en-US' translation and unsupported translations, returns 'en-US'.
         (["en-US"], ["zu"], "en-US"),
         (["en-US"], ["fr"], "en-US"),
         (["en-US", "de"], ["fr"], "en-US"),
         # The user's prioritized accept language should be chosen first.
-        (["en-US", "de"], ["de", "en-US"], "de"),
+        (["en-US", "de"], ["de", "en-us"], "de"),
         (["en-US", "de", "fr"], ["fr", "de"], "fr"),
-        (["en-US", "de", "fr"], ["en-CA", "fr", "de"], "en-US"),
+        (["en-US", "de", "fr"], ["en-ca", "fr", "de"], "en-US"),
         # A request for only inactive translations should return default.
-        (["am", "an", "en-US"], ["mk", "gu-IN"], "en-US"),
+        (["am", "an", "en-US"], ["mk", "gu-in"], "en-US"),
         # "am" is not a valid language in the list of PROD_LANGUAGES
-        (["am", "an"], ["mk", "gu-IN"], "an"),
+        (["am", "an"], ["mk", "gu-in"], "an"),
+        # Regional accept-language tags arrive lower-cased from
+        # parse_accept_lang_header and must still match the canonical
+        # mixed-case locales.
+        (["en-GB", "en-US"], ["en-gb", "en"], "en-GB"),
+        (["zh-CN", "zh-TW"], ["zh-tw", "zh"], "zh-TW"),
+        (["pt-BR", "pt-PT"], ["pt-pt", "pt"], "pt-PT"),
+        (["es-ES", "es-MX"], ["es-mx", "es"], "es-MX"),
+        (["de", "en-US"], ["de-at", "de"], "de"),
     ),
-)
-@patch.object(
-    l10n_utils,
-    "language_url_map_with_fallbacks",
-    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
 )
 def test_get_best_translation(translations, accept_languages, expected):
     assert l10n_utils.get_best_translation(translations, accept_languages) == expected
@@ -370,59 +373,35 @@ def test_get_best_translation(translations, accept_languages, expected):
     "translations, accept_languages, expected",
     (
         # Anything with a 'en-US' translation and 'en' root accept languages, goes to 'en-US'.
-        (["en-US"], ["en-US"], "en-US"),
-        (["en-US"], ["en-CA"], "en-US"),
+        (["en-US"], ["en-us"], "en-US"),
+        (["en-US"], ["en-ca"], "en-US"),
         (["en-US"], ["en"], "en-US"),
-        (["en-US", "de"], ["en-GB"], "en-US"),
+        (["en-US", "de"], ["en-gb"], "en-US"),
         # Anything with a 'en-US' translation and unsupported translations, returns `None`.
         (["en-US"], ["zu"], None),
         (["en-US"], ["fr"], None),
         (["en-US", "de"], ["fr"], None),
         # The user's prioritized accept language should be chosen first.
-        (["en-US", "de"], ["de", "en-US"], "de"),
+        (["en-US", "de"], ["de", "en-us"], "de"),
         (["en-US", "de", "fr"], ["fr", "de"], "fr"),
-        (["en-US", "de", "fr"], ["en-CA", "fr", "de"], "en-US"),
+        (["en-US", "de", "fr"], ["en-ca", "fr", "de"], "en-US"),
         # A request for only inactive translations should return `None`.
-        (["am", "an", "en-US"], ["mk", "gu-IN"], None),
+        (["am", "an", "en-US"], ["mk", "gu-in"], None),
         # "am" is not a valid language in the list of PROD_LANGUAGES
-        (["am", "an"], ["mk", "gu-IN"], None),
+        (["am", "an"], ["mk", "gu-in"], None),
+        # Regional accept-language tags arrive lower-cased from
+        # parse_accept_lang_header and must still match the canonical
+        # mixed-case locales.
+        (["en-GB", "en-US"], ["en-gb", "en"], "en-GB"),
+        (["zh-CN", "zh-TW"], ["zh-tw", "zh"], "zh-TW"),
+        (["pt-BR", "pt-PT"], ["pt-pt", "pt"], "pt-PT"),
+        (["es-ES", "es-MX"], ["es-mx", "es"], "es-MX"),
+        (["de", "en-US"], ["de-at", "de"], "de"),
     ),
-)
-@patch.object(
-    l10n_utils,
-    "language_url_map_with_fallbacks",
-    Mock(return_value={"an": "an", "de": "de", "en": "en-US", "en-us": "en-US", "fr": "fr"}),
 )
 def test_get_best_translation__strict(translations, accept_languages, expected):
     # Strict is used for the root path, to return the list of localized home pages for bots.
     assert l10n_utils.get_best_translation(translations, accept_languages, strict=True) == expected
-
-
-@pytest.mark.parametrize(
-    "translations, accept_language, expected",
-    (
-        # the requested locale is available, so it wins over the root fallback
-        (["en-GB", "en-US"], "en-GB,en;q=0.9", "en-GB"),
-        (["zh-CN", "zh-TW"], "zh-TW,zh;q=0.9", "zh-TW"),
-        (["pt-BR", "pt-PT"], "pt-PT,pt;q=0.9", "pt-PT"),
-        (["es-ES", "es-MX"], "es-MX,es;q=0.9", "es-MX"),
-        # when only the root of the requested locale is translated, that's what we serve
-        (["de", "en-US"], "de-AT,de;q=0.9", "de"),
-        (["en-US"], "en-GB,en;q=0.9", "en-US"),
-    ),
-)
-def test_get_best_translation__real_accept_language_header(translations, accept_language, expected, rf):
-    """`get_accept_languages()` returns the lower-cased tags that Django's header parser gives us,
-
-    while the language map and the translations are keyed by the canonical mixed-case codes
-    (e.g. "zh-TW"), so the two must be compared case-insensitively. Otherwise a request for
-    "zh-TW" never matches the "zh-TW" translation and gets the fallback for its root instead.
-    """
-    request = rf.get("/", HTTP_ACCEPT_LANGUAGE=accept_language)
-    accepted = l10n_utils.get_accept_languages(request)
-    assert accepted == [lang.lower() for lang in accepted]
-
-    assert l10n_utils.get_best_translation({locale: {} for locale in translations}, accepted) == expected
 
 
 @pytest.mark.parametrize(

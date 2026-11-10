@@ -260,14 +260,12 @@ def get_best_translation(translations, accept_languages, strict=False):
 
     """
     lang_map = language_url_map_with_fallbacks()
-    # translations contains mixed-case items e.g. "en-US" and the keys
-    # of `lang_map` are (now) also mixed case.
-    # Accept languages are lower-cased by `parse_accept_lang_header`, so compare
-    # against lower-cased keys, or a request for "zh-TW" would never match the
-    # "zh-TW" translation and would silently get the fallback for its root.
-    valid_lang_map = {k.lower(): v for k, v in lang_map.items() if v in translations}
-    for lang in accept_languages:
-        lang = lang.lower()
+    # `translations` and the keys of `lang_map` are mixed case (e.g. `zh-TW`), while
+    # `parse_accept_lang_header` lower-cases accept languages, so canonicalise the
+    # accept languages with `normalize_language`, or a request for "zh-TW" would
+    # never match the "zh-TW" translation and would silently get its root fallback.
+    valid_lang_map = {k: v for k, v in lang_map.items() if v in translations}
+    for lang in filter(None, map(normalize_language, accept_languages)):
         if lang in valid_lang_map:
             return valid_lang_map[lang]
         pre = lang.split("-")[0]
