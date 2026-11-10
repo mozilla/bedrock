@@ -26,6 +26,7 @@ from bedrock.base.middleware import (
     CSPMiddlewareByPathPrefix,
     SyntheticServerErrorMiddleware,
 )
+from bedrock.settings import _build_report_only_csp, _only_existing_directives, _override_csp
 
 
 @override_settings(
@@ -404,7 +405,6 @@ def test_csp_report_percentage_can_be_float():
 
 @mock.patch.dict("os.environ", {"CSP_REPORT_URI": "/_the_csp_dude"}, clear=True)
 def test_csp_report_uri():
-    # Test if report-uri is set it is added to CSP config.
     from bedrock import settings
 
     # Force settings to reload pulling in the mocked environ
@@ -412,22 +412,45 @@ def test_csp_report_uri():
 
     assert settings.csp_report_uri == "/_the_csp_dude"
     assert settings.CONTENT_SECURITY_POLICY["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
-    assert settings.csp_ro_report_uri is None
+    assert settings.CMS_ADMIN_CSP["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
+    assert settings.CMS_ADMIN_IMAGES_CSP["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
     assert settings.CONTENT_SECURITY_POLICY_REPORT_ONLY is None
+    assert settings.CMS_ADMIN_CSP_RO is None
+    assert settings.CMS_ADMIN_IMAGES_CSP_RO is None
 
 
-@mock.patch.dict("os.environ", {"CSP_REPORT_URI": "/_the_csp_dude", "CSP_RO_REPORT_URI": "/_csp_ro"}, clear=True)
-def test_csp_ro_report_uri():
-    # Test if report-only report-uri is set it is added to CSP config.
-    from bedrock import settings
+def test_csp_ro_overrides_only_apply_to_tested_directives():
+    report_only_policy = _build_report_only_csp({"style-src": {"'self'"}}, "/_csp", 1.0)
+    overrides = {"default-src": {"blob:"}, "img-src": {"blob:"}, "frame-ancestors": {"'self'"}, "style-src": {"'unsafe-inline'"}}
 
-    # Force settings to reload pulling in the mocked environ
-    reload(settings)
+    appended = _override_csp(report_only_policy, append=_only_existing_directives(report_only_policy, overrides))
+    replaced = _override_csp(report_only_policy, replace=_only_existing_directives(report_only_policy, overrides))
 
-    assert settings.csp_report_uri == "/_the_csp_dude"
-    assert settings.CONTENT_SECURITY_POLICY["DIRECTIVES"]["report-uri"] == "/_the_csp_dude"
-    assert settings.csp_ro_report_uri == "/_csp_ro"
-    assert settings.CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] == "/_csp_ro"
+    assert appended["DIRECTIVES"] == {"default-src": None, "style-src": {"'self'", "'unsafe-inline'"}, "report-uri": "/_csp"}
+    assert replaced["DIRECTIVES"] == {"default-src": None, "style-src": {"'unsafe-inline'"}, "report-uri": "/_csp"}
+
+
+def test_build_report_only_csp_without_trial_directives():
+    assert _build_report_only_csp({}, "/_csp", 1.0) is None
+    assert _build_report_only_csp({"style-src": {csp.constants.SELF}}, None, 1.0) is None
+
+
+def test_build_report_only_csp_keeps_default_src_trial():
+    report_only_policy = _build_report_only_csp({"default-src": {"example.com"}}, "/_csp", 1.0)
+
+    assert report_only_policy["DIRECTIVES"]["default-src"] == {"example.com"}
+
+
+@override_settings(
+    CONTENT_SECURITY_POLICY={"REPORT_PERCENTAGE": 100, "DIRECTIVES": {"default-src": ["default.com"]}},
+    CONTENT_SECURITY_POLICY_REPORT_ONLY=_build_report_only_csp({"style-src": {csp.constants.SELF}}, "/_csp", 100),
+)
+def test_report_only_header_contains_only_trial_directives(csp_middleware):
+    request = RequestFactory().get("/u/thedude/")
+
+    response = csp_middleware.process_response(request, HttpResponse())
+
+    assert response.headers[csp.constants.HEADER_REPORT_ONLY] == "style-src 'self'; report-uri /_csp"
 
 
 # --- SyntheticServerErrorMiddleware ---------------------------------------

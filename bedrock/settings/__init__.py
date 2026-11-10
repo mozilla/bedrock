@@ -161,7 +161,6 @@ if extra_csp_connect_src := config("CSP_CONNECT_SRC", default="", parser=ListOf(
 if csp_extra_frame_src := config("CSP_EXTRA_FRAME_SRC", default="", parser=ListOf(str, allow_empty=False)):
     _csp_frame_src |= set(csp_extra_frame_src)
 csp_report_uri = config("CSP_REPORT_URI", default="") or None
-csp_ro_report_uri = config("CSP_RO_REPORT_URI", default="") or None
 
 CONTENT_SECURITY_POLICY = {
     # Default report percentage to 1% just in case the env var isn't set, we don't want to bombard Sentry.
@@ -184,12 +183,30 @@ CONTENT_SECURITY_POLICY = {
     },
 }
 
-# Only set up report-only CSP if we have a report-uri set.
-CONTENT_SECURITY_POLICY_REPORT_ONLY = None
-if csp_ro_report_uri:
-    # Copy CSP and override report-uri for report-only.
-    CONTENT_SECURITY_POLICY_REPORT_ONLY = deepcopy(CONTENT_SECURITY_POLICY)
-    CONTENT_SECURITY_POLICY_REPORT_ONLY["DIRECTIVES"]["report-uri"] = csp_ro_report_uri
+
+def _build_report_only_csp(
+    directives: dict[str, set[str]],
+    report_uri: str | None,
+    report_percentage: float,
+) -> dict | None:
+    if not (report_uri and directives):
+        return None
+    return {
+        "REPORT_PERCENTAGE": report_percentage,
+        # django-csp adds `default-src 'self'` to any settings policy that doesn't set one, which
+        # would report on every directive the trial doesn't cover. A default-src trial still wins.
+        "DIRECTIVES": {"default-src": None, **directives, "report-uri": report_uri},
+    }
+
+
+# CSP directives we're testing that we hope to move to the enforced policy. Give each
+# directive's full value, e.g. {"style-src": _csp_style_src - {csp.constants.UNSAFE_INLINE}}.
+# Only these directives are sent in the report-only policy, so the rest of the enforced policy
+# isn't reported twice. A resource that breaks both an enforced directive and its stricter
+# trial version is still reported by both policies.
+_csp_ro_directives = {}
+
+CONTENT_SECURITY_POLICY_REPORT_ONLY = _build_report_only_csp(_csp_ro_directives, csp_report_uri, CONTENT_SECURITY_POLICY["REPORT_PERCENTAGE"])
 
 
 # `CSP_PATH_OVERRIDES` and `CSP_PATH_OVERRIDES_REPORT_ONLY` are mainly for overriding CSP settings
@@ -216,16 +233,27 @@ def _override_csp(
     return csp
 
 
+def _only_existing_directives(csp: dict[str, dict[str, set[str]]], directives: dict[str, set[str]]) -> dict[str, set[str]]:
+    # Overriding a directive the report-only policy doesn't test would add a new directive
+    # there and report on things the trial isn't about.
+    return {key: value for key, value in directives.items() if csp["DIRECTIVES"].get(key) is not None}
+
+
 #
 # Path based overrides.
 #
 
 # /cms-admin/images/ loads just-uploaded images as blobs.
 CMS_ADMIN_IMAGES_CSP = _override_csp(CONTENT_SECURITY_POLICY, append={"img-src": {"blob:"}})
-CMS_ADMIN_IMAGES_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, append={"img-src": {"blob:"}})
+CMS_ADMIN_IMAGES_CSP_RO = CONTENT_SECURITY_POLICY_REPORT_ONLY and _override_csp(
+    CONTENT_SECURITY_POLICY_REPORT_ONLY, append=_only_existing_directives(CONTENT_SECURITY_POLICY_REPORT_ONLY, {"img-src": {"blob:"}})
+)
 # The CMS admin frames itself for page previews.
 CMS_ADMIN_CSP = _override_csp(CONTENT_SECURITY_POLICY, replace={"frame-ancestors": {csp.constants.SELF}})
-CMS_ADMIN_CSP_RO = csp_ro_report_uri and _override_csp(CONTENT_SECURITY_POLICY_REPORT_ONLY, replace={"frame-ancestors": {csp.constants.SELF}})
+CMS_ADMIN_CSP_RO = CONTENT_SECURITY_POLICY_REPORT_ONLY and _override_csp(
+    CONTENT_SECURITY_POLICY_REPORT_ONLY,
+    replace=_only_existing_directives(CONTENT_SECURITY_POLICY_REPORT_ONLY, {"frame-ancestors": {csp.constants.SELF}}),
+)
 
 CSP_PATH_OVERRIDES = {
     # Order them from most specific to least.
@@ -234,7 +262,7 @@ CSP_PATH_OVERRIDES = {
 }
 
 # Path based overrides for report-only CSP.
-if csp_ro_report_uri:
+if CONTENT_SECURITY_POLICY_REPORT_ONLY:
     CSP_PATH_OVERRIDES_REPORT_ONLY = {
         # Order them from most specific to least.
         "/cms-admin/images/": CMS_ADMIN_IMAGES_CSP_RO,
