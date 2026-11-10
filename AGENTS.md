@@ -41,7 +41,9 @@ When working on a feature or fix, work on a dedicated branch whose name is prefi
 
 ## Commit & Pull Request Guidelines
 
-Keep commit titles short, imperative, and linked to issues when available (e.g., `Tighten hero metrics (#16595)`). Focus diffs and note migrations, toggles, or telemetry changes. Pull requests should explain intent, list verification steps (`make test`, screenshots), and link to bugs. Flag rollout considerations when touching configuration under `docker/`, `**/migrations/` or monitoring.
+Keep commit titles short, imperative, and linked to issues when available (e.g., `Tighten hero metrics (#16595)`). Focus diffs and note migrations, toggles, or telemetry changes. Pull requests should explain intent and link to bugs. Flag rollout considerations when touching configuration under `docker/`, `**/migrations/` or monitoring.
+
+In the PR template's **Testing** section, use bullet points to tell the reviewer what to check: URLs to visit, edge cases to try, high-impact or high-risk changes, and any setup the default environment doesn't cover. Don't list the tests you ran.
 
 ## Security & Configuration Tips
 
