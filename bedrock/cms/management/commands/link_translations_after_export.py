@@ -267,15 +267,13 @@ def _sanitize_stream_fields(instance):
 
 def _with_source_link_ids(source_seg, target_seg):
     """
-    Replace each link id in the target segment's string.data with the id of the source
-    link that has the same attributes, preferring one not yet used so an unchanged
-    string keeps the source's ids. A rebuilt translation takes link attributes from
-    the source by id, so ids left in target order would swap reordered links.
-    Returns None if a target link has no counterpart in the source.
+    Normalize the target segment's string.data with BeautifulSoup and replace each link
+    id in it with the id of the source link that has the same attributes, preferring
+    one not yet used so an unchanged string keeps the source's ids. A rebuilt
+    translation takes link attributes from the source by id, so ids left in target
+    order would swap reordered links. Returns None if a target link has no
+    counterpart in the source.
     """
-    if not target_seg.attrs:
-        return target_seg.string.data
-
     source_attrs = json.loads(source_seg.attrs) or {}
     unused_ids = set(source_attrs)
     soup = BeautifulSoup(target_seg.string.data, "html.parser")
@@ -299,9 +297,10 @@ def _infer_string_translations(translation, source_segs, target_instance):
     Segments sharing a context path (e.g. the paragraphs of a rich text field) are
     paired by position, and a path is skipped when the source and target have a
     different number of segments. A string repeated within a path can only have one
-    translation there, so it is skipped when its translations disagree. Strings are
-    imported as string.data rather than render_html(), since StringTranslation flags
-    any href in a link as an error.
+    translation there, so it is skipped when its translations disagree. Both sides are
+    normalized by BeautifulSoup before they are compared, and strings are imported as
+    string.data rather than render_html(), since StringTranslation flags any href in a
+    link as an error.
 
     source_segs is a pre-fetched list of StringSegment objects (with string and context
     select_related) for the translation source; callers fetch it once per group.
@@ -341,7 +340,7 @@ def _infer_string_translations(translation, source_segs, target_instance):
                 continue
 
             translated = translations.pop()
-            if translated and translated != source_string:
+            if translated and translated != str(BeautifulSoup(source_string, "html.parser")):
                 po.append(
                     polib.POEntry(
                         msgid=source_string,

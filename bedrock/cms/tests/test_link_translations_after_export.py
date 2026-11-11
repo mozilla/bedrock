@@ -4,7 +4,8 @@
 
 import json
 from io import StringIO
-from unittest.mock import patch
+from types import SimpleNamespace
+from unittest.mock import MagicMock, patch
 
 from django.core.management import call_command
 
@@ -12,6 +13,8 @@ import pytest
 from wagtail.models import Page, Site
 from wagtail_localize.models import StringSegment, StringTranslation, Translation, TranslationSource
 from wagtail_localize.segments.extract import extract_segments
+from wagtail_localize.segments.types import StringSegmentValue
+from wagtail_localize.strings import StringValue
 
 from bedrock.cms.management.commands import link_translations_after_export
 from bedrock.cms.tests.factories import LocaleFactory, SimpleRichTextPageFactory
@@ -375,3 +378,21 @@ def test_untranslated_string_with_repeated_links_is_not_recorded(fr_locale):
     run()
 
     assert string_translations(en_page, fr_locale) == {("Hello", "Bonjour")}
+
+
+@pytest.mark.parametrize(
+    "source_data, target_data",
+    [
+        ("Tom & Jerry<br>", "Tom &amp; Jerry<br/>"),
+        ("Tom &amp; Jerry<br/>", "Tom & Jerry<br>"),
+    ],
+)
+def test_strings_are_compared_after_normalizing_both_sides(source_data, target_data):
+    source_seg = SimpleNamespace(order=0, attrs="null", context=SimpleNamespace(path="title"), string=SimpleNamespace(data=source_data))
+    translation = MagicMock()
+
+    with patch.object(link_translations_after_export, "extract_segments", return_value=[StringSegmentValue("title", StringValue(target_data))]):
+        imported = link_translations_after_export._infer_string_translations(translation, [source_seg], target_instance=None)
+
+    assert imported == 0
+    translation.import_po.assert_not_called()
