@@ -18,6 +18,18 @@ test.describe(
     },
     () => {
         test.describe('VPN download', () => {
+            // Skipped in WebKit until Playwright fixes
+            // https://github.com/microsoft/playwright/issues/43067.
+            // Playwright's WebKit driver asserts when WebKit opens a second
+            // provisional navigation target before destroying the first. That
+            // happens on the prod redirect chain (vpn.mozilla.org ->
+            // archive.mozilla.org) and ends the test before the download
+            // event fires. Chromium and Firefox still cover these tests.
+            test.skip(
+                ({ browserName }) => browserName === 'webkit',
+                'playwright#43067'
+            );
+
             test.beforeEach(async ({ page, browserName }) => {
                 await openPage(url + '?geo=us', page, browserName);
             });
