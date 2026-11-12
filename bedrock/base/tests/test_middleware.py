@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import base64
 from contextlib import suppress
 from importlib import reload
 from unittest import mock
@@ -714,6 +715,10 @@ def test_lang_code_fixup_would_redirect_root_without_our_middleware(rf):
     assert response["Location"].startswith("/en-GB")
 
 
+def _basic_auth_header(credentials, scheme="Basic"):
+    return f"{scheme} {base64.b64encode(credentials.encode()).decode()}"
+
+
 @pytest.mark.parametrize(
     "header",
     [
@@ -743,6 +748,63 @@ def test_basic_auth_malformed_authorization_header_returns_401(rf, header):
 def test_basic_auth_correct_credentials_pass_through(rf):
     with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus"):
         middleware = BasicAuthMiddleware(get_response=_passthrough_response)
-        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION="Basic dGhlZHVkZTp0aGV3YWxydXM="))
+        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION=_basic_auth_header("thedude:thewalrus")))
 
     assert response.status_code == 200
+
+
+def test_basic_auth_no_op_when_creds_unset():
+    with override_settings(BASIC_AUTH_CREDS=""):
+        with pytest.raises(MiddlewareNotUsed):
+            BasicAuthMiddleware(get_response=_passthrough_response)
+
+
+@pytest.mark.parametrize(
+    "app_name, realm",
+    [
+        ("bedrock-demo-1", "bedrock-demo-1"),
+        ("", "bedrock-demo"),
+    ],
+)
+def test_basic_auth_missing_header_gets_challenge(rf, app_name, realm):
+    # A browser's first request carries no credentials. It only shows the
+    # login prompt if the 401 comes with a WWW-Authenticate challenge.
+    with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus", APP_NAME=app_name):
+        middleware = BasicAuthMiddleware(get_response=_passthrough_response)
+        response = middleware(rf.get("/en-US/"))
+
+    assert response.status_code == 401
+    assert response["WWW-Authenticate"] == f'Basic realm="{realm}"'
+
+
+@pytest.mark.parametrize(
+    "credentials",
+    [
+        "thedude:thecarpet",
+        "walter:thewalrus",
+        "TheDude:thewalrus",
+        "thedude",
+        "thedude:",
+        ":thewalrus",
+        "thedude:thewalru",
+        "thedude:thewalrus ",
+    ],
+)
+def test_basic_auth_wrong_credentials_return_401(rf, credentials):
+    # These all decode cleanly, so they reach the actual comparison.
+    with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus"):
+        middleware = BasicAuthMiddleware(get_response=_passthrough_response)
+        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION=_basic_auth_header(credentials)))
+
+    assert response.status_code == 401
+    assert "WWW-Authenticate" in response
+
+
+@pytest.mark.parametrize("scheme", ["basic", "BASIC", "bAsIc"])
+@pytest.mark.parametrize("credentials, status", [("thedude:thewalrus", 200), ("thedude:thecarpet", 401)])
+def test_basic_auth_scheme_is_case_insensitive(rf, scheme, credentials, status):
+    with override_settings(BASIC_AUTH_CREDS="thedude:thewalrus"):
+        middleware = BasicAuthMiddleware(get_response=_passthrough_response)
+        response = middleware(rf.get("/en-US/", HTTP_AUTHORIZATION=_basic_auth_header(credentials, scheme)))
+
+    assert response.status_code == status
