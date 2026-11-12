@@ -13,6 +13,7 @@ python manage.py version
 python manage.py migrate --noinput
 python manage.py makemigrations --check
 pytest lib bedrock \
+    --durations=30 \
     --cov-config=.coveragerc \
     --cov-report=html \
     --cov-report=term-missing \
