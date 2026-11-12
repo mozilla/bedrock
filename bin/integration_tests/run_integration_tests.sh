@@ -17,7 +17,7 @@ set -xe
 CMD="pytest"
 CMD="${CMD} -r a"
 CMD="${CMD} --verbose"
-CMD="${CMD} --workers ${PYTEST_PROCESSES}"
+CMD="${CMD} -n ${PYTEST_PROCESSES}"
 CMD="${CMD} --base-url ${BASE_URL}"
 CMD="${CMD} --reruns ${RERUNS_ALLOWED}"
 CMD="${CMD} --reruns-delay ${RERUNS_DELAY_SECS}"
