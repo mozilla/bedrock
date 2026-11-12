@@ -12,7 +12,9 @@ python manage.py lint_ftl -q
 python manage.py version
 python manage.py migrate --noinput
 python manage.py makemigrations --check
+# Set PYTEST_XDIST_WORKERS=0 to run the suite in a single process when debugging.
 pytest lib bedrock \
+    -n "${PYTEST_XDIST_WORKERS:-auto}" \
     --cov-config=.coveragerc \
     --cov-report=html \
     --cov-report=term-missing \
