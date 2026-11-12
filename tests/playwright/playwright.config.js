@@ -33,8 +33,8 @@ module.exports = defineConfig({
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
     retries: process.env.CI ? 2 : 0,
-    /* Opt out of parallel tests on CI. */
-    workers: process.env.CI ? 2 : undefined,
+    /* Hosted GitHub runners have 4 vCPUs; match them on CI, let Playwright decide locally. */
+    workers: process.env.CI ? 4 : undefined,
     /* Reporter to use. See https://playwright.dev/docs/test-reporters */
     reporter: process.env.CI ? 'github' : 'line',
     /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
