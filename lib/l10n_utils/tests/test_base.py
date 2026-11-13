@@ -5,8 +5,8 @@
 import os
 from unittest.mock import ANY, Mock, call, patch
 
-from django.http import HttpResponse
 from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
