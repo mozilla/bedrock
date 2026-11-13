@@ -239,11 +239,11 @@ class SVGSanitizationFieldTestCase(TestCase):
         self.assertFalse(self.field._has_dangerous_elements_xml(content))
 
     def test_svg_with_doctype_entity_is_sanitized_not_raised(self):
-        """A DTD that defusedxml refuses is handled by layer 3, not raised past the field.
+        """A DTD that defusedxml refuses is deferred to layer 3, not raised.
 
         `EntitiesForbidden` is a `ValueError`, not a `ParseError`, so the "if we can't parse
-        the XML, let py-svg-hush handle it" deferral did not cover it and the exception
-        escaped `to_python()` - a 500 in the admin instead of a sanitized upload.
+        the XML, let py-svg-hush handle it" deferral in `_has_dangerous_elements_xml` did
+        not cover it and the exception escaped a direct `_sanitize_svg()` call.
         """
         svg_file = SimpleUploadedFile(
             "dtd.svg",
@@ -253,7 +253,12 @@ class SVGSanitizationFieldTestCase(TestCase):
 
         result = self.field._sanitize_svg(svg_file)
         self.assertIsNone(result)
-        self.assertNotIn(b"<!DOCTYPE", svg_file.read())
+        sanitized = svg_file.read()
+        self.assertNotIn(b"<!DOCTYPE", sanitized)
+        # py-svg-hush resolves the entity and drops the DTD, so the entity text
+        # must appear and the entity reference must not.
+        self.assertIn(b">Mozilla<", sanitized)
+        self.assertNotIn(b"&logo;", sanitized)
 
     # Integration tests for to_python() method
     def test_to_python_with_clean_svg(self):

@@ -163,7 +163,7 @@ class SanitizingWagtailImageField(WagtailImageField):
 
         try:
             root = ET.fromstring(content)
-        except (ET.ParseError, DefusedXmlException):
+        except (ET.ParseError, DefusedXmlException, ValueError):
             # If we can't parse the XML, let py-svg-hush handle it
             # (it will either sanitize it or fail)
             return False
