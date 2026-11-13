@@ -5,6 +5,7 @@
 from os.path import splitext
 
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
 from django.shortcuts import render as django_render
 from django.template import TemplateDoesNotExist, loader
@@ -353,7 +354,13 @@ class LangFilesMixin:
         if isinstance(ftl_files, str):
             # a single FTL name is allowed anywhere a list is (see `render()`)
             ftl_files = [ftl_files]
-        if ftl_files and ftl_file_is_active(ftl_files[0]):
+        if not ftl_files:
+            raise ImproperlyConfigured(
+                f"{self.__class__.__name__} sets `old_template_name` but has no FTL "
+                f"file configured for `{template_names[0]}`. Set `ftl_files` or add an "
+                f"entry to `ftl_files_map`."
+            )
+        if ftl_file_is_active(ftl_files[0]):
             return template_names
 
         return [self.old_template_name]

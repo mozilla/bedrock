@@ -6,6 +6,7 @@ import os
 from unittest.mock import ANY, Mock, call, patch
 
 from django.http import HttpResponse
+from django.core.exceptions import ImproperlyConfigured
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
@@ -348,12 +349,10 @@ class TestL10nTemplateView(TestCase):
         is_active_mock.assert_called_once_with("dude")
 
     def test_old_template_name_without_ftl_files(self, render_mock):
-        """Nothing configured to be active means the old template is used, not a crash."""
-        with patch.object(l10n_utils, "ftl_file_is_active") as is_active_mock:
-            view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", old_template_name="old_dude.html")
+        """An old_template_name with no FTL file is a misconfiguration, not a silent fallback."""
+        view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", old_template_name="old_dude.html")
+        with self.assertRaises(ImproperlyConfigured):
             view(self.req)
-            is_active_mock.assert_not_called()
-        render_mock.assert_called_with(self.req, ["old_dude.html"], ANY, ftl_files=None, activation_files=None)
 
     def test_ftl_activations(self, render_mock):
         view = l10n_utils.L10nTemplateView.as_view(template_name="dude.html", ftl_files="dude", activation_files=["dude", "donny"])
