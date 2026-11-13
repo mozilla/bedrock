@@ -240,6 +240,9 @@ def test_get_best_language(header, expected):
         ("/es/firefox/", "/firefox/"),
         # paths that don't start with a locale are left alone
         ("/firefox/", "/firefox/"),
+        # "ql" is two ASCII letters but not a locale we support, so an implementation
+        # that strips any two-letter prefix would wrongly turn this into /firefox/
+        ("/ql/firefox/", "/ql/firefox/"),
         ("/robots.txt", "/robots.txt"),
         ("/", "/"),
         ("", ""),
