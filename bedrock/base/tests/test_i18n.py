@@ -133,10 +133,25 @@ def test_split_path_and_normalize_language(path, result):
 
 
 @pytest.mark.parametrize("language", ("scn", "fur", "sat", "sc"))
-def test_split_path_for_disabled_product_language(language, monkeypatch):
-    monkeypatch.setattr(product_details, "languages", {language: {}})
+def test_split_path_for_disabled_product_language(language, mocker):
+    # `languages` comes from ProductDetails.__getattr__, so monkeypatch would restore
+    # the fetched dict as a real instance attribute and leak it into later tests.
+    mocker.patch.object(product_details, "languages", {language: {}})
 
     assert split_path_and_normalize_language(f"/{language}/some/action") == ("", "some/action", True)
+
+
+@pytest.mark.parametrize("path", ("/healthz/", "/readiness/", "/robots.txt", "/media/img/logo.svg"))
+def test_split_path_for_non_locale_path_does_not_read_product_details(path, mocker):
+    """Exempt paths must not need product-details storage to be served.
+
+    That storage is database-backed in production, so a cold or expired cache must not
+    be able to turn a Kubernetes liveness probe into a 500.
+    """
+    languages = mocker.patch.object(product_details, "languages")
+    languages.__iter__.side_effect = AssertionError(f"{path} must not read product_details.languages")
+
+    assert split_path_and_normalize_language(path) == ("", path.lstrip("/"), False)
 
 
 @pytest.mark.parametrize(

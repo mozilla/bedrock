@@ -138,7 +138,11 @@ def split_path_and_normalize_language(path_):
     # A product locale that Bedrock doesn't serve (e.g. "scn") is still a language
     # prefix, not part of the page path. Drop it so that the caller can negotiate a
     # supported locale, instead of prefixing a second one (e.g. /it/scn/...) that 404s.
-    if extracted_lang and _is_product_locale(extracted_lang):
+    #
+    # Paths that never carry a locale prefix are skipped first: product_details is
+    # database-backed in production, so a cold or expired cache must not be able to
+    # break requests that have nothing to do with locales, e.g. the /healthz/ probe.
+    if extracted_lang and path_needs_lang_code(path_) and _is_product_locale(extracted_lang):
         return "", rest, True
 
     return "", path, False

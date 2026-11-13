@@ -286,8 +286,10 @@ def test_BedrockLangCodeFixupMiddleware(
         ("/scn/", "/it/"),
     ),
 )
-def test_BedrockLangCodeFixupMiddleware_strips_disabled_product_locale(request_path, expected_dest, rf, monkeypatch):
-    monkeypatch.setattr(product_details, "languages", {"scn": {}})
+def test_BedrockLangCodeFixupMiddleware_strips_disabled_product_locale(request_path, expected_dest, rf, mocker):
+    # `languages` comes from ProductDetails.__getattr__, so monkeypatch would restore
+    # the fetched dict as a real instance attribute and leak it into later tests.
+    mocker.patch.object(product_details, "languages", {"scn": {}})
 
     request = rf.get(request_path, HTTP_ACCEPT_LANGUAGE="it")
     middleware = BedrockLangCodeFixupMiddleware(get_response=HttpResponse)
@@ -296,6 +298,19 @@ def test_BedrockLangCodeFixupMiddleware_strips_disabled_product_locale(request_p
 
     assert resp.status_code == 302
     assert resp.headers["location"] == expected_dest
+
+
+@pytest.mark.django_db
+def test_release_notes_redirect_drops_an_unsupported_product_locale(client, mocker):
+    """The release-notes pages redirect off-site from RedirectsMiddleware, which runs
+    before the lang-code fixup, so the prefix has to be dropped before the redirect is
+    built - otherwise the destination keeps a locale www.firefox.com does not serve."""
+    mocker.patch.object(product_details, "languages", {"scn": {}})
+
+    resp = client.get("/scn/firefox/nightly/notes/")
+
+    assert resp.status_code == 301
+    assert resp["location"] == "https://www.firefox.com/firefox/nightly/notes/?redirect_source=mozilla-org"
 
 
 @pytest.mark.django_db
