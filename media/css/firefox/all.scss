@@ -78,6 +78,11 @@ $image-path: '/media/protocol/img';
         margin-top: 0;
     }
 
+    // Focused by step-focus.es6.js but not interactive, so no focus ring.
+    &:focus {
+        outline: none;
+    }
+
     &.t-step-disabled {
         cursor: not-allowed;
         opacity: 0.5;

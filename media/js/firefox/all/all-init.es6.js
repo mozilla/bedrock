@@ -6,9 +6,12 @@
 
 import TrackProductDownload from '../../base/datalayer-productdownload.es6';
 import MzpModal from '@mozilla-protocol/core/protocol/js/modal';
+import StepFocus from './step-focus.es6';
 
 (function (Mozilla) {
     function onLoad() {
+        StepFocus.init();
+
         const browserHelpContent = document.getElementById('browser-help');
         const browserHelpIcon = document.getElementById('icon-browser-help');
         const installerHelpContent = document.getElementById('installer-help');
