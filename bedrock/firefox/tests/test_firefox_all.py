@@ -124,6 +124,14 @@ def test_all_step_4(client):
     )
 
 
+def test_all_step_headings_are_focusable(client):
+    resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": "win64", "locale": "en-US"}))
+    headings = pq(resp.content)(".c-steps > h2.c-step-name")
+
+    assert len(headings) == 4
+    assert all(pq(h).attr("tabindex") == "-1" for h in headings)
+
+
 @pytest.mark.parametrize("os, lang", OS_LANG_PAIRS)
 def test_firefox_release(client, os, lang):
     resp = client.get(reverse("firefox.all.download", kwargs={"product_slug": "desktop-release", "platform": os, "locale": lang}))
