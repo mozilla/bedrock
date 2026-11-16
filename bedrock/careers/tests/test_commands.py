@@ -4,11 +4,12 @@
 
 from datetime import datetime, timezone
 from io import StringIO
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 from django.core.management import call_command
 from django.test.utils import override_settings
 
+from bedrock.careers.management.commands.sync_greenhouse import GREENHOUSE_URL
 from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory
 from bedrock.mozorg.tests import TestCase
@@ -16,7 +17,34 @@ from bedrock.mozorg.tests import TestCase
 REQUESTS = "bedrock.careers.management.commands.sync_greenhouse.requests"
 
 
-@override_settings(GREENHOUSE_BOARD="mozilla")
+def _job(job_id, internal_job_id=99, title="Web Fox", **extra):
+    """A minimal Greenhouse job post, with any extra fields layered on top."""
+    return {
+        "id": job_id,
+        "internal_job_id": internal_job_id,
+        "title": title,
+        "absolute_url": f"http://example.com/{job_id}",
+        "updated_at": "2016-07-25T14:45:57-04:00",
+        **extra,
+    }
+
+
+def _sync_boards(board_jobs, stderr=None):
+    """Run sync_greenhouse with a distinct response per board; returns the mocked requests module."""
+    responses = {GREENHOUSE_URL.format(board): {"jobs": jobs} for board, jobs in board_jobs.items()}
+
+    def get(url, **kwargs):
+        response = Mock()
+        response.json.return_value = responses[url]
+        return response
+
+    with patch(REQUESTS) as requests:
+        requests.get.side_effect = get
+        call_command("sync_greenhouse", stdout=StringIO(), stderr=stderr or StringIO())
+    return requests
+
+
+@override_settings(GREENHOUSE_BOARDS=["mozilla"])
 class SyncGreenhouseTests(TestCase):
     def test_job_fetch(self):
         jobs_response = {
@@ -103,6 +131,82 @@ class SyncGreenhouseTests(TestCase):
             call_command("sync_greenhouse", stdout=StringIO())
         self.assertEqual(Position.objects.all().count(), 1)
         self.assertEqual(Position.objects.all()[0].job_id, "xxx")
+
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_multiple_boards(self):
+        """Jobs from every configured board are fetched, and stale jobs are still removed."""
+        PositionFactory(job_id="zzz", internal_job_id=97)
+        requests = _sync_boards({"mozilla": [_job("xxx", 99, "Web Fox")], "mozillafoundation": [_job("yyy", 98, "Web Kangaroo")]})
+
+        self.assertEqual(requests.get.call_count, 2)
+        self.assertEqual(
+            {call.args[0] for call in requests.get.call_args_list},
+            {GREENHOUSE_URL.format("mozilla"), GREENHOUSE_URL.format("mozillafoundation")},
+        )
+        # Jobs from both boards remain, and the job no longer listed by either board is removed.
+        self.assertEqual(sorted(Position.objects.values_list("job_id", flat=True)), ["xxx", "yyy"])
+
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_foundation_board_jobs_are_mofo(self):
+        """The board a job comes from decides the employer, not its department name."""
+        _sync_boards(
+            {
+                "mozilla": [
+                    _job("moco", 1, departments=[{"name": "Engineering"}]),
+                    _job("legacy-mofo", 2, departments=[{"name": "Mozilla Foundation"}]),
+                ],
+                "mozillafoundation": [
+                    _job("mofo", 3, departments=[{"name": "Grantmaking"}]),
+                    _job("mofo-no-dept", 4),
+                ],
+            }
+        )
+        self.assertEqual(
+            dict(Position.objects.values_list("job_id", "is_mofo")),
+            {"moco": False, "legacy-mofo": True, "mofo": True, "mofo-no-dept": True},
+        )
+
+    @override_settings(GREENHOUSE_BOARDS=["mozilla", "mozillafoundation"])
+    def test_same_id_on_both_boards_keeps_first_and_warns(self):
+        """Greenhouse ids never repeat across boards; if one did, bedrock could not store both."""
+        stderr = StringIO()
+        _sync_boards({"mozilla": [_job("dup", 1, "First")], "mozillafoundation": [_job("dup", 2, "Second")]}, stderr=stderr)
+
+        self.assertEqual(list(Position.objects.values_list("title", flat=True)), ["First"])
+        self.assertIn("Job dup is on both the mozilla and mozillafoundation boards; keeping the first", stderr.getvalue())
+
+    def test_jobs_without_internal_job_id_are_skipped(self):
+        """A posting with a null or absent internal_job_id is reported and skipped; the rest still sync."""
+        absent = _job(333, 97)
+        del absent["internal_job_id"]
+        stdout, stderr = StringIO(), StringIO()
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = {"jobs": [_job(111, internal_job_id=None), absent, _job(222, 98)]}
+            call_command("sync_greenhouse", stdout=stdout, stderr=stderr)
+
+        self.assertEqual(list(Position.objects.values_list("job_id", flat=True)), ["222"])
+        self.assertIn("skipped: 2", stdout.getvalue())
+        self.assertIn("Skipping job 111: no internal_job_id", stderr.getvalue())
+        self.assertIn("Skipping job 333: no internal_job_id", stderr.getvalue())
+
+    def test_other_source_positions_are_not_removed(self):
+        """Positions from a source other than Greenhouse are left alone by the cleanup step."""
+        PositionFactory(job_id="legacy", internal_job_id=5, source="legacy", apply_url="http://example.com/legacy")
+        jobs_response = {
+            "jobs": [
+                {
+                    "id": "xxx",
+                    "internal_job_id": 99,
+                    "title": "Web Fox",
+                    "absolute_url": "http://example.com/foo",
+                    "updated_at": "2016-07-25T14:45:57-04:00",
+                },
+            ]
+        }
+        with patch(REQUESTS) as requests:
+            requests.get().json.return_value = jobs_response
+            call_command("sync_greenhouse", stdout=StringIO())
+        self.assertTrue(Position.objects.filter(job_id="legacy", source="legacy").exists())
 
     def test_position_description_none(self):
         """

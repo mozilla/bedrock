@@ -57,16 +57,19 @@ jobs:
           files: python_coverage/coverage.xml
           fail_ci_if_error: false # optional (default = false)
           verbose: true # optional (default = false)
-  test-python-more:
-    name: Python tests (release build)
-    # This is a preview `test-ci` to replace the previous `test-image` over time
+  build-release-image:
+    name: Release image builds
+    # The release stage runs run-sync-all.sh and build_staticfiles.sh under prod.env, which the
+    # test image never exercises, so this job proves that stage still builds. The tests
+    # themselves already run in test-python against the same test image, so they are not
+    # repeated here.
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' || github.event_name == 'merge_group' }} # Only run the extra release checks on PRs and Merge Queue prep for now
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
-      - name: "Run Python tests (on Docker) with extra release service build"
+      - name: "Build the release image"
         run: |
-          make clean test-ci
-        timeout-minutes: 60
+          make clean build-ci
+        timeout-minutes: 30

@@ -20,7 +20,7 @@ dependencies = [
     "django-mozilla-product-details==1.0.3",
     "django-rq==4.2.0",
     "django-rq-email-backend==2.0.0",
-    "django-storages[google]==1.14.4",
+    "django-storages[google]==1.14.6",
     "django-waffle==5.0.0",
     "django-watchman==1.5.0",
     "Django>=5.2.18,<6.0",
@@ -28,27 +28,27 @@ dependencies = [
     "everett==3.5.0",
     "fluent.runtime==0.4.0",
     "fluent.syntax==0.19.0",
-    "google-cloud-storage==3.14.1",  # explicit top-level dep since bin/run-db-upload.py imports it directly
-    "granian==2.8.3",
+    "google-cloud-storage==3.17.1",  # explicit top-level dep since bin/run-db-upload.py imports it directly
+    "granian==2.8.7",
     "honcho==2.0.0",
     "html5lib==1.1",
     "jinja2==3.1.6",  # Pinned as a top-level dep to control its upgrade and avoid breaking changes
-    "jq==1.12.0",
+    "jq==1.13.0",
     "justhtml==3.16.0",  # Bumping this needs a lot of manual QA! eg reload legal docs and check the pages
     "lxml==6.1.3",  # Needed for BeautifulSoup.
     "Markdown==3.10.3",
-    "markus[datadog]==5.0.0",
+    "markus[datadog]==5.2.0",
     "mdx_outline @ https://github.com/mozmeao/mdx_outline/archive/refs/tags/markdown-3.4-compatibility.tar.gz",
     "mozilla-django-oidc==5.0.2",
     "Pillow==13.0.0",
-    "psycopg[binary]==3.2.8",
+    "psycopg[binary]==3.3.6",
     "py-svg-hush==0.3.0",
     "PyGithub==2.10.0",
     "PyYAML==6.0.3",
     "qrcode==8.2",
     "requests==2.34.2",
     "sentry-processor==0.0.1",
-    "sentry-sdk==2.69.2",
+    "sentry-sdk==2.73.0",
     "supervisor==4.3.0",
     "timeago==1.0.16",
     "wagtaildraftsharing==0.3.0",
@@ -59,7 +59,7 @@ dependencies = [
     "Wand==0.7.2",  # For animated GIF support
     "Wagtail==8.1",
     "whitenoise==6.12.0",
-    "wagtail-localize-dashboard==0.5.0",
+    "wagtail-localize-dashboard==0.6.0",
     "wagtail-localize-intentional-blanks==0.3.0",
 ]
 
@@ -78,20 +78,20 @@ dev = [
     "pytest-datadir==1.8.0",
     "pytest-django==4.14.0",
     "pytest-html==4.2.0",  # Provides the --html option used to generate the integration test report
-    "pytest-mock==3.16.0",
-    "pytest-parallel==0.1.1",
+    "pytest-mock==3.17.0",
     "pytest-rerunfailures==16.7",
+    "pytest-xdist==3.8.0",
     "responses==0.26.3",
     "ruff==0.17.0",
     "selenium==4.51.0",
-    "translate-toolkit==3.20.0",
+    "translate-toolkit==3.20.1",
     "wagtail-factories==4.5.0",
     # Related to moz-l10n-lint, used in CI
     "cl-ext.lang==0.1.0",
     "compare-locales==9.0.5",
 ]
 docs = [
-    "mkdocs-material==9.7.7",
+    "mkdocs-material==9.8.0",
 ]
 
 [tool.uv]
@@ -112,12 +112,9 @@ default-groups = ["dev", "docs"]
 #   3. Run `uv lock`, which only re-resolves the changed package. Commit both files.
 #   4. Once the release is 7 days old, remove the exemption and run `uv lock` again.
 exclude-newer = "7 days"
-# Temporary: certifi 2026.10.19 drops the compromised eMudhra intermediates, so skip the
-# cooldown for it. Remove this line on or after 2026-10-28 (the release was uploaded late on
-# 2026-10-20 UTC) and run `uv lock`, then check certifi is still 2026.10.19.
 # Temporary: Wagtail 8.1 was uploaded on 2026-11-02, so skip the cooldown for it. Remove
 # `wagtail = false` on or after 2026-11-10 and run `uv lock`, then check Wagtail is still 8.1.
-exclude-newer-package = { certifi = false, wagtail = false }
+exclude-newer-package = { wagtail = false }
 
 [tool.ruff]
 line-length = 150

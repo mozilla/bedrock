@@ -1046,6 +1046,8 @@ URLS = flatten(
         url_test("/about/partnerships/distribution/", "/foundation/trademarks/distribution-policy/"),
         url_test("/foundation/trademarks/poweredby/faq/", "/foundation/trademarks/policy/"),
         url_test("/foundation/trademarks/l10n-website-policy/", "/foundation/trademarks/policy/"),
+        # https://mozilla-hub.atlassian.net/browse/WT-1869
+        url_test("/foundation/trademarks/community-edition-{permitted-changes,policy}/", "/foundation/trademarks/policy/"),
         # Issue 6209
         url_test("/pocket/", "https://getpocket.com/"),
         # issue 16358

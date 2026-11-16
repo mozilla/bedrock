@@ -4,6 +4,7 @@
 
 import io
 import os.path
+from datetime import date
 from unittest.mock import patch
 
 from django.conf import settings
@@ -228,6 +229,20 @@ class TestDBActions(TestCase):
         Product.objects.create(name="Firefox 43.0.3")
         assert update_security_advisories.delete_orphaned_products() == 2
         assert Product.objects.get().name == "Firefox 43.0.1"
+
+    def test_extra_data_keeps_yaml_dates(self):
+        advisory = update_security_advisories.add_or_update_advisory(
+            {
+                "mfsa_id": "2015-100",
+                "title": "The Dude is insecure",
+                "fixed_in": ["Firefox 43.0.1"],
+                "risk": "High",
+                "updated": date(2016, 1, 2),
+            },
+            "The Dude minds, man!",
+        )
+        advisory.refresh_from_db()
+        assert advisory.extra_data == {"risk": "High", "updated": "2016-01-02"}
 
     @patch.object(update_security_advisories, "ADVISORIES_AUTH", "set-for-test")
     @patch.object(update_security_advisories, "get_all_file_names")
