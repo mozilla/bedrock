@@ -56,6 +56,14 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    healthcheck:
+      # `-d postgres` is the database the postgres image always creates, so this
+      # is valid for both local development and the test-image-postgres service.
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 5s
 
   redis:
     image: redis
@@ -98,6 +106,28 @@ services:
   test-image:
     image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
     env_file: docker/envfiles/test.env
+    environment:
+      # Prove in the CI logs that this run really used SQLite
+      EXPECTED_DB_VENDOR: sqlite
+
+  # run tests with no volumes, against the `db` service above.
+  # Reuses the image built for `app` - this service must never trigger a build.
+  test-image-postgres:
+    image: mozmeao/bedrock_test:${GIT_COMMIT:-latest}
+    env_file: docker/envfiles/test.env
+    environment:
+      # `postgres` is the database the postgres image creates by default.
+      # pytest-django creates its own `test_postgres` database from it.
+      DATABASE_URL: postgres://postgres:postgres@db:5432/postgres
+      # Prove in the CI logs that this run really used PostgreSQL
+      EXPECTED_DB_VENDOR: postgresql
+      # A virgin database cannot use the DB-backed product-details storage,
+      # because `migrate` is what creates its table. See
+      # bin/fill-empty-postgres-database.sh for the same workaround.
+      PROD_DETAILS_STORAGE: product_details.storage.PDFileStorage
+    depends_on:
+      db:
+        condition: service_healthy
 
   # the django app
   release:

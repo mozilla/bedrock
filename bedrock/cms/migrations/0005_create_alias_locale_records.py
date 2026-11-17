@@ -99,6 +99,7 @@ def remove_alias_locales(apps, schema_editor):
 class Migration(migrations.Migration):
     dependencies = [
         ("cms", "0004_bedrocklocale"),
+        ("wagtailsearch", "0009_remove_ngram_autocomplete"),
     ]
 
     operations = [
