@@ -54,7 +54,7 @@ Keep commit titles short, imperative, and linked to issues when available (e.g.,
 ## Wagtail CMS
 
 * When planning Wagtail work, remember that <https://docs.wagtail.org/en/7.3/llms.txt> and the full version at <https://docs.wagtail.org/en/7.3/llms-full.txt> contain LLM-appropriate documentation.
-* If the version of Wagtail (not counting patch releases) in requirements/prod.in doesn't match the version in the LLM-appropriate URLs mentioned, please update this AGENTS.md then load the new info
+* If the version of Wagtail (not counting patch releases) in `pyproject.toml` doesn't match the version in the LLM-appropriate URLs mentioned, please update this AGENTS.md then load the new info
 
 ## LLM assistance
 

@@ -51,7 +51,7 @@ class SectionHeaderBlock(blocks.StructBlock):
     )
     superheading_text = blocks.CharBlock(char_max_length=255, required=False)
     heading_text = blocks.CharBlock(char_max_length=255, required=False)
-    subheading_text = blocks.CharBlock(char_max_length=255, required=False)
+    subheading_text = blocks.RichTextBlock(required=False)
     image = ImageChooserBlock(required=False)
 
     def clean(self, value):
@@ -59,7 +59,7 @@ class SectionHeaderBlock(blocks.StructBlock):
 
         superheading = value.get("superheading_text", "").strip()
         heading = value.get("heading_text", "").strip()
-        subheading = value.get("subheading_text", "").strip()
+        subheading = value.get("subheading_text")  # RichText (or None); falsy when it has no source
 
         if not superheading and not heading and not subheading:
             errors["heading_text"] = ValidationError("You must provide either superheading, or heading, or subheading.")
@@ -317,7 +317,8 @@ class SectionBlock(blocks.StructBlock):
             ("statistic_callout_block", StatisticCalloutBlock()),
             ("features_with_modals", FeatureListWithModalsBlock()),
             ("feature_list_block", FeatureListBlock()),
-        ]
+        ],
+        required=False,
     )
     call_to_action = blocks.ListBlock(RowTextAndLinkBlock(), min_num=0, max_num=1, default=[], label="Call to Action")
 

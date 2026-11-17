@@ -2,13 +2,25 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from django.core.cache import cache
 from django.urls import reverse
 
+from bedrock.careers.feeds import LatestPositionsFeed
+from bedrock.careers.models import Position
 from bedrock.careers.tests import PositionFactory
 from bedrock.mozorg.tests import TestCase
 
 
 class FeedTests(TestCase):
+    def test_item_categories_does_not_change_the_positions_locations(self):
+        cache.clear()
+        PositionFactory(id=1, location="Toronto", department="Engineering")
+        position = Position.objects.get(id=1)
+
+        feed = LatestPositionsFeed()
+        assert feed.item_categories(position) == ["Toronto", "Engineering"]
+        assert position.location_list == ["Toronto"]
+
     def test_career_feed(self):
         job_id_1 = "oflWVfwb"
         job_id_1_1 = "oflWVfwbb"  # Using an internal job ID to join these two.

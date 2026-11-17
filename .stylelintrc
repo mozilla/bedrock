@@ -7,6 +7,12 @@
         "alpha-value-notation": "number",
         "property-no-vendor-prefix": null,
         "value-no-vendor-prefix": null,
+        "property-no-unknown": [
+            true,
+            {
+                "ignoreProperties": ["text-box"]
+            }
+        ],
         "at-rule-empty-line-before": null,
         "no-descending-specificity": null,
         "value-keyword-case": [

@@ -23,10 +23,20 @@ env:
   GAR_REPOSITORY: bedrock-prod
   IMAGE: bedrock
   ORG: mozmeao
-  REF_ID: ${{ github.event.inputs.ref || github.ref }}
+  # Push builds pin the commit that triggered them. Runs can now queue behind each
+  # other, and checking out the branch name would build whatever the tip is by the
+  # time the run starts, leaving the triggering SHA with no image.
+  REF_ID: ${{ github.event.inputs.ref || github.sha }}
 
 permissions:
   contents: read
+
+# Queue rather than cancel: downstream jobs and the l10n workflow_run pull images
+# by SHA, and a cancelled build would leave a SHA with no image.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
 
 jobs:
   build_and_publish_public_images:
@@ -56,6 +66,7 @@ jobs:
 
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+            persist-credentials: false
             fetch-depth: 10 # get enough so we have a Git history, but not everything
             fetch-tags: true
             ref: ${{ env.REF_ID }}
@@ -105,6 +116,11 @@ jobs:
         timeout-minutes: 90
         env:
             GIT_COMMIT: ${{ env.LONG_SHA }}
+            # A SHA checkout is detached, so tell the push script the branch name
+            # explicitly; it only pushes the :latest tag for main. set_git_env_vars.sh
+            # derives BRANCH_NAME from git only when GIT_BRANCH is unset, so both are needed.
+            GIT_BRANCH: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name || '' }}
+            BRANCH_NAME: ${{ github.event_name == 'push' && github.ref_type == 'branch' && github.ref_name || '' }}
 
 
   upload_static_assets:
@@ -114,7 +130,7 @@ jobs:
     needs: build_and_publish_public_images
     permissions:
       contents: read
-      id-token: write
+      id-token: write # GCP workload identity federation for the GCS upload
 
     steps:
       - uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
@@ -159,7 +175,7 @@ jobs:
     needs: [build_and_publish_public_images, upload_static_assets]
     runs-on: ubuntu-latest
     permissions:
-      id-token: write
+      id-token: write # GCP workload identity federation for the GAR push
 
     steps:
       - id: gcp_auth
@@ -182,5 +198,5 @@ jobs:
           IMAGE_TAG: ${{ needs.build_and_publish_public_images.outputs.image_tag }}
         run: |-
              docker pull $ORG/$IMAGE:$LONG_SHA
-             docker tag $ORG/$IMAGE:$LONG_SHA ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:$IMAGE_TAG
-             docker push ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.GCP_PROJECT_ID }}/${{ env.GAR_REPOSITORY}}/${{ env.IMAGE }}:$IMAGE_TAG
+             docker tag $ORG/$IMAGE:$LONG_SHA $GAR_LOCATION-docker.pkg.dev/$GCP_PROJECT_ID/$GAR_REPOSITORY/$IMAGE:$IMAGE_TAG
+             docker push $GAR_LOCATION-docker.pkg.dev/$GCP_PROJECT_ID/$GAR_REPOSITORY/$IMAGE:$IMAGE_TAG

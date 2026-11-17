@@ -6,8 +6,8 @@
 
 @use 'lib' as r25;
 
-@use "./components/hero.scss";
-@use "./components/category.scss";
+@use "./components/hero";
+@use "./components/category";
 
 @use "~@mozilla-protocol/core/protocol/css/components/video";
 

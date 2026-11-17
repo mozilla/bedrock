@@ -40,13 +40,6 @@
       <li>If you need access to particular trees on the exceptions list, list them</li>
     </ul>
   </li>
-  <li>Attach your SSH <em>public</em> key to the bug - a file with extension ".pub". (Please mark it as <code>text/plain</code> when attaching it!)
-    <ul>
-      <li>{% with tutorial='https://help.github.com/articles/generating-ssh-keys/' %}
-      GitHub has a <a href="{{ tutorial }}">useful tutorial on generating SSH keys</a>.
-      {% endwith %}</li>
-    </ul>
-  </li>
   <li>{% with requirements=url('mozorg.about.governance.policies.commit.requirements') %}
     Make sure you are happy with the <a href="{{ requirements }}">Commit Access Requirements</a>.
   {% endwith %}</li>
@@ -55,7 +48,6 @@
   <li>So, to recap, the bug needs:
     <ul>
       <li>Declaration of what level you want and the email address to use
-      <li>SSH public key
       <li>Comments from all the necessary vouchers
     </ul>
   </li>

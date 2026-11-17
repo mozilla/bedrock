@@ -36,4 +36,6 @@ redirectpatterns = (
     redirect(r"^privacy/hubs/?$", "privacy.archive.mozilla-hubs-notice-2024-06"),
     # https://mozilla-hub.atlassian.net/browse/WT-377
     redirect(r"^privacy/firefox/update/?$", "/privacy/firefox/update/dec2025"),
+    # https://mozilla-hub.atlassian.net/browse/WT-1870
+    redirect(r"^privacy/ad-targeting-guidelines/?$", "privacy.notices.firefox"),
 )

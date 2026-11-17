@@ -5,10 +5,14 @@
 #}
 
 {% from "macros-protocol.html" import picto with context %}
+{% from "macros-m24.html" import m24_intro with context %}
 
 <div class="m24-c-content">
-  <div class="m24-c-intro">
-    <h1 class="m24-c-intro-title m24-t-2xl">{{ ftl('m24-about-guard-the-internet', fallback='m24-about-reclaim-the-internet') }}</h1>
+  {% call m24_intro(
+    heading=ftl('m24-about-guard-the-internet', fallback='m24-about-reclaim-the-internet'),
+    heading_size="m24-t-2xl",
+    tag="div"
+  ) %}
     <p>{{ ftl('m24-about-mozilla-is-working') }}</p>
-  </div>
+  {% endcall %}
 </div>

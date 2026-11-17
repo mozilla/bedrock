@@ -2,8 +2,10 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+import shutil
 from datetime import datetime
 from os import getenv
+from pathlib import Path
 from subprocess import CalledProcessError
 
 from django.conf import settings
@@ -68,7 +70,23 @@ class Command(FTLRepoCommand):
         return message
 
     def sync_dirs(self):
-        sync(settings.FLUENT_LOCAL_PATH, self.l10n_repo.path, "sync", content=True)
+        """Mirror bedrock's l10n files into the l10n team repo.
+
+        The root of the l10n team repo also contains all the locale folders,
+        so it can't be synced with `purge`. Instead, each top-level folder
+        that bedrock owns (e.g. `en`, `en-US`, `configs`) is synced and purged
+        individually, so that files removed from bedrock are also removed from
+        the l10n team repo. Top-level files (e.g. `l10n-pontoon.toml`) are only
+        copied over.
+        """
+        source_path = Path(settings.FLUENT_LOCAL_PATH)
+        target_path = Path(self.l10n_repo.path)
+        for source in sorted(source_path.iterdir()):
+            target = target_path / source.name
+            if source.is_dir():
+                sync(source, target, "sync", content=True, create=True, purge=True)
+            else:
+                shutil.copy2(source, target)
 
     def create_branch(self):
         if self.open_branch:

@@ -61,8 +61,12 @@
 
 // Enhanced: JS has taken over
 .m24-c-tabs-is-enhanced {
-    .m24-c-tabs-item {
+    .m24-c-tabs-list {
         margin-block-end: $spacer-xl;
+    }
+
+    .m24-c-tabs-item {
+        margin-block-end: $spacer-sm;
     }
 
     .m24-c-tabs-link[aria-selected='true'] {

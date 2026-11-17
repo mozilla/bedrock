@@ -9,7 +9,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import csrf_protect
 
 from bs4 import BeautifulSoup
-from sentry_sdk import capture_message, new_scope
+from sentry_sdk import capture_message
 
 from bedrock.base.urlresolvers import reverse
 from bedrock.legal.forms import FRAUD_REPORT_DETAILS_MAX_LENGTH, FraudReportForm
@@ -78,30 +78,30 @@ def submit_form(request, form):
         details = data["input_details"]
 
         if len(details) > FRAUD_REPORT_DETAILS_MAX_LENGTH:
-            with new_scope() as scope:
-                scope.set_extra("details_length", len(details))
-                capture_message(
-                    "Fraud report details over the character limit, email not sent",
-                    level="warning",
-                )
-        else:
-            url = data["input_url"]
-            if len(url) > FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH:
-                url = url[: FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "..."
+            capture_message(
+                "Fraud report details over the character limit, email not sent",
+                level="warning",
+                extras={"details_length": len(details)},
+            )
+            return {"form_submitted": form_submitted, "form_error": form_error}
 
-            subject = FRAUD_REPORT_EMAIL_SUBJECT % (url, data["input_category"])
-            sender = FRAUD_REPORT_EMAIL_FROM
-            to = FRAUD_REPORT_EMAIL_TO
-            msg = render_to_string("legal/emails/fraud-report.txt", data, request=request)
+        url = data["input_url"]
+        if len(url) > FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH:
+            url = url[: FRAUD_REPORT_SUBJECT_URL_MAX_LENGTH - 3] + "..."
 
-            email = EmailMessage(subject, msg, sender, to)
+        subject = FRAUD_REPORT_EMAIL_SUBJECT % (url, data["input_category"])
+        sender = FRAUD_REPORT_EMAIL_FROM
+        to = FRAUD_REPORT_EMAIL_TO
+        msg = render_to_string("legal/emails/fraud-report.txt", data, request=request)
 
-            attachment = data["input_attachment"]
+        email = EmailMessage(subject, msg, sender, to)
 
-            if attachment:
-                email.attach(attachment.name, attachment.read(), attachment.content_type)
+        attachment = data["input_attachment"]
 
-            email.send()
+        if attachment:
+            email.attach(attachment.name, attachment.read(), attachment.content_type)
+
+        email.send()
     else:
         form_error = True
 

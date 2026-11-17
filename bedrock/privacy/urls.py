@@ -23,7 +23,6 @@ urlpatterns = (
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
     page("websites/cookie-settings/", "privacy/cookie-settings.html", ftl_files=["privacy/cookie-settings"]),
     path("mdn-plus/", views.mdn_plus, name="privacy.notices.mdn-plus"),
-    path("ad-targeting-guidelines/", views.ad_targeting_guidelines, name="privacy.notices.ad-targeting-guidelines"),
     path("subscription-services/", views.subscription_services, name="privacy.notices.subscription-services"),
     path("mozilla-accounts/", views.mozilla_accounts, name="privacy.notices.mozilla-accounts"),
     page("archive/", "privacy/archive/index.html", ftl_files=["privacy/index"], active_locales=["en-US"]),

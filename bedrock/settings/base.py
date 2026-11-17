@@ -74,14 +74,19 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 TASK_QUEUE_AVAILABLE = False
 RQ_QUEUES = {}
 
+# Names of the task queues we use. When running tests, these are swapped
+# for test-specific queues - see bedrock/settings/__init__.py
+RQ_DEFAULT_QUEUE = "default"
+RQ_IMAGE_RENDITIONS_QUEUE = "image_renditions"
+
 REDIS_URL = config("REDIS_URL", default="")
 if REDIS_URL:
     TASK_QUEUE_AVAILABLE = True
     REDIS_URL = REDIS_URL.rstrip("/0")
     RQ_QUEUES = {
         # Same Redis DBs/connections
-        "default": {"URL": f"{REDIS_URL}/0"},
-        "image_renditions": {"URL": f"{REDIS_URL}/0"},
+        RQ_DEFAULT_QUEUE: {"URL": f"{REDIS_URL}/0"},
+        RQ_IMAGE_RENDITIONS_QUEUE: {"URL": f"{REDIS_URL}/0"},
     }
 
 CACHE_TIME_SHORT = config("CACHE_TIME_SHORT", parser=int, default=f"{60 * 10}")  # 10 mins
@@ -714,6 +719,14 @@ ENABLE_VARY_NOCACHE_MIDDLEWARE = config("ENABLE_VARY_NOCACHE_MIDDLEWARE", defaul
 BASIC_AUTH_CREDS = config("BASIC_AUTH_CREDS", default="")
 ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE = config("ENABLE_METRICS_VIEW_TIMING_MIDDLEWARE", default="false", parser=bool)
 
+# Optional token that arms SyntheticServerErrorMiddleware. When set (via a k8s
+# Secret in webservices-infra), requests carrying the same token in the
+# X-Mozilla-Ops-Canary header receive HTTP 500. Used to force user-facing
+# 5xx for testing Fastly's failover cascade without breaking the /healthz/
+# probe. When unset (the default in every environment) the middleware is a
+# no-op and this setting has no effect.
+SYNTHETIC_5XX_TOKEN = config("SYNTHETIC_5XX_TOKEN", default="")
+
 MIDDLEWARE = [
     # IMPORTANT: this may be extended later in this file or via settings/__init__.py
     "django.middleware.security.SecurityMiddleware",
@@ -725,6 +738,7 @@ MIDDLEWARE = [
     # so that it can see the response has a vary on accept-language.
     "bedrock.mozorg.middleware.VaryNoCacheMiddleware",
     "bedrock.base.middleware.BasicAuthMiddleware",
+    "bedrock.base.middleware.SyntheticServerErrorMiddleware",
     "bedrock.redirects.middleware.RedirectsMiddleware",  # must come before BedrockLocaleMiddleware
     "bedrock.base.middleware.BedrockLangCodeFixupMiddleware",  # must come after RedirectsMiddleware
     "bedrock.base.middleware.BedrockLocaleMiddleware",  # wraps django.middleware.locale.LocaleMiddleware
@@ -782,7 +796,6 @@ INSTALLED_APPS = [
     "wagtail_link_block",
     "wagtail_thumbnail_choice_block",
     # Local apps
-    "bedrock.anonym",
     "bedrock.base",
     "bedrock.cms",  # Wagtail-based CMS bases
     "bedrock.firefox",
@@ -931,6 +944,8 @@ WP_BLOGS = {
 }
 
 GREENHOUSE_BOARD = config("GREENHOUSE_BOARD", default="mozilla")
+FOUNDATION_GREENHOUSE_BOARD = config("FOUNDATION_GREENHOUSE_BOARD", default="mozillafoundation")
+GREENHOUSE_BOARDS = [GREENHOUSE_BOARD, FOUNDATION_GREENHOUSE_BOARD]
 
 BASKET_URL = config("BASKET_URL", default="https://basket.mozilla.org")
 BASKET_API_KEY = config("BASKET_API_KEY", default="")
@@ -965,6 +980,9 @@ if DEBUG:
     default_email_backend = "django.core.mail.backends.console.EmailBackend"
 elif TASK_QUEUE_AVAILABLE is True:
     default_email_backend = "django_rq_email_backend.backends.RQEmailBackend"
+
+# The queue that django-rq-email-backend sends emails via, when it is in use
+RQ_EMAIL_DEFAULT_QUEUE = RQ_DEFAULT_QUEUE
 
 DEFAULT_FROM_EMAIL = "Mozilla.com <noreply@mozilla.com>"
 
@@ -1221,6 +1239,12 @@ SENTRY_DSN = config("SENTRY_DSN", default="")
 # https://github.com/laiyongtao/sentry-processor
 SENSITIVE_FIELDS_TO_MASK_ENTIRELY = [
     "email",
+    # X-Mozilla-Ops-Canary carries the SYNTHETIC_5XX_TOKEN value on cascade-test
+    # requests; keep it out of Sentry events so the token cannot leak via error
+    # reports. Must be lowercase: DesensitizationProcessor lowercases the event
+    # key before doing a substring match, but does NOT lowercase the configured
+    # blocklist entries, so a mixed-case entry here would never match.
+    "x-mozilla-ops-canary",
     # Belt-and-braces: these names are also on `with_default_keys=True`'s
     # blocklist, but listing them here explicitly guards against SDK / processor
     # version drift removing a name from the default set, and documents the
@@ -1929,7 +1953,7 @@ VPN_PLAN_ID_MATRIX = {
                 "price": "22",
                 "total": "264",
                 "currency": "PLN",
-                "saving": 48,
+                "saving": 51,
                 "analytics": {
                     "brand": "vpn",
                     "plan": "vpn",

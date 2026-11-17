@@ -338,14 +338,18 @@ locales = [
     l10n = "{locale}/privacy/firefox.ftl"
     locales = [
         "cs",
+        "el",
         "es-ES",
+        "fi",
         "hu",
         "it",
         "nl",
         "pl",
         "pt-BR",
         "ru",
-        "zh-CN"
+        "tr",
+        "zh-CN",
+        "zh-TW"
     ]
 [[paths]]
     reference = "en/products/vpn/download.ftl"

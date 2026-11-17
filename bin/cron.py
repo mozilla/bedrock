@@ -70,15 +70,16 @@ if sentry_dsn:
 
 def set_updated_time(name):
     try:
-        check_call(f"touch {HEALTH_FILE_BASE}-{name}", shell=True, timeout=TIMEOUT_SECS)
+        Path(f"{HEALTH_FILE_BASE}-{name}").touch()
     except Exception as ex:
         logging.error(ex)
         raise
 
 
 def call_command(command):
+    """Run a manage.py command given as a whitespace-separated string, e.g. "l10n_update --clean"."""
     try:
-        check_call(f"python {MANAGE} {command}", shell=True, timeout=TIMEOUT_SECS)
+        check_call([sys.executable, MANAGE, *command.split()], timeout=TIMEOUT_SECS)
     except Exception as ex:
         logging.error(ex)
         raise
@@ -133,20 +134,20 @@ def schedule_database_jobs():
     @babis.decorator(ping_after=DEAD_MANS_SNITCH_URL)
     def update_upload_database():
         fn_name = "update_upload_database"
-        command = "bin/run-db-update.sh --auth"
+        command = ["bin/run-db-update.sh", "--auth"]
         time_since = get_time_since(fn_name)
         if time_since > 21600:  # 6 hours
-            command += " --all"
+            command.append("--all")
 
         try:
-            check_call(command, shell=True, timeout=TIMEOUT_SECS)
+            check_call(command, timeout=TIMEOUT_SECS)
             if not LOCAL_DB_UPDATE:
-                check_call("python bin/run-db-upload.py", shell=True, timeout=TIMEOUT_SECS)
+                check_call([sys.executable, "bin/run-db-upload.py"], timeout=TIMEOUT_SECS)
         except Exception as ex:
             logging.error(ex)
             raise
 
-        if command.endswith("--all"):
+        if command[-1] == "--all":
             # must set this after command run so that it won't update
             # if an update errors
             set_last_run(fn_name)
@@ -163,12 +164,12 @@ def schedule_file_jobs():
 
         @scheduled_job("interval", minutes=DB_UPDATE_MINUTES)
         def download_database():
-            command = "python bin/run-db-download.py"
+            command = [sys.executable, "bin/run-db-download.py"]
             if DB_DOWNLOAD_IGNORE_GIT:
-                command += " --ignore-git"
+                command.append("--ignore-git")
 
             try:
-                check_call(command, shell=True, timeout=TIMEOUT_SECS)
+                check_call(command, timeout=TIMEOUT_SECS)
             except Exception as ex:
                 logging.error(ex)
                 raise
