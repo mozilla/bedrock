@@ -3,8 +3,15 @@
 
 name: Open Fluent PR in www-l10n
 
+permissions:
+  contents: read
+
 on:
-  workflow_run:
+  # workflow_run is needed so this runs after the image build on main. The job's if:
+  # only accepts upstream runs that succeeded, came from a push or manual dispatch in
+  # this repository (never a pull_request from a fork), and the checkout below does not
+  # persist credentials.
+  workflow_run: # zizmor: ignore[dangerous-triggers]
     workflows: ["Build and push a Docker image"]
     types: [completed]
     branches: [main]
@@ -12,18 +19,35 @@ on:
   schedule:
     - cron: "25 5 * * *" # Every 5:25 AM UTC
 
+# Queue rather than cancel: running two of these at once could open duplicate PRs.
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+  queue: max # keep every pending run, not just the newest
+
 jobs:
   open_l10n_pr:
+    name: Open Fluent PR in www-l10n
     if: |
       github.repository == 'mozilla/bedrock' &&
-      (github.event.workflow_run.conclusion == 'success' || github.event_name != 'workflow_run')
+      (
+        github.event_name != 'workflow_run' ||
+        (
+          github.event.workflow_run.conclusion == 'success' &&
+          github.event.workflow_run.head_repository.full_name == github.repository &&
+          contains(fromJSON('["push", "workflow_dispatch"]'), github.event.workflow_run.event)
+        )
+      )
     runs-on: ubuntu-latest
     env:
       HEAD_SHA: ${{ github.event.workflow_run.head_sha || github.sha }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           ref: ${{ env.HEAD_SHA }}
+          persist-credentials: false
       - name: Run PR-opening script
         shell: bash
-        run: FLUENT_REPO_AUTH=${{ secrets.FLUENT_REPO_AUTH }} bin/open-ftl-pr.sh
+        env:
+          FLUENT_REPO_AUTH: ${{ secrets.FLUENT_REPO_AUTH }}
+        run: bin/open-ftl-pr.sh

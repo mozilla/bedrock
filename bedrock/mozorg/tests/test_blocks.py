@@ -19,7 +19,10 @@ from bedrock.cms.tests.conftest import minimal_site  # noqa: F401
 from bedrock.mozorg.blocks import common
 from bedrock.mozorg.fixtures.base_fixtures import get_placeholder_image
 from bedrock.mozorg.fixtures.donate_fixtures import get_donate_test_page, get_donate_variants
+from bedrock.mozorg.fixtures.image_caption_fixtures import get_image_caption_test_page, get_image_caption_variants
+from bedrock.mozorg.fixtures.intro_fixtures import get_intro_test_pages, get_intro_variants
 from bedrock.mozorg.fixtures.prose_fixtures import get_prose_test_page, get_prose_variants
+from bedrock.mozorg.fixtures.pullquote_fixtures import get_pullquote_test_page, get_pullquote_variants
 from bedrock.mozorg.fixtures.showcase_fixtures import get_showcase_test_page, get_showcase_variants
 from bedrock.mozorg.fixtures.showcase_gallery_fixtures import get_showcase_gallery_test_page, get_showcase_gallery_variants
 from bedrock.mozorg.fixtures.springboard_fixtures import get_springboard_test_page, get_springboard_variants
@@ -886,11 +889,13 @@ def assert_prose_block_structure(prose_element: BeautifulSoup):
     Args:
         prose_element: BeautifulSoup element for the .m24-c-prose div
     """
-    hgroup = prose_element.find(class_="m24-c-prose-hgroup")
-    assert hgroup is not None, "Missing .m24-c-prose-hgroup element"
+    hgroup = prose_element.find(class_="m24-c-prose-heading")
+    assert hgroup is not None, "Missing .m24-c-prose-heading element"
+    assert hgroup.name == "hgroup"
+    assert "m24-c-intro" in hgroup["class"], "Expected the prose heading group to use the intro component"
 
-    heading = hgroup.find(class_="m24-c-prose-heading")
-    assert heading is not None, "Missing .m24-c-prose-heading element"
+    heading = hgroup.find(class_="m24-c-intro-title")
+    assert heading is not None, "Missing .m24-c-intro-title element"
     assert heading.name == "h2", f"Expected h2 heading, got {heading.name}"
 
     body = prose_element.find(class_="m24-c-prose-body")
@@ -906,13 +911,16 @@ def assert_prose_block_content(prose_element: BeautifulSoup, variant_data: dict)
     """
     value = variant_data["value"]
 
-    heading = prose_element.find(class_="m24-c-prose-heading")
+    hgroup = prose_element.find(class_="m24-c-prose-heading")
+    heading = hgroup.find(class_="m24-c-intro-title")
     assert value["heading"] in heading.get_text(), f"Heading text '{value['heading']}' not found"
 
+    subheading = hgroup.find("p")
     if value["sub_heading"]:
-        subheading = prose_element.find(class_="m24-c-prose-subheading")
-        assert subheading is not None, "Missing .m24-c-prose-subheading element"
+        assert subheading is not None, "Missing sub-heading paragraph"
         assert value["sub_heading"] in subheading.get_text(), f"Sub-heading text '{value['sub_heading']}' not found"
+    else:
+        assert subheading is None, "Unexpected sub-heading paragraph"
 
     body = prose_element.find(class_="m24-c-prose-body")
     body_text = body.get_text()
@@ -966,6 +974,11 @@ def assert_prose_block_attributes(prose_element: BeautifulSoup, variant_data: di
         assert "m24-l-reversed" in prose_classes, "Expected 'm24-l-reversed' class for reversed layout"
     else:
         assert "m24-l-reversed" not in prose_classes, "Unexpected 'm24-l-reversed' class"
+
+    # Variants saved without heading_size fall back to the default (Large).
+    heading_size = settings.get("heading_size", "m24-t-lg")
+    heading = prose_element.find(class_="m24-c-intro-title")
+    assert heading["class"] == (["m24-c-intro-title", heading_size] if heading_size else ["m24-c-intro-title"])
 
 
 @pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
@@ -1047,6 +1060,25 @@ def test_prose_block_cta_new_window(minimal_site, rf, serving_method):  # noqa: 
     assert "external" in cta_link.get("rel", []), "Expected 'external' in rel"
 
 
+def test_prose_block_without_heading_size_renders_large():
+    """Prose data saved before heading_size existed keeps its original size (Large)."""
+    block = common.ProseBlock()
+    value = block.to_python(
+        {
+            "settings": {"background_color": "", "two_column_layout": True, "reverse": False, "anchor_id": ""},
+            "heading": "Legacy prose",
+            "sub_heading": "",
+            "body": "<p>Body.</p>",
+            "cta_text": "",
+            "cta_link": {},
+        }
+    )
+
+    assert value["settings"]["heading_size"] == "m24-t-lg"
+    heading = BeautifulSoup(block.render(value), "html.parser").find(class_="m24-c-intro-title")
+    assert heading["class"] == ["m24-c-intro-title", "m24-t-lg"]
+
+
 # CTALinkRequiredMixin Tests
 
 
@@ -1102,3 +1134,153 @@ def test_showcase_gallery_block_cta_link_required_when_text_filled():
     invalid_value = ShowcaseGalleryBlockFactory(cta_text="Read more", cta_link__link_to="", tiles__0__image=tile)
     valid_value = ShowcaseGalleryBlockFactory(cta_text="", cta_link__link_to="", tiles__0__image=tile)
     assert_cta_link_required_when_text_filled(block, invalid_value, valid_value)
+
+
+def _serve_soup(page, site, rf, serving_method) -> BeautifulSoup:
+    response = getattr(page, serving_method)(rf.get(page.relative_url(site)))
+    assert response.status_code == 200
+    return BeautifulSoup(response.content, "html.parser")
+
+
+# IntroBlock Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_intro_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Each intro renders an <h1> heading and its body only when one is set."""
+    variants = get_intro_variants()
+    test_pages = get_intro_test_pages()
+
+    for variant, test_page in zip(variants, test_pages):
+        value = variant["value"]
+        soup = _serve_soup(test_page, minimal_site, rf, serving_method)
+
+        intros = soup.find_all(class_="m24-c-intro")
+        assert len(intros) == 1
+        intro = intros[0]
+
+        heading = intro.find(class_="m24-c-intro-title")
+        assert heading.name == "h1", f"Expected h1 heading, got {heading.name}"
+        assert heading.get_text() == value["heading"]
+
+        paragraphs = intro.find_all("p")
+        if value["body"]:
+            expected_text = BeautifulSoup(value["body"], "html.parser").get_text()
+            assert expected_text in intro.get_text()
+            for link in BeautifulSoup(value["body"], "html.parser").find_all("a"):
+                assert intro.find("a", href=link["href"]) is not None, f"Expected link to {link['href']}"
+        else:
+            assert paragraphs == [], "Unexpected body paragraph in intro without body"
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_intro_block_attributes(minimal_site, rf, serving_method):  # noqa: F811
+    """Heading size is applied to the heading; background color to the outer wrapper, which has no id."""
+    variants = get_intro_variants()
+    test_pages = get_intro_test_pages()
+
+    for variant, test_page in zip(variants, test_pages):
+        settings = variant["value"]["settings"]
+        soup = _serve_soup(test_page, minimal_site, rf, serving_method)
+
+        heading = soup.find(class_="m24-c-intro-title")
+        expected_classes = ["m24-c-intro-title", settings["heading_size"]] if settings["heading_size"] else ["m24-c-intro-title"]
+        assert heading["class"] == expected_classes
+
+        # .m24-c-intro > .m24-c-content > outer wrapper
+        outer = soup.find(class_="m24-c-intro").parent.parent
+        assert outer.name == "section"
+        assert soup.find(class_="m24-c-intro").name == "div"
+        assert soup.find(class_="m24-c-intro").parent["class"] == ["m24-c-content"]
+        expected_outer_classes = ["m24-c-intro-section"]
+        if settings["background_color"]:
+            expected_outer_classes.append(settings["background_color"])
+        assert outer.get("class") == expected_outer_classes
+        assert outer.get("id") is None
+
+        # The first-child-of-<main> selector in intro.scss doubles the top padding.
+        assert outer.parent.name == "main"
+        assert outer is outer.parent.find(True)
+
+
+def test_intro_block_without_heading_size_renders_x_large():
+    """Intro data saved before heading_size existed falls back to the default (X large)."""
+    block = common.IntroBlock()
+    value = block.to_python({"settings": {"background_color": ""}, "heading": "Legacy intro", "body": ""})
+
+    assert value["settings"]["heading_size"] == ""
+    heading = BeautifulSoup(block.render(value), "html.parser").find(class_="m24-c-intro-title")
+    assert heading["class"] == ["m24-c-intro-title"]
+
+
+# ImageCaptionBlock Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_image_caption_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Each image caption renders a <figure> with the image, its alt text and an optional caption."""
+    variants = get_image_caption_variants(get_placeholder_image().id)
+    soup = _serve_soup(get_image_caption_test_page(), minimal_site, rf, serving_method)
+
+    figures = soup.find_all("figure", class_="m24-c-longform-figure")
+    assert len(figures) == len(variants)
+
+    for figure, variant in zip(figures, variants):
+        value = variant["value"]
+        assert figure.parent.get("class") == ["m24-c-longform"]
+
+        image = figure.find("img", class_="m24-c-longform-figure-image")
+        assert image is not None
+        assert image.get("alt") == value["image"]["image_alt"]
+        assert image.get("loading") == "lazy"
+
+        caption = figure.find("figcaption")
+        if value["caption"]:
+            expected = BeautifulSoup(value["caption"], "html.parser")
+            assert expected.get_text() in caption.get_text()
+            assert caption.find("em") is not None
+            assert caption.find("a", href=expected.find("a")["href"]) is not None
+        else:
+            assert caption is None, "Unexpected <figcaption> in image without caption"
+
+
+# PullquoteBlock Tests
+
+
+@pytest.mark.parametrize("serving_method", ("serve", "serve_preview"))
+def test_pullquote_block_content(minimal_site, rf, serving_method):  # noqa: F811
+    """Each pullquote renders a <blockquote> with optional author, citation and background color."""
+    variants = get_pullquote_variants()
+    soup = _serve_soup(get_pullquote_test_page(), minimal_site, rf, serving_method)
+
+    pullquotes = soup.find_all("figure", class_="m24-c-pullquote")
+    assert len(pullquotes) == len(variants)
+
+    for pullquote, variant in zip(pullquotes, variants):
+        value = variant["value"]
+        bg_color = value["settings"]["background_color"]
+        content = pullquote.parent
+        outer = content.parent
+        assert content.get("class") == ["m24-c-content"]
+        assert (outer.get("class") or []) == ([bg_color] if bg_color else [])
+
+        blockquote = pullquote.find("blockquote")
+        assert BeautifulSoup(value["quote"], "html.parser").get_text() in blockquote.get_text()
+
+        author = pullquote.find(class_="m24-c-pullquote-author")
+        citation = pullquote.find(class_="m24-c-pullquote-citation")
+        if value["author"]:
+            assert author.get_text() == value["author"]
+        else:
+            assert author is None
+        if value["citation"]:
+            expected = BeautifulSoup(value["citation"], "html.parser")
+            assert citation.get_text().strip() == expected.get_text()
+            for link in expected.find_all("a"):
+                assert citation.find("a", href=link["href"]) is not None, f"Expected link to {link['href']}"
+            assert citation.find("i") is not None
+        else:
+            assert citation is None
+
+        if not value["author"] and not value["citation"]:
+            assert pullquote.find("figcaption") is None

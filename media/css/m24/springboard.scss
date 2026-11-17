@@ -21,13 +21,14 @@ $springboard-thumb-width: 32px;
 
 .m24-c-springboard-link {
     @include short-dividers($m24-color-light-gray);
-    color: $m24-color-black;
     display: grid;
     gap: $spacer-lg;
     grid-template-areas:
-        "type cat cat"
-        "preview preview preview"
-        "date author author";
+        "thumb type cat cat"
+        "preview preview preview preview"
+        "author author author author"
+        ;
+    grid-template-columns: 32px 1fr 1fr 1fr;
     margin-left: calc($container-padding * -1);
     margin-right: calc($container-padding * -1);
     padding: $spacer-md $container-padding;
@@ -35,6 +36,7 @@ $springboard-thumb-width: 32px;
 
     &:link,
     &:visited {
+        color: $m24-color-dark-mid-gray;
         text-decoration: none;
     }
 
@@ -48,22 +50,24 @@ $springboard-thumb-width: 32px;
 
 .m24-c-springboard-headings {
     display: none;
-    font-size: 12px;
 
     .m24-c-springboard-link {
         border-top: none;
         padding-bottom: $spacer-xs;
         padding-top: $spacer-xs;
+        pointer-events: none;
 
         > * {
+            font-size: 12px;
             font-weight: normal;
         }
     }
 }
 
 .m24-c-springboard-type {
+    align-self: center;
     grid-area: type;
-    font-weight: bold;
+    margin-inline-start: -15px;
 }
 
 .m24-c-springboard-icon {
@@ -78,13 +82,16 @@ $springboard-thumb-width: 32px;
 }
 
 .m24-c-springboard-topic {
-    font-weight: bold;
+    align-self: center;
     grid-area: cat;
     text-align: end;
 }
 
 .m24-c-springboard-preview {
     grid-area: preview;
+    font-weight: bold;
+    font-size: $text-body-lg;
+    color: $m24-color-black;
 }
 
 .m24-c-springboard-author {
@@ -93,7 +100,7 @@ $springboard-thumb-width: 32px;
 }
 
 .m24-c-springboard-thumb {
-    display: none;
+    grid-area: thumb;
 }
 
 // icons
@@ -138,6 +145,11 @@ $springboard-thumb-width: 32px;
             row-gap: 0;
             padding: $spacer-sm $container-padding;
 
+            &:link,
+            &:visited {
+                color: $m24-color-black;
+            }
+
             > * {
                 grid-area: auto;
                 text-wrap: nowrap;
@@ -153,13 +165,21 @@ $springboard-thumb-width: 32px;
             }
         }
 
-        .m24-c-springboard-preview {
-            text-wrap: wrap;
+        .m24-c-springboard-type,
+        .m24-c-springboard-topic {
+            font-weight: bold;
+            margin-inline-start: 0;
+            text-align: start;
         }
 
-        .m24-c-springboard-author,
-        .m24-c-springboard-topic {
+        .m24-c-springboard-author {
             text-align: start;
+        }
+
+        .m24-c-springboard-preview {
+            font-size: $text-body-sm;
+            font-weight: normal;
+            text-wrap: wrap;
         }
     }
 }

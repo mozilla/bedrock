@@ -7,6 +7,22 @@ from django import forms
 from bedrock.mozorg.forms import HoneyPotWidget
 
 FRAUD_REPORT_FILE_SIZE_LIMIT = 5242880  # 5MB
+FRAUD_REPORT_DETAILS_MAX_LENGTH = 5000
+
+
+class NewlineNormalizedCharField(forms.CharField):
+    """
+    CharField that counts a newline as the single character the browser
+    counted for maxlength, not the CRLF pair the browser actually submits.
+    """
+
+    def to_python(self, value):
+        value = super().to_python(value)
+
+        if value:
+            value = value.replace("\r\n", "\n").replace("\r", "\n")
+
+        return value
 
 
 class FraudReportForm(forms.Form):
@@ -68,7 +84,10 @@ class FraudReportForm(forms.Form):
         ),
     )
     input_specific_product = forms.CharField(max_length=254, required=False, widget=forms.TextInput(attrs={"size": 20, "class": "fill-width"}))
-    input_details = forms.CharField(required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"}))
+    input_details = NewlineNormalizedCharField(
+        required=False,
+        widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width", "maxlength": FRAUD_REPORT_DETAILS_MAX_LENGTH}),
+    )
     input_attachment = forms.ImageField(required=False)
     input_attachment_desc = forms.CharField(
         max_length=254, required=False, widget=forms.Textarea(attrs={"rows": "", "cols": "", "class": "fill-width"})
@@ -83,6 +102,19 @@ class FraudReportForm(forms.Form):
     )
     # honeypot
     office_fax = forms.CharField(widget=HoneyPotWidget, required=False)
+
+    def clean_input_url(self):
+        """
+        Percent-encode characters that RFC 3986 forbids in a URL. The email
+        template renders the URL without autoescaping so that ``&`` survives
+        intact, so this stops a reporter smuggling HTML tags into the email.
+        """
+        url = self.cleaned_data.get("input_url")
+
+        if url:
+            url = url.replace("<", "%3C").replace(">", "%3E").replace('"', "%22")
+
+        return url
 
     def clean_input_attachment(self):
         attachment = self.cleaned_data.get("input_attachment")

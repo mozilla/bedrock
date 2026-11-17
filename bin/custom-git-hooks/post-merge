@@ -7,7 +7,7 @@ RESET = "\033[0m"
 
 
 def check_for_dependency_changes():
-    diff_pre_merge_head_with_current_head = "git diff ORIG_HEAD HEAD --quiet --exit-code -- package*.json requirements/*.txt"
+    diff_pre_merge_head_with_current_head = "git diff ORIG_HEAD HEAD --quiet --exit-code -- package*.json uv.lock"
     exit_code = subprocess.call(diff_pre_merge_head_with_current_head.split())
 
     if exit_code == 1:

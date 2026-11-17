@@ -4,11 +4,8 @@
 
 from jinja2 import Environment
 
-from bedrock.anonym.templatetags.anonym_tags import case_studies
-
 
 def bedrock_environment(**options):
     env = Environment(**options)
-    env.globals["anonym_case_studies"] = case_studies
 
     return env

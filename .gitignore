@@ -7,6 +7,7 @@ __pycache__/
 .docker-build*
 .DS_Store
 .env
+.envrc
 .eslintcache
 .idea
 .jshintrc
@@ -35,7 +36,6 @@ build.py
 db.sql
 Desktop.ini
 docs/site
-media/js/libs/glean
 node_modules
 npm-debug.log
 pip-log.txt
@@ -62,4 +62,3 @@ venv
 CLAUDE.md
 .claude/*
 !.claude/skills/
-uv.lock // we don't share dependencies via uv lockfiles at the moment

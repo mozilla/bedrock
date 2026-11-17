@@ -960,12 +960,6 @@
     },
     {
       "files": [
-        "css/anonym/anonym.scss"
-      ],
-      "name": "mozilla-anonym"
-    },
-    {
-      "files": [
         "css/mozorg/advertising-format.scss"
       ],
       "name": "mozilla-ads-format"
@@ -1037,6 +1031,18 @@
       "name": "m24-about"
     },
     {
+      "files":  [
+        "css/m24/freeform.scss"
+      ],
+      "name": "m24-freeform"
+    },
+    {
+      "files": [
+        "css/m24/article.scss"
+      ],
+      "name": "m24-article"
+    },
+    {
       "files": [
         "css/m24/root.scss",
         "css/protocol/protocol-mozilla.scss"
@@ -1048,6 +1054,12 @@
         "css/m24/navigation-and-footer.scss"
       ],
       "name": "m24-navigation-and-footer"
+    },
+    {
+      "files": [
+        "css/m24/components/tabs.scss"
+      ],
+      "name": "m24-tabs"
     },
     {
       "files": [
@@ -1108,12 +1120,6 @@
         "js/base/mozilla-cookie-helper.js"
       ],
       "name": "site-ie"
-    },
-    {
-      "files": [
-        "js/glean/init.es6.js"
-      ],
-      "name": "glean"
     },
     {
       "files": [
@@ -1701,6 +1707,13 @@
     },
     {
       "files": [
+        "js/base/protocol/m24-tabs.es6.js",
+        "js/base/protocol/m24-tabs-init.es6.js"
+      ],
+      "name": "m24-tabs"
+    },
+    {
+      "files": [
         "js/firefox/share-page.es6.js"
       ],
       "name": "firefox_share"
@@ -1728,14 +1741,6 @@
         "js/base/banners/foundation-fundraising-banner-midyear2026-init.es6.js"
       ],
       "name": "foundation_fundraising_banner_midyear2026"
-    },
-    {
-      "files": [
-        "js/anonym/anonym-toggleable-items.js",
-        "js/anonym/anonym-card-list-center.js",
-        "js/anonym/anonym-contact-form.js"
-      ],
-      "name": "anonym"
     },
     {
       "files": [

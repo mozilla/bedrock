@@ -22,14 +22,6 @@ const successCustomCallback = () => {
             });
         }
     }
-
-    // Glean
-    if (typeof window.Mozilla.Glean !== 'undefined') {
-        window.Mozilla.Glean.clickEvent({
-            id: 'newsletter_subscribe',
-            type: newsletters.join(', ')
-        });
-    }
 };
 
 MzpNewsletter.init(successCustomCallback);

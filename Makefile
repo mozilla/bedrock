@@ -3,13 +3,6 @@ DC = $(shell which docker) compose
 DOCKER = $(shell which docker)
 TEST_DOMAIN = www.mozilla.org
 
-# Check if 'uv' exists and set the command accordingly
-ifneq (, $(shell which uv 2>/dev/null))
-	pip = uv pip
-else
-	pip = pip
-endif
-
 all: help
 
 help:
@@ -36,7 +29,7 @@ help:
 	@echo "  build-docs                     - generate mkdocs HTML documentation using Docker"
 	@echo "  build-ci                       - build docker images for use in our CI pipeline"
 	@echo "  test-ci                        - run tests against files in docker image built by CI"
-	@echo "  compile-requirements           - update Python requirements files using pip-compile"
+	@echo "  compile-requirements           - update the Python lockfile (uv.lock) using uv"
 	@echo "  check-requirements             - get a report on stale/old Python dependencies in use"
 	@echo "  install-local-python-deps      - install Python dependencies for local development"
 	@echo "  install-custom-git-hooks       - install custom git hooks"
@@ -162,7 +155,8 @@ test-ci: .docker-build-ci
 # Requirements management
 #########################
 
-compile-requirements: .docker-build-pull
+compile-requirements:
+	${DC} build compile-requirements
 	${DC} run --rm compile-requirements
 
 check-requirements: .docker-build-pull
@@ -176,22 +170,27 @@ check-requirements: .docker-build-pull
 %:
 	@:
 
-preflight:
+# Runs a command in the environment `install-local-python-deps` installed into.
+# `--no-sync` skips a second install. `--active` and `--python 3.13` match that target.
+UV_RUN_LOCAL = uv run --no-sync --active --python 3.13
+
+preflight: .env
 	${MAKE} install-local-python-deps
 	# --min-release-age=7 avoids packages uploaded in the last 7 days
 	# reducing supply-chain risk. Requires npm >= 11.10.0.
 	# To apply urgent security patch sooner, run:
 	# npm install package-name@version --min-release-age=0
 	@npm install --min-release-age=7
-	@$(if $(findstring --retain-db,$(MAKECMDGOALS)),bin/sync-all.sh --retain-db,bin/sync-all.sh)
-	@python manage.py bootstrap_local_admin
+	@$(if $(findstring --retain-db,$(MAKECMDGOALS)),$(UV_RUN_LOCAL) bin/sync-all.sh --retain-db,$(UV_RUN_LOCAL) bin/sync-all.sh)
+	@$(UV_RUN_LOCAL) python manage.py bootstrap_local_admin
 
 install-local-python-deps:
-	# Dev requirements are a superset of prod requirements, but we install
-	# them in the same separate steps that we use for our Docker-based build,
-	# so that it mirrors Production and Dev image building
-	$(pip) install -r requirements/prod.txt
-	$(pip) install -r requirements/dev.txt
+	@command -v uv >/dev/null || { echo "\`uv\` is required. Install it from https://docs.astral.sh/uv/getting-started/installation/"; exit 1; }
+	# `--active` installs into your activated virtualenv, falling back to `.venv`.
+	# `--python 3.13` overrides pyenv-style `.python-version` files naming a virtualenv.
+	# `--inexact` keeps packages you installed yourself, e.g. `pre-commit`.
+	uv sync --locked --active --python 3.13 --inexact
+	@[ -n "$$VIRTUAL_ENV" ] || echo "Installed into .venv. Run \`source .venv/bin/activate\` to use it."
 
 run-local-task-queue:
 	# We temporarily source the .env for the command's duration only
@@ -201,7 +200,8 @@ run-local-task-queue:
 
 
 clean-local-deps:
-	$(pip) uninstall mdx_outline -y && $(pip) freeze | xargs $(pip) uninstall -y
+	# Strip the ` @ <url>` suffix that `freeze` prints for URL-sourced packages
+	uv pip freeze | sed 's/ @ .*//' | xargs -r uv pip uninstall
 
 # Done explicitly to avoid surprises
 install-custom-git-hooks:

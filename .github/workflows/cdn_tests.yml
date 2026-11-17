@@ -23,11 +23,13 @@ permissions:
 
 jobs:
   notify-of-test-run-start:
+    name: Notify Slack of test run start
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+          persist-credentials: false
           sparse-checkout: .github/actions/slack
       - name: Notify via Slack that tests are starting
         uses: ./.github/actions/slack
@@ -41,6 +43,7 @@ jobs:
           message: "CDN tests started"
 
   cdn-tests:
+    name: ${{ matrix.LABEL }}
     if: github.repository == 'mozilla/bedrock'
     runs-on: ubuntu-latest
     strategy:
@@ -67,7 +70,9 @@ jobs:
 
     steps:
       - name: Fetch codebase
-        uses: actions/checkout@v6
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
 
       - name: Run CDN tests
         run: ./bin/integration_tests/functional_tests.sh
@@ -80,19 +85,21 @@ jobs:
 
       - name: Store artifacts
         if: always()
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: test-results-${{github.run_id}}-${{ matrix.SHARD_LABEL }}
           path: results-${{github.run_id}}
           if-no-files-found: ignore  # this avoids a false "Warning" if there were no issues
 
   notify-of-test-run-completion:
+    name: Notify Slack of test run completion
     if: always() && github.repository == 'mozilla/bedrock'
     needs: cdn-tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
+          persist-credentials: false
           sparse-checkout: .github/actions/slack
       - name: Notify via Slack of test-run outcome
         uses: ./.github/actions/slack

@@ -6,6 +6,8 @@
 
 {% extends "base-protocol-mozilla.html" %}
 
+{% from "macros-m24.html" import m24_intro with context %}
+
 {% block page_title %}{{ ftl('manifesto-the-mozilla-manifesto') }}{% endblock %}
 {% block page_title_suffix %}{% endblock %}
 
@@ -32,19 +34,18 @@
 {% block content %}
 <main>
   <header class="m24-c-content">
-    <div class="m24-c-intro m24-t-intro-snug">
-      <h1 class="m24-c-intro-title">{{ ftl('manifesto-the-mozilla-manifesto') }}</h1>
+    {% call m24_intro(heading=ftl('manifesto-the-mozilla-manifesto'), tag="div") %}
       {% if ftl_has_messages('manifesto-written-in-2007') %}
       <p>{{ ftl('manifesto-written-in-2007') }}</p>
       {% endif %}
-    </div>
+    {% endcall %}
   </header>
 
   <section class="m24-t-alt">
     <div class="m24-c-content">
       <div class="m24-c-prose m24-l-two-columns">
-        <div class="m24-c-prose-hgroup">
-          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-details-introduction') }}</h2>
+        <div class="m24-c-prose-heading m24-c-intro">
+          <h2 class="m24-c-intro-title m24-t-lg">{{ ftl('manifesto-details-introduction') }}</h2>
         </div>
         <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-details-the-internet-is-becoming') }}</p>
@@ -66,9 +67,7 @@
 
   <section class="m24-t-dark">
     <div class="m24-c-content">
-      <div class="m24-c-intro">
-          <h2 class="m24-c-intro-title">{{ ftl('manifesto-details-principles') }}</h2>
-      </div>
+      {% call m24_intro(heading=ftl('manifesto-details-principles'), heading_level=2) %}{% endcall %}
       <ol class="c-points">
         <li id="principles-01">
           {{ permalink('principles-01', 'manifesto-principle-1') }}
@@ -117,8 +116,8 @@
   <section class="m24-t-green">
     <div class="m24-c-content">
       <div class="m24-c-prose m24-l-two-columns">
-        <div class="m24-c-prose-hgroup">
-          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
+        <div class="m24-c-prose-heading m24-c-intro">
+          <h2 class="m24-c-intro-title m24-t-lg">{{ ftl('manifesto-pledge-for-a-healthy-internet') }}</h2>
         </div>
         <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-the-open-global-internet') }}</p>
@@ -130,9 +129,7 @@
 
   <section class="m24-t-dark">
     <div class="m24-c-content">
-      <div class="m24-c-intro">
-        <h2 class="m24-c-intro-title">{{ ftl('manifesto-our-commitments') }}</h2>
-      </div>
+      {% call m24_intro(heading=ftl('manifesto-our-commitments'), heading_level=2) %}{% endcall %}
       <ol class="c-points">
         <li id="commitment-01">
           {{ permalink('commitment-01', 'manifesto-commitment-1') }}
@@ -157,8 +154,8 @@
   <section class="m24-t-green">
     <div class="m24-c-content">
       <div class="m24-c-prose m24-l-two-columns">
-        <div class="m24-c-prose-hgroup">
-          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
+        <div class="m24-c-prose-heading m24-c-intro">
+          <h2 class="m24-c-intro-title m24-t-lg">{{ ftl('manifesto-mozillas-pledge', fallback='manifesto-details-mozilla-foundation') }}</h2>
         </div>
         <div class="m24-c-prose-body">
           <p>{{ ftl('manifesto-across-the-mozilla-project', fallback='manifesto-details-the-mozilla-foundation-pleges-v2') }}</p>
@@ -177,8 +174,8 @@
   <section class="m24-t-alt">
     <div class="m24-c-content">
       <div class="m24-c-prose m24-l-two-columns">
-        <div class="m24-c-prose-hgroup">
-          <h2 class="m24-c-prose-heading">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
+        <div class="m24-c-prose-heading m24-c-intro">
+          <h2 class="m24-c-intro-title m24-t-lg">{{ ftl('manifesto-we-need-you', fallback='manifesto-details-advancing-the') }}</h2>
         </div>
         <div class="m24-c-prose-body">
         <p>{{ ftl('manifesto-an-internet-with-these-v2', fallback='manifesto-an-internet-with-these') }}</p>
