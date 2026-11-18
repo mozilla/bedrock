@@ -83,7 +83,6 @@ dev = [
     "pytest-xdist==3.8.0",
     "responses==0.26.3",
     "ruff==0.17.0",
-    "selenium==4.51.0",
     "translate-toolkit==3.20.1",
     "wagtail-factories==4.5.0",
     # Related to moz-l10n-lint, used in CI
