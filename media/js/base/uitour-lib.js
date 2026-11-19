@@ -238,10 +238,20 @@ if (typeof window.Mozilla === 'undefined') {
      * Trigger the Firefox Accounts sign-in flow for the AI Window feature.
      * This will prompt the user to sign in and then open the AI Window
      * upon successful authentication.
-     * @since 149
+     *
+     * @param {string} [entrypoint] - The entry point recorded as the launch
+     * trigger in Smart Window telemetry, as "bedrock-<entrypoint>". Defaults to
+     * "bedrock" when omitted.
+     * @since 149, 162 for `entrypoint`
+     * @example
+     * Mozilla.UITour.showFirefoxAccountsForAIWindow();
+     * @example
+     * Mozilla.UITour.showFirefoxAccountsForAIWindow("sample");
      */
-    Mozilla.UITour.showFirefoxAccountsForAIWindow = function () {
-        _sendEvent('showFirefoxAccountsForAIWindow');
+    Mozilla.UITour.showFirefoxAccountsForAIWindow = function (entrypoint) {
+        _sendEvent('showFirefoxAccountsForAIWindow', {
+            entrypoint: entrypoint
+        });
     };
 
     Mozilla.UITour.resetFirefox = function () {
