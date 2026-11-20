@@ -6,41 +6,77 @@
 
 {% extends 'includes/banners/basic.html' %}
 
-{% block banner_id %}fundraising-banner-eoy2025{% endblock %}
+{# Expects `fundraising_phase` from the including page: 'giving-tuesday' or 'final-stretch'. #}
+{% set banner_id = 'fundraising-banner-eoy2026-' ~ fundraising_phase %}
+
+{% block banner_id %}{{ banner_id }}{% endblock %}
 
 {% block banner_class %}c-banner-fundraising{% endblock %}
 
-{% if LANG =="de" %}
-  {% set banner_title = 'Spende jetzt an die Mozilla Foundation' %}
-  {% set banner_tagline = 'Wir brauchen deine Hilfe, um unser Ziel für 2025 bis zum 31. Dezember zu erreichen.' %}
-  {% set banner_button = 'Spenden' %}
-{% elif LANG.startswith('es-') %}
-  {% set banner_title = 'Dona a la Fundación Mozilla' %}
-  {% set banner_tagline = 'Necesitamos tu ayuda para alcanzar nuestra meta de 2025 para el 31 de diciembre.' %}
-  {% set banner_button = 'Donar' %}
-{% elif LANG == "fr" %}
-  {% set banner_title = 'Faites un don à la Fondation Mozilla' %}
-  {% set banner_tagline = 'Nous avons besoin de votre aide pour atteindre notre objectif 2025 d\'ici le 31 décembre.' %}
-  {% set banner_button = 'Je fais un don' %}
-{% elif LANG == "it" %}
-  {% set banner_title = 'Dona a Mozilla Foundation' %}
-  {% set banner_tagline = 'Abbiamo bisogno del tuo aiuto per raggiungere il nostro obiettivo 2025 entro il 31 dicembre.' %}
-  {% set banner_button = 'Dona' %}
-{% elif LANG == "pl" %}
-  {% set banner_title = 'Wesprzyj Fundację Mozilla' %}
-  {% set banner_tagline = 'Potrzebujemy Twojej pomocy, aby osiągnąć nasz cel na 2025 rok do 31 grudnia.' %}
-  {% set banner_button = 'Wpłać datek ' %}
-{% elif LANG.startswith('pt-') %}
-  {% set banner_title = 'Doe para a Fundação Mozilla' %}
-  {% set banner_tagline = 'Precisamos da sua ajuda para alcançar a nossa meta de 2025 até 31 de dezembro.' %}
-  {% set banner_button = 'Doe agora' %}
+{% if fundraising_phase == 'giving-tuesday' %}
+  {% set banner_link = 'https://www.mozillafoundation.org/?form=26-eoy-org-gt' %}
+  {% if LANG == 'de' %}
+    {% set banner_title = 'Jetzt an die Mozilla Foundation spenden' %}
+    {% set banner_tagline = 'Unterstütze zum Giving Tuesday Technologie von Menschen für Menschen.' %}
+  {% elif LANG == 'es-ES' %}
+    {% set banner_title = 'Haz una donación a la Fundación Mozilla' %}
+    {% set banner_tagline = 'Este Giving Tuesday, apoya alternativas tecnológicas que priorizan a las personas.' %}
+  {% elif LANG in ['es-MX', 'es-AR', 'es-CL'] %}
+    {% set banner_title = 'Dona a la Fundación Mozilla' %}
+    {% set banner_tagline = 'Este Martes para Dar, apoya a las alternativas tecnológicas que anteponen a las personas.' %}
+  {% elif LANG == 'fr' %}
+    {% set banner_title = 'Faites un don à la Fondation Mozilla' %}
+    {% set banner_tagline = 'Soutenez les alternatives technologiques pour le Giving Tuesday.' %}
+  {% elif LANG == 'nl' %}
+    {% set banner_title = 'Doneer aan de Mozilla Foundation' %}
+    {% set banner_tagline = 'Steun deze Giving Tuesday tech-alternatieven waarin mensen centraal staan.' %}
+  {% elif LANG.startswith('pt-') %}
+    {% set banner_title = 'Doe para a Fundação Mozilla' %}
+    {% set banner_tagline = 'Neste Dia de Doar, apoie alternativas tecnológicas que priorizam as pessoas.' %}
+  {% else %}
+    {% set banner_title = 'Donate to Mozilla Foundation' %}
+    {% set banner_tagline = 'This Giving Tuesday, back people-first tech alternatives.' %}
+  {% endif %}
 {% else %}
-  {% set banner_title = 'Donate to Mozilla Foundation' %}
-  {% set banner_tagline = 'We need your help to reach our 2025 goal by December 31.' %}
-  {% set banner_button = 'Donate' %}
+  {% set banner_link = 'https://www.mozillafoundation.org/?form=26-eoy-org-fs' %}
+  {% if LANG == 'de' %}
+    {% set banner_title = 'Spende jetzt an die Mozilla Foundation' %}
+    {% set banner_tagline = 'Unterstütze bessere Technologie und hilf uns, unser Spendenziel bis 31. Dez. zu erreichen.' %}
+  {% elif LANG == 'es-ES' %}
+    {% set banner_title = 'Haz una donación a la Fundación Mozilla' %}
+    {% set banner_tagline = 'Apoya una tecnología mejor. Ayúdanos a alcanzar nuestro objetivo antes del 31 de diciembre.' %}
+  {% elif LANG in ['es-MX', 'es-AR', 'es-CL'] %}
+    {% set banner_title = 'Dona a la Fundación Mozilla' %}
+    {% set banner_tagline = 'Apoya a tecnología mejor. Ayúdanos a alcanzar nuestra meta antes del 31 de diciembre.' %}
+  {% elif LANG == 'fr' %}
+    {% set banner_title = 'Faites un don à la Fondation Mozilla' %}
+    {% set banner_tagline = 'Soutenez une meilleure technologie. Aidez-nous à atteindre notre objectif le 31 décembre.' %}
+  {% elif LANG == 'nl' %}
+    {% set banner_title = 'Doneer aan de Mozilla Foundation' %}
+    {% set banner_tagline = 'Steun betere tech. Help ons uiterlijk 31 december ons doel te bereiken.' %}
+  {% elif LANG.startswith('pt-') %}
+    {% set banner_title = 'Doe para a Fundação Mozilla' %}
+    {% set banner_tagline = 'Apoie um futuro tecnológico melhor e ajude a bater nossa meta até 31 de dezembro.' %}
+  {% else %}
+    {% set banner_title = 'Donate to Mozilla Foundation' %}
+    {% set banner_tagline = 'Back better tech. Help reach our 2026 goal by December 31.' %}
+  {% endif %}
 {% endif %}
 
-{% set banner_link = 'https://www.mozillafoundation.org/?form=eoy25-fp-moco-banner' %}
+{# The heart after the button text comes from CSS. #}
+{% if LANG == 'de' %}
+  {% set banner_button = 'Spenden' %}
+{% elif LANG.startswith('es-') %}
+  {% set banner_button = 'Dona' %}
+{% elif LANG == 'fr' %}
+  {% set banner_button = 'Faites un don' %}
+{% elif LANG == 'nl' %}
+  {% set banner_button = 'Doneer' %}
+{% elif LANG.startswith('pt-') %}
+  {% set banner_button = 'Doe agora' %}
+{% else %}
+  {% set banner_button = 'Donate' %}
+{% endif %}
 
 {% block banner_content %}
   <div class="c-banner-outer">
@@ -48,25 +84,28 @@
       <div class="c-banner-copy">
         <h2 class="c-banner-title">{{ banner_title }}</h2>
         <p class="c-banner-tagline">{{ banner_tagline }}</p>
-        <a id="fundraising-banner-eoy2025-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="Donate" data-cta-position="banner">
+        <a id="{{ banner_id }}-link" class="c-banner-button mzp-c-button mzp-t-secondary mzp-t-lg" href="{{ banner_link }}" data-cta-text="Donate" data-cta-position="banner">
           {{ banner_button }}
         </a>
       </div>
-      <a href="{{ banner_link }}" aria-labelledby="fundraising-banner-eoy2025-link">
+      <a class="c-banner-media-link" href="{{ banner_link }}" aria-labelledby="{{ banner_id }}-link">
       {{ picture(
-        url='img/banners/fundraiser/computer-200.png',
+        url='img/banners/fundraiser/eoy-2026-300.jpg',
         sources=[
           {
             'media': '(min-width: 688px)',
             'srcset': {
-              'img/banners/fundraiser/computer-200.png': '200w',
-              'img/banners/fundraiser/computer-400.png': '400w',
+              'img/banners/fundraiser/eoy-2026-300.jpg': '300w',
+              'img/banners/fundraiser/eoy-2026-600.jpg': '600w',
+            },
+            'sizes': {
+              'default': '300px',
             }
           },
         ],
         optional_attributes={
           'height': '200',
-          'width': '200',
+          'width': '300',
           'class': 'c-banner-media'
         }
       ) }}

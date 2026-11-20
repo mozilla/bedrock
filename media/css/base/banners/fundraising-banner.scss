@@ -29,7 +29,8 @@
         font-size: 16px;
     }
 
-    .c-banner-media {
+    .c-banner-media,
+    .c-banner-media-link {
         display: none;
     }
 
@@ -86,9 +87,13 @@
             font-size: 18px;
         }
 
+        .c-banner-media-link {
+            display: block;
+            flex: 0 0 300px;
+        }
+
         picture {
             display: block;
-            flex: 0 0 200px;
         }
 
         .c-banner-media {
