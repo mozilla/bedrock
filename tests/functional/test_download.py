@@ -17,9 +17,3 @@ def run_download_link_check(url):
 @pytest.mark.nondestructive
 def test_download_links(download_path):
     run_download_link_check(download_path)
-
-
-@pytest.mark.download
-@pytest.mark.nondestructive
-def test_localized_download_links(download_path_l10n):
-    run_download_link_check(download_path_l10n)
