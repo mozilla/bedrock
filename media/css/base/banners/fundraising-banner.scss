@@ -7,6 +7,12 @@
 .c-banner-fundraising {
     background: $color-moz-pink-light;
     color: $color-black;
+    display: none;
+
+    // conditional class used to display the banner.
+    &.c-banner-is-visible {
+        display: block;
+    }
 
 
     .c-banner-outer {

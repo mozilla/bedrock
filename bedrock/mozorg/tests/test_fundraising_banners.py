@@ -34,8 +34,7 @@ def render_homepage(site, rf, giving_tuesday=False, final_stretch=False, pencil=
 def test_giving_tuesday_banner_shows_and_hides_pencil(minimal_site, rf):  # noqa: F811
     soup = render_homepage(minimal_site, rf, giving_tuesday=True, pencil=True)
 
-    banner = soup.select_one(".c-banner-fundraising")
-    assert banner["id"] == "fundraising-banner-eoy2026-giving-tuesday"
+    banner = soup.select_one("#fundraising-banner-eoy2026")
     button = banner.select_one(".c-banner-button")
     assert button["href"] == "https://www.mozillafoundation.org/?form=26-eoy-org-gt"
     # The heart is added by CSS, so the copy must not include one.
@@ -46,15 +45,14 @@ def test_giving_tuesday_banner_shows_and_hides_pencil(minimal_site, rf):  # noqa
 def test_final_stretch_banner(minimal_site, rf):  # noqa: F811
     soup = render_homepage(minimal_site, rf, final_stretch=True)
 
-    banner = soup.select_one(".c-banner-fundraising")
-    assert banner["id"] == "fundraising-banner-eoy2026-final-stretch"
+    banner = soup.select_one("#fundraising-banner-eoy2026")
     assert banner.select_one(".c-banner-button")["href"] == "https://www.mozillafoundation.org/?form=26-eoy-org-fs"
 
 
 def test_final_stretch_wins_when_both_large_switches_are_on(minimal_site, rf):  # noqa: F811
     soup = render_homepage(minimal_site, rf, giving_tuesday=True, final_stretch=True)
 
-    assert soup.select_one(".c-banner-fundraising")["id"] == "fundraising-banner-eoy2026-final-stretch"
+    assert soup.select_one(".c-banner-button")["href"] == "https://www.mozillafoundation.org/?form=26-eoy-org-fs"
 
 
 def test_pencil_banner_shows_on_cms_homepage(minimal_site, rf):  # noqa: F811

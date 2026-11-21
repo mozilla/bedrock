@@ -22,9 +22,9 @@
 
 {% set show_firefox_app_store_banner = switch('firefox-app-store-banner') %}
 
-{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'de', 'es-ES', 'es-MX', 'es-AR', 'es-CL', 'fr', 'nl', 'pt-BR'] %}
-{% set fundraising_phase = 'final-stretch' if switch('fundraising-banner-2026eoy-final-stretch') else ('giving-tuesday' if switch('fundraising-banner-2026eoy-giving-tuesday') else '') %}
-{% set show_fundraising_banner = fundraising_phase and LANG in fundraising_banner_langs %}
+{% set fundraising_banner_langs = ['en-US', 'en-GB', 'en-CA', 'es-AR', 'es-CL', 'es-ES', 'es-MX', 'de', 'fr', 'nl', 'pt-BR'] %}
+{% set show_final_stretch = switch('fundraising-banner-2026eoy-final-stretch') %}
+{% set show_fundraising_banner = (show_final_stretch or switch('fundraising-banner-2026eoy-giving-tuesday')) and LANG in fundraising_banner_langs %}
 
 {% set show_state_of_mozilla_2025 = switch('state-of-mozilla-2025') %}
 
@@ -38,7 +38,7 @@
 {% endblock %}
 
 {% block site_header %}
-  {% with hide_pencil_banner=show_fundraising_banner, is_homepage=True %}
+  {% with hide_pencil_banner=show_fundraising_banner %}
     {% include 'includes/protocol/navigation/navigation.html' %}
   {% endwith %}
 {% endblock %}

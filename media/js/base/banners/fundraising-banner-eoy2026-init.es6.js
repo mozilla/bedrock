@@ -6,13 +6,4 @@
 
 import MozBanner from './mozilla-banner.es6';
 
-if (typeof window.dataLayer === 'undefined') {
-    window.dataLayer = [];
-}
-
-// The template sets a per-campaign id, so read it rather than hard-coding it.
-const banner = document.querySelector('.c-banner-fundraising');
-
-if (banner) {
-    MozBanner.init(banner.id, true);
-}
+MozBanner.init('fundraising-banner-eoy2026', true);
