@@ -1090,12 +1090,6 @@
         "css/base/banners/fundraising-banner.scss"
       ],
       "name": "fundraising-banner"
-    },
-    {
-      "files": [
-        "css/base/banners/foundation-fundraising-banner.scss"
-      ],
-      "name": "foundation-fundraising-banner"
     }
   ],
   "js": [
@@ -1732,15 +1726,9 @@
     },
     {
       "files": [
-        "js/base/banners/fundraising-banner-eoy2025-init.es6.js"
+        "js/base/banners/fundraising-banner-eoy2026-init.es6.js"
       ],
-      "name": "fundraising_banner_eoy2025"
-    },
-    {
-      "files": [
-        "js/base/banners/foundation-fundraising-banner-midyear2026-init.es6.js"
-      ],
-      "name": "foundation_fundraising_banner_midyear2026"
+      "name": "fundraising_banner_eoy2026"
     },
     {
       "files": [

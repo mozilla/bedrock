@@ -7,6 +7,12 @@
 .c-banner-fundraising {
     background: $color-moz-pink-light;
     color: $color-black;
+    display: none;
+
+    // conditional class used to display the banner.
+    &.c-banner-is-visible {
+        display: block;
+    }
 
 
     .c-banner-outer {
@@ -29,7 +35,8 @@
         font-size: 16px;
     }
 
-    .c-banner-media {
+    .c-banner-media,
+    .c-banner-media-link {
         display: none;
     }
 
@@ -86,9 +93,13 @@
             font-size: 18px;
         }
 
+        .c-banner-media-link {
+            display: block;
+            flex: 0 0 300px;
+        }
+
         picture {
             display: block;
-            flex: 0 0 200px;
         }
 
         .c-banner-media {
