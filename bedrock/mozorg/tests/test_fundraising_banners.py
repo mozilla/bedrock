@@ -68,7 +68,7 @@ def test_pencil_banner_shows_on_cms_homepage(minimal_site, rf):  # noqa: F811
     "language, tagline",
     [
         ("es-ES", "Apoya una tecnología mejor. Ayúdanos a alcanzar nuestro objetivo antes del 31 de diciembre."),
-        ("es-AR", "Apoya a tecnología mejor. Ayúdanos a alcanzar nuestra meta antes del 31 de diciembre."),
+        ("es-AR", "Apoya una tecnología mejor. Ayúdanos a alcanzar nuestra meta antes del 31 de diciembre."),
         ("nl", "Steun betere tech. Help ons uiterlijk 31 december ons doel te bereiken."),
         ("pt-BR", "Apoie um futuro tecnológico melhor e ajude a bater nossa meta até 31 de dezembro."),
     ],
