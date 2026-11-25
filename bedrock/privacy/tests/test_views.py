@@ -187,3 +187,24 @@ class TestPrivacyFAQView(TestCase):
     @patch("bedrock.privacy.views.ftl_file_is_active", return_value=False)
     def test_legacy_template_when_ftl_file_is_inactive(self, ftl_mock):
         assert views.FAQView().get_template_names() == ["privacy/faq.html"]
+
+
+class TestAdTargetingGuidelines(TestCase):
+    def test_page_renders_the_guidelines(self):
+        resp = self.client.get("/en-US/privacy/ad-targeting-guidelines/")
+        assert resp.status_code == 200
+        doc = BeautifulSoup(resp.content, "html.parser")
+        assert doc.select_one("main#notice h1").text == "Mozilla’s Ad-Targeting Guidelines"
+        headings = [h.text for h in doc.select("main#notice h3")]
+        assert headings == ["Prohibited Targeting Tactics:", "Approved Targeting Tactics:"]
+        prohibited = [li.text for li in doc.select("#prohibited-targeting-tactics ~ ul li")]
+        assert [p.split(" - ")[0] for p in prohibited] == [
+            "No Site Retargeting",
+            "No Impression Retargeting",
+            "No Cross-Device Targeting",
+            "No Using Mozilla 1st-party Data to Build Look-A-Like Targets",
+        ]
+
+    def test_transparency_page_links_to_the_guidelines(self):
+        resp = self.client.get("/en-US/about/policy/transparency/")
+        assert 'href="/en-US/privacy/ad-targeting-guidelines/"' in resp.content.decode()

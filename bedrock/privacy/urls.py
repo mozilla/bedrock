@@ -23,6 +23,13 @@ urlpatterns = (
     page("websites/data-preferences/", "privacy/data-preferences.html", ftl_files=["privacy/data-preferences"]),
     page("websites/cookie-settings/", "privacy/cookie-settings.html", ftl_files=["privacy/cookie-settings"]),
     path("mdn-plus/", views.mdn_plus, name="privacy.notices.mdn-plus"),
+    page(
+        "ad-targeting-guidelines/",
+        "privacy/notices/ad-targeting-guidelines.html",
+        url_name="privacy.notices.ad-targeting-guidelines",
+        ftl_files=["mozorg/about/legal", "privacy/index"],
+        active_locales=["en-US"],
+    ),
     path("subscription-services/", views.subscription_services, name="privacy.notices.subscription-services"),
     path("mozilla-accounts/", views.mozilla_accounts, name="privacy.notices.mozilla-accounts"),
     page("archive/", "privacy/archive/index.html", ftl_files=["privacy/index"], active_locales=["en-US"]),
