@@ -44,6 +44,20 @@ class TestSecurityDotTxt(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.get("Content-Type"), "text/plain")
         self.assertContains(response, "security@mozilla.org")
+        self.assertContains(response, "Encryption: https://www.mozilla.org/security-pgp.asc")
+
+
+class TestSecurityPgpKey(TestCase):
+    def test_no_redirect(self):
+        response = self.client.get("/security-pgp.asc", headers={"host": "www.mozilla.org"})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get("Content-Type"), "application/pgp-keys")
+        self.assertContains(response, "-----BEGIN PGP PUBLIC KEY BLOCK-----")
+
+    def test_key_matches_security_page(self):
+        key = self.client.get("/security-pgp.asc").content.decode().strip()
+        page = self.client.get("/en-US/security/").content.decode()
+        self.assertIn(key, page)
 
 
 @override_settings(DEV=False)
