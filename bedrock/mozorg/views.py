@@ -52,8 +52,8 @@ class SecurityDotTxt(RequireSafeMixin, TemplateView):
 
 class SecurityPgpKey(RequireSafeMixin, TemplateView):
     # https://github.com/mozilla/bedrock/issues/17535
-    # served under security-pgp.asc and also included in security/index.html
-    template_name = "mozorg/security-pgp.asc"
+    # served under mozilla-email-encryption-key.asc and also included in security/index.html
+    template_name = "mozorg/mozilla-email-encryption-key.asc"
     content_type = "application/pgp-keys"
 
 
