@@ -50,6 +50,13 @@ class SecurityDotTxt(RequireSafeMixin, TemplateView):
     content_type = "text/plain"
 
 
+class SecurityPgpKey(RequireSafeMixin, TemplateView):
+    # https://github.com/mozilla/bedrock/issues/17535
+    # served under mozilla-email-encryption-key.asc and also included in security/index.html
+    template_name = "mozorg/mozilla-email-encryption-key.asc"
+    content_type = "application/pgp-keys"
+
+
 class GpcDotJson(RequireSafeMixin, TemplateView):
     # https://github.com/mozilla/bedrock/issues/14213
     # served under .well-known/gpc.json

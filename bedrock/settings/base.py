@@ -473,6 +473,7 @@ SUPPORTED_NONLOCALES = [
     "credits",
     "robots.txt",
     ".well-known",
+    "mozilla-email-encryption-key.asc",
     "telemetry",  # redirect only
     "webmaker",  # redirect only
     "healthz",  # Needed for k8s
