@@ -2,6 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+from pathlib import Path
 from unittest.mock import patch
 
 from django.http import Http404, HttpResponse
@@ -57,6 +58,20 @@ class TestFocusSimpleDocView(TestCase):
         view(req)
         template = render_mock.call_args[0][1]
         assert template == "privacy/notices/firefox-simple.html"
+
+
+class TestFirefoxSimpleNoticeDarkMode(TestCase):
+    def test_simple_notice_stylesheet_supports_dark_mode(self):
+        # The `?v=product` notice uses the `privacy_firefox_simple` bundle; it must
+        # define dark mode colors like the simple Terms of Use stylesheet does.
+        scss_path = Path(__file__).resolve().parents[3] / "media" / "css" / "privacy" / "privacy-firefox-simple.scss"
+        scss = scss_path.read_text(encoding="utf-8")
+        assert "@media (prefers-color-scheme: dark)" in scss
+        # The dark `.data-choices` override must follow the base rule, or the base
+        # background (same specificity, later in the file) would win in dark mode.
+        base_rule = scss.index("\n.data-choices {\n")
+        dark_rule = scss.index("@media (prefers-color-scheme: dark) {\n    .data-choices {\n        background-color: $color-dark-gray-60;")
+        assert dark_rule > base_rule
 
 
 class TestFirefoxPrivacyNextViewBehaviour(TestCase):
