@@ -179,12 +179,10 @@ if (typeof window.Mozilla === 'undefined') {
                     link.href.indexOf(
                         'https://bouncer-bouncer.stage.mozaws.net/'
                     ) !== -1 ||
-                    link.href.indexOf(
-                        'https://stage.bouncer.nonprod.webservices.mozgcp.net'
-                    ) !== -1 ||
-                    link.href.indexOf(
-                        'https://dev.bouncer.nonprod.webservices.mozgcp.net'
-                    ) !== -1)
+                    link.href.indexOf('https://stage.download.allizom.org') !==
+                        -1 ||
+                    link.href.indexOf('https://dev.download.allizom.org') !==
+                        -1)
             ) {
                 version = link.getAttribute('data-download-version');
 

@@ -841,13 +841,13 @@ describe('stub-attribution.js', function () {
         const winStageUrl =
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US';
         const winGCPStageUrl =
-            'https://stage.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US';
+            'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64StageUrl =
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const winDevUrl =
-            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US';
+            'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64DevUrl =
-            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
+            'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win64&lang=en-US';
         const macOSNightlyUrl =
             'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US';
         const macOSBetaUrl =
@@ -934,7 +934,7 @@ describe('stub-attribution.js', function () {
                     .getElementById('link-gcp-stage-transitional')
                     .getAttribute('data-direct-link')
             ).toEqual(
-                'https://stage.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
 
             // dev download links
@@ -943,15 +943,15 @@ describe('stub-attribution.js', function () {
                     .getElementById('link-dev-transitional')
                     .getAttribute('data-direct-link')
             ).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(document.getElementById('link-dev-direct-win').href).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
             expect(
                 document.getElementById('link-dev-direct-win64').href
             ).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );
 
             // macOS links
@@ -1282,9 +1282,9 @@ describe('stub-attribution.js', function () {
             const win64StageUrl =
                 'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
             const winDevUrl =
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
             const win64DevUrl =
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win64&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
             const macOSNightlyUrl =
                 'https://download.mozilla.org/?product=firefox-nightly-latest&os=osx&lang=en-US&attribution_code=test-code&attribution_sig=test-sig';
             const macOSBetaUrl =
@@ -1374,15 +1374,15 @@ describe('stub-attribution.js', function () {
                     .getElementById('link-dev-transitional')
                     .getAttribute('data-direct-link')
             ).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US'
             );
             expect(document.getElementById('link-dev-direct-win').href).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win&lang=en-US'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US'
             );
             expect(
                 document.getElementById('link-dev-direct-win64').href
             ).toEqual(
-                'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=win64&lang=en-US'
+                'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=win64&lang=en-US'
             );
 
             // macOS links cleaned

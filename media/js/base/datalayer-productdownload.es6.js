@@ -7,8 +7,8 @@
 const TrackProductDownload = {};
 const prodURL = /^https:\/\/download.mozilla.org/;
 const stageURL =
-    /^https:\/\/(bouncer-bouncer.stage.mozaws.net|stage.bouncer.nonprod.webservices.mozgcp.net)/;
-const devURL = /^https:\/\/dev.bouncer.nonprod.webservices.mozgcp.net/;
+    /^https:\/\/(bouncer-bouncer.stage.mozaws.net|stage.download.allizom.org)/;
+const devURL = /^https:\/\/dev.download.allizom.org/;
 const iTunesURL = /^https:\/\/itunes.apple.com/;
 const appStoreURL = /^https:\/\/apps.apple.com/;
 const playStoreURL = /^https:\/\/play.google.com/;

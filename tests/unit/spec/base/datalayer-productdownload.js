@@ -26,13 +26,13 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
     });
     it('should recognize bouncer GCP stage as a valid URL', function () {
         const testBouncerURL = TrackProductDownload.isValidDownloadURL(
-            'https://stage.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=osx&lang=en-US'
+            'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
         );
         expect(testBouncerURL).toBe(true);
     });
     it('should recognize bouncer dev as a valid URL', function () {
         const testBouncerURL = TrackProductDownload.isValidDownloadURL(
-            'https://dev.bouncer.nonprod.webservices.mozgcp.net/?product=firefox-latest-ssl&os=osx&lang=en-US'
+            'https://dev.download.allizom.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
         );
         expect(testBouncerURL).toBe(true);
     });
