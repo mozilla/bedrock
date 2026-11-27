@@ -7,6 +7,32 @@
 
 $border: 2px solid $color-marketing-gray-20;
 
+@media (prefers-color-scheme: dark) {
+    html, body {
+        background-color: var(--background-color-inverse);
+    }
+
+    body {
+        color: var(--body-text-color-inverse);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--title-text-color-inverse);
+    }
+
+    a {
+        color: var(--link-color-inverse);
+
+        &:hover, &:active {
+            color: var(--link-color-hover-inverse);
+        }
+
+        &:visited {
+            color: var(--link-color-visited-inverse);
+        }
+    }
+}
+
 // narrow top / bottom padding for modal display
 #outer-wrapper > .mzp-l-content {
     padding-bottom: $spacing-xl;
@@ -115,6 +141,13 @@ $border: 2px solid $color-marketing-gray-20;
         .mzp-c-button {
             margin: 0;
         }
+    }
+}
+
+// Must come after the base `.data-choices` rule above to override its background.
+@media (prefers-color-scheme: dark) {
+    .data-choices {
+        background-color: $color-dark-gray-60;
     }
 }
 
