@@ -840,7 +840,7 @@ describe('stub-attribution.js', function () {
             'https://www.mozilla.org/firefox/download/thanks/';
         const winStageUrl =
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win&lang=en-US';
-        const winGCPStageUrl =
+        const winAllizomStageUrl =
             'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US';
         const win64StageUrl =
             'https://bouncer-bouncer.stage.mozaws.net/?product=firefox-latest-ssl&os=win64&lang=en-US';
@@ -865,7 +865,8 @@ describe('stub-attribution.js', function () {
                     <li><a id="link-direct-win" class="download-link" data-download-version="win" href="${winUrl}">Download</a></li>
                     <li><a id="link-direct-win64" class="download-link" data-download-version="win64" href="${win64Url}">Download</a></li>
                     <li><a id="link-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winStageUrl}">Download</a></li>
-                    <li><a id="link-gcp-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winGCPStageUrl}">Download</a></li>
+                    <li><a id="link-allizom-stage-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winAllizomStageUrl}">Download</a></li>
+                    <li><a id="link-allizom-stage-direct-win" class="download-link" data-download-version="win" href="${winAllizomStageUrl}">Download</a></li>
                     <li><a id="link-stage-direct-win" class="download-link" data-download-version="win" href="${winStageUrl}">Download</a></li>
                     <li><a id="link-stage-direct-win64" class="download-link" data-download-version="win64" href="${win64StageUrl}">Download</a></li>
                     <li><a id="link-dev-transitional" class="download-link" data-download-version="win" href="${transitionalUrl}" data-direct-link="${winDevUrl}">Download</a></li>
@@ -931,8 +932,13 @@ describe('stub-attribution.js', function () {
 
             expect(
                 document
-                    .getElementById('link-gcp-stage-transitional')
+                    .getElementById('link-allizom-stage-transitional')
                     .getAttribute('data-direct-link')
+            ).toEqual(
+                'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
+            );
+            expect(
+                document.getElementById('link-allizom-stage-direct-win').href
             ).toEqual(
                 'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=win&lang=en-US&attribution_code=test-code&attribution_sig=test-sig'
             );

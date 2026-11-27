@@ -24,7 +24,7 @@ describe('TrackProductDownload.isValidDownloadURL', function () {
         );
         expect(testBouncerURL).toBe(true);
     });
-    it('should recognize bouncer GCP stage as a valid URL', function () {
+    it('should recognize bouncer allizom stage as a valid URL', function () {
         const testBouncerURL = TrackProductDownload.isValidDownloadURL(
             'https://stage.download.allizom.org/?product=firefox-latest-ssl&os=osx&lang=en-US'
         );
