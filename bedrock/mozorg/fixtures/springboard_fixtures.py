@@ -21,12 +21,10 @@ def get_springboard_variants() -> list[dict]:
                 "settings": {
                     "anchor_id": "resources",
                     "background_color": "",
+                    "heading_size": "m24-t-md",
                 },
                 "heading": "Latest Resources",
-                "column_one": "Type",
-                "column_two": "Author",
-                "column_three": "Topic",
-                "column_four": "Preview",
+                "intro": '<p>Optional intro text with <b>bold</b> and a <a href="https://example.com">link</a>.</p>',
                 "springboard_items": [
                     {
                         "url": "https://example.com/article1",
@@ -53,31 +51,28 @@ def get_springboard_variants() -> list[dict]:
                 "settings": {
                     "anchor_id": "",
                     "background_color": "",
+                    "heading_size": "",
                 },
                 "heading": "",
-                "column_one": "Format",
-                "column_two": "Creator",
-                "column_three": "Category",
-                "column_four": "Description",
                 "springboard_items": [
                     {
                         "url": "https://example.com/podcast1",
                         "type": "Podcast",
-                        "topic": "",
+                        "topic": "Data",
                         "author": "Mozilla Team",
                         "preview": "Latest tech trends discussion",
                     },
                     {
                         "url": "https://example.com/blog1",
                         "type": "Article",
-                        "topic": "",
+                        "topic": "Open Source AI",
                         "author": "Alice Johnson",
                         "preview": "The future of open source software",
                     },
                     {
                         "url": "https://example.com/webinar1",
                         "type": "Video",
-                        "topic": "",
+                        "topic": "News",
                         "author": "Bob Williams",
                         "preview": "Teaching coding to beginners",
                     },
