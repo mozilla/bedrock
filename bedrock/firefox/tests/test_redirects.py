@@ -3,6 +3,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 from unittest.mock import patch
+from urllib.parse import parse_qsl, urlparse
 
 from django.conf import settings
 from django.test import RequestFactory
@@ -978,3 +979,193 @@ def test_wnp145_redirects_to_fxc_when_appropriate(client, source_path, expected_
         assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}"
     else:
         assert "Location" not in resp.headers
+
+
+# --------------------------------------------------------------------------
+# Issue 16367 - the deeper /firefox/all/* step paths now forward to the same
+# steps under /download/all/ on www.firefox.com (one blind 301 per path; the
+# target decides whether it redirects further or 404s).
+# --------------------------------------------------------------------------
+
+EXPECTED_REDIRECT_QS = "?redirect_source=mozilla-org"
+
+
+def get_redirect_response(client, path):
+    """GET a path and require the first response to be the final 301 (one hop)."""
+    resp = client.get(path, secure=True)
+    assert resp.status_code == 301
+    return resp
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path,dest_path",
+    (
+        # root rule (predating this issue) must be byte-for-byte unchanged
+        ("/en-US/firefox/all/", "/en-US/download/all/"),
+        ("/fr/firefox/all/", "/fr/download/all/"),
+        ("/firefox/all/", "/download/all/"),
+        # product-only
+        ("/en-US/firefox/all/desktop-release/", "/en-US/download/all/desktop-release/"),
+        ("/en-US/firefox/all/desktop-esr/", "/en-US/download/all/desktop-esr/"),
+        ("/en-US/firefox/all/android-release/", "/en-US/download/all/android-release/"),
+        ("/en-US/firefox/all/mobile-release/", "/en-US/download/all/mobile-release/"),
+        # product/platform
+        ("/en-US/firefox/all/desktop-release/win64/", "/en-US/download/all/desktop-release/win64/"),
+        ("/fr/firefox/all/desktop-esr/osx/", "/fr/download/all/desktop-esr/osx/"),
+        ("/en-US/firefox/all/desktop-release/win-store/", "/en-US/download/all/desktop-release/win-store/"),
+        # product/platform/download-locale, page locale != download locale
+        ("/en-US/firefox/all/desktop-esr/osx/sco/", "/en-US/download/all/desktop-esr/osx/sco/"),
+        ("/fr/firefox/all/desktop-release/win64/fr/", "/fr/download/all/desktop-release/win64/fr/"),
+        # slash-less variants resolve in one hop with a slash-terminated target
+        ("/en-US/firefox/all/desktop-esr", "/en-US/download/all/desktop-esr/"),
+        ("/en-US/firefox/all/desktop-esr/osx/sco", "/en-US/download/all/desktop-esr/osx/sco/"),
+        # query strings are preserved and merged by the offsite_redirect helper
+    ),
+)
+def test_deeper_firefox_all_paths_redirect(client, source_path, dest_path):
+    resp = get_redirect_response(client, source_path)
+    assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}{EXPECTED_REDIRECT_QS}"
+
+
+@pytest.mark.django_db
+def test_deeper_firefox_all_redirects_preserve_querystring(client):
+    resp = get_redirect_response(client, "/en-US/firefox/all/desktop-esr/osx/sco/?utm_campaign=test&via=adjust")
+    params = dict(parse_qsl(resp.headers["Location"].split("?", 1)[1]))
+    assert params == {"redirect_source": "mozilla-org", "utm_campaign": "test", "via": "adjust"}
+
+
+@pytest.mark.django_db
+def test_deeper_firefox_all_redirect_does_not_duplicate_redirect_source(client):
+    resp = get_redirect_response(client, "/en-US/firefox/all/desktop-esr/?redirect_source=other")
+    assert dict(parse_qsl(resp.headers["Location"].split("?", 1)[1])) == {"redirect_source": "other"}
+
+
+# Validity is up to the target: unknown products/platforms/locales are
+# forwarded as-is (www.firefox.com 404s them), so there is no local allowlist.
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path,dest_path",
+    (
+        ("/en-US/firefox/all/bogus-product/", "/en-US/download/all/bogus-product/"),
+        ("/en-US/firefox/all/desktop-esr/bogus-platform/", "/en-US/download/all/desktop-esr/bogus-platform/"),
+        ("/en-US/firefox/all/desktop-release/win64/bogus-locale/", "/en-US/download/all/desktop-release/win64/bogus-locale/"),
+        # four or more segments are forwarded too (www.firefox.com decides)
+        ("/en-US/firefox/all/a/b/c/d/", "/en-US/download/all/a/b/c/d/"),
+    ),
+)
+def test_deeper_firefox_all_unknown_combinations_are_forwarded(client, source_path, dest_path):
+    resp = get_redirect_response(client, source_path)
+    assert resp.headers["Location"] == f"{settings.FXC_BASE_URL}{dest_path}{EXPECTED_REDIRECT_QS}"
+
+
+# Adjacent/similar paths must not be caught by the firefox/all rules.
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "path,expected_status,expected_location",
+    (
+        ("/firefox/alligator/", 302, "/en-US/firefox/alligator/"),
+        ("/firefox/all-old/", 302, "/en-US/firefox/all-old/"),
+        ("/en-US/firefox/ALL/desktop-esr/", 404, None),
+    ),
+)
+def test_similar_paths_are_not_redirected_by_firefox_all_rules(client, path, expected_status, expected_location):
+    resp = client.get(path, secure=True)
+    assert resp.status_code == expected_status
+    if expected_location:
+        assert resp.headers.get("Location") == expected_location
+
+
+# Host and loop invariants.
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path",
+    (
+        "/en-US/firefox/all/desktop-esr/",
+        "/fr/firefox/all/desktop-release/win64/fr/",
+        "/firefox/all/desktop-release/win64/",
+    ),
+)
+def test_firefox_all_redirects_host_and_loop_safety(client, source_path):
+    resp = get_redirect_response(client, source_path)
+    location = resp.headers["Location"]
+    parsed = urlparse(location)
+    assert parsed.scheme == "https"
+    assert parsed.netloc == urlparse(settings.FXC_BASE_URL).netloc
+    assert "/download/all/" in parsed.path
+    assert "mozilla.org" not in location
+    assert not location.startswith("//")
+
+
+# User-supplied path data must survive redirect()'s format calls literally:
+# braces can't be re-interpreted, %-signs aren't double-encoded, and encoded
+# ?/# stay in the path instead of becoming query/fragment of the target.
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "raw_url,expected_tail",
+    (
+        # {missing} / {} / {_locale}: must not be treated as format placeholders
+        ("/en-US/firefox/all/%7Bmissing%7D/", "%7Bmissing%7D"),
+        ("/firefox/all/%7Bmissing%7D/", "%7Bmissing%7D"),
+        ("/en-US/firefox/all/%7B%7D/", "%7B%7D"),
+        ("/en-US/firefox/all/a/%7B_locale%7D/", "a/%7B_locale%7D"),
+        # encoded question mark and hash stay in the path
+        ("/en-US/firefox/all/a%3Fq/", "a%3Fq"),
+        ("/en-US/firefox/all/a%23f/", "a%23f"),
+        # a literal percent sign is not double-encoded
+        ("/en-US/firefox/all/a%25b/", "a%25b"),
+        # space and unicode survive as-is
+        ("/en-US/firefox/all/a%20b/", "a%20b"),
+        ("/en-US/firefox/all/%E6%B5%8B%E8%AF%95/", "%E6%B5%8B%E8%AF%95"),
+    ),
+)
+def test_firefox_all_redirect_handles_special_path_characters(client, raw_url, expected_tail):
+    resp = client.get(raw_url, secure=True)
+    assert resp.status_code == 301
+    location = resp.headers["Location"]
+    parsed = urlparse(location)
+    # no exception escaped; host and namespace stay correct
+    assert parsed.scheme == "https"
+    assert parsed.netloc == urlparse(settings.FXC_BASE_URL).netloc
+    assert "/download/all/" in parsed.path
+    # the captured path is preserved (single-encoded), not replaced or dropped
+    assert expected_tail in parsed.path
+    # ? and # from the path never become the target's query or fragment
+    assert parsed.query == "redirect_source=mozilla-org"
+    assert parsed.fragment == ""
+
+
+# Legacy paths intentionally unchanged by this issue.
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "source_path,dest_path",
+    (
+        ("/en-US/firefox/all-older.html", f"{settings.FXC_BASE_URL}/en-US/"),
+        ("/products/firefox/all", "/firefox/all/"),
+        ("/firefox/all.html", "/firefox/all/"),
+        ("/firefox/all", "/firefox/all/"),
+    ),
+)
+def test_firefox_all_legacy_paths_unchanged(client, source_path, dest_path):
+    resp = client.get(source_path, secure=True)
+    assert resp.status_code == 301
+    assert resp.headers["Location"] == dest_path
+
+
+# Rule ordering: the deeper rules live in the firefox section, before the
+# global catch-alls registered by bedrock.redirects (last INSTALLED_APPS entry).
+def test_deeper_firefox_all_rule_is_ordered_before_the_catch_alls():
+    import bedrock.redirects.util as redirect_util
+
+    regexes = [p.pattern.regex.pattern for p in redirect_util.redirectpatterns if getattr(p, "pattern", None) is not None]
+
+    def index_of(fragment, last=False):
+        matches = [i for i, r in enumerate(regexes) if fragment in r]
+        assert matches, f"pattern not found in registry: {fragment}"
+        return matches[-1] if last else matches[0]
+
+    root = index_of("firefox/all/$")
+    deep = index_of("firefox/all/(?P<download_path>")
+    catchall = index_of("^(.*)/index\\.html$", last=True)
+    assert root < deep
+    assert deep < catchall
