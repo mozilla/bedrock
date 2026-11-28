@@ -4,6 +4,8 @@
 
 from django.urls import Resolver404
 
+from bedrock.base.i18n import split_path_and_normalize_language
+
 from .util import get_resolver
 
 
@@ -18,7 +20,20 @@ class RedirectsMiddleware:
             return response
         return self.get_response(request)
 
+    def _drop_unsupported_locale_prefix(self, request):
+        """Remove a leading product locale that Bedrock doesn't serve, if there is one.
+
+        These redirects are resolved before `BedrockLangCodeFixupMiddleware` can fix the
+        language codes up, so an off-site redirect (e.g. the release-notes pages that
+        now live on www.firefox.com) would otherwise keep the unsupported prefix in its
+        destination.
+        """
+        lang_code, subpath, lang_code_changed = split_path_and_normalize_language(request.path)
+        if lang_code_changed and not lang_code:
+            request.path = request.path_info = "/" + subpath
+
     def process_request(self, request):
+        self._drop_unsupported_locale_prefix(request)
         try:
             resolver_match = self.resolver.resolve(request.path_info)
         except Resolver404:
